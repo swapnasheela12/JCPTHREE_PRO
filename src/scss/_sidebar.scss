@@ -1,0 +1,248 @@
+#wrapper {
+  display: flex;
+}
+
+#sidebar {
+  @include smoothTrans;
+  background-color: $darkBlue;
+  background: linear-gradient(180deg, #303545 15%, $darkBlue 100%);
+  height: 100vh;
+  min-width: 230px;
+  cursor: pointer;
+
+  .header-nav-logo {
+    .header-img-logo {}
+
+    .sidebarCollapse {
+      color: $white;
+      font-size: 1.3em;
+      text-align: center;
+
+      span {
+        cursor: pointer;
+        padding: 12px 4px;
+        opacity: 0.5;
+        @include smoothTrans;
+
+        &:hover {
+          opacity: 1;
+          transform: scale(1.2, 1.2);
+          -webkit-transform: scale(1.2, 1.2);
+          -ms-transform: scale(1.2, 1.2);
+        }
+      }
+    }
+
+
+  }
+
+  app-menu-list-item {
+    outline: none;
+
+    .sidebar-menu-list {
+      a {
+        padding: 8px 0;
+        display: -webkit-box;
+        display: flex;
+        width: auto;
+
+        // 
+        .mat-list-item-content {
+          display: flex;
+          font-size: 14px;
+          font-weight: 300;
+
+          .mat-list-text {}
+
+          .list-name {
+            outline: none;
+            margin-top: 3px;
+          }
+
+
+          .list-child-expand {
+            font-weight: 300;
+            // line-height: 1.5;
+            padding-top: 6px;
+            text-align: center;
+            background-repeat: no-repeat;
+            display: inline-block;
+            fill: currentColor;
+            height: 24px;
+            width: 24px;
+            font-size: 16px;
+          }
+
+          .routeIcon {
+            background-repeat: no-repeat;
+            display: inline-block;
+            fill: currentColor;
+            height: 24px;
+            width: 24px;
+            font-size: 16px;
+            text-align: center;
+            // margin: 0px 15px;
+
+          }
+
+
+        }
+      }
+    }
+
+  }
+}
+
+
+
+#sidebar.collapsed {
+  min-width: 64px;
+  max-width: 64px;
+  cursor: pointer;
+
+  .header-nav-logo {
+    .header-img-logo {}
+
+    .sidebarCollapse {
+      color: $white;
+      font-size: 1.3em;
+      text-align: center;
+      // position: absolute;
+      // bottom: 6px;
+      // width: 218px;
+
+      span {
+        cursor: pointer;
+        padding: 12px 5px;
+        opacity: 0.5;
+        @include smoothTrans;
+
+        &:hover {
+          opacity: 1;
+          // text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+          transform: scale(1.2, 1.2);
+          -webkit-transform: scale(1.2, 1.2);
+          -ms-transform: scale(1.2, 1.2);
+        }
+      }
+    }
+
+
+  }
+
+  app-menu-list-item {
+    .sidebar-menu-list {
+      a {
+        padding: 8px 0;
+        display: -webkit-box;
+        display: flex;
+        width: auto;
+
+        .mat-list-item-content {
+          display: flex;
+
+          .mat-list-text {}
+
+          .list-name {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            -webkit-transition: opacity 0.2s, visibility 0.2s;
+            transition: opacity 0.2s, visibility 0.2s;
+            -ms-transition: opacity 0.2s, visibility 0.2s
+          }
+
+          .list-child-expand {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            -webkit-transition: opacity 0.2s, visibility 0.2s;
+            transition: opacity 0.2s, visibility 0.2s;
+            -ms-transition: opacity 0.2s, visibility 0.2s
+          }
+
+          // .mat-icon {
+          //   background-repeat: no-repeat;
+          //   display: inline-block;
+          //   fill: currentColor;
+          //   height: 24px;
+          //   width: 24px;
+          //   margin: 0px -1px;
+          // }
+          // a{
+          //   color: $white;
+          // }
+          div {
+            color: $white;
+
+            .routeIcon {
+              background-repeat: no-repeat;
+              display: inline-block;
+              // fill: currentColor;
+              height: 24px;
+              width: 24px;
+              font-size: 16px;
+              margin: 8px 2px 0 0px;
+              text-align: center;
+              @include smoothTrans;
+              opacity: 0.5;
+              // color: rgba(255, 255, 255, 0.5);
+            }
+
+            &:hover {
+              opacity: 1;
+              // color: rgb(255,255,255);
+              // color: rgba(255, 255, 255, 1);
+              // text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+              transform: scale(1.2, 1.2);
+              -webkit-transform: scale(1.2, 1.2);
+              -ms-transform: scale(1.2, 1.2);
+            }
+          }
+
+        }
+      }
+    }
+
+    .tree-list-menu {
+      visibility: hidden;
+    }
+  }
+
+  // .expandBtn {
+  //   width: 64px;
+  // }
+
+  // .divider {
+  //   width: 20px;
+  //   display: block;
+  // }
+
+  // .userPicture {
+  //   transform: scale(0.8, 0.8);
+  //   -webkit-transform: scale(0.8, 0.8);
+  //   -ms-transform: scale(0.8, 0.8);
+  // }
+
+  // .logoSmall {
+  //   display: block;
+  //   margin: 20px auto;
+  // }
+
+  .logoLarge {
+    display: none;
+  }
+
+  .userArea {
+    padding: 16px 4px;
+
+    .userName {
+      font-size: 0.75em;
+    }
+  }
+
+  .userArea .accountMenu {
+    position: relative;
+    left: 0;
+  }
+}

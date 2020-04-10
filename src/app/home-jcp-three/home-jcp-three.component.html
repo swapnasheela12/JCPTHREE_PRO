@@ -1,0 +1,211 @@
+<mat-sidenav-container class="container-jcp" fullscreen>
+    <mat-sidenav #sidenav class="mat-sidenav sidebarleftsidenav" mode="side" [ngStyle]="{ 'width.em': sidenavWidth }"
+        opened="true" (mousedown)="increase()">
+        <mat-toolbar class="side-mat-toolbar-row justify-content-center align-items-center">
+            <mat-toolbar-row style="height: 55px;padding: 0px;">
+                <!-- <div class="container p-0">
+                  <div class="row m-0 justify-content-md-center">
+                      <div class="col">
+                          <div class="row m-0">
+                              <div class="col-4 p-0">
+                                  <img src="assets/image/agriculture/login/JIOIOT_icons_Logo_white.svg" alt="IOT"
+                                      (click)="sidenav.toggle()" style="width: 68px;margin-top: 13px;">
+                              </div>
+                              <div class="col sub-header">Jio Agriculture Platform</div>
+                          </div>
+                      </div>
+                      <div class="col-1 p-0">
+                          <div mat-button [matMenuTriggerFor]="menuAppListAgri" class="primeApp-list">
+                              <div class="ic ic-dropdown-01" style=" margin-top: 35px;"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+
+                <div class="container padding-0" style="height: 100%;">
+                    <div class="row">
+                        <div class="col padding-right-0">
+                            <div class="row margin-0">
+                                <img *ngIf="expanded == true" src="assets/images/logo/logo.png" alt="IOT" width="175"
+                                    (click)="sidenav.toggle()"
+                                    style="cursor: pointer; margin: 4px 0; padding: 0px 0px 0px 15px;">
+                                <button type="button" mat-button class="toolbar-botton" (click)="sidenav.toggle()"
+                                    (mouseenter)="decrease()">
+                                    <mat-icon aria-label="Menu">menu</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="col-1">
+                          <div mat-button [matMenuTriggerFor]="menuAppListAgri" class="primeApp-list">
+                              <div class="ic ic-dropdown-01" style=" margin-top: 35px;"></div>
+                          </div>
+                      </div> -->
+                    </div>
+                </div>
+            </mat-toolbar-row>
+            <!-- <mat-menu #menuAppListAgri="matMenu" xPosition="before" class="menuAppListClass-jcp">
+              <div class="container padding-0">
+                  <button mat-menu-item>
+                      <div class="row menuAppList-container"  [routerLink]="['/', 'jap']">
+                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Agriculture"></div>
+                          <div class="menuAppList-text col agricultrure-app-text">Agriculture</div>
+                      </div>
+                  </button>
+                  <mat-divider [vertical]="true"></mat-divider>
+                  <button mat-menu-item>
+                      <div class="row menuAppList-container">
+                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Home-security"></div>
+                          <div class="menuAppList-text col homeSecurity-app-text">Home Security</div>
+                      </div>
+                  </button>
+                  <mat-divider [vertical]="true"></mat-divider>
+                  <button mat-menu-item>
+                      <div class="row menuAppList-container">
+                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_IEM"></div>
+                          <div class="menuAppList-text col iem-app-text">IEM</div>
+                      </div>
+                  </button>
+                  <mat-divider [vertical]="true"></mat-divider>
+                  <button mat-menu-item>
+                      <div class="row menuAppList-container" [routerLink]="['/', 'Dashborad']">
+                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Enterprise"></div>
+                          <div class="menuAppList-text col enterprise-app-text">Enterprise</div>
+                      </div>
+                  </button>
+                  <mat-divider [vertical]="true"></mat-divider>
+              </div>
+          </mat-menu> -->
+        </mat-toolbar>
+        <div class="tree-container-jcp">
+            <div [ngClass]="{'active': togglemenuback}" class="my_class" (click)="clickEvent($event)"><i class="fas fa-arrow-left" ></i></div>
+            <!-- <div (ngModel)="parentArr" (click)="backMenuList(parentArr);"><i class="fas fa-arrow-left" ></i></div> -->
+            <div *ngFor="let parent of menulist">
+                <!-- <div *ngIf=" !parent?.children?.length > 0"> -->
+                <div (click)="menuListFunc(parent);" *ngIf="childMenuListFirst == false">
+                    <mat-list>
+                        <mat-list-item> {{parent.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_second of childFirstArr">   
+                <div *ngIf="childMenuListSecond == false" (click)="firstMenuListFunc(child_second);" >
+                    <mat-list>
+                        <mat-list-item> {{child_second.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_third of childSecondArr">
+                <div *ngIf="childMenuListThree == false" (click)="secondMenuListFunc(child_third);">
+                    <mat-list>
+                        <mat-list-item> {{child_third.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_fourth of childThreeArr">
+                <div *ngIf="childMenuListFourth == false" (click)="threeMenuListFunc(child_fourth);">
+                    <mat-list>
+                        <mat-list-item> {{child_fourth.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_fifth of childFourthArr">
+                <div *ngIf="childMenuListFifth == false" (click)="fourthMenuListFunc(child_fifth);">
+                    <mat-list>
+                        <mat-list-item> {{child_fifth.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_sixth of childFifthArr">
+                <div *ngIf="childMenuListSixth == false" (click)="fifthMenuListFunc(child_sixth);">
+                    <mat-list>
+                        <mat-list-item> {{child_sixth.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div *ngFor="let child_seventh of childSixthArr">
+                <div *ngIf="childMenuListSeventh == false" (click)="sixthMenuListFunc(child_seventh);">
+                    <mat-list>
+                        <mat-list-item> {{child_seventh.name}} </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                <mat-tree-node [routerLink]="[node.link]" *matTreeNodeDef="let node" matTreeNodeToggle
+                    matTreeNodePadding class="col">
+                    <div class="col node-tree" [routerLink]="[node.link]">
+                        {{node.name}}</div>
+                </mat-tree-node>
+                <mat-tree-node [routerLink]="[node.link]" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding
+                    matTreeNodeToggle>
+                    <mat-icon [ngClass]="node.icon" aria-label="Toggle icon"></mat-icon>
+                    <div *ngIf="expanded == true" class="col"
+                        [ngClass]="{'main-module': !treeControl.isExpanded(node)}">{{node.name}}</div>
+                    <button *ngIf="expanded == true" mat-icon-button matTreeNodeToggle
+                        [attr.aria-label]="'toggle ' + node.name">
+                        <mat-icon class="zmdi zmdi-caret-up" *ngIf="treeControl.isExpanded(node)"></mat-icon>
+                        <mat-icon class="zmdi zmdi-caret-down" *ngIf="!treeControl.isExpanded(node)"></mat-icon>
+                    </button>
+                </mat-tree-node>
+            </mat-tree>
+        </div>
+
+    </mat-sidenav>
+    <mat-sidenav-content (mouseenter)="decrease()">
+        <mat-toolbar color="mat-blue-grey" class="iot-jcp-toolbar">
+            <mat-toolbar-row class="d-flex ">
+
+
+                <div class="d-flex mr-auto">
+                    <button type="button" mat-button color="primary" class="toolbar-botton" (click)="sidenav.toggle()">
+                        <mat-icon aria-label="Menu">menu</mat-icon>
+                    </button>
+                    <!-- <div class="header" *ngIf="sidenav.toggle">Coverage</div> -->
+                </div>
+                <div class="d-flex" style="border-right: 1px solid rgba(255, 255, 255, 0.7);padding-right: 10px;">
+                    <button class="mat-icon-button d-flex justify-content-center align-items-center">
+                        <mat-icon matBadge="3" matBadgeColor="warn">notifications_none</mat-icon>
+                    </button>
+                </div>
+                <div class="d-flex plr-10">
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <div class="d-flex" style="height: 38px;">
+                            <img src="assets/images/logo/user.jpeg" alt="IOT" class="" width="40"
+                                style="cursor: pointer;border-radius: 25px;border: solid 1px;height: 40px;" />
+                            <div class="col" style="line-height: 20px;text-align: left;">
+                                <div>Swapnasheela Khandagale</div>
+                                <div style="font-weight: 300;font-size: 12px;">NHQ</div>
+                            </div>
+                            <mat-icon style="line-height: 20px;">arrow_drop_down</mat-icon>
+                        </div>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Admin</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>My Profile</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>Workspaces/Roles</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>Notification</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>Feedback</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>Favourites</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item>Help</button>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <button mat-menu-item (click)="logout()">Logout</button>
+                    </mat-menu>
+                </div>
+                <!-- <div class="p-2 bg-warning">Flex item 2</div>
+                <div class="p-2 bg-primary">Flex item 3</div> -->
+
+
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <!-- <div class="body-content"> -->
+        <router-outlet></router-outlet>
+        <!-- </div> -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

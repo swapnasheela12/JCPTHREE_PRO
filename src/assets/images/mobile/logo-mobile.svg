@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="184.332" height="68.174" viewBox="0 0 184.332 68.174">
+  <defs>
+    <filter id="Path_17529" x="0" y="4.995" width="61.696" height="61.697" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="COGNITIVE" x="51.332" y="0" width="133" height="45" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="PLATFORM" x="51.332" y="25.174" width="133" height="43" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_7614" data-name="Group 7614" transform="translate(-484 -369.807)">
+    <g id="Group_6396" data-name="Group 6396" transform="translate(493 383.801)">
+      <g id="Group_6395" data-name="Group 6395">
+        <path id="Path_17528" data-name="Path 17528" d="M11692.608,1294.474a2.857,2.857,0,0,0,0,5.707,2.857,2.857,0,0,0,0-5.707Z" transform="translate(-11660.291 -1273.954)" fill="#fff"/>
+        <g transform="matrix(1, 0, 0, 1, -9, -13.99)" filter="url(#Path_17529)">
+          <path id="Path_17529-2" data-name="Path 17529" d="M11685.849,1276.526a21.849,21.849,0,1,0,21.848,21.849A21.848,21.848,0,0,0,11685.849,1276.526Zm-4.225,23.109c0,4.677-2.237,6.814-6.487,6.814-3.5,0-5.38-1.231-5.38-3.243a2.514,2.514,0,0,1,1.658-2.514,3.7,3.7,0,0,0,2.967,1.484c1.533,0,2.188-.68,2.188-2.616v-7.518c0-1.558.755-2.338,2.138-2.338h.728c1.435,0,2.189.78,2.189,2.338Zm6.558,4.25c0,1.734-.881,2.338-2.113,2.338h-.5c-1.309,0-2.213-.553-2.213-2.338v-8.047c0-1.76.932-2.338,2.162-2.338h.5c1.309,0,2.164.528,2.164,2.338Zm-2.365-11.667c-1.608,0-2.614-.879-2.614-2.287a2.249,2.249,0,0,1,2.54-2.264c1.608,0,2.615.855,2.615,2.264A2.253,2.253,0,0,1,11685.816,1292.218Zm10.475,14.232c-4.148,0-6.788-2.564-6.788-6.562,0-3.9,2.741-6.512,6.864-6.512,4.074,0,6.763,2.615,6.763,6.537C11703.13,1303.885,11700.415,1306.449,11696.291,1306.449Z" transform="translate(-11655 -1262.53)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 484, 369.81)" filter="url(#COGNITIVE)">
+      <text id="COGNITIVE-2" data-name="COGNITIVE" transform="translate(60.33 29)" fill="#fff" font-size="18.8" font-family="Poppins-Bold, Poppins" font-weight="700" letter-spacing="0.075em"><tspan x="0" y="0">COGNITIVE</tspan></text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 484, 369.81)" filter="url(#PLATFORM)">
+      <text id="PLATFORM-2" data-name="PLATFORM" transform="translate(60.33 53.17)" fill="#fff" font-size="18" font-family="Poppins-Bold, Poppins" font-weight="700" letter-spacing="0.15em"><tspan x="0" y="0">PLATFORM</tspan></text>
+    </g>
+  </g>
+</svg>

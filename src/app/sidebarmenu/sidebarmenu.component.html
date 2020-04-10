@@ -1,0 +1,132 @@
+<div id="wrapper">
+
+  <nav id="sidebar" [class.collapsed]="collapsed">
+    <div class="row header-nav-logo" style="margin: 15px 0;">
+      <a class="col-9 header-nav-logo" href="/home">
+        <img src="assets\images\logo\foresight-logo-jio-2x.png" width="150px" alt="apiax logo" class="logoLarge" />
+      </a>
+      <div class="col-3 sidebarCollapse">
+          <span class="fas fa-bars" (click)="menulistExpandFunc();">
+          </span>
+      </div>
+    </div>
+
+    <app-menu-list-item *ngFor="let item of navItems" [routerLink]="urlLinkOfMenu" [item]="item"
+      style="padding: 15px 0;">
+    </app-menu-list-item>
+
+  </nav>
+
+  <div id="content">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light" style="width: -webkit-fill-available;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+
+            <div class="container">
+              <div class="row justify-content-center w-100">
+                <div class="col-6">
+                  <div class="form-inline my-2 my-lg-0 mr-auto ">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <span class="material-icons">
+                            search
+                          </span>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                        aria-describedby="basic-addon1" style="    width: 500px;">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <ul class="navbar-nav  mt-2 mt-lg-0">
+              <li class="nav-item active">
+
+                <a class="nav-link" href="#">
+                  <mat-icon matBadge="15" matBadgeColor="warn" style="    margin: 0px 20px;">
+                    <span class="material-icons">
+                      notifications_active
+                    </span>
+                  </mat-icon>
+                </a>
+              </li>
+              <li class="nav-item">
+
+                <div class="ui pointing dropdown accountMenu">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+                    (mouseover)="menuTrigger.openMenu()">
+
+                    <div
+                      style="width: 40px;height: 40px;border-radius: 30px;background-color: blueviolet; overflow: hidden;">
+                      <img src="assets\images\logo\user-1.jpg" style="height: 100%;">
+                    </div>
+                  </button>
+                  <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                    <span (mouseleave)="menuTrigger.closeMenu()">
+                      <div style="margin: 0 15px;">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+                        <div *ngIf="users">
+                          <div *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</div>
+                        </div>
+                      </div>
+                      <button mat-menu-item>
+                        <mat-icon>person</mat-icon>
+                        <span>Profile</span>
+                      </button>
+                      <button mat-menu-item (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Sign out</span>
+                      </button>
+                    </span>
+                  </mat-menu>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+    </div>
+    <mat-divider style="margin-left: 1px;"></mat-divider>
+    <div class="container-fluid">
+      <div class="header-page">
+        <h5 style="line-height: 2;">Dashboard</h5>
+      </div>
+    </div>
+
+    <mat-divider style="margin-left: 1px;"></mat-divider>
+    <div class="container-fluid p-0">
+      <div class="h-100">
+        <router-outlet></router-outlet>
+
+
+        <!-- <div class="card mt-4">
+          <h4 class="card-header">You're logged in with Angular 8 & Basic HTTP Authentication!!</h4>
+          <div class="card-body">
+            <h6>Users from secure api end point</h6>
+            <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+            <ul *ngIf="users">
+              <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+            </ul>
+          </div>
+        </div> -->
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

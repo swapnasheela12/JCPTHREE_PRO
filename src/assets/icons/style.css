@@ -1,0 +1,293 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?2barx8');
+  src:  url('fonts/icomoon.eot?2barx8#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?2barx8') format('truetype'),
+    url('fonts/icomoon.woff?2barx8') format('woff'),
+    url('fonts/icomoon.svg?2barx8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-clustertask:before {
+  content: "\e955";
+}
+.ic-netra-Modem:before {
+  content: "\e956";
+}
+.ic-sector:before {
+  content: "\e957";
+}
+.ic-sector1:before {
+  content: "\e958";
+}
+.ic-netvelocity:before {
+  content: "\e900";
+}
+.ic-onairsites:before {
+  content: "\e901";
+}
+.ic-plannedsites:before {
+  content: "\e902";
+}
+.ic-boxzoom:before {
+  content: "\e903";
+}
+.ic-drawboundary:before {
+  content: "\e904";
+}
+.ic-pushpin:before {
+  content: "\e905";
+}
+.ic-mouse-pointer:before {
+  content: "\e906";
+}
+.ic-ruler:before {
+  content: "\e907";
+}
+.ic-healthtool:before {
+  content: "\e908";
+}
+.ic-snapshot:before {
+  content: "\e909";
+}
+.ic-airpressure:before {
+  content: "\e90a";
+}
+.ic-antenna:before {
+  content: "\e90b";
+}
+.ic-azimuth:before {
+  content: "\e90c";
+}
+.ic-enodeb:before {
+  content: "\e90d";
+}
+.ic-compass-ns:before {
+  content: "\e90e";
+}
+.ic-compass-we:before {
+  content: "\e90f";
+}
+.ic-compass:before {
+  content: "\e910";
+}
+.ic-battery-level:before {
+  content: "\e911";
+}
+.ic-call-completed:before {
+  content: "\e912";
+}
+.ic-call-duration:before {
+  content: "\e913";
+}
+.ic-call-setting:before {
+  content: "\e914";
+}
+.ic-location-circle:before {
+  content: "\e915";
+}
+.ic-customer-id:before {
+  content: "\e916";
+}
+.ic-imei:before {
+  content: "\e917";
+}
+.ic-phone-network:before {
+  content: "\e918";
+}
+.ic-network-tree:before {
+  content: "\e919";
+}
+.ic-water:before {
+  content: "\e91a";
+}
+.ic-measurement:before {
+  content: "\e91b";
+}
+.ic-roll:before {
+  content: "\e91c";
+}
+.ic-thermometer:before {
+  content: "\e91d";
+}
+.ic-tilt:before {
+  content: "\e91e";
+}
+.ic-tower:before {
+  content: "\e91f";
+}
+.ic-service-note-check:before {
+  content: "\e920";
+}
+.ic-setup-time:before {
+  content: "\e921";
+}
+.ic-arrows-down:before {
+  content: "\e922";
+}
+.ic-arrows-up:before {
+  content: "\e923";
+}
+.ic-recipe:before {
+  content: "\e924";
+}
+.ic-campaign:before {
+  content: "\e925";
+}
+.ic-nemanagement:before {
+  content: "\e926";
+}
+.ic-softwaremanagement:before {
+  content: "\e927";
+}
+.ic-audit:before {
+  content: "\e928";
+}
+.ic-query:before {
+  content: "\e929";
+}
+.ic-configchange:before {
+  content: "\e92a";
+}
+.ic-import-workflow:before {
+  content: "\e92b";
+}
+.ic-feedback:before {
+  content: "\e92c";
+}
+.ic-polygon:before {
+  content: "\e92d";
+}
+.ic-capacity:before {
+  content: "\e92e";
+}
+.ic-configuration:before {
+  content: "\e92f";
+}
+.ic-dashboard2:before {
+  content: "\e930";
+}
+.ic-stationary:before {
+  content: "\e931";
+}
+.ic-drives:before {
+  content: "\e932";
+}
+.ic-drives-events:before {
+  content: "\e933";
+}
+.ic-drag:before {
+  content: "\e934";
+}
+.ic-das:before {
+  content: "\e935";
+}
+.ic-sendfeedback:before {
+  content: "\e936";
+}
+.ic-dashboardrank:before {
+  content: "\e937";
+}
+.ic-handover-left:before {
+  content: "\e938";
+}
+.ic-handover-right:before {
+  content: "\e939";
+}
+.ic-algorithms:before {
+  content: "\e93a";
+}
+.ic-Equipmentlibrary:before {
+  content: "\e93b";
+}
+.ic-fault:before {
+  content: "\e93c";
+}
+.ic-ip:before {
+  content: "\e93d";
+}
+.ic-performance:before {
+  content: "\e93e";
+}
+.ic-Featureaccess:before {
+  content: "\e93f";
+}
+.ic-Connectivity:before {
+  content: "\e940";
+}
+.ic-offair:before {
+  content: "\e941";
+}
+.ic-scatterchart:before {
+  content: "\e942";
+}
+.ic-export-wizard:before {
+  content: "\e943";
+}
+.ic-statistics:before {
+  content: "\e944";
+}
+.ic-people:before {
+  content: "\e945";
+}
+.ic-spaces:before {
+  content: "\e946";
+}
+.ic-tasklist:before {
+  content: "\e947";
+}
+.ic-fttx:before {
+  content: "\e948";
+}
+.ic-logical-topology:before {
+  content: "\e949";
+}
+.ic-add-folder:before {
+  content: "\e94a";
+}
+.ic-view-alignment:before {
+  content: "\e94b";
+}
+.ic-alignment-properties:before {
+  content: "\e94c";
+}
+.ic-Microwave_icon:before {
+  content: "\e94d";
+}
+.ic-planning-icon:before {
+  content: "\e94e";
+}
+.ic-tribe-dashboard:before {
+  content: "\e94f";
+}
+.ic-Site-developement:before {
+  content: "\e950";
+}
+.ic-admin:before {
+  content: "\e951";
+}
+.ic-assets:before {
+  content: "\e952";
+}
+.ic-bpms:before {
+  content: "\e953";
+}
+.ic-cem:before {
+  content: "\e954";
+}

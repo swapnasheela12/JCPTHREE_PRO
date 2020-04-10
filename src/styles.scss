@@ -1,0 +1,407 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$jcpThree-primary: mat-palette($mat-indigo);
+$jcpThree-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$jcpThree-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$jcpThree-theme: mat-light-theme($jcpThree-primary, $jcpThree-accent, $jcpThree-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($jcpThree-theme);
+
+
+//bootstrap
+// @import "~bootstrap/dist/css/bootstrap.css";
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+// font family
+@font-face {
+  font-family: 'Lato Bold';
+  src: url('./assets/font_family/lato/Lato-Bold.ttf');
+}
+@font-face {
+  font-family: 'Lato Regular';
+  src: url('./assets/font_family/lato/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('./assets/font_family/poppins/Poppins-Regular.ttf');
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// .login-background {
+//   .form-container {
+//     .login-container {
+//       .login-form-contains {
+//         .login-input-contains {
+//           .form-group {
+//             input:-internal-autofill-selected {
+//               background-color: red !important;
+//               background-image: none !important;
+//               color: black !important;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+
+$md-primary: #0071bc;
+$color-white: #ffffff;
+
+.mat-drawer-container {
+  .mat-drawer {
+    // min-width: 250px;
+
+    .mat-drawer-inner-container {
+      overflow: hidden !important;
+
+      .mat-drawer-toolbar {
+        background: #333333;
+        height: 56px;
+        min-height: 56px;
+
+        .mat-toolbar-row {
+          height: 56px;
+
+          .header {
+            color: $color-white;
+            font-size: 14px;
+            padding-left: 10px;
+          }
+        }
+
+        .tree-container {
+          height: calc(100% - 84px);
+
+          .tree-main-header {}
+        }
+      }
+    }
+  }
+
+  .mat-drawer-content {
+    // .iot-toolbar {
+    //     &.mat-toolbar {
+    //         background: $md-primary;
+    //         height: 56px;
+    //         padding: 0px;
+    //         min-height: 56px;
+    //         color: #0071bc;
+
+    //         .mat-toolbar-row {
+    //             height: 56px;
+    //             padding: 0px;
+    //             line-height: 55px;
+    //             color: $color-white;
+    //             font-size: 18px;
+
+    //             .toolbar-botton {
+    //                 padding: 0px;
+    //                 min-width: 50px;
+    //                 color: $color-white;
+
+    //                 &:focus,
+    //                 &:hover {
+    //                     outline: 0;
+    //                 }
+    //             }
+
+    //             .header {
+    //                 color: fade-out(#fff, 0.3);
+    //                 font-weight: 400;
+    //             }
+
+    //             .Sub-header {
+    //                 font-weight: 400;
+    //                 color: $color-white;
+    //             }
+    //         }
+
+    //     }
+    // }
+
+    .iot-jcp-toolbar {
+      &.mat-toolbar {
+        background: $md-primary;
+        height: 56px;
+        padding: 0px;
+        min-height: 56px;
+        color: #fff;
+
+        .mat-toolbar-row {
+          height: 56px;
+          padding: 0px;
+          line-height: 55px;
+          color: $color-white;
+          font-size: 18px;
+
+          .toolbar-botton {
+            padding: 0px;
+            min-width: 50px;
+            color: $color-white;
+
+            &:focus,
+            &:hover {
+              outline: 0;
+            }
+          }
+
+          .header {
+            color: fade-out(#fff, 0.3);
+            font-weight: 400;
+          }
+
+          .Sub-header {
+            font-weight: 400;
+            color: $color-white;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.container-jcp {
+
+  .sidebarleftdrawer {
+
+    .tree-container-jcp {
+
+      .mat-radio-group {
+
+        .mat-tree {
+
+          // background-color: red;
+          .mat-tree-node {
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 400;
+
+            // background-color: red;
+            .child-radio-butt {
+
+              .mat-radio-label {
+
+                .mat-radio-container {
+
+                  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle,
+                  .mat-radio-outer-circle {
+                    border-color: fade-out(#fff, 0.46) !important;
+                  }
+
+
+                  .mat-radio-outer-circle {
+                    .mat-radio-checked & {
+                      border-color: fade-out(#fff, 0.46) !important;
+                    }
+                  }
+
+                  .mat-radio-inner-circle {
+                    background-color: fade-out(#fff, 0.46);
+                  }
+
+                  .mat-radio-ripple .mat-ripple-element {
+                    background-color: rgba(#3f51b5, 0.26);
+                  }
+
+
+                }
+
+              }
+
+            }
+
+
+          }
+
+
+        }
+
+        // &:focus {
+        //   outline: 0;
+        // }
+
+      }
+
+
+    }
+  }
+
+  // .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle,
+  // .mat-radio-outer-circle {
+  //     border-color: fade-out(#fff, 0.46) !important;
+  // }
+
+  // .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  //     // background-color: #ff4081;
+  //     border-color: fade-out(#fff, 0.46) !important;
+  // }
+
+
+  // .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-inner-circle {
+  //     border-color: fade-out(#fff, 0.46) !important;
+  // }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//external css file
+
+@import './scss/_vars.scss';
+@import './scss/_theme.scss';
+@import './scss/_sidebar.scss';
+@import './scss/_button_css.scss';
+@import './scss/button/hover.scss';
+
+// custome css
+
+// .menu-list {
+//   .mat-drawer {
+//     background-color: white;
+//     color: $white;
+//   }
+// }
+
+
+
+.p-15 {
+  padding: 15px !important;
+}
+
+.p-lr-15 {
+  padding-left: 15 !important;
+  padding-right: 15 !important;
+}
+
+.p-tb-15 {
+  padding-top: 15 !important;
+  padding-bottom: 15 !important;
+}
+
+.p-lr-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.p-tb-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.p-l-0 {
+  padding-left: 0 !important;
+}
+
+.p-r-0 {
+  padding-right: 0 !important;
+}
+
+.m-15 {
+  margin: 15px !important;
+}
+
+.m-lr-15 {
+  margin-left: 15 !important;
+  margin-right: 15 !important;
+}
+
+.m-tb-15 {
+  margin-top: 15 !important;
+  margin-bottom: 15 !important;
+}
+
+.m-lr-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.m-tb-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.m-l-0 {
+  margin-left: 0 !important;
+}
+
+.m-r-0 {
+  margin-right: 0 !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
