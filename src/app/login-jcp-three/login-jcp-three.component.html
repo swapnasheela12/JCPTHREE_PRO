@@ -1,79 +1,57 @@
 <div class="login-background">
+  <div class="login-background-container">
+    <div class="container-fluid">
 
-  <div class="container">
-    <div class="row container-row justify-content-end">
-      <div class="row  justify-content-end">
-        <div class="col container-col">
-          <div class="col">
-            <div class="login-logo-contains">
-              <img src="assets\images\logo\logo.svg" alt="profile picture" />
-            </div>
-          </div>
-          <div class="col  form-container">
-            <div class="login-container col">
-              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col login-form-contains">
-                <div class="login-header-contains">
-                  <h4>Member Login</h4>
-                </div>
-                <div class="login-input-contains">
-                  <div class="form-group">
 
-                    <input type="text" formControlName="username"
-                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="form-control" id="usr"
-                      placeholder="Username">
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                      <div *ngIf="f.username.errors.required">Username is required</div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="login-input-contains">
-                  <div class="form-group">
-
-                    <input type="password" formControlName="password"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control" id="pwd"
-                      placeholder="Password">
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="login-botton-contains  row  justify-content-center">
-                  <button [disabled]="loading" type="submit" class="btn btn-hover-effect btn-hover-effect--effect-1">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    LOGIN
-                  </button>
-                </div>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-                <div class="row justify-content-center">
-                  <!-- <div class="login-footer-contains">
-                    <h6>Register</h6>
-                  </div> -->
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- <div class="col-12">
-            <div class="login-footarright-contains">
-              Copyrights Reliance Jio Infocomm Ltd.
-            </div>
-          </div> -->
+      <div class="login-container">
+        <div class="login-logo-contains">
+          <img src="assets\images\logo\logo.svg" alt="profile picture" width="100"/>
         </div>
-
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class=" login-form-contains">
+          <div class="login-header-contains">
+            <h4>Member Login</h4>
+          </div>
+          <div class="login-input-contains">
+            <div class="form-group">
+  
+              <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                class="form-control" id="usr" placeholder="Username">
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+              </div>
+            </div>
+  
+          </div>
+          <div class="login-input-contains">
+            <div class="form-group">
+  
+              <input type="password" formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control" id="pwd"
+                placeholder="Password">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="login-botton-contains">
+            <button [disabled]="loading" type="submit" class="btn btn-hover-effect btn-hover-effect--effect-1" style=" border: 0px solid transparent !important;">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              LOGIN
+            </button>
+          </div>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          <div class="row justify-content-center">
+  
+          </div>
+        </form>
       </div>
-      
-    </div>
-    <div class="row  justify-content-end">
-      <!-- <div class="col-8"></div> -->
-     <div class="">
-      <div class="col footer-col">
-        <div class="login-footarright-contains">
-          Copyrights Reliance Jio Infocomm Ltd.
-        </div>
+     <div class="footer-container">
+      <div class="login-footar-right-contains">
+        Copyrights Reliance Jio Infocomm Ltd.
       </div>
      </div>
     </div>
   </div>
-
+ 
 </div>

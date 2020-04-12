@@ -25,14 +25,24 @@ $jcpThree-theme: mat-light-theme($jcpThree-primary, $jcpThree-accent, $jcpThree-
 // that you are using.
 @include angular-material-theme($jcpThree-theme);
 
+//external css file
 
-//bootstrap
-// @import "~bootstrap/dist/css/bootstrap.css";
+@import './scss/_vars.scss';
+@import './scss/_theme.scss';
+@import './scss/_sidebar.scss';
+@import './scss/_button_css.scss';
+@import './scss/button/hover.scss';
+
+//END external css file
+
+// font icons
 
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+//END font icons
 
 // font family
 @font-face {
@@ -49,32 +59,22 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   src: url('./assets/font_family/poppins/Poppins-Regular.ttf');
 }
 
+// End font family
+
 html,
 body {
   height: 100%;
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+	min-height: 100%;
+	overflow: hidden; // -webkit-user-select: none;
+	margin: 0;
+  font-family: "Roboto", "RobotoDraft", "Helvetica Neue", sans-serif !important;
+  .container-main-view{
+    height: 100%;
+  }
 }
 
-// .login-background {
-//   .form-container {
-//     .login-container {
-//       .login-form-contains {
-//         .login-input-contains {
-//           .form-group {
-//             input:-internal-autofill-selected {
-//               background-color: red !important;
-//               background-image: none !important;
-//               color: black !important;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 
-
+// Home Page
 
 $md-primary: #0071bc;
 $color-white: #ffffff;
@@ -276,63 +276,11 @@ $color-white: #ffffff;
 }
 
 
-@media only screen and (max-width: 600px) {
-
-}
+//END Home Page
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//external css file
-
-@import './scss/_vars.scss';
-@import './scss/_theme.scss';
-@import './scss/_sidebar.scss';
-@import './scss/_button_css.scss';
-@import './scss/button/hover.scss';
-
-// custome css
-
-// .menu-list {
-//   .mat-drawer {
-//     background-color: white;
-//     color: $white;
-//   }
-// }
-
-
+//Default Custom css
 
 .p-15 {
   padding: 15px !important;
@@ -405,3 +353,5 @@ $color-white: #ffffff;
 .h-100 {
   height: 100% !important;
 }
+
+//END Default Custom css
