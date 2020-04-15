@@ -49,6 +49,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   font-family: 'Lato Bold';
   src: url('./assets/font_family/lato/Lato-Bold.ttf');
 }
+
 @font-face {
   font-family: 'Lato Regular';
   src: url('./assets/font_family/lato/Lato-Regular.ttf');
@@ -64,14 +65,17 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 html,
 body {
   height: 100%;
-	min-height: 100%;
-	overflow: hidden; // -webkit-user-select: none;
-	margin: 0;
+  min-height: 100%;
+  overflow: hidden; // -webkit-user-select: none;
+  margin: 0;
   font-family: "Roboto", "RobotoDraft", "Helvetica Neue", sans-serif !important;
-  .container-main-view{
+
+  .container-main-view {
     height: 100%;
+
   }
 }
+
 
 
 // Home Page
@@ -111,7 +115,7 @@ $color-white: #ffffff;
   }
 
   .mat-drawer-content {
-    // .iot-toolbar {
+    // .toolbar {
     //     &.mat-toolbar {
     //         background: $md-primary;
     //         height: 56px;
@@ -151,7 +155,7 @@ $color-white: #ffffff;
     //     }
     // }
 
-    .iot-jcp-toolbar {
+    .jcp-toolbar {
       &.mat-toolbar {
         background: $md-primary;
         height: 56px;
@@ -259,6 +263,68 @@ $color-white: #ffffff;
     }
   }
 
+  .body-sidenav-container {
+    margin-left: 0 !important;
+
+    .jcp-toolbar {
+      height: 55px;
+      padding: 0px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
+
+      .jcp-toolbar-row {
+        .jcp-toolbar-row-center {}
+
+        .jcp-toolbar-row-right {
+          padding: 0;
+
+          .jcp-toolbar-row-right-content {
+            margin: 0;
+            float: right;
+
+            .icon-container {
+
+              // padding-right: 10px;
+              .icon-container-button {
+                font-size: 24px;
+              }
+
+              // .notifications-header {
+              //   color: #464D69;
+
+              //   .notifications-name {
+              //     font-size: 15px;
+              //   }
+
+              //   .notifications-status {
+              //     font-size: 12px;
+              //   }
+              // }
+
+
+
+              // .mat-menu-panel.notifications-dropdown {
+              //   background-color: red;
+              //   max-width: none;
+              //   width: 100vw;
+              //   margin-left: -8px;
+              //   margin-top: 24px;
+              // }
+
+
+
+            }
+
+          }
+
+        }
+      }
+
+
+    }
+  }
+
+
+
   // .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle,
   // .mat-radio-outer-circle {
   //     border-color: fade-out(#fff, 0.46) !important;
@@ -275,6 +341,80 @@ $color-white: #ffffff;
   // }
 }
 
+.mat-menu-panel.notifications-dropdown {
+  // background-color: red;
+  max-width: none;
+  width: 500px;
+  height: 450px;
+
+  // margin-left: -8px;
+  // margin-top: 24px;
+  .mat-menu-content {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    .notifications-header {
+      color: #464D69;
+      height: 60px;
+      line-height: 4;
+      padding: 0 15px;
+      margin: 0;
+      box-shadow: 0 1px 1px -1px grey;
+
+      .notifications-name {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .notifications-status {
+        font-size: 12px;
+        line-height: 5;
+      }
+    }
+
+    .notifications-content {
+      color: #464D69;
+      height: 73px;
+      line-height: 2;
+      padding: 0 15px;
+      margin: 0;
+      box-shadow: 0 1px 1px -1px grey;
+
+      .notifications-content-name {
+        margin: 8px 0px;
+
+        .header {
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .sub-header {
+          font-size: 12px;
+          color: #707070;
+        }
+      }
+
+      .notifications-content-status {
+        margin: 8px 0px;
+        font-size: 12px;
+        // line-height: 4;
+      }
+
+      &:focus,
+      &:hover {
+        outline: 0;
+        color: #0070DB;
+        background-color: RGBA(252,95,95,0.12);
+        border-left: 2px solid #FC5F5F;
+        padding: 0 12px;
+        // background-color: #FC5F5F;
+      }
+    }
+
+
+  }
+
+}
 
 //END Home Page
 
@@ -284,6 +424,10 @@ $color-white: #ffffff;
 
 .p-15 {
   padding: 15px !important;
+}
+
+.p-l-10 {
+  padding-left: 10 !important;
 }
 
 .p-lr-15 {

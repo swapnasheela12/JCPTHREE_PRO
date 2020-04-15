@@ -1,4 +1,5 @@
-import { Component, OnInit, Injectable, Input, ViewChild, OnChanges } from "@angular/core";
+import { Component, OnInit, Injectable,Inject, Input, ViewChild, OnChanges } from "@angular/core";
+import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -54,7 +55,7 @@ export interface TreeNode {
   templateUrl: "./home-jcp-three.component.html",
   styleUrls: ["./home-jcp-three.component.scss"]
 })
-export class HomeJcpThreeComponent implements OnChanges {
+export class HomeJcpThreeComponent implements OnInit {
   sidenavWidth = 4;
   ngStyle: string;
   expanded: boolean;
@@ -71,17 +72,7 @@ export class HomeJcpThreeComponent implements OnChanges {
   @Input()
   openNav: boolean;
 
-  ngOnChanges(): void {
-    console.log('ngOnChanges', this.openNav);
-    $('mat-sidenav-content').removeAttr('style');
-    if (this.openNav) {
-      this.sidenav.open();
-    } else {
-      // this.sidenavWidth = 4;
-      this.sidenav.close();
-    }
-  }
-
+  
 
   menulist = [
     {
@@ -249,7 +240,7 @@ export class HomeJcpThreeComponent implements OnChanges {
       children: []
     }
   ]
-  
+
 
   childMenuListFirst = false;
   childFirstArr = [];
@@ -395,7 +386,7 @@ export class HomeJcpThreeComponent implements OnChanges {
   //   // console.log(this.parentArr, "this.parentArr");
   //   // if (  this.childMenuListFirst == true) {
   //   //   console.log("ye got it 1");
-      
+
   //   //   this.parentArr.push(this.menulist);
   //   //   this.childMenuListFirst = false;
   //   //   // this.childMenuListSecond = true;
@@ -417,12 +408,12 @@ export class HomeJcpThreeComponent implements OnChanges {
 
 
   //define the toogle property
-  private togglemenuback : boolean = false;
-//define your method
-clickEvent(event){
-  //if you just want to toggle the class; change toggle variable.
-  this.togglemenuback = !this.togglemenuback;       
-}
+  private togglemenuback: boolean = false;
+  //define your method
+  clickEvent(event) {
+    //if you just want to toggle the class; change toggle variable.
+    this.togglemenuback = !this.togglemenuback;
+  }
 
   //////////////////
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
@@ -432,7 +423,7 @@ clickEvent(event){
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
   /////////////////////////
-  constructor(private router: Router, private authenticationService: AuthenticationService,) {
+  constructor(private router: Router, private authenticationService: AuthenticationService,@Inject(DOCUMENT) private document: any) {
     router.events.subscribe((url: any) => console.log(url));
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     /////////////////
@@ -441,6 +432,49 @@ clickEvent(event){
     this.treeControl = new FlatTreeControl<TreeNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.dataSource.data = files;
+
+    $('mat-sidenav-content').removeAttr('style');
+
+  }
+
+  elem;
+
+  ngOnInit() {
+    this.elem = document.documentElement;
+  }
+
+  expandScreen = false;
+  openFullscreen() {
+    this.expandScreen = true;
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    this.expandScreen = false;
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
   }
 
   logout() {
@@ -480,9 +514,7 @@ clickEvent(event){
     return node.expandable;
   }
   /////////////////////
-  // ngOnInit() {
-
-  //  }
+ 
 
   toggle() {
     this.expanded = !this.expanded;
@@ -490,17 +522,11 @@ clickEvent(event){
 
 
   increase() {
-    $('mat-sidenav-content').removeAttr('style');
     this.sidenavWidth = 15;
-    console.log('increase sidenav width');
     this.expanded = true;
   }
-  decrease() {
-    // $('mat-sidenav-content').removeAttr('style');
+  decrease(sidenav) {
     this.sidenavWidth = 4;
-    console.log('decrease sidenav width');
-    this.sidenav.open();
-    $('mat-sidenav-content').removeAttr('style');
     this.expanded = false;
   }
 
