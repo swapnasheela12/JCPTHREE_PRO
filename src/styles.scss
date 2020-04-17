@@ -345,13 +345,16 @@ $color-white: #ffffff;
   // background-color: red;
   max-width: none;
   width: 500px;
-  height: 450px;
+  height: calc(100% - 90px);
+  max-height: calc(100% - 90px);
 
   // margin-left: -8px;
   // margin-top: 24px;
   .mat-menu-content {
     padding-top: 0px;
     padding-bottom: 0px;
+    height: calc(100% - 52px);
+    max-height: calc(100% - 50px);
 
     .notifications-header {
       color: #464D69;
@@ -359,8 +362,9 @@ $color-white: #ffffff;
       line-height: 4;
       padding: 0 15px;
       margin: 0;
-      box-shadow: 0 1px 1px -1px grey;
-
+      // box-shadow: 0 1px 1px -1px grey;
+      border-bottom: 1px solid #cccccc;
+     
       .notifications-name {
         font-size: 15px;
         font-weight: 500;
@@ -372,49 +376,143 @@ $color-white: #ffffff;
       }
     }
 
-    .notifications-content {
+    .main-content{
+      height: calc(100% - 100px);
+      overflow: auto;
+      box-shadow: 
+        inset 0px 11px 8px -10px #CCC,
+        inset 0px -11px 8px -10px #CCC;
+      .notifications-content {
+        // color: #464D69;
+  
+        height: 73px;
+        line-height: 2;
+        padding: 0;
+        // border-top: 1px solid grey;
+        // box-shadow: 0 1px 1px -1px grey;
+        color: #FC5F5F;
+        background-color: RGBA(252, 95, 95, 0.12);
+        margin: 0;
+        border-bottom: 1px solid #cccccc;
+  
+        .notifications-content-icon {
+          padding: 0;
+          margin: 13px auto;
+  
+          .iconMod {
+            margin: auto;
+            text-align: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 30px;
+  
+          }
+  
+        }
+  
+        .notifications-content-name {
+          margin: 8px 0px;
+  
+          .header {
+            font-size: 15px;
+            font-weight: 500;
+          }
+  
+          .sub-header {
+            font-size: 12px;
+            color: #707070;
+            width: 25em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+  
+          .active {
+            font-size: 12px;
+            color: #707070;
+            width: 25em;
+            height: auto;
+            white-space: normal;
+            overflow: auto;
+            text-overflow: ellipsis;
+  
+          }
+  
+        }
+  
+        .notifications-content-status {
+          color: #464D69;
+          margin: 8px 0px;
+          font-size: 12px;
+          // line-height: 4;
+        }
+  
+        // &:focus,
+        // &:hover {
+        //   outline: 0;
+        // }
+  
+  
+        // &:focus,
+        // &:hover {
+        //   outline: 0;
+        //   color: #464D69;
+        //   background-color: #ffffff;
+        //   border-left: 2px solid #FC5F5F;
+        // }
+        &:visited,&:active,&:hover{
+          border-left: 2px solid #FC5F5F;
+        }
+  
+  
+      }
+      .activeParent {
+        outline: 0;
+        color: #464D69;
+        background-color: #ffffff;
+        border-bottom: 1px solid #cccccc;
+        height: auto;
+      }
+    }
+  
+
+    .notifications-content-more {
       color: #464D69;
-      height: 73px;
+      height: 35px;
       line-height: 2;
       padding: 0 15px;
       margin: 0;
       box-shadow: 0 1px 1px -1px grey;
 
-      .notifications-content-name {
-        margin: 8px 0px;
-
-        .header {
-          font-size: 15px;
-          font-weight: 500;
-        }
-
-        .sub-header {
-          font-size: 12px;
-          color: #707070;
-        }
+      a {
+        color: #007bff;
+        font-size: 14px;
       }
 
-      .notifications-content-status {
-        margin: 8px 0px;
-        font-size: 12px;
-        // line-height: 4;
-      }
-
-      &:focus,
-      &:hover {
-        outline: 0;
-        color: #0070DB;
-        background-color: RGBA(252,95,95,0.12);
-        border-left: 2px solid #FC5F5F;
-        padding: 0 12px;
-        // background-color: #FC5F5F;
+      &:visited {
+        color: #609;
       }
     }
 
+    .notifications-content-view-all {
+      margin: 0;
+      background-color: RGBA(0, 112, 219, 0.14);
+      color: #0070DB;
+      height: 56px;
+      .notifications-content-all {
+        padding: 0;
+        margin: 15px auto;
+        text-align: center;
+      }
+    }
+
+   
 
   }
 
 }
+
+
 
 //END Home Page
 
