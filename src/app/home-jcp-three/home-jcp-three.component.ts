@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable,Inject, Input, ViewChild, OnChanges } from "@angular/core";
+import { Component, OnInit, Injectable,Inject, Input, ViewChild, OnChanges, HostListener } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
@@ -474,6 +474,12 @@ export class HomeJcpThreeComponent implements OnInit {
     } else if (this.document.msExitFullscreen) {
       /* IE/Edge */
       this.document.msExitFullscreen();
+    }
+  }
+
+  @HostListener("document:fullscreenchange", []) closefullScreenEscape() {
+    if (!document.fullscreenElement){
+      this.expandScreen = false;
     }
   }
 
