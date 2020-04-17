@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable,Inject, Input, ViewChild, OnChanges } from "@angular/core";
+import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
@@ -11,6 +11,7 @@ import { User } from '../_models/user';
 
 declare var $: any;
 import * as _ from "lodash";
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 export interface FileNode {
 
@@ -423,7 +424,7 @@ export class HomeJcpThreeComponent implements OnInit {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
   /////////////////////////
-  constructor(private router: Router, private authenticationService: AuthenticationService,@Inject(DOCUMENT) private document: any) {
+  constructor(private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
     router.events.subscribe((url: any) => console.log(url));
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     /////////////////
@@ -433,7 +434,6 @@ export class HomeJcpThreeComponent implements OnInit {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.dataSource.data = files;
 
-    $('mat-sidenav-content').removeAttr('style');
 
   }
 
@@ -441,6 +441,15 @@ export class HomeJcpThreeComponent implements OnInit {
 
   ngOnInit() {
     this.elem = document.documentElement;
+    this.onLoad();
+  }
+
+  preventCloseOnClickOut() {
+    this.overlayContainer.getContainerElement().classList.add('disable-backdrop-click');
+  }
+
+  allowCloseOnClickOut() {
+    this.overlayContainer.getContainerElement().classList.remove('disable-backdrop-click');
   }
 
   expandScreen = false;
@@ -514,7 +523,7 @@ export class HomeJcpThreeComponent implements OnInit {
     return node.expandable;
   }
   /////////////////////
- 
+
 
   toggle() {
     this.expanded = !this.expanded;
@@ -529,5 +538,109 @@ export class HomeJcpThreeComponent implements OnInit {
     this.sidenavWidth = 4;
     this.expanded = false;
   }
+
+
+
+  notificationsList = [
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Now",
+      nameMod: "Reports",
+      detailsMod: "RepODSC Planning Report has been generatedorts",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "15m",
+      nameMod: "Work Order",
+      detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
+      hideMe: false
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Yesterday",
+      nameMod: "Reports",
+      detailsMod: "Your Subscribed report ‘RET WO status Report is available",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "April 10, 2020",
+      nameMod: "Dashboards",
+      detailsMod: "Check out the new features available on JCP",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Now",
+      nameMod: "Layers",
+      detailsMod: "RepODSC Planning Report has been generatedorts",
+      hideMe: false
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Yesterday",
+      nameMod: "Dashboards",
+      detailsMod: "Your Subscribed report ‘RET WO status Report is available",
+      hideMe: false
+    },
+  ]
+
+  public randomNotificationCount: number;
+
+  onLoad() {
+    console.log("load");
+
+    // var node = document.getElementsByTagName('div');
+    // var divLength = node.length;
+    // alert("There are " + divLength + " div tags in the html code");
+    // var randomDiv = Math.random() * divLength;
+    // console.log(randomDiv,"randomDiv");
+    // var node = document.getElementsByTagName('div');
+    var divLength = this.notificationsList.length;
+    // alert("There are " + divLength + " div tags in the html code");
+    // var randomDiv = Math.random() * divLength;
+    this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
+    console.log(this.randomNotificationCount, "randomDiv");
+
+  }
+
+  // public noteExpand = false;
+  // openNoteFullView(item){
+
+  //   this.noteExpand = true;
+  // }
+  olderArr = [{
+    iconMod: "ic ic-imsi_Work-Orders",
+    statusMod: "15m",
+    nameMod: "Work Order",
+    detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
+    hideMe: true,
+    oldNote:true
+  }
+  ]
+  public oldNoteName;
+  showOlderNoteFunc(notificationsList) {
+    for (let index = 0; index < this.olderArr.length; index++) {
+      const eleOldNote = this.olderArr[index];
+      this.oldNoteName = eleOldNote.oldNote;
+      notificationsList.push(eleOldNote);
+    }
+    console.log(notificationsList,"notificationsList");
+    
+  }
+
+  viewAllNoteFunc(notificationsList) {
+    console.log(notificationsList, "list");
+    _.forEach(notificationsList, function (value) {
+      console.log(value, "val");
+      if (value.hideMe == false) {
+        value.hideMe = true;
+      }
+    });
+
+  }
+
+
 
 }
