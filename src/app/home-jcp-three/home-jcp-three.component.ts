@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Injectable,Inject, Input, ViewChild, OnChanges, HostListener } from "@angular/core";
+import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges, HostListener, ViewEncapsulation } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
@@ -13,6 +13,8 @@ import { User } from '../_models/user';
 declare var $: any;
 import * as _ from "lodash";
 import { OverlayContainer } from '@angular/cdk/overlay';
+
+// import { FilterUniquePipe } from '../pipes/filterUnique/filter-unique.pipe'
 
 export interface FileNode {
 
@@ -55,7 +57,8 @@ export interface TreeNode {
 @Component({
   selector: "app-home-jcp-three",
   templateUrl: "./home-jcp-three.component.html",
-  styleUrls: ["./home-jcp-three.component.scss"]
+  styleUrls: ["./home-jcp-three.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeJcpThreeComponent implements OnInit {
   sidenavWidth = 4;
@@ -74,7 +77,7 @@ export class HomeJcpThreeComponent implements OnInit {
   @Input()
   openNav: boolean;
 
-  
+
 
   menulist = [
     {
@@ -443,6 +446,9 @@ export class HomeJcpThreeComponent implements OnInit {
   ngOnInit() {
     this.elem = document.documentElement;
     this.onLoad();
+
+
+
   }
 
   preventCloseOnClickOut() {
@@ -489,7 +495,25 @@ export class HomeJcpThreeComponent implements OnInit {
   }
 
   @HostListener("document:fullscreenchange", []) closefullScreenEscape() {
-    if (!document.fullscreenElement){
+    if (!document.fullscreenElement) {
+      this.expandScreen = false;
+    }
+  }
+
+  @HostListener("document:webkitfullscreenchange", []) closefullScreenEscapeSafari() {
+    if (!this.document.webkitFullscreenElement) {
+      this.expandScreen = false;
+    }
+  }
+
+  @HostListener("document:mozfullscreenchange", []) closefullScreenEscapeFF() {
+    if (!this.document.mozFullScreenElement) {
+      this.expandScreen = false;
+    }
+  }
+
+  @HostListener("document:msfullscreenchange", []) closefullScreenEscapeIE() {
+    if (!this.document.msFullscreenElement) {
       this.expandScreen = false;
     }
   }
@@ -554,78 +578,64 @@ export class HomeJcpThreeComponent implements OnInit {
     {
       iconMod: "ic ic-imsi_Work-Orders",
       statusMod: "Now",
-      nameMod: "Reports",
+      name: "Reports",
       detailsMod: "RepODSC Planning Report has been generatedorts",
       hideMe: true
     },
     {
       iconMod: "ic ic-imsi_Work-Orders",
       statusMod: "15m",
-      nameMod: "Work Order",
-      detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
+      name: "Work Order",
+      detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to you epODSC Planning Report has been generatedorts",
       hideMe: false
     },
     {
       iconMod: "ic ic-imsi_Work-Orders",
       statusMod: "Yesterday",
-      nameMod: "Reports",
+      name: "Reports",
       detailsMod: "Your Subscribed report ‘RET WO status Report is available",
       hideMe: true
     },
     {
       iconMod: "ic ic-imsi_Work-Orders",
-      statusMod: "April 10, 2020",
-      nameMod: "Dashboards",
+      statusMod: "Apr 10, 2020",
+      name: "Dashboards",
       detailsMod: "Check out the new features available on JCP",
       hideMe: true
     },
     {
       iconMod: "ic ic-imsi_Work-Orders",
       statusMod: "Now",
-      nameMod: "Layers",
+      name: "Layers",
       detailsMod: "RepODSC Planning Report has been generatedorts",
       hideMe: false
     },
     {
       iconMod: "ic ic-imsi_Work-Orders",
       statusMod: "Yesterday",
-      nameMod: "Dashboards",
+      name: "Dashboards",
       detailsMod: "Your Subscribed report ‘RET WO status Report is available",
       hideMe: false
-    },
+    }
   ]
 
   public randomNotificationCount: number;
 
   onLoad() {
     console.log("load");
-
-    // var node = document.getElementsByTagName('div');
-    // var divLength = node.length;
-    // alert("There are " + divLength + " div tags in the html code");
-    // var randomDiv = Math.random() * divLength;
-    // console.log(randomDiv,"randomDiv");
-    // var node = document.getElementsByTagName('div');
     var divLength = this.notificationsList.length;
-    // alert("There are " + divLength + " div tags in the html code");
-    // var randomDiv = Math.random() * divLength;
     this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
     console.log(this.randomNotificationCount, "randomDiv");
-
   }
 
-  // public noteExpand = false;
-  // openNoteFullView(item){
 
-  //   this.noteExpand = true;
-  // }
   olderArr = [{
     iconMod: "ic ic-imsi_Work-Orders",
     statusMod: "15m",
-    nameMod: "Work Order",
+    name: "Work Order",
     detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
     hideMe: true,
-    oldNote:true
+    oldNote: true
   }
   ]
   public oldNoteName;
@@ -635,8 +645,8 @@ export class HomeJcpThreeComponent implements OnInit {
       this.oldNoteName = eleOldNote.oldNote;
       notificationsList.push(eleOldNote);
     }
-    console.log(notificationsList,"notificationsList");
-    
+
+
   }
 
   viewAllNoteFunc(notificationsList) {
@@ -649,6 +659,25 @@ export class HomeJcpThreeComponent implements OnInit {
     });
 
   }
+
+  public selectedNameMod: string = "All Notifications";
+
+  filterDataOnSelection = false;
+  filterDataArr = [];
+
+  allNameNoteFunc(item) {
+    console.log(item, "item");
+    if (item.value == "All Notifications") {
+      this.filterDataOnSelection = false;
+    } else {
+      var filterData = this.notificationsList.filter(t => t.name == item.value);
+      console.log(filterData, "filterData");
+      this.filterDataOnSelection = true;
+      this.filterDataArr = filterData;
+    }
+
+  }
+
 
 
 

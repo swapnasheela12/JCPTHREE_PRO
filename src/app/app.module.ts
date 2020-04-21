@@ -69,6 +69,7 @@ import { MenuListItemComponent } from './sidebarmenu/menu-list-item/menu-list-it
 import { TopNavComponent } from './sidebarmenu/top-nav/top-nav.component';
 import { MacroComponent } from './layers/sites/macro/macro.component';
 import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
+import { FilterUniquePipe } from './pipes/filterUnique/filter-unique.pipe';
 
 declare var $: any;
 
@@ -81,7 +82,8 @@ declare var $: any;
     MenuListItemComponent,
     TopNavComponent,
     MacroComponent,
-    NavigationSidebarComponent
+    NavigationSidebarComponent,
+    FilterUniquePipe
   ],
   imports: [
     BrowserModule,

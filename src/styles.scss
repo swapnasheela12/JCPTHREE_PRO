@@ -345,26 +345,34 @@ $color-white: #ffffff;
   // background-color: red;
   max-width: none;
   width: 500px;
-  height: calc(100% - 90px);
-  max-height: calc(100% - 90px);
+  height: auto;
+  // height: calc(100% - 90px);
+  // max-height: calc(100% - 90px);
+  // min-height: calc(100% - 90px);
 
   // margin-left: -8px;
   // margin-top: 24px;
   .mat-menu-content {
     padding-top: 0px;
     padding-bottom: 0px;
-    height: calc(100% - 52px);
-    max-height: calc(100% - 50px);
+    // height: calc(100% - 100px);
+    // max-height: calc(100% - 100px);
+    // min-height: calc(100% - 53px);
+
+    height: 475px;
+    max-height: calc(100% - 100px);
+    min-height: calc(100% - 1px);
 
     .notifications-header {
+      padding: 0;
       color: #464D69;
       height: 60px;
       line-height: 4;
-      padding: 0 15px;
+      // padding: 0 15px;
       margin: 0;
       // box-shadow: 0 1px 1px -1px grey;
       border-bottom: 1px solid #cccccc;
-     
+
       .notifications-name {
         font-size: 15px;
         font-weight: 500;
@@ -373,60 +381,111 @@ $color-white: #ffffff;
       .notifications-status {
         font-size: 12px;
         line-height: 5;
+
+        #allNotifocationId {
+          width: 60%;
+          float: right;
+          margin-top: 10px;
+
+          .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              height: 0px !important;
+            }
+
+            .mat-form-field-underline {
+              display: none !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #fff !important;
+              outline: 0;
+            }
+          }
+
+        }
+
       }
     }
 
-    .main-content{
-      height: calc(100% - 100px);
+    .main-content {
+      padding: 0;
+      height: calc(100% - 152px);
+      max-height: calc(100% - 152px);
+      min-height: calc(100% - 152px);
       overflow: auto;
-      box-shadow: 
+      box-shadow:
         inset 0px 11px 8px -10px #CCC,
         inset 0px -11px 8px -10px #CCC;
+
       .notifications-content {
-        // color: #464D69;
-  
         height: 73px;
+        // height: calc(100% - 73px);
+        // max-height: calc(100% - 73px);
+        // min-height: calc(100% - 73px);
         line-height: 2;
         padding: 0;
-        // border-top: 1px solid grey;
-        // box-shadow: 0 1px 1px -1px grey;
         color: #FC5F5F;
         background-color: RGBA(252, 95, 95, 0.12);
         margin: 0;
         border-bottom: 1px solid #cccccc;
-  
-        .notifications-content-icon {
-          padding: 0;
-          margin: 13px auto;
-  
+
+        // .notifications-content-icon {
+        //   padding: 0;
+        //   margin: 13px auto;
+
+        //   .iconMod {
+        //     margin: auto;
+        //     text-align: center;
+        //     width: 32px;
+        //     height: 32px;
+        //     border-radius: 30px;
+
+        //   }
+
+        // }
+
+        .notifications-content-name {
+          margin: 8px 0px;
+          width: 100%;
+
           .iconMod {
             margin: auto;
             text-align: center;
             width: 32px;
             height: 32px;
             border-radius: 30px;
-  
+            background-color: RGBA(252, 95, 95, 0.15);
+            color: #FC5F5F;
           }
-  
-        }
-  
-        .notifications-content-name {
-          margin: 8px 0px;
-  
+
+          .active-iconMod {
+            background-color: RGBA(0, 112, 219, 0.14);
+            color: #0070DB;
+          }
+
           .header {
             font-size: 15px;
             font-weight: 500;
           }
-  
+
           .sub-header {
             font-size: 12px;
             color: #707070;
-            width: 25em;
+            // width: 25em;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
-  
+
+          .notifications-content-status {
+            color: #464D69;
+            margin: 8px 0px;
+            font-size: 12px;
+            // line-height: 4;
+          }
+
           .active {
             font-size: 12px;
             color: #707070;
@@ -435,37 +494,20 @@ $color-white: #ffffff;
             white-space: normal;
             overflow: auto;
             text-overflow: ellipsis;
-  
           }
-  
+
         }
-  
-        .notifications-content-status {
-          color: #464D69;
-          margin: 8px 0px;
-          font-size: 12px;
-          // line-height: 4;
+
+        &:visited,
+        &:active,
+        &:hover {
+          border-left: 3px solid #FC5F5F;
+          outline: 0;
         }
-  
-        // &:focus,
-        // &:hover {
-        //   outline: 0;
-        // }
-  
-  
-        // &:focus,
-        // &:hover {
-        //   outline: 0;
-        //   color: #464D69;
-        //   background-color: #ffffff;
-        //   border-left: 2px solid #FC5F5F;
-        // }
-        &:visited,&:active,&:hover{
-          border-left: 2px solid #FC5F5F;
-        }
-  
-  
+
+
       }
+
       .activeParent {
         outline: 0;
         color: #464D69;
@@ -474,9 +516,11 @@ $color-white: #ffffff;
         height: auto;
       }
     }
-  
+
+    .activeParent-main-content {}
 
     .notifications-content-more {
+      padding: 0;
       color: #464D69;
       height: 35px;
       line-height: 2;
@@ -495,23 +539,137 @@ $color-white: #ffffff;
     }
 
     .notifications-content-view-all {
+      padding: 0;
       margin: 0;
       background-color: RGBA(0, 112, 219, 0.14);
       color: #0070DB;
-      height: 56px;
+      height: 58px;
+
       .notifications-content-all {
         padding: 0;
-        margin: 15px auto;
+        margin: 17px auto;
         text-align: center;
       }
     }
 
-   
+
+  }
+
+
+}
+
+:hover,
+:focus {
+  outline: 0;
+}
+
+.mat-menu-panel.menuAdmin-dropdown {
+  margin-top: 10px;
+
+  // margin-right: 10px;
+  .mat-menu-content {
+    padding: 0;
+    width: 251px;
+
+    .userDetails-Container {
+      height: 80px;
+      padding: 0 20px;
+      border-bottom: 1px solid #EBECEF;
+
+      .userImg {
+        cursor: pointer;
+        border-radius: 25px;
+        border: solid 1px #0070DB;
+        height: 50px;
+        margin: auto;
+      }
+
+      .user-name-content {
+        margin: auto;
+        padding: 15px;
+        line-height: 20px;
+        text-align: left;
+
+        .user-header {
+          font-size: 15px;
+          font-weight: 500;
+          color: #464D69;
+          white-space: pre-wrap;
+          /* CSS3 */
+          white-space: -moz-pre-wrap;
+          /* Firefox */
+          white-space: -o-pre-wrap;
+          /* Opera 7 */
+          word-wrap: break-word;
+        }
+
+        .user-SubHeader {
+          font-weight: 400;
+          font-size: 13px;
+          color: #0070DB;
+        }
+      }
+
+    }
+
+    .user-menu-opt-container {
+      padding-bottom: 15px;
+      padding-top: 15px;
+
+      .mat-menu-item.user-menu-opt {
+        color: #666666;
+        height: 40px;
+        padding: 10px 20px;
+        // margin: 10px 0px;
+        // line-height: 3;
+
+        .user-menu-opt-name {
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+      }
+
+      .mat-menu-item:hover {
+        background-color: RGBA(0, 112, 219, 0.10) !important;
+      }
+    }
+
 
   }
 
 }
 
+.mat-menu-panel.menuAdmin-dropdown.arrow-top:after {
+  // content: " ";
+  // position: absolute;
+  // right: 30px;
+  // top: -15px;
+  // border-top: none;
+  // border-right: 15px solid transparent;
+  // border-left: 15px solid transparent;
+  // border-bottom: 15px solid black;
+  content: " ";
+  position: absolute;
+  right: 12px;
+  top: 1px;
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+}
+
+:hover,
+:focus {
+  outline: 0;
+}
+
+// ::ng-deep .mat-menu-panel.notifications-dropdown{
+//  background-color: red;
+//   height: calc(100% - 90px);
+//   max-height: calc(100% - 90px);
+//   min-height: calc(100% - 90px);
+// }
 
 
 //END Home Page

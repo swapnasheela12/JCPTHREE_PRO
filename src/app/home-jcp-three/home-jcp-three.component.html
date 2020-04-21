@@ -203,93 +203,145 @@
                             </button>
                             <mat-menu #notifications="matMenu" class="notifications-dropdown">
 
-                                <div class="row justify-content-between notifications-header">
-                                    <div class="col notifications-name">
-                                        Notifications
-                                    </div>
-                                    <div class="col notifications-status">
-                                        <div style="float: right;">
-                                            <span>All Notifications</span>
-                                            <span class="pl-2 zmdi zmdi-chevron-down"></span>
+                                <div (click)="$event.stopPropagation();" class=" notifications-header">
+                                    <div class="row m-0 p-0 justify-content-between">
+                                        <div class="col notifications-name">
+                                            Notifications
+                                        </div>
+                                        <div class="col notifications-status">
+                                            <div style="float: right;">
+                                                <!-- <span>All Notifications</span>
+                                                <span class="pl-2 zmdi zmdi-chevron-down"></span> -->
+
+
+                                                <mat-form-field id="allNotifocationId">
+                                                    <!-- <mat-label>All Notifications</mat-label> -->
+                                                    <mat-select [(ngModel)]="selectedNameMod"
+                                                        (selectionChange)="allNameNoteFunc($event)">
+                                                        <mat-option value="All Notifications" selected>All Notifications
+                                                        </mat-option>
+                                                        <mat-option
+                                                            *ngFor="let note of notificationsList | filterUnique"
+                                                            [value]="note.name">
+                                                            {{note.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-content">
+                                <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false"
+                                    class="main-content">
                                     <div class="notifications-content row justify-content-between"
                                         [ngClass]="{'activeParent': item.hideMe}"
                                         *ngFor="let item of notificationsList; let i = index">
 
-                                        <div class="col-1 notifications-content-icon">
-                                            <div class="iconMod">
-                                                <span [ngClass]="item.iconMod"></span>
+                                        <div class="row justify-content-between notifications-content-name">
+                                            <div class="col-1 p-0" style="margin: 5px 10px;">
+                                                <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}"><span
+                                                        [ngClass]="item.iconMod"></span></div>
                                             </div>
-                                        </div>
-                                        <div class="col notifications-content-name">
-                                            <div class="header">
-                                                <span>{{item.nameMod}}</span>
-                                                <span (click)="item.hideMe =! item.hideMe"
-                                                    class="pl-2 zmdi zmdi-chevron-down" style="cursor: pointer;"></span>
+                                            <div class="col-7 p-0">
+                                                <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                    style="cursor: pointer;">
+                                                    <span>{{item.name}}</span>
+                                                    <span class="pl-2 zmdi zmdi-chevron-down"></span>
+                                                </div>
+                                                <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}</div>
+                                                <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                    *ngIf="item.hideMe">{{item.detailsMod}}</div>
                                             </div>
-                                            <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}</div>
-                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}"
-                                                *ngIf="item.hideMe">{{item.detailsMod}}</div>
-                                        </div>
-                                        <div class="col-3 notifications-content-status">
-                                            <div style="float: right;">
-                                                <span>{{item.statusMod}}</span>
+                                            <div class="col-3">
+                                                <div class="notifications-content-status" style="float: right;">
+                                                    <span>{{item.statusMod}}</span>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <mat-divider></mat-divider>
-
                                     </div>
 
                                 </div>
+                                <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true"
+                                    class="main-content">
+                                    <div class="notifications-content row justify-content-between"
+                                        [ngClass]="{'activeParent': item.hideMe}"
+                                        *ngFor="let item of filterDataArr; let i = index">
 
-                                <div class="row justify-content-end notifications-content-more">
+                                        <div class="row justify-content-between notifications-content-name">
+                                            <div class="col-1" style="margin: 5px auto; padding: 0%;">
+                                                <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}"><span
+                                                        [ngClass]="item.iconMod"></span></div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                    style="cursor: pointer;">
+                                                    <span>{{item.name}}</span>
+                                                    <span class="pl-2 zmdi zmdi-chevron-down"
+                                                        style="cursor: pointer;"></span>
+                                                </div>
+                                                <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}</div>
+                                                <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                    *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="notifications-content-status" style="float: right;">
+                                                    <span>{{item.statusMod}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <mat-divider></mat-divider>
+                                    </div>
+
+                                </div>
+                                <div (click)="$event.stopPropagation();"
+                                    class="row justify-content-end notifications-content-more">
                                     <div class="col notifications-content-status">
-                                        <div style="float: right;" (click)="showOlderNoteFunc(notificationsList)">
+                                        <div style="float: right;cursor: pointer;"
+                                            (click)="showOlderNoteFunc(notificationsList)">
                                             <a>Show Older</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-end notifications-content-view-all">
+                                <div (click)="$event.stopPropagation();"
+                                    class="row justify-content-end notifications-content-view-all">
                                     <div (click)="viewAllNoteFunc(notificationsList)"
-                                        class="col notifications-content-all">
-                                        View All
+                                        class="col notifications-content-all" style="cursor: pointer;">
+                                        Mark All As Read
+                                    </div>
+                                </div>
+                            </mat-menu>
+                        </div>
+                        <div class="admin-toolbar d-flex plr-10">
+                            <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
+                                <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button" width="40" />
+                            </button>
+                            <mat-menu #menuAdmin="matMenu" class="menuAdmin-dropdown arrow-top">
+                                <div class="d-flex userDetails-Container">
+                                    <img src="assets/images/logo/user.jpeg" alt="IOT" class="userImg" width="50" />
+                                    <div class="col" class="user-name-content">
+                                        <div class="user-header">Swapnasheela Khandagale</div>
+                                        <div class="user-SubHeader">CM Optimizer</div>
+                                    </div>
+                                </div>
+                                <div class="user-menu-opt-container">
+                                    <div class="user-menu-opt" mat-menu-item>
+                                        <div class="user-menu-opt-name"> My Profile</div>
+                                    </div>
+                                    <div class="user-menu-opt" mat-menu-item>
+                                        <div class="user-menu-opt-name">My Roles / Workspaces</div>
+                                    </div>
+                                    <div class="user-menu-opt" mat-menu-item>
+                                        <div class="user-menu-opt-name">Feedback</div>
+                                    </div>
+                                    <div class="user-menu-opt" mat-menu-item (click)="logout()">
+                                        <div class="user-menu-opt-name">Logout</div>
                                     </div>
                                 </div>
 
-                            </mat-menu>
-                        </div>
-                        <div class="d-flex plr-10">
-                            <button mat-button [matMenuTriggerFor]="menu">
-                                <div class="d-flex" style="height: 38px;">
-                                    <img src="assets/images/logo/user.jpeg" alt="IOT" class="" width="40"
-                                        style="cursor: pointer;border-radius: 25px;border: solid 1px;height: 40px;" />
-                                    <!-- <div class="col" style="line-height: 20px;text-align: left;">
-                    <div>Swapnasheela Khandagale</div>
-                    <div style="font-weight: 300;font-size: 12px;">NHQ</div>
-                </div>
-                <mat-icon style="line-height: 20px;">arrow_drop_down</mat-icon> -->
-                                </div>
-                            </button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Admin</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>My Profile</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>Workspaces/Roles</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>Notification</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>Feedback</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>Favourites</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item>Help</button>
-                                <mat-divider [vertical]="true"></mat-divider>
-                                <button mat-menu-item (click)="logout()">Logout</button>
                             </mat-menu>
                         </div>
                     </div>
