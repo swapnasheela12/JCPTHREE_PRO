@@ -7,6 +7,8 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { files } from './example-data';
 import { BehaviorSubject, Observable, of as observableOf, from } from "rxjs";
 import { Router } from '@angular/router';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
 import { User } from '../_models/user';
 
@@ -53,6 +55,32 @@ export interface TreeNode {
 // export interface User {
 //   name: string;
 // }
+export class searchList {
+  constructor(
+    public name: string,
+    public linkurl: string,
+    public icon: string
+  ) { }
+}
+export class recentVisitList {
+  constructor(
+    public name: string,
+    public linkurl: string,
+    public icon: string
+  ) { }
+}
+// export interface StateGroup {
+//   type: string;
+//   letter: string;
+//   names: string[];
+// }
+
+// export const _filter = (opt: string[], value: string): string[] => {
+//   const filterValue = value.toLowerCase();
+
+//   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+// };
+
 
 @Component({
   selector: "app-home-jcp-three",
@@ -61,6 +89,63 @@ export interface TreeNode {
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeJcpThreeComponent implements OnInit {
+
+
+  /////////////////////////////
+
+
+  stateCtrl: FormControl;
+  stateForm: FormGroup = this._formBuilder.group({
+    stateCtrl: '',
+  });
+  filteredStates: Observable<any[]>;
+  filteredStatesVisited: Observable<any[]>;
+  searchlist: searchList[] = [
+    {
+      name: "LSMR",
+      linkurl: "Samsung",
+      icon: "ic ic-dashboard2"
+    },
+    {
+      name: "LSMR Re-Homing",
+      linkurl: "Planning and Development",
+      icon: "ic ic-dashboard2"
+    }
+  ];
+
+  recentvisitlist: recentVisitList[] = [
+    {
+      name: "RET Change",
+      linkurl: "RET Change",
+      icon: "ic ic-configuration"
+    },
+    {
+      name: "RFOC Summary Report",
+      linkurl: "RFOC Summary Report",
+      icon: "ic ic-dashboard2"
+    },
+    {
+      name: "LSMR",
+      linkurl: "Samsung",
+      icon: "ic ic-dashboard2"
+    },
+    {
+      name: "InfILL Planning",
+      linkurl: "InfILL Planning",
+      icon: "zmdi zmdi-layers"
+    },
+    {
+      name: "REPORT BUILDER",
+      linkurl: "REPORT BUILDER",
+      icon: "ic ic-performance1"
+    },
+  ];
+  
+
+  /////////////////////////
+
+
+
   sidenavWidth = 4;
   ngStyle: string;
   expanded: boolean;
@@ -428,7 +513,7 @@ export class HomeJcpThreeComponent implements OnInit {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
   /////////////////////////
-  constructor(private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
+  constructor(private _formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
     router.events.subscribe((url: any) => console.log(url));
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     /////////////////
@@ -439,7 +524,86 @@ export class HomeJcpThreeComponent implements OnInit {
     this.dataSource.data = files;
 
 
+
+    ///////////////////////////////
+    this.stateCtrl = new FormControl();
+    this.filteredStates = this.stateCtrl.valueChanges.pipe(
+      startWith(""),
+      map(state => (state ? this.filterStates(state) : this.searchlist.slice()))
+    );
+    this.filteredStatesVisited = this.stateCtrl.valueChanges.pipe(
+      startWith(""),
+      map(state => (state ? this.filterStatesVisited(state) : this.recentvisitlist.slice()))
+    );
+
+
+    // if (!this.searchHistory.some(q => q === this.stateCtrl.value)) {
+    //   this.searchHistory = [...this.searchHistory, this.stateCtrl.value];
+    // }
+    /////////////////////////////////
+
   }
+
+
+ 
+
+  filterStates(name: string) {
+    return this.searchlist.filter(
+      state => state.name.toLowerCase().indexOf(name.toLowerCase()) === 0
+    );
+  }
+  filterStatesVisited(name: string) {
+    console.log(name, "name");
+
+    return this.recentvisitlist.filter(
+      state => state.name.toLowerCase().indexOf(name.toLowerCase()) === 0
+    );
+  }
+  addClassActiveSearch = false;
+  onEnter(evt: any) {
+    console.log(evt,"evt");
+    
+    if (evt.source.selected) {
+      console.log("bahar");
+      
+      // this.addClassActiveSearch = false;
+      // this.addClassActiveSearch =! this.addClassActiveSearch;
+      // this.addClassActiveSearch = false;
+      // alert("hello ");
+    }
+  }
+
+ 
+
+  search(item) {
+    console.log(item,"item");
+    console.log(item._isOpen,"item._isOpen");
+    this.addClassActiveSearch =! this.addClassActiveSearch;
+    
+    console.log(this.stateCtrl,"this.stateCtrl");
+    console.log('Name:' ,this.stateCtrl.value );
+    if (item._isOpen ) {
+     console.log("under");
+     
+    }
+   
+  }
+
+
+  // searchHistory = [];
+  // search() {
+  //   console.log(this.stateCtrl,"this.stateCtrl");
+  //   console.log('Name:' ,this.stateCtrl.value );
+    
+  //   // // do your search then store the result
+  //   if (!this.searchHistory.some(q => q === this.stateCtrl.value)) {
+  //     this.searchHistory = [...this.searchHistory, this.stateCtrl.value];
+  //   }
+  // }
+
+
+
+
 
   elem;
 
@@ -447,9 +611,8 @@ export class HomeJcpThreeComponent implements OnInit {
     this.elem = document.documentElement;
     this.onLoad();
 
-
-
   }
+
 
   preventCloseOnClickOut() {
     this.overlayContainer.getContainerElement().classList.add('disable-backdrop-click');

@@ -69,7 +69,9 @@ import { MenuListItemComponent } from './sidebarmenu/menu-list-item/menu-list-it
 import { TopNavComponent } from './sidebarmenu/top-nav/top-nav.component';
 import { MacroComponent } from './layers/sites/macro/macro.component';
 import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
-import { FilterUniquePipe } from './pipes/filterUnique/filter-unique.pipe';
+import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
+import { ClickOutsideDirective } from './_directive/click-outside.directive';
+
 
 declare var $: any;
 
@@ -83,7 +85,8 @@ declare var $: any;
     TopNavComponent,
     MacroComponent,
     NavigationSidebarComponent,
-    FilterUniquePipe
+    FilterUniquePipe,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
