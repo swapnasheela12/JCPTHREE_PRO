@@ -157,7 +157,7 @@
         <mat-toolbar class="jcp-toolbar">
             <mat-toolbar-row class="d-flex jcp-toolbar-row">
 
-                <div class="col-3">
+                <div class="col-2">
                     <button type="button" mat-button color="primary" class="toolbar-botton" (click)="sidenav.toggle()"
                         (mouseenter)="increase()">
                         <mat-icon aria-label="Menu">menu</mat-icon>
@@ -187,28 +187,27 @@
                                     *ngFor="let state of filteredStatesVisited | async" [value]="state.name"
                                     class="autoSearch-mat-option">
 
-                                    <div class="row justify-content-between autoSearch-row">
-                                        <div class="col-1 p-0 m-auto">
-                                            <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
-                                        </div>
-                                        <div class="col p-0">
-                                            <div class="autoSearch-row-name">{{ state.name }}</div>
-                                        </div>
+                                    <div class="row justify-content-start align-items-center autoSearch-row">
+                                        <!-- <div class="col-1 p-0 m-auto">
+                                            
+                                        </div> -->
+                                        <!-- <div class="col p-0"> -->
+                                        <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
+                                        <div class="autoSearch-row-name">{{ state.name }}</div>
+                                        <!-- </div> -->
                                     </div>
 
                                 </mat-option>
-                                <mat-divider></mat-divider>
+                                <mat-divider style="    margin: 10px 0;"></mat-divider>
                                 <div class="headerMain">Search Results</div>
                                 <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
                                     *ngFor="let state of filteredStates | async" [value]="state.name"
                                     class="autoSearch-mat-option">
                                     <div class="row justify-content-between autoSearch-row">
-                                        <div class="col p-0">
+                                        <div class="col-4 p-0">
                                             <div class="row p-0 m-0">
-                                                <div class="col-2 p-0" style="text-align: center;">
-                                                    <span class="autoSearch-row-iconsec" [ngClass]="state.icon"></span>
-                                                </div>
-                                                <div class="col-10 autoSearch-row-namesec">{{ state.name }}</div>
+                                                <div class="autoSearch-row-iconsec" [ngClass]="state.icon"></div>
+                                                <div class=" autoSearch-row-namesec">{{ state.name }}</div>
                                             </div>
                                         </div>
                                         <div class="col-8">
@@ -375,9 +374,9 @@
                                 <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button" width="40" />
                             </button>
                             <mat-menu #menuAdmin="matMenu" class="menuAdmin-dropdown arrow-top">
-                                <div class="d-flex userDetails-Container">
+                                <div class="justify-content-center align-items-center userDetails-Container">
                                     <img src="assets/images/logo/user.jpeg" alt="IOT" class="userImg" width="50" />
-                                    <div class="col" class="user-name-content">
+                                    <div class="" class="user-name-content">
                                         <div class="user-header">Swapnasheela Khandagale</div>
                                         <div class="user-SubHeader">CM Optimizer</div>
                                     </div>

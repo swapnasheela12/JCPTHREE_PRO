@@ -457,10 +457,11 @@ $color-white: #ffffff;
 
       .jcp-toolbar-row {
         .jcp-toolbar-row-center {
+          margin: 0 65px;
           .form-group {
             // margin-bottom: 0;
             width: -webkit-fill-available;
-            margin: 0 50px;
+            margin: 0;
 
             // .form-control {
             //   border-radius: 20px;

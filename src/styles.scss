@@ -570,13 +570,13 @@ $color-white: #ffffff;
   // margin-right: 10px;
   .mat-menu-content {
     padding: 0;
-    width: 251px;
+    width: 245px;
 
     .userDetails-Container {
-      height: 80px;
-      padding: 0 20px;
+      // height: 80px;
+      padding: 15px;
       border-bottom: 1px solid #EBECEF;
-
+      text-align: center;
       .userImg {
         cursor: pointer;
         border-radius: 25px;
@@ -587,13 +587,14 @@ $color-white: #ffffff;
 
       .user-name-content {
         margin: auto;
-        padding: 15px;
+        padding-top: 8px;
         line-height: 20px;
-        text-align: left;
+        text-align: center;
 
         .user-header {
-          font-size: 15px;
-          font-weight: 500;
+          font-size: 18px;
+          font-weight: 600;
+          font-family: 'Lato Bold';
           color: #464D69;
           white-space: pre-wrap;
           /* CSS3 */
@@ -606,7 +607,7 @@ $color-white: #ffffff;
 
         .user-SubHeader {
           font-weight: 400;
-          font-size: 13px;
+          font-size: 14px;
           color: #0070DB;
         }
       }
@@ -619,15 +620,15 @@ $color-white: #ffffff;
 
       .mat-menu-item.user-menu-opt {
         color: #666666;
-        height: 40px;
+        height: 48px;
         padding: 10px 20px;
         // margin: 10px 0px;
         // line-height: 3;
 
         .user-menu-opt-name {
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 400;
-          line-height: 1.5;
+          line-height: 2;
         }
       }
 
@@ -674,7 +675,7 @@ $color-white: #ffffff;
   .headerMain {
     color: #9195A6;
     font-size: 13px;
-    padding: 15px 20px;
+    padding: 10px 35px;
   }
 
   .autoSearch-mat-option {
@@ -692,17 +693,19 @@ $color-white: #ffffff;
         background: #F0F1F3;
         border-radius: 18px;
         text-align: center;
+        margin: 0 15px;
       }
 
       .autoSearch-row-iconsec {
 
-        padding: 6px 0;
+        padding: 15px 0;
         font-size: 18px;
         width: 30px;
         height: 30px;
         // background: #F0F1F3;
         border-radius: 18px;
         text-align: center;
+        margin: 0 15px;
       }
 
       .autoSearch-row-name {
@@ -711,11 +714,11 @@ $color-white: #ffffff;
 
       .autoSearch-row-namesec {
         font-size: 14px;
-        line-height: 3;
+        // line-height: 3;
       }
 
       .autoSearch-row-url {
-        font-size: 12px;
+        font-size: 14px;
 
       }
     }
