@@ -7,6 +7,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { files } from './example-data';
 import { BehaviorSubject, Observable, of as observableOf, from } from "rxjs";
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
@@ -91,8 +92,13 @@ export class recentVisitList {
 export class HomeJcpThreeComponent implements OnInit {
 
 
-  /////////////////////////////
+  //////////breadcrums///////////////
+  breadcrumbLinksList: string;
+  urlPathPage: string;
+  //////////breadcrums///////////////
 
+
+  ///////////search//////////////////
 
   stateCtrl: FormControl;
   stateForm: FormGroup = this._formBuilder.group({
@@ -140,12 +146,11 @@ export class HomeJcpThreeComponent implements OnInit {
       icon: "ic ic-performance1"
     },
   ];
-  
 
-  /////////////////////////
-
+  //////////search///////////////
 
 
+  //////////side menu/////////////////////
   sidenavWidth = 4;
   ngStyle: string;
   expanded: boolean;
@@ -504,28 +509,77 @@ export class HomeJcpThreeComponent implements OnInit {
     //if you just want to toggle the class; change toggle variable.
     this.togglemenuback = !this.togglemenuback;
   }
+  //////////////side menu//////////////////////////
 
-  //////////////////
+
+  /////////tree menu/////////
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<TreeNode>;
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   treeFlattener: MatTreeFlattener<FileNode, TreeNode>;
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
-  /////////////////////////
-  constructor(private _formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
+  /////////tree menu/////////
+
+  route: string;
+  mainHeaderName: string;
+  breadcrumbList = [];
+  routeLinks: number;
+  count: number;
+
+
+  constructor(private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
     router.events.subscribe((url: any) => console.log(url));
+    console.log(router.url)
+     /////////////breadcrums////////////////////
+
+    //  this.urlPathPage = router.url;
+    
+    //  this.breadcrumbLinksList = this.urlPathPage.split('/').join("<i class='fa fa-chevron-right pl-1 pr-1'></i>")
+    //  console.log(this.breadcrumbLinksList, "this.breadcrumbLinksList");
+
+
+     ///
+
+     router.events.subscribe((val) => {
+      if (location.path() !== '') {
+        this.route = location.path();
+        this.route.split('%20').join(' ');
+        let spaceAddURL=this.route.split('%20').join(' ')
+        this.breadcrumbList = spaceAddURL.split('/');
+        this.breadcrumbList = this.breadcrumbList.filter(function(entry) { return entry.trim() != ''; });
+        console.log(this.breadcrumbList,"this.breadcrumbList");
+        this.breadcrumbList.forEach(ele => {
+          this.mainHeaderName = ele;
+        });
+        console.log(this.mainHeaderName);
+        
+        // this.mainHeaderName = this.breadcrumbLis.pop();
+        this.count = this.breadcrumbList.length;
+      } else {
+        this.route = 'Home';
+      }
+    });
+
+     ///
+ 
+     /////////////breadcrums////////////////////
+
+
+    ///////////user authenticat/////////////
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    /////////////////
+    ///////////user authenticat/////////////
+
+    ///////tree menu//////////
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel, this.isExpandable, this.getChildren);
 
     this.treeControl = new FlatTreeControl<TreeNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.dataSource.data = files;
+    ///////tree menu//////////
 
 
-
-    ///////////////////////////////
+    ///////////////Search////////////////
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges.pipe(
       startWith(""),
@@ -540,12 +594,13 @@ export class HomeJcpThreeComponent implements OnInit {
     // if (!this.searchHistory.some(q => q === this.stateCtrl.value)) {
     //   this.searchHistory = [...this.searchHistory, this.stateCtrl.value];
     // }
-    /////////////////////////////////
+    //////////////search///////////////////
+
 
   }
 
 
- 
+
 
   filterStates(name: string) {
     return this.searchlist.filter(
@@ -561,11 +616,11 @@ export class HomeJcpThreeComponent implements OnInit {
   }
   addClassActiveSearch = false;
   onEnter(evt: any) {
-    console.log(evt,"evt");
-    
+    console.log(evt, "evt");
+
     if (evt.source.selected) {
       console.log("bahar");
-      
+
       // this.addClassActiveSearch = false;
       // this.addClassActiveSearch =! this.addClassActiveSearch;
       // this.addClassActiveSearch = false;
@@ -573,20 +628,20 @@ export class HomeJcpThreeComponent implements OnInit {
     }
   }
 
- 
+
 
   search(item) {
-    console.log(item,"item");
-    console.log(item._isOpen,"item._isOpen");
-    this.addClassActiveSearch =! this.addClassActiveSearch;
-    
-    console.log(this.stateCtrl,"this.stateCtrl");
-    console.log('Name:' ,this.stateCtrl.value );
-    if (item._isOpen ) {
-     console.log("under");
-     
+    console.log(item, "item");
+    console.log(item._isOpen, "item._isOpen");
+    this.addClassActiveSearch = !this.addClassActiveSearch;
+
+    console.log(this.stateCtrl, "this.stateCtrl");
+    console.log('Name:', this.stateCtrl.value);
+    if (item._isOpen) {
+      console.log("under");
+
     }
-   
+
   }
 
 
@@ -594,7 +649,7 @@ export class HomeJcpThreeComponent implements OnInit {
   // search() {
   //   console.log(this.stateCtrl,"this.stateCtrl");
   //   console.log('Name:' ,this.stateCtrl.value );
-    
+
   //   // // do your search then store the result
   //   if (!this.searchHistory.some(q => q === this.stateCtrl.value)) {
   //     this.searchHistory = [...this.searchHistory, this.stateCtrl.value];
@@ -726,14 +781,14 @@ export class HomeJcpThreeComponent implements OnInit {
   }
 
 
-  increase() {
-    this.sidenavWidth = 15;
-    this.expanded = true;
-  }
-  decrease(sidenav) {
-    this.sidenavWidth = 4;
-    this.expanded = false;
-  }
+  // increase() {
+  //   this.sidenavWidth = 15;
+  //   this.expanded = true;
+  // }
+  // decrease(sidenav) {
+  //   this.sidenavWidth = 4;
+  //   this.expanded = false;
+  // }
 
 
 
@@ -840,6 +895,34 @@ export class HomeJcpThreeComponent implements OnInit {
     }
 
   }
+
+
+  breadcrumbFun(val) {
+    console.log(val, "val");
+
+    if (val == "ExecutiveSummary" || val == "Dashboard") {
+      this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
+      }, err => {
+        console.log(err) // when there's an error
+      });
+    } else {
+      this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
+      }, err => {
+        console.log(err) // when there's an error
+      });
+    }
+
+  }
+
+
+  myreportFuction(){
+    this.router.navigate(['/','Home', 'Reports & Dashboard', 'Report Wizard']).then(val => {
+    }, err => {
+      console.log(err) // when there's an error
+    });
+  }
+
+
 
 
 

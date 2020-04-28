@@ -1,83 +1,14 @@
-<mat-sidenav-container class="container-jcp" fullscreen>
-    <mat-sidenav #sidenav class="mat-sidenav sidebarleftsidenav" opened="true" mode="side"
-        [ngStyle]="{ 'width.em': sidenavWidth }">
-        <mat-toolbar class="side-mat-toolbar-row justify-content-center align-items-center">
-            <mat-toolbar-row style="height: 55px;padding: 0px;">
-                <!-- <div class="container p-0">
-                  <div class="row m-0 justify-content-md-center">
-                      <div class="col">
-                          <div class="row m-0">
-                              <div class="col-4 p-0">
-                                  <img src="assets/image/agriculture/login/JIOIOT_icons_Logo_white.svg" alt="IOT"
-                                      (click)="sidenav.toggle()" style="width: 68px;margin-top: 13px;">
-                              </div>
-                              <div class="col sub-header">Jio Agriculture Platform</div>
-                          </div>
-                      </div>
-                      <div class="col-1 p-0">
-                          <div mat-button [matMenuTriggerFor]="menuAppListAgri" class="primeApp-list">
-                              <div class="ic ic-dropdown-01" style=" margin-top: 35px;"></div>
-                          </div>
-                      </div>
-                  </div>
-              </div> -->
-
-                <div class="container padding-0" style="height: 100%;">
-                    <div class="row">
-                        <div class="col padding-right-0">
-                            <div class="row margin-0">
-                                <img *ngIf="expanded == true" src="assets/images/logo/logo_blue.svg" alt="IOT"
-                                    width="175" style="cursor: pointer; margin: 4px 0; padding: 0px 0px 0px 15px;">
-                                <!-- <button type="button" mat-button class="toolbar-botton" (click)="sidenav.toggle()"
-                                    (mouseenter)="decrease()"> -->
-                                <button type="button" mat-button class="toolbar-botton" (mouseenter)="decrease()"
-                                    (click)="sidenav.toggle()">
-                                    <mat-icon aria-label="Menu">menu</mat-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- <div class="col-1">
-                          <div mat-button [matMenuTriggerFor]="menuAppListAgri" class="primeApp-list">
-                              <div class="ic ic-dropdown-01" style=" margin-top: 35px;"></div>
-                          </div>
-                      </div> -->
-                    </div>
-                </div>
-            </mat-toolbar-row>
-            <!-- <mat-menu #menuAppListAgri="matMenu" xPosition="before" class="menuAppListClass-jcp">
-              <div class="container padding-0">
-                  <button mat-menu-item>
-                      <div class="row menuAppList-container"  [routerLink]="['/', 'jap']">
-                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Agriculture"></div>
-                          <div class="menuAppList-text col agricultrure-app-text">Agriculture</div>
-                      </div>
-                  </button>
-                  <mat-divider [vertical]="true"></mat-divider>
-                  <button mat-menu-item>
-                      <div class="row menuAppList-container">
-                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Home-security"></div>
-                          <div class="menuAppList-text col homeSecurity-app-text">Home Security</div>
-                      </div>
-                  </button>
-                  <mat-divider [vertical]="true"></mat-divider>
-                  <button mat-menu-item>
-                      <div class="row menuAppList-container">
-                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_IEM"></div>
-                          <div class="menuAppList-text col iem-app-text">IEM</div>
-                      </div>
-                  </button>
-                  <mat-divider [vertical]="true"></mat-divider>
-                  <button mat-menu-item>
-                      <div class="row menuAppList-container" [routerLink]="['/', 'Dashborad']">
-                          <div class="menuAppList-icon col-3 ic ic-JIOIOT_icons_Enterprise"></div>
-                          <div class="menuAppList-text col enterprise-app-text">Enterprise</div>
-                      </div>
-                  </button>
-                  <mat-divider [vertical]="true"></mat-divider>
-              </div>
-          </mat-menu> -->
-        </mat-toolbar>
-        <div class="tree-container-jcp" (mouseenter)="increase()">
+<mat-sidenav-container class="container-jcp">
+    <mat-sidenav #sidenav class="sidebarleftsidenav" opened="true" mode="side">
+        <div class="side-mat-toolbar-row">
+            <div class="jcp-logo-container">
+                <img src="assets/images/logo/logo_blue.svg" alt="IOT" width="154" height="47" [routerLink]="['']">
+                <button type="button" mat-button class="toolbar-botton" (click)="sidenav.toggle()">
+                    <div class="zmdi zmdi-menu" aria-label="Menu"></div>
+                </button>
+            </div>
+        </div>
+        <div class="tree-container-jcp">
             <div [ngClass]="{'active': togglemenuback}" class="my_class" (click)="clickEvent($event)"><i
                     class="fas fa-arrow-left"></i></div>
             <!-- <div (ngModel)="parentArr" (click)="backMenuList(parentArr);"><i class="fas fa-arrow-left" ></i></div> -->
@@ -153,225 +84,214 @@
         </div>
 
     </mat-sidenav>
-    <mat-sidenav-content class="body-sidenav-container" (mouseenter)="decrease()">
-        <mat-toolbar class="jcp-toolbar">
-            <mat-toolbar-row class="d-flex jcp-toolbar-row">
+    <mat-sidenav-content class="body-sidenav-container"
+        [ngClass]="{'active-body-sidenav': sidenav.opened, 'activeNot-body-sidenav': !sidenav.opened}">
+        <div class="jcp-toolbar" [ngClass]="{'active-jcp-toolbar': sidenav.opened, 'activeNot-jcp-toolbar': !sidenav.opened}">
+            <div class="jcp-toolbar-row">
+                <div class="col-9 jcp-toolbar-col-center p-0">
+                    <div class="jcp-toolbar-search-row">
+                        <div class="jcp-toolbar-search-tbutt" [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
+                            <button type="button" mat-button class="toolbar-botton-inner" (click)="sidenav.toggle()">
+                                <div class="menu-inner zmdi zmdi-menu" aria-label="Menu"></div>
+                            </button>
+                        </div>
+                        <div class="jcp-toolbar-search-form">
+                            <div class="form-group">
+                                <form [formGroup]="stateForm">
+                                    <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}"
+                                        #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State"
+                                        [matAutocomplete]="autoSearch" [formControl]="stateCtrl"
+                                        (click)="search(autoSearch)">
+                                    <mat-icon class="search-icon" aria-label="search"><span
+                                            class="zmdi zmdi-search"></span>
+                                    </mat-icon>
+                                </form>
+                                <mat-autocomplete #autoSearch="matAutocomplete" class="autoSearchClass">
+                                    <div class="headerMain">Recent Visited</div>
+                                    <!-- <mat-option (change)="stateInput.value !=undefined"
+                                        *ngFor="let previousQuery of searchHistory" [value]="previousQuery">
+                                        {{previousQuery}}
+                                    </mat-option> -->
 
-                <div class="col-2">
-                    <button type="button" mat-button color="primary" class="toolbar-botton" (click)="sidenav.toggle()"
-                        (mouseenter)="increase()">
-                        <mat-icon aria-label="Menu">menu</mat-icon>
-                    </button>
-                </div>
-                <div class="col-7 mr-auto jcp-toolbar-row-center">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="form-group" style="position: relative;">
-
-                            <form [formGroup]="stateForm">
-                                <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}"
-                                    #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State"
-                                    [matAutocomplete]="autoSearch" [formControl]="stateCtrl"
-                                    (click)="search(autoSearch)">
-                                <mat-icon class="search-icon" aria-label="search"><span class="zmdi zmdi-search"></span>
-                                </mat-icon>
-                            </form>
-                            <mat-autocomplete #autoSearch="matAutocomplete" class="autoSearchClass">
-
-                                <div class="headerMain">Recent Visited</div>
-                                <!-- <mat-option (change)="stateInput.value !=undefined"
-                                    *ngFor="let previousQuery of searchHistory" [value]="previousQuery">
-                                    {{previousQuery}}
-                                </mat-option> -->
-
-                                <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
-                                    *ngFor="let state of filteredStatesVisited | async" [value]="state.name"
-                                    class="autoSearch-mat-option">
-
-                                    <div class="row justify-content-start align-items-center autoSearch-row">
-                                        <!-- <div class="col-1 p-0 m-auto">
-                                            
-                                        </div> -->
-                                        <!-- <div class="col p-0"> -->
-                                        <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
-                                        <div class="autoSearch-row-name">{{ state.name }}</div>
-                                        <!-- </div> -->
-                                    </div>
-
-                                </mat-option>
-                                <mat-divider style="    margin: 10px 0;"></mat-divider>
-                                <div class="headerMain">Search Results</div>
-                                <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
-                                    *ngFor="let state of filteredStates | async" [value]="state.name"
-                                    class="autoSearch-mat-option">
-                                    <div class="row justify-content-between autoSearch-row">
-                                        <div class="col-4 p-0">
-                                            <div class="row p-0 m-0">
-                                                <div class="autoSearch-row-iconsec" [ngClass]="state.icon"></div>
-                                                <div class=" autoSearch-row-namesec">{{ state.name }}</div>
+                                    <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                        *ngFor="let state of filteredStatesVisited | async" [value]="state.name"
+                                        class="autoSearch-mat-option">
+                                        <div class="row justify-content-start align-items-center autoSearch-row">
+                                            <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
+                                            <div class="autoSearch-row-name">{{ state.name }}</div>
+                                        </div>
+                                    </mat-option>
+                                    <mat-divider style="    margin: 10px 0;"></mat-divider>
+                                    <div class="headerMain">Search Results</div>
+                                    <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                        *ngFor="let state of filteredStates | async" [value]="state.name"
+                                        class="autoSearch-mat-option">
+                                        <div class="row justify-content-between autoSearch-row">
+                                            <div class="col-4 p-0">
+                                                <div class="row p-0 m-0">
+                                                    <div class="autoSearch-row-iconsec" [ngClass]="state.icon"></div>
+                                                    <div class=" autoSearch-row-namesec">{{ state.name }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="autoSearch-row-url" style="float: right;">
+                                                    <span>...>{{state.linkurl}}></span>
+                                                    <span>{{ state.name }}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-8">
-                                            <div class="autoSearch-row-url" style="float: right;">
-                                                <span>...>{{state.linkurl}}></span>
-                                                <span>{{ state.name }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </mat-option>
-
-
-                            </mat-autocomplete>
-
-
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-2 jcp-toolbar-row-right">
+                <div class="col-3 jcp-toolbar-col-right p-0">
                     <div class="row jcp-toolbar-row-right-content">
-                        <div class="icon-container ">
-                            <button
-                                class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                                <mat-icon class="zmdi zmdi-bookmark-outline"></mat-icon>
-                            </button>
-                        </div>
-                        <!-- <div class="icon-container" (keydown)="openFullscreen($event)" (click)="openFullscreen($event)" > -->
-                        <div class="icon-container" (click)="openFullscreen($event)" *ngIf="expandScreen == false">
-                            <button
-                                class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                                <mat-icon class="zmdi zmdi-fullscreen"></mat-icon>
-                            </button>
-                        </div>
-                        <div class="icon-container" (click)="closeFullscreen()" *ngIf="expandScreen == true">
-                            <button
-                                class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                                <mat-icon class="zmdi zmdi-fullscreen-exit"></mat-icon>
-                            </button>
-                        </div>
-                        <div class="icon-container">
-                            <button mat-button [matMenuTriggerFor]="notifications"
-                                class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                                <mat-icon class="zmdi zmdi-notifications-active" matBadge="{{randomNotificationCount}}"
-                                    matBadgeColor="warn">
-                                </mat-icon>
-                            </button>
-                            <mat-menu #notifications="matMenu" class="notifications-dropdown">
-
-                                <div (click)="$event.stopPropagation();" class=" notifications-header">
-                                    <div class="row m-0 p-0 justify-content-between">
-                                        <div class="col notifications-name">
-                                            Notifications
-                                        </div>
-                                        <div class="col notifications-status">
-                                            <div style="float: right;">
-                                                <!-- <span>All Notifications</span>
-                                                <span class="pl-2 zmdi zmdi-chevron-down"></span> -->
-
-
-                                                <mat-form-field id="allNotifocationId">
-                                                    <!-- <mat-label>All Notifications</mat-label> -->
-                                                    <mat-select [(ngModel)]="selectedNameMod"
-                                                        (selectionChange)="allNameNoteFunc($event)">
-                                                        <mat-option value="All Notifications" selected>All Notifications
-                                                        </mat-option>
-                                                        <mat-option
-                                                            *ngFor="let note of notificationsList | filterUnique"
-                                                            [value]="note.name">
-                                                            {{note.name}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
-
-                                            </div>
-                                        </div>
+                        <div class="icon-parent-container">
+                            <div class="icon-container" (click)="openFullscreen($event)" *ngIf="expandScreen == false">
+                                <button
+                                    class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                                    <div class="zmdi zmdi-fullscreen hvr-grow"></div>
+                                </button>
+                            </div>
+                            <div class="icon-container" (click)="closeFullscreen()" *ngIf="expandScreen == true">
+                                <button
+                                    class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                                    <div class="zmdi zmdi-fullscreen-exit hvr-grow"></div>
+                                </button>
+                            </div>
+                            <div class="icon-container ">
+                                <button
+                                    class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                                    <mat-icon class="zmdi zmdi-bookmark-outline hvr-grow"></mat-icon>
+                                </button>
+                            </div>
+                            <div class="icon-container">
+                                <button mat-button [matMenuTriggerFor]="notifications"
+                                    class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                                    <div class="zmdi zmdi-notifications-active note-icon hvr-grow"
+                                        matBadge="{{randomNotificationCount}}" matBadgeColor="warn">
                                     </div>
-                                </div>
-                                <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false"
-                                    class="main-content">
-                                    <div class="notifications-content row justify-content-between"
-                                        [ngClass]="{'activeParent': item.hideMe}"
-                                        *ngFor="let item of notificationsList; let i = index">
+                                </button>
+                                <mat-menu #notifications="matMenu" class="notifications-dropdown">
 
-                                        <div class="row justify-content-between notifications-content-name">
-                                            <div class="col-1 p-0" style="margin: 5px 10px;">
-                                                <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}"><span
-                                                        [ngClass]="item.iconMod"></span></div>
+                                    <div (click)="$event.stopPropagation();" class=" notifications-header">
+                                        <div class="row m-0 p-0 justify-content-between">
+                                            <div class="col notifications-name">
+                                                Notifications
                                             </div>
-                                            <div class="col-7 p-0">
-                                                <div class="header" (click)="item.hideMe =! item.hideMe"
-                                                    style="cursor: pointer;">
-                                                    <span>{{item.name}}</span>
-                                                    <span class="pl-2 zmdi zmdi-chevron-down"></span>
-                                                </div>
-                                                <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}</div>
-                                                <div class="sub-header" [ngClass]="{'active': item.hideMe}"
-                                                    *ngIf="item.hideMe">{{item.detailsMod}}</div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="notifications-content-status" style="float: right;">
-                                                    <span>{{item.statusMod}}</span>
+                                            <div class="col notifications-status">
+                                                <div style="float: right;">
+
+
+                                                    <mat-form-field id="allNotifocationId">
+                                                        <mat-select [(ngModel)]="selectedNameMod"
+                                                            (selectionChange)="allNameNoteFunc($event)">
+                                                            <mat-option value="All Notifications" selected>All
+                                                                Notifications
+                                                            </mat-option>
+                                                            <mat-option
+                                                                *ngFor="let note of notificationsList | filterUnique"
+                                                                [value]="note.name">
+                                                                {{note.name}}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <mat-divider></mat-divider>
                                     </div>
+                                    <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false"
+                                        class="main-content">
+                                        <div class="notifications-content row justify-content-between"
+                                            [ngClass]="{'activeParent': item.hideMe}"
+                                            *ngFor="let item of notificationsList; let i = index">
 
-                                </div>
-                                <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true"
-                                    class="main-content">
-                                    <div class="notifications-content row justify-content-between"
-                                        [ngClass]="{'activeParent': item.hideMe}"
-                                        *ngFor="let item of filterDataArr; let i = index">
-
-                                        <div class="row justify-content-between notifications-content-name">
-                                            <div class="col-1" style="margin: 5px auto; padding: 0%;">
-                                                <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}"><span
-                                                        [ngClass]="item.iconMod"></span></div>
-                                            </div>
-                                            <div class="col-7">
-                                                <div class="header" (click)="item.hideMe =! item.hideMe"
-                                                    style="cursor: pointer;">
-                                                    <span>{{item.name}}</span>
-                                                    <span class="pl-2 zmdi zmdi-chevron-down"
-                                                        style="cursor: pointer;"></span>
+                                            <div class="row justify-content-between notifications-content-name">
+                                                <div class="col-1 p-0" style="margin: 5px 10px;">
+                                                    <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}">
+                                                        <span [ngClass]="item.iconMod"></span></div>
                                                 </div>
-                                                <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}</div>
-                                                <div class="sub-header" [ngClass]="{'active': item.hideMe}"
-                                                    *ngIf="item.hideMe">{{item.detailsMod}}</div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="notifications-content-status" style="float: right;">
-                                                    <span>{{item.statusMod}}</span>
+                                                <div class="col-7 p-0">
+                                                    <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                        style="cursor: pointer;">
+                                                        <span>{{item.name}}</span>
+                                                        <span class="pl-2 zmdi zmdi-chevron-down"></span>
+                                                    </div>
+                                                    <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
+                                                    </div>
+                                                    <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                        *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="notifications-content-status" style="float: right;">
+                                                        <span>{{item.statusMod}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <mat-divider></mat-divider>
                                         </div>
 
-                                        <mat-divider></mat-divider>
                                     </div>
+                                    <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true"
+                                        class="main-content">
+                                        <div class="notifications-content row justify-content-between"
+                                            [ngClass]="{'activeParent': item.hideMe}"
+                                            *ngFor="let item of filterDataArr; let i = index">
 
-                                </div>
-                                <div (click)="$event.stopPropagation();"
-                                    class="row justify-content-end notifications-content-more">
-                                    <div class="col notifications-content-status">
-                                        <div style="float: right;cursor: pointer;"
-                                            (click)="showOlderNoteFunc(notificationsList)">
-                                            <a>Show Older</a>
+                                            <div class="row justify-content-between notifications-content-name">
+                                                <div class="col-1" style="margin: 5px auto; padding: 0%;">
+                                                    <div class="iconMod" [ngClass]="{'active-iconMod': item.hideMe}">
+                                                        <span [ngClass]="item.iconMod"></span></div>
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                        style="cursor: pointer;">
+                                                        <span>{{item.name}}</span>
+                                                        <span class="pl-2 zmdi zmdi-chevron-down"
+                                                            style="cursor: pointer;"></span>
+                                                    </div>
+                                                    <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
+                                                    </div>
+                                                    <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                        *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="notifications-content-status" style="float: right;">
+                                                        <span>{{item.statusMod}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <mat-divider></mat-divider>
+                                        </div>
+
+                                    </div>
+                                    <div (click)="$event.stopPropagation();"
+                                        class="row justify-content-end notifications-content-more">
+                                        <div class="col notifications-content-status">
+                                            <div style="float: right;cursor: pointer;"
+                                                (click)="showOlderNoteFunc(notificationsList)">
+                                                <a>Show Older</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div (click)="$event.stopPropagation();"
-                                    class="row justify-content-end notifications-content-view-all">
-                                    <div (click)="viewAllNoteFunc(notificationsList)"
-                                        class="col notifications-content-all" style="cursor: pointer;">
-                                        Mark All As Read
+                                    <div (click)="$event.stopPropagation();"
+                                        class="row justify-content-end notifications-content-view-all">
+                                        <div (click)="viewAllNoteFunc(notificationsList)"
+                                            class="col notifications-content-all" style="cursor: pointer;">
+                                            Mark All As Read
+                                        </div>
                                     </div>
-                                </div>
-                            </mat-menu>
+                                </mat-menu>
+                            </div>
                         </div>
-                        <div class="admin-toolbar d-flex plr-10">
+                        <div class="admin-toolbar">
                             <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
-                                <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button" width="40" />
+                                <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button hvr-grow" width="40" />
                             </button>
                             <mat-menu #menuAdmin="matMenu" class="menuAdmin-dropdown arrow-top">
                                 <div class="justify-content-center align-items-center userDetails-Container">
@@ -391,6 +311,9 @@
                                     <div class="user-menu-opt" mat-menu-item>
                                         <div class="user-menu-opt-name">Feedback</div>
                                     </div>
+                                    <div class="user-menu-opt" mat-menu-item (click)="myreportFuction()">
+                                        <div class="user-menu-opt-name">My Reports</div>
+                                    </div>
                                     <div class="user-menu-opt" mat-menu-item (click)="logout()">
                                         <div class="user-menu-opt-name">Logout</div>
                                     </div>
@@ -400,12 +323,41 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </mat-toolbar-row>
-        </mat-toolbar>
+            <div class="jcp-sub-toolbar-row justify-content-between">
+                <div class="col jcp-sub-toolbar-row-left p-0">
+                    <div class="tab-container hvr-grow">
+                        <div class="icon-count"><span style="font-size: 12px;">+4</span></div>
+                        <div class="icon-style"><i class="ic ic-breadcrumbs-01"></i></div>
+                    </div>
+                    <div class="header-container">
+                        <div class="header">{{mainHeaderName}}</div>
+                        <!-- <div class="sub-header">Reports & Dashboard <i class="fas fa-chevron-right pl-1 pr-1"></i> My Reports</div> -->
+                        <div class="sub-header">
+                            <!-- {{breadcrumbList}} -->
+                            <div style="display:inline" *ngFor="let breadLink of breadcrumbList">
+                                {{breadLink}} <i class="fas fa-chevron-right pl-1 pr-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col jcp-sub-toolbar-row-right p-0">
+                    <div class="icon-right-list">
+                        <div class="ic ic-dots sizeOfIcon hvr-grow"></div>
+                        <div class="ic ic-minimize-01 sizeOfIcon hvr-grow"></div>
+                        <!-- <div class="fas fa-external-link-alt sizeOfIcon"></div> -->
+                        <div class="ic ic-close-01 sizeOfIcon hvr-grow"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="jcp-page-route">
+                <router-outlet></router-outlet>
+            </div>
+            
+        </div>
 
-        <!-- <div class="body-content"> -->
-        <router-outlet></router-outlet>
-        <!-- </div> -->
+
+
     </mat-sidenav-content>
 </mat-sidenav-container>

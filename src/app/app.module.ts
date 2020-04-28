@@ -71,6 +71,7 @@ import { MacroComponent } from './layers/sites/macro/macro.component';
 import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
 import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
 import { ClickOutsideDirective } from './_directive/click-outside.directive';
+import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
 
 
 declare var $: any;
@@ -87,6 +88,7 @@ declare var $: any;
     NavigationSidebarComponent,
     FilterUniquePipe,
     ClickOutsideDirective,
+    MyReportsComponent,
   ],
   imports: [
     BrowserModule,

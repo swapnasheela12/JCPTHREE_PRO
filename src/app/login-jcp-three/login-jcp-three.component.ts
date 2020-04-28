@@ -37,7 +37,7 @@ export class LoginJcpThreeComponent implements OnInit {
     
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/Home"]);
     }
   }
 
@@ -52,7 +52,7 @@ export class LoginJcpThreeComponent implements OnInit {
     
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/home";
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/Home";
   }
 
   // convenience getter for easy access to form fields

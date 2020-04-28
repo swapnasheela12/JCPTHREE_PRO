@@ -7,6 +7,7 @@ import { AuthGuard } from "./_helpers";
 import { SidebarmenuComponent } from "./sidebarmenu/sidebarmenu.component";
 import { MacroComponent } from "./layers/sites/macro/macro.component";
 import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
+import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
 
 const routes: Routes = [
   // {
@@ -16,8 +17,27 @@ const routes: Routes = [
   // },
   { path: "", component: LoginJcpThreeComponent },
   {
-    path: "home",component: HomeJcpThreeComponent
+    path: "Home", component: HomeJcpThreeComponent,
+    canActivate: [AuthGuard],
+    children: [{
+      path:"Reports & Dashboard",
+      children: [{
+        path: "Report Wizard", component: MyReportsComponent
+      }]
+    }]
+         
+   
   },
+  // {
+  //   path: "Modules",
+  //   children: [{
+  //     path: "ConfigurationManagement",
+  //     children: [{
+  //       path: "Reports",component: MyReportsComponent
+  //     }]
+  //   }]
+
+  // },
   // {
   //   path: "",
   //   component: SidebarmenuComponent,

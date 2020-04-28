@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?q403tt');
-  src:  url('fonts/icomoon.eot?q403tt#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?q403tt') format('truetype'),
-    url('fonts/icomoon.woff?q403tt') format('woff'),
-    url('fonts/icomoon.svg?q403tt#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?6b0yv2');
+  src:  url('fonts/icomoon.eot?6b0yv2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?6b0yv2') format('truetype'),
+    url('fonts/icomoon.woff?6b0yv2') format('woff'),
+    url('fonts/icomoon.svg?6b0yv2#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,66 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-maximize:before {
+  content: "\ebe5";
+}
+.ic-administration-01:before {
+  content: "\ebde";
+}
+.ic-bell-01:before {
+  content: "\ebdf";
+}
+.ic-bookmark-01:before {
+  content: "\ebe0";
+}
+.ic-breadcrumbs-01:before {
+  content: "\ebe1";
+}
+.ic-close-01:before {
+  content: "\ebe2";
+}
+.ic-dots:before {
+  content: "\ebe3";
+}
+.ic-home-01:before {
+  content: "\ebe4";
+}
+.ic-layers-01:before {
+  content: "\ebe6";
+}
+.ic-menu-01:before {
+  content: "\ebe7";
+}
+.ic-minimize-01:before {
+  content: "\ebe8";
+}
+.ic-modules-01:before {
+  content: "\ebe9";
+}
+.ic-my_jcp-01:before {
+  content: "\ebea";
+}
+.ic-reports:before {
+  content: "\ebeb";
+}
+.ic-work_Order-01:before {
+  content: "\ebec";
+}
+.ic-zoom-01:before {
+  content: "\ebed";
+}
+.ic-analtics-01:before {
+  content: "\ebee";
+}
+.ic-cog:before {
+  content: "\ebef";
+}
+.ic-computer_analytics-01:before {
+  content: "\ebf0";
+}
+.ic-search-01:before {
+  content: "\ebf2";
+}
 .ic-cell-clasification:before {
   content: "\ebd9";
 }
@@ -145,7 +205,7 @@
 .ic-BLACK:before {
   content: "\ebb6";
 }
-.ic-reports:before {
+.ic-reports1:before {
   content: "\e9ca";
 }
 .ic-cell_congestion-011:before {
@@ -1198,7 +1258,7 @@
 .ic-equalizer2:before {
   content: "\ea5e";
 }
-.ic-cog:before {
+.ic-cog1:before {
   content: "\ea5f";
 }
 .ic-cogs:before {
