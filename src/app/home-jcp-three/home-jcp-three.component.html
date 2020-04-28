@@ -336,8 +336,8 @@
                         <!-- <div class="sub-header">Reports & Dashboard <i class="fas fa-chevron-right pl-1 pr-1"></i> My Reports</div> -->
                         <div class="sub-header">
                             <!-- {{breadcrumbList}} -->
-                            <div style="display:inline" *ngFor="let breadLink of breadcrumbList">
-                                {{breadLink}} <i class="fas fa-chevron-right pl-1 pr-1"></i>
+                            <div style="display:inline" *ngFor="let breadLink of breadcrumbList;let lastItem = last;">
+                                {{breadLink}} <i class="fas fa-chevron-right pl-1 pr-1" *ngIf="!lastItem"></i>
                             </div>
                         </div>
                     </div>
