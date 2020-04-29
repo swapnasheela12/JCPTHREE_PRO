@@ -81,13 +81,11 @@ body {
 
 // Home Page
 
-$md-primary: #0071bc;
+$md-primary: #0070db;
 $color-white: #ffffff;
 
 
-.container-jcp {
-
-}
+.container-jcp {}
 
 .mat-menu-panel.notifications-dropdown {
   // background-color: red;
@@ -324,6 +322,7 @@ $color-white: #ffffff;
       padding: 15px;
       border-bottom: 1px solid #EBECEF;
       text-align: center;
+
       .userImg {
         cursor: pointer;
         border-radius: 25px;
@@ -470,13 +469,279 @@ $color-white: #ffffff;
 
 }
 
-
 //END Home Page
+
+
+///report page
+
+.report-wizard-container {
+
+  .report-wizard-card-two {
+
+    .report-filter-tab-group {
+
+      .mat-tab-body-wrapper {
+        height: 100%;
+
+        .mat-tab-body {
+          .mat-tab-body-content {
+            .report-flex-container {
+              height: calc(100% - 52px);
+              overflow: auto;
+
+              .report-flex-item {
+
+                .report-form-field {
+                  width: inherit;
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+      .report-action-container {
+        .submit-button {
+          width: 100px !important;
+          min-width: unset !important;
+        }
+      }
+
+    }
+  }
+
+}
+
+.daterange-container {
+  .ng-star-inserted {
+    .md-drppicker {
+      // top: 95px !important;
+      // left: -174% !important;
+      // right: 15px !important;
+      top: 44px !important;
+      left: auto !important;
+      right: auto !important;
+      position: absolute;
+      font-family: Roboto, sans-serif;
+      color: inherit;
+      background-color: #fff;
+      border-radius: 4px;
+      width: 643px !important; // width: 278px;
+      padding: 12px;
+      margin-top: -10px;
+      overflow: hidden;
+      z-index: 1000;
+      font-size: 14px;
+      background-color: #ffffff;
+      -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+
+      .ranges {
+        // float: none;
+        text-align: left;
+        margin: 0;
+
+        ul li button.active {
+          background-color: #0078D7;
+          color: #fff;
+        }
+      }
+
+      .calendar {
+        max-width: 100%;
+        margin: 0px; // float: right;
+
+        .calendar-table {
+          border: 1px solid #fff;
+          padding: 0px 15px;
+          border-radius: 4px;
+          background-color: #fff;
+
+          .table-condensed {
+            .drp-animate {}
+          }
+
+          td.active,
+          .md-drppicker td.active:hover {
+            background-color: #0078D7;
+            border-color: transparent;
+            color: #fff;
+          }
+        }
+
+        .left {
+          float: left !important;
+        }
+
+        .right {
+          float: right !important;
+        }
+      }
+
+      .calendar-time {
+        text-align: center;
+        margin: 12px auto;
+        line-height: 30px;
+        position: relative;
+
+        .hourselect {
+          width: 55px;
+          margin: 0 8px;
+          background: #eee;
+          border: 1px solid #eee;
+          padding: 2px;
+          outline: 0;
+          font-size: 12px;
+        }
+
+        .minuteselect {
+          width: 55px;
+          margin: 0 8px;
+          background: #eee;
+          border: 1px solid #eee;
+          padding: 2px;
+          outline: 0;
+          font-size: 12px;
+        }
+
+        .secondselect {
+          width: 55px;
+          margin: 0 auto;
+          background: #eee;
+          border: 1px solid #eee;
+          padding: 2px;
+          outline: 0;
+          font-size: 12px;
+        }
+
+        .select .select-item {
+          display: inline-block;
+          width: auto;
+          position: relative;
+          font-family: inherit;
+          background-color: transparent;
+          padding: 10px 10px 10px 0;
+          font-size: 15px;
+          border-radius: 0;
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, .12);
+        }
+      }
+
+      // .shown {
+      //     display: block;
+      // }
+      .buttons {
+        .buttons_input {
+          .btn {
+            position: relative;
+            overflow: hidden;
+            border-width: 0;
+            outline: 0;
+            padding: 0 15px;
+            cursor: pointer;
+            border-radius: 2px;
+            -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+            background-color: #0078D7;
+            color: #ffffff;
+            -webkit-transition: background-color .4s;
+            transition: background-color .4s;
+            height: auto;
+            text-transform: uppercase;
+            line-height: 36px;
+            border: none;
+            margin: 0 8px;
+
+            svg {
+              margin-bottom: 6px;
+            }
+          }
+
+          .clear {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            background-color: #fff !important;
+          }
+        }
+      }
+
+      table {
+        width: 100%;
+        margin: 0;
+        display: table;
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      table,
+      td,
+      th {
+        border: none;
+      }
+    }
+
+    .double {
+      width: auto;
+    }
+
+    .shown {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .ltr {
+      direction: ltr;
+      text-align: left;
+    }
+  }
+}
+
+///END report page
+
+
+
+//angular meterial glob css
+button:focus {
+  outline: 0px !important;
+}
+
+.mat-tab-label {
+  height: 48px;
+  padding: 0 24px;
+  cursor: pointer;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  min-width: 160px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+}
+
+.mat-tab-label-active {
+  color: #0070db !important;
+}
+
+
+
+//END angular meterial glob css
 
 
 
 //Default Custom css
-
 .p-15 {
   padding: 15px !important;
 }

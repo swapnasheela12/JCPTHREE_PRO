@@ -2,7 +2,7 @@ $md-primary: #0070DB;
 $color-white: #ffffff;
 
 .jcp-toolbar {
-  background: #0070DB !important;
+  // background: #0070DB !important;
   color: #ffffff;
 
   .toolbar-icon {
@@ -72,6 +72,7 @@ $color-white: #ffffff;
 
   .body-sidenav-container {
 
+
     .jcp-toolbar {
       // background: url('../../assets/images/toolbar/honeycomb.svg')no-repeat !important;
       // -webkit-background-size: cover;
@@ -79,278 +80,75 @@ $color-white: #ffffff;
       // -o-background-size: cover;
       // background-size: cover !important;
 
-      background: url('../../assets/images/toolbar/honeycomb.svg')no-repeat !important;
+      background: url('../../assets/images/toolbar/comb.svg')no-repeat !important;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover !important;
 
       height: 234px;
-      // padding: 15px;
+      
 
-      .jcp-toolbar-row {
-        // padding: 15px 0px;
-        display: flex;
-        // padding: 15px 0;
-        height: 55px;
+      .jcp-toolbar-main-container {
 
-        .jcp-toolbar-col-center {
+        height: 120px;
 
-          .jcp-toolbar-search-row {
-            display: flex;
+        .jcp-toolbar-search-tbutt {
+          // width: 20%;
+          // position: absolute;
+          width: 1%;
+          float: left;
 
-            .jcp-toolbar-search-tbutt {
-              // width: 20%;
+          .toolbar-botton-inner {
+            padding: 0 !important;
+            font-size: 25px !important;
+            border-radius: 30px !important;
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
 
-              .toolbar-botton-inner {
-                padding: 0 !important;
-                font-size: 25px !important;
-                border-radius: 30px !important;
-                width: 50px !important;
-                height: 50px !important;
-                min-width: 50px !important;
-
-                .menu-inner {
-                  font-size: 30px;
-                  padding: 10px 0;
-                }
-              }
-
-              :focus,
-              :hover {
-                outline: 0;
-                // color: #0070DB;
-              }
-
-              .active-menu-button {
-                display: none;
-              }
-
-              .activeNot-menu-button {
-
-                display: contents;
-              }
-
-            }
-
-            .active-jcpToggle {
-              width: 0%;
-              display: none;
-            }
-
-            .activeNot-jcpToggle {
-              width: 20%;
-            }
-
-            .jcp-toolbar-search-form {
-              width: 100%;
-              margin-left: 58px;
-
-              .form-group {
-                margin-bottom: 0;
-                width: -webkit-fill-available;
-                // margin: 0;
-
-                input,
-                #searchId[type=search] {
-                  padding-left: 20px !important;
-                  font-size: 15px;
-                  font-family: 'Lato Bold';
-                  border-radius: 20px;
-                  height: 40px;
-                  background: #B3D4F4;
-                  position: relative;
-                  border: 0px solid #ced4da;
-                  color: #0070DB;
-                  margin: 5px 0px;
-                }
-
-                & ::-webkit-input-placeholder {
-                  color: #0070DB;
-                }
-
-                .active-inputsearch {
-                  border-radius: 20px 20px 0px 0px !important;
-                  background: #ffffff !important;
-                }
-
-                .search-icon {
-                  position: absolute;
-                  color: #0070DB;
-                  right: 15px;
-                  top: 10px;
-                  font-size: 24px;
-                }
-              }
-            }
-          }
-
-
-
-
-        }
-
-        .jcp-toolbar-col-right {
-          // padding: 0;
-
-          .jcp-toolbar-row-right-content {
-            margin: 0;
-            float: right;
-
-            .icon-parent-container {
-              display: inline-flex;
-              // background:rgba(0,0,0,0.6);
-              background: rgba(0, 0, 0, 0.2);
-              border-radius: 10px;
-              padding: 5px;
-
-              .icon-container {
-                // margin: auto;
-
-                // padding-right: 10px;
-                .icon-container-button {
-                  font-size: 24px;
-
-                  .note-icon {
-                    // line-height: 18px;
-                  }
-                }
-
-                .notifications-header {
-                  color: #464D69;
-
-                  .notifications-name {
-                    font-size: 15px;
-                  }
-
-                  .notifications-status {
-                    font-size: 12px;
-                  }
-                }
-              }
-
-              :hover,
-              :focus {
-                outline: 0;
-              }
-            }
-
-
-            .admin-toolbar {
-              // padding: 0 15px;
-              padding: 0 15px;
-
-              button:focus {
-                outline: 0px auto -webkit-focus-ring-color !important;
-              }
-
-              .adminButton {
-                padding: 0;
-                border-radius: 30px;
-                width: 45px !important;
-                height: 45px !important;
-                min-width: 45px !important;
-
-                .user-button {
-                  cursor: pointer;
-                  border-radius: 25px;
-                  border: solid 1px;
-                  height: 40px;
-                }
-              }
-            }
-
-          }
-
-        }
-      }
-
-      .jcp-sub-toolbar-row {
-        display: flex;
-        // margin: 0 20px;
-        // padding: 15px;
-
-        .jcp-sub-toolbar-row-left {
-          display: inline-flex;
-          position: relative;
-
-          .tab-container {
-            margin: auto 0;
-            cursor: pointer;
-
-            .icon-count {
-              position: absolute;
-              top: 20px;
-              left: 26px;
-              color: #006BD2;
-              font-size: 12px;
-            }
-
-            .icon-style {
+            .menu-inner {
               font-size: 30px;
-              padding: 5px 11px;
-              line-height: 1.5;
-              width: 50px;
-              height: 50px;
-              border-radius: 25px;
-              margin: 0px 6px;
-              color: #B3D4F4;
-            }
-
-            :hover {
-              background: rgba(0, 112, 219, 0.5411764705882353);
-              color: #ffffff;
+              padding: 10px 0;
             }
           }
 
-          .header-container {
-            .header {
-              font-size: 20px;
-              font-weight: 500;
-              font-family: 'Lato Bold';
-            }
-
-            .sub-header {
-              color: #B3D4F4;
-              font-size: 15px;
-              font-family: 'Lato Regular';
-              height: 28px;
-              line-height: 2;
-            }
+          :focus,
+          :hover {
+            outline: 0;
+            // color: #0070DB;
           }
+
+          .active-menu-button {
+            display: none;
+          }
+
+          .activeNot-menu-button {
+
+            display: contents;
+          }
+
         }
 
-        .jcp-sub-toolbar-row-right {
-          .icon-right-list {
-            float: right;
-            display: inline-flex;
-            margin-top: 10px;
-
-            .sizeOfIcon {
-              font-size: 18px;
-              padding: 2px 11px;
-              line-height: 2;
-              width: 40px;
-              height: 40px;
-              border-radius: 20px;
-              margin: 0 6px;
-              color: #B3D4F4;
-              cursor: pointer;
-
-            }
-
-            :hover {
-              background: rgba(0, 112, 219, 0.5411764705882353);
-              color: #ffffff;
-            }
-          }
+        .active-jcpToggle {
+          width: 0%;
+          display: none;
         }
 
+        .activeNot-jcpToggle {
+          width: 6%;
+        }
       }
 
-      .jcp-page-route {
-        margin-top: 10px;
-      }
+
+
+
+
+      // .jcp-page-route {
+      //   margin-top: 10px;
+      //   // height: 100%;
+      //   min-height: calc(100% - 145px);
+      // }
 
     }
 

@@ -1,24 +1,6 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-
-import { ReactiveFormsModule } from "@angular/forms";
-import { FormsModule} from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-
-// used to create fake backend
-import { fakeBackendProvider } from "./_helpers";
-import { BasicAuthInterceptor, ErrorInterceptor } from "./_helpers";
-
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.component";
-import { HomeJcpThreeComponent } from "./home-jcp-three/home-jcp-three.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
-import * as _ from "lodash";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header.component';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -63,51 +45,22 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
-import { SidebarmenuComponent } from "./sidebarmenu/sidebarmenu.component";
-import { NavService } from './sidebarmenu/nav.service';
-import { MenuListItemComponent } from './sidebarmenu/menu-list-item/menu-list-item.component';
-import { TopNavComponent } from './sidebarmenu/top-nav/top-nav.component';
-import { MacroComponent } from './layers/sites/macro/macro.component';
-import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
-// import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
-import { ClickOutsideDirective } from './_directive/click-outside.directive';
-import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
-import { CoreModule } from './core/core.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
 
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-
-
-declare var $: any;
+// import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginJcpThreeComponent,
-    HomeJcpThreeComponent,
-    SidebarmenuComponent,
-    MenuListItemComponent,
-    TopNavComponent,
-    MacroComponent,
-    NavigationSidebarComponent,
-    // FilterUniquePipe,
-    ClickOutsideDirective,
-    MyReportsComponent,
+    FilterUniquePipe,
+    HeaderComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CoreModule,
-    NgxDaterangepickerMd.forRoot(),
-
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-
-    //font
-    FontAwesomeModule,
+    CommonModule,
 
     //Angular meterial
+    FormsModule,
+    ReactiveFormsModule,
     A11yModule,
     // ClipboardModule,
     CdkStepperModule,
@@ -152,15 +105,6 @@ declare var $: any;
     PortalModule,
     ScrollingModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider,
-    NavService
-  ],
-  bootstrap: [AppComponent],
-  exports: [HomeJcpThreeComponent]
+  exports: [HeaderComponent]
 })
-export class AppModule {}
+export class CoreModule { }
