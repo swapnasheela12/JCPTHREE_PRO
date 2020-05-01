@@ -8,6 +8,7 @@ import { SidebarmenuComponent } from "./sidebarmenu/sidebarmenu.component";
 import { MacroComponent } from "./layers/sites/macro/macro.component";
 import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
 import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
+import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 
 const routes: Routes = [
   // {
@@ -21,12 +22,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [{
       path:"Reports & Dashboard",
-      children: [{
-        path: "Report Wizard", component: MyReportsComponent
-      }]
+      children: [
+        {path: "Report Wizard", component: ReportsWizardComponent},
+        {path: "My Reports", component: MyReportsComponent}
+      ]
     }]
-         
-   
   },
   // {
   //   path: "Modules",

@@ -735,7 +735,39 @@ button:focus {
   color: #0070db !important;
 }
 
+.mat-form-field {
+  width: inherit;
+}
 
+.selectMenuPanel {
+  margin-top: 2rem;
+}
+
+.icon-button {
+  float: right;
+  padding: 2px 15px;
+  text-align: center;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 25px;
+}
+
+.icon-button:hover {
+  background: RGBA(0, 112, 219, 0.13);
+}
+
+.search-filter-icon {
+  position: absolute;
+  right: -15px;
+  bottom: -20px;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+table {
+  width: 100% !important;
+  height: 100% !important;
+}
 
 //END angular meterial glob css
 

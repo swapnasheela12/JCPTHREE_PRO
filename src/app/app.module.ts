@@ -75,6 +75,7 @@ import { MyReportsComponent } from './modules/reports/my-reports/my-reports.comp
 import { CoreModule } from './core/core.module';
 
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 
 
 declare var $: any;
@@ -92,6 +93,7 @@ declare var $: any;
     // FilterUniquePipe,
     ClickOutsideDirective,
     MyReportsComponent,
+    ReportsWizardComponent,
   ],
   imports: [
     BrowserModule,

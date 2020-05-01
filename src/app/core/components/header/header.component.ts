@@ -373,8 +373,15 @@ breadcrumbFun(val) {
 }
 
 
-myreportFuction(){
+reportWizardFuction(){
   this.router.navigate(['/','Home', 'Reports & Dashboard', 'Report Wizard']).then(val => {
+  }, err => {
+    console.log(err) // when there's an error
+  });
+}
+
+myreportFuction(){
+  this.router.navigate(['/','Home', 'Reports & Dashboard', 'My Reports']).then(val => {
   }, err => {
     console.log(err) // when there's an error
   });

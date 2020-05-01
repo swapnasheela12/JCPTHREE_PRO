@@ -1,0 +1,51 @@
+.report-wizard-container {
+    height: calc(100vh - 205px);
+    min-height: calc(100vh - 205px);
+    max-height: calc(100vh - 205px);
+
+    .report-wizard-card-one {
+        .report-flex-container {
+            .report-flex-item {
+                .report-form-field {
+                    width: 100%;
+                }
+                .report-form-field-read {
+                    .report-form-input-title {
+                      font-size: 10px;
+                      color: #767676;
+                    }
+  
+                    .report-form-input-value {
+                      font-size: 15px;
+                    }
+                  }
+            }
+        }
+    }
+
+    .report-wizard-card-two {
+        margin: 15px 0;
+        height: calc(100% - 225px);
+        min-height: calc(100% - 225px);
+        max-height: calc(100% - 225px);
+        padding: 0;
+
+        .report-filter-tab-group {
+            .mat-tab-body-wrapper {
+                height: 100%;
+                .mat-tab-body {
+                    .mat-tab-body-content {
+                        .report-flex-container {
+                            height: calc(100% - 52px);
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.report-wizard-action-container {
+    height: 58px !important;
+}

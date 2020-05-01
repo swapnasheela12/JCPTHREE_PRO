@@ -1,51 +1,24 @@
-.report-wizard-container {
-    height: calc(100vh - 198px);
-    min-height: calc(100vh - 198px);
-    max-height: calc(100vh - 198px);
+.my-report-container {
+    margin-bottom: 15px;
+    height: calc(100vh - 160px);
 
-    .report-wizard-card-one {
-        .report-flex-container {
-            .report-flex-item {
-                .report-form-field {
-                    width: 100%;
-                }
-                .report-form-field-read {
-                    .report-form-input-title {
-                      font-size: 10px;
-                      
-                    }
-  
-                    .report-form-input-value {
-                      font-size: 15px;
-                    }
-                  }
-            }
-        }
-    }
+    .my-report-card {
+        height: 100%;
 
-    .report-wizard-card-two {
-        margin: 15px 0;
-        height: calc(100% - 225px);
-        min-height: calc(100% - 225px);
-        max-height: calc(100% - 225px);
-        padding: 0;
+        .my-report-flex-container {
+            height: 100%;
+            .my-report-flex-item {}
 
-        .report-filter-tab-group {
-            .mat-tab-body-wrapper {
+            .jcp-table-container {
                 height: 100%;
-                .mat-tab-body {
-                    .mat-tab-body-content {
-                        .report-flex-container {
-                            height: calc(100% - 52px);
-                        }
-                    }
+                .jcp-table {
+                    width: 100% !important;
+                    height: 100% !important;
+                    // height: calc(100% - 100px);
+                    overflow: auto;
                 }
-            }
 
+            }
         }
     }
-}
-
-.report-wizard-action-container {
-    height: 58px !important;
 }

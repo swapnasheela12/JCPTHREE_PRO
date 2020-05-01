@@ -6,7 +6,8 @@
   // -o-background-size: cover;
   // background-size: cover !important;
 
-  height: 120px;
+  // height: 120px;
+  height: 130px;
   .jcp-toolbar-row {
     // padding: 15px 0px;
     display: flex;
@@ -144,6 +145,7 @@
     display: flex;
     // margin: 0 20px;
     // padding: 15px;
+    margin-bottom: 15px;
   
     .jcp-sub-toolbar-row-left {
       display: inline-flex;
@@ -199,7 +201,7 @@
       .icon-right-list {
         float: right;
         display: inline-flex;
-        margin-top: 10px;
+        margin-top: 23px;
   
         .sizeOfIcon {
           font-size: 18px;
