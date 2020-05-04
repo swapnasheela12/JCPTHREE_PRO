@@ -1,88 +1,18 @@
-<mat-sidenav-container class="container-jcp">
+<mat-sidenav-container class="container-jcp" fullscreen>
     <mat-sidenav #sidenav class="sidebarleftsidenav" opened="true" mode="side">
         <div class="side-mat-toolbar-row">
             <div class="jcp-logo-container">
-                <img src="assets/images/logo/logo_blue.svg" alt="IOT" width="200" height="47" [routerLink]="['']">
+                <img src="assets/images/logo/logo_blue.svg" alt="IOT" width="240" height="47" [routerLink]="['']">
                 <button type="button" mat-button class="toolbar-botton" (click)="sidenav.toggle()">
                     <div class="zmdi zmdi-menu" aria-label="Menu"></div>
                 </button>
             </div>
-        </div>
-        <div class="tree-container-jcp">
-            <div [ngClass]="{'active': togglemenuback}" class="my_class" (click)="clickEvent($event)"><i
-                    class="fas fa-arrow-left"></i></div>
-            <!-- <div (ngModel)="parentArr" (click)="backMenuList(parentArr);"><i class="fas fa-arrow-left" ></i></div> -->
-            <div *ngFor="let parent of menulist">
-                <!-- <div *ngIf=" !parent?.children?.length > 0"> -->
-                <div (click)="menuListFunc(parent);" *ngIf="childMenuListFirst == false">
-                    <mat-list>
-                        <mat-list-item> {{parent.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_second of childFirstArr">
-                <div *ngIf="childMenuListSecond == false" (click)="firstMenuListFunc(child_second);">
-                    <mat-list>
-                        <mat-list-item> {{child_second.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_third of childSecondArr">
-                <div *ngIf="childMenuListThree == false" (click)="secondMenuListFunc(child_third);">
-                    <mat-list>
-                        <mat-list-item> {{child_third.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_fourth of childThreeArr">
-                <div *ngIf="childMenuListFourth == false" (click)="threeMenuListFunc(child_fourth);">
-                    <mat-list>
-                        <mat-list-item> {{child_fourth.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_fifth of childFourthArr">
-                <div *ngIf="childMenuListFifth == false" (click)="fourthMenuListFunc(child_fifth);">
-                    <mat-list>
-                        <mat-list-item> {{child_fifth.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_sixth of childFifthArr">
-                <div *ngIf="childMenuListSixth == false" (click)="fifthMenuListFunc(child_sixth);">
-                    <mat-list>
-                        <mat-list-item> {{child_sixth.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-            <div *ngFor="let child_seventh of childSixthArr">
-                <div *ngIf="childMenuListSeventh == false" (click)="sixthMenuListFunc(child_seventh);">
-                    <mat-list>
-                        <mat-list-item> {{child_seventh.name}} </mat-list-item>
-                    </mat-list>
-                </div>
-            </div>
-
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                <mat-tree-node [routerLink]="[node.link]" *matTreeNodeDef="let node" matTreeNodeToggle
-                    matTreeNodePadding class="col">
-                    <div class="col node-tree" [routerLink]="[node.link]">
-                        {{node.name}}</div>
-                </mat-tree-node>
-                <mat-tree-node [routerLink]="[node.link]" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding
-                    matTreeNodeToggle>
-                    <mat-icon [ngClass]="node.icon" aria-label="Toggle icon"></mat-icon>
-                    <div *ngIf="expanded == true" class="col"
-                        [ngClass]="{'main-module': !treeControl.isExpanded(node)}">{{node.name}}</div>
-                    <button *ngIf="expanded == true" mat-icon-button matTreeNodeToggle
-                        [attr.aria-label]="'toggle ' + node.name">
-                        <mat-icon class="zmdi zmdi-caret-up" *ngIf="treeControl.isExpanded(node)"></mat-icon>
-                        <mat-icon class="zmdi zmdi-caret-down" *ngIf="!treeControl.isExpanded(node)"></mat-icon>
-                    </button>
-                </mat-tree-node>
-            </mat-tree>
-        </div>
-
+            <mat-divider></mat-divider>
+        
+        <!-- <div class="tree-container-jcp"> -->
+            <app-leftside-navigation></app-leftside-navigation>
+        <!-- </div> -->
+    </div>
     </mat-sidenav>
     <mat-sidenav-content class="body-sidenav-container"
         [ngClass]="{'active-body-sidenav': sidenav.opened, 'activeNot-body-sidenav': !sidenav.opened}">

@@ -32,12 +32,14 @@
               "src/styles.scss",
               {
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              }
+              },
+              "./node_modules/mmenu-js/dist/mmenu.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/lodash/lodash.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/mmenu-js/dist/mmenu.js"
             ]
           },
           "configurations": {

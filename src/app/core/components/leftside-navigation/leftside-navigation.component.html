@@ -1,0 +1,16 @@
+<nav id="nav-menu" mmenu>
+    <ul class="listview-icons">
+        <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: menuListAll }"></ng-container>
+    </ul>
+    <ng-template #recursiveListTmpl let-menuListAll>
+        <li *ngFor="let item of menuListAll" routerLinkActive="menu-active">
+            <span routerLink="/{{item.link}}"><i class="{{item.icon}}" *ngIf="item.level == 0"></i>
+                {{item.name}}
+            </span>
+            <ul *ngIf="item.children.length > 0" class="listview-icons">
+                <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: item.children }">
+                </ng-container>
+            </ul>
+        </li>
+    </ng-template>
+</nav>
