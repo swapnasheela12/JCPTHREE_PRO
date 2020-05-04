@@ -22,7 +22,7 @@ $color-white: #ffffff;
     .mat-drawer-inner-container {
       .side-mat-toolbar-row {
         padding-top: 15px;
-
+        margin: 0 15px;
         .jcp-logo-container {
           padding-left: 15px;
 
@@ -80,18 +80,11 @@ $color-white: #ffffff;
       // -o-background-size: cover;
       // background-size: cover !important;
 
-      background: url('../../assets/images/toolbar/comb.svg')no-repeat !important;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover !important;
-
-      height: 234px;
-      
+      height: 100%;
 
       .jcp-toolbar-main-container {
 
-        height: 130px;
+        height: 140px;
 
         .jcp-toolbar-search-tbutt {
           // width: 20%;
@@ -106,7 +99,8 @@ $color-white: #ffffff;
             width: 50px !important;
             height: 50px !important;
             min-width: 50px !important;
-
+            margin-top: 18px;
+            margin-left: 18px;
             .menu-inner {
               font-size: 30px;
               padding: 10px 0;
@@ -141,14 +135,29 @@ $color-white: #ffffff;
       }
 
 
+      .header-jcp-container {
+        background: url('../../assets/images/toolbar/comb.svg')no-repeat !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover !important;
+
+        height: 234px;
+
+      }
 
 
-
-      // .jcp-page-route {
-      //   margin-top: 10px;
-      //   // height: 100%;
-      //   min-height: calc(100% - 145px);
-      // }
+      .jcp-page-route {
+        height: calc(100% - 155px);
+        overflow: auto;
+        margin-bottom: 15px;
+      }
+      .active-jcp-page-route{
+        margin-left: 20px;
+      }
+      .activeNot-jcp-page-route{
+        margin-left: 0px;
+      }
 
     }
 
@@ -164,7 +173,7 @@ $color-white: #ffffff;
 
   .active-body-sidenav {
     // background-color: blue;
-    margin-left: 245px !important;
+    margin-left: 320px !important;
   }
 
   .activeNot-body-sidenav {
