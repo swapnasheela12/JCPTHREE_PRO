@@ -8,10 +8,9 @@
                 </button>
             </div>
             <mat-divider></mat-divider>
-        
-        <!-- <div class="tree-container-jcp"> -->
+        <div class="tree-container-jcp">
             <app-leftside-navigation></app-leftside-navigation>
-        <!-- </div> -->
+        </div>
     </div>
     </mat-sidenav>
     <mat-sidenav-content class="body-sidenav-container"
@@ -23,7 +22,7 @@
                     <div class="jcp-toolbar-search-tbutt"
                         [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
                         <button type="button" mat-button class="toolbar-botton-inner" (click)="sidenav.toggle()">
-                            <div class="menu-inner zmdi zmdi-menu" aria-label="Menu"></div>
+                            <div class="menu-inner ic ic-menu-01" aria-label="Menu"></div>
                         </button>
                     </div>
                     <div class="header-jcp-container"

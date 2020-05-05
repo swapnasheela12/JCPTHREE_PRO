@@ -65,6 +65,11 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 }
 
 @font-face {
+  font-family: 'Lato Medium';
+  src: url('./assets/font_family/lato/Lato-Medium.ttf');
+}
+
+@font-face {
   font-family: 'Poppins Regular';
   src: url('./assets/font_family/poppins/Poppins-Regular.ttf');
 }

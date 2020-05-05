@@ -1,10 +1,26 @@
 $blueshade-color: #E5F0FC;
+$blueactive-color: #0078D7;
+$darkest-blue-color: #0078D7;
 $px25: 25px;
-$px18: 18px;
+$px21: 21px;
+$px3: 3px;
 
 .menu-active {
-    // background-color: $blueshade-color;
-    // border-top-right-radius: $px25;
-    // border-bottom-right-radius: $px25;
-    // margin-right: $px18;
+  &:not(:first-child){
+    background-color: $blueshade-color;
+    border-top-right-radius: $px25;
+    border-bottom-right-radius: $px25;
+    margin-right: $px21;
+    color: $blueactive-color;
+    .ic {
+      color: $blueactive-color;
+    }
+    &:hover {
+      &:not(:first-child) {
+        .mm-listitem__text {
+          margin-right: 0;
+        }
+      }
+    }
   }
+}
