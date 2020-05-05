@@ -22,7 +22,7 @@ $color-white: #ffffff;
     .mat-drawer-inner-container {
       .side-mat-toolbar-row {
         padding-top: 15px;
-        margin: 0 15px;
+        position: sticky;
         .jcp-logo-container {
           padding-left: 15px;
 

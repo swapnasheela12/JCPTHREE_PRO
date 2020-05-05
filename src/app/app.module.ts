@@ -77,8 +77,8 @@ import { CoreModule } from './core/core.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 
-import { AngularSlickgridModule } from 'angular-slickgrid';
 
+import { AngularSlickgridModule } from 'angular-slickgrid';
 
 declare var $: any;
 
@@ -95,7 +95,7 @@ declare var $: any;
     // FilterUniquePipe,
     ClickOutsideDirective,
     MyReportsComponent,
-    ReportsWizardComponent,
+    ReportsWizardComponent
   ],
   imports: [
     BrowserModule,

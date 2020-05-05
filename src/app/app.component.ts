@@ -31,47 +31,6 @@ export class AppComponent {
    version = VERSION;
    public collapsed : any;
    public urlLinkOfMenu : any;
-   navItems: NavItem[] = [
-     {
-       displayName: "Home",
-       iconName: "home",
-       route: "portaljcp"
-     },
-     {
-       displayName: "Layers",
-       iconName: "recent_actors",
-       route: "layer",
-       children: [
-         {
-           displayName: "Sites",
-           iconName: "group",
-           route: "layer/sites",
-           children: [
-             {
-               displayName: "Macro",
-               iconName: "person",
-               route: "layer/sites/macro"
-             },
-             {
-               displayName: "Nominal",
-               iconName: "person",
-               route: "layer/sites/nominal"
-             },
-             {
-               displayName: "On-Air",
-               iconName: "person",
-               route: "layer/sites/onair"
-             }
-           ]
-         },
-         {
-           displayName: "Feedback",
-           iconName: "feedback",
-           route: "layer/feedback"
-         }
-       ]
-     }
-   ];
  
    constructor(private router: Router) {
      // console.log(this.wrapper,"this.wrapper>>>>>>");

@@ -5,7 +5,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material';
 import { HttpClient } from "@angular/common/http";
 
-import { Column, GridOption } from 'angular-slickgrid';
+import { Column, GridOption, FieldType, Formatter, Formatters, SelectedRange } from 'angular-slickgrid';
 
 export interface myReportInterface {
   // position: number;
@@ -19,18 +19,12 @@ export interface myReportInterface {
   createdDate: string;
 }
 
-// const ELEMENT_DATA: myReportInterface[] = [
-//   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-//   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-//   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-//   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-//   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-//   { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-//   { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-//   { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-//   { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-//   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-// ];
+// create my custom Formatter with the Formatter type
+const myCustomCheckmarkFormatter: Formatter = (row, cell, value, columnDef, dataContext) => {
+  // you can return a string of a object (of type FormatterResultObject), the 2 types are shown below
+  return value ? `<i class="fa fa-fire red" aria-hidden="true"></i>` : { text: '<i class="fa fa-snowflake-o" aria-hidden="true"></i>', addClasses: 'lightblue', toolTip: 'Freezing' };
+};
+
 
 interface reportsMeasure {
   value: string;
@@ -91,7 +85,8 @@ export class MyReportsComponent implements OnInit {
 
     //////my report data/////////
 
-    
+    // const myCustomCheckboxFormatter: Formatter = (row: number, cell: number, value: any, columnDef: Column, dataContext: any) =>
+    //   value ? `<i class="fa fa-fire" aria-hidden="true"></i>` : '<i class="fa fa-snowflake-o" aria-hidden="true"></i>';
 
   }
 
@@ -103,7 +98,9 @@ export class MyReportsComponent implements OnInit {
       { id: 'targetReport', name: 'Target Report', field: 'targetReport' },
       { id: 'domain', name: 'Domain', field: 'domain' },
       { id: 'createdDate', name: 'Created Date', field: 'createdDate' },
-      { id: '%', name: '% Complete', field: 'percentComplete', sortable: true },
+      { id: '%', name: '% Complete', field: 'percentComplete', sortable: true, formatter: Formatters.progressBar, },
+      // { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: myCustomSelectFormatter, },
+      { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: Formatters.percentCompleteBar, type: FieldType.number, minWidth: 100 },
     ];
 
     this.gridOptions = {
@@ -113,19 +110,7 @@ export class MyReportsComponent implements OnInit {
 
     // fill the dataset with your data
     // this.dataset = [ /** ...your data... **/ ];
-    console.log(item,"item>>>>");
-
-
-    // "reportName": "PERFORMANCE_MANAGEMENT_LOW…",
-    // "reportMeasure": "KPI Report",
-    // "reportCategory": "Low PRB Utilization",
-    // "targetReport": "Lorem",
-    // "domain": "RAN",
-    // "nameProgress": "Generated",
-    // "countProgress": "100",
-    // "createdDate": "12 Dec, 2019"
-
-
+    console.log(item, "item>>>>");
 
     // this.dataset = item;
     this.dataset = [];
@@ -143,14 +128,17 @@ export class MyReportsComponent implements OnInit {
         targetReport: item[i].targetReport,
         domain: item[i].domain,
         percentComplete: randomPercent,
-        createdDate: item[i].createdDate
+        createdDate: item[i].createdDate,
+        sideMenuList: item[i].sideMenuList
         // dependencies: this.getRandomSubarray(["a","b","c"],Math.floor(Math.random()*3)+1),
         // duration: Math.round(Math.random() * 100) + '',
-        
+
       };
     }
-  
+
+
   }
+
 
   getRandomSubarray(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, temp, index;

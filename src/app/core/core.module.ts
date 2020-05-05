@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
+import { LeftsideNavigationComponent } from './components/leftside-navigation/leftside-navigation.component';
+import { MmenuDirective } from '../_directive/mmenu.directive';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -47,16 +49,20 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
+import { RouterModule } from '@angular/router';
 
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
   declarations: [
     FilterUniquePipe,
-    HeaderComponent
+    HeaderComponent,
+    LeftsideNavigationComponent,
+    MmenuDirective
   ],
   imports: [
     CommonModule,
+    RouterModule,
 
     //Angular meterial
     FormsModule,
@@ -105,6 +111,10 @@ import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
     PortalModule,
     ScrollingModule
   ],
-  exports: [HeaderComponent]
+  exports: [
+    HeaderComponent,
+    LeftsideNavigationComponent,
+    MmenuDirective
+  ]
 })
 export class CoreModule { }
