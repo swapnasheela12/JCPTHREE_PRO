@@ -47,6 +47,7 @@ $px5: 5px;
     .mm-listitem__text{
         font-size: $px14;
         font-family: Lato Medium;
+        line-height: 2;
     }
     .mm-listitem_selected-parent {
         .ic {
@@ -124,4 +125,8 @@ $px5: 5px;
     font-family: Lato Medium;
     padding-top: $px15;
     padding-bottom: $px15;
+}
+
+.mm-menu_position-bottom {
+    height: 100vh !important;
 }

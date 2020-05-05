@@ -4,8 +4,8 @@
         "reportCategory": "Low PRB Utilization",
         "targetReport": "Lorem",
         "domain": "RAN",
-        "nameProgress": "Generated",
-        "countProgress": "100",
+        "taskcompletion": "Generated",
+        "taskprogress": 100,
         "createdDate": "12 Dec, 2019"
     },
     {
@@ -14,8 +14,8 @@
         "reportCategory": "eNodeB Progress",
         "targetReport": "Lorem",
         "domain": "RAN",
-        "nameProgress": "#4 in Queue",
-        "countProgress": "25",
+        "taskcompletion": "#5 in Queue",
+        "taskprogress": 50,
         "createdDate": "12 Dec, 2019"
     }
 ]

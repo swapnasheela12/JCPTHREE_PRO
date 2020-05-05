@@ -27,7 +27,7 @@ $color-white: #ffffff;
         border-bottom: 1px solid #707070 !important;
         .jcp-logo-container {
           padding-left: 15px;
-
+          margin-bottom: 15px;
           // padding-right: 15px;
           .mat-button {
             box-sizing: border-box;
@@ -104,7 +104,7 @@ $color-white: #ffffff;
             margin-top: 18px;
             margin-left: 18px;
             .menu-inner {
-              font-size: 30px;
+              font-size: 25px;
               padding: 10px 0;
             }
           }
@@ -175,7 +175,7 @@ $color-white: #ffffff;
 
   .active-body-sidenav {
     // background-color: blue;
-    margin-left: 320px !important;
+    margin-left: 329px !important;
   }
 
   .activeNot-body-sidenav {

@@ -5,7 +5,9 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material';
 import { HttpClient } from "@angular/common/http";
 
-import { Column, GridOption, FieldType, Formatter, Formatters, SelectedRange } from 'angular-slickgrid';
+import { Column, GridOption, FieldType, Formatter, Formatters, Filters, SelectedRange, ContextMenu, ExtensionName, } from 'angular-slickgrid';
+
+// import Popper, {PopperOptions} from 'popper.js';
 
 export interface myReportInterface {
   // position: number;
@@ -20,9 +22,67 @@ export interface myReportInterface {
 }
 
 // create my custom Formatter with the Formatter type
-const myCustomCheckmarkFormatter: Formatter = (row, cell, value, columnDef, dataContext) => {
+const taskCompletedFormatter: Formatter = (row, cell, value, columnDef, dataContext) => {
   // you can return a string of a object (of type FormatterResultObject), the 2 types are shown below
-  return value ? `<i class="fa fa-fire red" aria-hidden="true"></i>` : { text: '<i class="fa fa-snowflake-o" aria-hidden="true"></i>', addClasses: 'lightblue', toolTip: 'Freezing' };
+
+  // return value ? `<i class="zmdi zmdi-more-vert" aria-hidden="true"></i>` : { text: '<i class="zmdi zmdi-more-vert" aria-hidden="true"></i>', addClasses: 'lightblue', toolTip: 'Freezing' };
+  console.log(row, "row");
+  console.log(cell, "cell");
+  console.log(value, "val");
+  console.log(columnDef, "columnDef");
+  console.log(dataContext, "dataContext");
+
+  var taskcompletion = dataContext.taskcompletion;
+  var taskprogress = dataContext.taskprogress;
+  var template1 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
+
+  var template2 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
+
+  var template3 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
+  if (taskcompletion == "Generated") {
+    return template1;
+  } else if (taskcompletion == "#5 in Queue") {
+    return template2;
+  } else {
+    return template3;
+  }
+};
+const customMenuFormatter: Formatter = (row, cell, value, columnDef, dataContext) => {
+  // you can return a string of a object (of type FormatterResultObject), the 2 types are shown below
+
+  // return value ? `<i class="zmdi zmdi-more-vert" aria-hidden="true"></i>` : { text: '<i class="zmdi zmdi-more-vert" aria-hidden="true"></i>', addClasses: 'lightblue', toolTip: 'Freezing' };
+  console.log(row, "row");
+  console.log(cell, "cell");
+  console.log(value, "val");
+  console.log(columnDef, "columnDef");
+  console.log(dataContext, "dataContext");
+
+
+  var template = '<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">'+
+  '<i class="zmdi zmdi-more-vert" aria-hidden="true"></i>'+
+  '</button>'+
+  '<mat-menu #menu="matMenu">'+
+  '<button mat-menu-item>'+
+  '<mat-icon>dialpad</mat-icon>'+
+  ' <span>Redial</span>'+
+  '</button>'+
+  '<button mat-menu-item disabled>'+
+  '<mat-icon>voicemail</mat-icon>'+
+  '<span>Check voice mail</span>'+
+  ' </button>'+
+  '<button mat-menu-item>'+
+  '<mat-icon>notifications_off</mat-icon>'+
+  '<span>Disable alerts</span>'+
+  '</button>'+
+  '</mat-menu>';
+
+
+
+  return template;
+
 };
 
 
@@ -40,16 +100,16 @@ export class MyReportsComponent implements OnInit {
 
 
 
-  ///////my report tabel//////////
+  // ///////my report tabel//////////
   public products;
-  public dataListValue;
-  // public dataSource;
-  show: any;
-  displayedColumns: string[] = ['select', 'position', 'reportName', 'reportMeasure', 'reportCategory', 'targetReport', 'domain', 'nameProgress', 'createdDate'];
-  dataSource = new MatTableDataSource<myReportInterface>();
-  // dataSource = new MatTableDataSource<myReportInterface>(this.products);
-  selection = new SelectionModel<myReportInterface>(true, []);
-  ///////my report tabel//////////
+  // public dataListValue;
+  // // public dataSource;
+  // show: any;
+  // displayedColumns: string[] = ['select', 'position', 'reportName', 'reportMeasure', 'reportCategory', 'targetReport', 'domain', 'nameProgress', 'createdDate'];
+  // dataSource = new MatTableDataSource<myReportInterface>();
+  // // dataSource = new MatTableDataSource<myReportInterface>(this.products);
+  // selection = new SelectionModel<myReportInterface>(true, []);
+  // ///////my report tabel//////////
 
   ///////report measure/////////////
   public reportMeasureSelected = "Performance Management";
@@ -75,8 +135,8 @@ export class MyReportsComponent implements OnInit {
     this.httpClient.get("../../../../assets/data/report/my-report.json").subscribe(data => {
       console.log(data);
       this.products = data;
-      this.dataListValue = data;
-      this.dataSource = new MatTableDataSource(this.products)
+      // this.dataListValue = data;
+      // this.dataSource = new MatTableDataSource(this.products)
       // this.dataSource = data;
       // this.ELEMENT_DATA=data;
       // this.dataListValue = JSON.stringify(data);
@@ -97,10 +157,19 @@ export class MyReportsComponent implements OnInit {
       { id: 'reportCategory', name: 'Report Category', field: 'reportCategory' },
       { id: 'targetReport', name: 'Target Report', field: 'targetReport' },
       { id: 'domain', name: 'Domain', field: 'domain' },
+      // { id: '%', name: '% Complete', field: 'percentComplete', sortable: true, formatter: Formatters.progressBar, },
+      // { id: '%', name: 'Progress', field: 'percentComplete', sortable: true, formatter: Formatters.percentCompleteBar, type: FieldType.number, minWidth: 100 },
+      { id: '%', name: 'Progress', field: 'percentComplete', sortable: true, formatter: taskCompletedFormatter },
       { id: 'createdDate', name: 'Created Date', field: 'createdDate' },
-      { id: '%', name: '% Complete', field: 'percentComplete', sortable: true, formatter: Formatters.progressBar, },
-      // { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: myCustomSelectFormatter, },
-      { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: Formatters.percentCompleteBar, type: FieldType.number, minWidth: 100 },
+      { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: customMenuFormatter, },
+      // {
+      //   id: 'description', name: 'Description', field: 'description', type: FieldType.string,
+      //   filterable: true,
+      //   filter: {
+      //     model: new CustomInputFilter() // create a new instance to make each Filter independent from each other
+      //   }
+      // }
+      // { id: 'sideMenuList', name: '', field: 'sideMenuList', sortable: true, formatter: Formatters.percentCompleteBar, type: FieldType.number, minWidth: 100 },
     ];
 
     this.gridOptions = {
@@ -128,6 +197,8 @@ export class MyReportsComponent implements OnInit {
         targetReport: item[i].targetReport,
         domain: item[i].domain,
         percentComplete: randomPercent,
+        taskprogress: item[i].taskprogress,
+        taskcompletion: item[i].taskcompletion,
         createdDate: item[i].createdDate,
         sideMenuList: item[i].sideMenuList
         // dependencies: this.getRandomSubarray(["a","b","c"],Math.floor(Math.random()*3)+1),
@@ -151,37 +222,37 @@ export class MyReportsComponent implements OnInit {
     return shuffled.slice(0, size);
   }
 
-  ///////my report tabel//////////
+  // ///////my report tabel//////////
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  // /** The label for the checkbox on the passed row */
-  // checkboxLabel(row?: myReportInterface): string {
-  //   // if (!row) {
-  //   //   return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  //   // }
-  //   return `${this.selection.selected.forEach(s => console.log(s.reportName))}`;
-  //   // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  // /** Whether the number of selected elements matches the total number of rows. */
+  // isAllSelected() {
+  //   const numSelected = this.selection.selected.length;
+  //   const numRows = this.dataSource.data.length;
+  //   return numSelected === numRows;
   // }
 
+  // /** Selects all rows if they are not all selected; otherwise clear selection. */
+  // masterToggle() {
+  //   this.isAllSelected() ?
+  //     this.selection.clear() :
+  //     this.dataSource.data.forEach(row => this.selection.select(row));
+  // }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  ///////my report tabel//////////
+  // // /** The label for the checkbox on the passed row */
+  // // checkboxLabel(row?: myReportInterface): string {
+  // //   // if (!row) {
+  // //   //   return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  // //   // }
+  // //   return `${this.selection.selected.forEach(s => console.log(s.reportName))}`;
+  // //   // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  // // }
+
+
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  // ///////my report tabel//////////
 
 
 
