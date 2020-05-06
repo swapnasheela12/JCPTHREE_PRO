@@ -78,7 +78,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 
 import { AngularSlickgridModule } from 'angular-slickgrid';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 declare var $: any;
 
@@ -102,6 +102,8 @@ declare var $: any;
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    FlexLayoutModule,
+
     NgxDaterangepickerMd.forRoot(),
     AngularSlickgridModule.forRoot(),
 

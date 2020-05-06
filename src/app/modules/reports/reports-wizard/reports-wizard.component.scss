@@ -1,7 +1,7 @@
 .report-wizard-container {
-    height: calc(100vh - 205px);
-    min-height: calc(100vh - 205px);
-    max-height: calc(100vh - 205px);
+    height: calc(100vh - 210px);
+    min-height: calc(100vh - 210px);
+    max-height: calc(100vh - 210px);
 
     .report-wizard-card-one {
         .report-flex-container {
@@ -25,27 +25,27 @@
 
     .report-wizard-card-two {
         margin: 15px 0;
-        height: calc(100% - 225px);
-        min-height: calc(100% - 225px);
-        max-height: calc(100% - 225px);
+        // height: calc(100% - 225px);
+        // min-height: calc(100% - 225px);
+        // max-height: calc(100% - 225px);
         padding: 0;
 
-        .report-filter-tab-group {
-            .mat-tab-body-wrapper {
-                height: 100%;
-                .mat-tab-body {
-                    .mat-tab-body-content {
-                        .report-flex-container {
-                            height: calc(100% - 52px);
-                        }
-                    }
-                }
-            }
+        // .report-filter-tab-group {
+        //     .mat-tab-body-wrapper {
+        //         height: 100%;
+        //         .mat-tab-body {
+        //             .mat-tab-body-content {
+        //                 .report-flex-container {
+        //                     height: calc(100% - 52px);
+        //                 }
+        //             }
+        //         }
+        //     }
 
-        }
+        // }
     }
 }
 
 .report-wizard-action-container {
-    height: 58px !important;
+    height: 55px !important;
 }

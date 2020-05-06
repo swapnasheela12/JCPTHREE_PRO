@@ -491,22 +491,38 @@ $color-white: #ffffff;
 .report-wizard-container {
 
   .report-wizard-card-two {
+    height: calc(100% - 225px);
+    min-height: calc(100% - 225px);
+    max-height: calc(100% - 225px);
 
     .report-filter-tab-group {
+      height: 100%;
 
-      .mat-tab-body-wrapper {
-        height: 100%;
+      .mat-horizontal-content-container {
+        height: calc(100% - 72px);
+        min-height: calc(100% - 72px);
+        max-height: calc(100% - 72px);
+        padding-bottom: 0;
 
-        .mat-tab-body {
-          .mat-tab-body-content {
-            .report-flex-container {
-              height: calc(100% - 52px);
-              overflow: auto;
+        .mat-horizontal-stepper-content {
+          // height: 100%;
+         
+          .report-filter-tab {
+            height: 100%;
+           
+            .report-filter-form {
+              height: 100%;
 
-              .report-flex-item {
+              .report-flex-container {
+                height: calc(100% - 52px);
+              }
 
-                .report-form-field {
-                  width: inherit;
+              .report-action-container {
+                height: 52px;
+
+                .submit-button {
+                  width: 100px !important;
+                  min-width: unset !important;
                 }
               }
 
@@ -514,15 +530,61 @@ $color-white: #ffffff;
           }
         }
       }
-
-      .report-action-container {
-        .submit-button {
-          width: 100px !important;
-          min-width: unset !important;
-        }
-      }
-
     }
+
+    // .mat-horizontal-content-container {
+    //   height: calc(100% - 225px);
+    //   // min-height: calc(100% - 225px);
+    //   // max-height: calc(100% - 225px);
+    //   // height: 100%;
+    //   padding-bottom: 0px;
+
+    //   .mat-horizontal-stepper-content {
+    //     height: 100%;
+    //     .report-filter-tab {
+    //       height: 100%;
+    //       .report-filter-form {
+    //         height: 100%;
+    //         .report-flex-container{
+    //           height: calc(100% - 52px);
+    //         }
+    //       }
+    //     }
+    //   }
+
+    // }
+
+    //   .report-filter-tab-group {
+
+    //     .mat-tab-body-wrapper {
+    //       height: 100%;
+
+    //       .mat-tab-body {
+    //         .mat-tab-body-content {
+    //           .report-flex-container {
+    //             height: calc(100% - 52px);
+    //             // overflow: auto;
+
+    //             .report-flex-item {
+
+    //               .report-form-field {
+    //                 width: inherit;
+    //               }
+    //             }
+
+    //           }
+    //         }
+    //       }
+    //     }
+
+    //     .report-action-container {
+    //       .submit-button {
+    //         width: 100px !important;
+    //         min-width: unset !important;
+    //       }
+    //     }
+
+    //   }
   }
 
 }
@@ -533,17 +595,17 @@ $color-white: #ffffff;
       // top: 95px !important;
       // left: -174% !important;
       // right: 15px !important;
-      top: 44px !important;
+      // top: 44px !important;
       left: auto !important;
       right: auto !important;
-      position: absolute;
+      position: fixed;
       font-family: Roboto, sans-serif;
       color: inherit;
       background-color: #fff;
       border-radius: 4px;
       width: 643px !important; // width: 278px;
       padding: 12px;
-      margin-top: -10px;
+      margin-top: -55px !important;
       overflow: hidden;
       z-index: 1000;
       font-size: 14px;
@@ -783,16 +845,31 @@ table {
   width: 100% !important;
 
   .mat-header-row {
-    background: rgba(211, 213, 220, 0.44);;
+    background: rgba(211, 213, 220, 0.44);
+    ;
     height: 58px;
-    
-   .mat-header-cell{
-    font-family: 'Lato Bold';
-    font-size: 16px;
-    font-weight: 500;
-    color: #000000;
+
+    .mat-header-cell {
+      font-family: 'Lato Bold';
+      font-size: 16px;
+      font-weight: 500;
+      color: #000000;
     }
   }
+}
+
+.layout-fill {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+
+.mat-card-content {
+  display: block;
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 //END angular meterial glob css

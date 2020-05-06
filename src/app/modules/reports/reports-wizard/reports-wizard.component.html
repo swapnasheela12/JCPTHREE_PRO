@@ -1,39 +1,39 @@
 <div class="report-wizard-container">
-    <mat-card class="report-wizard-card-one">
-      <mat-card-content>
-        <div class="d-flex flex-row flex-wrap report-flex-container">
-          <div class="p-3 report-flex-item col-4">
-            <div class="report-form-field-read">
-              <div class="report-form-input-title">Report Measure*</div>
-              <div class="report-form-input-value">RF Analysis</div>
-              <!-- <input matInput placeholder="Ex. Pizza" value="RF Analysis"> -->
-            </div>
-          </div>
-          <div class="p-3 report-flex-item col-4">
-            <div class="report-form-field-read">
-              <div class="report-form-input-title">Report Category*</div>
-              <div class="report-form-input-value">ODSC Planning Report</div>
-              <!-- <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report"> -->
-            </div>
-          </div>
-          <div class="p-3 report-flex-item col-4">
-            <mat-form-field class="report-form-field">
-              <mat-label>Report Name</mat-label>
-              <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report - Pan-India">
-            </mat-form-field>
-          </div>
-          <div class="p-3 report-flex-item col-4">
-            <mat-form-field class="report-form-field">
-              <mat-label>Target Report</mat-label>
-              <input matInput placeholder="Ex. Pizza" value="-">
-            </mat-form-field>
+  <mat-card class="report-wizard-card-one">
+    <mat-card-content>
+      <div class="d-flex flex-row flex-wrap report-flex-container">
+        <div class="p-3 report-flex-item col-4">
+          <div class="report-form-field-read">
+            <div class="report-form-input-title">Report Measure*</div>
+            <div class="report-form-input-value">RF Analysis</div>
+            <!-- <input matInput placeholder="Ex. Pizza" value="RF Analysis"> -->
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="report-wizard-card-two">
-      <mat-card-content class="h-100">
-        <mat-tab-group [(selectedIndex)]="reportTabIndex" (selectedTabChange)="tabClick($event)" class="h-100 report-filter-tab-group">
+        <div class="p-3 report-flex-item col-4">
+          <div class="report-form-field-read">
+            <div class="report-form-input-title">Report Category*</div>
+            <div class="report-form-input-value">ODSC Planning Report</div>
+            <!-- <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report"> -->
+          </div>
+        </div>
+        <div class="p-3 report-flex-item col-4">
+          <mat-form-field class="report-form-field">
+            <mat-label>Report Name</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report - Pan-India">
+          </mat-form-field>
+        </div>
+        <div class="p-3 report-flex-item col-4">
+          <mat-form-field class="report-form-field">
+            <mat-label>Target Report</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="-">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="report-wizard-card-two">
+    <mat-card-content class="h-100" fxLayout>
+      <!-- <mat-tab-group [(selectedIndex)]="reportTabIndex" (selectedTabChange)="tabClick($event)" class="h-100 report-filter-tab-group">
           <mat-tab class="report-filter-tab" label="Report Configuration">
             <ng-template matTabContent class="report-filter-tab-content">
               <div class="report-flex-container">
@@ -105,10 +105,7 @@
                           [keepCalendarOpeningWithRange]="form.get('keepCalendarOpeningWithRange').value"
                           [showRangeLabelOnInput]="form.get('showRangeLabelOnInput').value"
                           (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)" />
-                          <!-- <input matInput type="text" autocomplete="off" ngxDaterangepickerMd [(ngModel)]="selected" [showCustomRangeLabel]="true"
-                              [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true" [timePicker]="true"
-                              [timePickerIncrement]="1" [opens]="right" [locale]="{format: 'DD/MM/YYYY HH:mm:ss'}"
-                              [showClearButton]="true" placeholder="Date & Time" /> -->
+                         
                       </div>
                     </form>
                   </mat-form-field>
@@ -122,16 +119,106 @@
               </div>
             </ng-template>
           </mat-tab>
-        </mat-tab-group>
-      </mat-card-content>
-    </mat-card>
+        </mat-tab-group> -->
+
+      <mat-horizontal-stepper [linear]="isLinear" #stepper class=" report-filter-tab-group">
+        <mat-step [stepControl]="firstFormGroup">
+          <mat-card-content class="layout-fill">
+            <div class="report-filter-tab">
+              <form [formGroup]="firstFormGroup" class="report-filter-form">
+                <ng-template matStepLabel>Report Configuration</ng-template>
+                <div class="report-flex-container">
+                  <div class="d-flex flex-row flex-wrap">
+                    <div class="p-3 report-flex-item col-4">
+                      <mat-form-field class="report-form-field">
+                        <mat-label>Data Sources</mat-label>
+                        <input matInput placeholder="Ex. Pizza" value="LSR" formControlName="dataSources" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="d-flex flex-row justify-content-center report-action-container">
+                  <div class="p-2 my-flex-item">
+                    <button mat-raised-button class="submit-button" color="primary" matStepperNext>Next</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </mat-card-content>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" class="h-100">
+          <div class="report-filter-tab">
+            <form [formGroup]="secondFormGroup" class="report-filter-form">
+              <ng-template matStepLabel>Geography</ng-template>
+
+              <div class="report-flex-container">
+                <div class="d-flex flex-row flex-wrap">
+                  <div class="p-3 report-flex-item col-4">
+                    <mat-form-field class="report-form-field">
+                      <mat-label>Select Zone</mat-label>
+                      <input matInput placeholder="Ex. Pizza" value="All Zone" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="p-3 report-flex-item col-4">
+                    <mat-form-field class="report-form-field">
+                      <mat-label>Select Jio State</mat-label>
+                      <input matInput placeholder="Ex. Pizza" value="-" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="p-3 report-flex-item col-4">
+                    <mat-form-field class="report-form-field">
+                      <mat-label>Select Focus Town</mat-label>
+                      <input matInput placeholder="Ex. Pizza" value="-" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="d-flex flex-row justify-content-center report-action-container">
+                <div class="p-2 my-flex-item">
+                  <button class="mx-2" mat-stroked-button matStepperPrevious>Previous</button>
+                  <button class="mx-2" mat-raised-button class="submit-button" color="primary"
+                    matStepperNext>Next</button>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+
+          <!-- <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Geography</ng-template>
+              <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form> -->
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Select Date</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="d-flex flex-row justify-content-end align-items-end report-wizard-action-container">
+  <div class="p-2 my-flex-item">
+    <button mat-stroked-button color="primary">Cancel</button>
   </div>
-  
-  <div class="d-flex flex-row justify-content-end align-items-end report-wizard-action-container">
-    <div class="p-2 my-flex-item">
-      <button mat-stroked-button color="primary">Cancel</button>
-    </div>
-    <div class="p-2 my-flex-item">
-      <button mat-stroked-button disabled>Submit</button>
-    </div>
+  <div class="p-2 my-flex-item">
+    <button mat-stroked-button disabled>Submit</button>
   </div>
+</div>
