@@ -47,7 +47,6 @@ export class MmenuDirective implements AfterViewInit {
   public element: String;
 
   constructor(private el: ElementRef) { 
-    console.log("kashgd,ajsdg,ajs");
   }
 
   ngAfterViewInit() {

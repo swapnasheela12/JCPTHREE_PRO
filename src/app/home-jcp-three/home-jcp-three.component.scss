@@ -18,8 +18,10 @@ $color-white: #ffffff;
     border-radius: 0px 25px 25px 0px !important;
     border-right: 0px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 20rem;
 
     .mat-drawer-inner-container {
+      overflow: hidden;
       .side-mat-toolbar-row {
         margin-top: 15px;
         margin-bottom: 15px;
@@ -54,10 +56,17 @@ $color-white: #ffffff;
             overflow: visible;
             width: 50px;
             height: 50px;
+            float: right;
 
             div {
-              font-size: 30px;
-              padding: 10px 0;
+              // font-size: 30px;
+              // padding: 10px 0;
+              color: #0070DB;
+              font-size: 1.5rem;
+            }
+
+            .zmdi-close::before {
+              font-size: 1.5rem;
             }
           }
 
@@ -73,27 +82,20 @@ $color-white: #ffffff;
 
 
   .body-sidenav-container {
-
-
     .jcp-toolbar {
       // background: url('../../assets/images/toolbar/honeycomb.svg')no-repeat !important;
       // -webkit-background-size: cover;
       // -moz-background-size: cover;
       // -o-background-size: cover;
       // background-size: cover !important;
-
       height: 100%;
-
       .jcp-toolbar-main-container {
-
         height: 140px;
-
         .jcp-toolbar-search-tbutt {
           // width: 20%;
           // position: absolute;
           width: 1%;
           float: left;
-
           .toolbar-botton-inner {
             padding: 0 !important;
             font-size: 25px !important;
@@ -101,54 +103,44 @@ $color-white: #ffffff;
             width: 50px !important;
             height: 50px !important;
             min-width: 50px !important;
-            margin-top: 18px;
+            margin-top: 0.6875rem;
             margin-left: 18px;
             .menu-inner {
               font-size: 25px;
               padding: 10px 0;
             }
+            .menu-inner::before {
+                font-size: 1.5rem;
+            }
           }
-
           :focus,
           :hover {
             outline: 0;
             // color: #0070DB;
           }
-
           .active-menu-button {
             display: none;
           }
-
           .activeNot-menu-button {
-
             display: contents;
           }
-
         }
-
         .active-jcpToggle {
           width: 0%;
           display: none;
         }
-
         .activeNot-jcpToggle {
           width: 6%;
         }
       }
-
-
       .header-jcp-container {
         background: url('../../assets/images/toolbar/comb.svg')no-repeat !important;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover !important;
-
         height: 234px;
-
       }
-
-
       .jcp-page-route {
         height: calc(100% - 155px);
         overflow: auto;
@@ -160,7 +152,6 @@ $color-white: #ffffff;
       .activeNot-jcp-page-route{
         margin-left: 0px;
       }
-
     }
 
     .active-jcp-toolbar {
@@ -175,7 +166,7 @@ $color-white: #ffffff;
 
   .active-body-sidenav {
     // background-color: blue;
-    margin-left: 329px !important;
+    margin-left: 18.6875rem !important;
   }
 
   .activeNot-body-sidenav {

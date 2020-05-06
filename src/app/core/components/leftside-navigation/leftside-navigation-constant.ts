@@ -2404,7 +2404,7 @@ const LAYERS_LIST = [
 const REPORTS_LIST = [
     {
         name: 'Report Wizard',
-        link: 'Home/Reports & Dashboard/Report Wizard',
+        link: 'Home/Reports-and-Dashboard/Report-Wizard',
         icon: 'fas fa-home',
         level: 1,
         component: HomeJcpThreeComponent,
@@ -2412,7 +2412,7 @@ const REPORTS_LIST = [
     },
     {
         name: 'My Reports',
-        link: 'Home/Reports & Dashboard/My Reports',
+        link: 'Home/Reports-and-Dashboard/My-Reports',
         level: 1,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
@@ -2522,7 +2522,15 @@ export const LEFTSIDE_MENU_LIST = [
         level: 0,
         component: HomeJcpThreeComponent,
         children: []
-    }, 
+    },
+    {
+        name: 'Layers',
+        link: 'Layers',
+        icon: 'ic ic-layers-01',
+        level: 0,
+        component: HomeJcpThreeComponent,
+        children: LAYERS_LIST
+    },
     {
         name: 'Modules',
         link: 'Modules',
@@ -2562,13 +2570,5 @@ export const LEFTSIDE_MENU_LIST = [
         level: 0,
         component: HomeJcpThreeComponent,
         children: []
-    },
-    {
-        name: 'Layers',
-        link: 'Layers',
-        icon: 'ic ic-layers-01',
-        level: 0,
-        component: HomeJcpThreeComponent,
-        children: LAYERS_LIST
     }
 ];

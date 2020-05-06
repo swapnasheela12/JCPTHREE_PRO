@@ -4,7 +4,7 @@
     </ul>
     <ng-template #recursiveListTmpl let-menuListAll>
         <li *ngFor="let item of menuListAll" routerLinkActive="menu-active">
-            <span routerLink="/{{item.link}}"><i class="{{item.icon}}" *ngIf="item.level == 0"></i>
+            <span routerLink="/{{item.link}}"><i class="{{item.icon}}" *ngIf="item.level == 0" title="{{item.name}}"></i>
                 {{item.name}}
             </span>
             <ul *ngIf="item.children.length > 0" class="listview-icons">

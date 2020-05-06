@@ -5,22 +5,8 @@ $px25: 25px;
 $px21: 21px;
 $px3: 3px;
 
-.menu-active {
-  &:not(:first-child){
-    background-color: $blueshade-color;
-    border-top-right-radius: $px25;
-    border-bottom-right-radius: $px25;
-    margin-right: $px21;
-    color: $blueactive-color;
-    .ic {
-      color: $blueactive-color;
-    }
-    &:hover {
-      &:not(:first-child) {
-        .mm-listitem__text {
-          margin-right: 0;
-        }
-      }
-    }
+.mm-listitem__text {
+  &:hover {
+      background-color: #eaecec !important;
   }
 }

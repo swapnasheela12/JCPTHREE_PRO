@@ -20,13 +20,15 @@ const routes: Routes = [
   {
     path: "Home", component: HomeJcpThreeComponent,
     canActivate: [AuthGuard],
-    children: [{
-      path:"Reports & Dashboard",
-      children: [
-        {path: "Report Wizard", component: ReportsWizardComponent},
-        {path: "My Reports", component: MyReportsComponent}
-      ]
-    }]
+    children: [
+      // {
+      // path:"Reports-and-Dashboard",
+      // children: [
+        {path: "Reports-and-Dashboard/Report-Wizard", component: ReportsWizardComponent},
+        {path: "Reports-and-Dashboard/My-Reports", component: MyReportsComponent}
+      // ]
+    // }
+  ]
   },
   // {
   //   path: "Modules",
