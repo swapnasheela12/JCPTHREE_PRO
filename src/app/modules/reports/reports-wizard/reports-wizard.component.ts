@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -13,10 +13,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ReportsWizardComponent implements OnInit {
 
+  ///////////////
+  public targetReport = "ODSC Planning Report";
+  public zoneReport = "All Zone";
+  ///////////////
+
   ///////////stepar//////////////
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   ///////////stepar//////////////
 
 
@@ -26,7 +32,9 @@ export class ReportsWizardComponent implements OnInit {
   //////////breadcrums///////////////
 
   ///////datepicker//////////
-  selected: any;
+  public todaysDay = new Date();
+  selectedDateTime: any;
+  selectedDateTimeValue: boolean = false;
   invalidDates: moment.Moment[] = [];
   tooltips = [
     { date: moment(), text: 'Today is just unselectable' },
@@ -41,15 +49,7 @@ export class ReportsWizardComponent implements OnInit {
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
   };
-  form = this.formBuilder.group({
-    selected: {
-      startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-      endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
-    },
-    alwaysShowCalendars: true,
-    keepCalendarOpeningWithRange: true,
-    showRangeLabelOnInput: true,
-  });
+
 
 
   ///////datepicker//////////
@@ -97,7 +97,7 @@ export class ReportsWizardComponent implements OnInit {
     ///////////////////
     ///////////////////
 
-
+    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue>>>>>>>");
   }
 
   ///////datepicker//////////
@@ -116,10 +116,14 @@ export class ReportsWizardComponent implements OnInit {
 
   rangeClicked(range): void {
     console.log('[rangeClicked] range is : ', range);
+    this.selectedDateTimeValue = true;
+    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
 
   datesUpdated(range): void {
     console.log('[datesUpdated] range is : ', range);
+    this.selectedDateTimeValue = true;
+    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
   ///////datepicker//////////
 
@@ -131,12 +135,34 @@ export class ReportsWizardComponent implements OnInit {
   }
 
   stepperReportW() {
+    console.log(this.todaysDay,"todaysDay");
+    console.log(this.todaysDay,"todaysDay");
+    
     this.firstFormGroup = this.formBuilder.group({
-      dataSources: ['', Validators.required]
+      dataSources: ['LSR', Validators.required]
     });
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      zoneType: ['All Zone', Validators.required],
+      jioStateType: ['-', Validators.required],
+      focusTownType: ['-', Validators.required]
     });
+    this.thirdFormGroup = this.formBuilder.group({
+      selectedDateTime: {
+        startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+      },
+      alwaysShowCalendars: true,
+      keepCalendarOpeningWithRange: true,
+      showRangeLabelOnInput: true,
+    });
+    // this.selectedDateTimeValue = this.thirdFormGroup.get('selectedDateTime').value;
+    console.log(this.firstFormGroup, "thirdFormGroup");
+    console.log(this.secondFormGroup, "thirdFormGroup");
+    console.log(this.thirdFormGroup, "thirdFormGroup");
+
+
   }
 
 }
