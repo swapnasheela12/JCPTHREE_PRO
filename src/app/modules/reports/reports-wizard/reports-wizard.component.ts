@@ -4,6 +4,13 @@ import { Location } from '@angular/common';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, VERSION } from "@angular/material";
+import { CreateReportComponent } from './create-report/create-report.component';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-reports-wizard',
@@ -11,6 +18,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reports-wizard.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ReportsWizardComponent implements OnInit {
 
   ///////////////
@@ -82,7 +90,7 @@ export class ReportsWizardComponent implements OnInit {
   }
 
 
-  constructor(private location: Location, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private location: Location, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog,) {
     // router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
     // /////////////breadcrums////////////////////
@@ -135,9 +143,9 @@ export class ReportsWizardComponent implements OnInit {
   }
 
   stepperReportW() {
-    console.log(this.todaysDay,"todaysDay");
-    console.log(this.todaysDay,"todaysDay");
-    
+    console.log(this.todaysDay, "todaysDay");
+    console.log(this.todaysDay, "todaysDay");
+
     this.firstFormGroup = this.formBuilder.group({
       dataSources: ['LSR', Validators.required]
     });
@@ -164,5 +172,21 @@ export class ReportsWizardComponent implements OnInit {
 
 
   }
+
+  animal: string;
+  name: string;
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateReportComponent, {
+      width: "700px",
+      panelClass: "material-dialog-container",
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.animal = result;
+    });
+  };
+  
 
 }

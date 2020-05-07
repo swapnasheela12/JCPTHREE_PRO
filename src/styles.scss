@@ -830,7 +830,15 @@ $color-white: #ffffff;
 
 ///END report page
 
+///Create report pop up
+.material-dialog-container {
+  .mat-dialog-container {
+      border-radius: 0px;
+      padding: 0px !important;
+  }
+}
 
+///END Create report pop up
 
 
 //angular meterial glob css

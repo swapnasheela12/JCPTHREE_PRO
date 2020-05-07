@@ -1,0 +1,68 @@
+$md-primary: #0070DB;
+$color-white: #ffffff;
+.create-report-container {
+    .create-report-toolbar {
+        min-height: 48px;
+        &.mat-toolbar {
+            background: $md-primary;
+            height: 48px;
+            padding: 0px;
+            min-height: 48px;
+            color: #0070DB;
+            .mat-toolbar-row {
+                color: $color-white;
+                font-size: 18px;
+                font-weight: 500;
+                mat-icon {
+                    font-size: 18px;
+                    color: $color-white;
+                }
+                .header {
+                    font-size: 16px;
+                    color: $color-white;
+                    font-weight: 400;
+                }
+                .Sub-header {
+                    font-weight: 400;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+    // .mat-toolbar {
+    //     height: 48px;
+    //     border-bottom: 1px solid fade-out(#000, 0.87);
+    //     .header {
+    //         font-size: 16px;
+    //         font-weight: 400;
+    //         color: fade-out(#000, 0.13);
+    //     }
+    //     .mat-icon {
+    //         color: fade-out(#000, 0.44);
+    //     }
+    // }
+    .mat-dialog-content {
+        padding: 0px 15px;
+        margin: 0px;
+        .report-engin-container{
+            .mat-standard-chip {
+                // background-color: #ffffff;
+                // color: rgba(0, 0, 0, 0.87);
+                // border-radius: 0;
+            }
+        }
+    }
+    .mat-dialog-actions {
+        height: 48px;
+        max-height: 48px;
+        min-height: 48px;
+        padding: 0px 15px;
+        margin: 0px;
+        .mat-button {
+            text-transform: uppercase;
+            &.mat-cancel {
+                color: fade-out(#000, 0.44);
+            }
+        }
+    }
+}

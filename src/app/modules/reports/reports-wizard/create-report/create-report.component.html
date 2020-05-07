@@ -1,0 +1,41 @@
+<div class="create-report-container" style="height: 435px;">
+    <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+        <mat-toolbar-row class="mat-blue-grey">
+            <div class="col pl-0">
+                <div class="header">Create New Report</div>
+
+            </div>
+            <button class="mat-icon-button d-flex justify-content-center align-items-center">
+                <mat-icon class="zmdi zmdi-minus"></mat-icon>
+            </button>
+            <button class="mat-icon-button d-flex justify-content-center align-items-center" (click)="onNoClick()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div style="    height: calc(100% - 96px);">
+        <div class="report-engin-container" fxLayout="row" fxLayoutAlign="center center">
+            <div>Report Engine</div>
+        </div>
+        <div class="report-engin-container" fxLayout="row" fxLayoutAlign="center center">
+            <mat-chip-list aria-label="Fish selection" style="width: 625px;border: 1px solid #0070DB;border-radius: 25px;">
+                <mat-chip  fxLayoutAlign="center center" selected style=" border-radius: 25px; padding: 0; height: 40px;    margin: 5px;  width: 200px;">Primary fish</mat-chip>
+                <mat-chip  fxLayoutAlign="center center" style=" border-radius: 25px; padding: 0; height: 40px;  margin: 5px;  background-color: transparent;  width: 200px;">Primary fish</mat-chip>
+                <mat-chip  fxLayoutAlign="center center" style=" border-radius: 25px; padding: 0; height: 40px;   margin: 5px;  background-color: transparent;  width: 200px;">Primary fish</mat-chip>
+                <!-- <mat-chip>One fish</mat-chip>
+                <mat-chip>Two fish</mat-chip>
+                <mat-chip color="primary" selected>Primary fish</mat-chip>
+                <mat-chip color="accent" selected>Accent fish</mat-chip> -->
+            </mat-chip-list>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="d-flex">
+        <div class="col"></div>
+        <button mat-button (click)="onNoClick()" class="mat-cancel">Cancel</button>
+        <button mat-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial
+            style="color: #0070DB;">Submit</button>
+    </div>
+</div>

@@ -81,6 +81,7 @@ import { AngularSlickgridModule } from 'angular-slickgrid';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
 
 declare var $: any;
 
@@ -97,7 +98,8 @@ declare var $: any;
     // FilterUniquePipe,
     ClickOutsideDirective,
     MyReportsComponent,
-    ReportsWizardComponent
+    ReportsWizardComponent,
+    CreateReportComponent
   ],
   imports: [
     BrowserModule,
@@ -171,6 +173,9 @@ declare var $: any;
     NavService
   ],
   bootstrap: [AppComponent],
-  exports: [HomeJcpThreeComponent]
+  exports: [HomeJcpThreeComponent],
+  entryComponents: [
+    CreateReportComponent
+  ]
 })
 export class AppModule {}
