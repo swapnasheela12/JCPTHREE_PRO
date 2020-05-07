@@ -90,7 +90,7 @@ $color-white: #ffffff;
       // background-size: cover !important;
       height: 100%;
       .jcp-toolbar-main-container {
-        height: 140px;
+        height: 135px;
         .jcp-toolbar-search-tbutt {
           // width: 20%;
           // position: absolute;
@@ -142,9 +142,9 @@ $color-white: #ffffff;
         height: 234px;
       }
       .jcp-page-route {
-        height: calc(100% - 155px);
+        height: calc(100% - 145px);
         overflow: auto;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
       .active-jcp-page-route{
         margin-left: 20px;

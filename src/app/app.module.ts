@@ -80,6 +80,8 @@ import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports
 import { AngularSlickgridModule } from 'angular-slickgrid';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AgGridModule } from 'ag-grid-angular';
+
 declare var $: any;
 
 @NgModule({
@@ -104,6 +106,7 @@ declare var $: any;
     CoreModule,
     FlexLayoutModule,
 
+    AgGridModule.withComponents([]),
     NgxDaterangepickerMd.forRoot(),
     AngularSlickgridModule.forRoot(),
 

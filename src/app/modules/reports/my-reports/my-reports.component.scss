@@ -5,23 +5,21 @@
 .my-report-card {
     // height: 100%;
     height: 99%;
+    min-height: 99%;
+    min-width: 100%;
+    width: 100%;
 
     .my-report-flex-container {
-        height: 75px !important;
+        height: 80px !important;
 
-        .my-report-flex-item {}
-
-        .jcp-table-container {
-
-            // height: 100%;
-            .jcp-table {
-                width: 100% !important;
-                // height: 100% !important;
-                // height: calc(100% - 100px);
-                // overflow: auto;
-            }
-
+        .my-report-flex-item {
+            font-size: 14px;
         }
+    }
+    .jcp-table-container {
+        height: calc(100% - 80px) !important;
+        max-height: calc(100% - 80px) !important;
+        
     }
 }
 

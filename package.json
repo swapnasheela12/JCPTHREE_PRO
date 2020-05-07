@@ -32,6 +32,8 @@
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "ag-grid-angular": "^23.1.0",
+    "ag-grid-community": "^23.1.0",
     "angular-slickgrid": "^2.17.11",
     "bootstrap": "^4.4.1",
     "feather-icons": "^4.26.0",

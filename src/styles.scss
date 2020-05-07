@@ -1,3 +1,8 @@
+//ag grid
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-material.css";
+
 ///slick grid
 /* for example, let's change the mouse hover color */
 $cell-odd-background-color: lightyellow;
@@ -36,6 +41,7 @@ $jcpThree-theme: mat-light-theme($jcpThree-primary, $jcpThree-accent, $jcpThree-
 
 //external css file
 
+@import './scss/_ag-jcp3';
 @import './scss/_vars.scss';
 @import './scss/_theme.scss';
 @import './scss/_sidebar.scss';

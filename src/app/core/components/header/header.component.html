@@ -15,8 +15,8 @@
                                 #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State"
                                 [matAutocomplete]="autoSearch" [formControl]="stateCtrl"
                                 (click)="search(autoSearch)">
-                            <mat-icon class="search-icon" aria-label="search"><span
-                                    class="zmdi zmdi-search"></span>
+                            <mat-icon class="search-icon" aria-label="search">
+                                <span class="zmdi zmdi-search"></span>
                             </mat-icon>
                         </form>
                         <mat-autocomplete #autoSearch="matAutocomplete" class="autoSearchClass">
