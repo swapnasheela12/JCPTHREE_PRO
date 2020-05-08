@@ -6,10 +6,15 @@ import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, VERSION } from "@angular/material";
 import { CreateReportComponent } from './create-report/create-report.component';
+import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
 
 export interface DialogData {
   animal: string;
   name: string;
+}
+export interface DialogDataSuccessful {
+  gotomyreportInterface: string;
+  newreportInterface: string;
 }
 
 @Component({
@@ -190,6 +195,21 @@ export class ReportsWizardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       this.animal = result;
+    });
+  };
+
+  gotomyreport: string;
+  createnewreport: string;
+  openDialogSuccessful(): void {
+    const dialogRef = this.dialog.open(SuccessfulComponent, {
+      width: "516px",
+      panelClass: "material-dialog-container",
+      data: { newreportInterface: this.createnewreport, gotomyreportInterface: this.gotomyreport }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.gotomyreport = result;
     });
   };
 

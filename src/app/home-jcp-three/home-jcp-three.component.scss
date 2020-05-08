@@ -103,7 +103,7 @@ $color-white: #ffffff;
             width: 50px !important;
             height: 50px !important;
             min-width: 50px !important;
-            margin-top: 0.6875rem;
+            margin-top: 0.2rem;
             margin-left: 18px;
             .menu-inner {
               font-size: 25px;
@@ -155,11 +155,11 @@ $color-white: #ffffff;
     }
 
     .active-jcp-toolbar {
-      padding: 15px 15px 0 35px;
+      padding: 0px 15px 0 35px;
     }
 
     .activeNot-jcp-toolbar {
-      padding: 15px 15px 0 15px;
+      padding: 0px 15px 0 15px;
     }
 
   }

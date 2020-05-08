@@ -165,12 +165,12 @@
 
 <div class="d-flex flex-row report-wizard-action-container">
   <div class="p-2 my-flex-item mr-auto">
-    <button mat-stroked-button color="primary" (click)="openDialog($event)" class="buttonWidth">Go Back</button>
+    <button mat-stroked-button color="primary" (click)="openDialog($event)" class="buttonWidth">Back</button>
   </div>
   <div class="p-2 my-flex-item">
     <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
   </div>
   <div class="p-2 my-flex-item">
-    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" class="buttonWidth">Generate</button>
+    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" (click)="openDialogSuccessful($event)" class="buttonWidth">Generate</button>
   </div>
 </div>

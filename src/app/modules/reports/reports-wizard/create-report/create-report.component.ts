@@ -4,7 +4,10 @@ import {Observable, Observer} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var require: any;
 
-
+export interface DialogDataSuccessful {
+  gotomyreportInterface: string;
+  newreportInterface: string;
+}
 export interface DialogData {
   animal: string;
   name: string;
@@ -29,7 +32,7 @@ export class CreateReportComponent implements OnInit {
   cmReportBuilderForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<CreateReportComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,private formBuilder: FormBuilder) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataSuccess: DialogDataSuccessful) {
 
 
       this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {

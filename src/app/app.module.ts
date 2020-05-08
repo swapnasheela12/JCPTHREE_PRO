@@ -82,6 +82,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
+import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
 
 declare var $: any;
 
@@ -100,8 +101,10 @@ declare var $: any;
     MyReportsComponent,
     ReportsWizardComponent,
     CreateReportComponent
+    // SuccessfulComponent
   ],
   imports: [
+    // SuccessfulComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -175,7 +178,8 @@ declare var $: any;
   bootstrap: [AppComponent],
   exports: [HomeJcpThreeComponent],
   entryComponents: [
-    CreateReportComponent
+    CreateReportComponent,
+    SuccessfulComponent
   ]
 })
 export class AppModule {}

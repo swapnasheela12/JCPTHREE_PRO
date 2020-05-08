@@ -39,6 +39,13 @@ $jcpThree-theme: mat-light-theme($jcpThree-primary, $jcpThree-accent, $jcpThree-
 // that you are using.
 @include angular-material-theme($jcpThree-theme);
 
+// .alternate-theme {
+//   $alternate-primary: mat-palette(#0070db);
+//   // $alternate-accent:  mat-palette($mat-yellow, 400);
+//   $alternate-theme: mat-light-theme($alternate-primary);
+//   @include angular-material-theme($alternate-theme);
+// }
+
 //external css file
 
 @import './scss/_ag-jcp3';
@@ -610,7 +617,7 @@ $color-white: #ffffff;
       left: auto !important;
       right: auto !important;
       position: fixed;
-      font-family: Lato Regular;
+      font-family: Lato Regular !important;
       color: inherit;
       background-color: #fff;
       border-radius: 4px;
@@ -621,7 +628,7 @@ $color-white: #ffffff;
       margin-left: 138px !important;
       overflow: hidden;
       z-index: 1000;
-      font-size: 14px;
+      font-size: 12px !important;
       background-color: #ffffff;
       -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
@@ -676,12 +683,12 @@ $color-white: #ffffff;
 
         .hourselect {
           width: 55px;
-          margin: 0 8px;
+          margin: 0;
           background: #ffffff;
           border-bottom: 1px solid rgba(0, 0, 0, .12);
           padding: 2px;
           outline: 0;
-          font-size: 12px;
+          font-size: 13px !important;
           font-family: inherit;
         }
 
@@ -692,7 +699,7 @@ $color-white: #ffffff;
           border-bottom: 1px solid rgba(0, 0, 0, .12);
           padding: 2px;
           outline: 0;
-          font-size: 12px;
+          font-size: 13px !important;
           font-family: inherit;
         }
 
@@ -702,7 +709,7 @@ $color-white: #ffffff;
           background: #ffffff;
           border-bottom: 1px solid rgba(0, 0, 0, .12);
           outline: 0;
-          font-size: 12px;
+          font-size: 13px !important;
           font-family: inherit;
         }
 
@@ -748,7 +755,7 @@ $color-white: #ffffff;
             -webkit-transition: background-color .4s;
             transition: background-color .4s;
             height: auto;
-            text-transform: uppercase;
+            text-transform: capitalize;
             line-height: 36px;
             border: 0;
             margin: 0 8px;
@@ -851,17 +858,19 @@ $color-white: #ffffff;
 
       .create-tab-group {
         width: 100%;
+
         .mat-tab-header {
           border-radius: 25px;
           border: 1px solid #0070db;
+
           // background: red;
           .mat-tab-label-container {
             .mat-tab-list {
               .mat-tab-labels {
-                .mat-tab-label{
+                .mat-tab-label {
                   height: 40px !important;
                 }
-                
+
               }
 
               .mat-tab-label-active {
@@ -870,6 +879,7 @@ $color-white: #ffffff;
                 border-radius: 25px;
                 height: 40px !important;
               }
+
               .mat-ink-bar {
                 background-color: transparent;
               }
@@ -883,7 +893,17 @@ $color-white: #ffffff;
 }
 
 ///END Create report pop up
-
+//Successful pop up
+.successful-container {
+  
+  .successful-text-action-container {
+      .successful-text-button {
+          width: 170px !important;
+          height: 40px !important;
+      }
+  }
+}
+//END Successful pop up
 
 //angular meterial glob css
 button:focus {
@@ -919,7 +939,7 @@ button:focus {
 
 .icon-button {
   float: right;
-  padding: 2px 15px;
+  padding: 10px 15px;
   text-align: center;
   width: 50px !important;
   height: 50px !important;
@@ -972,15 +992,41 @@ table {
   }
 }
 
+.mat-stroked-button.mat-primary {
+  color: #0078D7;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #0078D7;
+  color: white;
+}
+
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  background-color: #0078D7;
+}
 
 //END angular meterial glob css
 
 
 
 //Default Custom css
-.buttonWidth{
+.buttonColorBg {
+  background: #0078D7;
+}
+
+.buttonColorFont {
+  color: #0078D7;
+}
+
+.buttonWidth {
   width: 100px;
 }
+
 .p-15 {
   padding: 15px !important;
 }

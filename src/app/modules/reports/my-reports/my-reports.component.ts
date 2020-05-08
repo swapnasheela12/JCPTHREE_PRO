@@ -55,34 +55,37 @@ export class MyReportsComponent implements OnInit {
       {
         headerName: "Report Name",
         field: "reportname",
-        headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        checkboxSelection: true,
+        // headerCheckboxSelection: true,
+        // headerCheckboxSelectionFilteredOnly: true,
+        // checkboxSelection: true,
         width: 320
       }, {
         headerName: "Report Measure",
         field: "reportmeasure",
-        width: 150
+        width: 180
       }, {
         headerName: "Report Category",
         field: "reportcategory",
-        width: 180
-      }, {
-        headerName: "Target Report",
-        field: "targetreport",
-        width: 140
-      }, {
-        headerName: "Domain",
-        field: "domain",
-        width: 100
-      }, {
-        headerName: "Created Date",
-        field: "createddate",
-        width: 125
-      }, {
+        width: 210
+      },
+      //  {
+      //   headerName: "Target Report",
+      //   field: "targetreport",
+      //   width: 140
+      // }, {
+      //   headerName: "Domain",
+      //   field: "domain",
+      //   width: 100
+      // },
+      {
         headerName: "Progress",
         cellRenderer: this.progressTaskFunc,
         enableRowGroup: true,
+        width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: "createddate",
         width: 180
       }, {
         headerName: "",
@@ -92,7 +95,7 @@ export class MyReportsComponent implements OnInit {
         cellRenderer: function (params) {
           if (!params.data)
             return '';
-          var template = '<div> <i class="zmdi zmdi-more-vert"></i> </div>';
+          var template = '<div style="font-size: 20px;"> <i class="zmdi zmdi-more-vert"></i> </div>';
           return template;
         },
         width: 80
@@ -133,11 +136,13 @@ export class MyReportsComponent implements OnInit {
       return template3;
     }
   }
-
+  // onFirstDataRendered(params) {
+  //   params.api.sizeColumnsToFit();
+  // }
   onGridReadyMyReport(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // this.gridApi.sizeColumnsToFit();
+    this.gridApi.sizeColumnsToFit();
 
     this.httpClient
       .get("assets/data/report/my-report.json")

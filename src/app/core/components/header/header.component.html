@@ -65,25 +65,25 @@
                     <div class="icon-container" (click)="openFullscreen($event)" *ngIf="expandScreen == false">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen hvr-grow"></div>
+                            <div class="zmdi zmdi-fullscreen"></div>
                         </button>
                     </div>
                     <div class="icon-container" (click)="closeFullscreen()" *ngIf="expandScreen == true">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen-exit hvr-grow"></div>
+                            <div class="zmdi zmdi-fullscreen-exit"></div>
                         </button>
                     </div>
                     <div class="icon-container ">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <mat-icon class="zmdi zmdi-bookmark-outline hvr-grow"></mat-icon>
+                            <div class="zmdi zmdi-bookmark-outline"></div>
                         </button>
                     </div>
                     <div class="icon-container">
                         <button mat-button [matMenuTriggerFor]="notifications"
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-notifications-active note-icon hvr-grow"
+                            <div class="zmdi zmdi-notifications-active note-icon"
                                 matBadge="{{randomNotificationCount}}" matBadgeColor="warn">
                             </div>
                         </button>
@@ -204,7 +204,7 @@
                 </div>
                 <div class="admin-toolbar">
                     <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
-                        <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button hvr-grow" width="40" />
+                        <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button" width="40" />
                     </button>
                     <mat-menu #menuAdmin="matMenu" class="menuAdmin-dropdown arrow-top">
                         <div class="justify-content-center align-items-center userDetails-Container">
@@ -242,7 +242,7 @@
     </div>
     <div class="jcp-sub-toolbar-row justify-content-between">
         <div class="col jcp-sub-toolbar-row-left p-0">
-            <div class="tab-container hvr-grow">
+            <div class="tab-container">
                 <div class="icon-count"><span style="font-size: 12px;">+4</span></div>
                 <div class="icon-style"><i class="ic ic-breadcrumbs-01"></i></div>
             </div>
@@ -259,10 +259,10 @@
         </div>
         <div class="col jcp-sub-toolbar-row-right p-0">
             <div class="icon-right-list">
-                <div class="ic ic-dots sizeOfIcon hvr-grow"></div>
-                <div class="ic ic-minimize-01 sizeOfIcon hvr-grow"></div>
+                <div class="ic ic-dots sizeOfIcon"></div>
+                <div class="ic ic-minimize-01 sizeOfIcon"></div>
                 <!-- <div class="fas fa-external-link-alt sizeOfIcon"></div> -->
-                <div class="ic ic-close-01 sizeOfIcon hvr-grow"></div>
+                <div class="ic ic-close-01 sizeOfIcon"></div>
             </div>
         </div>
     </div>

@@ -50,7 +50,8 @@ import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
 import { RouterModule } from '@angular/router';
-
+import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -58,12 +59,13 @@ import { RouterModule } from '@angular/router';
     FilterUniquePipe,
     HeaderComponent,
     LeftsideNavigationComponent,
-    MmenuDirective
+    MmenuDirective,
+    SuccessfulComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-
+    FlexLayoutModule,
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -114,7 +116,10 @@ import { RouterModule } from '@angular/router';
   exports: [
     HeaderComponent,
     LeftsideNavigationComponent,
-    MmenuDirective
+    MmenuDirective,
+    SuccessfulComponent
+  ], entryComponents: [
+    SuccessfulComponent
   ]
 })
 export class CoreModule { }

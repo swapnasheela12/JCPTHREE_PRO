@@ -11,8 +11,8 @@
     // padding: 15px 0px;
     display: flex;
     // padding: 15px 0;
-    height: 50px;
-
+    height: 56px;
+    padding: 6px 0;
     .jcp-toolbar-col-center {
 
       .jcp-toolbar-search-row {
@@ -35,7 +35,7 @@
               font-size: 15px;
               font-family: 'Lato Regular';
               border-radius: 20px;
-              height: 40px;
+              height: 36px;
               background: #B3D4F4;
               position: relative;
               border: 0px solid #ced4da;
@@ -81,9 +81,10 @@
           // background:rgba(0,0,0,0.6);
           background: rgba(0, 0, 0, 0.2);
           border-radius: 10px;
+          margin: 3px 0px;
           // padding: 5px;
-          padding: 4px;
-          margin: 2px 0px 2px 5px;
+          // padding: 4px;
+          // margin: 2px 0px 2px 5px;
 
           .icon-container {
             // margin: auto;
@@ -128,8 +129,8 @@
           .adminButton {
             padding: 6px 0;
             border-radius: 30px;
-            width: 50px !important;
-            height: 50px !important;
+            width: 36px !important;
+            height: 36px !important;
             min-width: 50px !important;
 
             .user-button {
@@ -149,6 +150,7 @@
   .jcp-sub-toolbar-row {
     display: flex;
     margin-top: 6px;
+    height: 50px;
     // margin: 0 20px;
     // padding: 15px;
     // margin-bottom: 15px;
@@ -180,7 +182,7 @@
           color: #B3D4F4;
         }
 
-        :hover {
+        .icon-style:hover {
           background: rgba(0, 112, 219, 0.5411764705882353);
           color: #ffffff;
         }

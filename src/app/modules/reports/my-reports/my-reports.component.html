@@ -15,13 +15,13 @@
             <div class="px-3 pt-3  col-4 my-report-flex-item">
 
                 <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
-                    <span class="zmdi zmdi-search hvr-grow"></span>
+                    <span class="zmdi zmdi-search"></span>
                 </mat-icon>
 
                 <mat-form-field *ngIf="show">
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-                    <mat-icon class="search-filter-icon hvr-shrink" (click)="show = !show;" aria-label="search">
+                    <!-- <mat-label>Filter</mat-label> -->
+                    <input matInput (keyup)="applyFilter($event)" placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="show = !show;" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
