@@ -33,7 +33,7 @@ export class CreateReportComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateReportComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataSuccess: DialogDataSuccessful) {
-
+      dialogRef.disableClose = true;
 
       this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
         setTimeout(() => {
