@@ -497,17 +497,17 @@ $color-white: #ffffff;
 .report-wizard-container {
 
   .report-wizard-card-two {
-    height: calc(100% - 225px);
-    min-height: calc(100% - 225px);
-    max-height: calc(100% - 225px);
+    // height: calc(100% - 165px);
+    // min-height: calc(100% - 165px);
+    // max-height: calc(100% - 165px);
 
     .report-filter-tab-group {
       height: 100%;
 
       .mat-horizontal-content-container {
-        height: calc(100% - 72px);
-        min-height: calc(100% - 72px);
-        max-height: calc(100% - 72px);
+        // height: calc(100% - 72px);
+        // min-height: calc(100% - 72px);
+        // max-height: calc(100% - 72px);
         padding: 0;
 
         // .mat-horizontal-stepper-content {
@@ -606,7 +606,7 @@ $color-white: #ffffff;
       // top: 95px !important;
       // left: -174% !important;
       // right: 15px !important;
-      // top: 44px !important;
+      top: 44px !important;
       left: auto !important;
       right: auto !important;
       position: fixed;
@@ -616,7 +616,9 @@ $color-white: #ffffff;
       border-radius: 4px;
       width: 643px !important; // width: 278px;
       padding: 12px;
-      margin-top: -55px !important;
+      // margin-top: -55px !important;
+      margin-top: 115px !important;
+      margin-left: 138px !important;
       overflow: hidden;
       z-index: 1000;
       font-size: 14px;
@@ -833,9 +835,51 @@ $color-white: #ffffff;
 ///Create report pop up
 .material-dialog-container {
   .mat-dialog-container {
-      border-radius: 0px;
-      padding: 0px !important;
+    border-radius: 0px;
+    padding: 0px !important;
   }
+}
+
+.create-report-container {
+
+  .create-report-dialog-content {
+    padding: 0px 15px;
+    margin: 0px;
+    height: calc(100% - 110px);
+
+    .report-engin-container {
+
+      .create-tab-group {
+        width: 100%;
+        .mat-tab-header {
+          border-radius: 25px;
+          border: 1px solid #0070db;
+          // background: red;
+          .mat-tab-label-container {
+            .mat-tab-list {
+              .mat-tab-labels {
+                .mat-tab-label{
+                  height: 40px !important;
+                }
+                
+              }
+
+              .mat-tab-label-active {
+                color: #fff !important;
+                background: #0070db !important;
+                border-radius: 25px;
+                height: 40px !important;
+              }
+              .mat-ink-bar {
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 ///END Create report pop up
@@ -934,6 +978,9 @@ table {
 
 
 //Default Custom css
+.buttonWidth{
+  width: 100px;
+}
 .p-15 {
   padding: 15px !important;
 }

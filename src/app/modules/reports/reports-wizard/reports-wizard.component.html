@@ -2,33 +2,28 @@
   <mat-card class="report-wizard-card-one">
     <mat-card-content>
       <div class="d-flex flex-row flex-wrap report-flex-container">
-        <div class="p-3 report-flex-item col-4">
+        <div class="px-3 report-flex-item col-4">
           <div class="report-form-field-read">
             <div class="report-form-input-title">Report Measure*</div>
             <div class="report-form-input-value">RF Analysis</div>
             <!-- <input matInput placeholder="Ex. Pizza" value="RF Analysis"> -->
           </div>
         </div>
-        <div class="p-3 report-flex-item col-4">
+        <div class="px-3 report-flex-item col-4">
           <div class="report-form-field-read">
             <div class="report-form-input-title">Report Category*</div>
             <div class="report-form-input-value">ODSC Planning Report</div>
             <!-- <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report"> -->
           </div>
         </div>
-        <div class="p-3 report-flex-item col-4">
+        <div class="px-3 report-flex-item col-4">
           <mat-form-field class="report-form-field">
             <mat-label>Report Name</mat-label>
             <input matInput placeholder="Ex. Pizza" value="ODSC Planning Report - Pan-India">
           </mat-form-field>
         </div>
-        <div class="p-3 report-flex-item col-4">
-          <!-- <mat-form-field class="report-form-field">
-            <mat-label>Target Report</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="-">
-          </mat-form-field> -->
+        <div class="px-3 report-flex-item col-4">
           <mat-form-field class="report-form-field">
-            <!-- <mat-label>Target Report</mat-label> -->
             <mat-select disableOptionCentering placeholder="Target Report" [(ngModel)]="targetReport"
               panelClass="selectMenuPanel">
               <mat-option value="ODSC Planning Report" selected>ODSC Planning Report</mat-option>
@@ -170,12 +165,12 @@
 
 <div class="d-flex flex-row report-wizard-action-container">
   <div class="p-2 my-flex-item mr-auto">
-    <button mat-stroked-button color="primary" (click)="openDialog($event)">Go Back</button>
+    <button mat-stroked-button color="primary" (click)="openDialog($event)" class="buttonWidth">Go Back</button>
   </div>
   <div class="p-2 my-flex-item">
-    <button mat-stroked-button color="primary">Cancel</button>
+    <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
   </div>
   <div class="p-2 my-flex-item">
-    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched">Generate</button>
+    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" class="buttonWidth">Generate</button>
   </div>
 </div>

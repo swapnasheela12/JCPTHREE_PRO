@@ -1,30 +1,33 @@
 .report-wizard-container {
-    height: calc(100vh - 195px);
-    min-height: calc(100vh - 195px);
-    max-height: calc(100vh - 195px);
+    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
 
     .report-wizard-card-one {
         .report-flex-container {
+            margin-top: 10px;
+
             .report-flex-item {
                 .report-form-field {
                     width: 100%;
                 }
+
                 .report-form-field-read {
                     .report-form-input-title {
-                      font-size: 10px;
-                      color: #767676;
+                        font-size: 10px;
+                        color: #767676;
                     }
-  
+
                     .report-form-input-value {
-                      font-size: 15px;
+                        font-size: 15px;
                     }
-                  }
+                }
             }
         }
     }
 
     .report-wizard-card-two {
-        margin: 15px 0;
+        margin: 10px 0;
         // height: calc(100% - 225px);
         // min-height: calc(100% - 225px);
         // max-height: calc(100% - 225px);

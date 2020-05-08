@@ -40,6 +40,8 @@ export class ReportsWizardComponent implements OnInit {
   //////////breadcrums///////////////
 
   ///////datepicker//////////
+  opens = 'right';
+  drops = 'down';
   public todaysDay = new Date();
   selectedDateTime: any;
   selectedDateTimeValue: boolean = false;
@@ -140,6 +142,9 @@ export class ReportsWizardComponent implements OnInit {
 
   ngOnInit() {
     this.stepperReportW();
+    setTimeout(() => {
+      this.openDialog();
+    }, 200);
   }
 
   stepperReportW() {
@@ -187,6 +192,6 @@ export class ReportsWizardComponent implements OnInit {
       this.animal = result;
     });
   };
-  
+
 
 }
