@@ -1,0 +1,46 @@
+.successful-container {
+    width: 516px;
+    height: 288px;
+
+    .successful-circle-container {
+        .circle-type {
+            position: absolute;
+            width: 134px;
+            height: 134px;
+            border-radius: 75px;
+            background: #0070DB;
+
+
+            .icon-success {
+                font-size: 65px;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .successful-text-container {
+        padding-top: 15%;
+        text-align: center;
+
+        .successful-text-header {
+            font-size: 22px;
+            font-family: Lato Bold;
+
+        }
+
+        .successful-text-subheader {
+            font-size: 15px;
+            font-family: Lato Regular;
+        }
+    }
+
+    .successful-text-action-container {
+        .successful-text-button {
+            width: 170px;
+            height: 40px;
+            .success-butt{
+                height: 40px;
+            }
+        }
+    }
+}

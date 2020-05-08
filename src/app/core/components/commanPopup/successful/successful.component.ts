@@ -1,0 +1,58 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {Observable, Observer} from 'rxjs';
+import { Router } from '@angular/router';
+import { CreateReportComponent } from 'src/app/modules/reports/reports-wizard/create-report/create-report.component';
+
+export interface DialogDataSuccessful {
+  gotomyreportInterface: string;
+  newreportInterface: string;
+}
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+@Component({
+  selector: 'app-successful',
+  templateUrl: './successful.component.html',
+  styleUrls: ['./successful.component.scss']
+})
+export class SuccessfulComponent implements OnInit {
+
+  constructor(public dialogRef: MatDialogRef<SuccessfulComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataSuccessful,private router: Router, public dialog: MatDialog) { 
+      router.events.subscribe((url: any) => console.log(url));
+      console.log(router.url)
+    }
+
+  ngOnInit() {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  clickCreateNewReport(): void{
+    this.dialogRef.close();
+    this.router.navigate(['/Home/Reports-and-Dashboard/Report-Wizard']);
+  }
+
+  animal: string;
+  name: string;
+  clickGoMyReport(): void{
+    // this.dialogRef.close();
+    // this.router.navigate(['/Home/Reports-and-Dashboard/My-Reports']);
+    const dialogRef = this.dialog.open(CreateReportComponent, {
+      width: "700px",
+      panelClass: "material-dialog-container",
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.animal = result;
+    });
+  }
+
+
+}
