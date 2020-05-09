@@ -35,7 +35,7 @@
     <div class="jcp-table-container">
 
         <ag-grid-angular #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
-            [columnDefs]="columnDefsMyReport" [defaultColDef]="defaultColDefMyReport" [rowSelection]="rowSelection"
+            [columnDefs]="columnDefsMyReport" [enableFilter]="true" [rowSelection]="rowSelection"
             [animateRows]="true" [rowData]="rowDataMyReport" (gridReady)="onGridReadyMyReport($event)" [icons]="icons">
         </ag-grid-angular>
 

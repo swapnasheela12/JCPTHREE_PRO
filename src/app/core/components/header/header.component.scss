@@ -11,18 +11,69 @@
     // padding: 15px 0px;
     display: flex;
     // padding: 15px 0;
-    height: 56px;
-    padding: 6px 0;
+    height: 52px;
+
+    // padding: 6px 0;
+    .jcp-toolbar-col-left {
+      .jcp-toolbar-search-tbutt {
+        // width: 20%;
+        // position: absolute;
+        width: 1%;
+        float: left;
+
+        .toolbar-botton-inner {
+          padding: 0 !important;
+          font-size: 25px !important;
+          border-radius: 30px !important;
+          width: 50px !important;
+          height: 50px !important;
+          min-width: 50px !important;
+
+          // margin-top: 0.2rem;
+          // margin-left: 18px;
+          .menu-inner {
+            font-size: 25px;
+            padding: 10px 0;
+          }
+
+          .menu-inner::before {
+            font-size: 1.5rem;
+          }
+        }
+
+        :focus,
+        :hover {
+          outline: 0;
+          // color: #0070DB;
+        }
+
+        .active-menu-button {
+          display: none;
+        }
+
+        .activeNot-menu-button {
+          display: contents;
+        }
+      }
+
+      .active-jcpToggle {
+        width: 0%;
+        display: none;
+      }
+
+      .activeNot-jcpToggle {
+        width: 0%;
+      }
+    }
+
     .jcp-toolbar-col-center {
 
       .jcp-toolbar-search-row {
         display: flex;
 
-
-
         .jcp-toolbar-search-form {
           width: 100%;
-          margin-left: 58px;
+          margin-left: 50px;
 
           .form-group {
             margin-bottom: 0;
@@ -55,8 +106,8 @@
             .search-icon {
               position: absolute;
               color: #0070DB;
-              right: 15px;
-              top: 10px;
+              right: 10px;
+              top: 8px;
               font-size: 24px;
             }
 
@@ -73,15 +124,15 @@
       // padding: 0;
 
       .jcp-toolbar-row-right-content {
-        margin: 0;
-        float: right;
+        // margin: 0;
+        // float: right;
 
         .icon-parent-container {
           display: inline-flex;
           // background:rgba(0,0,0,0.6);
           background: rgba(0, 0, 0, 0.2);
           border-radius: 10px;
-          margin: 3px 0px;
+          // margin: 3px 0px;
           // padding: 5px;
           // padding: 4px;
           // margin: 2px 0px 2px 5px;
@@ -119,27 +170,52 @@
 
 
         .admin-toolbar {
+
           // padding: 0 15px;
-          padding: 0 8px;
+          // padding: 0 8px;
+          .admin-toolbar-container {
+            .adminButton {
+              .user-button {
 
-          button:focus {
-            outline: 0px auto -webkit-focus-ring-color !important;
-          }
+                // cursor: pointer;
+                // border-radius: 25px;
+                // border: solid 1px;
+                // height: 40px;
 
-          .adminButton {
-            padding: 6px 0;
-            border-radius: 30px;
-            width: 36px !important;
-            height: 36px !important;
-            min-width: 50px !important;
+                width: 36px;
+                height: 36px;
+                border-radius: 18px;
+                border: solid 1px;
 
-            .user-button {
-              cursor: pointer;
-              border-radius: 25px;
-              border: solid 1px;
-              height: 40px;
+              }
             }
+
+            button:focus {
+              outline: 0px auto -webkit-focus-ring-color !important;
+            }
+
           }
+
+
+          // .adminButton {
+          // padding: 6px 0;
+          // border-radius: 30px;
+          // width: 30px !important;
+          // height: 30px !important;
+          // min-width: 30px !important;
+
+          // .user-button {
+          //   // cursor: pointer;
+          //   // border-radius: 25px;
+          //   // border: solid 1px;
+          //   // height: 40px;
+          //   {
+          //     width: 36px;
+          //     height: 36px;
+          //     border-radius: 18px;
+          // }
+          // }
+          // }
         }
 
       }
@@ -149,8 +225,9 @@
 
   .jcp-sub-toolbar-row {
     display: flex;
-    margin-top: 6px;
+    // margin-top: 6px;
     height: 50px;
+    margin: 0 0 0 15px;
     // margin: 0 20px;
     // padding: 15px;
     // margin-bottom: 15px;
@@ -165,7 +242,7 @@
 
         .icon-count {
           position: absolute;
-          top: 20px;
+          top: 24px;
           left: 26px;
           color: #006BD2;
           font-size: 12px;

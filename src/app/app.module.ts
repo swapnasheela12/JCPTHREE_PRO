@@ -83,6 +83,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
 import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
+import { SideNavService } from './_services/side-nav.service';
 
 declare var $: any;
 
@@ -173,6 +174,7 @@ declare var $: any;
 
     // provider used to create fake backend
     fakeBackendProvider,
+    SideNavService,
     NavService
   ],
   bootstrap: [AppComponent],

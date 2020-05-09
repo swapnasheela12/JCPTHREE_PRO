@@ -140,6 +140,8 @@ export class MyReportsComponent implements OnInit {
   //   params.api.sizeColumnsToFit();
   // }
   onGridReadyMyReport(params) {
+    console.log(params,"params");
+    
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();

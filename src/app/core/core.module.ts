@@ -52,6 +52,7 @@ import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
 import { RouterModule } from '@angular/router';
 import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SideNavService } from '../_services/side-nav.service';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -112,6 +113,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTreeModule,
     PortalModule,
     ScrollingModule
+  ],
+  providers: [
+    SideNavService
   ],
   exports: [
     HeaderComponent,

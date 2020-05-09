@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges, HostListener, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges, HostListener, ViewEncapsulation, Output } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material';
 import { BehaviorSubject, Observable, of as observableOf, from } from "rxjs";
@@ -14,7 +14,8 @@ import { User } from '../../../_models/user';
 declare var $: any;
 import * as _ from "lodash";
 import { OverlayContainer } from '@angular/cdk/overlay';
-
+import { SideNavService } from 'src/app/_services/side-nav.service';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 export class searchList {
   constructor(
@@ -39,6 +40,7 @@ export class recentVisitList {
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+
   ////authentication/////
   currentUser: User;
   ////authentication/////
@@ -105,12 +107,16 @@ export class HeaderComponent implements OnInit {
 
 
 
-
-
-  constructor(private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer) {
+  public testval;
+  message: string;
+  constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
     router.events.subscribe((url: any) => console.log(url));
-    console.log(router.url)
+    // console.log(router.url)
+    console.log(datashare, "datashare");
 
+    console.log(this.sideNavService, "this.sideNavService header");
+    console.log(this.sideNavService.sideNavToggleSubject.closed, "this.sideNavService header");
+    this.testval = this.sideNavService.sideNavToggleSubject.closed
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
@@ -119,11 +125,9 @@ export class HeaderComponent implements OnInit {
         let spaceAddURL = this.route.split('%20').join(' ')
         this.breadcrumbList = spaceAddURL.split('/');
         this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
-        console.log(this.breadcrumbList, "this.breadcrumbList");
         this.breadcrumbList.forEach(ele => {
           this.mainHeaderName = ele;
         });
-        console.log(this.mainHeaderName);
 
         // this.mainHeaderName = this.breadcrumbLis.pop();
         this.count = this.breadcrumbList.length;
@@ -131,6 +135,7 @@ export class HeaderComponent implements OnInit {
         this.route = 'Home';
       }
     });
+
     /////////////breadcrums////////////////////
 
     ///////////user authenticat/////////////
@@ -150,6 +155,9 @@ export class HeaderComponent implements OnInit {
     //////////////search///////////////////
   }
 
+
+  
+
   //////////////search///////////////////
   filterStates(name: string) {
     return this.searchlist.filter(
@@ -157,8 +165,6 @@ export class HeaderComponent implements OnInit {
     );
   }
   filterStatesVisited(name: string) {
-    console.log(name, "name");
-
     return this.recentvisitlist.filter(
       state => state.name.toLowerCase().indexOf(name.toLowerCase()) === 0
     );
@@ -166,14 +172,12 @@ export class HeaderComponent implements OnInit {
   addClassActiveSearch = false;
   onEnter(evt: any) {
     if (evt.source.selected) {
-      console.log("bahar");
     }
   }
 
   search(item) {
     this.addClassActiveSearch = !this.addClassActiveSearch;
     if (item._isOpen) {
-      console.log("under");
     }
   }
   //////////////search///////////////////
@@ -248,151 +252,164 @@ export class HeaderComponent implements OnInit {
 
   /////////User logout////////////
 
-///////////Notification/////////////////
-notificationsList = [
-  {
-    iconMod: "ic ic-imsi_Work-Orders",
-    statusMod: "Now",
-    name: "Reports",
-    detailsMod: "RepODSC Planning Report has been generatedorts",
-    hideMe: true
-  },
-  {
+  ///////////Notification/////////////////
+  notificationsList = [
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Now",
+      name: "Reports",
+      detailsMod: "RepODSC Planning Report has been generatedorts",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "15m",
+      name: "Work Order",
+      detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to you epODSC Planning Report has been generatedorts",
+      hideMe: false
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Yesterday",
+      name: "Reports",
+      detailsMod: "Your Subscribed report ‘RET WO status Report is available",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Apr 10, 2020",
+      name: "Dashboards",
+      detailsMod: "Check out the new features available on JCP",
+      hideMe: true
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Now",
+      name: "Layers",
+      detailsMod: "RepODSC Planning Report has been generatedorts",
+      hideMe: false
+    },
+    {
+      iconMod: "ic ic-imsi_Work-Orders",
+      statusMod: "Yesterday",
+      name: "Dashboards",
+      detailsMod: "Your Subscribed report ‘RET WO status Report is available",
+      hideMe: false
+    }
+  ]
+
+  public randomNotificationCount: number;
+
+  onLoad() {
+    console.log("load");
+    var divLength = this.notificationsList.length;
+    this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
+    console.log(this.randomNotificationCount, "randomDiv");
+  }
+
+
+  olderArr = [{
     iconMod: "ic ic-imsi_Work-Orders",
     statusMod: "15m",
     name: "Work Order",
-    detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to you epODSC Planning Report has been generatedorts",
-    hideMe: false
-  },
-  {
-    iconMod: "ic ic-imsi_Work-Orders",
-    statusMod: "Yesterday",
-    name: "Reports",
-    detailsMod: "Your Subscribed report ‘RET WO status Report is available",
-    hideMe: true
-  },
-  {
-    iconMod: "ic ic-imsi_Work-Orders",
-    statusMod: "Apr 10, 2020",
-    name: "Dashboards",
-    detailsMod: "Check out the new features available on JCP",
-    hideMe: true
-  },
-  {
-    iconMod: "ic ic-imsi_Work-Orders",
-    statusMod: "Now",
-    name: "Layers",
-    detailsMod: "RepODSC Planning Report has been generatedorts",
-    hideMe: false
-  },
-  {
-    iconMod: "ic ic-imsi_Work-Orders",
-    statusMod: "Yesterday",
-    name: "Dashboards",
-    detailsMod: "Your Subscribed report ‘RET WO status Report is available",
-    hideMe: false
+    detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
+    hideMe: true,
+    oldNote: true
   }
-]
-
-public randomNotificationCount: number;
-
-onLoad() {
-  console.log("load");
-  var divLength = this.notificationsList.length;
-  this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
-  console.log(this.randomNotificationCount, "randomDiv");
-}
-
-
-olderArr = [{
-  iconMod: "ic ic-imsi_Work-Orders",
-  statusMod: "15m",
-  name: "Work Order",
-  detailsMod: "RWork order ‘ WO-IM-MFN-AB-1023’ has been assigned to youepODSC Planning Report has been generatedorts",
-  hideMe: true,
-  oldNote: true
-}
-]
-public oldNoteName;
-showOlderNoteFunc(notificationsList) {
-  for (let index = 0; index < this.olderArr.length; index++) {
-    const eleOldNote = this.olderArr[index];
-    this.oldNoteName = eleOldNote.oldNote;
-    notificationsList.push(eleOldNote);
-  }
-
-
-}
-
-viewAllNoteFunc(notificationsList) {
-  console.log(notificationsList, "list");
-  _.forEach(notificationsList, function (value) {
-    console.log(value, "val");
-    if (value.hideMe == false) {
-      value.hideMe = true;
+  ]
+  public oldNoteName;
+  showOlderNoteFunc(notificationsList) {
+    for (let index = 0; index < this.olderArr.length; index++) {
+      const eleOldNote = this.olderArr[index];
+      this.oldNoteName = eleOldNote.oldNote;
+      notificationsList.push(eleOldNote);
     }
-  });
 
-}
 
-public selectedNameMod: string = "All Notifications";
-
-filterDataOnSelection = false;
-filterDataArr = [];
-
-allNameNoteFunc(item) {
-  console.log(item, "item");
-  if (item.value == "All Notifications") {
-    this.filterDataOnSelection = false;
-  } else {
-    var filterData = this.notificationsList.filter(t => t.name == item.value);
-    console.log(filterData, "filterData");
-    this.filterDataOnSelection = true;
-    this.filterDataArr = filterData;
   }
 
-}
-///////////Notification/////////////////
+  viewAllNoteFunc(notificationsList) {
 
-//////////BreadCrums////////////////
-breadcrumbFun(val) {
-  console.log(val, "val");
+    _.forEach(notificationsList, function (value) {
 
-  if (val == "ExecutiveSummary" || val == "Dashboard") {
-    this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
-    }, err => {
-      console.log(err) // when there's an error
+      if (value.hideMe == false) {
+        value.hideMe = true;
+      }
     });
-  } else {
-    this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
+
+  }
+
+  public selectedNameMod: string = "All Notifications";
+
+  filterDataOnSelection = false;
+  filterDataArr = [];
+
+  allNameNoteFunc(item) {
+
+    if (item.value == "All Notifications") {
+      this.filterDataOnSelection = false;
+    } else {
+      var filterData = this.notificationsList.filter(t => t.name == item.value);
+
+      this.filterDataOnSelection = true;
+      this.filterDataArr = filterData;
+    }
+
+  }
+  ///////////Notification/////////////////
+
+  //////////BreadCrums////////////////
+  breadcrumbFun(val) {
+
+
+    if (val == "ExecutiveSummary" || val == "Dashboard") {
+      this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
+      }, err => {
+
+      });
+    } else {
+      this.router.navigate(['/', 'Dashborad', 'ExecutiveSummary']).then(val => {
+      }, err => {
+
+      });
+    }
+
+  }
+
+
+  reportWizardFuction() {
+    this.router.navigate(['/', 'Home', 'Reports & Dashboard', 'Report Wizard']).then(val => {
     }, err => {
-      console.log(err) // when there's an error
+
     });
   }
 
-}
+  myreportFuction() {
+    this.router.navigate(['/', 'Home', 'Reports & Dashboard', 'My Reports']).then(val => {
+    }, err => {
 
+    });
+  }
 
-reportWizardFuction(){
-  this.router.navigate(['/','Home', 'Reports & Dashboard', 'Report Wizard']).then(val => {
-  }, err => {
-    console.log(err) // when there's an error
-  });
-}
-
-myreportFuction(){
-  this.router.navigate(['/','Home', 'Reports & Dashboard', 'My Reports']).then(val => {
-  }, err => {
-    console.log(err) // when there's an error
-  });
-}
-
-//////////BreadCrums////////////////
+  //////////BreadCrums////////////////
 
   ngOnInit() {
     this.elem = document.documentElement;
     this.onLoad();
+    this.datashare.currentMessage.subscribe((message) => {
+      // message = message;
+      this.testval = message;
+      console.log(this.testval, "this.testval");
 
+    });
+   
+
+  }
+
+  clickMenu() {
+    console.log( this.sideNavService," this.sideNavService");
+    
+    this.sideNavService.toggle();
   }
 
 }

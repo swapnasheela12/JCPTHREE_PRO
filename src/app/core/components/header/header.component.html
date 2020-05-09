@@ -1,7 +1,15 @@
 
-<div class="jcp-toolbar-container">
-    <div class="jcp-toolbar-row">
-        <div class="col-9 jcp-toolbar-col-center p-0">
+<div class="jcp-toolbar-container" fxLayout="column warp">
+    <div class="jcp-toolbar-row" fxLayout="row warp" fxLayoutAlign="space-between center">
+        <div class="col-1 jcp-toolbar-col-left p-0">
+            <!-- <div class="jcp-toolbar-search-tbutt">
+                <button type="button" mat-button class="mx-2 toolbar-botton-inner" (click)="clickMenu()"> -->
+                <!-- <button  [ngClass]="{'active-menu-button': !testval, 'activeNot-menu-button': testval}" type="button" mat-button class="mx-2 toolbar-botton-inner" (click)="clickMenu()"> -->
+                    <!-- <div class="menu-inner ic ic-menu-01" aria-label="Menu"></div>
+                </button>
+            </div> -->
+        </div>
+        <div class="col-8 jcp-toolbar-col-center p-0">
             <div class="jcp-toolbar-search-row">
                 <!-- <div class="jcp-toolbar-search-tbutt" [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
                     <button type="button" mat-button class="toolbar-botton-inner" (click)="sidenav.toggle()">
@@ -60,31 +68,31 @@
             </div>
         </div>
         <div class="col-3 jcp-toolbar-col-right p-0">
-            <div class="row jcp-toolbar-row-right-content">
+            <div class="jcp-toolbar-row-right-content" fxLayout="row warp" fxLayoutAlign="end center">
                 <div class="icon-parent-container">
                     <div class="icon-container" (click)="openFullscreen($event)" *ngIf="expandScreen == false">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen"></div>
+                            <div class="zmdi zmdi-fullscreen" style="font-size: 22px;"></div>
                         </button>
                     </div>
                     <div class="icon-container" (click)="closeFullscreen()" *ngIf="expandScreen == true">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen-exit"></div>
+                            <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;"></div>
                         </button>
                     </div>
                     <div class="icon-container ">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-bookmark-outline"></div>
+                            <div class="zmdi zmdi-bookmark-outline" style="font-size: 22px;"></div>
                         </button>
                     </div>
                     <div class="icon-container">
                         <button mat-button [matMenuTriggerFor]="notifications"
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-notifications-active note-icon"
-                                matBadge="{{randomNotificationCount}}" matBadgeColor="warn">
+                                matBadge="{{randomNotificationCount}}" matBadgeSize="small" matBadgeColor="warn">
                             </div>
                         </button>
                         <mat-menu #notifications="matMenu" class="notifications-dropdown">
@@ -203,9 +211,11 @@
                     </div>
                 </div>
                 <div class="admin-toolbar">
-                    <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
-                        <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button" width="40" />
-                    </button>
+                    <div class="admin-toolbar-container">
+                        <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
+                            <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button"/>
+                        </button>
+                    </div>
                     <mat-menu #menuAdmin="matMenu" class="menuAdmin-dropdown arrow-top">
                         <div class="justify-content-center align-items-center userDetails-Container">
                             <img src="assets/images/logo/user.jpeg" alt="IOT" class="userImg" width="50" />
@@ -240,7 +250,7 @@
             </div>
         </div>
     </div>
-    <div class="jcp-sub-toolbar-row justify-content-between">
+    <div class="jcp-sub-toolbar-row justify-content-between" fxLayout="row warp">
         <div class="col jcp-sub-toolbar-row-left p-0">
             <div class="tab-container">
                 <div class="icon-count"><span style="font-size: 12px;">+4</span></div>
