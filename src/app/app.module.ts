@@ -77,13 +77,15 @@ import { CoreModule } from './core/core.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 
-import { AngularSlickgridModule } from 'angular-slickgrid';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
 import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
 import { SideNavService } from './_services/side-nav.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ButtonRendererComponent } from './modules/reports/my-reports/button-renderer.component';
 
 declare var $: any;
 
@@ -101,8 +103,9 @@ declare var $: any;
     ClickOutsideDirective,
     MyReportsComponent,
     ReportsWizardComponent,
-    CreateReportComponent
+    CreateReportComponent,
     // SuccessfulComponent
+    ButtonRendererComponent
   ],
   imports: [
     // SuccessfulComponent,
@@ -112,9 +115,8 @@ declare var $: any;
     CoreModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([ButtonRendererComponent]),
     NgxDaterangepickerMd.forRoot(),
-    AngularSlickgridModule.forRoot(),
 
     ReactiveFormsModule,
     FormsModule,
@@ -166,7 +168,9 @@ declare var $: any;
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    NgbModule,
+    NgxDaterangepickerMd
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from "@angular/core";
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';

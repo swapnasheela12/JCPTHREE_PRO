@@ -1,7 +1,7 @@
 
 import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges, HostListener, ViewEncapsulation, Output } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject, Observable, of as observableOf, from } from "rxjs";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';

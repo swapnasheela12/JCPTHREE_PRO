@@ -136,8 +136,10 @@
                             [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
                             [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
                             (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
-                            autocomplete="off" />
+                            autocomplete="off"  [opens]="opens"
+                            [drops]="drops" class="daterange-container-input"/>
                           <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                          <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
                         </div>
 
                       </mat-form-field>
@@ -165,12 +167,12 @@
 
 <div class="d-flex flex-row report-wizard-action-container">
   <div class="p-2 my-flex-item mr-auto">
-    <button mat-stroked-button color="primary" (click)="openDialog($event)" class="buttonWidth">Back</button>
+    <button mat-stroked-button color="primary" (click)="openDialog()" class="buttonWidth">Back</button>
   </div>
   <div class="p-2 my-flex-item">
     <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
   </div>
   <div class="p-2 my-flex-item">
-    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" (click)="openDialogSuccessful($event)" class="buttonWidth">Generate</button>
+    <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" (click)="openDialogSuccessful()" class="buttonWidth">Generate</button>
   </div>
 </div>

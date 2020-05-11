@@ -1,15 +1,7 @@
 //ag grid
 
-@import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-material.css";
-
-///slick grid
-/* for example, let's change the mouse hover color */
-$cell-odd-background-color: lightyellow;
-$row-mouse-hover-color: lightgreen;
-
-/* make sure to add the @import the SlickGrid Bootstrap Theme AFTER the variables changes */
-@import '../node_modules/angular-slickgrid/styles/sass/slickgrid-theme-bootstrap.scss';
+@import "~ag-grid-community/dist/styles/ag-grid";
+@import "~ag-grid-community/dist/styles/ag-theme-material";
 
 
 // Custom Theming for Angular Material
@@ -512,6 +504,7 @@ $color-white: #ffffff;
       height: 100%;
       overflow: auto;
       border-radius: 10px;
+
       .mat-horizontal-content-container {
         // height: calc(100% - 72px);
         // min-height: calc(100% - 72px);
@@ -608,226 +601,194 @@ $color-white: #ffffff;
 
 }
 
-.daterange-container {
-  .ng-star-inserted {
-    .md-drppicker {
-      // top: 95px !important;
-      // left: -174% !important;
-      // right: 15px !important;
-      top: 44px !important;
-      left: auto !important;
-      right: auto !important;
-      position: fixed;
-      font-family: Lato Regular !important;
-      color: inherit;
-      background-color: #fff;
-      border-radius: 4px;
-      width: 643px !important; // width: 278px;
-      padding: 12px;
-      // margin-top: -55px !important;
-      margin-top: 115px !important;
-      margin-left: 138px !important;
-      overflow: hidden;
-      z-index: 1000;
-      font-size: 12px !important;
-      background-color: #ffffff;
-      -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+// .daterange-container {
 
-      .ranges {
-        // float: none;
-        text-align: left;
-        margin: 0;
+  .md-drppicker {
+    // top: 95px !important;
+    // left: -174% !important;
+    // right: 15px !important;
+    // top: 44px !important;
+    // left: auto !important;
+    // right: auto !important;
+    position: fixed;
+    font-family: Lato Regular !important;
+    color: inherit;
+    border-radius: 4px;
+    // width: 643px !important; // width: 278px;
+    padding: 12px;
+    // margin-top: -55px !important;
+    // margin-top: 115px !important;
+    // margin-left: 138px !important;
+    overflow: hidden;
+    z-index: 1000;
+    font-size: 12px !important;
+    background-color: #ffffff !important;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
 
-        ul li button.active {
+    .ranges {
+      // float: none;
+      text-align: left;
+      margin: 0;
+
+      ul li button.active {
+        background-color: #0078D7;
+        color: #fff;
+      }
+    }
+
+    .calendar {
+      max-width: 100%;
+      margin: 0px; // float: right;
+
+      .calendar-table {
+        border: 1px solid #fff;
+        padding: 0px 15px;
+        border-radius: 4px;
+        background-color: #fff;
+
+        .table-condensed {
+          .drp-animate {}
+        }
+
+        td.active,
+        .md-drppicker td.active:hover {
           background-color: #0078D7;
+          border-color: transparent;
           color: #fff;
         }
       }
 
-      .calendar {
-        max-width: 100%;
-        margin: 0px; // float: right;
-
-        .calendar-table {
-          border: 1px solid #fff;
-          padding: 0px 15px;
-          border-radius: 4px;
-          background-color: #fff;
-
-          .table-condensed {
-            .drp-animate {}
-          }
-
-          td.active,
-          .md-drppicker td.active:hover {
-            background-color: #0078D7;
-            border-color: transparent;
-            color: #fff;
-          }
-        }
-
-        .left {
-          float: left !important;
-        }
-
-        .right {
-          float: right !important;
-        }
+      .left {
+        float: left !important;
       }
 
-      .calendar-time {
-        text-align: center;
-        margin: 12px auto;
-        line-height: 30px;
-        position: relative;
-
-        .hourselect {
-          width: 55px;
-          margin: 0;
-          background: #ffffff;
-          border-bottom: 1px solid rgba(0, 0, 0, .12);
-          padding: 2px;
-          outline: 0;
-          font-size: 13px !important;
-          font-family: inherit;
-        }
-
-        .minuteselect {
-          width: 55px;
-          margin: 0 8px;
-          background: #ffffff;
-          border-bottom: 1px solid rgba(0, 0, 0, .12);
-          padding: 2px;
-          outline: 0;
-          font-size: 13px !important;
-          font-family: inherit;
-        }
-
-        .secondselect {
-          width: 55px;
-          margin: 0 auto;
-          background: #ffffff;
-          border-bottom: 1px solid rgba(0, 0, 0, .12);
-          outline: 0;
-          font-size: 13px !important;
-          font-family: inherit;
-        }
-
-        // .select{
-        //   border-bottom: 1px solid rgba(0, 0, 0, .12);
-        // }
-        .select .select-item {
-          display: inline-block;
-          width: 48px;
-          position: relative;
-          font-family: inherit;
-          background-color: #ffffff;
-          padding: 10px 10px 10px 0;
-          font-size: 14px;
-          border-radius: 0;
-          // border: none;
-          // border-bottom: 1px solid rgba(0, 0, 0, .12);
-        }
-
-        .ampmselect {
-          margin-left: 10px;
-        }
+      .right {
+        float: right !important;
       }
+    }
 
-      // .shown {
-      //     display: block;
-      // }
-      .buttons {
-        .buttons_input {
-          .btn {
-            position: relative;
-            overflow: hidden;
-            border-width: 0;
-            outline: 0;
-            padding: 0 15px;
-            cursor: pointer;
-            border-radius: 2px;
-            -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-            ;
-            background-color: #0078D7;
-            color: #ffffff;
-            -webkit-transition: background-color .4s;
-            transition: background-color .4s;
-            height: auto;
-            text-transform: capitalize;
-            line-height: 36px;
-            border: 0;
-            margin: 0 8px;
+    .calendar-time {
+      text-align: center;
+      margin: 12px auto;
+      line-height: 30px;
+      position: relative;
 
-            svg {
-              margin-bottom: 6px;
-              display: none;
-            }
-          }
-
-          .clear {
-            color: #000000;
-            // -webkit-box-shadow: none;
-            // box-shadow: none;
-            // background-color: #fff !important;
-          }
-        }
-      }
-
-      table {
-        width: 100%;
+      .hourselect {
+        width: 55px;
         margin: 0;
-        display: table;
-        border-collapse: collapse;
-        border-spacing: 0;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        padding: 2px;
+        outline: 0;
+        font-size: 13px !important;
+        font-family: inherit;
       }
 
-      table,
-      td {
-        border: none;
+      .minuteselect {
+        width: 55px;
+        margin: 0 8px;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        padding: 2px;
+        outline: 0;
+        font-size: 13px !important;
+        font-family: inherit;
       }
 
-      th {
-        border: none;
-        color: #988c8c;
+      .secondselect {
+        width: 55px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        outline: 0;
+        font-size: 13px !important;
+        font-family: inherit;
+      }
+
+      // .select{
+      //   border-bottom: 1px solid rgba(0, 0, 0, .12);
+      // }
+      .select .select-item {
+        display: inline-block;
+        width: 48px;
+        position: relative;
+        font-family: inherit;
+        background-color: #ffffff;
+        padding: 10px 10px 10px 0;
         font-size: 14px;
-        font-family: Lato Regular;
-        font-weight: 500;
+        border-radius: 0;
+        // border: none;
+        // border-bottom: 1px solid rgba(0, 0, 0, .12);
       }
 
-      td.in-range {
-        background-color: RGBA(0, 120, 215, 0.13);
-        border-color: transparent;
-        color: #000;
-        // border-radius: 0;
+      .ampmselect {
+        margin-left: 10px;
       }
     }
 
-    .double {
-      width: auto;
+   
+    .buttons {
+      .buttons_input {
+        .mat-raised-button{
+          margin: 10px !important;
+        }
+       
+      }
     }
 
-    .shown {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-      -webkit-transition: all 0.1s ease-in-out;
-      transition: all 0.1s ease-in-out;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+    table {
+      width: 100%;
+      margin: 0;
+      display: table;
+      border-collapse: collapse;
+      border-spacing: 0;
     }
 
-    .ltr {
-      direction: ltr;
-      text-align: left;
+    table,
+    td {
+      border: none;
+    }
+
+    th {
+      border: none;
+      color: #988c8c;
+      font-size: 14px;
+      font-family: Lato Regular;
+      font-weight: 500;
+    }
+
+    td.in-range {
+      background-color: RGBA(0, 120, 215, 0.13);
+      border-color: transparent;
+      color: #000;
+      // border-radius: 0;
     }
   }
+
+  .double {
+    width: auto;
+  }
+
+  .shown {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .ltr {
+    direction: ltr;
+    text-align: left;
+  }
+
 
   .iconCal {
     position: absolute;
@@ -836,7 +797,7 @@ $color-white: #ffffff;
     font-size: 20px;
     color: gray;
   }
-}
+// }
 
 ///END report page
 
@@ -896,14 +857,15 @@ $color-white: #ffffff;
 ///END Create report pop up
 //Successful pop up
 .successful-container {
-  
+
   .successful-text-action-container {
-      .successful-text-button {
-          width: 170px !important;
-          height: 40px !important;
-      }
+    .successful-text-button {
+      width: 170px !important;
+      height: 40px !important;
+    }
   }
 }
+
 //END Successful pop up
 
 //angular meterial glob css
@@ -1011,10 +973,15 @@ table {
   background-color: #0078D7;
 }
 
-::-webkit-scrollbar
-{
-  width: 12px;  /* for vertical scrollbars */
-  height: 12px; /* for horizontal scrollbars */
+// .md-drppicker{
+//  background: #ffffff;
+// }
+
+::-webkit-scrollbar {
+  width: 12px;
+  /* for vertical scrollbars */
+  height: 12px;
+  /* for horizontal scrollbars */
 }
 
 // ::-webkit-scrollbar-track
@@ -1032,57 +999,58 @@ table {
 ::-webkit-scrollbar {
   cursor: pointer !important;
   // background-color:#fff;
-  width:16px
+  width: 16px
 }
 
 /* background of the scrollbar except button or resizer */
 ::-webkit-scrollbar-track {
   cursor: pointer !important;
-  background-color:#fff
+  background-color: #fff
 }
+
 ::-webkit-scrollbar-track:hover {
   cursor: pointer !important;
-  background-color:#f4f4f4
+  background-color: #f4f4f4
 }
 
 /* scrollbar itself */
 ::-webkit-scrollbar-thumb {
-  background-color:#babac0;
-  border-radius:16px;
-  border:5px solid #fff;
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 5px solid #fff;
   cursor: pointer !important;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background-color:#a0a0a5;
-  border:4px solid #f4f4f4;
+  background-color: #a0a0a5;
+  border: 4px solid #f4f4f4;
 }
 
 /* set button(top and bottom of the scrollbar) */
-::-webkit-scrollbar-button {display:none}
+::-webkit-scrollbar-button {
+  display: none
+}
 
 
 /*
  *  STYLE 8
  */
 
- #style-8::-webkit-scrollbar-track
- {
-   border: 1px solid black;
-   background-color: #F5F5F5;
- }
- 
- #style-8::-webkit-scrollbar
- {
-   width: 10px;
-   background-color: #F5F5F5;
- }
- 
- #style-8::-webkit-scrollbar-thumb
- {
-   background-color: #000000;	
- }
- 
- /*
+#style-8::-webkit-scrollbar-track {
+  border: 1px solid black;
+  background-color: #F5F5F5;
+}
+
+#style-8::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-8::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+/*
  *  STYLE 8
  */
 

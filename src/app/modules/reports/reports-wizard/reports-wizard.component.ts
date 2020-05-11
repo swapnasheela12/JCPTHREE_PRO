@@ -4,7 +4,8 @@ import { Location } from '@angular/common';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, VERSION } from "@angular/material";
+import { VERSION } from "@angular/material/core";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { CreateReportComponent } from './create-report/create-report.component';
 import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
 
@@ -45,8 +46,8 @@ export class ReportsWizardComponent implements OnInit {
   //////////breadcrums///////////////
 
   ///////datepicker//////////
-  opens = 'right';
-  drops = 'down';
+  opens = 'center';
+  drops = 'up';
   public todaysDay = new Date();
   selectedDateTime: any;
   selectedDateTimeValue: boolean = false;
@@ -98,7 +99,7 @@ export class ReportsWizardComponent implements OnInit {
 
 
   constructor(private location: Location, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog,) {
-    // router.events.subscribe((url: any) => console.log(url));
+    router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
     // /////////////breadcrums////////////////////
 
