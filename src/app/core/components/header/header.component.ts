@@ -112,10 +112,7 @@ export class HeaderComponent implements OnInit {
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
-    console.log(datashare, "datashare");
-
-    console.log(this.sideNavService, "this.sideNavService header");
-    console.log(this.sideNavService.sideNavToggleSubject.closed, "this.sideNavService header");
+   
     this.testval = this.sideNavService.sideNavToggleSubject.closed
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
@@ -301,10 +298,9 @@ export class HeaderComponent implements OnInit {
   public randomNotificationCount: number;
 
   onLoad() {
-    console.log("load");
+  
     var divLength = this.notificationsList.length;
     this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
-    console.log(this.randomNotificationCount, "randomDiv");
   }
 
 
@@ -397,18 +393,15 @@ export class HeaderComponent implements OnInit {
     this.elem = document.documentElement;
     this.onLoad();
     this.datashare.currentMessage.subscribe((message) => {
-      // message = message;
       this.testval = message;
-      console.log(this.testval, "this.testval");
-
+     
     });
    
 
   }
 
   clickMenu() {
-    console.log( this.sideNavService," this.sideNavService");
-    
+   
     this.sideNavService.toggle();
   }
 

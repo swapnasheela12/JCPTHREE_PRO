@@ -80,12 +80,15 @@ import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+// import { AgGridModule } from 'ag-grid-angular';
+// import {AgGridAngular} from "ag-grid-angular"; 
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
 import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
 import { SideNavService } from './_services/side-nav.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonRendererComponent } from './modules/reports/my-reports/button-renderer.component';
+
 
 declare var $: any;
 
@@ -115,8 +118,9 @@ declare var $: any;
     CoreModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([ButtonRendererComponent]),
+   
     NgxDaterangepickerMd.forRoot(),
+    AgGridModule.withComponents([ButtonRendererComponent]),
 
     ReactiveFormsModule,
     FormsModule,

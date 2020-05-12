@@ -5,10 +5,10 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 @Component({
   selector: 'app-button-renderer',
   template: `
-   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+   <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
   <mat-icon style="line-height: 0;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
 </button>
-<mat-menu #menu="matMenu">
+<mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>
     <div class="pr-3 fas fa-trash-alt"></div>
     <span>Delete</span>

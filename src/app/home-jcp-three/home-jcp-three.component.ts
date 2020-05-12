@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,37 +15,15 @@ import { DataSharingService } from '../_services/data-sharing.service';
 })
 export class HomeJcpThreeComponent implements OnInit {
   expanded: boolean;
-  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  @Input() sideNavName: HomeJcpThreeComponent;
-  // opened: any = true;
+  sideNavIsOpen: boolean = true;
+  
 
   constructor(private router: Router,private sideNavService: SideNavService, private datashare: DataSharingService) {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
   }
-  // toggleActive = false;
-  sharingData: object;
-  ngOnInit() {
-    console.log(this.sidenav,"this.sidenav");
-    this.datashare.changeMessage(this.sidenav.opened)
-    this.datashare.currentMessage.subscribe(message => this.sharingData = message);
-   console.log(this.datashare,"this.datashareNNNNNN");
-   
-    // console.log(this.sidenav.opened,"this.sidenav.opened");
-    // console.log(this.sideNavService,"this.sideNavService");
-    // this.sideNavService.setDrawer(this.sidenav);
-    // console.log(this.sidenav._opened,"this.sidenav");
-    this.sideNavService.sideNavToggleSubject.subscribe((val)=> {
-      console.log(val,"val___________");
-      
-      // this.toggleActive = !this.toggleActive;
-      // console.log(this.toggleActive,"this.toggleActive");
-     
-      console.log(this.sidenav.opened,"RRRRRRRR");
-      
-        this.sidenav.toggle();
-    });
-  }
+  
+  ngOnInit() {}
   toggle() {
     this.expanded = !this.expanded;
   }

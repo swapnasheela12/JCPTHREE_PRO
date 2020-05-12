@@ -7,12 +7,19 @@ import { HttpClient } from "@angular/common/http";
 
 
 // ag grid
-import { GridOptions } from "ag-grid/main";
+import * as agGrid from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
+// import { GridOptions } from "ag-grid/main";
+// import {Grid} from "ag-grid-community";
+// import { AllCommunityModules } from '@ag-grid-community/all-modules';
+// import { AllCommunityModules } from 'ag-grid-community';
 import { ButtonRendererComponent } from './button-renderer.component';
 import { CreateReportComponent } from '../reports-wizard/create-report/create-report.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import * as _ from 'lodash';
+import { MatSidenav } from '@angular/material/sidenav';
 
 declare var $: any;
 
@@ -32,19 +39,20 @@ export interface DialogData {
   styleUrls: ['./my-reports.component.scss']
 })
 export class MyReportsComponent implements OnInit {
-
-
-  ///////////////////////////
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+  /////
   public gridApi;
-  public rowSelection;
-  public gridColumnApi;
-  // public columnDefsMyReport;
-  // public defaultColDefMyReport;
-  public rowDataMyReport: any[string];
-  // public icons;
+  public gridCore: GridCore;
   public gridOptions: GridOptions;
-  // public frameworkComponentsMyReport;
-  ///////////////////////////
+  public showGrid: boolean;
+  public rowData: any;
+  public columnDefs: any[];
+  public rowCount: string;
+  public frameworkComponentsMyReport = {
+    buttonRenderer: ButtonRendererComponent,
+  };
+  public widthOfRowData: any;
+  
   // ///////my report tabel//////////
   public products;
   show: any;
@@ -63,56 +71,71 @@ export class MyReportsComponent implements OnInit {
   constructor(private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     console.log(router.url)
+
+    this.gridOptions = <GridOptions>{};
+    this.createRowData();
+    this.createColumnDefs();
+    this.showGrid = true;
+
   }
 
-  ////////MyReport table////////
-  columnDefsMyReport = [
-    {
-      headerName: "Report Name",
-      field: "reportname",
-      width: 320
-    }, {
-      headerName: "Report Measure",
-      field: "reportmeasure",
-      width: 210
-    }, {
-      headerName: "Report Category",
-      field: "reportcategory",
-      width: 230
-    },
-    {
-      headerName: "Progress",
-      cellRenderer: this.progressTaskFunc,
-      enableRowGroup: true,
-      width: 180
-    },
-    {
-      headerName: "Created Date",
-      field: "createddate",
-      width: 190
-    }, {
-      headerName: "",
-      cellRenderer: 'buttonRenderer',
-      width: 120
-    }
-  ];
 
-  icons = {
-    filter: '<i class="ag-icon ag-icon-filter"/>',
-    groupExpanded: '<mat-icon class="material-icons">indeterminate_check_box</mat-icon>',
-    groupContracted: '<mat-icon class="material-icons">add_box</mat-icon>',
-    checkboxChecked: '<i class="checkboxchecked-ag-grid fa fa-check-square-o"/>',
-    checkboxUnchecked: '<i class="fa fa-square-o"/>',
-    checkboxIndeterminate: '<i class="fa fa-circle-o"/>'
-  };
-  frameworkComponentsMyReport = {
-    buttonRenderer: ButtonRendererComponent,
-  };
-  defaultColDefMyReport = {
-    sortable: true,
-    resizable: true,
-    filter: true
-  };
+  private createRowData() {
+
+    this.httpClient
+      .get("assets/data/report/my-report.json")
+      .subscribe(data => {
+        this.rowData = data;
+        console.log(this.rowData, "this.rowData");
+
+      });
+    
+  }
+
+  private createColumnDefs() {
+    this.columnDefs = [
+      {
+        headerName: "Report Name",
+        field: "reportname",
+        width: 320
+      }, {
+        headerName: "Report Measure",
+        field: "reportmeasure",
+        width: 210
+      }, {
+        headerName: "Report Category",
+        field: "reportcategory",
+        width: 230
+      },
+      {
+        headerName: "Progress",
+        cellRenderer: this.progressTaskFunc,
+        width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: "createddate",
+        width: 190
+      }, {
+        headerName: "",
+        cellRenderer: 'buttonRenderer',
+        width: 140
+      }
+    ];
+  }
+
+  defaultColDef = { resizable: true };
+
+  public onReady(params) {
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+
+    this.gridApi.refreshCells(this.rowData);
+    setInterval(() => {
+      // params.api.setRowData(this.rowData);
+      params.api.sizeColumnsToFit();
+    }, 1000);
+  }
 
   //////////////////
 
@@ -138,20 +161,15 @@ export class MyReportsComponent implements OnInit {
     }
   }
 
-  onGridReadyMyReport(params) {
-    console.log(params, "params");
+  // onGridReadyMyReport() {
+  //   this.httpClient
+  //     .get("assets/data/report/my-report.json")
+  //     .subscribe(data => {
+  //       this.rowData = data;
+  //       console.log(this.rowData, "this.rowData");
 
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
-    this.gridColumnApi.autoSizeColumns();
-
-    this.httpClient
-      .get("assets/data/report/my-report.json")
-      .subscribe(data => {
-        this.rowDataMyReport = data;
-      });
-  }
+  //     });
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -159,7 +177,8 @@ export class MyReportsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this._mySelect, "this._mySelect");
+    console.log(this.sidenav, "this.sidenav YYYYYYYYYYYYYY");
+    // this.onGridReadyMyReport();
     // ///////mat seletec report measure////////////
     this._mySelect.openedChange
       .subscribe((opened) => {
@@ -174,20 +193,11 @@ export class MyReportsComponent implements OnInit {
   }
 
 
-  // animal: string;
-  // name: string;
   openDialog(): void {
     this.router.navigate(['/Home/Reports-and-Dashboard/Report-Wizard']);
-    // const dialogRef = this.dialog.open(CreateReportComponent, {
-    //   width: "700px",
-    //   panelClass: "material-dialog-container",
-    //   data: { name: this.name, animal: this.animal }
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-
-    //   this.animal = result;
-    // });
   };
 
 }
+
+
+
