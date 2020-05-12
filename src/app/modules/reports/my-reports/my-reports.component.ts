@@ -52,10 +52,10 @@ export class MyReportsComponent implements OnInit {
     buttonRenderer: ButtonRendererComponent,
   };
   public widthOfRowData: any;
-  
+
   // ///////my report tabel//////////
   public products;
-  show: any;
+
   // ///////my report tabel//////////
   ///////report measure/////////////
   public reportMeasureSelected = "Performance Management";
@@ -89,7 +89,7 @@ export class MyReportsComponent implements OnInit {
         console.log(this.rowData, "this.rowData");
 
       });
-    
+
   }
 
   private createColumnDefs() {
@@ -125,6 +125,20 @@ export class MyReportsComponent implements OnInit {
   }
 
   defaultColDef = { resizable: true };
+  //table search
+  searchGrid = '';
+  onFilterChanged(value) {
+    console.log(value, "value");
+
+    this.gridOptions.api.setQuickFilter(value);
+  };
+  show: any;
+  toggleSearch() {
+    this.show = !this.show;
+    // this.searchGrid = '';
+  };
+
+   //END table search
 
   public onReady(params) {
     console.log(params, "onReady");

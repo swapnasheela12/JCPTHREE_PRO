@@ -20,8 +20,8 @@
 
                 <mat-form-field *ngIf="show">
                     <!-- <mat-label>Filter</mat-label> -->
-                    <input matInput (keyup)="applyFilter($event)" placeholder="">
-                    <mat-icon class="search-filter-icon" (click)="show = !show;" aria-label="search">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"  placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
