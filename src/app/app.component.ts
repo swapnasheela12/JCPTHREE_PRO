@@ -7,7 +7,6 @@ import {
   AfterViewInit
 } from "@angular/core";
 import { VERSION } from "@angular/material/core";
-import { NavItem } from "../app/sidebarmenu/nav-item";
 // import { NavService } from "./nav.service";
 import {Event, NavigationEnd, Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';

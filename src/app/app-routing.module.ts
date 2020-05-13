@@ -4,9 +4,7 @@ import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.compon
 import { HomeJcpThreeComponent } from "./home-jcp-three/home-jcp-three.component";
 
 import { AuthGuard } from "./_helpers";
-import { SidebarmenuComponent } from "./sidebarmenu/sidebarmenu.component";
 import { MacroComponent } from "./layers/sites/macro/macro.component";
-import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
 import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
 import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
 

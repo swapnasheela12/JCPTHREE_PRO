@@ -63,12 +63,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
-import { SidebarmenuComponent } from "./sidebarmenu/sidebarmenu.component";
-import { NavService } from './sidebarmenu/nav.service';
-import { MenuListItemComponent } from './sidebarmenu/menu-list-item/menu-list-item.component';
-import { TopNavComponent } from './sidebarmenu/top-nav/top-nav.component';
 import { MacroComponent } from './layers/sites/macro/macro.component';
-import { NavigationSidebarComponent } from './navigation-sidebar/navigation-sidebar.component';
 // import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
 import { ClickOutsideDirective } from './_directive/click-outside.directive';
 import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
@@ -97,11 +92,11 @@ declare var $: any;
     AppComponent,
     LoginJcpThreeComponent,
     HomeJcpThreeComponent,
-    SidebarmenuComponent,
-    MenuListItemComponent,
-    TopNavComponent,
+    
+   
+   
     MacroComponent,
-    NavigationSidebarComponent,
+   
     // FilterUniquePipe,
     ClickOutsideDirective,
     MyReportsComponent,
@@ -183,7 +178,7 @@ declare var $: any;
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,
-    NavService
+    // NavService
   ],
   bootstrap: [AppComponent],
   exports: [HomeJcpThreeComponent],
