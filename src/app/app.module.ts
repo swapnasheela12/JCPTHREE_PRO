@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { ReactiveFormsModule } from "@angular/forms";
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 // used to create fake backend
@@ -63,26 +63,20 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
-import { MacroComponent } from './layers/sites/macro/macro.component';
 // import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
 import { ClickOutsideDirective } from './_directive/click-outside.directive';
-import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
 import { CoreModule } from './core/core.module';
-
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
-
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-// import { AgGridModule } from 'ag-grid-angular';
-// import {AgGridAngular} from "ag-grid-angular"; 
 import { AgGridModule } from 'ag-grid-angular';
-import { CreateReportComponent } from './modules/reports/reports-wizard/create-report/create-report.component';
 import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
 import { SideNavService } from './_services/side-nav.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ButtonRendererComponent } from './modules/reports/my-reports/button-renderer.component';
+// import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
+// import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
+// import { CreateReportComponent } from './main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
+// import { ButtonRendererComponent } from './main-modules/reports-dashboards/my-reports/button-renderer.component';
+import { MainModulesModule } from './main-modules/main-modules.module';
 
 
 declare var $: any;
@@ -92,30 +86,28 @@ declare var $: any;
     AppComponent,
     LoginJcpThreeComponent,
     HomeJcpThreeComponent,
-    
-   
-   
-    MacroComponent,
-   
     // FilterUniquePipe,
     ClickOutsideDirective,
-    MyReportsComponent,
-    ReportsWizardComponent,
-    CreateReportComponent,
-    // SuccessfulComponent
-    ButtonRendererComponent
+    // MyReportsComponent,
+    // ReportsWizardComponent,
+    // CreateReportComponent,
+    // // SuccessfulComponent
+    // ButtonRendererComponent
   ],
   imports: [
     // SuccessfulComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    //modules
+    // MainModulesModule,
     CoreModule,
     FlexLayoutModule,
 
-   
+
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent]),
+    AgGridModule.withComponents([]),
 
     ReactiveFormsModule,
     FormsModule,
@@ -183,8 +175,8 @@ declare var $: any;
   bootstrap: [AppComponent],
   exports: [HomeJcpThreeComponent],
   entryComponents: [
-    CreateReportComponent,
+    // CreateReportComponent,
     SuccessfulComponent
   ]
 })
-export class AppModule {}
+export class AppModule { }

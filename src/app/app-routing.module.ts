@@ -2,11 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.component";
 import { HomeJcpThreeComponent } from "./home-jcp-three/home-jcp-three.component";
-
 import { AuthGuard } from "./_helpers";
-import { MacroComponent } from "./layers/sites/macro/macro.component";
-import { MyReportsComponent } from './modules/reports/my-reports/my-reports.component';
-import { ReportsWizardComponent } from './modules/reports/reports-wizard/reports-wizard.component';
+import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
+import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
 
 const routes: Routes = [
   // {
@@ -19,14 +17,10 @@ const routes: Routes = [
     path: "Home", component: HomeJcpThreeComponent,
     canActivate: [AuthGuard],
     children: [
-      // {
-      // path:"Reports-and-Dashboard",
-      // children: [
-        {path: "Reports-and-Dashboard/Report-Wizard", component: ReportsWizardComponent},
-        {path: "Reports-and-Dashboard/My-Reports", component: MyReportsComponent}
-      // ]
-    // }
-  ]
+
+      { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+
+    ]
   },
   // {
   //   path: "Modules",

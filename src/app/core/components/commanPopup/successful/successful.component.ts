@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Observable, Observer} from 'rxjs';
 import { Router } from '@angular/router';
-import { CreateReportComponent } from 'src/app/modules/reports/reports-wizard/create-report/create-report.component';
+import { CreateReportComponent } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 
 export interface DialogDataSuccessful {
   gotomyreportInterface: string;

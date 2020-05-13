@@ -1,5 +1,5 @@
 import { HomeJcpThreeComponent } from '../../../home-jcp-three/home-jcp-three.component';
-import { MyReportsComponent } from '../../../modules/reports/my-reports/my-reports.component';
+import { MyReportsComponent } from 'src/app/main-modules/reports-dashboards/my-reports/my-reports.component';
 
 const MODULE_LIST_CONFIG_VENDOR = [
     {
