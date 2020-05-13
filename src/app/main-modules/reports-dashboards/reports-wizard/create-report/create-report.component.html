@@ -1,0 +1,86 @@
+<div class="create-report-container" style="height: 435px;">
+    <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+        <mat-toolbar-row class="mat-blue-grey">
+            <div class="col pl-0">
+                <div class="header">Create New Report</div>
+
+            </div>
+            <!-- <button class="mat-icon-button d-flex justify-content-center align-items-center">
+                <mat-icon class="zmdi zmdi-minus"></mat-icon>
+            </button> -->
+            <button class="mat-icon-button d-flex justify-content-center align-items-center" (click)="onNoClick()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="create-report-dialog-content">
+        <div class="report-engin-container" fxLayout="row wrap" fxLayoutAlign="center center">
+            <div class="p-3 create-report-header">Report Engine</div>
+        </div>
+        <div class="report-engin-container" fxLayout="row wrap" fxLayoutAlign="center center">
+            <!-- <mat-chip-list aria-label="Fish selection" style="width: 625px;border: 1px solid #0070DB;border-radius: 25px;">
+                <mat-chip  fxLayoutAlign="center center" selected style=" border-radius: 25px; padding: 0; height: 40px;    margin: 5px;  width: 200px;">Primary fish</mat-chip>
+                <mat-chip  fxLayoutAlign="center center" style=" border-radius: 25px; padding: 0; height: 40px;  margin: 5px;  background-color: transparent;  width: 200px;">Primary fish</mat-chip>
+                <mat-chip  fxLayoutAlign="center center" style=" border-radius: 25px; padding: 0; height: 40px;   margin: 5px;  background-color: transparent;  width: 200px;">Primary fish</mat-chip>
+            </mat-chip-list> -->
+
+            <mat-tab-group mat-stretch-tabs class="create-tab-group">
+                <mat-tab *ngFor="let tab of asyncTabs | async">
+                    <ng-template mat-tab-label>{{tab.label}}</ng-template>
+                    <div class="create-report-content">
+                        <!-- <form [formGroup]="reportWizardForm" class="report-filter-form"> -->
+                        <form [formGroup]="reportWizardForm" class="report-filter-form">
+                            <!-- {{tab.content}} -->
+
+
+                            <div class="d-flex my-3 col-12 flex-column flex-wrap">
+                                <div class="p-3 py-0 report-flex-item col-12">
+                                    <mat-form-field class="report-form-field">
+                                        <mat-select disableOptionCentering placeholder="Report Measure "
+                                            formControlName="reportMeasureCtrl" panelClass="selectMenuPanelMeasure">
+                                            <mat-option value="RF Analysis" selected>RF Analysis</mat-option>
+                                            <!-- <mat-option value="North">North</mat-option>
+                                                    <mat-option value="South">South</mat-option>
+                                                    <mat-option value="East">East</mat-option>
+                                                    <mat-option value="West">West</mat-option> -->
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="p-3 py-0 report-flex-item col-12">
+                                    <mat-form-field class="report-form-field">
+                                        <mat-select disableOptionCentering placeholder="Report Category "
+                                            formControlName="reportCategoryCtrl" panelClass="selectMenuPanelCategory">
+                                            <mat-option value="All Selected" selected>All Selected</mat-option>
+                                            <!-- <mat-option value="North">North</mat-option>
+                                                    <mat-option value="South">South</mat-option>
+                                                    <mat-option value="East">East</mat-option>
+                                                    <mat-option value="West">West</mat-option> -->
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="d-flex">
+        <div class="col"></div>
+        <!-- <button mat-button (click)="onNoClick()" class="mat-cancel">Cancel</button>
+        <button mat-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial
+            style="color: #0070DB;">Submit</button> -->
+        <div class="p-2 my-flex-item">
+            <button (click)="onNoClick()" mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="p-2 my-flex-item">
+            <button mat-raised-button color="primary" [mat-dialog-close]="data.animal" class="buttonWidth">Next</button>
+        </div>
+    </div>
+</div>
