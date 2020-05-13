@@ -5,6 +5,7 @@ import { HomeJcpThreeComponent } from "./home-jcp-three/home-jcp-three.component
 import { AuthGuard } from "./_helpers";
 import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
 import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
+import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
 
 const routes: Routes = [
   // {
@@ -17,9 +18,8 @@ const routes: Routes = [
     path: "Home", component: HomeJcpThreeComponent,
     canActivate: [AuthGuard],
     children: [
-
+      { path: "", component: LandingHomeComponent },
       { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-
     ]
   },
   // {

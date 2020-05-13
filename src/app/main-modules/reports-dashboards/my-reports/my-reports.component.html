@@ -13,7 +13,7 @@
                 </mat-form-field>
             </div>
             <div class="px-3 pt-3  col-4 my-report-flex-item">
-
+                
                 <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
@@ -25,8 +25,6 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-
-
             </div>
         </div>
     </div>
@@ -61,7 +59,7 @@
             toolPanelSuppressValues 
             rowSelection="multiple" 
             [defaultColDef]="defaultColDef"
-            (modelUpdated)="onReady($event)"
+            (modelUpdated)="onReadyModeUpdate($event)"
             [frameworkComponents]="frameworkComponentsMyReport" 
             (gridReady)="onReady($event)">
         </ag-grid-angular>

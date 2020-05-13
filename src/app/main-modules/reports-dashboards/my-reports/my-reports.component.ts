@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 declare var $: any;
 
@@ -41,17 +42,17 @@ export interface DialogData {
 export class MyReportsComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
+  public sidenavBarStatus;
+  public tableWidth;
   public gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  public showGrid: boolean;
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
   };
-  public widthOfRowData: any;
 
   // ///////my report tabel//////////
   public products;
@@ -67,29 +68,47 @@ export class MyReportsComponent implements OnInit {
     { value: 'Work Orders', viewValue: 'Work Orders' }
   ];
   ///////report measure/////////////
+  
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
 
-  constructor(private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
+  public onReady(params) {
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+
+  
+
+  constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-    console.log(router.url)
-
+   
     this.gridOptions = <GridOptions>{};
-    this.createRowData();
+    this.httpClientRowData();
     this.createColumnDefs();
-    this.showGrid = true;
+
+    this.datashare.currentMessage.subscribe((message) => {
+      this.sidenavBarStatus = message;
+      this.calculateRowCount();
+    });
 
   }
 
-
-  private createRowData() {
-
+  private httpClientRowData() {
     this.httpClient
       .get("assets/data/report/my-report.json")
       .subscribe(data => {
         this.rowData = data;
-        console.log(this.rowData, "this.rowData");
-
       });
-
   }
 
   private createColumnDefs() {
@@ -125,31 +144,18 @@ export class MyReportsComponent implements OnInit {
   }
 
   defaultColDef = { resizable: true };
-  //table search
   searchGrid = '';
   onFilterChanged(value) {
-    console.log(value, "value");
-
     this.gridOptions.api.setQuickFilter(value);
   };
   show: any;
   toggleSearch() {
     this.show = !this.show;
-    // this.searchGrid = '';
   };
 
-   //END table search
+  //END table search
 
-  public onReady(params) {
-    console.log(params, "onReady");
-    this.gridApi = params.api;
 
-    this.gridApi.refreshCells(this.rowData);
-    setInterval(() => {
-      // params.api.setRowData(this.rowData);
-      params.api.sizeColumnsToFit();
-    }, 1000);
-  }
 
   //////////////////
 
@@ -191,7 +197,7 @@ export class MyReportsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.sidenav, "this.sidenav YYYYYYYYYYYYYY");
+
     // this.onGridReadyMyReport();
     // ///////mat seletec report measure////////////
     this._mySelect.openedChange

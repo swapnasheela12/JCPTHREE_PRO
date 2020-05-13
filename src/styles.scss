@@ -873,6 +873,55 @@ $color-white: #ffffff;
 
 //END Successful pop up
 
+
+//Home landing
+
+.jcp-landing-page-container {
+  .jcp-landing-grid-list {
+    height: 100%;
+
+    .jcp-landing-grid-tile-one {
+      border-radius: 4px;
+      height: calc((25% - 1.80px) * 2 + 1px) !important;
+      .mat-figure {
+
+        margin: 0 3px 3px 0 !important;
+      }
+    }
+
+    .jcp-landing-grid-tile-two {
+      border-radius: 4px;
+      height: calc((25% - 1.75px) * 3 + 2px) !important;
+      .mat-figure {
+
+        margin: 0 0 3px 3px !important;
+      }
+    }
+
+    .jcp-landing-grid-tile-three {
+      border-radius: 4px;
+      .mat-figure {
+
+        margin: 3px 3px 0 0 !important;
+      }
+    }
+
+    .jcp-landing-grid-tile-four {
+      border-radius: 4px;
+      .mat-figure {
+
+        margin: 3px 0 0 3px !important;
+      }
+    }
+
+  }
+}
+
+//End Home landing
+
+
+
+
 //angular meterial glob css
 
 .aggridMenuPanelRender {

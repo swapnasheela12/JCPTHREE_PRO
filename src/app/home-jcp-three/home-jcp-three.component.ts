@@ -5,8 +5,12 @@ import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
 import { Observable } from 'rxjs';
-
-
+// export interface Tile {
+//   color: string;
+//   cols: number;
+//   rows: number;
+//   text: string;
+// }
 @Component({
   selector: "app-home-jcp-three",
   templateUrl: "./home-jcp-three.component.html",
@@ -15,15 +19,22 @@ import { Observable } from 'rxjs';
 })
 export class HomeJcpThreeComponent implements OnInit {
   expanded: boolean;
-  sideNavIsOpen: boolean = true;
-  
+  toggleActive = true;
 
-  constructor(private router: Router,private sideNavService: SideNavService, private datashare: DataSharingService) {
+  constructor(private router: Router, private sidenav: SideNavService, private datashare: DataSharingService) {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
+
+
   }
-  
-  ngOnInit() {}
+
+  toggleSidenav() {
+    this.toggleActive = !this.toggleActive;
+    this.datashare.changeMessage(this.toggleActive)
+  }
+
+  ngOnInit() {
+  }
   toggle() {
     this.expanded = !this.expanded;
   }
@@ -33,5 +44,16 @@ export class HomeJcpThreeComponent implements OnInit {
   changeIconOut(hamburgerIcon: HTMLElement) {
     hamburgerIcon.className = 'ic ic-menu-01';
   }
+
+  // tiles: Tile[] = [
+  //   { text: "app/home-jcp-three/daily-traffic.html", cols: 8, rows: 2, color: "lightpink" },
+  //   { text: "three", cols: 4, rows: 3, color: "#DDBDF1" },
+  //   { text: "two", cols: 8, rows: 2, color: "lightpink" },
+  //   { text: "Four", cols: 4, rows: 1, color: "#DDBDF1" }
+  // ];
+
+
+
+
 
 }

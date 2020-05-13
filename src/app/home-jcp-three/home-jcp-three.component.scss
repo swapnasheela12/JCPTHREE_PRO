@@ -22,14 +22,17 @@ $color-white: #ffffff;
 
     .mat-drawer-inner-container {
       overflow: hidden;
+
       .side-mat-toolbar-row {
         margin-top: 15px;
         margin-bottom: 15px;
         position: sticky;
         border-bottom: 1px solid #707070 !important;
+
         .jcp-logo-container {
           padding-left: 15px;
           margin-bottom: 15px;
+
           // padding-right: 15px;
           .mat-button {
             box-sizing: border-box;
@@ -82,7 +85,8 @@ $color-white: #ffffff;
 
 
   .body-sidenav-container {
-    background-color: #f0f3f5!important;
+    background-color: #f0f3f5 !important;
+
     .jcp-toolbar {
       // background: url('../../assets/images/toolbar/honeycomb.svg')no-repeat !important;
       // -webkit-background-size: cover;
@@ -90,13 +94,16 @@ $color-white: #ffffff;
       // -o-background-size: cover;
       // background-size: cover !important;
       height: 100%;
+
       .jcp-toolbar-main-container {
         height: 110px;
+
         .jcp-toolbar-search-tbutt {
           // width: 20%;
           // position: absolute;
           width: 1%;
           float: left;
+
           .toolbar-botton-inner {
             padding: 0 !important;
             font-size: 25px !important;
@@ -105,36 +112,44 @@ $color-white: #ffffff;
             height: 50px !important;
             min-width: 50px !important;
             margin-left: 15px;
+
             // margin-top: 0.2rem;
             // margin-left: 18px;
             .menu-inner {
               font-size: 25px;
               padding: 10px 0;
             }
+
             .menu-inner::before {
-                font-size: 1.5rem;
+              font-size: 1.5rem;
             }
           }
+
           :focus,
           :hover {
             outline: 0;
             // color: #0070DB;
           }
+
           .active-menu-button {
             display: none;
           }
+
           .activeNot-menu-button {
             display: contents;
           }
         }
+
         .active-jcpToggle {
           width: 0%;
           display: none;
         }
+
         .activeNot-jcpToggle {
           width: 0%;
         }
       }
+
       .header-jcp-container {
         background: url('../../assets/images/toolbar/BG_1366.svg')no-repeat !important;
         -webkit-background-size: cover;
@@ -143,15 +158,31 @@ $color-white: #ffffff;
         background-size: cover !important;
         height: 234px;
       }
+
       .jcp-page-route {
         height: calc(100% - 120px);
         overflow: auto;
         margin-bottom: 10px;
+
+        .jcp-landing-page-container {}
+
+
+
+
+
+
+
+
+
+
+
       }
-      .active-jcp-page-route{
+
+      .active-jcp-page-route {
         margin-left: 20px;
       }
-      .activeNot-jcp-page-route{
+
+      .activeNot-jcp-page-route {
         margin-left: 0px;
       }
     }

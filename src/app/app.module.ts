@@ -77,7 +77,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { CreateReportComponent } from './main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 // import { ButtonRendererComponent } from './main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { MainModulesModule } from './main-modules/main-modules.module';
-
+import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
+// import { HighchartsChartComponent } from 'highcharts-angular';
 
 declare var $: any;
 
@@ -88,6 +89,8 @@ declare var $: any;
     HomeJcpThreeComponent,
     // FilterUniquePipe,
     ClickOutsideDirective,
+    LandingHomeComponent,
+    // HighchartsChartComponent,
     // MyReportsComponent,
     // ReportsWizardComponent,
     // CreateReportComponent,
@@ -112,6 +115,7 @@ declare var $: any;
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+   
 
     //font
     FontAwesomeModule,

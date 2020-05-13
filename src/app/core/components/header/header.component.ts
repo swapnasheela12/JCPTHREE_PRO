@@ -113,7 +113,7 @@ export class HeaderComponent implements OnInit {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
    
-    this.testval = this.sideNavService.sideNavToggleSubject.closed
+    // this.testval = this.sideNavService.sideNavToggleSubject.closed
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
