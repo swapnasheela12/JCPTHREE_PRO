@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?lhnlmw');
-  src:  url('fonts/icomoon.eot?lhnlmw#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?lhnlmw') format('truetype'),
-    url('fonts/icomoon.woff?lhnlmw') format('woff'),
-    url('fonts/icomoon.svg?lhnlmw#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?pek3o0');
+  src:  url('fonts/icomoon.eot?pek3o0#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?pek3o0') format('truetype'),
+    url('fonts/icomoon.woff?pek3o0') format('woff'),
+    url('fonts/icomoon.svg?pek3o0#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,14 +25,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ic-success:before {
-  content: "\ebf1";
+.ic-Active-Users:before {
+  content: "\ebde";
+}
+.ic-Calendedr:before {
+  content: "\ebe9";
+}
+.ic-Component-12-2:before {
+  content: "\ebea";
+}
+.ic-COW:before {
+  content: "\ebeb";
+}
+.ic-ESC:before {
+  content: "\ebec";
+}
+.ic-FTTX:before {
+  content: "\ebf3";
+}
+.ic-Macro-Sites:before {
+  content: "\ebf6";
+}
+.ic-Report-Downloads:before {
+  content: "\ebf9";
+}
+.ic-small-Cells:before {
+  content: "\ebfb";
+}
+.ic-Success:before {
+  content: "\ebfc";
+}
+.ic-Tabs-with-text:before {
+  content: "\ebfd";
+  color: #b8d5f1;
+}
+.ic-Wifi:before {
+  content: "\ebff";
 }
 .ic-maximize:before {
   content: "\ebe5";
 }
 .ic-administration-01:before {
-  content: "\ebde";
+  content: "\ebf8";
 }
 .ic-bell-01:before {
   content: "\ebdf";
@@ -62,16 +96,16 @@
   content: "\ebe8";
 }
 .ic-modules-01:before {
-  content: "\ebe9";
+  content: "\ebf7";
 }
 .ic-my_jcp-01:before {
-  content: "\ebea";
+  content: "\ebf5";
 }
 .ic-reports:before {
-  content: "\ebeb";
+  content: "\ebf4";
 }
 .ic-work_Order-01:before {
-  content: "\ebec";
+  content: "\ebf1";
 }
 .ic-zoom-01:before {
   content: "\ebed";

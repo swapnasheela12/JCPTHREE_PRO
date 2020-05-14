@@ -6,7 +6,7 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
   selector: 'app-button-renderer',
   template: `
    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
-  <mat-icon style="line-height: 0;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
+  <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
 </button>
 <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>

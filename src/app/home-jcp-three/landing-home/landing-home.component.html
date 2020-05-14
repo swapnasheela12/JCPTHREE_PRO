@@ -1,7 +1,7 @@
 <div class="jcp-landing-page-container" style="height:100%;color: black;">
     <mat-grid-list cols="12" class="jcp-landing-grid-list" rowHeight="fit">
         <mat-grid-tile class="jcp-landing-grid-tile-one" colspan="8" rowspan="2">
-           
+
             <mat-card class="jcp-landing-card p-0" fxFlexFill>
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
@@ -11,28 +11,28 @@
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
                         <div class="jcp-landing-right-inputs col-4 pr-0">
                             <mat-form-field>
-                                <mat-label>HSI</mat-label>
-                                <mat-select>
+                                <!-- <mat-label>HSI</mat-label> -->
+                                <mat-select disableOptionCentering placeholder="HSI">
                                     <mat-option value="option1">Option 1</mat-option>
                                     <mat-option value="option2">Option 2</mat-option>
                                     <mat-option value="option3">Option 3</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
+                        <div class="jcp-landing-right-inputs col-3 pr-0">
                             <mat-form-field>
-                                <mat-label>LTE</mat-label>
-                                <mat-select>
+                                <!-- <mat-label>LTE</mat-label> -->
+                                <mat-select disableOptionCentering placeholder="LTE">
                                     <mat-option value="option1">Option 1</mat-option>
                                     <mat-option value="option2">Option 2</mat-option>
                                     <mat-option value="option3">Option 3</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-label>PAN India</mat-label>
-                                <mat-select>
+                        <div class="jcp-landing-right-inputs col-5 pr-0">
+                            <mat-form-field disableOptionCentering>
+                                <!-- <mat-label>PAN India</mat-label> -->
+                                <mat-select disableOptionCentering placeholder="PAN India">
                                     <mat-option value="option1">Option 1</mat-option>
                                     <mat-option value="option2">Option 2</mat-option>
                                     <mat-option value="option3">Option 3</mat-option>
@@ -51,39 +51,20 @@
                             </highcharts-chart> -->
                     </div>
                 </mat-card-content>
-                
+
             </mat-card>
-           
+
         </mat-grid-tile>
-        <mat-grid-tile class="jcp-landing-grid-tile-two"  colspan="4" rowspan="3">
+        <mat-grid-tile class="jcp-landing-grid-tile-two" colspan="4" rowspan="3">
             <mat-card class="jcp-landing-card p-0" fxFlexFill>
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
-                    <div class="jcp-landing-title" fxFlex>Daily Traffic</div>
+                    <div class="jcp-landing-title" fxFlex>Sites</div>
 
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-label>HSI</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-label>LTE</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
+
+                        <div class="jcp-landing-right-inputs col pr-0">
                             <mat-form-field>
                                 <mat-label>PAN India</mat-label>
                                 <mat-select>
@@ -105,7 +86,7 @@
                             </highcharts-chart> -->
                     </div>
                 </mat-card-content>
-                
+
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-three" colspan="8" rowspan="2">
@@ -113,7 +94,7 @@
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
-                    <div class="jcp-landing-title" fxFlex>Daily Traffic</div>
+                    <div class="jcp-landing-title" fxFlex>Total Subscribers</div>
 
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
                         <div class="jcp-landing-right-inputs col-4 pr-0">
@@ -126,7 +107,7 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
+                        <div class="jcp-landing-right-inputs col-3 pr-0">
                             <mat-form-field>
                                 <mat-label>LTE</mat-label>
                                 <mat-select>
@@ -136,7 +117,7 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
+                        <div class="jcp-landing-right-inputs col-5 pr-0">
                             <mat-form-field>
                                 <mat-label>PAN India</mat-label>
                                 <mat-select>
@@ -158,7 +139,7 @@
                             </highcharts-chart> -->
                     </div>
                 </mat-card-content>
-                
+
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-four" colspan="4" rowspan="1">
@@ -166,30 +147,11 @@
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
-                    <div class="jcp-landing-title" fxFlex>Daily Traffic</div>
+                    <div class="jcp-landing-title" fxFlex>Usage Metrics</div>
 
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-label>HSI</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-label>LTE</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="jcp-landing-right-inputs col-4 pr-0">
+
+                        <div class="jcp-landing-right-inputs col pr-0">
                             <mat-form-field>
                                 <mat-label>PAN India</mat-label>
                                 <mat-select>
@@ -211,7 +173,7 @@
                             </highcharts-chart> -->
                     </div>
                 </mat-card-content>
-                
+
             </mat-card>
         </mat-grid-tile>
 
