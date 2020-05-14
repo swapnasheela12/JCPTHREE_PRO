@@ -1,7 +1,8 @@
-import { Component, OnInit, ɵConsole, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
-import { Router, RouterModule } from '@angular/router';
-import { HomeJcpThreeComponent } from 'src/app/home-jcp-three/home-jcp-three.component';
+import { Router } from '@angular/router';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 declare var $: any;
 
@@ -12,6 +13,14 @@ export interface SideNavNode  {
   children?: SideNavNode[];
 }
 
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+
+const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
+
 @Component({
   selector: 'app-leftside-navigation',
   templateUrl: './leftside-navigation.component.html',
@@ -20,10 +29,19 @@ export interface SideNavNode  {
 export class LeftsideNavigationComponent implements AfterViewChecked {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
   routeArray = [];
-  
+  treeControl = new NestedTreeControl<SideNavNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<SideNavNode>();
+
   constructor(
     private router: Router
-  ) {}
+  ) {
+    this.dataSource.data = LAYERS_DATA;
+  }
+  hasChild = (_: number, node: SideNavNode) => !!node.children && node.children.length > 0;
+
+  highlightActiveNode(node: SideNavNode): void {
+    console.log(node);
+  }
 
   ngAfterViewChecked() {
     // let data = this.menuRoutes(this.menuListAll);

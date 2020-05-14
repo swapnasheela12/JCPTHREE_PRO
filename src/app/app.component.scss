@@ -51,7 +51,7 @@ $px59Negative: -59px;
 .mm-menu_selected-parent {
     .mm-listitem__text{
         font-size: $px14;
-        font-family: Lato Medium;
+        // font-family: Lato Medium;
         line-height: 2;
     }
     .mm-listitem_selected-parent {
@@ -113,7 +113,8 @@ $px59Negative: -59px;
         padding-right: 0px;
         margin-left: -39px;
         font-size: $px14;
-        font-family: Lato Medium;
+        font-weight: 500;
+        // font-family: Lato Medium;
         padding-top: $px15;
         padding-bottom: $px15;
     }
@@ -133,7 +134,8 @@ $px59Negative: -59px;
 
 .mm-navbar__title {
     font-size: $px14;
-    font-family: Lato Medium;
+    // font-family: Lato Medium;
+    font-weight: 500;
     padding-top: $px15;
     padding-bottom: $px15;
 }
@@ -145,7 +147,8 @@ $px59Negative: -59px;
 
 .mm-panels {
     position: relative;
-    overflow: auto;
+    overflow-y: auto;
+    margin-bottom:7.25rem;
 }
 
 .mm-panels::-webkit-scrollbar-thumb {
@@ -153,25 +156,25 @@ $px59Negative: -59px;
     border-radius: 35px;
 }
 .mm-panels::-webkit-scrollbar {
-    width: 6px;
+    width: 6px !important;
 }
 
 .mm-panels::-webkit-scrollbar:hover {
-    width: 12px !important;
+    width: 17px !important;
 }
 
 .mm-panels::-webkit-scrollbar-thumb {
     background-color: #c1c1c1;
-    border-radius: 35px;
+    border-radius: 35px !important;
 }
 .mm-panels::-webkit-scrollbar-thumb:hover {
     background-color: #c1c1c1;
-    border-radius: 35px;
+    border-radius: 35px !important;
     // width: 15px;
 }
 
 .mm-panels:hover::-webkit-scrollbar {
-    width: 12px !important;
+    width: 17px !important;
 }
 
 .mm-listitem__text {
@@ -223,4 +226,27 @@ $px59Negative: -59px;
 .mm-btn_prev:before {
     width: 10px;
     height: 10px;
+}
+
+#nav-menu .mm-listitem__btn {
+    position: initial;
+}
+
+.mm-panel {
+    z-index: 2;
+}
+
+// .mm-navbar_sticky {
+//     z-index: unset !important;
+// }
+
+.mm-btn_next:after {
+    right: 39px;
+}
+
+.mat-button-wrapper {
+    .mat-icon {
+        color: #b2b2b2 !important;
+        font-size: 28px !important;
+    }
 }
