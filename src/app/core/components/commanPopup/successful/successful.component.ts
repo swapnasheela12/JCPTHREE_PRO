@@ -35,14 +35,14 @@ export class SuccessfulComponent implements OnInit {
   clickGoMyReport(): void{
    
     this.dialogRef.close();
-    this.router.navigate(['/Home/Reports-and-Dashboard/My-Reports']);
+    this.router.navigate(['/Home/Reports and Dashboard/My-Reports']);
   }
 
   animal: string;
   name: string;
   clickCreateNewReport(): void{
     this.dialogRef.close();
-    // this.router.navigate(['/Home/Reports-and-Dashboard/My-Reports']);
+    // this.router.navigate(['/Home/Reports and Dashboard/My-Reports']);
     const dialogRef = this.dialog.open(CreateReportComponent, {
       width: "700px",
       panelClass: "material-dialog-container",

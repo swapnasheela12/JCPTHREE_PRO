@@ -4,21 +4,21 @@
 <div class="successful-container">
     <div class="successful-circle-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="circle-type" fxLayout="row" fxLayoutAlign="space-evenly center">
-            <div class="icon-success ic ic-Success"></div>
+            <div class="icon-success ic ic-success--2-1"></div>
         </div>
     </div>
     <div class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
-        <div class="p-3 successful-text-header">Successful</div>
-        <div class="p-4 successful-text-subheader">Report Request Sent Successfully !</div>
+        <div class="p-3 successful-text-header success">Success!</div>
+        <div class="p-4 successful-text-subheader">Report Request Sent Successfully</div>
        
     </div>
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
        
-        <div class="p-2 successful-text-button">
-            <button class="mr-3 success-butt" (click)="clickCreateNewReport()" mat-stroked-button color="primary" >CREATE NEW REPORT</button>
+        <div class="mr-1 successful-text-button">
+            <button class=" success-butt" (click)="clickCreateNewReport()" mat-stroked-button color="primary" style=" margin-left: 8px;">Create New Reports</button>
         </div>
-        <div class="p-2 successful-text-button">
-            <button class="ml-3 success-butt" (click)="clickGoMyReport()" mat-raised-button color="primary">GO TO MY REPORTS</button>
+        <div class="ml-1 successful-text-button">
+            <button class=" success-butt" (click)="clickGoMyReport()" mat-raised-button color="primary" style=" margin-left: 3px;">Go To My Reports</button>
         </div>
     </div>
 

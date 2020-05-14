@@ -19,7 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "", component: LandingHomeComponent },
-      { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+      { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
     ]
   },
   // {

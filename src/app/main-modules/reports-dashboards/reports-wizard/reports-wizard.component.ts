@@ -203,7 +203,7 @@ export class ReportsWizardComponent implements OnInit {
   createnewreport: string;
   openDialogSuccessful(): void {
     const dialogRef = this.dialog.open(SuccessfulComponent, {
-      width: "516px",
+      width: "470px",
       panelClass: "material-dialog-container",
       data: { newreportInterface: this.createnewreport, gotomyreportInterface: this.gotomyreport }
     });

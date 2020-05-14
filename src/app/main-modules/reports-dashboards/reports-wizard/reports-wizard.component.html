@@ -106,7 +106,7 @@
                 <div class="">
                   <div class="d-flex mx-3 flex-row justify-content-start report-action-container">
                     <div class="p-2 my-flex-item">
-                      <button class="mx-2" mat-stroked-button matStepperPrevious>Previous</button>
+                      <button class="mx-2 previous-button" mat-stroked-button matStepperPrevious>Previous</button>
                       <button class="mx-2 submit-button" mat-raised-button color="primary" matStepperNext>Next</button>
                     </div>
                   </div>
@@ -150,7 +150,7 @@
                 <div class="d-flex  mx-3  flex-row justify-content-start report-action-container"
                   style="position:relative">
                   <div class="p-2 my-flex-item">
-                    <button class="mx-2 submit-button" mat-stroked-button matStepperPrevious>Previous</button>
+                    <button class="mx-2 submit-button previous-button previous-button" mat-stroked-button matStepperPrevious>Previous</button>
                     <!-- <button class="mx-2 submit-button" mat-raised-button color="primary"
                       (click)="stepper.reset()">Reset</button> -->
                   </div>
@@ -170,7 +170,7 @@
     <button mat-stroked-button color="primary" (click)="openDialog()" class="buttonWidth">Back</button>
   </div>
   <div class="p-2 my-flex-item">
-    <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+    <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
   </div>
   <div class="p-2 my-flex-item">
     <button mat-raised-button color="primary" [disabled]="!thirdFormGroup.touched" (click)="openDialogSuccessful()" class="buttonWidth">Generate</button>

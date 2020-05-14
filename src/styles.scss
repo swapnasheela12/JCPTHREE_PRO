@@ -549,6 +549,10 @@ $color-white: #ffffff;
               .submit-button {
                 width: 100px !important;
                 min-width: unset !important;
+               
+              }
+              .previous-button{
+                color: #0070DB  !important;
               }
             }
 
@@ -747,11 +751,18 @@ $color-white: #ffffff;
     .buttons_input {
       .mat-raised-button {
         margin: 10px !important;
+       
       }
 
     }
   }
-
+  .buttons .buttons_input .mat-raised-button:nth-child(2) {
+    color: #0070DB;
+   }
+  .clear-button {
+    color: #0070DB  !important;
+  }
+ 
   table {
     width: 100%;
     margin: 0;
@@ -820,7 +831,7 @@ $color-white: #ffffff;
 ///Create report pop up
 .material-dialog-container {
   .mat-dialog-container {
-    border-radius: 0px;
+    border-radius: 4px;
     padding: 0px !important;
   }
 }
@@ -873,6 +884,7 @@ $color-white: #ffffff;
 ///END Create report pop up
 //Successful pop up
 .successful-container {
+  border-radius: 4px;
 
   .successful-text-action-container {
     .successful-text-button {
@@ -923,6 +935,7 @@ $color-white: #ffffff;
 
       .mat-figure {
         margin: 0 0 3px 3px !important;
+
         .mat-form-field-wrapper {
           .mat-form-field-underline {
             height: 0px !important;
@@ -947,6 +960,7 @@ $color-white: #ffffff;
 
       .mat-figure {
         margin: 3px 3px 0 0 !important;
+
         .mat-form-field-wrapper {
           .mat-form-field-underline {
             height: 0px !important;
@@ -971,6 +985,7 @@ $color-white: #ffffff;
 
       .mat-figure {
         margin: 3px 0 0 3px !important;
+
         .mat-form-field-wrapper {
           .mat-form-field-underline {
             height: 0px !important;
@@ -1208,6 +1223,9 @@ table {
 
 
 //Default Custom css
+.success{
+  color: #23B22E;
+}
 .buttonColorBg {
   background: #0078D7;
 }

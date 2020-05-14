@@ -214,7 +214,7 @@ export class MyReportsComponent implements OnInit {
 
 
   openDialog(): void {
-    this.router.navigate(['/Home/Reports-and-Dashboard/Report-Wizard']);
+    this.router.navigate(['/Home/Reports and Dashboard/Report-Wizard']);
   };
 
 }

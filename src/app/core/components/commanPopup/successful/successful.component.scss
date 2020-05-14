@@ -1,18 +1,19 @@
 .successful-container {
-    width: 516px;
-    height: 288px;
+    width: 470px;
+    height: 280px;
 
     .successful-circle-container {
         .circle-type {
             position: absolute;
-            width: 134px;
-            height: 134px;
-            border-radius: 75px;
+            width: 106px;
+            height: 106px;
+            border-radius: 50px;
             background: #0070DB;
 
 
             .icon-success {
-                font-size: 68px;
+                padding-left: 7px;
+                font-size: 56px;
                 color: #ffffff;
             }
         }
@@ -23,7 +24,7 @@
         text-align: center;
 
         .successful-text-header {
-            font-size: 22px;
+            font-size: 24px;
             font-family: Lato Bold;
 
         }
@@ -36,10 +37,12 @@
 
     .successful-text-action-container {
         .successful-text-button {
-            width: 170px;
-            height: 40px;
-            .success-butt{
+            // width: 170px;
+            // height: 40px;
+
+            .success-butt {
                 height: 40px;
+                width: 158px;
             }
         }
     }

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?pek3o0');
-  src:  url('fonts/icomoon.eot?pek3o0#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?pek3o0') format('truetype'),
-    url('fonts/icomoon.woff?pek3o0') format('woff'),
-    url('fonts/icomoon.svg?pek3o0#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?4uklnr');
+  src:  url('fonts/icomoon.eot?4uklnr#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?4uklnr') format('truetype'),
+    url('fonts/icomoon.woff?4uklnr') format('woff'),
+    url('fonts/icomoon.svg?4uklnr#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-success--2-1:before {
+  content: "\ebfa";
+}
 .ic-Active-Users:before {
   content: "\ebde";
 }
@@ -51,9 +54,6 @@
 }
 .ic-small-Cells:before {
   content: "\ebfb";
-}
-.ic-Success:before {
-  content: "\ebfc";
 }
 .ic-Tabs-with-text:before {
   content: "\ebfd";
