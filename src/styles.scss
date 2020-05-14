@@ -1,3 +1,28 @@
+
+// font family
+@font-face {
+  font-family: 'Lato Bold';
+  src: url('./assets/font_family/lato/Lato-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Lato Regular';
+  src: url('./assets/font_family/lato/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lato Medium';
+  src: url('./assets/font_family/lato/Lato-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('./assets/font_family/poppins/Poppins-Regular.ttf');
+}
+
+// End font family
+
+
 //ag grid
 
 @import "~ag-grid-community/dist/styles/ag-grid";
@@ -33,6 +58,12 @@ $jcpThree-theme: mat-light-theme($jcpThree-primary, $jcpThree-accent, $jcpThree-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+$custom-typography: mat-typography-config(
+  $font-family: 'Lato Regular,Lato Bold',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
 @include angular-material-theme($jcpThree-theme);
 
 // .alternate-theme {
@@ -62,28 +93,11 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 //END font icons
 
-// font family
-@font-face {
-  font-family: 'Lato Bold';
-  src: url('./assets/font_family/lato/Lato-Bold.ttf');
-}
 
-@font-face {
-  font-family: 'Lato Regular';
-  src: url('./assets/font_family/lato/Lato-Regular.ttf');
-}
 
-@font-face {
-  font-family: 'Lato Medium';
-  src: url('./assets/font_family/lato/Lato-Medium.ttf');
-}
-
-@font-face {
-  font-family: 'Poppins Regular';
-  src: url('./assets/font_family/poppins/Poppins-Regular.ttf');
-}
-
-// End font family
+// * {
+//   font-family: 'Lato Regular', 'Lato Bold' !important;
+// }
 
 html,
 body {
@@ -96,8 +110,8 @@ body {
 
   .container-main-view {
     height: 100%;
-
   }
+
 }
 
 
@@ -883,8 +897,8 @@ $color-white: #ffffff;
     .jcp-landing-grid-tile-one {
       border-radius: 4px;
       height: calc((25% - 1.80px) * 2 + 1px) !important;
-      .mat-figure {
 
+      .mat-figure {
         margin: 0 3px 3px 0 !important;
       }
     }
@@ -892,24 +906,24 @@ $color-white: #ffffff;
     .jcp-landing-grid-tile-two {
       border-radius: 4px;
       height: calc((25% - 1.75px) * 3 + 2px) !important;
-      .mat-figure {
 
+      .mat-figure {
         margin: 0 0 3px 3px !important;
       }
     }
 
     .jcp-landing-grid-tile-three {
       border-radius: 4px;
-      .mat-figure {
 
+      .mat-figure {
         margin: 3px 3px 0 0 !important;
       }
     }
 
     .jcp-landing-grid-tile-four {
       border-radius: 4px;
-      .mat-figure {
 
+      .mat-figure {
         margin: 3px 0 0 3px !important;
       }
     }
