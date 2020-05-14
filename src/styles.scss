@@ -549,10 +549,11 @@ $color-white: #ffffff;
               .submit-button {
                 width: 100px !important;
                 min-width: unset !important;
-               
+
               }
-              .previous-button{
-                color: #0070DB  !important;
+
+              .previous-button {
+                color: #0070DB !important;
               }
             }
 
@@ -751,18 +752,20 @@ $color-white: #ffffff;
     .buttons_input {
       .mat-raised-button {
         margin: 10px !important;
-       
+
       }
 
     }
   }
+
   .buttons .buttons_input .mat-raised-button:nth-child(2) {
     color: #0070DB;
-   }
-  .clear-button {
-    color: #0070DB  !important;
   }
- 
+
+  .clear-button {
+    color: #0070DB !important;
+  }
+
   table {
     width: 100%;
     margin: 0;
@@ -905,25 +908,30 @@ $color-white: #ffffff;
 
     .jcp-landing-grid-tile-one {
       border-radius: 4px;
-      height: calc((25% - 1.80px) * 2 + 1px) !important;
 
+      // height: calc((25% - 1.80px) * 2 + 1px) !important;
       .mat-figure {
-        margin: 0 3px 3px 0 !important;
+        margin: 0 3px 0px 0 !important;
 
-        .mat-form-field-wrapper {
-          .mat-form-field-underline {
-            height: 0px !important;
-          }
+        .jcp-landing-card {
+          height: 99% !important;
+          min-height: 99% !important;
 
-          .mat-form-field-underline {
-            display: none !important;
-          }
+          .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              height: 0px !important;
+            }
 
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: #fff !important;
-            outline: 0;
+            .mat-form-field-underline {
+              display: none !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #fff !important;
+              outline: 0;
+            }
           }
         }
       }
@@ -931,25 +939,30 @@ $color-white: #ffffff;
 
     .jcp-landing-grid-tile-two {
       border-radius: 4px;
-      height: calc((25% - 1.75px) * 3 + 2px) !important;
+      // height: calc((25% - 1.75px) * 3 + 2px) !important;
 
       .mat-figure {
-        margin: 0 0 3px 3px !important;
+        margin: 0 0 0px 3px !important;
 
-        .mat-form-field-wrapper {
-          .mat-form-field-underline {
-            height: 0px !important;
-          }
+        .jcp-landing-card {
+          height: 99.5% !important;
+          min-height: 99.5% !important;
 
-          .mat-form-field-underline {
-            display: none !important;
-          }
+          .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              height: 0px !important;
+            }
 
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: #fff !important;
-            outline: 0;
+            .mat-form-field-underline {
+              display: none !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #fff !important;
+              outline: 0;
+            }
           }
         }
       }
@@ -959,22 +972,28 @@ $color-white: #ffffff;
       border-radius: 4px;
 
       .mat-figure {
-        margin: 3px 3px 0 0 !important;
+        margin: 2px 3px 0 0 !important;
 
-        .mat-form-field-wrapper {
-          .mat-form-field-underline {
-            height: 0px !important;
-          }
+        .jcp-landing-card {
+          height: 99% !important;
+          min-height: 99% !important;
 
-          .mat-form-field-underline {
-            display: none !important;
-          }
 
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: #fff !important;
-            outline: 0;
+          .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              height: 0px !important;
+            }
+
+            .mat-form-field-underline {
+              display: none !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #fff !important;
+              outline: 0;
+            }
           }
         }
       }
@@ -984,24 +1003,32 @@ $color-white: #ffffff;
       border-radius: 4px;
 
       .mat-figure {
-        margin: 3px 0 0 3px !important;
+        margin: 2px 0 0 3px !important;
 
-        .mat-form-field-wrapper {
-          .mat-form-field-underline {
-            height: 0px !important;
+        .jcp-landing-card {
+          height: 98% !important;
+          min-height: 98% !important;
+
+
+          .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              height: 0px !important;
+            }
+
+            .mat-form-field-underline {
+              display: none !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: #fff !important;
+              outline: 0;
+            }
           }
 
-          .mat-form-field-underline {
-            display: none !important;
-          }
-
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: #fff !important;
-            outline: 0;
-          }
         }
+
       }
     }
 
@@ -1223,9 +1250,10 @@ table {
 
 
 //Default Custom css
-.success{
+.success {
   color: #23B22E;
 }
+
 .buttonColorBg {
   background: #0078D7;
 }
