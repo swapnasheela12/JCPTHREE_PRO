@@ -1,4 +1,4 @@
-<nav id="nav-menu" mmenu>
+<nav id="nav-menu" mmenu #myname>
     <ul class="listview-icons">
         <li *ngFor="let item of menuListAll">
             <ng-container 
@@ -8,10 +8,11 @@
         </li>
     </ul>
     <ng-template #recursiveListTmpl let-item='item'>
-            <span routerLink="/{{item.link}}" routerLinkActive="menu-active">
+            <span routerLink="/{{item.link}}" (click)="parentIconClick()" [ngClass]="[ isParentLevel ? 'parentLevel0' : '']" routerLinkActive="menu-active">
                 <span class="{{item.icon}}"
                     *ngIf="item.level == 0"
-                    attr.data-title="{{item.name}}"></span>
+                    attr.data-title="{{item.name}}"
+                    ></span>
                 {{item.name}}
             </span>
             <ul *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">

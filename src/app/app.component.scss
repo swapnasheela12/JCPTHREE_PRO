@@ -10,12 +10,13 @@ $blueactive-color: #0078D7;
 $px25: 25px;
 $px33: 33px;
 $px14: 14px;
-$px20: 20px;
-$px15: 15px;
-$px16: 16px;
 $px18: 18px;
-$px3: 3px;
-$px52: 52px;
+$px15: 15px;
+$px11: 11px;
+$px10: 10px;
+$px9: 9px;
+$px2: 2px;
+$px48: 48px;
 $px5: 5px;
 $px21: 21px;
 $px59Negative: -59px;
@@ -26,7 +27,7 @@ $px59Negative: -59px;
 
 .mm-panel_iconpanel-first {
     .ic {
-        font-size: $px20;
+        font-size: $px18;
         color: $grey-color;
         line-height: $px25;
         width: $px33;
@@ -52,7 +53,10 @@ $px59Negative: -59px;
     .mm-listitem__text{
         font-size: $px14;
         // font-family: Lato Medium;
-        line-height: 2;
+        // line-height: 2;
+    }
+    .mm-listitem__text {
+        padding-left: $px11;
     }
     .mm-listitem_selected-parent {
         .ic {
@@ -60,8 +64,8 @@ $px59Negative: -59px;
         }
         .mm-listitem__text {
             background-color: $blueshade-color;
-            border-left: $px3 solid $darkest-blue-color;
-            padding-left: $px16;
+            border-left: $px2 solid $darkest-blue-color;
+            padding-left: $px9;
             transition-duration: 0s;
             &:hover {
                 background-color: $lightgrey-color;
@@ -80,12 +84,14 @@ $px59Negative: -59px;
             background-color: $lightgrey-color;
             border-top-right-radius: $px25;
             border-bottom-right-radius: $px25;
-            margin-right: $px18;
-            height: $px52;
+            margin-right: $px10;
+            height: $px48;
         }
     }
 }
-
+.mm-btn_prev:before {
+    left: 37px;
+}
 .mm-panel_opened {
     margin-top: 0;
     overflow: unset;
@@ -105,7 +111,7 @@ $px59Negative: -59px;
 }
 
 .mm-listitem {
-    height: $px52;
+    height: $px48;
 }
 
 .mm-navbar__btn {
@@ -127,7 +133,7 @@ $px59Negative: -59px;
 .mm-menu {
     .mm-panel_opened, .mm-panel_opened-parent {
         &:not(.mm-panel_iconpanel-first) {
-            left: 58px !important;
+            //  left: 48px !important;
         }
     }
 }
@@ -148,7 +154,7 @@ $px59Negative: -59px;
 .mm-panels {
     position: relative;
     overflow-y: auto;
-    margin-bottom:7.25rem;
+    margin-bottom:5.313rem;
 }
 
 .mm-panels::-webkit-scrollbar-thumb {
@@ -183,6 +189,10 @@ $px59Negative: -59px;
     }
 }
 
+.mm-panels .mm-navbar {
+    height: 50px;
+}
+
 .mm-panel {
     &:not(:first-child){
       .menu-active  {
@@ -191,6 +201,7 @@ $px59Negative: -59px;
         border-bottom-right-radius: $px25;
         margin-right: $px21;
         color: $blueactive-color;
+        height: $px48;
         .ic {
           color: $blueactive-color;
         }
@@ -211,6 +222,7 @@ $px59Negative: -59px;
             border-bottom-right-radius: $px25;
             margin-right: $px21;
             color: $blueactive-color;
+            height: $px48;
             .ic {
             color: $blueactive-color;
             }
@@ -232,16 +244,16 @@ $px59Negative: -59px;
     position: initial;
 }
 
-.mm-panel {
-    z-index: 2;
-}
+// .mm-panel {
+//     z-index: 2;
+// }
 
 // .mm-navbar_sticky {
 //     z-index: unset !important;
 // }
 
-.mm-btn_next:after {
-    right: 39px;
+.mm-panel .mm-listitem .mm-btn_next:after {
+    right: 24px;
 }
 
 // .mat-button-wrapper {
@@ -250,3 +262,43 @@ $px59Negative: -59px;
 //         font-size: 28px !important;
 //     }
 // }
+
+.mm-panels:hover div.mm-navbar__title {
+    background-color: red;
+}
+
+.mm-panel {
+    z-index: unset !important;
+}
+  
+.mm-panel_opened {
+    z-index: unset !important;
+}
+
+.mm-navbar_sticky {
+    z-index: unset !important;
+}
+
+.parentLevel0 .mm-menu_iconpanel .mm-panels>.mm-panel_opened .mm-panel_opened{
+    display:  none !important;
+  }
+
+.tree-container-jcp .mat-divider {
+    margin-top: -2px;
+}
+
+#nav-menu .mm-panels .mm-panel_opened:not(.mm-panel_iconpanel-first) {
+    width: 240px;
+}
+
+#nav-menu .mm-panels .mm-panel:not(.mm-panel_iconpanel-first) .mm-listview {
+    width: 240px;
+}
+
+#nav-menu .mm-panel .mm-listitem span {
+    font-weight: 500;
+}
+
+.mm-panel_iconpanel-first .mm-listitem .mm-listitem__text span {
+    margin-right: 8px;
+}

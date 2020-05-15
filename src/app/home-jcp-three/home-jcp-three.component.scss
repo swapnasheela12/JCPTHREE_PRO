@@ -18,22 +18,27 @@ $color-white: #ffffff;
     border-radius: 0px 25px 25px 0px !important;
     border-right: 0px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 20rem;
+    width: 17.5rem;
 
     .mat-drawer-inner-container {
       overflow: hidden;
 
       .side-mat-toolbar-row {
-        margin-top: 15px;
-        margin-bottom: 15px;
+        height: 60px;
+        // margin-top: 15px;
+        // margin-bottom: 15px;
         position: sticky;
         border-bottom: 1px solid #707070 !important;
 
         .jcp-logo-container {
-          padding-left: 15px;
-          margin-bottom: 15px;
+          padding-left: 13px;
+          height: 60px;
+          //  margin-bottom: 15px;
 
           // padding-right: 15px;
+          img {
+            margin-top: 13px;
+          }
           .mat-button {
             box-sizing: border-box;
             position: relative;
@@ -65,7 +70,8 @@ $color-white: #ffffff;
               // font-size: 30px;
               // padding: 10px 0;
               color: #0070DB;
-              font-size: 1.5rem;
+              font-size: 1.125rem;
+              margin-top: 0.5rem;
             }
 
             .zmdi-close::before {
@@ -198,7 +204,7 @@ $color-white: #ffffff;
   }
 
   .active-body-sidenav {
-    margin-left: 300px !important;
+    margin-left: 260px !important;
   }
 
   .activeNot-body-sidenav {
@@ -206,4 +212,17 @@ $color-white: #ffffff;
   }
 
   // }
+}
+
+.copy-right {
+    color: #CACACA;
+    font-size: 9px;
+    position: absolute;
+    text-align: center;
+    // padding-bottom: 0.5rem;
+    font-weight: bold;
+    border-top: 1px solid #DFDFDF;
+    // padding-top: 10px;
+    height: 27px;
+    padding-top: 6px;
 }
