@@ -5,7 +5,7 @@
         .jcp-landing-grid-tile-one {
 
             .jcp-landing-card {
-                
+
                 .jcp-landing-card-header {
                     height: 43px;
 
@@ -33,6 +33,7 @@
                     height: 43px;
 
                     .jcp-landing-title {
+                        color: #464D69;
                         font-size: 15px;
                         font-family: Lato Bold;
                     }
@@ -42,7 +43,42 @@
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
-                        .jcp-landing-right-inputs {}
+
+                        .jcp-landing-right-inputs {
+                            height: 43px;
+                        }
+                    }
+                }
+
+                .sites-details-card-content {
+                    height: calc(100% - 43px);
+
+                    .sites-details-container {
+                        .sites-details-row {
+                            height: 62px;
+
+                            .sites-details-icon {
+                                width: 50px;
+                                height: 50px;
+                                background: RGBA(0, 112, 219, 0.14);
+                                color: #0070DB;
+                                border-radius: 25px;
+                                padding: 14px 16px;
+                                font-size: 20px;
+                            }
+
+                            .sites-details-title {
+                                color: #464D69;
+                                font-size: 12px;
+                                font-family: Lato Medium;
+                            }
+
+                            .sites-details-count {
+                                color: #464D69;
+                                font-size: 19px;
+                                font-family: Lato Bold;
+                            }
+                        }
                     }
                 }
             }
@@ -64,6 +100,7 @@
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
+
                         .jcp-landing-right-inputs {}
                     }
                 }
@@ -86,7 +123,47 @@
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
+
                         .jcp-landing-right-inputs {}
+                    }
+                }
+
+                .usage-metrics-card-content {
+                    .usage-metrics-container {
+                        height: 69px;
+                        margin: 29px 32px;
+
+                        .usage-metrics-row {
+                            height: 69px;
+
+                            .usage-metrics-col {
+                                height: 69px;
+
+                                .usage-metrics-inner-row {
+                                    // height: 32px;
+                                    padding: 5px 0;
+
+                                    .usage-metrics-icon {
+                                        color: #0070DB;
+                                        width: 22px;
+                                        height: 22px;
+                                        font-size: 20px;
+                                    }
+
+                                    .usage-metrics-count {
+                                        font-size: 20px;
+                                        font-family: Lato Bold;
+                                        color: #464D69;
+                                    }
+
+                                    .usage-metrics-title {
+                                        font-size: 13px;
+                                        font-family: Lato Medium;
+                                        color: #7C8195;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
