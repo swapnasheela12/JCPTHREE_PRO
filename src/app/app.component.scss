@@ -89,6 +89,7 @@ $px59Negative: -59px;
         }
     }
 }
+
 .mm-btn_prev:before {
     left: 37px;
 }
@@ -199,7 +200,7 @@ $px59Negative: -59px;
         background-color: $blueshade-color;
         border-top-right-radius: $px25;
         border-bottom-right-radius: $px25;
-        margin-right: $px21;
+        margin-right: $px10;
         color: $blueactive-color;
         height: $px48;
         .ic {
@@ -267,13 +268,13 @@ $px59Negative: -59px;
     background-color: red;
 }
 
-.mm-panel {
-    z-index: unset !important;
-}
+// .mm-panel {
+//     z-index: unset !important;
+// }
   
-.mm-panel_opened {
-    z-index: unset !important;
-}
+// .mm-panel_opened {
+//     z-index: unset !important;
+// }
 
 .mm-navbar_sticky {
     z-index: unset !important;
@@ -294,6 +295,7 @@ $px59Negative: -59px;
 #nav-menu .mm-panels .mm-panel:not(.mm-panel_iconpanel-first) .mm-listview {
     width: 240px;
 }
+
 
 #nav-menu .mm-panel .mm-listitem span {
     font-weight: 500;
