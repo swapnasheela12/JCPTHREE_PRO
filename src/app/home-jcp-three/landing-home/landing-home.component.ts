@@ -284,11 +284,27 @@ export class LandingHomeComponent implements OnInit {
         "3/26",
         "3/27",
       ],
-      // plotBands: [{ // visualize the weekend
-      //   from: 4.5,
-      //   to: 6.5,
-      //   color: 'rgba(68, 170, 213, .2)'
-      // }]
+      labels: {
+        style: {
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '11px'
+        }
+      },
+      allowDecimals: false,
+      title: {
+        text: null,
+        style: {
+
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+
+      },
+
     },
     yAxis: {
       min: 300,
