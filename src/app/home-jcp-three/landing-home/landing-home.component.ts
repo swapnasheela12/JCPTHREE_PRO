@@ -253,15 +253,7 @@ export class LandingHomeComponent implements OnInit {
       text: null,
     },
     legend: {
-      layout: 'vertical',
-      align: 'left',
-      verticalAlign: 'top',
-      x: 150,
-      y: 100,
-      floating: true,
-      borderWidth: 1,
-      backgroundColor:
-        Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+      enabled: false,
     },
     
     xAxis: {
