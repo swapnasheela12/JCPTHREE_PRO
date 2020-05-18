@@ -15,7 +15,8 @@
                     ></span>
                 {{item.name}}
             </span>
-            <ul *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
+            <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
+                <ul>
                 <li *ngFor="let item of item.children">
                 <ng-container 
                     [ngTemplateOutlet]="recursiveListTmpl" 
@@ -23,6 +24,7 @@
                 </ng-container>
                 </li>
             </ul>
+            </div>
             <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle>

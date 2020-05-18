@@ -45,7 +45,7 @@ $px45: 45px;
 }
 
 .mat-tree {
-  padding-left: 2rem !important;
+  padding-left: 0.75rem !important;
   font-family: Lato Regular;
   font-weight: 500;
   .mat-tree-node {
@@ -57,6 +57,9 @@ $px45: 45px;
         position: absolute;
         margin-left: 10.75rem;
       }
+  }
+  .name-node {
+    font-family: Lato Medium;
   }
 }
 .example-tree-invisible {

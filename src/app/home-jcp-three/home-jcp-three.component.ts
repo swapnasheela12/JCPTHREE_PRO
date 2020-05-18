@@ -16,30 +16,50 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   styleUrls: ["./home-jcp-three.component.scss"],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    trigger('transitionIcon',[
-      state(
-        'default',
-        style({ transform: 'rotate(0)'})
-      ),
-      state(
-        'rotated',
-        style({ transform: 'rotate(-360deg)'})
-      ),
-      transition(
-        'rotated => default',
-        animate('1000ms 0.1s ease-out')
-      ),
-      transition(
-        'default => rotated',
-        animate('1000ms 0.1s ease-in')
-      )
-    ])
+    trigger('hamburguerX', [
+      state('hamburguer', style({})),
+      state('topX', style({
+        transform: 'translate3d(0,12px,0) rotate(-50deg)', 
+        transformOrigin: 'left'
+      })),
+      state('hide', style({
+        opacity: 0
+      })),
+      state('bottomX', style({
+        transform: 'translate3d(12px,0,0) rotate(-130deg)',
+        transformOrigin: 'left'
+      })),
+      transition('* => *', [
+        animate('0.3s')
+      ]),
+    ]),
   ]
+  // animations: [
+  //   trigger('transitionIcon',[
+  //     state(
+  //       'default',
+  //       style({ transform: 'rotate(0)'})
+  //     ),
+  //     state(
+  //       'rotated',
+  //       style({ transform: 'rotate(-90deg)'})
+  //     ),
+  //     transition(
+  //       'rotated => default',
+  //       animate('1000ms 0.5s ease-out')
+  //     ),
+  //     transition(
+  //       'default => rotated',
+  //       animate('1000ms 0.5s ease-in')
+  //     )
+  //   ])
+  // ]
 })
 export class HomeJcpThreeComponent implements OnInit {
   expanded: boolean;
   toggleActive = true;
   state: string = 'default';
+  isHamburguer = true;
 
   constructor(private router: Router, private sidenav: SideNavService, private datashare: DataSharingService) {
     router.events.subscribe((url: any) => console.log(url));
@@ -59,16 +79,17 @@ export class HomeJcpThreeComponent implements OnInit {
     this.expanded = !this.expanded;
   }
 
-  changeIcon(hamburgerIcon: HTMLElement) {
+  changeIcon() {
+    this.isHamburguer = !this.isHamburguer;
     // this.state = (this.state === 'default' ? 'rotated' : 'default');
-    console.log( this.state);
-    if (this.state === 'default') {
-      this.state = 'rotated';
-      hamburgerIcon.className = 'zmdi zmdi-close';
-    } else {
-      this.state = 'default';
-        hamburgerIcon.className = 'ic ic-menu-01';
-    }
+    // console.log( this.state);
+    // if (this.state === 'default') {
+    //   this.state = 'rotated';
+    //   hamburgerIcon.className = 'zmdi zmdi-close';
+    // } else {
+    //   this.state = 'default';
+    //     hamburgerIcon.className = 'ic ic-menu-01';
+    // }
   }
   // tiles: Tile[] = [
   //   { text: "app/home-jcp-three/daily-traffic.html", cols: 8, rows: 2, color: "lightpink" },

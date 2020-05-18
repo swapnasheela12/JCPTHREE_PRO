@@ -96,9 +96,17 @@ export class MmenuDirective implements AfterViewInit {
       const menu = new Mmenu(elementNav, 
         {
             navbar: {
-              title: "Main Menu"
+              title: "Main Menu",
+              titleLink: "none"
             },
-            offCanvas: false,
+            onClick: {
+              preventDefault: false
+            },
+            // pageScroll 	: {
+            //   scroll 		: true,
+            //   update		: true
+            // },
+            // offCanvas: false,
             extensions: ["theme-white", "position-bottom", "border-none"],
             wrappers: ["bootstrap"],
             iconPanels: {
@@ -109,6 +117,11 @@ export class MmenuDirective implements AfterViewInit {
             dividers: {
               fixed: false
             },
+            navbars: [
+              {
+                  content: ['prev', 'title'],
+              }
+            ],
             setSelected: {
               parent: true,
               hover: true
