@@ -1,10 +1,10 @@
-import { Component, OnInit,Optional } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Chart } from "angular-highcharts";
 import { first } from 'rxjs/operators';
 import { Options } from 'highcharts';
 import * as _ from 'lodash';
-
+declare var $: any;
 
 @Component({
   selector: 'app-landing-home',
@@ -13,137 +13,251 @@ import * as _ from 'lodash';
 })
 export class LandingHomeComponent implements OnInit {
 
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+  //   this.innerWidth = window.innerWidth;
+  //   this.chartOptions.chart.width = this.innerWidth - 50;
+  //   this.chart = new Chart(this.chartOptions);
+  // }
+
   constructor() { }
 
-  ngOnInit() {
-  }
 
   sitesListArr = [
     {
-    iconsite: "ic ic-Macro-Sites",
-    namesite: "Macro Sites",
-    countsite: "289137"
-  },
-    {
-    iconsite: "ic ic-small-Cells",
-    namesite: "Small Cells",
-    countsite: "293456"
-  },
-    {
-    iconsite: "ic ic-ESC",
-    namesite: "ESC",
-    countsite: "2345"
-  },
-    {
-    iconsite: "ic ic-COW",
-    namesite: "COW",
-    countsite: "2345"
-  },
-    {
-    iconsite: "ic ic-FTTX",
-    namesite: "FTTX",
-    countsite: "122345"
-  },
-    {
-    iconsite: "ic ic-Wifi",
-    namesite: "WI-FI APS",
-    countsite: "271420"
-  },
-];
-
-
-chart1 = new Chart({
-  chart: {
-    plotBackgroundColor: null,
-    plotBorderWidth: 0,
-    plotShadow: false,
-    backgroundColor: "transparent",
-    // spacingTop: 30,
-    height: 250
-  },
-  title: {
-    text: null
-  },
-  tooltip: {
-    pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-  },
-  legend: {
-    // labelFormatter: function () {
-    //   return '<div style="min-width:165px;" class="row m-0 justify-content-start align-items-center"><div class="legend-title col p-0">' + this.name + '</div>'
-    //     + '<div class="legend-value">' + this.y + '%</div></div>';
-    // },
-    itemStyle: {
-      color: "rgba(0, 0, 0, 0.87)",
-      fontFamily: "Roboto",
-      fontWeight: "normal",
-      fontSize: "14px"
+      iconsite: "ic ic-Macro-Sites",
+      namesite: "Macro Sites",
+      countsite: "289137"
     },
-    useHTML: true,
-    align: 'right',
-    verticalAlign: 'middle',
-    layout: 'vertical',
-    itemMarginTop: 9,
-    itemMarginBottom: 9,
-    symbolHeight: 18,
-    symbolWidth: 18,
-    symbolRadius: 0,
-  },
-  credits: {
-    enabled: false
-  },
-  plotOptions: {
-    pie: {
-      borderWidth: 0,
-      dataLabels: {
-        enabled: false,
-        distance: -50,
+    {
+      iconsite: "ic ic-small-Cells",
+      namesite: "Small Cells",
+      countsite: "293456"
+    },
+    {
+      iconsite: "ic ic-ESC",
+      namesite: "ESC",
+      countsite: "2345"
+    },
+    {
+      iconsite: "ic ic-COW",
+      namesite: "COW",
+      countsite: "2345"
+    },
+    {
+      iconsite: "ic ic-FTTX",
+      namesite: "FTTX",
+      countsite: "122345"
+    },
+    {
+      iconsite: "ic ic-Wifi",
+      namesite: "WI-FI APS",
+      countsite: "271420"
+    },
+  ];
+
+
+
+  // chart1: Chart;
+  chart1 = new Chart({
+    chart: {
+      type: 'column',
+      zoomType: "xy",
+      backgroundColor: "transparent",
+      spacingTop: 30,
+      marginLeft: 35,
+      // height: (4/ 16 * 100) + '%'
+      // width:"50%",
+      // height: '27%'
+    },
+    title: {
+      text: null,
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      categories: [
+        "3/11",
+        "3/12",
+        "3/13",
+        "3/14",
+        "3/15",
+        "3/16",
+        "3/17",
+        "3/18",
+        "3/19",
+        "3/20",
+        "3/21",
+        "3/22",
+        "3/23",
+        "3/24",
+        "3/25",
+        "3/26",
+        "3/27",
+      ],
+      labels: {
         style: {
-          fontWeight: "bold",
-          color: "white"
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '11px'
         }
       },
-      startAngle: -180,
-      endAngle: 180,
-      center: ["50%", "50%"],
-      size: "100%",
-      showInLegend: true
-    }
-  },
-  series: [
-    {
-      type: "pie",
-      name: "Browser share",
-      innerSize: "70%",
-      data: [
-        {
-          name: "Jio Security",
-          color: "#f7931e",
-          y: 30
+      allowDecimals: false,
+      title: {
+        text: null,
+        style: {
+
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
         },
-        {
-          name: "Jio Manhole Safety",
-          color: "#29abe2",
-          y: 31
-        },
-        {
-          name: "Jio Smart Meter",
-          color: "#39b54a",
-          y: 20
-        },
-        {
-          name: "Jio Smart Parking",
-          color: "#ed1e79",
-          y: 12
-        },
-        {
-          name: "Jio Integrated Energy",
-          color: "#7f89e6",
-          y: 7
+
+      },
+    },
+    yAxis: {
+      min: 300,
+      max: 340,
+      tickInterval: 10,
+      labels: {
+        reserveSpace: false,
+        style: {
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
         }
-      ]
+      },
+      allowDecimals: false,
+      title: {
+        text: "(Peta Bytes)",
+        align: 'high',
+        style: {
+          // 'text-anchor': 'start',
+          color: '#000000',
+          fontFamily: 'Roboto',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+        rotation: 0,
+        y: -20,
+        x: 30
+      },
+
+    },
+    legend: {
+      enabled: false,
+    },
+    tooltip: {
+      pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+    },
+    plotOptions: {
+      column: {
+        borderRadius: 6,
+        pointWidth: 12,
+        dataLabels: {
+          enabled: false
+        }
+      },
+      series: {
+        marker: {
+          enabled: true,
+          symbol: "circle",
+          lineWidth: 1,
+          radius: 5,
+          lineColor: "#ed1c24",
+          fillColor: "#FFFFFF",
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        },
+       
+      }
+      
+    },
+    series: [
+      {
+        name: "(Peta Bytes)",
+        type: "column",
+        color: "#FC5F5F",
+        data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
+      }
+    ],
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500,
+          maxHeight: 200
+        },
+        chartOptions: {
+          legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'horizontal'
+          },
+          yAxis: {
+            labels: {
+              align: 'left',
+              x: 0,
+              y: -5
+            },
+            title: {
+              text: null
+            }
+          },
+          subtitle: {
+            text: null
+          },
+          credits: {
+            enabled: false
+          }
+        }
+      }]
     }
-  ]
-});
+  });
+
+
+
+  ngOnInit() {
+    // this.innerWidth = window.innerWidth;
+
+    // setTimeout(() => {
+
+    //   this.chart1.ref.chartWidth = 800;
+    // }, 300);
+    // $(window).resize(this.doResize);
+    this.doResize();
+  }
+  doResize() {
+    console.log(this.chart1, "this.chart1");
+    // this.chart1.reflow();
+    // this.chart1.update({
+    //   chart: {
+    //     width: newWidth
+    //   }
+    // });
+    // var chart = $('#container').highcharts();
+    // console.log(chart, "chart");
+
+    // var w = $('#container').closest(".wrapper").width()
+    // // setsize will trigger the graph redraw 
+
+    // console.log('redraw');
+    // chart.setSize(
+    //   w, w * (3 / 4), false
+    // );
+
+    // chart.title.update({
+    //   style: {
+    //     fontSize: Math.round(chart.containerWidth / 30) + "px"
+    //   }
+    // });
+  };
+
 
 
 
