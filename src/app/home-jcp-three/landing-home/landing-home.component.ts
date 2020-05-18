@@ -349,7 +349,7 @@ export class LandingHomeComponent implements OnInit {
     },
     series: [
       {
-        name: "(Peta Bytes)",
+        name: "(Users in Millions)",
         type: "areaspline",
         color: "#0FD125",
         data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
