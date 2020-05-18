@@ -22,7 +22,7 @@ export class LandingHomeComponent implements OnInit {
 
   constructor() { }
 
-
+ 
   sitesListArr = [
     {
       iconsite: "ic ic-Macro-Sites",
@@ -56,10 +56,27 @@ export class LandingHomeComponent implements OnInit {
     },
   ];
 
-
+  hsiItemSelected = "HSI";
+  lteItemSelected = "LTE";
+  panIndiaItemSelected = "PAN India";
+  hsiList=["HSI", "VoLTE"]
+  lteList=["LTE", "Wi-FI"]
+  panIndiaList=["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  
+  hsiItemSelecteddaily = "HSI";
+  lteItemSelecteddaily = "LTE";
+  panIndiaItemSelecteddaily = "PAN India";
+  hsiListdaily=["HSI", "VoLTE"]
+  lteListdaily=["LTE", "Wi-FI"]
+  panIndiaListdaily=["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  
+  panIndiaItemSelectedsites = "PAN India";
+  panIndiaListsites=["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  panIndiaItemSelectedusage = "PAN India";
+  panIndiaListusage=["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
 
   // chart1: Chart;
-  chart1 = new Chart({
+  dailyTraffic = new Chart({
     chart: {
       type: 'column',
       zoomType: "xy",
@@ -68,7 +85,7 @@ export class LandingHomeComponent implements OnInit {
       marginLeft: 35,
       // height: (4/ 16 * 100) + '%'
       // width:"50%",
-      // height: '27%'
+      height: '30%'
     },
     title: {
       text: null,
@@ -175,15 +192,150 @@ export class LandingHomeComponent implements OnInit {
             }
           }
         },
-       
+
       }
-      
+
     },
     series: [
       {
         name: "(Peta Bytes)",
         type: "column",
         color: "#FC5F5F",
+        data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
+      }
+    ],
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500,
+          maxHeight: 200
+        },
+        chartOptions: {
+          legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'horizontal'
+          },
+          yAxis: {
+            labels: {
+              align: 'left',
+              x: 0,
+              y: -5
+            },
+            title: {
+              text: null
+            }
+          },
+          subtitle: {
+            text: null
+          },
+          credits: {
+            enabled: false
+          }
+        }
+      }]
+    }
+  });
+
+
+  totalSubscribers = new Chart({
+    chart: {
+      type: 'areaspline',
+      zoomType: "xy",
+      backgroundColor: "transparent",
+      spacingTop: 30,
+      marginLeft: 35,
+      // height: (4/ 16 * 100) + '%'
+      // width:"50%",
+      height: '30%'
+    },
+    title: {
+      text: null,
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'left',
+      verticalAlign: 'top',
+      x: 150,
+      y: 100,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+    },
+    
+    xAxis: {
+      categories: [
+        "3/11",
+        "3/12",
+        "3/13",
+        "3/14",
+        "3/15",
+        "3/16",
+        "3/17",
+        "3/18",
+        "3/19",
+        "3/20",
+        "3/21",
+        "3/22",
+        "3/23",
+        "3/24",
+        "3/25",
+        "3/26",
+        "3/27",
+      ],
+      // plotBands: [{ // visualize the weekend
+      //   from: 4.5,
+      //   to: 6.5,
+      //   color: 'rgba(68, 170, 213, .2)'
+      // }]
+    },
+    yAxis: {
+      min: 300,
+      max: 340,
+      tickInterval: 10,
+      labels: {
+        reserveSpace: false,
+        style: {
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        }
+      },
+      allowDecimals: false,
+      title: {
+        text: "(Users in Millions)",
+        align: 'high',
+        style: {
+          // 'text-anchor': 'start',
+          color: '#000000',
+          fontFamily: 'Roboto',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+        rotation: 0,
+        y: -20,
+        x: 55
+      },
+    },
+    tooltip: {
+      shared: true,
+      valueSuffix: ' units'
+    },
+    credits: {
+      enabled: false
+    },
+    plotOptions: {
+      areaspline: {
+        fillOpacity: 0.5
+      }
+    },
+    series: [
+      {
+        name: "(Peta Bytes)",
+        type: "areaspline",
+        color: "#0FD125",
         data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
       }
     ],
@@ -233,7 +385,7 @@ export class LandingHomeComponent implements OnInit {
     this.doResize();
   }
   doResize() {
-    console.log(this.chart1, "this.chart1");
+    console.log(this.dailyTraffic, "this.chart1");
     // this.chart1.reflow();
     // this.chart1.update({
     //   chart: {

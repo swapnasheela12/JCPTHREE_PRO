@@ -2,7 +2,7 @@
     <mat-grid-list cols="12" class="jcp-landing-grid-list" rowHeight="fit">
         <mat-grid-tile class="jcp-landing-grid-tile-one" colspan="8" rowspan="2">
 
-            <mat-card class="jcp-landing-card p-0" fxFlexFill>
+            <mat-card class="jcp-landing-card p-0" >
                 <!-- <mat-grid-tile-header> -->
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
@@ -11,31 +11,22 @@
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
                         <div class="jcp-landing-right-inputs col-4 pr-0">
                             <mat-form-field>
-                                <!-- <mat-label>HSI</mat-label> -->
-                                <mat-select disableOptionCentering placeholder="HSI">
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                                <mat-select disableOptionCentering [(value)]="hsiItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of hsiListdaily" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="jcp-landing-right-inputs col-3 pr-0">
                             <mat-form-field>
-                                <!-- <mat-label>LTE</mat-label> -->
-                                <mat-select disableOptionCentering placeholder="LTE">
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                                <mat-select disableOptionCentering [(value)]="lteItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of lteListdaily" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="jcp-landing-right-inputs col-5 pr-0">
                             <mat-form-field disableOptionCentering>
-                                <!-- <mat-label>PAN India</mat-label> -->
-                                <mat-select disableOptionCentering placeholder="PAN India">
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListdaily" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -46,9 +37,8 @@
                 <mat-divider></mat-divider>
 
                 <mat-card-content style="height:calc( 100% - 43px);">
-                    <!-- <div style="height:inherit;width:100%;position:absolute;"> -->
-                    <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
-                    <div fxLayout="row warp" fxLayoutAlign="start center" style="height: 25px;padding: 1.5rem;">
+                   
+                    <div class="px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center" style="height: 25px;">
                         <div style="color:#FC5F5F;font-family: Lato Bold;font-size: 19px;">
                             120.4 PB
                         </div>
@@ -56,18 +46,17 @@
                             style="color:#707070;font-family: Lato Regular;font-size: 12px;margin-top: 10px;margin-left: 5px;">
                             Current Traffic </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <div [chart]="chart1" style="display: block;"></div>
+                    <div fxLayout="row" fxLayoutAlign="center start" style="height: -webkit-fill-available;">
+                        <div [chart]="dailyTraffic" style="display: block;"></div>
                     </div>
-                    <!-- </div> -->
-                    <!-- </div> -->
+                 
                 </mat-card-content>
 
             </mat-card>
 
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-two" colspan="4" rowspan="3">
-            <mat-card class="jcp-landing-card p-0" fxFlexFill>
+            <mat-card class="jcp-landing-card p-0 w-100" >
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
@@ -76,12 +65,9 @@
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
 
                         <div class="jcp-landing-right-inputs col pr-0">
-                            <mat-form-field>
-                                <mat-label>PAN India</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedsites">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListsites" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -112,7 +98,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-three" colspan="8" rowspan="2">
-            <mat-card class="jcp-landing-card p-0" fxFlexFill>
+            <mat-card class="jcp-landing-card p-0">
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
@@ -121,31 +107,22 @@
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
                         <div class="jcp-landing-right-inputs col-4 pr-0">
                             <mat-form-field>
-                                <mat-label>HSI</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                                <mat-select disableOptionCentering [(value)]="hsiItemSelected">
+                                    <mat-option value="option1" *ngFor="let item of hsiList" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="jcp-landing-right-inputs col-3 pr-0">
                             <mat-form-field>
-                                <mat-label>LTE</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                                <mat-select disableOptionCentering [(value)]="lteItemSelected">
+                                    <mat-option value="option1" *ngFor="let item of lteList" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="jcp-landing-right-inputs col-5 pr-0">
-                            <mat-form-field>
-                                <mat-label>PAN India</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelected">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaList" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -155,17 +132,24 @@
                 <mat-divider></mat-divider>
 
                 <mat-card-content style="height:calc( 100% - 43px);">
-                    <div>
-                        <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
-                                style="width: 100%; height: 400px; display: block;">
-                            </highcharts-chart> -->
+                   
+                    <div class="px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center" style="height: 25px;">
+                        <div style="color:#0FD125;font-family: Lato Bold;font-size: 19px;">
+                            310.5 M
+                        </div>
+                        <div style="color:#707070;font-family: Lato Regular;font-size: 12px;margin-top: 10px;margin-left: 5px;">
+                            Current Subscribers Base </div>
                     </div>
+                    <div fxLayout="row" fxLayoutAlign="center start" style="height: -webkit-fill-available;">
+                        <div [chart]="totalSubscribers" style="display: block;"></div>
+                    </div>
+                 
                 </mat-card-content>
 
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-four" colspan="4" rowspan="1">
-            <mat-card class="jcp-landing-card p-0" fxFlexFill>
+            <mat-card class="jcp-landing-card p-0 w-100">
 
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
 
@@ -174,12 +158,9 @@
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
 
                         <div class="jcp-landing-right-inputs col pr-0">
-                            <mat-form-field>
-                                <mat-label>PAN India</mat-label>
-                                <mat-select>
-                                    <mat-option value="option1">Option 1</mat-option>
-                                    <mat-option value="option2">Option 2</mat-option>
-                                    <mat-option value="option3">Option 3</mat-option>
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedusage">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListusage" [value]="item">{{item}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
