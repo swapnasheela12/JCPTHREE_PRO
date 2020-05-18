@@ -79,6 +79,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainModulesModule } from './main-modules/main-modules.module';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
 // import { HighchartsChartComponent } from 'highcharts-angular';
+import { ChartModule } from 'angular-highcharts';
 
 declare var $: any;
 
@@ -102,6 +103,7 @@ declare var $: any;
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ChartModule,
 
     //modules
     // MainModulesModule,

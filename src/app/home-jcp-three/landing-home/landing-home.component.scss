@@ -23,6 +23,10 @@
                         .jcp-landing-right-inputs {}
                     }
                 }
+                .jcp-landing-card-content{
+                    height:calc( 100% - 43px);
+                   
+                }
             }
         }
 
@@ -55,15 +59,16 @@
 
                     .sites-details-container {
                         .sites-details-row {
-                            height: 62px;
+                            height: 56px;
+                            border-bottom: 1px solid #e0e0e0;
 
                             .sites-details-icon {
-                                width: 50px;
-                                height: 50px;
+                                width: 40px;
+                                height: 40px;
                                 background: RGBA(0, 112, 219, 0.14);
                                 color: #0070DB;
                                 border-radius: 25px;
-                                padding: 14px 16px;
+                                padding: 9px 11px;
                                 font-size: 20px;
                             }
 
@@ -75,7 +80,7 @@
 
                             .sites-details-count {
                                 color: #464D69;
-                                font-size: 19px;
+                                font-size: 15px;
                                 font-family: Lato Bold;
                             }
                         }
@@ -131,7 +136,10 @@
                 .usage-metrics-card-content {
                     .usage-metrics-container {
                         height: 69px;
-                        margin: 29px 32px;
+                        // margin: 29px 32px;
+                        // margin-left: auto;
+                        // margin-right: auto;
+                        width: 85%;
 
                         .usage-metrics-row {
                             height: 69px;
@@ -151,7 +159,7 @@
                                     }
 
                                     .usage-metrics-count {
-                                        font-size: 20px;
+                                        font-size: 15px;
                                         font-family: Lato Bold;
                                         color: #464D69;
                                     }
