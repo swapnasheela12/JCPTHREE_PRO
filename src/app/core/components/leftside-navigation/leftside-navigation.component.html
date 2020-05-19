@@ -8,14 +8,21 @@
         </li>
     </ul>
     <ng-template #recursiveListTmpl let-item='item'>
-            <span routerLink="/{{item.link}}" (click)="parentIconClick()" [ngClass]="[ isParentLevel ? 'parentLevel0' : '']" routerLinkActive="menu-active">
-                <span class="{{item.icon}}"
+            <span routerLink="/{{item.link}}" *ngIf="item.children.length > 0" (click)="parentIconClick()" routerLinkActive="menu-active">
+                <i class="{{item.icon}}"
                     *ngIf="item.level == 0"
                     attr.data-title="{{item.name}}"
-                    ></span>
+                    ></i>
                 {{item.name}}
             </span>
-            <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
+            <a routerLink="/{{item.link}}" *ngIf="item.children.length == 0" (click)="parentIconClick()" routerLinkActive="menu-active">
+                <i class="{{item.icon}}"
+                    *ngIf="item.level == 0"
+                    attr.data-title="{{item.name}}"
+                    ></i>
+                {{item.name}}
+            </a>
+            <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons" [ngClass]="[ isParentLevel ? 'parentLevel0' : '']">
                 <ul>
                 <li *ngFor="let item of item.children">
                 <ng-container 

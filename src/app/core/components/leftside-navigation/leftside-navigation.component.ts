@@ -3,6 +3,8 @@ import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import Mmenu from "mmenu-js/dist/core/oncanvas/mmenu.oncanvas";
+import * as DOM from 'mmenu-js/dist/_modules/dom';
 
 declare var $: any;
 
@@ -52,31 +54,7 @@ export class LeftsideNavigationComponent implements AfterViewChecked, OnInit {
   }
 
   parentIconClick() {
-    // alert('Click');
-    // const parent = document.getElementsByClassName('mm-panel_opened');
-    // console.log(parent);
-    // // this.renderer.addClass(parent, 'parentLevel0')
-    // let elements = this.elRef.nativeElement;
-    // this.renderer.addClass(elements, 'parentLevel0');
-    // // this.renderer.setProperty(elements, 'class', 'parentLevel0');
-    // console.log(elements);
-    // this.renderer.setElementClass(elements, 'parentLevel0')
-    // const parentElement = this.elRef.nativeElement.children;
-    // console.log(parentElement);
-    // const test = $(this.elRef.nativeElement).find('mm-menu');
-    // console.log(test);
-    // console.log(this.renderer.setStyle(parentElement,'background-color','yellow'));
-    // console.log(parentElement);
-    // console.log(parentElement.querySelector('mm-panels'))
-    // this.level = this.route.snapshot.data['level'];
-    // console.log(this.level);
-    // const parentElement = this.elRef.nativeElement.attribute;
-    // console.log(parentElement);
-    if (this.level == 0) {
-      this.isParentLevel = true;
-      // const parent: HTMLElement = document.getElementsByClassName('mm-panel_opened');
-      // console.log(parent)
-    }
+   
   }
   hasChild = (_: number, node: SideNavNode) => !!node.children && node.children.length > 0;
 
