@@ -39,7 +39,7 @@
                 <!-- </mat-grid-tile-header> -->
                 <mat-divider></mat-divider>
 
-                <mat-card-content style="height:calc( 100% - 43px);">
+                <mat-card-content style="height:calc( 100% - 43px);" >
 
                     <div class="px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center" style="height: 25px;">
                         <div style="color:#FC5F5F;font-family: Lato Bold;font-size: 19px;">
@@ -49,7 +49,8 @@
                             style="color:#707070;font-family: Lato Regular;font-size: 12px;margin-top: 10px;margin-left: 5px;">
                             Current Traffic </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="center start" style="height: -webkit-fill-available;">
+                    <!-- <div fxLayout="row" (window:resize)="onResize($event)" fxLayoutAlign="center start" style="height: -webkit-fill-available;"> -->
+                    <div fxLayout="row"  fxLayoutAlign="center start" style="height: -webkit-fill-available;">
                         <div [chart]="dailyTraffic" style="display: block;"></div>
                     </div>
 
@@ -147,11 +148,12 @@
                             style="color:#707070;font-family: Lato Regular;font-size: 12px;margin-top: 10px;margin-left: 5px;">
                             Current Subscribers Base </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="center start" style="height: -webkit-fill-available;">
+                    <div class="myElementClass" id="myChart" fxLayout="row" fxLayoutAlign="center start">
                         <!-- <div [chart]="totalSubscribers" style="display: block;"></div> -->
-                        <highcharts-chart id="mychart" [Highcharts]="chartsTotalSubscriber" [options]="chartOptionsTotalSubscriber"
+                        <!-- <highcharts-chart id="mychart" [Highcharts]="chartsTotalSubscriber" [options]="chartOptionsTotalSubscriber"
                             style=" display: block;">
-                        </highcharts-chart>
+                        </highcharts-chart> -->
+                        <div class="chart"  [chart]="chart"></div>
                     </div>
 
                 </mat-card-content>
