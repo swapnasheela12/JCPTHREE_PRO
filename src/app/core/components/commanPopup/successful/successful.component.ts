@@ -35,7 +35,7 @@ export class SuccessfulComponent implements OnInit {
   clickGoMyReport(): void{
    
     this.dialogRef.close();
-    this.router.navigate(['/Home/Reports and Dashboard/My-Reports']);
+    this.router.navigate(['/Home/Reports and Dashboard/My Reports']);
   }
 
   animal: string;
