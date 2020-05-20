@@ -87,7 +87,7 @@ export class LandingHomeComponent implements OnInit {
     },
     {
       iconsite: "ic ic-Wifi",
-      namesite: "WI-FI APS",
+      namesite: "Wi-Fi Access Points",
       countsite: "271420"
     },
   ];
@@ -138,11 +138,9 @@ export class LandingHomeComponent implements OnInit {
           fontSize: '11px'
         }
       },
-      allowDecimals: false,
       title: {
         text: null,
         style: {
-
           color: '#000000',
           fontFamily: 'Lato Regular',
           fontWeight: 'normal',
@@ -152,9 +150,10 @@ export class LandingHomeComponent implements OnInit {
       },
     },
     yAxis: {
-      min: 300,
-      max: 340,
+      min: 100,
+      max: 140,
       tickInterval: 10,
+      allowDecimals: true,
       labels: {
         reserveSpace: false,
         style: {
@@ -166,9 +165,8 @@ export class LandingHomeComponent implements OnInit {
       },
       gridLineWidth: 1,
       gridLineDashStyle: 'Dash',
-      allowDecimals: false,
       title: {
-        text: "(Peta Bytes)",
+        text: "Traffic in Petabytes",
         align: 'high',
         style: {
           // 'text-anchor': 'start',
@@ -179,7 +177,7 @@ export class LandingHomeComponent implements OnInit {
         },
         rotation: 0,
         y: -20,
-        x: 30
+        x: 60
       },
 
     },
@@ -219,10 +217,10 @@ export class LandingHomeComponent implements OnInit {
     },
     series: [
       {
-        name: "(Peta Bytes)",
+        name: "(Traffic in Petabytes)",
         type: "column",
         color: "#FC5F5F",
-        data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
+        data: [120.48, 121.11, 121.10, 120.58, 120.34, 120.23, 122.34, 120.39, 121.27, 123.71, 130.51, 117.19, 121.93, 119.84]
       }
     ],
     responsive: {
@@ -286,7 +284,7 @@ export class LandingHomeComponent implements OnInit {
           fontSize: '11px'
         }
       },
-      allowDecimals: false,
+     
       title: {
         text: null,
         style: {
@@ -301,8 +299,8 @@ export class LandingHomeComponent implements OnInit {
 
     },
     yAxis: {
-      min: 300,
-      max: 340,
+      min: 250,
+      max: 290,
       tickInterval: 10,
       labels: {
         reserveSpace: false,
@@ -315,9 +313,9 @@ export class LandingHomeComponent implements OnInit {
       },
       gridLineWidth: 1,
       gridLineDashStyle: 'Dash',
-      allowDecimals: false,
+      allowDecimals: true,
       title: {
-        text: "(Users in Millions)",
+        text: "Users in Millions",
         align: 'high',
         style: {
           // 'text-anchor': 'start',
@@ -328,7 +326,7 @@ export class LandingHomeComponent implements OnInit {
         },
         rotation: 0,
         y: -20,
-        x: 55
+        x: 50
       },
     },
     tooltip: {
@@ -348,7 +346,7 @@ export class LandingHomeComponent implements OnInit {
         name: "(Users in Millions)",
         type: "areaspline",
         color: "#0FD125",
-        data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
+        data: [270.1, 270.1, 270.1, 270.2, 270.5, 271.1, 271.1, 270.9, 270.8, 270.9, 270.9, 270.8, 270.9, 271.1]
       }
     ],
   });

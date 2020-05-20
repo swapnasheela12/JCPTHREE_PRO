@@ -132,6 +132,7 @@
           // background:rgba(0,0,0,0.6);
           background: rgba(0, 0, 0, 0.2);
           border-radius: 10px;
+          margin-right: 10px;
           // margin: 3px 0px;
           // padding: 5px;
           // padding: 4px;
@@ -147,6 +148,10 @@
               .note-icon {
                 // line-height: 18px;
               }
+            }
+
+            .icon-container-button:hover{
+              background: rgba(0, 0, 0, 0.2);
             }
 
             .notifications-header {
@@ -170,23 +175,26 @@
 
 
         .admin-toolbar {
+          height: 48px;
+          width: 48px;
+          border-radius: 25px;
+          margin-right: 12px;
 
-          // padding: 0 15px;
-          // padding: 0 8px;
           .admin-toolbar-container {
-            .adminButton {
-              .user-button {
+            margin: 5px;
 
-                // cursor: pointer;
-                // border-radius: 25px;
-                // border: solid 1px;
-                // height: 40px;
+            .adminButton {
+              width: 38px;
+              height: 38px;
+              border-radius: 20px;
+              padding: 0px;
+
+              .user-button {
 
                 width: 36px;
                 height: 36px;
                 border-radius: 18px;
                 border: solid 1px;
-
               }
             }
 
@@ -196,26 +204,10 @@
 
           }
 
+        }
 
-          // .adminButton {
-          // padding: 6px 0;
-          // border-radius: 30px;
-          // width: 30px !important;
-          // height: 30px !important;
-          // min-width: 30px !important;
-
-          // .user-button {
-          //   // cursor: pointer;
-          //   // border-radius: 25px;
-          //   // border: solid 1px;
-          //   // height: 40px;
-          //   {
-          //     width: 36px;
-          //     height: 36px;
-          //     border-radius: 18px;
-          // }
-          // }
-          // }
+        .admin-toolbar:hover {
+          background: rgba(0, 0, 0, 0.4);
         }
 
       }
@@ -283,13 +275,15 @@
       }
     }
 
-    .active-sub-toolbar-row-left{
+    .active-sub-toolbar-row-left {
       margin-left: 15px;
     }
-    .activeNot-sub-toolbar-row-left{
+
+    .activeNot-sub-toolbar-row-left {
       margin-left: 0px;
-      
+
     }
+
     .jcp-sub-toolbar-row-right {
       .icon-right-list {
         float: right;

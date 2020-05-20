@@ -103,28 +103,9 @@
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-three" colspan="8" rowspan="2">
             <mat-card class="jcp-landing-card p-0  w-100">
-
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
-
-                    <div class="jcp-landing-title" fxFlex>Total Subscribers</div>
-
+                    <div class="jcp-landing-title" fxFlex>Total Active Subscribers</div>
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
-                        <!-- <div class="jcp-landing-right-inputs col-4 pr-0">
-                            <mat-form-field>
-                                <mat-select disableOptionCentering [(value)]="hsiItemSelected">
-                                    <mat-option value="option1" *ngFor="let item of hsiList" [value]="item">{{item}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="jcp-landing-right-inputs col-3 pr-0">
-                            <mat-form-field>
-                                <mat-select disableOptionCentering [(value)]="lteItemSelected">
-                                    <mat-option value="option1" *ngFor="let item of lteList" [value]="item">{{item}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div> -->
                         <div class="jcp-landing-right-inputs col-7 pr-0"></div>
                         <div class="jcp-landing-right-inputs col-5 pr-0">
                             <mat-form-field disableOptionCentering>
@@ -138,25 +119,21 @@
 
                 </div>
                 <mat-divider></mat-divider>
-
                 <mat-card-content class="jcp-landing-card-content">
                     <div class="jcp-landing-card-container">
                         <div class="jcp-landing-card-subheader px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center">
                             <div class="jcp-landing-card-subheader-title">
-                                310.5 M
+                                259.5 M
                             </div>
                             <div class="jcp-landing-card-subheader-subtitle">
-                                Current Subscribers Base 
+                                Current Active Subscriber Base 
                             </div>
                         </div>
                         <div class="jcp-landing-card-chart-container" id="chartTotalSubscriberIdDiv">
                             <div id="chartTotalSubscriberID" [chart]="chartTotalSubscriber"></div>
                         </div>
-
                     </div>
-
                 </mat-card-content>
-
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-four" colspan="4" rowspan="1">
@@ -192,10 +169,9 @@
                                     <div class="usage-metrics-count  col">
                                         <div>1000</div>
                                     </div>
-
                                 </div>
                                 <div class="usage-metrics-inner-row " fxLayout="row" fxLayoutAlign="start center">
-                                    <div class="usage-metrics-title">JCP Users Active</div>
+                                    <div class="usage-metrics-title">JCP Active Users</div>
                                 </div>
                             </div>
                             <mat-divider vertical style="height:69px"></mat-divider>

@@ -71,21 +71,21 @@
             <div class="jcp-toolbar-row-right-content" fxLayout="row warp" fxLayoutAlign="end center">
                 <div class="icon-parent-container">
                     <div class="icon-container" (click)="openFullscreen();toggleSidenav();" *ngIf="expandScreen == false">
-                        <button
+                        <button mat-button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen" style="font-size: 22px;"></div>
+                            <div class="zmdi zmdi-fullscreen" style="font-size: 22px;    margin-bottom: 1px;"></div>
                         </button>
                     </div>
-                    <div class="icon-container" (click)="closeFullscreen();toggleSidenav();" *ngIf="expandScreen == true">
+                    <div mat-button class="icon-container" (click)="closeFullscreen();toggleSidenav();" *ngIf="expandScreen == true">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;"></div>
+                            <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;    margin-bottom: 1px;"></div>
                         </button>
                     </div>
                     <div class="icon-container ">
-                        <button
+                        <button mat-button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <div class="zmdi zmdi-bookmark-outline" style="font-size: 22px;"></div>
+                            <div class="zmdi zmdi-bookmark-outline" style="font-size: 22px;    margin-bottom: 1px;"></div>
                         </button>
                     </div>
                     <div class="icon-container">
@@ -212,7 +212,7 @@
                 </div>
                 <div class="admin-toolbar">
                     <div class="admin-toolbar-container">
-                        <button class="adminButton" mat-button [matMenuTriggerFor]="menuAdmin">
+                        <button class="adminButton" [matMenuTriggerFor]="menuAdmin">
                             <img src="assets/images/logo/user.jpeg" alt="IOT" class="user-button"/>
                         </button>
                     </div>
