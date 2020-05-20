@@ -5,6 +5,7 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import Mmenu from "mmenu-js/dist/core/oncanvas/mmenu.oncanvas";
 import * as DOM from 'mmenu-js/dist/_modules/dom';
+import { MmenuDirective } from 'src/app/_directive/mmenu.directive';
 
 declare var $: any;
 
@@ -34,14 +35,15 @@ export class LeftsideNavigationComponent implements AfterViewChecked, OnInit {
   routeArray = [];
   treeControl = new NestedTreeControl<SideNavNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<SideNavNode>();
-  level: any;
+  level: any = 1;
   @ViewChildren('myname') input:ElementRef; 
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private elRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private mmenuDirective: MmenuDirective
   ) {
     this.dataSource.data = LAYERS_DATA;
     // this.router.events.subscribe((event) => {
@@ -53,8 +55,10 @@ export class LeftsideNavigationComponent implements AfterViewChecked, OnInit {
 
   }
 
-  parentIconClick() {
-   
+  parentIconClick(mmenuDirective, level) {
+    if (level == 0) {
+      mmenuDirective.menu.API.closeAllPanels()
+    }
   }
   hasChild = (_: number, node: SideNavNode) => !!node.children && node.children.length > 0;
 

@@ -4,12 +4,7 @@ import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
 import {trigger, state, style, animate, transition} from '@angular/animations';
-// export interface Tile {
-//   color: string;
-//   cols: number;
-//   rows: number;
-//   text: string;
-// }
+
 @Component({
   selector: "app-home-jcp-three",
   templateUrl: "./home-jcp-three.component.html",
@@ -19,41 +14,21 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
     trigger('hamburguerX', [
       state('hamburguer', style({})),
       state('topX', style({
-        transform: 'translate3d(0,12px,0) rotate(-50deg)', 
-        transformOrigin: 'left'
+        transform: 'translate3d(-5px,0,0) rotate(-45deg)', 
+        transformOrigin: 'right'
       })),
       state('hide', style({
         opacity: 0
       })),
       state('bottomX', style({
-        transform: 'translate3d(12px,0,0) rotate(-130deg)',
-        transformOrigin: 'left'
+        transform: 'translate3d(-5px,1px,0) rotate(45deg)',
+        transformOrigin: 'right'
       })),
       transition('* => *', [
         animate('0.3s')
       ]),
     ]),
   ]
-  // animations: [
-  //   trigger('transitionIcon',[
-  //     state(
-  //       'default',
-  //       style({ transform: 'rotate(0)'})
-  //     ),
-  //     state(
-  //       'rotated',
-  //       style({ transform: 'rotate(-90deg)'})
-  //     ),
-  //     transition(
-  //       'rotated => default',
-  //       animate('1000ms 0.5s ease-out')
-  //     ),
-  //     transition(
-  //       'default => rotated',
-  //       animate('1000ms 0.5s ease-in')
-  //     )
-  //   ])
-  // ]
 })
 export class HomeJcpThreeComponent implements OnInit {
   expanded: boolean;

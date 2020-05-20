@@ -1,9 +1,10 @@
-import { Directive, ElementRef, Input, AfterViewInit} from '@angular/core';
+import { Directive, ElementRef, Input, AfterViewInit, HostListener} from '@angular/core';
 
 declare var $: any;
 
 // Core
 import Mmenu from "mmenu-js/dist/core/oncanvas/mmenu.oncanvas";
+import * as DOM from 'mmenu-js/dist/_modules/dom';
 
 // Core Add-Ons
 import offcanvas from "mmenu-js/dist/core/offcanvas/mmenu.offcanvas";
@@ -40,15 +41,29 @@ import sidebar from "mmenu-js/dist/addons/sidebar/mmenu.sidebar";
 import toggles from "mmenu-js/dist/addons/toggles/mmenu.toggles";
 
 @Directive({
-  selector: '[mmenu]'
+  selector: '[mmenu]',
+  exportAs: 'mmenuDirectiveExport'
 })
 export class MmenuDirective implements AfterViewInit {
   @Input() Mmenu: any;
   public element: String;
+  public menu: any;
 
   constructor(private el: ElementRef) { 
   }
 
+  // @HostListener('click', ['$event'])
+  // clickEvent(event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   console.log('Click from Host Element!');
+  //   console.log(event.target.id);
+  //   console.log(this.menu.API);
+  //   console.log(this.menu.API.closeAllPanels());
+  //   this.menu.API.openPanel( this.el.nativeElement.querySelector(".mm-panel") );
+    
+  // }
+  
   ngAfterViewInit() {
     this.element = this.el.nativeElement;
 
@@ -88,7 +103,7 @@ export class MmenuDirective implements AfterViewInit {
     ];
 
     this.Mmenu = Mmenu;
-    this.ContentInitializeCodeForMenu(this.element);
+    this.menu = this.ContentInitializeCodeForMenu(this.element);
     console.log(this.element)
   }
 
@@ -99,14 +114,11 @@ export class MmenuDirective implements AfterViewInit {
               title: "Main Menu",
               titleLink: "none"
             },
-            onClick: {
-              preventDefault: false
+            pageScroll 	: {
+              scroll 		: true,
+              update		: true
             },
-            // pageScroll 	: {
-            //   scroll 		: true,
-            //   update		: true
-            // },
-            // offCanvas: false,
+            offCanvas: true,
             extensions: ["theme-white", "position-bottom", "border-none"],
             wrappers: ["bootstrap"],
             iconPanels: {
@@ -124,12 +136,13 @@ export class MmenuDirective implements AfterViewInit {
             ],
             setSelected: {
               parent: true,
-              hover: true
+              hover: true,
+              current: true
             }
         },
         {
           offCanvas: {
-          clone: true
+            clone: true
           }
         }
       );

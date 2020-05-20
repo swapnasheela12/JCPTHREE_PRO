@@ -115,7 +115,8 @@ import { SideNavService } from '../_services/side-nav.service';
     ScrollingModule
   ],
   providers: [
-    SideNavService
+    SideNavService,
+    MmenuDirective
   ],
   exports: [
     HeaderComponent,

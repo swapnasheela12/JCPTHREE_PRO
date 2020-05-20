@@ -20,8 +20,8 @@ const routes: Routes = [
     children: [
       { path: "", component: LandingHomeComponent },
       { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+      { path: "myJCP", component: MyReportsComponent}
     ],
-    data : {level : 0}
   },
   // {
   //   path: "Modules",
