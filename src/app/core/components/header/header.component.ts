@@ -91,13 +91,13 @@ export class HeaderComponent implements OnInit {
       icon: "ic ic-dashboard2"
     },
     {
-      name: "InfILL Planning",
-      linkurl: "InfILL Planning",
+      name: "Infill Planning",
+      linkurl: "Infill Planning",
       icon: "zmdi zmdi-layers"
     },
     {
-      name: "REPORT BUILDER",
-      linkurl: "REPORT BUILDER",
+      name: "Report Builder",
+      linkurl: "Report Builder",
       icon: "ic ic-performance1"
     },
   ];
@@ -133,10 +133,10 @@ export class HeaderComponent implements OnInit {
 
       this.datashare.currentMessage.subscribe((message) => {
         console.log(message,"message>>>>>");
-        if (message == true || message == {}) {
-          this.addClassNew = true;
-        } else {
+        if (message == {} || message == false) {
           this.addClassNew = false;
+        } else {
+          this.addClassNew = true;
         }
       });
     });
