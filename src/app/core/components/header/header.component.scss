@@ -235,7 +235,7 @@
     .jcp-sub-toolbar-row-left {
       display: inline-flex;
       position: relative;
-      margin-left: 15px;
+      // margin-left: 15px;
 
       .tab-container {
         margin: auto 0;
@@ -283,6 +283,13 @@
       }
     }
 
+    .active-sub-toolbar-row-left{
+      margin-left: 0px;
+    }
+    .activeNot-sub-toolbar-row-left{
+      
+      margin-left: 15px;
+    }
     .jcp-sub-toolbar-row-right {
       .icon-right-list {
         float: right;

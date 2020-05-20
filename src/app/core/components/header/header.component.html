@@ -251,7 +251,7 @@
         </div>
     </div>
     <div class="jcp-sub-toolbar-row justify-content-between" fxLayout="row warp">
-        <div class="col jcp-sub-toolbar-row-left p-0">
+        <div class="col jcp-sub-toolbar-row-left p-0" [ngClass]="{'active-sub-toolbar-row-left': addClassNew , 'activeNot-sub-toolbar-row-left': !addClassNew}">
             <div class="tab-container">
                 <div class="icon-count"><span style="font-size: 12px;">+4</span></div>
                 <div class="icon-style"><i class="ic ic-breadcrumbs-01"></i></div>

@@ -105,7 +105,7 @@ export class HeaderComponent implements OnInit {
   //////////search///////////////
 
 
-
+  addClassNew = false;
   public testval;
   message: string;
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
@@ -130,6 +130,15 @@ export class HeaderComponent implements OnInit {
       } else {
         this.route = 'Home';
       }
+
+      this.datashare.currentMessage.subscribe((message) => {
+        console.log(message,"message>>>>>");
+        if (message == true || message == {}) {
+          this.addClassNew = true;
+        } else {
+          this.addClassNew = false;
+        }
+      });
     });
 
     /////////////breadcrums////////////////////
@@ -149,11 +158,17 @@ export class HeaderComponent implements OnInit {
       map(state => (state ? this.filterStatesVisited(state) : this.recentvisitlist.slice()))
     );
     //////////////search///////////////////
+  
+  
+ 
+ 
   }
 
 
   toggleActive = true;
+ 
   toggleSidenav() {
+   
     this.toggleActive = !this.toggleActive;
     this.datashare.changeMessage(this.toggleActive)
   }

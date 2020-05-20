@@ -20,7 +20,7 @@ export class LandingHomeComponent implements OnInit {
 
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
-      console.log(message, "message");
+     
       var divWidth;
       var divHeight;
       var divWidthTraffic;
@@ -366,7 +366,7 @@ export class LandingHomeComponent implements OnInit {
    
     var chartTotalSubscriberRef = this.chartTotalSubscriber.ref$.source;
     chartTotalSubscriberRef.subscribe((response) => {
-      console.log(response, "response");
+     
       response.chartWidth = this.chartDivWidth;
       response.chartHeight = this.chartDivHeight;
       this.chartTotalSubscriber.ref.setSize(response.chartWidth, response.chartHeight);
@@ -374,7 +374,7 @@ export class LandingHomeComponent implements OnInit {
 
     var dailyTrafficrRef = this.dailyTrafficChart.ref$.source;
     dailyTrafficrRef.subscribe((response) => {
-      console.log(response, "response");
+     
       response.chartWidth = this.chartDivWidthTraffic;
       response.chartHeight = this.chartDivHeightTraffic;
       this.dailyTrafficChart.ref.setSize(response.chartWidth, response.chartHeight);
