@@ -13,10 +13,10 @@ declare var $: any;
   styleUrls: ['./landing-home.component.scss']
 })
 export class LandingHomeComponent implements OnInit {
-   
 
-  public chart: Chart;
-  public highChartsOptions: Highcharts.Options;
+
+  // public chart: Chart;
+  // public highChartsOptions: Highcharts.Options;
 
   // innerWidth
   // @HostListener('window:resize', ['$event'])
@@ -28,126 +28,8 @@ export class LandingHomeComponent implements OnInit {
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
       console.log(message, "message");
-     
+
     });
-
-
-
-    this.highChartsOptions = {
-      chart: {
-        type: 'areaspline',
-        zoomType: "xy",
-        backgroundColor: "transparent",
-        spacingTop: 30,
-        marginLeft: 35,
-        // height: (4.5/ 16 * 100) + '%'
-        // width:"50%",
-        // height: '30%'
-        // height: (9 / 16 * 100) + '%' 
-      },
-      title: {
-        text: null,
-      },
-      legend: {
-        enabled: false,
-      },
-
-      xAxis: {
-        categories: [
-          "3/11",
-          "3/12",
-          "3/13",
-          "3/14",
-          "3/15",
-          "3/16",
-          "3/17",
-          "3/18",
-          "3/19",
-          "3/20",
-          "3/21",
-          "3/22",
-          "3/23",
-          "3/24",
-          "3/25",
-          "3/26",
-          "3/27",
-        ],
-        labels: {
-          style: {
-            color: '#000000',
-            fontFamily: 'Lato Regular',
-            fontWeight: 'normal',
-            fontSize: '11px'
-          }
-        },
-        allowDecimals: false,
-        title: {
-          text: null,
-          style: {
-
-            color: '#000000',
-            fontFamily: 'Lato Regular',
-            fontWeight: 'normal',
-            fontSize: '10px'
-          },
-
-        },
-
-      },
-      yAxis: {
-        min: 300,
-        max: 340,
-        tickInterval: 10,
-        labels: {
-          reserveSpace: false,
-          style: {
-            color: '#000000',
-            fontFamily: 'Lato Regular',
-            fontWeight: 'normal',
-            fontSize: '10px'
-          }
-        },
-        gridLineWidth: 1,
-        gridLineDashStyle: 'Dash',
-        allowDecimals: false,
-        title: {
-          text: "(Users in Millions)",
-          align: 'high',
-          style: {
-            // 'text-anchor': 'start',
-            color: '#000000',
-            fontFamily: 'Roboto',
-            fontWeight: 'normal',
-            fontSize: '10px'
-          },
-          rotation: 0,
-          y: -20,
-          x: 55
-        },
-      },
-      tooltip: {
-        shared: true,
-        valueSuffix: ' M'
-      },
-      credits: {
-        enabled: false
-      },
-      plotOptions: {
-        areaspline: {
-          fillOpacity: 0.5
-        }
-      },
-      series: [
-        {
-          name: "(Users in Millions)",
-          type: "areaspline",
-          color: "#0FD125",
-          data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
-        }
-      ],
-    };
-
-    this.chart = new Chart(this.highChartsOptions);
 
   }
 
@@ -370,26 +252,167 @@ export class LandingHomeComponent implements OnInit {
     }
   });
 
+  // chartsTotalSubscriber: typeof Highcharts = Highcharts;
+  // chart: Highcharts.Chart;
+  chartTotalSubscriber = new Chart({
+    chart: {
+      type: 'areaspline',
+      zoomType: "xy",
+      backgroundColor: "transparent",
+      spacingTop: 30,
+      marginLeft: 35,
+      // height: (4.5/ 16 * 100) + '%'
+      // width:"50%",
+      // height: '30%'
+      // height: (9 / 16 * 100) + '%' 
+    },
+    title: {
+      text: null,
+    },
+    legend: {
+      enabled: false,
+    },
 
+    xAxis: {
+      categories: [
+        "3/11",
+        "3/12",
+        "3/13",
+        "3/14",
+        "3/15",
+        "3/16",
+        "3/17",
+        "3/18",
+        "3/19",
+        "3/20",
+        "3/21",
+        "3/22",
+        "3/23",
+        "3/24",
+        "3/25",
+        "3/26",
+        "3/27",
+      ],
+      labels: {
+        style: {
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '11px'
+        }
+      },
+      allowDecimals: false,
+      title: {
+        text: null,
+        style: {
+
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+
+      },
+
+    },
+    yAxis: {
+      min: 300,
+      max: 340,
+      tickInterval: 10,
+      labels: {
+        reserveSpace: false,
+        style: {
+          color: '#000000',
+          fontFamily: 'Lato Regular',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        }
+      },
+      gridLineWidth: 1,
+      gridLineDashStyle: 'Dash',
+      allowDecimals: false,
+      title: {
+        text: "(Users in Millions)",
+        align: 'high',
+        style: {
+          // 'text-anchor': 'start',
+          color: '#000000',
+          fontFamily: 'Roboto',
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+        rotation: 0,
+        y: -20,
+        x: 55
+      },
+    },
+    tooltip: {
+      shared: true,
+      valueSuffix: ' M'
+    },
+    credits: {
+      enabled: false
+    },
+    plotOptions: {
+      areaspline: {
+        fillOpacity: 0.5
+      }
+    },
+    series: [
+      {
+        name: "(Users in Millions)",
+        type: "areaspline",
+        color: "#0FD125",
+        data: [328, 311, 308, 305, 315, 310, 316, 312, 335, 329, 323, 312, 333, 323]
+      }
+    ],
+  });
+
+
+
+  public testValueHeight;
+  public testValueWidth;
 
   ngOnInit() {
-    this.resizeChart();
+    console.log(Highcharts.Chart, "Highcharts");
+    console.log(this.chartTotalSubscriber, "chartTotalSubscriber");
+    console.log(this.chartTotalSubscriber.ref$, "chartTotalSubscriber");
+    console.log(this.chartTotalSubscriber.ref$.source, "chartTotalSubscriber");
+    var testval = this.chartTotalSubscriber.ref$.source;
+
+    testval.subscribe((response) => {
+      console.log(response, "response");
+      console.log(response.chartHeight, "response");
+      // response.chartWidth = "90%";
+      response.chartHeight = "30%";
+      // this.testValueWidth = response.chartWidth;
+      // this.testValueHeight = response.chartHeight;
+      this.chartTotalSubscriber.ref.setSize(null,response.chartHeight);
+      // console.log(this.testValueWidth, "this.testValueWidth");
+      // console.log(this.testValueHeight, "this.testValueHeight");
+    });
+   
+
+
+    // this.resizeChart();
   }
 
 
- 
-  public resizeChart(): void {
-    console.log("resizeChart");
 
-    this.highChartsOptions.chart.height =180;
-    // this.highChartsOptions.chart.width = 560;
+  // public resizeChart(): void {
+  //   console.log("resizeChart");
+  //   this.chart = new Chart(this.highChartsOptions);
+  //   console.log(this.chart,"resizeChart");
+  //   console.log( this.highChartsOptions,"this.highChartsOptions");
+  //   // this.highChartsOptions.chart.height =180;
+  //   // this.highChartsOptions.chart.width = 560;
 
-    if (this.chart.ref) {
-      this.chart.ref.setSize(null, this.highChartsOptions.chart.height, false);
-    }
-  }
+  //   // if (this.chart.ref) {
+  //     // this.chart.ref.setSize(null,180);
+  //   // }
+  // }
 
-  
+
 
 
 

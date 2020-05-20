@@ -58,10 +58,14 @@
 
                 .sites-details-card-content {
                     height: calc(100% - 43px);
-                    width: 100%; 
+                    width: 100%;
                     display: block;
+
                     .sites-details-container {
-                        width: 100%; height: 16.8%;border-bottom: 1px solid #e0e0e0;
+                        width: 100%;
+                        height: 16.8%;
+                        border-bottom: 1px solid #e0e0e0;
+
                         // height: 100%;
                         .sites-details-row {
                             // height:20%;
@@ -118,8 +122,33 @@
                         .jcp-landing-right-inputs {}
                     }
                 }
-                .myElementClass{
-                    height: 100% !important;
+
+                .jcp-landing-card-content {
+                    height: calc(100% - 43px);
+
+                    .jcp-landing-card-container {
+                        .jcp-landing-card-subheader {
+                            .jcp-landing-card-subheader-title {
+                                color: #0FD125;
+                                font-family: Lato Bold;
+                                font-size: 19px;
+                            }
+
+                            .jcp-landing-card-subheader-subtitle {
+                                color: #707070;
+                                font-family: Lato Regular;
+                                font-size: 12px;
+                                margin-top: 10px;
+                                margin-left: 5px;
+                            }
+                        }
+
+                        .jcp-landing-card-chart-container {
+                            #myChart{
+                                display: block;
+                            }
+                        }
+                    }
                 }
             }
         }
