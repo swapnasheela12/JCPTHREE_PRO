@@ -246,8 +246,24 @@ const MODULE_LIST_CONFIG_LSMR = [
 
 const PREDICTION_LAYERS_PLANNED_LIST = [
     {
-        name: 'KPIs',
-        link: 'kpis',
+        name: 'RSRP',
+        link: 'rsrp',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DLThroughput',
         icon: 'fas fa-home',
         level: 4,
         component: HomeJcpThreeComponent,
@@ -353,10 +369,267 @@ const MEASURED_LAYERS_BAND_KPI_LIST = [
     }
 ];
 
+const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Latency',
+        link: 'latency',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'UL Throughput',
+        link: 'ul-throughput',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'DL Throughput',
+        link: 'dl-throughput',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
+const MEASURED_LAYERS_BAND_LSR_LIST = [
+    {
+        name: 'VoLTE Drops',
+        link: 'VoLTE-Drops',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DL-Throughput',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Sessions',
+        link: 'Sessions',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'RSRP',
+        link: 'RSRP',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'CQI',
+        link: 'CQI',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
+const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
+    {
+        name: 'RSRP',
+        link: 'RSRP',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'SINR',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DL-Throughput',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'UL Throughput',
+        link: 'UL-Throughput',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'RSRQ',
+        link: 'RSRQ',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'CQI',
+        link: 'CQI',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'DL RB Utilization',
+        link: 'DL RB Utilization',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'UL RB Utilization',
+        link: 'UL RB Utilization',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },{
+        name: 'Rank Indicator',
+        link: 'Rank Indicator',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
+const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Call Muting',
+        link: 'Call-Muting',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Call Drop',
+        link: 'Call-Drop',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Coverage Experience',
+        link: 'Coverage-Experience',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
 const HYBRID_LAYERS_BAND_KPI_LIST = [
     {
         name: 'KPIs',
         link: 'kpis',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
+const HYBRID_LAYERS_BAND_SNG_LIST = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
+const HYBRID_LAYERS_BAND_CMC_LIST = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Unique Users',
+        link: 'Unique-Users',
+        icon: 'fas fa-home',
+        level: 4,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: 'Data Volume',
+        link: 'Data-Volume',
         icon: 'fas fa-home',
         level: 4,
         component: HomeJcpThreeComponent,
@@ -1117,7 +1390,7 @@ const MEASURED_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: MEASURED_LAYERS_BAND_KPI_LIST
+        children: MEASURED_LAYERS_MB_NETVELOCITY_LIST
     },
     {
         name: 'Jio Phone',
@@ -1125,7 +1398,7 @@ const MEASURED_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: MEASURED_LAYERS_BAND_KPI_LIST
+        children: MEASURED_LAYERS_BAND_KPI_JP_LIST
     },
     {
         name: 'LSR',
@@ -1133,7 +1406,7 @@ const MEASURED_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: MEASURED_LAYERS_BAND_KPI_LIST
+        children: MEASURED_LAYERS_BAND_LSR_LIST
     },
     {
         name: 'Accuver Drive Test',
@@ -1141,7 +1414,7 @@ const MEASURED_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: MEASURED_LAYERS_BAND_KPI_LIST
+        children: MEASURED_LAYERS_BAND_KPI_ADT_LIST
     }
 ];
 
@@ -1152,7 +1425,7 @@ const HYBRID_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: HYBRID_LAYERS_BAND_KPI_LIST
+        children: HYBRID_LAYERS_BAND_SNG_LIST
     },
     {
         name: 'Customer Measured Coverage',
@@ -1160,7 +1433,7 @@ const HYBRID_LAYERS_BAND_LIST = [
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: HYBRID_LAYERS_BAND_KPI_LIST
+        children: HYBRID_LAYERS_BAND_CMC_LIST
     }
 ];
 
@@ -1508,7 +1781,7 @@ const ADMIN_PLANNING_DEPLOYMENT_LIST = [
         children: ADMIN_PLANNING_SITE_DEPLOYMENT_LIST
     },
     {
-        name: 'TAC Moduke',
+        name: 'TAC Module',
         link: 'tac-module',
         icon: 'fas fa-home',
         level: 3,
@@ -1872,9 +2145,33 @@ const MY_LAYERS_LIST = [
 
 const PREDICTION_LAYERS_LIST = [
     {
-        name: "Band",
+        name: "Combined",
         icon: "fas fa-user fa-3",
-        link: "band",
+        link: "combined",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: PREDICTION_LAYERS_BAND_LIST
+      },
+      {
+        name: "2300 MHz",
+        icon: "fas fa-user fa-3",
+        link: "2300MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: PREDICTION_LAYERS_BAND_LIST
+      },
+      {
+        name: "1800 MHz",
+        icon: "fas fa-user fa-3",
+        link: "1800MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: PREDICTION_LAYERS_BAND_LIST
+      },
+      {
+        name: "850 MHz",
+        icon: "fas fa-user fa-3",
+        link: "850MHz",
         level: 2,
         component: HomeJcpThreeComponent,
         children: PREDICTION_LAYERS_BAND_LIST
@@ -1883,9 +2180,33 @@ const PREDICTION_LAYERS_LIST = [
 
 const MEASURED_LAYERS_LIST = [
     {
-        name: "Band",
+        name: "Combined",
         icon: "fas fa-user fa-3",
-        link: "band",
+        link: "combined",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: MEASURED_LAYERS_BAND_LIST
+        },
+    {
+        name: "2300 MHz",
+        icon: "fas fa-user fa-3",
+        link: "2300MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: MEASURED_LAYERS_BAND_LIST
+    },
+    {
+        name: "1800 MHz",
+        icon: "fas fa-user fa-3",
+        link: "1800MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: MEASURED_LAYERS_BAND_LIST
+    },
+    {
+        name: "850 MHz",
+        icon: "fas fa-user fa-3",
+        link: "850MHz",
         level: 2,
         component: HomeJcpThreeComponent,
         children: MEASURED_LAYERS_BAND_LIST
@@ -1894,9 +2215,33 @@ const MEASURED_LAYERS_LIST = [
 
 const HYBRID_LAYERS_LIST = [
     {
-        name: "Band",
+        name: "Combined",
         icon: "fas fa-user fa-3",
-        link: "band",
+        link: "combined",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: HYBRID_LAYERS_BAND_LIST
+        },
+    {
+        name: "2300 MHz",
+        icon: "fas fa-user fa-3",
+        link: "2300MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: HYBRID_LAYERS_BAND_LIST
+    },
+    {
+        name: "1800 MHz",
+        icon: "fas fa-user fa-3",
+        link: "1800MHz",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: HYBRID_LAYERS_BAND_LIST
+    },
+    {
+        name: "850 MHz",
+        icon: "fas fa-user fa-3",
+        link: "850MHz",
         level: 2,
         component: HomeJcpThreeComponent,
         children: HYBRID_LAYERS_BAND_LIST
