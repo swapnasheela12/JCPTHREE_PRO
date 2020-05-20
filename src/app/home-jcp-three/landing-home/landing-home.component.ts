@@ -129,25 +129,7 @@ export class LandingHomeComponent implements OnInit {
       enabled: false
     },
     xAxis: {
-      categories: [
-        "3/11",
-        "3/12",
-        "3/13",
-        "3/14",
-        "3/15",
-        "3/16",
-        "3/17",
-        "3/18",
-        "3/19",
-        "3/20",
-        "3/21",
-        "3/22",
-        "3/23",
-        "3/24",
-        "3/25",
-        "3/26",
-        "3/27",
-      ],
+      categories: ["23-Mar","24-Mar","25-Mar","26-Mar","27-Mar","28-Mar","29-Mar","30-Mar","31-Mar","01-Apr","02-Apr","03-Apr","04-Apr","05-Apr"],
       labels: {
         style: {
           color: '#000000',
@@ -295,25 +277,7 @@ export class LandingHomeComponent implements OnInit {
     },
 
     xAxis: {
-      categories: [
-        "3/11",
-        "3/12",
-        "3/13",
-        "3/14",
-        "3/15",
-        "3/16",
-        "3/17",
-        "3/18",
-        "3/19",
-        "3/20",
-        "3/21",
-        "3/22",
-        "3/23",
-        "3/24",
-        "3/25",
-        "3/26",
-        "3/27",
-      ],
+      categories: ["23-Mar","24-Mar","25-Mar","26-Mar","27-Mar","28-Mar","29-Mar","30-Mar","31-Mar","01-Apr","02-Apr","03-Apr","04-Apr","05-Apr"],
       labels: {
         style: {
           color: '#000000',
