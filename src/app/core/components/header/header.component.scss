@@ -150,7 +150,7 @@
               }
             }
 
-            .icon-container-button:hover{
+            .icon-container-button:hover {
               background: rgba(0, 0, 0, 0.2);
             }
 
@@ -191,10 +191,12 @@
 
               .user-button {
 
-                width: 36px;
-                height: 36px;
+                width: 38px;
+                height: 38px;
                 border-radius: 18px;
-                border: solid 1px;
+                border: solid 1px #ffffff;
+                margin-top: -1px;
+                margin-left: -1px;
               }
             }
 
