@@ -38,20 +38,20 @@
                 </div>
                 <!-- </mat-grid-tile-header> -->
                 <mat-divider></mat-divider>
-
-                <mat-card-content style="height:calc( 100% - 43px);">
-
-                    <div class="px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center" style="height: 25px;">
-                        <div style="color:#FC5F5F;font-family: Lato Bold;font-size: 19px;">
-                            120.4 PB
+                <mat-card-content class="jcp-landing-card-content">
+                    <div class="jcp-landing-card-container">
+                        <div class="jcp-landing-card-subheader px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center">
+                            <div class="jcp-landing-card-subheader-title">
+                                310.5 M
+                            </div>
+                            <div class="jcp-landing-card-subheader-subtitle">
+                                Current Subscribers Base 
+                            </div>
                         </div>
-                        <div
-                            style="color:#707070;font-family: Lato Regular;font-size: 12px;margin-top: 10px;margin-left: 5px;">
-                            Current Traffic </div>
-                    </div>
-                    <!-- <div fxLayout="row" (window:resize)="onResize($event)" fxLayoutAlign="center start" style="height: -webkit-fill-available;"> -->
-                    <div fxLayout="row" fxLayoutAlign="center start" style="height: -webkit-fill-available;">
-                        <div [chart]="dailyTraffic" style="display: block;"></div>
+                        <div class="jcp-landing-card-chart-container" id="dailyTrafficChartIdDiv">
+                            <div id="dailyTrafficChartID" [chart]="dailyTrafficChart"></div>
+                        </div>
+
                     </div>
 
                 </mat-card-content>
@@ -148,12 +148,8 @@
                                 Current Subscribers Base 
                             </div>
                         </div>
-                        <div class="jcp-landing-card-chart-container" fxLayout="row" fxLayoutAlign="center start">
-                            <div id="myChart" [chart]="chartTotalSubscriber"></div>
-                            <!-- <highcharts-chart id="mychart" [Highcharts]="chartsTotalSubscriber" [options]="chartOptionsTotalSubscriber"
-                                style=" display: block;">
-                            </highcharts-chart> -->
-                            <!-- <div class="chart"  [chart]="chart"></div> -->
+                        <div class="jcp-landing-card-chart-container" id="chartTotalSubscriberIdDiv">
+                            <div id="chartTotalSubscriberID" [chart]="chartTotalSubscriber"></div>
                         </div>
 
                     </div>

@@ -13,22 +13,47 @@ declare var $: any;
   styleUrls: ['./landing-home.component.scss']
 })
 export class LandingHomeComponent implements OnInit {
+  public chartDivWidth;
+  public chartDivHeight;
+  public chartDivWidthTraffic;
+  public chartDivHeightTraffic;
 
-
-  // public chart: Chart;
-  // public highChartsOptions: Highcharts.Options;
-
-  // innerWidth
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event) {
-  //   this.innerWidth = window.innerWidth;
-  //   this.highChartsOptions.chart.width = this.innerWidth - 50;
-  //   this.chart = new Chart(this.chartOptions);
-  // }
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
       console.log(message, "message");
+      var divWidth;
+      var divHeight;
+      var divWidthTraffic;
+      var divHeightTraffic;
 
+      setTimeout(() => { 
+        divWidth = $("#chartTotalSubscriberIdDiv").width();
+        divHeight = $("#chartTotalSubscriberIdDiv").height();
+        divWidthTraffic = $("#dailyTrafficChartIdDiv").width();
+        divHeightTraffic = $("#dailyTrafficChartIdDiv").height();
+        this.chartDivWidth = divWidth;
+        this.chartDivHeight = divHeight;
+        this.chartDivWidthTraffic = divWidth;
+        this.chartDivHeightTraffic = divHeight;
+        this.resizeChart();
+      }, 1000);
+     
+      if (!message) {
+       
+        this.chartDivWidth = divWidth + 186.656;
+        this.chartDivHeight = divHeight;
+        this.chartDivWidthTraffic = divWidthTraffic + 186.656;
+        this.chartDivHeightTraffic = divHeightTraffic;
+        this.resizeChart();
+        // this.chartDivHeight;
+      } else {
+        this.chartDivWidth = divWidth - 186.656;
+        this.chartDivHeight = divHeight;
+        this.chartDivWidthTraffic = divWidthTraffic - 186.656;
+        this.chartDivHeightTraffic = divHeightTraffic;
+        this.resizeChart();
+      }
+      
     });
 
   }
@@ -87,16 +112,15 @@ export class LandingHomeComponent implements OnInit {
   panIndiaListusage = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
 
   // chart1: Chart;
-  dailyTraffic = new Chart({
+  dailyTrafficChart = new Chart({
     chart: {
       type: 'column',
       zoomType: "xy",
       backgroundColor: "transparent",
       spacingTop: 30,
-      marginLeft: 35,
-      // height: (4/ 16 * 100) + '%'
-      // width:"50%",
-      height: '30%'
+      marginLeft: 60,
+      marginRight: 30,
+      marginBottom: 60,
     },
     title: {
       text: null,
@@ -252,19 +276,16 @@ export class LandingHomeComponent implements OnInit {
     }
   });
 
-  // chartsTotalSubscriber: typeof Highcharts = Highcharts;
-  // chart: Highcharts.Chart;
+ 
   chartTotalSubscriber = new Chart({
     chart: {
       type: 'areaspline',
       zoomType: "xy",
       backgroundColor: "transparent",
       spacingTop: 30,
-      marginLeft: 35,
-      // height: (4.5/ 16 * 100) + '%'
-      // width:"50%",
-      // height: '30%'
-      // height: (9 / 16 * 100) + '%' 
+      marginLeft: 60,
+      marginRight: 30,
+      marginBottom: 60,
     },
     title: {
       text: null,
@@ -373,47 +394,31 @@ export class LandingHomeComponent implements OnInit {
   public testValueHeight;
   public testValueWidth;
 
-  ngOnInit() {
-    console.log(Highcharts.Chart, "Highcharts");
-    console.log(this.chartTotalSubscriber, "chartTotalSubscriber");
-    console.log(this.chartTotalSubscriber.ref$, "chartTotalSubscriber");
-    console.log(this.chartTotalSubscriber.ref$.source, "chartTotalSubscriber");
-    var testval = this.chartTotalSubscriber.ref$.source;
+  ngOnInit() {}
 
-    testval.subscribe((response) => {
-      console.log(response, "response");
-      console.log(response.chartHeight, "response");
-      // response.chartWidth = "90%";
-      response.chartHeight = "30%";
-      // this.testValueWidth = response.chartWidth;
-      // this.testValueHeight = response.chartHeight;
-      this.chartTotalSubscriber.ref.setSize(null,response.chartHeight);
-      // console.log(this.testValueWidth, "this.testValueWidth");
-      // console.log(this.testValueHeight, "this.testValueHeight");
-    });
+
+  resizeChart() {
    
+   
+    var chartTotalSubscriberRef = this.chartTotalSubscriber.ref$.source;
+    chartTotalSubscriberRef.subscribe((response) => {
+      console.log(response, "response");
+      response.chartWidth = this.chartDivWidth;
+      response.chartHeight = this.chartDivHeight;
+      this.chartTotalSubscriber.ref.setSize(response.chartWidth, response.chartHeight);
+    });
 
+    var dailyTrafficrRef = this.dailyTrafficChart.ref$.source;
+    dailyTrafficrRef.subscribe((response) => {
+      console.log(response, "response");
+      response.chartWidth = this.chartDivWidthTraffic;
+      response.chartHeight = this.chartDivHeightTraffic;
+      this.dailyTrafficChart.ref.setSize(response.chartWidth, response.chartHeight);
+    });
 
-    // this.resizeChart();
   }
 
-
-
-  // public resizeChart(): void {
-  //   console.log("resizeChart");
-  //   this.chart = new Chart(this.highChartsOptions);
-  //   console.log(this.chart,"resizeChart");
-  //   console.log( this.highChartsOptions,"this.highChartsOptions");
-  //   // this.highChartsOptions.chart.height =180;
-  //   // this.highChartsOptions.chart.width = 560;
-
-  //   // if (this.chart.ref) {
-  //     // this.chart.ref.setSize(null,180);
-  //   // }
-  // }
-
-
-
+  
 
 
 

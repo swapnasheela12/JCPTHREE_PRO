@@ -70,13 +70,13 @@
         <div class="col-3 jcp-toolbar-col-right p-0">
             <div class="jcp-toolbar-row-right-content" fxLayout="row warp" fxLayoutAlign="end center">
                 <div class="icon-parent-container">
-                    <div class="icon-container" (click)="openFullscreen()" *ngIf="expandScreen == false">
+                    <div class="icon-container" (click)="openFullscreen();toggleSidenav();" *ngIf="expandScreen == false">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen" style="font-size: 22px;"></div>
                         </button>
                     </div>
-                    <div class="icon-container" (click)="closeFullscreen()" *ngIf="expandScreen == true">
+                    <div class="icon-container" (click)="closeFullscreen();toggleSidenav();" *ngIf="expandScreen == true">
                         <button
                             class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;"></div>

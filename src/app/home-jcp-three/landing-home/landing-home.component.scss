@@ -28,6 +28,32 @@
                 .jcp-landing-card-content {
                     height: calc(100% - 43px);
 
+                    .jcp-landing-card-container {
+                        height: 100%;
+                        .jcp-landing-card-subheader {
+                            .jcp-landing-card-subheader-title {
+                                color: #FC5F5F;
+                                font-family: Lato Bold;
+                                font-size: 19px;
+                            }
+
+                            .jcp-landing-card-subheader-subtitle {
+                                color: #707070;
+                                font-family: Lato Regular;
+                                font-size: 12px;
+                                margin-top: 10px;
+                                margin-left: 5px;
+                            }
+                        }
+
+                        .jcp-landing-card-chart-container {
+                            height: calc(100% - 28px);
+                            #dailyTrafficChartID{
+                                display: block;
+                                // width: 100;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -127,6 +153,7 @@
                     height: calc(100% - 43px);
 
                     .jcp-landing-card-container {
+                        height: 100%;
                         .jcp-landing-card-subheader {
                             .jcp-landing-card-subheader-title {
                                 color: #0FD125;
@@ -144,8 +171,10 @@
                         }
 
                         .jcp-landing-card-chart-container {
-                            #myChart{
+                            height: calc(100% - 28px);
+                            #chartTotalSubscriberID{
                                 display: block;
+                                // width: 100;
                             }
                         }
                     }

@@ -52,8 +52,7 @@ export class HeaderComponent implements OnInit {
   routeLinks: number;
   count: number;
   ////////breadcrums////////////
-
-
+  
   ///////////search//////////////////
 
   stateCtrl: FormControl;
@@ -153,7 +152,12 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  
+  toggleActive = true;
+  toggleSidenav() {
+    this.toggleActive = !this.toggleActive;
+    this.datashare.changeMessage(this.toggleActive)
+  }
+
 
   //////////////search///////////////////
   filterStates(name: string) {
