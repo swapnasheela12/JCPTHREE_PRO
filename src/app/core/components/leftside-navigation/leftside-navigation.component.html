@@ -13,18 +13,18 @@
                     *ngIf="item.level == 0"
                     attr.data-title="{{item.name}}"
                     ></i>
-                {{item.name}}
+                <span attr.data-title="{{item.name.length > 23 ? item.name : null}}">{{item.name}}</span>
             </span>
             <a routerLink="/{{item.link}}" *ngIf="item.children.length == 0" (click)="parentIconClick(varWithDirective, item.level)" routerLinkActive="menu-active">
                 <i class="{{item.icon}} level0Item"
                     *ngIf="item.level == 0"
                     attr.data-title="{{item.name}}"
                     ></i>
-                {{item.name}}
+                <span attr.data-title="{{item.name.length > 21 ? item.name : null}}">{{item.name}}</span>
             </a>
             <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
                 <ul>
-                <li *ngFor="let item of item.children">
+                <li *ngFor="let item of item.children; let i= index" id="{{item.name.split(' ').join('_')}}">
                 <ng-container 
                     [ngTemplateOutlet]="recursiveListTmpl" 
                     [ngTemplateOutletContext]="{item:item}">
@@ -35,7 +35,7 @@
             <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle>
-                        <a class="mat-tree-node" routerLink="/{{node.link}}" >
+                        <a class="mat-tree-node" routerLink="/{{node.link}}">
                             <button mat-icon-button disabled></button>
                             {{node.name}}
                         </a>

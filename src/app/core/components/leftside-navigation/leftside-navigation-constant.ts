@@ -2666,14 +2666,14 @@ const MODULES_LIST = [
 ];
 
 const LAYERS_LIST = [
-    {
-        name: "Default",
-        icon: "fas fa-users fa-3",
-        link: "JCP/Layers",
-        level: 1,
-        component: HomeJcpThreeComponent,
-        children: []
-    },
+    // {
+    //     name: "Default",
+    //     icon: "fas fa-users fa-3",
+    //     link: "JCP/Layers",
+    //     level: 1,
+    //     component: HomeJcpThreeComponent,
+    //     children: []
+    // },
     {
         name: "Sites",
         icon: "fas fa-users fa-3",
