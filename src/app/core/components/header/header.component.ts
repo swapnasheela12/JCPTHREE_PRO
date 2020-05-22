@@ -128,7 +128,7 @@ export class HeaderComponent implements OnInit {
         // this.mainHeaderName = this.breadcrumbLis.pop();
         this.count = this.breadcrumbList.length;
       } else {
-        this.route = 'Home';
+        this.route = 'JCP';
       }
 
       this.datashare.currentMessage.subscribe((message) => {
@@ -393,14 +393,14 @@ export class HeaderComponent implements OnInit {
 
 
   reportWizardFuction() {
-    this.router.navigate(['/', 'Home', 'Reports & Dashboard', 'Report Wizard']).then(val => {
+    this.router.navigate(['/', 'JCP', 'Reports & Dashboard', 'Report Wizard']).then(val => {
     }, err => {
 
     });
   }
 
   myreportFuction() {
-    this.router.navigate(['/', 'Home', 'Reports & Dashboard', 'My Reports']).then(val => {
+    this.router.navigate(['/', 'JCP', 'Reports & Dashboard', 'My Reports']).then(val => {
     }, err => {
 
     });

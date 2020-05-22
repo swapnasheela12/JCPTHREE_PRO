@@ -15,10 +15,10 @@ const routes: Routes = [
   // },
   { path: "", component: LoginJcpThreeComponent },
   {
-    path: "Home", component: HomeJcpThreeComponent,
+    path: "JCP", component: HomeJcpThreeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: "", component: LandingHomeComponent },
+      { path: "Home", component: LandingHomeComponent },
       { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "myJCP", component: MyReportsComponent}
     ],
@@ -77,7 +77,7 @@ const routes: Routes = [
   //   ]
   // },
 
-  { path: "**", redirectTo: "/Home", pathMatch: "full" }
+  { path: "**", redirectTo: "/JCP", pathMatch: "full" }
 ];
 
 @NgModule({

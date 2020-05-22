@@ -1,5 +1,6 @@
 import { HomeJcpThreeComponent } from '../../../home-jcp-three/home-jcp-three.component';
 import { MyReportsComponent } from 'src/app/main-modules/reports-dashboards/my-reports/my-reports.component';
+import { LandingHomeComponent } from 'src/app/home-jcp-three/landing-home/landing-home.component';
 
 const MODULE_LIST_CONFIG_VENDOR = [
     {
@@ -2749,7 +2750,7 @@ const LAYERS_LIST = [
 const REPORTS_LIST = [
     {
         name: 'Report Wizard',
-        link: 'Home/Reports and Dashboard/Report Wizard',
+        link: 'JCP/Reports and Dashboard/Report Wizard',
         icon: 'fas fa-home',
         level: 1,
         component: HomeJcpThreeComponent,
@@ -2757,7 +2758,7 @@ const REPORTS_LIST = [
     },
     {
         name: 'My Reports',
-        link: 'Home/Reports and Dashboard/My Reports',
+        link: 'JCP/Reports and Dashboard/My Reports',
         level: 1,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
@@ -2862,7 +2863,7 @@ const ADMINISTRATION_LIST = [
 export const LEFTSIDE_MENU_LIST = [
     {
         name: 'Home',
-        link: 'Home',
+        link: 'JCP/Home',
         icon: 'ic ic-home-01',
         level: 0,
         component: HomeJcpThreeComponent,

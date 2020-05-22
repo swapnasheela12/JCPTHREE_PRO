@@ -35,9 +35,9 @@ export class LoginJcpThreeComponent implements OnInit {
   ) {
     console.log(this.router,"this.router.url");
     
-    // redirect to home if already logged in
+    // redirect to JCP if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(["/Home"]);
+      this.router.navigate(["/JCP/Home"]);
     }
   }
 
@@ -52,7 +52,7 @@ export class LoginJcpThreeComponent implements OnInit {
     
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/Home";
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/JCP/Home";
   }
 
   // convenience getter for easy access to form fields
