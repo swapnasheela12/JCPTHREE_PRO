@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path:"My Reports",component:MyReportsComponent
   },
+  // { path: "Sites/Outdoor", loadChildren: "../main-modules/layers/layers.module#LayersModule" },
 ];
 
 @NgModule({

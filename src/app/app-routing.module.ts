@@ -6,6 +6,7 @@ import { AuthGuard } from "./_helpers";
 import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
 import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
+import { LayersComponent } from './main-modules/layers/layers.component';
 
 const routes: Routes = [
   // {
@@ -19,6 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "Home", component: LandingHomeComponent },
+      { path: "Layers", component:LayersComponent},
       { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "myJCP", component: MyReportsComponent}
     ],
@@ -77,7 +79,7 @@ const routes: Routes = [
   //   ]
   // },
 
-  { path: "**", redirectTo: "/JCP", pathMatch: "full" }
+  { path: "**", redirectTo: "/JCP/Home", pathMatch: "full" }
 ];
 
 @NgModule({
