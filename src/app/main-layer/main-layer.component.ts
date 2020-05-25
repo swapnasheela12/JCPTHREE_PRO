@@ -11,9 +11,12 @@ declare var $: any;
 export class MainLayerComponent implements OnInit {
   map: L.Map;
 
-  public options;
+
   public chartDivWidth;
   public chartDivHeight;
+
+
+
 
   // Define our base layers so we can reference them multiple times
   streetMaps = tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -51,17 +54,18 @@ export class MainLayerComponent implements OnInit {
     // .bindPopup('<canvas width="500" height=500 id="myCanvas"></canvas>');
     .bindPopup('<div><img src="assets/image/agriculture/JAP_Spider__PNG/Jap_sudy_V2-15.png" width="400" height="400" alt=""></div>', { autoPan: true });
 
+  options = {
+    layers: [this.streetMaps, this.paradise, this.summit],
+    zoom: 5,
+    zoomControl: false,
+    preferCanvas: true,
+    center: latLng([25.0000, 80.0000])
+    // center: latLng([19.0760, 72.8777])
+  };
 
-  optionLayerMap() {
-    this.options = {
-      layers: [this.streetMaps, this.paradise, this.summit],
-      zoom:5,
-      preferCanvas: true,
-      center: latLng([25.0000, 80.0000])
-      // center: latLng([19.0760, 72.8777])
-    };
 
-  }
+
+
 
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
@@ -87,21 +91,21 @@ export class MainLayerComponent implements OnInit {
 
         this.chartDivWidth = divWidth + 280;
         this.chartDivHeight = divHeight;
-        this.optionLayerMap();
+      
         // this.chartDivHeight;
       } else {
         this.chartDivWidth = divWidth - 280;
         this.chartDivHeight = divHeight;
-        this.optionLayerMap();
+        
       }
 
     });
 
   }
 
-  // leafletData.getMap().then(function(map) {
-  //   map.invalidateSize();
-  // });
+  mapReady(map: L.Map) {
+    map.addControl(L.control.zoom({ position: 'bottomright' }));
+  }
 
 
   ngOnInit(): void {
