@@ -5,9 +5,9 @@ import { MacroComponent } from './sites/outdoor/macro/macro.component';
 
 
 const routes: Routes = [
-  {
-    path:"",component:LayersComponent
-  },
+  // {
+  //   path:"",component:LayersComponent
+  // },
   {
     path:"Macro",component:MacroComponent
   },

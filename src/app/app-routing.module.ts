@@ -21,8 +21,9 @@ const routes: Routes = [
     children: [
       { path: "Home", component: LandingHomeComponent },
       // { path: "Layers", component:LayersComponent},
-      // { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      { path: "Layers", loadChildren: "../app/main-modules/layers/layers.module#LayersModule" },
+      { path: "Layers",component:LayersComponent,loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+      // { path: "Layers", loadChildren: "../app/main-modules/layers/layers.module#LayersModule" },
+      // { path: "Layers", component:LayersComponent},
       { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "myJCP", component: MyReportsComponent}
     ],

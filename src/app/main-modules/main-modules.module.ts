@@ -58,7 +58,7 @@ import { CreateReportComponent } from './reports-dashboards/reports-wizard/creat
 import { ButtonRendererComponent } from './reports-dashboards/my-reports/button-renderer.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
-import { LayersModule } from './layers/layers.module';
+// import { LayersModule } from './layers/layers.module';
 
 
 
@@ -76,7 +76,7 @@ import { LayersModule } from './layers/layers.module';
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
-    LayersModule,
+    // LayersModule,
 
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent]),
