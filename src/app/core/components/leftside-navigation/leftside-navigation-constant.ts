@@ -1,7 +1,7 @@
 import { HomeJcpThreeComponent } from '../../../home-jcp-three/home-jcp-three.component';
 import { MyReportsComponent } from 'src/app/main-modules/reports-dashboards/my-reports/my-reports.component';
 import { LandingHomeComponent } from 'src/app/home-jcp-three/landing-home/landing-home.component';
-import { LayersComponent } from 'src/app/main-modules/layers/layers.component';
+
 
 const MODULE_LIST_CONFIG_VENDOR = [
     {

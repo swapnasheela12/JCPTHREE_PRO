@@ -80,8 +80,9 @@ import { MainModulesModule } from './main-modules/main-modules.module';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
 // import { HighchartsChartComponent } from 'highcharts-angular';
 import {HighchartsChartModule} from "highcharts-angular";
-
 import { ChartModule } from 'angular-highcharts';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MainLayerComponent } from './main-layer/main-layer.component';
 
 
 declare var $: any;
@@ -91,18 +92,12 @@ declare var $: any;
     AppComponent,
     LoginJcpThreeComponent,
     HomeJcpThreeComponent,
-    // FilterUniquePipe,
     ClickOutsideDirective,
     LandingHomeComponent,
-    // HighchartsChartComponent,
-    // MyReportsComponent,
-    // ReportsWizardComponent,
-    // CreateReportComponent,
-    // // SuccessfulComponent
-    // ButtonRendererComponent
+    MainLayerComponent,
+    
   ],
   imports: [
-    // SuccessfulComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -110,7 +105,7 @@ declare var $: any;
     HighchartsChartModule,
 
     //modules
-    // MainModulesModule,
+    LeafletModule,
     CoreModule,
     FlexLayoutModule,
 

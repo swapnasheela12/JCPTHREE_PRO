@@ -59,8 +59,7 @@ import { ButtonRendererComponent } from './reports-dashboards/my-reports/button-
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
 // import { LayersModule } from './layers/layers.module';
-
-
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -77,7 +76,7 @@ import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards
     FlexLayoutModule,
     ReportsDashboardsModule,
     // LayersModule,
-
+    LeafletModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent]),
 

@@ -9,9 +9,8 @@
                     <div class="ic ic-menu-01" aria-label="Menu" 
                         #hamburgerIcon [@transitionIcon]='state'></div>
                 </button> -->
-                <button type="button" mat-button class="toolbar-botton" (click)="sidenav.close();toggleSidenav()" 
-                    (mouseenter)="changeIcon()"
-                    (mouseleave)="changeIcon()">
+                <button type="button" mat-button class="toolbar-botton" (click)="sidenav.close();toggleSidenav()"
+                    (mouseenter)="changeIcon()" (mouseleave)="changeIcon()">
                     <div class="icon-bar" [@hamburguerX]="isHamburguer ? 'hamburguer' : 'topX'"></div>
                     <div class="icon-bar hide" [@hamburguerX]="isHamburguer ? 'hamburguer' : 'hide'"></div>
                     <div class="icon-bar" [@hamburguerX]="isHamburguer ? 'hamburguer' : 'bottomX'"></div>
@@ -32,7 +31,8 @@
                 <div class="jcp-toolbar-main-container">
                     <div class="jcp-toolbar-search-tbutt"
                         [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
-                        <button type="button" mat-button class="toolbar-botton-inner" (click)="sidenav.open();toggleSidenav()">
+                        <button type="button" mat-button class="toolbar-botton-inner"
+                            (click)="sidenav.open();toggleSidenav()">
                             <div class="menu-inner ic ic-menu-01" aria-label="Menu"></div>
                         </button>
                     </div>
@@ -52,7 +52,8 @@
                 <div class="jcp-page-route px-3"
                     [ngClass]="{'active-jcp-page-route': sidenav.opened, 'activeNot-jcp-page-route': !sidenav.opened}">
                     <router-outlet></router-outlet>
-
+                    <!-- <div class="map" leaflet [leafletOptions]="options">
+                    </div> -->
 
                 </div>
 

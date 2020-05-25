@@ -11,10 +11,7 @@ const routes: Routes = [
   {
     path:"My Reports",component:MyReportsComponent
   },
-  // {
-  //   path:"",loadChildren: "../main-modules/layers/layers.module#LayersModule"
-  // },
-  // { path: "Sites/Outdoor", loadChildren: "../main-modules/layers/layers.module#LayersModule" },
+ 
 ];
 
 @NgModule({

@@ -6,81 +6,23 @@ import { AuthGuard } from "./_helpers";
 import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
 import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
-import { LayersComponent } from './main-modules/layers/layers.component';
+import { MainLayerComponent } from './main-layer/main-layer.component';
 
 const routes: Routes = [
-  // {
-  //   path: "portaljcp",
-  //   component: HomeJcpThreeComponent,
-  //   canActivate: [AuthGuard]
-  // },
+ 
   { path: "", component: LoginJcpThreeComponent },
   {
     path: "JCP", component: HomeJcpThreeComponent,
     canActivate: [AuthGuard],
     children: [
       { path: "Home", component: LandingHomeComponent },
-      // { path: "Layers", component:LayersComponent},
-      { path: "Layers",component:LayersComponent,loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      // { path: "Layers", loadChildren: "../app/main-modules/layers/layers.module#LayersModule" },
-      // { path: "Layers", component:LayersComponent},
+      // { path: "Layers", component:LayerMainComponent},
+      { path: "Layers", component:MainLayerComponent},
       { path: "Reports and Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "myJCP", component: MyReportsComponent}
     ],
   },
-  // {
-  //   path: "Modules",
-  //   children: [{
-  //     path: "ConfigurationManagement",
-  //     children: [{
-  //       path: "Reports",component: MyReportsComponent
-  //     }]
-  //   }]
-
-  // },
-  // {
-  //   path: "",
-  //   component: SidebarmenuComponent,
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     // { path: "home",
-  //     //   component: HomeJcpThreeComponent},
-  //     {
-  //       path: "layer",
-  //       children: [
-  //         {
-  //           path: "sites",
-  //           children: [
-  //             { path: "macro", component: MacroComponent }
-  //             // {path: 'become-angular-tailer', component: FourthComponent},
-  //             // {path: 'material-design', component: FirstComponent},
-  //             // {path: 'what-up-web', component: SecondComponent}
-  //           ]
-  //         }
-  //         // {
-  //         //   path: "speakers",
-  //         //   children: [
-  //         //     {
-  //         //       path: "michael-prentice",
-  //         //       // children: [{ path: "material-design", component: FirstComponent }]
-  //         //     },
-  //         //     // {
-  //         //     //   path: "stephen-fluin",
-  //         //     //   children: [{ path: "what-up-web", component: SecondComponent }]
-  //         //     // },
-  //         //     {
-  //         //       path: "mike-brocchi",
-  //         //       children: [
-  //         //         // { path: "my-ally-cli", component: ThirdComponent },
-  //         //         // { path: "become-angular-tailer", component: FourthComponent }
-  //         //       ]
-  //         //     }
-  //         //   ]
-  //         // }
-  //       ]
-  //     }
-  //   ]
-  // },
+ 
 
   { path: "**", redirectTo: "/JCP/Home", pathMatch: "full" }
 ];

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MacroComponent } from './macro.component';
+import { MainLayerComponent } from './main-layer.component';
 
-describe('MacroComponent', () => {
-  let component: MacroComponent;
-  let fixture: ComponentFixture<MacroComponent>;
+describe('MainLayerComponent', () => {
+  let component: MainLayerComponent;
+  let fixture: ComponentFixture<MainLayerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MacroComponent ]
+      declarations: [ MainLayerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MacroComponent);
+    fixture = TestBed.createComponent(MainLayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

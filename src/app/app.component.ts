@@ -11,6 +11,8 @@ import { VERSION } from "@angular/material/core";
 import {Event, NavigationEnd, Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 
+import { latLng, tileLayer } from 'leaflet';
+
 declare var $: any;
 
 @Component({
@@ -64,4 +66,21 @@ export class AppComponent {
      
  
    }
+
+
+  //  options = {
+  //   layers: [
+  //     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //       attribution: '&copy; OpenStreetMap contributors'
+  //     })
+  //   ],
+  //   zoom: 7,
+  //   center: latLng([ 46.879966, -121.726909 ])
+  // };
+
+
+
+
+
+
 }
