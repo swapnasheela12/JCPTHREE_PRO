@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, ViewChildren, HostListener } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { NestedTreeControl, FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource, MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 
 declare var $: any;
 
@@ -30,9 +30,10 @@ export class LeftsideNavigationComponent implements OnInit {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
   isParentLevel = false;
   routeArray = [];
-  treeControl = new NestedTreeControl<SideNavNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<SideNavNode>();
+  parentNode: any;
+  hoverLayer0: any = '';
   level: any = 1;
+  activeLayer0: any = '';
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
 
   @HostListener('click', ['$event']) onClick(btn) {
@@ -47,6 +48,19 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
 
+  private transformer = (node: SideNavNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  }
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+      node => node.level, node => node.expandable);
+  treeFlattener = new MatTreeFlattener(
+      this.transformer, node => node.level, node => node.expandable, node => node.children);
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -60,11 +74,58 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
   
-  hasChild = (_: number, node: SideNavNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
      console.log(params);
     });
+  }
+
+  layersLevelHover(node) {
+    this.hoverLayer0 = '';
+    const levelNode = this.treeControl.getLevel(node);
+    if (levelNode == 0) {
+      this.hoverLayer0 = 'layers-menu';
+    }
+  }
+
+  activenode(node) {
+    this.activeLayer0 = '';
+    if (this.treeControl.isExpanded(node) == true) {
+      const levelNode = this.treeControl.getLevel(node);
+      this.parentNode = node;
+      this.treeControl.collapseAll();
+      if (levelNode == 0){
+          this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(node)]);
+          this.activeLayer0 = 'active-layer';
+      } else {
+        for (let i=0; i<=levelNode; i++) {
+          if (this.parentNode != null) {
+            this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(this.parentNode)]);
+            this.parentNode = this.getParent(this.parentNode);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
+   */
+  getParent(node) {
+    const { treeControl } = this;
+    const currentLevel = treeControl.getLevel(node);
+    if (currentLevel < 1) {
+      return null;
+    }
+
+    const startIndex = treeControl.dataNodes.indexOf(node) - 1;
+    for (let i = startIndex; i >= 0; i--) {
+      const currentNode = treeControl.dataNodes[i];
+      if (treeControl.getLevel(currentNode) < currentLevel) {
+        return currentNode;
+      }
+    }
   }
 }

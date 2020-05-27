@@ -19,6 +19,11 @@ $negative34px: -34px;
 $px32: 32px;
 $negative47px: -47px;
 $px45: 45px;
+$px15: 15px;
+$Negative12: -12px;
+$px12: 12px;
+$px20: 20px;
+$w230: 230px;
 
 .mm-listitem__text {
   &:hover {
@@ -46,6 +51,29 @@ $px45: 45px;
   // font-family: Lato Regular;
 }
 
+.layers-menu {
+  &:hover {
+    background-color: $lightgrey-color;
+    border-top-right-radius: $px25;
+    border-bottom-right-radius: $px25;
+    margin-left: $Negative12;
+
+    .name-node {
+      margin-left: $px12;
+    }
+    .mat-icon {
+      margin-left: $px20 !important;
+    }
+  }
+}
+
+.active-layer {
+  background-color: $blueshade-color;
+  border-top-right-radius: $px25;
+  border-bottom-right-radius: $px25;
+  margin-left: $Negative12;
+}
+
 .mat-tree {
   padding-left: 0.75rem !important;
   font-family: Lato Regular;
@@ -55,6 +83,7 @@ $px45: 45px;
     // font-family: Lato Medium;
     color: $text-color;
     position: relative;
+    width: $w230;
       .mat-icon-button {
         position: absolute;
         margin-left: 11.5rem;
@@ -75,30 +104,12 @@ $px45: 45px;
   list-style-type: none;
 }
 
-.mat-nested-tree-node ul > .mat-nested-tree-node .mat-icon-button{
-  position: absolute;
-  margin-left: 9.325rem;
-}
-
-.mat-nested-tree-node ul {
-  margin-left: -1.438rem;
-}
-
-.mat-nested-tree-node ul > .mat-nested-tree-node ul > .mat-nested-tree-node .mat-icon-button{
-  position: absolute;
-  margin-left: 8.50rem;
-}
-
-.mat-nested-tree-node ul > .mat-nested-tree-node ul {
-  margin-left: -1.687rem;
-}
-
 .name-node {
   width: 8rem;
 }
 
 .example-tree  {
-  & > .mat-nested-tree-node {
+  & > .mat-tree-node {
     & > li {
       & > .mat-tree-node-children {
         .background-highlight{
@@ -119,7 +130,7 @@ $px45: 45px;
             color: $dark-blue-color;
           }
         }
-        .mat-nested-tree-node {
+        .mat-tree-node {
           li {
             .background-highlight:not(.mat-icon) {
               border-left: 2px solid $dark-blue-color !important;
@@ -139,7 +150,7 @@ $px45: 45px;
                     color: $dark-blue-color;
                   }
                 }
-                .mat-nested-tree-node li {
+                .mat-tree-node li {
                   .mat-tree-node-children ul{
                     .background-highlight:not(.mat-icon){
                       border-left: 2px solid $dark-blue-color !important;
