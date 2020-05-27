@@ -83,6 +83,7 @@ import {HighchartsChartModule} from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MainLayerComponent } from './main-layer/main-layer.component';
+import { MarkerService } from './_services/leaflate/marker.service';
 
 
 declare var $: any;
@@ -175,7 +176,7 @@ declare var $: any;
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,
-    // NavService
+    MarkerService
   ],
   bootstrap: [AppComponent],
   exports: [HomeJcpThreeComponent],
