@@ -27,7 +27,7 @@
         [ngClass]="{'active-body-sidenav': sidenav.opened, 'activeNot-body-sidenav': !sidenav.opened}">
         <div class="container-fluid p-0 h-100" fxFlexFill>
             <!-- <div class="jcp-toolbar" [ngClass]="{'active-jcp-toolbar': sidenav.opened, 'activeNot-jcp-toolbar': !sidenav.opened}"> -->
-            <div class="jcp-toolbar">
+            <div class="jcp-toolbar" *ngIf="!(routeUrlLinkPage === '/JCP/Layers')">
                 <div class="jcp-toolbar-main-container">
                     <div class="jcp-toolbar-search-tbutt"
                         [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
@@ -58,6 +58,30 @@
                 </div>
 
             </div>
+            <!-- <div class="jcp-toolbar" *ngIf="(routeUrlLinkPage === '/JCP/Layers')">
+               \
+                <div class="jcp-toolbar-main-container-layers">
+                    <div class="jcp-toolbar-search-tbutt"
+                        [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
+                        <button type="button" mat-button class="toolbar-botton-inner"
+                            (click)="sidenav.open();toggleSidenav()">
+                            <div class="menu-inner ic ic-menu-01" aria-label="Menu"></div>
+                        </button>
+                    </div>
+                 
+
+                </div>
+
+                <div class="jcp-page-route p-0 h-100"
+                    [ngClass]="{'active-jcp-page-route': sidenav.opened, 'activeNot-jcp-page-route': !sidenav.opened}">
+                    
+                   
+                    <router-outlet></router-outlet>
+                   
+
+                </div>
+
+            </div> -->
         </div>
 
 

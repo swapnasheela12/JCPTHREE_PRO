@@ -39,6 +39,7 @@ $color-white: #ffffff;
           img {
             margin-top: 13px;
           }
+
           .mat-button {
             box-sizing: border-box;
             position: relative;
@@ -157,6 +158,66 @@ $color-white: #ffffff;
         }
       }
 
+      .jcp-toolbar-main-container-layers {
+        // height: 110px;
+        z-index: 999;
+        position: absolute;
+
+        .jcp-toolbar-search-tbutt {
+          // width: 20%;
+          // position: absolute;
+          width: 1%;
+          float: left;
+
+          .toolbar-botton-inner {
+            padding: 0 !important;
+            font-size: 25px !important;
+            border-radius: 30px !important;
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            margin-left: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            // margin-top: 0.2rem;
+            // margin-left: 18px;
+            .menu-inner {
+              font-size: 25px;
+              margin-top: -8px;
+            
+              // color: #000000;
+              // padding: 10px 0;
+            }
+
+            .menu-inner::before {
+              font-size: 1.125rem;
+            }
+          }
+
+          :focus,
+          :hover {
+            outline: 0;
+            // color: #0070DB;
+          }
+
+          .active-menu-button {
+            display: none;
+          }
+
+          .activeNot-menu-button {
+            display: contents;
+          }
+        }
+
+        .active-jcpToggle {
+          width: 0%;
+          display: none;
+        }
+
+        .activeNot-jcpToggle {
+          width: 0%;
+        }
+      }
+
       .header-jcp-container {
         background: url('../../assets/images/toolbar/BG_1366.svg')no-repeat !important;
         -webkit-background-size: cover;
@@ -216,15 +277,15 @@ $color-white: #ffffff;
 }
 
 .copy-right {
-    color: #a4a4a4;
-    font-size: 10px;
-    position: absolute;
-    text-align: center;
-    // padding-bottom: 0.5rem;
-    border-top: 1px solid #DFDFDF;
-    // padding-top: 10px;
-    height: 27px;
-    padding-top: 6px;
+  color: #a4a4a4;
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  // padding-bottom: 0.5rem;
+  border-top: 1px solid #DFDFDF;
+  // padding-top: 10px;
+  height: 27px;
+  padding-top: 6px;
 }
 
 .btn {
