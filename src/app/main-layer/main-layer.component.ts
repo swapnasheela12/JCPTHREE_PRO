@@ -173,7 +173,7 @@ export class MainLayerComponent implements OnInit {
 
 
     this.map = L.map('map', {
-      center: [25.0000, 80.0000],
+      center: [25.0000, 79.0000],
       zoomControl: false,
       zoom: 5
     });

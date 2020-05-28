@@ -504,6 +504,71 @@ $color-white: #ffffff;
 
 
 }
+.mat-autocomplete-panel.autoSearchClassLayers {
+  border-radius: 0px 0px 20px 20px;
+  font-family: 'Lato Regular';
+  height: calc(100% - 0px);
+  max-height: calc(100% - 0px);
+
+  .headerMain {
+    color: #9195A6;
+    font-size: 13px;
+    padding: 10px 35px;
+    font-family: Lato Medium;
+  }
+
+  .autoSearch-mat-option {
+    .autoSearch-row {
+      color: #464D69;
+      padding: 0;
+      margin: 0;
+
+      .autoSearch-row-icon {
+
+        padding: 6px 0;
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        background: #F0F1F3;
+        border-radius: 18px;
+        text-align: center;
+        margin: 0 15px;
+      }
+
+      .autoSearch-row-iconsec {
+
+        padding: 15px 0;
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        // background: #F0F1F3;
+        border-radius: 18px;
+        text-align: center;
+        margin: 0 15px;
+      }
+
+      .autoSearch-row-name {
+        font-size: 13px;
+      }
+
+      .autoSearch-row-namesec {
+        font-size: 13px;
+        // line-height: 3;
+      }
+
+      .autoSearch-row-url {
+        font-size: 13px;
+
+      }
+    }
+
+    :hover {
+      color: #0070DB;
+    }
+  }
+
+
+}
 
 //END Home Page
 

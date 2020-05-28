@@ -208,7 +208,7 @@
     display: flex;
     // margin-top: 6px;
     height: 50px;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 18px;
     // margin: 0 20px;
     // padding: 15px;
     // margin-bottom: 15px;
@@ -377,25 +377,27 @@
               // font-family: 'Lato Regular';
               border-radius: 20px;
               height: 36px;
-              background: #B3D4F4;
+              background: RGBA(0,59,116,0.25);
               position: relative;
               border: 0px solid #ced4da;
-              color: #0070DB;
+              color: #ffffff;
+              // color: #464D69;
               margin: 5px 0px;
             }
 
             & ::-webkit-input-placeholder {
-              color: #0070DB;
+              color: #ffffff;
             }
 
             .active-inputsearch {
               border-radius: 20px 20px 0px 0px !important;
               background: #ffffff !important;
+              color: #464D69;
             }
 
             .search-icon {
               position: absolute;
-              color: #0070DB;
+              color: #ffffff;
               right: 10px;
               top: 8px;
               font-size: 24px;
@@ -420,7 +422,7 @@
         .icon-parent-container {
           display: inline-flex;
           // background:rgba(0,0,0,0.6);
-          background: rgba(0, 0, 0, 0.2);
+          background: RGBA(0,59,116,0.25);
           border-radius: 10px;
           margin-right: 10px;
           // margin: 3px 0px;
@@ -441,7 +443,7 @@
             }
 
             .icon-container-button:hover {
-              background: rgba(0, 0, 0, 0.2);
+              background: RGBA(0,59,116,0.25);
             }
 
             .notifications-header {
@@ -485,8 +487,10 @@
                 height: 38px;
                 border-radius: 18px;
                 border: solid 1px #ffffff;
-                margin-top: -2px;
-                margin-left: -2px;
+                background: RGBA(0,59,116,0.25);
+                margin: -3px -3px;
+                // margin-top: -2px;
+                // margin-left: -2px;
               }
             }
 
@@ -499,7 +503,7 @@
         }
 
         .admin-toolbar:hover {
-          background: rgba(0, 0, 0, 0.4);
+          background: RGBA(0,59,116,0.25);
         }
 
       }
