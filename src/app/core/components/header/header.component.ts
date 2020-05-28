@@ -108,6 +108,7 @@ export class HeaderComponent implements OnInit {
   addClassNew = false;
   public testval;
   message: string;
+  routeUrlLinkPage;
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
@@ -116,6 +117,7 @@ export class HeaderComponent implements OnInit {
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
+        this.routeUrlLinkPage = router.url;
         this.route = location.path();
         this.route.split('%20').join(' ');
         let spaceAddURL = this.route.split('%20').join(' ')

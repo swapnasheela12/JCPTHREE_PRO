@@ -1,23 +1,10 @@
 .jcp-toolbar-container {
-  // background: url('../../../../assets/images/toolbar/honeycomb.svg')no-repeat !important;
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover !important;
-
-  // height: 120px;
-  // height: 130px;
+ 
   .jcp-toolbar-row {
-    // padding: 15px 0px;
     display: flex;
-    // padding: 15px 0;
     height: 52px;
-
-    // padding: 6px 0;
     .jcp-toolbar-col-left {
       .jcp-toolbar-search-tbutt {
-        // width: 20%;
-        // position: absolute;
         width: 1%;
         float: left;
 
@@ -313,4 +300,212 @@
     }
 
   }
+}
+.jcp-toolbar-container-layers {
+ 
+  .jcp-toolbar-row {
+    display: flex;
+    height: 52px;
+    .jcp-toolbar-col-left {
+      .jcp-toolbar-search-tbutt {
+        width: 1%;
+        float: left;
+
+        .toolbar-botton-inner {
+          padding: 0 !important;
+          font-size: 25px !important;
+          border-radius: 30px !important;
+          width: 50px !important;
+          height: 50px !important;
+          min-width: 50px !important;
+
+          // margin-top: 0.2rem;
+          // margin-left: 18px;
+          .menu-inner {
+            font-size: 25px;
+            padding: 10px 0;
+          }
+
+          .menu-inner::before {
+            font-size: 1.5rem;
+          }
+        }
+
+        :focus,
+        :hover {
+          outline: 0;
+          // color: #0070DB;
+        }
+
+        .active-menu-button {
+          display: none;
+        }
+
+        .activeNot-menu-button {
+          display: contents;
+        }
+      }
+
+      .active-jcpToggle {
+        width: 0%;
+        display: none;
+      }
+
+      .activeNot-jcpToggle {
+        width: 0%;
+      }
+    }
+
+    .jcp-toolbar-col-center {
+
+      .jcp-toolbar-search-row {
+        display: flex;
+
+        .jcp-toolbar-search-form {
+          width: 100%;
+          margin-left: 35px;
+
+          .form-group {
+            margin-bottom: 0;
+            width: -webkit-fill-available;
+            // margin: 0;
+
+            input,
+            #searchId[type=search] {
+              padding-left: 20px !important;
+              font-size: 15px;
+              // font-family: 'Lato Regular';
+              border-radius: 20px;
+              height: 36px;
+              background: #B3D4F4;
+              position: relative;
+              border: 0px solid #ced4da;
+              color: #0070DB;
+              margin: 5px 0px;
+            }
+
+            & ::-webkit-input-placeholder {
+              color: #0070DB;
+            }
+
+            .active-inputsearch {
+              border-radius: 20px 20px 0px 0px !important;
+              background: #ffffff !important;
+            }
+
+            .search-icon {
+              position: absolute;
+              color: #0070DB;
+              right: 10px;
+              top: 8px;
+              font-size: 24px;
+            }
+
+            .listOfRightIcon {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+    }
+
+    .jcp-toolbar-col-right {
+      // padding: 0;
+
+      .jcp-toolbar-row-right-content {
+        // margin: 0;
+        // float: right;
+
+        .icon-parent-container {
+          display: inline-flex;
+          // background:rgba(0,0,0,0.6);
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 10px;
+          margin-right: 10px;
+          // margin: 3px 0px;
+          // padding: 5px;
+          // padding: 4px;
+          // margin: 2px 0px 2px 5px;
+
+          .icon-container {
+            // margin: auto;
+
+            // padding-right: 10px;
+            .icon-container-button {
+              font-size: 20px;
+
+              .note-icon {
+                // line-height: 18px;
+              }
+            }
+
+            .icon-container-button:hover {
+              background: rgba(0, 0, 0, 0.2);
+            }
+
+            .notifications-header {
+              color: #464D69;
+
+              .notifications-name {
+                font-size: 15px;
+              }
+
+              .notifications-status {
+                font-size: 12px;
+              }
+            }
+          }
+
+          :hover,
+          :focus {
+            outline: 0;
+          }
+        }
+
+
+        .admin-toolbar {
+          height: 48px;
+          width: 48px;
+          border-radius: 25px;
+          margin-right: 12px;
+
+          .admin-toolbar-container {
+            margin: 6px;
+
+            .adminButton {
+              width: 38px;
+              height: 38px;
+              border-radius: 20px;
+              padding: 0px;
+
+              .user-button {
+
+                width: 38px;
+                height: 38px;
+                border-radius: 18px;
+                border: solid 1px #ffffff;
+                margin-top: -2px;
+                margin-left: -2px;
+              }
+            }
+
+            button:focus {
+              outline: 0px auto -webkit-focus-ring-color !important;
+            }
+
+          }
+
+        }
+
+        .admin-toolbar:hover {
+          background: rgba(0, 0, 0, 0.4);
+        }
+
+      }
+
+    }
+  }
+
+  
 }

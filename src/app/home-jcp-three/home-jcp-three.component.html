@@ -58,8 +58,8 @@
                 </div>
 
             </div>
-            <!-- <div class="jcp-toolbar" *ngIf="(routeUrlLinkPage === '/JCP/Layers')">
-               \
+            <div class="jcp-toolbar" *ngIf="(routeUrlLinkPage === '/JCP/Layers')">
+
                 <div class="jcp-toolbar-main-container-layers">
                     <div class="jcp-toolbar-search-tbutt"
                         [ngClass]="{'active-jcpToggle': sidenav.opened, 'activeNot-jcpToggle': !sidenav.opened}">
@@ -68,20 +68,22 @@
                             <div class="menu-inner ic ic-menu-01" aria-label="Menu"></div>
                         </button>
                     </div>
-                 
+                    <div class=""
+                        [ngClass]="{'active-jcp-toolbar': sidenav.opened, 'activeNot-jcp-toolbar': !sidenav.opened}"
+                        fxLayout="column">
+                        <app-header></app-header>
+                    </div>
+
 
                 </div>
 
-                <div class="jcp-page-route p-0 h-100"
-                    [ngClass]="{'active-jcp-page-route': sidenav.opened, 'activeNot-jcp-page-route': !sidenav.opened}">
-                    
-                   
+                <div class="jcp-page-route p-0 h-100" [ngClass]="{'activeNot-jcp-page-route': sidenav.opened}">
                     <router-outlet></router-outlet>
-                   
+
 
                 </div>
 
-            </div> -->
+            </div>
         </div>
 
 
