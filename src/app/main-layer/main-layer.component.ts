@@ -55,7 +55,7 @@ export class MainLayerComponent implements OnInit {
   //   // .bindPopup('<canvas width="500" height=500 id="myCanvas"></canvas>');
   //   .bindPopup('<div><img src="assets/image/agriculture/JAP_Spider__PNG/Jap_sudy_V2-15.png" width="400" height="400" alt=""></div>', { autoPan: true });
 
-    
+
   // options = {
   //   layers: [this.streetMaps, this.paradise, this.summit],
   //   zoom: 5,
@@ -174,15 +174,18 @@ export class MainLayerComponent implements OnInit {
 
     this.map = L.map('map', {
       center: [25.0000, 80.0000],
+      zoomControl: false,
       zoom: 5
     });
     console.log(this.map, "this.map");
+    L.control.zoom({
+      position: 'bottomright'
+    }).addTo(this.map);
 
     const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
-
 
     tiles.addTo(this.map);
 
