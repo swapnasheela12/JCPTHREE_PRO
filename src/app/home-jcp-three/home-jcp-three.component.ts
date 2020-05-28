@@ -35,11 +35,20 @@ export class HomeJcpThreeComponent implements OnInit {
   toggleActive = true;
   state: string = 'default';
   isHamburguer = true;
-
+  routeUrlLinkPage;
   constructor(private router: Router, private sidenav: SideNavService, private datashare: DataSharingService) {
-    router.events.subscribe((url: any) => console.log(url));
-    // console.log(router.url)
-
+    // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
+    
+    router.events.subscribe(val => {
+      // console.log(val,"val");
+      // console.log(router.url,"<<<<<<")
+      this.routeUrlLinkPage = router.url;
+      // if (location.path() != "") {
+      //   // this.route = location.path();
+      // } else {
+      //   // this.route = "Home";
+      // }
+    });
 
   }
 
