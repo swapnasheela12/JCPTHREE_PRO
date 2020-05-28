@@ -117,8 +117,8 @@ export class HeaderComponent implements OnInit {
     router.events.subscribe((val) => {
       if (location.path() !== '') {
         this.route = location.path();
-        this.route.split('%20').join(' ');
-        let spaceAddURL = this.route.split('%20').join(' ')
+        this.route.split('-').join(' ');
+        let spaceAddURL = this.route.split('-').join(' ')
         this.breadcrumbList = spaceAddURL.split('/');
         this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
         this.breadcrumbList.forEach(ele => {
@@ -203,6 +203,7 @@ export class HeaderComponent implements OnInit {
   elem;
   expandScreen = false;
   openFullscreen() {
+    this.sideNavService.close();
     this.expandScreen = true;
     if (this.elem.requestFullscreen) {
       this.elem.requestFullscreen();
@@ -220,6 +221,7 @@ export class HeaderComponent implements OnInit {
 
   /* Close fullscreen */
   closeFullscreen() {
+    this.sideNavService.open();
     this.expandScreen = false;
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();

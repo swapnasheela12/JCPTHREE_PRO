@@ -6,10 +6,10 @@ import { ReportsWizardComponent } from './reports-dashboards/reports-wizard/repo
 
 const routes: Routes = [
   {
-    path:"Report Wizard",component:ReportsWizardComponent
+    path:"Report-Wizard",component:ReportsWizardComponent
   },
   {
-    path:"My Reports",component:MyReportsComponent
+    path:"My-Reports",component:MyReportsComponent
   },
  
 ];

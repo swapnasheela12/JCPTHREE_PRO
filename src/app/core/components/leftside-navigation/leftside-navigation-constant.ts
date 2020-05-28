@@ -2759,7 +2759,7 @@ const LAYERS_LIST = [
 const REPORTS_LIST = [
     {
         name: 'Report Wizard',
-        link: 'JCP/Reports and Dashboard/Report Wizard',
+        link: 'JCP/Reports-and-Dashboard/Report-Wizard',
         icon: 'fas fa-home',
         level: 1,
         component: HomeJcpThreeComponent,
@@ -2767,7 +2767,7 @@ const REPORTS_LIST = [
     },
     {
         name: 'My Reports',
-        link: 'JCP/Reports and Dashboard/My Reports',
+        link: 'JCP/Reports-and-Dashboard/My-Reports',
         level: 1,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',

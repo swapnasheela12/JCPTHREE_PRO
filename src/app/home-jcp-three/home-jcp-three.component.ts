@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: "app-home-jcp-three",
@@ -35,8 +36,9 @@ export class HomeJcpThreeComponent implements OnInit {
   toggleActive = true;
   state: string = 'default';
   isHamburguer = true;
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
 
-  constructor(private router: Router, private sidenav: SideNavService, private datashare: DataSharingService) {
+  constructor(private router: Router, private sidenavService: SideNavService, private datashare: DataSharingService) {
     router.events.subscribe((url: any) => console.log(url));
     // console.log(router.url)
 
@@ -49,6 +51,7 @@ export class HomeJcpThreeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
   }
   toggle() {
     this.expanded = !this.expanded;
