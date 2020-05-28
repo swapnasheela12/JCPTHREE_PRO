@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: "app-home-jcp-three",
