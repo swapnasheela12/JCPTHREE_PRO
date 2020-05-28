@@ -37,7 +37,8 @@ export class HomeJcpThreeComponent implements OnInit {
   state: string = 'default';
   isHamburguer = true;
   routeUrlLinkPage;
-  constructor(private router: Router, private sidenav: SideNavService, private datashare: DataSharingService) {
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
+  constructor(private router: Router, private sidenavService: SideNavService, private datashare: DataSharingService) {
     // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
     
     router.events.subscribe(val => {
@@ -59,6 +60,7 @@ export class HomeJcpThreeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sidenavService.setSidenav(this.sidenav);
   }
   toggle() {
     this.expanded = !this.expanded;
