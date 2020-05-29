@@ -113,35 +113,48 @@ export class HeaderComponent implements OnInit {
     router.events.subscribe((url: any) => console.log(url));
     console.log(router.url,"header")
     this.routeUrlLinkPage = router.url;
+    this.breadcrumbList.push(router.url);
+    this.routeUrlLinkPage.split('-').join(' ');
+    let spaceAddURL = this.routeUrlLinkPage.split('-').join(' ')
+    this.breadcrumbList = spaceAddURL.split('/');
+    this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
+    this.breadcrumbList.forEach(ele => {
+      console.log(ele);
+      
+      this.mainHeaderName = ele;
+    });
+    this.count = this.breadcrumbList.length;
     // this.testval = this.sideNavService.sideNavToggleSubject.closed
     /////////////breadcrums////////////////////
-    router.events.subscribe((val) => {
-      if (location.path() !== '') {
+    // router.events.subscribe((val) => {
+    //   if (location.path() !== '') {
         
-        this.route = location.path();
-        this.route.split('-').join(' ');
-        let spaceAddURL = this.route.split('-').join(' ')
-        this.breadcrumbList = spaceAddURL.split('/');
-        this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
-        this.breadcrumbList.forEach(ele => {
-          this.mainHeaderName = ele;
-        });
+    //     this.route = location.path();
+    //     this.routeUrlLinkPage.split('-').join(' ');
+    //     let spaceAddURL = this.routeUrlLinkPage.split('-').join(' ')
+    //     this.breadcrumbList = spaceAddURL.split('/');
+    //     this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
+    //     this.breadcrumbList.forEach(ele => {
+    //       console.log(ele);
+          
+    //       this.mainHeaderName = ele;
+    //     });
 
-        // this.mainHeaderName = this.breadcrumbLis.pop();
-        this.count = this.breadcrumbList.length;
-      } else {
-        this.route = 'JCP';
-      }
+    //     // this.mainHeaderName = this.breadcrumbLis.pop();
+    //     this.count = this.breadcrumbList.length;
+    //   } else {
+    //     this.route = 'JCP';
+    //   }
 
-      this.datashare.currentMessage.subscribe((message) => {
-        console.log(message,"message>>>>>");
-        if (message == {} || message == false) {
-          this.addClassNew = false;
-        } else {
-          this.addClassNew = true;
-        }
-      });
-    });
+    //   this.datashare.currentMessage.subscribe((message) => {
+    //     console.log(message,"message>>>>>");
+    //     if (message == {} || message == false) {
+    //       this.addClassNew = false;
+    //     } else {
+    //       this.addClassNew = true;
+    //     }
+    //   });
+    // });
 
     /////////////breadcrums////////////////////
 

@@ -504,6 +504,7 @@ $color-white: #ffffff;
 
 
 }
+
 .mat-autocomplete-panel.autoSearchClassLayers {
   border-radius: 0px 0px 20px 20px;
   font-family: 'Lato Regular';
@@ -1111,10 +1112,11 @@ $color-white: #ffffff;
             align-items: center;
             justify-content: center;
             height: calc(100% - 43px);
+
             .usage-metrics-container {
               height: 69px;
               // margin: 29px 32px;
-             
+
             }
           }
 
@@ -1128,7 +1130,24 @@ $color-white: #ffffff;
 
 //End Home landing
 
+// layers
 
+// .leaflet-control-container {
+
+//   // width:97px;
+//   // height: 42px;
+//   // position: absolute; right: 56px
+//   .leaflet-bottom {
+
+//     .leaflet-control {
+//       margin-bottom: 10px;
+//       width: 42px;
+//       height: 97px;
+//     }
+//   }
+// }
+
+//End Layers
 
 
 //angular meterial glob css
@@ -1440,11 +1459,12 @@ table {
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
-  box-shadow: 
+  box-shadow:
     0px 0px 1px -1px rgba(0, 0, 0, 0.2),
     0px 0px 1px 0px rgba(0, 0, 0, 0.14),
     0px 0px 3px 0px rgba(0, 0, 0, 0.12)
 }
+
 //END Default Custom css
 
 
