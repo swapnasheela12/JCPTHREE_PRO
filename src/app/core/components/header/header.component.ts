@@ -124,6 +124,14 @@ export class HeaderComponent implements OnInit {
       this.mainHeaderName = ele;
     });
     this.count = this.breadcrumbList.length;
+    this.datashare.currentMessage.subscribe((message) => {
+      console.log(message,"message>>>>>");
+      if (message == {} || message == false) {
+        this.addClassNew = false;
+      } else {
+        this.addClassNew = true;
+      }
+    });
     // this.testval = this.sideNavService.sideNavToggleSubject.closed
     /////////////breadcrums////////////////////
     // router.events.subscribe((val) => {
@@ -146,14 +154,7 @@ export class HeaderComponent implements OnInit {
     //     this.route = 'JCP';
     //   }
 
-    //   this.datashare.currentMessage.subscribe((message) => {
-    //     console.log(message,"message>>>>>");
-    //     if (message == {} || message == false) {
-    //       this.addClassNew = false;
-    //     } else {
-    //       this.addClassNew = true;
-    //     }
-    //   });
+    
     // });
 
     /////////////breadcrums////////////////////
