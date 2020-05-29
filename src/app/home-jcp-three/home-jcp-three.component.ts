@@ -3,9 +3,10 @@ import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from "@angular
 import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatSidenav } from '@angular/material/sidenav';
-
+import { Location } from '@angular/common';
+declare var $: any;
 @Component({
   selector: "app-home-jcp-three",
   templateUrl: "./home-jcp-three.component.html",
@@ -15,7 +16,7 @@ import { MatSidenav } from '@angular/material/sidenav';
     trigger('hamburguerX', [
       state('hamburguer', style({})),
       state('topX', style({
-        transform: 'translate3d(-5px,0,0) rotate(-45deg)', 
+        transform: 'translate3d(-5px,0,0) rotate(-45deg)',
         transformOrigin: 'right'
       })),
       state('hide', style({
@@ -36,20 +37,38 @@ export class HomeJcpThreeComponent implements OnInit {
   toggleActive = true;
   state: string = 'default';
   isHamburguer = true;
-  routeUrlLinkPage;
-  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
-  constructor(private router: Router, private sidenavService: SideNavService, private datashare: DataSharingService) {
+  displayHomeHeader = false;
+  route: string;
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+  constructor(private router: Router, private location: Location, private sidenavService: SideNavService, private datashare: DataSharingService) {
     // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
-    
+
     router.events.subscribe(val => {
       // console.log(val,"val");
       // console.log(router.url,"<<<<<<")
-      this.routeUrlLinkPage = router.url;
-      // if (location.path() != "") {
-      //   // this.route = location.path();
-      // } else {
-      //   // this.route = "Home";
-      // }
+      // this.routeUrlLinkPage = router.url;
+      if (location.path() != "") {
+        this.route = location.path();
+        if (this.route == "/JCP/Layers") {
+          this.displayHomeHeader = true;
+          $("#headerIdHome").removeClass("jcp-toolbar-main-container");
+          $("#headerIdHome").addClass("jcp-toolbar-main-container-layers");
+          $( "#header-container-id" ).removeClass( "header-jcp-container" );
+          $( "#header-container-id" ).addClass( "header-jcp-container-layers" );
+          $("#route-outlet-id").removeClass("px-3");
+          $("#route-outlet-id").addClass("p-0 h-100").css('margin-left', '0px');
+        } else {
+          this.displayHomeHeader = false;
+          $("#headerIdHome").addClass("jcp-toolbar-main-container");
+          $("#headerIdHome").removeClass("jcp-toolbar-main-container-layers");
+          $("#header-container-id").addClass("header-jcp-container");
+          $("#header-container-id").removeClass("header-jcp-container-layers");
+          $("#route-outlet-id").addClass("px-3");
+          $("#route-outlet-id").removeClass("p-0 h-100").css('margin-left', '20px');
+        }
+      } else {
+        this.route = "Home";
+      }
     });
 
   }

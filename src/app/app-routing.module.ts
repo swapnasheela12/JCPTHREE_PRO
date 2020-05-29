@@ -18,8 +18,7 @@ const routes: Routes = [
       { path: "Home", component: LandingHomeComponent },
       // { path: "Layers", component:LayerMainComponent},
       { path: "Layers", component:MainLayerComponent},
-      { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      { path: "myJCP", component: MyReportsComponent}
+      { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" }
     ],
   },
  
