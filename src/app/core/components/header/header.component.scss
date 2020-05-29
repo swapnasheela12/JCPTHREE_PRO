@@ -1,8 +1,9 @@
 .jcp-toolbar-container {
- 
+
   .jcp-toolbar-row {
     display: flex;
     height: 52px;
+
     .jcp-toolbar-col-left {
       .jcp-toolbar-search-tbutt {
         width: 1%;
@@ -301,11 +302,13 @@
 
   }
 }
+
 .jcp-toolbar-container-layers {
- 
+
   .jcp-toolbar-row {
     display: flex;
     height: 52px;
+
     .jcp-toolbar-col-left {
       .jcp-toolbar-search-tbutt {
         width: 1%;
@@ -377,7 +380,7 @@
               // font-family: 'Lato Regular';
               border-radius: 20px;
               height: 36px;
-              background: RGBA(0,59,116,0.65);
+              background: RGBA(0, 90, 175, 0.7);
               position: relative;
               border: 0px solid #ced4da;
               color: #ffffff;
@@ -422,7 +425,7 @@
         .icon-parent-container {
           display: inline-flex;
           // background:rgba(0,0,0,0.6);
-          background: RGBA(0,59,116,0.65);
+          background: RGBA(0, 90, 175, 0.7);
           border-radius: 10px;
           margin-right: 10px;
           // margin: 3px 0px;
@@ -443,7 +446,7 @@
             }
 
             .icon-container-button:hover {
-              background: RGBA(0,59,116,0.65);
+              background: RGBA(0, 90, 175, 0.7);
             }
 
             .notifications-header {
@@ -473,13 +476,13 @@
           margin-right: 12px;
 
           .admin-toolbar-container {
-            margin: 6px;
+            margin: 7px 12px;
 
             .adminButton {
-              width: 38px;
-              height: 38px;
+              width: 40px;
+              height: 40px;
               border-radius: 20px;
-              padding: 0px;
+              // padding: 0px;
 
               .user-button {
 
@@ -487,23 +490,27 @@
                 height: 38px;
                 border-radius: 18px;
                 border: solid 1px #ffffff;
-                background: RGBA(0,59,116,0.25);
-                margin: -3px -3px;
-                // margin-top: -2px;
-                // margin-left: -2px;
+                background: RGBA(0, 59, 116, 0.25);
+                margin-left: -7px;
+                margin-top: -2px;
+                // margin: -3px -3px;
+                // margin-top: -3px;
+                // margin-left: -3px;
+                // margin-right: -3px;
+                // margin-bottom: -3px;
               }
             }
 
-            button:focus {
-              outline: 0px auto -webkit-focus-ring-color !important;
-            }
+            // button:focus {
+            //   outline: 0px auto -webkit-focus-ring-color !important;
+            // }
 
           }
 
         }
 
         .admin-toolbar:hover {
-          background: RGBA(0,59,116,0.65);
+          background: RGBA(0, 90, 175, 0.7);
         }
 
       }
@@ -511,5 +518,5 @@
     }
   }
 
-  
+
 }
