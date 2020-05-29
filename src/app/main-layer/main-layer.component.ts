@@ -178,6 +178,7 @@ export class MainLayerComponent implements OnInit {
       zoom: 5
     });
     console.log(this.map, "this.map");
+    console.log(L, "L.....");
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.map);
@@ -188,6 +189,17 @@ export class MainLayerComponent implements OnInit {
     });
 
     tiles.addTo(this.map);
+
+    ////
+  
+    ////
+
+
+
+
+
+
+
 
   }
 

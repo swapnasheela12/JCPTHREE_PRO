@@ -73,6 +73,7 @@ $custom-typography: mat-typography-config($font-family: 'Lato Regular,Lato Bold'
 
 //external css file
 
+@import './scss/_leaflet-extend';
 @import './scss/_ag-jcp3';
 @import './scss/_vars.scss';
 @import './scss/_theme.scss';
