@@ -67,7 +67,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MyReportsComponent,
     ReportsWizardComponent,
     CreateReportComponent,
-    ButtonRendererComponent
+    ButtonRendererComponent,
+   
   ],
   imports: [
     CommonModule,

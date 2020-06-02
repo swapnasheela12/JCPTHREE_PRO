@@ -79,11 +79,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainModulesModule } from './main-modules/main-modules.module';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
 // import { HighchartsChartComponent } from 'highcharts-angular';
-import {HighchartsChartModule} from "highcharts-angular";
+import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MainLayerComponent } from './main-layer/main-layer.component';
 import { MarkerService } from './_services/leaflate/marker.service';
+import '@geoman-io/leaflet-geoman-free';
+
 
 
 declare var $: any;
@@ -96,7 +98,7 @@ declare var $: any;
     ClickOutsideDirective,
     LandingHomeComponent,
     MainLayerComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -104,6 +106,10 @@ declare var $: any;
     BrowserAnimationsModule,
     ChartModule,
     HighchartsChartModule,
+
+    ///////
+    // NgxLoadingControlModule,
+    ///////
 
     //modules
     LeafletModule,
@@ -117,7 +123,7 @@ declare var $: any;
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-   
+
 
     //font
     FontAwesomeModule,

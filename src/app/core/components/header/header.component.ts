@@ -111,7 +111,6 @@ export class HeaderComponent implements OnInit {
   routeUrlLinkPage;
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
     router.events.subscribe((url: any) => console.log(url));
-    console.log(router.url,"header")
    
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
@@ -123,12 +122,11 @@ export class HeaderComponent implements OnInit {
         this.breadcrumbList = spaceAddURL.split('/');
         this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
         this.breadcrumbList.forEach(ele => {
-          console.log(ele);
-          
+         
           this.mainHeaderName = ele;
         });
         this.datashare.currentMessage.subscribe((message) => {
-            console.log(message,"message>>>>>");
+           
             if (message == {} || message == false) {
               this.addClassNew = false;
             } else {

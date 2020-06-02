@@ -22,6 +22,8 @@
 
 // End font family
 
+// @import '@geoman-io/leaflet-geoman-free';
+// @import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
 //ag grid
 
@@ -73,7 +75,8 @@ $custom-typography: mat-typography-config($font-family: 'Lato Regular,Lato Bold'
 
 //external css file
 
-@import './scss/_leaflet-extend';
+@import './scss/leaflet/leaflet-geoman.css';
+@import './scss/leaflet/leaflet-extend';
 @import './scss/_ag-jcp3';
 @import './scss/_vars.scss';
 @import './scss/_theme.scss';

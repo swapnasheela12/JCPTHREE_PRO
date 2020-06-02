@@ -13,8 +13,6 @@ export class MarkerService {
       console.log(res,"res");
       
       for (const c of res.features) {
-        console.log(c,"c");
-        
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
         const marker = L.marker([lon, lat]).addTo(map);
