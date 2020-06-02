@@ -51,7 +51,23 @@ $w230: 230px;
   // font-family: Lato Regular;
 }
 
-.layers-menu {
+.layers-menu-0 {
+  &:hover {
+    background-color: $lightgrey-color;
+    border-top-right-radius: $px25;
+    border-bottom-right-radius: $px25;
+    margin-left: $Negative12;
+
+    .name-node {
+      margin-left: $px12;
+    }
+    // .mat-icon {
+    //   margin-left: $px20 !important;
+    // }
+  }
+}
+
+.layers-menu-else {
   &:hover {
     background-color: $lightgrey-color;
     border-top-right-radius: $px25;
@@ -62,9 +78,9 @@ $w230: 230px;
       margin-left: $px12;
     }
     .mat-icon {
-      margin-left: $px20 !important;
+      margin-left: 0 !important;
     }
-  }
+  } 
 }
 
 .active-layer {

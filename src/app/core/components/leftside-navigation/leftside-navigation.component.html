@@ -42,19 +42,21 @@
             <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
-                    matTreeNodePaddingIndent="12">
+                    matTreeNodePaddingIndent="12" (mouseover)="layersLevelHover(node, '')"
+                    (mouseleave)="layersLevelHoverLeave(node, '')" [ngStyle]="{'cursor':'pointer'}"
+                    [ngClass]="[hoverLayer0? 'layers-menu-0': '']">
                         <button mat-icon-button disabled></button>
                         <div class="name-node">{{node.name}}</div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild;" matTreeNodePadding
-                    matTreeNodeToggle (click)="activenode(node)" (mouseover)="layersLevelHover(node)"
-                    matTreeNodePaddingIndent="12" [ngStyle]="{'cursor':'pointer'}" 
-                    [ngClass]="[hoverLayer0 ? 'layers-menu': '']">
+                    matTreeNodeToggle (click)="activenode(node)" (mouseover)="layersLevelHover(node, iconlayers)"
+                    (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="12" [ngStyle]="{'cursor':'pointer'}"
+                    [ngClass]="[hoverLayer0? 'layers-menu-0': '']">
                         <button mat-icon-button matTreeNodeToggle
                                 [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node)" 
-                                (mouseover)="layersLevelHover(node)" [disableRipple]="true">
+                                (mouseover)="layersLevelHover(node, iconlayers)" [disableRipple]="true">
                         <mat-icon class="mat-icon-rtl-mirror"
-                        [ngStyle]="{'margin-left': '-'+(node.level)*24+'px'}">
+                        [ngStyle]="{'margin-left': '-'+(node.level)*24+'px'}" #iconlayers>
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                         </button>

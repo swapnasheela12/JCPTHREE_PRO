@@ -34,7 +34,9 @@ export class LeftsideNavigationComponent implements OnInit {
   hoverLayer0: any = '';
   level: any = 1;
   activeLayer0: any = '';
+
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
+  // @ViewChild('iconlayers', {static: false}) iconLayers: ElementRef;
 
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
@@ -82,11 +84,23 @@ export class LeftsideNavigationComponent implements OnInit {
     });
   }
 
-  layersLevelHover(node) {
+  layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
+    this.hoverLayer0 = 'layers-menu-0';
     const levelNode = this.treeControl.getLevel(node);
-    if (levelNode == 0) {
-      this.hoverLayer0 = 'layers-menu';
+    if (iconlayers != '') {
+      if (levelNode < 2 ) {
+        iconlayers._elementRef.nativeElement.style.marginLeft = -(levelNode*20)+20+'px';
+      } else {
+        iconlayers._elementRef.nativeElement.style.marginLeft = -(levelNode*16)+'px';
+      }
+    }
+  }
+
+  layersLevelHoverLeave(node, iconlayers) {
+    const levelNode = this.treeControl.getLevel(node);
+    if (iconlayers != '') {
+      iconlayers._elementRef.nativeElement.style.marginLeft=-(levelNode*24)+'px';
     }
   }
 
