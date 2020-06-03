@@ -60,6 +60,9 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
 // import { LayersModule } from './layers/layers.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MainLayerComponent } from './main-layer/main-layer.component';
+import '@geoman-io/leaflet-geoman-free';
+import { MarkerService } from '../_services/leaflate/marker.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ReportsWizardComponent,
     CreateReportComponent,
     ButtonRendererComponent,
-   
+    MainLayerComponent
   ],
   imports: [
     CommonModule,
@@ -128,7 +131,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     PortalModule,
     ScrollingModule
   ],providers: [
-    SideNavService
+    SideNavService,
+    MarkerService
   ],
   exports: [
     // HeaderComponent,
@@ -137,6 +141,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     // SuccessfulComponent
     MyReportsComponent,
     ReportsWizardComponent,
+    MainLayerComponent,
     CreateReportComponent,
     ButtonRendererComponent
   ], entryComponents: [

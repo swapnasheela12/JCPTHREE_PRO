@@ -82,7 +82,7 @@ import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { MainLayerComponent } from './main-layer/main-layer.component';
+// import { MainLayerComponent } from './main-layer/main-layer.component';
 import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
 
@@ -97,7 +97,7 @@ declare var $: any;
     HomeJcpThreeComponent,
     ClickOutsideDirective,
     LandingHomeComponent,
-    MainLayerComponent,
+    // MainLayerComponent,
 
   ],
   imports: [

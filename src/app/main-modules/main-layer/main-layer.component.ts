@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
-import { DataSharingService } from '../_services/data-sharing.service';
 import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
-import { MarkerService } from '../_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 declare var $: any;
 @Component({
   selector: 'app-main-layer',

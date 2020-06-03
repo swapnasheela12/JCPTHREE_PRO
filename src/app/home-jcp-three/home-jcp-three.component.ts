@@ -56,7 +56,7 @@ export class HomeJcpThreeComponent implements OnInit {
           $( "#header-container-id" ).removeClass( "header-jcp-container" );
           $( "#header-container-id" ).addClass( "header-jcp-container-layers" );
           $("#route-outlet-id").removeClass("px-3");
-          $("#route-outlet-id").addClass("p-0 h-100").css('margin-left', '0px');
+          $("#route-outlet-id").addClass("p-0 h-100").addClass("active-jcp-page-route");
         } else {
           this.displayHomeHeader = false;
           $("#headerIdHome").addClass("jcp-toolbar-main-container");
@@ -64,7 +64,7 @@ export class HomeJcpThreeComponent implements OnInit {
           $("#header-container-id").addClass("header-jcp-container");
           $("#header-container-id").removeClass("header-jcp-container-layers");
           $("#route-outlet-id").addClass("px-3");
-          $("#route-outlet-id").removeClass("p-0 h-100").css('margin-left', '20px');
+          $("#route-outlet-id").removeClass("p-0 h-100").removeClass("activeNot-jcp-page-route");
         }
       } else {
         this.route = "Home";
@@ -75,7 +75,7 @@ export class HomeJcpThreeComponent implements OnInit {
 
   toggleSidenav() {
     this.toggleActive = !this.toggleActive;
-    this.datashare.changeMessage(this.toggleActive)
+    this.datashare.changeMessage(this.toggleActive);
   }
 
   ngOnInit() {
