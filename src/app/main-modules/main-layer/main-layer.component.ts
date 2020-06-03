@@ -13,25 +13,25 @@ declare var $: any;
   styleUrls: ['./main-layer.component.scss']
 })
 export class MainLayerComponent implements OnInit {
-  map: L.Map;
-
+  // map: L.Map;
+  map: any;
   public chartDivWidth;
   public chartDivHeight;
 
 
-  // Define our base layers so we can reference them multiple times
-  streetMaps = tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-    maxZoom: 20,
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-  });
- 
-  // Set the initial set of displayed layers (we could also use the leafletLayers input binding for this)
-  options = {
-    layers: [this.streetMaps],
-    zoom: 5,
-    zoomControl: false,
-    center: latLng([25.0000, 79.0000])
-  };
+  // // Define our base layers so we can reference them multiple times
+  // streetMaps = tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+  //   maxZoom: 20,
+  //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  // });
+
+  // // Set the initial set of displayed layers (we could also use the leafletLayers input binding for this)
+  // options = {
+  //   layers: [this.streetMaps],
+  //   zoom: 5,
+  //   zoomControl: false,
+  //   center: latLng([25.0000, 79.0000])
+  // };
 
   constructor(private datashare: DataSharingService, private markerService: MarkerService) {
     this.datashare.currentMessage.subscribe((message) => {
@@ -70,78 +70,26 @@ export class MainLayerComponent implements OnInit {
   }
 
 
+  // mapReady(map: L.Map) {
+  //   map.addControl(L.control.zoom({ position: 'bottomright' }));
+  //   console.log(L, "L");
+  //   // console.log(L.PM,"L.PM");
+  //   console.log(map, "map");
+   
+  //   // map.pm.addControls({
+  //   //   position: 'bottomright',
+  //   //   drawCircle: true,
+  //   //   drawCircleMarker: true,
+  //   //   drawPolyline: true,
+  //   //   drawRectangle: true,
+  //   //   drawPolygon: true,
+  //   //   editMode: true,
+  //   //   dragMode: true,
+  //   //   cutPolygon: true,
+  //   //   removalMode: true,
+  //   //   drawMarker: true
+  //   // });
 
-  mapReady(map: L.Map) {
-    map.addControl(L.control.zoom({ position: 'bottomright' }));
-    console.log(L,"L");
-    console.log(map,"map");
-
-    // map.pm.addControls({
-    //   position: 'bottomright',
-    //   drawCircle: true,
-    //   drawCircleMarker: true,
-    //   drawPolyline: true,
-    //   drawRectangle: true,
-    //   drawPolygon: true,
-    //   editMode: true,
-    //   dragMode: true,
-    //   cutPolygon: true,
-    //   removalMode: true,
-    //   drawMarker: true
-    // });
-
-    // var legend = L.control({position: 'bottomright'});
-
-    // legend.onAdd = function (map) {
-    
-    //     var div = L.DomUtil.create('div', 'info legend'),
-    //     grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-    //     labels = [];
-    
-    //     // loop through our density intervals and generate a label with a colored square for each interval
-    //     for (var i = 0; i < grades.length; i++) {
-    //         div.innerHTML +=
-    //             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-    //             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    // }
-    
-    // return div;
-    // };
-    
-    // legend.addTo(map);
-    
-
-    const iconRetinaUrl = 'assets/images/Layers/3.svg';
-    const iconUrl = 'assets/images/Layers/3-1.svg';
-    // const shadowUrl = 'assets/marker-shadow.png';
-    const iconDefault = L.icon({
-      iconRetinaUrl,
-      iconUrl,
-      // shadowUrl,
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-      shadowSize: [41, 41]
-    });
-    L.Marker.prototype.options.icon = iconDefault;
-    this.markerService.makeCapitalMarkers(map);
-
-  }
-
-
-
-  ngOnInit(): void {
-
-  }
-
-
-  // ngAfterViewInit() {
-  //   this.initMap();
-  //   this.markerService.makeCapitalMarkers(this.map);
-  // }
-
-  // private initMap(): void {
 
   //   const iconRetinaUrl = 'assets/images/Layers/3.svg';
   //   const iconUrl = 'assets/images/Layers/3-1.svg';
@@ -157,70 +105,106 @@ export class MainLayerComponent implements OnInit {
   //     shadowSize: [41, 41]
   //   });
   //   L.Marker.prototype.options.icon = iconDefault;
-
-
-  //   this.map = L.map('map', {
-  //     center: [25.0000, 79.0000],
-  //     zoomControl: false,
-  //     zoom: 5
-  //   });
-  //   console.log(this.map, "this.map");
-  //   console.log(L, "L.....");
-  //   this.map.on('pm:globalremovalmodetoggled', e => {
-  //     console.log(e, "e");
-  //   });
-  //   L.control.zoom({
-  //     position: 'bottomright'
-  //   }).addTo(this.map);
-
-  //   const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-  //     maxZoom: 20,
-  //     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-  //   });
-
-  //   // var options = {
-  //   //   position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
-  //   //   drawMarker: true,  // adds button to draw markers
-  //   //   drawPolygon: true,  // adds button to draw a polygon
-  //   //   drawPolyline: true,  // adds button to draw a polyline
-  //   //   drawCircle: true,  // adds button to draw a cricle
-  //   //   editPolygon: true,  // adds button to toggle global edit mode
-  //   //   deleteLayer: true   // adds a button to delete layers
-  //   // };
-
-  //   // this.map.pm.addControls(options);
-
-  //   // this.map.pm.addControls({
-  //   //   position: 'bottomright',
-  //   //   drawCircle: true,
-  //   //   drawCircleMarker: true,
-  //   //   drawPolyline: true,
-  //   //   drawRectangle: true,
-  //   //   drawPolygon: true,
-  //   //   editMode: true,
-  //   //   dragMode: true,
-  //   //   cutPolygon: true,
-  //   //   removalMode: true,
-  //   //   drawMarker: true
-  //   // });
-
-
-
-
-  //   tiles.addTo(this.map);
-
-  //   ////
-
-  //   ////
-
-
-
-
-
-
-
+  //   this.markerService.makeCapitalMarkers(map);
 
   // }
+
+
+
+  ngOnInit(): void {
+
+  }
+
+
+  ngAfterViewInit() {
+    this.initMap();
+    this.markerService.makeCapitalMarkers(this.map);
+  }
+
+  private initMap(): void {
+
+    const iconRetinaUrl = 'assets/images/Layers/3.svg';
+    const iconUrl = 'assets/images/Layers/3-1.svg';
+    // const shadowUrl = 'assets/marker-shadow.png';
+    const iconDefault = L.icon({
+      iconRetinaUrl,
+      iconUrl,
+      // shadowUrl,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
+    L.Marker.prototype.options.icon = iconDefault;
+
+
+    this.map = L.map('map', {
+      center: [25.0000, 79.0000],
+      zoomControl: false,
+      zoom: 5
+    });
+    console.log(this.map, "this.map");
+    console.log(L, "L.....");
+    this.map.on('pm:globalremovalmodetoggled', e => {
+      console.log(e, "e");
+    });
+    L.control.zoom({
+      position: 'bottomright'
+    }).addTo(this.map);
+
+    const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    var options = {
+      position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
+      drawMarker: true,  // adds button to draw markers
+      drawPolygon: true,  // adds button to draw a polygon
+      drawPolyline: false,  // adds button to draw a polyline
+      drawCircle: true,  // adds button to draw a cricle
+      drawCircleMarker: false,//add button with circle radius
+      editPolygon: true,  // adds button to toggle global edit mode
+      deleteLayer: true,   // adds a button to delete layers
+      // removalMode: false,
+      editMode: false,
+      dragMode: true,// drag and drop
+    };
+
+    this.map.pm.addControls(options);
+
+    // this.map.pm.addControls({
+    //   position: 'bottomright',
+    //   drawCircle: true,
+    //   drawCircleMarker: true,
+    //   drawPolyline: true,
+    //   drawRectangle: true,
+    //   drawPolygon: true,
+    //   editMode: true,
+    //   dragMode: true,
+    //   cutPolygon: true,
+    //   removalMode: true,
+    //   drawMarker: true
+    // });
+
+
+
+
+    tiles.addTo(this.map);
+
+    ////
+
+    ////
+
+
+
+
+
+
+
+
+  }
 
 
 

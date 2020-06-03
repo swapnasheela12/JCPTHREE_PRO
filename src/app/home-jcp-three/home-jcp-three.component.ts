@@ -45,7 +45,7 @@ export class HomeJcpThreeComponent implements OnInit {
 
     router.events.subscribe(val => {
       // console.log(val,"val");
-      // console.log(router.url,"<<<<<<")
+      console.log(router.url,"<<<<<<")
       // this.routeUrlLinkPage = router.url;
       if (location.path() != "") {
         this.route = location.path();

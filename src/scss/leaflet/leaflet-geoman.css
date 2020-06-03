@@ -152,7 +152,7 @@
   .leaflet-pm-toolbar
   .button-container
   .leaflet-pm-actions-container {
-  right: 31px;
+  right: 35px;
   left: auto;
 }
 
@@ -161,7 +161,7 @@
 }
 
 .button-container .leaflet-pm-actions-container .leaflet-pm-action:last-child {
-  border-radius: 0px 3px 3px 0px;
+  border-radius: 4px 0px 0px 4px;
   border-right: 0px;
 }
 .button-container .leaflet-pm-actions-container .leaflet-pm-action {
@@ -169,7 +169,7 @@
   background-color: #666;
   color: #fff;
   display: inline-block;
-  width: auto;
+  width: auto !important;
   border-right: 1px solid #eee;
   user-select: none;
 }
