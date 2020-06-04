@@ -44,16 +44,54 @@
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
                     matTreeNodePaddingIndent="12" (mouseover)="layersLevelHover(node, '')"
                     (mouseleave)="layersLevelHoverLeave(node, '')" [ngStyle]="{'cursor':'pointer'}"
-                    [ngClass]="[hoverLayer0? 'layers-menu-0': '']">
+                    [ngClass]="[hoverLayer0? 'layers-menu-0': '']" class="dashed-border"  attr.data-title="{{node.name}}">
                         <button mat-icon-button disabled></button>
+                        <!-- <a routerLink="/{{node.link}}" routerLinkActive="menu-active-layers" (click)="onCheckBoxClick(node.link)"> -->
+                            <div class="name-node">
+                                <mat-checkbox 
+                                    class="checklist-leaf-node" 
+                                    (change)="todoItemSelectionToggle($event.checked, node, activeCheckbox)" 
+                                    [checked]="node.selected" #activeCheckbox>
+                                        {{node.name}}
+                                </mat-checkbox>
+                            </div>
+                        <!-- </a> -->
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding
+                    matTreeNodeToggle (click)="activenode(node, iconlayersZero)" (mouseover)="layersLevelHover(node, iconlayersZero)"
+                    (mouseleave)="layersLevelHoverLeave(node, iconlayersZero)" matTreeNodePaddingIndent="12" [ngStyle]="{'cursor':'pointer'}"
+                    [ngClass]="[hoverLayer0? 'layers-menu-0': '', treeControl.isExpanded(node) ? 'active-layer': '']"  attr.data-title="{{node.name}}">
+                        <button mat-icon-button matTreeNodeToggle
+                                [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, iconlayersZero)" 
+                                (mouseover)="layersLevelHover(node, iconlayersZero)" [disableRipple]="true">
+                        <mat-icon class="mat-icon-rtl-mirror"
+                        [ngStyle]="{'margin-left': '-'+(node.level)*24+'px'}" #iconlayersZero>
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                        </button>
                         <div class="name-node">{{node.name}}</div>
                     </mat-tree-node>
-                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild;" matTreeNodePadding
-                    matTreeNodeToggle (click)="activenode(node)" (mouseover)="layersLevelHover(node, iconlayers)"
-                    (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="12" [ngStyle]="{'cursor':'pointer'}"
-                    [ngClass]="[hoverLayer0? 'layers-menu-0': '']">
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelOne; " matTreeNodePadding
+                        matTreeNodeToggle (click)="activenode(node, iconlayers)" (mouseover)="layersLevelHover(node, iconlayers)"
+                        (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0" [ngStyle]="{'cursor':'pointer'}"
+                        [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']"  attr.data-title="{{node.name}}">
                         <button mat-icon-button matTreeNodeToggle
-                                [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node)" 
+                                [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, iconlayers)" 
+                                (mouseover)="layersLevelHover(node, iconlayers)" [disableRipple]="true">
+                        <mat-icon class="mat-icon-rtl-mirror"
+                        [ngStyle]="{'margin-left': '0px'}" #iconlayers>
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                        </button>
+                        <div class="name-node">{{node.name}}</div>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelGreterThanOne; " matTreeNodePadding
+                        matTreeNodeToggle (click)="activenode(node, iconlayers)" (mouseover)="layersLevelHover(node, iconlayers)"
+                        (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="12" [ngStyle]="{'cursor':'pointer'}"
+                        [ngClass]="[hoverLayer0? 'layers-menu-0 ': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']" 
+                        class="dashed-border" attr.data-title="{{node.name}}">
+                        <button mat-icon-button matTreeNodeToggle
+                                [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, iconlayers)" 
                                 (mouseover)="layersLevelHover(node, iconlayers)" [disableRipple]="true">
                         <mat-icon class="mat-icon-rtl-mirror"
                         [ngStyle]="{'margin-left': '-'+(node.level)*24+'px'}" #iconlayers>
@@ -62,6 +100,7 @@
                         </button>
                         <div class="name-node">{{node.name}}</div>
                     </mat-tree-node>
+                    
                 </mat-tree>
             </ul>
     </ng-template>

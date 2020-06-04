@@ -23,6 +23,7 @@ $px15: 15px;
 $Negative12: -12px;
 $px12: 12px;
 $px20: 20px;
+$px48: 48px;
 $w230: 230px;
 
 .mm-listitem__text {
@@ -51,36 +52,25 @@ $w230: 230px;
   // font-family: Lato Regular;
 }
 
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+  background-color: $blueactive-color !important;
+}
+
 .layers-menu-0 {
   &:hover {
     background-color: $lightgrey-color;
     border-top-right-radius: $px25;
     border-bottom-right-radius: $px25;
     margin-left: $Negative12;
-
     .name-node {
       margin-left: $px12;
     }
-    // .mat-icon {
-    //   margin-left: $px20 !important;
-    // }
   }
-}
-
-.layers-menu-else {
-  &:hover {
-    background-color: $lightgrey-color;
-    border-top-right-radius: $px25;
-    border-bottom-right-radius: $px25;
-    margin-left: $Negative12;
-
-    .name-node {
-      margin-left: $px12;
-    }
-    .mat-icon {
-      margin-left: 0 !important;
-    }
-  } 
 }
 
 .active-layer {
@@ -88,6 +78,31 @@ $w230: 230px;
   border-top-right-radius: $px25;
   border-bottom-right-radius: $px25;
   margin-left: $Negative12;
+  .name-node {
+    margin-left: $px12;
+    color: $blueactive-color;
+  }
+  .mat-icon {
+    color: $blueactive-color;
+  }
+}
+
+.menu-active-layers {
+  color: $blueactive-color !important;
+}
+
+.active-nested-layer {
+  .name-node {
+    // margin-left: $px12;
+    color: $blueactive-color;
+  }
+  .mat-icon {
+    color: $blueactive-color;
+  }
+}
+
+.dashed-border  {
+  border-left: 1px dashed $lightgrey-color;
 }
 
 .mat-tree {
@@ -120,9 +135,9 @@ $w230: 230px;
   list-style-type: none;
 }
 
-.name-node {
-  width: 8rem;
-}
+// .name-node {
+//   width: 8rem;
+// }
 
 .example-tree  {
   & > .mat-tree-node {
