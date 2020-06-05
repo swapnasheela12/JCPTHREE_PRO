@@ -75,7 +75,7 @@ $custom-typography: mat-typography-config($font-family: 'Lato Regular,Lato Bold'
 
 //external css file
 
-// @import './scss/leaflet/leaflet-geoman.css';
+@import './scss/leaflet/leaflet-geoman.css';
 @import './scss/leaflet/leaflet-extend';
 @import './scss/_ag-jcp3';
 @import './scss/_vars.scss';
