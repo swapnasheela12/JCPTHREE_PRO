@@ -53,6 +53,7 @@ import { RouterModule } from '@angular/router';
 import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
+import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -61,7 +62,8 @@ import { SideNavService } from '../_services/side-nav.service';
     HeaderComponent,
     LeftsideNavigationComponent,
     MmenuDirective,
-    SuccessfulComponent
+    SuccessfulComponent,
+    MyjcpdropdownpanelComponent
   ],
   imports: [
     CommonModule,

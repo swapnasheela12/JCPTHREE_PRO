@@ -1,0 +1,169 @@
+<mat-toolbar-row class="my-jcp-setting-toolbar" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="my-jcp-setting-header" fxFlex>
+        <span class="my-jcp-setting-header-icon"><i class="zmdi zmdi-settings"></i></span>
+        <span class="my-jcp-setting-header-title">Settings</span>
+    </div>
+
+    <div class="my-jcp-setting-header-action">
+        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false" aria-label="Example heart icon">
+            <div class="ic ic-close-01 divActionIcon"></div>
+        </mat-icon>
+    </div>
+
+</mat-toolbar-row>
+<div class="my-jcp-setting-subheader" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="my-jcp-container">
+        <div class="my-jcp-subheader-title">Default Geography</div>
+        <div class="my-jcp-subheader-subtitle">Jio State : Maharashtra</div>
+    </div>
+    <div class="my-jcp-container-icon">
+        <mat-icon class="my-jcp-icon">
+            <div class="zmdi zmdi-chevron-down divaccordIcon"></div>
+        </mat-icon>
+    </div>
+</div>
+<div class="my-jcp-setting-search">
+    <div class="my-jcp-search-container">
+        <mat-form-field class="my-jcp-search-form-field">
+            <input type="text" matInput placeholder="Search" id="my-jcp-setting-search-id">
+        </mat-form-field>
+    </div>
+</div>
+<div class="my-jcp-setting-accordion-container">
+    <mat-accordion class="my-jcp-setting-accordion">
+        <mat-expansion-panel class="my-jcp-setting-accordion-card" *ngFor="let val of cardListMyJcpSettings"
+            [expanded]="val.nameCard =='Alarms Live (2/3)'" (opened)="val.nameCard =='Alarms Live (2/3)'"
+            [disabled]="!val.vision">
+            <mat-expansion-panel-header class="my-jcp-accordion-header"
+                [ngClass]="{'not-bgColor-header':val.vision == false}">
+                <mat-panel-title class="my-jcp-accordion-header-title"
+                    [ngClass]="{'color-header':val.vision == true,'not-color-header':val.vision == false}">
+                    <div class="ic ic-drag-drop drag-drop-icon"></div>
+                    <div class="ml-2" fxFlex>{{val.nameCard}}</div>
+                    <div class="zmdi" (click)="showHideCardFun(val)"
+                        [ngClass]="{'vision-icon zmdi-eye':val.vision,'not-vision-icon zmdi-eye-off':!val.vision}">
+                    </div>
+                    <!-- <div class="zmdi" (click)="showHideCardFun(val)" [ngClass]="{'vision-icon zmdi-eye':val.vision == true,'not-vision-icon zmdi-eye-off':val.vision == false}"></div> -->
+                    <!-- <div (click)="showHideCardFun(val)">
+                            <span *ngSwitchCase="true" class="zmdi zmdi-eye vision-icon"></span>
+                            <span *ngSwitchCase="false" class="zmdi zmdi-eye-off not-vision-icon"></span>
+                        </div> -->
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <mat-expansion-panel class="my-jcp-setting-accordion-card" *ngFor="let val of cardListMyJcpSettings" [disabled]="!val.vision" >
+                    <mat-expansion-panel-header class="my-jcp-accordion-header" >
+                        <mat-panel-title class="my-jcp-accordion-header-title" >
+                            <div class="ic ic-drag-drop drag-drop-icon"></div>
+                            <div class="ml-2" fxFlex>{{val.nameCard}}</div>
+                            <div class="zmdi" (click)="openExpandPanelFun(val.vision,val)" [ngClass]="{'vision-icon zmdi-eye':val.vision,'not-vision-icon zmdi-eye-off':!val.vision}"></div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="my-jcp-accordion-content">
+                        <div fxLayout="row wrap">
+                            <div class="button-container" *ngFor="let item of val.itemsListAlarms">
+                                <div class="button-type" [ngClass]="{'disabled-button-type':item.disabled == true,'not-disabled-button-type':item.disabled == false}">{{item.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel> -->
+            <div class="my-jcp-accordion-content">
+                <div fxLayout="row wrap">
+                    <div class="button-container" *ngFor="let item of val.itemsListAlarms">
+                        <div class="button-type"
+                            [ngClass]="{'disabled-button-type':item.disabled == true,'not-disabled-button-type':item.disabled == false}">
+                            {{item.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <!-- <mat-expansion-panel class="my-jcp-setting-accordion-card" (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="my-jcp-accordion-header">
+                    <mat-panel-title class="my-jcp-accordion-header-title">
+                        <div class="ic ic-drag-drop drag-drop-icon"></div>
+                        <div class="ml-2" fxFlex>Performance KPI (4/5)</div>
+                        <div class="zmdi zmdi-eye vision-icon"></div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="my-jcp-accordion-content">
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Age</mat-label>
+                        <input matInput type="number" min="1">
+                    </mat-form-field>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="my-jcp-setting-accordion-card" (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="my-jcp-accordion-header">
+                    <mat-panel-title class="my-jcp-accordion-header-title">
+                        <div class="ic ic-drag-drop drag-drop-icon"></div>
+                        <div class="ml-2" fxFlex>Planning: On- Air Site (5/6)</div>
+                        <div class="zmdi zmdi-eye vision-icon"></div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="my-jcp-accordion-content">
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Age</mat-label>
+                        <input matInput type="number" min="1">
+                    </mat-form-field>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="my-jcp-setting-accordion-card" (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="my-jcp-accordion-header">
+                    <mat-panel-title class="my-jcp-accordion-header-title">
+                        <div class="ic ic-drag-drop drag-drop-icon"></div>
+                        <div class="ml-2" fxFlex>Backhaul Violators (0/2)</div>
+                        <div class="zmdi zmdi-eye vision-icon"></div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="my-jcp-accordion-content">
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Age</mat-label>
+                        <input matInput type="number" min="1">
+                    </mat-form-field>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="my-jcp-setting-accordion-card" (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="my-jcp-accordion-header">
+                    <mat-panel-title class="my-jcp-accordion-header-title">
+                        <div class="ic ic-drag-drop drag-drop-icon"></div>
+                        <div class="ml-2" fxFlex>Customers (2/5)</div>
+                        <div class="zmdi zmdi-eye vision-icon"></div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="my-jcp-accordion-content">
+                    <mat-form-field>
+                        <mat-label>First name</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Age</mat-label>
+                        <input matInput type="number" min="1">
+                    </mat-form-field>
+                </div>
+            </mat-expansion-panel> -->
+    </mat-accordion>
+</div>
+<div  class="row justify-content-end my-jcp-setting-submit">
+    <div  class="col notifications-content-all" style="cursor: pointer;">
+        submit
+    </div>
+</div>

@@ -75,7 +75,7 @@ export class MainLayerComponent implements OnInit {
   //   console.log(L, "L");
   //   // console.log(L.PM,"L.PM");
   //   console.log(map, "map");
-   
+
   //   // map.pm.addControls({
   //   //   position: 'bottomright',
   //   //   drawCircle: true,
@@ -138,12 +138,16 @@ export class MainLayerComponent implements OnInit {
     });
     L.Marker.prototype.options.icon = iconDefault;
 
+    // var southWest = L.latLng(34.072711, 31.758391),
+    //   northEast = L.latLng(36.113055, 35.124228),
+    //   bounds = L.latLngBounds(southWest, northEast);
 
     this.map = L.map('map', {
       center: [25.0000, 79.0000],
       zoomControl: false,
       zoom: 5
     });
+    // .setMaxBounds(bounds);
     console.log(this.map, "this.map");
     console.log(L, "L.....");
     this.map.on('pm:globalremovalmodetoggled', e => {
@@ -187,9 +191,6 @@ export class MainLayerComponent implements OnInit {
     //   removalMode: true,
     //   drawMarker: true
     // });
-
-
-
 
     tiles.addTo(this.map);
 

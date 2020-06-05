@@ -63,6 +63,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MainLayerComponent } from './main-layer/main-layer.component';
 import '@geoman-io/leaflet-geoman-free';
 import { MarkerService } from '../_services/leaflate/marker.service';
+import { MyJcpComponent } from './my-jcp/my-jcp.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { MarkerService } from '../_services/leaflate/marker.service';
     ReportsWizardComponent,
     CreateReportComponent,
     ButtonRendererComponent,
-    MainLayerComponent
+    MainLayerComponent,
+    MyJcpComponent
   ],
   imports: [
     CommonModule,

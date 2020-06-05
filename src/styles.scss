@@ -75,7 +75,7 @@ $custom-typography: mat-typography-config($font-family: 'Lato Regular,Lato Bold'
 
 //external css file
 
-@import './scss/leaflet/leaflet-geoman.css';
+// @import './scss/leaflet/leaflet-geoman.css';
 @import './scss/leaflet/leaflet-extend';
 @import './scss/_ag-jcp3';
 @import './scss/_vars.scss';
@@ -427,6 +427,7 @@ $color-white: #ffffff;
 
 }
 
+
 // .mat-menu-panel.menuAdmin-dropdown.arrow-top:after {
 //   content: " ";
 //   position: absolute;
@@ -442,6 +443,245 @@ $color-white: #ffffff;
 :focus {
   outline: 0;
 }
+
+.mat-menu-panel.menuSettingMyJcp-dropdown {
+  // margin-top: 10px;
+  max-width: 325px;
+  border-radius: 4px;
+  height: auto;
+
+  // margin-right: 10px;
+  .mat-menu-content {
+    padding: 0;
+    width: 315px;
+    height: 520px;
+    max-height: calc(100% - 100px);
+    min-height: calc(100% - 51px);
+
+    .my-jcp-setting-toolbar {
+      height: 50px;
+      background: #005EB9;
+      color: #fff;
+      padding: 0 15px;
+
+      .my-jcp-setting-header {
+        .my-jcp-setting-header-icon {
+          font-size: 20px;
+        }
+
+        .my-jcp-setting-header-title {
+          padding: 0px 0px 0px 15px;
+          font-size: 18px;
+          font-family: Lato Regular;
+          font-weight: 400;
+        }
+      }
+
+      .my-jcp-setting-header-action {
+        .my-jcp-setting-header-action-icon {
+          font-size: 14px;
+
+          .divActionIcon {
+            line-height: 2;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .my-jcp-setting-subheader {
+      height: 50px;
+      background: #E6E6E6;
+      color: #005EB9;
+      padding: 0 15px;
+
+      .my-jcp-container {
+        .my-jcp-subheader-title {
+          font-size: 11px;
+          font-family: Lato Regular;
+        }
+
+        .my-jcp-subheader-subtitle {
+          font-size: 14px;
+          font-family: Lato Medium;
+        }
+      }
+
+      .my-jcp-container-icon {
+        .my-jcp-icon {
+
+          // font-size: 20px;
+          .divaccordIcon {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .my-jcp-setting-search {
+      padding: 0 15px;
+      height: 45px;
+
+      .my-jcp-search-container {
+        .my-jcp-search-form-field {
+          width: 100%;
+
+          input[type=text] {
+            //   padding-left: 50px !important;
+            font-family: Lato Regular;
+            font-size: 14px !important;
+            color: #005EB9 !important;
+          }
+
+          input[type=text]::-webkit-input-placeholder {
+            // padding-left: 40px;
+            color: #005EB9 !important;
+            font-size: 16px;
+            line-height: 4;
+          }
+
+          input[type=text]:-webkit-autofill,
+          input[type=text]:-webkit-autofill:hover,
+          input[type=text]:-webkit-autofill:focus,
+          input[type=text]:-webkit-autofill:active {
+            -webkit-animation: autofill 0s forwards;
+            animation: autofill 0s forwards;
+            font-size: 12px;
+            font-weight: 400;
+            // padding-left: 40px;
+            line-height: 4;
+          }
+
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-infix {
+          padding: 0;
+        }
+
+        .mat-form-field.mat-focused .mat-form-field-ripple {
+          background-color: #76A7D6;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-underline {
+          background-color: #76A7D6;
+        }
+
+        .mat-form-field-outline,
+        .mat-form-field-empty.mat-form-field-label,
+        .mat-form-field-label,
+        .mat-form-field-underline,
+        .mat-input-element,
+        ::placeholder {
+          color: #005EB9 !important;
+          font-family: Lato Regular !important;
+          font-size: 12px !important;
+        }
+
+      }
+    }
+
+    .my-jcp-setting-accordion-container {
+      height: calc(100% - 152px);
+      max-height: calc(100% - 152px);
+      min-height: calc(100% - 152px);
+      overflow: auto;
+      box-shadow:
+      inset 0px 11px 8px -10px #CCC,
+      inset 0px -11px 8px -10px #CCC;
+
+      .my-jcp-setting-accordion {
+        .my-jcp-setting-accordion-card {
+          margin: 10px;
+          border-radius: 4px;
+          background: #B3D4F4;
+
+          .my-jcp-accordion-header {
+            height: 43px !important;
+            padding: 0 15px 0 6px !important;
+            box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.3) !important;
+
+            .my-jcp-accordion-header-title {
+              line-height: 2 !important;
+
+
+              .drag-drop-icon {
+                font-size: 32px !important;
+              }
+
+              .vision-icon {
+                font-size: 20px !important;
+                margin: 5px 0 !important;
+
+              }
+
+              .not-vision-icon {
+                font-size: 20px !important;
+                margin: 5px 0 !important;
+                color: #5D5D5D;
+
+              }
+            }
+
+            .mat-expansion-indicator,
+            .mat-expansion-indicator:after {
+              color: #005FBA !important;
+              margin-bottom: 5px;
+            }
+
+          }
+
+          .mat-expansion-panel-content {
+            .mat-expansion-panel-body {
+              padding: 0;
+            }
+          }
+
+          .my-jcp-accordion-content {
+            .button-container {
+              .button-type {
+                width: 122px;
+                height: 28px;
+
+                color: #ffffff;
+                text-align: center;
+                line-height: 2.4;
+                border-radius: 10px;
+                font-size: 12px;
+                font-family: Lato Medium;
+                margin: 10px;
+              }
+            }
+          }
+
+        }
+      }
+    }
+
+    .my-jcp-setting-submit {
+      padding: 0;
+      margin: 0;
+      background-color: RGBA(0, 112, 219, 0.14);
+      color: #0070DB;
+      height: 58px;
+
+      .notifications-content-all {
+        padding: 0;
+        margin: 17px auto;
+        text-align: center;
+      }
+    }
+
+
+  }
+
+}
+
+:hover,
+:focus {
+  outline: 0;
+}
+
+
 
 .mat-autocomplete-panel.autoSearchClass {
   border-radius: 0px 0px 20px 20px;

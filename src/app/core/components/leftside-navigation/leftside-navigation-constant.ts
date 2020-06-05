@@ -2920,7 +2920,7 @@ export const LEFTSIDE_MENU_LIST = [
     },
     {
         name: 'My JCP',
-        link: 'myJCP',
+        link: '/JCP/My-JCP',
         icon: 'ic ic-my_jcp-01',
         level: 0,
         component: HomeJcpThreeComponent,

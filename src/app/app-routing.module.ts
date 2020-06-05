@@ -6,6 +6,7 @@ import { AuthGuard } from "./_helpers";
 import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
 import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
+import { MyJcpComponent } from './main-modules/my-jcp/my-jcp.component';
 // import { MainLayerComponent } from './main-layer/main-layer.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: "Home", component: LandingHomeComponent },
       // { path: "Layers", component:LayerMainComponent},
       // { path: "Layers", component:MainLayerComponent},
+      { path: "My-JCP", component:MyJcpComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
     
       { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" }
