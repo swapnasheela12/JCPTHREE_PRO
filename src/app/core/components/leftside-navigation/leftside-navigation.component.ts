@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild, ViewChildren, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NestedTreeControl, FlatTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource, MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 
 declare var $: any;
 
@@ -65,7 +65,8 @@ export class LeftsideNavigationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {
     this.dataSource.data = LAYERS_DATA;
   }
@@ -92,11 +93,11 @@ export class LeftsideNavigationComponent implements OnInit {
     this.hoverLayer0 = 'layers-menu-0';
     const levelNode = this.treeControl.getLevel(node);
     if (iconlayers != '') {
-      if (levelNode < 2 ) {
+      // if (levelNode >= 0 ) {
         iconlayers._elementRef.nativeElement.style.marginLeft = '20px';
-      } else {
-        iconlayers._elementRef.nativeElement.style.marginLeft = -(levelNode*16)+'px';
-      }
+      // } else {
+        // iconlayers._elementRef.nativeElement.style.marginLeft = -(levelNode*16)+'px';
+      // }
     }
   }
 
@@ -106,19 +107,47 @@ export class LeftsideNavigationComponent implements OnInit {
       const treeNode = iconlayers._elementRef.nativeElement.parentNode.parentNode.parentNode.classList;
       if (treeNode.contains('layer-0')) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
-      } else if (treeNode.contains('active-layer')) {
-        iconlayers._elementRef.nativeElement.style.marginLeft= '20px';
+      } else if (treeNode.contains('active-nested-layer')) {
+        // if (levelNode >= 2 ) {
+          iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
+        // }
       } else {
         if (levelNode === 1) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
         } else {
-          iconlayers._elementRef.nativeElement.style.marginLeft=-(levelNode*24)+'px';
+          // iconlayers._elementRef.nativeElement.style.marginLeft=-(levelNode*24)+'px';
         }
       }
     }
   }
 
-  activenode(node, iconlayers) {
+  recNode(arr:any[], data:any[], index:number, maxIndex:number):any[]{
+    if (arr === undefined)
+      arr = [];
+    for (let i = 0; i < data.length; i++){
+          index++
+          if (index ===  maxIndex){
+            console.log(arr);
+            return ([true, index, arr]);
+          }
+          if (data[i].children.length) {
+            console.log(maxIndex);
+            let res = this.recNode(arr, data[i].children, index, maxIndex)
+            index = res[1];
+            if (res[0] === true)
+            {
+              console.log(arr);
+              arr.splice(0, 0, (i !== (data.length - 1)));
+               console.log(arr);
+              console.log(([true, index, arr]));
+              return ([true, index, arr]);
+            }
+        }
+    }
+    return ([false, index, arr]);
+  }
+
+  activenode(node) {
     if (this.treeControl.isExpanded(node) == true) {
       const levelNode = this.treeControl.getLevel(node);
 
@@ -140,10 +169,11 @@ export class LeftsideNavigationComponent implements OnInit {
   todoItemSelectionToggle(checked, node, activeCheckbox) {
     node.selected = checked;
     this.router.navigate([node.link]);
-  }
-  onCheckBoxClick(link) {
-  //   console.log(link);
-  //   this.isChecked = true;
+    if (node.selected == true) {
+      this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+    } else {
+      this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+    }
   }
 
   /**

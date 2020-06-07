@@ -70,6 +70,9 @@ $w230: 230px;
     .name-node {
       margin-left: $px12;
     }
+    .icon-h-arw-active:before {
+     left: -14px;
+    }
   }
 }
 
@@ -84,8 +87,154 @@ $w230: 230px;
   }
   .mat-icon {
     color: $blueactive-color;
+    margin-left: 20px !important;
   }
 }
+
+.node-arrow:before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0px;
+    border-left: 1px dashed $lightgrey-color;
+    bottom: 0;
+}
+
+.node-arrow-nox {
+  position: relative;
+  .node-arrow {
+    position: relative;
+    min-width: 42px;
+    min-height: 48px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 16px;
+      border-left: 1px dashed $lightgrey-color;
+      bottom: 0;
+    }
+  }
+  .node-arrow-empty {
+    position: relative;
+    min-width: 48px;
+    min-height: 48px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      bottom: 0;
+      border-left: 1px dashed $lightgrey-color;
+    }
+  }
+}
+
+// .node-icon.icon-h-arw:before {
+//   content: "";
+//   position: absolute;
+//   top: 13px;
+//   left: -34px;
+//   width: 24px;
+//   height: 1px;
+// }
+
+.node-icon {
+  position: relative;
+  height: 28px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  margin: 0;
+  &.icon-ledger {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 13px;
+  }
+  &.icon-main-ledger {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 13px;
+  }
+  &.icon-horizontal-line {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      background: red;
+      left: 0;
+      width: 243px;
+      height: 1px;
+    }
+  }
+  &.icon-h-arw {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: -24px;
+      width: 16px;
+      height: 1px;
+      border: 1px dashed $lightgrey-color;
+    }
+  }
+  &.icon-h-arw-active {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: -26px;
+      height: 20px;
+      border: 1px solid $blueactive-color;
+    }
+  }
+}
+
+// .node-icon {
+//   &.icon-ledger:before {
+//     content: "";
+//     position: absolute;
+//     top: 20px;
+//     left: 20px;
+//     width: 20px;
+//     height: 1px;
+//     border: 1px dashed $lightgrey-color;
+//   }
+//   &.icon-h-arw {
+//     &:before {
+//       content: "";
+//       position: absolute;
+//       top: 22px;
+//       left: 20px;
+//       width: 20px;
+//       height: 1px;
+//       border: 1px dashed $lightgrey-color;
+//     }
+//   }
+
+  // &.icon-h-arw-active {
+  //   &:before {
+  //     content: "";
+  //     position: absolute;
+  //     top: 9px;
+  //     left: -1px;
+  //     height: 20px;
+  //     border: 1px solid $blueactive-color;
+  //   }
+  // }
+
+//   &.icon-h-arw-vertical {
+//     &:before {
+//       content: "";
+//       position: absolute;
+//       top: 9px;
+//       left: -1px;
+//       height: 20px;
+//       border: 1px dashed $lightgrey-color;
+//     }
+//   }
+// }
 
 .menu-active-layers {
   color: $blueactive-color !important;
@@ -101,8 +250,12 @@ $w230: 230px;
   }
 }
 
+.d-flex {
+  display: flex;
+}
+
 .dashed-border  {
-  border-left: 1px dashed $lightgrey-color;
+  // border-left: 1px dashed $lightgrey-color;
 }
 
 .mat-tree {
@@ -200,4 +353,13 @@ $w230: 230px;
       }
     }
   }
+}
+
+.ic-filter-01 {
+  height: 26px;
+  text-align: center;
+  float: right;
+  font-size: 15px;
+  display: block;
+  position: absolute;
 }
