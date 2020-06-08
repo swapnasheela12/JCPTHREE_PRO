@@ -2688,7 +2688,8 @@ const LAYERS_LIST = [
         link: "Prediction-Layers",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: PREDICTION_LAYERS_LIST
+        children: PREDICTION_LAYERS_LIST,
+        classId: 'prediction-layer-border'
     },
     {
         name: "Measured Layers",
@@ -2696,7 +2697,8 @@ const LAYERS_LIST = [
         link: "Measured-Layers",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: MEASURED_LAYERS_LIST
+        children: MEASURED_LAYERS_LIST,
+        classId: 'measured-layer-border'
     },
     {
         name: "Hybrid Layers",
@@ -2704,7 +2706,8 @@ const LAYERS_LIST = [
         link: "Hybrid-Layers",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: HYBRID_LAYERS_LIST
+        children: HYBRID_LAYERS_LIST,
+        classId: 'hybrid-layer-border'
     },
     {
         name: "Alarms",
@@ -2712,7 +2715,9 @@ const LAYERS_LIST = [
         link: "Alarms",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: ALARMS_LIST
+        children: ALARMS_LIST,
+        classId: 'alarms-border'
+        
     },
     {
         name: "Analytics",
@@ -2720,7 +2725,8 @@ const LAYERS_LIST = [
         link: "Analytics",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: ANALYTICS_LIST
+        children: ANALYTICS_LIST,
+        classId: 'analytics-layer-border'
     },
     {
         name: "Topologies",
@@ -2728,7 +2734,8 @@ const LAYERS_LIST = [
         link: "Topologies",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: TOPOLOGIES_LIST
+        children: TOPOLOGIES_LIST,
+        classId: 'topologies-border'
     },
     {
         name: "Locations and Boundaries",
@@ -2736,7 +2743,8 @@ const LAYERS_LIST = [
         link: "Locations-and-Boundaries",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: LOCATION_BOUNDRIES_LIST
+        children: LOCATION_BOUNDRIES_LIST,
+        classId: 'locations-border'
     },
     {
         name: "Base Maps",
@@ -2744,7 +2752,8 @@ const LAYERS_LIST = [
         link: "Base-Maps",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: BASE_MAPS_LIST
+        children: BASE_MAPS_LIST,
+        classId: 'base-map-border'
     },
     {
         name: "My Layers",
@@ -2752,7 +2761,8 @@ const LAYERS_LIST = [
         link: "My-Layers",
         level: 1,
         component: HomeJcpThreeComponent,
-        children: MY_LAYERS_LIST
+        children: MY_LAYERS_LIST,
+        classId: 'my-layers-border'
     }
 ];
 

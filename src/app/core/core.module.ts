@@ -54,6 +54,7 @@ import { SuccessfulComponent } from './components/commanPopup/successful/success
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
 import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
+import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -63,7 +64,8 @@ import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpa
     LeftsideNavigationComponent,
     MmenuDirective,
     SuccessfulComponent,
-    MyjcpdropdownpanelComponent
+    MyjcpdropdownpanelComponent,
+    isEllipsisActiveDirective
   ],
   imports: [
     CommonModule,
@@ -118,12 +120,14 @@ import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpa
   ],
   providers: [
     SideNavService,
-    MmenuDirective
+    MmenuDirective,
+    isEllipsisActiveDirective
   ],
   exports: [
     HeaderComponent,
     LeftsideNavigationComponent,
     MmenuDirective,
+    isEllipsisActiveDirective,
     SuccessfulComponent
   ], entryComponents: [
     SuccessfulComponent

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef, ɵCurrencyIndex } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -10,6 +10,7 @@ export interface SideNavNode  {
   name: string;
   link: string;
   icon: string;
+  classId? :String
   children?: SideNavNode[];
 }
 
@@ -54,7 +55,9 @@ export class LeftsideNavigationComponent implements OnInit {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
-      link: node.link
+      link: node.link,
+      classId: node.classId,
+      children: node.children
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -81,6 +84,9 @@ export class LeftsideNavigationComponent implements OnInit {
   isLevelZero = (_: number, node: ExampleFlatNode) => node.level === 0 && node.expandable;
   isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable;
   isLevelGreterThanOne = (_: number, node: ExampleFlatNode) => node.level > 1 && node.expandable;
+  getChildren = (node: SideNavNode) => {
+    return node.children;
+  };
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -112,11 +118,11 @@ export class LeftsideNavigationComponent implements OnInit {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
         // }
       } else {
-        if (levelNode === 1) {
+        // if (levelNode === 1) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
-        } else {
+        // } else {
           // iconlayers._elementRef.nativeElement.style.marginLeft=-(levelNode*24)+'px';
-        }
+        // }
       }
     }
   }
@@ -127,19 +133,14 @@ export class LeftsideNavigationComponent implements OnInit {
     for (let i = 0; i < data.length; i++){
           index++
           if (index ===  maxIndex){
-            console.log(arr);
             return ([true, index, arr]);
           }
           if (data[i].children.length) {
-            console.log(maxIndex);
             let res = this.recNode(arr, data[i].children, index, maxIndex)
             index = res[1];
             if (res[0] === true)
             {
-              console.log(arr);
               arr.splice(0, 0, (i !== (data.length - 1)));
-               console.log(arr);
-              console.log(([true, index, arr]));
               return ([true, index, arr]);
             }
         }
@@ -147,10 +148,107 @@ export class LeftsideNavigationComponent implements OnInit {
     return ([false, index, arr]);
   }
 
-  activenode(node) {
-    if (this.treeControl.isExpanded(node) == true) {
-      const levelNode = this.treeControl.getLevel(node);
+  activenode(node, horizontalLine) {
+    const levelNode = this.treeControl.getLevel(node);
+    const currentIndexNode = this.treeControl.dataNodes.indexOf(node);
+    let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length+currentIndexNode + 1];
 
+    if (this.treeControl.isExpanded(node) == true) {
+      if (typeof test != 'undefined') {
+        if (test.name == 'Prediction Layers') {
+          $('#prediction-layer-border').css({'border-top': '1px solid #eaecec'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        } else if (test.name == 'Measured Layers') {
+          $('#measured-layer-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        } else if (test.name == 'Hybrid Layers') {
+          $('#hybrid-layer-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        } else if (test.name == 'Alarms') {
+          $('#alarms-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        } else if (test.name == 'Analytics') {
+          $('#analytics-layer-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        }else if (test.name == 'Topologies') {
+          $('#topologies-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        }else if (test.name == 'Locations and Boundaries') {
+          $('#locations-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#base-map-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        }else if (test.name == 'Base Maps') {
+          $('#base-map-border').css({'border-top': '1px solid #eaecec'});
+          $('#prediction-layer-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({'border-top': 'none'});
+          $('#alarms-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({'border-top': 'none'});
+          $('#topologies-border').css({'border-top': 'none'});
+          $('#locations-border').css({'border-top': 'none'});
+          $('#my-layers-border').css({'border-top': 'none'});
+        }
+      }
+      else if (currentIndexNode == 277) {
+        $('#my-layers-border').css({'border-top': '1px solid #eaecec'});
+        $('#prediction-layer-border').css({'border-top': 'none'});
+        $('#measured-layer-border').css({'border-top': 'none'});
+        $('#hybrid-layer-border').css({'border-top': 'none'});
+        $('#alarms-border').css({'border-top': 'none'});
+        $('#analytics-layer-border').css({'border-top': 'none'});
+        $('#topologies-border').css({'border-top': 'none'});
+        $('#locations-border').css({'border-top': 'none'});
+        $('#base-map-border').css({'border-top': 'none'});
+      }
+    
       this.parentNode = node;
       this.treeControl.collapseAll();
       if (levelNode == 0){
@@ -163,6 +261,28 @@ export class LeftsideNavigationComponent implements OnInit {
           }
         }
       }
+    } else {
+      if ( currentIndexNode != 7 && test.name == 'Prediction Layers') {
+        $('#prediction-layer-border').css({'border-top': 'none'});
+      } 
+      else if (currentIndexNode != 38 && test.name == 'Measured Layers') {
+        $('#measured-layer-border').css({'border-top': 'none'});
+      } else if (currentIndexNode != 135 && test.name == 'Hybrid Layers') {
+        $('#hybrid-layer-border').css({'border-top': 'none'});
+      } else if (currentIndexNode != 192 && test.name == 'Alarms') {
+        $('#alarms-border').css({'border-top': 'none'});
+      } else if (test.name == 'Analytics') {
+        $('#analytics-layer-border').css({'border-top': 'none'});
+      }else if (test.name == 'Topologies') {
+        $('#topologies-border').css({'border-top': 'none'});
+      }else if (currentIndexNode != 261 && test.name == 'Locations and Boundaries') {
+        $('#locations-border').css({'border-top': 'none'});
+      }else if (test.name == 'Base Maps') {
+        $('#base-map-border').css({'border-top': 'none'});
+      }else if (test.name == 'My Layers') {
+        $('#my-layers-border').css({'border-top': 'none'});
+      }
+      
     }
   }
 

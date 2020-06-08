@@ -24,7 +24,7 @@ $Negative12: -12px;
 $px12: 12px;
 $px20: 20px;
 $px48: 48px;
-$w230: 230px;
+$w240: 240px;
 
 .mm-listitem__text {
   &:hover {
@@ -32,6 +32,29 @@ $w230: 230px;
   }
 }
 
+#showTitle, .name-node {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+#nav-menu #showTitle:hover:after {
+  content: attr(data-title1);
+  padding: 0 8px;
+  color: white;
+  position: absolute;
+  font-size:12px;
+  top: 80%;
+  left: 20%;
+  z-index: 20;
+  border-radius: 2px;
+  font-family: Lato Regular;
+  background-color: #434962;
+  width: initial;
+  white-space: pre-wrap;
+  height: auto;
+}
 #nav-menu [data-title]:hover:after {
   content: attr(data-title);
   padding: 0 8px;
@@ -44,12 +67,9 @@ $w230: 230px;
   border-radius: 2px;
   font-family: Lato Regular;
   background-color: #434962;
-  // box-shadow: 0px 0px 4px #222;
   width: initial;
   white-space: pre-wrap;
   height: auto;
-  // height: 1.688rem;
-  // font-family: Lato Regular;
 }
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
@@ -72,6 +92,9 @@ $w230: 230px;
     }
     .icon-h-arw-active:before {
      left: -14px;
+    }
+    .filter-icon {
+      margin-right: 2px;
     }
   }
 }
@@ -130,15 +153,6 @@ $w230: 230px;
   }
 }
 
-// .node-icon.icon-h-arw:before {
-//   content: "";
-//   position: absolute;
-//   top: 13px;
-//   left: -34px;
-//   width: 24px;
-//   height: 1px;
-// }
-
 .node-icon {
   position: relative;
   height: 28px;
@@ -157,17 +171,7 @@ $w230: 230px;
     background-repeat: no-repeat;
     background-size: 13px;
   }
-  &.icon-horizontal-line {
-    &:before {
-      content: "";
-      position: absolute;
-      top: 9px;
-      background: red;
-      left: 0;
-      width: 243px;
-      height: 1px;
-    }
-  }
+
   &.icon-h-arw {
     &:before {
       content: "";
@@ -191,51 +195,6 @@ $w230: 230px;
   }
 }
 
-// .node-icon {
-//   &.icon-ledger:before {
-//     content: "";
-//     position: absolute;
-//     top: 20px;
-//     left: 20px;
-//     width: 20px;
-//     height: 1px;
-//     border: 1px dashed $lightgrey-color;
-//   }
-//   &.icon-h-arw {
-//     &:before {
-//       content: "";
-//       position: absolute;
-//       top: 22px;
-//       left: 20px;
-//       width: 20px;
-//       height: 1px;
-//       border: 1px dashed $lightgrey-color;
-//     }
-//   }
-
-  // &.icon-h-arw-active {
-  //   &:before {
-  //     content: "";
-  //     position: absolute;
-  //     top: 9px;
-  //     left: -1px;
-  //     height: 20px;
-  //     border: 1px solid $blueactive-color;
-  //   }
-  // }
-
-//   &.icon-h-arw-vertical {
-//     &:before {
-//       content: "";
-//       position: absolute;
-//       top: 9px;
-//       left: -1px;
-//       height: 20px;
-//       border: 1px dashed $lightgrey-color;
-//     }
-//   }
-// }
-
 .menu-active-layers {
   color: $blueactive-color !important;
 }
@@ -254,20 +213,17 @@ $w230: 230px;
   display: flex;
 }
 
-.dashed-border  {
-  // border-left: 1px dashed $lightgrey-color;
-}
-
 .mat-tree {
-  padding-left: 0.75rem !important;
+  // padding-left: 0.75rem !important;
   font-family: Lato Regular;
   font-weight: 500;
   .mat-tree-node {
+    padding-left: 0.75rem !important;
     font-weight: 500;
     // font-family: Lato Medium;
     color: $text-color;
     position: relative;
-    width: $w230;
+    width: $w240;
       .mat-icon-button {
         position: absolute;
         margin-left: 11.5rem;
@@ -355,11 +311,14 @@ $w230: 230px;
   }
 }
 
-.ic-filter-01 {
+.filter-icon {
   height: 26px;
   text-align: center;
   float: right;
   font-size: 15px;
   display: block;
   position: absolute;
+  top: 12px;
+  right: 0;
+  margin-right: 14px;
 }
