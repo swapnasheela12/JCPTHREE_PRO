@@ -1,1 +1,17 @@
-<p>my-jcp works!</p>
+<div style="height: 100%;">
+    <mat-grid-list cols="4" rowHeight="fit" style="height: inherit;">
+        <mat-grid-tile
+            *ngFor="let tile of myJcpListTile"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+          <!-- {{tile.text}} -->
+          <!-- <ng-template [ngIf]="tile.text"></ng-template> -->
+          
+          <ng-template ngFor let-tileChild [ngForOf]="tile.childTemplateArr" let-i="index">
+            {{tileChild.childUrl}}
+            <!-- <ng-container *ngTemplateOutlet="tile.childUrl"></ng-container> -->
+          </ng-template>
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>

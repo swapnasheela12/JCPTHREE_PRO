@@ -586,72 +586,140 @@ $color-white: #ffffff;
       min-height: calc(100% - 152px);
       overflow: auto;
       box-shadow:
-      inset 0px 11px 8px -10px #CCC,
-      inset 0px -11px 8px -10px #CCC;
+        inset 0px 11px 8px -10px #CCC,
+        inset 0px -11px 8px -10px #CCC;
 
       .my-jcp-setting-accordion {
         .my-jcp-setting-accordion-card {
           margin: 10px;
           border-radius: 4px;
-          background: #B3D4F4;
+          // background: #B3D4F4;
+          // color: #005FBA;
 
           .my-jcp-accordion-header {
             height: 43px !important;
             padding: 0 15px 0 6px !important;
             box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.3) !important;
+            color: inherit;
 
             .my-jcp-accordion-header-title {
               line-height: 2 !important;
-
+              color: inherit;
 
               .drag-drop-icon {
                 font-size: 32px !important;
               }
 
-              .vision-icon {
-                font-size: 20px !important;
-                margin: 5px 0 !important;
+              // .vision-icon {
+              //   font-size: 20px !important;
+              //   margin: 5px 0 !important;
 
+              // }
+
+              // .not-vision-icon {
+              //   font-size: 20px !important;
+              //   margin: 5px 0 !important;
+              //   color: #5D5D5D;
+
+              // }
+            }
+
+            .my-jcp-expansion-indicator {
+              height: 30px;
+              margin: auto;
+
+              .myJcpDown {
+                font-size: 25px;
               }
 
-              .not-vision-icon {
-                font-size: 20px !important;
-                margin: 5px 0 !important;
-                color: #5D5D5D;
-
+              .myJcpUp {
+                font-size: 25px;
               }
             }
 
-            .mat-expansion-indicator,
-            .mat-expansion-indicator:after {
-              color: #005FBA !important;
-              margin-bottom: 5px;
-            }
+            // .mat-expansion-indicator,
+            // .mat-expansion-indicator:after {
+            //   color: #005FBA;
+            //   margin-bottom: 5px;
+            // }
+
+            // .color-header {
+            //   color: #005FBA !important;
+            //   margin-right: 0px;
+            // }
+
+            // .not-color-header {
+            //   color: #5D5D5D !important;
+            //   margin-right: 0px;
+            // }
 
           }
+
+          // .bgColor-header {
+          //   background: #B3D4F4;
+          // }
+
+
+
+          // .not-bgColor-header {
+          //   background: #CECECE;
+
+          // }
+
+
 
           .mat-expansion-panel-content {
             .mat-expansion-panel-body {
               padding: 0;
-            }
-          }
-
-          .my-jcp-accordion-content {
-            .button-container {
-              .button-type {
-                width: 122px;
-                height: 28px;
-
-                color: #ffffff;
-                text-align: center;
-                line-height: 2.4;
-                border-radius: 10px;
-                font-size: 12px;
-                font-family: Lato Medium;
-                margin: 10px;
+              .my-jcp-accordion-content {
+                .button-container {
+                  .button-type {
+                    width: 122px;
+                    height: 28px;
+                    cursor: pointer;
+                    color: #ffffff;
+                    text-align: center;
+                    line-height: 2.4;
+                    border-radius: 10px;
+                    font-size: 12px;
+                    font-family: Lato Medium;
+                    margin: 10px;
+                  }
+    
+                  .disabled-button-type {
+                    background: #7C7C7C;
+                  }
+    
+                  .not-disabled-button-type {
+                    background: #005EB9;
+                  }
+                }
+              }
+    
+              .bgAndColor-My-jcp-contain-Add{
+                background: #B3D4F4;
+                color: #005FBA;
+      
+              }
+              .bgAndColor-My-jcp-contain-Remove{
+                background: #CECECE;
+                color: #5D5D5D;
+      
               }
             }
           }
+
+         
+
+        }
+        .bgAndColor-My-jcp-Add{
+          background: #B3D4F4;
+          color: #005FBA;
+
+        }
+        .bgAndColor-My-jcp-Remove{
+          background: #CECECE;
+          color: #5D5D5D;
 
         }
       }
@@ -673,6 +741,12 @@ $color-white: #ffffff;
 
 
   }
+
+
+
+
+
+
 
 }
 

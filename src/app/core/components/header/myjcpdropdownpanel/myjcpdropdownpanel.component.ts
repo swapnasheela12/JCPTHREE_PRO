@@ -11,8 +11,10 @@ export class MyjcpdropdownpanelComponent implements OnInit {
 
   cardListMyJcpSettings = [
     {
-      nameCard: "Alarms Live (2/3)",
+      id: 0,
+      nameCard: "Alarms Live",
       vision: true,
+      countNode: 6,
       itemsListAlarms: [
         { name: "Macro​", disabled: false },
         { name: "ESC", disabled: false },
@@ -23,8 +25,22 @@ export class MyjcpdropdownpanelComponent implements OnInit {
       ]
     },
     {
-      nameCard: "Performance KPI  (4/5)",
+      id: 1,
+      nameCard: "Performance KPI",
       vision: true,
+      countNode: 4,
+      itemsListAlarms: [
+        { name: "Macro​", disabled: false },
+        { name: "OSC", disabled: false },
+        { name: "IBS/DAS", disabled: false },
+        { name: "Wi- Fi AP’s​", disabled: true }
+      ]
+    },
+    {
+      id: 2,
+      nameCard: "Planning: On- Air Site",
+      vision: true,
+      countNode: 6,
       itemsListAlarms: [
         { name: "Macro​", disabled: false },
         { name: "ESC", disabled: false },
@@ -35,38 +51,22 @@ export class MyjcpdropdownpanelComponent implements OnInit {
       ]
     },
     {
-      nameCard: "Planning: On- Air Site  (5/6)",
-      vision: true,
-      itemsListAlarms: [
-        { name: "Macro​", disabled: false },
-        { name: "ESC", disabled: false },
-        { name: "ISC", disabled: false },
-        { name: "OSC", disabled: false },
-        { name: "IBS/DAS", disabled: false },
-        { name: "Wi- Fi AP’s​", disabled: true }
-      ]
-    },
-    {
-      nameCard: "Backhaul Violators  (0/2)",
+      id: 3,
+      nameCard: "Backhaul Violators",
       vision: false,
+      countNode: 1,
       itemsListAlarms: [
-        { name: "Macro​", disabled: false },
-        { name: "ESC", disabled: false },
-        { name: "ISC", disabled: false },
-        { name: "OSC", disabled: false },
-        { name: "IBS/DAS", disabled: false },
         { name: "Wi- Fi AP’s​", disabled: true }
       ]
     },
     {
-      nameCard: "Customers  (2/5)",
+      id: 4,
+      nameCard: "Customers",
       vision: false,
+      countNode: 3,
       itemsListAlarms: [
-        { name: "Macro​", disabled: false },
-        { name: "ESC", disabled: false },
-        { name: "ISC", disabled: false },
-        { name: "OSC", disabled: false },
-        { name: "IBS/DAS", disabled: false },
+        { name: "Macro​", disabled: true },
+        { name: "ISC", disabled: true },
         { name: "Wi- Fi AP’s​", disabled: true }
       ]
     }
@@ -75,7 +75,7 @@ export class MyjcpdropdownpanelComponent implements OnInit {
 
   // closeExpandView(val) {
   //   console.log(val.vision, "val.vision");
-    
+
   // }
 
   // openExpandView(valtex) {
@@ -86,24 +86,76 @@ export class MyjcpdropdownpanelComponent implements OnInit {
 
   // }
 
-  showHideCardFun(item) {
-    console.log(item, "item");
-    // if (item.vision == true) {
-    //   item.vision = false;
-    // }else{
-    //   item.vision = true;
-    // }
-    item.vision = !item.vision;
+  // showHideCardFun(item) {
+  //   console.log(item, "item");
+  //   // if (item.vision == true) {
+  //   //   item.vision = false;
+  //   // }else{
+  //   //   item.vision = true;
+  //   // }
+  //   item.vision = !item.vision;
+  // }
+
+  cardListNumber(index, item) {
+    // console.log(item, "item");
+
+    // console.log(index, "index");
+
+    return item.nameCard;
   }
 
-  openExpandPanelFun(e,item) {
-    console.log(e, "e");
+  contentClass = false;
+  nodeEnableDisable(item, val, idx, index) {
     console.log(item, "item");
-    console.log(item.vision, "item");
-    item.vision = !item.vision;
+    console.log(val, "val");
+    console.log(idx, "idx");
+    console.log(index, "index");
+    item.disabled = !item.disabled;
+    console.log(item.disabled, "item.disabled");
+
+    //  
+
+    if (val.id == idx) {
+      console.log("currect id");
+
+      
+      // val.itemsListAlarms.forEach(element => {
+      //   console.log(element,"element");
+      //    if (item.disabled == true) {
+      //   console.log("yeye");
+      //   this.contentClass = true;
+      //   $("#mat-expansion-panel-header-"+idx).removeClass("bgAndColor-My-jcp-Add");
+      //   $("#mat-expansion-panel-header-"+idx).addClass("bgAndColor-My-jcp-Remove");
+      //   $("#cdk-accordion-child-"+idx).removeClass("bgAndColor-My-jcp-Add");
+      //   $("#cdk-accordion-child-"+idx).addClass("bgAndColor-My-jcp-Remove");
+      // } 
+      // else {
+      //   console.log("no");
+      //   this.contentClass = false;
+      //   $("#mat-expansion-panel-header-"+idx).addClass("bgAndColor-My-jcp-Add");
+      //   $("#mat-expansion-panel-header-"+idx).removeClass("bgAndColor-My-jcp-Remove");
+      //   $("#cdk-accordion-child-"+idx).addClass("bgAndColor-My-jcp-Add");
+      //   $("#cdk-accordion-child-"+idx).removeClass("bgAndColor-My-jcp-Remove");
+      // }
+      // });
+      if (item.disabled == true) {
+        console.log("yeye");
+        this.contentClass = true;
+        $("#mat-expansion-panel-header-" + idx).removeClass("bgAndColor-My-jcp-Add");
+        $("#mat-expansion-panel-header-" + idx).addClass("bgAndColor-My-jcp-Remove");
+        $("#cdk-accordion-child-" + idx).removeClass("bgAndColor-My-jcp-Add");
+        $("#cdk-accordion-child-" + idx).addClass("bgAndColor-My-jcp-Remove");
+      }
+      else {
+        console.log("no");
+        this.contentClass = false;
+        $("#mat-expansion-panel-header-" + idx).addClass("bgAndColor-My-jcp-Add");
+        $("#mat-expansion-panel-header-" + idx).removeClass("bgAndColor-My-jcp-Remove");
+        $("#cdk-accordion-child-" + idx).addClass("bgAndColor-My-jcp-Add");
+        $("#cdk-accordion-child-" + idx).removeClass("bgAndColor-My-jcp-Remove");
+      }
+    }
   }
-
-
 
   constructor(private renderer: Renderer2, private elemRef: ElementRef) { }
 
