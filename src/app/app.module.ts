@@ -87,7 +87,6 @@ import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
 
 
-
 declare var $: any;
 
 @NgModule({
@@ -98,7 +97,6 @@ declare var $: any;
     ClickOutsideDirective,
     LandingHomeComponent,
     // MainLayerComponent,
-
   ],
   imports: [
     BrowserModule,

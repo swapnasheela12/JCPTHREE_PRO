@@ -64,6 +64,13 @@ import { MainLayerComponent } from './main-layer/main-layer.component';
 import '@geoman-io/leaflet-geoman-free';
 import { MarkerService } from '../_services/leaflate/marker.service';
 import { MyJcpComponent } from './my-jcp/my-jcp.component';
+import { BackhaulViolatorsComponent } from './my-jcp/template-card-view/backhaul-violators/backhaul-violators.component';
+import { CustomerExperienceComponent } from './my-jcp/template-card-view/customer-experience/customer-experience.component';
+import { AlarmsComponent } from './my-jcp/template-card-view/alarms/alarms.component';
+import { PerformanceComponent } from './my-jcp/template-card-view/performance/performance.component';
+import { PlanningComponent } from './my-jcp/template-card-view/planning/planning.component';
+import { WorkordersComponent } from './my-jcp/template-card-view/workorders/workorders.component';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +80,14 @@ import { MyJcpComponent } from './my-jcp/my-jcp.component';
     CreateReportComponent,
     ButtonRendererComponent,
     MainLayerComponent,
-    MyJcpComponent
+    MyJcpComponent,
+    BackhaulViolatorsComponent,
+    CustomerExperienceComponent,
+    AlarmsComponent,
+    PerformanceComponent,
+    PlanningComponent,
+    WorkordersComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -132,7 +146,7 @@ import { MyJcpComponent } from './my-jcp/my-jcp.component';
     MatTreeModule,
     PortalModule,
     ScrollingModule
-  ],providers: [
+  ], providers: [
     SideNavService,
     MarkerService
   ],
@@ -145,11 +159,13 @@ import { MyJcpComponent } from './my-jcp/my-jcp.component';
     ReportsWizardComponent,
     MainLayerComponent,
     CreateReportComponent,
-    ButtonRendererComponent
-  ], entryComponents: [
+    ButtonRendererComponent,
+   
+  ],
+  entryComponents: [
     CreateReportComponent,
     // SuccessfulComponent
   ]
-  
+
 })
 export class MainModulesModule { }

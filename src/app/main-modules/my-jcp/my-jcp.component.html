@@ -1,17 +1,31 @@
-<div style="height: 100%;">
-    <mat-grid-list cols="4" rowHeight="fit" style="height: inherit;">
+<div style="height: 100%;margin-bottom: 5px;">
+    <mat-grid-list cols="12" rowHeight="fit" style="height: inherit;">
         <mat-grid-tile
             *ngFor="let tile of myJcpListTile"
             [colspan]="tile.cols"
-            [rowspan]="tile.rows"
-            [style.background]="tile.color">
+            [rowspan]="tile.rows">
           <!-- {{tile.text}} -->
-          <!-- <ng-template [ngIf]="tile.text"></ng-template> -->
-          
-          <ng-template ngFor let-tileChild [ngForOf]="tile.childTemplateArr" let-i="index">
+        
+          <!-- <ng-template ngFor let-tileChild [ngForOf]="tile.childTemplateArr" let-i="index">
             {{tileChild.childUrl}}
-            <!-- <ng-container *ngTemplateOutlet="tile.childUrl"></ng-container> -->
-          </ng-template>
+          </ng-template> -->
+
+          <mat-card style="width: 100%;height: -webkit-fill-available;margin:0 0 5px 0;" *ngIf="tile.text == 'one'">
+            <app-workorders></app-workorders>
+          </mat-card>
+          <mat-card style="width: 100%;height: -webkit-fill-available;margin:5px 5px 5px 0;" *ngIf="tile.text == 'two'">
+           <app-backhaul-violators></app-backhaul-violators>
+          </mat-card>
+          <mat-card style="width: 100%;height: -webkit-fill-available;margin:5px 0 5px 5px;"  *ngIf="tile.text == 'three'">
+           <app-customer-experience></app-customer-experience>
+          </mat-card>
+          <mat-card style="width: 100%;height: -webkit-fill-available;margin:5px 0 5px 5px;" *ngIf="tile.text == 'four'">
+            <app-performance></app-performance>
+          </mat-card>
+          <mat-card style="width: 100%;height: -webkit-fill-available;margin:5px 5px 5px 0;" *ngIf="tile.text == 'five'">
+            <app-planning></app-planning>
+          </mat-card>
+        
         </mat-grid-tile>
       </mat-grid-list>
 </div>
