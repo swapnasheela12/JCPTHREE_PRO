@@ -52,15 +52,14 @@
                         </span>
                         <!-- <div [style.border-left]="setBorder(node)" [style.padding-left]="setPadding(node)"> -->
                             <button mat-icon-button disabled></button>
-                            <div class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
-                            <div class="node-icon icon-h-arw icon-ledger"
-                            [ngClass]="{'icon-main-ledger': node.mainLedger}"></div>
-                            <div class="name-node" isEllipsisActive>
+                            <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
+                            <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon icon-h-arw icon-ledger"></div>
+                            <div class="name-node" style="margin-top: 9px;">
                                 <mat-checkbox 
                                     class="checklist-leaf-node" 
                                     (change)="todoItemSelectionToggle($event.checked, node, activeCheckbox)" 
                                     [checked]="node.selected" #activeCheckbox>
-                                        <div attr.data-title1="{{node.name}}">{{node.name}}</div>
+                                        <div isEllipsisActive attr.data-title1="{{node.name}}" class="last-node">{{node.name}}</div>
                                 </mat-checkbox>
                             </div>
                             <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay></mat-icon>

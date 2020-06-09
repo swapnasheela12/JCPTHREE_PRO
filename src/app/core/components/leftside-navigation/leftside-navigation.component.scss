@@ -4,6 +4,7 @@ $blueactive-color: #0078D7;
 $darkest-blue-color: #0078D7;
 $text-color: #707070;
 $lightgrey-color: #eaecec;
+$borderColor: #e5e5e5;
 $dark-blue-color: #1792E6;
 $px25: 25px;
 $px21: 21px;
@@ -38,7 +39,12 @@ $w240: 240px;
   text-overflow: ellipsis;
 }
 
-
+.last-node {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 6rem;
+}
 #nav-menu #showTitle:hover:after {
   content: attr(data-title1);
   padding: 0 8px;
@@ -91,7 +97,16 @@ $w240: 240px;
       margin-left: $px12;
     }
     .icon-h-arw-active:before {
-     left: -14px;
+     left: -4px;
+    }
+    .icon-h-arw:before {
+      left:-2px;
+    }
+    .node-arrow:before {
+      left:26px;
+    }
+    .node-arrow-empty:before {
+      left:12px;
     }
     .filter-icon {
       margin-right: 2px;
@@ -119,7 +134,7 @@ $w240: 240px;
     position: absolute;
     top: -14px;
     left: 0px;
-    border-left: 1px dashed $lightgrey-color;
+    border-left: 1px dashed $borderColor;
     bottom: 0;
 }
 
@@ -127,28 +142,28 @@ $w240: 240px;
   position: relative;
   .node-arrow {
     position: relative;
-    min-width: 42px;
-    min-height: 48px;
+    min-width: 32px;
+    min-height: 40px;
     &:before {
       content: "";
       position: absolute;
       top: 0;
       left: 16px;
-      border-left: 1px dashed $lightgrey-color;
+      border-left: 1px dashed $borderColor;
       bottom: 0;
     }
   }
   .node-arrow-empty {
     position: relative;
-    min-width: 48px;
-    min-height: 48px;
+    min-width: 36px;
+    min-height: 40px;
     &:before {
       content: "";
       position: absolute;
       top: 0;
       left: 20px;
       bottom: 0;
-      border-left: 1px dashed $lightgrey-color;
+      border-left: 1px dashed $borderColor;
     }
   }
 }
@@ -176,19 +191,19 @@ $w240: 240px;
     &:before {
       content: "";
       position: absolute;
-      top: 9px;
-      left: -24px;
-      width: 16px;
+      top: 13px;
+      left: -14px;
+      width: 12px;
       height: 1px;
-      border: 1px dashed $lightgrey-color;
+      border: 1px dashed $borderColor;
     }
   }
   &.icon-h-arw-active {
     &:before {
       content: "";
       position: absolute;
-      top: 0px;
-      left: -26px;
+      top: 4px;
+      left: -16px;
       height: 20px;
       border: 1px solid $blueactive-color;
     }
@@ -218,6 +233,7 @@ $w240: 240px;
   font-family: Lato Regular;
   font-weight: 500;
   .mat-tree-node {
+    min-height: 40px;
     padding-left: 0.75rem !important;
     font-weight: 500;
     // font-family: Lato Medium;
