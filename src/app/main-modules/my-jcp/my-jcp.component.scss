@@ -1,0 +1,46 @@
+.my-jcp-setting-container {
+    height: 100%;
+    margin-bottom: 5px;
+
+    .mat-grid-list {
+        height: inherit !important;
+
+        .mat-grid-tile {
+            .card-body-one {
+                padding: 0;
+                width: 100%;
+                height: -webkit-fill-available;
+                margin: 0 0 5px 0;
+            }
+
+            .card-body-two {
+                padding: 0;
+                width: 100%;
+                height: auto;
+                margin: 5px 5px 5px 0;
+            }
+
+            .card-body-three {
+                padding: 0;
+                width: 100%;
+                height: -webkit-fill-available;
+                margin: 5px 0 5px 5px;
+            }
+
+            .card-body-four {
+                padding: 0;
+                width: 100%;
+                height: -webkit-fill-available;
+                margin: 5px 0 5px 5px;
+            }
+
+            .card-body-five {
+                padding: 0;
+                width: 100%;
+                height: -webkit-fill-available;
+                margin: 5px 5px 5px 0;
+            }
+        }
+    }
+}
+

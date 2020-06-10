@@ -1,0 +1,63 @@
+.myjcp-card-toolbar {
+    height: 44px;
+    border-bottom: 1px solid #EBECEF;
+
+    .myjcp-card-toolbar-header {
+        font-family: Lato Bold;
+        font-size: 13px;
+        color: #464D69;
+        padding-left: 15px;
+    }
+
+    .myjcp-card-toolbar-icon {
+        font-size: 20px;
+        color: #707070;
+        padding-right: 15px;
+    }
+}
+
+.myjcp-card-contain {
+    margin: 10px 15px;
+
+    .myjcp-card-contain-box {
+        border: 1px solid #EBECEF;
+        padding: 7px 15px;
+        margin-bottom: 10px;
+
+        .myjcp-contain-box-up-row {
+            .myjcp-contain-box-up-icon {
+                width: 26px;
+                height: 26px;
+                background: #D9EBF9;
+                color: #0070DB;
+                border-radius: 13px;
+
+                .icon-position {
+                    height: inherit;
+                    padding: 5px;
+                }
+            }
+
+            .myjcp-contain-box-up-header {
+                font-size: 13px;
+                font-family: Lato Regular;
+                color: #474E6A;
+            }
+
+        }
+
+        .myjcp-contain-box-down-row {
+            .myjcp-contain-box-down-icon {
+                font-family: Lato Regular;
+                display: flex;
+            }
+
+            .myjcp-contain-box-down-header {
+                font-size: 22px;
+                font-family: Lato Bold;
+                color: #6B7187;
+            }
+
+        }
+    }
+}
