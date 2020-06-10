@@ -6,10 +6,6 @@
             [rowspan]="tile.rows">
           <!-- {{tile.text}} -->
         
-          <!-- <ng-template ngFor let-tileChild [ngForOf]="tile.childTemplateArr" let-i="index">
-            {{tileChild.childUrl}}
-          </ng-template> -->
-
           <mat-card style="width: 100%;height: -webkit-fill-available;margin:0 0 5px 0;" *ngIf="tile.text == 'one'">
             <app-workorders></app-workorders>
           </mat-card>

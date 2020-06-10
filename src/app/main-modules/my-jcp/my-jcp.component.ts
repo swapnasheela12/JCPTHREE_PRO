@@ -5,7 +5,7 @@ export interface Tile {
   cols: number;
   rows: number;
   text: string;
-  
+
 }
 
 @Component({
@@ -18,23 +18,18 @@ export class MyJcpComponent implements OnInit {
   myJcpListTile: Tile[] = [
     {
       text: 'one', cols: 12, rows: 2,
-      // childTemplateArr: [{ childUrl: './src/app/main-modules/my-jcp/test.html' }],
     },
     {
-      text: 'two', cols: 6, rows: 3, 
-      // childTemplateArr: [{ childUrl: '<second-page></second-page>' }],
+      text: 'two', cols: 6, rows: 3,
     },
     {
-      text: 'three', cols: 6, rows: 2, 
-      // childTemplateArr: [{ childUrl: 'src/app/main-modules/my-jcp/test.html' }],
+      text: 'three', cols: 6, rows: 2,
     },
     {
       text: 'four', cols: 6, rows: 4,
-      // childTemplateArr: [{ childUrl: 'src/app/main-modules/my-jcp/test.html' }],
     },
     {
       text: 'five', cols: 6, rows: 3,
-      // childTemplateArr: [{ childUrl: 'src/app/main-modules/my-jcp/test.html' }],
     },
   ];
 
