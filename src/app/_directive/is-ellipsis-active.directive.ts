@@ -9,9 +9,10 @@ export class isEllipsisActiveDirective implements AfterViewInit {
 
   ngAfterViewInit(): void {
       const element = this.elementRef.nativeElement;
-      if((230 - element.offsetWidth) < 75){
+      const length = this.elementRef.nativeElement.id.length;
+      if (length > 12) {
         element.id = 'showTitle';
-        element.style.width = (element.offsetWidth - 60)+'px';
+        element.style.width = length*5+'px';
       }
   }
 

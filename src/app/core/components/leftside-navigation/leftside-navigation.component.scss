@@ -39,12 +39,14 @@ $w240: 240px;
   text-overflow: ellipsis;
 }
 
-.last-node {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 6rem;
+.mat-ripple-element {
+  background-color: lightsteelblue !important;
 }
+
+.mat-checkbox {
+  font-family: Lato Medium;
+}
+
 #nav-menu #showTitle:hover:after {
   content: attr(data-title1);
   padding: 0 8px;
@@ -112,6 +114,31 @@ $w240: 240px;
       margin-right: 2px;
     }
   }
+}
+
+.layer-1{
+  margin-left: 10px;
+  .mat-icon {
+    margin-left: -20px !important;
+  }
+}
+.layer-1 {
+  &:hover {
+    .name-node{
+      margin-left: 22px !important;
+    }
+    .mat-icon {
+      margin-left: 20px !important;
+    }
+  }
+}
+
+.checkbox-wrapper {
+  min-height: 51px;
+  display: flex;
+}
+.checkbox-wrapper > mat-checkbox{
+  align-self: center;
 }
 
 .active-layer {
@@ -214,6 +241,12 @@ $w240: 240px;
   color: $blueactive-color !important;
 }
 
+.mat-checkbox.mat-accent {
+  .mat-checkbox-inner-container {
+     margin: 2px 8px auto 0;
+  }
+}
+
 .active-nested-layer {
   .name-node {
     // margin-left: $px12;
@@ -228,12 +261,24 @@ $w240: 240px;
   display: flex;
 }
 
+::ng-deep {
+  .mat-checkbox-inner-container {
+    margin: 12px !important;
+  }
+  .mat-checkbox-label {
+    margin: 7px 0px auto 0;
+  }
+}
+
+
+
 .mat-tree {
   // padding-left: 0.75rem !important;
   font-family: Lato Regular;
   font-weight: 500;
   .mat-tree-node {
     min-height: 40px;
+    height: 40px;
     padding-left: 0.75rem !important;
     font-weight: 500;
     // font-family: Lato Medium;

@@ -59,7 +59,7 @@
                                     class="checklist-leaf-node" 
                                     (change)="todoItemSelectionToggle($event.checked, node, activeCheckbox)" 
                                     [checked]="node.selected" #activeCheckbox>
-                                        <div isEllipsisActive attr.data-title1="{{node.name}}" class="last-node">{{node.name}}</div>
+                                        <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}</div>
                                 </mat-checkbox>
                             </div>
                             <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay></mat-icon>
@@ -82,7 +82,7 @@
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelOne; " matTreeNodePadding
                         matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)"
                         (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0" [ngStyle]="{'cursor':'pointer'}"
-                        [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']">
+                        [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0 layer-1': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']">
                         <!-- <span class="node-arrow-nox d-flex">
                             <li  *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]" 
                             [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}" ></li>
