@@ -13,3 +13,60 @@
         padding-right: 15px;
     }
 }
+.performance-kpi-card-content {
+    // height: calc(100% - 45px);
+    height: auto;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    .performance-kpi-container {
+        width: 100%;
+        height: 53px;
+        border-bottom: 1px solid #e0e0e0;
+
+        // height: 100%;
+        .performance-kpi-row {
+            // height:20%;
+            // height: 56px;
+            // height: 50% !important;
+            // border-bottom: 1px solid #e0e0e0;
+            height: 100%;
+
+            .performance-kpi-icon {
+                width: 40px;
+                height: 40px;
+                background: RGBA(0, 112, 219, 0.14);
+                color: #0070DB;
+                border-radius: 25px;
+                padding: 9px 11px;
+                font-size: 20px;
+            }
+
+            .performance-kpi-title {
+                color: #464D69;
+                font-size: 12px;
+                font-family: Lato Medium;
+            }
+
+            .performance-kpi-count {
+                color: #464D69;
+                font-size: 15px;
+                font-family: Lato Bold;
+            }
+            .performance-kpi-count-trend{
+                font-family: Lato Regular;
+                display: flex;
+            }
+        }
+        // .performance-kpi-row:nth-child(odd){
+        //     background: #FAFAFA;
+        // }
+        .oddBackground{
+            background: #FAFAFA;
+        }
+    }
+    .performance-kpi-container:last-child {
+        border:none;
+        border-radius: 0 0 4px 4px;
+      }
+}

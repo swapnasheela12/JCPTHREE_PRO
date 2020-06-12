@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-backhaul-violators',
@@ -25,6 +26,10 @@ export class BackhaulViolatorsComponent implements OnInit {
       desc:"Outage",
     }
   ]
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.listBackhaulViolators, event.previousIndex, event.currentIndex);
+  }
 
   constructor() { }
 

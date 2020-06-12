@@ -17,12 +17,14 @@
 }
 
 .myjcp-card-contain {
-    margin: 10px 15px;
+    // margin: 10px 15px;
+    height: calc(100% - 44px);
+    overflow: hidden;
 
     .myjcp-card-contain-box {
         border: 1px solid #EBECEF;
-        padding: 7px 15px;
-        margin-bottom: 10px;
+        // padding: 7px 15px;
+        // margin-bottom: 15px;
 
         .myjcp-contain-box-up-row {
             .myjcp-contain-box-up-icon {

@@ -1,15 +1,74 @@
-.myjcp-card-toolbar{
+.myjcp-card-toolbar {
     height: 44px;
-    border-bottom:1px solid #EBECEF ;
-    .myjcp-card-toolbar-header{
+    border-bottom: 1px solid #EBECEF;
+
+    .myjcp-card-toolbar-header {
         font-family: Lato Bold;
         font-size: 13px;
         color: #464D69;
         padding-left: 15px;
     }
-    .myjcp-card-toolbar-icon{
+
+    .myjcp-card-toolbar-icon {
         font-size: 20px;
         color: #707070;
         padding-right: 15px;
     }
+}
+
+.myjcp-card-contain {
+
+    height: calc(100% - 44px);
+
+    .myjcp-customer-row {
+        height: 100%;
+        margin: auto;
+
+        .myjcp-customer-col-left {
+
+
+            .myjcp-customer-inner-row {
+
+                padding: 5px 0;
+
+                .myjcp-customer-icon {
+                    background: #D9EBF9;
+                    color: #0070DB;
+                    width: 48px !important;
+                    height: 48px !important;
+                    border-radius: 25px;
+                    font-size: 25px;
+
+                    .myjcp-customer-icon-position {
+                        padding: 11px;
+                        height: inherit;
+                        line-height: 1;
+                    }
+                }
+
+                .myjcp-customer-status {
+
+                    .myjcp-customer-count {
+                        font-size: 22px;
+                        font-family: Lato Bold;
+                        color: #464D69;
+                    }
+
+                    .myjcp-customer-trend {
+                        font-size: 9px;
+                        font-family: Lato Regular;
+                    }
+                }
+
+                .myjcp-customer-title {
+                    font-size: 13px;
+                    font-family: Lato Medium;
+                    color: #7C8195;
+                }
+            }
+        }
+    }
+
+    // }
+
 }
