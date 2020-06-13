@@ -1,43 +1,56 @@
-<!-- <div class="my-jcp-setting-container">
-  <mat-grid-list cols="12" [gutterSize]="'10px'" rowHeight="100%">
-    <mat-grid-tile fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" *ngFor="let tile of myJcpListTile" [colspan]="tile.cols" [rowspan]="tile.rows">
-     
-      <mat-card class="card-body-one" *ngIf="tile.text == 'one'">
-        <app-workorders></app-workorders>
-      </mat-card>
-      <mat-card class="card-body-two" *ngIf="tile.text == 'two'">
-        <app-backhaul-violators></app-backhaul-violators>
-      </mat-card>
-      <mat-card class="card-body-three" *ngIf="tile.text == 'three'">
-        <app-customer-experience></app-customer-experience>
-      </mat-card>
-      <mat-card class="card-body-four" *ngIf="tile.text == 'four'">
-        <app-performance></app-performance>
-      </mat-card>
-      <mat-card class="card-body-five" *ngIf="tile.text == 'five'">
-        <app-planning></app-planning>
-      </mat-card>
 
-    </mat-grid-tile>
+
+<div class="my-jcp-setting-container mt-1" id="my-jcp-setting-container-id">
+    <mat-grid-list class="my-jcp-setting-grid-list" cols="12" [gutterSize]="'10px'" rowHeight="{{desired_rowHeight}}" #container2 dropListScroller cdkDropList cdkDropListLockAxis="y" cdkDropListOrientation="vertical"
+     (cdkDropListDropped)="drop($event)" >
+      <mat-grid-tile class="my-jcp-setting-grid-tile" *ngFor="let tab of myJcpListTile" [colspan]="tab.cols" [rowspan]="tab.rows" >
+        
+        <mat-card  class="my-jcp-setting-grid-card" cdkDrag vsDragScroll >
+          <app-workorders *ngIf="tab.text == 'one'"></app-workorders>
+          <app-alarms *ngIf="tab.text == 'two'"></app-alarms>
+          <app-backhaul-violators *ngIf="tab.text == 'three'"></app-backhaul-violators>
+          <app-customer-experience *ngIf="tab.text == 'four'"></app-customer-experience>
+          <app-performance *ngIf="tab.text == 'five'"></app-performance>
+          <app-planning *ngIf="tab.text == 'six'"></app-planning>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<!-- <div class="my-jcp-setting-container mt-1" id="my-jcp-setting-container-id" fxFlexFill>
+  <mat-grid-list class="my-jcp-setting-grid-list" cols="12" [gutterSize]="'10px'" rowHeight="{{desired_rowHeight}}" #container2
+    dropListScroller cdkDropList (cdkDropListDropped)="drop($event)">
+  
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-workorders></app-workorders>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-alarms></app-alarms>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-backhaul-violators></app-backhaul-violators>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="2" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-customer-experience></app-customer-experience>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="4" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-performance></app-performance>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-planning></app-planning>
+        </mat-card>
+      </mat-grid-tile>
+   
   </mat-grid-list>
 </div> -->
-<div class="my-jcp-setting-container" id="my-jcp-setting-container-id">
-  <mat-grid-list cdkDropList (cdkDropListDropped)="drop($event)" cols="12" [gutterSize]="'10px'"
-    rowHeight="{{desired_rowHeight}}">
-
-    <mat-grid-tile cdkDrag fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start"
-      *ngFor="let tile of myJcpListTile" [colspan]="tile.cols" [rowspan]="tile.rows">
-      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-
-      <mat-card class="card-body-one">
-        <app-workorders *ngIf="tile.text == 'one'"></app-workorders>
-        <app-alarms *ngIf="tile.text == 'two'"></app-alarms>
-        <app-backhaul-violators *ngIf="tile.text == 'three'"></app-backhaul-violators>
-        <app-customer-experience *ngIf="tile.text == 'four'"></app-customer-experience>
-        <app-performance *ngIf="tile.text == 'five'"></app-performance>
-        <app-planning *ngIf="tile.text == 'six'"></app-planning>
-      </mat-card>
-
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>

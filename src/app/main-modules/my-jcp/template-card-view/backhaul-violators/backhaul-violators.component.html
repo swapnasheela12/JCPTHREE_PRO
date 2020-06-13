@@ -1,33 +1,40 @@
-<div class="myjcp-card-toolbar" fxLayout="row" fxLayoutGap="32px"  fxLayoutAlign="space-between center">
-    <div class="myjcp-card-toolbar-header">
-        <span>Backhaul Violators ( TWAMp )</span>
+<div fxFlexFill>
+    <div class="myjcp-card-toolbar" fxLayout="row" fxLayoutGap="32px" fxLayoutAlign="space-between center">
+        <div class="myjcp-card-toolbar-header">
+            <span>Backhaul Violators ( TWAMp )</span>
+        </div>
+        <div class="myjcp-card-toolbar-icon">
+            <span class="zmdi zmdi-more-vert"></span>
+        </div>
     </div>
-    <div class="myjcp-card-toolbar-icon">
-        <span class="zmdi zmdi-more-vert"></span>
-    </div>
-</div>
-<div class="myjcp-card-contain" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div cdkDrag *ngFor="let item of listBackhaulViolators">
-        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <div class="myjcp-card-contain-box m-3 px-3" >
-            <div class="myjcp-contain-box-up-row py-2" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="space-between center">
-                <div class="myjcp-contain-box-up-icon">
-                    <div class="icon-position">
-                        <div class="{{item.icon}}"></div>
+    <div class="myjcp-card-contain" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div cdkDrag *ngFor="let item of listBackhaulViolators">
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <div class="myjcp-card-contain-box m-3 px-3">
+                <div class="myjcp-contain-box-up-row py-2" fxLayout="row wrap" fxLayoutGap="32px"
+                    fxLayoutAlign="space-between center">
+                    <div class="myjcp-contain-box-up-icon">
+                        <div class="icon-position">
+                            <div class="{{item.icon}}"></div>
+                        </div>
+                    </div>
+                    <div class="myjcp-contain-box-up-header">
+                        <div class="">{{item.desc}}</div>
                     </div>
                 </div>
-                <div class="myjcp-contain-box-up-header">
-                    <div class="">{{item.desc}}</div>
-                </div>
-            </div>
-            <div class="myjcp-contain-box-down-row" fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="space-between center">
-                <div class="myjcp-contain-box-down-header"><span>{{item.count}}</span></div>
-                <div class="myjcp-contain-box-down-icon">
-                    <div class="zmdi" [ngClass]="{'zmdi-long-arrow-up': item.trendStatus =='up', 'zmdi-long-arrow-down': item.trendStatus =='down'}" [ngStyle]="{'color':item.trendColor}"></div>
-                    <div style="font-size: 9px;line-height: 2;" [ngStyle]="{'color':item.trendColor}">{{item.trend}}</div>
+                <div class="myjcp-contain-box-down-row" fxLayout="row wrap" fxLayoutGap="32px"
+                    fxLayoutAlign="space-between center">
+                    <div class="myjcp-contain-box-down-header"><span>{{item.count}}</span></div>
+                    <div class="myjcp-contain-box-down-icon">
+                        <div class="zmdi"
+                            [ngClass]="{'zmdi-long-arrow-up': item.trendStatus =='up', 'zmdi-long-arrow-down': item.trendStatus =='down'}"
+                            [ngStyle]="{'color':item.trendColor}"></div>
+                        <div style="font-size: 9px;line-height: 2;" [ngStyle]="{'color':item.trendColor}">{{item.trend}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-   
 </div>

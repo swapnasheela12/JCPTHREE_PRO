@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewChildren, ElementRef, QueryList, AfterViewInit , OnDestroy } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
-import { Subscription } from 'rxjs';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { moveItemInArray, CdkDragDrop, CdkDrag, CdkDragMove } from '@angular/cdk/drag-drop';
+import {startWith , map , switchMap , tap} from 'rxjs/operators';
+import {merge,Subscription } from 'rxjs';
 declare var $: any;
-
+const speed = 10;
 export interface Tile {
   // color: string;
   cols: number;
@@ -17,14 +18,14 @@ export interface Tile {
   templateUrl: './my-jcp.component.html',
   styleUrls: ['./my-jcp.component.scss']
 })
-export class MyJcpComponent implements OnInit {
+export class MyJcpComponent implements OnInit  {
 
   myJcpListTile: Tile[] = [
     {
-      text: 'one', cols: 6, rows: 2,
+      text: 'one', cols: 6, rows: 3,
     },
     {
-      text: 'two', cols: 6, rows: 2,
+      text: 'two', cols: 6, rows: 3,
     },
     {
       text: 'three', cols: 6, rows: 3,
@@ -40,6 +41,7 @@ export class MyJcpComponent implements OnInit {
     }
   ];
 
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.myJcpListTile, event.previousIndex, event.currentIndex);
   }
@@ -53,28 +55,26 @@ export class MyJcpComponent implements OnInit {
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       if (change.mqAlias == 'xs') {
+        console.log('xs');
+        
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         this.desired_columns = 12;
-        this.desired_rowHeight = "25%";
+        this.desired_rowHeight = "fit";
       }
       else if (change.mqAlias == 'sm') {
-
+        console.log('sm');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         this.desired_columns = 12;
-        this.desired_rowHeight = "100%";
       }
       else if (change.mqAlias == 'md') {
-
+        console.log('md');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
-        if (divHeight <= 625) {
-          this.desired_rowHeight = "25%";
-        } else {
-          this.desired_rowHeight = "fit";
-        }
+        
       } else {
+        console.log('lg');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         if (divHeight <= 625) {
@@ -89,6 +89,7 @@ export class MyJcpComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }
 

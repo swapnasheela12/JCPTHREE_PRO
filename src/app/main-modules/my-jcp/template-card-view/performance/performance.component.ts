@@ -50,14 +50,7 @@ export class PerformanceComponent implements OnInit {
       trendColor: "#30D436",
       countsite: "122345"
     },
-    {
-      iconsite: "ic ic-Wifi",
-      namesite: "Wi-Fi Access Points", 
-      trend:"+35.50%",
-      trendStatus:"down",
-      trendColor:"#F32323",
-      countsite: "271420"
-    },
+    
   ];
 
   drop(event: CdkDragDrop<string[]>) {
