@@ -1,4 +1,7 @@
 <nav id="nav-menu" mmenu #varWithDirective="mmenuDirectiveExport">
+    <!-- <mat-form-field>
+        <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
+     </mat-form-field> -->
     <ul class="listview-icons">
         <li *ngFor="let item of menuListAll">
             <ng-container 
@@ -43,8 +46,9 @@
             <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
-                    matTreeNodePaddingIndent="0" (mouseover)="layersLevelHover(node, '')"
-                    (mouseleave)="layersLevelHoverLeave(node, '')" [ngStyle]="{'cursor':'pointer'}"
+                    matTreeNodePaddingIndent="0" (click)="onChecked(node.selected, node, activeCheckbox, 'no')" 
+                    (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')" 
+                    [ngStyle]="{'cursor':'pointer'}"
                     [ngClass]="[hoverLayer0? 'layers-menu-0': '']" class="dashed-border">
                         <span class="node-arrow-nox d-flex">
                             <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" 
@@ -57,7 +61,7 @@
                             <div class="name-node" style="margin-top: 9px;">
                                 <mat-checkbox 
                                     class="checklist-leaf-node" 
-                                    (change)="todoItemSelectionToggle($event.checked, node, activeCheckbox)" 
+                                    (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" 
                                     [checked]="node.selected" #activeCheckbox>
                                         <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}</div>
                                 </mat-checkbox>

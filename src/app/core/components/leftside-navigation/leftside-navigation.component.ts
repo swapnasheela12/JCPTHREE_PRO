@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef, ɵCurrencyIndex } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef, ɵCurrencyIndex, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -25,7 +25,8 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
 @Component({
   selector: 'app-leftside-navigation',
   templateUrl: './leftside-navigation.component.html',
-  styleUrls: ['./leftside-navigation.component.scss']
+  styleUrls: ['./leftside-navigation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LeftsideNavigationComponent implements OnInit {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
@@ -37,6 +38,8 @@ export class LeftsideNavigationComponent implements OnInit {
   isChecked:any=false;
 
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
+  @ViewChild('activeCheckbox') refActiveCheckbox;
+  @ViewChildren('activeCheckbox') private myCheckboxes : QueryList<any>;
 
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
@@ -287,13 +290,16 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   todoItemSelectionToggle(checked, node, activeCheckbox) {
+    console.log('change');
+    console.log(checked);
     node.selected = checked;
-    this.router.navigate([node.link]);
     if (node.selected == true) {
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+      this.router.navigate([node.link]);
     } else {
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
+    
   }
 
   /**
@@ -314,4 +320,33 @@ export class LeftsideNavigationComponent implements OnInit {
       }
     }
   }
+
+  onChecked(selected, node, activeCheckbox, eventChecked) {
+    event.preventDefault();
+    if (eventChecked != 'no') {
+      node.selected = eventChecked;
+    } else {
+      node.selected = !selected;
+    }
+
+    if (node.selected == true) {
+      this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+      this.router.navigate([node.link]);
+    } else {
+      this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+    }
+  }
+
+  filterChanged(filterText: string) {
+    console.log(filterText);
+    console.log(LAYERS_DATA);
+  }
+  //     LAYERS_DATA.filter(filterText);
+  //   if(filterText)
+  //   {
+  //     this.treeControl.expandAll();
+  //   } else {
+  //     this.treeControl.collapseAll();
+  //   }
+  // }
 }
