@@ -6,6 +6,7 @@ import { DataSharingService } from '../_services/data-sharing.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Location } from '@angular/common';
+import * as moment from 'moment';
 declare var $: any;
 @Component({
   selector: "app-home-jcp-three",
@@ -40,12 +41,21 @@ export class HomeJcpThreeComponent implements OnInit {
   displayHomeHeader = false;
   route: string;
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+
+
+  lastIn: any = '';
+  currentPage = '';
+  timeSpentOnPages = [];
+  moment = moment;
+  pageUrlVar;
+  timeSpendVar;
+
   constructor(private router: Router, private location: Location, private sidenavService: SideNavService, private datashare: DataSharingService) {
     // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
 
     router.events.subscribe(val => {
       // console.log(val,"val");
-      console.log(router.url,"<<<<<<")
+      // console.log(router.url,"<<<<<<")
       // this.routeUrlLinkPage = router.url;
       if (location.path() != "") {
         this.route = location.path();
@@ -53,8 +63,8 @@ export class HomeJcpThreeComponent implements OnInit {
           this.displayHomeHeader = true;
           $("#headerIdHome").removeClass("jcp-toolbar-main-container");
           $("#headerIdHome").addClass("jcp-toolbar-main-container-layers");
-          $( "#header-container-id" ).removeClass( "header-jcp-container" );
-          $( "#header-container-id" ).addClass( "header-jcp-container-layers" );
+          $("#header-container-id").removeClass("header-jcp-container");
+          $("#header-container-id").addClass("header-jcp-container-layers");
           $("#route-outlet-id").removeClass("px-3");
           $("#route-outlet-id").addClass("p-0 h-100").removeClass("active-jcp-page-route");
         } else {
@@ -71,12 +81,36 @@ export class HomeJcpThreeComponent implements OnInit {
       }
     });
 
+
+    this.router.events.subscribe((event: any) => {
+      if (!this.currentPage) {
+        this.currentPage = event.url;
+        this.lastIn = Date.now();
+      }
+      if (this.currentPage !== event.url) {
+        const timeSpent = Date.now() - this.lastIn;
+        console.log('timeSpent', timeSpent);
+        const pageInfo = {
+          pageUrl: this.currentPage,
+          timeSpent
+        }
+        this.timeSpentOnPages.push(pageInfo);
+        this.lastIn = Date.now();
+        this.currentPage = event.url;
+      }
+      console.log(this.timeSpentOnPages, "timeSpentOnPages");
+
+
+    })
+
+
+
   }
 
   toggleSidenav() {
     this.toggleActive = !this.toggleActive;
     this.datashare.changeMessage(this.toggleActive)
-   
+
   }
 
   ngOnInit() {
