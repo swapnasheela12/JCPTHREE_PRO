@@ -72,6 +72,11 @@ export class MyJcpComponent implements OnInit  {
         console.log('md');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
+        if (divHeight <= 625) {
+          this.desired_rowHeight = "1:1";
+        } else {
+          this.desired_rowHeight = "fit";
+        }
         
       } else {
         console.log('lg');
