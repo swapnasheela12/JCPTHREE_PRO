@@ -85,6 +85,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // import { MainLayerComponent } from './main-layer/main-layer.component';
 import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
+import { SettingsDialogComponent } from './core/components/header/myjcpdropdownpanel/settings-dialog/settings-dialog.component';
 
 
 declare var $: any;
@@ -96,6 +97,7 @@ declare var $: any;
     HomeJcpThreeComponent,
     ClickOutsideDirective,
     LandingHomeComponent,
+    SettingsDialogComponent,
     // MainLayerComponent,
   ],
   imports: [
@@ -186,7 +188,8 @@ declare var $: any;
   exports: [HomeJcpThreeComponent],
   entryComponents: [
     // CreateReportComponent,
-    SuccessfulComponent
+    SuccessfulComponent,
+    SettingsDialogComponent
   ]
 })
 export class AppModule { }

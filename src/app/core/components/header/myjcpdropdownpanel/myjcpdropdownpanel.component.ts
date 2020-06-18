@@ -1,13 +1,38 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+
 declare var $: any;
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
+interface State {
+  abbr: string;
+  name: string;
+} 
+
 @Component({
   selector: 'app-myjcpdropdownpanel',
   templateUrl: './myjcpdropdownpanel.component.html',
-  styleUrls: ['./myjcpdropdownpanel.component.scss']
+  styleUrls: ['./myjcpdropdownpanel.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyjcpdropdownpanelComponent implements OnInit {
-
   panelOpenState = false;
+  contentClass = false;
+  public jioStateCtrl: FormControl = new FormControl();
+  public jioStateFilterCtrl: FormControl = new FormControl();
+
+  stateList = [
+    {name: 'Maharashtra', abbr: 'MH'},
+    {name: 'Karnataka', abbr: 'KN'},
+    {name: 'Bihar', abbr: 'BR'},
+    {name: 'Gujarat', abbr: 'GJ'} 
+  ]
 
   cardListMyJcpSettings = [
     {
@@ -72,74 +97,30 @@ export class MyjcpdropdownpanelComponent implements OnInit {
     }
   ]
 
+  constructor(public dialog: MatDialog) { }
 
-  // closeExpandView(val) {
-  //   console.log(val.vision, "val.vision");
+  ngOnInit(): void {}
 
-  // }
-
-  // openExpandView(valtex) {
-  //   console.log(valtex, "valtex");
-  //   if (valtex.vision) {
-  //     valtex.vision = false
-  //   }
-
-  // }
-
-  // showHideCardFun(item) {
-  //   console.log(item, "item");
-  //   // if (item.vision == true) {
-  //   //   item.vision = false;
-  //   // }else{
-  //   //   item.vision = true;
-  //   // }
-  //   item.vision = !item.vision;
-  // }
-
-  cardListNumber(index, item) {
-    // console.log(item, "item");
-
-    // console.log(index, "index");
-
-    return item.nameCard;
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.restoreFocus = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.role = 'dialog';
+    dialogConfig.width = '100px';
+    dialogConfig.height = '100px';
+    
+    let dialogRef: MatDialogRef<SettingsDialogComponent> = this.dialog.open(SettingsDialogComponent);
+    // dialogRef.componentInstance.myjcpsettings = [];
+    // dialogRef.afterClosed().subscribe(result => {
+    //   dialogRef = null;
+    // });
+    // dialogRef.updatePosition({ top: '25px', left: '25px', right:'25px', bottom:'25px' });
   }
-
-  contentClass = false;
+  
   nodeEnableDisable(item, val, idx, index) {
-    console.log(item, "item");
-    console.log(val, "val");
-    console.log(idx, "idx");
-    console.log(index, "index");
     item.disabled = !item.disabled;
-    console.log(item.disabled, "item.disabled");
-
-    //  
-
     if (val.id == idx) {
-      console.log("currect id");
-
-      
-      // val.itemsListAlarms.forEach(element => {
-      //   console.log(element,"element");
-      //    if (item.disabled == true) {
-      //   console.log("yeye");
-      //   this.contentClass = true;
-      //   $("#mat-expansion-panel-header-"+idx).removeClass("bgAndColor-My-jcp-Add");
-      //   $("#mat-expansion-panel-header-"+idx).addClass("bgAndColor-My-jcp-Remove");
-      //   $("#cdk-accordion-child-"+idx).removeClass("bgAndColor-My-jcp-Add");
-      //   $("#cdk-accordion-child-"+idx).addClass("bgAndColor-My-jcp-Remove");
-      // } 
-      // else {
-      //   console.log("no");
-      //   this.contentClass = false;
-      //   $("#mat-expansion-panel-header-"+idx).addClass("bgAndColor-My-jcp-Add");
-      //   $("#mat-expansion-panel-header-"+idx).removeClass("bgAndColor-My-jcp-Remove");
-      //   $("#cdk-accordion-child-"+idx).addClass("bgAndColor-My-jcp-Add");
-      //   $("#cdk-accordion-child-"+idx).removeClass("bgAndColor-My-jcp-Remove");
-      // }
-      // });
       if (item.disabled == true) {
-        console.log("yeye");
         this.contentClass = true;
         $("#mat-expansion-panel-header-" + idx).removeClass("bgAndColor-My-jcp-Add");
         $("#mat-expansion-panel-header-" + idx).addClass("bgAndColor-My-jcp-Remove");
@@ -147,7 +128,6 @@ export class MyjcpdropdownpanelComponent implements OnInit {
         $("#cdk-accordion-child-" + idx).addClass("bgAndColor-My-jcp-Remove");
       }
       else {
-        console.log("no");
         this.contentClass = false;
         $("#mat-expansion-panel-header-" + idx).addClass("bgAndColor-My-jcp-Add");
         $("#mat-expansion-panel-header-" + idx).removeClass("bgAndColor-My-jcp-Remove");
@@ -156,12 +136,4 @@ export class MyjcpdropdownpanelComponent implements OnInit {
       }
     }
   }
-
-  constructor(private renderer: Renderer2, private elemRef: ElementRef) { }
-
-
-
-  ngOnInit(): void {
-  }
-
 }

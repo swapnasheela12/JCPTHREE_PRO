@@ -53,8 +53,9 @@ import { RouterModule } from '@angular/router';
 import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
-import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
+import { MyjcpdropdownpanelComponent} from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
+import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
@@ -67,7 +68,7 @@ import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.dire
     SuccessfulComponent,
     MyjcpdropdownpanelComponent,
     isEllipsisActiveDirective,
-
+    ConfirmPopupComponent
   ],
   imports: [
     CommonModule,

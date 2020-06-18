@@ -1,0 +1,36 @@
+<div mat-dialog-content>
+    <form>
+      <mat-radio-group>
+        <mat-radio-button class="geography-options" [value]="'PAN India'" name="pan_india">PAN India</mat-radio-button>
+        <mat-radio-button class="geography-options" [value]="'Jio State'" name="Jio State">Jio State</mat-radio-button>
+        <mat-radio-button class="geography-options" [value]="'Jio Center'" name="Jio Center">Jio Center</mat-radio-button>
+      </mat-radio-group>
+      <mat-divider></mat-divider>
+      <mat-form-field>
+        <mat-select placeholder="PAN India">
+          <mat-option *ngFor="let panIndia of panIndiaList" [value]="panIndia">
+            {{panIndia.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Jio State">
+            <mat-option *ngFor="let state of stateList" [value]="state">
+              {{state.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Jio Center">
+            <mat-option *ngFor="let jioCenter of jioCenterList" [value]="jioCenter">
+              {{jioCenter.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onApplySettings()">Apply</button>
+  </div>
