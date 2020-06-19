@@ -6,6 +6,7 @@ import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MarkerService } from 'src/app/_services/leaflate/marker.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 declare var $: any;
 @Component({
   selector: 'app-main-layer',
@@ -18,7 +19,11 @@ export class MainLayerComponent implements OnInit {
   public chartDivWidth;
   public chartDivHeight;
 
+  customControl;
+  customControlList;
 
+  animal: string;
+  name: string;
   // // Define our base layers so we can reference them multiple times
   // streetMaps = tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
   //   maxZoom: 20,
@@ -33,7 +38,7 @@ export class MainLayerComponent implements OnInit {
   //   center: latLng([25.0000, 79.0000])
   // };
 
-  constructor(private datashare: DataSharingService, private markerService: MarkerService) {
+  constructor(private datashare: DataSharingService, private markerService: MarkerService,public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -194,9 +199,112 @@ export class MainLayerComponent implements OnInit {
 
     tiles.addTo(this.map);
 
-    ////
+    //custome controller//
+    this.customControl = L.Control.extend({
 
-    ////
+      options: {
+        position: 'bottomright',
+        // control:[{
+        //   name:"zmdi zmdi-group"
+        // },{
+        //   name:"zmdi zmdi-group"
+        // }]
+      },
+
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+
+        // container.innerHTML = '<div class="leaflet-control-custom-count-Layers"><div class="icon-control-count">4</div><div class="icon-control"><span class="ic ic-layers-01"></span></div></div>';
+        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;">4</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+        container.style.backgroundColor = 'white';
+        // container.style.backgroundImage = "url(https://t1.gstatic.com/images?q=tbn:ANd9GcR6FCUMW5bPn8C4PbKak2BJQQsmC-K9-mbYBeFZm1ZM2w2GRy40Ew)";
+        container.style.backgroundSize = "40px 40px";
+        // container.style.position = 'absolute';
+        // container.style.bottom = '0px';
+        // container.style.right = '50px';
+        container.style.width = '40px';
+        container.style.height = '40px';
+
+        container.onclick = function () {
+          console.log('buttonClicked');
+        }
+
+        return container;
+      },
+      onRemove: function (map) {
+        console.log('buttonClicked?????????');
+      }
+    });
+
+    this.map.addControl(new this.customControl());
+
+
+
+    // let testFunc = this.openDialog();
+    let testFunc = this.dialog;
+
+    this.customControlList = L.Control.Layers.extend({
+      options: {
+        position: 'bottomright',
+      },
+      onAdd: function () {
+
+
+        var container = L.DomUtil.create('div', ' leaflet-bar leaflet-bar-horizontal ', this._control);
+        console.log(container, "container");
+        container.style.display = 'flex';
+        container.style.position = 'absolute';
+        container.style.bottom = '0px';
+        container.style.right = '50px';
+        var backwards = L.DomUtil.create('a', 'ss', container);
+        backwards.innerHTML = '<div class="zmdi zmdi-view-subtitles"></div>';
+
+        var middle = L.DomUtil.create('a', ' ', container);
+        middle.innerHTML = '<div class="zmdi zmdi-view-dashboard"></div>';
+
+        var forwards = L.DomUtil.create('a', ' ', container);
+        forwards.innerHTML = '<div class="zmdi zmdi-time-interval"></div>';
+
+        backwards.onclick = function () {
+          console.log('buttonClicked');
+          // testFunc;
+          // const dialogRef = testFunc.open(LayerTableViewControlComponent, {
+          //   width: "700px",
+          //   panelClass: "material-dialog-container",
+          //   // data: { name: this.name, animal: this.animal }
+          // });
+
+          // dialogRef.afterClosed().subscribe(result => {
+
+          //   // this.animal = result;
+          // });
+
+          // const dialogRef = testFunc.open(LayerTableViewControlComponent);
+          // dialogRef.afterClosed().subscribe(result => {
+          //   console.log(`Dialog result: ${result}`);
+          // });
+
+
+
+
+        }
+        middle.onclick = function () {
+          console.log('buttonClicked_middle');
+        }
+        forwards.onclick = function () {
+          console.log('buttonClicked_forwards');
+        }
+
+        return container;
+      },
+
+
+    });
+
+    this.map.addControl(new this.customControlList());
+    //custome controller//
+
+    
 
 
 

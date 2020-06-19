@@ -1451,20 +1451,36 @@ $color-white: #ffffff;
 
 // layers
 
-// .leaflet-control-container {
+.tab-container-layers {
+  // background: red !important;
+  margin: auto 0;
+  cursor: pointer;
+  
+    .icon-count {
+      position: absolute;
+      padding: 8px 17px;
+      // top: 23px;
+      // left: 31px;
+      color: #ffffff;
+      font-size: 12px;
+    }
 
-//   // width:97px;
-//   // height: 42px;
-//   // position: absolute; right: 56px
-//   .leaflet-bottom {
+    .icon-style {
+      font-size: 25px;
+      padding: 4px 8px;
+      line-height: 1.5;
+      width: 40px;
+      height: 40px;
+      border-radius: 25px;
+      // margin: 0px 6px;
+      color: #707070;
+    }
 
-//     .leaflet-control {
-//       margin-bottom: 10px;
-//       width: 42px;
-//       height: 97px;
-//     }
-//   }
-// }
+    // .icon-style:hover {
+    //   background: rgba(0, 112, 219, 0.5411764705882353);
+    //   color: #ffffff;
+    // }
+}
 
 //End Layers
 
