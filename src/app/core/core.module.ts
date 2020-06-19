@@ -68,7 +68,7 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
     SuccessfulComponent,
     MyjcpdropdownpanelComponent,
     isEllipsisActiveDirective,
-    ConfirmPopupComponent
+    ConfirmPopupComponent,
   ],
   imports: [
     CommonModule,

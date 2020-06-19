@@ -1,0 +1,21 @@
+<div class="jcp-table-container" style="height: 600px;">
+
+
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48"
+        headerHeight="48" 
+        [gridOptions]="gridOptions" 
+        [columnDefs]="columnDefs" 
+        [rowData]="rowData" 
+        enableColResize
+        enableSorting 
+        enableFilter 
+        groupHeaders 
+        suppressRowClickSelection 
+        toolPanelSuppressGroups
+        toolPanelSuppressValues 
+        rowSelection="multiple" 
+        [defaultColDef]="defaultColDef"
+        (gridReady)="onReady($event)">
+    </ag-grid-angular>
+
+</div>

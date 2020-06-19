@@ -70,6 +70,7 @@ import { AlarmsComponent } from './my-jcp/template-card-view/alarms/alarms.compo
 import { PerformanceComponent } from './my-jcp/template-card-view/performance/performance.component';
 import { PlanningComponent } from './my-jcp/template-card-view/planning/planning.component';
 import { WorkordersComponent } from './my-jcp/template-card-view/workorders/workorders.component';
+import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { WorkordersComponent } from './my-jcp/template-card-view/workorders/work
     PerformanceComponent,
     PlanningComponent,
     WorkordersComponent,
+    TableViewControlComponent,
   
   ],
   imports: [
@@ -160,10 +162,11 @@ import { WorkordersComponent } from './my-jcp/template-card-view/workorders/work
     MainLayerComponent,
     CreateReportComponent,
     ButtonRendererComponent,
-   
+    TableViewControlComponent
   ],
   entryComponents: [
     CreateReportComponent,
+    TableViewControlComponent
     // SuccessfulComponent
   ]
 

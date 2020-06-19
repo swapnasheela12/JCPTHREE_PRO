@@ -7,6 +7,7 @@ import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 declare var $: any;
 @Component({
   selector: 'app-main-layer',
@@ -38,7 +39,7 @@ export class MainLayerComponent implements OnInit {
   //   center: latLng([25.0000, 79.0000])
   // };
 
-  constructor(private datashare: DataSharingService, private markerService: MarkerService,public dialog: MatDialog) {
+  constructor(private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -241,7 +242,7 @@ export class MainLayerComponent implements OnInit {
 
 
     // let testFunc = this.openDialog();
-    let testFunc = this.dialog;
+    let _dialog = this.dialog;
 
     this.customControlList = L.Control.Layers.extend({
       options: {
@@ -279,12 +280,18 @@ export class MainLayerComponent implements OnInit {
           //   // this.animal = result;
           // });
 
-          // const dialogRef = testFunc.open(LayerTableViewControlComponent);
-          // dialogRef.afterClosed().subscribe(result => {
-          //   console.log(`Dialog result: ${result}`);
-          // });
-
-
+          const dialogRef = _dialog.open(TableViewControlComponent, {
+            width: '560px',
+            height: '580px',
+            position: { bottom: '60px', right: "60px" },
+            panelClass: "table-view-layers-dialog-container",
+            disableClose: true,
+            hasBackdrop: false
+          });
+          dialogRef.backdropClick().subscribe(_ => {
+            // Close the dialog
+            dialogRef.close();
+          })
 
 
         }
@@ -304,7 +311,7 @@ export class MainLayerComponent implements OnInit {
     this.map.addControl(new this.customControlList());
     //custome controller//
 
-    
+
 
 
 
