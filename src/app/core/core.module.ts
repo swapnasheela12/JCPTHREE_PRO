@@ -56,6 +56,9 @@ import { SideNavService } from '../_services/side-nav.service';
 import { MyjcpdropdownpanelComponent} from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
 import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
+import { RowGroupTableComponent } from './tableFeatures/row-group-table/row-group-table.component';
+import { ColumnGroupTableComponent } from './tableFeatures/column-group-table/column-group-table.component';
+import { RowTreeGroupTableComponent } from './tableFeatures/row-tree-group-table/row-tree-group-table.component';
 
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
@@ -69,6 +72,9 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
     MyjcpdropdownpanelComponent,
     isEllipsisActiveDirective,
     ConfirmPopupComponent,
+    RowGroupTableComponent,
+    ColumnGroupTableComponent,
+    RowTreeGroupTableComponent,
   ],
   imports: [
     CommonModule,
