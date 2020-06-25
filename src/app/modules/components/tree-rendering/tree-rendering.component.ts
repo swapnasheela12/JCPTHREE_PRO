@@ -1,6 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { COLUMN_DEFS } from '../column-rendering/column-defs.constant';
 
+const COLUMNDEFS = COLUMN_DEFS;
 export class GroupLevel {
   level = 0;
   field = '';
@@ -13,7 +15,8 @@ export class GroupLevel {
 export class TreeRenderingComponent implements OnInit {
 
   columnDef: any;
-  @Input('columnDefs') columnDefs: [];
+  // @Input('columnDefs') columnDefs: [];
+  columnDefs = COLUMNDEFS;
   dataSource = [];
   allData = [];
   collapseColumn: boolean = true;
@@ -85,7 +88,10 @@ export class TreeRenderingComponent implements OnInit {
   }
 
   setFirstHeaders(columnDefs) {
+    console.log(columnDefs,"columnDefs");
+    
     this.firstHeaderGroup = columnDefs.map(element => {
+
       return element['headerName'];
     });
   }
@@ -245,5 +251,4 @@ export class TreeRenderingComponent implements OnInit {
     }
     return spaceString;
   }
-
 }
