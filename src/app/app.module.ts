@@ -86,7 +86,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
 import { SettingsDialogComponent } from './core/components/header/myjcpdropdownpanel/settings-dialog/settings-dialog.component';
-import { RowRenderingComponent } from './modules/components/row-rendering/row-rendering.component';
+import { RowRenderingComponent, ModalTemplateComponent } from './modules/components/row-rendering/row-rendering.component';
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
 
@@ -105,6 +105,7 @@ declare var $: any;
     ColumnRenderingComponent,
     TreeRenderingComponent,
     // MainLayerComponent,
+    ModalTemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -195,7 +196,8 @@ declare var $: any;
   entryComponents: [
     // CreateReportComponent,
     SuccessfulComponent,
-    SettingsDialogComponent
+    SettingsDialogComponent,
+    ModalTemplateComponent
   ]
 })
 export class AppModule { }
