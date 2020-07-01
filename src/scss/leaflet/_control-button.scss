@@ -1,4 +1,5 @@
 .table-view-layers-dialog-container {
+
     // width: 30rem;
     // height: 20rem;
     // box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);	
@@ -9,13 +10,99 @@
     .mat-dialog-container {
         width: 100%;
         height: 100%;
-        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);	
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
         border-radius: 5px;
         position: relative !important;
         z-index: 1;
         background: inherit;
         overflow: hidden;
+        padding: 0;
+
+        .jcp-table-control-layers-container {
+            height: 600px;
+
+            .toolbar-table-control-layers {
+                height: 55px;
+
+                .toolbar-table-control-title {
+                    font-size: 18px;
+                    font-family: Lato Bold;
+                }
+
+                .toolbar-table-control-icon-list {
+                    font-size: 22px;
+
+                }
+            }
+
+            .table-control-layers-filter {
+                .filter-selected-layers {
+                    .form-field-selected-layers {
+                        font-size: 14px;
+                        font-family: Lato Medium;
+
+                        .mat-select-selected-layers {}
+                    }
+                }
+                .filter-selected-area {
+                    .form-field-selected-area {
+                        font-size: 14px;
+                        font-family: Lato Medium;
+                    }
+                }
+            }
+
+            .ag-grid-jcp-container {
+                height: inherit;
+
+                .table-view-zoom-ag-grid {
+                    .ag-root-wrapper {
+                        background: inherit;
+
+                        .ag-root-wrapper-body {
+                            .ag-root {
+                                .ag-header {
+                                    // background: red;
+                                    background: rgba(0, 120, 215, .2);
+                                    border-bottom-color: rgba(0, 0, 0, .2);
+
+                                    .ag-header-viewport {
+                                        .ag-header-container {
+                                            .ag-header-row {
+                                                .ag-header-cell {}
+
+                                                .ag-header-cell:hover {
+                                                    background: rgba(0, 120, 215, .2);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .ag-body-viewport {
+                                    // background: red;
+
+                                    .ag-center-cols-clipper {
+                                        .ag-center-cols-viewport {
+                                            .ag-center-cols-container {
+
+                                                .ag-row {
+                                                    background: inherit;
+                                                    border-color: rgba(0, 0, 0, .2);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
+
     .mat-dialog-container:before {
         content: "";
         position: absolute;
@@ -25,9 +112,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5) !important;
-        filter: blur(50px) !important;
+        box-shadow: inset 0 0 200px rgba(255, 255, 255, 1);
+        backdrop-filter: blur(10px);
+        // filter: blur(10px);
         margin: -20px;
     }
 }
-

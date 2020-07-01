@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -8,11 +8,8 @@ import { HttpClient } from "@angular/common/http";
 
 // ag grid
 import * as agGrid from 'ag-grid-community';
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
-// import { GridOptions } from "ag-grid/main";
-// import {Grid} from "ag-grid-community";
-// import { AllCommunityModules } from '@ag-grid-community/all-modules';
-// import { AllCommunityModules } from 'ag-grid-community';
+import { GridOptions } from "@ag-grid-community/all-modules";
+
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -21,6 +18,13 @@ import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ButtonRendererComponent } from '../../reports-dashboards/my-reports/button-renderer.component';
+
+
+import { FormControl } from '@angular/forms';
+import { ReplaySubject, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
+import { selectedLayer, selectedLayerS } from './table-view-data';
+
 
 declare var $: any;
 
@@ -34,186 +38,291 @@ export interface DialogData {
   name: string;
 }
 
+export interface JioState {
+  nameState: string;
+}
+
+export interface jioCenter {
+  nameState: string;
+}
+
 @Component({
   selector: 'app-table-view-control',
   templateUrl: './table-view-control.component.html',
   styleUrls: ['./table-view-control.component.scss']
 })
-export class TableViewControlComponent implements OnInit {
+export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  //filter table
+
+
+  /** list of selectedLayers */
+  protected selectedLayers: selectedLayer[] = selectedLayerS;
+
+  /** control for the selected selectedLayer */
+  public selectedLayerCtrl: FormControl = new FormControl();
+
+  /** control for the MatSelect filter keyword */
+  public selectedLayerFilterCtrl: FormControl = new FormControl();
+
+  /** list of selectedLayers filtered by search keyword */
+  public filteredselectedLayers: ReplaySubject<selectedLayer[]> = new ReplaySubject<selectedLayer[]>(1);
+
+  @ViewChild('singleSelect', { static: true }) singleSelect: MatSelect;
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
+  //filter table
+
+
+
+
+
   private inited;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public sidenavBarStatus;
-  public tableWidth;
+
   public gridApi;
-  public gridCore: GridCore;
+  public gridColumnApi;
+  public rowData: any[string];
   public gridOptions: GridOptions;
-  public rowData: any;
-  public columnDefs: any[];
-  public rowCount: string;
-  public frameworkComponentsMyReport = {
-    buttonRenderer: ButtonRendererComponent,
-  };
+  public defaultColDef;
+  public defaultColGroupDef;
+  public columnTypes;
 
-  // ///////my report tabel//////////
-  public products;
+  public areaParentSelect: FormControl = new FormControl();
 
-  // ///////my report tabel//////////
-  ///////report measure/////////////
-  public reportMeasureSelected = "Performance Management";
-  @ViewChild(MatSelect, { static: true }) _mySelect: MatSelect;
-  reportsMeasureList: reportsMeasure[] = [
-    { value: 'Configuration Management', viewValue: 'Configuration Management' },
-    { value: 'LSMR', viewValue: 'LSMR' },
-    { value: 'Performance Management', viewValue: 'Performance Management' },
-    { value: 'Work Orders', viewValue: 'Work Orders' }
-  ];
-  ///////report measure/////////////
-  
-  onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
-
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
-
-  public onReady(params) {
-    console.log(params, "onReady");
-    this.gridApi = params.api;
-    this.calculateRowCount();
-  }
-
-  
-
-  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-   
-    this.gridOptions = <GridOptions>{};
-    this.httpClientRowData();
-    this.createColumnDefs();
-
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      this.calculateRowCount();
+
     });
 
+    console.log(this.areaParentSelect, "areaParentSelect");
+    this.JioStatesList = this.products;
+    this.jioCentersList = this.jioCenter_List;
   }
 
-  private httpClientRowData() {
+  columnDefs = [
+    {
+      headerName: "Jio State",
+      field: "jiostate",
+      width: 250
+    }, {
+      headerName: "<20°",
+      field: "lessThanTwenty",
+      width: 200
+    }, {
+      headerName: "20°> to <40°",
+      field: "greaterThanTwenty",
+      width: 250
+    },
+    {
+      headerName: "40°> to <60°",
+      field: "greaterThanForty",
+      width: 250
+    },
+    {
+      headerName: ">60°",
+      field: "greaterThanSixty",
+      width: 200
+    }
+  ];
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit();
+
     this.httpClient
-      .get("assets/data/report/my-report.json")
+      .get("assets/data/layers/table-view-data/table-view-data.json")
       .subscribe(data => {
         this.rowData = data;
+
       });
   }
+  onRowClicked(event: any) {
+    // this.router.navigate(['/',  'ExecutiveSummary']).then(event => {
+    // }, err => {
+    //   console.log(err) // when there's an error
+    // });
 
-  private createColumnDefs() {
-    this.columnDefs = [
-      {
-        headerName: "Report Name",
-        field: "reportname",
-        width: 320
-      }, {
-        headerName: "Report Measure",
-        field: "reportmeasure",
-        width: 210
-      }, {
-        headerName: "Report Category",
-        field: "reportcategory",
-        width: 230
-      },
-      {
-        headerName: "Progress",
-        cellRenderer: this.progressTaskFunc,
-        width: 180
-      },
-      {
-        headerName: "Created Date",
-        field: "createddate",
-        width: 190
-      }, {
-        headerName: "",
-        cellRenderer: 'buttonRenderer',
-        width: 140
-      }
-    ];
   }
 
-  defaultColDef = { resizable: true };
-  searchGrid = '';
-  onFilterChanged(value) {
-    this.gridOptions.api.setQuickFilter(value);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
+  
 
-  //END table search
-
-
-
-  //////////////////
-
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.progressby;
-    var taskprogress = params.data.progressbar;
-    // var taskprogresscolor = params.data.taskColor;
-
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-    if (taskcompletion == "Generated") {
-      return template1;
-    } else if (taskcompletion == "#5 in Queue") {
-      return template2;
-    } else {
-      return template3;
-    }
+  public selectedOptionArea
+  //Jio State
+  _listFilterJioStates: string;
+  get listFilterJioStates(): string {
+    return this._listFilterJioStates;
   }
-
-  // onGridReadyMyReport() {
-  //   this.httpClient
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //       console.log(this.rowData, "this.rowData");
-
-  //     });
-  // }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
+  set listFilterJioStates(value: string) {
+    this._listFilterJioStates = value;
+    this.JioStatesList = this.listFilterJioStates ? this.PerformFilter(this.listFilterJioStates) : this.products;
   }
+  JioStatesList: JioState[];
+  products: JioState[] = [
+    {
+      "nameState": "Andhra Pradesh",
+    },
+    {
+      "nameState": "Assam",
+    },
+    {
+      "nameState": "Bihar",
+    },
+    {
+      "nameState": "Chhattisgarh",
+    },
+    {
+      "nameState": "Goa",
+    },
+    {
+      "nameState": "Gujarat",
+    },
+    {
+      "nameState": "Delhi",
+    },
+  ]
+
+  PerformFilter(filterBy: string): JioState[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: JioState) =>
+      product.nameState.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+  //Jio State
+
+
+
+  //Jio Center
+  _listFilterjioCenters: string;
+  get listFilterjioCenters(): string {
+    return this._listFilterjioCenters;
+  }
+  set listFilterjioCenters(value: string) {
+    this._listFilterjioCenters = value;
+    this.jioCentersList = this.listFilterjioCenters ? this.PerformFilterjioCenter(this.listFilterjioCenters) : this.products;
+  }
+  jioCentersList: jioCenter[];
+  jioCenter_List: jioCenter[] = [
+    {
+      "nameState": "Mumbai",
+    },
+    {
+      "nameState": "Pune",
+    },
+    {
+      "nameState": "Jamnagar",
+    },
+    {
+      "nameState": "Bangalore",
+    },
+    {
+      "nameState": "Indore",
+    },
+    {
+      "nameState": "Chennai",
+    },
+    {
+      "nameState": "Jaipur",
+    },
+  ]
+
+  PerformFilterjioCenter(filterBy: string): jioCenter[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.jioCenter_List.filter((product: jioCenter) =>
+      product.nameState.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+  //Jio Center
 
   ngOnInit() {
 
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
     })
+
+
+    // set initial selection
+    this.selectedLayerCtrl.setValue(this.selectedLayers[10]);
+
+    // load the initial selectedLayer list
+    this.filteredselectedLayers.next(this.selectedLayers.slice());
+
+    // listen for search field value changes
+    this.selectedLayerFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterselectedLayers();
+      });
+
+
   }
   @HostListener('window:click')
   onNoClick(): void {
     if (this.inited) {
-    this.dialogRef.close();
-
+      this.dialogRef.close();
     }
   }
 
   openDialog(): void {
     this.router.navigate(['/JCP/Reports-and-Dashboard/Report-Wizard']);
   };
+
+
+
+  //filter table
+
+  ngAfterViewInit() {
+    this.setInitialValue();
+  }
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  /**
+   * Sets the initial value after the filteredselectedLayers are loaded initially
+   */
+  protected setInitialValue() {
+    this.filteredselectedLayers
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredselectedLayers are loaded initially
+        // and after the mat-option elements are available
+        this.singleSelect.compareWith = (a: selectedLayer, b: selectedLayer) => a && b && a.id === b.id;
+      });
+  }
+
+  protected filterselectedLayers() {
+    if (!this.selectedLayers) {
+      return;
+    }
+    // get the search keyword
+    let search = this.selectedLayerFilterCtrl.value;
+    if (!search) {
+      this.filteredselectedLayers.next(this.selectedLayers.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the selectedLayers
+    this.filteredselectedLayers.next(
+      this.selectedLayers.filter(selectedLayer => selectedLayer.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  //filter table
+
+
+
+
+
 
 }

@@ -673,6 +673,7 @@ $color-white: #ffffff;
           .mat-expansion-panel-content {
             .mat-expansion-panel-body {
               padding: 0;
+
               .my-jcp-accordion-content {
                 .button-container {
                   .button-type {
@@ -687,39 +688,42 @@ $color-white: #ffffff;
                     font-family: Lato Medium;
                     margin: 10px;
                   }
-    
+
                   .disabled-button-type {
                     background: #7C7C7C;
                   }
-    
+
                   .not-disabled-button-type {
                     background: #005EB9;
                   }
                 }
               }
-    
-              .bgAndColor-My-jcp-contain-Add{
+
+              .bgAndColor-My-jcp-contain-Add {
                 background: #B3D4F4;
                 color: #005FBA;
-      
+
               }
-              .bgAndColor-My-jcp-contain-Remove{
+
+              .bgAndColor-My-jcp-contain-Remove {
                 background: #CECECE;
                 color: #5D5D5D;
-      
+
               }
             }
           }
 
-         
+
 
         }
-        .bgAndColor-My-jcp-Add{
+
+        .bgAndColor-My-jcp-Add {
           background: #B3D4F4;
           color: #005FBA;
 
         }
-        .bgAndColor-My-jcp-Remove{
+
+        .bgAndColor-My-jcp-Remove {
           background: #CECECE;
           color: #5D5D5D;
 
@@ -1456,31 +1460,31 @@ $color-white: #ffffff;
   // background: red !important;
   margin: auto 0;
   cursor: pointer;
-  
-    .icon-count {
-      position: absolute;
-      padding: 8px 17px;
-      // top: 23px;
-      // left: 31px;
-      color: #ffffff;
-      font-size: 12px;
-    }
 
-    .icon-style {
-      font-size: 25px;
-      padding: 4px 8px;
-      line-height: 1.5;
-      width: 40px;
-      height: 40px;
-      border-radius: 25px;
-      // margin: 0px 6px;
-      color: #707070;
-    }
+  .icon-count {
+    position: absolute;
+    padding: 8px 17px;
+    // top: 23px;
+    // left: 31px;
+    color: #ffffff;
+    font-size: 12px;
+  }
 
-    // .icon-style:hover {
-    //   background: rgba(0, 112, 219, 0.5411764705882353);
-    //   color: #ffffff;
-    // }
+  .icon-style {
+    font-size: 25px;
+    padding: 4px 8px;
+    line-height: 1.5;
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    // margin: 0px 6px;
+    color: #707070;
+  }
+
+  // .icon-style:hover {
+  //   background: rgba(0, 112, 219, 0.5411764705882353);
+  //   color: #ffffff;
+  // }
 }
 
 //End Layers
@@ -1802,6 +1806,13 @@ table {
 }
 
 //END Default Custom css
+
+.mat-select-search-custom-header-content {
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  font-size: 20px;
+}
 
 
 //////////////

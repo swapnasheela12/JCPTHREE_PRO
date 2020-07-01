@@ -85,6 +85,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // import { MainLayerComponent } from './main-layer/main-layer.component';
 import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SettingsDialogComponent } from './core/components/header/myjcpdropdownpanel/settings-dialog/settings-dialog.component';
 import { RowRenderingComponent, ModalTemplateComponent } from './modules/components/row-rendering/row-rendering.component';
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
@@ -180,7 +181,8 @@ declare var $: any;
     PortalModule,
     ScrollingModule,
     NgbModule,
-    NgxDaterangepickerMd
+    NgxDaterangepickerMd,
+    NgxMatSelectSearchModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

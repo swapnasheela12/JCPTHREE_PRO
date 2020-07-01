@@ -175,11 +175,13 @@ export class MainLayerComponent implements OnInit {
       drawPolyline: false,  // adds button to draw a polyline
       drawCircle: true,  // adds button to draw a cricle
       drawCircleMarker: false,//add button with circle radius
-      editPolygon: true,  // adds button to toggle global edit mode
-      deleteLayer: true,   // adds a button to delete layers
+      editPolygon: false,  // adds button to toggle global edit mode
+      deleteLayer: false,   // adds a button to delete layers
       // removalMode: false,
+      cutPolygon: false,
+      drawRectangle: false,
       editMode: false,
-      dragMode: true,// drag and drop
+      dragMode: false,// drag and drop
     };
 
     this.map.pm.addControls(options);
@@ -282,7 +284,7 @@ export class MainLayerComponent implements OnInit {
 
           const dialogRef = _dialog.open(TableViewControlComponent, {
             width: '560px',
-            height: '580px',
+            height: '525px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             disableClose: true,
