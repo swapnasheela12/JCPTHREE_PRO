@@ -108,7 +108,7 @@ export class MyjcpdropdownpanelComponent implements OnInit {
     dialogConfig.role = 'dialog';
     dialogConfig.width = '100px';
     dialogConfig.height = '100px';
-    
+    console.log(this.dialog);
     let dialogRef: MatDialogRef<SettingsDialogComponent> = this.dialog.open(SettingsDialogComponent);
     // dialogRef.componentInstance.myjcpsettings = [];
     // dialogRef.afterClosed().subscribe(result => {

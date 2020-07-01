@@ -1,36 +1,84 @@
 <div mat-dialog-content>
-    <form>
-      <mat-radio-group>
+      <mat-radio-group [(ngModel)]="showGeography" (change)="changeComboo($event)">
         <mat-radio-button class="geography-options" [value]="'PAN India'" name="pan_india">PAN India</mat-radio-button>
         <mat-radio-button class="geography-options" [value]="'Jio State'" name="Jio State">Jio State</mat-radio-button>
         <mat-radio-button class="geography-options" [value]="'Jio Center'" name="Jio Center">Jio Center</mat-radio-button>
       </mat-radio-group>
       <mat-divider></mat-divider>
-      <mat-form-field>
-        <mat-select placeholder="PAN India">
-          <mat-option *ngFor="let panIndia of panIndiaList" [value]="panIndia">
-            {{panIndia.name}}
+      <mat-form-field
+        class="geography-form"
+        *ngIf="showGeography == 'PAN India'">
+        <mat-select
+          placeholder="PAN India"
+          [formControl]="panIndiaCtrl"
+          ngDefaultControl
+          #panIndiaSelect>
+          <mat-option>
+              <ngx-mat-select-search
+                placeholderLabel="Select PAN India"
+                [formControl]="panIndiaFilterCtrl"
+                noEntriesFoundLabel="no matching found"
+                ngDefaultControl>
+              </ngx-mat-select-search>
+          </mat-option>
+          <mat-option
+            *ngFor="let panIndia of panIndiaFilter | async"
+            [value]="panIndia">
+              {{panIndia.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Jio State">
-            <mat-option *ngFor="let state of stateList" [value]="state">
+      <mat-form-field
+      class="geography-form"
+      *ngIf="showGeography == 'Jio State'">
+        <mat-select
+        placeholder="Jio State"
+        [formControl]="jioStateCtrl"
+        ngDefaultControl
+        #jioStateSelect>
+          <mat-option>
+            <ngx-mat-select-search
+              placeholderLabel="Select Jio State"
+              [formControl]="jioStateFilterCtrl"
+              noEntriesFoundLabel="no matching found"
+              ngDefaultControl>
+            </ngx-mat-select-search>
+          </mat-option>
+            <mat-option
+            *ngFor="let state of jioStateFilter | async"
+            [value]="state">
               {{state.name}}
             </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Jio Center">
-            <mat-option *ngFor="let jioCenter of jioCenterList" [value]="jioCenter">
+      <mat-form-field
+      class="geography-form"
+      *ngIf="showGeography == 'Jio Center'">
+        <mat-select
+        placeholder="Jio Center"
+        [formControl]="jioCenterCtrl"
+        ngDefaultControl
+        #jioCenterSelect>
+          <mat-option>
+            <ngx-mat-select-search
+              placeholderLabel="Select Jio Center"
+              [formControl]="jioCenterFilterCtrl"
+              noEntriesFoundLabel="no matching found"
+              ngDefaultControl>
+            </ngx-mat-select-search>
+          </mat-option>
+            <mat-option
+            *ngFor="let jioCenter of jioCenterFilter | async"
+            [value]="jioCenter">
               {{jioCenter.name}}
             </mat-option>
         </mat-select>
       </mat-form-field>
-
-    </form>
   </div>
   
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="onApplySettings()">Apply</button>
+    <button
+    class="apply-buttons"
+    mat-raised-button color="primary"
+    (click)="onApplySettings()">Apply</button>
   </div>

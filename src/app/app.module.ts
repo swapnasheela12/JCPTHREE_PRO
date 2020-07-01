@@ -90,7 +90,9 @@ import { SettingsDialogComponent } from './core/components/header/myjcpdropdownp
 import { RowRenderingComponent, ModalTemplateComponent } from './modules/components/row-rendering/row-rendering.component';
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {OverlayContainer} from '@angular/cdk/overlay';
+import {AppOverlayContainer} from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
 
 declare var $: any;
 
@@ -182,12 +184,13 @@ declare var $: any;
     ScrollingModule,
     NgbModule,
     NgxDaterangepickerMd,
+    MatFormFieldModule,
     NgxMatSelectSearchModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    { provide: OverlayContainer, useClass: AppOverlayContainer},
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,
