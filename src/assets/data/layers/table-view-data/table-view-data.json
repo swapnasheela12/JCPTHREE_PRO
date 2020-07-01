@@ -40,12 +40,5 @@
     "greaterThanTwenty": "6015",
     "greaterThanForty": "6015",
     "greaterThanSixty": "605"
-},
-    {
-    "jiostate": "Bihar",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6015",
-    "greaterThanForty": "6015",
-    "greaterThanSixty": "605"
 }
 ]

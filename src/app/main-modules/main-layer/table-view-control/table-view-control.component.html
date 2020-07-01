@@ -1,36 +1,36 @@
-<div class="jcp-table-control-layers-container">
+<div #container class="jcp-table-control-layers-container">
     <div class="toolbar-table-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
-        <div class="toolbar-table-control-title" fxFlex>
+        <div class="toolbar-table-control-title" fxFlex >
             <span>Table View</span>
         </div>
         <div class="toolbar-table-control-icon-list">
             <div class="p-2 zmdi zmdi-minus"></div>
-            <div class="p-2 zmdi zmdi-close"></div>
+            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="table-control-layers-filter" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="table-control-layers-filter" fxLayout="row" fxLayoutAlign="space-between center" (click)="$event.stopPropagation();">
         <div class="filter-selected-layers px-3" fxFlex="45">
             <mat-form-field class="form-field-selected-layers pt-2 w-100">
                 <mat-select disableOptionCentering class="mat-select-selected-layers" [formControl]="selectedLayerCtrl"
                     placeholder="Selected Layer" #singleSelect>
-                    <mat-option>
+                    <mat-option (click)="$event.stopPropagation();">
                         <ngx-mat-select-search placeholderLabel="Search" [formControl]="selectedLayerFilterCtrl">
                             <div class="mat-select-search-custom-header-content">
                                 <div class="zmdi zmdi-search"></div>
                             </div>
                         </ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let selectedLayer of filteredselectedLayers | async" [value]="selectedLayer">
+                    <mat-option (click)="$event.stopPropagation();" *ngFor="let selectedLayer of filteredselectedLayers | async" [value]="selectedLayer">
                         {{selectedLayer.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="filter-selected-area px-3" fxFlex="40">
-            <mat-form-field class="form-field-selected-area pt-2 w-100">
+            <mat-form-field class="form-field-selected-area pt-2 w-100" (click)="$event.stopPropagation();">
                 <mat-label>Select Area</mat-label>
-                <input matInput (click)="$event.stopPropagation();" [(ngModel)]="selectedOptionArea" [matMenuTriggerFor]="areaSelected"
+                <input matInput (change)="sendSelectedArea(selectedOptionArea,selectedOptionAreaCenter,selectedOptionAreaState);" (click)="$event.stopPropagation();" [(ngModel)]="selectedOptionArea" [matMenuTriggerFor]="areaSelected"
                     #menuTrigger="matMenuTrigger">
                 <div class="zmdi zmdi-caret-down" style="font-size: 25px;position: absolute;right: 0;"></div>
                 <mat-menu #areaSelected="matMenu">
@@ -47,7 +47,7 @@
                     </button>
                     <div style="height: 200px;overflow: auto;">
                         <button mat-menu-item *ngFor='let state of JioStatesList'
-                            (click)="selectedOptionArea = state.nameState">
+                            (click)="selectedOptionArea = state.nameState;selectedOptionAreaState = 'Jio State';">
                             <div>{{ state.nameState }}</div>
                         </button>
                     </div>
@@ -61,7 +61,7 @@
                     </button>
                     <div style="height: 200px;overflow: auto;">
                         <button (click)="$event.stopPropagation();" mat-menu-item *ngFor='let state of jioCentersList'
-                            (click)="selectedOptionArea = state.nameState">
+                            (click)="selectedOptionArea = state.nameState;selectedOptionAreaCenter = 'Jio Center';">
                             <div>{{ state.nameState }}</div>
                         </button>
                     </div>
@@ -76,7 +76,7 @@
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="ag-grid-jcp-container">
+    <div class="ag-grid-jcp-container" (click)="$event.stopPropagation();">
         <ag-grid-angular #agGrid style="width: 100%;max-height: calc(100% - 65px);height: 100%;"
             class="ag-theme-material table-view-zoom-ag-grid" [gridOptions]="gridOptions" id="myGrid"
             [rowData]="rowData" [columnDefs]="columnDefs" [enableFilter]="true" (gridReady)="onGridReady($event)"

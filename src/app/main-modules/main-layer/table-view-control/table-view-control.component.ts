@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -54,8 +54,6 @@ export interface jioCenter {
 export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //filter table
-
-
   /** list of selectedLayers */
   protected selectedLayers: selectedLayer[] = selectedLayerS;
 
@@ -75,8 +73,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   //filter table
 
 
-
-
+  public selectedOptionArea = "Pan India";
+  public selectedOptionAreaState;
+  public selectedOptionAreaCenter;
 
   private inited;
 
@@ -88,73 +87,83 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   public gridColumnApi;
   public rowData: any[string];
   public gridOptions: GridOptions;
+  public columnDefs;
   public defaultColDef;
   public defaultColGroupDef;
   public columnTypes;
 
   public areaParentSelect: FormControl = new FormControl();
 
-  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
 
     });
 
-    console.log(this.areaParentSelect, "areaParentSelect");
+
     this.JioStatesList = this.products;
     this.jioCentersList = this.jioCenter_List;
-  }
 
-  columnDefs = [
-    {
-      headerName: "Jio State",
-      field: "jiostate",
-      width: 250
-    }, {
-      headerName: "<20°",
-      field: "lessThanTwenty",
-      width: 200
-    }, {
-      headerName: "20°> to <40°",
-      field: "greaterThanTwenty",
-      width: 250
-    },
-    {
-      headerName: "40°> to <60°",
-      field: "greaterThanForty",
-      width: 250
-    },
-    {
-      headerName: ">60°",
-      field: "greaterThanSixty",
-      width: 200
+    if (this.selectedOptionArea == "Pan India") {
+      this.columnDefs = [
+        {
+          headerName: "Jio State",
+          field: "jiostate",
+          pinned: true,
+          width: 150
+        }, {
+          headerName: "<20°",
+          field: "lessThanTwenty",
+          width: 100
+        }, {
+          headerName: "20°> to <40°",
+          field: "greaterThanTwenty",
+          width: 150
+        },
+        {
+          headerName: "40°> to <60°",
+          field: "greaterThanForty",
+          width: 150
+        },
+        {
+          headerName: ">60°",
+          field: "greaterThanSixty",
+          width: 100
+        }
+      ];
+      this.httpClient
+        .get("assets/data/layers/table-view-data/table-view-data.json")
+        .subscribe(data => {
+          this.rowData = data;
+        });
+
     }
-  ];
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
+  }
 
-    this.httpClient
-      .get("assets/data/layers/table-view-data/table-view-data.json")
-      .subscribe(data => {
-        this.rowData = data;
 
+
+  ngOnInit() {
+
+    this.dialogRef.afterOpened().subscribe(() => {
+      this.inited = true;
+    })
+
+    //filter  selectedLayers
+    this.selectedLayerCtrl.setValue(this.selectedLayers[10]);
+    this.filteredselectedLayers.next(this.selectedLayers.slice());
+    this.selectedLayerFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterselectedLayers();
       });
-  }
-  onRowClicked(event: any) {
-    // this.router.navigate(['/',  'ExecutiveSummary']).then(event => {
-    // }, err => {
-    //   console.log(err) // when there's an error
-    // });
+    //filter  selectedLayers
 
   }
 
-  
 
-  public selectedOptionArea
+
   //Jio State
   _listFilterJioStates: string;
   get listFilterJioStates(): string {
@@ -239,42 +248,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //Jio Center
 
-  ngOnInit() {
-
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.inited = true;
-    })
 
 
-    // set initial selection
-    this.selectedLayerCtrl.setValue(this.selectedLayers[10]);
-
-    // load the initial selectedLayer list
-    this.filteredselectedLayers.next(this.selectedLayers.slice());
-
-    // listen for search field value changes
-    this.selectedLayerFilterCtrl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterselectedLayers();
-      });
-
-
-  }
-  @HostListener('window:click')
-  onNoClick(): void {
-    if (this.inited) {
-      this.dialogRef.close();
-    }
-  }
-
-  openDialog(): void {
-    this.router.navigate(['/JCP/Reports-and-Dashboard/Report-Wizard']);
-  };
-
-
-
-  //filter table
+  //filter  selectedLayers
 
   ngAfterViewInit() {
     this.setInitialValue();
@@ -285,9 +261,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this._onDestroy.complete();
   }
 
-  /**
-   * Sets the initial value after the filteredselectedLayers are loaded initially
-   */
   protected setInitialValue() {
     this.filteredselectedLayers
       .pipe(take(1), takeUntil(this._onDestroy))
@@ -318,9 +291,187 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
       this.selectedLayers.filter(selectedLayer => selectedLayer.name.toLowerCase().indexOf(search) > -1)
     );
   }
-  //filter table
+  //filter  selectedLayers
 
 
+  public text: String;
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.eRef.nativeElement.contains(event.target)) {
+      this.text = "clicked inside";
+    } else {
+      this.text = "clicked outside";
+      // this.onCloseClick();
+    }
+    console.log(this.text, "this.text");
+
+  }
+
+  // @HostListener('window:click')
+  onCloseClick(): void {
+    if (this.inited) {
+      this.dialogRef.close();
+    }
+  }
+
+
+  sendSelectedArea(item, val, ele) {
+    console.log(item, "item");
+    console.log(val, "val");
+    console.log(ele, "ele");
+    if (item == "Pan India") {
+      this.columnDefs = [
+        {
+          headerName: "Jio State",
+          field: "jiostate",
+          pinned: true,
+          width: 150
+        }, {
+          headerName: "<20°",
+          field: "lessThanTwenty",
+          width: 100
+        }, {
+          headerName: "20°> to <40°",
+          field: "greaterThanTwenty",
+          width: 150
+        },
+        {
+          headerName: "40°> to <60°",
+          field: "greaterThanForty",
+          width: 150
+        },
+        {
+          headerName: ">60°",
+          field: "greaterThanSixty",
+          width: 100
+        }
+      ];
+      this.httpClient
+        .get("assets/data/layers/table-view-data/table-view-data.json")
+        .subscribe(data => {
+          this.rowData = data;
+        });
+
+    } else if (val == "Jio Center") {
+      this.columnDefs = [
+        {
+          headerName: "SAP ID",
+          field: "jiostate",
+          pinned: true,
+          width: 150
+        }, {
+          headerName: "<20°",
+          field: "lessThanTwenty",
+          width: 100
+        }, {
+          headerName: "20°> to <40°",
+          field: "greaterThanTwenty",
+          width: 150
+        },
+        {
+          headerName: "40°> to <60°",
+          field: "greaterThanForty",
+          width: 150
+        },
+        {
+          headerName: ">60°",
+          field: "greaterThanSixty",
+          width: 100
+        }
+      ];
+      this.httpClient
+        .get("assets/data/layers/table-view-data/table-view-data.json")
+        .subscribe(data => {
+          this.rowData = data;
+        });
+    } else {
+      this.columnDefs = [
+        {
+          headerName: "JC ID",
+          field: "jiostate",
+          pinned: true,
+          width: 150
+        }, {
+          headerName: "<20°",
+          field: "lessThanTwenty",
+          width: 100
+        }, {
+          headerName: "20°> to <40°",
+          field: "greaterThanTwenty",
+          width: 150
+        },
+        {
+          headerName: "40°> to <60°",
+          field: "greaterThanForty",
+          width: 150
+        },
+        {
+          headerName: ">60°",
+          field: "greaterThanSixty",
+          width: 100
+        }
+      ];
+      this.httpClient
+        .get("assets/data/layers/table-view-data/table-view-data.json")
+        .subscribe(data => {
+          this.rowData = data;
+        });
+    }
+
+  }
+
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    // this.gridApi.sizeColumnsToFit();
+
+
+  }
+  // columnDefs = [
+  //   {
+  //     headerName: "Jio State",
+  //     field: "jiostate",
+  //     width: 250
+  //   }, {
+  //     headerName: "<20°",
+  //     field: "lessThanTwenty",
+  //     width: 200
+  //   }, {
+  //     headerName: "20°> to <40°",
+  //     field: "greaterThanTwenty",
+  //     width: 250
+  //   },
+  //   {
+  //     headerName: "40°> to <60°",
+  //     field: "greaterThanForty",
+  //     width: 250
+  //   },
+  //   {
+  //     headerName: ">60°",
+  //     field: "greaterThanSixty",
+  //     width: 200
+  //   }
+  // ];
+
+  // onGridReady(params) {
+  //   this.gridApi = params.api;
+  //   this.gridColumnApi = params.columnApi;
+  //   this.gridApi.sizeColumnsToFit();
+
+  //   this.httpClient
+  //     .get("assets/data/layers/table-view-data/table-view-data.json")
+  //     .subscribe(data => {
+  //       this.rowData = data;
+  //     });
+  // }
+  onRowClicked(event: any) {
+    // this.router.navigate(['/',  'ExecutiveSummary']).then(event => {
+    // }, err => {
+    //   console.log(err) // when there's an error
+    // });
+
+  }
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
@@ -14,7 +14,7 @@ declare var $: any;
   templateUrl: './main-layer.component.html',
   styleUrls: ['./main-layer.component.scss']
 })
-export class MainLayerComponent implements OnInit {
+export class MainLayerComponent implements OnInit,AfterViewInit {
   // map: L.Map;
   map: any;
   public chartDivWidth;
@@ -25,6 +25,8 @@ export class MainLayerComponent implements OnInit {
 
   animal: string;
   name: string;
+
+  
   // // Define our base layers so we can reference them multiple times
   // streetMaps = tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
   //   maxZoom: 20,
@@ -125,6 +127,8 @@ export class MainLayerComponent implements OnInit {
   ngAfterViewInit() {
     this.initMap();
     this.markerService.makeCapitalMarkers(this.map);
+   
+    
   }
 
   private initMap(): void {
@@ -284,7 +288,7 @@ export class MainLayerComponent implements OnInit {
 
           const dialogRef = _dialog.open(TableViewControlComponent, {
             width: '560px',
-            height: '525px',
+            height: '470px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             disableClose: true,
@@ -325,7 +329,7 @@ export class MainLayerComponent implements OnInit {
   }
 
 
-
+  
 
 
 
