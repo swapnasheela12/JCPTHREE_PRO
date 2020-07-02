@@ -1,0 +1,43 @@
+[{
+        "r4gstate": "Maharashtra",
+        "totalsites": "235",
+        "totalcells": "2820",
+        "sites4glte": "221",
+        "sites5gnr": "14"
+    },
+    {
+        "r4gstate": "Odisha",
+        "totalsites": "708",
+        "totalcells": "8496",
+        "sites4glte": "693",
+        "sites5gnr": "15"
+    },
+    {
+        "r4gstate": "Uttar Pradesh (East)",
+        "totalsites": "409",
+        "totalcells": "4908",
+        "sites4glte": "381",
+        "sites5gnr": "28"
+    },
+    {
+        "r4gstate": "Kashmir",
+        "totalsites": "496",
+        "totalcells": "5952",
+        "sites4glte": "481",
+        "sites5gnr": "15"
+    },
+    {
+        "r4gstate": "Bihar",
+        "totalsites": "325",
+        "totalcells": "3900",
+        "sites4glte": "290",
+        "sites5gnr": "35"
+    },
+    {
+        "r4gstate": "Madhya Pradesh",
+        "totalsites": "112",
+        "totalcells": "1344",
+        "sites4glte": "98",
+        "sites5gnr": "14"
+    }
+]

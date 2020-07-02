@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?8u6pc5');
-  src:  url('fonts/icomoon.eot?8u6pc5#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?8u6pc5') format('truetype'),
-    url('fonts/icomoon.woff?8u6pc5') format('woff'),
-    url('fonts/icomoon.svg?8u6pc5#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?f4570a');
+  src:  url('fonts/icomoon.eot?f4570a#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?f4570a') format('truetype'),
+    url('fonts/icomoon.woff?f4570a') format('woff'),
+    url('fonts/icomoon.svg?f4570a#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 .ic {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,6 +25,139 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-arrow-01:before {
+  content: "\ec00";
+}
+.ic-draw_boundary-01:before {
+  content: "\ec01";
+}
+.ic-import_layers-01:before {
+  content: "\ec02";
+}
+.ic-KPI-01:before {
+  content: "\ec03";
+}
+.ic-Layers-01:before {
+  content: "\ec04";
+}
+.ic-legends-01:before {
+  content: "\ec05";
+}
+.ic-pan-01:before {
+  content: "\ec06";
+}
+.ic-table-01:before {
+  content: "\ec07";
+}
+.ic-zoom_to_specific_area-01:before {
+  content: "\ec08";
+}
+.ic-zoom-in-01:before {
+  content: "\ec09";
+}
+.ic-zoom-out-01:before {
+  content: "\ec0a";
+}
+.ic-drag-drop:before {
+  content: "\ebfc";
+}
+.ic-success--2-1:before {
+  content: "\ebfa";
+}
+.ic-Active-Users:before {
+  content: "\ebde";
+}
+.ic-Calendedr:before {
+  content: "\ebe9";
+}
+.ic-Component-12-2:before {
+  content: "\ebea";
+}
+.ic-COW:before {
+  content: "\ebeb";
+}
+.ic-ESC:before {
+  content: "\ebec";
+}
+.ic-FTTX:before {
+  content: "\ebf3";
+}
+.ic-Macro-Sites:before {
+  content: "\ebf6";
+}
+.ic-Report-Downloads:before {
+  content: "\ebf9";
+}
+.ic-small-Cells:before {
+  content: "\ebfb";
+}
+.ic-Tabs-with-text:before {
+  content: "\ebfd";
+  color: #b8d5f1;
+}
+.ic-Wifi:before {
+  content: "\ebff";
+}
+.ic-maximize:before {
+  content: "\ebe5";
+}
+.ic-administration-01:before {
+  content: "\ebf8";
+}
+.ic-bell-01:before {
+  content: "\ebdf";
+}
+.ic-bookmark-01:before {
+  content: "\ebe0";
+}
+.ic-breadcrumbs-01:before {
+  content: "\ebe1";
+}
+.ic-close-01:before {
+  content: "\ebe2";
+}
+.ic-dots:before {
+  content: "\ebe3";
+}
+.ic-home-01:before {
+  content: "\ebe4";
+}
+.ic-layers-01:before {
+  content: "\ebe6";
+}
+.ic-menu-01:before {
+  content: "\ebe7";
+}
+.ic-minimize-01:before {
+  content: "\ebe8";
+}
+.ic-modules-01:before {
+  content: "\ebf7";
+}
+.ic-my_jcp-01:before {
+  content: "\ebf5";
+}
+.ic-reports:before {
+  content: "\ebf4";
+}
+.ic-work_Order-01:before {
+  content: "\ebf1";
+}
+.ic-zoom-01:before {
+  content: "\ebed";
+}
+.ic-analtics-01:before {
+  content: "\ebee";
+}
+.ic-cog:before {
+  content: "\ebef";
+}
+.ic-computer_analytics-01:before {
+  content: "\ebf0";
+}
+.ic-search-01:before {
+  content: "\ebf2";
+}
 .ic-filter-01:before {
   content: "\ebfe";
 }
@@ -756,106 +889,6 @@
 }
 .ic-sector1:before {
   content: "\e996";
-}
-.ic-drag-drop:before {
-  content: "\ebfc";
-}
-.ic-success--2-1:before {
-  content: "\ebfa";
-}
-.ic-Active-Users:before {
-  content: "\ebde";
-}
-.ic-Calendedr:before {
-  content: "\ebe9";
-}
-.ic-Component-12-2:before {
-  content: "\ebea";
-}
-.ic-COW:before {
-  content: "\ebeb";
-}
-.ic-ESC:before {
-  content: "\ebec";
-}
-.ic-FTTX:before {
-  content: "\ebf3";
-}
-.ic-Macro-Sites:before {
-  content: "\ebf6";
-}
-.ic-Report-Downloads:before {
-  content: "\ebf9";
-}
-.ic-small-Cells:before {
-  content: "\ebfb";
-}
-.ic-Tabs-with-text:before {
-  content: "\ebfd";
-  color: #b8d5f1;
-}
-.ic-Wifi:before {
-  content: "\ebff";
-}
-.ic-maximize:before {
-  content: "\ebe5";
-}
-.ic-administration-01:before {
-  content: "\ebf8";
-}
-.ic-bell-01:before {
-  content: "\ebdf";
-}
-.ic-bookmark-01:before {
-  content: "\ebe0";
-}
-.ic-breadcrumbs-01:before {
-  content: "\ebe1";
-}
-.ic-close-01:before {
-  content: "\ebe2";
-}
-.ic-dots:before {
-  content: "\ebe3";
-}
-.ic-home-01:before {
-  content: "\ebe4";
-}
-.ic-layers-01:before {
-  content: "\ebe6";
-}
-.ic-menu-01:before {
-  content: "\ebe7";
-}
-.ic-minimize-01:before {
-  content: "\ebe8";
-}
-.ic-modules-01:before {
-  content: "\ebf7";
-}
-.ic-my_jcp-01:before {
-  content: "\ebf5";
-}
-.ic-reports:before {
-  content: "\ebf4";
-}
-.ic-work_Order-01:before {
-  content: "\ebf1";
-}
-.ic-zoom-01:before {
-  content: "\ebed";
-}
-.ic-analtics-01:before {
-  content: "\ebee";
-}
-.ic-cog:before {
-  content: "\ebef";
-}
-.ic-computer_analytics-01:before {
-  content: "\ebf0";
-}
-.ic-search-01:before {
-  content: "\ebf2";
 }
 .ic-home:before {
   content: "\e9cb";

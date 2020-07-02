@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -12,7 +12,7 @@ import { GridOptions } from "@ag-grid-community/all-modules";
 
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, Event } from '@angular/router';
 import { Location } from '@angular/common';
 import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -22,7 +22,7 @@ import { ButtonRendererComponent } from '../../reports-dashboards/my-reports/but
 
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { take, takeUntil, timeout } from 'rxjs/operators';
 import { selectedLayer, selectedLayerS } from './table-view-data';
 
 
@@ -78,6 +78,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   public selectedOptionAreaCenter;
 
   private inited;
+  selectedValue: string;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -94,15 +95,14 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public areaParentSelect: FormControl = new FormControl();
 
-  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor( public hostElement: ElementRef,private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
 
     });
 
-
-    this.JioStatesList = this.products;
+    this.JioStatesList = this.jioState_List;
     this.jioCentersList = this.jioCenter_List;
 
     if (this.selectedOptionArea == "Pan India") {
@@ -129,7 +129,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
         {
           headerName: ">60°",
           field: "greaterThanSixty",
-          width: 100
+          width: 150
         }
       ];
       this.httpClient
@@ -137,12 +137,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
         .subscribe(data => {
           this.rowData = data;
         });
-
     }
 
   }
-
-
 
   ngOnInit() {
 
@@ -163,6 +160,24 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
 
 
+  selectedOptionJioState;
+  optionJioStateValue;
+  jioStateFunc(value) {
+    this.optionJioStateValue = value;
+    this.selectedOptionJioState = value;
+    this.selectedOptionArea = this.selectedOptionJioState;
+    this.listFilterJioStates = "";
+  }
+
+  selectedOptionJioCenter;
+  optionjioCentersValue;
+  jioCentersFunc(value) {
+    this.optionjioCentersValue = value;
+    this.selectedOptionJioCenter = value;
+    this.selectedOptionArea = this.selectedOptionJioCenter;
+    this.listFilterjioCenters = "";
+  }
+
 
   //Jio State
   _listFilterJioStates: string;
@@ -171,10 +186,10 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   set listFilterJioStates(value: string) {
     this._listFilterJioStates = value;
-    this.JioStatesList = this.listFilterJioStates ? this.PerformFilter(this.listFilterJioStates) : this.products;
+    this.JioStatesList = this.listFilterJioStates ? this.PerformFilter(this.listFilterJioStates) : this.jioState_List;
   }
   JioStatesList: JioState[];
-  products: JioState[] = [
+  jioState_List: JioState[] = [
     {
       "nameState": "Andhra Pradesh",
     },
@@ -200,7 +215,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   PerformFilter(filterBy: string): JioState[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.products.filter((product: JioState) =>
+    return this.jioState_List.filter((product: JioState) =>
       product.nameState.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
   //Jio State
@@ -214,7 +229,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   set listFilterjioCenters(value: string) {
     this._listFilterjioCenters = value;
-    this.jioCentersList = this.listFilterjioCenters ? this.PerformFilterjioCenter(this.listFilterjioCenters) : this.products;
+    this.jioCentersList = this.listFilterjioCenters ? this.PerformFilterjioCenter(this.listFilterjioCenters) : this.jioCenter_List;
   }
   jioCentersList: jioCenter[];
   jioCenter_List: jioCenter[] = [
@@ -303,8 +318,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
       this.text = "clicked outside";
       // this.onCloseClick();
     }
-    console.log(this.text, "this.text");
-
   }
 
   // @HostListener('window:click')
@@ -314,157 +327,124 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     }
   }
 
+  public getName;
+  areaSelectionFunc() {
+    this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
+    console.log(this.getName);
+    setTimeout(() => {
+      if ($(this.getName).is(':contains(Pan India)')) {
+        console.log($(this.getName).is(':contains(Pan India)'));
+        this.columnDefs = [
+          {
+            headerName: "Jio State",
+            field: "jiostate",
+            pinned: true,
+            width: 150
+          }, {
+            headerName: "<20°",
+            field: "lessThanTwenty",
+            width: 100
+          }, {
+            headerName: "20°> to <40°",
+            field: "greaterThanTwenty",
+            width: 150
+          },
+          {
+            headerName: "40°> to <60°",
+            field: "greaterThanForty",
+            width: 150
+          },
+          {
+            headerName: ">60°",
+            field: "greaterThanSixty",
+            width: 100
+          }
+        ];
+        this.httpClient
+          .get("assets/data/layers/table-view-data/table-view-data.json")
+          .subscribe(data => {
+            this.rowData = data;
+          });
 
-  sendSelectedArea(item, val, ele) {
-    console.log(item, "item");
-    console.log(val, "val");
-    console.log(ele, "ele");
-    if (item == "Pan India") {
-      this.columnDefs = [
-        {
-          headerName: "Jio State",
-          field: "jiostate",
-          pinned: true,
-          width: 150
-        }, {
-          headerName: "<20°",
-          field: "lessThanTwenty",
-          width: 100
-        }, {
-          headerName: "20°> to <40°",
-          field: "greaterThanTwenty",
-          width: 150
-        },
-        {
-          headerName: "40°> to <60°",
-          field: "greaterThanForty",
-          width: 150
-        },
-        {
-          headerName: ">60°",
-          field: "greaterThanSixty",
-          width: 100
-        }
-      ];
-      this.httpClient
-        .get("assets/data/layers/table-view-data/table-view-data.json")
-        .subscribe(data => {
-          this.rowData = data;
-        });
+      } else if ($(this.getName).is(':contains(Jio Center)')) {
 
-    } else if (val == "Jio Center") {
-      this.columnDefs = [
-        {
-          headerName: "SAP ID",
-          field: "jiostate",
-          pinned: true,
-          width: 150
-        }, {
-          headerName: "<20°",
-          field: "lessThanTwenty",
-          width: 100
-        }, {
-          headerName: "20°> to <40°",
-          field: "greaterThanTwenty",
-          width: 150
-        },
-        {
-          headerName: "40°> to <60°",
-          field: "greaterThanForty",
-          width: 150
-        },
-        {
-          headerName: ">60°",
-          field: "greaterThanSixty",
-          width: 100
-        }
-      ];
-      this.httpClient
-        .get("assets/data/layers/table-view-data/table-view-data.json")
-        .subscribe(data => {
-          this.rowData = data;
-        });
-    } else {
-      this.columnDefs = [
-        {
-          headerName: "JC ID",
-          field: "jiostate",
-          pinned: true,
-          width: 150
-        }, {
-          headerName: "<20°",
-          field: "lessThanTwenty",
-          width: 100
-        }, {
-          headerName: "20°> to <40°",
-          field: "greaterThanTwenty",
-          width: 150
-        },
-        {
-          headerName: "40°> to <60°",
-          field: "greaterThanForty",
-          width: 150
-        },
-        {
-          headerName: ">60°",
-          field: "greaterThanSixty",
-          width: 100
-        }
-      ];
-      this.httpClient
-        .get("assets/data/layers/table-view-data/table-view-data.json")
-        .subscribe(data => {
-          this.rowData = data;
-        });
-    }
+        console.log($(this.getName).is(':contains(Jio Center)'));
+        this.columnDefs = [
+          {
+            headerName: "jio Center",
+            field: "jiocenter",
+            pinned: true,
+            width: 180
+          }, {
+            headerName: "Total Sites",
+            field: "totalsites",
+            width: 180
+          }, {
+            headerName: "Total Cells",
+            field: "totalcells",
+            width: 150
+          },
+          {
+            headerName: "4G-LTE Sites",
+            field: "sites4glte",
+            width: 150
+          },
+          {
+            headerName: "5G-NR Sites",
+            field: "sites5gnr",
+            width: 180
+          }
+        ];
+        this.httpClient
+          .get("assets/data/layers/table-view-data/table-jio-center.json")
+          .subscribe(data => {
+            this.rowData = data;
+          });
+      } else if ($(this.getName).is(':contains(Jio State)')) {
 
+        console.log($(this.getName).is(':contains(Jio State)'));
+        this.columnDefs = [
+          {
+            headerName: "R4G State",
+            field: "r4gstate",
+            pinned: true,
+            width: 150
+          }, {
+            headerName: "Total Sites",
+            field: "totalsites",
+            width: 180
+          }, {
+            headerName: "Total Cells",
+            field: "totalcells",
+            width: 150
+          },
+          {
+            headerName: "4G-LTE Sites",
+            field: "sites4glte",
+            width: 150
+          },
+          {
+            headerName: "5G-NR Sites",
+            field: "sites5gnr",
+            width: 180
+          }
+        ];
+        this.httpClient
+          .get("assets/data/layers/table-view-data/table-r4gstate.json")
+          .subscribe(data => {
+            this.rowData = data;
+          });
+      }
+
+    }, 500);
   }
-
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     // this.gridApi.sizeColumnsToFit();
-
-
   }
-  // columnDefs = [
-  //   {
-  //     headerName: "Jio State",
-  //     field: "jiostate",
-  //     width: 250
-  //   }, {
-  //     headerName: "<20°",
-  //     field: "lessThanTwenty",
-  //     width: 200
-  //   }, {
-  //     headerName: "20°> to <40°",
-  //     field: "greaterThanTwenty",
-  //     width: 250
-  //   },
-  //   {
-  //     headerName: "40°> to <60°",
-  //     field: "greaterThanForty",
-  //     width: 250
-  //   },
-  //   {
-  //     headerName: ">60°",
-  //     field: "greaterThanSixty",
-  //     width: 200
-  //   }
-  // ];
-
-  // onGridReady(params) {
-  //   this.gridApi = params.api;
-  //   this.gridColumnApi = params.columnApi;
-  //   this.gridApi.sizeColumnsToFit();
-
-  //   this.httpClient
-  //     .get("assets/data/layers/table-view-data/table-view-data.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //     });
-  // }
+  
   onRowClicked(event: any) {
     // this.router.navigate(['/',  'ExecutiveSummary']).then(event => {
     // }, err => {

@@ -1,0 +1,43 @@
+[{
+        "jiocenter": "AP-DMVM-JC01-0094",
+        "totalsites": "235",
+        "totalcells": "2820",
+        "sites4glte": "221",
+        "sites5gnr": "14"
+    },
+    {
+        "jiocenter": "AP-HDBD-JC03-0865",
+        "totalsites": "708",
+        "totalcells": "8496",
+        "sites4glte": "693",
+        "sites5gnr": "15"
+    },
+    {
+        "jiocenter": "AP-JGTL-JC01-0883",
+        "totalsites": "409",
+        "totalcells": "4908",
+        "sites4glte": "381",
+        "sites5gnr": "28"
+    },
+    {
+        "jiocenter": "AP-KKND-JC01-0141",
+        "totalsites": "496",
+        "totalcells": "5952",
+        "sites4glte": "481",
+        "sites5gnr": "15"
+    },
+    {
+        "jiocenter": "AP-MCPM-JC01-0127",
+        "totalsites": "325",
+        "totalcells": "3900",
+        "sites4glte": "290",
+        "sites5gnr": "35"
+    },
+    {
+        "jiocenter": "AP-MDMI-JC01-0891",
+        "totalsites": "112",
+        "totalcells": "1344",
+        "sites4glte": "98",
+        "sites5gnr": "14"
+    }
+]
