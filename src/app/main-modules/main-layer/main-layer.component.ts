@@ -167,10 +167,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         backwards.innerHTML = '<div class="ic ic-table-01"></div>';
 
         var middle = L.DomUtil.create('a', 'horizontal_icon_custom', container);
-        middle.innerHTML = '<div class="ic ic-legends-01"></div>';
+        middle.innerHTML = '<div class="ic ic-KPI-01"></div>';
 
         var forwards = L.DomUtil.create('a', 'horizontal_icon_custom', container);
-        forwards.innerHTML = '<div class="ic ic-KPI-01"></div>';
+        forwards.innerHTML = '<div class="ic ic-legends-01"></div>';
 
         backwards.onclick = function () {
           console.log('buttonClicked');
