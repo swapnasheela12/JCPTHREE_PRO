@@ -26,6 +26,9 @@ const routes: Routes = [
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "Performance-Dashboard", loadChildren: "../app/main-modules/performance-dashboard/performance-dashboard.module#PerformanceDashboardModule" },
+      { path: "Modules", children: [
+        { path: "Performace-Management", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"}
+      ]},
       // { path: "table-view-row", component:},
     ],
   },

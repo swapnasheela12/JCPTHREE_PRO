@@ -2388,7 +2388,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "KPI Editor",
         icon: "fas fa-user fa-3",
-        link: "kpi-editor",
+        link: "JCP/Modules/Performace-Management/KPI-Editor",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []

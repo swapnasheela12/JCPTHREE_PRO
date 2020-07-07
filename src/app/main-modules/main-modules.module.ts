@@ -73,6 +73,9 @@ import { WorkordersComponent } from './my-jcp/template-card-view/workorders/work
 import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PerformanceDashboardModule } from './performance-dashboard/performance-dashboard.module';
+import { KpiEditorComponent } from './modules/performance-management/kpi-editor/kpi-editor.component';
+import { StatusRendererComponent } from './modules/performance-management/kpi-editor/renderer/status-renderer.component';
+import { VerticaldotRendererComponent } from './modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
 
 
 @NgModule({
@@ -91,7 +94,9 @@ import { PerformanceDashboardModule } from './performance-dashboard/performance-
     PlanningComponent,
     WorkordersComponent,
     TableViewControlComponent,
-  
+    KpiEditorComponent,
+    StatusRendererComponent,
+    VerticaldotRendererComponent
   ],
   imports: [
     CommonModule,
@@ -102,7 +107,7 @@ import { PerformanceDashboardModule } from './performance-dashboard/performance-
     // LayersModule,
     LeafletModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, StatusRendererComponent, VerticaldotRendererComponent]),
 
     //Angular meterial
     FormsModule,
@@ -166,7 +171,10 @@ import { PerformanceDashboardModule } from './performance-dashboard/performance-
     MainLayerComponent,
     CreateReportComponent,
     ButtonRendererComponent,
-    TableViewControlComponent
+    TableViewControlComponent,
+    KpiEditorComponent,
+    StatusRendererComponent,
+    VerticaldotRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,

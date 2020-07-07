@@ -1,0 +1,165 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GridOptions, GridCore } from 'ag-grid-community';
+import { StatusRendererComponent } from './renderer/status-renderer.component';
+import { VerticaldotRendererComponent } from './renderer/verticaldot-renderer.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
+
+
+const HEADER_KPI = [
+  {
+    headerName: "Status",
+    field: "status",
+    width: 180,
+    cellRenderer: 'statusFlagRenderer',
+    pinned: 'left',
+    checkboxSelection: function(params) {
+      return params.columnApi.getRowGroupColumns().length === 0;
+    },
+    headerCheckboxSelection: function(params) {
+      return params.columnApi.getRowGroupColumns().length === 0;
+    },
+    cellClass: 'lock-pinned',
+  }, {
+    headerName: "Name",
+    field: "Name",
+    width: 210,
+    pinned: 'left',
+    cellClass: 'lock-pinned',
+  }, {
+    headerName: "Node",
+    field: "node",
+    width: 230
+  }, {
+    headerName: "Domain",
+    field: "domain",
+    width: 180
+  }, {
+    headerName: "Vendor",
+    field: "vendor",
+    width: 190
+  }, {
+    headerName: "EMS",
+    field: 'ems',
+    width: 140
+  },
+  {
+    headerName: "Created By",
+    colId: 'CfirstName&ClastName',
+    valueGetter: function(params) {
+      return params.data.createrFirstName
+        +' '+params.data.createrLastName;
+    },
+    width: 140
+  },
+  {
+    headerName: "Created Date",
+    field: 'createdDate',
+    width: 140
+  }, 
+  {
+    headerName: "Modified By",
+    colId: 'MfirstName&MlastName',
+    valueGetter: function(params) {
+      return params.data.modifierFirstName+
+      ' '+params.data.modifierLastName;
+    },
+    width: 140
+  }, 
+  {
+    headerName: "Modified Date",
+    field: 'modifierTime',
+    width: 140
+  }, {
+    headerName: "15 Mins. Value",
+    field: '15MinValue',
+    width: 140
+  }, {
+    headerName: "",
+    cellRenderer: 'VerticaldotRenderer',
+    width: 140,
+    id: "dot-rendered-kpi-local"
+  }
+]
+
+@Component({
+  selector: 'app-kpi-editor',
+  templateUrl: './kpi-editor.component.html',
+  styleUrls: ['./kpi-editor.component.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+export class KpiEditorComponent implements OnInit {
+  public columnDefs: any[];
+  public rowData: any;
+  private gridApi;
+  public gridCore: GridCore;
+  public gridOptions: GridOptions;
+  public frameworkComponentsKPIEditor;
+  gridColumnApi: any;
+  public rowSelection;
+  show: any;
+  searchGrid = '';
+  paginationValues : [
+    { value: '10'},
+    { value: '20'},
+    { value: '30'},
+    { value: '40'}
+  ];
+
+  constructor(
+    private http: HttpClient,
+    public dialog: MatDialog
+  ) {
+    this.gridOptions = <GridOptions>{};
+    this.frameworkComponentsKPIEditor = {
+      'statusFlagRenderer': StatusRendererComponent,
+      'VerticaldotRenderer': VerticaldotRendererComponent
+    };
+    this.rowSelection = 'multiple';
+  }
+
+  ngOnInit(): void {
+    this.createColumnDefs();
+    this.getKPIData();
+  }
+
+  private createColumnDefs() {
+    this.columnDefs = HEADER_KPI;
+  }
+
+  toggleSearch() {
+    this.show = !this.show;
+  };
+
+  onFilterChanged(value) {
+    this.gridOptions.api.setQuickFilter(value);
+  };
+
+  public onReady(params) {
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  private getKPIData() {
+    this.http.get("assets/data/modules/performance_management/kpi-editor/kpi-editor-list.json")
+      .subscribe(data => {
+        this.rowData = data;
+    });
+  }
+
+  showButtonRenderer(params) {
+    console.log(params)
+    var resultElement = document.createElement("span");
+  }
+
+  openBulkDeleteDialog():void {
+    const message = `Are you Sure you want to perform this action?`;
+    const image = 'warning';
+    const dialogData = new CommonDialogModel("Warning!", message, image);
+    const dialogRef = this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
+  }
+}
