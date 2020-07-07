@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: "My-JCP", component:MyJcpComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+      { path: "Performance-Dashboard", loadChildren: "../app/main-modules/performance-dashboard/performance-dashboard.module#PerformanceDashboardModule" },
       // { path: "table-view-row", component:},
     ],
   },

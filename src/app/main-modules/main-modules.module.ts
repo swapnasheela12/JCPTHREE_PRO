@@ -72,6 +72,7 @@ import { PlanningComponent } from './my-jcp/template-card-view/planning/planning
 import { WorkordersComponent } from './my-jcp/template-card-view/workorders/workorders.component';
 import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { PerformanceDashboardModule } from './performance-dashboard/performance-dashboard.module';
 
 
 @NgModule({
@@ -149,7 +150,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    PerformanceDashboardModule
   ], providers: [
     SideNavService,
     MarkerService

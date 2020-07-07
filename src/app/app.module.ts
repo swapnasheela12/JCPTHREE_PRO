@@ -185,7 +185,8 @@ declare var $: any;
     NgbModule,
     NgxDaterangepickerMd,
     MatFormFieldModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
