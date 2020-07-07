@@ -2370,7 +2370,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "Report Builder",
         icon: "fas fa-user fa-3",
-        link: "report-builder",
+        link: "JCP/Performance-Dashboard/Report-Builder",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []

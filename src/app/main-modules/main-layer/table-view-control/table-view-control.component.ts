@@ -95,7 +95,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public areaParentSelect: FormControl = new FormControl();
 
-  constructor( public hostElement: ElementRef,private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  onAdd = new EventEmitter();
+
+  constructor(public hostElement: ElementRef, private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -234,25 +236,25 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   jioCentersList: jioCenter[];
   jioCenter_List: jioCenter[] = [
     {
-      "nameState": "Mumbai",
+      "nameState": "AP-DMVM-JC01-0094",
     },
     {
-      "nameState": "Pune",
+      "nameState": "AP-HDBD-JC03-0865",
     },
     {
-      "nameState": "Jamnagar",
+      "nameState": "AP-JGTL-JC01-0883",
     },
     {
-      "nameState": "Bangalore",
+      "nameState": "AP-KKND-JC01-0141",
     },
     {
-      "nameState": "Indore",
+      "nameState": "AP-MCPM-JC01-0127",
     },
     {
-      "nameState": "Chennai",
+      "nameState": "AP-MDMI-JC01-0891",
     },
     {
-      "nameState": "Jaipur",
+      "nameState": "AP-PRUR-JC01-0103",
     },
   ]
 
@@ -329,8 +331,10 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public getName;
   areaSelectionFunc() {
+
+
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
-    console.log(this.getName);
+   
     setTimeout(() => {
       if ($(this.getName).is(':contains(Pan India)')) {
         console.log($(this.getName).is(':contains(Pan India)'));
@@ -435,7 +439,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
             this.rowData = data;
           });
       }
-
     }, 500);
   }
 
@@ -444,12 +447,27 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.gridColumnApi = params.columnApi;
     // this.gridApi.sizeColumnsToFit();
   }
-  
+
+ 
+
+  filterDataList = {
+    selectedLayerName: null,
+    selectedAreaName: null,
+    rowDataTable: null,
+  };
   onRowClicked(event: any) {
-    // this.router.navigate(['/',  'ExecutiveSummary']).then(event => {
-    // }, err => {
-    //   console.log(err) // when there's an error
-    // });
+    console.log(event, "event ag grid data");
+    console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
+   
+    this.filterDataList = {
+      selectedLayerName: this.selectedLayerCtrl.value,
+      selectedAreaName: this.selectedOptionArea,
+      rowDataTable: event.data,
+    };
+
+    this.onAdd.emit(this.filterDataList);
+
+    // this.dialogRef.close(event.data);
 
   }
 

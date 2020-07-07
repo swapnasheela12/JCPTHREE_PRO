@@ -23,6 +23,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   customControl;
   customControlList;
 
+  public currentZoom;
+
 
   constructor(private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
@@ -115,7 +117,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.map.pm.addControls(options);
     //geo json control
 
-
+    this.currentZoom = this.map.getZoom();
+   
     //custome controller//
     this.customControl = L.Control.extend({
 
@@ -151,7 +154,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.map.addControl(new this.customControl());
 
     let _dialog = this.dialog;
-
+    let _currentZoom = this.currentZoom;
+    
     this.customControlList = L.Control.Layers.extend({
       options: {
         position: 'bottomright',
@@ -163,19 +167,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         container.style.position = 'absolute';
         container.style.bottom = '0px';
         container.style.right = '50px';
-        var backwards = L.DomUtil.create('a', 'horizontal_icon_custom', container);
-        backwards.innerHTML = '<div class="ic ic-table-01"></div>';
+        var tableViewControlButton = L.DomUtil.create('a', 'horizontal_icon_table_view', container);
+        tableViewControlButton.innerHTML = '<div class="ic ic-table-01"></div>';
 
-        var middle = L.DomUtil.create('a', 'horizontal_icon_custom', container);
+        var middle = L.DomUtil.create('a', 'horizontal_icon_kpi', container);
         middle.innerHTML = '<div class="ic ic-KPI-01"></div>';
 
-        var forwards = L.DomUtil.create('a', 'horizontal_icon_custom', container);
+        var forwards = L.DomUtil.create('a', 'horizontal_icon_legends', container);
         forwards.innerHTML = '<div class="ic ic-legends-01"></div>';
 
-        backwards.onclick = function () {
-          console.log('buttonClicked');
+        tableViewControlButton.onclick = function () {
 
-          const dialogRef = _dialog.open(TableViewControlComponent, {
+          let targetElement = (<HTMLInputElement>event.target);
+          L.DomUtil.removeClass(tableViewControlButton, 'horizontal_icon_table_view');
+          targetElement.classList.add("control_layer_active");
+
+          var optionsListDialogRef = {
             width: '560px',
             height: '470px',
             position: { bottom: '60px', right: "60px" },
@@ -183,13 +190,28 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             backdropClass: 'cdk-overlay-transparent-backdrop',
             disableClose: true,
             hasBackdrop: true
-          });
+          }
+          const dialogRef = _dialog.open(TableViewControlComponent, optionsListDialogRef);
+
           dialogRef.backdropClick().subscribe(_ => {
-            // Close the dialog
             dialogRef.close();
           });
 
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(result, "result after close data got");
+
+            L.DomUtil.addClass(tableViewControlButton, 'horizontal_icon_table_view');
+            targetElement.classList.remove("control_layer_active");
+          });
+
+          const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
+            // do something
+            console.log(data, "still got data open")
+            console.log(_currentZoom ,"_currentZoom ");
+          });
+
         }
+
 
         middle.onclick = function () {
           console.log('buttonClicked_middle');
@@ -205,6 +227,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
     this.map.addControl(new this.customControlList());
+
+    
+
     //custome controller//
 
   }

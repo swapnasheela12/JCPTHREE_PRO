@@ -1,5 +1,4 @@
 .table-view-layers-dialog-container {
-
     // width: 30rem;
     // height: 20rem;
     // box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);	
@@ -17,34 +16,26 @@
         background: inherit;
         overflow: hidden;
         padding: 0;
-
         .jcp-table-control-layers-container {
             height: 600px;
-
             .toolbar-table-control-layers {
                 height: 55px;
-
                 .toolbar-table-control-title {
                     font-size: 18px;
                     font-family: Lato Bold;
                 }
-
                 .toolbar-table-control-icon-list {
                     font-size: 22px;
-
                 }
             }
-
             .table-control-layers-filter {
                 .filter-selected-layers {
                     .form-field-selected-layers {
                         font-size: 14px;
                         font-family: Lato Medium;
-
                         .mat-select-selected-layers {}
                     }
                 }
-
                 .filter-selected-area {
                     .form-field-selected-area {
                         font-size: 14px;
@@ -52,21 +43,17 @@
                     }
                 }
             }
-
             .ag-grid-jcp-container {
                 height: inherit;
-
                 .table-view-zoom-ag-grid {
                     .ag-root-wrapper {
                         background: inherit;
-
                         .ag-root-wrapper-body {
                             .ag-root {
                                 .ag-header {
                                     // background: red;
                                     background: rgba(0, 120, 215, .2);
                                     border-bottom-color: rgba(0, 0, 0, .2);
-
                                     .ag-pinned-left-header {
                                         border-right-color: transparent;
                                         .ag-header-row-column {
@@ -75,12 +62,10 @@
                                             }
                                         }
                                     }
-
                                     .ag-header-viewport {
                                         .ag-header-container {
                                             .ag-header-row {
                                                 .ag-header-cell {}
-
                                                 .ag-header-cell:hover {
                                                     background: rgba(0, 120, 215, .2);
                                                 }
@@ -88,14 +73,11 @@
                                         }
                                     }
                                 }
-
                                 .ag-body-viewport {
                                     // background: red;
-
                                     .ag-center-cols-clipper {
                                         .ag-center-cols-viewport {
                                             .ag-center-cols-container {
-
                                                 .ag-row {
                                                     background: inherit;
                                                     border-color: rgba(0, 0, 0, .2);
@@ -103,20 +85,20 @@
                                             }
                                         }
                                     }
-                                    .ag-pinned-left-cols-container{
-                                        .ag-row{
-                                            background:inherit;
+                                    .ag-pinned-left-cols-container {
+                                        .ag-row {
+                                            background: inherit;
                                             border-color: rgba(0, 0, 0, .2);
                                             // .ag-cell-range-single-cell{
                                             //     border-right-color: transparent;
                                             // }
-                                            .ag-cell-last-left-pinned{
+                                            .ag-cell-last-left-pinned {
                                                 // border-right-color: transparent;
                                                 // border-right: solid 0px;
                                                 border-right-color: #e2e2e200;
                                             }
-                                            .ag-cell-focus{
-                                               border: 1px solid #3f51b5!important; 
+                                            .ag-cell-focus {
+                                                border: 1px solid #3f51b5!important;
                                             }
                                         }
                                     }
@@ -127,9 +109,7 @@
                 }
             }
         }
-
     }
-
     .mat-dialog-container:before {
         content: "";
         position: absolute;
@@ -144,4 +124,13 @@
         // filter: blur(10px);
         margin: -20px;
     }
+}
+
+.control_layer_active {
+    width: 36px !important;
+    height: 37px !important;
+    background: #2196F3;
+    color: #ffffff !important;
+    border-radius: 18px 0 0 18px;
+    padding: 9px !important;
 }

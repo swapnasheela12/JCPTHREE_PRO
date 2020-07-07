@@ -38,17 +38,14 @@
             border-color: fade-out(#000, 0.87);
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
             border-radius: 20px;
-
             &.leaflet-control-zoom {
                 //margin-top: 10px
             }
-
             .leaflet-control-custom-count-layers {
                 height: inherit;
                 position: relative;
                 // margin-left: 15px;
                 color: #707070;
-
                 .tab-container-layers {
                     background: red !important;
                     margin: auto 0;
@@ -61,7 +58,6 @@
                     //     color: #006BD2;
                     //     font-size: 12px;
                     //   }
-
                     //   .icon-style {
                     //     font-size: 30px;
                     //     padding: 5px 11px;
@@ -72,17 +68,12 @@
                     //     margin: 0px 6px;
                     //     color: #B3D4F4;
                     //   }
-
                     //   .icon-style:hover {
                     //     background: rgba(0, 112, 219, 0.5411764705882353);
                     //     color: #ffffff;
                     //   }
                 }
-
-
-
             }
-
             .leaflet-bar-horizontal {
                 display: inline-block;
                 float: none;
@@ -94,34 +85,28 @@
                 // height: 40px;
                 // position: absolute;
                 // right: 50px;
-
             }
-
             .leaflet-bar-horizontal a {
                 display: inline-block;
                 float: none;
                 border-right: 1px solid #ccc;
                 border-bottom-width: 0px;
                 color: #000 !important;
-
                 .horizontal_icon_custom {
                     color: #000;
                     padding: 10px 14px !important;
                 }
             }
-
             .leaflet-bar-horizontal a:hover {
                 border-bottom-width: 0px;
                 color: rgba(0, 0, 0, 0.54);
             }
-
             .leaflet-bar-horizontal a:first-child {
                 border-top-left-radius: 4px;
                 border-bottom-left-radius: 4px;
                 border-top-right-radius: 0px;
                 color: rgba(0, 0, 0, 0.54) !important;
             }
-
             .leaflet-bar-horizontal a:last-child {
                 border-top-right-radius: 4px;
                 border-bottom-right-radius: 4px;
@@ -146,7 +131,6 @@
 .leaflet-bar {
     user-select: none;
     background-color: fade-out(#ffffff, 0.1);
-
     // border-radius: 0px;
     a,
     a:hover,
@@ -160,14 +144,11 @@
         font-size: 18px !important;
         text-decoration: none;
     }
-
     &.leaflet-disabled {
         color: fade-out(#000, 0.12);
     }
-
     &.active {
         background: rgb(30, 136, 229);
-
         a,
         a:hover,
         a:focus {
@@ -176,10 +157,22 @@
             background-image: none;
         }
     }
-
-    .horizontal_icon_custom {
+    // .horizontal_icon_custom {
+    //     color: #000;
+    //     padding: 10px;
+    //     // padding: 9px 10px !important;
+    // }
+    .horizontal_icon_table_view {
         color: #000;
-        padding: 9px 10px !important;
+        padding: 10px;
+    }
+    .horizontal_icon_kpi {
+        color: #000;
+        padding: 10px;
+    }
+    .horizontal_icon_legends {
+        color: #000;
+        padding: 10px;
     }
 }
 
@@ -215,7 +208,6 @@
     text-shadow: 0 0 4px white, 0 0 4px white, 0 0 4px white;
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
-
     &:after,
     &:before {
         content: none;
@@ -268,45 +260,37 @@
         border-radius: 0px;
         padding: 0px;
     }
-
     .leaflet-popup-content {
         border: 0px;
         margin: 0px;
     }
-
     .leaflet-popup-tip {
         background-color: #4285F4;
     }
-
     &.leaflet-tooltip-left {
         .leaflet-popup-content-wrapper {
             position: relative;
             z-index: 2;
             margin-left: 20px;
         }
-
         .leaflet-popup-tip {
             background-color: #4285F4;
         }
-
         .leaflet-popup-tip-container {
             position: absolute;
             top: 25%;
             overflow: visible;
         }
     }
-
     &.leaflet-tooltip-right {
         .leaflet-popup-content-wrapper {
             position: relative;
             z-index: 2;
             margin-right: 20px;
         }
-
         .leaflet-popup-tip {
             background-color: #4285F4;
         }
-
         .leaflet-popup-tip-container {
             position: absolute;
             top: 25%;
@@ -314,106 +298,84 @@
             overflow: visible;
         }
     }
-
     .customercare-popup-section {
         padding: 15px;
-
         &.sectionblue {
             background-color: #4285F4;
         }
-
         &.sectionwhite {
             .title-text {
                 color: fade-out(#000, 0);
             }
-
             .main-text {
                 color: fade-out(#000, 0.13);
-
                 &.double {
                     line-height: 14px;
                 }
             }
-
             .anchor-text {
                 font-size: 12px;
                 color: fade-out(#000, 0.13);
             }
-
             .label-text {
                 color: fade-out(#000, 0.46);
             }
-
             small {
                 color: fade-out(#000, 0.46);
             }
-
             .black {
                 color: #000;
             }
-
             .red {
                 color: #EC2024;
             }
-
             .green {
                 color: #7EC247;
             }
-
             .orange {
                 color: #F7931E;
             }
         }
     }
-
     .anchor-text {
         font-size: 12px;
         font-weight: 500;
         color: fade-out(#fff, 0.13);
         cursor: pointer;
     }
-
     .title-text {
         font-size: 16px;
         font-weight: 500;
         color: fade-out(#fff, 0);
     }
-
     .main-text {
         font-size: 13px;
         color: fade-out(#fff, 0.13);
     }
-
     .label-text {
         font-size: 12px;
         color: fade-out(#fff, 0.46);
     }
-
     .site-placeholder-div {
         max-width: 80px;
         max-height: 80px;
     }
-
     .site-placeholder-image {
         width: 70px;
         height: 70px;
         display: inline-block;
         margin: 0px 0px 0px 10px;
     }
-
     .customercare-popup-section-item {
         padding-top: 5px;
         padding-bottom: 5px;
     }
-
     .customercare-popup-backsection {
         cursor: pointer;
         padding: 0;
-
         &:focus {
             outline: 0;
         }
-
         md-icon {
             color: fade-out(#fff, 0.13);
         }
@@ -423,38 +385,31 @@
 .leaflet-simple-popup {
     font-size: 13px;
     color: fade-out(#000, 0.87);
-
     .leaflet-popup-content-wrapper {
         border-radius: 0px;
         box-shadow: none;
         border: 1px solid fade-out(#000, 0.70);
     }
-
     .leaflet-popup-content {
         border: 0px;
         margin: 10px;
         max-width: none;
     }
-
     .leaflet-popup-tip-container {
         margin-top: -1px;
-
         &.hidden {
             visibility: hidden;
         }
     }
-
     .leaflet-popup-tip {
         background-color: #fff;
         box-shadow: none;
         border: 1px solid fade-out(#000, 0.70);
     }
-
     .prefix {
         color: fade-out(#000, 0.46);
         font-weight: 400;
     }
-
     .value {
         color: fade-out(#000, 0.13);
         font-weight: 500;
@@ -468,32 +423,26 @@
 
 .leaflet-measure-popup {
     color: fade-out(#000, 0.13);
-
     & * {
         box-sizing: border-box;
     }
-
     .leaflet-popup-content-wrapper {
         border: 0 none;
         padding: 0;
         box-shadow: 0 1px 5px fade-out(#000, 0.6);
     }
-
     .leaflet-popup-content {
         margin: 0;
     }
-
     .leaflet-popup-tip {
         box-shadow: 0 1px 5px fade-out(#000, 0.6);
     }
-
     .measure-popup-wrap {
         width: 100%;
         height: 100%;
         min-height: 100%;
         overflow: hidden;
     }
-
     .measure-popup-header {
         background-color: #2278CF;
         max-height: 48px;
@@ -504,35 +453,29 @@
         text-align: center;
         cursor: move;
         line-height: 48px;
-
         .md-icon-button {
             margin-right: -10px;
             margin-top: 4px;
             vertical-align: middle;
             display: inline-block;
         }
-
         md-icon {
             color: #fff;
         }
-
         span {
             vertical-align: middle;
             display: inline-block;
         }
     }
-
     .measure-popup-body {
         overflow: hidden;
         max-height: 170px;
         width: 100%;
         font-size: 13px;
         padding: 5px 0;
-
         .perfect-scrollbar {
             max-height: 160px;
         }
-
         span {
             vertical-align: middle;
             display: inline-block;
@@ -540,13 +483,11 @@
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-
         .measureheadingtool-row {
             padding: 5px 15px;
             position: relative;
         }
     }
-
     .measurecountindex {
         position: absolute;
         left: 15px;
@@ -554,64 +495,52 @@
         width: 20px;
         font-size: 14px;
     }
-
     .measure-info {
         width: 100%;
         display: inline-block;
         padding-left: 20px;
         position: relative;
     }
-
     .measure-icon {
         font-size: 21px;
         padding-right: 7px;
     }
-
     .measurelatlng {
         padding: 0 5px 0 0px;
         width: 95px;
     }
-
     .measureDegree {
         width: 55px;
         position: absolute;
         right: 0px;
         top: 1px;
     }
-
     .measuremage {
         padding: 2px 4px 2px 25px;
         width: 215px;
     }
-
     .measureDistance {
         width: 85px;
         position: absolute;
         right: 0px;
         bottom: 2px;
     }
-
     .measure-greyText {
         color: #999;
     }
-
     .measure-redText {
         color: #eb4609;
     }
-
     .measure-blueText {
         color: #2987ca;
     }
-
     .measure-blackText {
         color: #111;
     }
-
     .measure-popup-chart {
         padding: 7px 15px;
         border-top: 1px solid fade-out(#000, 0.87);
         height: 150px;
-
         .measure-popup-chart-container {
             width: 100%;
             height: 100%;
@@ -622,32 +551,26 @@
 
 .leaflet-planned-popup {
     color: fade-out(#000, 0.13);
-
     & * {
         box-sizing: border-box;
     }
-
     .leaflet-popup-content-wrapper {
         border: 0 none;
         padding: 0;
         box-shadow: 0 1px 5px fade-out(#000, 0.6);
     }
-
     .leaflet-popup-content {
         margin: 0;
     }
-
     .leaflet-popup-tip {
         box-shadow: 0 1px 5px fade-out(#000, 0.6);
     }
-
     .planned-popup-wrap {
         width: 100%;
         height: 100%;
         min-height: 100%;
         overflow: hidden;
     }
-
     .planned-popup-header {
         background-color: #2278CF;
         max-height: 48px;
@@ -658,22 +581,18 @@
         text-align: center;
         cursor: move;
         line-height: 48px;
-
         .md-icon-button {
             margin-right: -10px;
             margin-top: 4px;
             vertical-align: middle;
             display: inline-block;
         }
-
         md-icon {
             color: #fff;
         }
-
         span {
             vertical-align: middle;
             display: inline-block;
-
             &.flex,
             &.flex-33 {
                 text-overflow: ellipsis;
@@ -683,13 +602,11 @@
             }
         }
     }
-
     .planned-popup-body {
         overflow: hidden;
         width: 100%;
         font-size: 13px;
         padding: 5px 0;
-
         span {
             vertical-align: middle;
             display: inline-block;
@@ -697,25 +614,21 @@
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-
         .planned-popup-body-row {
             padding: 2px 15px;
             position: relative;
             line-height: 26px;
             color: fade-out(#000, 0.46);
-
             &.done {
                 .colorCode {
                     visibility: visible;
                     ;
                 }
-
                 span {
                     color: fade-out(#000, 0.13);
                     font-weight: 500;
                 }
             }
-
             .colorCode {
                 height: 20px;
                 width: 5px;
@@ -725,21 +638,17 @@
                 vertical-align: middle;
                 visibility: hidden;
             }
-
             span {
                 color: fade-out(#000, 0.70);
             }
-
             .plannedDays {
                 width: 70px;
                 margin-left: 10px;
             }
-
             .plannedTaskName {
                 width: 125px;
                 margin-left: 10px;
             }
-
             .plannedDate {
                 width: 80px;
                 margin-left: 10px;
@@ -747,7 +656,6 @@
             }
         }
     }
-
     .planned-popup-footer {
         font-weight: 500;
         font-size: 13px;
@@ -758,7 +666,6 @@
         max-height: 43px;
         height: 43px;
         text-align: left;
-
         .text-overflow {
             text-overflow: ellipsis;
             overflow: hidden;
@@ -766,95 +673,72 @@
             white-space: nowrap;
         }
     }
-
     .plannedstepcolor0 {
         background-color: #757584 !important;
     }
-
     .plannedstepcolor1 {
         background-color: #003366 !important;
     }
-
     .plannedstepcolor2 {
         background-color: #5900B2 !important;
     }
-
     .plannedstepcolor3 {
         background-color: #0070c0 !important;
     }
-
     .plannedstepcolor4 {
         background-color: #0ff !important;
     }
-
     .plannedstepcolor5 {
         background-color: #8C6900 !important;
     }
-
     .plannedstepcolor6 {
         background-color: #00b050 !important;
     }
-
     .plannedstepcolor7 {
         background-color: #92d050 !important;
     }
-
     .plannedstepcolor8 {
         background-color: #a2ebfc !important;
     }
-
     .plannedstepcolor9 {
         background-color: #00506a !important;
     }
-
     .plannedstepcolor10 {
         background-color: #606 !important;
     }
-
     .plannedstepcolortext0 {
         color: #757584 !important;
     }
-
     .plannedstepcolortext1 {
         color: #003366 !important;
     }
-
     .plannedstepcolortext2 {
         color: #5900B2 !important;
     }
-
     .plannedstepcolortext3 {
         color: #0070c0 !important;
     }
-
     .plannedstepcolortext4 {
         color: #0ff !important;
     }
-
     .plannedstepcolortext5 {
         color: #8C6900 !important;
     }
-
     .plannedstepcolortext6 {
         color: #00b050 !important;
     }
-
     .plannedstepcolortext7 {
         color: #92d050 !important;
     }
-
     .plannedstepcolortext8 {
         color: #a2ebfc !important;
     }
-
     .plannedstepcolortext9 {
         color: #00506a !important;
     }
-
     .plannedstepcolortext10 {
         color: #606 !important;
     }
-
     //plannedstepcolortext3
 }
 
