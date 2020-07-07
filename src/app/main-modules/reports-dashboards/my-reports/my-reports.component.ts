@@ -13,7 +13,6 @@ import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/a
 // import {Grid} from "ag-grid-community";
 // import { AllCommunityModules } from '@ag-grid-community/all-modules';
 // import { AllCommunityModules } from 'ag-grid-community';
-import { ButtonRendererComponent } from './button-renderer.component';
 import { CreateReportComponent } from '../reports-wizard/create-report/create-report.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -51,7 +50,7 @@ export class MyReportsComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    buttonRenderer: ButtonRendererComponent,
+    // buttonRenderer,
   };
 
   // ///////my report tabel//////////
