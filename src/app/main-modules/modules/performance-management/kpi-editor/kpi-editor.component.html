@@ -15,15 +15,15 @@
                     </mat-icon>
                 </mat-form-field>
                 <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
-                <button mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
+                <button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" *ngIf="showGlobalOperation">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
                 </button>
                 <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
                     <button mat-menu-item>
-                        <span>Edit</span>
+                        <span>Print</span>
                     </button>
                     <button mat-menu-item>
-                        <span>Clone</span>
+                        <span>Download</span>
                     </button>
                     <button mat-menu-item (click)="openBulkDeleteDialog()">
                         <span>Delete</span>
@@ -57,7 +57,8 @@
             [groupSelectsChildren]="true"
             [debug]="true"
             [frameworkComponents]="frameworkComponentsKPIEditor" 
-            (gridReady)="onReady($event)">
+            (gridReady)="onReady($event)"
+            (selectionChanged)="selectionChanged($event)">
         </ag-grid-angular>
         <div class="ag-material-customer-pager-wrapper">
        <div class="pagination-aggrid d-flex justify-content-end align-items-center">

@@ -31,13 +31,7 @@
         height: calc(100% - 80px) !important;
         max-height: calc(100% - 80px) !important;
     }
-    .mat-menu-panel.kpi-editor-menu-render {
-        .mat-menu-item{
-            width: 112px !important;
-            height: 32px !important;
-            line-height: 1 !important;
-        }
-    }
+    
     .kpi-editor-menu-render .mat-menu-content .mat-menu-item:hover {
         background-color: #f3f7fc;
     }
@@ -48,8 +42,26 @@
     }
 }
 
+.mat-menu-panel.kpi-editor-menu-render {
+    .mat-menu-item{
+        width: 112px !important;
+        height: 32px !important;
+        line-height: 1 !important;
+    }
+}
 
 .ag-theme-material .ag-checkbox-input-wrapper.ag-checked::after {
     color: #0078D7 !important;
 }
 
+.ag-theme-material .ag-checkbox-input-wrapper.ag-indeterminate::after {
+    color: #6F6F70 !important;
+}
+
+.ag-theme-material .ag-pinned-left-header {
+    border-right: none;
+}
+
+.ag-theme-material .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) {
+    border-right: none !important;
+}

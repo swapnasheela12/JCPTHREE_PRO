@@ -1,87 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore } from 'ag-grid-community';
+import { GridOptions, GridCore, SelectionChangedEvent } from 'ag-grid-community';
 import { StatusRendererComponent } from './renderer/status-renderer.component';
 import { VerticaldotRendererComponent } from './renderer/verticaldot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
-
-
-const HEADER_KPI = [
-  {
-    headerName: "Status",
-    field: "status",
-    width: 180,
-    cellRenderer: 'statusFlagRenderer',
-    pinned: 'left',
-    checkboxSelection: function(params) {
-      return params.columnApi.getRowGroupColumns().length === 0;
-    },
-    headerCheckboxSelection: function(params) {
-      return params.columnApi.getRowGroupColumns().length === 0;
-    },
-    cellClass: 'lock-pinned',
-  }, {
-    headerName: "Name",
-    field: "Name",
-    width: 210,
-    pinned: 'left',
-    cellClass: 'lock-pinned',
-  }, {
-    headerName: "Node",
-    field: "node",
-    width: 230
-  }, {
-    headerName: "Domain",
-    field: "domain",
-    width: 180
-  }, {
-    headerName: "Vendor",
-    field: "vendor",
-    width: 190
-  }, {
-    headerName: "EMS",
-    field: 'ems',
-    width: 140
-  },
-  {
-    headerName: "Created By",
-    colId: 'CfirstName&ClastName',
-    valueGetter: function(params) {
-      return params.data.createrFirstName
-        +' '+params.data.createrLastName;
-    },
-    width: 140
-  },
-  {
-    headerName: "Created Date",
-    field: 'createdDate',
-    width: 140
-  }, 
-  {
-    headerName: "Modified By",
-    colId: 'MfirstName&MlastName',
-    valueGetter: function(params) {
-      return params.data.modifierFirstName+
-      ' '+params.data.modifierLastName;
-    },
-    width: 140
-  }, 
-  {
-    headerName: "Modified Date",
-    field: 'modifierTime',
-    width: 140
-  }, {
-    headerName: "15 Mins. Value",
-    field: '15MinValue',
-    width: 140
-  }, {
-    headerName: "",
-    cellRenderer: 'VerticaldotRenderer',
-    width: 140,
-    id: "dot-rendered-kpi-local"
-  }
-]
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-kpi-editor',
@@ -100,6 +24,89 @@ export class KpiEditorComponent implements OnInit {
   public rowSelection;
   show: any;
   searchGrid = '';
+  public showGlobalOperation:Boolean = false;
+  HEADER_KPI = [
+    {
+      headerName: "Status",
+      field: "status",
+      width: 180,
+      cellRenderer: 'statusFlagRenderer',
+      pinned: 'left',
+      checkboxSelection: function(params) {
+        return params.columnApi.getRowGroupColumns().length === 0;
+      },
+      headerCheckboxSelection: function(params) {
+        return params.columnApi.getRowGroupColumns().length === 0;
+      },
+      cellClass: 'lock-pinned',
+    }, {
+      headerName: "Name",
+      field: "Name",
+      width: 210,
+      pinned: 'left',
+      cellClass: 'lock-pinned',
+    }, {
+      headerName: "Node",
+      field: "node",
+      width: 110
+    }, {
+      headerName: "Domain",
+      field: "domain",
+      width: 120
+    }, {
+      headerName: "Vendor",
+      field: "vendor",
+      width: 120
+    }, {
+      headerName: "EMS",
+      field: 'ems',
+      width: 110
+    },
+    {
+      headerName: "Created By",
+      colId: 'CfirstName&ClastName',
+      valueGetter: function(params) {
+        return params.data.createrFirstName
+          +' '+params.data.createrLastName;
+      },
+      width: 160
+    },
+    {
+      headerName: "Created Date",
+      field: 'createdDate',
+      width: 160,
+      valueFormatter: function(params){
+        return moment(params.value).format('LL')
+      }
+    }, 
+    {
+      headerName: "Modified By",
+      colId: 'MfirstName&MlastName',
+      valueGetter: function(params) {
+        return params.data.modifierFirstName+
+        ' '+params.data.modifierLastName;
+      },
+      width: 160
+    }, 
+    {
+      headerName: "Modified Date",
+      field: 'modifierTime',
+      width: 160,
+      valueFormatter: function(params){
+        return moment(params.value).format('LL')
+      }
+    }, {
+      headerName: "15 Mins. Value",
+      field: '15MinValue',
+      width: 160
+    }, {
+      headerName: "",
+      cellRenderer:'VerticaldotRenderer',
+      width: 70,
+      id: "dot-rendered-kpi-local"
+    }
+  ]
+
   paginationValues : [
     { value: '10'},
     { value: '20'},
@@ -125,7 +132,7 @@ export class KpiEditorComponent implements OnInit {
   }
 
   private createColumnDefs() {
-    this.columnDefs = HEADER_KPI;
+    this.columnDefs = this.HEADER_KPI;
   }
 
   toggleSearch() {
@@ -161,5 +168,11 @@ export class KpiEditorComponent implements OnInit {
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  selectionChanged(event: SelectionChangedEvent) {
+    if (1 < event.api.getSelectedRows().length) {
+      this.showGlobalOperation = true;
+    }
   }
 }
