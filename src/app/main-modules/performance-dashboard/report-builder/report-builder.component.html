@@ -3,9 +3,9 @@
     <div class="report-builder-flex-container">
         <div class="d-flex mx-2 flex-row justify-content-between">
             <div class="px-3 pt-3 col-6 report-builder-flex-item" fxFlex>
-                <div class="py-2 report-builder-title">Report Builder</div>
+                <div class="py-3 report-builder-title">Report Builder</div>
             </div>
-            <div class="px-3 pt-3 col-4 report-builder-flex-item">
+            <div class="px-1 pt-3 col-4 report-builder-flex-item">
                 <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
@@ -18,7 +18,7 @@
             </div>
             <div class="px-1 pt-3 col-2" style="margin:6px">
                 <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
-                <button mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
+                <button style="margin-left: 5px;" mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span>
                     </mat-icon>
                 </button>
