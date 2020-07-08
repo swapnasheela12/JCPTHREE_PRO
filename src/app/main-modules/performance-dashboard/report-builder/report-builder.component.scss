@@ -1,19 +1,33 @@
-.my-report-card {
+.report-builder-card {
     // height: 100%;
     height: 99%;
     min-height: 99%;
     min-width: 100%;
     width: 100%;
     position: relative;
-    .my-report-flex-container {
+    .report-builder-flex-container {
         height: 80px !important;
-        .my-report-flex-item {
+        .report-builder-flex-item {
             font-size: 14px;
+            .report-builder-title {
+                font-size: 16px;
+                font-family: Lato Bold;
+            }
         }
     }
     .jcp-table-container {
         height: calc(100% - 80px) !important;
         max-height: calc(100% - 80px) !important;
+    }
+    .pagination-aggrid {
+        width: calc(100% - 310px);
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        .labels {
+            font-size: 14px;
+            font-family: Lato Regular;
+        }
     }
     .float {
         position: fixed;

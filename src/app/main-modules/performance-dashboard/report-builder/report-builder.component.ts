@@ -1,3 +1,6 @@
+import { CommonDialogModel, CommonPopupComponent } from './../../../common/common-popup/common-popup.component';
+import { StatusRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/status-renderer.component';
+import { VerticaldotRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
 // import { DropDowRBRendererComponent } from './../../reports-dashboards/my-reports/button-renderer.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -5,11 +8,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from "@angular/common/http";
-
+import * as moment from 'moment';
 
 // ag grid
 import * as agGrid from 'ag-grid-community';
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
+import { GridOptions, GridCore, GridApi, ColumnApi,SelectionChangedEvent } from "@ag-grid-community/all-modules";
 // import { GridOptions } from "ag-grid/main";
 // import {Grid} from "ag-grid-community";
 // import { AllCommunityModules } from '@ag-grid-community/all-modules';
@@ -50,9 +53,20 @@ export class ReportBuilderComponent implements OnInit {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
-  public frameworkComponentsMyReport = {
+  public frameworkComponentsReportBuilder = {
     // buttonRenderer: DropDowRBRendererComponent,
+    statusFlagRenderer: StatusRendererComponent,
+    VerticaldotRenderer: VerticaldotRendererComponent
   };
+  public paginationValues: [
+    { value: '10' },
+    { value: '20' },
+    { value: '30' },
+    { value: '40' }
+  ];
+
+  public showGlobalOperation:Boolean = false;
+  public rowSelection = 'multiple';
 
   // ///////my report tabel//////////
   public products;
@@ -113,11 +127,18 @@ export class ReportBuilderComponent implements OnInit {
 
   private createColumnDefs() {
     this.columnDefs = [
+
       {
         headerName: "Name",
         field: "reportName",
         width: 250,
-        pinned: 'left'
+        pinned: 'left',
+        checkboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        headerCheckboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
       }, {
         headerName: "Type",
         field: "reportType",
@@ -129,7 +150,7 @@ export class ReportBuilderComponent implements OnInit {
       }, {
         headerName: "Domain",
         field: "domain",
-        width: 150
+        width: 120
       }, {
         headerName: "Vendor",
         field: "vendor",
@@ -143,35 +164,32 @@ export class ReportBuilderComponent implements OnInit {
         headerName: "Created Date",
         field: "creationTime",
         cellRenderer: function (params) {
-          // return '<div>' + $filter('date')(params.data.creationTime,
-          //   "dd MMM, yyyy") + '</div>';
-        },
-        width: 120
-      }, {
-        headerName: "Modified By",
-        field: "modifierFirstName",
-        width: 120
-      }, {
-        headerName: "Modified Date",
-        field: "modificatioTime",
-        cellRenderer: function (params) {
-          // return '<div>' + $filter('date')(params.data.modificatioTime,
-          //   "dd MMM, yyyy") + '</div>';
+          return moment(params.data.creationTime).format('DD MMM, YYYY');
         },
         width: 150
       }, {
+        headerName: "Modified By",
+        field: "modifierFirstName",
+        width: 160
+      }, {
+        headerName: "Modified Date",
+        field: "modificationTime",
+        cellRenderer: function (params) {
+          return moment(params.data.modificationTime).format('DD MMM, YYYY');
+        },
+        width: 180
+      }, {
         headerName: "Status",
-        width: 130,
+        width: 180,
         cellRenderer: this.shareStatus,
         suppressSorting: true,
         suppressMenu: true,
       }, {
         headerName: "",
-        suppressSorting: true,
-        suppressMenu: true,
-        cellRenderer: this.createMenuTemp,
+        cellRenderer: 'VerticaldotRenderer',
         width: 80,
-        pinned: 'right'
+        pinned: 'right',
+        id: "dot-rendered-kpi-local"
       }
     ];
   }
@@ -197,35 +215,12 @@ export class ReportBuilderComponent implements OnInit {
     } else {
       barColor = '#828282';
     }
-    var template = '<div><span class="md-line-status" style="background-color:' + barColor + '"></span><span>' + data.status + '</span><span class="email-count" ng-if="data.sharecount!=0">+' + data.sharecount + '</span></div>';
+    var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">shared</div> <div class="shared_count">+9</div> </div>';
     return template;
   };
 
 
-  createMenuTemp(params) {
-    // var data = params.data;
-    // var template = '<mat-menu ng-if="vm.vertexVisibilty" >' +
-    //   '<mat-button class="md-icon-button" href="" aria-label="Actions">' +
-    //   '<mat-icon aria-label="Actions" class="zmdi zmdi-more-vert zmdi-hc-lg" ng-click="vm.openTableMenu($mdOpenMenu, $event)"></mat-icon>' +
-    //   '</mat-button>' +
-    //   '<mat-menu-content>' +
-    //   '<mat-menu-item>' +
-    //   '<mat-button ng-click="vm.onSelectionEditReport(data);">Edit</mat-button>' +
-    //   '</mat-menu-item>' +
-    //   '<mat-menu-item>' +
-    //   '<mat-button ng-click="vm.onSelectionCloneReport(data)">Clone</mat-button>' +
-    //   '</mat-menu-item>' +
-    //   '<mat-menu-item>' +
-    //   '<mat-button  ng-click="vm.dashboardSelectedListShare($event, data);">Share</mat-button>' +
-    //   '</mat-menu-item>' +
-    //   '<mat-menu-item>' +
-    //   '<mat-button ng-click="vm.deleteFromlist();">Delete</mat-button>' +
-    //   '</mat-menu-item>' +
-    //   '</mat-menu-content>' +
-    //   '</mat-menu>';
-    // return template;
-  }
-
+  
   //END table search
 
 
@@ -286,8 +281,23 @@ export class ReportBuilderComponent implements OnInit {
   }
 
 
-  openDialog(): void {
-    this.router.navigate(['/JCP/Reports-and-Dashboard/Report-Wizard']);
-  };
+  selectionChanged(event: SelectionChangedEvent) {
+    console.log(event,"hi lol");
+    if (1 < event.api.getSelectedRows().length) {
+      console.log("hi lol");
+      
+      this.showGlobalOperation = true;
+    }
+  }
+
+  openBulkDeleteDialog():void {
+    const message = `Are you Sure you want to perform this action?`;
+    const image = 'warning';
+    const dialogData = new CommonDialogModel("Warning!", message, image);
+    const dialogRef = this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
+  }
+
 
 }

@@ -1,29 +1,38 @@
-<mat-card class="my-report-card p-0">
+<mat-card class="report-builder-card p-0">
 
-    <div class="my-report-flex-container">
+    <div class="report-builder-flex-container">
         <div class="d-flex mx-2 flex-row justify-content-between">
-            <div class="px-3 pt-3 col-4 my-report-flex-item">
-                <mat-form-field>
-                    <mat-select disableOptionCentering (click)="beforeOpen()" placeholder="Report Measure" panelClass="selectMenuPanel" [(value)]="reportMeasureSelected">
-                        <mat-option *ngFor="let report of reportsMeasureList" [value]="report.value">
-                            {{report.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div class="px-3 pt-3 col-6 report-builder-flex-item" fxFlex>
+                <div class="py-2 report-builder-title">Report Builder</div>
             </div>
-            <div class="px-3 pt-3  col-4 my-report-flex-item">
-
+            <div class="px-3 pt-3 col-4 report-builder-flex-item">
                 <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
-
                 <mat-form-field *ngIf="show">
-                    <!-- <mat-label>Filter</mat-label> -->
                     <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
                     <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
+            </div>
+            <div class="px-1 pt-3 col-2" style="margin:6px">
+                <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
+                <button mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
+                    <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span>
+                    </mat-icon>
+                </button>
+                <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
+                    <button mat-menu-item>
+                        <span>Print</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Download</span>
+                    </button>
+                    <button mat-menu-item (click)="openBulkDeleteDialog()">
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
             </div>
         </div>
     </div>
@@ -31,29 +40,23 @@
     <mat-divider style="position: relative;"></mat-divider>
     <div class="jcp-table-container">
 
-        <!-- <ag-grid-angular #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material ag-jcp3"
-            rowHeight="48" 
-            headerHeight="48"
-             [columnDefs]="columnDefsMyReport"
-             [defaultColDef]="defaultColDefMyReport" 
-            [rowSelection]="rowSelection"
-             [animateRows]="true"
-              [rowData]="rowDataMyReport"
-            (gridReady)="onGridReadyMyReport($event)"
-             [frameworkComponents]="frameworkComponentsMyReport"
-              [icons]="icons">
-        </ag-grid-angular> -->
-
         <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)" [frameworkComponents]="frameworkComponentsMyReport" (gridReady)="onReady($event)">
+            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder"
+            (gridReady)="onReady($event)">
         </ag-grid-angular>
+        <div class="ag-material-customer-pager-wrapper">
+            <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
+                <div class="labels">Rows Per Page :</div>
+                <mat-form-field class="col-2">
+                    <mat-select panelClass="selectMenuPanel">
+                        <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber.value">
+                            {{pageNumber.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
 
     </div>
-    <div class="float">
-        <button mat-fab color="primary" aria-label="create report" (click)="openDialog()">
-            <mat-icon style="line-height: 0;">
-                <div class="zmdi zmdi-plus"></div>
-            </mat-icon>
-        </button>
-    </div>
+
 </mat-card>

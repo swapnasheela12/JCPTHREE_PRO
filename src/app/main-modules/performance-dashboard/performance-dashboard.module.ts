@@ -1,3 +1,5 @@
+import { VerticaldotRendererComponent } from './../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
+import { StatusRendererComponent } from './../modules/performance-management/kpi-editor/renderer/status-renderer.component';
 // import { DropDowRBRendererComponent } from './../reports-dashboards/my-reports/button-renderer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -64,7 +66,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([StatusRendererComponent,VerticaldotRendererComponent]),
 
     //Angular meterial
     FormsModule,
