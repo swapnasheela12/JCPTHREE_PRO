@@ -2370,7 +2370,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "Report Builder",
         icon: "fas fa-user fa-3",
-        link: "JCP/Performance-Dashboard/Report-Builder",
+        link: "JCP/Modules/Performance-Management/Report-Builder",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
@@ -2388,7 +2388,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "KPI Editor",
         icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Performace-Management/KPI-Editor",
+        link: "JCP/Modules/Performance-Management/KPI-Editor",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
@@ -2769,7 +2769,7 @@ const LAYERS_LIST = [
 const REPORTS_LIST = [
     {
         name: 'Report Wizard',
-        link: 'JCP/Reports-and-Dashboard/Report-Wizard',
+        link: 'JCP/Reports-and-Dashboards/Report-Wizard',
         icon: 'fas fa-home',
         level: 1,
         component: HomeJcpThreeComponent,
@@ -2777,7 +2777,7 @@ const REPORTS_LIST = [
     },
     {
         name: 'My Reports',
-        link: 'JCP/Reports-and-Dashboard/My-Reports',
+        link: 'JCP/Reports-and-Dashboards/My-Reports',
         level: 1,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',

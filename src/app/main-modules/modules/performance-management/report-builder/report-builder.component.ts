@@ -1,6 +1,9 @@
-import { CommonDialogModel, CommonPopupComponent } from './../../../common/common-popup/common-popup.component';
-import { StatusRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { VerticaldotRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
+import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
+import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
+// import { CommonDialogModel, CommonPopupComponent } from './../../../common/common-popup/common-popup.component';
+// import { StatusRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/status-renderer.component';
+// import { VerticaldotRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
 // import { DropDowRBRendererComponent } from './../../reports-dashboards/my-reports/button-renderer.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';

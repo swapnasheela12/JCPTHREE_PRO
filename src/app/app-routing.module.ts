@@ -24,10 +24,9 @@ const routes: Routes = [
       { path: "Tree-Rendering", component:TreeRenderingComponent},
       { path: "My-JCP", component:MyJcpComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
-      { path: "Reports-and-Dashboard", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      { path: "Performance-Dashboard", loadChildren: "../app/main-modules/performance-dashboard/performance-dashboard.module#PerformanceDashboardModule" },
+      { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       { path: "Modules", children: [
-        { path: "Performace-Management", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"}
+        { path: "Performance-Management", loadChildren: "../app/main-modules/modules/performance-management/performance-management.module#PerformanceManagementModule" },
       ]},
       // { path: "table-view-row", component:},
     ],

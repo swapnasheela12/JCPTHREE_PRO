@@ -1,11 +1,13 @@
-import { VerticaldotRendererComponent } from './../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
-import { StatusRendererComponent } from './../modules/performance-management/kpi-editor/renderer/status-renderer.component';
-// import { DropDowRBRendererComponent } from './../reports-dashboards/my-reports/button-renderer.component';
+import { ReportBuilderComponent } from './report-builder/report-builder.component';
+import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
+import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
+import { KpiEditorComponent } from './kpi-editor/kpi-editor.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PerformanceDashboardRoutingModule } from './performance-dashboard-routing.module';
-import { ReportBuilderComponent } from './report-builder/report-builder.component';
+import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
+
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -57,16 +59,22 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
+
 @NgModule({
-  declarations: [ReportBuilderComponent],
+  declarations: [
+    ReportBuilderComponent,
+    KpiEditorComponent,
+    StatusRendererComponent,
+    VerticaldotRendererComponent
+  ],
   imports: [
     CommonModule,
-    PerformanceDashboardRoutingModule,
+    PerformanceManagementRoutingModule,
 
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent,VerticaldotRendererComponent]),
+    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent]),
 
     //Angular meterial
     FormsModule,
@@ -115,6 +123,11 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-  ]
+  ],
+  exports: [
+    KpiEditorComponent,
+    StatusRendererComponent,
+    VerticaldotRendererComponent
+  ],
 })
-export class PerformanceDashboardModule { }
+export class PerformanceManagementModule { }

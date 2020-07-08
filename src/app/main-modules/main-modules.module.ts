@@ -72,10 +72,7 @@ import { PlanningComponent } from './my-jcp/template-card-view/planning/planning
 import { WorkordersComponent } from './my-jcp/template-card-view/workorders/workorders.component';
 import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { PerformanceDashboardModule } from './performance-dashboard/performance-dashboard.module';
-import { KpiEditorComponent } from './modules/performance-management/kpi-editor/kpi-editor.component';
-import { StatusRendererComponent } from './modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { VerticaldotRendererComponent } from './modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
+import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
 
 
 @NgModule({
@@ -93,10 +90,7 @@ import { VerticaldotRendererComponent } from './modules/performance-management/k
     PerformanceComponent,
     PlanningComponent,
     WorkordersComponent,
-    TableViewControlComponent,
-    KpiEditorComponent,
-    StatusRendererComponent,
-    VerticaldotRendererComponent
+    TableViewControlComponent
   ],
   imports: [
     CommonModule,
@@ -107,8 +101,7 @@ import { VerticaldotRendererComponent } from './modules/performance-management/k
     // LayersModule,
     LeafletModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, StatusRendererComponent, VerticaldotRendererComponent]),
-
+    AgGridModule.withComponents([ButtonRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -156,7 +149,7 @@ import { VerticaldotRendererComponent } from './modules/performance-management/k
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    PerformanceDashboardModule
+    PerformanceManagementModule
   ], providers: [
     SideNavService,
     MarkerService
@@ -172,9 +165,6 @@ import { VerticaldotRendererComponent } from './modules/performance-management/k
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
-    KpiEditorComponent,
-    StatusRendererComponent,
-    VerticaldotRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,
