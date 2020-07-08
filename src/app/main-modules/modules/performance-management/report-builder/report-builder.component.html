@@ -18,11 +18,11 @@
             </div>
             <div class="px-1 pt-3 col-2" style="margin:6px">
                 <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
-                <button style="margin-left: 5px;" mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
+                <button style="margin-left: 5px;" mat-icon-button [matMenuTriggerFor]="reportBuilderMenu" aria-label="Example icon-button with a menu" *ngIf="showGlobalOperation">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span>
                     </mat-icon>
                 </button>
-                <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
+                <mat-menu #reportBuilderMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
                     <button mat-menu-item>
                         <span>Print</span>
                     </button>
@@ -42,7 +42,7 @@
 
         <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
             toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder"
-            (gridReady)="onReady($event)">
+            (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
         </ag-grid-angular>
         <div class="ag-material-customer-pager-wrapper">
             <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
