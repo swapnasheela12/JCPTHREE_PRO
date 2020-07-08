@@ -159,7 +159,7 @@ export class ReportBuilderComponent implements OnInit {
       {
         headerName: "Created By",
         field: "creatorFirstName",
-        width: 130
+        width: 150
       }, {
         headerName: "Created Date",
         field: "creationTime",
@@ -212,10 +212,12 @@ export class ReportBuilderComponent implements OnInit {
     var barColor = '';
     if (status == "Shared") {
       barColor = '#4188de';
+      var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">'+status+'</div> <div class="shared_count">+'+params.data.sharecount+'</div> </div>'
     } else {
       barColor = '#828282';
+      var template = '<div fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">-</div> </div>'
     }
-    var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">shared</div> <div class="shared_count">+9</div> </div>';
+   ;
     return template;
   };
 
