@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
 import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
@@ -61,51 +62,13 @@ export class ReportBuilderComponent implements OnInit {
     statusFlagRenderer: StatusRendererComponent,
     VerticaldotRenderer: VerticaldotRendererComponent
   };
-  public paginationValues: [
-    { value: '10' },
-    { value: '20' },
-    { value: '30' },
-    { value: '40' }
-  ];
+  public paginationValues: number[] = [10, 20, 30, 40];
+  public formControlPageCount = new FormControl();
 
   public showGlobalOperation:Boolean = false;
   public rowSelection;
 
-  // ///////my report tabel//////////
-  public products;
-
-  // ///////my report tabel//////////
-  ///////report measure/////////////
-  public reportMeasureSelected = "Performance Management";
-  @ViewChild(MatSelect, { static: true }) _mySelect: MatSelect;
-  reportsMeasureList: reportsMeasure[] = [
-    { value: 'Configuration Management', viewValue: 'Configuration Management' },
-    { value: 'LSMR', viewValue: 'LSMR' },
-    { value: 'Performance Management', viewValue: 'Performance Management' },
-    { value: 'Work Orders', viewValue: 'Work Orders' }
-  ];
-  ///////report measure/////////////
-
-  onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
-
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
-      // setTimeout(() => {
-      //   this.gridOptions.api.sizeColumnsToFit();
-      // }, 1000);
-    }
-  }
-
-  public onReady(params) {
-    console.log(params, "onReady");
-    this.gridApi = params.api;
-    this.calculateRowCount();
-  }
-
-
-
+  
   constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
 
@@ -116,7 +79,6 @@ export class ReportBuilderComponent implements OnInit {
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      this.calculateRowCount();
     });
 
   }
@@ -224,77 +186,36 @@ export class ReportBuilderComponent implements OnInit {
    ;
     return template;
   };
-
-
   
   //END table search
 
-
-
   //////////////////
-
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.progressby;
-    var taskprogress = params.data.progressbar;
-    // var taskprogresscolor = params.data.taskColor;
-
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-    if (taskcompletion == "Generated") {
-      return template1;
-    } else if (taskcompletion == "#5 in Queue") {
-      return template2;
-    } else {
-      return template3;
-    }
-  }
-
-  // onGridReadyMyReport() {
-  //   this.httpClient
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //       console.log(this.rowData, "this.rowData");
-
-  //     });
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit() {
-
-    // this.onGridReadyMyReport();
-    // ///////mat seletec report measure////////////
-    this._mySelect.openedChange
-      .subscribe((opened) => {
-        if (!opened) {
-          this.overlayContainer.getContainerElement().classList.remove('select-overlay');
-        }
-      });
-    // ///////mat seletec report measure////////////
-  }
-  beforeOpen() {
-    this.overlayContainer.getContainerElement().classList.add('select-overlay');
-  }
+  ngOnInit() {}
 
 
   selectionChanged(event: SelectionChangedEvent) {
-    console.log(event,"hi lol");
-    if (1 < event.api.getSelectedRows().length) {
-      console.log("hi lol");
-      
+    let lengthOfSelectedRow = event.api.getSelectedRows().length;
+    if (1 < lengthOfSelectedRow) {
       this.showGlobalOperation = true;
+    }else{
+      this.showGlobalOperation = false;
     }
   }
+
+  onPageSizeChanged(newPageSize) {
+    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  }
+
+  public onReady(params) {
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+  }
+
 
   openBulkDeleteDialog():void {
     const message = `Are you Sure you want to perform this action?`;

@@ -1,9 +1,9 @@
 @import "@ag-grid-community/core/dist/styles/ag-grid.scss";
 @import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
-
 .mat-card {
     font-family: Lato Medium;
 }
+
 .kpi-editor {
     height: 99%;
     min-height: 99%;
@@ -14,7 +14,6 @@
         .full-height {
             height: 80px !important;
         }
-
         .kpi-title {
             font-weight: 600;
         }
@@ -31,21 +30,20 @@
         height: calc(100% - 80px) !important;
         max-height: calc(100% - 80px) !important;
     }
-    
     .kpi-editor-menu-render .mat-menu-content .mat-menu-item:hover {
         background-color: #f3f7fc;
     }
     .pagination-aggrid {
         width: calc(100% - 380px);
         position: absolute;
-        bottom:0;
+        bottom: 0;
     }
 }
 
 .mat-menu-panel.kpi-editor-menu-render {
-    .mat-menu-item{
-        width: 112px !important;
-        height: 32px !important;
+    .mat-menu-item {
+        width: 125px !important;
+        height: 48px !important;
         line-height: 1 !important;
     }
 }
