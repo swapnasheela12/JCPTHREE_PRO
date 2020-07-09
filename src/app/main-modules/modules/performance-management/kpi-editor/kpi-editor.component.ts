@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore, SelectionChangedEvent } from 'ag-grid-community';
+import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
 import { StatusRendererComponent } from './renderer/status-renderer.component';
 import { VerticaldotRendererComponent } from './renderer/verticaldot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
 import * as moment from 'moment';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 @Component({
   selector: 'app-kpi-editor',
@@ -25,6 +26,14 @@ export class KpiEditorComponent implements OnInit {
   show: any;
   searchGrid = '';
   public showGlobalOperation:Boolean = false;
+
+  paginationValues = [
+    { value: '10'},
+    { value: '20'},
+    { value: '30'},
+    { value: '40'}
+  ];
+
   HEADER_KPI = [
     {
       headerName: "Status",
@@ -103,27 +112,23 @@ export class KpiEditorComponent implements OnInit {
       headerName: "",
       cellRenderer:'VerticaldotRenderer',
       width: 70,
-      id: "dot-rendered-kpi-local"
-    }
-  ]
+      id: "dot-rendered-kpi-local",
+      pinned: 'right'
 
-  paginationValues : [
-    { value: '10'},
-    { value: '20'},
-    { value: '30'},
-    { value: '40'}
+    }
   ];
 
   constructor(
     private http: HttpClient,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public datashare: DataSharingService
   ) {
     this.gridOptions = <GridOptions>{};
     this.frameworkComponentsKPIEditor = {
       'statusFlagRenderer': StatusRendererComponent,
       'VerticaldotRenderer': VerticaldotRendererComponent
     };
-    this.rowSelection = 'multiple';
+    this.datashare.chechboxChangeMessage(this.showGlobalOperation);
   }
 
   ngOnInit(): void {
@@ -173,6 +178,9 @@ export class KpiEditorComponent implements OnInit {
   selectionChanged(event: SelectionChangedEvent) {
     if (1 < event.api.getSelectedRows().length) {
       this.showGlobalOperation = true;
+    } else {
+      this.showGlobalOperation = false;
     }
+    this.datashare.chechboxChangeMessage(this.showGlobalOperation);
   }
 }

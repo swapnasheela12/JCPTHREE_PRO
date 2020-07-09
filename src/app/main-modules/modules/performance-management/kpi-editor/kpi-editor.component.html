@@ -15,7 +15,7 @@
                     </mat-icon>
                 </mat-form-field>
                 <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
-                <button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" *ngIf="showGlobalOperation">
+                <button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" [style.visibility]="showGlobalOperation ? 'visible' : 'hidden'">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
                 </button>
                 <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
@@ -61,17 +61,17 @@
             (selectionChanged)="selectionChanged($event)">
         </ag-grid-angular>
         <div class="ag-material-customer-pager-wrapper">
-       <div class="pagination-aggrid d-flex justify-content-end align-items-center">
-            <div class="labels">Rows Per Page :</div>
-                <mat-form-field class="col-2">
-                    <mat-select
-                        panelClass="selectMenuPanel">
-                        <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber.value">
-                            {{pageNumber.value}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div class="pagination-aggrid d-flex justify-content-end align-items-center">
+                <div class="labels">Rows Per Page :</div>
+                    <mat-form-field class="col-2">
+                        <mat-select
+                            panelClass="selectMenuPanel">
+                            <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber.value">
+                                {{pageNumber.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
-    </div>
 </mat-card>

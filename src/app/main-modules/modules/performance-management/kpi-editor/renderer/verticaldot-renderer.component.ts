@@ -3,11 +3,12 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 import { CommonPopupComponent, CommonDialogModel } from '../../../../../common/common-popup/common-popup.component';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 @Component({ 
   selector: 'verticaldot-button-renderer',
   template: `
-  <div *ngIf="params.colDef.id == 'dot-rendered-kpi-local'">
+  <div *ngIf="params.colDef.id == 'dot-rendered-kpi-local' && !dataTest">
         <button mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
@@ -45,16 +46,19 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dial
 export class VerticaldotRendererComponent implements ICellRendererAngularComp {
   params;
   enabled: Boolean;
+  dataTest : any = false;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public datashare: DataSharingService
   ) {
-      
   }
 
   agInit(params): void {
     this.params = params;
-    console.log(this.params);
+    this.datashare.checkboxMessage.subscribe((checkbox) => {
+      this.dataTest = checkbox;
+    });
   }
 
   refresh(params?: any): boolean {
