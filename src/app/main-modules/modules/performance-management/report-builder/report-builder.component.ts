@@ -2,10 +2,6 @@ import { FormControl } from '@angular/forms';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
 import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
-// import { CommonDialogModel, CommonPopupComponent } from './../../../common/common-popup/common-popup.component';
-// import { StatusRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/status-renderer.component';
-// import { VerticaldotRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
-// import { DropDowRBRendererComponent } from './../../reports-dashboards/my-reports/button-renderer.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,11 +12,7 @@ import * as moment from 'moment';
 
 // ag grid
 import * as agGrid from 'ag-grid-community';
-import { GridOptions, GridCore, GridApi, ColumnApi,SelectionChangedEvent } from "@ag-grid-community/all-modules";
-// import { GridOptions } from "ag-grid/main";
-// import {Grid} from "ag-grid-community";
-// import { AllCommunityModules } from '@ag-grid-community/all-modules';
-// import { AllCommunityModules } from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -52,43 +44,34 @@ export class ReportBuilderComponent implements OnInit {
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
+  public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsReportBuilder = {
-    // buttonRenderer: DropDowRBRendererComponent,
     statusFlagRenderer: StatusRendererComponent,
     VerticaldotRenderer: VerticaldotRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
 
-  public showGlobalOperation:Boolean = false;
+  public showGlobalOperation: Boolean = false;
   public rowSelection;
 
-  
+
   constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
 
     this.gridOptions = <GridOptions>{};
     this.rowSelection = 'multiple';
-    this.httpClientRowData();
     this.createColumnDefs();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
 
-  }
-
-  private httpClientRowData() {
-    this.httpClient
-      .get("assets/data/modules/performance_dashboard/report_builder.json")
-      .subscribe(data => {
-        this.rowData = data;
-      });
   }
 
   private createColumnDefs() {
@@ -178,15 +161,15 @@ export class ReportBuilderComponent implements OnInit {
     var barColor = '';
     if (status == "Shared") {
       barColor = '#4188de';
-      var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">'+status+'</div> <div class="shared_count">+'+params.data.sharecount+'</div> </div>'
+      var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">' + status + '</div> <div class="shared_count">+' + params.data.sharecount + '</div> </div>'
     } else {
       barColor = '#828282';
       var template = '<div fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">-</div> </div>'
     }
-   ;
+    ;
     return template;
   };
-  
+
   //END table search
 
   //////////////////
@@ -195,29 +178,34 @@ export class ReportBuilderComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
   selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
       this.showGlobalOperation = true;
-    }else{
+    } else {
       this.showGlobalOperation = false;
     }
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+
+    this.httpClient.get('assets/data/modules/performance_dashboard/report_builder.json')
+      .subscribe(data => {
+        this.rowData = data;
+        params.api.paginationGoToPage(4);
+      });
   }
 
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
-  public onReady(params) {
-    console.log(params, "onReady");
-    this.gridApi = params.api;
-  }
-
-
-  openBulkDeleteDialog():void {
+  openBulkDeleteDialog(): void {
     const message = `Are you Sure you want to perform this action?`;
     const image = 'warning';
     const dialogData = new CommonDialogModel("Warning!", message, image);
