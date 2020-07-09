@@ -69,7 +69,7 @@ export class ReportBuilderComponent implements OnInit {
   ];
 
   public showGlobalOperation:Boolean = false;
-  public rowSelection = 'multiple';
+  public rowSelection;
 
   // ///////my report tabel//////////
   public products;
@@ -110,6 +110,7 @@ export class ReportBuilderComponent implements OnInit {
     router.events.subscribe((url: any) => console.log(url));
 
     this.gridOptions = <GridOptions>{};
+    this.rowSelection = 'multiple';
     this.httpClientRowData();
     this.createColumnDefs();
 
