@@ -26,13 +26,8 @@ export class KpiEditorComponent implements OnInit {
   show: any;
   searchGrid = '';
   public showGlobalOperation:Boolean = false;
-
-  paginationValues = [
-    { value: '10'},
-    { value: '20'},
-    { value: '30'},
-    { value: '40'}
-  ];
+  public dataTest: any;
+  private paginationPageSize = 10;
 
   HEADER_KPI = [
     {
@@ -129,11 +124,21 @@ export class KpiEditorComponent implements OnInit {
       'VerticaldotRenderer': VerticaldotRendererComponent
     };
     this.datashare.chechboxChangeMessage(this.showGlobalOperation);
+    this.paginationPageSize = 10;
   }
 
   ngOnInit(): void {
     this.createColumnDefs();
     this.getKPIData();
+
+  }
+
+  get PaginationPageSize(): number {
+    return this.paginationPageSize;
+  }
+
+  get gridAPI(): GridApi {
+    return this.gridApi;
   }
 
   private createColumnDefs() {
@@ -159,11 +164,6 @@ export class KpiEditorComponent implements OnInit {
       .subscribe(data => {
         this.rowData = data;
     });
-  }
-
-  showButtonRenderer(params) {
-    console.log(params)
-    var resultElement = document.createElement("span");
   }
 
   openBulkDeleteDialog():void {

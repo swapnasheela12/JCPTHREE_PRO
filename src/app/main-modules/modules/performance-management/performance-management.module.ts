@@ -58,6 +58,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { PaginationComponent } from 'src/app/common/pagination/pagination.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     ReportBuilderComponent,
     KpiEditorComponent,
     StatusRendererComponent,
-    VerticaldotRendererComponent
+    VerticaldotRendererComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -127,7 +129,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
   exports: [
     KpiEditorComponent,
     StatusRendererComponent,
-    VerticaldotRendererComponent
+    VerticaldotRendererComponent,
+    PaginationComponent
   ],
 })
 export class PerformanceManagementModule { }

@@ -51,8 +51,9 @@
             toolPanelSuppressValues
             rowSelection="multiple"
             [enableRangeSelection]="true"
-            [paginationAutoPageSize]="true"
+            [paginationPageSize]="PaginationPageSize"
             [pagination]="true"
+            [suppressPaginationPanel]="true"
             [suppressRowClickSelection]="true"
             [groupSelectsChildren]="true"
             [debug]="true"
@@ -60,18 +61,12 @@
             (gridReady)="onReady($event)"
             (selectionChanged)="selectionChanged($event)">
         </ag-grid-angular>
-        <div class="ag-material-customer-pager-wrapper">
-            <div class="pagination-aggrid d-flex justify-content-end align-items-center">
-                <div class="labels">Rows Per Page :</div>
-                    <mat-form-field class="col-2">
-                        <mat-select
-                            panelClass="selectMenuPanel">
-                            <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber.value">
-                                {{pageNumber.value}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-        </div>
+        <app-pagination 
+            [pageSize]="PaginationPageSize"
+            [gridApi]="gridAPI"
+            [noOfPages]="gridAPI?.paginationGetTotalPages()"
+            [rowCount]="gridAPI?.getDisplayedRowCount()"
+            [paginationArray] = "[10, 20, 30, 40]"
+        ></app-pagination>
+    </div>
 </mat-card>
