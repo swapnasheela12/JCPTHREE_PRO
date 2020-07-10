@@ -31,8 +31,8 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
     styles: [
         `
         .kpi-editor-menu-render .mat-menu-content .mat-menu-item {
-            width: 112px !important;
-            height: 32px !important;
+            width: 125px !important;
+            height: 48px !important;
             line-height: 1 !important;
         }
         .kpi-editor-menu-render .mat-menu-content .mat-menu-item:hover {
