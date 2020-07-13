@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfirmDialogModel, ConfirmPopupComponent } from '../../../confirm-popup/confirm-popup.component';
+import { ConfirmDialogModel, ConfirmPopupComponent } from '../../../commanPopup/confirm-popup/confirm-popup.component';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material/select';

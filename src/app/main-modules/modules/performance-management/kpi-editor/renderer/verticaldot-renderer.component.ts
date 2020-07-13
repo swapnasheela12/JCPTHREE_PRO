@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Inject } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-import { CommonPopupComponent, CommonDialogModel } from '../../../../../common/common-popup/common-popup.component';
+import { CommonPopupComponent, CommonDialogModel } from '../../../../../core/components/commanPopup/common-popup/common-popup.component';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 

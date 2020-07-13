@@ -4,7 +4,7 @@ import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-c
 import { StatusRendererComponent } from './renderer/status-renderer.component';
 import { VerticaldotRendererComponent } from './renderer/verticaldot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 import * as moment from 'moment';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 

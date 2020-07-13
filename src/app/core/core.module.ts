@@ -55,8 +55,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
 import { MyjcpdropdownpanelComponent} from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
-import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
-import { CommonPopupComponent } from '../common/common-popup/common-popup.component';
+import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
+import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
+// import { PaginationComponent } from './../common/pagination/pagination.component'
 
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
@@ -70,8 +71,8 @@ import { CommonPopupComponent } from '../common/common-popup/common-popup.compon
     MyjcpdropdownpanelComponent,
     isEllipsisActiveDirective,
     ConfirmPopupComponent,
-    CommonPopupComponent
-   
+    CommonPopupComponent,
+    // PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -136,7 +137,7 @@ import { CommonPopupComponent } from '../common/common-popup/common-popup.compon
     MmenuDirective,
     isEllipsisActiveDirective,
     SuccessfulComponent,
-
+    // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent
   ]

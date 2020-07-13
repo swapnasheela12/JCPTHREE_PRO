@@ -1,20 +1,22 @@
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ElementRef, ɵCurrencyIndex, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
+import { BehaviorSubject } from 'rxjs';
 
 declare var $: any;
 
-export interface SideNavNode  {
+export class SideNavNode  {
   name: string;
   link: string;
   icon: string;
-  classId? :String
+  classId? :String;
+  level? : number;
   children?: SideNavNode[];
 }
 
-interface ExampleFlatNode {
+class ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
@@ -35,11 +37,12 @@ export class LeftsideNavigationComponent implements OnInit {
   parentNode: any;
   hoverLayer0: any = '';
   level: any = 1;
-  isChecked:any=false;
+  dataChange = new BehaviorSubject<SideNavNode[]>([]);
+  treeData: any[];
+  get data(): SideNavNode[] { return this.dataChange.value; }
+  
 
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
-  @ViewChild('activeCheckbox') refActiveCheckbox;
-  @ViewChildren('activeCheckbox') private myCheckboxes : QueryList<any>;
 
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
@@ -77,6 +80,7 @@ export class LeftsideNavigationComponent implements OnInit {
     this.dataSource.data = LAYERS_DATA;
   }
 
+
   parentIconClick(mmenuDirective, level) {
     if (level == 0) {
       mmenuDirective.menu.API.closeAllPanels()
@@ -97,16 +101,22 @@ export class LeftsideNavigationComponent implements OnInit {
     });
   }
 
+  filterChanged(filterText: string) {
+    // this.filter(filterText);
+    if(filterText)
+    {
+      this.treeControl.expandAll();
+    } else {
+      this.treeControl.collapseAll();
+    }
+  }
+
   layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
     this.hoverLayer0 = 'layers-menu-0';
     const levelNode = this.treeControl.getLevel(node);
     if (iconlayers != '') {
-      // if (levelNode >= 0 ) {
         iconlayers._elementRef.nativeElement.style.marginLeft = '20px';
-      // } else {
-        // iconlayers._elementRef.nativeElement.style.marginLeft = -(levelNode*16)+'px';
-      // }
     }
   }
 
@@ -117,15 +127,9 @@ export class LeftsideNavigationComponent implements OnInit {
       if (treeNode.contains('layer-0')) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
       } else if (treeNode.contains('active-nested-layer')) {
-        // if (levelNode >= 2 ) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
-        // }
       } else {
-        // if (levelNode === 1) {
           iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
-        // } else {
-          // iconlayers._elementRef.nativeElement.style.marginLeft=-(levelNode*24)+'px';
-        // }
       }
     }
   }
@@ -290,8 +294,6 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   todoItemSelectionToggle(checked, node, activeCheckbox) {
-    console.log('change');
-    console.log(checked);
     node.selected = checked;
     if (node.selected == true) {
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
@@ -336,17 +338,4 @@ export class LeftsideNavigationComponent implements OnInit {
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
   }
-
-  filterChanged(filterText: string) {
-    console.log(filterText);
-    console.log(LAYERS_DATA);
-  }
-  //     LAYERS_DATA.filter(filterText);
-  //   if(filterText)
-  //   {
-  //     this.treeControl.expandAll();
-  //   } else {
-  //     this.treeControl.collapseAll();
-  //   }
-  // }
 }

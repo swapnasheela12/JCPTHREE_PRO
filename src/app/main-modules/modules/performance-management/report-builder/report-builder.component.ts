@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/common/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
