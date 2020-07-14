@@ -11,13 +11,13 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div>
+    <span>
         {{firstIndex}} - {{lastIndex}} of {{rowCount}}
-    </div>
-    <div (click)="goToPrevious()" class="previous" [ngClass]="{ 'disabled': currentPage-1 === 0 }">
+    </span>
+    <span (click)="goToPrevious()" class="previous" [ngClass]="{ 'disabled': currentPage-1 === 0 }">
         <mat-icon aria-hidden="false" aria-label="Left arrow">chevron_left</mat-icon>
-    </div>
-    <div  (click)="goToNext()" class="next"  [ngClass]="{ 'disabled': currentPage === (noOfPages) }">
+    </span>
+    <span  (click)="goToNext()" class="next"  [ngClass]="{ 'disabled': currentPage === (noOfPages) }">
         <mat-icon aria-hidden="false" aria-label="Right arrow">chevron_right</mat-icon>
-    </div>
+    </span>
 </div>

@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { GridApi } from '@ag-grid-community/core';
-import { PagerService } from './../../_services/pager/pager.service';
-import { FormControl } from '@angular/forms';
+import { PagerService } from './../../../../_services/pager/pager.service';
 
 @Component({
   selector: 'app-pagination',
