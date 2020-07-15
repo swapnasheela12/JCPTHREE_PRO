@@ -2397,7 +2397,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "MSISDN to Wi-Fi MAC Converter",
         icon: "fas fa-user fa-3",
-        link: "mac-converter",
+        link: "JCP/Modules/Performance-Management/MSISDN-To-Wi-Fi-MAC-Converter",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
