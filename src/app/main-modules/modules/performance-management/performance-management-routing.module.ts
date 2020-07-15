@@ -3,11 +3,17 @@ import { ReportBuilderComponent } from './report-builder/report-builder.componen
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
+import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 
 
 const routes: Routes = [
   { path: "Report-Builder", component: ReportBuilderComponent },
-  { path:"KPI-Editor", component: KpiEditorComponent},
+  { path:"KPI-Editor", 
+    children:[
+      { path: "", component: KpiEditorComponent},
+      {  path: "Create-KPI", component: CreateKpiComponent}
+    ]
+  },
   { path:"MSISDN-To-Wi-Fi-MAC-Converter", component: WifiUtilityComponent }
 ];
 

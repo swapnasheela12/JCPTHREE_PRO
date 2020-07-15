@@ -1,0 +1,18 @@
+$blueactive-color: #E5F0FC;
+.create-kpi-card {
+    padding: 0 !important;
+    .create-kpi-header {
+        height: 80px;
+        display: inline-flex;
+        align-items: center;
+        padding-left:20px;
+        font-weight: 600;
+    }
+    .dynamic-text {
+        display: inline-flex;
+    }
+    
+    .mat-step-header[aria-selected="true"] {
+         background-color: $blueactive-color !important 
+    }
+}
