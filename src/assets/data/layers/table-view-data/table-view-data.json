@@ -1,44 +1,50 @@
-[
+[{
+        "jiostate": "Andhra pradesh",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6015",
+        "greaterThanForty": "6015",
+        "greaterThanSixty": "605"
+    },
     {
-    "jiostate": "Andhra pradesh",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6015",
-    "greaterThanForty": "6015",
-    "greaterThanSixty": "605"
-},
+        "jiostate": "Mumbai",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "3715",
+        "greaterThanForty": "3715",
+        "greaterThanSixty": "315"
+    },
     {
-    "jiostate": "Assam",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "3715",
-    "greaterThanForty": "3715",
-    "greaterThanSixty": "315"
-},
+        "jiostate": "Assam",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "3715",
+        "greaterThanForty": "3715",
+        "greaterThanSixty": "315"
+    },
     {
-    "jiostate": "Bihar",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6465",
-    "greaterThanForty": "6465",
-    "greaterThanSixty": "665"
-},
+        "jiostate": "Bihar",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6465",
+        "greaterThanForty": "6465",
+        "greaterThanSixty": "665"
+    },
     {
-    "jiostate": "Chhattisgarh",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "1015",
-    "greaterThanForty": "1015",
-    "greaterThanSixty": "105"
-},
+        "jiostate": "Chhattisgarh",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "1015",
+        "greaterThanForty": "1015",
+        "greaterThanSixty": "105"
+    },
     {
-    "jiostate": "Delhi",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "4510",
-    "greaterThanForty": "4510",
-    "greaterThanSixty": "510"
-},
+        "jiostate": "Delhi",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "4510",
+        "greaterThanForty": "4510",
+        "greaterThanSixty": "510"
+    },
     {
-    "jiostate": "Assam",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6015",
-    "greaterThanForty": "6015",
-    "greaterThanSixty": "605"
-}
+        "jiostate": "Assam",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6015",
+        "greaterThanForty": "6015",
+        "greaterThanSixty": "605"
+    }
 ]

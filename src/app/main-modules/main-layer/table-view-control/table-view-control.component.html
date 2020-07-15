@@ -50,7 +50,7 @@
             </mat-form-field>
             </button>
             <div style="height: 200px;overflow: auto;">
-                <button mat-menu-item *ngFor='let state of JioStatesList' (click)="jioStateFunc(state.nameState);areaSelectionFunc();">
+                <button mat-menu-item *ngFor='let state of JioStatesList' (click)="jioStateFunc(state.nameState,'jioState');areaSelectionFunc();">
                                     <div>{{ state.nameState }}</div>
                                 </button>
             </div>
@@ -77,7 +77,7 @@
                     </mat-form-field>
                     </button>
                     <div style="height: 200px;overflow: auto;">
-                        <button mat-menu-item *ngFor='let state of jioCentersList' (click)="jioCentersFunc(state.nameState);areaSelectionFunc();">
+                        <button mat-menu-item *ngFor='let state of jioCentersList' (click)="jioCentersFunc(state.nameState,'jioCenter');areaSelectionFunc();">
                                     <div>{{ state.nameState }}</div>
                                 </button>
                     </div>

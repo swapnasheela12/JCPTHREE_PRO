@@ -161,10 +161,11 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   }
 
-
+  selectedOptionParent;
   selectedOptionJioState;
   optionJioStateValue;
-  jioStateFunc(value) {
+  jioStateFunc(value,item) {
+    this.selectedOptionParent = item;
     this.optionJioStateValue = value;
     this.selectedOptionJioState = value;
     this.selectedOptionArea = this.selectedOptionJioState;
@@ -173,7 +174,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   selectedOptionJioCenter;
   optionjioCentersValue;
-  jioCentersFunc(value) {
+  jioCentersFunc(value,item) {
+    this.selectedOptionParent = item;
     this.optionjioCentersValue = value;
     this.selectedOptionJioCenter = value;
     this.selectedOptionArea = this.selectedOptionJioCenter;
@@ -331,10 +333,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public getName;
   areaSelectionFunc() {
-
-
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
-   console.log(this.getName,"this.getName");
    
     setTimeout(() => {
       if ($(this.getName).is(':contains(Pan India)')) {
@@ -454,6 +453,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   filterDataList = {
     selectedLayerName: null,
     selectedAreaName: null,
+    selectedAreaNameParent: null,
     rowDataTable: null,
   };
   onRowClicked(event: any) {
@@ -463,6 +463,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.filterDataList = {
       selectedLayerName: this.selectedLayerCtrl.value,
       selectedAreaName: this.selectedOptionArea,
+      selectedAreaNameParent: this.selectedOptionParent,
       rowDataTable: event.data,
     };
 

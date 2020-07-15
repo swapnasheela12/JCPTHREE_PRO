@@ -207,6 +207,15 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
             // do something
             console.log(data, "still got data open")
+            if (data.selectedAreaName == "Pan India") {
+              console.log("pan");
+              // this.map.setZoom(1);
+              // _currentZoom = 
+            } else if(data.selectedAreaNameParent == "jioState"){
+              console.log("state");
+            }else{
+              console.log("center");
+            }
             console.log(_currentZoom ,"_currentZoom ");
           });
 
