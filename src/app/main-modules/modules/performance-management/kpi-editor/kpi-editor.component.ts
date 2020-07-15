@@ -8,6 +8,10 @@ import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components
 import * as moment from 'moment';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
+const PATHS = [
+  {createKPI: "JCP/Modules/Performance-Management/KPI-Editor/Create-KPI"}
+]
+
 @Component({
   selector: 'app-kpi-editor',
   templateUrl: './kpi-editor.component.html',
@@ -28,6 +32,7 @@ export class KpiEditorComponent implements OnInit {
   public showGlobalOperation:Boolean = false;
   public dataTest: any;
   private paginationPageSize = 10;
+  public paths;
 
   HEADER_KPI = [
     {
@@ -125,6 +130,7 @@ export class KpiEditorComponent implements OnInit {
     };
     this.datashare.chechboxChangeMessage(this.showGlobalOperation);
     this.paginationPageSize = 10;
+    this.paths = PATHS;
   }
 
   ngOnInit(): void {

@@ -14,7 +14,7 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button" color="primary">Create KPI</button>
+                <button mat-raised-button class="submit-button" color="primary" routerLink="/{{paths[0].createKPI}}">Create KPI</button>
                 <button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" [style.visibility]="showGlobalOperation ? 'visible' : 'hidden'">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
                 </button>
