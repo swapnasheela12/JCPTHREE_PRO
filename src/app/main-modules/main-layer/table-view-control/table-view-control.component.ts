@@ -334,6 +334,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
 
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
+   console.log(this.getName,"this.getName");
    
     setTimeout(() => {
       if ($(this.getName).is(':contains(Pan India)')) {

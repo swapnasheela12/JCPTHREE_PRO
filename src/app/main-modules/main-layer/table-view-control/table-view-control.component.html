@@ -28,6 +28,64 @@
         </div>
         <div class="filter-selected-area px-3" fxFlex="40">
             <mat-form-field class="form-field-selected-area pt-2 w-100">
+                <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc()">
+                    <mat-option value="Pan India">Pan India</mat-option>
+                    <mat-option [value]="selectedOptionJioState">
+                        <div (click)="$event.stopPropagation();" [matMenuTriggerFor]="jioState" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div>Jio State <span *ngIf="optionJioStateValue">- {{optionJioStateValue}}</span></div>
+                            <div class="zmdi zmdi-caret-right" style="font-size: 20px;"></div>
+                        </div>
+
+                        <mat-menu xPosition="after" #jioState="matMenu" (click)="$event.stopPropagation();">
+                            <button mat-menu-item (click)="$event.stopPropagation();">
+                                <mat-form-field class="example-full-width p-0">
+                                    <input matInput placeholder="Search" [(ngModel)]='listFilterJioStates'
+                                        autocomplete="off">
+                                    <div class="zmdi zmdi-search" *ngIf="!listFilterJioStates"
+                                        style="position: absolute;right: 0;font-size: 20px;"></div>
+                                    <button mat-button *ngIf="listFilterJioStates" matSuffix mat-icon-button
+                                        aria-label="Clear" (click)="listFilterJioStates=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+            </mat-form-field>
+            </button>
+            <div style="height: 200px;overflow: auto;">
+                <button mat-menu-item *ngFor='let state of JioStatesList' (click)="jioStateFunc(state.nameState);areaSelectionFunc();">
+                                    <div>{{ state.nameState }}</div>
+                                </button>
+            </div>
+            </mat-menu>
+
+            </mat-option>
+            <mat-option [value]="selectedOptionJioCenter">
+                <div (click)="$event.stopPropagation();" [matMenuTriggerFor]="jioCenter" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>Jio Center <span *ngIf="optionjioCentersValue">- {{optionjioCentersValue}}</span></div>
+                    <div class="zmdi zmdi-caret-right" style="font-size: 20px;"></div>
+                </div>
+
+                <mat-menu #jioCenter="matMenu">
+                    <button mat-menu-item (click)="$event.stopPropagation();">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Search" [(ngModel)]='listFilterjioCenters'
+                                        autocomplete="off">
+                                    <div class="zmdi zmdi-search" *ngIf="!listFilterjioCenters"
+                                        style="position: absolute;right: 0;font-size: 20px;"></div>
+                                    <button mat-button *ngIf="listFilterjioCenters" matSuffix mat-icon-button
+                                        aria-label="Clear" (click)="listFilterjioCenters=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                    </mat-form-field>
+                    </button>
+                    <div style="height: 200px;overflow: auto;">
+                        <button mat-menu-item *ngFor='let state of jioCentersList' (click)="jioCentersFunc(state.nameState);areaSelectionFunc();">
+                                    <div>{{ state.nameState }}</div>
+                                </button>
+                    </div>
+                </mat-menu>
+            </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field class="form-field-selected-area pt-2 w-100">
                 <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering [formControl]="areaParentSelect" [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc()">
                     <mat-option value="Pan India">Pan India</mat-option>
                     <mat-option [value]="selectedOptionJioState">
@@ -78,7 +136,7 @@
                         </mat-menu>
                     </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
         <div class="filter-download-data px-3" fxFlex="15">
             <div style="width: 40px;height: 40px;background: #0078D7; border-radius: 4px;color: #ffffff;padding: 5px 0px;
