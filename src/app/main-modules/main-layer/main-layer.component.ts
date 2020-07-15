@@ -155,6 +155,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     let _dialog = this.dialog;
     let _currentZoom = this.currentZoom;
+    let _map = this.map;
     
     this.customControlList = L.Control.Layers.extend({
       options: {
@@ -209,12 +210,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             console.log(data, "still got data open")
             if (data.selectedAreaName == "Pan India") {
               console.log("pan");
-              // this.map.setZoom(1);
+              _map.setZoom(5);
               // _currentZoom = 
             } else if(data.selectedAreaNameParent == "jioState"){
               console.log("state");
+              _map.setZoom(9);
             }else{
               console.log("center");
+              _map.setZoom(14);
             }
             console.log(_currentZoom ,"_currentZoom ");
           });
