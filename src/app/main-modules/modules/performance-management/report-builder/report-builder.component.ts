@@ -1,6 +1,8 @@
+import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
+import { dropDownThreeDotRendererComponent } from './../../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { FormControl } from '@angular/forms';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
+// import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -52,7 +54,7 @@ export class ReportBuilderComponent implements OnInit {
   public rowCount: string;
   public frameworkComponentsReportBuilder = {
     statusFlagRenderer: StatusRendererComponent,
-    VerticaldotRenderer: VerticaldotRendererComponent
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
@@ -135,10 +137,10 @@ export class ReportBuilderComponent implements OnInit {
         suppressMenu: true,
       }, {
         headerName: "",
-        cellRenderer: 'VerticaldotRenderer',
-        width: 80,
+        cellRenderer: 'dropDownThreeDotRenderer',
+        width: 90,
         pinned: 'right',
-        id: "dot-rendered-kpi-local"
+        // id: "dot-rendered-rep-local"
       }
     ];
   }
