@@ -75,7 +75,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
 
   // public selectedOptionArea;
-  public selectedAreaCtrl: FormControl = new FormControl();
+  // public selectedAreaCtrl: FormControl = new FormControl();
   public selectedOptionArea = "Pan India";
   public selectedOptionAreaState;
   public selectedOptionAreaCenter;
@@ -527,7 +527,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   onRowClicked(event: any) {
     console.log(event, "event ag grid data");
     console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
-    console.log(this.selectedAreaCtrl,"this.selectedAreaCtrl?????");
+    // console.log(this.selectedAreaCtrl,"this.selectedAreaCtrl?????");
    
     // if (this.selectedOptionArea == "Pan India") {
     //   this.selectedOptionArea = "Jio State";

@@ -29,7 +29,7 @@
         </div>
         <div class="filter-selected-area px-3" fxFlex="40">
             <mat-form-field class="form-field-selected-area pt-2 w-100">
-                <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering [formControl]="selectedAreaCtrl" [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc();">
+                <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc();">
                     <mat-option value="Pan India">Pan India</mat-option>
                     <mat-option [value]="selectedOptionJioState">
                         <div (click)="$event.stopPropagation();" [matMenuTriggerFor]="jioState" fxLayout="row" fxLayoutAlign="space-between center">
