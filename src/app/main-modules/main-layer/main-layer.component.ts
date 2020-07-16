@@ -210,13 +210,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             console.log(data, "still got data open");
 
             if (data.selectedAreaName == "Pan India") {
-              _map.setZoom(5);
+              _map.fitBounds([
+                [data.rowDataTable.latitude, data.rowDataTable.longitude]
+              ]);
+              _map.setZoom(7);
             } else if (data.selectedAreaNameParent == "jioState") {
              
               _map.fitBounds([
                 [data.rowDataTable.latitude, data.rowDataTable.longitude]
               ]);
-              _map.setZoom(7);
+              _map.setZoom(8);
             } else {
               _map.fitBounds([
                 [data.rowDataTable.latitude, data.rowDataTable.longitude]

@@ -5,11 +5,9 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from "@angular/common/http";
 
-
 // ag grid
 import * as agGrid from 'ag-grid-community';
 import { GridOptions } from "@ag-grid-community/all-modules";
-
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, Event } from '@angular/router';
@@ -18,7 +16,6 @@ import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ButtonRendererComponent } from '../../reports-dashboards/my-reports/button-renderer.component';
-
 
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -59,7 +56,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   //filter table
   /** list of selectedLayers */
-  protected selectedLayers: selectedLayer[] = selectedLayerS;
+  public selectedLayers: selectedLayer[] = selectedLayerS;
 
   /** control for the selected selectedLayer */
   public selectedLayerCtrl: FormControl = new FormControl();
@@ -73,10 +70,12 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild('singleSelect', { static: true }) singleSelect: MatSelect;
 
   /** Subject that emits when the component has been destroyed. */
-  protected _onDestroy = new Subject<void>();
+  public _onDestroy = new Subject<void>();
   //filter table
 
 
+  // public selectedOptionArea;
+  public selectedAreaCtrl: FormControl = new FormControl();
   public selectedOptionArea = "Pan India";
   public selectedOptionAreaState;
   public selectedOptionAreaCenter;
@@ -528,7 +527,12 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   onRowClicked(event: any) {
     console.log(event, "event ag grid data");
     console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
-
+    console.log(this.selectedAreaCtrl,"this.selectedAreaCtrl?????");
+   
+    // if (this.selectedOptionArea == "Pan India") {
+    //   this.selectedOptionArea = "Jio State";
+    //   this.selectedAreaCtrl.setValue("Jio State")
+    // }
     this.filterDataList = {
       selectedLayerName: this.selectedLayerCtrl.value,
       selectedAreaName: this.selectedOptionArea,
