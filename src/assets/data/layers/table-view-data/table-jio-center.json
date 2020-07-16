@@ -3,41 +3,53 @@
         "totalsites": "235",
         "totalcells": "2820",
         "sites4glte": "221",
-        "sites5gnr": "14"
+        "sites5gnr": "14",
+        "latitude": 19.0385,
+        "longitude": 72.9232
     },
     {
         "jiocenter": "AP-HDBD-JC03-0865",
         "totalsites": "708",
         "totalcells": "8496",
         "sites4glte": "693",
-        "sites5gnr": "15"
+        "sites5gnr": "15",
+        "latitude": 19.04662244380717,
+        "longitude": 72.9179334640503
     },
     {
         "jiocenter": "AP-JGTL-JC01-0883",
         "totalsites": "409",
         "totalcells": "4908",
         "sites4glte": "381",
-        "sites5gnr": "28"
+        "sites5gnr": "28",
+        "latitude": 19.19056867766461,
+        "longitude": 72.97016143798828
     },
     {
         "jiocenter": "AP-KKND-JC01-0141",
         "totalsites": "496",
         "totalcells": "5952",
         "sites4glte": "481",
-        "sites5gnr": "15"
+        "sites5gnr": "15",
+        "latitude": 19.01278705937288,
+        "longitude": 73.03436279296875
     },
     {
         "jiocenter": "AP-MCPM-JC01-0127",
         "totalsites": "325",
         "totalcells": "3900",
         "sites4glte": "290",
-        "sites5gnr": "35"
+        "sites5gnr": "35",
+        "latitude": 18.992661070447976,
+        "longitude": 73.10989379882811
     },
     {
         "jiocenter": "AP-MDMI-JC01-0891",
         "totalsites": "112",
         "totalcells": "1344",
         "sites4glte": "98",
-        "sites5gnr": "14"
+        "sites5gnr": "14",
+        "latitude": 19.09975522215211,
+        "longitude": 73.00861358642577
     }
 ]

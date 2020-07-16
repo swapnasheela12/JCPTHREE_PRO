@@ -118,7 +118,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //geo json control
 
     this.currentZoom = this.map.getZoom();
-   
+
     //custome controller//
     this.customControl = L.Control.extend({
 
@@ -156,7 +156,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     let _dialog = this.dialog;
     let _currentZoom = this.currentZoom;
     let _map = this.map;
-    
+
     this.customControlList = L.Control.Layers.extend({
       options: {
         position: 'bottomright',
@@ -207,19 +207,41 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
           const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
             // do something
-            console.log(data, "still got data open")
+            console.log(data, "still got data open");
+
             if (data.selectedAreaName == "Pan India") {
-              console.log("pan");
               _map.setZoom(5);
-              // _currentZoom = 
-            } else if(data.selectedAreaNameParent == "jioState"){
-              console.log("state");
-              _map.setZoom(9);
-            }else{
-              console.log("center");
-              _map.setZoom(14);
+            } else if (data.selectedAreaNameParent == "jioState") {
+             
+              _map.fitBounds([
+                [data.rowDataTable.latitude, data.rowDataTable.longitude]
+              ]);
+              _map.setZoom(7);
+            } else {
+              _map.fitBounds([
+                [data.rowDataTable.latitude, data.rowDataTable.longitude]
+              ]);
+              _map.setZoom(12);
             }
-            console.log(_currentZoom ,"_currentZoom ");
+          });
+
+          const subDropDown = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
+            // do something
+            console.log(data, ">>>>>>still got data open");
+
+            if (data.selectedAreaName == "Pan India") {
+              _map.setZoom(5);
+            } else if (data.selectedAreaNameParent == "jioState") {
+              _map.fitBounds([
+                [data.objArea.latitude, data.objArea.longitude]
+              ]);
+              _map.setZoom(7);
+            } else {
+              _map.fitBounds([
+                [data.objArea.latitude, data.objArea.longitude]
+              ]);
+              _map.setZoom(13);
+            }
           });
 
         }
@@ -240,7 +262,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     this.map.addControl(new this.customControlList());
 
-    
+
 
     //custome controller//
 

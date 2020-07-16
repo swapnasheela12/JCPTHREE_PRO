@@ -40,10 +40,14 @@ export interface DialogData {
 
 export interface JioState {
   nameState: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface jioCenter {
   nameState: string;
+  latitude: number;
+  longitude: number;
 }
 
 @Component({
@@ -95,7 +99,16 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public areaParentSelect: FormControl = new FormControl();
 
+  objSelectedArea;
   onAdd = new EventEmitter();
+  onAddDropDown = new EventEmitter();
+  filterDataList = {
+    selectedLayerName: null,
+    selectedAreaName: null,
+    selectedAreaNameParent: null,
+    rowDataTable: null,
+    objArea: null,
+  };
 
   constructor(public hostElement: ElementRef, private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
@@ -164,20 +177,22 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   selectedOptionParent;
   selectedOptionJioState;
   optionJioStateValue;
-  jioStateFunc(value,item) {
+  jioStateFunc(value, item) {
+    this.objSelectedArea = value;
     this.selectedOptionParent = item;
-    this.optionJioStateValue = value;
-    this.selectedOptionJioState = value;
+    this.optionJioStateValue = value.nameState;
+    this.selectedOptionJioState = value.nameState;
     this.selectedOptionArea = this.selectedOptionJioState;
     this.listFilterJioStates = "";
   }
 
   selectedOptionJioCenter;
   optionjioCentersValue;
-  jioCentersFunc(value,item) {
+  jioCentersFunc(value, item) {
+    this.objSelectedArea = value;
     this.selectedOptionParent = item;
-    this.optionjioCentersValue = value;
-    this.selectedOptionJioCenter = value;
+    this.optionjioCentersValue = value.nameState;
+    this.selectedOptionJioCenter = value.nameState;
     this.selectedOptionArea = this.selectedOptionJioCenter;
     this.listFilterjioCenters = "";
   }
@@ -195,26 +210,35 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   JioStatesList: JioState[];
   jioState_List: JioState[] = [
     {
-      "nameState": "Andhra Pradesh",
+      "nameState": "Maharashtra",
+      "latitude": 19.7515,
+      "longitude": 75.7139
     },
     {
-      "nameState": "Assam",
+      "nameState": "Odisha",
+      "latitude": 20.9517,
+      "longitude": 85.0985
+    },
+    {
+      "nameState": "Uttar Pradesh (East)",
+      "latitude": 26.8467,
+      "longitude": 80.9462
+    },
+    {
+      "nameState": "Kashmir",
+      "latitude": 33.7782,
+      "longitude": 76.5762
     },
     {
       "nameState": "Bihar",
+      "latitude": 25.0961,
+      "longitude": 85.3131
     },
     {
-      "nameState": "Chhattisgarh",
-    },
-    {
-      "nameState": "Goa",
-    },
-    {
-      "nameState": "Gujarat",
-    },
-    {
-      "nameState": "Delhi",
-    },
+      "nameState": "Madhya Pradesh",
+      "latitude": 22.9734,
+      "longitude": 78.6569
+    }
   ]
 
   PerformFilter(filterBy: string): JioState[] {
@@ -239,24 +263,38 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   jioCenter_List: jioCenter[] = [
     {
       "nameState": "AP-DMVM-JC01-0094",
+      "latitude": 19.0385,
+      "longitude": 72.9232
     },
     {
       "nameState": "AP-HDBD-JC03-0865",
+      "latitude": 19.04662244380717,
+      "longitude": 72.9179334640503
     },
     {
       "nameState": "AP-JGTL-JC01-0883",
+      "latitude": 19.19056867766461,
+      "longitude": 72.97016143798828
     },
     {
       "nameState": "AP-KKND-JC01-0141",
+      "latitude": 19.01278705937288,
+      "longitude": 73.03436279296875
     },
     {
       "nameState": "AP-MCPM-JC01-0127",
+      "latitude": 18.992661070447976,
+      "longitude": 73.10989379882811
     },
     {
       "nameState": "AP-MDMI-JC01-0891",
+      "latitude": 19.09975522215211,
+      "longitude": 73.00861358642577
     },
     {
       "nameState": "AP-PRUR-JC01-0103",
+      "latitude": 18.992336437775784,
+      "longitude": 72.83557891845703
     },
   ]
 
@@ -334,7 +372,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   public getName;
   areaSelectionFunc() {
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
-   
+
     setTimeout(() => {
       if ($(this.getName).is(':contains(Pan India)')) {
         console.log($(this.getName).is(':contains(Pan India)'));
@@ -370,6 +408,16 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
             this.rowData = data;
           });
 
+        this.filterDataList = {
+          selectedLayerName: this.selectedLayerCtrl.value,
+          selectedAreaName: this.selectedOptionArea,
+          selectedAreaNameParent: this.selectedOptionParent,
+          rowDataTable: null,
+          objArea: this.objSelectedArea
+        };
+
+        this.onAddDropDown.emit(this.filterDataList);
+
       } else if ($(this.getName).is(':contains(Jio Center)')) {
 
         console.log($(this.getName).is(':contains(Jio Center)'));
@@ -404,6 +452,17 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
           .subscribe(data => {
             this.rowData = data;
           });
+
+        this.filterDataList = {
+          selectedLayerName: this.selectedLayerCtrl.value,
+          selectedAreaName: this.selectedOptionArea,
+          selectedAreaNameParent: this.selectedOptionParent,
+          rowDataTable: null,
+          objArea: this.objSelectedArea
+        };
+
+        this.onAddDropDown.emit(this.filterDataList);
+
       } else if ($(this.getName).is(':contains(Jio State)')) {
 
         console.log($(this.getName).is(':contains(Jio State)'));
@@ -438,6 +497,16 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
           .subscribe(data => {
             this.rowData = data;
           });
+
+        this.filterDataList = {
+          selectedLayerName: this.selectedLayerCtrl.value,
+          selectedAreaName: this.selectedOptionArea,
+          selectedAreaNameParent: this.selectedOptionParent,
+          rowDataTable: null,
+          objArea: this.objSelectedArea
+        };
+
+        this.onAddDropDown.emit(this.filterDataList);
       }
     }, 500);
   }
@@ -448,23 +517,24 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     // this.gridApi.sizeColumnsToFit();
   }
 
- 
 
-  filterDataList = {
-    selectedLayerName: null,
-    selectedAreaName: null,
-    selectedAreaNameParent: null,
-    rowDataTable: null,
-  };
+  areaDropDownFunc(item, val) {
+    console.log(item, "item");
+    console.log(val, "val");
+
+
+  }
+
   onRowClicked(event: any) {
     console.log(event, "event ag grid data");
     console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
-   
+
     this.filterDataList = {
       selectedLayerName: this.selectedLayerCtrl.value,
       selectedAreaName: this.selectedOptionArea,
       selectedAreaNameParent: this.selectedOptionParent,
       rowDataTable: event.data,
+      objArea: this.objSelectedArea
     };
 
     this.onAdd.emit(this.filterDataList);
