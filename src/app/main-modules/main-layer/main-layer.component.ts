@@ -27,7 +27,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public currentZoom;
 
 
-  constructor(private shapeService: ShapeService,private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
+  constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -269,9 +269,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //custome controller//
 
     var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+      denver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+      aurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+      golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
 
     var cities = L.layerGroup([littleton, denver, aurora, golden]);
     cities.addTo(this.map);    // Adding layer group to map
@@ -279,8 +279,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
     this.shapeService.getStateShapes().subscribe(states => {
-      console.log(states,"states");
-      
+      console.log(states, "states");
+
       this.states = states;
       this.initStatesLayer();
     });
@@ -316,17 +316,17 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         fillColor: '#6DB65B'
       }),
       onEachFeature: (feature, layer) => (
-  layer.on({
-    mouseover: (e) => (this.highlightFeature(e)),
-    mouseout: (e) => (this.resetFeature(e)),
-  })
-)
+        layer.on({
+          mouseover: (e) => (this.highlightFeature(e)),
+          mouseout: (e) => (this.resetFeature(e)),
+        })
+      )
     });
 
     this.map.addLayer(stateLayer);
   }
 
-  private highlightFeature(e)  {
+  private highlightFeature(e) {
     const layer = e.target;
     layer.setStyle({
       weight: 2,
@@ -337,7 +337,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private resetFeature(e)  {
+  private resetFeature(e) {
     const layer = e.target;
     layer.setStyle({
       weight: 2,
