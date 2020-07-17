@@ -1,3 +1,4 @@
+import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as createjs from 'createjs-module';
@@ -26,7 +27,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public currentZoom;
 
 
-  constructor(private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
+  constructor(private shapeService: ShapeService,private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -215,7 +216,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
               ]);
               _map.setZoom(7);
             } else if (data.selectedAreaNameParent == "jioState") {
-             
+
               _map.fitBounds([
                 [data.rowDataTable.latitude, data.rowDataTable.longitude]
               ]);
@@ -265,11 +266,88 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     this.map.addControl(new this.customControlList());
 
-
-
     //custome controller//
 
+    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+    var cities = L.layerGroup([littleton, denver, aurora, golden]);
+    cities.addTo(this.map);    // Adding layer group to map
+
+
+
+    this.shapeService.getStateShapes().subscribe(states => {
+      console.log(states,"states");
+      
+      this.states = states;
+      this.initStatesLayer();
+    });
+
+
+
+
   }
+
+
+  states;
+  // private initStatesLayer() {
+  //   const stateLayer = L.geoJSON(this.states, {
+  //     style: (feature) => ({
+  //       weight: 3,
+  //       opacity: 0.5,
+  //       color: '#008f68',
+  //       fillOpacity: 0.8,
+  //       fillColor: '#6DB65B'
+  //     })
+  //   });
+
+  //   this.map.addLayer(stateLayer);
+  // }
+
+  private initStatesLayer() {
+    const stateLayer = L.geoJSON(this.states, {
+      style: (feature) => ({
+        weight: 2,
+        opacity: 0.5,
+        color: '#008f68',
+        fillOpacity: 0.4,
+        fillColor: '#6DB65B'
+      }),
+      onEachFeature: (feature, layer) => (
+  layer.on({
+    mouseover: (e) => (this.highlightFeature(e)),
+    mouseout: (e) => (this.resetFeature(e)),
+  })
+)
+    });
+
+    this.map.addLayer(stateLayer);
+  }
+
+  private highlightFeature(e)  {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#DFA612',
+      fillOpacity: 1.0,
+      fillColor: '#FAE042',
+    });
+  }
+
+  private resetFeature(e)  {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.5,
+      color: '#008f68',
+      fillOpacity: 0.4,
+      fillColor: '#6DB65B'
+    });
+  }
+
 
 
 
