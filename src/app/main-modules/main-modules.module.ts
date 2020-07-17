@@ -73,6 +73,7 @@ import { WorkordersComponent } from './my-jcp/template-card-view/workorders/work
 import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
+import { PlanningDeploymentModule } from './modules/planning-deployment/planning-deployment.module';
 
 
 @NgModule({
@@ -149,7 +150,9 @@ import { PerformanceManagementModule } from './modules/performance-management/pe
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    PerformanceManagementModule
+    PerformanceManagementModule,
+    PlanningDeploymentModule
+
   ], providers: [
     SideNavService,
     MarkerService

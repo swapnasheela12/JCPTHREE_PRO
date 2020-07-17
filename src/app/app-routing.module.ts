@@ -25,10 +25,13 @@ const routes: Routes = [
       { path: "My-JCP", component:MyJcpComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      { path: "Modules", children: [
-        { path: "Performance-Management", loadChildren: "../app/main-modules/modules/performance-management/performance-management.module#PerformanceManagementModule" },
-      ]},
-      // { path: "table-view-row", component:},
+      {
+        path: "Modules", children: [
+          { path: "Performance-Management", loadChildren: "../app/main-modules/modules/performance-management/performance-management.module#PerformanceManagementModule" },
+          { path: "Planning-Deployment", loadChildren: "../app/main-modules/modules/planning-deployment/planning-deployment.module#PlanningDeploymentModule" }
+        ]
+      },
+      // { path: "table-view-row", component:},src\app/main-modules/modules/planning-deployment/planning-deployment.module.ts
     ],
   },
  

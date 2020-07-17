@@ -2459,7 +2459,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
     {
         name: "eNB/SC (Site-level TAC and EMS)",
         icon: "fas fa-user fa-3",
-        link: "site-level-tac-ems",
+        link: "JCP/Modules/Planning-Deployment/enbsc",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
