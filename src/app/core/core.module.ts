@@ -1,3 +1,4 @@
+import { dropDownThreeDotRendererComponent } from './components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -58,7 +59,7 @@ import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.dire
 import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
 import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
 // import { PaginationComponent } from './../common/pagination/pagination.component'
-
+import { AgGridModule } from 'ag-grid-angular';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -72,12 +73,15 @@ import { CommonPopupComponent } from './components/commanPopup/common-popup/comm
     isEllipsisActiveDirective,
     ConfirmPopupComponent,
     CommonPopupComponent,
+    dropDownThreeDotRendererComponent,
     // PaginationComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
+
+    AgGridModule.withComponents([ dropDownThreeDotRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -137,6 +141,7 @@ import { CommonPopupComponent } from './components/commanPopup/common-popup/comm
     MmenuDirective,
     isEllipsisActiveDirective,
     SuccessfulComponent,
+    dropDownThreeDotRendererComponent
     // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent

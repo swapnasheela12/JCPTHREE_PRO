@@ -60,7 +60,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PaginationComponent } from 'src/app/core/components/commanPopup/pagination/pagination.component';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
-// import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
+import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 
 
 @NgModule({
@@ -71,7 +71,7 @@ import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
     VerticaldotRendererComponent,
     PaginationComponent,
     WifiUtilityComponent,
-    // CreateKpiComponent
+    CreateKpiComponent
   ],
   imports: [
     CommonModule,

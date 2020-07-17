@@ -1,0 +1,509 @@
+<mat-card class="create-kpi-card">
+  <mat-card-content>
+      <div class="create-kpi-header">
+          Create KPI
+      </div>
+      /<div class="dynamic-text">{{stepperLabelText}}</div>
+      <div class="create-kpi-container">
+          <div class="stepper-container">
+              <mat-horizontal-stepper
+                #nodeCounterStepper
+                fxFlexFill
+                fxLayout="column wrap"
+                fxLayoutAlign="start"
+                (selectionChange)="selectNodeStepper($event)"
+              >
+                  <mat-step [stepControl]="selectNodeCtrl" errorMessage="Name is required.">
+                    <form [formGroup]="selectNodeCtrl">
+                      <ng-template matStepLabel>Select Node & Counter</ng-template>
+                        <mat-form-field>
+                          <mat-label>Key Name</mat-label>
+                          <input matInput placeholder="Key Name" formControlName="keyName" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Domain"
+                            [formControl]="domainCtrl"
+                            ngDefaultControl
+                            #domainCtrlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                  placeholderLabel="Select Domain"
+                                  [formControl]="domainFilterCtrl"
+                                  noEntriesFoundLabel="no matching found"
+                                  ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option
+                              *ngFor="let domain of domainFilter | async"
+                              [value]="domain">
+                                {{domain.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-select
+                            placeholder="Node"
+                            [formControl]="nodeMultiCtrl"
+                            [multiple]="true"
+                            ngDefaultControl
+                            #nodeMultiCtrlSelect>
+                              <ngx-mat-select-search
+                                placeholderLabel="Select Node"
+                                [formControl]="nodeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found"
+                                ngDefaultControl>
+                              </ngx-mat-select-search>
+                              <mat-option
+                                *ngFor="let node of nodeMultiFilter | async"
+                                [value]="node">
+                                  {{node.name}}
+                              </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      <div>
+                        <button class="mx-2 previous-button" mat-stroked-button matStepperPrevious>Previous</button>
+                        <button class="mx-2 submit-button" mat-raised-button color="primary" matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="counterKPICtrl">
+                    <form [formGroup]="counterKPICtrl">
+                      <ng-template matStepLabel>Counter KPI List</ng-template>
+                      <!-- <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
+                              required>
+                      </mat-form-field>
+                      <div>
+                        <p>Go to a different step to see the error state</p>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div> -->
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="defineFormulaCtrl">
+                    <ng-template matStepLabel>Define Formula</ng-template>
+                    <!-- <p>You are now done.</p>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                    </div> -->
+                  </mat-step>
+                </mat-horizontal-stepper>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>
+
+

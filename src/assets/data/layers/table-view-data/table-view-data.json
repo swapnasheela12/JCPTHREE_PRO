@@ -1,44 +1,64 @@
-[
+[{
+        "jiostate": "Andhra pradesh",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6015",
+        "greaterThanForty": "6015",
+        "greaterThanSixty": "605",
+        "latitude": 15.9129,
+        "longitude": 79.7400
+    },
     {
-    "jiostate": "Andhra pradesh",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6015",
-    "greaterThanForty": "6015",
-    "greaterThanSixty": "605"
-},
+        "jiostate": "Mumbai",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "3715",
+        "greaterThanForty": "3715",
+        "greaterThanSixty": "315",
+        "latitude": 19.0760,
+        "longitude": 72.8777
+    },
     {
-    "jiostate": "Assam",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "3715",
-    "greaterThanForty": "3715",
-    "greaterThanSixty": "315"
-},
+        "jiostate": "Assam",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "3715",
+        "greaterThanForty": "3715",
+        "greaterThanSixty": "315",
+        "latitude": 26.2006,
+        "longitude": 92.9376
+    },
     {
-    "jiostate": "Bihar",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6465",
-    "greaterThanForty": "6465",
-    "greaterThanSixty": "665"
-},
+        "jiostate": "Bihar",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6465",
+        "greaterThanForty": "6465",
+        "greaterThanSixty": "665",
+        "latitude": 25.0961,
+        "longitude": 85.3131
+    },
     {
-    "jiostate": "Chhattisgarh",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "1015",
-    "greaterThanForty": "1015",
-    "greaterThanSixty": "105"
-},
+        "jiostate": "Chhattisgarh",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "1015",
+        "greaterThanForty": "1015",
+        "greaterThanSixty": "105",
+        "latitude": 21.2787,
+        "longitude": 81.8661
+    },
     {
-    "jiostate": "Delhi",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "4510",
-    "greaterThanForty": "4510",
-    "greaterThanSixty": "510"
-},
+        "jiostate": "Delhi",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "4510",
+        "greaterThanForty": "4510",
+        "greaterThanSixty": "510",
+        "latitude": 28.7041,
+        "longitude": 77.1025
+    },
     {
-    "jiostate": "Assam",
-    "lessThanTwenty": "-",
-    "greaterThanTwenty": "6015",
-    "greaterThanForty": "6015",
-    "greaterThanSixty": "605"
-}
+        "jiostate": "Assam",
+        "lessThanTwenty": "-",
+        "greaterThanTwenty": "6015",
+        "greaterThanForty": "6015",
+        "greaterThanSixty": "605",
+        "latitude": 26.2006,
+        "longitude": 92.9376
+    }
 ]

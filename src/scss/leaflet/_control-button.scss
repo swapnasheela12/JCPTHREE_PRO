@@ -44,7 +44,7 @@
                 }
             }
             .ag-grid-jcp-container {
-                height: inherit;
+                height: calc(100% - 190px);
                 .table-view-zoom-ag-grid {
                     .ag-root-wrapper {
                         background: inherit;
@@ -103,6 +103,24 @@
                                         }
                                     }
                                 }
+                                .ag-body-horizontal-scroll {
+                                    .ag-horizontal-left-spacer {
+                                        height: 100%;
+                                        min-width: 0;
+                                        overflow-x: auto;
+                                        background: transparent;
+                                    }
+                                }
+                            }
+                            .ag-root ::-webkit-scrollbar {
+                                width: 9px;
+                                height: 9px;
+                            }
+                            .ag-root ::-webkit-scrollbar-button {
+                                background: #ccc;
+                            }
+                            .ag-root ::-webkit-scrollbar-track-piece {
+                                background: rgba(238, 238, 238, 0.4) !important;
                             }
                         }
                     }
