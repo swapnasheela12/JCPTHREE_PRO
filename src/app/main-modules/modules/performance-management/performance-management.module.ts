@@ -61,7 +61,13 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PaginationComponent } from 'src/app/core/components/commanPopup/pagination/pagination.component';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
+import { CreateReportComponent } from './report-builder/create-report/create-report.component';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 
+  const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    wheelPropagation: true
+  };
 
 @NgModule({
   declarations: [
@@ -71,12 +77,13 @@ import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component
     VerticaldotRendererComponent,
     PaginationComponent,
     WifiUtilityComponent,
-    CreateKpiComponent
+    CreateKpiComponent,
+    CreateReportComponent
   ],
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
-
+    PerfectScrollbarModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -136,5 +143,11 @@ import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component
     VerticaldotRendererComponent,
     PaginationComponent
   ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ]
 })
 export class PerformanceManagementModule { }
