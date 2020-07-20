@@ -140,8 +140,10 @@
         line-height: 35px !important;
         background-color: transparent;
         color: fade-out(#000, 0.46) !important;
+        // color: fade-out(#fff, 0) !important;
         border-color: fade-out(#ffffff, 0.80);
         font-size: 18px !important;
+        font-family: Lato Medium;
         text-decoration: none;
     }
     &.leaflet-disabled {

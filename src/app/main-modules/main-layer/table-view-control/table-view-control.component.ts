@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
@@ -50,7 +51,15 @@ export interface jioCenter {
 @Component({
   selector: 'app-table-view-control',
   templateUrl: './table-view-control.component.html',
-  styleUrls: ['./table-view-control.component.scss']
+  styleUrls: ['./table-view-control.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(2000, style({ backgroundColor: 'white', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -528,7 +537,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     console.log(event, "event ag grid data");
     console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
     // console.log(this.selectedAreaCtrl,"this.selectedAreaCtrl?????");
-   
+
     // if (this.selectedOptionArea == "Pan India") {
     //   this.selectedOptionArea = "Jio State";
     //   this.selectedAreaCtrl.setValue("Jio State")
