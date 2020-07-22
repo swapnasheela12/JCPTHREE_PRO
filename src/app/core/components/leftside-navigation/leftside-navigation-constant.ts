@@ -2801,6 +2801,28 @@ const REPORTS_LIST = [
     }
 ];
 
+const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
+    {
+        name: 'Sector Misalignment',
+        link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment',
+        level: 3,
+        component: HomeJcpThreeComponent,
+        icon: 'fas fa-home',
+        children: []
+    }
+]
+
+const WORKORDERS_RFOCWORKORDERS_LIST = [
+    {
+        name: 'Category Wise Workorder Listing',
+        link: '',
+        level: 2,
+        component: HomeJcpThreeComponent,
+        icon: 'fas fa-home',
+        children: WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST
+    }
+]
+
 const WORKORDERS_LIST = [
     {
         name: 'My Workorders',
@@ -2841,6 +2863,14 @@ const WORKORDERS_LIST = [
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
         children: []
+    },
+    {
+        name: 'RF OC Workorders',
+        link: '',
+        level: 1,
+        component: HomeJcpThreeComponent,
+        icon: 'fas fa-home',
+        children: WORKORDERS_RFOCWORKORDERS_LIST
     }
 ];
 

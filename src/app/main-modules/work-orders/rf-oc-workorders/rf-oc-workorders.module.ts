@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainModulesRoutingModule } from './main-modules-routing.module';
-
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 // import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -46,64 +44,32 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
-// import { RouterModule } from '@angular/router';
-// import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
+
 import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SideNavService } from '../_services/side-nav.service';
-import { MyReportsComponent } from './reports-dashboards/my-reports/my-reports.component';
-import { ReportsWizardComponent } from './reports-dashboards/reports-wizard/reports-wizard.component';
-import { CreateReportComponent } from './reports-dashboards/reports-wizard/create-report/create-report.component';
-import { ButtonRendererComponent } from './reports-dashboards/my-reports/button-renderer.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
-// import { LayersModule } from './layers/layers.module';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { MainLayerComponent } from './main-layer/main-layer.component';
-import '@geoman-io/leaflet-geoman-free';
-import { MarkerService } from '../_services/leaflate/marker.service';
-import { MyJcpComponent } from './my-jcp/my-jcp.component';
-import { BackhaulViolatorsComponent } from './my-jcp/template-card-view/backhaul-violators/backhaul-violators.component';
-import { CustomerExperienceComponent } from './my-jcp/template-card-view/customer-experience/customer-experience.component';
-import { AlarmsComponent } from './my-jcp/template-card-view/alarms/alarms.component';
-import { PerformanceComponent } from './my-jcp/template-card-view/performance/performance.component';
-import { PlanningComponent } from './my-jcp/template-card-view/planning/planning.component';
-import { WorkordersComponent } from './my-jcp/template-card-view/workorders/workorders.component';
-import { TableViewControlComponent } from './main-layer/table-view-control/table-view-control.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
-import { PlanningDeploymentModule } from './modules/planning-deployment/planning-deployment.module';
-import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { RfOcWorkordersModuleRoutingModule } from './rf-oc-workorders-routing.module';
+import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
 
+  const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    wheelPropagation: true
+  };
 
 @NgModule({
   declarations: [
-    // SuccessfulComponent
-    MyReportsComponent,
-    ReportsWizardComponent,
-    CreateReportComponent,
-    ButtonRendererComponent,
-    MainLayerComponent,
-    MyJcpComponent,
-    BackhaulViolatorsComponent,
-    CustomerExperienceComponent,
-    AlarmsComponent,
-    PerformanceComponent,
-    PlanningComponent,
-    WorkordersComponent,
-    TableViewControlComponent
+    SectorMisalignmentComponent
   ],
   imports: [
+    RfOcWorkordersModuleRoutingModule,
     CommonModule,
-    MainModulesRoutingModule,
+    PerfectScrollbarModule,
     // RouterModule,
     FlexLayoutModule,
-    ReportsDashboardsModule,
-    // LayersModule,
-    LeafletModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent]),
+    AgGridModule.withComponents([]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -151,31 +117,17 @@ import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-worko
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    PerformanceManagementModule,
-    PlanningDeploymentModule,
-    RfOcWorkordersModule
-
-  ], providers: [
-    SideNavService,
-    MarkerService
   ],
   exports: [
-    // HeaderComponent,
-    // LeftsideNavigationComponent,
-    // MmenuDirective,
-    // SuccessfulComponent
-    MyReportsComponent,
-    ReportsWizardComponent,
-    MainLayerComponent,
-    CreateReportComponent,
-    ButtonRendererComponent,
-    TableViewControlComponent,
   ],
-  entryComponents: [
-    CreateReportComponent,
-    TableViewControlComponent
-    // SuccessfulComponent
+  entryComponents : [
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ]
-
 })
-export class MainModulesModule { }
+export class RfOcWorkordersModule { }
+
