@@ -11,8 +11,8 @@ import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-mate
 import { HttpClient } from '@angular/common/http';
 import { GridOptions, GridCore, SelectionChangedEvent, GridApi, RowNode, Column } from 'ag-grid-community';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { DeleteRendererComponent } from '../renderer/delete-renderer.component';
-import { dropdownRendererComponent } from '../renderer/dropdown-renderer.component';
+import { DeleteCreatedKpiRendererComponent } from '../renderer/delete-renderer.component';
+import { createKpiDropdownRendererComponent } from '../renderer/dropdown-renderer.component';
 // import { conditionalDropdownRendererComponent } from '../renderer/conditional-dropdown-renderer.component';
 // import { ComputationSettingsPoupComponent } from './computation-settings-popup/computation-settings-popup.component'
 import { MatDialog } from '@angular/material/dialog';
@@ -128,8 +128,8 @@ export class CreateKpiComponent implements OnInit {
   ) {
     this.datashare.chechboxChangeMessage(this.leftGridOptions);
     this.frameworkComponentsCreateKPIEditor = {
-      'deleteFlagRenderer': DeleteRendererComponent,
-      'dropDownCellRenderer': dropdownRendererComponent
+      'deleteFlagRenderer': DeleteCreatedKpiRendererComponent,
+      'dropDownCellRenderer': createKpiDropdownRendererComponent
     };
   }
 

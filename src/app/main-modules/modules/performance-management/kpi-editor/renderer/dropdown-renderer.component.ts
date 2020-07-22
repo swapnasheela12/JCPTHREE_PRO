@@ -22,7 +22,7 @@ import { FormArray } from '@angular/forms';
     encapsulation: ViewEncapsulation.None
 })
 
-export class dropdownRendererComponent implements ICellRendererAngularComp {
+export class createKpiDropdownRendererComponent implements ICellRendererAngularComp {
   params;
   Aggr = [
     'AVG',

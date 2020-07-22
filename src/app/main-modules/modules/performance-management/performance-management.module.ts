@@ -2,6 +2,11 @@ import { ReportBuilderComponent } from './report-builder/report-builder.componen
 import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
 import { KpiEditorComponent } from './kpi-editor/kpi-editor.component';
+import { conditionalDropdownRendererComponent } from './report-builder/create-report/renderer/conditional-dropdown-renderer.component';
+import { DeleteRendererComponent } from './report-builder/create-report/renderer/delete-renderer.component';
+import { dropdownRendererComponent } from './report-builder/create-report/renderer/dropdown-renderer.component';
+import { createKpiDropdownRendererComponent } from './kpi-editor/renderer/dropdown-renderer.component';
+import { DeleteCreatedKpiRendererComponent } from './kpi-editor/renderer/delete-renderer.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -65,10 +70,9 @@ import { CreateReportComponent } from './report-builder/create-report/create-rep
 import { AddGroupPopupComponent } from './report-builder/create-report/add-group-popup/add-group-popup.component';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
   PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-  
-import { conditionalDropdownRendererComponent } from './report-builder/create-report/renderer/conditional-dropdown-renderer.component';
-import { DeleteRendererComponent } from './report-builder/create-report/renderer/delete-renderer.component';
-import { dropdownRendererComponent } from './report-builder/create-report/renderer/dropdown-renderer.component';
+import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
+import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
+import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 
   const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     wheelPropagation: true
@@ -87,7 +91,12 @@ import { dropdownRendererComponent } from './report-builder/create-report/render
     AddGroupPopupComponent,
     conditionalDropdownRendererComponent,
     DeleteRendererComponent,
-    dropdownRendererComponent
+    DeleteCreatedKpiRendererComponent,
+    dropdownRendererComponent,
+    createKpiDropdownRendererComponent,
+    ComputationSettingsPoupComponent,
+    IfElsePopupComponent,
+    HextodocPopupComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +105,7 @@ import { dropdownRendererComponent } from './report-builder/create-report/render
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent]),
+    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -152,7 +161,8 @@ import { dropdownRendererComponent } from './report-builder/create-report/render
     PaginationComponent,
     conditionalDropdownRendererComponent,
     DeleteRendererComponent,
-    dropdownRendererComponent
+    createKpiDropdownRendererComponent,
+    DeleteCreatedKpiRendererComponent
   ],
   entryComponents : [
     AddGroupPopupComponent

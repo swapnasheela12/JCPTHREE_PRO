@@ -22,7 +22,7 @@ import { GridOptions } from '@ag-grid-community/all-modules';
   `,
 })
 
-export class DeleteRendererComponent implements ICellRendererAngularComp {
+export class DeleteCreatedKpiRendererComponent implements ICellRendererAngularComp {
 
   params;
   leftGridOptionData: GridOptions;
