@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateKpiComponent } from './create-kpi.component';
+import { IfElsePopupComponent } from './if-else-popup.component';
 
-describe('CreateKpiComponent', () => {
-  let component: CreateKpiComponent;
-  let fixture: ComponentFixture<CreateKpiComponent>;
+describe('IfElsePopupComponent', () => {
+  let component: IfElsePopupComponent;
+  let fixture: ComponentFixture<IfElsePopupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateKpiComponent ]
+      declarations: [ IfElsePopupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateKpiComponent);
+    fixture = TestBed.createComponent(IfElsePopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

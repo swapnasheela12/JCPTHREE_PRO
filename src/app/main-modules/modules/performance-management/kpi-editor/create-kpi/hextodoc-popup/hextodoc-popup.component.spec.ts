@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateKpiComponent } from './create-kpi.component';
+import { HextodocPopupComponent } from './hextodoc-popup.component';
 
-describe('CreateKpiComponent', () => {
-  let component: CreateKpiComponent;
-  let fixture: ComponentFixture<CreateKpiComponent>;
+describe('HextodocPopupComponent', () => {
+  let component: HextodocPopupComponent;
+  let fixture: ComponentFixture<HextodocPopupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateKpiComponent ]
+      declarations: [ HextodocPopupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateKpiComponent);
+    fixture = TestBed.createComponent(HextodocPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

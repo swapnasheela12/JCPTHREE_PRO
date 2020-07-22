@@ -1,0 +1,104 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Add KPI Group Name</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content>
+        <form fxLayout="column" class="">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20">
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Condition 1">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Inequality">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Compare To">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Logic">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20" *ngFor="let conditionDiv of conditionArray, let i = index">
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Condition {{i + 2}}">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Inequality">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Compare To">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Logic">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="m20" fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Condition {{conditionArray.length + 2}}">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Inequality">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20">
+                    <mat-select placeholder="Compare To">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxFlex="20" fxLayoutAlign="center center">
+                    <button mat-button color="primary" fxFlex="20" (click)='addCondition()'>Add</button>
+                    <button *ngIf="conditionArray.length>0" mat-button color="primary" fxFlex="20"
+                        (click)='deleteCondition()'>Delete</button>
+                </div>
+            </div>
+            <div class="m20" fxLayout="row" fxLayoutAlign="start center">
+                <mat-form-field fxFlex="20" class="mx40">
+                    <mat-select placeholder="If True">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="20" class="">
+                    <mat-select placeholder="Else">
+                        <mat-option value=""></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>
