@@ -20,7 +20,7 @@ $md-primary: #0070DB;
             }
         }
         .form-field-container {
-            min-width: 278px;
+            min-width: 280px;
             margin-bottom: 10px;
         }
         .mat-step-header[aria-selected="true"]  {
@@ -71,9 +71,27 @@ $md-primary: #0070DB;
                 }
                    }
                }
+               .ag-icon-grip {
+                position: absolute;
+                pointer-events: auto;
+                top: 0;
+                opacity: 0;
+                height:45px;
+                width: 90%;
+            }
+                //Setting opacity for first column is 1
+            .first-drag-column .ag-icon-grip {
+                opacity: 1;
+            }
             } 
             .right-holder{
                 width: 100%;
+                .green{
+                    color: green;
+                }
+                .red{
+                    color: red ;
+                }
                 .height-49{
                     min-height: 49px;
                     max-height: 49px;
@@ -81,24 +99,16 @@ $md-primary: #0070DB;
                         height: 34px; 
                         width: 80px;
                     }
-                    .common-delete-button{
+                    .global-button{
                         box-shadow: none;
                         &:hover{
                             background-color:#E4F1FB;
                         }
-                        .common-delete-icon{
+                        .global-icon{
                         font-size: 18px;
                         color: #747474;
                     }
                 }
-                    .no-data {
-                    width: 130px;
-                    box-shadow: none;
-                    color: #676767;
-                    padding:10px;
-                    border:1px dashed #707070;
-                    }
-
 
                 }
                 .radio-group-label {
@@ -127,6 +137,13 @@ $md-primary: #0070DB;
                     color: #858585;
                 }
             }
+            .ag-overlay-loading-center.no-data{
+                width: 130px;
+                box-shadow: none;
+                color: #676767;
+                padding:10px;
+                border:1px dashed #707070;
+                }
             }
         }
     }

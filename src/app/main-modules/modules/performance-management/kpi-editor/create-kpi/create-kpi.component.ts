@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { DOMAIN, NODE, dropdown } from './create-kpi-constant';
+import { DOMAIN, NODE, dropdown, NodeAggr } from './create-kpi-constant';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
@@ -35,7 +35,8 @@ export class CreateKpiComponent implements OnInit {
   defineFormulaCtrl: FormGroup;
   protected _onDestroy = new Subject<void>();
   stepperLabelText = 'Select Node & Counter';
-
+  searchGrid = "";
+  searchSecondGrid = "";
   private gridApi;
   private gridColumnApi;
   public modules: Module[] = AllCommunityModules;
@@ -49,7 +50,14 @@ export class CreateKpiComponent implements OnInit {
   public leftColumnFormulaDefs;
   public rightColumnFormulaDefs;
 
+  @ViewChild('nodeAggrControlSelect') nodeAggrControlSelect: MatSelect;
+  protected nodeAggrData = NodeAggr;
+  public nodeAggrControl: FormControl = new FormControl();
+  public nodeAggrFilterControl: FormControl = new FormControl();
+  public nodeAggrFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+
   @ViewChild('domainCtrlSelect') domainCtrlSelect: MatSelect;
+
   protected domainListData = DOMAIN;
   public domainCtrl: FormControl = new FormControl();
   public domainFilterCtrl: FormControl = new FormControl();
@@ -64,17 +72,8 @@ export class CreateKpiComponent implements OnInit {
   public frameworkComponentsCreateKPIEditor;
   public showGlobalDeleteOperation;
   kpiGridSearch = '';
-  nodeAggrValue='';
-  timeAggrValue= '';
-
-  NodeAggr = [
-    'AVG',
-    'COUNT',
-    'MAX',
-    'MIN',
-    'SUM'
-  ];
-
+  nodeAggrValue = '';
+  timeAggrValue = '';
   TimeAggr = [
     'AVG',
     'COUNT',
@@ -82,7 +81,7 @@ export class CreateKpiComponent implements OnInit {
     'MIN',
     'SUM'
   ];
-  formulaList=[
+  formulaList = [
     'If-Else',
     'HextoDec',
     'DectoHex',
@@ -100,7 +99,7 @@ export class CreateKpiComponent implements OnInit {
     percentageOfNodes: new FormControl(),
     countNodes: new FormControl()
   })
-  
+
   selectedNodesDetails = [];
   formGroup: FormGroup = new FormGroup({});
   formGroupFormula: FormGroup = new FormGroup({});
@@ -117,7 +116,8 @@ export class CreateKpiComponent implements OnInit {
   percentageNodesChecked: false;
   countNodesChecked: false;
   rightGridOptionsFormula: GridOptions;
-  gridConditionValue1:'';
+  gridConditionValue1: '';
+  tooltipShowDelay: number;
   // dataFiltered: any[];
 
   constructor(
@@ -134,100 +134,117 @@ export class CreateKpiComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nodeAggrControl.setValue([this.nodeAggrData[1]]);
+    this.nodeAggrFilter.next(this.nodeAggrData.slice());
+    this.nodeAggrFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.nodeAggrData,
+          this.nodeAggrFilterControl,
+          this.nodeAggrFilter
+        );
+      });
+    this.tooltipShowDelay = 0;
     this.leftColumnDefs = [
       {
-          colId: 'checkbox',
-          maxWidth: 50,
-          checkboxSelection: true,
-          suppressMenu: true,
-          headerCheckboxSelection: false
+        colId: 'checkbox',
+        maxWidth: 50,
+        checkboxSelection: true,
+        suppressMenu: true,
+        headerCheckboxSelection: false
       },
       {
         field: "Name",
         suppressMenu: true,
         rowDrag: true,
-        cellClass:'first-draw-column'
+        tooltipField: 'Name',
+        cellClass: 'first-draw-column'
       },
     ];
     this.leftColumnFormulaDefs = [
       {
-          colId: 'checkbox',
-          maxWidth: 50,
-          checkboxSelection: true,
-          suppressMenu: true,
-          headerCheckboxSelection: false
+        colId: 'checkbox',
+        maxWidth: 50,
+        checkboxSelection: true,
+        suppressMenu: true,
+        headerCheckboxSelection: false
       },
       {
         field: "Name",
         suppressMenu: true,
+        tooltipField: 'Name',
         rowDrag: true,
-        cellClass:'first-draw-column'
+        cellClass: 'first-draw-column'
       },
     ];
     this.rightColumnDefs = [
-        {
-          colId: 'checkbox',
-          maxWidth: 50,
-          checkboxSelection: true,
-          suppressMenu: true,
-          headerCheckboxSelection: true
-        },
-        {
-          headerName:'Counter/KPI',
-          field: "Name"
-        },
-        {
-          headerName:'Node Aggr',
-          field: "nodeAggr",
-          cellRenderer: 'dropDownCellRenderer'
-        },
-        {
-          headerName:'Time Aggr',
-          field: "timeAggr",
-          cellRenderer: 'dropDownCellRenderer'
-        },
-        // {
-        //   headerName:'Threshold Condition',
-        //   field: "threshold",
-        //   cellRenderer: 'conditionalDropdownRenderer'
-        // },
-        {
-          suppressMenu: true,
-          maxWidth: 50,
-          cellRenderer: 'deleteFlagRenderer'
+      {
+        colId: 'checkbox',
+        maxWidth: 50,
+        checkboxSelection: true,
+        suppressMenu: true,
+        headerCheckboxSelection: true
+      },
+      {
+        headerName: 'Counter/KPI',
+        tooltipField: 'Name',
+        field: "Name"
+      },
+      {
+        headerName: 'Node Aggr',
+        field: "nodeAggr",
+        cellRenderer: 'dropDownCellRenderer'
+      },
+      {
+        headerName: 'Time Aggr',
+        field: "timeAggr",
+        cellRenderer: 'dropDownCellRenderer'
+      },
+      // {
+      //   headerName:'Threshold Condition',
+      //   field: "threshold",
+      //   cellRenderer: 'conditionalDropdownRenderer'
+      // },
+      {
+        suppressMenu: true,
+        maxWidth: 50,
+        cellRenderer: 'deleteFlagRenderer'
       }
     ];
 
     this.rightColumnFormulaDefs = [
       {
-        headerName:'Sr No.',
+        headerName: 'Sr No.',
         field: "id",
-        width:50
+        maxWidth: 120,
+        cellRenderer: function (params) {
+          return '<div>' + (params.rowIndex + 1) + '</div>'
+        }
       },
       {
-        headerName:'Formula',
+        headerName: 'Formula',
         field: "Name",
-        width:150,
-        valueGetter: function(params) {
-          return '('+params.data.Name+')';
+        valueGetter: function (params) {
+          return '(' + params.data.Name + ')';
         },
       }
     ];
     this.fifteenMinsKpiColumnDefs = [
       {
-      colId: 'checkbox',
-      maxWidth: 50,
-      checkboxSelection: true,
-      suppressMenu: true,
-      headerCheckboxSelection: false
+        colId: 'checkbox',
+        maxWidth: 50,
+        checkboxSelection: true,
+        suppressMenu: true,
+        headerCheckboxSelection: false
       },
       {
-      field: "Name",
-      suppressMenu: true,
-      rowDrag: true,
-      cellClass: 'first-draw-column'
+        field: "Name",
+        suppressMenu: true,
+        rowDrag: true,
+        cellClass: 'first-draw-column'
       },
-      ];
+    ];
     this.rowData = this.createKPIData();
     this.dataFifteen = this.fifteenMinsData();
     this.dataFormula = this.createFormulaData();
@@ -243,13 +260,15 @@ export class CreateKpiComponent implements OnInit {
       rowSelection: 'multiple',
       enableMultiRowDragging: true,
       suppressRowClickSelection: true,
-      getRowNodeId: function(data) { return data.id; },
+      getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
       suppressMoveWhenRowDragging: true,
+      suppressCellSelection: true,
+      suppressHorizontalScroll: true,
       columnDefs: this.leftColumnDefs,
       animateRows: true
     };
-    console.log(this.leftGridOptions)
+    // console.log(this.leftGridOptions)
     this.datashare.leftGridOptionMessage(this.leftGridOptions, this.rightGridOptions);
     this.leftGridOptionsFormula = <GridOptions>{
       defaultColDef: {
@@ -262,9 +281,11 @@ export class CreateKpiComponent implements OnInit {
       rowSelection: 'multiple',
       enableMultiRowDragging: true,
       suppressRowClickSelection: true,
-      getRowNodeId: function(data) { return data.id; },
+      getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
       suppressMoveWhenRowDragging: true,
+      suppressCellSelection: true,
+      suppressHorizontalScroll: true,
       columnDefs: this.leftColumnFormulaDefs,
       animateRows: true
     };
@@ -281,8 +302,10 @@ export class CreateKpiComponent implements OnInit {
       enableMultiRowDragging: true,
       suppressRowClickSelection: true,
       frameworkComponents: this.frameworkComponentsCreateKPIEditor,
-      getRowNodeId: function(data) { return data.id; },
+      getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
+      suppressCellSelection: true,
+      suppressHorizontalScroll: true,
       columnDefs: this.rightColumnDefs,
       suppressMoveWhenRowDragging: true,
       animateRows: true
@@ -298,31 +321,34 @@ export class CreateKpiComponent implements OnInit {
       rowSelection: 'multiple',
       enableMultiRowDragging: true,
       suppressRowClickSelection: true,
-      getRowNodeId: function(data) { return data.id; },
+      getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
+      suppressCellSelection: true,
+      suppressHorizontalScroll: true,
       columnDefs: this.rightColumnFormulaDefs,
       suppressMoveWhenRowDragging: true,
-      animateRows: true
+      animateRows: true,
+      suppressRowDrag: true
     };
     this.rowClassRules = {
-      'green': function(params) {
+      'green': function (params) {
         if (params.data.statusFormula == 'success') {
           return true;
         }
       },
-      'red': function(params) {
+      'red': function (params) {
         if (params.data.statusFormula == 'error') {
-          return true;  
+          return true;
         }
       }
     }
     this.fifteenMinsKpiGridOptions = <GridOptions>{
       defaultColDef: {
-      flex: 1,
-      minWidth: 100,
-      sortable: true,
-      filter: true,
-      resizable: true,
+        flex: 1,
+        minWidth: 100,
+        sortable: true,
+        filter: true,
+        resizable: true,
       },
       rowSelection: 'multiple',
       enableMultiRowDragging: true,
@@ -330,10 +356,11 @@ export class CreateKpiComponent implements OnInit {
       getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
       suppressCellSelection: true,
+      suppressHorizontalScroll: true,
       suppressMoveWhenRowDragging: true,
       columnDefs: this.fifteenMinsKpiColumnDefs,
       animateRows: true
-      };
+    };
     this.datashare.fifteenMinsKpiOptionMessage(this.fifteenMinsKpiGridOptions, this.rightGridOptions);
     this.overlayLoadingTemplate = `
       <span class="ag-overlay-loading-center no-data">
@@ -345,7 +372,7 @@ export class CreateKpiComponent implements OnInit {
       Drag Here
     </span>
   `;
-   
+
     this.selectNodeCtrl = this._formBuilder.group({
       keyName: ['key_name', Validators.required]
     });
@@ -353,7 +380,7 @@ export class CreateKpiComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.defineFormulaCtrl = this._formBuilder.group({})
-    
+
     this.domainCtrl.setValue(this.domainListData[1]);
     this.domainFilter.next(this.domainListData.slice());
     this.domainFilterCtrl.valueChanges
@@ -364,7 +391,7 @@ export class CreateKpiComponent implements OnInit {
           this.domainFilterCtrl,
           this.domainFilter
         );
-    });
+      });
 
     this.nodeMultiCtrl.setValue([this.nodeMultiListData[1]]);
     this.nodeMultiFilter.next(this.nodeMultiListData.slice());
@@ -376,45 +403,56 @@ export class CreateKpiComponent implements OnInit {
           this.nodeMultiFilterCtrl,
           this.nodeMultiFilter
         );
-    });
-    
+      });
+
   }
 
   kpiFilterChange(value) {
     this.leftGridOptions.api.setQuickFilter(value);
   }
 
+  secondGridChange(value) {
+    this.fifteenMinsKpiGridOptions.api.setQuickFilter(value);
+  }
+
   getRowNodeId(data: any) {
     return data.id;
   }
 
-  createKPIData(){
+  createKPIData() {
     this.http.get("assets/data/modules/performance_management/kpi-editor/create-kpi-list.json")
       .subscribe(data => {
         this.rowData = data;
-    });
+      });
   }
 
   validateFormula() {
-    this.rowDataFormula = [];
-    var dataFiltered =[];
-    this.rightGridOptionsFormula.api.forEachNode((node)=>{
+    this.rowDataFormula = [
+
+    ];
+    var dataFiltered = [];
+    this.rightGridOptionsFormula.api.forEachNode((node) => {
+      dataFiltered.push(node.data);
+    })
+    var incomingData = [];
     this.http.get('assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json')
       .subscribe(
-        data =>  {
+        data => {
           console.log(data)
-          let result = _.filter(data, {id:node.data.id})
-          console.log(result[0]);
-          dataFiltered.push(result[0]);
-          this.rowDataFormula = dataFiltered;
+          const result = _.intersectionBy(data, dataFiltered , 'id');
+
+          // let result = _.filter(data, { id: node.data.id })
+          // console.log(result[0]);
+          // dataFiltered.push(result[0]);
+          console.log(result)
+          this.rowDataFormula = result;
         }
       )
-      console.log(dataFiltered)
-    })
-    
+    console.log(dataFiltered)
+
   }
   onChangeFormula(conditionValue) {
-    console.log(conditionValue)
+    // console.log(conditionValue)
     if ('If-Else' == conditionValue) {
       const dialogRef = this.dialog.open(IfElsePopupComponent, {
         width: '980',
@@ -437,27 +475,16 @@ export class CreateKpiComponent implements OnInit {
       (node) => {
         this.leftGridOptionsFormula.api.applyTransaction(
           {
-          add: [node.data]
+            add: [node.data]
           }
         );
         this.rightGridOptionsFormula.api.applyTransaction(
           {
-          remove: [node.data]
+            remove: [node.data]
           }
         );
       }
     )
-    // let dropZoneParams = this.leftGridOptionsFormula.api.getRowDropZoneParams({
-    //   onDragStop: function(params) {
-    //       var nodes = params.nodes;
-    //       rightGridOptionsFormula.api.applyTransaction({
-    //           remove: nodes.map(function(node) {
-    //             return node.data;
-    //           })
-    //       });
-    //   }
-    // });
-    // this.leftGridOptionsFormula.api.addRowDropZone(dropZoneParams);
   }
   onGridReady(params) {
     this.gridApi = params.api;
@@ -485,10 +512,10 @@ export class CreateKpiComponent implements OnInit {
   onGridleftReadyFormula(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    console.log(params)
-    console.log(this.leftGridOptionsFormula)
-    console.log(this.rightGridOptionsFormula)
-    console.log(this.formGroupFormula)
+    // console.log(params)
+    // console.log(this.leftGridOptionsFormula)
+    // console.log(this.rightGridOptionsFormula)
+    // console.log(this.formGroupFormula)
     this.addGridDropFormulaZone(
       params,
       this.leftGridOptionsFormula,
@@ -498,9 +525,9 @@ export class CreateKpiComponent implements OnInit {
 
   fifteenMinsData() {
     this.http.get("assets/data/modules/performance_management/kpi-editor/create-counter-list.json")
-    .subscribe(data => {
-    this.dataFifteen = data;
-    });
+      .subscribe(data => {
+        this.dataFifteen = data;
+      });
   }
 
   createFormulaData() {
@@ -510,20 +537,6 @@ export class CreateKpiComponent implements OnInit {
       });
   }
 
-  changeCSS() {
-    this.rightGridOptions.rowClassRules = {
-      'green': function(params) {
-        if (params.data.statusFormula == 'success') {
-          return true;
-        }
-      },
-      'red': function(params) {
-        if (params.data.statusFormula == 'error') {
-          return true;  
-        }
-      }
-    }
-  }
   onApply() {
     // this.rightGridOptions.rowClassRules = {
     //   'green': function(params) {
@@ -536,16 +549,16 @@ export class CreateKpiComponent implements OnInit {
     //       return true;
 
 
-          
+
     //     }
     //   },
     // }
-    this.rightGridOptions.getRowStyle =  function (params){
+    this.rightGridOptions.getRowStyle = function (params) {
       if (params.data.statusFormula == 'success') {
-        return{backround: 'green'}
+        return { backround: 'green' }
       }
       if (params.data.statusFormula == 'error') {
-        return{backround: 'red'}
+        return { backround: 'red' }
       }
     }
     this.selectedNodesDetails.length = 0;
@@ -553,14 +566,14 @@ export class CreateKpiComponent implements OnInit {
     this.timeAggrValue = this.createKPIForm.value.timeAggr;
     let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
     let columns = this.rightGridOptions.columnApi.getAllColumns();
-    selectedNodes.forEach((node)=> {
-      this.selectedRow='AVG';
+    selectedNodes.forEach((node) => {
+      this.selectedRow = 'AVG';
       this.selectedNodesDetails.push(node.id)
       var data = node.data;
       node.data.timeAggr = this.timeAggrValue;
       node.data.nodeAggr = this.nodeAggrValue;
-     
-      this.rightGridOptions.api.refreshCells({force: true});
+
+      this.rightGridOptions.api.refreshCells({ force: true });
     });
   }
 
@@ -569,19 +582,19 @@ export class CreateKpiComponent implements OnInit {
     this.addGridFifteenMiDropZone(params, this.fifteenMinsKpiGridOptions)
   }
 
-addGridFifteenMiDropZone(params, rightGridOptions) {
+  addGridFifteenMiDropZone(params, rightGridOptions) {
     let dropZoneParams = this.fifteenMinsKpiGridOptions.api.getRowDropZoneParams({
-    onDragStop:function (params) {
-      var nodes = params.nodes;
-      rightGridOptions.api.applyTransaction({
-        remove:nodes.map(function (node) {
-        return node.data;
-      })
-      });
-    }
+      onDragStop: function (params) {
+        var nodes = params.nodes;
+        rightGridOptions.api.applyTransaction({
+          remove: nodes.map(function (node) {
+            return node.data;
+          })
+        });
+      }
     });
     params.api.addRowDropZone(dropZoneParams);
- }
+  }
 
 
 
@@ -600,8 +613,8 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
       search = search.toLowerCase();
     }
 
-    filterSubject.next (
-      listData.filter (
+    filterSubject.next(
+      listData.filter(
         data => data.name.toLowerCase().indexOf(search) > -1
       )
     );
@@ -619,33 +632,33 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
   bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions) {
     let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
     selectedNodes.forEach(function (node) {
-    console.log(node)
-    if (node.data["KPIValue"] == "Yes") {
-    leftGridOptions.api.applyTransaction(
-    {
-    add: [node.data]
-    }
-    );
-    rightGridOptions.api.applyTransaction(
-    {
-    remove: [node.data]
-    }
-    );
-    } 
-    if (node.data["KPIValue"] == "No"){
-    fifteenMinsKpiGridOptions.api.applyTransaction(
-    {
-    add: [node.data]
-    }
-    );
-    rightGridOptions.api.applyTransaction(
-    {
-    remove: [node.data]
-    }
-    );
-    }
+      // console.log(node)
+      if (node.data["KPIValue"] == "Yes") {
+        leftGridOptions.api.applyTransaction(
+          {
+            add: [node.data]
+          }
+        );
+        rightGridOptions.api.applyTransaction(
+          {
+            remove: [node.data]
+          }
+        );
+      }
+      if (node.data["KPIValue"] == "No") {
+        fifteenMinsKpiGridOptions.api.applyTransaction(
+          {
+            add: [node.data]
+          }
+        );
+        rightGridOptions.api.applyTransaction(
+          {
+            remove: [node.data]
+          }
+        );
+      }
     });
-    }
+  }
 
   selectNodeStepper(event) {
     if (event.selectedIndex == 1) {
@@ -657,7 +670,7 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
     }
   }
 
-  openComputationSetting(){
+  openComputationSetting() {
     const dialogRef = this.dialog.open(ComputationSettingsPoupComponent, {
       width: '550px',
       height: '550px',
@@ -671,29 +684,30 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
     leftGridOptionsFormula,
     rightGridOptionsFormula,
   ) {
-    console.log("hello")
     let dropZoneParams = this.rightGridOptionsFormula.api.getRowDropZoneParams({
-      onDragStop: function(params) {
-          var nodes = params.nodes;
-          leftGridOptionsFormula.api.applyTransaction({
-              remove: nodes.map(function(node) {
-                return node.data;
-              })
-          });
-          let columns = rightGridOptionsFormula.columnApi.getAllColumns();
-          // rightGridOptions.api.forEachNode((rowNode: RowNode)=>{
-          //   console.log(rowNode);
-          //   columns.filter(column => column.getColDef().field)
-          //     .forEach((column: Column) => {
-          //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
-          //         const key = keyData(rowNode.id, column);
-          //         formGroup.addControl(key, new FormControl())
-          //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
-          //         this.formGroup = formGroup;
-          //         // rightGridOptions.api.refreshCells({force: true, columns: [column]});
-          //         // rightGridOptions.api.sizeColumnsToFit();
-          //     })
-          // });
+      onDragStop: function (params) {
+        rightGridOptionsFormula.api.refreshCells({ force: true });
+        // this.rightGridOptionsFormula.api.setSuppressRowDrag(false);
+        var nodes = params.nodes;
+        leftGridOptionsFormula.api.applyTransaction({
+          remove: nodes.map(function (node) {
+            return node.data;
+          })
+        });
+        let columns = rightGridOptionsFormula.columnApi.getAllColumns();
+        // rightGridOptions.api.forEachNode((rowNode: RowNode)=>{
+        //   console.log(rowNode);
+        //   columns.filter(column => column.getColDef().field)
+        //     .forEach((column: Column) => {
+        //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
+        //         const key = keyData(rowNode.id, column);
+        //         formGroup.addControl(key, new FormControl())
+        //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
+        //         this.formGroup = formGroup;
+        //         // rightGridOptions.api.refreshCells({force: true, columns: [column]});
+        //         // rightGridOptions.api.sizeColumnsToFit();
+        //     })
+        // });
       }
     });
     params.api.addRowDropZone(dropZoneParams);
@@ -704,31 +718,29 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
     rightGridOptions,
     formGroup
   ) {
-    console.log(this.createKey);
     let keyData = this.createKey;
     // let formGroup = formGroup;
     let dropZoneParams = this.rightGridOptions.api.getRowDropZoneParams({
-      onDragStop: function(params) {
-          var nodes = params.nodes;
-          leftGridOptions.api.applyTransaction({
-              remove: nodes.map(function(node) {
-                return node.data;
-              })
-          });
-          let columns = rightGridOptions.columnApi.getAllColumns();
-          rightGridOptions.api.forEachNode((rowNode: RowNode)=>{
-            console.log(rowNode);
-            columns.filter(column => column.getColDef().field)
-              .forEach((column: Column) => {
-                  rightGridOptions.api.refreshCells({force: true, columns: [column]});
-                  const key = keyData(rowNode.id, column);
-                  formGroup.addControl(key, new FormControl())
-                  rightGridOptions.api.refreshCells({force: true, columns: [column]});
-                  this.formGroup = formGroup;
-                  // rightGridOptions.api.refreshCells({force: true, columns: [column]});
-                  // rightGridOptions.api.sizeColumnsToFit();
-              })
-          });
+      onDragStop: function (params) {
+        var nodes = params.nodes;
+        leftGridOptions.api.applyTransaction({
+          remove: nodes.map(function (node) {
+            return node.data;
+          })
+        });
+        let columns = rightGridOptions.columnApi.getAllColumns();
+        rightGridOptions.api.forEachNode((rowNode: RowNode) => {
+          columns.filter(column => column.getColDef().field)
+            .forEach((column: Column) => {
+              rightGridOptions.api.refreshCells({ force: true, columns: [column] });
+              const key = keyData(rowNode.id, column);
+              formGroup.addControl(key, new FormControl())
+              rightGridOptions.api.refreshCells({ force: true, columns: [column] });
+              this.formGroup = formGroup;
+              // rightGridOptions.api.refreshCells({force: true, columns: [column]});
+              // rightGridOptions.api.sizeColumnsToFit();
+            })
+        });
       }
     });
     params.api.addRowDropZone(dropZoneParams);
@@ -736,13 +748,13 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
 
   addGridDropLeftZone(params, rightGridOptions) {
     let dropZoneParams = this.leftGridOptions.api.getRowDropZoneParams({
-      onDragStop: function(params) {
-          var nodes = params.nodes;
-          rightGridOptions.api.applyTransaction({
-              remove: nodes.map(function(node) {
-                return node.data;
-              })
-          });
+      onDragStop: function (params) {
+        var nodes = params.nodes;
+        rightGridOptions.api.applyTransaction({
+          remove: nodes.map(function (node) {
+            return node.data;
+          })
+        });
       }
     });
     params.api.addRowDropZone(dropZoneParams);
@@ -750,11 +762,11 @@ addGridFifteenMiDropZone(params, rightGridOptions) {
 
   getContext() {
     return {
-        formGroup: this.formGroup,
-        createKey: this.createKey,
-        selectedNodeData: this.selectedNodesDetails,
-        selectedRow: this.selectedRow
-      }
+      formGroup: this.formGroup,
+      createKey: this.createKey,
+      selectedNodeData: this.selectedNodesDetails,
+      selectedRow: this.selectedRow
+    }
   }
 
   createKey(rowId: string, column: Column): string {

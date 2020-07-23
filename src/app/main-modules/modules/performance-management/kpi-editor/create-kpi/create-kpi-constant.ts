@@ -21,3 +21,11 @@ export const NODE: dropdown[] = [
     {name: 'Active DRX', abbr: 'activedrx'},
     {name: 'Active DRX1', abbr: 'activedrx12'}
 ];
+
+export const NodeAggr: dropdown[] = [
+    {name: 'AVG', abbr: 'AVG'},
+    {name: 'COUNT', abbr: 'COUNT'},
+    {name: 'Max', abbr: 'Max'},
+    {name: 'MIN', abbr: 'MIN'},
+    {name: 'SUM', abbr: 'SUM'}
+];
