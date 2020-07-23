@@ -422,6 +422,7 @@ export class CreateReportComponent implements OnInit {
       },
       {
         headerName: 'Sr No.',
+        maxWidth: 140,
         cellRenderer: function (params) {
           return '<div>' + (params.rowIndex + 1) +'</div>'
         }
@@ -445,6 +446,8 @@ export class CreateReportComponent implements OnInit {
       {
         suppressMenu: true,
         cellRenderer: 'deleteFlagRenderer',
+        width: 70,
+        pinned: 'right',
       }
     ];
 
