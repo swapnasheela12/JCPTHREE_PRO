@@ -343,14 +343,15 @@
                   </ng-template> -->
                   <div style="height:50px;">
                     <mat-form-field class="search-input full-width" fxLayout="row">
-                      <input matInput [(ngModel)]="searchGrid" (ngModelChange)="kpiFilterChange($event);" autocomplete="off"  placeholder="">
+                      <input matInput [(ngModel)]="searchGrid" (ngModelChange)="kpiFilterChange($event);"
+                        autocomplete="off" placeholder="">
                       <i class="search-icon zmdi zmdi-search"></i>
                     </mat-form-field>
                   </div>
                   <div style="height: 180px;">
-                    <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid1" class="ag-theme-material"
-                      [headerHeight]="0" [gridOptions]="leftGridOptions" [rowData]="rowData"
-                      (gridReady)="onGridReady($event)"></ag-grid-angular>
+                    <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                      id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptions"
+                      [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
                   </div>
                 </mat-tab>
                 <mat-tab label="KPI">
@@ -358,14 +359,16 @@
                   <!-- 15 Mins KPI -->
                   <div style="height:50px;">
                     <mat-form-field class="search-input full-width" fxLayout="row">
-                      <input matInput [(ngModel)]="searchSecondGrid" (ngModelChange)="secondGridChange($event);" autocomplete="off"  placeholder="">
+                      <input matInput [(ngModel)]="searchSecondGrid" (ngModelChange)="secondGridChange($event);"
+                        autocomplete="off" placeholder="">
                       <i class="search-icon zmdi zmdi-search"></i>
                       <!-- </mat-icon> -->
                     </mat-form-field>
                   </div>
                   <div style="height: 180px;">
-                    <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid1" class="ag-theme-material"
-                      [headerHeight]="0" [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
+                    <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                      id="myGrid1" class="ag-theme-material" [headerHeight]="0"
+                      [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
                       (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular>
                   </div>
                   <!-- </ng-template> -->
@@ -387,8 +390,8 @@
                 <form fxLayout="row" class="ml15" [formGroup]="createKPIForm">
                   <div class="mt15">
                     <mat-form-field class="pr15" fxFlex="90">
-                      <mat-select disableOptionCentering placeholder="Node Aggr"
-                        [formControl]="nodeAggrControl" ngDefaultControl #nodeAggrControlSelect>
+                      <mat-select disableOptionCentering placeholder="Node Aggr" [formControl]="nodeAggrControl"
+                        ngDefaultControl #nodeAggrControlSelect>
                         <mat-option>
                           <ngx-mat-select-search placeholderLabel="Node Aggr" [formControl]="nodeAggrFilterControl"
                             noEntriesFoundLabel="no matching found" ngDefaultControl>
@@ -397,13 +400,13 @@
                         <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
                           {{nodeAggr.name}}
                         </mat-option>
-                    </mat-select>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="mt15">
                     <mat-form-field class="pr15" fxFlex="90">
-                      <mat-select disableOptionCentering placeholder="Time Aggr"
-                        [formControl]="nodeAggrControl" ngDefaultControl #nodeAggrControlSelect>
+                      <mat-select disableOptionCentering placeholder="Time Aggr" [formControl]="nodeAggrControl"
+                        ngDefaultControl #nodeAggrControlSelect>
                         <mat-option>
                           <ngx-mat-select-search placeholderLabel="Time Aggr" [formControl]="nodeAggrFilterControl"
                             noEntriesFoundLabel="no matching found" ngDefaultControl>
@@ -412,7 +415,7 @@
                         <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
                           {{nodeAggr.name}}
                         </mat-option>
-                    </mat-select>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                 </form>
@@ -455,11 +458,11 @@
             <form class="dealership-form target-kpi-table" fxLayout="column" fxLayoutAlign="start center"
               [formGroup]="formGroup">
               <div style="height: 230px;width:100%">
-                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material"
-                  [modules]="modules" [gridOptions]="rightGridOptions" [getRowNodeId]="getRowNodeId"
-                  [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
-                  (gridReady)="onGridRightReady($event)" [context]="getContext()"
-                  (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                  id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptions"
+                  [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                  [overlayNoRowsTemplate]="overlayNoRowsTemplate" (gridReady)="onGridRightReady($event)"
+                  [context]="getContext()" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
               </div>
             </form>
           </div>
@@ -479,56 +482,64 @@
         <ng-template matStepLabel>Define Formula</ng-template>
         <div class="border-box mb10" fxLayout="row">
           <div class="left-holder" fxFlex="35">
-            <form style="height:50px;">
+            <div style="height:50px;">
               <mat-form-field class="search-input full-width" fxLayout="row">
-                <input matInput autocomplete="off">
+                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="searchFormulaGrid($event);" autocomplete="off"
+                  placeholder="">
                 <i class="search-icon zmdi zmdi-search"></i>
               </mat-form-field>
-            </form>
+            </div>
             <div style="height: 230px;">
-              <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid1" class="ag-theme-material"
-                [headerHeight]="0" [gridOptions]="leftGridOptionsFormula" [rowData]="dataFormula"
-                (gridReady)="onGridleftReadyFormula($event)"></ag-grid-angular>
+              <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptionsFormula"
+                [rowData]="dataFormula" (gridReady)="onGridleftReadyFormula($event)"></ag-grid-angular>
             </div>
           </div>
           <div class="right-holder">
             <div class="border-bottom height-49">
               <!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49"> -->
-                <form fxLayout="row" class="ml15 height-49" fxLayoutAlign="space-between center" [formGroup]="addFormulaForm">
-                  <div class="mt15">
-                    <mat-form-field style="max-width: 100px;">
-                      <mat-select formControlName="Formula" placeholder="Add Formula" [(value)]="gridConditionValue1"
-                        (selectionChange)="onChangeFormula(gridConditionValue1)">
-                        <mat-option [value]="gridConditionValue" *ngFor="let gridConditionValue of formulaList">
-                          {{ gridConditionValue }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="mt15">
-                    <mat-checkbox formControlName="percentageOfNodes" [(ngModel)]="percentageNodesChecked">Calculate %
-                      of Nodes</mat-checkbox>
-                  </div>
-                  <div class="mt15">
-                    <mat-checkbox formControlName="countNodes" [(ngModel)]="countNodesChecked">Count of Nodes
-                    </mat-checkbox>
-                  </div>
-                  <button mat-raised-button color="primary" class="button formula-button mr10"
+              <form fxLayout="row" class="ml15 height-49" fxLayoutAlign="space-between center"
+                [formGroup]="addFormulaForm">
+                <div class="mt15">
+                  <mat-form-field>
+                    <mat-select [(value)]="formula" (selectionChange)="onChangeFormula(formula)" placeholder="Add Formula" [formControl]="formulaCtrl" disableOptionCentering
+                      disableOptionCentering ngDefaultControl #formulaCtrlSelect>
+                      <mat-option>
+                        <ngx-mat-select-search placeholderLabel="Add Formula" [formControl]="formulaFilterCtrl"
+                          noEntriesFoundLabel="no matching found" ngDefaultControl>
+                        </ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option *ngFor="let formula of formulaFilter | async" [value]="formula.abbr">
+                        {{formula.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="mt15">
+                  <mat-checkbox formControlName="percentageOfNodes" [(ngModel)]="percentageNodesChecked">Calculate %
+                    of Nodes</mat-checkbox>
+                </div>
+                <div class="mt15">
+                  <mat-checkbox formControlName="countNodes" [(ngModel)]="countNodesChecked">Count of Nodes
+                  </mat-checkbox>
+                </div>
+                <button mat-raised-button color="primary" class="button formula-button mr10"
                   (click)="validateFormula()">Validate Formula</button>
-                </form>
-                <!-- <div class="" fxLayoutAlign="center center"> -->
-                 
-                <!-- </div> -->
+              </form>
+              <!-- <div class="" fxLayoutAlign="center center"> -->
+
+              <!-- </div> -->
               <!-- </div> -->
             </div>
 
             <form class="dealership-form target-kpi-table" fxLayout="column" fxLayoutAlign="start center"
               [formGroup]="formGroupFormula">
               <div style="height: 230px;width:100%">
-                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material"
-                  [modules]="modules" [gridOptions]="rightGridOptionsFormula" [getRowNodeId]="getRowNodeId"
-                  [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
-                  [rowClassRules]="rowClassRules" [rowData]="rowDataFormula"
-                  (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                  id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptionsFormula"
+                  [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                  [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowClassRules]="rowClassRules"
+                  [rowData]="rowDataFormula" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
               </div>
             </form>
           </div>

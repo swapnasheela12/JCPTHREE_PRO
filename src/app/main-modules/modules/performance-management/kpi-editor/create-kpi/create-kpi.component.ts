@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { DOMAIN, NODE, dropdown, NodeAggr } from './create-kpi-constant';
+import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula} from './create-kpi-constant';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
@@ -49,6 +49,8 @@ export class CreateKpiComponent implements OnInit {
   public rightColumnDefs;
   public leftColumnFormulaDefs;
   public rightColumnFormulaDefs;
+  formulaSearch="";
+  formula="";
 
   @ViewChild('nodeAggrControlSelect') nodeAggrControlSelect: MatSelect;
   protected nodeAggrData = NodeAggr;
@@ -62,6 +64,12 @@ export class CreateKpiComponent implements OnInit {
   public domainCtrl: FormControl = new FormControl();
   public domainFilterCtrl: FormControl = new FormControl();
   public domainFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+
+  @ViewChild('formulaCtrlSelect') formulaCtrlSelect: MatSelect;
+  protected formulaData = AddFormula;
+  public formulaCtrl: FormControl = new FormControl();
+  public formulaFilterCtrl: FormControl = new FormControl();
+  public formulaFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
 
   @ViewChild('nodeMultiCtrlSelect') nodeMultiCtrlSelect: MatSelect;
   protected nodeMultiListData = NODE;
@@ -81,13 +89,6 @@ export class CreateKpiComponent implements OnInit {
     'MIN',
     'SUM'
   ];
-  formulaList = [
-    'If-Else',
-    'HextoDec',
-    'DectoHex',
-    'Ceiling',
-    'Floor'
-  ]
 
   createKPIForm = new FormGroup({
     nodeAggr: new FormControl(null, Validators.required),
@@ -405,6 +406,18 @@ export class CreateKpiComponent implements OnInit {
         );
       });
 
+    this.formulaCtrl.setValue([this.formulaData[1]]);
+    this.formulaFilter.next(this.formulaData.slice());
+    this.formulaFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.formulaData,
+          this.formulaFilterCtrl,
+          this.formulaFilter
+        );
+      });
+
   }
 
   kpiFilterChange(value) {
@@ -413,6 +426,11 @@ export class CreateKpiComponent implements OnInit {
 
   secondGridChange(value) {
     this.fifteenMinsKpiGridOptions.api.setQuickFilter(value);
+  }
+
+  searchFormulaGrid(value) {
+    console.log(value)
+    this.leftGridOptionsFormula.api.setQuickFilter(value);
   }
 
   getRowNodeId(data: any) {
@@ -452,7 +470,7 @@ export class CreateKpiComponent implements OnInit {
 
   }
   onChangeFormula(conditionValue) {
-    // console.log(conditionValue)
+    console.log(conditionValue)
     if ('If-Else' == conditionValue) {
       const dialogRef = this.dialog.open(IfElsePopupComponent, {
         width: '980',
