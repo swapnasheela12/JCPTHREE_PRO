@@ -1,8 +1,13 @@
+import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
+// import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
+// import {CanvasLayer} from  '../../../js/L.CanvasLayer.js';
+import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
+// import * as canvasLayer from 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -10,6 +15,8 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 declare var $: any;
+declare const testName: any;
+
 @Component({
   selector: 'app-main-layer',
   templateUrl: './main-layer.component.html',
@@ -175,8 +182,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         var middle = L.DomUtil.create('a', 'horizontal_icon_kpi', container);
         middle.innerHTML = '<div class="ic ic-KPI-01"></div>';
 
-        var forwards = L.DomUtil.create('a', 'horizontal_icon_legends', container);
-        forwards.innerHTML = '<div class="ic ic-legends-01"></div>';
+        var legendsAndFilterControlButton = L.DomUtil.create('a', 'horizontal_icon_legends', container);
+        legendsAndFilterControlButton.innerHTML = '<div class="ic ic-legends-01"></div>';
 
         tableViewControlButton.onclick = function () {
 
@@ -250,13 +257,23 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
         }
 
-
         middle.onclick = function () {
           console.log('buttonClicked_middle');
         }
 
-        forwards.onclick = function () {
-          console.log('buttonClicked_forwards');
+        legendsAndFilterControlButton.onclick = function () {
+          console.log('buttonClicked_legendsAndFilterControlButton');
+          var LegendsAndFilterListDialogRef = {
+            width: '538px',
+            height: '313px',
+            position: { bottom: '60px', right: "60px" },
+            panelClass: "table-view-layers-dialog-container",
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            disableClose: true,
+            hasBackdrop: true
+          }
+          const dialogRef = _dialog.open(LegendsAndFilterComponent, LegendsAndFilterListDialogRef);
+
         }
 
         return container;
@@ -266,15 +283,15 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     this.map.addControl(new this.customControlList());
 
-    //custome controller//
+    //custome controller end//
 
-    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-      denver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-      aurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-      golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+    // var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+    //   denver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+    //   aurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+    //   golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
 
-    var cities = L.layerGroup([littleton, denver, aurora, golden]);
-    cities.addTo(this.map);    // Adding layer group to map
+    // var cities = L.layerGroup([littleton, denver, aurora, golden]);
+    // cities.addTo(this.map);    // Adding layer group to map
 
 
 
@@ -285,52 +302,81 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       this.initStatesLayer();
     });
 
+    console.log(L, "l{{{{{{");
+    // console.log(L.canvasLayer().drawing(this)
+    // .addTo(this.map),"l{{{{{{");
 
-    // L.canvasLayer()
-    //   .delegate(this) // -- if we do not inherit from L.CanvasLayer  we can setup a delegate to receive events from L.CanvasLayer
-    //   .addTo(this.map);
 
-    // function onDrawLayer(info) {
-    //   var ctx = info.canvas.getContext('2d');
-    //   ctx.clearRect(0, 0, info.canvas.width, info.canvas.height);
-    //   ctx.fillStyle = "rgba(255,116,0, 0.2)";
-    //   for (var i = 0; i < data.length; i++) {
-    //     var d = data[i];
-    //     if (info.bounds.contains([d[0], d[1]])) {
-    //       dot = info.layer._map.latLngToContainerPoint([d[0], d[1]]);
-    //       ctx.beginPath();
-    //       ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2);
-    //       ctx.fill();
-    //       ctx.closePath();
-    //     }
-    //   }
+    // //add layer in overlay
+    // var layer1 = L.marker([51.505, -0.10]);
+    // var layer2 = L.marker([51.505, -0.09]);
+    // var layer3 = L.marker([51.505, -0.8]);
+
+    // var basemaps = {
+    //   "OSM": tiles
     // };
 
-    // let myCustomCanvasDraw = function () {
-    //   this.onLayerDidMount = function () {
-    //     // -- prepare custom drawing    
-    //   };
-    //   this.onLayerWillUnmount = function () {
-    //     // -- custom cleanup    
-    //   };
-    //   this.setData = function (data) {
-    //     // -- custom data set
-    //     this.needRedraw(); // -- call to drawLayer
-    //   };
-    //   this.onDrawLayer = function (viewInfo) {
-    //     // -- custom  draw
-    //   }
-
+    // var overlays = {
+    //   "Layer1": layer1,
+    //   "Layer2": layer2,
+    //   "Layer3": layer3
     // }
 
-    // myCustomCanvasDraw.prototype = new L.CanvasLayer(); // -- setup prototype 
+    // var controlObj = L.control.layers(basemaps, overlays, { collapsed: false }).addTo(this.map);
 
-    // var myLayer = new myCustomCanvasDraw();
-    // myLayer.addTo(this.map);
+    // layer1.on("add", function () {
+    //   console.log(controlObj, "??????")
+    // });
 
+    // //add layer in overlay
+    var stage = new createjs.Stage("demoCanvas");
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+    circle.x = 100;
+    circle.y = 100;
+    stage.addChild(circle);
+    stage.update();
+
+    ///////////////
+    // this.map.setView([25.0000, 79.0000], 5);
+
+    // var myRenderer = L.canvas({ padding: 0.5 });
+    // for (var i = 0; i < 100000; i += 1) { // 100k points
+    //   L.circleMarker(this.getRandomLatLng(), {
+    //     renderer: myRenderer
+    //   }).addTo(this.map).bindPopup('marker ' + i);
+    // }
+
+    console.log(L, ">>>>>>>>>");
+    console.log(L.FeatureGroup, ">>>>>>>>>");
+
+    let extlayer = L.LayerGroup.extend({
+
+      addLayer: function (layer) {
+        console.log(layer, "layer");
+
+        L.LayerGroup.prototype.addLayer.call(this, layer);
+      },
+
+
+    });
+    console.log(extlayer, "extlayer");
+
+
+
+
+
+    //////////////
 
   }
 
+
+  // getRandomLatLng() {
+  //   return [
+  //     -90 + 180 * Math.random(),
+  //     -180 + 360 * Math.random()
+  //   ];
+  // }
 
   states;
   private initStatesLayer() {
@@ -375,7 +421,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
   }
 
-
+  onclick() {
+    testName();
+  }
 
 
 

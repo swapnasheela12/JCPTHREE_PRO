@@ -93,7 +93,7 @@ import { TreeRenderingComponent } from './modules/components/tree-rendering/tree
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {OverlayContainer} from '@angular/cdk/overlay';
 import {AppOverlayContainer} from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
-
+import { Ng5SliderModule } from 'ng5-slider';
 declare var $: any;
 
 @NgModule({
@@ -116,6 +116,7 @@ declare var $: any;
     BrowserAnimationsModule,
     ChartModule,
     HighchartsChartModule,
+    Ng5SliderModule,
 
     ///////
     // NgxLoadingControlModule,
