@@ -49,14 +49,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { RfOcWorkordersModuleRoutingModule } from './rf-oc-workorders-routing.module';
 import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
-
-  const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    wheelPropagation: true
-  };
 
 @NgModule({
   declarations: [
@@ -65,7 +59,6 @@ import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-m
   imports: [
     RfOcWorkordersModuleRoutingModule,
     CommonModule,
-    PerfectScrollbarModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -122,12 +115,7 @@ import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-m
   ],
   entryComponents : [
   ],
-  providers: [
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
-  ]
+  providers: []
 })
 export class RfOcWorkordersModule { }
 

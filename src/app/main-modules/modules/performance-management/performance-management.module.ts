@@ -68,15 +68,10 @@ import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 import { CreateReportComponent } from './report-builder/create-report/create-report.component';
 import { AddGroupPopupComponent } from './report-builder/create-report/add-group-popup/add-group-popup.component';
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 
-  const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    wheelPropagation: true
-  };
 
 @NgModule({
   declarations: [
@@ -101,7 +96,6 @@ import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/h
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
-    PerfectScrollbarModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -167,12 +161,7 @@ import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/h
   entryComponents : [
     AddGroupPopupComponent
   ],
-  providers: [
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
-  ]
+  providers: []
 })
 export class PerformanceManagementModule { }
 

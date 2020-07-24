@@ -14,9 +14,6 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { DeleteRendererComponent } from './renderer/delete-renderer.component';
 import { dropdownRendererComponent } from './renderer/dropdown-renderer.component';
 import { conditionalDropdownRendererComponent } from './renderer/conditional-dropdown-renderer.component';
-import {
-  PerfectScrollbarComponent, PerfectScrollbarDirective
-} from 'ngx-perfect-scrollbar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddGroupPopupComponent } from './add-group-popup/add-group-popup.component';
 import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
@@ -78,9 +75,6 @@ export class CreateReportComponent implements OnInit {
   public bandFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
   // Band Dropdown 
 
-
-  @ViewChild(PerfectScrollbarComponent, { static: false }) componentRef?: PerfectScrollbarComponent;
-  @ViewChild(PerfectScrollbarDirective, { static: false }) directiveRef?: PerfectScrollbarDirective;
   reportType = 'KPI Report';
   mode = 'On Demand';
   domain = "RAN";
