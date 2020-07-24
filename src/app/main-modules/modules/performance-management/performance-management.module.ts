@@ -2,6 +2,11 @@ import { ReportBuilderComponent } from './report-builder/report-builder.componen
 import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
 import { KpiEditorComponent } from './kpi-editor/kpi-editor.component';
+import { conditionalDropdownRendererComponent } from './report-builder/create-report/renderer/conditional-dropdown-renderer.component';
+import { DeleteRendererComponent } from './report-builder/create-report/renderer/delete-renderer.component';
+import { dropdownRendererComponent } from './report-builder/create-report/renderer/dropdown-renderer.component';
+import { createKpiDropdownRendererComponent } from './kpi-editor/renderer/dropdown-renderer.component';
+import { DeleteCreatedKpiRendererComponent } from './kpi-editor/renderer/delete-renderer.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -61,13 +66,17 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PaginationComponent } from 'src/app/core/components/commanPopup/pagination/pagination.component';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
-// import { CreateReportComponent } from './report-builder/create-report/create-report.component';
-// import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-//   PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { CreateReportComponent } from './report-builder/create-report/create-report.component';
+import { AddGroupPopupComponent } from './report-builder/create-report/add-group-popup/add-group-popup.component';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
+import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
+import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 
-// const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-//   wheelPropagation: true
-// };
+  const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    wheelPropagation: true
+  };
 
 @NgModule({
   declarations: [
@@ -78,17 +87,25 @@ import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component
     PaginationComponent,
     WifiUtilityComponent,
     CreateKpiComponent,
-    // CreateReportComponent
+    CreateReportComponent,
+    AddGroupPopupComponent,
+    conditionalDropdownRendererComponent,
+    DeleteRendererComponent,
+    DeleteCreatedKpiRendererComponent,
+    dropdownRendererComponent,
+    createKpiDropdownRendererComponent,
+    ComputationSettingsPoupComponent,
+    IfElsePopupComponent,
+    HextodocPopupComponent
   ],
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
-    // PerfectScrollbarModule,
+    PerfectScrollbarModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent]),
-
+    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -141,13 +158,21 @@ import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component
     KpiEditorComponent,
     StatusRendererComponent,
     VerticaldotRendererComponent,
-    PaginationComponent
+    PaginationComponent,
+    conditionalDropdownRendererComponent,
+    DeleteRendererComponent,
+    createKpiDropdownRendererComponent,
+    DeleteCreatedKpiRendererComponent
+  ],
+  entryComponents : [
+    AddGroupPopupComponent
   ],
   providers: [
-    // {
-    //   // provide: PERFECT_SCROLLBAR_CONFIG,
-    //   // useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    // }
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ]
 })
 export class PerformanceManagementModule { }
+

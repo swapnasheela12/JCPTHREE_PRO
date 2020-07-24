@@ -108,7 +108,7 @@ declare var $: any;
     ColumnRenderingComponent,
     TreeRenderingComponent,
     // MainLayerComponent,
-    ModalTemplateComponent
+    ModalTemplateComponent,
   ],
   imports: [
     BrowserModule,

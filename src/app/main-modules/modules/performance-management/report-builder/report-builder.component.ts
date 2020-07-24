@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 // import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -23,7 +23,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 declare var $: any;
-
+const PATHS = [
+  {createReport: "JCP/Modules/Performance-Management/Report-Builder/Create-Report"}
+]
 interface reportsMeasure {
   value: string;
   viewValue: string;
@@ -37,12 +39,15 @@ export interface DialogData {
 @Component({
   selector: 'app-report-builder',
   templateUrl: './report-builder.component.html',
-  styleUrls: ['./report-builder.component.scss']
+  styleUrls: ['./report-builder.component.scss'],
+
+  encapsulation: ViewEncapsulation.None
 })
 export class ReportBuilderComponent implements OnInit {
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
+  public paths;
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
@@ -65,7 +70,7 @@ export class ReportBuilderComponent implements OnInit {
 
   constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-
+    this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.rowSelection = 'multiple';
     this.createColumnDefs();

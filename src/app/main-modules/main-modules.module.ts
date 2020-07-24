@@ -74,8 +74,9 @@ import { TableViewControlComponent } from './main-layer/table-view-control/table
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
 import { PlanningDeploymentModule } from './modules/planning-deployment/planning-deployment.module';
-import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
-import { Ng5SliderModule } from 'ng5-slider';
+// import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
+// import { Ng5SliderModule } from 'ng5-slider';
+import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
 
 
 @NgModule({
@@ -93,13 +94,11 @@ import { Ng5SliderModule } from 'ng5-slider';
     PerformanceComponent,
     PlanningComponent,
     WorkordersComponent,
-    TableViewControlComponent,
-    LegendsAndFilterComponent
+    TableViewControlComponent
   ],
   imports: [
     CommonModule,
     MainModulesRoutingModule,
-    Ng5SliderModule,
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
@@ -155,7 +154,8 @@ import { Ng5SliderModule } from 'ng5-slider';
     ScrollingModule,
     NgxMatSelectSearchModule,
     PerformanceManagementModule,
-    PlanningDeploymentModule
+    PlanningDeploymentModule,
+    RfOcWorkordersModule
 
   ], providers: [
     SideNavService,

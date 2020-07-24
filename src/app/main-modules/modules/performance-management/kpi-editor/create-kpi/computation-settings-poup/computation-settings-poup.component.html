@@ -1,0 +1,141 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Computation Settings</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content>
+        <mat-tab-group mat-align-tabs="center" dynamicHeight fxFlex="100">
+            <mat-tab label="General">
+                <ng-template matTabContent>
+                    <form class="m20">
+                        <div>
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <label>Aggregation Type to Perform First</label>
+                                <mat-icon class="zmdi zmdi-help-outline mx15">
+                                </mat-icon>
+                            </div>
+                            <mat-radio-group fxLayout="row" class="radio-button-group">
+                                <mat-radio-button fxFlex="25" value="Node">
+                                    Node</mat-radio-button>
+                                <mat-radio-button fxFlex="25" value="Time">
+                                    Time</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="mt20 mb10">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <label>Entity to Aggregate First</label>
+                                <mat-icon class="zmdi zmdi-help-outline mx15">
+                                </mat-icon>
+                            </div>
+                            <mat-radio-group fxLayout="row" class="radio-button-group">
+                                <mat-radio-button fxFlex="25" value="Counter">
+                                    Counter</mat-radio-button>
+                                <mat-radio-button fxFlex="25" value="KPI">
+                                    KPI</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="mt20 mb10">
+                            <div fxLayout="row">
+                                <div fxFlex="50">
+                                    <mat-form-field fxFlex="70" class="form-field-container">
+                                        <mat-select placeholder="Node AGG">
+                                            <mat-option value=""></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50">
+                                    <mat-form-field fxFlex="70" class="form-field-container">
+                                        <mat-select placeholder="Time Agg">
+                                            <mat-option value=""></mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Advanced">
+                <ng-template matTabContent>
+                    <form class="m20">
+                        <label>Time Aggregation Settings</label>
+                        <div fxLayout="row" fxLayoutAlign="space-between start" class="mb10">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <label>Aggregation Type to Perform First</label>
+                                <mat-icon class="zmdi zmdi-help-outline mx15">
+                                </mat-icon>
+                            </div>
+                            <mat-slide-toggle color="primary">Slide me!</mat-slide-toggle>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="mt20 mb10">
+                            <div class="mt20 mb10">
+                                <div fxLayout="row">
+                                    <div fxFlex="50">
+                                        <mat-form-field fxFlex="70" class="form-field-container">
+                                            <mat-select placeholder="Hour">
+                                                <mat-option value="Value1">Value1</mat-option>
+                                                <mat-option value="Value2">Value2</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="50">
+                                        <mat-form-field fxFlex="70" class="form-field-container">
+                                            <mat-select placeholder="Per Day">
+                                                <mat-option value="Value1">Value1</mat-option>
+                                                <mat-option value="Value2">Value2</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="mt20 mb10">
+                            <div fxLayout="row">
+                                <div fxFlex="50">
+                                    <mat-form-field fxFlex="70" class="form-field-container">
+                                        <mat-select placeholder="Report Type">
+                                            <mat-option value="Value1">Value1</mat-option>
+                                            <mat-option value="Value2">Value2</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex="50">
+                                    <mat-form-field fxFlex="70" class="form-field-container">
+                                        <mat-select placeholder="Report Type">
+                                            <mat-option value="Value1">Value1</mat-option>
+                                            <mat-option value="Value2">Value2</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="">
+            <button mat-button color="primary" class="">Reset To Default</button>
+        </div>
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>
