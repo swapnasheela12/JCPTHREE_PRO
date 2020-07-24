@@ -1,8 +1,6 @@
-<!-- <div class="mat-card-data"> -->
 <mat-card class="create-kpi-mat-card">
   <mat-card-header class="header">
-    <mat-card-title class="card-title">Create KPI / {{stepperLabelText}}</mat-card-title>
-    <!-- <mat-card-subtitle class="card-subtitle">&nbsp; : {{domainCtrl.value}}</mat-card-subtitle> -->
+    <mat-card-title class="card-title">Create KPI</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content class="create-kpi-card-content">
@@ -11,11 +9,9 @@
         <form [formGroup]="selectNodeCtrl" class="mt10">
           <ng-template matStepLabel>Select Type</ng-template>
           <div fxLayoutGap="40px" fxLayout="row wrap">
-
             <mat-form-field class="form-field-container">
               <input matInput placeholder="Key Name" formControlName="keyName" value="KPI_1234" required>
             </mat-form-field>
-
             <mat-form-field class="form-field-container">
               <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering disableOptionCentering
                 ngDefaultControl #domainCtrlSelect>
@@ -326,7 +322,6 @@
           </div>
 
           <div>
-            <!-- <button class="mx-2 previous-button" mat-stroked-button matStepperPrevious>Previous</button> -->
             <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
@@ -334,13 +329,10 @@
       <mat-step [stepControl]="counterKPICtrl">
         <ng-template matStepLabel>Counter KPI List</ng-template>
         <div class="border-box mb10" fxLayout="row">
-          <div class="left-holder" fxFlex="35">
-            <div>
+          <div class="left-holder" fxFlex="30">
+            <div class="counter-kpi">
               <mat-tab-group mat-align-tabs="center" dynamicHeight fxFlex="100">
                 <mat-tab label="Counter">
-                  <!-- <ng-template matTabContent>
-                    
-                  </ng-template> -->
                   <div style="height:50px;">
                     <mat-form-field class="search-input full-width" fxLayout="row">
                       <input matInput [(ngModel)]="searchGrid" (ngModelChange)="kpiFilterChange($event);"
@@ -355,27 +347,20 @@
                   </div>
                 </mat-tab>
                 <mat-tab label="KPI">
-                  <!-- <ng-template matTabContent> -->
-                  <!-- 15 Mins KPI -->
                   <div style="height:50px;">
                     <mat-form-field class="search-input full-width" fxLayout="row">
                       <input matInput [(ngModel)]="searchSecondGrid" (ngModelChange)="secondGridChange($event);"
-                        autocomplete="off" placeholder="">
+                      autocomplete="off" placeholder="">
                       <i class="search-icon zmdi zmdi-search"></i>
-                      <!-- </mat-icon> -->
                     </mat-form-field>
                   </div>
                   <div style="height: 180px;">
                     <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
-                      id="myGrid1" class="ag-theme-material" [headerHeight]="0"
-                      [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
-                      (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular>
+                    id="myGrid1" class="ag-theme-material" [headerHeight]="0"
+                    [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
+                    (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular>
                   </div>
-                  <!-- </ng-template> -->
                   <div style="height: 150px;">
-                    <!-- <ag-grid-angular #agGrid style="width: 100%; height: 100%;" id="myGrid1" class="ag-theme-material"
-                      [headerHeight]="0" [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
-                      (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular> -->
                   </div>
                 </mat-tab>
                 <mat-tab label="Attribute">
@@ -387,47 +372,48 @@
           <div class="right-holder">
             <div class="border-bottom height-49">
               <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49">
-                <form fxLayout="row" class="ml15" [formGroup]="createKPIForm">
-                  <div class="mt15">
-                    <mat-form-field class="pr15" fxFlex="90">
-                      <mat-select disableOptionCentering placeholder="Node Aggr" [formControl]="nodeAggrControl"
-                        ngDefaultControl #nodeAggrControlSelect>
-                        <mat-option>
-                          <ngx-mat-select-search placeholderLabel="Node Aggr" [formControl]="nodeAggrFilterControl"
-                            noEntriesFoundLabel="no matching found" ngDefaultControl>
-                          </ngx-mat-select-search>
-                        </mat-option>
-                        <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
-                          {{nodeAggr.name}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="mt15">
-                    <mat-form-field class="pr15" fxFlex="90">
-                      <mat-select disableOptionCentering placeholder="Time Aggr" [formControl]="nodeAggrControl"
-                        ngDefaultControl #nodeAggrControlSelect>
-                        <mat-option>
-                          <ngx-mat-select-search placeholderLabel="Time Aggr" [formControl]="nodeAggrFilterControl"
-                            noEntriesFoundLabel="no matching found" ngDefaultControl>
-                          </ngx-mat-select-search>
-                        </mat-option>
-                        <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
-                          {{nodeAggr.name}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </form>
+                <div class="col"></div>
                 <div class="" fxLayoutAlign="center center">
+                  <form fxLayout="row" class="ml15" [formGroup]="createKPIForm">
+                    <div class="mt15">
+                      <mat-form-field class="pr15" fxFlex="90">
+                        <mat-select disableOptionCentering placeholder="Node Aggr" [formControl]="nodeAggrControl"
+                        ngDefaultControl #nodeAggrControlSelect>
+                          <mat-option>
+                            <ngx-mat-select-search placeholderLabel="Node Aggr" [formControl]="nodeAggrFilterControl"
+                              noEntriesFoundLabel="no matching found" ngDefaultControl>
+                            </ngx-mat-select-search>
+                          </mat-option>
+                          <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
+                            {{nodeAggr.name}}
+                          </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="mt15">
+                      <mat-form-field class="pr15" fxFlex="90">
+                        <mat-select disableOptionCentering placeholder="Time Aggr" [formControl]="nodeAggrControl"
+                        ngDefaultControl #nodeAggrControlSelect>
+                          <mat-option>
+                            <ngx-mat-select-search placeholderLabel="Time Aggr" [formControl]="nodeAggrFilterControl"
+                              noEntriesFoundLabel="no matching found" ngDefaultControl>
+                            </ngx-mat-select-search>
+                          </mat-option>
+                          <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
+                            {{nodeAggr.name}}
+                          </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </form>
                   <button mat-raised-button color="primary" class="buttonWidth button apply-button mr10">Apply</button>
                   <mat-divider vertical class="mx10" style="height:30px"></mat-divider>
-                  <button mat-icon-button color="" class="global-button" (click)="openComputationSetting()">
+                  <button mat-icon-button color="" class="global-button mr10" (click)="openComputationSetting()">
                     <mat-icon class="fa fa-sliders global-icon"></mat-icon>
                   </button>
-                  <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mx10" style="height:30px">
+                  <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mr10" style="height:30px">
                   </mat-divider>
-                  <button mat-mini-fab class="global-button common-delete-button" color=""
+                  <button mat-mini-fab class="global-button common-delete-button mr10" color=""
                     *ngIf="showGlobalDeleteOperation"
                     (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
                     <mat-icon class="ic ic-bin global-icon">
@@ -435,34 +421,15 @@
                   </button>
                 </div>
               </div>
-              <!-- <div class="d-flex">
-              <button mat-button color="primary" fxflex="25">Add Group</button>
-              <mat-form-field class="mt17" fxflex="20">
-                <mat-select placeholder="Threshold Condition" [(value)]="reportType">
-                  <mat-option value="KPI Report" selected>KPI Report</mat-option>
-                  <mat-option value="Exception Report">Exception Report</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field class="mt17" fxflex="20">
-                <mat-select placeholder="Mode" [(value)]="mode">
-                  <mat-option value="On Demand" selected>On Demand</mat-option>
-                  <mat-option value="Scheduled">Scheduled</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div class="p-2" fxflex="5">
-                <button mat-raised-button color="primary" class="buttonWidth button">Apply</button>
-              </div>
-              <div fxflex="10" class="calendar-icon"><i class="zmdi zmdi-calendar"></i></div>
-             </div> -->
             </div>
             <form class="dealership-form target-kpi-table" fxLayout="column" fxLayoutAlign="start center"
               [formGroup]="formGroup">
               <div style="height: 230px;width:100%">
                 <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
-                  id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptions"
-                  [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
-                  [overlayNoRowsTemplate]="overlayNoRowsTemplate" (gridReady)="onGridRightReady($event)"
-                  [context]="getContext()" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptions"
+                [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                [overlayNoRowsTemplate]="overlayNoRowsTemplate" (gridReady)="onGridRightReady($event)"
+                [context]="getContext()" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
               </div>
             </form>
           </div>
@@ -485,61 +452,56 @@
             <div style="height:50px;">
               <mat-form-field class="search-input full-width" fxLayout="row">
                 <input matInput [(ngModel)]="searchGrid" (ngModelChange)="searchFormulaGrid($event);" autocomplete="off"
-                  placeholder="">
+                placeholder="">
                 <i class="search-icon zmdi zmdi-search"></i>
               </mat-form-field>
             </div>
-            <div style="height: 230px;">
+            <div style="height: 230px;" class="define-formula">
               <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
-                id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptionsFormula"
-                [rowData]="dataFormula" (gridReady)="onGridleftReadyFormula($event)"></ag-grid-angular>
+              id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptionsFormula"
+              [rowData]="dataFormula" (gridReady)="onGridleftReadyFormula($event)"></ag-grid-angular>
             </div>
           </div>
           <div class="right-holder">
             <div class="border-bottom height-49">
-              <!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49"> -->
               <form fxLayout="row" class="ml15 height-49" fxLayoutAlign="space-between center"
-                [formGroup]="addFormulaForm">
-                <div class="mt15">
-                  <mat-form-field>
-                    <mat-select [(value)]="formula" (selectionChange)="onChangeFormula(formula)" placeholder="Add Formula" [formControl]="formulaCtrl" disableOptionCentering
-                      disableOptionCentering ngDefaultControl #formulaCtrlSelect>
-                      <mat-option>
-                        <ngx-mat-select-search placeholderLabel="Add Formula" [formControl]="formulaFilterCtrl"
-                          noEntriesFoundLabel="no matching found" ngDefaultControl>
-                        </ngx-mat-select-search>
-                      </mat-option>
-                      <mat-option *ngFor="let formula of formulaFilter | async" [value]="formula.abbr">
-                        {{formula.name}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="mt15">
-                  <mat-checkbox formControlName="percentageOfNodes" [(ngModel)]="percentageNodesChecked">Calculate %
-                    of Nodes</mat-checkbox>
-                </div>
-                <div class="mt15">
-                  <mat-checkbox formControlName="countNodes" [(ngModel)]="countNodesChecked">Count of Nodes
-                  </mat-checkbox>
-                </div>
-                <button mat-raised-button color="primary" class="button formula-button mr10"
-                  (click)="validateFormula()">Validate Formula</button>
-              </form>
-              <!-- <div class="" fxLayoutAlign="center center"> -->
-
-              <!-- </div> -->
-              <!-- </div> -->
+              [formGroup]="addFormulaForm">
+              <div class="mt15">
+                <mat-form-field>
+                  <mat-select [(value)]="formula" (selectionChange)="onChangeFormula(formula)" placeholder="Add Formula" [formControl]="formulaCtrl" disableOptionCentering
+                    disableOptionCentering ngDefaultControl #formulaCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Add Formula" [formControl]="formulaFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let formula of formulaFilter | async" [value]="formula.abbr">
+                      {{formula.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="mt15">
+                <mat-checkbox formControlName="percentageOfNodes" [(ngModel)]="percentageNodesChecked">Calculate %
+                  of Nodes</mat-checkbox>
+              </div>
+              <div class="mt15">
+                <mat-checkbox formControlName="countNodes" [(ngModel)]="countNodesChecked">Count of Nodes
+                </mat-checkbox>
+              </div>
+              <button mat-raised-button color="primary" class="button formula-button mr10"
+                (click)="validateFormula()">Validate Formula</button>
+            </form>
             </div>
 
             <form class="dealership-form target-kpi-table" fxLayout="column" fxLayoutAlign="start center"
               [formGroup]="formGroupFormula">
               <div style="height: 230px;width:100%">
                 <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
-                  id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptionsFormula"
-                  [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
-                  [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowClassRules]="rowClassRules"
-                  [rowData]="rowDataFormula" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptionsFormula"
+                [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowClassRules]="rowClassRules"
+                [rowData]="rowDataFormula" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
               </div>
             </form>
           </div>
@@ -573,4 +535,3 @@
     </div>
   </div>
 </mat-card>
-<!-- </div> -->

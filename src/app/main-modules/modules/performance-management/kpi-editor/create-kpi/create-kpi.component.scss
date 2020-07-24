@@ -1,6 +1,19 @@
 $blueactive-color: #E5F0FC;
 $border-color: #d3d5d7;
 $md-primary: #0070DB;
+
+.mat-select-search-panel {
+    top: 28px;
+    position: absolute;
+    box-shadow: 0px 3px 9px #00000029 !important;
+    // min-width: 100% !important;
+    // left: 15px !important;
+}
+.mat-select-panel .mat-option.mat-selected {
+    background-color: #E5F0FB !important;
+    color: #464d69 !important;
+}
+
 .create-kpi-mat-card {
     height: calc(100% - 56px);
     padding-left: 0 !important;
@@ -12,17 +25,21 @@ $md-primary: #0070DB;
         }
     }
     .create-kpi-card-content {
+        .mat-horizontal-stepper-header {
+            padding: 0 15px;
+        }
         .mat-horizontal-content-container{
-            padding: 0px 25px;
+            padding: 20px 15px 0 15px;
             .form-container{
-                // height: 275px;
+                height: 275px;
                 margin-top: 10px;
             }
         }
         .form-field-container {
-            min-width: 280px;
+            min-width: 275px;
             margin-bottom: 10px;
         }
+       
         .mat-step-header[aria-selected="true"]  {
         background-color: $blueactive-color !important 
          }
@@ -48,7 +65,14 @@ $md-primary: #0070DB;
             .left-holder {
                border-right: 1px solid #e0e0e0;
                min-width: 370px;
-            //    max-width: 370px;
+                .mat-tab-label {
+                    min-width: 0 !important;
+                    width: 33%;
+                }
+                .mat-tab-label-active {
+                    min-width: 0 !important;
+                    width: 33%;
+                }
                .calendar-icon{
                    font-size: 20px;
                    color: #858585;
@@ -71,18 +95,27 @@ $md-primary: #0070DB;
                 }
                    }
                }
-               .ag-icon-grip {
-                position: absolute;
-                pointer-events: auto;
-                top: 0;
-                opacity: 0;
-                height:45px;
-                width: 90%;
-            }
+               .counter-kpi .ag-icon-grip {
+                    position: absolute;
+                    pointer-events: auto;
+                    top: 0;
+                    opacity: 0;
+                    height:45px;
+                    width: 90%;
+                }
                 //Setting opacity for first column is 1
-            .first-drag-column .ag-icon-grip {
-                opacity: 1;
-            }
+                .counter-kpi .first-drag-column .ag-icon-grip {
+                    opacity: 1;
+                }
+
+                .define-formula .ag-icon-grip {
+                    position: absolute;
+                    pointer-events: auto;
+                    width: 90%;
+                }
+                .counter-kpi .first-drag-column .ag-icon-grip {
+                    opacity: 1;
+                }
             } 
             .right-holder{
                 width: 100%;

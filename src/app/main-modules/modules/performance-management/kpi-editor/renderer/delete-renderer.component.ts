@@ -6,7 +6,6 @@ import { GridOptions } from '@ag-grid-community/all-modules';
 @Component({
   selector: 'delete-renderer',
   template: `
-  <div>
  <button mat-icon-button [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu">
  <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
  </button>
@@ -18,7 +17,6 @@ import { GridOptions } from '@ag-grid-community/all-modules';
  <span>Delete</span>
  </button>
  </mat-menu>
- </div>
   `,
 })
 

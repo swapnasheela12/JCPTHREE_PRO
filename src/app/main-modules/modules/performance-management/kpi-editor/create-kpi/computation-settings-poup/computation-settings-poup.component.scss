@@ -3,6 +3,14 @@ $md-primary: #0070DB;
 .mat-dialog-container {
     padding: 0px;
     // overflow: hidden;
+    .mat-tab-label {
+        min-width: 0 !important;
+        width: 50%;
+    }
+    .mat-tab-label-active {
+        min-width: 0 !important;
+        width: 50%;
+    }
     .dialog-header{
         height: 54px;
         max-height: 54px;

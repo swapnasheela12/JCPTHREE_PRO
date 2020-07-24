@@ -164,13 +164,13 @@ export class CreateKpiComponent implements OnInit {
       },
     ];
     this.leftColumnFormulaDefs = [
-      {
-        colId: 'checkbox',
-        maxWidth: 50,
-        checkboxSelection: true,
-        suppressMenu: true,
-        headerCheckboxSelection: false
-      },
+      // {
+      //   colId: 'checkbox',
+      //   maxWidth: 50,
+      //   checkboxSelection: true,
+      //   suppressMenu: true,
+      //   headerCheckboxSelection: false
+      // },
       {
         field: "Name",
         suppressMenu: true,

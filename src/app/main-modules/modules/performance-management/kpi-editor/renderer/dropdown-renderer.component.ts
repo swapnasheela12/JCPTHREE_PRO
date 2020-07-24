@@ -19,7 +19,12 @@ import { FormArray } from '@angular/forms';
     
     </div>
     `,
-    encapsulation: ViewEncapsulation.None
+    styles: [
+        `
+        .kpi-editor-menu-render .mat-menu-content .mat-menu-item:hover {
+            background-color: #f3f7fc;
+        }
+    `]
 })
 
 export class createKpiDropdownRendererComponent implements ICellRendererAngularComp {

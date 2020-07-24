@@ -5,7 +5,7 @@
                 KPI Editor
             </div>
             <div class="col-8 kpi-editor-flex-item d-flex justify-content-end align-items-center">
-                <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
                 <mat-form-field *ngIf="show" class="col-4">
@@ -14,9 +14,9 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button" color="primary" routerLink="/{{paths[0].createKPI}}">Create KPI</button>
-                <button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" [style.visibility]="showGlobalOperation ? 'visible' : 'hidden'">
-                    <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
+                <button mat-raised-button class="submit-button kpi-create" color="primary" routerLink="/{{paths[0].createKPI}}">Create KPI</button>
+                <button mat-icon-button style="margin-left: 12px;" [disableRipple]="true" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" [style.display]="showGlobalOperation ? 'block' : 'none'">
+                    <mat-icon class="icon-button vertical-kpi" style="color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
                 </button>
                 <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
                     <button mat-menu-item>
@@ -45,8 +45,8 @@
             enableColResize
             enableSorting 
             enableFilter 
-            groupHeaders 
-            suppressRowClickSelection 
+            groupHeaders
+            [suppressCellSelection]="true" 
             toolPanelSuppressGroups
             toolPanelSuppressValues
             rowSelection="multiple"
