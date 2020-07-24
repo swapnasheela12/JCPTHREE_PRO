@@ -49,7 +49,7 @@ export class dropdownRendererComponent implements ICellRendererAngularComp {
 
   refresh(params?: any): boolean {
       this.formGroup = params.context.formGroup;
-      this.formGroup.controls[this.key].patchValue(params.value);
+      // this.formGroup.controls[this.key].patchValue(params.value);
       return true;
   }
 

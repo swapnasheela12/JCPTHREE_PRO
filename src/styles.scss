@@ -70,7 +70,6 @@ $body-1: mat-typography-level(16px,
 //   @include angular-material-theme($alternate-theme);
 // }
 //external css file
-@import './scss/ngx-datepicker-custom.scss';
 @import './scss/leaflet/_control-button.scss';
 @import './scss/leaflet/leaflet-geoman.css';
 @import './scss/leaflet/leaflet-extend';
@@ -808,6 +807,187 @@ $color-white: #ffffff;
     }
 }
 
+// .daterange-container {
+.md-drppicker {
+    // top: 95px !important;
+    // left: -174% !important;
+    // right: 15px !important;
+    // top: 44px !important;
+    // left: auto !important;
+    // right: auto !important;
+    position: fixed;
+    font-family: Lato Regular !important;
+    color: inherit;
+    border-radius: 4px;
+    // width: 643px !important; // width: 278px;
+    padding: 12px;
+    // margin-top: -55px !important;
+    // margin-top: 115px !important;
+    // margin-left: 138px !important;
+    overflow: hidden;
+    z-index: 1000;
+    font-size: 12px !important;
+    background-color: #ffffff !important;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+    .ranges {
+        // float: none;
+        text-align: left;
+        margin: 0;
+        ul li button.active {
+            background-color: #0078D7;
+            color: #fff;
+        }
+    }
+    .calendar {
+        max-width: 100%;
+        margin: 0px; // float: right;
+        .calendar-table {
+            border: 1px solid #fff;
+            padding: 0px 15px;
+            border-radius: 4px;
+            background-color: #fff;
+            .table-condensed {
+                .drp-animate {}
+            }
+            td.active,
+            .md-drppicker td.active:hover {
+                background-color: #0078D7;
+                border-color: transparent;
+                color: #fff;
+            }
+        }
+        .left {
+            float: left !important;
+        }
+        .right {
+            float: right !important;
+        }
+    }
+    .calendar-time {
+        text-align: center;
+        margin: 12px auto;
+        line-height: 30px;
+        position: relative;
+        .hourselect {
+            width: 55px;
+            margin: 0;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+            padding: 2px;
+            outline: 0;
+            font-size: 13px !important;
+            font-family: inherit;
+        }
+        .minuteselect {
+            width: 55px;
+            margin: 0 8px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+            padding: 2px;
+            outline: 0;
+            font-size: 13px !important;
+            font-family: inherit;
+        }
+        .secondselect {
+            width: 55px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+            outline: 0;
+            font-size: 13px !important;
+            font-family: inherit;
+        }
+        // .select{
+        //   border-bottom: 1px solid rgba(0, 0, 0, .12);
+        // }
+        .select .select-item {
+            display: inline-block;
+            width: 48px;
+            position: relative;
+            font-family: inherit;
+            background-color: #ffffff;
+            padding: 10px 10px 10px 0;
+            font-size: 14px;
+            border-radius: 0;
+            // border: none;
+            // border-bottom: 1px solid rgba(0, 0, 0, .12);
+        }
+        .ampmselect {
+            margin-left: 10px;
+        }
+    }
+    .buttons {
+        .buttons_input {
+            .mat-raised-button {
+                margin: 10px !important;
+            }
+        }
+    }
+    .buttons .buttons_input .mat-raised-button:nth-child(2) {
+        color: #0070DB;
+    }
+    .clear-button {
+        color: #0070DB !important;
+    }
+    table {
+        width: 100%;
+        margin: 0;
+        display: table;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    table,
+    td {
+        border: none;
+    }
+    th {
+        border: none;
+        color: #988c8c;
+        font-size: 14px;
+        font-family: Lato Regular;
+        font-weight: 500;
+    }
+    td.in-range {
+        background-color: RGBA(0, 120, 215, 0.13);
+        border-color: transparent;
+        color: #000;
+        // border-radius: 0;
+    }
+}
+
+.double {
+    width: auto;
+}
+
+.shown {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+.iconCal {
+    position: absolute;
+    right: -25px;
+    bottom: 0;
+    font-size: 20px;
+    color: gray;
+}
+
+// }
 ///END report page
 ///Create report pop up
 .material-dialog-container {
@@ -1116,6 +1296,10 @@ table {
     color: #0078D7;
 }
 
+.mat-button.mat-button-base.mat-primary {
+    color: #0078D7;
+}
+
 .mat-step-header .mat-step-icon-selected,
 .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {
@@ -1194,10 +1378,6 @@ table {
 
 ::-webkit-scrollbar-button {
     display: none
-}
-
-.mat-form-field-appearance-fill .mat-form-field-infix {
-    padding: 0 !important;
 }
 
 

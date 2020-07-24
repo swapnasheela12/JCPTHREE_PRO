@@ -30,9 +30,12 @@ $md-primary: #0070DB;
             font-size: 14px;
         }
       .inline-button{
-            background: #e4f1fb;
+            // background: #e4f1fb;
             font-size: 20px;
             color: #666666;
+            &:hover{
+                  background: #e4f1fb;
+            }
         } 
         .delete-icon{
             font-size: 16px;

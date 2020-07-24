@@ -45,8 +45,20 @@ $md-primary: #0070DB;
                     float: right;
                     top: 8px;
                 }
+                .mat-form-field-wrapper{
+                    .mat-form-field-flex{
+                        .mat-form-field-infix{
+                            .mat-form-field-label-wrapper{
+                                width: 200px;
+                                left: 25px;
+                                top: 8px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
             }
-        }  
+        } 
         }
     }
 }

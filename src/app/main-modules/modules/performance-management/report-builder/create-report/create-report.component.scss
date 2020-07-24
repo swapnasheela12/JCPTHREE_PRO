@@ -1,8 +1,23 @@
 $blueactive-color: #E5F0FC;
 $border-color: #d3d5d7;
 $md-primary: #0070DB;
+.mat-select-search-panel {
+    top: 28px;
+    position: absolute;
+    box-shadow: 0px 3px 9px #00000029 !important;
+    // min-width: 100% !important;
+    // left: 40px !important;
+ }
+ .mat-select-panel .mat-option.mat-selected {
+    background-color: #E5F0FB !important;
+    color: #464d69 !important;
+ }
+ .mat-select-panel {
+    top: 26px;
+    position: absolute;
+ }
 .mat-card {
-    height: calc(100% - 56px);
+    height: calc(100% - 54px);
     padding-left: 0 !important;
     padding-right: 0 !important;
     .header{
@@ -12,13 +27,29 @@ $md-primary: #0070DB;
         }
     }
     .card-content {
-        .mat-horizontal-content-container{
-            padding: 0px 25px;
-            .form-container{
-                height: 275px;
-                margin-top: 10px;
+        height: 100%;
+        .mat-stepper-horizontal{
+            height: 100%;
+             .mat-horizontal-stepper-header {
+            padding: 0 15px;
+            }
+            .mat-horizontal-content-container{
+                height: calc(100% - 72px);
+                padding:20px 15px 0 15px;
+                .mat-horizontal-stepper-content[aria-expanded="true"]{
+                    height: 100%;
+                    .form-container{
+                        height: calc(100% - 15px);
+                    }
+                }
             }
         }
+        // .mat-horizontal-content-container{
+        //     padding: 0px 25px;
+        //     .form-container{
+        //         margin-top: 10px;
+        //     }
+        // }
         .form-field-container {
             min-width: 278px;
             margin-bottom: 10px;
@@ -31,9 +62,9 @@ $md-primary: #0070DB;
          }
          .border-box {
             border: 1px solid #e0e0e0 ; 
-            min-height:235px;
-            height:auto;
-            max-height: 290px;
+            // min-height:235px;
+            height:calc(100% - 50px);
+            // max-height: 290px;
             width: 100%;
             .mat-form-field.custom-field-container {
                 .mat-form-field-wrapper{
@@ -48,13 +79,25 @@ $md-primary: #0070DB;
             .left-holder {
                border-right: 1px solid #e0e0e0;
                min-width: 370px;
+               .mat-tab-label {
+                min-width: 0 !important;
+                width: 50%;
+            }
+                .mat-tab-label-active {
+                    min-width: 0 !important;
+                    width: 50%;
+                }
             //    max-width: 370px;
-            .height-49{
-                height:49px
+            .mat-tab-body-wrapper{
+                height: 100%;
+                .height-49{
+                    height:49px
+                }
+                .left-grid{
+                    height:calc(100% - 48px)
+                }
             }
-            .height-180{
-                height: 180px
-            }
+            
                .calendar-icon{
                    font-size: 20px;
                    color: #858585;
@@ -118,6 +161,9 @@ $md-primary: #0070DB;
                .radio-button-group mat-radio-button{
                     padding-bottom: 10px;
                 }
+                .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+                    background-color: #e5f0fc !important;
+                }
                .mat-radio-checked {
                 .mat-radio-outer-circle {
                     border-color: #0078d7 !important;
@@ -136,6 +182,19 @@ $md-primary: #0070DB;
                     font-size: 16px;
                     color: #858585;
                 }
+            }
+            .grid-delete-button{
+                height:45px;
+                width: 45px;
+                .hover-show{
+                    visibility:hidden;
+                }
+                &:hover{
+                    .hover-show{
+                        visibility:visible;
+                    }
+                }
+
             }
             .ag-overlay-loading-center.no-data{
                 width: 130px;

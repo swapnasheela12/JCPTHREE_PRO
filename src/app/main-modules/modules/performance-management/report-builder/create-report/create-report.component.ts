@@ -198,7 +198,6 @@ export class CreateReportComponent implements OnInit {
   public showGlobalDeleteOperation;
   kpiGridSearch = '';
   conditionValue = '';
-  timeAggrValue = '';
   NodeAggr = [
     'AVG',
     'COUNT',
@@ -206,18 +205,6 @@ export class CreateReportComponent implements OnInit {
     'MIN',
     'SUM'
   ];
-
-  TimeAggr = [
-    'AVG',
-    'COUNT',
-    'MAX',
-    'MIN',
-    'SUM'
-  ];
-  createKPIForm = new FormGroup({
-    gridConditionValue: new FormControl(null, Validators.required),
-    timeAggr: new FormControl(null, Validators.required)
-  });
   rightAgGridFormGroup: FormGroup = new FormGroup({});
   tooltipShowDelay: number;
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private http: HttpClient,
@@ -416,7 +403,8 @@ export class CreateReportComponent implements OnInit {
       },
       {
         headerName: 'Sr No.',
-        maxWidth: 140,
+        maxWidth: 130,
+        minWidth:130,
         cellRenderer: function (params) {
           return '<div>' + (params.rowIndex + 1) +'</div>'
         }
@@ -425,6 +413,7 @@ export class CreateReportComponent implements OnInit {
         headerName: 'KPI Name',
         field: "Name",
         tooltipField: 'Name',
+        minWidth: 250,
       },
       {
         headerName: 'Threshold Condition',
@@ -435,7 +424,8 @@ export class CreateReportComponent implements OnInit {
       {
         headerName: 'Condition',
         field: "gridConditionValue",
-        cellRenderer: 'dropDownCellRenderer'
+        cellRenderer: 'dropDownCellRenderer',
+        minWidth: 200,
       },
       {
         suppressMenu: true,
@@ -500,7 +490,7 @@ export class CreateReportComponent implements OnInit {
       frameworkComponents: this.frameworkComponentsCreateKPIEditor,
       getRowNodeId: function (data) { return data.id; },
       rowDragManaged: true,
-      suppressHorizontalScroll: true,
+      suppressHorizontalScroll: false,
       columnDefs: this.rightColumnDefs,
       suppressMoveWhenRowDragging: true,
       animateRows: true
@@ -565,15 +555,12 @@ export class CreateReportComponent implements OnInit {
   }
 
   onApply() {
-    this.conditionValue = this.createKPIForm.value.gridConditionValue;
-    this.timeAggrValue = this.createKPIForm.value.timeAggr;
     let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
     let columns = this.rightGridOptions.columnApi.getAllColumns();
     selectedNodes.forEach((node) => {
       columns.filter(column => column.getColDef().field)
         .forEach((column: Column) => {
           node.setDataValue("gridConditionValue", this.conditionValue);
-          node.setDataValue("timeAggr", this.timeAggrValue);
         })
     });
   }
@@ -745,3 +732,4 @@ export class CreateReportComponent implements OnInit {
   }
 
 }
+
