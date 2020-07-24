@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
-// used to create fake backend
+//. used to create fake backend
 import { fakeBackendProvider } from "./_helpers";
 import { BasicAuthInterceptor, ErrorInterceptor } from "./_helpers";
 

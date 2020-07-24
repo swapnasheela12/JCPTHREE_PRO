@@ -43,7 +43,7 @@ export class LegendsAndFilterComponent implements OnInit {
     //     default:
     //       return '' + value;
     //   }
-    // }
+    // }.
   };
   items = [
     { value: 1, legend: '#F44336' },
