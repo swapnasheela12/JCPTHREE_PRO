@@ -1,5 +1,8 @@
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
+    .custom-slider .ng5-slider {
+        margin: 28px 0 15px;
+    }
     .custom-slider .ng5-slider .ng5-slider-bar {
         background: #A5D4F0;
         height: 2px;
@@ -8,16 +11,16 @@
         background: #0078D7;
     }
     .custom-slider .ng5-slider .ng5-slider-pointer {
-        width: 6px;
-        height: 10px;
-        // width: 50px;
-        // height: 60px;
-        // top: -55px;
+        // width: 6px;
+        // height: 10px;
+        width: 30px;
+        height: 60px;
+        top: -55px;
         /* to remove the default positioning */
         bottom: 0;
-        // background-image: url(../../../../assets/images/Layers/bubble.svg);
+        background-image: url(../../../../assets/images/Layers/bubble.svg);
         background-size: cover;
-        background-color: black;
+        background-color: transparent;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
     }
@@ -39,7 +42,7 @@
     .custom-slider .ng5-slider .ng5-slider-tick {
         width: 4px;
         height: 4px;
-        margin-left: 4px;
+        // margin-left: 4px;
         border-radius: 2;
         background: #ffe4d1;
         top: -1px;

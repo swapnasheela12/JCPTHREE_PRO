@@ -34,16 +34,16 @@ export class LegendsAndFilterComponent implements OnInit {
       { value: -90, legend: '' },
       { value: -40, legend: '' },
     ],
-    // translate: (value: number, label: LabelType): string => {
-    //   switch (label) {
-    //     case LabelType.Low:
-    //       return '' + value;
-    //     case LabelType.High:
-    //       return '' + value;
-    //     default:
-    //       return '' + value;
-    //   }
-    // }.
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '' + value;
+        case LabelType.High:
+          return '' + value;
+        default:
+          return '' + value;
+      }
+    }
   };
   items = [
     { value: 1, legend: '#F44336' },

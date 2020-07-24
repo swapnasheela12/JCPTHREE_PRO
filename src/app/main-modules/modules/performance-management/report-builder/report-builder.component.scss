@@ -14,17 +14,16 @@
                 font-family: Lato Bold;
             }
             .icon-button {
-                padding: 13px 15px;
+                padding: 10px 16px;
             }
         }
     }
     .jcp-table-container {
         height: calc(100% - 80px) !important;
         max-height: calc(100% - 80px) !important;
-
-    .ag-theme-material.ag-jcp3 .ag-header {
-    background-color: #D3D5DC;
-    }
+        .ag-theme-material.ag-jcp3 .ag-header {
+            background-color: #D3D5DC;
+        }
     }
     .pagination-aggrid {
         width: calc(100% - 310px);
@@ -43,5 +42,4 @@
         text-align: center;
         // box-shadow: 2px 2px 3px #f5f5f5;
     }
-
 }
