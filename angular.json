@@ -37,7 +37,6 @@
                             "./node_modules/font-awesome/css/font-awesome.css",
                             "src/styles.scss",
                             "./node_modules/mmenu-js/dist/mmenu.css",
-                            "./node_modules/ion-rangeslider/css/ion.rangeSlider.min.css",
                             {
                                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
                             }
@@ -51,7 +50,6 @@
                             "./node_modules/lodash/lodash.js",
                             "./node_modules/mmenu-js/dist/mmenu.js",
                             "./node_modules/jquery/dist/jquery.min.js",
-                            "./node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"
                         ]
                     },
                     "configurations": {
