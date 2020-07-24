@@ -15,7 +15,7 @@ export class FileUploadPopupComponent{
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];  
   kpiGroupFormControl: FormGroup;
   title: string;
-  fileName = "Select File*";
+  fileName;
   uploadFile(file) {  
     this.fileName = file.data.name;
     const formData = new FormData();  

@@ -13,18 +13,19 @@
         <mat-form-field fxFlex="90" class="mb20 browse-file-form-field">
             <mat-icon class="ic ic-file-text2 file-icon">
                </mat-icon>
-            <input matInput class="input-field" [(ngModel)]="fileName" [readonly]="true">
+            <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName" [readonly]="true"  required>
             <button class="browse-button" (click)="onClick()"mat-button color="primary">Browse</button>
         </mat-form-field>
     </div>
     <mat-divider></mat-divider>
     <div mat-dialog-actions>
-        <button mat-button color="primary">Download Template</button>
+        <button mat-button color="primary"><i class="ic ic-download pr-0.5"></i> Download Template
+        </button>
         <div class="col"></div>
-        <div class="mx10">
+        <div class="mx5">
             <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
         </div>
-        <div class="mx10">
+        <div class="mx15">
             <button mat-raised-button color="primary" class="buttonWidth">Upload</button>
         </div>
     </div>
