@@ -74,6 +74,8 @@ import { TableViewControlComponent } from './main-layer/table-view-control/table
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
 import { PlanningDeploymentModule } from './modules/planning-deployment/planning-deployment.module';
+import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 @NgModule({
@@ -91,11 +93,13 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
     PerformanceComponent,
     PlanningComponent,
     WorkordersComponent,
-    TableViewControlComponent
+    TableViewControlComponent,
+    LegendsAndFilterComponent
   ],
   imports: [
     CommonModule,
     MainModulesRoutingModule,
+    Ng5SliderModule,
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
