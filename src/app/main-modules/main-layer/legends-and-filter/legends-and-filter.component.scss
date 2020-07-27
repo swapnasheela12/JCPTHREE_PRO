@@ -1,0 +1,90 @@
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+    .custom-slider .ng5-slider {
+        margin: 28px 0 15px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-bar {
+        background: #A5D4F0;
+        height: 2px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-selection {
+        background: #0078D7;
+    }
+    .custom-slider .ng5-slider .ng5-slider-pointer {
+        // width: 6px;
+        // height: 10px;
+        width: 30px;
+        height: 60px;
+        top: -55px;
+        /* to remove the default positioning */
+        bottom: 0;
+        background-image: url(../../../../assets/images/Layers/bubble.svg);
+        background-size: cover;
+        background-color: transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-pointer:after {
+        display: none;
+    }
+    .custom-slider .ng5-slider .ng5-slider-bubble {
+        bottom: -30px;
+        font-size: 14px;
+        color: #ffffff;
+    }
+    .custom-slider .ng5-slider .ng5-slider-limit {
+        font-weight: bold;
+        color: #0078D7;
+    }
+    .custom-slider .ng5-slider .ng5-slider-tick-value {
+        top: 10px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-tick {
+        width: 4px;
+        height: 4px;
+        // margin-left: 4px;
+        border-radius: 2;
+        background: #ffe4d1;
+        top: -1px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+        background: #0078D7;
+    }
+    .custom-slider .ng5-slider .ng5-slider-bar-wrapper {
+        margin-top: -19px;
+    }
+    .custom-slider .container-color {
+        width: 100%;
+        position: absolute;
+        .container-color-list {
+            display: inline-block;
+            .container-color-block {
+                display: inline-block;
+                width: 85px;
+                height: 7px;
+            }
+            // .container-color-block:nth-last-child(2) {
+            //     border-radius: 4px 0 0 4px;
+            // }
+            // .container-color-block:last-of-type {
+            //     border-radius: 0 4px 4px 0;
+            // }
+        }
+    }
+    .custom-slider .container-color .container-color-list:first-child .container-color-block {
+        border-radius: 4px 0 0 4px;
+    }
+    .custom-slider .container-color .container-color-list:last-child .container-color-block {
+        border-radius: 0 4px 4px 0;
+    }
+}
+
+.legends-and-filters {
+    .date-legends-and-filters {
+        .filter-selected-layers {
+            .mat-form-field-appearance-fill .mat-form-field-flex {
+                background-color: rgba(0, 0, 0, 0) !important;
+            }
+        }
+    }
+}

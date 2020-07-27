@@ -10,7 +10,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 @Component({
   selector: 'dropDownThreeDot-button-renderer',
   template: `
-  <!-- <div *ngIf="params.colDef.id == 'dot-rendered-reportbuilder-local' && !dataTest"> -->
+    <!-- <div *ngIf="params.colDef.id == 'dot-rendered-reportbuilder-local' && !dataTest"> -->
         <button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>

@@ -152,3 +152,14 @@
     border-radius: 18px 0 0 18px;
     padding: 9px !important;
 }
+
+.legends-and-filters {
+    .date-legends-and-filters {
+        .filter-selected-layers {
+            .mat-form-field-appearance-fill .mat-form-field-flex {
+                background-color: rgba(0, 0, 0, 0) !important;
+                padding: 0 0 0 0 !important;
+            }
+        }
+    }
+}

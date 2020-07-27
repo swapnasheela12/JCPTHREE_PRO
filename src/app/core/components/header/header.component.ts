@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
   routeLinks: number;
   count: number;
   ////////breadcrums////////////
-  
+
   ///////////search//////////////////
 
   stateCtrl: FormControl;
@@ -109,37 +109,49 @@ export class HeaderComponent implements OnInit {
   public testval;
   message: string;
   routeUrlLinkPage;
+  truncatedBCStr;
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
     // router.events.subscribe((url: any) => console.log(url));
-   
+
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
-        
+
         this.route = location.path();
         this.route.split('-').join(' ');
-        let spaceAddURL = this.route.split('-').join(' ')
-        this.breadcrumbList = spaceAddURL.split('/');
-        this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
-        this.breadcrumbList.forEach(ele => {
-         
-          this.mainHeaderName = ele;
-        });
-        this.datashare.currentMessage.subscribe((message) => {
-           
-            if (message == {} || message == false) {
-              this.addClassNew = false;
-            } else {
-              this.addClassNew = true;
-            }
+        let spaceAddURL = this.route.split('-').join(' ');
+
+        var maxLength = 75;
+        if (spaceAddURL.length > maxLength) {
+          this.truncatedBCStr = "..." + (spaceAddURL.substring(spaceAddURL.length - (maxLength - 4), spaceAddURL.length)).split('/');
+          let truncatedBCRemoveStrToArr = this.truncatedBCStr.split(",");
+          this.breadcrumbList = truncatedBCRemoveStrToArr;
+          this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
+          this.breadcrumbList.forEach(ele => {
+            this.mainHeaderName = ele;
           });
+        } else {
+          this.breadcrumbList = spaceAddURL.split('/');
+          this.breadcrumbList = this.breadcrumbList.filter(function (entry) { return entry.trim() != ''; });
+          this.breadcrumbList.forEach(ele => {
+            this.mainHeaderName = ele;
+          });
+        }
+
+        this.datashare.currentMessage.subscribe((message) => {
+          if (message == {} || message == false) {
+            this.addClassNew = false;
+          } else {
+            this.addClassNew = true;
+          }
+        });
         // this.mainHeaderName = this.breadcrumbLis.pop();
         this.count = this.breadcrumbList.length;
       } else {
         this.route = 'JCP';
       }
 
-    
+
     });
 
     /////////////breadcrums////////////////////
@@ -159,17 +171,17 @@ export class HeaderComponent implements OnInit {
       map(state => (state ? this.filterStatesVisited(state) : this.recentvisitlist.slice()))
     );
     //////////////search///////////////////
-  
-  
- 
- 
+
+
+
+
   }
 
 
   toggleActive = true;
- 
+
   toggleSidenav() {
-   
+
     this.toggleActive = !this.toggleActive;
     this.datashare.changeMessage(this.toggleActive)
   }
@@ -320,7 +332,7 @@ export class HeaderComponent implements OnInit {
   public randomNotificationCount: number;
 
   onLoad() {
-  
+
     var divLength = this.notificationsList.length;
     this.randomNotificationCount = Math.floor(Math.random() * (20 - divLength) + divLength);
   }
@@ -416,14 +428,14 @@ export class HeaderComponent implements OnInit {
     this.onLoad();
     this.datashare.currentMessage.subscribe((message) => {
       this.testval = message;
-     
+
     });
-   
+
 
   }
 
   clickMenu() {
-   
+
     this.sideNavService.toggle();
   }
 

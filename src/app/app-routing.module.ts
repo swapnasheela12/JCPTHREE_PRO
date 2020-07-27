@@ -31,6 +31,11 @@ const routes: Routes = [
           { path: "Planning-Deployment", loadChildren: "../app/main-modules/modules/planning-deployment/planning-deployment.module#PlanningDeploymentModule" }
         ]
       },
+      {
+        path: "Work-Orders", children: [
+            { path: "Rf-Oc-Workorders", loadChildren: "../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module#RfOcWorkordersModule" },
+        ]
+      },
       // { path: "table-view-row", component:},src\app/main-modules/modules/planning-deployment/planning-deployment.module.ts
     ],
   },

@@ -18,12 +18,22 @@
             font-weight: 600;
         }
         .kpi-editor-flex-item {
-            font-size: 14px;
+            font-size: 15px;
+            padding-right: 0px !important;
+            .vertical-kpi {
+                margin-top: -6px;
+            }
+        }
+        .kpi-create {
+            margin-right: 10px;
         }
         .kpi-editor-card-toolbar-icon {
             display: inline-block;
             margin-left: 13px;
             font-size: 24px;
+        }
+        .search-icon-kpi {
+            margin-right: 10px;
         }
     }
     .kpi-editor-table-container {
@@ -71,6 +81,6 @@
     border-left: none !important;
 }
 
-.ag-theme-material .ag-header {
+.kpi-editor .ag-theme-material .ag-header {
     background-color: #D3D5DC;
 }

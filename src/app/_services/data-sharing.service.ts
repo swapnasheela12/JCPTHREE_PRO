@@ -10,6 +10,14 @@ export class DataSharingService {
   private checkBoxSource = new BehaviorSubject({});
   checkboxMessage = this.checkBoxSource.asObservable();
 
+  private leftGridOptionsSource = new BehaviorSubject({});
+  leftGridMessage = this.leftGridOptionsSource.asObservable();
+
+  private fifteenMinsKpiGridOptionsSource = new BehaviorSubject({});
+  fifteenMinsKpiGridMessage = this.fifteenMinsKpiGridOptionsSource.asObservable();
+
+  private rightGridOptionsSource = new BehaviorSubject({});
+  rightGridMessage = this.rightGridOptionsSource.asObservable();
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -19,5 +27,18 @@ export class DataSharingService {
   chechboxChangeMessage(checkBox: Object) {
     this.checkBoxSource.next(checkBox);
 
+  }
+  leftGridOptionMessage(leftgridOption: Object, rightgridOption: Object) {
+    this.leftGridOptionsSource.next(leftgridOption);
+    this.rightGridOptionsSource.next(rightgridOption);
+  }
+  
+  fifteenMinsKpiOptionMessage(fifteenMinsKpiGridOptions: Object, rightgridOption: Object) {
+    this.fifteenMinsKpiGridOptionsSource.next(fifteenMinsKpiGridOptions);
+    this.rightGridOptionsSource.next(rightgridOption);
+  }
+
+  rightGridOptionMessage(gridOption: Object) {
+    this.rightGridOptionsSource.next(gridOption);
   }
 }

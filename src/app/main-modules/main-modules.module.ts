@@ -74,6 +74,9 @@ import { TableViewControlComponent } from './main-layer/table-view-control/table
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { PerformanceManagementModule } from './modules/performance-management/performance-management.module';
 import { PlanningDeploymentModule } from './modules/planning-deployment/planning-deployment.module';
+import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
+import { Ng5SliderModule } from 'ng5-slider';
+import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
 
 
 @NgModule({
@@ -91,7 +94,8 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
     PerformanceComponent,
     PlanningComponent,
     WorkordersComponent,
-    TableViewControlComponent
+    TableViewControlComponent,
+    LegendsAndFilterComponent
   ],
   imports: [
     CommonModule,
@@ -101,6 +105,7 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
     ReportsDashboardsModule,
     // LayersModule,
     LeafletModule,
+    Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent]),
     //Angular meterial
@@ -151,7 +156,8 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
     ScrollingModule,
     NgxMatSelectSearchModule,
     PerformanceManagementModule,
-    PlanningDeploymentModule
+    PlanningDeploymentModule,
+    RfOcWorkordersModule
 
   ], providers: [
     SideNavService,

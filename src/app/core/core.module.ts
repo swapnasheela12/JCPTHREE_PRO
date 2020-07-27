@@ -60,6 +60,7 @@ import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/co
 import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
 // import { PaginationComponent } from './../common/pagination/pagination.component'
 import { AgGridModule } from 'ag-grid-angular';
+import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -74,6 +75,7 @@ import { AgGridModule } from 'ag-grid-angular';
     ConfirmPopupComponent,
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
+    FileUploadPopupComponent,
     // PaginationComponent
   ],
   imports: [
