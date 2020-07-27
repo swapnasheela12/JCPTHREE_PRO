@@ -51,10 +51,12 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { RfOcWorkordersModuleRoutingModule } from './rf-oc-workorders-routing.module';
 import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
+import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
 
 @NgModule({
   declarations: [
-    SectorMisalignmentComponent
+    SectorMisalignmentComponent,
+    OvershootingCellComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,
