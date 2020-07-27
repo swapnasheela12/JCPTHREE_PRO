@@ -1,0 +1,17 @@
+[
+    {
+        "band": 2300,
+        "bandwidth": 20,
+        "averageusers": 20
+    },
+    {
+        "band": 2300,
+        "bandwidth": 20,
+        "averageusers": 20
+    },
+    {
+        "band": 2300,
+        "bandwidth": 20,
+        "averageusers": 20
+    }
+]

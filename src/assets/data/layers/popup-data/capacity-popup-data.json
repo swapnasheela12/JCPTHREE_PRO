@@ -1,0 +1,124 @@
+[  {
+    "kpis": "BBH Start Time",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+  },
+
+  {
+    "kpis": "Average DL PRB Utilization (>70%)",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+
+  },
+  {
+    "kpis": "Average RRC Connected Users",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  },
+  {
+    "kpis": "AirMAC Cell DL Traffic (GB)",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+  },
+  {
+    "kpis": "IP Throughput (Mbps)",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+  },
+  {
+    "kpis": "AirMAC Cell Effective Throughput DL(Mbps)",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+  },
+  {
+    "kpis": "Average CQI",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  },
+  {
+    "kpis": "Average RI",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  },
+  {
+    "kpis": "Average MCS",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  },
+
+  {
+    "kpis": "Average Interference over Thermal Noise(dBm)",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  },
+
+  {
+    "kpis": "Hard Blocking",
+    "mhzc12300": "12:00",
+    "mhzc22300": "12:00",
+    "mhz1800": "12:00",
+    "mhzc1850": "12:00",
+    "mhzc2850": "12:00",
+    "question": ""
+    
+
+  }
+
+  
+]

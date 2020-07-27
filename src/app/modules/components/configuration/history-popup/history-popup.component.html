@@ -1,0 +1,49 @@
+<div class="history-container">
+    <div class="history-topbar px-2">
+        <div class="history-title p-3">History</div>
+        <button class="close-popup mat-icon-button" (click)="close()">
+            <span class="material-icons">
+                close
+            </span></button>
+
+
+    </div>
+
+    <div class="history-dialog-content">
+        <div class="history-header d-flex justify-content-end align-items-center">
+         
+            <div class="history-topbar-right">
+                <div class="iconwrapper">
+                  
+                    <div class="icon-button">
+                        <div class="zmdi zmdi-print"></div>
+
+                    </div>
+                    <div class="icon-button">
+                        <div class="zmdi zmdi-share"></div>
+
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="history-data-table">
+            <ag-grid-angular style="width: 850px; height: 400px;" class="ag-theme-material ag-jcp3"
+             rowHeight="48"
+                headerHeight="48"
+                [gridOptions]="gridOptions"
+                [columnDefs]="historyColumndata" 
+                [rowData]="historyRowdata"
+                enableColResize 
+                enableSorting 
+                enableFilter 
+                groupHeaders 
+                suppressRowClickSelection
+                toolPanelSuppressGroups 
+                toolPanelSuppressValues
+                 rowSelection="multiple"
+>
+            </ag-grid-angular>
+        </div>
+    </div>
+</div>

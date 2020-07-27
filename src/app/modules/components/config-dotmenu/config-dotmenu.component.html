@@ -1,0 +1,16 @@
+
+<button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="configpopup"
+aria-label="Example icon-button with a menu">
+<mat-icon style="line-height: 0;color:black !important;">
+    <span class="zmdi zmdi-more-vert"></span>
+</mat-icon>
+</button>
+<mat-menu #configpopup="matMenu" id="config-menu-render" xPosition="before">
+<button mat-menu-item (click)="openDialogHistory()">
+    <span>History</span>
+</button>
+<button mat-menu-item (click)="openDialogInfo()">
+    <span>Info</span>
+</button>
+
+</mat-menu>

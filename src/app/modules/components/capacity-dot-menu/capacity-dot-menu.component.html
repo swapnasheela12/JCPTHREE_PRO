@@ -1,0 +1,18 @@
+
+<button mat-icon-button style="margin-left: 12px;" [matMenuTriggerFor]="capacitypopup"
+    aria-label="Example icon-button with a menu">
+    <mat-icon style="line-height: 0;color:black !important;">
+        <span class="zmdi zmdi-more-vert"></span>
+    </mat-icon>
+</button>
+<mat-menu #capacitypopup="matMenu" id="capacity-menu-render" xPosition="before">
+    <button mat-menu-item>
+        <span>Print</span>
+    </button>
+    <button mat-menu-item>
+        <span>Download</span>
+    </button>
+    <button mat-menu-item >
+        <span>Delete</span>
+    </button>
+</mat-menu>
