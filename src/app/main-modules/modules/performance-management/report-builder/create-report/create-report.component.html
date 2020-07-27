@@ -1,17 +1,16 @@
-<div style="height:100%">
+<div class="h-100">
   <mat-card class="mat-card">
     <!-- <mat-card-header class="header">
     <mat-card-title class="card-title">Add Performance Report : {{mode}} {{reportType}}</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider> -->
     <mat-card-content class="card-content">
-      <mat-horizontal-stepper #nodeCounterStepper [linear]="false" fxLayout="column wrap"
+      <mat-horizontal-stepper #nodeCounterStepper [linear]="false"
         (selectionChange)="selectNodeStepper($event)">
         <mat-step [stepControl]="selectKpiCtrl">
           <form [formGroup]="selectKpiCtrl" class="form-container">
             <ng-template matStepLabel>Select Type</ng-template>
-            <div fxLayoutGap="40px" fxLayout="row wrap">
-
+            <div fxLayoutGap="45px" fxLayout="row wrap">
               <mat-form-field class="form-field-container">
                 <input matInput placeholder="Report Name" formControlName="keyName" required>
               </mat-form-field>
@@ -41,6 +40,48 @@
                 </mat-select>
               </mat-form-field>
             </div>
+            <!-- <div fxLayout="row wrap" fxLayoutAlign="" class="pl-3" fxLayoutGap="10px">
+              <div fxFlex>
+                <mat-form-field class="form-field-container mx-3">
+                  <input matInput placeholder="Report Name" formControlName="keyName" required>
+                </mat-form-field>
+              </div>
+              <div fxFlex>
+                <mat-form-field class="form-field-container mx-3">
+                  <mat-select disableOptionCentering placeholder="Report Type" [(value)]="reportType"
+                    (selectionChange)="reportTypeSelectValue(reportType, this.rightGridOptions)">
+                    <mat-option value="KPI Report" selected>KPI Report</mat-option>
+                    <mat-option value="Exception Report">Exception Report</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex>
+                <mat-form-field class="form-field-container mx-3">
+                  <mat-select disableOptionCentering placeholder="Mode" [(value)]="mode">
+                    <mat-option value="On Demand" selected>On Demand</mat-option>
+                    <mat-option value="Scheduled">Scheduled</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex>
+                <mat-form-field class="form-field-container mx-3">
+                  <mat-select disableOptionCentering placeholder="Domain" name="domain" [(value)]="domain">
+                    <mat-option *ngFor="let domain of domainList" [value]="domain.domainName">{{domain.domainName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex>
+                <mat-form-field class="form-field-container mx-3">
+                  <mat-select disableOptionCentering placeholder="Vendor" [(value)]="vendor">
+                    <mat-option value="Airspan" selected>Airspan</mat-option>
+                    <mat-option value="Samsung">Samsung</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+            </div> -->
           </form>
           <div>
             <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
@@ -49,7 +90,7 @@
         <mat-step [stepControl]="selectNodeAndAggregationCtrl">
           <form [formGroup]="selectNodeAndAggregationCtrl" class="form-container">
             <ng-template matStepLabel>Select Nodes & Aggregation</ng-template>
-            <div fxLayoutGap="40px" fxLayout="row wrap">
+            <div fxLayoutGap="45px" fxLayout="row wrap">
 
               <mat-form-field class="form-field-container">
                 <mat-select disableOptionCentering placeholder="Geography State" [(value)]="geographyState" required>
@@ -193,24 +234,23 @@
             </div>
             <div class="right-holder">
               <div class="border-bottom height-49">
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49 overflow-x">
                   <div fxFlex="20">
                     <button mat-button color="primary" (click)="addGroupPopup()">Add Group</button>
                   </div>
-                  <!-- <form fxLayout="row" [formGroup]="createKPIForm" (ngSubmit)="onApply()"> -->
                   <div class="mt15">
                     <mat-form-field class="pr15" fxFlex="90">
                       <mat-select disableOptionCentering placeholder="Threshold Condition">
-                        <mat-option [value]="gridConditionValue" *ngFor="let gridConditionValue of NodeAggr">
-                          {{ gridConditionValue }}</mat-option>
+                        <mat-option [value]="thresholdCondition" *ngFor="let thresholdCondition of thresholdCondition">
+                          {{ thresholdCondition }}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="mt15">
                     <mat-form-field class="pr15" fxFlex="90">
                       <mat-select disableOptionCentering placeholder="Condition">
-                        <mat-option [value]="gridConditionValue" *ngFor="let gridConditionValue of NodeAggr">
-                          {{ gridConditionValue }}</mat-option>
+                        <mat-option [value]="condition" *ngFor="let condition of conditionValues">
+                          {{ condition }}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -221,28 +261,24 @@
                     </mat-divider>
                     <button mat-mini-fab class="common-delete-button" color="" *ngIf="showGlobalDeleteOperation"
                       (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
-                      <mat-icon class="ic ic-bin common-delete-icon">
+                      <mat-icon class="ic ic-custom-delete common-delete-icon">
                       </mat-icon>
                     </button>
                   </div>
-                  <!-- </form> -->
                 </div>
               </div>
 
-              <form class="dealership-form target-kpi-table" fxLayout="column" style="height:calc(100% - 49px)"
+              <form fxLayout="column" style="height:calc(100% - 49px)"
                 [formGroup]="rightAgGridFormGroup">
-                <!-- <div style="height: 100%;width:100%"> -->
                   <ag-grid-angular [headerHeight]="49" [tooltipShowDelay]="tooltipShowDelay" #agGrid
                     style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material" [modules]="modules"
                     [gridOptions]="rightGridOptions" [getRowNodeId]="getRowNodeId"
                     [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
                     (gridReady)="onGridRightReady($event)" [context]="getContext()"
                     (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
-                <!-- </div> -->
               </form>
             </div>
           </div>
-          <div>
             <div class="d-flex">
               <div class="m2">
                 <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
@@ -255,13 +291,12 @@
                 <button mat-button color="primary" (click)="openFileUploadPopup()">Upload KPI</button>
               </div>
             </div>
-          </div>
         </mat-step>
         <mat-step [stepControl]="selectDurationFrequency">
           <form [formGroup]="selectDurationFrequency" fxLayout="column" fxLayoutAlign="space-between start"
-            fxLayoutGap="15px" class="form-container">
+            fxLayoutGap="15px" class="form-container overflow-hidden">
             <ng-template matStepLabel>Select Duration & Frequency</ng-template>
-            <div class="border-box" fxLayout="row">
+            <div class="select-duration-border-box" fxLayout="row">
               <div class="left-holder">
                 <div fxLayout="row wrap" fxLayoutAlign="start center" class="m20" *ngIf="mode=='On Demand'">
                   <mat-form-field class="custom-field-container" fxFlex="90">
@@ -289,16 +324,14 @@
                 </div>
               </div>
               <div class="right-holder">
-                <!-- <div class="\"> -->
                   <div class="mx20 my15">
                     <label class="radio-group-label">Frequency</label>
                     <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
                       [(value)]="frequencyGroup">
-                      <mat-radio-button fxFlex="25" *ngFor="let frequency of frequencyList" [value]="frequency.name">
+                      <mat-radio-button *ngFor="let frequency of frequencyList" [value]="frequency.name">
                         {{frequency.name}}</mat-radio-button>
                     </mat-radio-group>
                   </div>
-                <!-- </div> -->
               </div>
             </div>
           </form>
@@ -311,7 +344,7 @@
   </mat-card>
   <div class="d-flex">
     <div class="p-2 mr-auto">
-      <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+      <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth">Back</button>
     </div>
     <div class="p-2">
       <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>

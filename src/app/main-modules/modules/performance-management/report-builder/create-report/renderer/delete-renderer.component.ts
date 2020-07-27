@@ -6,7 +6,7 @@ import { GridOptions } from '@ag-grid-community/all-modules';
 @Component({
   selector: 'delete-renderer',
   template: `<div class="grid-delete-button">
-  <button fxFlex="50" style="color: #737373" class="ic ic-bin hover-show" mat-button (click)="delete(params)"></button>
+  <button fxFlex="50" style="color: #737373" class="ic ic-custom-delete hover-show" mat-button (click)="delete(params)"></button>
   </div>
   `,
 })
