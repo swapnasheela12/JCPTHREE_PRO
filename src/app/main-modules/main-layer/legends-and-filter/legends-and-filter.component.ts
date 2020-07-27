@@ -15,56 +15,36 @@ import { LocaleConfig } from 'ngx-daterangepicker-material';
 })
 export class LegendsAndFilterComponent implements OnInit {
 
+  items = [
+    { value: 1, legend: '#F44336' },
+    { value: 3, legend: '#FF9800' },
+    { value: 5, legend: '#8BC34A' },
+    // { value: 7, legend: '#4CAF50' },
+    { value: 8, legend: '#3F51B5' },
+    { value: 9, legend: '#03A9F4' }
+  ];
   value: number = 10;
   minValue: number = 40;
   maxValue: number = 80;
   // highValue: number = 90;
   options: Options = {
-    floor: 0,
-    ceil: 100,
-    step: 10,
+    floor: -140,
+    ceil: -40,
+    step: 20,
+    showSelectionBarFromValue: 0,
+    // selectionBarGradient: {
+    //   from: 'white',
+    //   to: '#0078D7'
+    // },
     showTicks: true,
-    showTicksValues: true,
-    stepsArray: [
-      { value: -140, legend: '' },
-      { value: -113, legend: '' },
-      { value: -105, legend: '' },
-      { value: -100, legend: '' },
-      { value: -95, legend: '' },
-      { value: -90, legend: '' },
-      { value: -40, legend: '' },
-    ],
-
-    translate: (value: number, label: LabelType): string => {
-      switch (label) {
-        case LabelType.Low:
-          return '' + value;
-        case LabelType.High:
-          return '' + value;
-        default:
-          return '' + value;
-      }
-    }
-
-    // translate: (value: number, label: LabelType): string => {
-    //   switch (label) {
-    //     case LabelType.Low:
-    //       return '' + value;
-    //     case LabelType.High:
-    //       return '' + value;
-    //     default:
-    //       return '' + value;
-    //   }
-    // }
+    // showTicksValues: true,
+    getLegend: (value: number): string => {
+      return '<b></b>' + value;
+    },
+   
   };
-  items = [
-    { value: 1, legend: '#F44336' },
-    { value: 3, legend: '#FF9800' },
-    { value: 5, legend: '#8BC34A' },
-    { value: 7, legend: '#4CAF50' },
-    { value: 8, legend: '#3F51B5' },
-    { value: 9, legend: '#03A9F4' }
-  ];
+  
+  
 
   // ///////datepicker//////////
   form = this.fb.group({
