@@ -66,8 +66,8 @@ export class LandingHomeComponent implements OnInit {
       countsite: "289137"
     },
     {
-      iconsite: "ic ic-small-Cells",
-      namesite: "Outdoor Small Cells",
+      iconsite: "ic ic-indoor-small-cell",
+      namesite: "Indoor Small Cells",
       countsite: "293456"
     },
     {
@@ -76,8 +76,8 @@ export class LandingHomeComponent implements OnInit {
       countsite: "2345"
     },
     {
-      iconsite: "ic ic-COW",
-      namesite: "Indoor Small Cells",
+      iconsite: "ic ic-outdoor-small-cell",
+      namesite: "Outdoor Small Cells",
       countsite: "2345"
     },
     {
