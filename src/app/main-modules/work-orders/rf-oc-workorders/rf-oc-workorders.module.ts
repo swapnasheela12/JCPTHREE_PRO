@@ -57,7 +57,7 @@ import { OvershootingCellComponent } from './category-wise-wo-listing/overshooti
   declarations: [
     SectorMisalignmentComponent,
     OvershootingCellComponent
-  ],
+  ], 
   imports: [
     RfOcWorkordersModuleRoutingModule,
     CommonModule,

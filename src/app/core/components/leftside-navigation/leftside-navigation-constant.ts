@@ -2808,7 +2808,7 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         level: 3,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
-        children: []
+        children: [] 
     },
     {
         name: 'Overshooting Cell',
