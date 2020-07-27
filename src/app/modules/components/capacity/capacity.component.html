@@ -1,0 +1,51 @@
+<div class="capacity-container" style="height: 518px;width: 850px;">
+    <div class="capacity-toolbar">
+        <div class="popup-title">
+
+            <div class="header">Capacity Summary For I-MU-MUMB-ENB-2707 (BETA)</div>
+
+
+<div class="close-btn">
+            <button (click)="close()" class="close-popup mat-icon-button">
+                <span class="material-icons">
+                    close
+                </span>
+            </button>
+        </div>
+        </div>
+    </div>
+    <div class="capacity-topbar">
+        <div class="capacity-topbar-left">
+            <h1 class="title">Total AirMAC DL Traffic carried of the Sector (GB) : 6.12
+            </h1>
+        </div>
+        <div class="capacity-topbar-right">
+            <div class="icon-button">
+                <div class="zmdi zmdi-download"></div>
+            </div>
+        </div>
+    </div>
+<div class="capacity-data-table">
+    <ag-grid-angular style="height: 400px;" 
+    class="ag-theme-material ag-jcp3"
+    [rowData]="rowData" 
+    [columnDefs]="capacityColumns" 
+    rowHeight="48" 
+    headerHeight="48"
+    [gridOptions]="gridOptions" 
+    enableColResize 
+    enableSorting 
+    enableFilter 
+    groupHeaders
+    suppressRowClickSelection 
+    toolPanelSuppressGroups 
+    toolPanelSuppressValues 
+    rowSelection="multiple"
+  [rowClassRules]="rowClassRules"
+  
+    [frameworkComponents]="frameworkComponentsHelpIcon"
+    
+    >
+</ag-grid-angular>
+</div>
+    </div>

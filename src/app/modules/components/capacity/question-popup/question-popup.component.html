@@ -1,0 +1,27 @@
+<div class="help-container" style="">
+    <div class="help-topbar px-2">
+        <div class="help-title p-3">Average RRC Connected Users</div>
+        <button class="close-popup mat-icon-button" (click)="close()">
+            <span class="material-icons">
+                close
+            </span></button>
+
+
+    </div>
+
+    <div class="help-dialog-content">
+
+        <div class="help-data-table">
+            <ag-grid-angular style="width: 550px;height:400px;" class="ag-theme-material ag-jcp3" 
+            
+            rowHeight="48"
+                headerHeight="48" 
+               
+                [columnDefs]="questionColumns" 
+                [rowData]="questionRow"
+               
+                rowSelection="multiple">
+            </ag-grid-angular>
+        </div>
+    </div>
+</div>
