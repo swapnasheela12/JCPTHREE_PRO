@@ -9,9 +9,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 @Component({
   selector: 'dropDownThreeDot-button-renderer',
-  template: `
-    <!-- <div *ngIf="params.colDef.id == 'dot-rendered-reportbuilder-local' && !dataTest"> -->
-        <button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
+  template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
@@ -27,9 +25,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
             <button mat-menu-item (click)="openWarningDialog()">
                 <span>Delete</span>
             </button>
-        </mat-menu>
-    <!-- </div> -->
-  `,
+        </mat-menu>`,
   styles: [
     `
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item {

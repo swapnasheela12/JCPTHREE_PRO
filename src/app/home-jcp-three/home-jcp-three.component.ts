@@ -54,9 +54,6 @@ export class HomeJcpThreeComponent implements OnInit {
     // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
 
     router.events.subscribe(val => {
-      // console.log(val,"val");
-      // console.log(router.url,"<<<<<<")
-      // this.routeUrlLinkPage = router.url;
       if (location.path() != "") {
         this.route = location.path();
         if (this.route == "/JCP/Layers") {
@@ -89,7 +86,6 @@ export class HomeJcpThreeComponent implements OnInit {
       }
       if (this.currentPage !== event.url) {
         const timeSpent = Date.now() - this.lastIn;
-        console.log('timeSpent', timeSpent);
         const pageInfo = {
           pageUrl: this.currentPage,
           timeSpent
@@ -98,9 +94,6 @@ export class HomeJcpThreeComponent implements OnInit {
         this.lastIn = Date.now();
         this.currentPage = event.url;
       }
-      console.log(this.timeSpentOnPages, "timeSpentOnPages");
-
-
     })
 
 
@@ -122,25 +115,6 @@ export class HomeJcpThreeComponent implements OnInit {
 
   changeIcon() {
     this.isHamburguer = !this.isHamburguer;
-    // this.state = (this.state === 'default' ? 'rotated' : 'default');
-    // console.log( this.state);
-    // if (this.state === 'default') {
-    //   this.state = 'rotated';
-    //   hamburgerIcon.className = 'zmdi zmdi-close';
-    // } else {
-    //   this.state = 'default';
-    //     hamburgerIcon.className = 'ic ic-menu-01';
-    // }
   }
-  // tiles: Tile[] = [
-  //   { text: "app/home-jcp-three/daily-traffic.html", cols: 8, rows: 2, color: "lightpink" },
-  //   { text: "three", cols: 4, rows: 3, color: "#DDBDF1" },
-  //   { text: "two", cols: 8, rows: 2, color: "lightpink" },
-  //   { text: "Four", cols: 4, rows: 1, color: "#DDBDF1" }
-  // ];
-
-
-
-
 
 }

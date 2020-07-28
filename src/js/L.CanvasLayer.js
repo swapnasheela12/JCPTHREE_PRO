@@ -4,7 +4,7 @@
   originally created and motivated by L.CanvasOverlay  available here: https://gist.github.com/Sumbera/11114288  
   
   also thanks to contributors: heyyeyheman,andern,nikiv3, anyoneelse ?
-  enjoy !.
+  enjoy !
 */
 
 // -- L.DomUtil.setTransform from leaflet 1.0.0 to work on 0.0.7
@@ -167,11 +167,5 @@ L.CanvasLayer = (L.Layer ? L.Layer : L.Class).extend({
 });
 
 L.canvasLayer = function() {
-    console.log("???????");
     return new L.CanvasLayer();
 };
-
-// function testName() {
-//     console.log("hi fri");
-//     L.canvasLayer();
-// }

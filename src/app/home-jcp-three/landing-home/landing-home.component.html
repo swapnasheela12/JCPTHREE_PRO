@@ -1,13 +1,9 @@
 <div class="jcp-landing-page-container" style="height:100%;color: black;">
     <mat-grid-list cols="12" class="jcp-landing-grid-list" rowHeight="fit">
         <mat-grid-tile class="jcp-landing-grid-tile-one" colspan="8" rowspan="2">
-
             <mat-card class="jcp-landing-card p-0 w-100">
-                <!-- <mat-grid-tile-header> -->
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
-
                     <div class="jcp-landing-title" fxFlex>Daily Traffic (Source : LSMR)</div>
-
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
                         <div class="jcp-landing-right-inputs col-4 pr-0">
                             <mat-form-field>
@@ -34,9 +30,7 @@
                             </mat-form-field>
                         </div>
                     </div>
-
                 </div>
-                <!-- </mat-grid-tile-header> -->
                 <mat-divider></mat-divider>
                 <mat-card-content class="jcp-landing-card-content">
                     <div class="jcp-landing-card-container">
@@ -45,29 +39,21 @@
                                 120.4 PB
                             </div>
                             <div class="jcp-landing-card-subheader-subtitle">
-                                Current Traffic  
+                                Current Traffic
                             </div>
                         </div>
                         <div class="jcp-landing-card-chart-container" id="dailyTrafficChartIdDiv">
                             <div id="dailyTrafficChartID" [chart]="dailyTrafficChart"></div>
                         </div>
-
                     </div>
-
                 </mat-card-content>
-
             </mat-card>
-
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-two" colspan="4" rowspan="3">
             <mat-card class="jcp-landing-card p-0 w-100">
-
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
-
                     <div class="jcp-landing-title" fxFlex>Sites</div>
-
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
-
                         <div class="jcp-landing-right-inputs col pr-0">
                             <mat-form-field disableOptionCentering>
                                 <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedsites">
@@ -77,10 +63,8 @@
                             </mat-form-field>
                         </div>
                     </div>
-
                 </div>
                 <mat-divider></mat-divider>
-
                 <mat-card-content class="sites-details-card-content">
                     <div class="sites-details-container" *ngFor="let item of sitesListArr">
                         <div class="sites-details-row px-1" fxLayout="row" fxLayoutAlign="space-around center">
@@ -98,7 +82,6 @@
                         </div>
                     </div>
                 </mat-card-content>
-
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-three" colspan="8" rowspan="2">
@@ -116,7 +99,6 @@
                             </mat-form-field>
                         </div>
                     </div>
-
                 </div>
                 <mat-divider></mat-divider>
                 <mat-card-content class="jcp-landing-card-content">
@@ -126,7 +108,7 @@
                                 259.5 M
                             </div>
                             <div class="jcp-landing-card-subheader-subtitle">
-                                Current Active Subscriber Base 
+                                Current Active Subscriber Base
                             </div>
                         </div>
                         <div class="jcp-landing-card-chart-container" id="chartTotalSubscriberIdDiv">
@@ -138,13 +120,9 @@
         </mat-grid-tile>
         <mat-grid-tile class="jcp-landing-grid-tile-four" colspan="4" rowspan="1">
             <mat-card class="jcp-landing-card p-0 w-100">
-
                 <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
-
                     <div class="jcp-landing-title" fxFlex>Active Users</div>
-
                     <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
-
                         <div class="jcp-landing-right-inputs col pr-0">
                             <mat-form-field disableOptionCentering>
                                 <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedusage">
@@ -154,10 +132,8 @@
                             </mat-form-field>
                         </div>
                     </div>
-
                 </div>
                 <mat-divider style="height: 45px !important;"></mat-divider>
-
                 <mat-card-content class="usage-metrics-card-content">
                     <div class="usage-metrics-container">
                         <div class="usage-metrics-row" fxLayout="row" fxLayoutAlign="space-between center">
@@ -183,7 +159,6 @@
                                     <div class="usage-metrics-count  col">
                                         <div>1200</div>
                                     </div>
-
                                 </div>
                                 <div class="usage-metrics-inner-row" fxLayout="row" fxLayoutAlign="start center">
                                     <div class="usage-metrics-title">Customer Care Agents</div>
@@ -192,9 +167,7 @@
                         </div>
                     </div>
                 </mat-card-content>
-
             </mat-card>
         </mat-grid-tile>
-
     </mat-grid-list>
 </div>
