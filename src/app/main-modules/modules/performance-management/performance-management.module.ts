@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
-
+import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -153,6 +153,7 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
+    ChangeImpactAnanlysisRoutingModule
   ],
   exports: [
     KpiEditorComponent,
