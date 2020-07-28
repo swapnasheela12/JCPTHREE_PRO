@@ -1,33 +1,25 @@
 .jcp-landing-page-container {
     .jcp-landing-grid-list {
         height: 99%;
-
         .jcp-landing-grid-tile-one {
-
             .jcp-landing-card {
-
                 .jcp-landing-card-header {
                     height: 43px;
-
                     .jcp-landing-title {
                         color: #464D69;
                         font-size: 15px;
                         font-family: Lato Bold;
                     }
-
                     .jcp-landing-right-container {
                         font-size: 11px;
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
-
                         .jcp-landing-right-inputs {}
                     }
                 }
-
                 .jcp-landing-card-content {
                     height: calc(100% - 43px);
-
                     .jcp-landing-card-container {
                         height: 100%;
                         .jcp-landing-card-subheader {
@@ -36,7 +28,6 @@
                                 font-family: Lato Bold;
                                 font-size: 19px;
                             }
-
                             .jcp-landing-card-subheader-subtitle {
                                 color: #707070;
                                 font-family: Lato Regular;
@@ -45,61 +36,45 @@
                                 margin-left: 5px;
                             }
                         }
-
                         .jcp-landing-card-chart-container {
                             height: calc(100% - 28px);
-                            #dailyTrafficChartID{
+                            #dailyTrafficChartID {
                                 display: block;
-                                // width: 100;
                             }
                         }
                     }
                 }
             }
         }
-
         .jcp-landing-grid-tile-two {
-
             .jcp-landing-card {
                 .jcp-landing-card-header {
                     height: 43px;
-
                     .jcp-landing-title {
                         color: #464D69;
                         font-size: 15px;
                         font-family: Lato Bold;
                     }
-
                     .jcp-landing-right-container {
                         font-size: 11px;
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
-
                         .jcp-landing-right-inputs {
                             height: 43px;
                         }
                     }
                 }
-
                 .sites-details-card-content {
                     height: calc(100% - 43px);
                     width: 100%;
                     display: block;
-
                     .sites-details-container {
                         width: 100%;
                         height: 16.8%;
                         border-bottom: 1px solid #e0e0e0;
-
-                        // height: 100%;
                         .sites-details-row {
-                            // height:20%;
-                            // height: 56px;
-                            // height: 50% !important;
-                            // border-bottom: 1px solid #e0e0e0;
                             height: 100%;
-
                             .sites-details-icon {
                                 width: 40px;
                                 height: 40px;
@@ -109,13 +84,11 @@
                                 padding: 9px 11px;
                                 font-size: 20px;
                             }
-
                             .sites-details-title {
                                 color: #464D69;
                                 font-size: 12px;
                                 font-family: Lato Medium;
                             }
-
                             .sites-details-count {
                                 color: #464D69;
                                 font-size: 15px;
@@ -126,32 +99,25 @@
                 }
             }
         }
-
         .jcp-landing-grid-tile-three {
-
             .jcp-landing-card {
                 .jcp-landing-card-header {
                     height: 43px;
-
                     .jcp-landing-title {
                         color: #464D69;
                         font-size: 15px;
                         font-family: Lato Bold;
                     }
-
                     .jcp-landing-right-container {
                         font-size: 11px;
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
-
                         .jcp-landing-right-inputs {}
                     }
                 }
-
                 .jcp-landing-card-content {
                     height: calc(100% - 43px);
-
                     .jcp-landing-card-container {
                         height: 100%;
                         .jcp-landing-card-subheader {
@@ -160,7 +126,6 @@
                                 font-family: Lato Bold;
                                 font-size: 19px;
                             }
-
                             .jcp-landing-card-subheader-subtitle {
                                 color: #707070;
                                 font-family: Lato Regular;
@@ -169,72 +134,54 @@
                                 margin-left: 5px;
                             }
                         }
-
                         .jcp-landing-card-chart-container {
                             height: calc(100% - 28px);
-                            #chartTotalSubscriberID{
+                            #chartTotalSubscriberID {
                                 display: block;
-                                // width: 100;
                             }
                         }
                     }
                 }
             }
         }
-
         .jcp-landing-grid-tile-four {
-
             .jcp-landing-card {
                 .jcp-landing-card-header {
                     height: 43px;
-
                     .jcp-landing-title {
                         color: #464D69;
                         font-size: 15px;
                         font-family: Lato Bold;
                     }
-
                     .jcp-landing-right-container {
                         font-size: 11px;
                         font-family: Lato Regular;
                         line-height: 4;
                         height: 43px;
-
                         .jcp-landing-right-inputs {}
                     }
                 }
-
                 .usage-metrics-card-content {
                     .usage-metrics-container {
                         height: 69px;
-                        // margin: 29px 32px;
-                        // margin-left: auto;
-                        // margin-right: auto;
                         width: 85%;
-
                         .usage-metrics-row {
                             height: 69px;
-
                             .usage-metrics-col {
                                 height: 69px;
-
                                 .usage-metrics-inner-row {
-                                    // height: 32px;
                                     padding: 5px 0;
-
                                     .usage-metrics-icon {
                                         color: #0070DB;
                                         width: 22px;
                                         height: 22px;
                                         font-size: 20px;
                                     }
-
                                     .usage-metrics-count {
                                         font-size: 15px;
                                         font-family: Lato Bold;
                                         color: #464D69;
                                     }
-
                                     .usage-metrics-title {
                                         font-size: 13px;
                                         font-family: Lato Medium;
@@ -247,6 +194,5 @@
                 }
             }
         }
-
     }
 }

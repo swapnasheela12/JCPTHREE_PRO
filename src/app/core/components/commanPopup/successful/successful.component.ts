@@ -33,7 +33,6 @@ export class SuccessfulComponent implements OnInit {
   }
 
   clickGoMyReport(): void{
-   
     this.dialogRef.close();
     this.router.navigate(['/JCP/Reports-and-Dashboard/My-Reports']);
   }
@@ -42,7 +41,6 @@ export class SuccessfulComponent implements OnInit {
   name: string;
   clickCreateNewReport(): void{
     this.dialogRef.close();
-    // this.router.navigate(['/JCP/Reports and Dashboard/My-Reports']);
     const dialogRef = this.dialog.open(CreateReportComponent, {
       width: "700px",
       panelClass: "material-dialog-container",
@@ -50,7 +48,6 @@ export class SuccessfulComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
       this.animal = result;
     });
   }

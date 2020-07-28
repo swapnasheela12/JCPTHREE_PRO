@@ -12,9 +12,9 @@
     <div mat-dialog-content fxLayoutAlign="center center">
         <mat-form-field fxFlex="90" class="mb20 browse-file-form-field">
             <mat-icon class="ic ic-file-text2 file-icon">
-               </mat-icon>
-            <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName" [readonly]="true"  required>
-            <button class="browse-button" (click)="onClick()"mat-button color="primary">Browse</button>
+            </mat-icon>
+            <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+            <button class="browse-button" (click)="onClick()" mat-button color="primary">Browse</button>
         </mat-form-field>
     </div>
     <mat-divider></mat-divider>
@@ -30,7 +30,4 @@
         </div>
     </div>
 </div>
-
-<!-- File browser hidden for native element ref -->
-<input type="file" #fileUpload id="fileUpload" name="fileUpload" accept="" style="display: none;"/>
-<!-- File browser hidden for native element ref -->
+<input type="file" #fileUpload id="fileUpload" name="fileUpload" accept="" style="display: none;" />

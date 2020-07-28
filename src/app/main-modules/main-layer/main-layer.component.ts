@@ -7,6 +7,7 @@ import * as L from 'leaflet';
 // import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 // import {CanvasLayer} from  '../../../js/L.CanvasLayer.js';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
+import "../../../js/L.CanvasLayer.js";
 // import * as canvasLayer from 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
@@ -25,6 +26,7 @@ declare const testName: any;
 export class MainLayerComponent implements OnInit, AfterViewInit {
   // map: L.Map;
   map: any;
+  CanvasLayer: any;
   public chartDivWidth;
   public chartDivHeight;
 
@@ -364,6 +366,50 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
 
+    //////////////////////
+
+    // var markers = L.markerClusterGroup();
+
+    // function populate() {
+    //   for (var i = 0; i < 10; i++) {
+    //     var bounds = map.getBounds();
+    //     var southWest = bounds.getSouthWest();
+    //     var northEast = bounds.getNorthEast();
+    //     var lngSpan = northEast.lng - southWest.lng;
+    //     var latSpan = northEast.lat - southWest.lat;
+    //     var latR = southWest.lat + latSpan * Math.random();
+    //     var lngR = southWest.lng + lngSpan * Math.random();
+
+    //     var myIcon = L.divIcon({
+    //       iconSize: new L.Point(50, 50),
+    //       html: String(i)
+    //     });
+
+    //     var m = L.marker(L.latLng(latR, lngR), { icon: myIcon });
+    //     markers.addLayer(m);
+    //   }
+    //   return false;
+    // }
+
+    var MyLayer = (L as any).CanvasLayer.extend({
+      render: function () {
+        var canvas = this.getCanvas();
+        var ctx = canvas.getContext('2d');
+        // render
+      }
+    });
+    // create and add to the map
+    var layer = new MyLayer();
+    console.log(layer, "layer");
+
+    layer.addTo(this.map);
+
+    // populate();
+    // this.map.addLayer(markers);
+
+
+
+
 
 
     //////////////
@@ -421,8 +467,17 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onclick() {
-    testName();
+
+
+  onClick() {
+
+    var canvasObj = (L as any).canvasLayer();
+
+    console.log(canvasObj, "canvasObj");
+
+    alert("canvasObj typeof=  " + typeof canvasObj);
+
+    alert("canvasObj toString= " + canvasObj.toString());
   }
 
 

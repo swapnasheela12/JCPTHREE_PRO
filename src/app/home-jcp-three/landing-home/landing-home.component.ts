@@ -20,13 +20,13 @@ export class LandingHomeComponent implements OnInit {
 
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
-     
+
       var divWidth;
       var divHeight;
       var divWidthTraffic;
       var divHeightTraffic;
 
-      setTimeout(() => { 
+      setTimeout(() => {
         divWidth = $("#chartTotalSubscriberIdDiv").width();
         divHeight = $("#chartTotalSubscriberIdDiv").height();
         divWidthTraffic = $("#dailyTrafficChartIdDiv").width();
@@ -37,15 +37,14 @@ export class LandingHomeComponent implements OnInit {
         this.chartDivHeightTraffic = divHeight;
         this.resizeChart();
       }, 1000);
-     
+
       if (!message) {
-       
+
         this.chartDivWidth = divWidth + 186.656;
         this.chartDivHeight = divHeight;
         this.chartDivWidthTraffic = divWidthTraffic + 186.656;
         this.chartDivHeightTraffic = divHeightTraffic;
         this.resizeChart();
-        // this.chartDivHeight;
       } else {
         this.chartDivWidth = divWidth - 186.656;
         this.chartDivHeight = divHeight;
@@ -53,7 +52,7 @@ export class LandingHomeComponent implements OnInit {
         this.chartDivHeightTraffic = divHeightTraffic;
         this.resizeChart();
       }
-      
+
     });
 
   }
@@ -129,7 +128,7 @@ export class LandingHomeComponent implements OnInit {
       enabled: false
     },
     xAxis: {
-      categories: ["23-Mar","24-Mar","25-Mar","26-Mar","27-Mar","28-Mar","29-Mar","30-Mar","31-Mar","01-Apr","02-Apr","03-Apr","04-Apr","05-Apr"],
+      categories: ["23-Mar", "24-Mar", "25-Mar", "26-Mar", "27-Mar", "28-Mar", "29-Mar", "30-Mar", "31-Mar", "01-Apr", "02-Apr", "03-Apr", "04-Apr", "05-Apr"],
       labels: {
         style: {
           color: '#000000',
@@ -169,7 +168,6 @@ export class LandingHomeComponent implements OnInit {
         text: "Traffic in Petabytes",
         align: 'high',
         style: {
-          // 'text-anchor': 'start',
           color: '#000000',
           fontFamily: 'Roboto',
           fontWeight: 'normal',
@@ -185,7 +183,6 @@ export class LandingHomeComponent implements OnInit {
       enabled: false,
     },
     tooltip: {
-      // pointFormat: "{series.name}: {poin} PB"
       shared: true,
       valueSuffix: ' PB'
     },
@@ -256,7 +253,7 @@ export class LandingHomeComponent implements OnInit {
     }
   });
 
- 
+
   chartTotalSubscriber = new Chart({
     chart: {
       type: 'areaspline',
@@ -275,7 +272,7 @@ export class LandingHomeComponent implements OnInit {
     },
 
     xAxis: {
-      categories: ["23-Mar","24-Mar","25-Mar","26-Mar","27-Mar","28-Mar","29-Mar","30-Mar","31-Mar","01-Apr","02-Apr","03-Apr","04-Apr","05-Apr"],
+      categories: ["23-Mar", "24-Mar", "25-Mar", "26-Mar", "27-Mar", "28-Mar", "29-Mar", "30-Mar", "31-Mar", "01-Apr", "02-Apr", "03-Apr", "04-Apr", "05-Apr"],
       labels: {
         style: {
           color: '#000000',
@@ -284,7 +281,7 @@ export class LandingHomeComponent implements OnInit {
           fontSize: '11px'
         }
       },
-     
+
       title: {
         text: null,
         style: {
@@ -318,7 +315,6 @@ export class LandingHomeComponent implements OnInit {
         text: "Users in Millions",
         align: 'high',
         style: {
-          // 'text-anchor': 'start',
           color: '#000000',
           fontFamily: 'Roboto',
           fontWeight: 'normal',
@@ -356,15 +352,12 @@ export class LandingHomeComponent implements OnInit {
   public testValueHeight;
   public testValueWidth;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
   resizeChart() {
-   
-   
     var chartTotalSubscriberRef = this.chartTotalSubscriber.ref$.source;
     chartTotalSubscriberRef.subscribe((response) => {
-     
       response.chartWidth = this.chartDivWidth;
       response.chartHeight = this.chartDivHeight;
       this.chartTotalSubscriber.ref.setSize(response.chartWidth, response.chartHeight);
@@ -372,7 +365,6 @@ export class LandingHomeComponent implements OnInit {
 
     var dailyTrafficrRef = this.dailyTrafficChart.ref$.source;
     dailyTrafficrRef.subscribe((response) => {
-     
       response.chartWidth = this.chartDivWidthTraffic;
       response.chartHeight = this.chartDivHeightTraffic;
       this.dailyTrafficChart.ref.setSize(response.chartWidth, response.chartHeight);
@@ -380,7 +372,7 @@ export class LandingHomeComponent implements OnInit {
 
   }
 
-  
+
 
 
 
