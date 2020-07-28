@@ -18,6 +18,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AddGroupPopupComponent } from './add-group-popup/add-group-popup.component';
 import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
 
+const PATHS = [
+  {goBack: "JCP/Modules/Performance-Management/Report-Builder"}
+]
+
 @Component({
   selector: 'app-create-report',
   templateUrl: './create-report.component.html',
@@ -25,8 +29,8 @@ import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/com
   encapsulation: ViewEncapsulation.None
 })
 export class CreateReportComponent implements OnInit {
+  public paths;
   public disabled: boolean = false;
-
   // Geography Dropdown 
   @ViewChild('geographyControlSelect') geographyControlSelect: MatSelect;
   protected geographyData = Geography;
@@ -198,17 +202,24 @@ export class CreateReportComponent implements OnInit {
   public showGlobalDeleteOperation;
   kpiGridSearch = '';
   conditionValue = '';
-  NodeAggr = [
-    'AVG',
-    'COUNT',
-    'MAX',
-    'MIN',
-    'SUM'
+  thresholdCondition = [
+    '<=',
+    '==',
+    '>=',
+    '<',
+    '>',
+    'Between'
+  ];
+  conditionValues = [
+    'NONE',
+    'OR',
+    'AND'
   ];
   rightAgGridFormGroup: FormGroup = new FormGroup({});
   tooltipShowDelay: number;
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private http: HttpClient,
     public datashare: DataSharingService) {
+    this.paths = PATHS;
     this.frameworkComponentsCreateKPIEditor = {
       'deleteFlagRenderer': DeleteRendererComponent,
       'dropDownCellRenderer': dropdownRendererComponent,
@@ -554,17 +565,6 @@ export class CreateReportComponent implements OnInit {
     );
   }
 
-  onApply() {
-    let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
-    let columns = this.rightGridOptions.columnApi.getAllColumns();
-    selectedNodes.forEach((node) => {
-      columns.filter(column => column.getColDef().field)
-        .forEach((column: Column) => {
-          node.setDataValue("gridConditionValue", this.conditionValue);
-        })
-    });
-  }
-
   onGridRightReady(params) {
     this.gridColumnApi = params.columnApi;
     this.gridColumnApi.setColumnsVisible(['thresholdCondition', 'gridConditionValue'], false);
@@ -720,13 +720,17 @@ export class CreateReportComponent implements OnInit {
   reportTypeSelectValue(value, params) {
     if (value == "Exception Report") {
       this.gridColumnApi = params.columnApi;
-      this.gridApi.redrawRows();
+      // this.gridApi.redrawRows();
+      this.rightGridOptions.api.redrawRows();
+      // this.rightGridOptions.api.setRowData([]);
       this.gridColumnApi.setColumnsVisible(['thresholdCondition', 'gridConditionValue'], true);
     }
     else {
       this.gridColumnApi = params.columnApi;
 
-      this.gridApi.redrawRows();
+      this.rightGridOptions.api.redrawRows();
+      // this.gridApi.redrawRows();
+      // this.rightGridOptions.api.setRowData([]);
       this.gridColumnApi.setColumnsVisible(['thresholdCondition', 'gridConditionValue'], false);
     }
   }

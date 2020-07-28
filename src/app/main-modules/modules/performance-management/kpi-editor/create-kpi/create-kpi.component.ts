@@ -21,7 +21,9 @@ import { IfElsePopupComponent } from './if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './hextodoc-popup/hextodoc-popup.component';
 
 import * as _ from "lodash";
-
+const PATHS = [
+  {goBack: "JCP/Modules/Performance-Management/KPI-Editor"}
+]
 @Component({
   selector: 'app-create-kpi',
   templateUrl: './create-kpi.component.html',
@@ -30,6 +32,7 @@ import * as _ from "lodash";
 
 })
 export class CreateKpiComponent implements OnInit {
+  public paths;
   selectNodeCtrl: FormGroup;
   counterKPICtrl: FormGroup;
   defineFormulaCtrl: FormGroup;
@@ -119,6 +122,8 @@ export class CreateKpiComponent implements OnInit {
   rightGridOptionsFormula: GridOptions;
   gridConditionValue1: '';
   tooltipShowDelay: number;
+  status: string;
+  disabledGenerate: boolean = true;
   // dataFiltered: any[];
 
   constructor(
@@ -127,6 +132,7 @@ export class CreateKpiComponent implements OnInit {
     public datashare: DataSharingService,
     public dialog: MatDialog
   ) {
+  this.paths = PATHS;
     this.datashare.chechboxChangeMessage(this.leftGridOptions);
     this.frameworkComponentsCreateKPIEditor = {
       'deleteFlagRenderer': DeleteCreatedKpiRendererComponent,
@@ -445,28 +451,31 @@ export class CreateKpiComponent implements OnInit {
   }
 
   validateFormula() {
-    this.rowDataFormula = [
 
-    ];
-    var dataFiltered = [];
-    this.rightGridOptionsFormula.api.forEachNode((node) => {
-      dataFiltered.push(node.data);
-    })
-    var incomingData = [];
-    this.http.get('assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json')
-      .subscribe(
-        data => {
-          console.log(data)
-          const result = _.intersectionBy(data, dataFiltered , 'id');
+    /** this will be a post call */
+    this.http.get("assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json")
+    .subscribe(data => {
+      this.status = (data[0].statuskpi == 'success')? 'green':'red';
+    });
 
-          // let result = _.filter(data, { id: node.data.id })
-          // console.log(result[0]);
-          // dataFiltered.push(result[0]);
-          console.log(result)
-          this.rowDataFormula = result;
-        }
-      )
-    console.log(dataFiltered)
+    // this.rowDataFormula = [
+
+    // ];
+    // var dataFiltered = [];
+    // this.rightGridOptionsFormula.api.forEachNode((node) => {
+    //   dataFiltered.push(node.data);
+    // })
+    // var incomingData = [];
+    // this.http.get('assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json')
+    //   .subscribe(
+    //     data => {
+    //       console.log(data)
+    //       const result = _.intersectionBy(data, dataFiltered , 'id');
+    //       console.log(result)
+    //       this.rowDataFormula = result;
+    //     }
+    //   )
+    // console.log(dataFiltered)
 
   }
   onChangeFormula(conditionValue) {
@@ -483,11 +492,41 @@ export class CreateKpiComponent implements OnInit {
       });
     }
   }
-
   clearList() {
-    this.addGridDropFormulaLeftZone(this.rightGridOptionsFormula);
+    document.querySelector('#textareaFormula').innerHTML = ''
   }
 
+  clearListCounter(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions) {
+    let selectedNodes = this.rightGridOptions.api.getRenderedNodes();
+    console.log(selectedNodes)
+    selectedNodes.forEach(function (node) {
+      // console.log(node)
+      if (node.data["KPIValue"] == "Yes") {
+        leftGridOptions.api.applyTransaction(
+          {
+            add: [node.data]
+          }
+        );
+        rightGridOptions.api.applyTransaction(
+          {
+            remove: [node.data]
+          }
+        );
+      }
+      if (node.data["KPIValue"] == "No") {
+        fifteenMinsKpiGridOptions.api.applyTransaction(
+          {
+            add: [node.data]
+          }
+        );
+        rightGridOptions.api.applyTransaction(
+          {
+            remove: [node.data]
+          }
+        );
+      }
+    });
+  }
   addGridDropFormulaLeftZone(rightGridOptionsFormula) {
     let allRightNodes = this.rightGridOptionsFormula.api.forEachNode(
       (node) => {
@@ -536,8 +575,7 @@ export class CreateKpiComponent implements OnInit {
     // console.log(this.formGroupFormula)
     this.addGridDropFormulaZone(
       params,
-      this.leftGridOptionsFormula,
-      this.rightGridOptionsFormula
+      this.leftGridOptionsFormula
     )
   }
 
@@ -680,11 +718,14 @@ export class CreateKpiComponent implements OnInit {
 
   selectNodeStepper(event) {
     if (event.selectedIndex == 1) {
-      this.stepperLabelText = 'Counter KPI List '
+      this.stepperLabelText = 'Counter KPI List ';
+      this.disabledGenerate = true;
     } else if (event.selectedIndex == 2) {
       this.stepperLabelText = 'Define Formula';
+      this.disabledGenerate = false;
     } else {
       this.stepperLabelText = 'Select Node & Counter';
+      this.disabledGenerate = true;
     }
   }
 
@@ -692,6 +733,7 @@ export class CreateKpiComponent implements OnInit {
     const dialogRef = this.dialog.open(ComputationSettingsPoupComponent, {
       width: '550px',
       height: '550px',
+      panelClass:'computation-setting-popup'
       // maxHeight: '500px',
       // minHeight: '240px'
     });
@@ -699,36 +741,21 @@ export class CreateKpiComponent implements OnInit {
 
   addGridDropFormulaZone(
     params,
-    leftGridOptionsFormula,
-    rightGridOptionsFormula,
+    leftGridOptionsFormula
   ) {
-    let dropZoneParams = this.rightGridOptionsFormula.api.getRowDropZoneParams({
-      onDragStop: function (params) {
-        rightGridOptionsFormula.api.refreshCells({ force: true });
-        // this.rightGridOptionsFormula.api.setSuppressRowDrag(false);
-        var nodes = params.nodes;
-        leftGridOptionsFormula.api.applyTransaction({
-          remove: nodes.map(function (node) {
-            return node.data;
-          })
-        });
-        let columns = rightGridOptionsFormula.columnApi.getAllColumns();
-        // rightGridOptions.api.forEachNode((rowNode: RowNode)=>{
-        //   console.log(rowNode);
-        //   columns.filter(column => column.getColDef().field)
-        //     .forEach((column: Column) => {
-        //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
-        //         const key = keyData(rowNode.id, column);
-        //         formGroup.addControl(key, new FormControl())
-        //         rightGridOptions.api.refreshCells({force: true, columns: [column]});
-        //         this.formGroup = formGroup;
-        //         // rightGridOptions.api.refreshCells({force: true, columns: [column]});
-        //         // rightGridOptions.api.sizeColumnsToFit();
-        //     })
-        // });
-      }
-    });
-    params.api.addRowDropZone(dropZoneParams);
+    var removedNode = [];
+    var tileContainer = document.querySelector('#textareaFormula'),
+    dropZone = {
+      getContainer: function() {
+        return tileContainer;
+      },
+      onDragStop: function(params) {
+        var tile = params.node.data.Name;
+        tileContainer.append(tile);
+      },
+    };
+  params.api.addRowDropZone(dropZone);
+
   }
   addGridDropZone(
     params,
