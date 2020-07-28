@@ -71,6 +71,9 @@ import { AddGroupPopupComponent } from './report-builder/create-report/add-group
 import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
+import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-module.component';
+import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
+import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/h
     createKpiDropdownRendererComponent,
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
-    HextodocPopupComponent
+    HextodocPopupComponent,
+    CiaModuleComponent,
+    CiaKpiSettingsComponent,
+    CiaKpiAdminSettingsComponent
   ],
   imports: [
     CommonModule,

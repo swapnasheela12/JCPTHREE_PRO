@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 import { CreateReportComponent } from './report-builder/create-report/create-report.component';
+import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-module.component';
+import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
+import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
 
 
 const routes: Routes = [
@@ -22,7 +25,14 @@ const routes: Routes = [
       { path: "Create-KPI", component: CreateKpiComponent }
     ]
   },
-  { path:"MSISDN-To-Wi-Fi-MAC-Converter", component: WifiUtilityComponent }
+  { path:"MSISDN-To-Wi-Fi-MAC-Converter", component: WifiUtilityComponent },
+  {
+    path: "Change-Impact-Analysis", children: [
+      { path: "CIA-Module",component: CiaModuleComponent },
+      { path: "CIA-KPI-Settings", component: CiaKpiSettingsComponent },
+      { path: "CIA-KPI-Admin-Settings", component: CiaKpiAdminSettingsComponent }
+    ]
+  }
 ];
 
 @NgModule({
