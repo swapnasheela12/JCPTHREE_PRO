@@ -1,3 +1,4 @@
+import { CoreModule } from './../../../core/core.module';
 import { ReportBuilderComponent } from './report-builder/report-builder.component';
 import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
@@ -102,6 +103,7 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
+    CoreModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -163,7 +165,8 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     conditionalDropdownRendererComponent,
     DeleteRendererComponent,
     createKpiDropdownRendererComponent,
-    DeleteCreatedKpiRendererComponent
+    DeleteCreatedKpiRendererComponent,
+    
   ],
   entryComponents : [
     AddGroupPopupComponent

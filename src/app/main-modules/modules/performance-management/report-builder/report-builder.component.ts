@@ -1,3 +1,4 @@
+import { TableAgGridService } from './../../../../core/components/table-ag-grid/table-ag-grid.service';
 import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
 import { dropDownThreeDotRendererComponent } from './../../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { FormControl } from '@angular/forms';
@@ -68,7 +69,7 @@ export class ReportBuilderComponent implements OnInit {
   public rowSelection;
 
 
-  constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(private datatable: TableAgGridService,private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
@@ -77,6 +78,19 @@ export class ReportBuilderComponent implements OnInit {
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
+    });
+
+    this.httpClient.get('assets/data/modules/performance_dashboard/report_builder.json')
+    .subscribe(data => {
+      this.rowData = data;
+      
+console.log(this.rowData);
+
+      // this.datatable.rowDataURLServices = this.url;
+      this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+      this.datatable.rowDataServices = this.rowData;
+      this.datatable.gridOptionsServices = this.gridOptions;
+      this.datatable.defaultColDefServices = this.defaultColDef;
     });
 
   }
@@ -148,6 +162,7 @@ export class ReportBuilderComponent implements OnInit {
         // id: "dot-rendered-rep-local"
       }
     ];
+    this.datatable.columnDefsServices = this.columnDefs;
   }
 
   defaultColDef = { resizable: true };
@@ -200,12 +215,8 @@ export class ReportBuilderComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
-    this.httpClient.get('assets/data/modules/performance_dashboard/report_builder.json')
-      .subscribe(data => {
-        this.rowData = data;
-        params.api.paginationGoToPage(4);
-      });
+    params.api.paginationGoToPage(4);
+   
   }
 
   onPageSizeChanged(newPageSize) {

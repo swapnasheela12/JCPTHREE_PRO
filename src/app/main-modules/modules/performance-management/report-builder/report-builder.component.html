@@ -40,10 +40,11 @@
     <mat-divider style="position: relative;"></mat-divider>
     <div class="jcp-table-container">
 
-        <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
+        <!-- <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
             toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder"
             (gridReady)="onGridReady($event)" (selectionChanged)="selectionChanged($event)">
-        </ag-grid-angular>
+        </ag-grid-angular> -->
+        <app-table-ag-grid></app-table-ag-grid>
         <div class="ag-material-customer-pager-wrapper">
             <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
                 <div class="labels">Rows Per Page :</div>

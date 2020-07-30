@@ -1,9 +1,11 @@
+import { DataSharingService } from './../../../_services/data-sharing.service';
+import { DataSharHttpService } from './../../../modules/components/data-shar-http.service';
 import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { TableAgGridService } from './table-ag-grid.service';
 import { Component, OnInit } from '@angular/core';
 
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
+import { GridOptions, GridCore, GridApi, ColumnApi,SelectionChangedEvent } from "@ag-grid-community/all-modules";
 
 @Component({
   selector: 'app-table-ag-grid',
@@ -12,51 +14,45 @@ import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/a
 })
 export class TableAgGridComponent implements OnInit {
 
-  // columnDefs = [
-  //   { headerName: 'Make', field: 'make' },
-  //   { headerName: 'Model', field: 'model' },
-  //   { headerName: 'Price', field: 'price' }
-  // ];
-
-
-  // rowData = [
-  //   { make: 'Toyota', model: 'Celica', price: 35000 },
-  //   { make: 'Ford', model: 'Mondeo', price: 32000 },
-  //   { make: 'Porsche', model: 'Boxter', price: 72000 }
-  // ];
-
   public gridApi;
   public gridOptions: GridOptions;
   columnDefs;
   rowData;
   gridOptionsObj;
   defaultColDef;
+  typeOfAgGridTable;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
   };
 
-  constructor(public data: TableAgGridService,private httpClient: HttpClient,) {
+  sidenavBarStatus;
+  showGlobalOperation;
+
+  constructor(public data: TableAgGridService,private datashare: DataSharingService,private httpClient: HttpClient,) {
     console.log(data, "data");
+
+    this.datashare.currentMessage.subscribe((message) => {
+      this.sidenavBarStatus = message;
+      if(this.sidenavBarStatus == false){
+        setTimeout(() => {
+          this.gridOptions.api.sizeColumnsToFit();
+        }, 1000);
+      }else{
+        setTimeout(() => {
+          this.gridOptions.api.sizeColumnsToFit();
+        }, 1000);
+      }
+      
+    });
+    
     this.gridOptions = <GridOptions>{};
 
     this.columnDefs = data.columnDefsServices;
-   
-   
-      this.rowData = data.rowDataServices;
-   
-   
-    // this.gridOptionsObj = this.data.gridOptionsServices;
+    this.rowData = data.rowDataServices;
+    this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
+    this.typeOfAgGridTable = this.data.typeOfAgGridTable;
   }
-
-  // private httpClientRowData() {
-  //   this.httpClient
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-       
-  //     });
-  // }
 
   ngOnInit(): void {
   }
@@ -66,10 +62,7 @@ export class TableAgGridComponent implements OnInit {
   }
 
   public calculateRowCount() {
-    console.log(this.gridOptionsObj, "this.gridOptionsObj");
-    console.log(this.gridOptions, "this.gridOptions");
-
-    if (this.gridOptions.api && this.rowData) {
+   if (this.gridOptions.api && this.rowData) {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
       }, 1000);
@@ -77,9 +70,17 @@ export class TableAgGridComponent implements OnInit {
   }
 
   public onReady(params) {
-    console.log(params, "onReady");
     this.gridApi = params.api;
     this.calculateRowCount();
+  }
+
+  selectionChanged(event: SelectionChangedEvent) {
+    let lengthOfSelectedRow = event.api.getSelectedRows().length;
+    if (1 < lengthOfSelectedRow) {
+      this.showGlobalOperation = true;
+    } else {
+      this.showGlobalOperation = false;
+    }
   }
 
 

@@ -58,7 +58,7 @@ export class MyReportsComponent implements OnInit {
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
   };
-
+  url = "assets/data/report/my-report.json";
   // ///////my report tabel//////////
   public products;
 
@@ -92,7 +92,7 @@ export class MyReportsComponent implements OnInit {
     this.calculateRowCount();
   }
 
-  testArr;
+  
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
@@ -106,17 +106,16 @@ export class MyReportsComponent implements OnInit {
       this.calculateRowCount();
     });
 
-
-
   }
 
-  url = "assets/data/report/my-report.json";
+ 
   private httpClientRowData() {
     this.httpClient
       .get("assets/data/report/my-report.json")
       .subscribe(data => {
         this.rowData = data;
         this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
         this.datatable.rowDataServices = this.rowData;
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
@@ -155,7 +154,6 @@ export class MyReportsComponent implements OnInit {
     ];
 
     this.datatable.columnDefsServices = this.columnDefs;
-    console.log(this.datatable, "data");
   }
 
   defaultColDef = { resizable: true };
@@ -198,16 +196,6 @@ export class MyReportsComponent implements OnInit {
       return template3;
     }
   }
-
-  // onGridReadyMyReport() {
-  //   this.httpClient
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //       console.log(this.rowData, "this.rowData");
-
-  //     });
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
