@@ -10,6 +10,9 @@ import { MyJcpComponent } from './main-modules/my-jcp/my-jcp.component';
 import { RowRenderingComponent } from './modules/components/row-rendering/row-rendering.component';
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
+import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
+import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
+import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
 // import { MainLayerComponent } from './main-layer/main-layer.component';
 
 const routes: Routes = [
@@ -22,6 +25,9 @@ const routes: Routes = [
       { path: "Row-Rendering", component:RowRenderingComponent},
       { path: "Column-Rendering", component:ColumnRenderingComponent},
       { path: "Tree-Rendering", component:TreeRenderingComponent},
+      { path: "Ag-Column-Rendering", component:AgGridColumnRenderingComponent},
+      { path: "Ag-Row-Rendering", component:AgGridRowRenderingComponent},
+      { path: "Ag-Tree-Rendering", component:AgGridTreeRenderingComponent},
       { path: "My-JCP", component:MyJcpComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },

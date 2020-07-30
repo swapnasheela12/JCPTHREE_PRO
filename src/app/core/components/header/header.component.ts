@@ -111,8 +111,6 @@ export class HeaderComponent implements OnInit {
   routeUrlLinkPage;
   truncatedBCStr;
   constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
-    // router.events.subscribe((url: any) => console.log(url));
-
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
