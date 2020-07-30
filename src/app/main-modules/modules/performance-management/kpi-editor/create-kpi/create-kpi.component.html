@@ -325,8 +325,15 @@
             </div>
           </form>
           <mat-divider></mat-divider>
-          <div class="mt10 mx20">
-            <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+          <div class="d-flex mt10 ml15">
+
+            <div class="mx4">
+              <button mat-raised-button color="primary" class="buttonWidth" matStepperNext>Next</button>
+            </div>
+            <div class="col"></div>
+            <div class="m2">
+              <a mat-button color="primary">Add To Counter List</a>
+            </div>
           </div>
         </mat-step>
         <mat-step [stepControl]="counterKPICtrl">

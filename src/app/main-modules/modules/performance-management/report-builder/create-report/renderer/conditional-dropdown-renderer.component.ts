@@ -58,7 +58,6 @@ export class conditionalDropdownRendererComponent implements ICellRendererAngula
   }
 
   refresh(params?: any): boolean {
-      console.log(params)
       this.formGroup = params.context.formGroup;
       // this.formGroup.controls[this.key].patchValue(params.value);
       return true;

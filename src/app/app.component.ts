@@ -34,53 +34,13 @@ export class AppComponent {
    public urlLinkOfMenu : any;
  
    constructor(private router: Router) {
-     // console.log(this.wrapper,"this.wrapper>>>>>>");
      this.router.events.subscribe((event: Event) => {
-       // console.log(event,"event");
        this.urlLinkOfMenu = router.url.toString()
-      //  console.log('current route: ', router.url.toString());
-       // if (event instanceof NavigationEnd) {
-       //   this.currentUrl.next(event.urlAfterRedirects);
-       //   console.log(this.currentUrl.next(event.urlAfterRedirects));
-         
-       // }
      });
    }
  
-   // ngAfterViewInit() {
-   //   this.navService.wrapper = this.wrapper;
-   // }
- 
    menulistExpandFunc() {
      this.collapsed = !this.collapsed;
-     this.router.navigate([this.urlLinkOfMenu]);
-     // $('a').find('.menu-list-item').removeClass("expanded");
-    //  console.log($(this).find('.collapsed'));
-     
-     // if ($(this).find('.collapsed')) {
-     //   $(this).addClass("collapsed");
-     
-     // } else {
-      
-     // }
-     
- 
+     this.router.navigate([this.urlLinkOfMenu]); 
    }
-
-
-  //  options = {
-  //   layers: [
-  //     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //       attribution: '&copy; OpenStreetMap contributors'
-  //     })
-  //   ],
-  //   zoom: 7,
-  //   center: latLng([ 46.879966, -121.726909 ])
-  // };
-
-
-
-
-
-
 }

@@ -1,0 +1,45 @@
+<div class="h-100">
+    <mat-card class="cia-module-card">
+      <mat-card-header style="height:64px;" class="input-header" fxLayout="row">
+        <mat-form-field class="">
+            <input matInput placeholder="Report Name"  required>
+          </mat-form-field>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+      <mat-card-content class="card-content">
+        <mat-horizontal-stepper #nodeCounterStepper [linear]="false">
+          <mat-step label="Select Type">
+            <div class="mx20 my15">
+                <label class="radio-group-label">Frequency</label>
+                <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
+                  [(value)]="frequencyGroup">
+                  <mat-radio-button *ngFor="let frequency of frequencyList" [value]="frequency.name">
+                    {{frequency.name}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            <div>
+              <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step label="Select KPI">
+            <div>
+              <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+              <button class="ml10 next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
+    <div class="d-flex">
+      <div class="p-2 mr-auto">
+        <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+      </div>
+      <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+      </div>
+      <div class="p-2">
+        <button mat-raised-button color="primary"
+          class="buttonWidth button">Generate</button>
+      </div>
+    </div>
+  </div>

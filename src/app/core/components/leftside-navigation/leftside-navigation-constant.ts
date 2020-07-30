@@ -2365,6 +2365,33 @@ const MODULE_LIST_NET_VELOCITY = [
     }
 ];
 
+const CIA_MODULE_LIST = [
+    {
+        name: "CIA - Module",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Module",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: "CIA - KPI Settings",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-KPI-Settings",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: "CIA - KPI Admin Settings",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-KPI-Admin-Settings",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: []
+    }
+];
+
 const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
     {
        
@@ -2409,7 +2436,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "change-impact-analysis",
         level: 2,
         component: HomeJcpThreeComponent,
-        children: []
+        children: CIA_MODULE_LIST
     },
     {
        

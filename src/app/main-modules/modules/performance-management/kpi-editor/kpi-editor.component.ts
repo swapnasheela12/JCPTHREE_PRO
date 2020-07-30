@@ -160,7 +160,6 @@ export class KpiEditorComponent implements OnInit {
   };
 
   public onReady(params) {
-    console.log(params, "onReady");
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }

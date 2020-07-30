@@ -1306,6 +1306,17 @@ table {
     background-color: #0078D7;
     color: white;
 }
+.mat-step-header {
+    &:hover {
+        background-color: #E5F0FC !important;
+    }
+    &.cdk-keyboard-focused{
+        background-color:  #E5F0FC;;
+    }
+    &.cdk-program-focused{
+        background-color:  #E5F0FC;;
+    }
+}
 
 .mat-flat-button.mat-primary,
 .mat-raised-button.mat-primary,
@@ -1504,7 +1515,7 @@ table {
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: 0px 0px 1px -1px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.14), 0px 0px 3px 0px rgba(0, 0, 0, 0.12)
+    box-shadow: 0px 0px 1px -1px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.14), 0px 0px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 //END Default Custom css
