@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { TableAgGridService } from './../../../core/components/table-ag-grid/table-ag-grid.service';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -40,6 +41,10 @@ export interface DialogData {
   styleUrls: ['./my-reports.component.scss']
 })
 export class MyReportsComponent implements OnInit {
+
+  @Input() commonTableAggrid: TemplateRef<any>;
+
+
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public sidenavBarStatus;
@@ -68,7 +73,7 @@ export class MyReportsComponent implements OnInit {
     { value: 'Work Orders', viewValue: 'Work Orders' }
   ];
   ///////report measure/////////////
-  
+
   onReadyModeUpdate(params) {
     this.calculateRowCount();
   }
@@ -87,11 +92,11 @@ export class MyReportsComponent implements OnInit {
     this.calculateRowCount();
   }
 
-  
+  testArr;
 
-  constructor(private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-   
+
     this.gridOptions = <GridOptions>{};
     this.httpClientRowData();
     this.createColumnDefs();
@@ -101,13 +106,20 @@ export class MyReportsComponent implements OnInit {
       this.calculateRowCount();
     });
 
+
+
   }
 
+  url = "assets/data/report/my-report.json";
   private httpClientRowData() {
     this.httpClient
       .get("assets/data/report/my-report.json")
       .subscribe(data => {
         this.rowData = data;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
 
@@ -141,9 +153,15 @@ export class MyReportsComponent implements OnInit {
         width: 140
       }
     ];
+
+    this.datatable.columnDefsServices = this.columnDefs;
+    console.log(this.datatable, "data");
   }
 
   defaultColDef = { resizable: true };
+
+
+
   searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);

@@ -61,6 +61,8 @@ import { CommonPopupComponent } from './components/commanPopup/common-popup/comm
 // import { PaginationComponent } from './../common/pagination/pagination.component'
 import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
+import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
+import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.directive';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -76,6 +78,8 @@ import { FileUploadPopupComponent } from './components/commanPopup/file-upload-p
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
     FileUploadPopupComponent,
+    TableAgGridComponent,
+    TableAgGridDirective,
     // PaginationComponent
   ],
   imports: [
@@ -143,7 +147,8 @@ import { FileUploadPopupComponent } from './components/commanPopup/file-upload-p
     MmenuDirective,
     isEllipsisActiveDirective,
     SuccessfulComponent,
-    dropDownThreeDotRendererComponent
+    dropDownThreeDotRendererComponent,
+    TableAgGridComponent,
     // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent

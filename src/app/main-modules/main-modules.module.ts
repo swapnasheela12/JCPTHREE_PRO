@@ -1,3 +1,4 @@
+import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainModulesRoutingModule } from './main-modules-routing.module';
@@ -100,6 +101,7 @@ import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-worko
   imports: [
     CommonModule,
     MainModulesRoutingModule,
+    CoreModule,
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
