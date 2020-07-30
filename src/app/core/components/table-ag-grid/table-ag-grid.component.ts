@@ -33,15 +33,15 @@ export class TableAgGridComponent implements OnInit {
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      if(this.sidenavBarStatus == false){
-        setTimeout(() => {
-          this.gridOptions.api.sizeColumnsToFit();
-        }, 1000);
-      }else{
-        setTimeout(() => {
-          this.gridOptions.api.sizeColumnsToFit();
-        }, 1000);
-      }
+      // if(this.sidenavBarStatus == false){
+      //   setTimeout(() => {
+      //     this.gridOptions.api.sizeColumnsToFit();
+      //   }, 1000);
+      // }else{
+      //   setTimeout(() => {
+      //     this.gridOptions.api.sizeColumnsToFit();
+      //   }, 1000);
+      // }
       
     });
     
@@ -57,21 +57,21 @@ export class TableAgGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
+  // onReadyModeUpdate(params) {
+  //   this.calculateRowCount();
+  // }
 
-  public calculateRowCount() {
-   if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
+  // public calculateRowCount() {
+  //  if (this.gridOptions.api && this.rowData) {
+  //     setTimeout(() => {
+  //       this.gridOptions.api.sizeColumnsToFit();
+  //     }, 1000);
+  //   }
+  // }
 
   public onReady(params) {
     this.gridApi = params.api;
-    this.calculateRowCount();
+    // this.calculateRowCount();
   }
 
   selectionChanged(event: SelectionChangedEvent) {

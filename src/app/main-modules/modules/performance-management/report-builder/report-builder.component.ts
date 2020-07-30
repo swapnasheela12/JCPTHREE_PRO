@@ -25,7 +25,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 declare var $: any;
 const PATHS = [
-  {createReport: "JCP/Modules/Performance-Management/Report-Builder/Create-Report"}
+  { createReport: "JCP/Modules/Performance-Management/Report-Builder/Create-Report" }
 ]
 interface reportsMeasure {
   value: string;
@@ -42,7 +42,7 @@ export interface DialogData {
   templateUrl: './report-builder.component.html',
   styleUrls: ['./report-builder.component.scss'],
 
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class ReportBuilderComponent implements OnInit {
 
@@ -69,7 +69,7 @@ export class ReportBuilderComponent implements OnInit {
   public rowSelection;
 
 
-  constructor(private datatable: TableAgGridService,private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
@@ -81,17 +81,17 @@ export class ReportBuilderComponent implements OnInit {
     });
 
     this.httpClient.get('assets/data/modules/performance_dashboard/report_builder.json')
-    .subscribe(data => {
-      this.rowData = data;
-      
-console.log(this.rowData);
+      .subscribe(data => {
+        this.rowData = data;
 
-      // this.datatable.rowDataURLServices = this.url;
-      this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-      this.datatable.rowDataServices = this.rowData;
-      this.datatable.gridOptionsServices = this.gridOptions;
-      this.datatable.defaultColDefServices = this.defaultColDef;
-    });
+        console.log(this.rowData);
+
+        // this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
 
   }
 
@@ -216,7 +216,7 @@ console.log(this.rowData);
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4);
-   
+
   }
 
   onPageSizeChanged(newPageSize) {

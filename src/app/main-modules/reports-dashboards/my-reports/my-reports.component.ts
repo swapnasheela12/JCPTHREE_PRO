@@ -127,7 +127,8 @@ export class MyReportsComponent implements OnInit {
       {
         headerName: "Report Name",
         field: "reportname",
-        width: 320
+        width: 320,
+        pinned: 'left'
       }, {
         headerName: "Report Measure",
         field: "reportmeasure",
