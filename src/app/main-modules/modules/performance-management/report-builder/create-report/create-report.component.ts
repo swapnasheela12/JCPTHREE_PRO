@@ -240,7 +240,8 @@ export class CreateReportComponent implements OnInit {
   }
   openFileUploadPopup(): void {
     const title = `Upload Nodes`;
-    const dialogData = new fileUploadPopupModel(title);
+    var showExample = false;
+    const dialogData = new fileUploadPopupModel(title, showExample);
     const dialogRef = this.dialog.open(FileUploadPopupComponent, {
       width: '700px',
       height: '250px',
@@ -258,15 +259,11 @@ export class CreateReportComponent implements OnInit {
   };
 
   rangeClicked(range): void {
-    console.log('[rangeClicked] range is : ', range);
     this.selectedDateTimeValue = true;
-    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
 
   datesUpdated(range): void {
-    console.log('[datesUpdated] range is : ', range);
     this.selectedDateTimeValue = true;
-    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
 
 
@@ -611,7 +608,6 @@ export class CreateReportComponent implements OnInit {
   bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions) {
     let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
     selectedNodes.forEach(function (node) {
-      console.log(node)
       if (node.data["15MinValue"] == "No") {
         leftGridOptions.api.applyTransaction(
           {
