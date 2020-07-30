@@ -213,10 +213,11 @@ export class CreateKpiComponent implements OnInit {
       //   field: "threshold",
       //   cellRenderer: 'conditionalDropdownRenderer'
       // },
-      {
+      {headerName: '',
         suppressMenu: true,
-        maxWidth: 50,
-        cellRenderer: 'deleteFlagRenderer'
+        maxWidth: 30,
+        cellRenderer: 'deleteFlagRenderer',
+        pinned:'right'
       }
     ];
 
@@ -275,7 +276,6 @@ export class CreateKpiComponent implements OnInit {
       columnDefs: this.leftColumnDefs,
       animateRows: true
     };
-    // console.log(this.leftGridOptions)
     this.datashare.leftGridOptionMessage(this.leftGridOptions, this.rightGridOptions);
     this.leftGridOptionsFormula = <GridOptions>{
       defaultColDef: {
@@ -435,7 +435,6 @@ export class CreateKpiComponent implements OnInit {
   }
 
   searchFormulaGrid(value) {
-    console.log(value)
     this.leftGridOptionsFormula.api.setQuickFilter(value);
   }
 
@@ -457,29 +456,8 @@ export class CreateKpiComponent implements OnInit {
     .subscribe(data => {
       this.status = (data[0].statuskpi == 'success')? 'green':'red';
     });
-
-    // this.rowDataFormula = [
-
-    // ];
-    // var dataFiltered = [];
-    // this.rightGridOptionsFormula.api.forEachNode((node) => {
-    //   dataFiltered.push(node.data);
-    // })
-    // var incomingData = [];
-    // this.http.get('assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json')
-    //   .subscribe(
-    //     data => {
-    //       console.log(data)
-    //       const result = _.intersectionBy(data, dataFiltered , 'id');
-    //       console.log(result)
-    //       this.rowDataFormula = result;
-    //     }
-    //   )
-    // console.log(dataFiltered)
-
   }
   onChangeFormula(conditionValue) {
-    console.log(conditionValue)
     if ('If-Else' == conditionValue) {
       const dialogRef = this.dialog.open(IfElsePopupComponent, {
         width: '980',
@@ -498,9 +476,7 @@ export class CreateKpiComponent implements OnInit {
 
   clearListCounter(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions) {
     let selectedNodes = this.rightGridOptions.api.getRenderedNodes();
-    console.log(selectedNodes)
     selectedNodes.forEach(function (node) {
-      // console.log(node)
       if (node.data["KPIValue"] == "Yes") {
         leftGridOptions.api.applyTransaction(
           {
@@ -569,10 +545,6 @@ export class CreateKpiComponent implements OnInit {
   onGridleftReadyFormula(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // console.log(params)
-    // console.log(this.leftGridOptionsFormula)
-    // console.log(this.rightGridOptionsFormula)
-    // console.log(this.formGroupFormula)
     this.addGridDropFormulaZone(
       params,
       this.leftGridOptionsFormula
@@ -688,7 +660,6 @@ export class CreateKpiComponent implements OnInit {
   bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions) {
     let selectedNodes = this.rightGridOptions.api.getSelectedNodes();
     selectedNodes.forEach(function (node) {
-      // console.log(node)
       if (node.data["KPIValue"] == "Yes") {
         leftGridOptions.api.applyTransaction(
           {

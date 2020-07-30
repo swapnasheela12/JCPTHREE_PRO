@@ -57,8 +57,6 @@ export class createKpiDropdownRendererComponent implements ICellRendererAngularC
 
   refresh(params?: any): boolean {
       this.formGroup = params.context.formGroup;
-      console.log(params);
-      // this.formGroup.controls[this.key].patchValue(params.value);
       return true;
   }
 
