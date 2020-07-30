@@ -9,24 +9,33 @@
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
-    <div mat-dialog-content fxLayoutAlign="center center">
-        <mat-form-field fxFlex="90" class="mb20 browse-file-form-field">
-            <mat-icon class="ic ic-file-text2 file-icon">
-            </mat-icon>
-            <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
-            <button class="browse-button" (click)="onClick()" mat-button color="primary">Browse</button>
-        </mat-form-field>
+    <div mat-dialog-content class="main-content">
+        <div class="px-4 overflow-x-hidden">
+            <div fxLayoutAlign="center">
+                <mat-form-field fxFlex="100" class="mb-3 browse-file-form-field">
+                    <mat-icon class="ic ic-file-text2 file-icon">
+                    </mat-icon>
+                    <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName"
+                        [readonly]="true" required>
+                    <button class="browse-button" (click)="onClick()" mat-button color="primary">Browse</button>
+                </mat-form-field>
+            </div>
+            <div *ngIf="showExample" class="example-content">
+                <span>Example: </span> <span class="example-value"> I-MH-ABVL-ENB-0004_c3</span> <br> <span
+                    class="example-value indent">I-MH-AMBT-OSC-0001-SMC001_c0</span>
+            </div>
+        </div>
     </div>
     <mat-divider></mat-divider>
     <div mat-dialog-actions>
-        <button mat-button color="primary"><i class="ic ic-download pr-0.5"></i> Download Template
+        <button mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
         </button>
         <div class="col"></div>
-        <div class="mx5">
+        <div class="mx-1">
             <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
         </div>
-        <div class="mx15">
-            <button mat-raised-button color="primary" class="buttonWidth">Upload</button>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" (click)="uploadAndClose()" class="buttonWidth">Upload</button>
         </div>
     </div>
 </div>

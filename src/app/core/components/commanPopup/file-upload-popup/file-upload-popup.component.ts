@@ -15,6 +15,8 @@ export class FileUploadPopupComponent{
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];  
   kpiGroupFormControl: FormGroup;
   title: string;
+  showExample: boolean;
+  showSuccessFailure;
   fileName;
   uploadFile(file) {  
     this.fileName = file.data.name;
@@ -54,16 +56,21 @@ onClick() {
     @Inject(MAT_DIALOG_DATA) public data: fileUploadPopupModel
   ) {
     this.title = data.title;
+    this.showExample = data.showExample;
   }
   ngOnInit(): void {}
   closeDialog(): void {
     this.dialogRef.close(true);
+  }
+  uploadAndClose(): void {
+    this.dialogRef.close('uploadClicked');
   }
 
 }
 export class fileUploadPopupModel {
   constructor(
     public title: string, 
+    public showExample: boolean
     ) {
   }
 }
