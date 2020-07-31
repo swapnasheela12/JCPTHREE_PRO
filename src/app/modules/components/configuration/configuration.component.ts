@@ -97,11 +97,7 @@ export class ConfigurationComponent implements OnInit {
 
 
   constructor(public matDialog: MatDialog, public matselect: MatSelectModule, public datashare: DataSharingService,
-
-
     private http: HttpClient, public dialogRef: MatDialogRef<ConfigurationComponent>
-
-
   ) {
 
     this.gridOptions = <GridOptions>{};
@@ -111,24 +107,10 @@ export class ConfigurationComponent implements OnInit {
     this.frameworkComponentsConfigmenu = {
 
       'config-dotmenu': ConfigDotmenuComponent
-
-
     }
-
-
   }
   ngOnInit(): void {
-
-
-
-
   }
-
-
-
-
-
-
 
   name: string;
   animal: string;
@@ -217,13 +199,9 @@ export class ConfigurationComponent implements OnInit {
 
     ];
   }
-
-
-
   private getConfigdata() {
     this.http.get("assets/data/layers/popup-data/datap.json")
       .subscribe(data => {
-        console.log(data);
         this.configRow = data;
       });
   }

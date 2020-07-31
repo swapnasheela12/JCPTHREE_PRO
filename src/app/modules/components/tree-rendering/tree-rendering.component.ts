@@ -88,7 +88,6 @@ export class TreeRenderingComponent implements OnInit {
   }
 
   setFirstHeaders(columnDefs) {
-    console.log(columnDefs,"columnDefs");
     
     this.firstHeaderGroup = columnDefs.map(element => {
 

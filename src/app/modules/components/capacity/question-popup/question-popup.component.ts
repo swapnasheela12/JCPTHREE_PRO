@@ -49,20 +49,12 @@ public questionRow;
         field: 'averageusers',
         width: 400,
         cellClass: 'lock-pinned'
-        
-        
       }
-
-
     ];
-
   }
-
-
   private getHelpData() {
     this.http.get("assets/data/layers/popup-data/help-popup-data.json")
       .subscribe(data => {
-        console.log(data);
         this.questionRow = data;
     });
   }

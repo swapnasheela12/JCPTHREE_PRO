@@ -55,7 +55,6 @@ export class MyJcpComponent implements OnInit  {
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       if (change.mqAlias == 'xs') {
-        console.log('xs');
         
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
@@ -63,13 +62,11 @@ export class MyJcpComponent implements OnInit  {
         this.desired_rowHeight = "fit";
       }
       else if (change.mqAlias == 'sm') {
-        console.log('sm');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         this.desired_columns = 12;
       }
       else if (change.mqAlias == 'md') {
-        console.log('md');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         if (divHeight <= 625) {
@@ -79,7 +76,6 @@ export class MyJcpComponent implements OnInit  {
         }
         
       } else {
-        console.log('lg');
         divHeight = $("#my-jcp-setting-container-id").height();
         this.myJcpListTile;
         if (divHeight <= 625) {

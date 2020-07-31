@@ -157,6 +157,5 @@ export class SettingsDialogComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   changeComboo(event) {
-    console.log('changed', event && event.value)
   }
 }

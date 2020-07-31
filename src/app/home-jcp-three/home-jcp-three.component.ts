@@ -51,8 +51,6 @@ export class HomeJcpThreeComponent implements OnInit {
   timeSpendVar;
 
   constructor(private router: Router, private location: Location, private sidenavService: SideNavService, private datashare: DataSharingService) {
-    // router.events.subscribe((url: any) => console.log(url,"HOME Page"));
-
     router.events.subscribe(val => {
       if (location.path() != "") {
         this.route = location.path();

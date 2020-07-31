@@ -53,13 +53,7 @@ export class LoginJcpThreeComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-
-    console.log(this.router.url, "this.router.url");
-    console.log(this.loginForm, " this.loginForm");
-    console.log(this.route, "route");
-    console.log(this.returnUrl, "this.returnUrl");
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;

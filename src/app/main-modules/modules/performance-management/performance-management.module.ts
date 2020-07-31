@@ -1,4 +1,3 @@
-import { CoreModule } from './../../../core/core.module';
 import { ReportBuilderComponent } from './report-builder/report-builder.component';
 import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
@@ -74,7 +73,9 @@ import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-e
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-module.component';
 import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
-import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
+import { CiaAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
+import { ciaDropdownRenderersComponent } from './change-impact-analysis/renderer/cia-renderer.component';
+
 
 
 @NgModule({
@@ -93,21 +94,21 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     DeleteCreatedKpiRendererComponent,
     dropdownRendererComponent,
     createKpiDropdownRendererComponent,
+    ciaDropdownRenderersComponent,
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
     HextodocPopupComponent,
     CiaModuleComponent,
     CiaKpiSettingsComponent,
-    CiaKpiAdminSettingsComponent
+    CiaAdminSettingsComponent
   ],
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
-    CoreModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent,  ciaDropdownRenderersComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -166,7 +167,8 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     DeleteRendererComponent,
     createKpiDropdownRendererComponent,
     DeleteCreatedKpiRendererComponent,
-    
+    dropdownRendererComponent,
+    ciaDropdownRenderersComponent
   ],
   entryComponents : [
     AddGroupPopupComponent
@@ -174,4 +176,5 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
   providers: []
 })
 export class PerformanceManagementModule { }
+
 
