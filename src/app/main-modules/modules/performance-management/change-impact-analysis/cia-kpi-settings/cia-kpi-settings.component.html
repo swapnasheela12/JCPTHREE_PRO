@@ -13,61 +13,8 @@
                     <span class="zmdi zmdi-close"></span>
                 </mat-icon>
             </mat-form-field>
-            <button mat-icon-button style="margin-left: 12px;" [disableRipple]="true"
-                [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu"
-                [style.display]="showGlobalOperation ? 'block' : 'none'">
-                <mat-icon class="icon-button vertical-kpi" style="color:black !important;"><span
-                        class="zmdi zmdi-more-vert"></span></mat-icon>
-            </button>
-            <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
-                <button mat-menu-item>
-                    <span>Print</span>
-                </button>
-                <button mat-menu-item>
-                    <span>Download</span>
-                </button>
-                <button mat-menu-item (click)="openBulkDeleteDialog()">
-                    <span>Delete</span>
-                </button>
-            </mat-menu>
         </div>
     </mat-card-header>
-    <!-- <div class="kpi-editor-flex-container" style="height: 64px;">
-        <div class="d-flex mx-2 flex-row justify-content-between align-items-center h-100">
-            <div class="col-4 kpi-editor-flex-item kpi-title">
-                KPI Settings
-            </div>
-            <div class="col-8 kpi-editor-flex-item d-flex justify-content-end align-items-center">
-                <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
-                    <span class="zmdi zmdi-search"></span>
-                </mat-icon>
-                <mat-form-field *ngIf="show" class="col-4">
-                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
-                        autocomplete="off" placeholder="">
-                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                        <span class="zmdi zmdi-close"></span>
-                    </mat-icon>
-                </mat-form-field>
-                <button mat-icon-button style="margin-left: 12px;" [disableRipple]="true"
-                    [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu"
-                    [style.display]="showGlobalOperation ? 'block' : 'none'">
-                    <mat-icon class="icon-button vertical-kpi" style="color:black !important;"><span
-                            class="zmdi zmdi-more-vert"></span></mat-icon>
-                </button>
-                <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
-                    <button mat-menu-item>
-                        <span>Print</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span>Download</span>
-                    </button>
-                    <button mat-menu-item (click)="openBulkDeleteDialog()">
-                        <span>Delete</span>
-                    </button>
-                </mat-menu>
-            </div>
-        </div>
-    </div> -->
     <mat-divider style="position: relative;"></mat-divider>
     <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
         headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize

@@ -75,6 +75,7 @@ import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-modu
 import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
 import { CiaAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
 import { ciaDropdownRenderersComponent } from './change-impact-analysis/renderer/cia-renderer.component';
+import { snackBarToastComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 
 
 
@@ -100,7 +101,8 @@ import { ciaDropdownRenderersComponent } from './change-impact-analysis/renderer
     HextodocPopupComponent,
     CiaModuleComponent,
     CiaKpiSettingsComponent,
-    CiaAdminSettingsComponent
+    CiaAdminSettingsComponent,
+    snackBarToastComponent
   ],
   imports: [
     CommonModule,
@@ -168,10 +170,11 @@ import { ciaDropdownRenderersComponent } from './change-impact-analysis/renderer
     createKpiDropdownRendererComponent,
     DeleteCreatedKpiRendererComponent,
     dropdownRendererComponent,
-    ciaDropdownRenderersComponent
+    ciaDropdownRenderersComponent,
+    snackBarToastComponent
   ],
   entryComponents : [
-    AddGroupPopupComponent
+    AddGroupPopupComponent, snackBarToastComponent
   ],
   providers: []
 })

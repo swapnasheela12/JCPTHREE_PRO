@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ciaDropdownRenderersComponent } from '../renderer/cia-renderer.component';
 
 @Component({
@@ -23,7 +22,6 @@ export class CiaKpiSettingsComponent implements OnInit {
   public rowSelection;
   show: any;
   searchGrid = '';
-  public showGlobalOperation:Boolean = false;
   public dataTest: any;
 
   HEADER_KPI = [
@@ -75,13 +73,11 @@ export class CiaKpiSettingsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
-    public datashare: DataSharingService
   ) {
     this.gridOptions = <GridOptions>{};
     this.frameworkComponentsKpiSettings = {
       'dropdownRenderer':   ciaDropdownRenderersComponent,
     };
-    this.datashare.chechboxChangeMessage(this.showGlobalOperation);
   }
 
   ngOnInit(): void {
@@ -117,30 +113,12 @@ export class CiaKpiSettingsComponent implements OnInit {
         this.rowData = data;
     });
   }
-
-  openBulkDeleteDialog():void {
-    const message = `Are you Sure you want to perform this action?`;
-    const image = 'warning';
-    const snackbarMessage = 'asdadasd';
-    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMessage);    const dialogRef = this.dialog.open(CommonPopupComponent, {
-      data: dialogData
-    });
-  }
-
-  selectionChanged(event: SelectionChangedEvent) {
-    if (1 < event.api.getSelectedRows().length) {
-      this.showGlobalOperation = true;
-    } else {
-      this.showGlobalOperation = false;
-    }
-    this.datashare.chechboxChangeMessage(this.showGlobalOperation);
-  }
-
   openUpdateDialog(): void {
     const message = `Are you sure you want to update the KPI Settings?`;
     const image = 'warning';
-    const snackbarMessage = 'asdadasd';
-    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMessage);
+    const snackbarMode = 'success';
+    const snackbarText = 'KPI Settings Updated Successfully.';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });

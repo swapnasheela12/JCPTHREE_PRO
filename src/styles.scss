@@ -1525,6 +1525,22 @@ table {
     right: 15px;
     font-size: 20px;
 }
+.mat-snack-bar-container{
+    &.warning{
+        background-color: #FC5F5F;
+    }
+    &.success{
+        background-color: #0FD125;
+    }
+    .snackbar-content{
+        color: white;
+        font-weight: 500;
+        .text-style{
+            font-family:roboto, medium;
+            font-size: 14px;
+        }
+    }
+}
 
 //////////////
 //////////////

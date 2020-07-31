@@ -108,8 +108,9 @@ export class CiaAdminSettingsComponent implements OnInit {
   openUpdateDialog(): void {
     const message = `Are you sure you want to update the Admin Settings?`;
     const image = 'warning';
-    const snackbarMessage = 'well done';
-    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMessage);
+    const snackbarMode = 'warning';
+    const snackbarText = 'Admin Settings Updated Successfully.';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
