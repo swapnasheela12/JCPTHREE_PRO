@@ -1,3 +1,45 @@
 .cia-module-card{
     padding:0px !important;
+    height: calc(100% - 52px);
+    .cia-card-content{
+        height: calc(100% - 64px);
+        .mat-stepper-horizontal{
+            height: 100%;
+            .mat-horizontal-content-container{
+                height: calc(100% - 72px);
+                .mat-horizontal-stepper-content[aria-expanded="true"]{
+                    height:100%;
+                    .content-holder{
+                        height: calc(100% - 24px);
+                        overflow: auto;
+                        .successful-div{
+                            margin-top: 25px;
+                            background-color: rgba(15, 209, 37, 0.05);
+                            padding: 7px 10px 7px 15px;
+                            width: 320px; 
+                            color:#0FD125;
+                            border-radius:26px;
+                            .icon{
+                                font-size: 18px;
+                            }
+                        }
+                        .failure-div{
+                            margin-top: 25px;
+                            background-color: rgba(252, 95, 95, 0.05);
+                            padding: 7px 10px 7px 15px;
+                            width: 320px; 
+                            color:#FC5F5F;
+                            border-radius:26px;
+                            .icon{
+                                font-size: 18px;
+                            }
+                        }
+                        .mat-checkbox-inner-container{
+                            margin:  12px 12px 0px 0px !important
+                        }
+                    }
+                }
+            }
+            }
+    }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CiaKpiAdminSettingsComponent } from './cia-kpi-admin-settings.component';
+import { CiaAdminSettingsComponent } from './cia-kpi-admin-settings.component';
 
-describe('CiaKpiAdminSettingsComponent', () => {
-  let component: CiaKpiAdminSettingsComponent;
-  let fixture: ComponentFixture<CiaKpiAdminSettingsComponent>;
+describe('CiaAdminSettingsComponent', () => {
+  let component: CiaAdminSettingsComponent;
+  let fixture: ComponentFixture<CiaAdminSettingsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CiaKpiAdminSettingsComponent ]
+      declarations: [ CiaAdminSettingsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CiaKpiAdminSettingsComponent);
+    fixture = TestBed.createComponent(CiaAdminSettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

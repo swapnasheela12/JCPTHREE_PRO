@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CiaModuleComponent } from './../change-impact-analysis/cia-module/cia-module.component';
 import { CiaKpiSettingsComponent } from './../change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
-import { CiaKpiAdminSettingsComponent } from './../change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
+import { CiaAdminSettingsComponent } from './../change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
 
 import { MatCardModule } from "@angular/material/card";
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -13,12 +13,14 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
+import { AgGridModule } from 'ag-grid-angular';
+// import { dropdownRendererComponent } from '../report-builder/create-report/renderer/dropdown-renderer.component';
 
 @NgModule({
   declarations: [
     CiaModuleComponent,
     CiaKpiSettingsComponent,
-    CiaKpiAdminSettingsComponent
+    CiaAdminSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -30,9 +32,12 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatDialogModule
+    MatDialogModule,
+    // AgGridModule.withComponents([ dropdownRendererComponent]),
   ],
-  exports: [],
+  exports: [
+    // dropdownRendererComponent
+  ],
   providers: []
 })
 export class ChangeImpactAnanlysisModule { }

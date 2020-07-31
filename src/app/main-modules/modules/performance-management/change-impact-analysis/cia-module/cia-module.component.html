@@ -1,45 +1,103 @@
 <div class="h-100">
-    <mat-card class="cia-module-card">
-      <mat-card-header style="height:64px;" class="input-header" fxLayout="row">
-        <mat-form-field class="">
-            <input matInput placeholder="Report Name"  required>
-          </mat-form-field>
+  <mat-card class="cia-module-card">
+    <mat-card-header style="height:64px;" class="input-header" fxLayout="row">
+      <mat-form-field class="">
+        <input matInput placeholder="Report Name" required>
+      </mat-form-field>
     </mat-card-header>
     <mat-divider></mat-divider>
-      <mat-card-content class="card-content">
-        <mat-horizontal-stepper #nodeCounterStepper [linear]="false">
-          <mat-step label="Select Type">
-            <div class="mx20 my15">
-                <label class="radio-group-label">Frequency</label>
-                <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
-                  [(value)]="frequencyGroup">
-                  <mat-radio-button *ngFor="let frequency of frequencyList" [value]="frequency.name">
-                    {{frequency.name}}</mat-radio-button>
-                </mat-radio-group>
+    <mat-card-content class="cia-card-content">
+      <mat-horizontal-stepper #nodeCounterStepper [linear]="false">
+        <mat-step label="Select Type">
+          <div class="content-holder">
+            <div class="pt-3 pb-4">
+              <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(ngModel)]="selectedRadio">
+                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name">
+                  {{type.name}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div *ngIf="selectedRadio == 'Custom'">
+              <mat-checkbox class="example-margin">Neighbor Impact Analysis
+              </mat-checkbox>
+              <div class="pt-3">
+                <button class="next-button p-0" mat-button color="primary" (click)="openFileUploadPopup()">
+                  <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                  </i>
+                  <span>Upload Cell List</span>
+                </button>
               </div>
-            <div>
-              <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+              <div *ngIf="showSuccessFailure" class="successful-div" fxLayoutAlign="start center">
+                <i class="ic ic-tick mr-2 icon"> </i>
+                <span>Cell List with 200 cells has been uploaded.</span>
+              </div>
+
+              <!-- Code For upload Failure -->
+              <div *ngIf="" class="failure-div" fxLayoutAlign="start center">
+                <i class="ic ic-warning mr-2 icon"> </i>
+                <span>Maximum 1001 cells entries are allowed.</span>
+              </div>
+               <!-- Code For upload Failure -->
+               
             </div>
-          </mat-step>
-          <mat-step label="Select KPI">
-            <div>
-              <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
-              <button class="ml10 next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+            <div *ngIf="selectedRadio == 'JC Circle Level'" class="mt-2">
+              <form [formGroup]="selectJcCircleLevelFormControl">
+                <div class="mr-5" fxFlex="25">
+                  <mat-form-field fxFlex="85">
+                    <mat-select disableOptionCentering placeholder="R4G Circle" [formControl]="r4gCircleControl"
+                      ngDefaultControl #cityControlSelect>
+                      <mat-option>
+                        <ngx-mat-select-search placeholderLabel="R4G Circle" [formControl]="r4gFilterControl"
+                          noEntriesFoundLabel="no matching found" ngDefaultControl>
+                        </ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
+                        {{r4gCircle.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="mr-5" fxFlex="25">
+                  <mat-form-field class="mr-5" fxFlex="85">
+                    <mat-select disableOptionCentering placeholder="Select JC" [formControl]="selectJcControl"
+                      ngDefaultControl #selectJcControlSelect>
+                      <mat-option>
+                        <ngx-mat-select-search placeholderLabel="Select JC" [formControl]="selectJcFilterControl"
+                          noEntriesFoundLabel="no matching found" ngDefaultControl>
+                        </ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                        {{selectJc.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </form>
             </div>
-          </mat-step>
-        </mat-horizontal-stepper>
-      </mat-card-content>
-    </mat-card>
-    <div class="d-flex">
-      <div class="p-2 mr-auto">
-        <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
-      </div>
-      <div class="p-2">
-        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
-      </div>
-      <div class="p-2">
-        <button mat-raised-button color="primary"
-          class="buttonWidth button">Generate</button>
-      </div>
+          </div>
+          <div class="d-flex">
+            <button class="next-button" [disabled]="!showSuccessFailure" mat-raised-button color="primary"
+              matStepperNext>Next</button>
+            <!-- <div class="col"></div> -->
+          </div>
+        </mat-step>
+        <mat-step label="Select KPI">
+          <div>
+            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+            <button class="ml10 next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>
+  <div class="d-flex">
+    <div class="p-2 mr-auto">
+      <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+    </div>
+    <div class="p-2">
+      <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button color="primary" class="buttonWidth button">Generate</button>
     </div>
   </div>
+</div>
