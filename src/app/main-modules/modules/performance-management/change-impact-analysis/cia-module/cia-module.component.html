@@ -7,7 +7,7 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content class="cia-card-content">
-      <mat-horizontal-stepper #nodeCounterStepper [linear]="true">
+      <mat-horizontal-stepper #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
         <mat-step label="Select Type">
           <div class="content-holder">
             <div class="pt-3 pb-4">
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="d-flex">
-            <button class="next-button" [disabled]="!showSuccessFailure" mat-raised-button color="primary"
+            <button class="next-button button" [disabled]="!showSuccessFailure" mat-raised-button color="primary"
               matStepperNext>Next</button>
             <!-- <div class="col"></div> -->
           </div>
@@ -128,7 +128,7 @@
               <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
             </div>
             <div class="p-2">
-              <button class="next-button" [disabled]="!showSuccessKpiFailure" mat-raised-button color="primary"
+              <button class="next-button button" [disabled]="!showSuccessKpiFailure" mat-raised-button color="primary"
                 matStepperNext>Next</button>
               </div>
             <div class="col"></div>
@@ -148,7 +148,7 @@
                           *ngFor="let postValue of postModel"
                           [selectable]="false"
                           [removable]="true"
-                          (removed)="remove(postValue, postModel)">
+                          (removed)="postRemove(postValue)">
                           {{ postValue | date }}
                           <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
                           </mat-chip>
@@ -184,7 +184,7 @@
                   *ngFor="let preValue of preModel"
                   [selectable]="false"
                   [removable]="true"
-                  (removed)="remove(preValue, preModel)">
+                  (removed)="preRemove(preValue)">
                   {{ preValue | date }}
                   <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
                 </mat-chip>
@@ -237,7 +237,7 @@
       <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
     </div>
     <div class="p-2">
-      <button mat-raised-button color="primary" class="buttonWidth button">Generate</button>
+      <button mat-raised-button color="primary"  [disabled]="generateDisabled" class="buttonWidth button">Generate</button>
     </div>
   </div>
 </div>

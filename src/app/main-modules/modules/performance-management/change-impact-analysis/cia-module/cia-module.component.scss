@@ -172,12 +172,27 @@ mat-select-panel{
     }
 }
 
+.button[disabled="true"] {
+    border: 1px solid $border-color;;
+    background-color: #f0f3f5 !important; 
+}
+
 .mat-datepicker-toggle {
     .mat-datepicker-toggle-default-icon {
         font-size: 20px;
+    }
+    .mat-icon-button {
+        margin-bottom: 10px;
     }
 }
 
 .ag-theme-material .ag-header {
     background: #EAECEC;
+}
+
+.mat-calendar-body-cell.selected > .mat-calendar-body-cell-content,
+.mat-calendar-body-cell.selected:hover > .mat-calendar-body-cell-content,
+.mat-calendar-body-cell.selected > .mat-calendar-body-cell-content:hover {
+  background-color: $md-primary !important;
+  color: #fff !important;
 }

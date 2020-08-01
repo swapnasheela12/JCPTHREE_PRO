@@ -92,16 +92,8 @@ export class CiaModuleComponent implements OnInit {
   public resetModelPreDate = new Date(0);
   public resetModelPostDate = new Date(0);
   public preModel = [
-    new Date('7/23/2020'),
-    new Date('7/24/2020'),
-    new Date('7/25/2020'),
-    new Date('7/26/2020')
   ];
   public postModel = [
-    new Date('7/23/2020'),
-    new Date('7/24/2020'),
-    new Date('7/25/2020'),
-    new Date('7/26/2020')
   ];
   maxPreDate = new Date();
   maxPostDate = new Date();
@@ -118,8 +110,9 @@ export class CiaModuleComponent implements OnInit {
   searchGrid = "";
   public frameworkComponentsCIA;
   showGlobalDeleteKpiOperation: boolean;
-  @ViewChild('postDatePicker', { static: true }) _postPicker: MatDatepicker<Date>;
-  @ViewChild('preDateDicker', { static: true }) _prePicker: MatDatepicker<Date>;
+  @ViewChild('postPicker', { static: true }) _postPicker: MatDatepicker<Date>;
+  @ViewChild('preDicker', { static: true }) _prePicker: MatDatepicker<Date>;
+  generateDisabled: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -149,6 +142,7 @@ export class CiaModuleComponent implements OnInit {
       }
   })
   }
+
   ngOnInit(): void {
     this.leftKpiGridDefs = [
       {
@@ -303,6 +297,14 @@ export class CiaModuleComponent implements OnInit {
     );
   }
 
+  stepperChanged(event) {
+    if (event.selectedIndex == 2) {
+    this.generateDisabled = false
+    } else {
+    this.generateDisabled = true
+    }
+    }
+
   preDateFilter = (d: Date): boolean => {
     return this.filterDate(d);
   }
@@ -400,14 +402,14 @@ export class CiaModuleComponent implements OnInit {
   })
   }
   public dateClassPreModel = (date: Date) => {
-    if (this._findDate(date, this.preModel) !== -1) {
+    if (this.preFindDate(date) !== -1) {
       return [ 'selected' ];
     }
     return [ ];
   }
 
   public dateClassPostModel = (date: Date) => {
-    if (this._findDate(date, this.postModel) !== -1) {
+    if (this.postFindDate(date) !== -1) {
       return [ 'selected' ];
     }
     return [ ];
@@ -416,7 +418,7 @@ export class CiaModuleComponent implements OnInit {
   public postDateChanged(event: MatDatepickerInputEvent<Date>): void {
     if (event.value) {
       const date = event.value;
-      const index = this._findDate(date, this.postModel);
+      const index = this.postFindDate(date);
       if (index === -1) {
         this.postModel.push(date);
       } else {
@@ -437,7 +439,7 @@ export class CiaModuleComponent implements OnInit {
   public preDateChanged(event: MatDatepickerInputEvent<Date>): void {
     if (event.value) {
       const date = event.value;
-      const index = this._findDate(date, this.preModel);
+      const index = this.preFindDate(date);
       if (index === -1) {
         this.preModel.push(date);
       } else {
@@ -455,12 +457,21 @@ export class CiaModuleComponent implements OnInit {
     }
   }
 
-  public remove(date: Date, model): void {
-    const index = this._findDate(date, model);
-    model.splice(index, 1)
+  public preRemove(date: Date): void {
+    const index = this.preFindDate(date);
+    this.preModel.splice(index, 1)
   }
 
-  private _findDate(date: Date, model): number {
-    return model.map((m) => +m).indexOf(+date);
+  private preFindDate(date: Date): number {
+    return this.preModel.map((m) => +m).indexOf(+date);
+  }
+
+  public postRemove(date: Date): void {
+    const index = this.postFindDate(date);
+    this.postModel.splice(index, 1)
+  }
+
+  private postFindDate(date: Date): number {
+    return this.postModel.map((m) => +m).indexOf(+date);
   }
 }
