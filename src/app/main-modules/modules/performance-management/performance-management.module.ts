@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
-import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
+// import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -71,12 +71,7 @@ import { AddGroupPopupComponent } from './report-builder/create-report/add-group
 import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
-import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-module.component';
-import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
-import { CiaAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
-import { ciaDropdownRenderersComponent } from './change-impact-analysis/renderer/cia-renderer.component';
-import { snackBarToastComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-
+import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-impact-analysis.module';
 
 
 @NgModule({
@@ -95,14 +90,9 @@ import { snackBarToastComponent } from 'src/app/core/components/commanPopup/comm
     DeleteCreatedKpiRendererComponent,
     dropdownRendererComponent,
     createKpiDropdownRendererComponent,
-    ciaDropdownRenderersComponent,
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
-    HextodocPopupComponent,
-    CiaModuleComponent,
-    CiaKpiSettingsComponent,
-    CiaAdminSettingsComponent,
-    snackBarToastComponent
+    HextodocPopupComponent
   ],
   imports: [
     CommonModule,
@@ -110,7 +100,7 @@ import { snackBarToastComponent } from 'src/app/core/components/commanPopup/comm
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent,  ciaDropdownRenderersComponent]),
+    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -158,7 +148,7 @@ import { snackBarToastComponent } from 'src/app/core/components/commanPopup/comm
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    ChangeImpactAnanlysisRoutingModule
+    ChangeImpactAnanlysisModule
   ],
   exports: [
     KpiEditorComponent,
@@ -169,12 +159,10 @@ import { snackBarToastComponent } from 'src/app/core/components/commanPopup/comm
     DeleteRendererComponent,
     createKpiDropdownRendererComponent,
     DeleteCreatedKpiRendererComponent,
-    dropdownRendererComponent,
-    ciaDropdownRenderersComponent,
-    snackBarToastComponent
+    dropdownRendererComponent
   ],
   entryComponents : [
-    AddGroupPopupComponent, snackBarToastComponent
+    AddGroupPopupComponent
   ],
   providers: []
 })
