@@ -46,7 +46,7 @@ $md-primary: #0070DB;
                     .border-box {
                         border: 1px solid #e0e0e0;
                         height: calc(100% - 24px);
-                        overflow: auto;
+                        overflow: hidden;
                         .mat-form-field.custom-field-container {
 							.mat-form-field-wrapper {
 								.mat-form-field-infix {
@@ -77,7 +77,7 @@ $md-primary: #0070DB;
 							border-right: 1px solid #e0e0e0;
 							min-width: 370px;
 							.select-kpi {
-								height: calc(100% - 49px);
+								height:100%;
 								.ag-theme-material{
 									.ag-drag-handle.ag-row-drag{
 									    margin: 0px;
