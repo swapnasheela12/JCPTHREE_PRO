@@ -13,6 +13,18 @@
         suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
         [frameworkComponents]="frameworkComponentsMyReport" (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
     </ag-grid-angular>
+    <div class="ag-material-customer-pager-wrapper">
+        <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
+            <div class="labels">Rows Per Page :</div>
+            <mat-form-field class="col-2">
+                <mat-select panelClass="ag-grid-pagination" [formControl]="formControlPageCount" (selectionChange)="onPageSizeChanged(formControlPageCount)" id="page-size">
+                    <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
+                        {{pageNumber}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
 </ng-template>
 
 <ng-container *ngTemplateOutlet="commonTableAggridreport"></ng-container>
