@@ -7,7 +7,7 @@ import { ButtonRendererComponent } from './../../../main-modules/reports-dashboa
 import { TableAgGridService } from './table-ag-grid.service';
 import { Component, OnInit } from '@angular/core';
 
-import { GridOptions, GridCore, GridApi, ColumnApi,SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 
 @Component({
   selector: 'app-table-ag-grid',
@@ -34,7 +34,7 @@ export class TableAgGridComponent implements OnInit {
   sidenavBarStatus;
   showGlobalOperation;
 
-  constructor(public data: TableAgGridService,private datashare: DataSharingService,private httpClient: HttpClient,) {
+  constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient,) {
     console.log(data, "data");
 
     this.datashare.currentMessage.subscribe((message) => {
@@ -48,9 +48,9 @@ export class TableAgGridComponent implements OnInit {
       //     this.gridOptions.api.sizeColumnsToFit();
       //   }, 1000);
       // }
-      
+
     });
-    
+
     this.gridOptions = <GridOptions>{};
 
     this.columnDefs = data.columnDefsServices;
@@ -78,7 +78,7 @@ export class TableAgGridComponent implements OnInit {
 
   public onReady(params) {
     this.gridApi = params.api;
-    console.log(this.gridApi,"this.gridApi");
+    console.log(this.gridApi, "this.gridApi");
     // this.calculateRowCount();
     params.api.paginationGoToPage(4);
   }
@@ -95,6 +95,23 @@ export class TableAgGridComponent implements OnInit {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
+  onRowSelected(event) {
+    console.log(event, "event>>>");
+
+    // if(event.node.selected) {
+    //    this.selectedNodes.push(event.node);
+    // }
+  }
+
+  onCellClicked(e) {
+    console.log(e,"e");
+    
+    // if (e.column.colId === 'col1') {
+    //   // Handle specific cell
+    // } else {
+    //   // Handle all other cells, similar to rowClicked
+    // }
+  }
 
 
 }
