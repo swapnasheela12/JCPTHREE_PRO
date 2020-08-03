@@ -1,3 +1,4 @@
+import { CoreModule } from './../../../core/core.module';
 import { ReportBuilderComponent } from './report-builder/report-builder.component';
 import { VerticaldotRendererComponent } from './kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './kpi-editor/renderer/status-renderer.component';
@@ -97,6 +98,7 @@ import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-imp
   imports: [
     CommonModule,
     PerformanceManagementRoutingModule,
+    CoreModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
