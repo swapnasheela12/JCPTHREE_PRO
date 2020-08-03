@@ -51,7 +51,7 @@ export class ReportBuilderComponent implements OnInit {
   public paths;
   public sidenavBarStatus;
   public tableWidth;
-  public gridApi;
+  // public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
@@ -62,8 +62,8 @@ export class ReportBuilderComponent implements OnInit {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
-  public paginationValues: number[] = [10, 20, 30, 40];
-  public formControlPageCount = new FormControl();
+  // public paginationValues: number[] = [10, 20, 30, 40];
+  // public formControlPageCount = new FormControl();
 
   public showGlobalOperation: Boolean = false;
   public rowSelection;
@@ -75,6 +75,9 @@ export class ReportBuilderComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.rowSelection = 'multiple';
     this.createColumnDefs();
+
+    // console.log(datatable,"datatable");
+    
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -212,16 +215,21 @@ export class ReportBuilderComponent implements OnInit {
     }
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
+  // onGridReady(params) {
+  //   this.gridApi = params.api;
+  //   console.log(this.gridApi,"this.gridApi");
+  //   this.gridColumnApi = params.columnApi;
+  //   params.api.paginationGoToPage(4);
 
-  }
+  // }
 
-  onPageSizeChanged(newPageSize) {
-    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  }
+  // onPageSizeChanged(newPageSize) {
+  //   console.log(newPageSize,"newPageSize");
+    
+  //   // console.log(datatable.gridApiServices,"this.datatable.gridApiServices");
+  //   // this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  //   // this.datatable.gridApiServices.paginationSetPageSize(Number(newPageSize.value));
+  // }
 
   openBulkDeleteDialog(): void {
     const message = `Are you Sure you want to perform this action?`;

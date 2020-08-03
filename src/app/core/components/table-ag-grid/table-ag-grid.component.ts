@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
 import { DataSharHttpService } from './../../../modules/components/data-shar-http.service';
@@ -27,6 +28,9 @@ export class TableAgGridComponent implements OnInit {
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
 
+  public paginationValues: number[] = [10, 20, 30, 40];
+  public formControlPageCount = new FormControl();
+
   sidenavBarStatus;
   showGlobalOperation;
 
@@ -54,6 +58,7 @@ export class TableAgGridComponent implements OnInit {
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
+    // data.gridApiServices = this.gridApi;
   }
 
   ngOnInit(): void {
@@ -73,7 +78,9 @@ export class TableAgGridComponent implements OnInit {
 
   public onReady(params) {
     this.gridApi = params.api;
+    console.log(this.gridApi,"this.gridApi");
     // this.calculateRowCount();
+    params.api.paginationGoToPage(4);
   }
 
   selectionChanged(event: SelectionChangedEvent) {
@@ -84,6 +91,10 @@ export class TableAgGridComponent implements OnInit {
       this.showGlobalOperation = false;
     }
   }
+  onPageSizeChanged(newPageSize) {
+    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  }
+
 
 
 }
