@@ -53,8 +53,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { LinkBudgetComponent } from './link-budget/link-budget.component';
 @NgModule({
-  declarations: [EnbscComponent],
+  declarations: [EnbscComponent, LinkBudgetComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
