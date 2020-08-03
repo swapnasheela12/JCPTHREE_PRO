@@ -2498,6 +2498,14 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
+    },
+    {
+        name: "5G Link Budget",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/5G-Link-Budget",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: []
     }
 ];
 
