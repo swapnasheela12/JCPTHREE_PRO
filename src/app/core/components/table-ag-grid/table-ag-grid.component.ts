@@ -1,3 +1,4 @@
+import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
 import { DataSharHttpService } from './../../../modules/components/data-shar-http.service';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +24,7 @@ export class TableAgGridComponent implements OnInit {
   typeOfAgGridTable;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
 
   sidenavBarStatus;
