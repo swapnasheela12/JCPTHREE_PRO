@@ -1,0 +1,12 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.execution-task-container {
+    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
+    app-table-ag-grid{
+        ag-grid-angular {
+            height: 23% !important;
+        }
+    }
+}

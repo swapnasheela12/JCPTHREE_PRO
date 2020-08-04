@@ -1,9 +1,35 @@
-<mat-card class="h-100">
-    <mat-card-header>
-      <mat-card-title>This is the Page title. (optional)</mat-card-title>
-    </mat-card-header>
+<div class="h-100">
+  <mat-card class="h-100 sector-misalignment">
+
+    <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height sector-header">
+      <div class="col-4 wo-flex-item">Sector Misalignment</div>
+      <div class="col-4 wo-flex-item d-flex justify-content-end align-items-center header-icons">
+        <!-- <div class="col-1">
+          <button
+            routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment">rend
+            to ro</button>
+        </div> -->
+        <div class="col-1">
+          <span class="ic ic-question"></span>
+        </div>
+
+        <div class="col-1">
+          <span class="ic ic-printer"></span>
+        </div>
+
+        <div class="col-1">
+          <span class="ic ic-download3"></span>
+        </div>
+
+        <div class="col-1">
+          <span class="ic ic-search"></span>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card-header> -->
     <mat-divider></mat-divider>
-    <mat-card-content >
-        This is where the ag grid will come.
-    </mat-card-content>
+    <div class="app-table-ag-grid">
+      <app-table-ag-grid></app-table-ag-grid>
+    </div>
   </mat-card>
+</div>

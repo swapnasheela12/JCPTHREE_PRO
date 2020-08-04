@@ -1,0 +1,38 @@
+
+$md-primary: #0070db;
+$color-white: #ffffff;
+.sector-misalignment {
+    height: calc(100% - 23px) !important;
+    max-height: calc(100% - 30px) !important;
+    .sector-header {
+        height: 40px;
+        padding-bottom: 12px;
+        .header-icons {
+            > div {
+                margin-right: 20px;
+                span {
+                    font-size: 1.5rem;
+                    color: gray;
+                }
+            }
+        }
+    }
+    .app-table-ag-grid {
+            width: 100%;
+            height: 93%;
+            padding-top: 1px;
+    }
+}
+
+// .my-report-flex-container {
+//     height: 80px !important;
+
+//     .my-report-flex-item {
+//         font-size: 14px;
+//     }
+// }
+// .jcp-table-container {
+//     height: calc(100% - 80px) !important;
+//     max-height: calc(100% - 80px) !important;
+    
+// }

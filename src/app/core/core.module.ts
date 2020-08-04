@@ -54,7 +54,7 @@ import { RouterModule } from '@angular/router';
 import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
-import { MyjcpdropdownpanelComponent} from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
+import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
 import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
 import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
@@ -63,6 +63,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
 import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.directive';
+import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -80,6 +81,7 @@ import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.d
     FileUploadPopupComponent,
     TableAgGridComponent,
     TableAgGridDirective,
+    AgGridTreeComponent
     // PaginationComponent
   ],
   imports: [
@@ -87,7 +89,7 @@ import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.d
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([ dropDownThreeDotRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -149,6 +151,7 @@ import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.d
     SuccessfulComponent,
     dropDownThreeDotRendererComponent,
     TableAgGridComponent,
+    AgGridTreeComponent
     // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent

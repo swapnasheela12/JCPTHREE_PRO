@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { COLUMN_DEFS } from 'src/app/modules/components/column-rendering/column-defs.constant';
+import { AgGridTreeService } from 'src/app/core/components/ag-grid-tree/ag-grid-tree.component.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -8,19 +11,16 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
-import { SelectionChangedEvent } from 'ag-grid-community';
+import { MatDialog } from '@angular/material/dialog';
 
-
-const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
+const COLUMNDEFS = COLUMN_DEFS;
 @Component({
-  selector: 'app-sector-misalignment',
-  templateUrl: './sector-misalignment.component.html',
-  styleUrls: ['./sector-misalignment.component.scss']
+  selector: 'app-wo-sector-misalignment',
+  templateUrl: './wo-sector-misalignment.component.html',
+  styleUrls: ['./wo-sector-misalignment.component.scss']
 })
-export class SectorMisalignmentComponent {
-
+export class WoSectorMisalignmentComponent {
+  url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
 
@@ -34,16 +34,40 @@ export class SectorMisalignmentComponent {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
-  public frameworkComponentsSectorMisalignment = {
+  public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
+  public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
 
   public showGlobalOperation: Boolean = false;
-  public url: string = "assets/data/report/sector-misalignment/sector-misalignment.json";
-
-
+  woHeader = [
+    {
+      "label": "Category",
+      "value": "Sector Misalignment"
+    },
+    {
+      "label": "SAP ID",
+      "value": "I-MU-MUMB-0306"
+    },
+    {
+      "label": "Template",
+      "value": "Sector Misalignment"
+    },
+    {
+      "label": "Work Order Creation Date",
+      "value": "24 Sep, 2019"
+    },
+    {
+      "label": "Planned End Date",
+      "value": "30 Sep, 2019"
+    },
+    {
+      "label": "Work Order Status",
+      "value": "In Progress"
+    }
+  ];
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => console.log(url));
     //this.paths = PATHS;
@@ -75,63 +99,52 @@ export class SectorMisalignmentComponent {
   private createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "Status",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 210,
-        pinned: "left"
+        headerName: 'Status',
+        field: 'status',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "SAP ID",
-        field: "sapid",
-        width: 220,
-        pinned: "left"
+        headerName: 'Task Id',
+        field: 'taskId',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "Zone",
-        field: "zone",
-        width: 120,
+        headerName: 'Task Category',
+        field: 'taskcategory',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "Circle",
-        field: "circle",
-        width: 130,
+        headerName: 'Priority',
+        field: 'Priority',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "JC ID",
-        field: "jcid",
-        width: 160,
+        headerName: 'Due Date',
+        field: 'duedate',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "Category",
-        field: "category",
-        width: 200,
+        headerName: 'Assigned To',
+        field: 'assignedtoname',
+        pinned: 'left',
+        width: 150
       },
       {
-        headerName: "Workorder",
-        field: "workorder",
-        width: 260,
+        headerName: 'last Modified',
+        field: 'lastmodified',
+        pinned: 'right',
+        width: 150
       },
       {
-        headerName: "Created On",
-        field: "createdon",
-        width: 140,
-      },
-      {
-        headerName: "Due Date",
-        field: "duedate",
-        width: 140,
-      },
-      {
-        headerName: "SLA Violation",
-        field: "slaviolation",
-        width: 135,
-      },
-      {
-        headerName: "Task Completion",
-        cellRenderer: this.progressTaskFunc,
-        width: 180,
-        pinned: 'right'
+        headerName: 'Task Completion',
+        field: 'taskCompletion',
+        pinned: 'right',
+        width: 150
       },
       {
         headerName: "",
@@ -180,23 +193,6 @@ export class SectorMisalignmentComponent {
     const filterValue = (event.target as HTMLInputElement).value;
   }
 
-
-  onSelectionChanged(event: SelectionChangedEvent) {
-    let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
-    if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
-    }
-  }
-
-  selectionChanged(event: SelectionChangedEvent) {
-    let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
-    if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
-    }
-  }
-
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -206,25 +202,6 @@ export class SectorMisalignmentComponent {
 
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  }
-
-  statusFunc(params) {
-    var status = params.value;
-    var barColor = '';
-    if (status == "Completed" || status == "Successful") {
-      barColor = '#39b54a';
-    } else if (status == "In Progress" || status == "Started") {
-      barColor = '#ff8000';
-    } else if (status == "Not Started") {
-      barColor = '#ff8000';
-    } else {
-      barColor = '#f21400';
-    }
-
-    return '<span class="md-line-status" style="background-color: ' +
-      barColor +
-      ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
-      status + '</div></div>';
   }
 
   progressTaskFunc(params) {
@@ -248,5 +225,4 @@ export class SectorMisalignmentComponent {
       return template3;
     }
   }
-
 }
