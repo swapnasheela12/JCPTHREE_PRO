@@ -3,8 +3,8 @@
     <div class="popup-title">
       <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
 
-        <div fxFlex="80" class="rantext">WO-RAN-OvershootingCell-03_05_19-0001</div>
-        <button fxFlex="20" class="close-popup">
+        <div fxFlex="90" class="rantext">WO-RAN-OvershootingCell-03_05_19-0001</div>
+        <button fxFlex="3" class="close-popup">
           <span class="material-icons" style="font-size: 20px;">
             close
           </span>
@@ -19,47 +19,39 @@
   </div>
   <div class="main-content" style="height: 500px; overflow: scroll;">
     <div class="task-retrigger-details mb-3">
-      <header> <h1 class="font1">Task Retrigger Details</h1></header>
-     
+      <header>
+        <h1 class="font1">Task Retrigger Details</h1>
+      </header>
+
       <div class="data-table-1">
-        <ag-grid-angular style="height: 200px;" 
-        class="ag-theme-material ag-jcp3"
-            [rowData]="rowrt" 
-            [columnDefs]="columnDefswo" 
-            rowHeight="48" 
-            headerHeight="48"
-          
-            enableColResize 
-            enableSorting 
-            enableFilter 
-            groupHeaders
-            suppressRowClickSelection 
-            toolPanelSuppressGroups 
-            toolPanelSuppressValues 
-           
-            rowSelection="multiple">
+        <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="rowrt"
+          [columnDefs]="columnDefswo" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
+          groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+          rowSelection="multiple">
         </ag-grid-angular>
       </div>
     </div>
     <div class="site-details mb-3">
-      <header class="header-styles"><h1>Site Details</h1></header>
+      <header class="header-styles">
+        <h1>Site Details</h1>
+      </header>
       <div class="data-table">
         <div class="sitedetails-row">
           <div class="sitedetails-cell">
             SAP
-            ID<BR/>
+            ID<BR />
             1-AS-PTRK-ENB-HQ04
           </div>
           <div class="sitedetails-cell">
-            SECTRO ID<br/>
+            SECTRO ID<br />
             1
           </div>
           <div class="sitedetails-cell">
-            Band<br/>
+            Band<br />
             2300
           </div>
           <div class="sitedetails-cell">
-            Cell Name<br/>
+            Cell Name<br />
             I-MU-THNE-ENB-0306-15
 
           </div>
@@ -67,104 +59,181 @@
       </div>
     </div>
     <div class="site-parameter-details mb-3">
-      <header class="header-styles"><h1>Site Parameter Details</h1></header>
-      <div class="sitepdetails-row">
-        <div class="sitepdetails-cell">
-          Site Parameter
-          <div>
-            Azimuth(deg)
-          </div>
-          <div>Antenna Height(meters)</div>
-        
-        </div>
-        <div class="sitepdetails-cell">
-        <div>Current Value<br/></div> 
-         <div>
-          Azimuth(deg)
-        </div>
-        <div>Antenna Height(meters)</div>
-        
-      
-        </div>
-     
+      <header class="header-styles">
+        <h1>Site Parameter Details</h1>
+      </header>
+      <div class="jcp-data-table">
+        <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="spdetailsRowdata"
+          [columnDefs]="spdetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
+          groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+          rowSelection="multiple">
+        </ag-grid-angular>
       </div>
     </div>
     <div class="oveershooting-cell-statistical-details boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Overshooting Cell Statistical Details</h1></header>
-      <div class="os-row">
-        <div class="os-cell">
-         Calculated cell range(m):<br/>
-         400
-        </div>
-        <div class="os-cell">
-          Overshooting Samples(% of Toatal, As per LSMR data):<br/>
-          31
-        </div>
-        <div class="os-cell">
-          Good Coverage Limit (m, As per geo-located data):
-<br/>
-          1400
-        </div>
-       
-      </div>
-      <div class="os-row">
-        <div class="os-cell">
-          Overshoot Start Distance(m):
+      <header class="header-styles">
+        <h1>Overshooting Cell Statistical Details</h1>
+      </header>
+      <div class="oscontainer">
+        <div class="os-row mb-2">
+          <div class="os-cell">
+            <div class="details">Calculated cell range(m):</div>
+            <div class="value">400</div>
+          </div>
+          <div class="os-cell">
+            <div class="details"> Overshooting Samples(% of Toatal, As per LSMR data):</div>
+            <div class="value">31</div>
+          </div>
+          <div class="os-cell">
+            <div class="details">Good Coverage Limit (m, As per geo-located data):</div>
+            <div class="value">1400</div>
+            
+          </div>
 
-          ID<BR/>
-          1450
         </div>
-        <div class="os-cell">
-          Overshoot End Distance (m):
-5000<br/>
-          1
-        </div>
-        <div class="os-cell">
-          % Samples Beyond Good Coverage Limit (As per geo-located data):
-<br/>
-          14
-        </div>
-       
-      </div>
-      <div class="os-row">
-        <div class="os-cell">
-          Proposed Incremental E-Tilt:
+        <div class="os-row mb-2">
+          <div class="os-cell">
+            <div class="details">  Overshoot Start Distance(m):</div>
 
-          <BR/>
-         0
+            <div class="value">1450</div>
+            
+          </div>
+          <div class="os-cell">
+            <div class="details"> Overshoot End Distance (m):</div>
+           <div class="value"> 5000</div>
+          
+          </div>
+          <div class="os-cell">
+            <div class="details">% Samples Beyond Good Coverage Limit (As per geo-located data):
+            </div>
+           <div class="value"> 14</div>
+          </div>
+
         </div>
-      
-       
+        <div class="os-row">
+          <div class="os-cell">
+           <div class="details"> Proposed Incremental E-Tilt:</div>
+
+         <div class="value">0</div>
+          
+          </div>
+
+
+        </div>
       </div>
     </div>
     <div class="solution-implementation boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Solution Implementation Details</h1></header>
+      <header class="header-styles">
+        <h1>Solution Implementation Details</h1>
+      </header>
       <div class="sol-impl-details-title p-3">
-       
-          Select the solution to be implemented for mitigation of overshooting cell
+
+        Select the solution to be implemented for mitigation of overshooting cell
       </div>
-        <div class="sol-imp-row">
-          <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">E-Tilt/Tx attenuation Change
-            </mat-radio-button>
-            <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
-          </mat-radio-group>
-        </div>
-      
+      <div class="sol-imp-row p-3">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button class="mr-2" value="E-Tilt">E-Tilt/Tx attenuation Change
+          </mat-radio-button>
+          <mat-radio-button class="mr-2" value="Parameter Optimization">Physical Parameter Optimization
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
     </div>
     <div class="Implemented-paratmeter-details boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Implememnted parameter Details</h1></header>
-<div class="imp-details-row p-3">
+      <header class="header-styles">
+        <h1>Implememnted parameter Details</h1>
+        <div class="clone-btn" (click)="addRow()">
+          <div  class="zmdi zmdi-plus-circle-o"></div>
+        </div>
+      </header>
+      <div class="imp-details-row p-3">
+        <div class="impcell">
+          Site Parameter*
+        </div>
+        <div class="impcell">
+          New Value*
+        </div>
+      </div>
+      <div class="imp-details-row p-3" #accessrow>
+        <div class="impcell">
+          <mat-form-field appearance="fill">
+            <mat-select>
+              <mat-option *ngFor="let sitep of siteps" [value]="sitep.value">
+                {{sitep.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="impcell">
+          <mat-form-field class="example-full-width">
 
-</div>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+        </div>
+        <div class="impcell">
+          <span class="zmdi zmdi-delete"></span>
+        </div>
+      </div>
+      <div class="imp-details-row">
+        <div class="impcell">
+          <mat-checkbox class="example-margin">Confirm that Tx attenuation/E-Tilt change has been implemented on site.*
+          </mat-checkbox>
+
+        </div>
+      </div>
     </div>
-    <div class="suggestions-for-physical-parameter-opt-details boxshadowdiv">
-      <header class="header-styles"><h1>Suggestions for physical Optimization Details</h1></header>
+    <div class="suggestions boxshadowdiv">
+      <header class="header-styles">
+        <h1>Suggestions for physical Optimization Details</h1>
+        <div class="clone-btn" (click)="addRow()">
+          <div  class="zmdi zmdi-plus-circle-o"></div>
+        </div>
+      </header>
+      <div  class="suggestions-body">
+        <div class="suggestions-row">
+          <div class="suggestions-cell">
 
+            Site Parameter*
+          </div>
+          <div class="suggestions-cell">
+            New Value*
+          </div>
+        </div>
+        <div id="addrows" class="suggestions-row">
+          <div class="suggestions-cell">
+
+            <mat-form-field appearance="fill">
+              <mat-select>
+                <mat-option *ngFor="let sitep of sitepos" [value]="sitep.value">
+                  {{sitep.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="suggestions-cell">
+            <mat-form-field class="example-full-width">
+              <mat-label></mat-label>
+              <input matInput placeholder="" value="">
+            </mat-form-field>
+          </div>
+          <div class="suggestions-cell">
+            <span class="zmdi zmdi-delete"></span>
+          </div>
+        </div>
+        <div class="suggestions-row">
+          <div class="suggestions-cell">
+            <mat-form-field class="example-full-width">
+
+              <input matInput placeholder="Remarks" value="">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="footer">
-    <button type="button" mat-raised-button class="cancel-btn">CANCEL</button>
-    <button type="submit" mat-raised button class="submit-btn">SUBMIT</button>
+  <div class="footer p-2">
+    <button type="button" mat-raised-button color="primary" class="cancel-btn">CANCEL</button>
+    <button type="button" mat-raised button color="primary" class="submit-btn">SUBMIT</button>
   </div>
 </div>
