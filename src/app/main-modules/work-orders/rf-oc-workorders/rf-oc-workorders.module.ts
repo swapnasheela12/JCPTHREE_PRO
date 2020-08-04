@@ -60,7 +60,7 @@ import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misali
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
-    OvershootingCellComponent,
+    // OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
 

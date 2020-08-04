@@ -5,7 +5,7 @@ import { AgGridTreeService } from 'src/app/core/components/ag-grid-tree/ag-grid-
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { FormControl } from '@angular/forms';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -35,7 +35,7 @@ export class WoSectorMisalignmentComponent {
   public rowCount: string;
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
+    viewHistoryRendererComponent: viewHistoryRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
@@ -140,7 +140,7 @@ export class WoSectorMisalignmentComponent {
       },
       {
         headerName: "",
-        cellRenderer: 'dropDownThreeDotRenderer',
+        cellRenderer: 'viewHistoryRendererComponent',
         width: 90
       }
     ];

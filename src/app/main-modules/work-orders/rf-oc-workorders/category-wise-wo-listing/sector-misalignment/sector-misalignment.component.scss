@@ -9,7 +9,16 @@ $color-white: #ffffff;
         padding-bottom: 12px;
         .header-icons {
             > div {
-                margin-right: 20px;
+               // margin-right: 20px;
+                font-size: 15px;
+                padding: 5px 11px;
+                line-height: 2;
+                width: 36px;
+                height: 36px;
+                border-radius: 20px;
+                margin: 0 7px;
+                color: #B3D4F4;
+                cursor: pointer;
                 span {
                     font-size: 1.5rem;
                     color: gray;
