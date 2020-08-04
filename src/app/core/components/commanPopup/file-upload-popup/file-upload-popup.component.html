@@ -13,11 +13,11 @@
         <div class="px-4 overflow-x-hidden">
             <div fxLayoutAlign="center">
                 <mat-form-field fxFlex="100" class="mb-3 browse-file-form-field">
-                    <mat-icon class="ic ic-file-text2 file-icon">
-                    </mat-icon>
+                    <!-- <mat-icon class="ic ic-file-text2 file-icon">
+                    </mat-icon> -->
                     <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName"
                         [readonly]="true" required>
-                    <button class="browse-button" (click)="onClick()" mat-button color="primary">Browse</button>
+                    <button class="browse-button" (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
                 </mat-form-field>
             </div>
             <div *ngIf="showExample" class="example-content">

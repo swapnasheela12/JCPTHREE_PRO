@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
 import { DataSharHttpService } from './../../../modules/components/data-shar-http.service';
 import { HttpClient } from '@angular/common/http';
@@ -5,7 +7,7 @@ import { ButtonRendererComponent } from './../../../main-modules/reports-dashboa
 import { TableAgGridService } from './table-ag-grid.service';
 import { Component, OnInit } from '@angular/core';
 
-import { GridOptions, GridCore, GridApi, ColumnApi,SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 
 @Component({
   selector: 'app-table-ag-grid',
@@ -23,12 +25,16 @@ export class TableAgGridComponent implements OnInit {
   typeOfAgGridTable;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
+
+  public paginationValues: number[] = [10, 20, 30, 40];
+  public formControlPageCount = new FormControl();
 
   sidenavBarStatus;
   showGlobalOperation;
 
-  constructor(public data: TableAgGridService,private datashare: DataSharingService,private httpClient: HttpClient,) {
+  constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient,) {
     console.log(data, "data");
 
     this.datashare.currentMessage.subscribe((message) => {
@@ -42,9 +48,9 @@ export class TableAgGridComponent implements OnInit {
       //     this.gridOptions.api.sizeColumnsToFit();
       //   }, 1000);
       // }
-      
+
     });
-    
+
     this.gridOptions = <GridOptions>{};
 
     this.columnDefs = data.columnDefsServices;
@@ -52,6 +58,7 @@ export class TableAgGridComponent implements OnInit {
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
+    // data.gridApiServices = this.gridApi;
   }
 
   ngOnInit(): void {
@@ -71,7 +78,9 @@ export class TableAgGridComponent implements OnInit {
 
   public onReady(params) {
     this.gridApi = params.api;
+    console.log(this.gridApi, "this.gridApi");
     // this.calculateRowCount();
+    params.api.paginationGoToPage(4);
   }
 
   selectionChanged(event: SelectionChangedEvent) {
@@ -81,6 +90,27 @@ export class TableAgGridComponent implements OnInit {
     } else {
       this.showGlobalOperation = false;
     }
+  }
+  onPageSizeChanged(newPageSize) {
+    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  }
+
+  onRowSelected(event) {
+    console.log(event, "event>>>");
+
+    // if(event.node.selected) {
+    //    this.selectedNodes.push(event.node);
+    // }
+  }
+
+  onCellClicked(e) {
+    console.log(e,"e");
+    
+    // if (e.column.colId === 'col1') {
+    //   // Handle specific cell
+    // } else {
+    //   // Handle all other cells, similar to rowClicked
+    // }
   }
 
 

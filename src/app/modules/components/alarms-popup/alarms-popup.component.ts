@@ -377,7 +377,6 @@ this.createRowah();
   private createRowdata() {
     this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-1.json")
       .subscribe(data => {
-        console.log(data);
         this.row = data;
     });
   }
@@ -470,7 +469,6 @@ this.createRowah();
 private createRowah() {
   this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-2.json")
     .subscribe(data => {
-      console.log(data);
       this.rowah = data;
   });
 }
@@ -479,7 +477,6 @@ private createRowah() {
 private createRowss() {
   this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-site-status.json")
     .subscribe(data => {
-      console.log(data);
       this.rowss = data;
   });
 }
@@ -487,7 +484,6 @@ private createRowss() {
 private createRowlh() {
   this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-legal-history.json")
     .subscribe(data => {
-      console.log(data);
       this.rowlh = data;
   });
 }

@@ -1,1 +1,47 @@
-<p>cia-kpi-admin-settings works!</p>
+<mat-card class="p-0" style="height:calc(100% - 52px)">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title">Admin Settings</mat-card-title>
+        <div class="col"></div>
+        <div class="d-flex justify-content-end align-items-center mt-2 mr-4">
+            <mat-form-field fxFlex="35" class="mr-4">
+                <input matInput placeholder="Number of Cells" type="number" value="8" required>
+            </mat-form-field>
+            <mat-form-field fxFlex="35" class="">
+                <input matInput placeholder="Number of KPIs" type="number" value="20" required>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+    <!-- <mat-divider></mat-divider> -->
+    <!-- <div class="" style="height: 64px;">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center h-100">
+            <div class="col-4 title">
+                Admin Settings
+            </div>
+            <div class="col-8 d-flex justify-content-end align-items-center mt-2">
+                <mat-form-field  fxFlex="25" class="mr-4">
+                    <input matInput placeholder="Number of Cells" type="number" value="8" required>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25" class="">
+                    <input matInput placeholder="Number of KPIs" type="number" value="20" required>
+                  </mat-form-field>
+            </div>
+        </div>
+    </div> -->
+    <mat-divider style="position: relative;"></mat-divider>
+    <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
+        headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+        enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
+        toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+        [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsKpiSettings"
+        (gridReady)="onReady($event)">
+    </ag-grid-angular>
+</mat-card>
+<div class="d-flex">
+    <div class="col"></div>
+    <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="p-2">
+        <button mat-raised-button color="primary" (click)="openUpdateDialog()" class="buttonWidth button">Update</button>
+    </div>
+</div>

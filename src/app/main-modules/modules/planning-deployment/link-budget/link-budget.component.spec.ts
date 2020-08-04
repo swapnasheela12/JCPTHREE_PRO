@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CiaAdminSettingsComponent } from './cia-kpi-admin-settings.component';
+import { LinkBudgetComponent } from './link-budget.component';
 
-describe('CiaAdminSettingsComponent', () => {
-  let component: CiaAdminSettingsComponent;
-  let fixture: ComponentFixture<CiaAdminSettingsComponent>;
+describe('LinkBudgetComponent', () => {
+  let component: LinkBudgetComponent;
+  let fixture: ComponentFixture<LinkBudgetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CiaAdminSettingsComponent ]
+      declarations: [ LinkBudgetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CiaAdminSettingsComponent);
+    fixture = TestBed.createComponent(LinkBudgetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

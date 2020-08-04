@@ -63,54 +63,6 @@ export class LegendsAndFilterComponent implements OnInit {
     clearLabel:'Clear'
 
   };
-  // isLinear = false;
-  // thirdFormGroup: FormGroup;
-  // opens = 'center';
-  // drops = 'up';
-  // public todaysDay = new Date();
-  // selectedDateTime: any;
-  // selectedDateTimeValue: boolean = false;
-  // invalidDates: moment.Moment[] = [];
-  // tooltips = [
-  //   { date: moment(), text: 'Today is just unselectable' },
-  //   { date: moment().add(2, 'days'), text: 'Yeeeees!!!' },
-  // ];
-  // ranges = {
-  //   Today: [moment(), moment()],
-  //   Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-  //   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-  //   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-  //   'This Month': [moment().startOf('month'), moment().endOf('month')],
-  //   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-  //   'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-  // };
-
-  // isInvalidDate = (m: moment.Moment) => {
-  //   return this.invalidDates.some((d) => d.isSame(m, 'day'));
-  // };
-
-  // isTooltipDate = (m: moment.Moment) => {
-  //   const tooltip = this.tooltips.find((tt) => tt.date.isSame(m, 'day'));
-  //   if (tooltip) {
-  //     return tooltip.text;
-  //   } else {
-  //     return false;
-  //   }
-  // };
-
-  // rangeClicked(range): void {
-  //   console.log('[rangeClicked] range is : ', range);
-  //   this.selectedDateTimeValue = true;
-  //   console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
-  // }
-
-  // datesUpdated(range): void {
-  //   console.log('[datesUpdated] range is : ', range);
-  //   this.selectedDateTimeValue = true;
-  //   console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
-  // }
-
-  // //////////////////////////////////////
 
   private inited;
 

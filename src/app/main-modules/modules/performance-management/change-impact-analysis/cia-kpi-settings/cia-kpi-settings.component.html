@@ -1,1 +1,35 @@
-<p>cia-kpi-settings works!</p>
+<mat-card class="kpi-editor p-0" style="height:calc(100% - 52px)">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title">KPI Settings</mat-card-title>
+        <div class="col"></div>
+        <div class="col-8 kpi-editor-flex-item d-flex justify-content-end align-items-center">
+            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <span class="zmdi zmdi-search"></span>
+            </mat-icon>
+            <mat-form-field *ngIf="show" class="col-4">
+                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                    autocomplete="off" placeholder="">
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+    <mat-divider style="position: relative;"></mat-divider>
+    <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
+        headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+        enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
+        toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+        [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsKpiSettings"
+        (gridReady)="onReady($event)">
+    </ag-grid-angular>
+</mat-card>
+<div class="d-flex">
+    <div class="col"></div>
+    <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="p-2">
+        <button mat-raised-button color="primary" (click)="openUpdateDialog()" class="buttonWidth button">Update</button>
+    </div>
+</div>

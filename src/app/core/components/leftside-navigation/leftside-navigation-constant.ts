@@ -2383,9 +2383,9 @@ const CIA_MODULE_LIST = [
         children: []
     },
     {
-        name: "CIA - KPI Admin Settings",
+        name: "CIA - Admin Settings",
         icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-KPI-Admin-Settings",
+        link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Admin-Settings",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []
@@ -2495,6 +2495,14 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         name: "LSMR (LSMR Re-homing)",
         icon: "fas fa-user fa-3",
         link: "workorders",
+        level: 2,
+        component: HomeJcpThreeComponent,
+        children: []
+    },
+    {
+        name: "5G Link Budget",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/5G-Link-Budget",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []

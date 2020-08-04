@@ -1,4 +1,5 @@
 import { dropDownThreeDotRendererComponent } from './components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { viewHistoryRendererComponent } from './components/ag-grid-renders/view-history-renderer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -62,7 +63,6 @@ import { CommonPopupComponent } from './components/commanPopup/common-popup/comm
 import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
-import { TableAgGridDirective } from './components/table-ag-grid/table-ag-grid.directive';
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
@@ -78,9 +78,9 @@ import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.comp
     ConfirmPopupComponent,
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
+    viewHistoryRendererComponent,
     FileUploadPopupComponent,
     TableAgGridComponent,
-    TableAgGridDirective,
     AgGridTreeComponent
     // PaginationComponent
   ],
@@ -89,7 +89,7 @@ import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.comp
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -150,6 +150,7 @@ import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.comp
     isEllipsisActiveDirective,
     SuccessfulComponent,
     dropDownThreeDotRendererComponent,
+    viewHistoryRendererComponent,
     TableAgGridComponent,
     AgGridTreeComponent
     // PaginationComponent

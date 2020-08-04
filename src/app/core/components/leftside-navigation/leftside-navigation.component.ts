@@ -97,7 +97,6 @@ export class LeftsideNavigationComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-     console.log(params);
     });
   }
 

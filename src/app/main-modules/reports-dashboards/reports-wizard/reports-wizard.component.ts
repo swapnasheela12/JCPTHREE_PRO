@@ -99,21 +99,6 @@ export class ReportsWizardComponent implements OnInit {
 
 
   constructor(private location: Location, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog,) {
-    router.events.subscribe((url: any) => console.log(url));
-    // console.log(router.url)
-    // /////////////breadcrums////////////////////
-
-    // this.urlPathPage = router.url;
-
-    // this.breadcrumbLinksList = this.urlPathPage.split('/').join("<i class='fa fa-chevron-right pl-1 pr-1'></i>")
-    // console.log(this.breadcrumbLinksList, "this.breadcrumbLinksList");
-
-    // /////////////breadcrums////////////////////
-
-    ///////////////////
-    ///////////////////
-
-    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue>>>>>>>");
   }
 
   ///////datepicker//////////
@@ -131,15 +116,11 @@ export class ReportsWizardComponent implements OnInit {
   };
 
   rangeClicked(range): void {
-    console.log('[rangeClicked] range is : ', range);
     this.selectedDateTimeValue = true;
-    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
 
   datesUpdated(range): void {
-    console.log('[datesUpdated] range is : ', range);
     this.selectedDateTimeValue = true;
-    console.log(this.selectedDateTimeValue, "this.selectedDateTimeValue???????");
   }
   ///////datepicker//////////
 
@@ -154,9 +135,6 @@ export class ReportsWizardComponent implements OnInit {
   }
 
   stepperReportW() {
-    console.log(this.todaysDay, "todaysDay");
-    console.log(this.todaysDay, "todaysDay");
-
     this.firstFormGroup = this.formBuilder.group({
       dataSources: ['LSR', Validators.required]
     });
@@ -176,11 +154,6 @@ export class ReportsWizardComponent implements OnInit {
       keepCalendarOpeningWithRange: true,
       showRangeLabelOnInput: true,
     });
-    // this.selectedDateTimeValue = this.thirdFormGroup.get('selectedDateTime').value;
-    console.log(this.firstFormGroup, "thirdFormGroup");
-    console.log(this.secondFormGroup, "thirdFormGroup");
-    console.log(this.thirdFormGroup, "thirdFormGroup");
-
 
   }
 

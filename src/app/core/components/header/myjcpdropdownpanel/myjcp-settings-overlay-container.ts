@@ -26,7 +26,6 @@ export class AppOverlayContainer extends OverlayContainer implements OnDestroy {
             return;
         }
         const rootElement = this.getRootElement();
-        console.log(rootElement)
         const parent = rootElement || this._document.body;
         parent.appendChild(this._containerElement);
     }

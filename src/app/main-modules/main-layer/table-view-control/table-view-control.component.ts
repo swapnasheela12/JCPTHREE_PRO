@@ -383,7 +383,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
     setTimeout(() => {
       if ($(this.getName).is(':contains(Pan India)')) {
-        console.log($(this.getName).is(':contains(Pan India)'));
         this.columnDefs = [
           {
             headerName: "Jio State",
@@ -427,8 +426,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
         this.onAddDropDown.emit(this.filterDataList);
 
       } else if ($(this.getName).is(':contains(Jio Center)')) {
-
-        console.log($(this.getName).is(':contains(Jio Center)'));
         this.columnDefs = [
           {
             headerName: "jio Center",
@@ -472,8 +469,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
         this.onAddDropDown.emit(this.filterDataList);
 
       } else if ($(this.getName).is(':contains(Jio State)')) {
-
-        console.log($(this.getName).is(':contains(Jio State)'));
         this.columnDefs = [
           {
             headerName: "R4G State",
@@ -527,14 +522,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
 
   areaDropDownFunc(item, val) {
-    console.log(item, "item");
-    console.log(val, "val");
   }
 
   onRowClicked(event: any) {
-    console.log(event, "event ag grid data");
-    console.log(this.areaParentSelect, "areaParentSelect event ag grid data");
-
     this.filterDataList = {
       selectedLayerName: this.selectedLayerCtrl.value,
       selectedAreaName: this.selectedOptionArea,

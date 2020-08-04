@@ -57,19 +57,12 @@ export class HistoryPopupComponent implements OnInit {
   historyColumndata: { headerName: string; field: string; width: number; }[];
 
   constructor(public matDialog: MatDialog, public matselect: MatSelectModule, public datashare: DataSharingService,
-
-
     private http: HttpClient, public dialogRef: MatDialogRef<HistoryPopupComponent>
-
-
   ) {
 
     this.gridOptions = <GridOptions>{};
     this.createHistoryColumnData();
-
     this.getHistoryData();
-    
-
   }
   ngOnInit(): void {
   }
@@ -126,13 +119,9 @@ private createHistoryColumnData() {
 
   ];
 }
-
-
-
 private getHistoryData() {
   this.http.get("assets/data/layers/popup-data/history-popup-data.json")
     .subscribe(data => {
-      console.log(data);
       this.historyRowdata = data;
   });
 }

@@ -1,0 +1,8 @@
+<div *ngIf="mode=='warning'" fxLayoutAlign="center center" class="snackbar-content">
+    <mat-icon class="ic ic-warning mr-3 icon-style"></mat-icon>
+    <span class="text-style">Error: Failed to perform this action.</span>
+</div>
+<div *ngIf="mode=='success'" fxLayoutAlign="center center" class="snackbar-content">
+    <mat-icon class="ic ic-warning mr-3 icon-style"></mat-icon>
+    <span class="text-style">{{text}}</span>
+</div>

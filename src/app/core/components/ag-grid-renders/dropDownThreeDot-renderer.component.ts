@@ -66,7 +66,9 @@ export class dropDownThreeDotRendererComponent implements ICellRendererAngularCo
   openWarningDialog(): void {
     const message = `Are you Sure you want to perform this action?`;
     const image = 'warning';
-    const dialogData = new CommonDialogModel("Warning!", message, image);
+    const snackbarMode = 'success';
+    const snackbarText = 'Action Performed Successfully';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });

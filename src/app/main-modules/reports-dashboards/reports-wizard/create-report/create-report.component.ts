@@ -72,10 +72,6 @@ export class CreateReportComponent implements OnInit {
       reportMeasureCtrl: ['RF Analysis', Validators.required],
       reportCategoryCtrl: ['All Selected', Validators.required]
     });
-    // this.selectedDateTimeValue = this.cmReportBuilderForm.get('selectedDateTime').value;
-    console.log(this.reportWizardForm, "cmReportBuilderForm");
-    console.log(this.pmReportBuilderForm, "cmReportBuilderForm");
-    console.log(this.cmReportBuilderForm, "cmReportBuilderForm");
 
 
   }

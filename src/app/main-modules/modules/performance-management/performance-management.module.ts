@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
-import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
+// import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
@@ -72,9 +72,7 @@ import { AddGroupPopupComponent } from './report-builder/create-report/add-group
 import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/computation-settings-poup/computation-settings-poup.component';
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
-import { CiaModuleComponent } from './change-impact-analysis/cia-module/cia-module.component';
-import { CiaKpiSettingsComponent } from './change-impact-analysis/cia-kpi-settings/cia-kpi-settings.component';
-import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-admin-settings/cia-kpi-admin-settings.component';
+import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-impact-analysis.module';
 
 
 @NgModule({
@@ -95,10 +93,7 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     createKpiDropdownRendererComponent,
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
-    HextodocPopupComponent,
-    CiaModuleComponent,
-    CiaKpiSettingsComponent,
-    CiaKpiAdminSettingsComponent
+    HextodocPopupComponent
   ],
   imports: [
     CommonModule,
@@ -155,7 +150,7 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    ChangeImpactAnanlysisRoutingModule
+    ChangeImpactAnanlysisModule
   ],
   exports: [
     KpiEditorComponent,
@@ -166,7 +161,7 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
     DeleteRendererComponent,
     createKpiDropdownRendererComponent,
     DeleteCreatedKpiRendererComponent,
-    
+    dropdownRendererComponent
   ],
   entryComponents : [
     AddGroupPopupComponent
@@ -174,4 +169,5 @@ import { CiaKpiAdminSettingsComponent } from './change-impact-analysis/cia-kpi-a
   providers: []
 })
 export class PerformanceManagementModule { }
+
 

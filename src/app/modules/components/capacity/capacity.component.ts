@@ -170,26 +170,13 @@ public cellClassRules;
         field: "",
         width: 120,
         pinned: 'right',
-        // valueGetter: function(params){
-        //   console.log(params.data.kpis)
-        //   if (params.data.kpis == 'Average RRC Connected Users') {
-        //     return '';
-        //   } else {
-        //     return params.data.kpis
-        //   }
-        // }
       },
-
-
-
     ];
-
   }
 
   private getCapacityPopupData() {
     this.http.get("assets/data/layers/popup-data/capacity-popup-data.json")
       .subscribe(data => {
-        console.log(data);
 
         this.rowData = data;
 

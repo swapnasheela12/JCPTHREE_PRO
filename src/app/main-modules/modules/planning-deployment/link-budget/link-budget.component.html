@@ -1,0 +1,86 @@
+<mat-card class="p-0 h-100">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title">Chips & Biscuits</mat-card-title>
+        <div class="col"></div>
+        <button class="zmdi zmdi-apps" mat-icon-button [disableRipple]="true">
+            <!-- <i vclass="zmdi zmdi-apps"></i> -->
+        </button>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" style="height: calc(100% - 68px);">
+        <div fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto">
+                <mat-tab label="KPI">
+                    <div style="margin:10px; border: 1px solid black;border-radius:2px;">
+                        <div class="header" style="height: 40px;" fxAlyout="row" fxLayoutAlign="start center">
+                            <span>
+                                Design Objective
+                            </span>
+                            <div class="col"></div>
+                            <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                            <button mat-icon-button>
+                                <i class="zmdi zmdi-smartphone-info"></i>
+                            </button>
+                        </div>
+                        <div class="content">
+                            <table class="table" style="background: white;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Admin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            asdasd
+                                            <!-- <editable (update)="updateField(index, 'name')">
+                                                <ng-template viewMode>{{entity.name}}</ng-template>
+                                                <ng-template editMode>
+                                                    <input [formControl]="getControl(index, 'name')" focusable editableOnEnter>
+                                </ng-template>
+                              </editable> -->
+                                        </td>
+                            <td>
+                             <span>jaskhdga</span>
+                            </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="15 Mins. KPI">
+                    asdasdasd
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div style="min-width: 250px;">
+            <div style="height: 48px; max-height: 48px;" fxLayout="row" fxLayoutAlign="start center">
+                <span> Link Budget Estimation</span>
+                <div class="col"></div>
+                <button mat-icon-button>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <mat-divider style="position: inherit;"></mat-divider>
+        </div>
+    </mat-card-content>
+    <!-- <mat-divider></mat-divider> -->
+    <!-- <div class="" style="height: 64px;">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center h-100">
+            <div class="col-4 title">
+                Admin Settings
+            </div>
+            <div class="col-8 d-flex justify-content-end align-items-center mt-2">
+                <mat-form-field  fxFlex="25" class="mr-4">
+                    <input matInput placeholder="Number of Cells" type="number" value="8" required>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="25" class="">
+                    <input matInput placeholder="Number of KPIs" type="number" value="20" required>
+                  </mat-form-field>
+            </div>
+        </div>
+    </div> -->
+    <!-- <mat-divider style="position: relative;"></mat-divider> -->
+</mat-card>

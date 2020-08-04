@@ -15,6 +15,7 @@ export class TableAgGridService {
   public gridOptionsServices;
   public defaultColDefServices;
   public onReadyServices;
+  // public gridApiServices;
   // public columnDefs;
   constructor() { }
 }

@@ -50,20 +50,7 @@ export class MmenuDirective implements AfterViewInit {
   public menu: any;
 
   constructor(private el: ElementRef) { 
-  }
-
-  // @HostListener('click', ['$event'])
-  // clickEvent(event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   console.log('Click from Host Element!');
-  //   console.log(event.target.id);
-  //   console.log(this.menu.API);
-  //   console.log(this.menu.API.closeAllPanels());
-  //   this.menu.API.openPanel( this.el.nativeElement.querySelector(".mm-panel") );
-    
-  // }
-  
+  }  
   ngAfterViewInit() {
     this.element = this.el.nativeElement;
 
@@ -104,7 +91,6 @@ export class MmenuDirective implements AfterViewInit {
 
     this.Mmenu = Mmenu;
     this.menu = this.ContentInitializeCodeForMenu(this.element);
-    console.log(this.element)
   }
 
   ContentInitializeCodeForMenu(elementNav) {
