@@ -254,7 +254,7 @@ export class SectorMisalignmentComponent {
   }
 
   cellClickedDetails(evt) {
-    if (evt) {
+    if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
     }
 

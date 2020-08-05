@@ -42,50 +42,52 @@ export class AgGridTreeComponent implements OnInit {
   ngOnChanges() {
     console.log(this.rowData);
     console.log(this.columnDefs);
-    console.log("this.columnDefs[0].headerName", this.columnDefs[0].field);
-
-    this.setGroupDetails(1, this.columnDefs[0].field);
-    if (this.columnDefs[0].headerName) {
-      this.columnDefs[0]['cellRenderer'] = getValue;
-    }
-    this.columnsToDisplay = [
-      'vendor',
-      'backhaultotal',
-      'datacentertotal',
-      'internettotal',
-      'l2total',
-      'datacommunicationtotal'
-    ];
-    this.setFirstHeaders(this.columnDefs);
-
-    // this.httpService
-    //   .get('assets/data/report/sector-misalignment/wo-sector-misalignment.json')
-    //   .subscribe((data: any[]) => {
-    //     this.allData = JSON.parse(JSON.stringify(data));
-    //     this.rowData = data;
-
-    //   });
-    this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
-
-
-    this.displayedColumns = this.getColumnDisplayArray(this.columnDefs);
-    this.columnDef = [];
-    this.columnDefs.forEach(element => {
-      if (element['children']) {
-        this.columnDef.push({
-          headerName: element['headerName'],
-          groupSize: 1,
-          columnName: element['children'][0]['field'],
-          isOpen: false,
-          children: this.getHeaderChildren(element['children'])
-        });
+    // console.log("this.columnDefs[0].headerName", this.columnDefs[0].field);
+    if (this.columnDefs) {
+      this.setGroupDetails(1, this.columnDefs[0].field);
+      if (this.columnDefs[0].headerName) {
+        this.columnDefs[0]['cellRenderer'] = getValue;
       }
-    });
-    this.icons = {
-      columnGroupClosed: '<i class="material-icons">add_circle_outline</i>',
-      columnGroupOpened: '<i class="material-icons">remove_circle_outline</i>'
-    };
 
+
+      this.columnsToDisplay = [
+        'vendor',
+        'backhaultotal',
+        'datacentertotal',
+        'internettotal',
+        'l2total',
+        'datacommunicationtotal'
+      ];
+      this.setFirstHeaders(this.columnDefs);
+
+      // this.httpService
+      //   .get('assets/data/report/sector-misalignment/wo-sector-misalignment.json')
+      //   .subscribe((data: any[]) => {
+      //     this.allData = JSON.parse(JSON.stringify(data));
+      //     this.rowData = data;
+
+      //   });
+      this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
+
+
+      this.displayedColumns = this.getColumnDisplayArray(this.columnDefs);
+      this.columnDef = [];
+      this.columnDefs.forEach(element => {
+        if (element['children']) {
+          this.columnDef.push({
+            headerName: element['headerName'],
+            groupSize: 1,
+            columnName: element['children'][0]['field'],
+            isOpen: false,
+            children: this.getHeaderChildren(element['children'])
+          });
+        }
+      });
+      this.icons = {
+        columnGroupClosed: '<i class="material-icons">add_circle_outline</i>',
+        columnGroupOpened: '<i class="material-icons">remove_circle_outline</i>'
+      };
+    }
   }
 
   ngOnInit() {
