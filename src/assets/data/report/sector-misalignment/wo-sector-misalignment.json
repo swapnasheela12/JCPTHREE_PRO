@@ -1,11 +1,10 @@
-[
-    {
+[{
         "status": "Completed",
         "taskcompletion": "Completed",
         "taskcategory": "SectorMisalignment Execution Task - IAN Lead",
         "name": "Execution Task - IAN Lead",
         "duedate": "28 Jul, 2017",
-        "Priority": "",
+        "Priority": "Critical",
         "assignedtoname": "Me",
         "assignedby": "IAN Lead",
         "lastmodified": "28 Jun, 2017",
