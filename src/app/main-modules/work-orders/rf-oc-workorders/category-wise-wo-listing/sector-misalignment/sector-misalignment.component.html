@@ -1,9 +1,23 @@
-<mat-card class="h-100">
-    <mat-card-header>
-      <mat-card-title>This is the Page title. (optional)</mat-card-title>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content >
-        This is where the ag grid will come.
-    </mat-card-content>
-  </mat-card>
+<mat-card class="h-100 sector-misalignment-container">
+
+  <div class="sector-flex-container">
+    <div class="d-flex mx-2 flex-row justify-content-between">
+      <div class="px-3 pt-3 col-4 sector-flex-item" fxFlex>
+        <div class="py-3 sector-title">Sector Misalignment</div>
+      </div>
+
+      <div class="px-2 pt-3 col-4 sector-flex-item">
+        <mat-icon class="icon-button" aria-label="search">
+          <span class="zmdi zmdi-search"></span>
+        </mat-icon>
+
+      </div>
+    </div>
+  </div>
+
+  <mat-divider style="position: relative;"></mat-divider>
+  <div class="jcp-table-container">
+    <app-table-ag-grid (cellClicked)="cellClickedDetails($event)"></app-table-ag-grid>
+
+  </div>
+</mat-card>

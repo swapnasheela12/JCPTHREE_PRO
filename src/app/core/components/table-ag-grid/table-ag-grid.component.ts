@@ -5,9 +5,11 @@ import { DataSharHttpService } from './../../../modules/components/data-shar-htt
 import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { TableAgGridService } from './table-ag-grid.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
+
 
 @Component({
   selector: 'app-table-ag-grid',
@@ -25,14 +27,15 @@ export class TableAgGridComponent implements OnInit {
   typeOfAgGridTable;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    viewHistroyRenderer: viewHistoryRendererComponent
   };
-
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
 
   sidenavBarStatus;
   showGlobalOperation;
+  @Output() cellClicked = new EventEmitter()
 
   constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient,) {
     console.log(data, "data");
@@ -58,28 +61,15 @@ export class TableAgGridComponent implements OnInit {
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
-    // data.gridApiServices = this.gridApi;
   }
 
   ngOnInit(): void {
   }
 
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
 
-  // public calculateRowCount() {
-  //  if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
 
   public onReady(params) {
     this.gridApi = params.api;
-    console.log(this.gridApi, "this.gridApi");
-    // this.calculateRowCount();
     params.api.paginationGoToPage(4);
   }
 
@@ -96,22 +86,16 @@ export class TableAgGridComponent implements OnInit {
   }
 
   onRowSelected(event) {
-    console.log(event, "event>>>");
-
-    // if(event.node.selected) {
-    //    this.selectedNodes.push(event.node);
-    // }
+    console.log(event, " row clicked event>>>");
   }
 
-  onCellClicked(e) {
-    console.log(e,"e");
-    
-    // if (e.column.colId === 'col1') {
-    //   // Handle specific cell
-    // } else {
-    //   // Handle all other cells, similar to rowClicked
-    // }
+  onCellClicked(event) {
+    console.log(event, "e");
+    this.cellClicked.emit(event);
   }
 
+  onRowClicked(event) {
+    console.log(event, " row clicked event>>>");
 
+  }
 }

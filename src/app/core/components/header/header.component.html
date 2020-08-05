@@ -9,7 +9,9 @@
                 <div class="jcp-toolbar-search-form">
                     <div class="form-group">
                         <form [formGroup]="stateForm">
-                            <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}" #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State" [matAutocomplete]="autoSearch" [formControl]="stateCtrl" (click)="search(autoSearch)">
+                            <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}"
+                                #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State"
+                                [matAutocomplete]="autoSearch" [formControl]="stateCtrl" (click)="search(autoSearch)">
                             <mat-icon class="search-icon" aria-label="search">
                                 <span class="zmdi zmdi-search"></span>
                             </mat-icon>
@@ -17,7 +19,9 @@
                         <mat-autocomplete #autoSearch="matAutocomplete" class="autoSearchClass">
                             <div class="headerMain">Recently Visited</div>
 
-                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)" *ngFor="let state of filteredStatesVisited | async" [value]="state.name" class="autoSearch-mat-option">
+                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                *ngFor="let state of filteredStatesVisited | async" [value]="state.name"
+                                class="autoSearch-mat-option">
                                 <div class="row justify-content-start align-items-center autoSearch-row">
                                     <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
                                     <div class="autoSearch-row-name">{{ state.name }}</div>
@@ -25,7 +29,9 @@
                             </mat-option>
                             <mat-divider style="    margin: 10px 0;"></mat-divider>
                             <div class="headerMain">Search Results</div>
-                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)" *ngFor="let state of filteredStates | async" [value]="state.name" class="autoSearch-mat-option">
+                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                *ngFor="let state of filteredStates | async" [value]="state.name"
+                                class="autoSearch-mat-option">
                                 <div class="row justify-content-between autoSearch-row">
                                     <div class="col-4 p-0">
                                         <div class="row p-0 m-0">
@@ -49,25 +55,31 @@
         <div class="col-3 jcp-toolbar-col-right p-0">
             <div class="jcp-toolbar-row-right-content" fxLayout="row warp" fxLayoutAlign="end center">
                 <div class="icon-parent-container">
-                    <div class="icon-container" (click)="openFullscreen();toggleSidenav();" *ngIf="expandScreen == false">
-                        <button mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                    <div class="icon-container" (click)="openFullscreen();toggleSidenav();"
+                        *ngIf="expandScreen == false">
+                        <button mat-button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen" style="font-size: 22px;    margin-bottom: 1px;"></div>
                         </button>
                     </div>
-                    <div mat-button class="icon-container" (click)="closeFullscreen();toggleSidenav();" *ngIf="expandScreen == true">
-                        <button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                    <div mat-button class="icon-container" (click)="closeFullscreen();toggleSidenav();"
+                        *ngIf="expandScreen == true">
+                        <button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;    margin-bottom: 1px;">
                             </div>
                         </button>
                     </div>
                     <div class="icon-container ">
-                        <button mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                        <button mat-button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-bookmark-outline" style="font-size: 22px;    margin-bottom: 1px;">
                             </div>
                         </button>
                     </div>
                     <div class="icon-container">
-                        <button mat-button [matMenuTriggerFor]="notifications" class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                        <button mat-button [matMenuTriggerFor]="notifications"
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-notifications-active note-icon" matBadge="{{randomNotificationCount}}"
                                 matBadgeSize="small" matBadgeColor="warn">
                             </div>
@@ -84,10 +96,12 @@
 
 
                                             <mat-form-field id="allNotifocationId">
-                                                <mat-select [(ngModel)]="selectedNameMod" (selectionChange)="allNameNoteFunc($event)">
+                                                <mat-select [(ngModel)]="selectedNameMod"
+                                                    (selectionChange)="allNameNoteFunc($event)">
                                                     <mat-option value="All Notifications" selected>All Notifications
                                                     </mat-option>
-                                                    <mat-option *ngFor="let note of notificationsList | filterUnique" [value]="note.name">
+                                                    <mat-option *ngFor="let note of notificationsList | filterUnique"
+                                                        [value]="note.name">
                                                         {{note.name}}
                                                     </mat-option>
                                                 </mat-select>
@@ -97,8 +111,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false" class="main-content">
-                                <div class="notifications-content row justify-content-between" [ngClass]="{'activeParent': item.hideMe}" *ngFor="let item of notificationsList; let i = index">
+                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false"
+                                class="main-content">
+                                <div class="notifications-content row justify-content-between"
+                                    [ngClass]="{'activeParent': item.hideMe}"
+                                    *ngFor="let item of notificationsList; let i = index">
 
                                     <div class="row justify-content-between notifications-content-name">
                                         <div class="col-1 p-0" style="margin: 5px 10px;">
@@ -106,13 +123,15 @@
                                                 <span [ngClass]="item.iconMod"></span></div>
                                         </div>
                                         <div class="col-7 p-0">
-                                            <div class="header" (click)="item.hideMe =! item.hideMe" style="cursor: pointer;">
+                                            <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                style="cursor: pointer;">
                                                 <span>{{item.name}}</span>
                                                 <span class="pl-2 zmdi zmdi-chevron-down"></span>
                                             </div>
                                             <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
                                             </div>
-                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}" *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                *ngIf="item.hideMe">{{item.detailsMod}}</div>
                                         </div>
                                         <div class="col-3">
                                             <div class="notifications-content-status" style="float: right;">
@@ -125,8 +144,11 @@
                                 </div>
 
                             </div>
-                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true" class="main-content">
-                                <div class="notifications-content row justify-content-between" [ngClass]="{'activeParent': item.hideMe}" *ngFor="let item of filterDataArr; let i = index">
+                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true"
+                                class="main-content">
+                                <div class="notifications-content row justify-content-between"
+                                    [ngClass]="{'activeParent': item.hideMe}"
+                                    *ngFor="let item of filterDataArr; let i = index">
 
                                     <div class="row justify-content-between notifications-content-name">
                                         <div class="col-1" style="margin: 5px auto; padding: 0%;">
@@ -134,13 +156,16 @@
                                                 <span [ngClass]="item.iconMod"></span></div>
                                         </div>
                                         <div class="col-7">
-                                            <div class="header" (click)="item.hideMe =! item.hideMe" style="cursor: pointer;">
+                                            <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                style="cursor: pointer;">
                                                 <span>{{item.name}}</span>
-                                                <span class="pl-2 zmdi zmdi-chevron-down" style="cursor: pointer;"></span>
+                                                <span class="pl-2 zmdi zmdi-chevron-down"
+                                                    style="cursor: pointer;"></span>
                                             </div>
                                             <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
                                             </div>
-                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}" *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                *ngIf="item.hideMe">{{item.detailsMod}}</div>
                                         </div>
                                         <div class="col-3">
                                             <div class="notifications-content-status" style="float: right;">
@@ -153,15 +178,19 @@
                                 </div>
 
                             </div>
-                            <div (click)="$event.stopPropagation();" class="row justify-content-end notifications-content-more">
+                            <div (click)="$event.stopPropagation();"
+                                class="row justify-content-end notifications-content-more">
                                 <div class="col notifications-content-status">
-                                    <div style="float: right;cursor: pointer;" (click)="showOlderNoteFunc(notificationsList)">
+                                    <div style="float: right;cursor: pointer;"
+                                        (click)="showOlderNoteFunc(notificationsList)">
                                         <a>Show Older</a>
                                     </div>
                                 </div>
                             </div>
-                            <div (click)="$event.stopPropagation();" class="row justify-content-end notifications-content-view-all">
-                                <div (click)="viewAllNoteFunc(notificationsList)" class="col notifications-content-all" style="cursor: pointer;">
+                            <div (click)="$event.stopPropagation();"
+                                class="row justify-content-end notifications-content-view-all">
+                                <div (click)="viewAllNoteFunc(notificationsList)" class="col notifications-content-all"
+                                    style="cursor: pointer;">
                                     Mark All As Read
                                 </div>
                             </div>
@@ -230,7 +259,8 @@
         </div>
     </div>
     <div class="jcp-sub-toolbar-row justify-content-between" fxLayout="row warp">
-        <div class="col-9 jcp-sub-toolbar-row-left p-0" [ngClass]="{'active-sub-toolbar-row-left': addClassNew , 'activeNot-sub-toolbar-row-left': !addClassNew}">
+        <div class="col-9 jcp-sub-toolbar-row-left p-0"
+            [ngClass]="{'active-sub-toolbar-row-left': addClassNew , 'activeNot-sub-toolbar-row-left': !addClassNew}">
             <div class="tab-container">
                 <div class="icon-count"><span style="font-size: 12px;font-weight: 600;">4</span></div>
                 <div class="icon-style"><i class="ic ic-breadcrumbs-01"></i></div>
@@ -248,22 +278,34 @@
         </div>
         <div class="col jcp-sub-toolbar-row-right mr-2 p-0">
             <div class="icon-right-list">
-                <div class="ic ic-dots sizeOfIcon" *ngIf="(this.route === '/JCP/Home' || this.route==='/JCP/My-JCP')"></div>
+                <div class="ic ic-dots sizeOfIcon" *ngIf="(this.route === '/JCP/Home' || this.route==='/JCP/My-JCP')">
+                </div>
                 <div class="ic ic-minimize-01 sizeOfIcon" *ngIf="(this.route === '/JCP/Home')"></div>
                 <!-- <div class="fas fa-external-link-alt sizeOfIcon"></div> -->
                 <div class="ic ic-close-01 sizeOfIcon" *ngIf="(this.route === '/JCP/Home')"></div>
-                <div class="zmdi zmdi-settings sizeOfIcon-zmdi" [matMenuTriggerFor]="menuSettingMyJcp" *ngIf="(this.route === '/JCP/My-JCP')"></div>
+                <div class="zmdi zmdi-settings sizeOfIcon-zmdi" [matMenuTriggerFor]="menuSettingMyJcp"
+                    *ngIf="(this.route === '/JCP/My-JCP')"></div>
                 <mat-menu #menuSettingMyJcp="matMenu" class="menuSettingMyJcp-dropdown arrow-top">
                     <app-myjcpdropdownpanel (click)="$event.stopPropagation();"></app-myjcpdropdownpanel>
                 </mat-menu>
             </div>
         </div>
-        <div class="col jcp-sub-toolbar-row-right mr-4 p-0" *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment')">
+        <div class="col jcp-sub-toolbar-row-right mr-4 p-0"
+            *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment')">
             <div class="icon-right-list">
-                Icons Heres
+                <div class="ic ic-dots sizeOfIcon" [matMenuTriggerFor]="menuListCommon"></div>
+                <mat-menu #menuListCommon="matMenu" class="aggridMenuPanelRender">
+                    <button mat-menu-item disabled>
+                        <div class="pr-3 ic ic-download3" style="display: inline-block;"></div>
+                        <span>Download</span>
+                    </button>
+                </mat-menu>
+                <div class="ic ic-close-01 sizeOfIcon"></div>
+
             </div>
         </div>
-        <div class="col jcp-sub-toolbar-row-right mr-4 p-0" *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell')">
+        <div class="col jcp-sub-toolbar-row-right mr-4 p-0"
+            *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell')">
             <div class="icon-right-list">
                 <div class="ic ic-dots sizeOfIcon" [matMenuTriggerFor]="menuListCommon"></div>
                 <mat-menu #menuListCommon="matMenu" class="aggridMenuPanelRender">
@@ -288,7 +330,9 @@
                 <div class="jcp-toolbar-search-form">
                     <div class="form-group">
                         <form [formGroup]="stateForm">
-                            <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}" #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State" [matAutocomplete]="autoSearch" [formControl]="stateCtrl" (click)="search(autoSearch)">
+                            <input class="form-control" [ngClass]="{'active-inputsearch': autoSearch._isOpen}"
+                                #stateInput (keyup)="0" matInput placeholder="Search" aria-label="State"
+                                [matAutocomplete]="autoSearch" [formControl]="stateCtrl" (click)="search(autoSearch)">
                             <mat-icon class="search-icon" aria-label="search">
                                 <span class="zmdi zmdi-search"></span>
                             </mat-icon>
@@ -297,7 +341,9 @@
                             <div class="headerMain">Recently Visited</div>
 
 
-                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)" *ngFor="let state of filteredStatesVisited | async" [value]="state.name" class="autoSearch-mat-option">
+                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                *ngFor="let state of filteredStatesVisited | async" [value]="state.name"
+                                class="autoSearch-mat-option">
                                 <div class="row justify-content-start align-items-center autoSearch-row">
                                     <div class="autoSearch-row-icon" [ngClass]="state.icon"></div>
                                     <div class="autoSearch-row-name">{{ state.name }}</div>
@@ -305,7 +351,9 @@
                             </mat-option>
                             <mat-divider style="    margin: 10px 0;"></mat-divider>
                             <div class="headerMain">Search Results</div>
-                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)" *ngFor="let state of filteredStates | async" [value]="state.name" class="autoSearch-mat-option">
+                            <mat-option (onSelectionChange)="stateInput.value !=undefined && onEnter($event)"
+                                *ngFor="let state of filteredStates | async" [value]="state.name"
+                                class="autoSearch-mat-option">
                                 <div class="row justify-content-between autoSearch-row">
                                     <div class="col-4 p-0">
                                         <div class="row p-0 m-0">
@@ -329,25 +377,31 @@
         <div class="col-3 jcp-toolbar-col-right p-0">
             <div class="jcp-toolbar-row-right-content" fxLayout="row warp" fxLayoutAlign="end center">
                 <div class="icon-parent-container">
-                    <div class="icon-container" (click)="openFullscreen();toggleSidenav();" *ngIf="expandScreen == false">
-                        <button mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                    <div class="icon-container" (click)="openFullscreen();toggleSidenav();"
+                        *ngIf="expandScreen == false">
+                        <button mat-button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen" style="font-size: 22px;    margin-bottom: 1px;"></div>
                         </button>
                     </div>
-                    <div mat-button class="icon-container" (click)="closeFullscreen();toggleSidenav();" *ngIf="expandScreen == true">
-                        <button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                    <div mat-button class="icon-container" (click)="closeFullscreen();toggleSidenav();"
+                        *ngIf="expandScreen == true">
+                        <button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-fullscreen-exit" style="font-size: 22px;    margin-bottom: 1px;">
                             </div>
                         </button>
                     </div>
                     <div class="icon-container ">
-                        <button mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                        <button mat-button
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-bookmark-outline" style="font-size: 22px;    margin-bottom: 1px;">
                             </div>
                         </button>
                     </div>
                     <div class="icon-container">
-                        <button mat-button [matMenuTriggerFor]="notifications" class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                        <button mat-button [matMenuTriggerFor]="notifications"
+                            class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
                             <div class="zmdi zmdi-notifications-active note-icon" matBadge="{{randomNotificationCount}}"
                                 matBadgeSize="small" matBadgeColor="warn">
                             </div>
@@ -364,10 +418,12 @@
 
 
                                             <mat-form-field id="allNotifocationId">
-                                                <mat-select [(ngModel)]="selectedNameMod" (selectionChange)="allNameNoteFunc($event)">
+                                                <mat-select [(ngModel)]="selectedNameMod"
+                                                    (selectionChange)="allNameNoteFunc($event)">
                                                     <mat-option value="All Notifications" selected>All Notifications
                                                     </mat-option>
-                                                    <mat-option *ngFor="let note of notificationsList | filterUnique" [value]="note.name">
+                                                    <mat-option *ngFor="let note of notificationsList | filterUnique"
+                                                        [value]="note.name">
                                                         {{note.name}}
                                                     </mat-option>
                                                 </mat-select>
@@ -377,8 +433,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false" class="main-content">
-                                <div class="notifications-content row justify-content-between" [ngClass]="{'activeParent': item.hideMe}" *ngFor="let item of notificationsList; let i = index">
+                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == false"
+                                class="main-content">
+                                <div class="notifications-content row justify-content-between"
+                                    [ngClass]="{'activeParent': item.hideMe}"
+                                    *ngFor="let item of notificationsList; let i = index">
 
                                     <div class="row justify-content-between notifications-content-name">
                                         <div class="col-1 p-0" style="margin: 5px 10px;">
@@ -386,13 +445,15 @@
                                                 <span [ngClass]="item.iconMod"></span></div>
                                         </div>
                                         <div class="col-7 p-0">
-                                            <div class="header" (click)="item.hideMe =! item.hideMe" style="cursor: pointer;">
+                                            <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                style="cursor: pointer;">
                                                 <span>{{item.name}}</span>
                                                 <span class="pl-2 zmdi zmdi-chevron-down"></span>
                                             </div>
                                             <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
                                             </div>
-                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}" *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                *ngIf="item.hideMe">{{item.detailsMod}}</div>
                                         </div>
                                         <div class="col-3">
                                             <div class="notifications-content-status" style="float: right;">
@@ -405,8 +466,11 @@
                                 </div>
 
                             </div>
-                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true" class="main-content">
-                                <div class="notifications-content row justify-content-between" [ngClass]="{'activeParent': item.hideMe}" *ngFor="let item of filterDataArr; let i = index">
+                            <div (click)="$event.stopPropagation();" *ngIf="filterDataOnSelection == true"
+                                class="main-content">
+                                <div class="notifications-content row justify-content-between"
+                                    [ngClass]="{'activeParent': item.hideMe}"
+                                    *ngFor="let item of filterDataArr; let i = index">
 
                                     <div class="row justify-content-between notifications-content-name">
                                         <div class="col-1" style="margin: 5px auto; padding: 0%;">
@@ -414,13 +478,16 @@
                                                 <span [ngClass]="item.iconMod"></span></div>
                                         </div>
                                         <div class="col-7">
-                                            <div class="header" (click)="item.hideMe =! item.hideMe" style="cursor: pointer;">
+                                            <div class="header" (click)="item.hideMe =! item.hideMe"
+                                                style="cursor: pointer;">
                                                 <span>{{item.name}}</span>
-                                                <span class="pl-2 zmdi zmdi-chevron-down" style="cursor: pointer;"></span>
+                                                <span class="pl-2 zmdi zmdi-chevron-down"
+                                                    style="cursor: pointer;"></span>
                                             </div>
                                             <div class="sub-header" *ngIf="!item.hideMe">{{item.detailsMod}}
                                             </div>
-                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}" *ngIf="item.hideMe">{{item.detailsMod}}</div>
+                                            <div class="sub-header" [ngClass]="{'active': item.hideMe}"
+                                                *ngIf="item.hideMe">{{item.detailsMod}}</div>
                                         </div>
                                         <div class="col-3">
                                             <div class="notifications-content-status" style="float: right;">
@@ -433,15 +500,19 @@
                                 </div>
 
                             </div>
-                            <div (click)="$event.stopPropagation();" class="row justify-content-end notifications-content-more">
+                            <div (click)="$event.stopPropagation();"
+                                class="row justify-content-end notifications-content-more">
                                 <div class="col notifications-content-status">
-                                    <div style="float: right;cursor: pointer;" (click)="showOlderNoteFunc(notificationsList)">
+                                    <div style="float: right;cursor: pointer;"
+                                        (click)="showOlderNoteFunc(notificationsList)">
                                         <a>Show Older</a>
                                     </div>
                                 </div>
                             </div>
-                            <div (click)="$event.stopPropagation();" class="row justify-content-end notifications-content-view-all">
-                                <div (click)="viewAllNoteFunc(notificationsList)" class="col notifications-content-all" style="cursor: pointer;">
+                            <div (click)="$event.stopPropagation();"
+                                class="row justify-content-end notifications-content-view-all">
+                                <div (click)="viewAllNoteFunc(notificationsList)" class="col notifications-content-all"
+                                    style="cursor: pointer;">
                                     Mark All As Read
                                 </div>
                             </div>

@@ -52,18 +52,23 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { RfOcWorkordersModuleRoutingModule } from './rf-oc-workorders-routing.module';
 import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
 //import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
-
-import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
+// import { WoRanPopupComponent } from './category-wise-wo-listing/overshooting-cell/ran-popup/wo-ran-popup/wo-ran-popup.component';
+import { CoreModule } from '../../../core/core.module';
+import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
+import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
 
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
-    OvershootingCellComponent,
- 
-  ], 
+    // OvershootingCellComponent,
+    ExecutionTaskComponent,
+    WoSectorMisalignmentComponent,
+
+  ],
   imports: [
     RfOcWorkordersModuleRoutingModule,
     CommonModule,
+    CoreModule,
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -114,11 +119,11 @@ import { OvershootingCellComponent } from './category-wise-wo-listing/overshooti
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    NgxMatSelectSearchModule,
+    NgxMatSelectSearchModule
   ],
   exports: [
   ],
-  entryComponents : [
+  entryComponents: [
   ],
   providers: []
 })

@@ -1542,5 +1542,54 @@ table {
     }
 }
 
+.execution-task-container {
+    app-table-ag-grid{
+        ag-grid-angular {
+            height: 24% !important;
+            .ag-root-wrapper {
+                .ag-paging-panel {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+.wo-sector-container {
+    .wo-sector-card-one {
+        .report-flex-container {
+            .wo-flex-item {
+                .col-1 {
+                    span {
+                        margin: 0 6px;
+                        height: 40px;
+                        min-width: 0;
+                        line-height: 24px;
+                        padding: 8px;
+                        width: 40px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
 //////////////
 //////////////
+
+.md-line-status {
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    width: 5px;
+    margin-right: 10px; 
+}
+.md-two-lines-cell {
+    display: inline-block; 
+}
+.md-two-lines-cell .align-v-middle {
+      vertical-align: middle;
+      margin-top: 0px; 
+}

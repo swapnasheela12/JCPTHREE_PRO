@@ -1,4 +1,5 @@
 import { dropDownThreeDotRendererComponent } from './components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { viewHistoryRendererComponent } from './components/ag-grid-renders/view-history-renderer.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -54,7 +55,7 @@ import { RouterModule } from '@angular/router';
 import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
-import { MyjcpdropdownpanelComponent} from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
+import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
 import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
 import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
@@ -62,6 +63,7 @@ import { CommonPopupComponent } from './components/commanPopup/common-popup/comm
 import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
+import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -76,8 +78,10 @@ import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.c
     ConfirmPopupComponent,
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
+    viewHistoryRendererComponent,
     FileUploadPopupComponent,
     TableAgGridComponent,
+    AgGridTreeComponent
     // PaginationComponent
   ],
   imports: [
@@ -85,7 +89,7 @@ import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.c
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([ dropDownThreeDotRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -146,7 +150,9 @@ import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.c
     isEllipsisActiveDirective,
     SuccessfulComponent,
     dropDownThreeDotRendererComponent,
+    viewHistoryRendererComponent,
     TableAgGridComponent,
+    AgGridTreeComponent
     // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent
