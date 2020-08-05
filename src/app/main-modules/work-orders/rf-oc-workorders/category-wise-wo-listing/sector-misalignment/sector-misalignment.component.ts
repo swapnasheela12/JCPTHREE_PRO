@@ -92,22 +92,17 @@ export class SectorMisalignmentComponent {
       {
         headerName: "Zone",
         field: "zone",
-        width: 120,
+        width: 110,
       },
       {
         headerName: "Circle",
         field: "circle",
-        width: 130,
+        width: 110,
       },
       {
         headerName: "JC ID",
         field: "jcid",
         width: 160,
-      },
-      {
-        headerName: "Category",
-        field: "category",
-        width: 200,
       },
       {
         headerName: "Workorder",
@@ -127,20 +122,7 @@ export class SectorMisalignmentComponent {
       {
         headerName: "SLA Violation",
         field: "slaviolation",
-        width: 135,
-      },
-      {
-        headerName: "Task Completion",
-        cellRenderer: this.progressTaskFunc,
-        width: 180,
-        pinned: 'right'
-      },
-      {
-        headerName: "",
-        cellRenderer: 'viewHistroyRenderer',
-        width: 90,
-        pinned: 'right',
-        // id: "dot-rendered-rep-local"
+        width: 150,
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;

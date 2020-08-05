@@ -21,21 +21,11 @@ export class WoSectorMisalignmentComponent {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
-
-  public paths;
   public sidenavBarStatus;
-  public tableWidth;
-  public gridApi;
-  public gridColumnApi;
-  public gridCore: GridCore;
-  public gridOptions: GridOptions;
   public rowData: any;
   public columnDefs: any[];
-  public rowCount: string;
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
-    viewHistoryRenderer: viewHistoryRendererComponent,
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
@@ -69,183 +59,16 @@ export class WoSectorMisalignmentComponent {
   ];
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => console.log(url));
-    //this.paths = PATHS;
-    this.gridOptions = <GridOptions>{};
-    //this.createColumnDefs();
-
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
 
+    //API call to get WO Service details
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
         this.columnDefs = COLUMNDEFS;
       });
-    // this.httpClient.get(this.url)
-    //   .subscribe(data => {
-    //     this.rowData = data;
 
-    //     console.log(this.rowData);
-    //     this.datatable.rowDataURLServices = this.url;
-    //     this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-    //     this.datatable.rowDataServices = this.rowData;
-    //     this.datatable.gridOptionsServices = this.gridOptions;
-    //     this.datatable.defaultColDefServices = this.defaultColDef;
-    //   });
-  }
-
-  getSelection() {
-    var selectedRows = this.gridOptions.api.getSelectedRows();
-    console.log("selectedRows", selectedRows);
-  }
-
-  private createColumnDefs() {
-    this.columnDefs = [
-      {
-        headerName: 'Status',
-        field: 'status',
-        cellRenderer: this.statusFunc,
-        width: 150
-      },
-      {
-        headerName: 'Task Id',
-        field: 'taskId',
-        width: 150
-      },
-      {
-        headerName: 'Task Category',
-        field: 'taskcategory',
-        width: 150
-      },
-      {
-        headerName: 'Priority',
-        field: 'Priority',
-        width: 150
-      },
-      {
-        headerName: 'Due Date',
-        field: 'duedate',
-        width: 150
-      },
-      {
-        headerName: 'Assigned To',
-        field: 'assignedtoname',
-        width: 150
-      },
-      {
-        headerName: 'last Modified',
-        field: 'lastmodified',
-        width: 150
-      },
-      {
-        headerName: 'Task Completion',
-        field: 'taskCompletion',
-        cellRenderer: this.progressTaskFunc,
-        width: 150
-      },
-      {
-        headerName: "",
-        cellRenderer: 'dropDownThreeDotRenderer',
-        width: 90
-      }
-    ];
-    this.datatable.columnDefsServices = this.columnDefs;
-
-  }
-
-  defaultColDef = { resizable: true };
-  searchGrid = '';
-  onFilterChanged(value) {
-    this.gridOptions.api.setQuickFilter(value);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
-  shareStatus(params) {
-    var data = params.data;
-    if (!params.data)
-      return '';
-    var status = params.data.status;
-    var barColor = '';
-    if (status == "Shared") {
-      barColor = '#4188de';
-      var template = '<div class="shared_val" fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">' + status + '</div> <div class="shared_count">+' + params.data.sharecount + '</div> </div>'
-    } else {
-      barColor = '#828282';
-      var template = '<div fxLayout="row" fxLayoutAlign="space-between center"> <div class="shared_title">-</div> </div>'
-    }
-    ;
-    return template;
-  };
-
-  //END table search
-
-  //////////////////
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
-
-  }
-
-  onPageSizeChanged(newPageSize) {
-    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  }
-
-  statusFunc(params) {
-    var status = params.value;
-    var barColor = '';
-    if (status == "Completed" || status == "Successful") {
-      barColor = '#39b54a';
-    } else if (status == "In Progress" || status == "Started") {
-      barColor = '#ff8000';
-    } else if (status == "Not Started") {
-      barColor = '#ff8000';
-    } else {
-      barColor = '#f21400';
-    }
-
-    return '<span class="md-line-status" style="background-color: ' +
-      barColor +
-      ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
-      status + '</div></div>';
-  }
-
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.taskcompletion;
-    var taskprogress = params.data.taskprogress;
-    // var template1 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
-    //   '<md-progress-linear class="md-primary" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
-    // var template2 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
-    //   '<md-progress-linear class="md-accent" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
-    // var template3 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
-    //   '<md-progress-linear class="md-warn" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
-
-
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-
-
-    if (taskcompletion == "Completed" || taskcompletion == "Successful") {
-      return template1;
-    } else if (taskcompletion == "Pending") {
-      return template2;
-    } else {
-      return template3;
-    }
   }
 }
