@@ -64,6 +64,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
+import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -81,7 +82,8 @@ import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.comp
     viewHistoryRendererComponent,
     FileUploadPopupComponent,
     TableAgGridComponent,
-    AgGridTreeComponent
+    AgGridTreeComponent,
+    TemplateDropdownComponent
     // PaginationComponent
   ],
   imports: [

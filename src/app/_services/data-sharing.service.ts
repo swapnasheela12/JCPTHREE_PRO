@@ -18,6 +18,10 @@ export class DataSharingService {
 
   private rightGridOptionsSource = new BehaviorSubject({});
   rightGridMessage = this.rightGridOptionsSource.asObservable();
+
+  private templateGallerySource = new BehaviorSubject({});
+  templateGalleryMessage = this.templateGallerySource.asObservable();
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -40,5 +44,9 @@ export class DataSharingService {
 
   rightGridOptionMessage(gridOption: Object) {
     this.rightGridOptionsSource.next(gridOption);
+  }
+
+  templateGalleryApplyMessage(templateGallery: Object) {
+    this.templateGallerySource.next(templateGallery)
   }
 }
