@@ -1,69 +1,455 @@
-<mat-card class="p-0 h-100">
+<mat-card class="p-0" style="height: calc(100% - 54px);">
     <mat-card-header class="card-header" fxLayoutAlign="start center">
-        <mat-card-title class="card-title">Chips & Biscuits</mat-card-title>
+        <mat-card-title class="card-title">
+
+
+            <mat-chip-list #postChipList aria-label="Template Gallery">
+                <mat-chip *ngFor="let template of templateGalleryList" [selectable]="false" [removable]="true"
+                    (removed)="removeTemplateChip(template)">
+                    {{ template }}
+                    <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                </mat-chip>
+                <mat-chip>
+                    New Template
+                    <mat-icon *ngIf="true">add</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+
+
+        </mat-card-title>
         <div class="col"></div>
-        <button class="zmdi zmdi-apps" mat-icon-button [disableRipple]="true">
-            <!-- <i vclass="zmdi zmdi-apps"></i> -->
+        <button class="zmdi zmdi-apps" mat-icon-button (click)="show = !show">
         </button>
     </mat-card-header>
-    <mat-card-content fxLayout="row" style="height: calc(100% - 68px);">
+    <mat-card-content fxLayout="row" class="card-content">
         <div fxFlex="auto">
             <mat-tab-group dynamicHeight fxFlex="auto">
-                <mat-tab label="KPI">
-                    <div style="margin:10px; border: 1px solid black;border-radius:2px;">
-                        <div class="header" style="height: 40px;" fxAlyout="row" fxLayoutAlign="start center">
-                            <span>
-                                Design Objective
-                            </span>
-                            <div class="col"></div>
-                            <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                            <button mat-icon-button>
-                                <i class="zmdi zmdi-smartphone-info"></i>
-                            </button>
+                <mat-tab label="Link Budget">
+                    <div class="overflow-auto">
+                        <div class="accordian-holder">
+                            <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                                <span class="header-title">
+                                    Design Objective
+                                </span>
+                                <div class="col"></div>
+                                <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                                <button mat-icon-button (click)="toggleDesignInfo()">
+                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                </button>
+                            </div>
+                            <div class="accordian-content">
+                                <table class="table mb-0">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th *ngIf="!showDesignInfo">Column1</th>
+                                            <th *ngIf="showDesignInfo">Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let entity of designList; index as index">
+                                            <td>
+                                                <span class="text-field">{{entity.parameter}}</span>
+                                            </td>
+                                            <td class="max-width-0" *ngIf="!showDesignInfo">
+                                                <div class="editable-field">
+                                                    <editCell (update)="updateDesignField(index, 'value')">
+                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input fxFlex="80" class="input-field"
+                                                                [formControl]="getDesignControl(index, 'value')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                </div>
+                                            </td>
+                                            <td *ngIf="showDesignInfo">
+                                                <div class="text-field" *ngIf="showDesignInfo">{{entity.info}}</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="content">
-                            <table class="table" style="background: white;">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Admin</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            asdasd
-                                            <!-- <editable (update)="updateField(index, 'name')">
-                                                <ng-template viewMode>{{entity.name}}</ng-template>
-                                                <ng-template editMode>
-                                                    <input [formControl]="getControl(index, 'name')" focusable editableOnEnter>
-                                </ng-template>
-                              </editable> -->
-                                        </td>
-                            <td>
-                             <span>jaskhdga</span>
-                            </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="accordian-holder">
+                            <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                                <span class="header-title">
+                                    Network Inputs
+                                </span>
+                                <div class="col"></div>
+                                <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                                <button mat-icon-button (click)="toggleNetworkInputsInfo()">
+                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                </button>
+                            </div>
+                            <div class="accordian-content">
+                                <table class="table" style="margin-bottom: 0px;">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th *ngIf="!showNetworkInputsInfo">Column1</th>
+                                            <th *ngIf="showNetworkInputsInfo">Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let entity of networkInputsList; index as index">
+                                            <td>
+                                                <span class="text-field" style="padding-top:20px;">
+                                                    {{entity.parameter}}</span>
+                                            </td>
+                                            <td *ngIf="!showNetworkInputsInfo" class="max-width-0"
+                                                style="padding: 0px 15px;">
+                                                <div>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Technology'"
+                                                        class="select-container" fxFlex="65">
+                                                        <mat-select disableOptionCentering [(value)]="technology"
+                                                            (selectionChange)="onTechnologyChanged(formControlTechnology)">
+                                                            <mat-option value="5g" selected>5g</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Duplexing'"
+                                                        class="select-container" fxFlex="65">
+                                                        <mat-select disableOptionCentering [(value)]="duplexing">
+                                                            <mat-option value="TDD" selected>TDD</mat-option>
+                                                            <mat-option value="FDD">FDD</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Operating Band (MHz)'"
+                                                        class="select-container" fxFlex="65">
+                                                        <mat-select disableOptionCentering [(value)]="operatingBand">
+                                                            <mat-option value="n38">n38</mat-option>
+                                                            <mat-option value="n41">n41
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <div *ngIf="entity.parameter == 'Center Frequency of Channel (Fc)(GHz)'"
+                                                        class="mt-3 editable-field">
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value')">
+                                                            <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                    </div>
+                                                    <div class="mt-3 editable-field"
+                                                        *ngIf="entity.parameter == 'Channel Bandwidth (MHz)'">
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value')">
+                                                            <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                    </div>
+                                                    <mat-form-field fxFlex="65" class="select-container"
+                                                        *ngIf="entity.parameter == 'Numerology : Subcarrier Spacing'">
+                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing">
+                                                            <mat-option value="On Demand" selected>On Demand
+                                                            </mat-option>
+                                                            <mat-option value="Scheduled">Scheduled</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Node Hardware'"
+                                                        class="select-container" fxFlex="65">
+                                                        <mat-select disableOptionCentering [(value)]="nodeHardware">
+                                                            <mat-option value="Jio - gNB" selected>Jio - gNB
+                                                            </mat-option>
+                                                            <mat-option value="Samsung - gNB">Samsung - gNB</mat-option>
+                                                            <mat-option value="Samsung - ODSC">Samsung - ODSC
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </td>
+                                            <td *ngIf="showNetworkInputsInfo">
+                                                <span>{{entity.info}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="accordian-holder">
+                            <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                                <span class="header-title">
+                                    gNB
+                                </span>
+                                <div class="col"></div>
+                                <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                                <button mat-icon-button (click)="toggleGnbInfo()">
+                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                </button>
+                            </div>
+                            <div class="accordian-content">
+                                <table class="table" style="margin-bottom: 0px;">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th *ngIf="!showGnbInfo">Column1</th>
+                                            <th *ngIf="showGnbInfo">Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let entity of gnbList; index as index"
+                                            [ngClass]="[!entity.editable ? 'non-editable-background': '']">
+                                            <td>
+                                                <span
+                                                    [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
+                                            </td>
+                                            <td class="max-width-0" *ngIf="!showGnbInfo">
+                                                <div class="editable-field" *ngIf="entity.editable">
+                                                    <editCell (update)="updateGnbField(index, 'value')">
+                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input fxFlex="80" class="input-field"
+                                                                [formControl]="getGnbInputControl(index, 'value')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                </div>
+                                                <div *ngIf="!entity.editable">
+                                                    <input readonly fxFlex="40" value="{{entity.value}}"
+                                                        class="intermediate-input-field">
+                                                </div>
+                                            </td>
+                                            <td *ngIf="showGnbInfo">
+                                                <span class="text-field">{{entity.info}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="accordian-holder">
+                            <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                                <span class="header-title">
+                                    User Equipment (UE)
+                                </span>
+                                <div class="col"></div>
+                                <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                                <button mat-icon-button (click)="toggleUserEquipmentInfo()">
+                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                </button>
+                            </div>
+                            <div class="accordian-content">
+                                <table class="table" style="margin-bottom: 0px;">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th *ngIf="!showUserEquipmentInfo">Admin</th>
+                                            <th *ngIf="showUserEquipmentInfo">Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let entity of ueList; index as index"
+                                            [ngClass]="[!entity.editable ? 'non-editable-background': '']">
+                                            <td>
+                                                <span
+                                                    [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
+                                            </td>
+                                            <td class="max-width-0" *ngIf="!showUserEquipmentInfo">
+                                                <div class="editable-field" *ngIf="entity.editable">
+                                                    <editCell (update)="updateGnbField(index, 'value')">
+                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input fxFlex="80" class="input-field"
+                                                                [formControl]="getGnbInputControl(index, 'value')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                </div>
+                                                <div *ngIf="!entity.editable">
+                                                    <input readonly fxFlex="40" value="{{entity.value}}"
+                                                        class="intermediate-input-field">
+                                                </div>
+                                            </td>
+                                            <td *ngIf="showUserEquipmentInfo">
+                                                <span class="text-field">{{entity.info}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="accordian-holder">
+                            <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                                <span class="header-title">
+                                    Environment & Margins
+                                </span>
+                                <div class="col"></div>
+                                <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
+                                <button mat-icon-button (click)="toggleEnviMarInfo()">
+                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                </button>
+                            </div>
+                            <div class="accordian-content">
+                                <table class="table" style="margin-bottom: 0px;">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th *ngIf="!showEnviMarInfo">Admin</th>
+                                            <th *ngIf="showEnviMarInfo">Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="envir-mar-tbody">
+                                        <tr *ngFor="let entity of enviAndMarList; index as index">
+                                            <td>
+                                                <span class="text-field">{{entity.parameter}}</span>
+                                            </td>
+                                            <td class="max-width-0"
+                                                [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']"
+                                                *ngIf="!showEnviMarInfo">
+                                                <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
+                                                    <editCell (update)="updateGnbField(index, 'value')">
+                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input fxFlex="80" class="input-field"
+                                                                [formControl]="getGnbInputControl(index, 'value')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                </div>
+                                                <mat-form-field *ngIf="entity.parameter == 'Clutter Type'"
+                                                    class="select-container" style="min-width: 65px; max-width: 70px;">
+                                                    <mat-select disableOptionCentering [(value)]="clutterType"
+                                                        (selectionChange)="onTechnologyChanged(clutterType)">
+                                                        <mat-option value="DU" selected>DU</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </td>
+                                            <td *ngIf="showEnviMarInfo">
+                                                <span class="text-field">{{entity.info}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="15 Mins. KPI">
-                    asdasdasd
+                <mat-tab label="Summary">
+                    <div class="overflow-auto">
+                        <!-- <div class="accordian-holder"> -->
+                        <mat-card class="mr-1 ml-2 mt-2 mb-2">
+                            <mat-card-header>Schematic View</mat-card-header>
+                        </mat-card>
+
+                        <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0">
+                            <table class="table" style="margin-bottom: 0px; table-layout: fixed;
+                                width: 100%;">
+                                <thead class="summary-table-header">
+                                    <tr>
+                                        <th>Downlink Budget</th>
+                                        <th>UL</th>
+                                        <th>DL</th>
+                                        <th>UI Link Budgey</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="envir-mar-tbody">
+                                    <tr *ngFor="let entity of enviAndMarList; index as index">
+                                        <td>
+                                            <span class="text-field">{{entity.parameter}}</span>
+                                        </td>
+                                        <td class="max-width-0"
+                                            [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']"
+                                            *ngIf="!showEnviMarInfo">
+                                            <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
+                                                <editCell (update)="updateGnbField(index, 'value')">
+                                                    <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                    <ng-template appEditMode>
+                                                        <input fxFlex="80" class="input-field"
+                                                            [formControl]="getGnbInputControl(index, 'value')"
+                                                            appFocusable appEditOnEnter>
+                                                    </ng-template>
+                                                </editCell>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="text-field">{{entity.parameter}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-field">{{entity.parameter}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-card>
+                        <!-- </div> -->
+                    </div>
                 </mat-tab>
             </mat-tab-group>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <div style="min-width: 250px;">
-            <div style="height: 48px; max-height: 48px;" fxLayout="row" fxLayoutAlign="start center">
-                <span> Link Budget Estimation</span>
+        <div [class.opened]="show" class="collapsable-right-holder">
+            <div class="right-accordian-header" fxLayout="row" fxLayoutAlign="start center">
+                <span class="right-holder-title"> Link Budget Estimation</span>
                 <div class="col"></div>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="show = !show">
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
             <mat-divider style="position: inherit;"></mat-divider>
+            <div style="max-height: 423px; height: calc(100% - 48px);">
+                <div class="accordian-holder right-accordian-holder">
+                    <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
+                        <span class="header-title">
+                            Environment & Margins
+                        </span>
+                    </div>
+                    <div class="accordian-content right-accordian-content">
+                        <table class="table mb-0">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>Result</th>
+                                    <th>DL</th>
+                                    <th>UL</th>
+                                </tr>
+                            </thead>
+                            <tbody class="link-budget-estimation-tbody">
+                                <tr *ngFor="let entity of linkBudEstList; index as index">
+                                    <td>
+                                        <span class="text-field">{{entity.parameter}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-field">{{entity.dl}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-field">{{entity.ul}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="height: 56px;" fxLayoutAlign="center center">
+                            <span
+                                style="font-size: 11px; font-family: lato regular; color:#464D69; text-align: center;">
+                                Remarks : Cell Radius is calculated based on propagation Model selected under
+                                <b>Environment
+                                    & Margin</b>
+                            </span>
+                        </div>
+                        <!-- <div> -->
+                        <table class="table mb-0">
+                            <tbody class="od-id-tbody">
+                                <tr *ngFor="let entity of odIdList; index as index">
+                                    <td>
+                                        <span class="od-id-text">{{entity.parameter}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="editable-field">{{entity.dl}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="editable-field">{{entity.ul}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </mat-card-content>
     <!-- <mat-divider></mat-divider> -->
@@ -84,3 +470,16 @@
     </div> -->
     <!-- <mat-divider style="position: relative;"></mat-divider> -->
 </mat-card>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="d-flex">
+    <!-- <button mat-button (click)="onNoClick()" class="mat-cancel">Cancel</button>
+    <button mat-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial
+        style="color: #0070DB;">Submit</button> -->
+    <div class="p-2 my-flex-item">
+        <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
+    </div>
+    <div class="col"></div>
+    <div class="p-2">
+        <button mat-raised-button color="primary" class="">Save As template</button>
+    </div>
+</div>

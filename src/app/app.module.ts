@@ -97,6 +97,9 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
 import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
 import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
+// import { FocusableDirective } from './_directive/focusable.directive';
+// import { EditModeDirective } from './_directive/edit-cell/edit-mode.directive';
+// import { EditOnEnterDirective } from './_directive/edit-cell/edit-on-enter.directive';
 declare var $: any;
 
 @NgModule({
@@ -192,7 +195,7 @@ declare var $: any;
     NgbModule,
     NgxDaterangepickerMd,
     MatFormFieldModule,
-    NgxMatSelectSearchModule,
+    NgxMatSelectSearchModule
     
   ],
   providers: [
