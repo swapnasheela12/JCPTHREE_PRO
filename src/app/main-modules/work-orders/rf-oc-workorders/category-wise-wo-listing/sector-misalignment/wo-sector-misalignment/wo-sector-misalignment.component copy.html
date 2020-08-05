@@ -1,0 +1,40 @@
+<div mat-dialog-content class="wo-sector-container">
+    <mat-card class="wo-sector-card-one">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
+            <div class="col-8 wo-flex-item"></div>
+            <div class="col-4 wo-flex-item d-flex justify-content-end align-items-center">
+                <div class="col-1">
+                    <span class="ic ic-question"></span>
+                </div>
+
+                <div class="col-1">
+                    <span class="ic ic-printer"></span>
+                </div>
+
+                <div class="col-1">
+                    <span class="ic ic-download3"></span>
+                </div>
+
+                <div class="col-1">
+                    <span class="ic ic-search"></span>
+                </div>
+            </div>
+        </div>
+
+        <mat-card-content class="h-100">
+            <div class="d-flex flex-row flex-wrap report-flex-container">
+                <div class="px-3 report-flex-item col-3" *ngFor="let wo of woHeader">
+                    <div class="report-form-field-read">
+                        <div class="report-form-input-title">{{wo.label}}</div>
+                        <div class="report-form-input-value">{{wo.value}}</div>
+
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- <app-ag-grid-tree></app-ag-grid-tree> -->
+    <app-table-ag-grid></app-table-ag-grid>
+
+</div>

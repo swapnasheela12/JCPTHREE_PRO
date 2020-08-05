@@ -1,0 +1,26 @@
+[
+    {
+        "label": "SAP ID",
+        "value": "I-AS-PTRK-ENB-H004"
+    },
+    {
+        "label": "Sector ID:",
+        "value": "1"
+    },
+    {
+        "label": "Band",
+        "value": "2300"
+    },
+    {
+        "label": "Cell Name:",
+        "value": "I-MU-THNE-ENB-0306-15"
+    },
+    {
+        "label": "Antenna Make:",
+        "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
+    },
+    {
+        "label": "Antenna Model:",
+        "value": "4T4R"
+    }
+]
