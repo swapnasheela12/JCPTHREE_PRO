@@ -1,9 +1,5 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
-
-
-import { HttpClient } from "@angular/common/http";
-import { COLUMN_DEFS } from 'src/app/modules/components/column-rendering/column-defs.constant';
-import { AgGridTreeService } from './ag-grid-tree.component.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 
 export class GroupLevel {
   level = 0;
@@ -16,48 +12,27 @@ const COLUMNDEFS = COLUMN_DEFS;
   templateUrl: './ag-grid-tree.component.html',
   styleUrls: ['./ag-grid-tree.component.scss'],
 })
-export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentInit {
-  columnDef: any;
-  columnDefs;
-  // @Input('columnDefs') columnDefs: [];
-  dataSource = [];
-  allData;
-  collapseColumn: boolean = true;
+export class AgGridTreeComponent implements OnInit {
+  columnDef = [];
+  @Input('columnDefs') columnDefs;
+  @Input('rowData') rowData;
   displayedColumns: string[] = [];
-  columnsToDisplay: string[] = [];
   columnObject = {};
-  rowData = [];
   firstHeaderGroup = [];
   groupList: GroupLevel[] = [];
   count = 0;
   icons: { columnGroupClosed: string; columnGroupOpened: string };
 
-  constructor(public data: AgGridTreeService, private httpService: HttpClient) {
-    console.log("tree", data);
-    this.allData = data;
-    this.columnDefs = data.columnDefsServices;
-    this.rowData = data.rowDataServices;
-  }
-
-  ngAfterViewInit() {
-    this.columnDefs = this.allData.columnDefsServices;
-    this.rowData = this.allData.rowDataServices;
-    console.log("ngAfterViewInit", this.allData);
-  }
-
-  ngAfterContentInit() {
-    this.columnDefs = this.allData.columnDefsServices;
-    this.rowData = this.allData.rowDataServices;
-    console.log("ngAfterContentInit", this.allData);
-  }
+  constructor() { }
 
   ngOnInit() {
-    console.log("ngOnInit", this.allData);
-    this.setGroupDetails(1, 'status');
-    this.setFirstHeaders(this.columnDefs);
     this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
+    this.setGroupDetails(1, this.columnDefs[0].field);
+    if (this.columnDefs[0].headerName) {
+      this.columnDefs[0]['cellRenderer'] = getValue;
+    }
+    this.setFirstHeaders(this.columnDefs);
     this.displayedColumns = this.getColumnDisplayArray(this.columnDefs);
-    this.columnDef = [];
     this.columnDefs.forEach(element => {
       if (element['children']) {
         this.columnDef.push({
@@ -75,11 +50,10 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
     };
   }
 
-  // }
-
-  // /**
-  //  * Setter function for Group level
-  //  */
+  /**
+   *
+   * Setter function for Group level
+   */
   setGroupDetails(level: number, field: string) {
     const item = new GroupLevel();
     item.level = level;
@@ -88,6 +62,7 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
+   *
    * returns columnArray with new field element.
    */
 
@@ -110,6 +85,7 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
+   *
    * assigns headerName to the columnDefs
    */
   setFirstHeaders(columnDefs: any) {
@@ -119,8 +95,8 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
-   * assigns headerName with the field
    *
+   * assigns headerName with the field
    */
   getHeaderChildren(columnArray: any) {
     const array = [];
@@ -134,8 +110,8 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
-   * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
    *
+   * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
    */
   onCellClicked(event: any) {
     if (event.colDef.field === this.groupList[0].field) {
@@ -148,8 +124,8 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
-   * Creates row groups corresponding to groupBylevel
    *
+   * Creates row groups corresponding to groupBylevel
    */
   getGroups(
     data: any[],
@@ -210,8 +186,8 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   /**
-   * Ensures whether group should be expanded or collapsed
    *
+   * Ensures whether group should be expanded or collapsed
    */
   onGroupClick(
     row: { children: any; level: number; expand: boolean },
@@ -264,6 +240,7 @@ export class AgGridTreeComponent implements OnInit, AfterViewInit, AfterContentI
 }
 
 /**
+ *
  * Returns material icons corresponding to expand field.
  */
 function getValue(params: any) {
@@ -289,6 +266,7 @@ function getValue(params: any) {
 }
 
 /**
+ *
  * Returns whitespace before icon corresponding to group level.
  */
 function getspace(item: { level: any }) {

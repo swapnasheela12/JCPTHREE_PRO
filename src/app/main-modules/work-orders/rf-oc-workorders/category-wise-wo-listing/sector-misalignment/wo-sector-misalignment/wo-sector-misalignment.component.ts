@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COLUMN_DEFS } from 'src/app/modules/components/column-rendering/column-defs.constant';
-import { AgGridTreeService } from 'src/app/core/components/ag-grid-tree/ag-grid-tree.component.service';
-import { MatSidenav } from '@angular/material/sidenav';
+import { COLUMN_DEFS } from './wo-column-defs.constants'; import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -11,6 +9,7 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 
 const COLUMNDEFS = COLUMN_DEFS;
 @Component({
@@ -35,7 +34,8 @@ export class WoSectorMisalignmentComponent {
   public rowCount: string;
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
-    viewHistoryRendererComponent: viewHistoryRendererComponent
+    viewHistoryRenderer: viewHistoryRendererComponent,
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
@@ -71,7 +71,7 @@ export class WoSectorMisalignmentComponent {
     router.events.subscribe((url: any) => console.log(url));
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
+    //this.createColumnDefs();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -80,14 +80,19 @@ export class WoSectorMisalignmentComponent {
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
-
-        console.log(this.rowData);
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
+        this.columnDefs = COLUMNDEFS;
       });
+    // this.httpClient.get(this.url)
+    //   .subscribe(data => {
+    //     this.rowData = data;
+
+    //     console.log(this.rowData);
+    //     this.datatable.rowDataURLServices = this.url;
+    //     this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+    //     this.datatable.rowDataServices = this.rowData;
+    //     this.datatable.gridOptionsServices = this.gridOptions;
+    //     this.datatable.defaultColDefServices = this.defaultColDef;
+    //   });
   }
 
   getSelection() {
@@ -136,11 +141,12 @@ export class WoSectorMisalignmentComponent {
       {
         headerName: 'Task Completion',
         field: 'taskCompletion',
+        cellRenderer: this.progressTaskFunc,
         width: 150
       },
       {
         headerName: "",
-        cellRenderer: 'viewHistoryRendererComponent',
+        cellRenderer: 'dropDownThreeDotRenderer',
         width: 90
       }
     ];
@@ -214,9 +220,15 @@ export class WoSectorMisalignmentComponent {
   }
 
   progressTaskFunc(params) {
-    var taskcompletion = params.data.perrating;
-    var taskprogress = params.data.ratingnumber;
-    // var taskprogresscolor = params.data.taskColor;
+    var taskcompletion = params.data.taskcompletion;
+    var taskprogress = params.data.taskprogress;
+    // var template1 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
+    //   '<md-progress-linear class="md-primary" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
+    // var template2 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
+    //   '<md-progress-linear class="md-accent" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
+    // var template3 = '<div class="md-two-lines-cell md-two-lines-progress">' + '<div class="values color-54">' + taskprogress + '%' + '</div>' +
+    //   '<md-progress-linear class="md-warn" md-mode="determinate" md-mode="buffer" value="' + taskprogress + '" md-buffer-value="10"' + '</md-progress-linear>' + '</div>';
+
 
     var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
@@ -226,9 +238,11 @@ export class WoSectorMisalignmentComponent {
 
     var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-    if (taskcompletion == "Generated") {
+
+
+    if (taskcompletion == "Completed" || taskcompletion == "Successful") {
       return template1;
-    } else if (taskcompletion == "#5 in Queue") {
+    } else if (taskcompletion == "Pending") {
       return template2;
     } else {
       return template3;
