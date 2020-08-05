@@ -3,7 +3,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { FormControl } from '@angular/forms';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -12,6 +11,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
+import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
@@ -37,7 +37,8 @@ export class SectorMisalignmentComponent {
   public rowCount: string;
   public frameworkComponentsSectorMisalignment = {
     statusFlagRenderer: StatusRendererComponent,
-    viewHistoryRenderer: viewHistoryRendererComponent
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    viewHistroyRenderer: viewHistoryRendererComponent
   };
   public formControlPageCount = new FormControl();
 
@@ -79,7 +80,7 @@ export class SectorMisalignmentComponent {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 210,
+        width: 150,
         pinned: "left"
       },
       {
@@ -136,7 +137,7 @@ export class SectorMisalignmentComponent {
       },
       {
         headerName: "",
-        cellRenderer: 'viewHistoryRenderer',
+        cellRenderer: 'dropDownThreeDotRenderer',
         width: 90,
         pinned: 'right',
         // id: "dot-rendered-rep-local"
@@ -241,6 +242,8 @@ export class SectorMisalignmentComponent {
 
     var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
+
+
     if (taskcompletion == "Generated") {
       return template1;
     } else if (taskcompletion == "#5 in Queue") {
