@@ -58,28 +58,15 @@ export class TableAgGridComponent implements OnInit {
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
-    // data.gridApiServices = this.gridApi;
   }
 
   ngOnInit(): void {
   }
 
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
-
-  // public calculateRowCount() {
-  //  if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
+ 
 
   public onReady(params) {
     this.gridApi = params.api;
-    console.log(this.gridApi, "this.gridApi");
-    // this.calculateRowCount();
     params.api.paginationGoToPage(4);
   }
 
@@ -97,20 +84,10 @@ export class TableAgGridComponent implements OnInit {
 
   onRowSelected(event) {
     console.log(event, "event>>>");
-
-    // if(event.node.selected) {
-    //    this.selectedNodes.push(event.node);
-    // }
   }
 
   onCellClicked(e) {
     console.log(e,"e");
-    
-    // if (e.column.colId === 'col1') {
-    //   // Handle specific cell
-    // } else {
-    //   // Handle all other cells, similar to rowClicked
-    // }
   }
 
 

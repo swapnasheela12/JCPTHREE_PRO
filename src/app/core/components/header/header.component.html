@@ -248,7 +248,8 @@
         </div>
         <div class="col jcp-sub-toolbar-row-right mr-2 p-0">
             <div class="icon-right-list">
-                <div class="ic ic-dots sizeOfIcon" *ngIf="(this.route === '/JCP/Home' || this.route==='/JCP/My-JCP')"></div>
+                <div class="ic ic-dots sizeOfIcon" *ngIf="(this.route === '/JCP/Home' || this.route==='/JCP/My-JCP')">
+                </div>
                 <div class="ic ic-minimize-01 sizeOfIcon" *ngIf="(this.route === '/JCP/Home')"></div>
                 <!-- <div class="fas fa-external-link-alt sizeOfIcon"></div> -->
                 <div class="ic ic-close-01 sizeOfIcon" *ngIf="(this.route === '/JCP/Home')"></div>
@@ -260,7 +261,19 @@
         </div>
         <div class="col jcp-sub-toolbar-row-right mr-4 p-0" *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment')">
             <div class="icon-right-list">
-                Icons Heres
+                <div class="ic ic-dots sizeOfIcon" [matMenuTriggerFor]="menuListCommon"></div>
+                <mat-menu #menuListCommon="matMenu" class="aggridMenuPanelRender">
+                    <button mat-menu-item>
+                        <div class="pr-3 fas fa-trash-alt"></div>
+                        <span>Delete</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <div class="pr-3 fas fa-download"></div>
+                        <span>Download</span>
+                    </button>
+                </mat-menu>
+                <div class="ic ic-close-01 sizeOfIcon"></div>
+
             </div>
         </div>
         <div class="col jcp-sub-toolbar-row-right mr-4 p-0" *ngIf="(this.route === '/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell')">
