@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
+import { HttpClient } from '@angular/common/http';
 
 export class GroupLevel {
   level = 0;
@@ -13,26 +14,62 @@ const COLUMNDEFS = COLUMN_DEFS;
   styleUrls: ['./ag-grid-tree.component.scss'],
 })
 export class AgGridTreeComponent implements OnInit {
-  columnDef = [];
   @Input('columnDefs') columnDefs;
   @Input('rowData') rowData;
+  columnDef: any;
+  //columnDefs = COLUMNDEFS;
+  // @Input('columnDefs') columnDefs: [];
+
+  dataSource = [];
+  allData = [];
+  collapseColumn: boolean = true;
   displayedColumns: string[] = [];
+  columnsToDisplay: string[] = [];
   columnObject = {};
+  //rowData = [];
   firstHeaderGroup = [];
   groupList: GroupLevel[] = [];
   count = 0;
   icons: { columnGroupClosed: string; columnGroupOpened: string };
+  // columnDefs2: ({ headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer: (params: any) => string; } | { headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer?: undefined; })[];
 
-  constructor() { }
+  constructor(private httpService: HttpClient) {
+    // this.setGroupDetails(1, 'zone');
+    // this.setGroupDetails(2, 'circle');
+    // this.setGroupDetails(3, 'jiocenter');
+  }
 
-  ngOnInit() {
-    this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
+  ngOnChanges() {
+    console.log(this.rowData);
+    console.log(this.columnDefs);
+    console.log("this.columnDefs[0].headerName", this.columnDefs[0].field);
+
     this.setGroupDetails(1, this.columnDefs[0].field);
     if (this.columnDefs[0].headerName) {
       this.columnDefs[0]['cellRenderer'] = getValue;
     }
+    this.columnsToDisplay = [
+      'vendor',
+      'backhaultotal',
+      'datacentertotal',
+      'internettotal',
+      'l2total',
+      'datacommunicationtotal'
+    ];
     this.setFirstHeaders(this.columnDefs);
+
+    // this.httpService
+    //   .get('assets/data/report/sector-misalignment/wo-sector-misalignment.json')
+    //   .subscribe((data: any[]) => {
+    //     this.allData = JSON.parse(JSON.stringify(data));
+    //     this.rowData = data;
+
+    //   });
+    this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
+
+
     this.displayedColumns = this.getColumnDisplayArray(this.columnDefs);
+    this.columnDef = [];
     this.columnDefs.forEach(element => {
       if (element['children']) {
         this.columnDef.push({
@@ -48,11 +85,19 @@ export class AgGridTreeComponent implements OnInit {
       columnGroupClosed: '<i class="material-icons">add_circle_outline</i>',
       columnGroupOpened: '<i class="material-icons">remove_circle_outline</i>'
     };
+
+  }
+
+  ngOnInit() {
+
   }
 
   /**
    *
    * Setter function for Group level
+   *
+   * @author Gayatri Ganesh
+   *
    */
   setGroupDetails(level: number, field: string) {
     const item = new GroupLevel();
@@ -64,6 +109,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * returns columnArray with new field element.
+   *
+   * @author Prabhudeen Gautam
+   *
    */
 
   getColumnDisplayArray(columnDefs) {
@@ -87,6 +135,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * assigns headerName to the columnDefs
+   *
+   * @author Prabhudeen Gautam
+   *
    */
   setFirstHeaders(columnDefs: any) {
     this.firstHeaderGroup = columnDefs.map((element: { [x: string]: any }) => {
@@ -97,6 +148,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * assigns headerName with the field
+   *
+   * @author Prabhudeen Gautam
+   *
    */
   getHeaderChildren(columnArray: any) {
     const array = [];
@@ -112,6 +166,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
+   *
+   * @author Gayatri Ganesh
+   *
    */
   onCellClicked(event: any) {
     if (event.colDef.field === this.groupList[0].field) {
@@ -126,6 +183,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * Creates row groups corresponding to groupBylevel
+   *
+   * @author Gayatri Ganesh
+   *
    */
   getGroups(
     data: any[],
@@ -188,6 +248,9 @@ export class AgGridTreeComponent implements OnInit {
   /**
    *
    * Ensures whether group should be expanded or collapsed
+   *
+   * @author Gayatri Ganesh
+   *
    */
   onGroupClick(
     row: { children: any; level: number; expand: boolean },
@@ -242,6 +305,9 @@ export class AgGridTreeComponent implements OnInit {
 /**
  *
  * Returns material icons corresponding to expand field.
+ *
+ * @author Gayatri Ganesh
+ *
  */
 function getValue(params: any) {
   if (params['data'].expand === false) {
@@ -268,6 +334,9 @@ function getValue(params: any) {
 /**
  *
  * Returns whitespace before icon corresponding to group level.
+ *
+ * @author Gayatri Ganesh
+ *
  */
 function getspace(item: { level: any }) {
   const level = item.level;

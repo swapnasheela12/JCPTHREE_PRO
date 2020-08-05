@@ -137,7 +137,7 @@ export class SectorMisalignmentComponent {
       },
       {
         headerName: "",
-        cellRenderer: 'dropDownThreeDotRenderer',
+        cellRenderer: 'viewHistroyRenderer',
         width: 90,
         pinned: 'right',
         // id: "dot-rendered-rep-local"
@@ -251,6 +251,13 @@ export class SectorMisalignmentComponent {
     } else {
       return template3;
     }
+  }
+
+  cellClickedDetails(evt) {
+    if (evt) {
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
+    }
+
   }
 
 }

@@ -5,9 +5,11 @@ import { DataSharHttpService } from './../../../modules/components/data-shar-htt
 import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { TableAgGridService } from './table-ag-grid.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
+
 
 @Component({
   selector: 'app-table-ag-grid',
@@ -25,14 +27,15 @@ export class TableAgGridComponent implements OnInit {
   typeOfAgGridTable;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    viewHistroyRenderer: viewHistoryRendererComponent
   };
-
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
 
   sidenavBarStatus;
   showGlobalOperation;
+  @Output() cellClicked = new EventEmitter()
 
   constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient,) {
     console.log(data, "data");
@@ -63,7 +66,7 @@ export class TableAgGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
+
 
   public onReady(params) {
     this.gridApi = params.api;
@@ -83,12 +86,16 @@ export class TableAgGridComponent implements OnInit {
   }
 
   onRowSelected(event) {
-    console.log(event, "event>>>");
+    console.log(event, " row clicked event>>>");
   }
 
-  onCellClicked(e) {
-    console.log(e,"e");
+  onCellClicked(event) {
+    console.log(event, "e");
+    this.cellClicked.emit(event);
   }
 
+  onRowClicked(event) {
+    console.log(event, " row clicked event>>>");
 
+  }
 }
