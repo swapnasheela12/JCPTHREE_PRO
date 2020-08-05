@@ -315,7 +315,7 @@ function getValue(params: any) {
   if (params['data'].expand === false) {
     return (
       getspace(params.data) +
-      '<span><i class="material-icons">add_circle_outline</i>' +
+      '<span><i class="fas fa-plus-square"></i>' +
       '&nbsp;' +
       params.value +
       '</span>'
@@ -323,7 +323,7 @@ function getValue(params: any) {
   } else if (params['data'].expand === true) {
     return (
       getspace(params.data) +
-      '<span><i class="material-icons">remove_circle_outline</i>' +
+      '<span><i class="fas fa-minus-square"></i>' +
       '&nbsp;' +
       params.value +
       '</span>'
