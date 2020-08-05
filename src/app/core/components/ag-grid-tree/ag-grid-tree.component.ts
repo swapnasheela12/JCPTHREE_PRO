@@ -40,36 +40,13 @@ export class AgGridTreeComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(this.rowData);
-    console.log(this.columnDefs);
-    // console.log("this.columnDefs[0].headerName", this.columnDefs[0].field);
     if (this.columnDefs) {
       this.setGroupDetails(1, this.columnDefs[0].field);
       if (this.columnDefs[0].headerName) {
         this.columnDefs[0]['cellRenderer'] = getValue;
       }
-
-
-      this.columnsToDisplay = [
-        'vendor',
-        'backhaultotal',
-        'datacentertotal',
-        'internettotal',
-        'l2total',
-        'datacommunicationtotal'
-      ];
       this.setFirstHeaders(this.columnDefs);
-
-      // this.httpService
-      //   .get('assets/data/report/sector-misalignment/wo-sector-misalignment.json')
-      //   .subscribe((data: any[]) => {
-      //     this.allData = JSON.parse(JSON.stringify(data));
-      //     this.rowData = data;
-
-      //   });
       this.getGroups(this.rowData, this.groupList[this.count], null, 'root');
-
-
       this.displayedColumns = this.getColumnDisplayArray(this.columnDefs);
       this.columnDef = [];
       this.columnDefs.forEach(element => {
