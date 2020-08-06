@@ -1,10 +1,10 @@
 export const COLUMN_DEFS = [
     {
-        headerName: "Grouplist",
+        headerName: " ",
         field: "grouplist",
         // rowGroup: true,
         pinned: 'left',
-        width: 150,
+        width: 90,
     },
     {
         headerName: 'Status',

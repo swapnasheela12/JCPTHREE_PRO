@@ -294,7 +294,7 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i class="fas fa-plus-square"></i>' +
       '&nbsp;' +
-      params.value +
+      // params.value +
       '</span>'
     );
   } else if (params['data'].expand === true) {
@@ -302,11 +302,11 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i class="fas fa-minus-square"></i>' +
       '&nbsp;' +
-      params.value +
+      // params.value +
       '</span>'
     );
   } else {
-    return getspace(params.data) + params.value;
+    // return getspace(params.data) + params.value;
   }
 }
 
