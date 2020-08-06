@@ -73,8 +73,10 @@ export class WoSectorMisalignmentComponent {
   }
 
   cellClickedDetails(evt) {
+    console.log(evt,"evt?????");
+    
     if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
     }
 
   }

@@ -151,11 +151,11 @@ export class AgGridTreeComponent implements OnInit {
   // onCellClicked(event) {
   //   console.log(event, "e");
   //   if (event.colDef.headerName == " ") {
-     
+
   //   }else{
   //     this.cellClicked.emit(event);
   //   }
-    
+
   // }
 
   /**
@@ -168,12 +168,24 @@ export class AgGridTreeComponent implements OnInit {
   onCellClicked(row: any) {
     console.log(row, "e");
     // if (row.event.target.localName == 'i' || row.event.ctrlKey == true) return false;
+
     if (row.colDef.field === this.groupList[0].field) {
       if (row.data.expand === false) {
         this.onGroupClick(row.data, row.rowIndex, 'expand');
-        // if (row.event.target.localName == 'i' || row.event.ctrlKey == true) return false;
-        // if (event.colDef.headerName =! " ") {
+
+        if (row.data.level == 2) {
+          console.log("we need to go");
+          
+          // console.log(this.cellClicked.emit(row));
+          // this.cellClicked.emit(row)
+          // if (row.event.target.localName == 'i' || row.event.ctrlKey == true) return false;
           this.cellClicked.emit(row);
+        } 
+        else{
+          console.log("we need to not");
+        }
+        // else {
+        //   this.cellClicked.emit(row);
         // }
       } else if (row.data.expand === true) {
         this.onGroupClick(row.data, row.rowIndex, 'collapse');
@@ -308,7 +320,7 @@ export class AgGridTreeComponent implements OnInit {
     }
   }
 
- 
+
 
 
 
