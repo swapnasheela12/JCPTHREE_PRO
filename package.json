@@ -71,7 +71,7 @@
         "ngx-leaflet-fullscreen": "^1.0.2",
         "ngx-mat-select-search": "^3.0.0",
         "ngx-perfect-scrollbar": "^9.0.0",
-        "ngx-take-until-destroy": "^5.4.0",
+        "ngx-take-until-destroy": "^5.4.0", 
         "popper.js": "^1.16.1",
         "rxjs": "~6.5.5",
         "save": "^2.4.0",
