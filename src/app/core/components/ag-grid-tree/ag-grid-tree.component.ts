@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,6 +20,10 @@ export class AgGridTreeComponent implements OnInit {
   columnDef: any;
   //columnDefs = COLUMNDEFS;
   // @Input('columnDefs') columnDefs: [];
+
+  public frameworkComponentsList = {
+    viewHistroyRenderer: viewHistoryRendererComponent
+  };
 
   dataSource = [];
   allData = [];
@@ -142,6 +147,17 @@ export class AgGridTreeComponent implements OnInit {
     return array;
   }
 
+  @Output() cellClicked = new EventEmitter();
+  // onCellClicked(event) {
+  //   console.log(event, "e");
+  //   if (event.colDef.headerName == " ") {
+     
+  //   }else{
+  //     this.cellClicked.emit(event);
+  //   }
+    
+  // }
+
   /**
    *
    * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
@@ -149,12 +165,17 @@ export class AgGridTreeComponent implements OnInit {
    * @author Gayatri Ganesh
    *
    */
-  onCellClicked(event: any) {
-    if (event.colDef.field === this.groupList[0].field) {
-      if (event.data.expand === false) {
-        this.onGroupClick(event.data, event.rowIndex, 'expand');
-      } else if (event.data.expand === true) {
-        this.onGroupClick(event.data, event.rowIndex, 'collapse');
+  onCellClicked(row: any) {
+   
+    if (row.colDef.field === this.groupList[0].field) {
+      if (row.data.expand === false) {
+        this.onGroupClick(row.data, row.rowIndex, 'expand');
+      } else if (row.data.expand === true) {
+        this.onGroupClick(row.data, row.rowIndex, 'collapse');
+      }
+    }else{
+      if (row.data.level >= 2) {
+        this.cellClicked.emit(row);
       }
     }
   }
@@ -196,7 +217,13 @@ export class AgGridTreeComponent implements OnInit {
         parameter.vendor = parameter.vendor + i.toString();
         for (const index in parameter) {
           if (parameter.hasOwnProperty(index)) {
-            if (!isNaN(parseInt(parameter[index]))) {
+            // if (!isNaN(parseInt(parameter[index]))) {
+            //   if (obj[index] === undefined) {
+            //     obj[index] = 0;
+            //   }
+            //   obj[index] = obj[index] + parseInt(parameter[index]);
+            // }
+            if (!isNaN(parameter[index]) && parseInt(parameter[index])) {
               if (obj[index] === undefined) {
                 obj[index] = 0;
               }
@@ -279,6 +306,12 @@ export class AgGridTreeComponent implements OnInit {
         break;
     }
   }
+
+ 
+
+
+
+
 }
 
 /**
@@ -294,7 +327,7 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i class="fas fa-plus-square"></i>' +
       '&nbsp;' +
-      params.value +
+      // params.value +
       '</span>'
     );
   } else if (params['data'].expand === true) {
@@ -302,11 +335,11 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i class="fas fa-minus-square"></i>' +
       '&nbsp;' +
-      params.value +
+      // params.value +
       '</span>'
     );
   } else {
-    return getspace(params.data) + params.value;
+    // return getspace(params.data) + params.value;
   }
 }
 
