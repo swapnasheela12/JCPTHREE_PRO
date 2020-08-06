@@ -28,27 +28,27 @@ export const COLUMN_DEFS = [
                 status + '</div></div>';
         },
         pinned: 'left',
-        width: 150
+        width: 130
     },
     {
         headerName: 'Task Id',
         field: 'taskid',
-        width: 150
+        width: 180
     },
     {
         headerName: 'Task Category',
         field: 'taskcategory',
-        width: 150
+        width: 210
     },
     {
         headerName: 'Priority',
-        field: 'Priority',
-        width: 150
+        field: 'priority',
+        width: 110
     },
     {
         headerName: 'Due Date',
         field: 'duedate',
-        width: 150
+        width: 140
     },
     {
         headerName: 'Assigned To',
@@ -56,44 +56,44 @@ export const COLUMN_DEFS = [
         cellRenderer: function (params) {
             var assignedbyname = params.data.assignedtoname;
             var assignedby = params.data.assignedby;
-            if (assignedbyname == "Pending") {
-                return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div></div>';
-            } else {
+            // if (assignedbyname) {
+            //     return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div></div>';
+            // } else {
                 return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div><div class="values color-54">' + assignedby + '</div></div>';
-            }
+            // }
         },
         width: 150
     },
     {
         headerName: 'last Modified',
         field: 'lastmodified',
-        width: 150
+        width: 140
     },
     {
         headerName: 'Task Completion',
         field: 'taskCompletion',
         cellRenderer: function (params) {
-            var taskcompletion = params.data.progressby;
+           var taskcompletion = params.data.taskcompletion;
             var taskprogress = params.data.progressbar;
             // var taskprogresscolor = params.data.taskColor;
 
-            var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+            var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
                 ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
 
-            var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-                ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
+            var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
+                ' <div class="progress"> <div class="progress-bar bg-in-progress" style="width:' + taskprogress + '%"></div> </div></div>';
 
-            var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+            var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
                 ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-            if (taskcompletion == "Generated") {
+            if (taskcompletion == "Successful") {
                 return template1;
-            } else if (taskcompletion == "#5 in Queue") {
+            } else if (taskcompletion == "In Progress") {
                 return template2;
             } else {
                 return template3;
             }
         },
-        width: 150
+        width: 170
     }, {
         headerName: "",
         cellRenderer: 'viewHistroyRenderer',

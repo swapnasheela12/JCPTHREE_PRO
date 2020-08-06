@@ -1,5 +1,5 @@
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { HttpClient } from '@angular/common/http';
 
@@ -147,6 +147,17 @@ export class AgGridTreeComponent implements OnInit {
     return array;
   }
 
+  @Output() cellClicked = new EventEmitter();
+  // onCellClicked(event) {
+  //   console.log(event, "e");
+  //   if (event.colDef.headerName == " ") {
+     
+  //   }else{
+  //     this.cellClicked.emit(event);
+  //   }
+    
+  // }
+
   /**
    *
    * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
@@ -154,12 +165,18 @@ export class AgGridTreeComponent implements OnInit {
    * @author Gayatri Ganesh
    *
    */
-  onCellClicked(event: any) {
-    if (event.colDef.field === this.groupList[0].field) {
-      if (event.data.expand === false) {
-        this.onGroupClick(event.data, event.rowIndex, 'expand');
-      } else if (event.data.expand === true) {
-        this.onGroupClick(event.data, event.rowIndex, 'collapse');
+  onCellClicked(row: any) {
+    console.log(row, "e");
+    // if (row.event.target.localName == 'i' || row.event.ctrlKey == true) return false;
+    if (row.colDef.field === this.groupList[0].field) {
+      if (row.data.expand === false) {
+        this.onGroupClick(row.data, row.rowIndex, 'expand');
+        // if (row.event.target.localName == 'i' || row.event.ctrlKey == true) return false;
+        // if (event.colDef.headerName =! " ") {
+          this.cellClicked.emit(row);
+        // }
+      } else if (row.data.expand === true) {
+        this.onGroupClick(row.data, row.rowIndex, 'collapse');
       }
     }
   }
@@ -290,6 +307,12 @@ export class AgGridTreeComponent implements OnInit {
         break;
     }
   }
+
+ 
+
+
+
+
 }
 
 /**
