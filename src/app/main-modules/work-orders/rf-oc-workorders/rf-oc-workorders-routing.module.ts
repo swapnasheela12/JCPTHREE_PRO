@@ -4,6 +4,8 @@ import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-m
 import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
 import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
+import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
+import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 
 
 const routes: Routes = [
@@ -34,7 +36,23 @@ const routes: Routes = [
       },
       {
         path: "Overshooting-Cell",
-        component: OvershootingCellComponent
+        children: [
+          {
+            path: '',
+            component: OvershootingCellComponent,
+          },
+          {
+            path: 'Overshooting-Exe-Task',
+          component: OvershootingExeTaskComponent
+
+          },
+          {
+            path: 'Ian-Lead',
+          component: IanLeadComponent
+
+          }
+        ]
+       
       },
     ]
   },

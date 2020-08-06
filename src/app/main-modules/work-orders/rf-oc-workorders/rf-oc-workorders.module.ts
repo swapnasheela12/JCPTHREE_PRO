@@ -56,13 +56,20 @@ import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-m
 import { CoreModule } from '../../../core/core.module';
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
 import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
+import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
+import { SelectDropdownComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/select-dropdown/select-dropdown.component';
+import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/textfield/textfield.component';
+import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
 
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
-    // OvershootingCellComponent,
+     OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
+    SelectDropdownComponent,
+    TextfieldComponent,
+    DeletebuttonComponent,
 
   ],
   imports: [

@@ -139,13 +139,8 @@ getSelection() {
         headerName: "SLA Violation",
         field: "slaviolation",
         width: 135,
-      },
-      {
-        headerName: "Task Completion",
-        cellRenderer: this.progressTaskFunc,
-        width: 180,
-        pinned: 'right'
       }
+     
      
     ];
     this.datatable.columnDefsServices = this.columnDefs;
@@ -232,27 +227,33 @@ getSelection() {
   }
 
   progressTaskFunc(params) {
-    var taskcompletion = params.data.perrating;
-    var taskprogress = params.data.ratingnumber;
-     var taskprogresscolor = params.data.taskColor;
+    var taskcompletion = params.data.taskcompletion;
+    var taskprogress = params.data.taskprogress;
+    var ratingnumber = params.data.ratingnumber;
+    // var taskprogresscolor = params.data.taskColor;
 
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
 
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
 
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-
-
-    if (taskcompletion == "Generated") {
+    if (taskcompletion === "Completed" || taskcompletion === "Successful") {
       return template1;
-    } else if (taskcompletion == "#5 in Queue") {
+    } else if (taskcompletion === "Pending") {
       return template2;
     } else {
       return template3;
     }
+  }
+
+  cellClickedDetails(evt) {
+    if (evt.value) {
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
+    }
+
   }
 
 }
