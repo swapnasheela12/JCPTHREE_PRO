@@ -14,9 +14,10 @@ $color-white: #ffffff;
     .overshooting-flex-container {
         color: #000000;
         background:#ffffff;
-        height: 80px !important;
+        height: 64px !important;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+        border-bottom: 1px solid #e2e2e2;
         .overshooting-flex-item {
             font-size: 14px;
             .overshooting-title {
