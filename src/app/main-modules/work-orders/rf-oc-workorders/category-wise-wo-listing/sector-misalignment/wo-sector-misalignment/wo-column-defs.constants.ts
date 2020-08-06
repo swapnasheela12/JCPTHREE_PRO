@@ -36,15 +36,11 @@ export const COLUMN_DEFS = [
         width: 180
     },
     {
-        headerName: 'Task Category',
-        field: 'taskcategory',
-        width: 210
+        headerName: 'Task',
+        field: 'taskid',
+        width: 180
     },
-    {
-        headerName: 'Priority',
-        field: 'priority',
-        width: 110
-    },
+   
     {
         headerName: 'Due Date',
         field: 'duedate',
@@ -52,9 +48,9 @@ export const COLUMN_DEFS = [
     },
     {
         headerName: 'Assigned To',
-        field: 'assignedtoname',
+        field: 'assignedto',
         cellRenderer: function (params) {
-            var assignedbyname = params.data.assignedtoname;
+            var assignedbyname = params.data.assignedto;
             var assignedby = params.data.assignedby;
             // if (assignedbyname) {
             //     return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div></div>';
@@ -65,7 +61,7 @@ export const COLUMN_DEFS = [
         width: 150
     },
     {
-        headerName: 'last Modified',
+        headerName: 'last Modified Date',
         field: 'lastmodified',
         width: 140
     },

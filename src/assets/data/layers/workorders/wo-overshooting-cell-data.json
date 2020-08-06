@@ -1,47 +1,41 @@
 [{
 
     "grouplist": "In Progress",
-    "status": "In Progress",
-    "taskcompletion": "In Progress",
-    "taskcategory": "OvershootingCell Execution Task - IAN Lead",
-    "name": "Execution Task - IAN Lead",
+    "status": "In Progress",    
+    "taskid": "0015_2300_7_T01",
+    "task": "Cell Name I-MU-THNE-ENB-0306-15",
     "duedate": "28 Jul, 2017",
-    "priority": "Critical",
-    "assignedtoname": "Me",
+    "assignedto": "Me",
     "assignedby": "IAN Lead",
     "lastmodified": "28 Jun, 2017",
     "progressby": "In Progress",
-    "progressbar": 25,
-    "taskid": "0015_2300_7_T01"
+    "progressbar": 25
+   
 },
 {
     "grouplist": "In Progress",
-    "status": "started",
-    "taskcompletion": "In Progress",
-    "taskcategory": "OvershootingCell Execution Task - IAN Lead",
-    "name": "Execution Validation - RF OC L2",
+    "status": "In Progress",    
+    "taskid": "0015_2300_7_T01",
+    "task": "Cell Name I-MU-THNE-ENB-0306-15",
     "duedate": "28 Jul, 2017",
-    "priority": "",
-    "assignedtoname": "Me",
-    "assignedby": "RF OC L2 Engineer",
+    "assignedto": "Me",
+    "assignedby": "IAN Lead",
     "lastmodified": "28 Jun, 2017",
     "progressby": "In Progress",
-    "progressbar": 50,
-    "taskid": "0015_2300_7_T01"
+    "progressbar": 25
+   
 },
 {
-    "grouplist": "Successful",
-    "status": "Successful",
-    "taskcompletion": "Successful",
-    "taskcategory": "OvershootingCell Execution Task - IAN Lead",
-    "name": "Implementation & Database Validation",
+    "grouplist": "In Progress",
+    "status": "In Progress",    
+    "taskid": "0015_2300_7_T01",
+    "task": "Cell Name I-MU-THNE-ENB-0306-15",
     "duedate": "28 Jul, 2017",
-    "priority": "",
-    "assignedtoname": "Me",
-    "assignedby": "RF OC L2 Engineer",
+    "assignedto": "Me",
+    "assignedby": "IAN Lead",
     "lastmodified": "28 Jun, 2017",
-    "progressby": "Generated",
-    "progressbar": 100,
-    "taskid": "0015_2300_7_T01"
+    "progressby": "In Progress",
+    "progressbar": 25
+   
 }
 ]
