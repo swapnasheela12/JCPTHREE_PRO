@@ -1,0 +1,139 @@
+ .card-header{
+        .card-title{
+            font-family: lato medium;;
+            color: black;
+        }
+    }
+    .card-content{
+        height: calc(100% - 68px);
+        .mat-tab-label-active{
+            background-color: #E5F0FC;
+        }
+        .mat-tab-group-dynamic-height .mat-tab-body-content{
+            overflow-y: auto !important;
+        }
+        .accordian-holder{
+            font-family: lato medium;
+            margin:10px 2px 10px 10px;
+            border-radius:3px;
+            box-shadow: 0px 0px 2px 1px #dbdbdb;
+            &.right-accordian-holder{
+                margin:10px 10px 10px 10px;
+                max-width: 340px;
+                height: calc(100% - 17px);
+            }
+            .accordian-header{
+                height: 44px;
+                .header-title{
+                    margin-left: 10px; 
+                    color: #464D69; 
+                    font-family: lato bold;
+                    font-size: 15px;
+                }
+            }
+            .accordian-content{
+                font-size: 13px;
+                &.right-accordian-content{
+                    overflow: auto;
+                    height: calc(100% - 44px);
+                }
+                .table-header{
+                    background-color: #f2f2f2;
+                    font-size: 14px;
+                }
+                .envir-mar-tbody tr:first-child{
+                    td:first-child{
+                    padding-top: 15px;
+                    }
+                }
+                .link-budget-estimation-tbody tr:nth-child(even){
+                    background-color: #f2f2f2;
+                }
+                .od-id-tbody{
+                    tr{
+                        border-top: 1px solid #f2f2f2;
+                        background: #eff7fd;
+                        .od-id-text{
+                            color:#0078D7 ;
+                        }
+                    }
+                }
+                td {
+                    border: none;
+                    &.max-width-0{
+                    max-width: 0px;
+                    }
+                    .text-field{
+                        color:  #464D69;
+                    }
+                    .intermediate-text-field{
+                        color:#464D69;
+                        font-family: lato bold;
+                        font-size: 14px;
+                    }
+                    .intermediate-input-field{
+                        background-color: transparent;
+                        border: none; 
+                        color:#464D69;
+                        font-family: lato bold;
+                        font-size: 14px;
+                    }
+                    .editable-field{
+                        color: #006CD4;
+                        font-family: lato bold;
+                        max-width: 50%;
+                        editCell{
+                            // display: inline !important;
+                            .input-field{
+                                border: none;
+                                height: 30px;
+                                background-color: #f2f2f2;
+                                border-radius: 4px;
+                                padding-left: 8px;
+                                color: #006CD4;
+                            }
+                        }
+                    }
+                    .select-container{
+                        height: 30px;
+                        .mat-select-value{
+                            color: #006CD4;
+                            font-family: lato bold;
+                        }
+                        .mat-form-field-underline{
+                            height: 0px;
+                        }
+                        .mat-select-arrow{
+                            color: black;
+                        }
+                    }
+                }
+
+                    .non-editable-background{
+                        background-color: #eff7fd;
+                        border-bottom: 2px solid white;
+                    }
+            }
+        }
+        .collapsable-right-holder {
+            max-width: 0px;
+            overflow-y: hidden;
+            transition: ease-in-out 400ms max-width;
+            .right-accordian-header{
+                height: 48px; max-height: 48px; min-width: 330px;
+                .right-holder-title{
+                    margin-left: 10px;
+                    color: #464D69;
+                    font-family: lato bold;
+                    font-size: 15px;
+                }
+            }
+        }
+        .collapsable-right-holder.opened {
+            max-width: 100%;
+            transition: ease-in-out 600ms max-width;
+        }
+    }  
+// .mat-form-field-infix{
+//     border: none;
+// }

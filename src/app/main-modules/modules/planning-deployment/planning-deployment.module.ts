@@ -54,13 +54,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { LinkBudgetComponent } from './link-budget/link-budget.component';
+import { EditCellComponent } from './../../../_directive/edit-cell/edit-cell.component';
+import { ViewModeDirective } from './../../../_directive/edit-cell/view-mode.directive';
+import { EditModeDirective } from './../../../_directive/edit-cell/edit-mode.directive';
+import { FocusableDirective } from './../../../_directive/focusable.directive';
+import { EditOnEnterDirective } from './../../../_directive/edit-cell/edit-on-enter.directive';
+// import { FocusableDirective } from './_directive/focusable.directive';
+// import { EditModeDirective } from './_directive/edit-cell/edit-mode.directive';
+// import { EditOnEnterDirective } from './_directive/edit-cell/edit-on-enter.directive';
 @NgModule({
-  declarations: [EnbscComponent, LinkBudgetComponent],
+  declarations: [EnbscComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
-    
-
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -114,6 +120,7 @@ import { LinkBudgetComponent } from './link-budget/link-budget.component';
     ScrollingModule,
     NgxMatSelectSearchModule
   ],
+  providers: [],
   exports: [EnbscComponent]
 })
 export class PlanningDeploymentModule { }
