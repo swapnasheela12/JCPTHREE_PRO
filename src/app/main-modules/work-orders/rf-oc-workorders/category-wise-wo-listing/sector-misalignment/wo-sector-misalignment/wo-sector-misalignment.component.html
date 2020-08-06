@@ -46,8 +46,10 @@
             </div>
         </mat-card-content>
     </mat-card>
+    <div class="jcp-table-container">
+        <app-ag-grid-tree [columnDefs]="columnDefs" [rowData]="rowData"></app-ag-grid-tree>
+    </div>
 
-    <app-ag-grid-tree [columnDefs]="columnDefs" [rowData]="rowData"></app-ag-grid-tree>
     <!-- <app-ag-grid-tree></app-ag-grid-tree> -->
     <!-- <app-table-ag-grid></app-table-ag-grid> -->
 

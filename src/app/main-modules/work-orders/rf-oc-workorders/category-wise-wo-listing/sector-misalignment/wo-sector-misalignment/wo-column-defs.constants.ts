@@ -4,7 +4,7 @@ export const COLUMN_DEFS = [
         field: "grouplist",
         // rowGroup: true,
         pinned: 'left',
-        width: 90,
+        width: 70,
     },
     {
         headerName: 'Status',
@@ -33,31 +33,26 @@ export const COLUMN_DEFS = [
     {
         headerName: 'Task Id',
         field: 'taskid',
-        pinned: 'left',
         width: 150
     },
     {
         headerName: 'Task Category',
         field: 'taskcategory',
-        pinned: 'left',
         width: 150
     },
     {
         headerName: 'Priority',
         field: 'Priority',
-        pinned: 'left',
         width: 150
     },
     {
         headerName: 'Due Date',
         field: 'duedate',
-        pinned: 'left',
         width: 150
     },
     {
         headerName: 'Assigned To',
         field: 'assignedtoname',
-        pinned: 'left',
         cellRenderer: function (params) {
             var assignedbyname = params.data.assignedtoname;
             var assignedby = params.data.assignedby;
@@ -72,13 +67,11 @@ export const COLUMN_DEFS = [
     {
         headerName: 'last Modified',
         field: 'lastmodified',
-        pinned: 'left',
         width: 150
     },
     {
         headerName: 'Task Completion',
         field: 'taskCompletion',
-        pinned: 'left',
         cellRenderer: function (params) {
             var taskcompletion = params.data.progressby;
             var taskprogress = params.data.progressbar;
@@ -103,8 +96,9 @@ export const COLUMN_DEFS = [
         width: 150
     }, {
         headerName: "",
-        cellRenderer: 'buttonRenderer',
-        width: 140
+        cellRenderer: 'viewHistroyRenderer',
+        pinned: 'right',
+        width: 90
     }
 
 ];

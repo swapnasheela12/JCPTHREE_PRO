@@ -1,3 +1,4 @@
+import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +20,10 @@ export class AgGridTreeComponent implements OnInit {
   columnDef: any;
   //columnDefs = COLUMNDEFS;
   // @Input('columnDefs') columnDefs: [];
+
+  public frameworkComponentsList = {
+    viewHistroyRenderer: viewHistoryRendererComponent
+  };
 
   dataSource = [];
   allData = [];
@@ -196,7 +201,13 @@ export class AgGridTreeComponent implements OnInit {
         parameter.vendor = parameter.vendor + i.toString();
         for (const index in parameter) {
           if (parameter.hasOwnProperty(index)) {
-            if (!isNaN(parseInt(parameter[index]))) {
+            // if (!isNaN(parseInt(parameter[index]))) {
+            //   if (obj[index] === undefined) {
+            //     obj[index] = 0;
+            //   }
+            //   obj[index] = obj[index] + parseInt(parameter[index]);
+            // }
+            if (!isNaN(parameter[index]) && parseInt(parameter[index])) {
               if (obj[index] === undefined) {
                 obj[index] = 0;
               }
