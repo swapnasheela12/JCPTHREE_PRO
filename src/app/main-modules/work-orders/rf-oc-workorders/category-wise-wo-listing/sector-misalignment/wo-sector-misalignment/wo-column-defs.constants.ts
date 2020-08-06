@@ -93,12 +93,14 @@ export const COLUMN_DEFS = [
                 return template3;
             }
         },
-        width: 170
-    }, {
-        headerName: "",
-        cellRenderer: 'viewHistroyRenderer',
         pinned: 'right',
-        width: 90
+        width: 170
     }
+    // , {
+    //     headerName: "",
+    //     cellRenderer: 'viewHistroyRenderer',
+    //     pinned: 'right',
+    //     width: 90
+    // }
 
 ];
