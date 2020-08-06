@@ -252,7 +252,7 @@ getSelection() {
   }
   cellClickedDetails(evt) {
     if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell"]);
     }
 
   }
