@@ -1,4 +1,6 @@
 [{
+
+        "grouplist": "Completed",
         "status": "Completed",
         "taskcompletion": "Completed",
         "taskcategory": "SectorMisalignment Execution Task - IAN Lead",
@@ -8,10 +10,12 @@
         "assignedtoname": "Me",
         "assignedby": "IAN Lead",
         "lastmodified": "28 Jun, 2017",
-        "taskprogress": 100,
+        "progressby": "#2 in Queue",
+        "progressbar": 25,
         "taskid": "0015_2300_7_T01"
     },
     {
+        "grouplist": "Completed",
         "status": "Completed",
         "taskcompletion": "Completed",
         "taskcategory": "SectorMisalignment Execution Task - IAN Lead",
@@ -21,10 +25,12 @@
         "assignedtoname": "Me",
         "assignedby": "RF OC L2 Engineer",
         "lastmodified": "28 Jun, 2017",
-        "taskprogress": 100,
+        "progressby": "#5 in Queue",
+        "progressbar": 50,
         "taskid": "0015_2300_7_T01"
     },
     {
+        "grouplist": "Successful",
         "status": "Successful",
         "taskcompletion": "Successful",
         "taskcategory": "SectorMisalignment Execution Task - IAN Lead",
@@ -34,7 +40,8 @@
         "assignedtoname": "Me",
         "assignedby": "RF OC L2 Engineer",
         "lastmodified": "28 Jun, 2017",
-        "taskprogress": 100,
+        "progressby": "Generated",
+        "progressbar": 100,
         "taskid": "0015_2300_7_T01"
     }
 ]
