@@ -60,6 +60,9 @@ import { OvershootingCellComponent } from './category-wise-wo-listing/overshooti
 import { SelectDropdownComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/select-dropdown/select-dropdown.component';
 import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/textfield/textfield.component';
 import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
+import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
+import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
+import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,9 @@ import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-c
     SelectDropdownComponent,
     TextfieldComponent,
     DeletebuttonComponent,
+    OvershootingExeTaskComponent,
+    IanLeadComponent,
+    WoOvershootingCellComponent
 
   ],
   imports: [

@@ -36,13 +36,14 @@ const routes: Routes = [
       },
       {
         path: "Overshooting-Cell",
+       // component: OvershootingCellComponent,
         children: [
           {
             path: '',
             component: OvershootingCellComponent,
           },
           {
-            path: 'Overshooting-Exe-Task',
+            path: 'Rfoc-lead',
           component: OvershootingExeTaskComponent
 
           },
