@@ -6,6 +6,7 @@ import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misali
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
 import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
+import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 
 
 const routes: Routes = [
@@ -43,8 +44,12 @@ const routes: Routes = [
             component: OvershootingCellComponent,
           },
           {
+            path: 'WO-Overshooting-Cell',
+            component: WoOvershootingCellComponent
+          },
+          {
             path: 'Rfoc-lead',
-          component: OvershootingExeTaskComponent
+          component: OvershootingExeTaskComponent,
 
           },
           {

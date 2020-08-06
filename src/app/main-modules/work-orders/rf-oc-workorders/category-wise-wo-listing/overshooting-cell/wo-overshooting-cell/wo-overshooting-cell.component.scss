@@ -1,0 +1,47 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.wo-sector-container {
+    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
+    .wo-sector-card-one {
+        background-color: #288ae2;
+        border-radius: 4px 4px 0 0;
+        .report-flex-container {
+            // margin-top: 10px;
+            padding: 15px;
+            .wo-flex-item {
+                .col-1 {
+                    span {
+                        margin: 0 6px;
+                        height: 40px;
+                        min-width: 0;
+                        line-height: 24px;
+                        padding: 8px;
+                        width: 40px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .report-flex-item {
+                .report-form-field {
+                    width: 100%;
+                }
+                .report-form-field-read {
+                    .report-form-input-title {
+                        font-size: 10px;
+                        color: #767676;
+                    }
+                    .report-form-input-value {
+                        font-size: 15px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    .jcp-table-container {
+        height: calc(100% - 155px) !important;
+        max-height: calc(100% - 155px) !important;
+    }
+}
