@@ -166,7 +166,6 @@ export class AgGridTreeComponent implements OnInit {
    *
    */
   onCellClicked(row: any) {
-   
     if (row.colDef.field === this.groupList[0].field) {
       if (row.data.expand === false) {
         this.onGroupClick(row.data, row.rowIndex, 'expand');

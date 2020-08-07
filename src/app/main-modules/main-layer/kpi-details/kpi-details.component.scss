@@ -1,0 +1,35 @@
+.jcp-table-control-layers-container {
+    .kpi-details-container {
+        height: 100%;
+        .kpi-details-card {
+            width: 165px;
+            height: 50px;
+            margin: 15px;
+            border-radius: 0px;
+            padding: 0;
+            .kpi-details-card-container {
+                width: inherit;
+                height: inherit;
+                border-color: 2px #0f73bd;
+                .kpi-details-card-title {
+                    font-size: 13px;
+                    line-height: 16px;
+                    opacity: .54;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                }
+                .kpi-details-card-value {
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

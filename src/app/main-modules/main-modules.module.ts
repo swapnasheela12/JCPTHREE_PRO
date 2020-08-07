@@ -78,6 +78,7 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
 import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
+import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.component';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-worko
     PlanningComponent,
     WorkordersComponent,
     TableViewControlComponent,
-    LegendsAndFilterComponent
+    LegendsAndFilterComponent,
+    KpiDetailsComponent
   ],
   imports: [
     CommonModule,
