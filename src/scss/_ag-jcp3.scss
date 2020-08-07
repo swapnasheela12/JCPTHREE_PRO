@@ -1346,3 +1346,24 @@
         margin: 0px;
     }
 }
+
+.md-two-lines-cell {
+        margin-top: 5px;
+        display: inline-block;
+        &.align-v-middle {
+            vertical-align: middle;
+            margin-top: 0px;
+        }
+        .values {
+            line-height: 18px;
+        }
+        .color-87 {
+            color: fade-out(#000, 0.13);
+        }
+        .color-54 {
+            color: fade-out(#000, 0.46);
+        }
+        .color-13 {
+            color: fade-out(#000, 0.87);
+        }
+    }

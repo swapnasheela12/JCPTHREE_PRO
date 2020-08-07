@@ -1,186 +1,67 @@
-@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
-@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+
+
+
+$md-primary: #0070db;
+$color-white: #ffffff;
 
 .overshooting-cell-container {
-    background: #ffffff;
-    border-radius: 10px;
-    width: 1000px;
-    height: 800px;
-    overflow: auto;
-    .oc-toolbar {
-        background: #1976d2;
-
-        color: #ffffff;
-        //padding:1rem;
-        font-family: "Lato Medium", sans-serif;
-        // height: 50px;
-    }
-
-    .popup-title {
-        color: #ffffff;
-
-        padding: 10px;
-
-        .header {
-            padding-left: 5px;
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 24px;
-            display: flex;
-
-            .rantext {
-                flex: 2;
-            }
-            .close-popup {
-                flex: 1;
-                border: none;
-                border-radius: 50px;
-                background: #1976d2;
-                color: #ffffff;
-            }
-        }
-    }
-
-    .woranrf-oc-lead {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        background: #fafafa;
-        padding: 1rem;
+    height: 99%;
+    min-height: 99%;
+    min-width: 100%;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    .overshooting-flex-container {
         color: #000000;
-        border-bottom: 1px solid #cccccc;
-        p {
-            margin: 0;
-        }
-    }
-    .main-content {
-        padding: 1rem;
-        background: #ffffff;
-        .task-retrigger-details {
-            box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-                0 1px 3px 0 rgba(0, 0, 0, 0.12);
-            header {
-                font-size: 1rem;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                color: #000000;
-                padding: 1rem;
-                border-bottom: 1px solid #cccccc;
-                background: #f2f2f2;
-                h1 {
-                    font-size: 1rem;
-                }
+        background:#ffffff;
+        height: 64px !important;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom: 1px solid #e2e2e2;
+        .overshooting-flex-item {
+            font-size: 14px;
+            .overshooting-title {
+                font-size: 16px;
+                font-family: Lato Bold;
             }
-        }
-        .site-details {
-            box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-                0 1px 3px 0 rgba(0, 0, 0, 0.12);
-            header {
-                font-size: 1rem;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                color: #000000;
-                padding: 1rem;
-                border-bottom: 1px solid #cccccc;
-                background: #f2f2f2;
-                h1 {
-                    font-size: 1rem;
-                }
+            .icon-button {
+                padding: 10px 16px;
             }
-            .sitedetails-row {
-                padding: 1rem;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-                .sitedetails-cell,
-                .sitepdetails-cell {
-                    color: #000000;
-                }
-            }
-        }
-
-        .site-parameter-details {
-            box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-                0 1px 3px 0 rgba(0, 0, 0, 0.12);
-            header {
-                font-size: 1rem;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                color: #000000;
-                padding: 1rem;
-                border-bottom: 1px solid #cccccc;
-                background: #f2f2f2;
-                h1 {
-                    font-size: 1rem;
-                }
-            }
-            .sitepdetails-row {
-                padding: 1rem;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-                .sitepdetails-cell {
-                    color: #000000;
-                }
+            .cancel-btn {
+                font-size: 17px;
+                padding-top: 15px;
             }
         }
     }
-}
-
-.boxshadowdiv {
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-}
-
-.header-styles {
-    font-size: 1rem;
-    border-radius: 5px;
-    color: #000000;
-    padding: 1rem;
-    border-bottom: 1px solid #cccccc;
-    background: #f2f2f2;
-    h1 {
-        font-size: 1rem;
+    .jcp-table-container {
+        height: calc(100% - 80px) !important;
+        max-height: calc(100% - 80px) !important;
+        .ag-theme-material.ag-jcp3 .ag-header {
+            background-color: #D3D5DC;
+        }
+        // .pagination-aggrid {
+        //     bottom: 20px;
+        //     padding-right: 34px;
+        // }
+    }
+        .pagination-aggrid {
+            width: calc(100% - 310px);
+            position: absolute;
+            bottom: 0;
+            height: 50px;
+            bottom: 20px;
+            padding-right: 34px;
+            .labels {
+                font-size: 14px;
+                font-family: Lato Regular;
+            }
+        }
+    .float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        text-align: center;
+        // box-shadow: 2px 2px 3px #f5f5f5;
     }
 }
 
-.footer {
-    width:800px;
-    padding:2rem;
-    color: #000000;
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    bottom:0;
-    left:20%;
-z-index: 999;
-}
-.os-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    color: #000000;
-}
-
-.os-cell {
-    flex: 0 0 30%;
-}
-.sol-imp-row {
-    color: #000000;
-}
-.sol-impl-details-title {
-    color: #000000;
-}
-.solution-implementation {
-    padding: 2rem;
-}

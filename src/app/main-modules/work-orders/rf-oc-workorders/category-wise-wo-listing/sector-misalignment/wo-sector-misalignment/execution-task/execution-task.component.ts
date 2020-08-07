@@ -273,12 +273,6 @@ export class ExecutionTaskComponent implements OnInit {
     );
   }
 
-  private uploadFiles() {
-    this.fileUpload.nativeElement.value = '';
-    this.files.forEach(file => {
-      this.uploadFile(file);
-    });
-  }
   onClick() {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
@@ -286,6 +280,13 @@ export class ExecutionTaskComponent implements OnInit {
       this.uploadFiles();
     };
     fileUpload.click();
+  }
+
+  private uploadFiles() {
+    this.fileUpload.nativeElement.value = '';
+    this.files.forEach(file => {
+      this.uploadFile(file);
+    });
   }
 
 }

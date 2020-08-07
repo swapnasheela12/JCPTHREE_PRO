@@ -10,8 +10,8 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 </button>
 <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>
-    <div class="pr-3 fas fa-trash-alt"></div>
-    <span>View History</span>
+    <!-- <div class="pr-3 fas fa-trash-alt"></div> -->
+    <span>View Workflow</span>
   </button>
 </mat-menu>
    `

@@ -168,3 +168,31 @@
     <button type="submit" mat-raised button class="submit-btn">SUBMIT</button>
   </div>
 </div> -->
+
+<div class="h-100 overshooting-cell-container">
+
+  <div class="overshooting-flex-container">
+    <div class="d-flex mx-2 flex-row justify-content-between" style="align-items:center; ">
+      <div class="col-4 overshooting-flex-item">
+        <div class="overshooting-title">Overshooting Cell</div>
+        <a class="mr-10" routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/Rfoc-lead">RFOC LEAD</a>
+        <a routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/Ian-Lead">IAN LEAD</a>
+
+      </div>
+
+
+      <div class="px-2 col-4 pt-2 overshooting-flex-item">
+        <mat-icon class="icon-button" aria-label="search">
+          <span class="zmdi zmdi-search"></span>
+        </mat-icon>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="jcp-table-container">
+    <app-table-ag-grid (cellClicked)="cellClickedDetails($event)"></app-table-ag-grid>
+  </div>
+
+</div>

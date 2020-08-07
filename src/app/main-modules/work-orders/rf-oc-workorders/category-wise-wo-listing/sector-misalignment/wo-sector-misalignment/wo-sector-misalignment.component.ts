@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COLUMN_DEFS } from './wo-column-defs.constants'; import { MatSidenav } from '@angular/material/sidenav';
+import { COLUMN_DEFS } from './wo-column-defs.constants'; 
+import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -71,4 +72,15 @@ export class WoSectorMisalignmentComponent {
       });
 
   }
+
+  cellClickedDetails(evt) {
+    console.log(evt,"evt?????");
+    
+    if (evt.value) {
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+    }
+
+  }
+
+
 }

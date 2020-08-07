@@ -60,16 +60,28 @@ import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-gr
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { ImplementationDetailsComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/implementation-details/implementation-details.component';
 import { SiteParameterComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/site-parameter/site-parameter.component';
+import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
+import { SelectDropdownComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/select-dropdown/select-dropdown.component';
+import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/textfield/textfield.component';
+import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
+import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
+import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
+import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
-    // OvershootingCellComponent,
+     OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
     ImplementationDetailsComponent,
-    SiteParameterComponent
-
+    SiteParameterComponent,
+    SelectDropdownComponent,
+    TextfieldComponent,
+    DeletebuttonComponent,
+    OvershootingExeTaskComponent,
+    IanLeadComponent,
+    WoOvershootingCellComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,
