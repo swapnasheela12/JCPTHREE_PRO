@@ -7,7 +7,7 @@ export const COLUMN_DEFS = [
     },
     {
         headerName: 'Task Id',
-        field: 'taskId',
+        field: 'taskid',
         pinned: 'left',
         width: 150
     },

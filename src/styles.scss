@@ -1593,3 +1593,34 @@ table {
       vertical-align: middle;
       margin-top: 0px; 
 }
+
+.execution-task-container {
+    app-table-ag-grid {
+        ag-grid-angular {
+            height: 100%!important;
+            color: red;
+        }
+    }  
+    .ex-card-five {
+        .ex-flex-container-file{
+            .ex-form-field {
+                mat-form-field {
+                    .mat-form-field-wrapper {
+                        .mat-form-field-flex {
+                            .mat-form-field-infix {
+                                .mat-icon-button {
+                                    float: right;
+                                    position: absolute;
+                                    bottom: 0px;
+                                    right: 0;
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

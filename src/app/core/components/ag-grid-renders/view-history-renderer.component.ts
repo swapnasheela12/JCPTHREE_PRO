@@ -5,8 +5,8 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 @Component({
   selector: 'app-view-history-renderer',
   template: `
-   <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
-  <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
+  <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+ <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
 </button>
 <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>
@@ -14,7 +14,7 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
     <span>View History</span>
   </button>
 </mat-menu>
-    `
+   `
 })
 
 export class viewHistoryRendererComponent implements ICellRendererAngularComp {

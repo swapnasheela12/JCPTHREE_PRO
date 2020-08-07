@@ -24,7 +24,6 @@ export class SectorMisalignmentComponent {
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
-
   public paths;
   public sidenavBarStatus;
   public tableWidth;
@@ -35,6 +34,9 @@ export class SectorMisalignmentComponent {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
+  public defaultColDef = { resizable: true };
+  public searchGrid = '';
+  public show;
   public frameworkComponentsSectorMisalignment = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -47,8 +49,7 @@ export class SectorMisalignmentComponent {
 
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
-    router.events.subscribe((url: any) => console.log(url));
-    //this.paths = PATHS;
+    router.events.subscribe((url: any) => { });
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
@@ -59,8 +60,6 @@ export class SectorMisalignmentComponent {
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
-
-        console.log(this.rowData);
         this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
         this.datatable.rowDataServices = this.rowData;
@@ -71,7 +70,6 @@ export class SectorMisalignmentComponent {
 
   getSelection() {
     var selectedRows = this.gridOptions.api.getSelectedRows();
-    console.log("selectedRows", selectedRows);
   }
 
   private createColumnDefs() {
@@ -80,24 +78,23 @@ export class SectorMisalignmentComponent {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 150,
+        width: 140,
         pinned: "left"
       },
       {
         headerName: "SAP ID",
         field: "sapid",
-        width: 220,
-        pinned: "left"
+        width: 200
       },
       {
         headerName: "Zone",
         field: "zone",
-        width: 110,
+        width: 100,
       },
       {
         headerName: "Circle",
         field: "circle",
-        width: 110,
+        width: 120,
       },
       {
         headerName: "JC ID",
@@ -123,18 +120,16 @@ export class SectorMisalignmentComponent {
         headerName: "SLA Violation",
         field: "slaviolation",
         width: 150,
+        pinned: "right"
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
-
   }
 
-  defaultColDef = { resizable: true };
-  searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
   };
-  show: any;
+
   toggleSearch() {
     this.show = !this.show;
   };
@@ -156,9 +151,7 @@ export class SectorMisalignmentComponent {
     return template;
   };
 
-  //END table search
-
-  //////////////////
+  //END table search//////////////////
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -167,17 +160,13 @@ export class SectorMisalignmentComponent {
 
   onSelectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
     if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
     }
   }
 
   selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
     if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
     }
   }
 
@@ -185,7 +174,6 @@ export class SectorMisalignmentComponent {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4);
-
   }
 
   onPageSizeChanged(newPageSize) {
@@ -204,41 +192,16 @@ export class SectorMisalignmentComponent {
     } else {
       barColor = '#f21400';
     }
-
     return '<span class="md-line-status" style="background-color: ' +
       barColor +
       ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
       status + '</div></div>';
   }
 
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.taskcompletion;
-    var taskprogress = params.data.taskprogress;
-    var ratingnumber = params.data.ratingnumber;
-    // var taskprogresscolor = params.data.taskColor;
-
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + ratingnumber + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-    if (taskcompletion === "Completed" || taskcompletion === "Successful") {
-      return template1;
-    } else if (taskcompletion === "Pending") {
-      return template2;
-    } else {
-      return template3;
-    }
-  }
-
   cellClickedDetails(evt) {
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
     }
-
   }
 
 }

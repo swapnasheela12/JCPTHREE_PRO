@@ -24,3 +24,53 @@
         "value": "4T4R"
     }
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+[
+    {
+        "label": "Deviation in Azimuth (Deg):",
+        "value": "106.5"
+    },
+    {
+        "label": "Deviation Category:",
+        "value": ">60deg"
+    },
+    {
+        "label": "Swap Detected?:",
+        "value": "39.1"
+    },
+    {
+        "label": "Average bearing of all prominent samples (Deg):",
+        "value": "39.1"
+    },
+    {
+        "label": "Average bearing of all prominent samples (Deg):",
+        "value": "39.1"
+    }
+]
+
+
+
+
+
+
+
+
+Swap Type:
+-
+Action Required:
+Deviation detected. Field Visit required
+
+
+

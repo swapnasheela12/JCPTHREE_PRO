@@ -25,12 +25,15 @@ export class TableAgGridComponent implements OnInit {
   gridOptionsObj;
   defaultColDef;
   typeOfAgGridTable;
+  paginationRequired: boolean = true;
+  autoPageSizeRequired: boolean = true;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
     viewHistroyRenderer: viewHistoryRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
+  public selected = this.paginationValues[0];
   public formControlPageCount = new FormControl();
 
   sidenavBarStatus;
@@ -58,6 +61,8 @@ export class TableAgGridComponent implements OnInit {
 
     this.columnDefs = data.columnDefsServices;
     this.rowData = data.rowDataServices;
+    this.paginationRequired = data.paginationRequired;
+    this.autoPageSizeRequired = data.autoPageSizeRequired;
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;

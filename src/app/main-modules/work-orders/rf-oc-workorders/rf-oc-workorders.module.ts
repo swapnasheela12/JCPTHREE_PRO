@@ -56,6 +56,10 @@ import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-m
 import { CoreModule } from '../../../core/core.module';
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
 import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
+import { ImplementationDetailsComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/implementation-details/implementation-details.component';
+import { SiteParameterComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/site-parameter/site-parameter.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +67,8 @@ import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misali
     // OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
+    ImplementationDetailsComponent,
+    SiteParameterComponent
 
   ],
   imports: [
@@ -72,7 +78,7 @@ import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misali
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,

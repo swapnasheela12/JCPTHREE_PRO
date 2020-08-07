@@ -91,12 +91,13 @@ import { RowRenderingComponent, ModalTemplateComponent } from './modules/compone
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {OverlayContainer} from '@angular/cdk/overlay';
-import {AppOverlayContainer} from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { AppOverlayContainer } from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
 import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
 import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
+
 declare var $: any;
 
 @NgModule({
@@ -193,12 +194,12 @@ declare var $: any;
     NgxDaterangepickerMd,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-    
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: OverlayContainer, useClass: AppOverlayContainer},
+    { provide: OverlayContainer, useClass: AppOverlayContainer },
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,

@@ -1,29 +1,132 @@
-<div class="execution-task-container">
-    <!-- <mat-card class="report-wizard-card-one">
+<div class="execution-task-container" mat-dialog-content>
+    <!-- <div style="height: 190px; margin-bottom: 20px;">
+        <mat-card class="ex-card-one card-header" fxLayout>
+            <mat-card class="py-3 h-100 sector-title">Task Retrigger Details</mat-card>
+            <div class="jcp-table-container" style="height: 100%;">
+                <app-table-ag-grid></app-table-ag-grid>
+            </div> -->
+    <!--</mat-card>
         <app-table-ag-grid></app-table-ag-grid>
+    </div> -->
+
+
+
+
+    <!-- <mat-card class="ex-card-one card-header" fxLayout>
+        <mat-card class="py-3 h-100 sector-title">Dropdown</mat-card>
+    </mat-card>
+    <app-implementation-details></app-implementation-details> -->
+
+    <!-- <mat-card class="ex-card-two card-header">
+        <mat-card class="h-100 sector-title" fxLayout>Title</mat-card>
+        <mat-card-content class="h-100" fxLayout>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">E-Tilt/Tx attenuation Change</mat-radio-button>
+                <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
+            </mat-radio-group>
+        </mat-card-content>
     </mat-card> -->
-    <mat-card>Physical Parameter Optimization</mat-card>
-    <app-table-ag-grid></app-table-ag-grid>
+
+    <!-- <mat-card class="ex-card-pso card-header sector-panel" fxLayout>
+        <mat-card class="py-3 h-100 sector-title">Physical Parameter Optimization</mat-card>
+    </mat-card>
+    <app-table-ag-grid></app-table-ag-grid> -->
+
+    <!-- <mat-card class="ex-card-two">
+        <mat-card class="h-100 sector-title card-header" fxLayout>Title</mat-card>
+        <mat-card-content class="h-100" fxLayout>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">E-Tilt/Tx attenuation Change</mat-radio-button>
+                <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
+            </mat-radio-group>
+        </mat-card-content>
+    </mat-card> -->
+
+    <mat-card class="ex-card-two card-header sector-panel">
+        <mat-card class="h-100 sector-title" fxLayout>Site Details</mat-card>
+        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
+            <div class="px-3 ex-flex-item col-3" *ngFor="let site of siteDetails">
+                <div class="ex-form-field-read">
+                    <div class="ex-form-input-title">{{site.label}}</div>
+                    <div class="ex-form-input-value">{{site.value}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap ex-flex-container">
+            <div class="col-6 ex-flex-item" *ngFor="let site of siteDetail">
+                <div class="ex-form-field-read">
+                    <div class="ex-form-input-title">{{site.label}}</div>
+                    <div class="ex-form-input-value">{{site.value}}</div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
 
 
-    <div>
-        <mat-card>Select the solution to be implemented for mitigation of overshooting cell*</mat-card>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">E-Tilt/Tx attenuation Change</mat-radio-button>
-            <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
-        </mat-radio-group>
+    <mat-card class="ex-card-three card-header sector-panel">
+        <mat-card class="h-100 sector-title" fxLayout>Field Measurement Information</mat-card>
+        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
+            <div class="px-3 ex-flex-item col-3" *ngFor="let fmi of fieldMeasurementInformation">
+                <div class="ex-form-field-read">
+                    <div class="ex-form-input-title">{{fmi.label}}</div>
+                    <div class="ex-form-input-value">{{fmi.value}}</div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+    <mat-card class="ex-card-four card-header sector-panel">
+        <mat-card class="h-100 sector-title" fxLayout>Observed Issues and Actions (Deviation calculated based on Centre
+            Angle of Sector with Maximum Samples)</mat-card>
+        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
+            <div class="px-3 ex-flex-item col-3" *ngFor="let oi of observedIssues">
+                <div class="ex-form-field-read">
+                    <div class="ex-form-input-title">{{oi.label}}</div>
+                    <div class="ex-form-input-value">{{oi.value}}</div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class="ex-card-five card-header sector-panel">
+        <mat-card class="h-100 sector-title" fxLayout>Solution Implementation</mat-card>
+        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
+            <mat-form-field class="ex-form-field-read">
+                <mat-label class="ex-form-input-title">Task Closure Remarks*</mat-label>
+                <mat-select disableOptionCentering [(value)]="taskClosureRemarks[0]">
+                    <mat-option value="option1" class="sector-title" *ngFor="let tcr of taskClosureRemarks"
+                        [value]="tcr">
+                        {{tcr}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container-file">
+            <!-- <mat-form-field fxFlex="100" class="mb-3 ex-file-field">
+                <input matInput class="" placeholder="Site Photos" [(ngModel)]="fileName">
+                <button class="ex-browse-button" (click)="onClick()" mat-icon-button color="primary"><i
+                        class="ic ic-file"></i></button>
+            </mat-form-field> -->
+            <!-- <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept="" style="display: none;" /> -->
+            <div class="px-4 overflow-x-hidden ex-form-field col-5 sector-panel" fxLayoutAlign="center">
+                <mat-form-field fxFlex="100" class="mb-3 browse-file-form-field">
+                    <!-- <mat-icon class="ic ic-file-text2 file-icon">
+                        </mat-icon> -->
+                    <input matInput class="input-field sector-panel" placeholder="Select File" [(ngModel)]="fileName"
+                        [readonly]="true" required>
+                    <button class="browse-button" (click)="onClick()" mat-icon-button color="primary"><i
+                            class="ic ic-file"></i></button>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<div class="d-flex">
+    <div class="col"></div>
+    <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
     </div>
-    <mat-divider></mat-divider>
-
-    <div>
-        <mat-card>Select the solution to be implemented for mitigation of overshooting cell*</mat-card>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">E-Tilt/Tx attenuation Change</mat-radio-button>
-            <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
-        </mat-radio-group>
+    <div class="p-2">
+        <button mat-raised-button color="primary" class="buttonWidth button">Update</button>
     </div>
-
-    <mat-divider></mat-divider>
-    <mat-divider></mat-divider>
-
 </div>

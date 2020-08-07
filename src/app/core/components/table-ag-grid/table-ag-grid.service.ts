@@ -15,6 +15,8 @@ export class TableAgGridService {
   public gridOptionsServices;
   public defaultColDefServices;
   public onReadyServices;
+  public paginationRequired?;
+  public autoPageSizeRequired?;
   // public gridApiServices;
   // public columnDefs;
   constructor() { }
