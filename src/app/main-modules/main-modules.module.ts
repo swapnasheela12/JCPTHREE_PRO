@@ -1,3 +1,4 @@
+import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -98,7 +99,8 @@ import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.compon
     WorkordersComponent,
     TableViewControlComponent,
     LegendsAndFilterComponent,
-    KpiDetailsComponent
+    KpiDetailsComponent,
+    KpiSettingsComponent
   ],
   imports: [
     CommonModule,

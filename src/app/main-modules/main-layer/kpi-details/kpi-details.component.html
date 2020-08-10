@@ -5,24 +5,19 @@
             <span>KPI Details</span>
         </div>
         <div class="toolbar-table-control-icon-list">
-            <div class="p-2 zmdi zmdi-tune" style="font-size: 20px;"></div>
+            <div class="p-2 zmdi zmdi-tune" (click)="kpiSettingPopFun()" style="font-size: 20px;"></div>
             <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="kpi-details-container">
-        <mat-card class="kpi-details-card">
-            <div class="kpi-details-card-container">
-                <div class="kpi-details-card-title">TC Cards Utilization</div>
-                <div class="kpi-details-card-value">60%</div>
+    <div class="kpi-details-container ">
+        <div class="kpi-details-card" *ngFor="let item of listOfKpiDetails">
+            <div class="kpi-details-card-container" [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}" fxLayout="row">
+                <div class="value-container" fxLayout="column">
+                    <div class="kpi-details-card-title">{{item.title}}</div>
+                    <div class="kpi-details-card-value">{{item.value}}</div>
+                </div>
             </div>
-        </mat-card>
+        </div>
     </div>
-
-
-
-
-
-
-
 </div>

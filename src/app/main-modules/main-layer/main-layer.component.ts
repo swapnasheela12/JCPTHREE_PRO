@@ -1,3 +1,4 @@
+import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
@@ -261,6 +262,23 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
         middle.onclick = function () {
           console.log('buttonClicked_middle');
+
+          var kpiDetailsListDialogRef = {
+            width: '740px',
+            height: '320px',
+            position: { bottom: '60px', right: "60px" },
+            panelClass: "table-view-layers-dialog-container",
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            disableClose: true,
+            hasBackdrop: true
+          }
+          const dialogRef = _dialog.open(KpiDetailsComponent, kpiDetailsListDialogRef);
+
+          dialogRef.backdropClick().subscribe(_ => {
+            dialogRef.close();
+          });
+
+
         }
 
         legendsAndFilterControlButton.onclick = function () {
@@ -275,6 +293,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             hasBackdrop: true
           }
           const dialogRef = _dialog.open(LegendsAndFilterComponent, LegendsAndFilterListDialogRef);
+          dialogRef.backdropClick().subscribe(_ => {
+            dialogRef.close();
+          });
 
         }
 
