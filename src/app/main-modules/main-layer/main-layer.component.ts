@@ -265,7 +265,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
           var kpiDetailsListDialogRef = {
             width: '740px',
-            height: '320px',
+            height: '350px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',

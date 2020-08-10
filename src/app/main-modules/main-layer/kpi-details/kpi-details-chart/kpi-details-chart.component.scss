@@ -1,0 +1,19 @@
+.jcp-kpi-setting-control-layers-container {
+    .sub-header-jcp {
+        height: 55px;
+    }
+    .kpi-summary-view {
+        padding: 8px 15px;
+        .kpi-summary-grid {
+            font-size: 14px;
+            font-family: Lato Medium;
+            color: rgba(0, 0, 0, .54);
+        }
+    }
+    .jcp-landing-card-chart-container {
+        height: 250px;
+        #dailyTrafficChartID {
+            display: block;
+        }
+    }
+}

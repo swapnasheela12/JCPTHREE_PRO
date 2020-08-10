@@ -1,3 +1,4 @@
+import { KpiDetailsChartComponent } from './kpi-details-chart/kpi-details-chart.component';
 import { KpiSettingsComponent } from './kpi-settings/kpi-settings.component';
 
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
@@ -85,6 +86,26 @@ export class KpiDetailsComponent implements OnInit {
     dialogRef.backdropClick().subscribe(_ => {
       dialogRef.close();
     });
+
+  }
+
+  showChart = false;
+  kpiDetailsChartPopFun() {
+    this.showChart = true;
+    // var kpiDetailsChartListDialogRef = {
+    //   width: '750px',
+    //   height: '400px',
+    //   // position: { bottom: '60px', right: "60px" },
+    //   panelClass: "kpi-setting-layers-dialog-container",
+    //   backdropClass: 'cdk-overlay-transparent-backdrop',
+    //   disableClose: true,
+    //   hasBackdrop: true
+    // }
+    // const dialogRef = this.dialog.open(KpiDetailsChartComponent, kpiDetailsChartListDialogRef);
+
+    // dialogRef.backdropClick().subscribe(_ => {
+    //   dialogRef.close();
+    // });
 
   }
 

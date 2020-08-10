@@ -80,7 +80,10 @@ import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legen
 import { Ng5SliderModule } from 'ng5-slider';
 import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
 import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.component';
+import { KpiDetailsChartComponent } from './main-layer/kpi-details/kpi-details-chart/kpi-details-chart.component';
 
+import { HighchartsChartModule } from "highcharts-angular";
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -100,12 +103,15 @@ import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.compon
     TableViewControlComponent,
     LegendsAndFilterComponent,
     KpiDetailsComponent,
-    KpiSettingsComponent
+    KpiSettingsComponent,
+    KpiDetailsChartComponent
   ],
   imports: [
     CommonModule,
     MainModulesRoutingModule,
     CoreModule,
+    HighchartsChartModule,
+    ChartModule,
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,

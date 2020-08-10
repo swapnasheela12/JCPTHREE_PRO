@@ -10,14 +10,17 @@
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="kpi-details-container ">
+    <div class="kpi-details-container " *ngIf="showChart == false">
         <div class="kpi-details-card" *ngFor="let item of listOfKpiDetails">
-            <div class="kpi-details-card-container" [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}" fxLayout="row">
+            <div class="kpi-details-card-container" (click)="kpiDetailsChartPopFun()" [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}" fxLayout="row">
                 <div class="value-container" fxLayout="column">
                     <div class="kpi-details-card-title">{{item.title}}</div>
                     <div class="kpi-details-card-value">{{item.value}}</div>
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="showChart == true" style="height: 100%;">
+        <app-kpi-details-chart></app-kpi-details-chart>
     </div>
 </div>
