@@ -52,6 +52,7 @@ export class ReportBuilderComponent implements OnInit {
   public sidenavBarStatus;
   public tableWidth;
   // public gridApi;
+  public gridPinned = true;
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
@@ -91,6 +92,7 @@ export class ReportBuilderComponent implements OnInit {
 
         // this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+        this.datatable.gridPinnedServices = this.gridPinned;
         this.datatable.rowDataServices = this.rowData;
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
