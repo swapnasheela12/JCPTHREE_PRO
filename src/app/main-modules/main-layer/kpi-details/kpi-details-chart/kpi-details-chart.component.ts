@@ -293,7 +293,7 @@ export class KpiDetailsChartComponent implements OnInit {
     'Atoll Planned RSRP 850'
   ];
 
-
+  kpiDetailsCartPopFun(){}
 
 
 }

@@ -1,20 +1,35 @@
-<ng-template style="height: 100%;" #commonTableAggridreport>
-    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48"
-        headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="data.rowDataServices"
-        enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
-        toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
-        [paginationAutoPageSize]="paginationRequired" [pagination]="autoPageSizeRequired"
-        [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
-        [frameworkComponents]="frameworkComponentsMyReport" (rowClicked)='onRowClicked($event)'
-        (rowSelected)="onRowSelected($event)" (cellClicked)='onCellClicked($event)'
-        (selectionChanged)="selectionChanged($event)">
+<!-- <ng-template style="height: 100%;" #commonTableAggridreport>
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="data.rowDataServices" enableColResize enableSorting enableFilter groupHeaders
+        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="paginationRequired" [pagination]="autoPageSizeRequired" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+        [debug]="true" [frameworkComponents]="frameworkComponentsMyReport" (rowClicked)='onRowClicked($event)' (rowSelected)="onRowSelected($event)" (cellClicked)='onCellClicked($event)' (selectionChanged)="selectionChanged($event)">
     </ag-grid-angular>
     <div class="ag-material-customer-pager-wrapper" *ngIf="paginationRequired">
         <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
             <div class="labels">Rows Per Page :</div>
             <mat-form-field class="col-2">
-                <mat-select panelClass="ag-grid-pagination" [formControl]="formControlPageCount"
-                    (selectionChange)="onPageSizeChanged(formControlPageCount)" [(ngModel)]="selected" id="page-size">
+                <mat-select panelClass="ag-grid-pagination" [formControl]="formControlPageCount" (selectionChange)="onPageSizeChanged(formControlPageCount)" [(ngModel)]="selected" id="page-size">
+                    <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
+                        {{pageNumber}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="commonTableAggridreport"></ng-container> -->
+
+
+<ng-template style="height: 100%;" #commonTableAggridreport>
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="data.rowDataServices" enableColResize enableSorting enableFilter groupHeaders
+        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
+        [frameworkComponents]="frameworkComponentsMyReport" (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
+    </ag-grid-angular>
+    <div class="ag-material-customer-pager-wrapper">
+        <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
+            <div class="labels">Rows Per Page :</div>
+            <mat-form-field class="col-2">
+                <mat-select panelClass="ag-grid-pagination" [formControl]="formControlPageCount" (selectionChange)="onPageSizeChanged(formControlPageCount)" id="page-size">
                     <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
                         {{pageNumber}}
                     </mat-option>

@@ -25,8 +25,8 @@ export class TableAgGridComponent implements OnInit {
   gridOptionsObj;
   defaultColDef;
   typeOfAgGridTable;
-  paginationRequired: boolean = true;
-  autoPageSizeRequired: boolean = true;
+  // paginationRequired: boolean = true;
+  // autoPageSizeRequired: boolean = true;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -61,8 +61,8 @@ export class TableAgGridComponent implements OnInit {
 
     this.columnDefs = data.columnDefsServices;
     this.rowData = data.rowDataServices;
-    this.paginationRequired = data.paginationRequired;
-    this.autoPageSizeRequired = data.autoPageSizeRequired;
+    // this.paginationRequired = data.paginationRequired;
+    // this.autoPageSizeRequired = data.autoPageSizeRequired;
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
