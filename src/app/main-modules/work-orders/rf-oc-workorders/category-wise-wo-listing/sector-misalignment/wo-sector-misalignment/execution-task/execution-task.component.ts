@@ -11,6 +11,11 @@ import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { map } from 'lodash';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
+import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
+import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.component';
+import { DeleteRendererComponent } from '../../renderer/delete-renderer.component';
+import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
 
 @Component({
   selector: 'app-execution-task',
@@ -32,8 +37,37 @@ export class ExecutionTaskComponent implements OnInit {
   public columnDefs: any;
   public rowCount: string;
   public formControlPageCount = new FormControl();
-
   public showGlobalOperation: Boolean = false;
+  public taskColDef;
+  public siteColDef;
+  public implColDef;
+  public taskRowdata;
+  public siteRowdata = [
+    {
+      "siteParameter": "Antenna Azimuth(deg)",
+      "currentValue": "67"
+    },
+    {
+      "siteParameter": "Antenna M-Tilt(deg)",
+      "currentValue": "7.5"
+    },
+    {
+      "siteParameter": "Antenna Height(m)",
+      "currentValue": "30"
+    },
+    {
+      "siteParameter": "E-Tilt(deg)",
+      "currentValue": "4"
+    }
+  ];
+  public implRowdata = [
+    {
+      "sector": "",
+      "band": "",
+      "newAzimuthValue": ""
+    }
+  ];
+  public frameworkComponentsTaskExecution;
   taskClosureRemark = [
     { value: 'taskClosure', name: 'Task Closure' },
     { value: 'databaseMismatch', name: 'Database Mismatch' },
@@ -43,8 +77,6 @@ export class ExecutionTaskComponent implements OnInit {
     { value: 'requiredClutter', name: 'Required based on clutter' },
     { value: 'implementationDone', name: 'Implementation Done' }
   ];
-
-
 
   siteDetails = [
     {
@@ -117,36 +149,72 @@ export class ExecutionTaskComponent implements OnInit {
       "value": "39.1"
     }
   ]
-
+  uploadedImg = [];
+  showFileUploadwidget: boolean = false;
   taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
 
 
-  public url: string = "assets/data/report/sector-misalignment/execution-task/execution-task.json";
+  public task_url: string = "assets/data/report/sector-misalignment/execution-task/execution-task.json";
+  public site_url: string = "assets/data/report/sector-misalignment/execution-task/implementation-details.json";
+  public impl_url: string = "assets/data/report/sector-misalignment/execution-task/site-parameter.json";
+
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+
+
+  public onReady(params) {
+    console.log(this.gridOptions, "this.gridoptions");
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    console.log("this.gridoptions", this.gridOptions);
+    if (this.gridOptions.api && this.taskRowdata && this.siteRowdata && this.implRowdata) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient,
     private fileUploadService: FileUploadService) {
     router.events.subscribe((url: any) => console.log(url));
+    this.frameworkComponentsTaskExecution = {
+      'dropdownRenderer': TaskDropdownRendererComponent,
+      'inputRenderer': TaskInputRendererComponent,
+      'deleteRenderer': DeleteRendererComponent
+    };
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
+    this.taskColDef = this.createColumnDefs();
+    this.siteColDef = this.createSiteColumnDefs();
+    this.implColDef = this.createImplColumnDefs();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
+      console.log("this.side", this.sidenavBarStatus);
+      this.calculateRowCount();
     });
 
-    this.httpClient.get(this.url)
-      .subscribe(data => {
-        this.rowData = data;
+    // this.httpClient.get(this.site_url)
+    //   .subscribe(data => {
+    //     this.siteRowdata = data;
+    //     console.log("this.siteRowData", this.siteRowdata)
+    //   });
 
-        console.log(this.rowData);
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
-        this.datatable.paginationRequired = false;
-        this.datatable.autoPageSizeRequired = false;
+    // this.httpClient.get(this.impl_url)
+    //   .subscribe(data => {
+    //     this.implRowdata = data;
+    //     console.log("impl", this.implRowdata)
+    //   });
+
+    this.httpClient.get(this.task_url)
+      .subscribe(data => {
+        this.taskRowdata = data;
       });
   }
 
@@ -154,81 +222,80 @@ export class ExecutionTaskComponent implements OnInit {
   }
 
   createColumnDefs() {
-    // this.columnDefs = {
-    //   "task-retrigger": [
-    //     {
-    //       headerName: "SiteParameter",
-    //       field: "SiteParameter"
-    //     },
-    //     {
-    //       headerName: "Reason For Reassignment",
-    //       field: "reasonForReassign"
-    //     },
-    //     {
-    //       headerName: "Remarks",
-    //       field: "remarks",
-    //     }
-    //   ],
-    //   "site-parameter": [
-    //     {
-    //       headerName: "SiteParameter",
-    //       field: "SiteParameter"
-    //     },
-    //     {
-    //       headerName: "CurrentValue",
-    //       field: "CurrentValue",
-    //     }
-    //   ],
-    //   "implemenatation-details": [
-    //     {
-    //       headerName: "Sector*",
-    //       field: "sector",
-    //       width: 150,
-    //       cellRenderer: this.drp
-    //     },
-    //     {
-    //       headerName: "Band*",
-    //       field: "band",
-    //       width: 150,
-    //       cellRenderer: this.drp
-    //     },
-    //     {
-    //       headerName: "New Azimuth Value(Deg)*",
-    //       field: "newAzimuthValue",
-    //       width: 150,
-    //       cellRenderer: function (params) {
-    //         return '<div class="flex"><md-input-container class="md-block margin-bottom-0 hide-md-errors-spacer">' +
-    //           '<input value="' + params.value + '" aria-label="NewValue">' +
-    //           '</md-input-container></div>';
-    //       }
-    //     }
-    //   ]
-    this.columnDefs = [
+    return this.columnDefs = [
       {
-        headerName: "SiteParameter",
-        field: "SiteParameter"
+        headerName: "Date",
+        field: "date",
+        width: 150
       },
       {
         headerName: "Reason For Reassignment",
-        field: "reasonForReassign"
+        field: "reasonForReassign",
+        width: 150
       },
       {
         headerName: "Remarks",
         field: "remarks",
+        width: 150
       }
-    ]
-
-    this.datatable.columnDefsServices = this.columnDefs;
+    ];
   }
 
+  createSiteColumnDefs() {
+    return this.columnDefs = [
+      {
+        headerName: "SiteParameter",
+        field: "siteParameter",
+        width: 150
+      },
+      {
+        headerName: "CurrentValue",
+        field: "currentValue",
+        width: 150
+      }
+    ];
+    // this.datatable.columnDefsServices = this.columnDefs;
+  }
+
+  createImplColumnDefs() {
+    return this.columnDefs = [
+      {
+        headerName: "Sector*",
+        field: "sector",
+        width: 150,
+        cellRenderer: 'dropdownRenderer'
+      },
+      {
+        headerName: "Band*",
+        field: "band",
+        width: 150,
+        cellRenderer: 'dropdownRenderer'
+      },
+      {
+        headerName: "New Azimuth Value(Deg)*",
+        field: "newAzimuthValue",
+        width: 150,
+        cellRenderer: 'inputRenderer'
+      },
+      {
+        headerName: "",
+        field: "",
+        width: 100,
+        cellRenderer: 'Renderer'
+      }
+    ]
+    //this.datatable.columnDefsServices = this.columnDefs;
+  }
+
+
   drp() {
-    return '<div class="flex"><md-input-container class="">' +
-      '<md-select ng-model="band.Ian" aria-label="select Band">' +
-      '<md-option value="2300" selected>2300</md-option>' +
-      '<md-option value="1800" ng-mousedown="alert();">1800</md-option>' +
-      '<md-option value="850">850</md-option>' +
-      '</md-select>' +
-      '</md-input-container></div>';
+    return ` <mat-form-field fxFlex="50">
+    <mat-select [(ngModel)]="sectorModule">
+      <mat-option *ngFor="let sector of sectorModuleList" [value]="sector">
+          {{sector}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>`
   }
 
   defaultColDef = { resizable: true };
@@ -248,35 +315,34 @@ export class ExecutionTaskComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
+    // setTimeout(() => {
 
+    // }, 1000);
   }
-
 
   fileName;
   uploadFile(file) {
-    this.fileName = file.data.name;
+    this.fileName = file.name;
     const formData = new FormData();
-    formData.append('file', file.data);
-    this.fileUploadService.upload(formData).pipe(
-      // map(event: any => {  
-      //   switch (event.type) {  
-      //     case HttpEventType.Response:  
-      //       return event;  
-      //   }  
-      // }),  
-      // catchError((error: HttpErrorResponse) => { 
-      //   return of(`${file.data.name} upload failed.`);  
-      // })).subscribe((event: any) => {  
-      //   if (typeof (event) === 'object') {  
-      //   }  
-    );
+    formData.append('file', file);
+    let obj;
+    if (file) {
+      //this.uploadedImg = [];
+      this.showFileUploadwidget = true;
+      let url = `../../../../../../../assets/images/logo/${this.fileName}`
+      obj = {
+        src: url
+      }
+      this.uploadedImg.push(obj);
+      console.log("this. uploadedImg", this.uploadedImg);
+    }
   }
 
   onClick() {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
-      this.files.push({ data: file });
+      this.files = file;
+      //this.files.push({ data: file });
       this.uploadFiles();
     };
     fileUpload.click();
@@ -284,9 +350,11 @@ export class ExecutionTaskComponent implements OnInit {
 
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
-    this.files.forEach(file => {
-      this.uploadFile(file);
-    });
+    // this.files.forEach(file => {
+    //   this.uploadFile(file);
+    // });
+
+    this.uploadFile(this.files);
   }
 
 }

@@ -58,8 +58,6 @@ import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector
 import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
-import { ImplementationDetailsComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/implementation-details/implementation-details.component';
-import { SiteParameterComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/site-parameter/site-parameter.component';
 import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
 import { SelectDropdownComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/select-dropdown/select-dropdown.component';
 import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/textfield/textfield.component';
@@ -71,14 +69,15 @@ import { TaskInputRendererComponent } from './category-wise-wo-listing/sector-mi
 import { DeleteRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/delete-renderer.component';
 import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-dropdown-renderer.component';
 
+
+
+
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
     OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
-    ImplementationDetailsComponent,
-    SiteParameterComponent,
     SelectDropdownComponent,
     TextfieldComponent,
     DeletebuttonComponent,
@@ -96,7 +95,7 @@ import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, TaskDropdownRendererComponent, TaskInputRendererComponent, DeleteRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,

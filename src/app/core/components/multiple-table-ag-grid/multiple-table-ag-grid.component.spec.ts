@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteParameterComponent } from './site-parameter.component';
+import { TableAgGridComponent } from './table-ag-grid.component';
 
-describe('SiteParameterComponent', () => {
-  let component: SiteParameterComponent;
-  let fixture: ComponentFixture<SiteParameterComponent>;
+describe('TableAgGridComponent', () => {
+  let component: TableAgGridComponent;
+  let fixture: ComponentFixture<TableAgGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteParameterComponent ]
+      declarations: [ TableAgGridComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteParameterComponent);
+    fixture = TestBed.createComponent(TableAgGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
