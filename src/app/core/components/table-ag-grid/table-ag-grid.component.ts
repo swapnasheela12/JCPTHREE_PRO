@@ -40,8 +40,8 @@ export class TableAgGridComponent implements OnInit {
   showGlobalOperation;
   @Output() cellClicked = new EventEmitter()
 
-  constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient,) {
-    console.log(data, "data");
+  constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient) {
+    console.log(data, "tablegrid");
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
