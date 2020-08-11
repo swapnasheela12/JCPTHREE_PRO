@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
+import { Subject } from 'rxjs';
 
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
@@ -37,6 +38,8 @@ export class SectorMisalignmentComponent {
   public defaultColDef = { resizable: true };
   public searchGrid = '';
   public show;
+  public gridFilterValueServices = {};
+  tableCompData = {};
   public frameworkComponentsSectorMisalignment = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -126,10 +129,12 @@ export class SectorMisalignmentComponent {
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  onFilterChanged(value) {
-    this.gridOptions.api.setQuickFilter(value);
+  public eventsSubject: Subject<any> = new Subject();
+  onFilterChanged(evt) {
+    this.gridFilterValueServices["filter"] = evt.target.value;
+    this.eventsSubject.next(this.gridFilterValueServices);
   };
-
+  show: any;
   toggleSearch() {
     this.show = !this.show;
   };
@@ -199,7 +204,7 @@ export class SectorMisalignmentComponent {
   }
 
   cellClickedDetails(evt) {
-    console.log(evt,"evt");
+    console.log(evt, "evt");
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
     }

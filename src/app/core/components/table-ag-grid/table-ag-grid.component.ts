@@ -5,7 +5,7 @@ import { DataSharHttpService } from './../../../modules/components/data-shar-htt
 import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { TableAgGridService } from './table-ag-grid.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
@@ -16,7 +16,7 @@ import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-re
   templateUrl: './table-ag-grid.component.html',
   styleUrls: ['./table-ag-grid.component.scss']
 })
-export class TableAgGridComponent implements OnInit {
+export class TableAgGridComponent implements OnInit, OnChanges {
 
   public gridApi;
   public gridOptions: GridOptions;
@@ -38,41 +38,26 @@ export class TableAgGridComponent implements OnInit {
 
   sidenavBarStatus;
   showGlobalOperation;
+  @Input('events') public filterChange;
   @Output() cellClicked = new EventEmitter();
 
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
-
-  // public calculateRowCount() {
-  //   if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
-
-
   constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient) {
-    console.log(data, "tablegrid");
-
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-     
-        // if(this.sidenavBarStatus == false){
-        //   setTimeout(() => {
-        //     this.gridOptions.api.sizeColumnsToFit();
-        //   }, 1000);
-        // }else{
-        //   setTimeout(() => {
-        //     this.gridOptions.api.sizeColumnsToFit();
-        //   }, 1000);
-        // }
-     
+
+      // if(this.sidenavBarStatus == false){
+      //   setTimeout(() => {
+      //     this.gridOptions.api.sizeColumnsToFit();
+      //   }, 1000);
+      // }else{
+      //   setTimeout(() => {
+      //     this.gridOptions.api.sizeColumnsToFit();
+      //   }, 1000);
+      // }
+
     });
 
     this.gridOptions = <GridOptions>{};
-
     this.columnDefs = data.columnDefsServices;
     this.rowData = data.rowDataServices;
     // this.paginationRequired = data.paginationRequired;
@@ -82,16 +67,17 @@ export class TableAgGridComponent implements OnInit {
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
   }
 
-  ngOnInit(): void {
+  ngOnInit() { }
+
+  ngOnChanges() {
+    this.filterChange.subscribe((data) => {
+      this.gridOptions.api.setQuickFilter(data.filter);
+    });
   }
-
-
 
   public onReady(params) {
     this.gridApi = params.api;
     params.api.paginationGoToPage(4);
-    // this.calculateRowCount();
-    // this.gridOptions.api.setQuickFilter(this.data.gridFilterValueServices);
   }
 
   selectionChanged(event: SelectionChangedEvent) {
@@ -122,7 +108,7 @@ export class TableAgGridComponent implements OnInit {
 
   // searchGrid = '';
   // onFilterChanged(value) {
-   
+
   //   this.gridOptions.api.setQuickFilter(value);
   // };
   // show: any;

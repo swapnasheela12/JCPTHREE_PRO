@@ -7,9 +7,21 @@
       </div>
 
       <div class="px-2 pt-3 col-4 sector-flex-item">
-        <mat-icon class="icon-button" aria-label="search">
+        <!-- <mat-icon class="icon-button" aria-label="search">
+          <span class="zmdi zmdi-search"></span>
+        </mat-icon> -->
+
+        <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
           <span class="zmdi zmdi-search"></span>
         </mat-icon>
+
+        <mat-form-field *ngIf="show">
+          <!-- <mat-label>Filter</mat-label> -->
+          <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+          <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+            <span class="zmdi zmdi-close"></span>
+          </mat-icon>
+        </mat-form-field>
 
       </div>
     </div>
@@ -17,7 +29,8 @@
 
   <mat-divider style="position: relative;"></mat-divider>
   <div class="jcp-table-container">
-    <app-table-ag-grid (cellClicked)="cellClickedDetails($event)"></app-table-ag-grid>
+    <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+    </app-table-ag-grid>
 
   </div>
 </mat-card>
