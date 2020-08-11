@@ -1,0 +1,34 @@
+<div #container class="jcp-kpi-setting-control-layers-container">
+    <div class="toolbar-kpi-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+        <div class="toolbar-kpi-setting-control-title" fxFlex>
+            <!-- <span class="ic ic-KPI-01 pr-1" style="font-size: 16px;"></span> -->
+            <span>KPI Panel Setting</span>
+        </div>
+        <div class="toolbar-kpi-setting-control-icon-list">
+            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="kpi-setting-container">
+        <div fxLayout="column" class="kpi-setting-list-container" *ngFor="let kpi of kpidisplayslist ; first as isFirst; last as isLast">
+            <div class="kpi-setting-list-title  px-1">{{ kpi.name }}</div>
+            <div class="kpi-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
+                <div class="kpi-setting-list-child-check" fxFlex="30" *ngFor="let item of kpi.checks">
+                    <mat-checkbox>{{item.name}}</mat-checkbox>
+                </div>
+            </div>
+            <mat-divider *ngIf="!isLast"></mat-divider>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="p-0" fxLayout="row">
+        <div fxFlex></div>
+        <div class="p-2 my-flex-item">
+            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="p-2 my-flex-item">
+            <button mat-raised-button color="primary" class="buttonWidth">Save</button>
+        </div>
+    </div>
+</div>

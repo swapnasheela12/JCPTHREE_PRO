@@ -1,3 +1,4 @@
+import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -78,7 +79,11 @@ import { PlanningDeploymentModule } from './modules/planning-deployment/planning
 import { LegendsAndFilterComponent } from './main-layer/legends-and-filter/legends-and-filter.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
+import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.component';
+import { KpiDetailsChartComponent } from './main-layer/kpi-details/kpi-details-chart/kpi-details-chart.component';
 
+import { HighchartsChartModule } from "highcharts-angular";
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -96,12 +101,17 @@ import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-worko
     PlanningComponent,
     WorkordersComponent,
     TableViewControlComponent,
-    LegendsAndFilterComponent
+    LegendsAndFilterComponent,
+    KpiDetailsComponent,
+    KpiSettingsComponent,
+    KpiDetailsChartComponent
   ],
   imports: [
     CommonModule,
     MainModulesRoutingModule,
     CoreModule,
+    HighchartsChartModule,
+    ChartModule,
     // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
