@@ -67,11 +67,14 @@ import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-c
 import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
+import { TaskInputRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-input-renderer.component';
+import { DeleteRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/delete-renderer.component';
+import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-dropdown-renderer.component';
 
 @NgModule({
   declarations: [
     SectorMisalignmentComponent,
-     OvershootingCellComponent,
+    OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
     ImplementationDetailsComponent,
@@ -81,7 +84,10 @@ import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshoo
     DeletebuttonComponent,
     OvershootingExeTaskComponent,
     IanLeadComponent,
-    WoOvershootingCellComponent
+    WoOvershootingCellComponent,
+    TaskDropdownRendererComponent,
+    TaskInputRendererComponent,
+    DeleteRendererComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,
