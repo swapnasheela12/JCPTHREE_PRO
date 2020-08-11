@@ -38,23 +38,37 @@ export class TableAgGridComponent implements OnInit {
 
   sidenavBarStatus;
   showGlobalOperation;
-  @Output() cellClicked = new EventEmitter()
+  @Output() cellClicked = new EventEmitter();
+
+  // onReadyModeUpdate(params) {
+  //   this.calculateRowCount();
+  // }
+
+  // public calculateRowCount() {
+  //   if (this.gridOptions.api && this.rowData) {
+  //     setTimeout(() => {
+  //       this.gridOptions.api.sizeColumnsToFit();
+  //     }, 1000);
+  //   }
+  // }
+
 
   constructor(public data: TableAgGridService, private datashare: DataSharingService, private httpClient: HttpClient) {
     console.log(data, "tablegrid");
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      // if(this.sidenavBarStatus == false){
-      //   setTimeout(() => {
-      //     this.gridOptions.api.sizeColumnsToFit();
-      //   }, 1000);
-      // }else{
-      //   setTimeout(() => {
-      //     this.gridOptions.api.sizeColumnsToFit();
-      //   }, 1000);
-      // }
-
+     
+        // if(this.sidenavBarStatus == false){
+        //   setTimeout(() => {
+        //     this.gridOptions.api.sizeColumnsToFit();
+        //   }, 1000);
+        // }else{
+        //   setTimeout(() => {
+        //     this.gridOptions.api.sizeColumnsToFit();
+        //   }, 1000);
+        // }
+     
     });
 
     this.gridOptions = <GridOptions>{};
@@ -76,6 +90,8 @@ export class TableAgGridComponent implements OnInit {
   public onReady(params) {
     this.gridApi = params.api;
     params.api.paginationGoToPage(4);
+    // this.calculateRowCount();
+    // this.gridOptions.api.setQuickFilter(this.data.gridFilterValueServices);
   }
 
   selectionChanged(event: SelectionChangedEvent) {
@@ -103,4 +119,17 @@ export class TableAgGridComponent implements OnInit {
     console.log(event, " row clicked event>>>");
 
   }
+
+  // searchGrid = '';
+  // onFilterChanged(value) {
+   
+  //   this.gridOptions.api.setQuickFilter(value);
+  // };
+  // show: any;
+  // toggleSearch() {
+  //   this.show = !this.show;
+  // };
+
+
+
 }

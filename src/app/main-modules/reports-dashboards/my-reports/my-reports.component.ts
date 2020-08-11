@@ -50,6 +50,7 @@ export class MyReportsComponent implements OnInit {
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
+  public gridPinned = false;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public rowData: any;
@@ -117,6 +118,7 @@ export class MyReportsComponent implements OnInit {
         this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
         this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridPinnedServices = this.gridPinned;
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
       });
@@ -163,7 +165,10 @@ export class MyReportsComponent implements OnInit {
 
   searchGrid = '';
   onFilterChanged(value) {
-    this.gridOptions.api.setQuickFilter(value);
+    console.log(value,"value");
+    console.log(this.gridOptions.api.setQuickFilter(value),"valthis.gridOptions.api.setQuickFilter(value)ue");
+    this.datatable.gridFilterValueServices = value;
+    // this.gridOptions.api.setQuickFilter(value);
   };
   show: any;
   toggleSearch() {
