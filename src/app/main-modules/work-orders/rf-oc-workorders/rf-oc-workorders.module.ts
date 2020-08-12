@@ -66,7 +66,6 @@ import { OvershootingExeTaskComponent } from './category-wise-wo-listing/oversho
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 import { TaskInputRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-input-renderer.component';
-import { DeleteRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/delete-renderer.component';
 import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-dropdown-renderer.component';
 
 
@@ -85,8 +84,7 @@ import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector
     IanLeadComponent,
     WoOvershootingCellComponent,
     TaskDropdownRendererComponent,
-    TaskInputRendererComponent,
-    DeleteRendererComponent
+    TaskInputRendererComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,
@@ -95,7 +93,7 @@ import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, TaskDropdownRendererComponent, TaskInputRendererComponent, DeleteRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, TaskDropdownRendererComponent, TaskInputRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,

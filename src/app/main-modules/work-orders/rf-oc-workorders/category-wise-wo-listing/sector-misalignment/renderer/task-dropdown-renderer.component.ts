@@ -19,10 +19,7 @@ export class TaskDropdownRendererComponent implements ICellRendererAngularComp {
   params;
   sectorModule = "Alpha";
   customModule = "Disable";
-  changeImpList = [
-    '+',
-    '-',
-  ];
+
   sectorModuleList = [
     'Alpha',
     'Beta',

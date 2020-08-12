@@ -1,204 +1,225 @@
-<div class="execution-task-container p-0" mat-dialog-content>
-
-    <mat-card class="ex-card-one card-header" style="height: 172px; border-radius: 32px;" fxLayout>
-        <mat-card class="py-3 h-100 sector-title">Task Retrigger Details</mat-card>
-        <!-- <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 116px;"
-            class="ag-theme-material ag-jcp3" [rowData]="taskRowdata" [columnDefs]="taskColDef" rowHeight="48"
-            headerHeight="48" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-            (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
-        </ag-grid-angular> -->
-
-
-        <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 116px;"
-            class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
-            [columnDefs]="taskColDef" [rowData]="taskRowdata" enableColResize enableSorting enableFilter groupHeaders
-            suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-            [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
-        </ag-grid-angular>
-
-    </mat-card>
-    <!-- <div style="height: 100%; width: 100%"> 
-         <app-table-ag-grid></app-table-ag-grid>
-         </div> -->
-
-
-
-
-    <!-- <mat-card class="ex-card-one card-header" style="height: 190px; margin-bottom: 20px; border-radius: 32px;" fxLayout>
-        <mat-card class="py-3 h-100 sector-title">Dropdown</mat-card>
-        <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 170px;"
-            class="ag-theme-material ag-jcp3" [rowData]="siteRowdata" [columnDefs]="siteColDef" rowHeight="48"
-            headerHeight="48" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple">
-        </ag-grid-angular>
-    </mat-card> -->
-
-    <mat-card class="ex-card-two card-header" style="height: 250px; margin-bottom: 20px; border-radius: 4px;" fxLayout>
-        <mat-card class="py-3 h-100 sector-title">Implemented Parameter Details</mat-card>
-
-
-        <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 107px;"
-            class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
-            [columnDefs]="implColDef" [rowData]="implRowdata" enableColResize enableSorting enableFilter groupHeaders
-            suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-            [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
-        </ag-grid-angular>
-
-
-        <!-- <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 107px;"
-            class="ag-theme-material ag-jcp3" [rowData]="implRowdata" [columnDefs]="implColDef" rowHeight="48"
-            headerHeight="48" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-            [frameworkComponents]="frameworkComponentsTaskExecution">
-        </ag-grid-angular> -->
-
-        <div class="d-flex flex-row flex-wrap"
-            style="top: 162px; width: 100%;position: absolute; height: 76px; background: white;">
-            <mat-form-field class="py-3 h-100 sector-title col-6" style="background: white; font-family: lato small;">
-                <input matInput placeholder="Remarks" required>
-            </mat-form-field>
+<div class="execution-task-container">
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Task Retrigger Details</div>
         </div>
-
-
-
-    </mat-card>
-    <!-- <div style="height: 100%; width: 100%">
-        <app-implementation-details></app-implementation-details>
-    </div> -->
-
-    <!-- <mat-card class="ex-card-two card-header">
-        <mat-card class="h-100 sector-title" fxLayout>Title</mat-card>
-        <mat-card-content class="h-100" fxLayout>
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">E-Tilt/Tx attenuation Change</mat-radio-button>
-                <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
-            </mat-radio-group>
-        </mat-card-content>
-    </mat-card> -->
-
-    <div style="height: 307px; margin-bottom: 20px;">
-        <mat-card class="ex-card-pso card-header sector-panel" fxLayout>
-            <mat-card class="py-3 h-100 sector-title">Physical Parameter Optimization</mat-card>
-
-            <!-- <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 258px;"
-                class="ag-theme-material ag-jcp3" [rowData]="siteRowdata" [columnDefs]="siteColDef" rowHeight="48"
-                headerHeight="48" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple">
-            </ag-grid-angular> -->
-
-            <ag-grid-angular style="position: absolute; width: 100%; top: 56px; height: 258px;"
-                class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
-                [columnDefs]="siteColDef" [rowData]="siteRowdata" enableColResize enableSorting enableFilter
-                groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
-                rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
-                (gridReady)="onReady($event)">
-            </ag-grid-angular>
-
-
-
-        </mat-card>
-        <!-- <div style="height: 100%; width: 100%">
-            <app-site-parameter></app-site-parameter>
-        </div> -->
-    </div>
-
-
-    <mat-card class="ex-card-two card-header sector-panel">
-        <mat-card class="h-100 sector-title" fxLayout>Site Details</mat-card>
-        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
-            <div class="px-3 ex-flex-item col-3" *ngFor="let site of siteDetails">
-                <div class="ex-form-field-read">
-                    <div class="ex-form-input-title">{{site.label}}</div>
-                    <div class="ex-form-input-value">{{site.value}}</div>
-                </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 116px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="taskColDef" [rowData]="taskRowdata"
+                    enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
             </div>
         </div>
-        <div class="d-flex flex-row flex-wrap ex-flex-container">
-            <div class="col-6 ex-flex-item" *ngFor="let site of siteDetail">
-                <div class="ex-form-field-read">
-                    <div class="ex-form-input-title">{{site.label}}</div>
-                    <div class="ex-form-input-value">{{site.value}}</div>
+    </mat-card>
+
+
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Implemented Parameter Details</div>
+
+            <mat-icon class="search-icon" aria-label="search" (click)="addGridImplementedParameterDetails()">
+                <span class="zmdi zmdi-plus-circle-o" style="color: rgba(0,0,0,0.54);"></span>
+            </mat-icon>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="sub-content-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 116px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptionsImpl" [columnDefs]="implColDef" [rowData]="implRowdata"
+                    enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)" [frameworkComponents]="frameworkComponentsTaskExecution">
+                </ag-grid-angular>
+            </div>
+
+            <div class="content-list">
+                <div class="content-list-container p-3 " fxFlex="50">
+                    <mat-form-field class="input-content w-100 ">
+                        <mat-label>Remark</mat-label>
+                        <input matInput placeholder="" value="" required>
+                    </mat-form-field>
                 </div>
             </div>
         </div>
     </mat-card>
 
 
-    <mat-card class="ex-card-three card-header sector-panel">
-        <mat-card class="h-100 sector-title" fxLayout>Field Measurement Information</mat-card>
-        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
-            <div class="px-3 ex-flex-item col-3" *ngFor="let fmi of fieldMeasurementInformation">
-                <div class="ex-form-field-read">
-                    <div class="ex-form-input-title">{{fmi.label}}</div>
-                    <div class="ex-form-input-value">{{fmi.value}}</div>
-                </div>
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Physical Parameter Optimization</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 250px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptionsSite" [columnDefs]="siteColDef" [rowData]="siteRowdata"
+                    enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
             </div>
         </div>
     </mat-card>
 
-    <mat-card class="ex-card-four card-header sector-panel">
-        <mat-card class="h-100 sector-title" fxLayout>Observed Issues and Actions (Deviation calculated based on Centre
-            Angle of Sector with Maximum Samples)</mat-card>
-        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
-            <div class="px-3 ex-flex-item col-3" *ngFor="let oi of observedIssues">
-                <div class="ex-form-field-read">
-                    <div class="ex-form-input-title">{{oi.label}}</div>
-                    <div class="ex-form-input-value">{{oi.value}}</div>
-                </div>
-            </div>
+
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Site Details</div>
         </div>
-    </mat-card>
-
-    <mat-card class="ex-card-five card-header sector-panel">
-        <mat-card class="h-100 sector-title" fxLayout>Solution Implementation</mat-card>
-
-        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container"
-            style="padding: 16px 16px 0px 16px; font-family: lato medium">
-            <mat-form-field class="ex-form-field-read">
-                <mat-label class="ex-form-input-title">Task Closure Remarks*</mat-label>
-                <mat-select disableOptionCentering [(value)]="taskClosureRemarks[0]"
-                    style="font-family: lato medium; font-size: 14px;">
-                    <mat-option value="option1" class="sector-title" *ngFor="let tcr of taskClosureRemarks"
-                        [value]="tcr">
-                        {{tcr}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div class="d-flex h-100 flex-row flex-wrap ex-flex-container">
-            <mat-form-field class="ex-file-field col-6" style="font-family: lato small; font-size: 13px;">
-
-                <input matInput class="input-field" placeholder="Select File" [(ngModel)]="fileName" [readonly]="true"
-                    required>
-                <button class="browse-button file-upload-btn" (click)="onClick()" mat-icon-button color="primary"><i
-                        class="ic ic-file"></i></button>
-                <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
-                    style="display: none;" />
-
-            </mat-form-field>
-
-            <div class="d-flex h-100 flex-row flex-wrap" style="width: 100%">
-                <div class="tribe-post-controls-uploader-mini-wrapper col-5" *ngIf="showFileUploadwidget">
-                    <!-- <div class="tribe-post-controls-uploader-item uploaded" title="Click to remove a file"
-                        *ngFor="let img of uploadedImg"> -->
-                    <div class="uploaded-files" *ngFor="let img of uploadedImg">
-                        <div class="tribe-post-controls-uploader-item uploaded" title="Click to remove a file">
-                            <img [src]="img.src">
+        <mat-divider></mat-divider>
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-3" *ngFor="let site of siteDetails">
+                    <div class="form-field-read-only">
+                        <div class="input-title">
+                            {{site.label}}
                         </div>
-
+                        <div class="input-value">{{site.value}}</div>
                     </div>
-                    <div class="tribe-post-controls-uploader-item-btn upload-file-widget"
-                        title="Choose a file to upload" (click)="onClick()" multiple="multiple">
-                    </div>
-
                 </div>
             </div>
         </div>
     </mat-card>
+
+
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Field Measurement Information</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-3" *ngFor="let fmi of fieldMeasurementInformation">
+                    <div class="form-field-read-only">
+                        <div class="input-title">{{fmi.label}}</div>
+                        <div class="input-value">{{fmi.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Observed Issues and Actions (Deviation calculated based on Centre
+                Angle of Sector with Maximum Samples)
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-3" *ngFor="let oi of observedIssues">
+                    <div class="form-field-read-only">
+                        <div class="input-title">{{oi.label}}</div>
+                        <div class="input-value">{{oi.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+
+    <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Solution Implementation</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-3">
+                    <mat-form-field class="">
+                        <mat-label class="">Task Closure Remarks*</mat-label>
+                        <mat-select disableOptionCentering [(value)]="taskClosureRemarks[0]"
+                            style="font-family: lato medium;">
+                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of taskClosureRemarks"
+                                [value]="tcr">
+                                {{tcr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex  flex-row flex-wrap">
+                <div class="sub-content-flex-item col-5">
+
+                    <div class="sub-content-flex-item " style="width: 100%">
+                        <mat-form-field>
+                            <input matInput class="input-field"
+                                style="position: inherit; top: 35px; opacity: 0.6;font-size: 14px;"
+                                placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+                            <button class="browse-button"
+                                style="position: absolute; right: 0; bottom :0; font-size: 14px;" (click)="onClick()"
+                                mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+
+                            <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                                style="display: none;" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex  flex-row flex-wrap">
+                <div class="sub-content-flex-item col-5">
+                    <div class=" sub-content-flex-item  tribe-post-controls-uploader-mini-wrapper col-5"
+                        style="display: inline;" *ngIf="showFileUploadwidget">
+                        <div class="uploaded-files" *ngFor="let img of uploadedImg">
+                            <div class="tribe-post-controls-uploader-item uploaded" title="Click to remove a file">
+                                <img [src]="img.src">
+                            </div>
+
+                            <div class="tribe-post-controls-uploader-item-remove"></div>
+                        </div>
+                        <div class="tribe-post-controls-uploader-item-btn upload-file-widget"
+                            title="Choose a file to upload" (click)="onClick()" multiple="multiple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+
+    <!-- 
+ <mat-card class="execution-task-container-one p-0">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Solution Implementation</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="p-3">
+                    Select the solution to be implemented for mitigation of Sector Misalignment cell*
+                </div>
+                <div class="sol-imp-row p-3" style="font-family: lato medium; color: #000000">
+                    <mat-radio-group aria-label="Select an option">
+                        <mat-radio-button class="mr-2" value="E-Tilt">E-Tilt/Tx attenuation Change
+                        </mat-radio-button>
+                        <mat-radio-button class="mr-2" value="Parameter Optimization">Physical Parameter Optimization
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+    </mat-card> -->
+
+
+
+
 
 
 </div>
+
 <div class="d-flex task-footer">
     <div class="col"></div>
     <div class="p-2">

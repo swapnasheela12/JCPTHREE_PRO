@@ -14,8 +14,8 @@ import { of } from 'rxjs';
 import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
 import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
 import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.component';
-import { DeleteRendererComponent } from '../../renderer/delete-renderer.component';
 import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 
 @Component({
   selector: 'app-execution-task',
@@ -33,6 +33,8 @@ export class ExecutionTaskComponent implements OnInit {
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  public gridOptionsImpl: GridOptions;
+  public gridOptionsSite: GridOptions;
   public rowData: any;
   public columnDefs: any;
   public rowCount: string;
@@ -42,6 +44,7 @@ export class ExecutionTaskComponent implements OnInit {
   public siteColDef;
   public implColDef;
   public taskRowdata;
+  public addRemoveRows;
   public siteRowdata = [
     {
       "siteParameter": "Antenna Azimuth(deg)",
@@ -95,9 +98,6 @@ export class ExecutionTaskComponent implements OnInit {
       "label": "Cell Name:",
       "value": "I-MU-THNE-ENB-0306-15"
     },
-  ];
-
-  siteDetail = [
     {
       "label": "Antenna Make:",
       "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
@@ -106,7 +106,7 @@ export class ExecutionTaskComponent implements OnInit {
       "label": "Antenna Model:",
       "value": "4T4R"
     }
-  ]
+  ];
 
   observedIssues = [
     {
@@ -165,16 +165,16 @@ export class ExecutionTaskComponent implements OnInit {
 
 
   public onReady(params) {
-    console.log(this.gridOptions, "this.gridoptions");
-    console.log(params, "onReady");
     this.gridApi = params.api;
     this.calculateRowCount();
   }
   public calculateRowCount() {
-    console.log("this.gridoptions", this.gridOptions);
-    if (this.gridOptions.api && this.taskRowdata && this.siteRowdata && this.implRowdata) {
+    if (this.gridOptions.api && this.gridOptionsImpl.api && this.gridOptionsSite.api &&
+      this.taskRowdata && this.siteRowdata && this.implRowdata) {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
+        this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsSite.api.sizeColumnsToFit();
       }, 1000);
     }
   }
@@ -186,19 +186,22 @@ export class ExecutionTaskComponent implements OnInit {
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,
-      'deleteRenderer': DeleteRendererComponent
+      'dropdown': dropDownThreeDotRendererComponent
     };
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
+    this.gridOptionsImpl = <GridOptions>{};
+    this.gridOptionsSite = <GridOptions>{};
     this.taskColDef = this.createColumnDefs();
     this.siteColDef = this.createSiteColumnDefs();
     this.implColDef = this.createImplColumnDefs();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      console.log("this.side", this.sidenavBarStatus);
       this.calculateRowCount();
     });
+
+
 
     // this.httpClient.get(this.site_url)
     //   .subscribe(data => {
@@ -216,6 +219,7 @@ export class ExecutionTaskComponent implements OnInit {
       .subscribe(data => {
         this.taskRowdata = data;
       });
+
   }
 
   ngOnInit(): void {
@@ -281,7 +285,7 @@ export class ExecutionTaskComponent implements OnInit {
         headerName: "",
         field: "",
         width: 100,
-        cellRenderer: 'Renderer'
+        template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
       }
     ]
     //this.datatable.columnDefsServices = this.columnDefs;
@@ -302,6 +306,8 @@ export class ExecutionTaskComponent implements OnInit {
   searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
+    this.gridOptionsImpl.api.setQuickFilter(value);
+    this.gridOptionsSite.api.setQuickFilter(value);
   };
   show: any;
   toggleSearch() {
@@ -315,10 +321,37 @@ export class ExecutionTaskComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // setTimeout(() => {
-
-    // }, 1000);
+    this.datashare.GridOptionMessage(this.gridOptionsImpl);
   }
+
+  addGridImplementedParameterDetails() {
+    ////////////////////Add during multiple impl///////////////////////
+
+    // this.addRemoveRows = {
+    //   add: {
+    //     "sector": "",
+    //     "band": "",
+    //     "newAzimuthValue": ""
+    //   }
+    // }
+    this.gridOptionsImpl.api.addItems([{
+      "sector": "",
+      "band": "",
+      "newAzimuthValue": ""
+    }]);
+  };
+
+  delete(params) {
+    console.log(params);
+    this.gridOptions.api.forEachNode(
+      function (node) {
+        if (node.data == params) {
+          this.gridOptions.api.removeItems([node]);
+          return false;
+        }
+      }
+    )
+  };
 
   fileName;
   uploadFile(file) {
@@ -334,7 +367,6 @@ export class ExecutionTaskComponent implements OnInit {
         src: url
       }
       this.uploadedImg.push(obj);
-      console.log("this. uploadedImg", this.uploadedImg);
     }
   }
 

@@ -5,7 +5,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
   selector: 'input-tbl-renderer',
   template: `
       <div class="flex" fxFlex="100">
-           <input value="" style="width: 100%; border: 0px ; border-bottom: 2px solid lightgray">
+           <input value="" style="width: 100%; border: 0px; border-bottom: 1px solid lightgray; height: 34px;">
       </div>
     `,
   encapsulation: ViewEncapsulation.None
