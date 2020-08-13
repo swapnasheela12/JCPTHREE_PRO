@@ -16,6 +16,8 @@ import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/tabl
 import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.component';
 import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { ExecutionTaskSaveComponent } from './execution-task-save.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-execution-task',
@@ -181,7 +183,7 @@ export class ExecutionTaskComponent implements OnInit {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient,
-    private fileUploadService: FileUploadService) {
+    private fileUploadService: FileUploadService, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
@@ -321,7 +323,6 @@ export class ExecutionTaskComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datashare.GridOptionMessage(this.gridOptionsImpl);
   }
 
   addGridImplementedParameterDetails() {
@@ -382,11 +383,18 @@ export class ExecutionTaskComponent implements OnInit {
 
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
-    // this.files.forEach(file => {
-    //   this.uploadFile(file);
-    // });
-
     this.uploadFile(this.files);
+  }
+
+  openSuccessPopup() {
+    const dialogRef = this.dialog.open(ExecutionTaskSaveComponent, {
+      width: '700px',
+      height: '290px',
+      panelClass: 'file-upload-dialog'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
