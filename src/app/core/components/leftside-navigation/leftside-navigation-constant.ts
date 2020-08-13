@@ -2406,7 +2406,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
        
         name: "My Performance Reports",
         icon: "fas fa-user fa-3",
-        link: "my-performance-reports",
+        link: "JCP/Modules/Performance-Management/My-Performance-Reports",
         level: 2,
         component: HomeJcpThreeComponent,
         children: []

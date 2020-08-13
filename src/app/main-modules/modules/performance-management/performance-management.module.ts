@@ -73,6 +73,7 @@ import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/comput
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-impact-analysis.module';
+import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-imp
     createKpiDropdownRendererComponent,
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
-    HextodocPopupComponent
+    HextodocPopupComponent,
+    MyPerformanceReportsComponent
   ],
   imports: [
     CommonModule,
