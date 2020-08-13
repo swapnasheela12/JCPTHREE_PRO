@@ -2,6 +2,10 @@ import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+//Underscore: Added temporarily. Will be replaced with javascript functions
+import * as _ from 'underscore';
+
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
@@ -19,11 +23,18 @@ import { TableViewControlComponent } from './table-view-control/table-view-contr
 declare var $: any;
 declare const testName: any;
 
+
+// TYPE CHECK FOR AN OBJECT
+interface DataObject{
+  [key:string]:any;
+}
+
 @Component({
   selector: 'app-main-layer',
   templateUrl: './main-layer.component.html',
   styleUrls: ['./main-layer.component.scss']
 })
+
 export class MainLayerComponent implements OnInit, AfterViewInit {
   // map: L.Map;
   map: any;
@@ -36,8 +47,31 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   public currentZoom;
 
+   //CANVAS LIBRARY CONTENT
+   public canvasLibrary:DataObject;
 
-  constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog) {
+
+   //PIE JSON DATA
+   public siteData:DataObject;
+ 
+ 
+   //SHAPE(FAN) CONFIG
+ 
+   public _pixelRatio:number = window.devicePixelRatio || 1;
+   public _map:DataObject;
+   public _simplePopup:DataObject;
+   public _container:DataObject;
+   public _selectionContainer:DataObject;
+   public _points:DataObject;
+   public _hightlightCell:DataObject;
+   public _bounds:Array<{key:string}>;
+   public _colors:String[] = ['#666666', '#b3b3b3', '#11808B', '#74BB26', '#CBE010', '#FFC51E', '#8CC90E', '#218A7B', '#359667', '#E7EA10', '#CBE010', '#FFB023', '#FF6239', '#FFB023', '#E8EB10', '#FF6239'];
+   public _stage:DataObject;
+   public _addtionalsector:String;;
+   public scaleMatrix:number;
+   public fanDataError:String;
+
+  constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService,private http:HttpClient, public dialog: MatDialog) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -64,7 +98,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.canvasLibrary = canvasLayerForLeaflet();
+    this.siteDataJson();
+   }
 
 
   ngAfterViewInit() {
@@ -107,7 +144,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
     tiles.addTo(this.map);
 
+    //CanvasLibrary
+    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
 
+    
     //geo json control
     var options = {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -501,9 +541,383 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     alert("canvasObj toString= " + canvasObj.toString());
   }
 
+  //LOAD JSON DATA FOR SHAPE (FAN)
+  siteDataJson(){
+    this.http.get("assets/data/layers/microsites-onair.json")
+    .subscribe(data => {
+      console.log(data);
+      this.siteData = data;
+    },
+    error => {
+      this.fanDataError = error;
+    });
+  }
+ 
+  //LIBRARY WHICH PROVIDES THE COORDINATES AND PLACES THE SHAPES
+  onDrawLayer(info){
+    console.log(info);
+    //STAGE
+    this._container = new createjs.Container();
+
+    //KEEPING STAGE READY BY PASSING CANVAS LAYER OFFERED BY CANAVAS LIBRARY
+    this._stage = new createjs.Stage(info.canvas);
+ 
+
+    // CREATED ARRAYS BASED ON SITE NUMBER E.G. SITE850 ETC.
+    var site850 = _.map(this.siteData.site850, function (item) {
+        item.sitebandtype = 'site850';
+        return item;
+    });
+    var site1800 = _.map(this.siteData.site1800, function (item) {
+        item.sitebandtype = 'site1800';
+        return item;
+    });
+    var site2300 = _.map(this.siteData.site2300, function (item) {
+        item.sitebandtype = 'site2300';
+        return item;
+    });
+
+    //COMBINING THE ARRAY
+    var flatten = _.flatten([site850, site1800, site2300], true);
+
+    //GROUPING THEM BASED ON THEIR 'SAPID' PROPERTY
+    var data = _.groupBy(flatten, 'sapid');
+    this._points = data;
+    
+    var scaleMatrix = (info.zoom <= 7) ? 0.03 : (info.zoom <= 10) ? 0.08 : (info.zoom <= 13) ? 0.15 : (info.zoom <= 15) ? 0.25 : (info.zoom <= 16) ? 0.35 : 0.40;
+    scaleMatrix = scaleMatrix * this._pixelRatio;
+    this.scaleMatrix = scaleMatrix;
+    var pointOffset = L.point(0, -(scaleMatrix * 60) / this._pixelRatio);
 
 
+    if (this._addtionalsector == 'Planned') {
+      var siteCenterDotColor = "rgb(0,15,255)";
+    } else {
+        var siteCenterDotColor = "#06C1FF";
+    }
+
+    //CENTER DOT OF THE SHAPE
+    var siteCenterDot = this.getPointGraphics(info.zoom, siteCenterDotColor);
+    var shadow = new createjs.Shadow("rgba(0,0,0,0.2)", 1, 2, 5);
+
+    for (var site in data) {
+      var siteInner = data[site];
+      var latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
+
+      // Placing the coordinates
+        if (!(info.bounds.contains(latlng))) continue;
+          let dot = info.layer._map.latLngToContainerPoint(latlng);
+          var centerPoint = {
+            x: dot.x * this._pixelRatio,
+            y: dot.y * this._pixelRatio
+        }
+        
+        if (this._hightlightCell && this._hightlightCell == siteInner[0].sapid) {
+          this._selectionContainer = new createjs.Container();
+          this._selectionContainer.name = 'highlightcontainer';
+          this._selectionContainer.scaleX = scaleMatrix;
+          this._selectionContainer.scaleY = scaleMatrix;
+          this._selectionContainer.x = centerPoint.x;
+          this._selectionContainer.y = centerPoint.y;
+
+          var highlightGraphic = this.getSelectionGraphics('#1e88e5', '#FFFFFF');
+          var highlightShape = new createjs.Shape(highlightGraphic);
+          this._selectionContainer.addChild(highlightShape);
+          this._container.addChild(this._selectionContainer);
+        }
+
+        var siteContainer = new createjs.Container();
+        siteContainer.x = centerPoint.x;
+        siteContainer.y = centerPoint.y;
+        siteContainer.scaleX = scaleMatrix;
+        siteContainer.scaleY = scaleMatrix;
+        siteContainer.name = siteInner[0].sapid;
+
+        var carrierLines = {
+          "site2300": 15,
+          "site1800": 35,
+          "site850": 55
+        };
+
+        var currentBands = {};
+        for (var band in siteInner) {
+            var bandInner = siteInner[band];
+            currentBands[bandInner.sitebandtype] = true;
+        }
+        for (var band in siteInner) {
+            var bandInner = siteInner[band];
+            var outerRadius = (bandInner.sitebandtype == 'site850') ? 75 : (bandInner.sitebandtype == 'site1800') ? 55 : 35;
+            var innerRadius = (bandInner.sitebandtype == 'site850') ? 55 : (bandInner.sitebandtype == 'site1800') ? 35 : 15;
+      
+            if (bandInner.sitebandtype == 'site1800') {
+              if (!currentBands['site2300']) innerRadius = 15;
+            }
+            if (bandInner.sitebandtype == 'site850') {
+                if (!currentBands['site1800'] && currentBands['site2300']) innerRadius = 35;
+                if (!currentBands['site1800'] && !currentBands['site2300']) innerRadius = 15;
+            }
+            var carrierInnerRadius = innerRadius;
+            var startAngle, endAngle;
+            for (var sector in bandInner.siteArray) {
+              var sectorInner = bandInner.siteArray[sector];
 
 
+              var sectorColor;
+              sectorInner.sitebandtype = bandInner.sitebandtype;
+              sectorInner.sitebandtype = bandInner.sitebandtype;
 
+              var sectorid = sectorInner.sectorid;
+              var carrierOrNot;
+              if (sectorInner.carrier != null) {
+                  carrierOrNot = true;
+              } else {
+                  carrierOrNot = false;
+              }
+
+              if (bandInner.sitebandtype == 'site2300') {
+                if (this._addtionalsector == 'Planned') {
+                  sectorColor = "rgb(0,15,255)";
+                } else {
+                    sectorColor = "#5883d1";
+                }
+
+                //CALCULATION FOR START AND END ANGLES FOR SHAPE TO BE GENERATED BASED ON THE DATA PROVIDE IN SITE ARRAY LIST
+                switch (sectorid) {
+                  case 1:
+                  var sector4 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 4
+                  });
+                  if (sector4 !== undefined) {
+                      if (sector4.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth - 30;
+                          endAngle = sectorInner.azimuth - 5;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+
+
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                  case 2:
+                  var sector5 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 5
+                  });
+                  if (sector5 !== undefined) {
+                      if (sector5.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth - 30;
+                          endAngle = sectorInner.azimuth - 5;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                  case 3:
+                  var sector6 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 6
+                  });
+                  if (sector6 !== undefined) {
+                      if (sector6.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth - 30;
+                          endAngle = sectorInner.azimuth - 5;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                  case 4:
+                  var sector1 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 1
+                  });
+                  if (sector1 !== undefined) {
+                      if (sector1.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth + 5;
+                          endAngle = sectorInner.azimuth + 30;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                  case 5:
+                  var sector2 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 2
+                  });
+
+                  if (sector2 !== undefined) {
+                      if (sector2.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth + 5;
+                          endAngle = sectorInner.azimuth + 30;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                  case 6:
+                  var sector3 = _.findWhere(bandInner.siteArray, {
+                      sectorid: 3
+                  });
+                  if (sector3 !== undefined) {
+                      if (sector3.azimuth == sectorInner.azimuth) {
+                          startAngle = sectorInner.azimuth + 5;
+                          endAngle = sectorInner.azimuth + 30;
+                      } else {
+                          startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                          endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                      }
+                  } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                }
+              }
+              else if (bandInner.sitebandtype == 'site1800') {
+                if (this._addtionalsector == 'Planned') {
+                    sectorColor = "rgb(0,15,255)";
+                } else {
+                    sectorColor = "#e7f300";
+                }
+                startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+              }
+              else {
+                if (this._addtionalsector == 'Planned') {
+                    sectorColor = "rgb(0,15,255)";
+                } else {
+                    sectorColor = "#be0c2f";
+                }
+
+                startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+              }
+
+              sectorInner.pcicolor = sectorColor;
+
+              if (this._addtionalsector == 'Planned') {
+                var sectorpieColor = '#fff';
+              } else {
+                var sectorpieColor = '#000000';
+              }
+
+              //PIE GENERATOR GENERATES THE SHAPES BASED ON PARAMS PROVIDED. FOR EXAMPLE, START ANGLE, END ANGLE ETC 
+              var sectorPie = new createjs.Shape(this.pieGenerator(0, 0, startAngle, endAngle, outerRadius, innerRadius, carrierInnerRadius, carrierOrNot, sectorColor, sectorpieColor, 1));
+              sectorPie.alpha = 0.8;
+              sectorPie.shadow = shadow;
+              sectorPie.cursor = 'pointer';
+              sectorPie['latlng'] = latlng;
+              sectorPie['site'] = site;
+              sectorPie['sector'] = sector;
+              siteContainer.addChild(sectorPie)
+            }
+        }
+
+        //CENTER DOT OF EACH SHAPE
+        var siteDot = new createjs.Shape(siteCenterDot);
+        siteDot.name = "centerdot";
+        siteDot.shadow = shadow;
+        siteDot.cursor = 'pointer';
+        siteDot['site'] = site;
+        siteDot['latlng'] = latlng;
+        siteContainer.addChild(siteDot);
+
+
+        // SHOW LABELS FOR EACH SHAPE LAID ON MAP
+        if (info.zoom >= 15) {
+          var label = new createjs.Text(siteInner[0].sapid, "bold 30px RobotoDraft", "#FFFFFF");
+          label.textAlign = 'center';
+          label.outline = 3;
+          label.y = (scaleMatrix * 280) / this._pixelRatio;
+          
+          var outline = label.clone();
+          outline.shadow = shadow;
+          outline.color = '#000000';
+          siteContainer.addChild(label, outline);
+        }
+
+        info.bounds.extend(latlng);
+        this._container.addChild(siteContainer);
+    }
+    this._bounds = info.bounds;
+    this._container.alpha = 1;
+
+    //PUSH THE SHAPES SAVED IN CONTAINER AND DISPLAY IT 
+    this._stage.addChild(this._container);
+    this._stage.update();
+  }
+
+  //GENERATES ARC
+  pieGenerator(pie_x, pie_y, startAngle, endAngle, radius1, radius2, carrierInnerRadius, carrierStatus, fillColor, lineColor, lineThickness) {
+
+    var newAngles = (endAngle - startAngle) / 2;
+    var newAngle = startAngle + newAngles;
+
+    var g = new createjs.Graphics();
+
+    // PROPERTIES NOT AVAILABLE IN LATEST VERSTION
+    //var strokeStyleCommand = g.setStrokeStyle(lineThickness).command;
+    //g.strokeStyleCommand = strokeStyleCommand;
+
+    g.setStrokeStyle(lineThickness);
+    g.beginFill(fillColor);
+    g.beginStroke(lineColor);
+    g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle),true);
+    g.lineTo(pie_x + Math.cos(this.toRad(endAngle)) * radius2, pie_y + Math.sin(this.toRad(endAngle)) * radius2);
+    g.arc(pie_x, pie_y, radius2, this.toRad(endAngle), this.toRad(startAngle), true);
+    g.closePath();
+    g.endFill();
+
+
+    if (carrierStatus) {
+        g.setStrokeStyle(1);
+        g.moveTo(pie_x + Math.cos(this.toRad(newAngle)) * carrierInnerRadius, pie_y + Math.sin(this.toRad(newAngle)) * carrierInnerRadius);
+        g.lineTo(pie_x + Math.cos(this.toRad(newAngle)) * radius1, pie_y + Math.sin(this.toRad(newAngle)) * radius1);
+        g.closePath();
+        g.beginStroke("#CD4B5B");
+    } 
+    return g;
+  }
+
+  //GENERATES CENTER DOT 
+  getPointGraphics(matrix, color) {
+      var g = new createjs.Graphics();
+      g.setStrokeStyle(1);
+      g.beginStroke(createjs.Graphics.getRGB(0, 0, 0));
+      g.beginFill(color);
+      g.drawCircle(0, 0, 10);
+      return g;
+  };
+
+  //BAND COLORS
+  getSelectionGraphics(strokecolor, color) {
+    var g = new createjs.Graphics();
+    g.setStrokeStyle(5);
+    g.beginStroke(strokecolor);
+    g.beginFill(color);
+    g.drawCircle(0, 0, 90);
+    return g;
+  };
+
+  //DEGREE TO RADIANS CONVERTER
+  toRad(angle) {
+  return (angle - 90) * Math.PI / 180;
+  }
 }
