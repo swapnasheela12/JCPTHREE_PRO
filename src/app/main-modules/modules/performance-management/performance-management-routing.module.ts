@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 import { CreateReportComponent } from './report-builder/create-report/create-report.component';
+import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,12 @@ const routes: Routes = [
     ]
   },
   { path:"MSISDN-To-Wi-Fi-MAC-Converter", component: WifiUtilityComponent },
-  { path: "Change-Impact-Analysis", loadChildren: "./change-impact-analysis/change-impact-analysis-routing.module#ChangeImpactAnanlysisRoutingModule"}
+  { path: "Change-Impact-Analysis", loadChildren: "./change-impact-analysis/change-impact-analysis-routing.module#ChangeImpactAnanlysisRoutingModule"},
+  { path: "My-Performance-Reports", 
+    children: [
+      {path: "", component: MyPerformanceReportsComponent}
+    ]
+  }
 ];
 
 @NgModule({
