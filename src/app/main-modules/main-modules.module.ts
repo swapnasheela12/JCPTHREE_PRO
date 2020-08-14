@@ -84,6 +84,9 @@ import { KpiDetailsChartComponent } from './main-layer/kpi-details/kpi-details-c
 
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
+import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
+import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
+import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +107,10 @@ import { ChartModule } from 'angular-highcharts';
     LegendsAndFilterComponent,
     KpiDetailsComponent,
     KpiSettingsComponent,
-    KpiDetailsChartComponent
+    KpiDetailsChartComponent,
+    SpiderViewComponent,
+    SpiderViewDirective,
+    TreeNodeComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { SpiderViewComponent } from './spider-view/spider-view.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
@@ -193,6 +194,25 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
         container.onclick = function () {
           console.log('buttonClicked');
+
+
+          var spiderViewListDialogRef = {
+            width: '100%',
+            height: '100%',
+            panelClass: 'spider-view-custom-dialog'
+            // position: { bottom: '60px', right: "60px" },
+            // panelClass: "table-view-layers-dialog-container",
+            // backdropClass: 'cdk-overlay-transparent-backdrop',
+            // disableClose: true,
+            // hasBackdrop: true
+          }
+          const dialogRef = _dialog.open(SpiderViewComponent, spiderViewListDialogRef);
+  
+          // dialogRef.backdropClick().subscribe(_ => {
+          //   dialogRef.close();
+          // });
+  
+
         }
 
         return container;
