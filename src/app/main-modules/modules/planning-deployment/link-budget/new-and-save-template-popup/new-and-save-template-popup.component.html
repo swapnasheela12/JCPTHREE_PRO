@@ -1,0 +1,77 @@
+<mat-toolbar class="dialog-header">
+    <mat-toolbar-row>
+        <div fxFlex="grow">
+            <div>{{title}}</div>
+        </div>
+        <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title == 'New Template'">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field fxFlex="65" class="m-4">
+            <mat-select disableOptionCentering placeholder="State/City" [(value)]="stateCityModel"
+                (selectionChange)="onStateCityChanged(stateCityModel)">
+                <mat-option value="Mumbai" selected>Mumbai
+                </mat-option>
+                <mat-option value="Pune">Pune</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="65" class="m-4">
+            <mat-select disableOptionCentering placeholder="State/City" [(value)]="subName"
+                (selectionChange)="onSubNameChanged(subName)">
+                <mat-option value="DU" selected>DU
+                </mat-option>
+                <mat-option value="LU">LU</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field fxFlex="15" class="ml-4 mt-4">
+            <input matInput placeholder="Template Name" readonly [(ngModel)]="inputValue">
+        </mat-form-field>
+        <mat-form-field fxFlex="20" class="mt-4">
+            <input matInput>
+        </mat-form-field>
+    </div> -->
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <span style="margin-left: 25px; margin-top: 15px; border-bottom: 1px solid #949494;padding-bottom: 4px;font-size: 13px !important;font-family: lato medium;">{{inputValue}}</span>
+        <mat-form-field fxFlex="20">
+            <input matInput [(ngModel)]="additionalValue">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title != 'New Template'">
+    <div fxLayout="column" fxLayoutAlign="space-evenly start" style="height: 225px;">
+        <span class="ml-4"> Please Enter the name you want to Save this Template As:</span>
+
+        <!-- <div> -->
+        <mat-form-field class="m-4">
+            <input matInput placeholder="Save Template As" [(ngModel)]="inputValue">
+        </mat-form-field>
+        <!-- </div> -->
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions *ngIf="title == 'New Template'">
+    <div class="col"></div>
+    <div class="mx-2">
+        <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="mx-2">
+        <button mat-raised-button [disabled]="!inputValue" color="primary" (click)="doneButton()"
+            class="buttonWidth">Done</button>
+    </div>
+</div>
+<div mat-dialog-actions *ngIf="title != 'New Template'">
+    <div class="col"></div>
+    <div class="mx-2">
+        <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="mx-2">
+        <button mat-raised-button [disabled]="!inputValue" color="primary" (click)="saveButton(inputValue)"
+            class="buttonWidth">Save</button>
+    </div>
+</div>
