@@ -7,6 +7,9 @@ export class DataSharingService {
   private messageSource = new BehaviorSubject({});
   currentMessage = this.messageSource.asObservable();
 
+  private templateGalleryValueSource = new BehaviorSubject({});
+  templateGalleryValueMessage = this.templateGalleryValueSource.asObservable();
+
   private checkBoxSource = new BehaviorSubject({});
   checkboxMessage = this.checkBoxSource.asObservable();
 
@@ -22,10 +25,16 @@ export class DataSharingService {
   private templateGallerySource = new BehaviorSubject({});
   templateGalleryMessage = this.templateGallerySource.asObservable();
 
+  private templateRemoveSource = new BehaviorSubject({});
+  templateRemoveMessage = this.templateRemoveSource.asObservable()
   constructor() { }
 
   changeMessage(messages: Object) {
     this.messageSource.next(messages);
+  }
+
+  templateGalleryValue(value: Object) {
+    this.templateGalleryValueSource.next(value);
   }
 
   chechboxChangeMessage(checkBox: Object) {
@@ -49,4 +58,9 @@ export class DataSharingService {
   templateGalleryApplyMessage(templateGallery: Object) {
     this.templateGallerySource.next(templateGallery)
   }
+
+  templateDataRemoveMessage(template) {
+    this.templateRemoveSource.next(template);
+  }
+
 }
