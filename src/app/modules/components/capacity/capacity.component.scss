@@ -93,9 +93,17 @@ body {
 
 
 .ag-pinned-right-cols-container div.ag-row div.ag-cell app-helpicon{
-  //  display: none;
+ display: block;
 }
-   
+   :host ::ng-deep .mat-dialog-container {
+    overflow: hidden !important;
+   }
 
+.material-dialog-container .mat-dialog-container{
+       overflow: hidden;
+   }
 
-
+.capcity-container {
+    height:200px;
+    overflow: hidden;
+}

@@ -18,7 +18,10 @@ import { MatDialogRef } from "@angular/material/dialog";
 export class QuestionPopupComponent implements OnInit {
 public questionColumns;
 public questionRow;
-  constructor(public dialog: MatDialog, public matDialog: MatDialog, private http: HttpClient,  public dialogRef: MatDialogRef<QuestionPopupComponent>) { 
+  constructor(public dialog: MatDialog, 
+    public matDialog: MatDialog, 
+    private http: HttpClient,  
+    public dialogRef: MatDialogRef<QuestionPopupComponent>) { 
 
     this.createQuestionColumn();
   
@@ -49,12 +52,20 @@ public questionRow;
         field: 'averageusers',
         width: 400,
         cellClass: 'lock-pinned'
+        
+        
       }
+
+
     ];
+
   }
+
+
   private getHelpData() {
     this.http.get("assets/data/layers/popup-data/help-popup-data.json")
       .subscribe(data => {
+        console.log(data);
         this.questionRow = data;
     });
   }
