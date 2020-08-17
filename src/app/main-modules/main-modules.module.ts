@@ -87,6 +87,7 @@ import { ChartModule } from 'angular-highcharts';
 import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
 import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
+import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.
     KpiDetailsChartComponent,
     SpiderViewComponent,
     SpiderViewDirective,
-    TreeNodeComponent
+    TreeNodeComponent,
+    AlarmsPopupComponent
   ],
   imports: [
     CommonModule,
