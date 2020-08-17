@@ -26,7 +26,7 @@
     </mat-card-header>
     <mat-card-content fxLayout="row" class="card-content">
         <div fxFlex="auto">
-            <mat-tab-group dynamicHeight fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto"  (selectedTabChange)="onTabChanged($event)" >
                 <mat-tab label="Link Budget">
                     <div class="overflow-auto">
                         <div class="accordian-holder">
@@ -247,7 +247,7 @@
                                                     </div>
                                                     <mat-form-field fxFlex="65" class="select-container"
                                                         *ngIf="entity.parameter == 'Numerology : Subcarrier Spacing'">
-                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing[i]">
+                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing[i]" [matTooltip]="subcaSpacing[i]">
                                                             <mat-option value="On Demand" selected>On Demand
                                                             </mat-option>
                                                             <mat-option value="Scheduled">Scheduled</mat-option>
@@ -255,7 +255,7 @@
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Node Hardware'"
                                                         class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="nodeHardware[i]">
+                                                        <mat-select disableOptionCentering [(value)]="nodeHardware[i]" [matTooltip]="nodeHardware[i]">
                                                             <mat-option value="Jio - gNB" selected>Jio - gNB
                                                             </mat-option>
                                                             <mat-option value="Samsung - gNB">Samsung - gNB</mat-option>
@@ -544,9 +544,8 @@
                 <mat-tab label="Summary">
                     <div class="overflow-auto">
                         <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0 summary-card">
-                            <mat-card-header class="summary-card-header px-3" fxLayout="row"
-                                fxLayoutAlign="space-between center">
-                                <mat-card-title class="title m-0">Schematic View
+                            <mat-card-header class="summary-card-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                                <mat-card-title *ngIf="!saveAsShowSummaryHideDisable" class="title m-0">{{selectedChip}}
                                 </mat-card-title>
                                 <mat-button-toggle-group class="summary-toggle-group" #group="matButtonToggleGroup"
                                     [value]="selectedToggleButton">
@@ -558,7 +557,7 @@
                                         Downlink
                                     </mat-button-toggle>
                                 </mat-button-toggle-group>
-                                <div *ngIf="!saveAsShowSummaryHideDisable">{{selectedChip}}</div>
+                                <!-- <div ></div> -->
                             </mat-card-header>
                             <mat-card-content>
                                 <div fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="center center" class="p-3">
@@ -688,7 +687,10 @@
         <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
     </div>
     <div class="col"></div>
-    <div class="p-2" (click)="newSaveAsTemplatePopup('Save As Template')">
+    <div *ngIf="!showDownloadButton" class="p-2" (click)="newSaveAsTemplatePopup('Save As Template')">
         <button mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As template</button>
+    </div>
+    <div  *ngIf="showDownloadButton" class="p-2">
+        <button mat-raised-button color="primary" class="button">Download</button>
     </div>
 </div>

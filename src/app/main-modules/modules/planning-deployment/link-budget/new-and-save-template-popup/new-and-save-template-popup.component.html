@@ -11,47 +11,50 @@
 <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title == 'New Template'">
     <div fxLayout="row" fxLayoutAlign="start center">
         <mat-form-field fxFlex="65" class="m-4">
-            <mat-select disableOptionCentering placeholder="State/City" [(value)]="stateCityModel"
-                (selectionChange)="onStateCityChanged(stateCityModel)">
-                <mat-option value="Mumbai" selected>Mumbai
+            <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl
+                #cityControlSelect (selectionChange)="onCityChanged(cityControl)">
+                <mat-option>
+                    <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                    </ngx-mat-select-search>
                 </mat-option>
-                <mat-option value="Pune">Pune</mat-option>
+                <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                    {{city.name}}
+                </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="65" class="m-4">
-            <mat-select disableOptionCentering placeholder="State/City" [(value)]="subName"
-                (selectionChange)="onSubNameChanged(subName)">
-                <mat-option value="DU" selected>DU
+            <mat-select disableOptionCentering placeholder="Clutter Type" [formControl]="clutterTypeControl" ngDefaultControl
+                #clutterTypeControlSelect (selectionChange)="onClutterTypeChanged(clutterTypeControl)">
+                <mat-option>
+                    <ngx-mat-select-search placeholderLabel="Clutter Type" [formControl]="clutterTypeFilterControl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                    </ngx-mat-select-search>
                 </mat-option>
-                <mat-option value="LU">LU</mat-option>
+                <mat-option *ngFor="let clutterType of clutterTypeFilter | async" [value]="clutterType">
+                    {{clutterType.name}}
+                </mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <mat-divider></mat-divider>
-    <!-- <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field fxFlex="15" class="ml-4 mt-4">
-            <input matInput placeholder="Template Name" readonly [(ngModel)]="inputValue">
-        </mat-form-field>
-        <mat-form-field fxFlex="20" class="mt-4">
-            <input matInput>
-        </mat-form-field>
-    </div> -->
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <span style="margin-left: 25px; margin-top: 15px; border-bottom: 1px solid #949494;padding-bottom: 4px;font-size: 13px !important;font-family: lato medium;">{{inputValue}}</span>
-        <mat-form-field fxFlex="20">
-            <input matInput [(ngModel)]="additionalValue">
-        </mat-form-field>
+    <div fxLayout="column">
+        <label class="label-text">Save Template As</label>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span
+                class="dummy-input">{{inputValue}}</span>
+            <mat-form-field fxFlex="25" style="padding-top: 5px;">
+                <input matInput [(ngModel)]="additionalValue">
+            </mat-form-field>
+        </div>
     </div>
 </div>
 <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title != 'New Template'">
     <div fxLayout="column" fxLayoutAlign="space-evenly start" style="height: 225px;">
         <span class="ml-4"> Please Enter the name you want to Save this Template As:</span>
-
-        <!-- <div> -->
         <mat-form-field class="m-4">
             <input matInput placeholder="Save Template As" [(ngModel)]="inputValue">
         </mat-form-field>
-        <!-- </div> -->
     </div>
 </div>
 <mat-divider></mat-divider>
@@ -61,7 +64,7 @@
         <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
     </div>
     <div class="mx-2">
-        <button mat-raised-button [disabled]="!inputValue" color="primary" (click)="doneButton()"
+        <button mat-raised-button color="primary" (click)="doneButton()"
             class="buttonWidth">Done</button>
     </div>
 </div>
