@@ -26,6 +26,20 @@ $md-primary: #0070DB;
         width: 100%;
         min-height: calc(100% - 108px);
         max-height: calc(100% - 108px);
+        .label-text{
+            font-size: 11px;
+            color: #807d7d;
+            margin-left: 25px;
+            position: absolute;
+        }
+        .dummy-input{
+            margin-left: 25px; 
+            border-bottom: 1px solid #949494; 
+            // height: 25px;
+            padding: 2px 0px;
+            font-size: 14px !important;
+            font-family: roboto;
+        }
         .mat-form-field{
             font-size: 14px;
         }

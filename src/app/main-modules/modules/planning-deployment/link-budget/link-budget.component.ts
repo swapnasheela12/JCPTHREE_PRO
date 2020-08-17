@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef,OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import {
@@ -18,7 +18,7 @@ import { MatChip } from '@angular/material/chips';
   styleUrls: ['./link-budget.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LinkBudgetComponent implements OnInit {
+export class LinkBudgetComponent implements OnInit, OnDestroy {
   public templateGalleryList: any;
   showRightHolder: boolean = true;
   showDesignInfo: boolean;
@@ -44,7 +44,8 @@ export class LinkBudgetComponent implements OnInit {
   checkSelected: boolean = false;
   saveAsShowSummaryHideDisable: boolean = true;
   clutterType = "DU";
-
+  subscription;
+  showDownloadButton: boolean = false;
   toggleDesignInfo() {
     this.showDesignInfo = !this.showDesignInfo;
   };
@@ -165,7 +166,7 @@ export class LinkBudgetComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataShare: DataSharingService, private cdRef: ChangeDetectorRef) { }
   
   ngOnInit(): void {
-    this.dataShare.templateGalleryMessage.subscribe(
+    this.subscription = this.dataShare.templateGalleryMessage.subscribe(
       (formData) => {
         this.templateGalleryList = [];
         this.selectedTemplates = [];
@@ -180,7 +181,6 @@ export class LinkBudgetComponent implements OnInit {
         }
       }
     )
-
     // Design Object Control
     const designGroups = this.designList.map(entity => {
       return new FormGroup({
@@ -386,10 +386,20 @@ export class LinkBudgetComponent implements OnInit {
   //     this.onlyOneSelectedTemplate = this.selectedTemplates;
   //   }
   // }
-  ppushssh() {
-    this.summaryDropdownList.push('sdsdsd')
+  onTabChanged(e) {
+    console.log(e)
+    if(e.index == 1){
+     this.showDownloadButton =  true
+      this.showRightHolder = false
+    } else{
+      this.showDownloadButton =  false;
+    }
   }
   trackByFn(index, item) {
     return index;
+  }
+
+  ngOnDestroy(){
+      this.subscription.unsubscribe()
   }
 }
