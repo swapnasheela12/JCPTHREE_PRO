@@ -1,4 +1,8 @@
+import { AlarmsPopupComponent } from './alarms-popup/alarms-popup.component';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { filter, tap } from 'rxjs/operators';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import { MatDialogRef,MatDialog } from '@angular/material/dialog';
 import * as D3 from 'd3/index';
 
 @Component({
@@ -31,22 +35,31 @@ export class TreeNodeComponent implements OnInit {
 
   private htmlElement: HTMLElement;
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, public dialog: MatDialog,router: Router,public dialogRef: MatDialogRef<TreeNodeComponent>) {
     this.htmlElement = this.element.nativeElement;
     this.host = D3.select(this.element.nativeElement);
+
+     // Close any opened dialog when route changes
+     router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationStart),
+      tap(() => this.dialog.closeAll())
+    ).subscribe();
   }
 
+
   ngOnInit() {
+
   }
+
 
   draw(issue) {
     if (!issue) {
       return;
     }
 
-    var zoom = D3.zoom()
-      .scaleExtent([1, 10])
-      .on("zoom", zoomed);
+    // var zoom = D3.zoom()
+    //   .scaleExtent([1, 10])
+    //   .on("zoom", zoomed);
 
     var nodes = D3.hierarchy(issue, function (d) {
       return d.children;
@@ -62,9 +75,9 @@ export class TreeNodeComponent implements OnInit {
       .attr("width", this.width + this.margin.left + this.margin.right)
       .attr("height", this.height + this.margin.top + this.margin.bottom);
     var g = svg.append("g")
-      .attr("transform",
-        "translate(" + this.margin.left + "," + this.margin.top + ")");
-    svg.call(zoom);
+    //   .attr("transform",
+    //     "translate(" + this.margin.left + "," + this.margin.top + ")");
+    // svg.call(zoom);
 
     // adds the links between the nodes
     var link = g.selectAll(".link")
@@ -90,6 +103,8 @@ export class TreeNodeComponent implements OnInit {
         return "translate(" + d.y + "," + d.x + ")";
       })
       .on('click', (function (d) {
+        console.log(d, "click event d value");
+
         if (d.data.children) {
           d.data._children = d.data.children;
           d.data.children = null;
@@ -97,7 +112,9 @@ export class TreeNodeComponent implements OnInit {
           d.data.children = d.data._children;
           d.data._children = null;
         }
-        this.draw(d.data);
+
+        this.clickEventRoute(d);
+        // this.draw(d.data);
       }).bind(this));
 
     // adds the circle to the node
@@ -105,8 +122,12 @@ export class TreeNodeComponent implements OnInit {
       .attr('class', 'circlePoints')
       .attr('r', 20)
       .attr('stroke-width', 1)
-      .attr('stroke', '#FFFFFF')
+      .attr('stroke', function (d) {
+        if (d.parent == null) return '#00000000';
+        return '#FFFFFF';
+      })
       .attr('fill', function (d) {
+        if (d.parent == null) return '#00000000';
         if (d.data.disabled) return '#b3b3b3';
         return d.data.color;
       })
@@ -184,7 +205,7 @@ export class TreeNodeComponent implements OnInit {
       })
       .text(function (d) { return d.data.name; });
 
-    
+
     //line end circle
     node.append('circle')
       .attr('r', 3)
@@ -199,7 +220,26 @@ export class TreeNodeComponent implements OnInit {
     }
   }
 
+  clickEventRoute(d) {
+    if (d.data.eventname == "sites-tree-onairalarms") {
+      this.dialogRef.close();
+      var AlarmsListDialogRef = {
+        width: '800px',
+        height: '500px',
+        // position: { bottom: '60px', right: "60px" },
+        panelClass: "alarms-layers-dialog-container",
+        // backdropClass: 'cdk-overlay-transparent-backdrop',
+        // disableClose: true,
+        // hasBackdrop: true
+      }
+      const dialogRef = this.dialog.open(AlarmsPopupComponent,AlarmsListDialogRef);
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    } else {
 
+    }
+  }
 
 
 }
