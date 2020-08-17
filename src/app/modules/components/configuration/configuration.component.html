@@ -1,4 +1,4 @@
-<div class="config-container" style="height: 518px;">
+<div class="config-container" style="height: 600px;">
     <div class="config-topbar px-2">
         <div class="config-title p-3">Configuration - I-MU-KLDM-ENB-0030</div>
         <button class="close-popup mat-icon-button" (click)="close()">
@@ -9,7 +9,7 @@
 
     </div>
 
-    <div class="config-dialog-content">
+    <div class="config-dialog-content" style="height: 600px;">
         <div class="config-header d-flex justify-content-space-between align-items-center">
             <div class="config-topbar-left">
                 <div class="band">
@@ -63,13 +63,14 @@
                 </div>
             </div>
         </div>
-        <div class="config-data-table">
-            <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+        <div class="config-data-table" style="height: 600px;overflow: auto;">
+            <!-- <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
                 headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="configColumn" [rowData]="configRow"
                 enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
                 toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                 [frameworkComponents]="frameworkComponentsConfigmenu">
-            </ag-grid-angular>
+            </ag-grid-angular> -->
+            <app-table-ag-grid style="width: 100%; height: 600px; overflow:scroll;"></app-table-ag-grid>
         </div>
     </div>
 </div>

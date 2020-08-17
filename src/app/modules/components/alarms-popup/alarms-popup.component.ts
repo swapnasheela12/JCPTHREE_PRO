@@ -65,13 +65,7 @@ this.createRowah();
 
 
    }
-  //  private httpClientRowData() {
-  //   this.http
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //     });
-  // }
+
 
   private createColumnDefs() {
     this.columnDefs = [

@@ -5,16 +5,12 @@ import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-c
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
-import { MatSidenavModule } from "@angular/material/sidenav";
-
-
-
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { CapacityDotMenuComponent } from '../capacity-dot-menu/capacity-dot-menu.component';
 import { HelpiconComponent } from './helpicon/helpicon.component';
 import { QuestionPopupComponent } from './question-popup/question-popup.component';
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
 import { from } from 'rxjs';
+import { GenhelpiconComponent } from '../../../core/components/ag-grid-renders/genhelpicon.component';
 
 
 @Component({
@@ -29,6 +25,8 @@ export class CapacityComponent implements OnInit {
   public gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  public gridPinned;
+  defaultColDef;
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
@@ -44,9 +42,10 @@ export class CapacityComponent implements OnInit {
   rowClassRules: {};
   //cellClassRules: { show: (params: any) => void; hide: (params: any) => void; };
 public cellClassRules;
+url_1 = "assets//layers/popup-data/capacity-popup-data.json";
 
   constructor(
-    public data: TableAgGridService, 
+    public datatable: TableAgGridService, 
     public dialog: MatDialog, 
     public matDialog: MatDialog, 
     public matselect: MatSelectModule, 
@@ -59,14 +58,15 @@ public cellClassRules;
     //  this.gridOptions.api.getCapacityPopupData(this.gridOptions.rowData)
 
     this.frameworkComponentsHelpIcon = {
-      'helpicon': HelpiconComponent
+      'helpicon': GenhelpiconComponent
     };
     this.frameworkComponentsCapacitymenu = {
 
-      'dotmenu': CapacityDotMenuComponent
+    //  'dotmenu': CapacityDotMenuComponent
     };
     this.createCapacityColumndata();
-    this.getCapacityPopupData();
+    this.httpClientRowData();
+    //this.getCapacityPopupData();
 
   }
 
@@ -74,7 +74,21 @@ public cellClassRules;
   
   
   }
-  
+  private httpClientRowData() {
+    this.http
+      .get("assets/data/layers/popup-data/capacity-popup-data.json")
+      .subscribe(data => {
+        this.caprowData = data;
+        this.datatable.rowDataURLServices = this.url_1;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.caprowData;
+        this.datatable.gridPinnedServices = this.gridPinned;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
+      this.datatable.columnDefsServices = this.columnDefs;
+    }
+
   openDialogCapacity(): void {
     const dialogRef = this.dialog.open(CapacityComponent, {
       width: "850px",
@@ -83,7 +97,7 @@ public cellClassRules;
   };
 
   private createCapacityColumndata() {
-    this.capacityColumns = [
+    this.columnDefs = [
       {
         headerName: "KPIs",
         field: "kpis",
@@ -140,15 +154,15 @@ public cellClassRules;
 
   }
 
-  private getCapacityPopupData() {
-    this.http.get("assets/data/layers/popup-data/capacity-popup-data.json")
-      .subscribe(data => {
-        console.log(data);
+  // private getCapacityPopupData() {
+  //   this.http.get("assets/data/layers/popup-data/capacity-popup-data.json")
+  //     .subscribe(data => {
+  //       console.log(data);
 
-        this.rowData = data;
+  //       this.rowData = data;
 
-      });
-  }
+  //     });
+  // }
 
   close() {
     this.dialogRef.close();

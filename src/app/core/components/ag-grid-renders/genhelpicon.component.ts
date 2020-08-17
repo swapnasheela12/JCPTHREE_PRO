@@ -11,7 +11,7 @@ import { QuestionPopupComponent } from '../../../../app/modules/components/capac
 
 @Component({
   selector: 'app-genhelpicon',
-  template: `<div *ngIf="kpis"  class="icon-help icon-button" id="helpicon-render" (click)="openDialoghelp()">
+  template: `<div   class="icon-help icon-button" id="helpicon-render" (click)="openDialoghelp()">
   <div class="zmdi zmdi-help"></div>
 </div>`,
   styles: [` .icon-button {

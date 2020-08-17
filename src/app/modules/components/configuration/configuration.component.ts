@@ -9,6 +9,8 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ConfigDotmenuComponent } from '../config-dotmenu/config-dotmenu.component';
 import { HistoryPopupComponent } from './history-popup/history-popup.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component'
+import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
+
 interface Band {
   value: string;
   viewValue: string;
@@ -55,22 +57,34 @@ export class ConfigurationComponent implements OnInit {
   public paths;
   public configColumn;
   public configRow;
+public configData;
+public defaultColDef;
+public gridPinned;
+url_1 = "assets/data/layers/popup-data/datap.json"
 
-
-  constructor(public matDialog: MatDialog, public matselect: MatSelectModule, public datashare: DataSharingService,
-    private http: HttpClient, public dialogRef: MatDialogRef<ConfigurationComponent>
+  constructor( public datatable: TableAgGridService, public matDialog: MatDialog, 
+    public matselect: MatSelectModule, 
+    public datashare: DataSharingService,
+    private http: HttpClient, 
+    public dialogRef: MatDialogRef<ConfigurationComponent>
   ) {
 
     this.gridOptions = <GridOptions>{};
     this.createconfigColumn();
+    this.httpClientRowData();
+   // this.getConfigdata();
 
-    this.getConfigdata();
+
     this.frameworkComponentsConfigmenu = {
 
       'config-dotmenu': ConfigDotmenuComponent
     }
   }
+
+
   ngOnInit(): void {
+
+   
   }
 
 
@@ -90,7 +104,7 @@ export class ConfigurationComponent implements OnInit {
 
   // setup the grid after the page has finished loading
   private createconfigColumn() {
-    this.configColumn = [
+    this.columnDefs = [
       {
         headerName: "Types",
         field: "types",
@@ -155,11 +169,24 @@ export class ConfigurationComponent implements OnInit {
 
     ];
   }
-  private getConfigdata() {
-    this.http.get("assets/data/layers/popup-data/datap.json")
+  // private getConfigdata() {
+  //   this.http.get("assets/data/layers/popup-data/datap.json")
+  //     .subscribe(data => {
+  //       this.configRow = data;
+  //     });
+  // }
+  private httpClientRowData() {
+    this.http
+      .get("assets/data/layers/popup-data/datap.json")
       .subscribe(data => {
-        this.configRow = data;
+        this.configData = data;
+        this.datatable.rowDataURLServices = this.url_1;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.configData;
+        this.datatable.gridPinnedServices = this.gridPinned;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
       });
-  }
-
+      this.datatable.columnDefsServices = this.columnDefs;
+    }
 }
