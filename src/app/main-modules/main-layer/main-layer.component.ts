@@ -203,8 +203,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
           var spiderViewListDialogRef = {
-            width: '100%',
-            height: '100%',
+            // width: '50%',
+            // height: '100%',
             panelClass: 'spider-view-custom-dialog'
             // position: { bottom: '60px', right: "60px" },
             // panelClass: "table-view-layers-dialog-container",
@@ -213,7 +213,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             // hasBackdrop: true
           }
           const dialogRef = _dialog.open(SpiderViewComponent, spiderViewListDialogRef);
-  
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+            dialogRef.close();
+          });
           // dialogRef.backdropClick().subscribe(_ => {
           //   dialogRef.close();
           // });
