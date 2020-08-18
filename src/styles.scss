@@ -1680,3 +1680,19 @@ table {
 .bg-in-progress {
      background-color: #ff8000 !important;
  }
+
+ .overview-wrapper{
+    .overview-container {
+        .left-pane {
+            .images {
+                .left-carousel {
+                    .carousel{
+                        .carousel-inner {
+                            height: 57vh !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

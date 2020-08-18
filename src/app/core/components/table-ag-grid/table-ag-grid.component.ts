@@ -25,8 +25,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
   gridOptionsObj;
   defaultColDef;
   typeOfAgGridTable;
-  // paginationRequired: boolean = true;
-  // autoPageSizeRequired: boolean = true;
+  // paginationRequired: boolean = false;
+  // autoPageSizeRequired: boolean = false;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -56,12 +56,17 @@ export class TableAgGridComponent implements OnInit, OnChanges {
       // }
 
     });
-
+    //////////////////////////////////////////////////////
+    // <!-- TODO For enabling and disabling pagination and auto page size based on condition -->
+    // if (data.paginationRequired && data.autoPageSizeRequired) {
+    //   this.paginationRequired = data.paginationRequired;
+    //   this.autoPageSizeRequired = data.autoPageSizeRequired;
+    //   console.log("this.pagination", this.paginationRequired)
+    //   console.log("this.autoPageSixe", this.autoPageSizeRequired)
+    // }
     this.gridOptions = <GridOptions>{};
     this.columnDefs = data.columnDefsServices;
     this.rowData = data.rowDataServices;
-    // this.paginationRequired = data.paginationRequired;
-    // this.autoPageSizeRequired = data.autoPageSizeRequired;
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;

@@ -29,6 +29,11 @@
         (cellClicked)='onCellClicked($event)' [frameworkComponents]="frameworkComponentsMyReport"
         (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
     </ag-grid-angular>
+
+    <!-- TODO For enabling and disabling pagination and auto page size based on condition -->
+    <!-- [paginationAutoPageSize]="paginationRequired" [pagination]="autoPageSizeRequired" -->
+    <!-- <div class="ag-material-customer-pager-wrapper" *ngIf="paginationRequired"></div> -->
+
     <div class="ag-material-customer-pager-wrapper">
         <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
             <div class="labels">Rows Per Page :</div>

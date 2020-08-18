@@ -1,0 +1,61 @@
+.geographical-wrapper {
+    > mat-card {
+        border: 0px;
+    }
+    .geographical-container {
+        padding: 0px !important;
+        // .link-prop {
+        //     .link-prop-subheader {
+        //         padding: 15px;
+        //         font-size: 15px;
+        //         font-weight: 500;
+        //         color: rgba(0,0,0,.87);
+        //     }
+        // }
+        .geo-left-panel {
+            padding: 5px;
+            mat-divider {
+                width: 60% !important;
+                padding: 0 5px;
+            }
+        }
+        .geo-map-panel {
+            padding-top: 20px;
+        }
+    }
+    .link-details-title {
+        background-color: #f9f9f9;
+        padding: 15px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+    }
+    .link-details-title-backhaul {
+        background-color: #f9f9f9;
+        padding: 15px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,.12);
+    }
+}
+
+.link-form-input-title {
+    width: 100%;
+    font-size: 13px;
+    color: rgba(0,0,0,.54);
+    font-family: lato medium;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.link-form-input-value {
+    width: 100%;
+    font-family: lato medium;
+    font-size: 15px;
+    color: rgba(0,0,0,.87);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
