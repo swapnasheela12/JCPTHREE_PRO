@@ -91,8 +91,8 @@ import { RowRenderingComponent, ModalTemplateComponent } from './modules/compone
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { AppOverlayContainer } from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
+import {OverlayContainer} from '@angular/cdk/overlay';
+import {AppOverlayContainer} from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
 import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
@@ -108,6 +108,10 @@ import { PowerComponent } from './modules/components/properties/power/power.comp
 import { EmsDetailsComponent } from './modules/components/properties/ems-details/ems-details.component';
 import { LteAntennaComponent } from './modules/components/properties/inventory/lte-antenna/lte-antenna.component';
 import { BbuComponent } from './modules/components/properties/inventory/bbu/bbu.component';
+import { AlarmsPopupComponent } from '../../src/app/modules/components/alarms-popup/alarms-popup.component';
+import { CapacityComponent } from '../app/modules/components/capacity/capacity.component';
+import { ConfigurationComponent} from '../app/modules/components/configuration/configuration.component';
+import { from } from 'rxjs';
 
 declare var $: any;
 
@@ -126,17 +130,20 @@ declare var $: any;
     OverviewComponent,
     InventoryComponent,
     BackhaulComponent,
-    // MainLayerComponent,
-    ModalTemplateComponent,
-    AgGridRowRenderingComponent,
-    AgGridColumnRenderingComponent,
-    AgGridTreeRenderingComponent,
     SiteMilestoneComponent,
     GeographicalDetailsComponent,
     PowerComponent,
     EmsDetailsComponent,
     LteAntennaComponent,
     BbuComponent,
+    // MainLayerComponent,
+    ModalTemplateComponent,
+    AgGridRowRenderingComponent,
+    AgGridColumnRenderingComponent,
+    AgGridTreeRenderingComponent,
+    AlarmsPopupComponent,
+    CapacityComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,
@@ -218,12 +225,12 @@ declare var $: any;
     NgxDaterangepickerMd,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: OverlayContainer, useClass: AppOverlayContainer },
+    { provide: OverlayContainer, useClass: AppOverlayContainer},
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,

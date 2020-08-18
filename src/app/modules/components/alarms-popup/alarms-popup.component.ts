@@ -12,27 +12,15 @@ import { AgGridModule } from 'ag-grid-angular';
 //import { ButtonRendererComponent } from '../button-renderer.component;
 
 declare var require: any;
-export interface DialogDataSuccessful {
-  gotomyreportInterface: string;
-  newreportInterface: string;
-}
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-export interface ExampleTab {
-  label: string;
-  content: string;
-  formName: string;
-  formCtrlName1: string;
-  formCtrlName2: string;
-}
+
 @Component({
   selector: 'app-alarms-popup',
   templateUrl: './alarms-popup.component.html',
   styleUrls: ['./alarms-popup.component.scss']
 })
 export class AlarmsPopupComponent implements OnInit {
+
+  
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
@@ -49,6 +37,8 @@ export class AlarmsPopupComponent implements OnInit {
   public columnlh;
   public rowlh;
   rowClassRules: any;
+
+
   rowClassRulesah: { redFont: (params: any) => boolean; greenFont: (params: any) => boolean; };
   rowClassRulesss: { redFont: (params: any) => boolean; greenFont: (params: any) => boolean; };
   rowClassRuleslh: { redFont: (params: any) => boolean; greenFont: (params: any) => boolean; };
@@ -56,7 +46,9 @@ export class AlarmsPopupComponent implements OnInit {
 
   
  
-  constructor(private dialogRef:MatDialogRef<AlarmsPopupComponent>,
+  constructor(
+    
+    private dialogRef:MatDialogRef<AlarmsPopupComponent>,
     public dialog: MatDialog, public flexlayout: FlexLayoutModule, private http: HttpClient) {
 
 
@@ -73,13 +65,7 @@ this.createRowah();
 
 
    }
-  //  private httpClientRowData() {
-  //   this.http
-  //     .get("assets/data/report/my-report.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //     });
-  // }
+
 
   private createColumnDefs() {
     this.columnDefs = [
@@ -355,19 +341,14 @@ this.createRowah();
 
 
 
-  name:string;
-  animal:string;
-  openDialogAlarms(): void {
+  
+  openDialogAlarms() {
     const dialogRef = this.dialog.open(AlarmsPopupComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-      data: { name: this.name, animal: this.animal }
+     
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.animal = result;
-    });
+ 
   };
   closeDialog(){
     this.dialogRef.close();
@@ -381,90 +362,7 @@ this.createRowah();
     });
   }
   
-// private createRowdata(){
-//   this.row = [
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       AlarmID: "SGW COMMUNICATION FAIL",
-//       Severity: "major",
-//       StartDate: "21 feb 2017",
-//       StartTime: "06:49:36 pm",
-//       JCPClassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     },
-//     {
-//       siteid: "I-MU-MUMB-ENB-A173",
-//       cellid: 982563,
-//       Band: 1800,
-//       alarmid: "SGW COMMUNICATION FAIL",
-//       severity: "major",
-//       startdate: "21 feb 2017",
-//       starttime: "06:49:36 pm",
-//       jcpclassification: "outage"
-//     }
-//   ]
-// }
+
 
 private createRowah() {
   this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-2.json")

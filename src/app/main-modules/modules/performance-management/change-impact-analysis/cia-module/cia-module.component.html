@@ -12,12 +12,12 @@
           <div class="content-holder">
             <div class="pt-3 pb-4">
               <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(ngModel)]="selectedRadio">
-                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name">
+                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name" [disableRipple]="true">
                   {{type.name}}</mat-radio-button>
               </mat-radio-group>
             </div>
             <div *ngIf="selectedRadio == 'Custom'">
-              <mat-checkbox class="example-margin">Neighbor Impact Analysis
+              <mat-checkbox [disableRipple]="true" class="example-margin">Neighbor Impact Analysis
               </mat-checkbox>
               <div class="pt-3">
                 <button class="next-button p-0" mat-button color="primary" (click)="openFileUploadPopup()">
@@ -172,7 +172,7 @@
                           </mat-select>
                           <span matSuffix> hrs</span>
                       </mat-form-field>
-                      <mat-checkbox class="mt-2"
+                      <mat-checkbox class="mt-2" [disableRipple]="true"
                       matTooltip="This is like to like functionality.This is like to like functionality."
                       [(ngModel)]="likeToLikeChecked">Like To Like</mat-checkbox>
               </div>
@@ -215,7 +215,7 @@
                 <label class="radio-group-label">Frequency</label>
                 <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
                   [(value)]="frequencySelected">
-                  <mat-radio-button fxFlex="20" *ngFor="let frequency of frequencyData" [value]="frequency">
+                  <mat-radio-button [disableRipple]="true" fxFlex="20" *ngFor="let frequency of frequencyData" [value]="frequency">
                     {{frequency}}
                   </mat-radio-button>
                 </mat-radio-group>

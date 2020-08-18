@@ -112,7 +112,7 @@ export class CiaModuleComponent implements OnInit {
   showGlobalDeleteKpiOperation: boolean;
   @ViewChild('postPicker', { static: true }) _postPicker: MatDatepicker<Date>;
   @ViewChild('preDicker', { static: true }) _prePicker: MatDatepicker<Date>;
-  generateDisabled: boolean;
+  generateDisabled: boolean = true;
 
   constructor(
     public dialog: MatDialog,

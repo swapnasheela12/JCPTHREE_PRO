@@ -59,11 +59,12 @@ import { ViewModeDirective } from './../../../_directive/edit-cell/view-mode.dir
 import { EditModeDirective } from './../../../_directive/edit-cell/edit-mode.directive';
 import { FocusableDirective } from './../../../_directive/focusable.directive';
 import { EditOnEnterDirective } from './../../../_directive/edit-cell/edit-on-enter.directive';
+import { NewAndSaveTemplatePopupComponent } from './link-budget/new-and-save-template-popup/new-and-save-template-popup.component';
 // import { FocusableDirective } from './_directive/focusable.directive';
 // import { EditModeDirective } from './_directive/edit-cell/edit-mode.directive';
 // import { EditOnEnterDirective } from './_directive/edit-cell/edit-on-enter.directive';
 @NgModule({
-  declarations: [EnbscComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective],
+  declarations: [EnbscComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
@@ -121,6 +122,9 @@ import { EditOnEnterDirective } from './../../../_directive/edit-cell/edit-on-en
     NgxMatSelectSearchModule
   ],
   providers: [],
-  exports: [EnbscComponent]
+  exports: [EnbscComponent],
+  entryComponents : [
+    NewAndSaveTemplatePopupComponent
+  ],
 })
 export class PlanningDeploymentModule { }

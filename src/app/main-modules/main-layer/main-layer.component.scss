@@ -12,3 +12,8 @@
         .leaflet-bottom .leaflet-right {}
     }
 }
+
+::ng-deep .spider-view-custom-dialog>mat-dialog-container {
+    background-color: transparent;
+    box-shadow: none;
+}

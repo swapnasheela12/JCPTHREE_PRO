@@ -9,6 +9,8 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { User } from '../../../_models/user';
+import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
+import { MatSelectModule } from "@angular/material/select";
 
 
 declare var $: any;
@@ -16,7 +18,18 @@ import * as _ from "lodash";
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { SideNavService } from 'src/app/_services/side-nav.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { AlarmsPopupComponent } from '../../../modules/components/alarms-popup/alarms-popup.component';
+import { CapacityComponent } from '../../../modules/components/capacity/capacity.component';
+import { ConfigurationComponent} from '../../../modules/components/configuration/configuration.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HelpiconComponent } from '../../../modules/components/capacity/helpicon/helpicon.component';
+import { QuestionPopupComponent } from '../../../modules/components/capacity/question-popup/question-popup.component';
+//import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
 
+
+import { AgGridModule } from 'ag-grid-angular';
+import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { HttpClient } from '@angular/common/http';
 export class searchList {
   constructor(
     public name: string,
@@ -110,7 +123,17 @@ export class HeaderComponent implements OnInit {
   message: string;
   routeUrlLinkPage;
   truncatedBCStr;
-  constructor(private datashare: DataSharingService, private _formBuilder: FormBuilder, private location: Location, private router: Router, private authenticationService: AuthenticationService, @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, private sideNavService: SideNavService) {
+  
+  constructor(
+  
+    public dialog: MatDialog, 
+    private datashare: DataSharingService, 
+    private _formBuilder: FormBuilder, private location: Location, 
+    private router: Router, private authenticationService: AuthenticationService, 
+    @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, 
+    private sideNavService: SideNavService,
+    public matDialog: MatDialog, public matselect: MatSelectModule,
+    private http: HttpClient) {
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
@@ -436,5 +459,38 @@ export class HeaderComponent implements OnInit {
 
     this.sideNavService.toggle();
   }
+  
+  openDialogAlarms() {
+    const dialogRef = this.dialog.open(AlarmsPopupComponent, {
+      width: "850px",
+      panelClass: "material-dialog-container",
+     
+    });
+ 
+  };
+
+  openDialogCapacity(): void {
+    const dialogRef = this.dialog.open(CapacityComponent, {
+      width: "850px",
+      panelClass: "material-dialog-container",
+       });
+  };
+
+  // closeDialog(){
+  //   this.dialogRef.close();
+  // }
+
+
+
+  openDialogConfiguration() {
+    const dialogRef = this.matDialog.open(ConfigurationComponent, {
+      width: "850px",
+      panelClass: "material-dialog-container",
+    
+    });
+
+
+  };
+
 
 }

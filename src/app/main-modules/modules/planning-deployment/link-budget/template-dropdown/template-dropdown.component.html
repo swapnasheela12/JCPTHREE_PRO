@@ -1,44 +1,37 @@
-<div class="template-gallery-icon">
-  <div class="ic ic-dots sizeOfIcon"></div>
-  <div class="ic ic-legends-01 sizeOfIcon" [matMenuTriggerFor]="linkBudget" #trigger="matMenuTrigger"></div>
-  <mat-menu #linkBudget="matMenu" class="link-budget-dropdown arrow-top" [hasBackdrop]="false">
+<div class="link-budget-header-menu" fxLayout="row">
+  <div class="ic ic-dots header-icon"></div>
+  <div class="ic ic-gallery header-icon" [matMenuTriggerFor]="linkBudget" #trigger="matMenuTrigger"></div>
+  <mat-menu #linkBudget="matMenu" class="template-gallery-menu" [hasBackdrop]="false">
     <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
-      <form [formGroup]="templateGalleryForm" (ngSubmit)="submit()">
-        <h4>Template Gallery</h4>
-        <span class="zmdi zmdi-close" (click)="trigger.closeMenu()"></span>
-        <input
-          type="text"
-          matInput
-          [formControl]="templateGallerySearch"
-          placeholder="Search..."
-        >
-        <div *ngFor="let item of templateGalleryFilter | async ; let i=index" formArrayName="templateGalleryArray">
-          <mat-checkbox [formControlName]="i" [disableRipple]="true">
-          {{item.name}}
-          </mat-checkbox>
+      <form [formGroup]="templateGalleryForm" class="form-container">
+        <!-- <button (click)="addButton()" mat-button>Add</button> -->
+        <div fxLayout="row" fxLayoutAlign="start center" class="menu-header">
+          <span>Template Gallery</span>
+          <div class="col"></div>
+          <button mat-icon-button class="close-button" (click)="trigger.closeMenu()">
+            <i class="zmdi zmdi-close"></i>
+          </button>
         </div>
-        <div>
-            At least one checkbox is required to check
+        <mat-divider></mat-divider>
+        <mat-form-field class="search-input full-width" fxLayout="row" fxLayoutAlign="start center"
+          style="height: 44px;">
+          <input type="text" matInput [formControl]="templateGallerySearch" style="height: 42px;" autocomplete="off">
+          <i class="search-icon zmdi zmdi-search"></i>
+        </mat-form-field>
+        <div class="overflow-auto menu-content">
+
+          <div *ngFor="let item of templateGalleryFilter | async ; let i=index" formArrayName="templateGalleryArray">
+            <mat-checkbox #divClick [formControlName]="i" [disableRipple]="true"
+              (change)="templateGalleryCheckChange($event.checked)" id="template-gallery-{{i}}">
+              {{item.name}}
+            </mat-checkbox>
+          </div>
         </div>
-        <button (click)="trigger.closeMenu()">Apply</button>
+        <!-- <mat-divider></mat-divider>
+          <button mat-raised-button color="primary" [disabled]="!templateGalleryForm.valid" (click)="submit();trigger.closeMenu()">Apply</button>
+        </div> -->
       </form>
-    <!-- <form [formGroup]="templateGalleryForm" (ngSubmit)="submit()">
-      <h4>Template Gallery</h4>
-      <span class="zmdi zmdi-close" (click)="trigger.closeMenu()"></span>
-      <input
-        type="text"
-        matInput
-        [formControl]="templateGallerySearch"
-        placeholder="Search..."
-      >
-      <div *ngFor="let item of templateGalleryFilter | async ; let i=index" formArrayName="checkboxes">
-        <mat-checkbox [formControlName]="item.name">
-        {{item.name}}
-        </mat-checkbox>
-      </div>
-      <button [disabled]="!templateGalleryForm.valid" (click)="trigger.closeMenu()">Apply</button>
-    </form> -->
     </div>
   </mat-menu>
-  <div class="ic ic-filter-01 sizeOfIcon"></div>
+  <div class="ic ic-filter-01 header-icon"></div>
 </div>

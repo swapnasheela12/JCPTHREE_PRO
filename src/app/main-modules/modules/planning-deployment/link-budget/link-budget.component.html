@@ -1,29 +1,32 @@
 <mat-card class="p-0" style="height: calc(100% - 54px);">
     <mat-card-header class="card-header" fxLayoutAlign="start center">
-        <mat-card-title class="card-title">
-
-
-            <mat-chip-list #postChipList aria-label="Template Gallery">
-                <mat-chip *ngFor="let template of templateGalleryList" [selectable]="false" [removable]="true"
-                    (removed)="removeTemplateChip(template)">
+        <mat-card-title class="card-title mb-0">
+            <mat-chip-list #templateGalleryChipList aria-label="Template Gallery">
+                <!-- <mat-chip *ngFor="let template of templateGalleryList" [selectable]="true" [removable]="true"
+                    (removed)="removeTemplateChip(template)" selected="{{template.value}}" (click)="shdkjahjad(templateGalleryChipList)">
                     {{ template }}
                     <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                </mat-chip> -->
+                <mat-chip *ngFor="let template of templateGalleryList" [removable]="true" class="existing-template-chips"
+                          #lbl="matChip" (click)="isSelected(lbl, template)"  (removed)="removeTemplateChip(lbl, template)">
+                   {{template}}
+                  <!-- <span fxLayoutAlign="center center" > -->
+                    <mat-icon class="chip-remove-icon" matChipRemove *ngIf="true">close</mat-icon>
+                  <!-- </span> -->
                 </mat-chip>
-                <mat-chip>
+                <mat-chip class="new-template-chip" *ngIf=" templateGalleryListCount < 4" [removable]="true" (click)="newSaveAsTemplatePopup('New Template')">
                     New Template
                     <mat-icon *ngIf="true">add</mat-icon>
                 </mat-chip>
             </mat-chip-list>
-
-
         </mat-card-title>
         <div class="col"></div>
-        <button class="zmdi zmdi-apps" mat-icon-button (click)="show = !show">
+        <button class="ic ic-list1 link-icon-button" style="font-size: 18px;color:#464D69" mat-icon-button (click)="showRightHolderToggle()">
         </button>
     </mat-card-header>
     <mat-card-content fxLayout="row" class="card-content">
         <div fxFlex="auto">
-            <mat-tab-group dynamicHeight fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto"  (selectedTabChange)="onTabChanged($event)" >
                 <mat-tab label="Link Budget">
                     <div class="overflow-auto">
                         <div class="accordian-holder">
@@ -33,8 +36,8 @@
                                 </span>
                                 <div class="col"></div>
                                 <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                                <button mat-icon-button (click)="toggleDesignInfo()">
-                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                <button mat-icon-button class="link-icon-button" (click)="toggleDesignInfo()">
+                                    <i class="ic ic-info1"></i>
                                 </button>
                             </div>
                             <div class="accordian-content">
@@ -42,8 +45,12 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngIf="!showDesignInfo">Column1</th>
-                                            <th *ngIf="showDesignInfo">Info</th>
+                                            <th *ngFor="let templateEach of templateGalleryList">
+                                                <span *ngIf="!showDesignInfo">
+                                                    {{templateEach}}
+                                                </span>
+                                            </th>
+                                            <th style="width: 50%;" *ngIf="showDesignInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,13 +58,46 @@
                                             <td>
                                                 <span class="text-field">{{entity.parameter}}</span>
                                             </td>
-                                            <td class="max-width-0" *ngIf="!showDesignInfo">
-                                                <div class="editable-field">
-                                                    <editCell (update)="updateDesignField(index, 'value')">
+                                            <td class="max-width-0"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index"
+                                                class="max-width-0">
+                                                <div class="editable-field" *ngIf="!showDesignInfo">
+                                                    <editCell (update)="updateDesignField(index, 'value')" *ngIf="i==0">
                                                         <ng-template appViewMode>{{entity.value}}</ng-template>
                                                         <ng-template appEditMode>
-                                                            <input fxFlex="80" class="input-field"
+                                                            <input (change)="compute($event)" fxFlex="80"
+                                                                class="input-field"
                                                                 [formControl]="getDesignControl(index, 'value')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                    <editCell (update)="updateDesignField(index, 'value2')"
+                                                        *ngIf="i==1">
+                                                        <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input (change)="compute($event)" fxFlex="80"
+                                                                class="input-field"
+                                                                [formControl]="getDesignControl(index, 'value2')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                    <editCell (update)="updateDesignField(index, 'value3')"
+                                                        *ngIf="i==2">
+                                                        <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input (change)="compute($event)" fxFlex="80"
+                                                                class="input-field"
+                                                                [formControl]="getDesignControl(index, 'value3')"
+                                                                appFocusable appEditOnEnter>
+                                                        </ng-template>
+                                                    </editCell>
+                                                    <editCell (update)="updateDesignField(index, 'value4')"
+                                                        *ngIf="i==3">
+                                                        <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                        <ng-template appEditMode>
+                                                            <input (change)="compute($event)" fxFlex="80"
+                                                                class="input-field"
+                                                                [formControl]="getDesignControl(index, 'value4')"
                                                                 appFocusable appEditOnEnter>
                                                         </ng-template>
                                                     </editCell>
@@ -78,8 +118,8 @@
                                 </span>
                                 <div class="col"></div>
                                 <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                                <button mat-icon-button (click)="toggleNetworkInputsInfo()">
-                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                <button mat-icon-button class="link-icon-button" (click)="toggleNetworkInputsInfo()">
+                                    <i class="ic ic-info1"></i>
                                 </button>
                             </div>
                             <div class="accordian-content">
@@ -87,8 +127,12 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngIf="!showNetworkInputsInfo">Column1</th>
-                                            <th *ngIf="showNetworkInputsInfo">Info</th>
+                                            <th *ngFor="let templateEach of templateGalleryList">
+                                                <span *ngIf="!showNetworkInputsInfo">
+                                                    {{templateEach}}
+                                                </span>
+                                            </th>
+                                            <th style="width: 50%;" *ngIf="showNetworkInputsInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,26 +141,27 @@
                                                 <span class="text-field" style="padding-top:20px;">
                                                     {{entity.parameter}}</span>
                                             </td>
-                                            <td *ngIf="!showNetworkInputsInfo" class="max-width-0"
-                                                style="padding: 0px 15px;">
-                                                <div>
+                                            <td class="max-width-0"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                class="max-width-0" style="padding: 0px 15px;">
+                                                <div *ngIf="!showNetworkInputsInfo">
                                                     <mat-form-field *ngIf="entity.parameter == 'Technology'"
                                                         class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="technology"
-                                                            (selectionChange)="onTechnologyChanged(formControlTechnology)">
+                                                        <mat-select disableOptionCentering [(value)]="technology">
                                                             <mat-option value="5g" selected>5g</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Duplexing'"
                                                         class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="duplexing">
+                                                        <mat-select disableOptionCentering
+                                                            [(value)]="duplexingValue[i]">
                                                             <mat-option value="TDD" selected>TDD</mat-option>
                                                             <mat-option value="FDD">FDD</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Operating Band (MHz)'"
                                                         class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="operatingBand">
+                                                        <mat-select disableOptionCentering [(value)]="operatingBand[i]">
                                                             <mat-option value="n38">n38</mat-option>
                                                             <mat-option value="n41">n41
                                                             </mat-option>
@@ -124,29 +169,85 @@
                                                     </mat-form-field>
                                                     <div *ngIf="entity.parameter == 'Center Frequency of Channel (Fc)(GHz)'"
                                                         class="mt-3 editable-field">
-                                                        <editCell (update)="updateNetworkInputsField(index, 'value')">
-                                                            <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value1')"
+                                                            *ngIf="i==0">
+                                                            <ng-template appViewMode>{{entity.value1}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input class="input-field" fxFlex="70"
-                                                                    [formControl]="getNetworkInputsControl(index, 'value')"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value1')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value2')"
+                                                            *ngIf="i==1">
+                                                            <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value2')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value3')"
+                                                            *ngIf="i==2">
+                                                            <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value3')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value4')"
+                                                            *ngIf="i==3">
+                                                            <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value4')"
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
                                                     </div>
                                                     <div class="mt-3 editable-field"
                                                         *ngIf="entity.parameter == 'Channel Bandwidth (MHz)'">
-                                                        <editCell (update)="updateNetworkInputsField(index, 'value')">
-                                                            <ng-template appViewMode>{{entity.value}}</ng-template>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value1')"
+                                                            *ngIf="i==0">
+                                                            <ng-template appViewMode>{{entity.value1}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input class="input-field" fxFlex="70"
-                                                                    [formControl]="getNetworkInputsControl(index, 'value')"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value1')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value2')"
+                                                            *ngIf="i==1">
+                                                            <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value2')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value3')"
+                                                            *ngIf="i==2">
+                                                            <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value3')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateNetworkInputsField(index, 'value4')"
+                                                            *ngIf="i==3">
+                                                            <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input class="input-field" fxFlex="70"
+                                                                    [formControl]="getNetworkInputsControl(index, 'value4')"
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
                                                     </div>
                                                     <mat-form-field fxFlex="65" class="select-container"
                                                         *ngIf="entity.parameter == 'Numerology : Subcarrier Spacing'">
-                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing">
+                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing[i]" [matTooltip]="subcaSpacing[i]">
                                                             <mat-option value="On Demand" selected>On Demand
                                                             </mat-option>
                                                             <mat-option value="Scheduled">Scheduled</mat-option>
@@ -154,7 +255,7 @@
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Node Hardware'"
                                                         class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="nodeHardware">
+                                                        <mat-select disableOptionCentering [(value)]="nodeHardware[i]" [matTooltip]="nodeHardware[i]">
                                                             <mat-option value="Jio - gNB" selected>Jio - gNB
                                                             </mat-option>
                                                             <mat-option value="Samsung - gNB">Samsung - gNB</mat-option>
@@ -168,6 +269,7 @@
                                                 <span>{{entity.info}}</span>
                                             </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -179,8 +281,8 @@
                                 </span>
                                 <div class="col"></div>
                                 <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                                <button mat-icon-button (click)="toggleGnbInfo()">
-                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                <button mat-icon-button class="link-icon-button" (click)="toggleGnbInfo()">
+                                    <i class="ic ic-info1"></i>
                                 </button>
                             </div>
                             <div class="accordian-content">
@@ -188,8 +290,12 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngIf="!showGnbInfo">Column1</th>
-                                            <th *ngIf="showGnbInfo">Info</th>
+                                            <th *ngFor="let templateEach of templateGalleryList">
+                                                <span *ngIf="!showGnbInfo">
+                                                    {{templateEach}}
+                                                </span>
+                                            </th>
+                                            <th style="width: 50%;"  *ngIf="showGnbInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -199,20 +305,58 @@
                                                 <span
                                                     [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
                                             </td>
-                                            <td class="max-width-0" *ngIf="!showGnbInfo">
-                                                <div class="editable-field" *ngIf="entity.editable">
-                                                    <editCell (update)="updateGnbField(index, 'value')">
-                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
-                                                        <ng-template appEditMode>
-                                                            <input fxFlex="80" class="input-field"
-                                                                [formControl]="getGnbInputControl(index, 'value')"
-                                                                appFocusable appEditOnEnter>
-                                                        </ng-template>
-                                                    </editCell>
-                                                </div>
-                                                <div *ngIf="!entity.editable">
-                                                    <input readonly fxFlex="40" value="{{entity.value}}"
-                                                        class="intermediate-input-field">
+                                            <td class="max-width-0"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                class="max-width-0">
+                                                <div *ngIf="!showGnbInfo">
+                                                    <div class="editable-field" *ngIf="entity.editable">
+                                                        <editCell (update)="updateGnbField(index, 'value1')"
+                                                            *ngIf="i==0">
+                                                            <ng-template appViewMode>{{entity.value1}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getGnbInputControl(index, 'value1')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateGnbField(index, 'value2')"
+                                                            *ngIf="i==1">
+                                                            <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getGnbInputControl(index, 'value2')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateGnbField(index, 'value3')"
+                                                            *ngIf="i==2">
+                                                            <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getGnbInputControl(index, 'value3')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateGnbField(index, 'value4')"
+                                                            *ngIf="i==3">
+                                                            <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getGnbInputControl(index, 'value4')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                    </div>
+                                                    <div *ngIf="!entity.editable">
+                                                        <input readonly fxFlex="60" value="{{entity.value1}}"
+                                                            class="intermediate-input-field" *ngIf="i==0">
+                                                        <input readonly fxFlex="60" value="{{entity.value3}}"
+                                                            class="intermediate-input-field" *ngIf="i==1">
+                                                        <input readonly fxFlex="60" value="{{entity.value3}}"
+                                                            class="intermediate-input-field" *ngIf="i==2">
+                                                        <input readonly fxFlex="60" value="{{entity.value4}}"
+                                                            class="intermediate-input-field" *ngIf="i==3">
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td *ngIf="showGnbInfo">
@@ -230,8 +374,8 @@
                                 </span>
                                 <div class="col"></div>
                                 <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                                <button mat-icon-button (click)="toggleUserEquipmentInfo()">
-                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                <button mat-icon-button class="link-icon-button" (click)="toggleUserEquipmentInfo()">
+                                    <i class="ic ic-info1"></i>
                                 </button>
                             </div>
                             <div class="accordian-content">
@@ -239,8 +383,12 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngIf="!showUserEquipmentInfo">Admin</th>
-                                            <th *ngIf="showUserEquipmentInfo">Info</th>
+                                            <th *ngFor="let templateEach of templateGalleryList">
+                                                <span *ngIf="!showUserEquipmentInfo">
+                                                    {{templateEach}}
+                                                </span>
+                                            </th>
+                                            <th style="width: 50%;"  *ngIf="showUserEquipmentInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -250,20 +398,54 @@
                                                 <span
                                                     [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
                                             </td>
-                                            <td class="max-width-0" *ngIf="!showUserEquipmentInfo">
-                                                <div class="editable-field" *ngIf="entity.editable">
-                                                    <editCell (update)="updateGnbField(index, 'value')">
-                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
-                                                        <ng-template appEditMode>
-                                                            <input fxFlex="80" class="input-field"
-                                                                [formControl]="getGnbInputControl(index, 'value')"
-                                                                appFocusable appEditOnEnter>
-                                                        </ng-template>
-                                                    </editCell>
-                                                </div>
-                                                <div *ngIf="!entity.editable">
-                                                    <input readonly fxFlex="40" value="{{entity.value}}"
-                                                        class="intermediate-input-field">
+                                            <td class="max-width-0"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                class="max-width-0">
+                                                <div *ngIf="!showUserEquipmentInfo">
+                                                    <div class="editable-field" *ngIf="entity.editable">
+                                                        <editCell (update)="updateUeField(index, 'value1')" *ngIf="i==0">
+                                                            <ng-template appViewMode>{{entity.value1}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getUeInputControl(index, 'value1')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateUeField(index, 'value2')" *ngIf="i==1">
+                                                            <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getUeInputControl(index, 'value2')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateUeField(index, 'value3')" *ngIf="i==2">
+                                                            <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getUeInputControl(index, 'value3')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateUeField(index, 'value4')" *ngIf="i==3">
+                                                            <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getUeInputControl(index, 'value4')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                    </div>
+                                                    <div *ngIf="!entity.editable">
+                                                        <input readonly fxFlex="40" value="{{entity.value1}}"
+                                                            class="intermediate-input-field" *ngIf="i==0">
+                                                        <input readonly fxFlex="40" value="{{entity.value2}}"
+                                                            class="intermediate-input-field" *ngIf="i==1">
+                                                        <input readonly fxFlex="40" value="{{entity.value3}}"
+                                                            class="intermediate-input-field" *ngIf="i==2">
+                                                        <input readonly fxFlex="40" value="{{entity.value4}}"
+                                                            class="intermediate-input-field" *ngIf="i==3">
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td *ngIf="showUserEquipmentInfo">
@@ -281,8 +463,8 @@
                                 </span>
                                 <div class="col"></div>
                                 <button mat-button [disabled]="true" style="color: #9cc7e8;">Advance Settings</button>
-                                <button mat-icon-button (click)="toggleEnviMarInfo()">
-                                    <i class="zmdi zmdi-smartphone-info"></i>
+                                <button mat-icon-button class="link-icon-button" (click)="toggleEnviMarInfo()">
+                                    <i class="ic ic-info1"></i>
                                 </button>
                             </div>
                             <div class="accordian-content">
@@ -290,8 +472,13 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngIf="!showEnviMarInfo">Admin</th>
-                                            <th *ngIf="showEnviMarInfo">Info</th>
+
+                                            <th *ngFor="let templateEach of templateGalleryList">
+                                                <span *ngIf="!showEnviMarInfo">
+                                                    {{templateEach}}
+                                                </span>
+                                            </th>
+                                            <th style="width: 50%;"  *ngIf="showEnviMarInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody class="envir-mar-tbody">
@@ -300,25 +487,49 @@
                                                 <span class="text-field">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']"
-                                                *ngIf="!showEnviMarInfo">
-                                                <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
-                                                    <editCell (update)="updateGnbField(index, 'value')">
-                                                        <ng-template appViewMode>{{entity.value}}</ng-template>
-                                                        <ng-template appEditMode>
-                                                            <input fxFlex="80" class="input-field"
-                                                                [formControl]="getGnbInputControl(index, 'value')"
-                                                                appFocusable appEditOnEnter>
-                                                        </ng-template>
-                                                    </editCell>
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn" [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']">
+                                                <div *ngIf="!showEnviMarInfo">
+                                                    <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
+                                                        <editCell (update)="updateEnviMarField(index, 'value1')" *ngIf="i == 0">
+                                                            <ng-template appViewMode>{{entity.value1}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getEnviMarInputControl(index, 'value1')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateEnviMarField(index, 'value2')" *ngIf="i == 1">
+                                                            <ng-template appViewMode>{{entity.value2}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getEnviMarInputControl(index, 'value2')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateEnviMarField(index, 'value3')" *ngIf="i == 2">
+                                                            <ng-template appViewMode>{{entity.value3}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getEnviMarInputControl(index, 'value3')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                        <editCell (update)="updateEnviMarField(index, 'value4')" *ngIf="i == 3">
+                                                            <ng-template appViewMode>{{entity.value4}}</ng-template>
+                                                            <ng-template appEditMode>
+                                                                <input fxFlex="80" class="input-field"
+                                                                    [formControl]="getEnviMarInputControl(index, 'value4')"
+                                                                    appFocusable appEditOnEnter>
+                                                            </ng-template>
+                                                        </editCell>
+                                                    </div>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Clutter Type'"
+                                                        class="select-container" style="min-width: 65px; max-width: 70px;">
+                                                        <mat-select disableOptionCentering [(value)]="clutterType">
+                                                            <mat-option value="DU" selected>DU</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
                                                 </div>
-                                                <mat-form-field *ngIf="entity.parameter == 'Clutter Type'"
-                                                    class="select-container" style="min-width: 65px; max-width: 70px;">
-                                                    <mat-select disableOptionCentering [(value)]="clutterType"
-                                                        (selectionChange)="onTechnologyChanged(clutterType)">
-                                                        <mat-option value="DU" selected>DU</mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
                                             </td>
                                             <td *ngIf="showEnviMarInfo">
                                                 <span class="text-field">{{entity.info}}</span>
@@ -332,71 +543,86 @@
                 </mat-tab>
                 <mat-tab label="Summary">
                     <div class="overflow-auto">
-                        <!-- <div class="accordian-holder"> -->
-                        <mat-card class="mr-1 ml-2 mt-2 mb-2">
-                            <mat-card-header>Schematic View</mat-card-header>
+                        <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0 summary-card">
+                            <mat-card-header class="summary-card-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                                <mat-card-title *ngIf="!saveAsShowSummaryHideDisable" class="title m-0">{{selectedChip}}
+                                </mat-card-title>
+                                <mat-button-toggle-group class="summary-toggle-group" #group="matButtonToggleGroup"
+                                    [value]="selectedToggleButton">
+                                    <mat-button-toggle value="Uplink" aria-label="Text align left" [disableRipple]="true">
+                                        Uplink
+                                    </mat-button-toggle>
+                                    <mat-button-toggle value="Downlink" aria-label="Text align center"
+                                        [disableRipple]="true">
+                                        Downlink
+                                    </mat-button-toggle>
+                                </mat-button-toggle-group>
+                                <!-- <div ></div> -->
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="center center" class="p-3">
+                                    <img src="/assets/images/test-img/5G_cell_radius.svg" style="width: 100%;" />
+                                </div>
+                            </mat-card-content>
                         </mat-card>
 
-                        <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0">
-                            <table class="table" style="margin-bottom: 0px; table-layout: fixed;
-                                width: 100%;">
+                        <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0 summary-card" *ngIf="!saveAsShowSummaryHideDisable">
+                            <table class="table mb-0">
                                 <thead class="summary-table-header">
                                     <tr>
-                                        <th>Downlink Budget</th>
+                                        <th style="width: 33%;">Downlink Budget</th>
                                         <th>UL</th>
                                         <th>DL</th>
-                                        <th>UI Link Budgey</th>
+                                        <th style="width: 33%;">UI Link Budget</th>
                                     </tr>
                                 </thead>
-                                <tbody class="envir-mar-tbody">
-                                    <tr *ngFor="let entity of enviAndMarList; index as index">
+                                <tbody>
+                                    <tr *ngFor="let entity of summaryList; index as index">
                                         <td>
-                                            <span class="text-field">{{entity.parameter}}</span>
-                                        </td>
-                                        <td class="max-width-0"
-                                            [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']"
-                                            *ngIf="!showEnviMarInfo">
-                                            <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
-                                                <editCell (update)="updateGnbField(index, 'value')">
-                                                    <ng-template appViewMode>{{entity.value}}</ng-template>
-                                                    <ng-template appEditMode>
-                                                        <input fxFlex="80" class="input-field"
-                                                            [formControl]="getGnbInputControl(index, 'value')"
-                                                            appFocusable appEditOnEnter>
-                                                    </ng-template>
-                                                </editCell>
-                                            </div>
+                                            <span class="text-field">{{entity.dlBudget}}</span>
                                         </td>
                                         <td>
-                                            <span class="text-field">{{entity.parameter}}</span>
+                                            <span class="text-field">{{entity.dl}}</span>
                                         </td>
                                         <td>
-                                            <span class="text-field">{{entity.parameter}}</span>
+                                            <span class="text-field">{{entity.ul}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-field">{{entity.ulBudget}}</span>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </mat-card>
-                        <!-- </div> -->
                     </div>
                 </mat-tab>
             </mat-tab-group>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <div [class.opened]="show" class="collapsable-right-holder">
+        <div [ngClass]="showRightHolder ? 'opened' : 'closed'"
+            class="collapsable-right-holder">
             <div class="right-accordian-header" fxLayout="row" fxLayoutAlign="start center">
                 <span class="right-holder-title"> Link Budget Estimation</span>
                 <div class="col"></div>
-                <button mat-icon-button (click)="show = !show">
+                <button mat-icon-button class="link-icon-button" (click)="showRightHolderToggle()">
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
             <mat-divider style="position: inherit;"></mat-divider>
-            <div style="max-height: 423px; height: calc(100% - 48px);">
+            <div style="max-height: 425px; height: calc(100% - 48px);">
                 <div class="accordian-holder right-accordian-holder">
                     <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
-                        <span class="header-title">
-                            Environment & Margins
+                        <span class="header-title" *ngIf="templateGalleryListCount == 1">
+                            {{onlyOneSelectedChip}}
+                        </span>
+                        <span class="header-title" *ngIf="templateGalleryListCount > 1">
+                            <mat-form-field class="pr15" fxFlex="90">
+                                <mat-select [(value)]="selectedTemplate" disableOptionCentering>
+                                    <mat-option *ngFor="let template of templateGalleryList" [value]="template">
+                                        {{template}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </span>
                     </div>
                     <div class="accordian-content right-accordian-content">
@@ -414,10 +640,12 @@
                                         <span class="text-field">{{entity.parameter}}</span>
                                     </td>
                                     <td>
-                                        <span class="text-field">{{entity.dl}}</span>
+                                        <span *ngIf="templateGalleryListCount >0" class="text-field">{{entity.dl}}</span>
+                                        <span *ngIf="templateGalleryListCount == 0" class="text-field">{{entity.empty}}</span>
                                     </td>
                                     <td>
-                                        <span class="text-field">{{entity.ul}}</span>
+                                        <span *ngIf="templateGalleryListCount >0" class="text-field">{{entity.ul}}</span>
+                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">{{entity.empty}}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -430,7 +658,6 @@
                                     & Margin</b>
                             </span>
                         </div>
-                        <!-- <div> -->
                         <table class="table mb-0">
                             <tbody class="od-id-tbody">
                                 <tr *ngFor="let entity of odIdList; index as index">
@@ -438,48 +665,32 @@
                                         <span class="od-id-text">{{entity.parameter}}</span>
                                     </td>
                                     <td>
-                                        <span class="editable-field">{{entity.dl}}</span>
+                                        <span *ngIf="templateGalleryListCount > 0" class="editable-field">{{entity.dl}}</span>
+                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
                                     </td>
                                     <td>
-                                        <span class="editable-field">{{entity.ul}}</span>
+                                        <span *ngIf="templateGalleryListCount > 0" class="editable-field">{{entity.ul}}</span>
+                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </mat-card-content>
-    <!-- <mat-divider></mat-divider> -->
-    <!-- <div class="" style="height: 64px;">
-        <div class="d-flex mx-2 flex-row justify-content-between align-items-center h-100">
-            <div class="col-4 title">
-                Admin Settings
-            </div>
-            <div class="col-8 d-flex justify-content-end align-items-center mt-2">
-                <mat-form-field  fxFlex="25" class="mr-4">
-                    <input matInput placeholder="Number of Cells" type="number" value="8" required>
-                  </mat-form-field>
-                  <mat-form-field fxFlex="25" class="">
-                    <input matInput placeholder="Number of KPIs" type="number" value="20" required>
-                  </mat-form-field>
-            </div>
-        </div>
-    </div> -->
-    <!-- <mat-divider style="position: relative;"></mat-divider> -->
 </mat-card>
 <mat-divider></mat-divider>
-<div mat-dialog-actions class="d-flex">
-    <!-- <button mat-button (click)="onNoClick()" class="mat-cancel">Cancel</button>
-    <button mat-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial
-        style="color: #0070DB;">Submit</button> -->
+<div mat-dialog-actions class="d-flex pt-0">
     <div class="p-2 my-flex-item">
         <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
     </div>
     <div class="col"></div>
-    <div class="p-2">
-        <button mat-raised-button color="primary" class="">Save As template</button>
+    <div class="p-2" (click)="newSaveAsTemplatePopup('Save As Template')">
+        <button mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As template</button>
+    </div>
+    <div  *ngIf="showDownloadButton" class="p-2">
+        <button mat-raised-button color="primary" class="button">Download</button>
     </div>
 </div>

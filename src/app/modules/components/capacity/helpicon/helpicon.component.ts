@@ -41,11 +41,9 @@ export class HelpiconComponent implements ICellRendererAngularComp {
       const dialogRef = this.dialog.open(QuestionPopupComponent, {
         width: "550px",
         panelClass: "material-dialog-container",
-        data: { }
+       
       });
   
-      dialogRef.afterClosed().subscribe(result => {
-  
-      });
+    
     };
   }

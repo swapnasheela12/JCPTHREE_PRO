@@ -1,0 +1,80 @@
+<mat-toolbar class="dialog-header">
+    <mat-toolbar-row>
+        <div fxFlex="grow">
+            <div>{{title}}</div>
+        </div>
+        <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title == 'New Template'">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field fxFlex="65" class="m-4">
+            <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl
+                #cityControlSelect (selectionChange)="onCityChanged(cityControl)">
+                <mat-option>
+                    <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                    </ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                    {{city.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="65" class="m-4">
+            <mat-select disableOptionCentering placeholder="Clutter Type" [formControl]="clutterTypeControl" ngDefaultControl
+                #clutterTypeControlSelect (selectionChange)="onClutterTypeChanged(clutterTypeControl)">
+                <mat-option>
+                    <ngx-mat-select-search placeholderLabel="Clutter Type" [formControl]="clutterTypeFilterControl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                    </ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let clutterType of clutterTypeFilter | async" [value]="clutterType">
+                    {{clutterType.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div fxLayout="column">
+        <label class="label-text">Save Template As</label>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span
+                class="dummy-input">{{inputValue}}</span>
+            <mat-form-field fxFlex="25" style="padding-top: 5px;">
+                <input matInput [(ngModel)]="additionalValue">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-evenly stretch" *ngIf="title != 'New Template'">
+    <div fxLayout="column" fxLayoutAlign="space-evenly start" style="height: 225px;">
+        <span class="ml-4"> Please Enter the name you want to Save this Template As:</span>
+        <mat-form-field class="m-4">
+            <input matInput placeholder="Save Template As" [(ngModel)]="inputValue">
+        </mat-form-field>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions *ngIf="title == 'New Template'">
+    <div class="col"></div>
+    <div class="mx-2">
+        <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="mx-2">
+        <button mat-raised-button color="primary" (click)="doneButton()"
+            class="buttonWidth">Done</button>
+    </div>
+</div>
+<div mat-dialog-actions *ngIf="title != 'New Template'">
+    <div class="col"></div>
+    <div class="mx-2">
+        <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="mx-2">
+        <button mat-raised-button [disabled]="!inputValue" color="primary" (click)="saveButton(inputValue)"
+            class="buttonWidth">Save</button>
+    </div>
+</div>
