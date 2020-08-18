@@ -102,7 +102,6 @@ import { OverviewComponent } from './modules/components/properties/overview/over
 import { SiteMilestoneComponent } from './modules/components/properties/site-milestone/site-milestone.component';
 import { BackhaulComponent } from './modules/components/properties/backhaul/backhaul.component';
 import { InventoryComponent } from './modules/components/properties/inventory/inventory.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { GeographicalDetailsComponent } from './modules/components/properties/geographical-details/geographical-details.component';
 import { PowerComponent } from './modules/components/properties/power/power.component';
@@ -156,12 +155,10 @@ declare var $: any;
     CoreModule,
     FlexLayoutModule,
 
-    ///mdbootstrap corausal
-    MDBBootstrapModule,
+    ///ngx corausal
     CarouselModule,
 
     CarouselModule.forRoot(),
-    MDBBootstrapModule.forRoot(),
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([]),
 
