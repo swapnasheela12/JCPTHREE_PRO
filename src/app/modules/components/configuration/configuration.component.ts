@@ -86,7 +86,7 @@ url_1 = "assets/data/layers/popup-data/datap.json"
 
     this.frameworkComponentsConfigDropdown = {
 
-      'ConfigPopupDropdown': ConfigPopupDropdownComponent
+      'dropDownThreeDotRenderer': dropDownThreeDotRendererComponent
     }
   }
 
@@ -167,7 +167,7 @@ url_1 = "assets/data/layers/popup-data/datap.json"
       },
       {
         headerName: "",
-        cellRenderer: "ConfigPopupDropdown",
+        cellRenderer: "dropDownThreeDotRenderer",
       //  id: "config-menu-render",
         field: "",
         width: 80,
