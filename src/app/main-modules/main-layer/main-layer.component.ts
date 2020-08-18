@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 // import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 // import {CanvasLayer} from  '../../../js/L.CanvasLayer.js';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
-import "../../../js/L.CanvasLayer.js";
+// import "../../../js/L.CanvasLayer.js";
 // import * as canvasLayer from 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
@@ -134,6 +134,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     this.map = L.map('map', {
       center: [25.0000, 79.0000],
+      //center:[19.04,72.90],
       zoomControl: false,
       zoom: 5
     });
@@ -331,6 +332,20 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
         middle.onclick = function () {
           //console.log('buttonClicked_middle');
+          var kpiDetailsListDialogRef = {
+            width: '740px',
+            height: '350px',
+            position: { bottom: '60px', right: "60px" },
+            panelClass: "table-view-layers-dialog-container",
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            disableClose: true,
+            hasBackdrop: true
+          }
+          const dialogRef = _dialog.open(KpiDetailsComponent, kpiDetailsListDialogRef);
+
+          dialogRef.backdropClick().subscribe(_ => {
+            dialogRef.close();
+          });
         }
 
         legendsAndFilterControlButton.onclick = function () {
@@ -345,7 +360,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             hasBackdrop: true
           }
           const dialogRef = _dialog.open(LegendsAndFilterComponent, LegendsAndFilterListDialogRef);
-
+          dialogRef.backdropClick().subscribe(_ => {
+            dialogRef.close();
+          });
         }
 
         return container;
@@ -461,18 +478,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //   return false;
     // }
 
-    var MyLayer = (L as any).CanvasLayer.extend({
-      render: function () {
-        var canvas = this.getCanvas();
-        var ctx = canvas.getContext('2d');
-        // render
-      }
-    });
+    // var MyLayer = (L as any).CanvasLayer.extend({
+    //   render: function () {
+    //     var canvas = this.getCanvas();
+    //     var ctx = canvas.getContext('2d');
+    //     // render
+    //   }
+    // });
     // create and add to the map
-    var layer = new MyLayer();
+    //var layer = new MyLayer();
     //console.log(layer, "layer");
 
-    layer.addTo(this.map);
+    //layer.addTo(this.map);
 
     // populate();
     // this.map.addLayer(markers);
@@ -550,7 +567,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
 
- 
+
 
   //LOAD JSON DATA FOR SHAPE (FAN)
   siteDataJson(){
@@ -564,48 +581,52 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   }
  
 
-  //LIBRARY WHICH PROVIDES THE COORDINATES AND PLACES THE SHAPES
+  //FUNCTION FROM CANVAS LIBRARY WHICH PROVIDES THE CANVAS AND COORDINATES(BOUNDS)
   onDrawLayer(info){
-    console.log(info)
     //STAGE
     this._container = new createjs.Container();
 
     //KEEPING STAGE READY BY PASSING CANVAS LAYER OFFERED BY CANAVAS LIBRARY
     this._stage = new createjs.Stage(info.canvas);
     
+    this._stage.enableDOMEvents(true);
+    this._stage.enableMouseOver(50);
  
     //POPUP
     this._simplePopup = this.getPopup();
 
-    // CREATED ARRAYS BASED ON SITE NUMBER E.G. SITE850 ETC.
-    var site850 = _.map(this.siteData.site850, function (item) {
+    // CREATED ARRAYS BASED ON SITE NUMBER (BANDS) E.G. SITE850 ETC.
+    let site850 = _.map(this.siteData.site850, function (item) {
         item.sitebandtype = 'site850';
         return item;
     });
-    var site1800 = _.map(this.siteData.site1800, function (item) {
+    let site1800 = _.map(this.siteData.site1800, function (item) {
         item.sitebandtype = 'site1800';
         return item;
     });
-    var site2300 = _.map(this.siteData.site2300, function (item) {
+    let site2300 = _.map(this.siteData.site2300, function (item) {
         item.sitebandtype = 'site2300';
         return item;
     });
 
     //COMBINING THE ARRAY
-    var flatten = _.flatten([site850, site1800, site2300], true);
+    let flatten = _.flatten([site850, site1800, site2300], true);
 
     //GROUPING THEM BASED ON THEIR 'SAPID' PROPERTY
-    var data = _.groupBy(flatten, 'sapid');
+    let data = _.groupBy(flatten, 'sapid');
     this._points = data;
     
-    var scaleMatrix = (info.zoom <= 7) ? 0.03 : (info.zoom <= 10) ? 0.08 : (info.zoom <= 13) ? 0.15 : (info.zoom <= 15) ? 0.25 : (info.zoom <= 16) ? 0.35 : 0.40;
+    //SETTING UP THE POSITION OF THE POP UP
+    let scaleMatrix = (info.zoom <= 7) ? 0.03 : (info.zoom <= 10) ? 0.08 : (info.zoom <= 13) ? 0.15 : (info.zoom <= 15) ? 0.25 : (info.zoom <= 16) ? 0.35 : 0.40;
     scaleMatrix = scaleMatrix * this._pixelRatio;
     this.scaleMatrix = scaleMatrix;
-    var pointOffset = L.point(0, -(scaleMatrix * 60) / this._pixelRatio);
-
+    let pointOffset = L.point(0, -(scaleMatrix * 60) / this._pixelRatio);
+    
     //POP CONFIG
     this._simplePopup.options.offset = pointOffset;
 
+    //EMPTY THE CANVAS
+    this._container.removeAllChildren();
 
     if (this._addtionalsector == 'Planned') {
       var siteCenterDotColor = "rgb(0,15,255)";
@@ -614,21 +635,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     }
 
     //CENTER DOT OF THE SHAPE
-    var siteCenterDot = this.getPointGraphics(info.zoom, siteCenterDotColor);
-    var shadow = new createjs.Shadow("rgba(0,0,0,0.2)", 1, 2, 5);
+    let siteCenterDot = this.getPointGraphics(info.zoom, siteCenterDotColor);
+    let shadow = new createjs.Shadow("rgba(0,0,0,0.2)", 1, 2, 5);
 
-    for (var site in data) {
-      var siteInner = data[site];
-      var latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
+    for (const site in data) {
+      let siteInner = data[site];
+      let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
 
-      // Placing the coordinates
+      // PLACING THE COORDINATES
         if (!(info.bounds.contains(latlng))) continue;
           let dot = info.layer._map.latLngToContainerPoint(latlng);
-          var centerPoint = {
+          let centerPoint = {
             x: dot.x * this._pixelRatio,
             y: dot.y * this._pixelRatio
         }
         
+        //CENTER DOT OF THE SHAPE(FAN)
         if (this._hightlightCell && this._hightlightCell == siteInner[0].sapid) {
           this._selectionContainer = new createjs.Container();
           this._selectionContainer.name = 'highlightcontainer';
@@ -637,35 +659,31 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           this._selectionContainer.x = centerPoint.x;
           this._selectionContainer.y = centerPoint.y;
 
-          var highlightGraphic = this.getSelectionGraphics('#1e88e5', '#FFFFFF');
-          var highlightShape = new createjs.Shape(highlightGraphic);
+          let highlightGraphic = this.getSelectionGraphics('#1e88e5', '#FFFFFF');
+          let highlightShape = new createjs.Shape(highlightGraphic);
           this._selectionContainer.addChild(highlightShape);
           this._container.addChild(this._selectionContainer);
         }
 
-        var siteContainer = new createjs.Container();
+        let siteContainer = new createjs.Container();
         siteContainer.x = centerPoint.x;
         siteContainer.y = centerPoint.y;
         siteContainer.scaleX = scaleMatrix;
         siteContainer.scaleY = scaleMatrix;
         siteContainer.name = siteInner[0].sapid;
 
-        var carrierLines = {
-          "site2300": 15,
-          "site1800": 35,
-          "site850": 55
-        };
-
         var currentBands = {};
-        for (var band in siteInner) {
+        for (const band in siteInner) {
             var bandInner = siteInner[band];
-            currentBands[bandInner.sitebandtype] = true;
+            if(bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null){
+              currentBands[bandInner.sitebandtype] = true;
+          }
         }
-        for (var band in siteInner) {
-            var bandInner = siteInner[band];
-            if(bandInner.sitebandtype !== undefined){
-              var outerRadius = (bandInner.sitebandtype == 'site850') ? 75 : (bandInner.sitebandtype == 'site1800') ? 55 : 35;
-              var innerRadius = (bandInner.sitebandtype == 'site850') ? 55 : (bandInner.sitebandtype == 'site1800') ? 35 : 15;
+        for (const band in siteInner) {
+            let bandInner = siteInner[band];
+            if(bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null){
+              let outerRadius = (bandInner.sitebandtype == 'site850') ? 75 : (bandInner.sitebandtype == 'site1800') ? 55 : 35;
+              let innerRadius = (bandInner.sitebandtype == 'site850') ? 55 : (bandInner.sitebandtype == 'site1800') ? 35 : 15;
         
               if (bandInner.sitebandtype == 'site1800') {
                 if (!currentBands['site2300']) innerRadius = 15;
@@ -674,24 +692,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                   if (!currentBands['site1800'] && currentBands['site2300']) innerRadius = 35;
                   if (!currentBands['site1800'] && !currentBands['site2300']) innerRadius = 15;
               }
-              var carrierInnerRadius = innerRadius;
-              var startAngle, endAngle;
-              for (var sector in bandInner.siteArray) {
-                var sectorInner = bandInner.siteArray[sector];
-
-
-                var sectorColor;
+              let carrierInnerRadius = innerRadius;
+              let startAngle, endAngle;
+              for (const sector in bandInner.siteArray) {
+                let sectorInner = bandInner.siteArray[sector];
+                let sectorColor;
                 sectorInner.sitebandtype = bandInner.sitebandtype;
                 sectorInner.sitebandtype = bandInner.sitebandtype;
 
-                var sectorid = sectorInner.sectorid;
-                var carrierOrNot;
+                let sectorid = sectorInner.sectorid;
+                let carrierOrNot;
                 if (sectorInner.carrier != null) {
                     carrierOrNot = true;
                 } else {
                     carrierOrNot = false;
                 }
-
+                
                 if (bandInner.sitebandtype == 'site2300') {
                   if (this._addtionalsector == 'Planned') {
                     sectorColor = "rgb(0,15,255)";
@@ -702,7 +718,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                   //CALCULATION FOR START AND END ANGLES FOR SHAPE TO BE GENERATED BASED ON THE DATA PROVIDE IN SITE ARRAY LIST
                   switch (sectorid) {
                     case 1:
-                    var sector4 = _.findWhere(bandInner.siteArray, {
+                    let sector4 = _.findWhere(bandInner.siteArray, {
                         sectorid: 4
                     });
                     if (sector4 !== undefined) {
@@ -713,15 +729,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                             startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
                             endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
                         }
-
-
                     } else {
                         startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
                         endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
                     }
                     break;
                     case 2:
-                    var sector5 = _.findWhere(bandInner.siteArray, {
+                    let sector5 = _.findWhere(bandInner.siteArray, {
                         sectorid: 5
                     });
                     if (sector5 !== undefined) {
@@ -738,7 +752,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                     }
                     break;
                     case 3:
-                    var sector6 = _.findWhere(bandInner.siteArray, {
+                    let sector6 = _.findWhere(bandInner.siteArray, {
                         sectorid: 6
                     });
                     if (sector6 !== undefined) {
@@ -755,7 +769,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                     }
                     break;
                     case 4:
-                    var sector1 = _.findWhere(bandInner.siteArray, {
+                    let sector1 = _.findWhere(bandInner.siteArray, {
                         sectorid: 1
                     });
                     if (sector1 !== undefined) {
@@ -772,10 +786,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                     }
                     break;
                     case 5:
-                    var sector2 = _.findWhere(bandInner.siteArray, {
+                    let sector2 = _.findWhere(bandInner.siteArray, {
                         sectorid: 2
                     });
-
                     if (sector2 !== undefined) {
                         if (sector2.azimuth == sectorInner.azimuth) {
                             startAngle = sectorInner.azimuth + 5;
@@ -790,7 +803,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                     }
                     break;
                     case 6:
-                    var sector3 = _.findWhere(bandInner.siteArray, {
+                    let sector3 = _.findWhere(bandInner.siteArray, {
                         sectorid: 3
                     });
                     if (sector3 !== undefined) {
@@ -823,7 +836,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                   } else {
                       sectorColor = "#be0c2f";
                   }
-
                   startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
                   endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
                 }
@@ -837,40 +849,44 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                 }
 
                 //PIE GENERATOR GENERATES THE SHAPES BASED ON PARAMS PROVIDED. FOR EXAMPLE, START ANGLE, END ANGLE ETC 
-                var sectorPie = new createjs.Shape(this.pieGenerator(0, 0, startAngle, endAngle, outerRadius, innerRadius, carrierInnerRadius, carrierOrNot, sectorColor, sectorpieColor, 1));
+                let sectorPie = new createjs.Shape(this.pieGenerator(0, 0, startAngle, endAngle, outerRadius, innerRadius, carrierInnerRadius, carrierOrNot, sectorColor, sectorpieColor, 1));
                 sectorPie.alpha = 0.8;
                 sectorPie.shadow = shadow;
                 sectorPie.cursor = 'pointer';
                 sectorPie['latlng'] = latlng;
                 sectorPie['site'] = bandInner.siteArray;
                 sectorPie['sector'] = sectorInner;
-                sectorPie.addEventListener('click', function (evt) {
-                  this.handle(event);
-                }.bind(this));
+                
+                //EVENTS 
+                sectorPie.addEventListener("mouseover", (event) => {
+                  this.nodeOnMouseOver(info,event);
+                })
+                sectorPie.addEventListener("mouseout", (event) => {
+                  this.nodeOnMouseOut(info,event);
+                })
                 siteContainer.addChild(sectorPie)
               }
             }
         }
 
         //CENTER DOT OF EACH SHAPE
-        var siteDot = new createjs.Shape(siteCenterDot);
+        let siteDot = new createjs.Shape(siteCenterDot);
         siteDot.name = "centerdot";
         siteDot.shadow = shadow;
         siteDot.cursor = 'pointer';
         siteDot['site'] = bandInner.siteArray;
         siteDot['latlng'] = latlng;
         siteContainer.addChild(siteDot);
-        console.log(createjs);
        
 
-        // SHOW LABELS FOR EACH SHAPE LAID ON MAP
+        // SHOW LABELS FOR EACH SHAPE LAID ON MAP AT ZOOM LEVEL 15 AND ABOVE
         if (info.zoom >= 15) {
-          var label = new createjs.Text(siteInner[0].sapid, "bold 30px RobotoDraft", "#FFFFFF");
+          let label = new createjs.Text(siteInner[0].sapid, "bold 30px RobotoDraft", "#FFFFFF");
           label.textAlign = 'center';
           label.outline = 3;
           label.y = (scaleMatrix * 280) / this._pixelRatio;
           
-          var outline = label.clone();
+          let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
           siteContainer.addChild(label, outline);
@@ -888,21 +904,39 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this._stage.update();
   }
 
-  handle(evt){
-    console.log(evt);
+  //ON MOUSE OVER OF SHAPE(FAN)
+  nodeOnMouseOver(info,event) {
+    let target = event.target;
+    target.alpha = 1;
+    target.graphics.strokeStyleCommand.width = 4;
+    this._stage.update();
+    if (target.sector.sitebandtype !== undefined  && target.sector.sitebandtype !== null){
+      let band = (target.sector.sitebandtype == 'site2300') ? 2300 : (target.sector.sitebandtype == 'site1800') ? 1800 : 850;
+      let template = "";
+      template += `<div class="layout-row"><span class="prefix">PCI : </span> <span class="value">${(target.sector.pci)} </span></div>`;
+      template += `<div class="layout-row"><span class="prefix">Band : </span> <span class="value">${(band)} MHz</span></div>`;
+      this._simplePopup.setLatLng(target.latlng).setContent(template).openOn(info.layer._map);
+    }
   }
+ 
+  //ON MOUSE OUT OF SHAPE(FAN)
+  nodeOnMouseOut(info,event){
+    let target = event.target;
+    target.alpha = 0.8;
+    target.graphics.strokeStyleCommand.width = 1;
+    this._stage.update();
+    info.layer._map.closePopup();
+  }
+
   pieGenerator(pie_x, pie_y, startAngle, endAngle, radius1, radius2, carrierInnerRadius, carrierStatus, fillColor, lineColor, lineThickness) {
 
     var newAngles = (endAngle - startAngle) / 2;
     var newAngle = startAngle + newAngles;
 
     var g = new createjs.Graphics();
+    var strokeStyleCommand = g.setStrokeStyle(lineThickness).command;
+    g['strokeStyleCommand'] = strokeStyleCommand;
 
-    // PROPERTIES NOT AVAILABLE IN LATEST VERSTION
-    //var strokeStyleCommand = g.setStrokeStyle(lineThickness).command;
-    //g.strokeStyleCommand = strokeStyleCommand;
-
-    g.setStrokeStyle(lineThickness);
     g.beginFill(fillColor);
     g.beginStroke(lineColor);
     g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle),false);
