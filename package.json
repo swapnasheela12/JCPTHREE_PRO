@@ -62,6 +62,7 @@
         "leaflet": "^1.6.0",
         "leaflet-canvas-layer": "^1.0.8",
         "leaflet-canvaslayer-field": "^1.4.1",
+        "leaflet-image": "^0.4.0",
         "leaflet.pm": "^2.2.0",
         "lodash": "^4.17.19",
         "material-design-iconic-font": "^2.2.0",
