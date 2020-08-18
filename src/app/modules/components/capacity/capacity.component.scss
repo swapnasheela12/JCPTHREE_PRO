@@ -104,6 +104,19 @@ body {
    }
 
 .capcity-container {
-    height:200px;
+    height:400px;
     overflow: hidden;
+}
+.capacity-data-table {
+    height: 400px;
+}
+
+:host ::ng-deep app-table-ag-grid .pagination-aggrid{
+    width: calc(100% - 310px);
+    position: absolute;
+    bottom: 20px!important;
+    height: 50px;
+    // left: 161px!important;
+    right: 565px;
+    /* top: 0; */
 }

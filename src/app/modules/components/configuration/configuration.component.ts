@@ -6,11 +6,12 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { ConfigDotmenuComponent } from '../config-dotmenu/config-dotmenu.component';
+//import { ConfigDotmenuComponent } from '../config-dotmenu/config-dotmenu.component';
 import { HistoryPopupComponent } from './history-popup/history-popup.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component'
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-
+import{ConfigPopupDropdownComponent} from '../../../core/components/ag-grid-renders/config-popup-dropdown.component'
+import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
 interface Band {
   value: string;
   viewValue: string;
@@ -46,7 +47,10 @@ export class ConfigurationComponent implements OnInit {
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+
+
   public frameworkComponentsConfigmenu;
+  public frameworkComponentsConfigDropdown;
   gridColumnApi: any;
   public rowSelection;
   show: any;
@@ -60,7 +64,12 @@ export class ConfigurationComponent implements OnInit {
 public configData;
 public defaultColDef;
 public gridPinned;
+
+
+
 url_1 = "assets/data/layers/popup-data/datap.json"
+
+
 
   constructor( public datatable: TableAgGridService, public matDialog: MatDialog, 
     public matselect: MatSelectModule, 
@@ -75,9 +84,9 @@ url_1 = "assets/data/layers/popup-data/datap.json"
    // this.getConfigdata();
 
 
-    this.frameworkComponentsConfigmenu = {
+    this.frameworkComponentsConfigDropdown = {
 
-      'config-dotmenu': ConfigDotmenuComponent
+      'dropDownThreeDotRenderer': dropDownThreeDotRendererComponent
     }
   }
 
@@ -158,8 +167,8 @@ url_1 = "assets/data/layers/popup-data/datap.json"
       },
       {
         headerName: "",
-        cellRenderer: "config-dotmenu",
-        id: "config-menu-render",
+        cellRenderer: "dropDownThreeDotRenderer",
+      //  id: "config-menu-render",
         field: "",
         width: 80,
         pinned: 'right'
