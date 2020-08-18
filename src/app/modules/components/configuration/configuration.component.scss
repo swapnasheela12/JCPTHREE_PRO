@@ -121,3 +121,8 @@ display: flex;
     }
 
  
+
+:host ::ng-deep .config-data-table {
+    height: 400px!important;
+    overflow: scroll!important;
+}

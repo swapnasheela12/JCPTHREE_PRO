@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from "@angular/material/button";
 import { AgGridModule } from 'ag-grid-angular';
 import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { HelpiconComponent } from './helpicon/helpicon.component';
 import { QuestionPopupComponent } from './question-popup/question-popup.component';
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
 import { from } from 'rxjs';
@@ -133,7 +133,10 @@ url_1 = "assets//layers/popup-data/capacity-popup-data.json";
       },
       {
         headerName: "",
-        cellRenderer: "helpicon",
+        cellRenderer: 'helpicon',
+        // cellRenderer: function(){
+        //   return '<button mat-icon-button class="zmdi zmdi-help">'
+        // },
         id: "helpicon-render",
         field: "",
         width: 120,
