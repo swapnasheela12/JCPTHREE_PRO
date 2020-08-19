@@ -43,8 +43,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public chartDivWidth;
   public chartDivHeight;
 
-  customControl;
-  customControlList;
+  public customControl;
+  public customControlPanIndia;
+  public customControlList;
 
   public currentZoom;
   
@@ -196,6 +197,45 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.currentZoom = this.map.getZoom();
 
     //custome controller//
+   
+
+    this.customControlPanIndia = L.Control.extend({
+
+      options: {
+        position: 'bottomright',
+      },
+
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+
+        // container.innerHTML = '<div class="leaflet-control-custom-count-Layers"><div class="icon-control-count">4</div><div class="icon-control"><span class="ic ic-layers-01"></span></div></div>';
+        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-style"><i class="ic ic-pan-01"></i></div></div>';
+        container.style.backgroundColor = 'white';
+        // container.style.backgroundImage = "url(https://t1.gstatic.com/images?q=tbn:ANd9GcR6FCUMW5bPn8C4PbKak2BJQQsmC-K9-mbYBeFZm1ZM2w2GRy40Ew)";
+        container.style.backgroundSize = "40px 40px";
+        // container.style.position = 'absolute';
+        // container.style.bottom = '0px';
+        // container.style.right = '50px';
+        container.style.width = '40px';
+        container.style.height = '40px';
+
+        container.onclick = function () {
+          
+          let zoomLev = map.getZoom();
+          if (zoomLev != 5) {
+            map.setZoom(5);
+          }
+
+        }
+
+        return container;
+      },
+      onRemove: function (map) {
+       // console.log('buttonClicked?????????');
+      }
+    });
+    this.map.addControl(new this.customControlPanIndia());
+    
     this.customControl = L.Control.extend({
 
       options: {
@@ -248,7 +288,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
        // console.log('buttonClicked?????????');
       }
     });
-
     this.map.addControl(new this.customControl());
 
     let _dialog = this.dialog;
