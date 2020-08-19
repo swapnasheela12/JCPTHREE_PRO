@@ -1,0 +1,287 @@
+<div class="bbu-wrapper">
+    <div class="bbu-container">
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">LTE Antenna Details</div>
+            </div>
+            <div class="site-task-label" style=" padding: 15px;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(0,0,0,.87);">Alpha</div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 160px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsAlpha" [columnDefs]="colDefAlpha"
+                        [rowData]="alphaData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+
+
+            <div class="site-task-label" style=" padding: 15px;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(0,0,0,.87);">Beta</div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 160px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsBeta" [columnDefs]="colDefBeta"
+                        [rowData]="betaData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+
+
+            <div class="site-task-label" style=" padding: 15px;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(0,0,0,.87);">Gamma</div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 205px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsGamma" [columnDefs]="colDefGamma"
+                        [rowData]="gammaData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">BBU Details</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 205px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsBbu" [columnDefs]="colDefBbu"
+                        [rowData]="bbuData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">RRh Details</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 206px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsRrh" [columnDefs]="colDefRrh"
+                        [rowData]="rrhData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Microwave</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 160px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMicrowave"
+                        [columnDefs]="colDefMicrowave" [rowData]="microwaveData" enableColResize enableSorting
+                        enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+                        toolPanelSuppressValues rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card>
+
+        <!-- <mat-card class="execution-task-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Microwave</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 160px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMicrowave"
+                        [columnDefs]="colDefMicrowave" [rowData]="microwaveData" enableColResize enableSorting
+                        enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+                        toolPanelSuppressValues rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card> -->
+
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">ISP</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container">
+                <div class="sub-content-table">
+                    <ag-grid-angular style="width: 100%; height: 109px;" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsIsp" [columnDefs]="colDefIsp"
+                        [rowData]="ispData" enableColResize enableSorting enableFilter groupHeaders
+                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [defaultColDef]="defaultColDef"
+                        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
+            </div>
+        </mat-card>
+
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Tower</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let t of tower">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{t.label}}
+                            </div>
+                            <div class="input-value">{{t.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Rack</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let r of rack">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{r.label}}
+                            </div>
+                            <div class="input-value">{{r.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">SMPS</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor=" let sm of smps">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{sm.label}}
+                            </div>
+                            <div class="input-value">{{sm.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">EB</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let edata of eb">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{edata.label}}
+                            </div>
+                            <div class="input-value">{{edata.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">DG</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let d of dg">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{d.label}}
+                            </div>
+                            <div class="input-value">{{d.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Battery</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let site of battery">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{site.label}}
+                            </div>
+                            <div class="input-value">{{site.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="bbu-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Earthing</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let site of earthing">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{site.label}}
+                            </div>
+                            <div class="input-value">{{site.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

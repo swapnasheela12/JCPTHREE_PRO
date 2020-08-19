@@ -1,0 +1,42 @@
+.bbu-wrapper {
+    height:calc(100% - 52px);
+    overflow: auto;
+    background: transparent;
+    margin: 15px;
+    .bbu-container-one {
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        margin-bottom: 15px;
+        .sub-header {
+            height: 45px;
+            background: #e9ecec;
+            //line-height: 2.5;
+            .sub-header-title {
+                color: #464D69;
+                font-size: 15px;
+                font-family: Lato Bold;
+
+            }
+        }
+        .sub-content-container {
+            .sub-content {
+                .sub-content-flex-item {
+                    .form-field-read-only {
+                        .input-title {
+                            font-size: 13px;
+                            color: rgba(0,0,0,.54);
+                        }
+                        .input-value {
+                            font-size: 15px;
+                            width: 100%;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+
+                    }
+                }
+
+            }
+        }
+    }
+}

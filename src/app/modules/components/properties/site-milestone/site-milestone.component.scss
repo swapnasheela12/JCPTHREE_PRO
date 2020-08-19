@@ -1,0 +1,30 @@
+
+$md-primary: #0070db;
+$color-white: #ffffff;
+
+.sector-misalignment-container {
+    height: 60vh !important;
+    .jcp-table-container {
+        .ag-theme-material.ag-jcp3 .ag-header {
+            background-color: #D3D5DC;
+        }
+    }
+        .pagination-aggrid {
+            width: calc(100% - 310px);
+            position: absolute;
+            bottom: 0;
+            height: 50px;
+            bottom: 20px;
+            padding-right: 34px;
+            .labels {
+                font-size: 14px;
+                font-family: Lato Regular;
+            }
+        }
+    .float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        text-align: center; 
+    }
+}
