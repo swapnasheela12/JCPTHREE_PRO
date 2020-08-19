@@ -282,7 +282,7 @@
                                 .colorpalette {
                                     width: 20px;
                                     height: 4px;
-                                    background:red;
+                                    background: red;
                                 }
                             }
                         }
@@ -311,4 +311,9 @@
         // filter: blur(10px);
         margin: -20px;
     }
+}
+
+.MyClass {
+    max-width: 100%;
+    max-height: 100%;
 }

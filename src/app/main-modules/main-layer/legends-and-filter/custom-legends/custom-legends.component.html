@@ -24,7 +24,7 @@
             <div class="customLegends-setting-row" fxLayout="row wrap" fxLayoutAlign="space-around center">
                 <div class="customLegends-setting-type" fxFlex="50">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select Technology" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="technologySelected" class="mat-select-selected-layers" placeholder="Select Technology" #singleSelect>
                             <mat-option *ngFor="let layer of technologyList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="customLegends-setting-type" fxFlex="50">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select KPI" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="kpiSelected" class="mat-select-selected-layers" placeholder="Select KPI" #singleSelect>
                             <mat-option *ngFor="let layer of kpiList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
@@ -42,16 +42,29 @@
                 </div>
                 <div class="customLegends-setting-type" fxFlex="100">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select Band" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="bandSelected" class="mat-select-selected-layers" placeholder="Select Band" #singleSelect>
                             <mat-option *ngFor="let layer of bandList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+                    <!-- <mat-form-field class="form-field-container">
+                        <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering
+                          disableOptionCentering ngDefaultControl #domainCtrlSelect>
+                          <mat-option>
+                            <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                              noEntriesFoundLabel="no matching found" ngDefaultControl>
+                            </ngx-mat-select-search>
+                          </mat-option>
+                          <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                            {{domain.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
                 </div>
                 <div class="customLegends-setting-type" fxFlex="70">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Palette" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="paletteSelected" class="mat-select-selected-layers" placeholder="Palette" #singleSelect>
                             <!-- <mat-option *ngFor="let layer of paletteList" [value]="layer.value">
                                 <div>{{layer.value}}</div> -->
                             <!-- <div class="w-100" *ngFor="let item of layer.colorpalette"> -->
@@ -59,12 +72,11 @@
                             <!-- <div class="colorpalette"></div> -->
                             <!-- </div> -->
                             <!-- </mat-option> -->
-                            <mat-option>
+                            <mat-option value="NPE View">
                                 <div style="display: inline-flex;">
                                     <div>NPE View</div>
                                     <div class="colorpalette"></div>
                                 </div>
-
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -76,8 +88,12 @@
                 </div>
             </div>
         </mat-card>
-        <mat-card class="customLegends-setting-card"></mat-card>
-        <mat-card class="customLegends-setting-card"></mat-card>
+        <mat-card class="customLegends-setting-card p-0" style="height: 210px;">
+            <app-table-ag-grid></app-table-ag-grid>
+        </mat-card>
+        <mat-card class="customLegends-setting-card">
+
+        </mat-card>
 
     </div>
     <mat-divider></mat-divider>

@@ -1,7 +1,51 @@
+import { TableAgGridService } from '../../../../core/components/table-ag-grid/table-ag-grid.service';
+import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
+// import { DataSharingService } from 'src/app/_services/data-sharing.service';
+// import { Router } from '@angular/router';
+// import { OverlayContainer } from '@angular/cdk/overlay';
+// import { HttpClient } from '@angular/common/http';
+// import * as agGrid from 'ag-grid-community';
+// import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
+// import { TableAgGridService } from './../../../core/components/table-ag-grid/table-ag-grid.service';
+// import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { MatSelect } from '@angular/material/select';
+import { HttpClient } from "@angular/common/http";
+
+
+// ag grid
+import * as agGrid from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
+// import { GridOptions } from "ag-grid/main";
+// import {Grid} from "ag-grid-community";
+// import { AllCommunityModules } from '@ag-grid-community/all-modules';
+// import { AllCommunityModules } from 'ag-grid-community';
+// import { ButtonRendererComponent } from './button-renderer.component';
+// import { CreateReportComponent } from '../reports-wizard/create-report/create-report.component';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import * as _ from 'lodash';
+import { MatSidenav } from '@angular/material/sidenav';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
+
+
+declare var $: any;
+
+interface reportsMeasure {
+  value: string;
+  viewValue: string;
+}
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-custom-legends',
@@ -10,8 +54,148 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class CustomLegendsComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<CustomLegendsComponent>,) { }
+  public sidenavBarStatus;
+  public tableWidth;
+  public gridApi;
+  public gridPinned = false;
+  public gridCore: GridCore;
+  public gridOptions: GridOptions;
+  public rowData: any;
+  public columnDefs: any[];
+  public rowCount: string;
+  public frameworkComponentsMyReport = {
+    buttonRenderer: ButtonRendererComponent,
+  };
+
+  url = "assets/data/report/my-report.json";
+
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
+  public onReady(params) {
+    console.log(params, "onReady");
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+
+
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
+    private dialogRef: MatDialogRef<CustomLegendsComponent>,) {
+
+    this.gridOptions = <GridOptions>{};
+    this.httpClientRowData();
+    this.createColumnDefs();
+
+  }
+
+  private httpClientRowData() {
+    this.httpClient
+      .get("assets/data/layers/custom_legends.json")
+      .subscribe(data => {
+        this.rowData = data;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-without-Pagination";
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridPinnedServices = this.gridPinned;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
+  }
+
+  private createColumnDefs() {
+    this.columnDefs = [
+      {
+        headerName: "SR .No",
+        field: "srno",
+        width: 115,
+        pinned: 'left'
+      }, {
+        headerName: "Color",
+        field: "color",
+        // cellRenderer: this.progressTaskFunc,
+        width: 130
+      }, {
+        headerName: "2G",
+        field: "2g",
+        width: 140
+      },
+      {
+        headerName: "3G",
+        field: "3g",
+        width: 140
+      },
+      {
+        headerName: "4G",
+        field: "4g",
+        width: 140
+      },
+      {
+        headerName: "Legend",
+        field: "legend",
+        width: 180
+      }
+    ];
+
+    this.datatable.columnDefsServices = this.columnDefs;
+  }
+
+  defaultColDef = { resizable: true };
+
+
+
+  searchGrid = '';
+  onFilterChanged(value) {
+    console.log(value, "value");
+    console.log(this.gridOptions.api.setQuickFilter(value), "valthis.gridOptions.api.setQuickFilter(value)ue");
+    this.datatable.gridFilterValueServices = value;
+    // this.gridOptions.api.setQuickFilter(value);
+  };
+  show: any;
+  toggleSearch() {
+    this.show = !this.show;
+  };
+
+  //END table search
+
+
+
+  //////////////////
+
+  progressTaskFunc(params) {
+    var taskcompletion = params.data.progressby;
+    var taskprogress = params.data.progressbar;
+    // var taskprogresscolor = params.data.taskColor;
+
+    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
+
+    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
+
+    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
+      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
+    if (taskcompletion == "Generated") {
+      return template1;
+    } else if (taskcompletion == "#5 in Queue") {
+      return template2;
+    } else {
+      return template3;
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   private inited;
   ngOnInit(): void {
@@ -26,10 +210,13 @@ export class CustomLegendsComponent implements OnInit {
     }
   }
 
+  technologySelected = "5G";
   technologyList: any = [
     { value: '5G', viewValue: '5G' },
     { value: '4G', viewValue: '4G' }
   ];
+
+  kpiSelected = "Coverage";
   kpiList: any = [
     { value: 'Coverage', viewValue: 'Coverage' },
     { value: 'RSRP', viewValue: 'RSRP' },
@@ -37,11 +224,15 @@ export class CustomLegendsComponent implements OnInit {
     { value: 'RSRQ', viewValue: 'RSRQ' },
     { value: 'UL TX Power', viewValue: 'UL TX Power' },
   ];
+
+  bandSelected = "850 MHz";
   bandList: any = [
     { value: '850 MHz', viewValue: '850 MHz' },
     { value: '1800 MHz', viewValue: '1800 MHz' },
     { value: '2300 MHz', viewValue: '2300 MHz' },
   ];
+  
+  paletteSelected = 'NPE View';
   paletteList: any = [
     {
       value: 'NPE View',

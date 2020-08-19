@@ -91,7 +91,7 @@ export class ReportBuilderComponent implements OnInit {
         console.log(this.rowData);
 
         // this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
         this.datatable.gridPinnedServices = this.gridPinned;
         this.datatable.rowDataServices = this.rowData;
         this.datatable.gridOptionsServices = this.gridOptions;

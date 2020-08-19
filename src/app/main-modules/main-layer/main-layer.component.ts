@@ -1,3 +1,4 @@
+import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { SpiderViewComponent } from './spider-view/spider-view.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
@@ -23,12 +24,17 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import { concatAll } from 'rxjs/operators';
+import { saveAs } from 'file-saver';
+import '../../../js/leaflet-ruler.js'
+import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter'
+import { stringToArray } from 'ag-grid-community';
+
 declare var $: any;
 declare const testName: any;
 
 // Type for Library Canvas
-interface DataObject{
-  [key:string]:any;
+interface DataObject {
+  [key: string]: any;
 }
 
 @Component({
@@ -45,14 +51,15 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   public customControl;
   public customControlPanIndia;
+  public screenShotControl;
   public customControlList;
 
   public currentZoom;
-  
 
 
 
-  public distanceInKms:any = 0;
+
+  public distanceInKms: any = 0;
   public chartJson: any = [
     {
       name: "1",
@@ -68,34 +75,34 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
     }]
   public distanceKm = 0;
- 
+
   //CANVAS LIBRARY CONTENT
-  public canvasLibrary:DataObject;
+  public canvasLibrary: DataObject;
 
 
   //PIE JSON DATA
-  public siteData:DataObject;
+  public siteData: DataObject;
 
 
   //SHAPE(FAN) CONFIG
 
-  public _pixelRatio:number = window.devicePixelRatio || 1;
-  public _map:DataObject;
-  public _simplePopup:DataObject;
-  public _container:DataObject;
-  public _selectionContainer:DataObject;
-  public _points:DataObject;
-  public _hightlightCell:DataObject;
-  public _bounds:Array<{key:string}>;
-  public _colors:String[] = ['#666666', '#b3b3b3', '#11808B', '#74BB26', '#CBE010', '#FFC51E', '#8CC90E', '#218A7B', '#359667', '#E7EA10', '#CBE010', '#FFB023', '#FF6239', '#FFB023', '#E8EB10', '#FF6239'];
-  public _stage:DataObject;
-  public _addtionalsector:String;;
-  public scaleMatrix:number;
-  public fanDataError:String;
+  public _pixelRatio: number = window.devicePixelRatio || 1;
+  public _map: DataObject;
+  public _simplePopup: DataObject;
+  public _container: DataObject;
+  public _selectionContainer: DataObject;
+  public _points: DataObject;
+  public _hightlightCell: DataObject;
+  public _bounds: Array<{ key: string }>;
+  public _colors: String[] = ['#666666', '#b3b3b3', '#11808B', '#74BB26', '#CBE010', '#FFC51E', '#8CC90E', '#218A7B', '#359667', '#E7EA10', '#CBE010', '#FFB023', '#FF6239', '#FFB023', '#E8EB10', '#FF6239'];
+  public _stage: DataObject;
+  public _addtionalsector: String;;
+  public scaleMatrix: number;
+  public fanDataError: String;
 
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http:HttpClient
-    ) {
+    private http: HttpClient
+  ) {
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -122,10 +129,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.canvasLibrary = canvasLayerForLeaflet();
     //this.siteDataJson();
-   }
+  }
 
 
   ngAfterViewInit() {
@@ -156,7 +163,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       zoomControl: false,
       zoom: 5
     });
-    console.log(this.map)
+    console.log(L, "L")
     //console.log(this.map, "this.map");
     //console.log(L, "L.....");
     this.map.on('pm:globalremovalmodetoggled', e => { });
@@ -166,14 +173,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     //CanvasLibrary
     this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
-    this.connectPoints(this.map);
+    // this.connectPoints(this.map);
     const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
     tiles.addTo(this.map);
 
-    this.screenshotCapture(this.map);
+
     //geo json control
     var options = {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -196,8 +203,69 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     this.currentZoom = this.map.getZoom();
 
+
+    //screenshort
+    this.screenShotControl = L.Control.extend({
+
+      options: {
+        position: 'bottomright',
+      },
+
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+
+        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-style"><i class="ic ic-snapshot1"></i></div></div>';
+        container.style.backgroundColor = 'white';
+        container.style.backgroundSize = "40px 40px";
+
+        container.style.width = '40px';
+        container.style.height = '40px';
+
+        container.onclick = function () {
+          var simpleMapScreenshoter = new SimpleMapScreenshoter({
+            hidden: true
+          }).addTo(_map);
+          simpleMapScreenshoter.takeScreen('image', {
+            caption: function () {
+              return 'Jio Cognitive Platform'
+            }
+          }).then(image => {
+
+            var screenshortListDialogRef = {
+              width: '650px',
+              height: '450px',
+              data: {
+                imageDataURL: image
+              },
+              panelClass: "table-view-layers-dialog-container",
+
+            }
+            const dialogRef = _dialog.open(ScreenshotPreviewComponent, screenshortListDialogRef);
+
+          }).catch(e => {
+            alert(e.toString())
+          })
+
+        }
+
+        return container;
+      },
+      onRemove: function (map) {
+        // console.log('buttonClicked?????????');
+      }
+    });
+
+    this.map.on('simpleMapScreenshoter.error', function (event) {
+      var el = document.createElement('div')
+      el.classList.add('create-screen-error')
+      el.innerHTML = event.e.toString()
+      document.getElementById('screens').appendChild(el)
+    })
+    this.map.addControl(new this.screenShotControl());
+    //screenshort
+
     //custome controller//
-   
+
 
     this.customControlPanIndia = L.Control.extend({
 
@@ -220,7 +288,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         container.style.height = '40px';
 
         container.onclick = function () {
-          
+
           let zoomLev = map.getZoom();
           if (zoomLev != 5) {
             map.setZoom(5);
@@ -231,11 +299,11 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         return container;
       },
       onRemove: function (map) {
-       // console.log('buttonClicked?????????');
+        // console.log('buttonClicked?????????');
       }
     });
     this.map.addControl(new this.customControlPanIndia());
-    
+
     this.customControl = L.Control.extend({
 
       options: {
@@ -278,14 +346,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           // dialogRef.backdropClick().subscribe(_ => {
           //   dialogRef.close();
           // });
-  
+
 
         }
 
         return container;
       },
       onRemove: function (map) {
-       // console.log('buttonClicked?????????');
+        // console.log('buttonClicked?????????');
       }
     });
     this.map.addControl(new this.customControl());
@@ -344,7 +412,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
           const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
             // do something
-           // console.log(data, "still got data open");
+            // console.log(data, "still got data open");
 
             if (data.selectedAreaName == "Pan India") {
               _map.fitBounds([
@@ -441,7 +509,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
     this.shapeService.getStateShapes().subscribe(states => {
-     // console.log(states, "states");
+      // console.log(states, "states");
 
       this.states = states;
       this.initStatesLayer();
@@ -498,14 +566,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     let extlayer = L.LayerGroup.extend({
 
       addLayer: function (layer) {
-       // console.log(layer, "layer");
+        // console.log(layer, "layer");
 
         L.LayerGroup.prototype.addLayer.call(this, layer);
       },
 
 
     });
-   // console.log(extlayer, "extlayer");
+    // console.log(extlayer, "extlayer");
 
 
 
@@ -610,152 +678,141 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onClick() {
+  // onClick() {
+  //   var canvasObj = (L as any).canvasLayer();
 
-    var canvasObj = (L as any).canvasLayer();
+  //   //console.log(canvasObj, "canvasObj");
 
-    //console.log(canvasObj, "canvasObj");
+  //   alert("canvasObj typeof=  " + typeof canvasObj);
 
-    alert("canvasObj typeof=  " + typeof canvasObj);
+  //   alert("canvasObj toString= " + canvasObj.toString());
+  // }
 
-    alert("canvasObj toString= " + canvasObj.toString());
-  }
+  // connectPoints(map) {
+  //   let latA: any;
+  //   let latB: any;
+  //   let counterid: number = 1;
+  //   let pointA: any;
+  //   let pointB: any;
+  //   this.map.on('click', function (e) {
+  //     this.containerID = ++counterid;
+  //     if (!latA) {
+  //       latA = e.latlng;
+  //       this.latAdata = latA;
+  //       //POINT A
+  //       pointA = new L.Marker(latA, {
+  //         draggable: true
+  //       });
+  //       pointA.addTo(this.map);
+  //       pointA.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+  //         minWidth: 245
+  //       }).openPopup();
 
-  connectPoints(map) {
-    let latA: any;
-    let latB: any;
-    let counterid: number = 1;
-    let pointA: any;
-    let pointB: any;
-    this.map.on('click', function (e) {
-      this.containerID = ++counterid;
-        if (!latA) {
-          latA = e.latlng;
-          this.latAdata = latA;
-          //POINT A
-          pointA = new L.Marker(latA, {
-            draggable: true
-          });
-          pointA.addTo(this.map);
-          pointA.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
-            minWidth: 245
-          }).openPopup();
+  //     }
+  //     else {
+  //       latB = e.latlng;
+  //       this.latAdata = latB;
+  //       //POINT B
+  //       pointB = new L.Marker(latB, {
+  //         draggable: true
+  //       });
+  //       pointB.addTo(this.map);
+  //       pointB.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+  //         minWidth: 245
+  //       }).openPopup();
+  //     }
 
-        }
-        else {
-          latB = e.latlng;
-          this.latAdata = latB;
-          //POINT B
-          pointB = new L.Marker(latB, {
-            draggable: true
-          });
-          pointB.addTo(this.map);
-          pointB.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
-            minWidth: 245
-          }).openPopup();
-      }
+  //     if (latA && latB) {
+  //       console.log(L);
+  //       var polyline = L.polyline([latA, latB], {
+  //         color: 'red',
+  //         weight: 7,
+  //         opacity: 7,
+  //         smoothFactor: 10
+  //       }).addTo(this.map);
+  //       latA = latB
 
-      if (latA && latB) {
-        console.log(L);
-        var polyline =  L.polyline([latA, latB], {
-          color: 'red',
-          weight: 7,
-          opacity: 7,
-          smoothFactor: 10
-        }).addTo(this.map);
-        latA = latB
+  //       //DRAW A NEW LAYER
+  //       L.DomEvent.on(
+  //         document.getElementById('newline'), 'click',
+  //         function (ev) {
+  //           console.log('before-click', latA, latB)
+  //           latA = undefined;
+  //           latB = undefined;
+  //         }
+  //       );
+  //     }
 
-        //DRAW A NEW LAYER
-        L.DomEvent.on(
-          document.getElementById('newline'), 'click',
-          function (ev) {
-            console.log('before-click',latA,latB)
-            latA = undefined;
-            latB = undefined;
-          }
-        );
-      }
+  //   }.bind(this))
 
-    }.bind(this))
+  //   //HIGHCHARTS POPUP
+  //   this.map.on('popupopen', function (e) {
+  //     console.log(this.distanceKm);
+  //     new Highcharts.Chart({
+  //       title: { text: this.distanceKm + 'Km' },
+  //       chart: {
+  //         renderTo: 'container' + this.containerID,
+  //         height: 175,
+  //         width: 295,
+  //       },
+  //       series: this.chartJson
+  //     });
+  //   }.bind(this));
+  // }
 
-    //HIGHCHARTS POPUP
-    this.map.on('popupopen', function (e) {
-      console.log(this.distanceKm);
-      new Highcharts.Chart({
-        title: { text: this.distanceKm + 'Km' },
-        chart: {
-          renderTo: 'container' + this.containerID,
-          height: 175,
-          width: 295,
-        },
-        series: this.chartJson
-      });
-    }.bind(this));
-  }
+  // calculateDistance(latA: any, latB: any) {
+  //   if (latA !== undefined && latB !== undefined) {
+  //     let dis: any = latA.distanceTo(latB);
+  //     this.distanceInKms = ((dis) / 1000).toFixed(0);
+  //     this.distanceKm = this.distanceInKms;
+  //     console.log('hi')
+  //     return this.distanceInKms || 0;
+  //   }
+  //   else {
+  //     console.log('hi')
+  //     return 0;
+  //   }
+  // }
 
-  calculateDistance(latA: any, latB: any) {
-    if (latA !== undefined && latB !== undefined) {
-      let dis: any = latA.distanceTo(latB);
-      this.distanceInKms = ((dis) / 1000).toFixed(0);
-      this.distanceKm = this.distanceInKms;
-      console.log('hi')
-      return this.distanceInKms || 0;
-    }
-    else {
-      console.log('hi')
-      return 0;
-    }
-  }
-
-  screenshotCapture(map){
-    document.getElementById('screenshot').addEventListener('click', function () {
-      leafletimage(map, function (err, canvas) {
-        var link = document.createElement("a");
-        link.download = "screenshot.png";
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      });
-    });
-  }
-
-  //LOAD JSON DATA FOR SHAPE (FAN)
-  siteDataJson(){
-    this.http.get("assets/data/layers/microsites-onair.json")
-    .subscribe(data => {
-      this.siteData = data;
-    },
-    error => {
-      this.fanDataError = error;
-    });
-  }
  
+  //LOAD JSON DATA FOR SHAPE (FAN)
+  siteDataJson() {
+    this.http.get("assets/data/layers/microsites-onair.json")
+      .subscribe(data => {
+        this.siteData = data;
+      },
+        error => {
+          this.fanDataError = error;
+        });
+  }
+
 
   //FUNCTION FROM CANVAS LIBRARY WHICH PROVIDES THE CANVAS AND COORDINATES(BOUNDS)
-  onDrawLayer(info){
+  onDrawLayer(info) {
     //STAGE
     this._container = new createjs.Container();
 
     //KEEPING STAGE READY BY PASSING CANVAS LAYER OFFERED BY CANAVAS LIBRARY
     this._stage = new createjs.Stage(info.canvas);
-    
+
     this._stage.enableDOMEvents(true);
     this._stage.enableMouseOver(50);
- 
+
     //POPUP
     this._simplePopup = this.getPopup();
 
     // CREATED ARRAYS BASED ON SITE NUMBER (BANDS) E.G. SITE850 ETC.
     let site850 = _.map(this.siteData.site850, function (item) {
-        item.sitebandtype = 'site850';
-        return item;
+      item.sitebandtype = 'site850';
+      return item;
     });
     let site1800 = _.map(this.siteData.site1800, function (item) {
-        item.sitebandtype = 'site1800';
-        return item;
+      item.sitebandtype = 'site1800';
+      return item;
     });
     let site2300 = _.map(this.siteData.site2300, function (item) {
-        item.sitebandtype = 'site2300';
-        return item;
+      item.sitebandtype = 'site2300';
+      return item;
     });
 
     //COMBINING THE ARRAY
@@ -764,13 +821,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //GROUPING THEM BASED ON THEIR 'SAPID' PROPERTY
     let data = _.groupBy(flatten, 'sapid');
     this._points = data;
-    
+
     //SETTING UP THE POSITION OF THE POP UP
     let scaleMatrix = (info.zoom <= 7) ? 0.03 : (info.zoom <= 10) ? 0.08 : (info.zoom <= 13) ? 0.15 : (info.zoom <= 15) ? 0.25 : (info.zoom <= 16) ? 0.35 : 0.40;
     scaleMatrix = scaleMatrix * this._pixelRatio;
     this.scaleMatrix = scaleMatrix;
     let pointOffset = L.point(0, -(scaleMatrix * 60) / this._pixelRatio);
-    
+
     //POP CONFIG
     this._simplePopup.options.offset = pointOffset;
 
@@ -780,7 +837,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     if (this._addtionalsector == 'Planned') {
       var siteCenterDotColor = "rgb(0,15,255)";
     } else {
-        var siteCenterDotColor = "#06C1FF";
+      var siteCenterDotColor = "#06C1FF";
     }
 
     //CENTER DOT OF THE SHAPE
@@ -792,259 +849,259 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
 
       // PLACING THE COORDINATES
-        if (!(info.bounds.contains(latlng))) continue;
-          let dot = info.layer._map.latLngToContainerPoint(latlng);
-          let centerPoint = {
-            x: dot.x * this._pixelRatio,
-            y: dot.y * this._pixelRatio
+      if (!(info.bounds.contains(latlng))) continue;
+      let dot = info.layer._map.latLngToContainerPoint(latlng);
+      let centerPoint = {
+        x: dot.x * this._pixelRatio,
+        y: dot.y * this._pixelRatio
+      }
+
+      //CENTER DOT OF THE SHAPE(FAN)
+      if (this._hightlightCell && this._hightlightCell == siteInner[0].sapid) {
+        this._selectionContainer = new createjs.Container();
+        this._selectionContainer.name = 'highlightcontainer';
+        this._selectionContainer.scaleX = scaleMatrix;
+        this._selectionContainer.scaleY = scaleMatrix;
+        this._selectionContainer.x = centerPoint.x;
+        this._selectionContainer.y = centerPoint.y;
+
+        let highlightGraphic = this.getSelectionGraphics('#1e88e5', '#FFFFFF');
+        let highlightShape = new createjs.Shape(highlightGraphic);
+        this._selectionContainer.addChild(highlightShape);
+        this._container.addChild(this._selectionContainer);
+      }
+
+      let siteContainer = new createjs.Container();
+      siteContainer.x = centerPoint.x;
+      siteContainer.y = centerPoint.y;
+      siteContainer.scaleX = scaleMatrix;
+      siteContainer.scaleY = scaleMatrix;
+      siteContainer.name = siteInner[0].sapid;
+
+      var currentBands = {};
+      for (const band in siteInner) {
+        var bandInner = siteInner[band];
+        if (bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null) {
+          currentBands[bandInner.sitebandtype] = true;
         }
-        
-        //CENTER DOT OF THE SHAPE(FAN)
-        if (this._hightlightCell && this._hightlightCell == siteInner[0].sapid) {
-          this._selectionContainer = new createjs.Container();
-          this._selectionContainer.name = 'highlightcontainer';
-          this._selectionContainer.scaleX = scaleMatrix;
-          this._selectionContainer.scaleY = scaleMatrix;
-          this._selectionContainer.x = centerPoint.x;
-          this._selectionContainer.y = centerPoint.y;
+      }
+      for (const band in siteInner) {
+        let bandInner = siteInner[band];
+        if (bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null) {
+          let outerRadius = (bandInner.sitebandtype == 'site850') ? 75 : (bandInner.sitebandtype == 'site1800') ? 55 : 35;
+          let innerRadius = (bandInner.sitebandtype == 'site850') ? 55 : (bandInner.sitebandtype == 'site1800') ? 35 : 15;
 
-          let highlightGraphic = this.getSelectionGraphics('#1e88e5', '#FFFFFF');
-          let highlightShape = new createjs.Shape(highlightGraphic);
-          this._selectionContainer.addChild(highlightShape);
-          this._container.addChild(this._selectionContainer);
-        }
-
-        let siteContainer = new createjs.Container();
-        siteContainer.x = centerPoint.x;
-        siteContainer.y = centerPoint.y;
-        siteContainer.scaleX = scaleMatrix;
-        siteContainer.scaleY = scaleMatrix;
-        siteContainer.name = siteInner[0].sapid;
-
-        var currentBands = {};
-        for (const band in siteInner) {
-            var bandInner = siteInner[band];
-            if(bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null){
-              currentBands[bandInner.sitebandtype] = true;
+          if (bandInner.sitebandtype == 'site1800') {
+            if (!currentBands['site2300']) innerRadius = 15;
           }
-        }
-        for (const band in siteInner) {
-            let bandInner = siteInner[band];
-            if(bandInner.sitebandtype !== undefined && bandInner.sitebandtype !== null){
-              let outerRadius = (bandInner.sitebandtype == 'site850') ? 75 : (bandInner.sitebandtype == 'site1800') ? 55 : 35;
-              let innerRadius = (bandInner.sitebandtype == 'site850') ? 55 : (bandInner.sitebandtype == 'site1800') ? 35 : 15;
-        
-              if (bandInner.sitebandtype == 'site1800') {
-                if (!currentBands['site2300']) innerRadius = 15;
+          if (bandInner.sitebandtype == 'site850') {
+            if (!currentBands['site1800'] && currentBands['site2300']) innerRadius = 35;
+            if (!currentBands['site1800'] && !currentBands['site2300']) innerRadius = 15;
+          }
+          let carrierInnerRadius = innerRadius;
+          let startAngle, endAngle;
+          for (const sector in bandInner.siteArray) {
+            let sectorInner = bandInner.siteArray[sector];
+            let sectorColor;
+            sectorInner.sitebandtype = bandInner.sitebandtype;
+            sectorInner.sitebandtype = bandInner.sitebandtype;
+
+            let sectorid = sectorInner.sectorid;
+            let carrierOrNot;
+            if (sectorInner.carrier != null) {
+              carrierOrNot = true;
+            } else {
+              carrierOrNot = false;
+            }
+
+            if (bandInner.sitebandtype == 'site2300') {
+              if (this._addtionalsector == 'Planned') {
+                sectorColor = "rgb(0,15,255)";
+              } else {
+                sectorColor = "#5883d1";
               }
-              if (bandInner.sitebandtype == 'site850') {
-                  if (!currentBands['site1800'] && currentBands['site2300']) innerRadius = 35;
-                  if (!currentBands['site1800'] && !currentBands['site2300']) innerRadius = 15;
-              }
-              let carrierInnerRadius = innerRadius;
-              let startAngle, endAngle;
-              for (const sector in bandInner.siteArray) {
-                let sectorInner = bandInner.siteArray[sector];
-                let sectorColor;
-                sectorInner.sitebandtype = bandInner.sitebandtype;
-                sectorInner.sitebandtype = bandInner.sitebandtype;
 
-                let sectorid = sectorInner.sectorid;
-                let carrierOrNot;
-                if (sectorInner.carrier != null) {
-                    carrierOrNot = true;
-                } else {
-                    carrierOrNot = false;
-                }
-                
-                if (bandInner.sitebandtype == 'site2300') {
-                  if (this._addtionalsector == 'Planned') {
-                    sectorColor = "rgb(0,15,255)";
+              //CALCULATION FOR START AND END ANGLES FOR SHAPE TO BE GENERATED BASED ON THE DATA PROVIDE IN SITE ARRAY LIST
+              switch (sectorid) {
+                case 1:
+                  let sector4 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 4
+                  });
+                  if (sector4 !== undefined) {
+                    if (sector4.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth - 30;
+                      endAngle = sectorInner.azimuth - 5;
+                    } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                    }
                   } else {
-                      sectorColor = "#5883d1";
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
                   }
-
-                  //CALCULATION FOR START AND END ANGLES FOR SHAPE TO BE GENERATED BASED ON THE DATA PROVIDE IN SITE ARRAY LIST
-                  switch (sectorid) {
-                    case 1:
-                    let sector4 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 4
-                    });
-                    if (sector4 !== undefined) {
-                        if (sector4.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth - 30;
-                            endAngle = sectorInner.azimuth - 5;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
+                  break;
+                case 2:
+                  let sector5 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 5
+                  });
+                  if (sector5 !== undefined) {
+                    if (sector5.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth - 30;
+                      endAngle = sectorInner.azimuth - 5;
                     } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
                     }
-                    break;
-                    case 2:
-                    let sector5 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 5
-                    });
-                    if (sector5 !== undefined) {
-                        if (sector5.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth - 30;
-                            endAngle = sectorInner.azimuth - 5;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
-                    } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                    }
-                    break;
-                    case 3:
-                    let sector6 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 6
-                    });
-                    if (sector6 !== undefined) {
-                        if (sector6.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth - 30;
-                            endAngle = sectorInner.azimuth - 5;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
-                    } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                    }
-                    break;
-                    case 4:
-                    let sector1 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 1
-                    });
-                    if (sector1 !== undefined) {
-                        if (sector1.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth + 5;
-                            endAngle = sectorInner.azimuth + 30;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
-                    } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                    }
-                    break;
-                    case 5:
-                    let sector2 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 2
-                    });
-                    if (sector2 !== undefined) {
-                        if (sector2.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth + 5;
-                            endAngle = sectorInner.azimuth + 30;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
-                    } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                    }
-                    break;
-                    case 6:
-                    let sector3 = _.findWhere(bandInner.siteArray, {
-                        sectorid: 3
-                    });
-                    if (sector3 !== undefined) {
-                        if (sector3.azimuth == sectorInner.azimuth) {
-                            startAngle = sectorInner.azimuth + 5;
-                            endAngle = sectorInner.azimuth + 30;
-                        } else {
-                            startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
-                            endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
-                        }
-                    } else {
-                        startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                        endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                    }
-                    break;
-                  }
-                }
-                else if (bandInner.sitebandtype == 'site1800') {
-                  if (this._addtionalsector == 'Planned') {
-                      sectorColor = "rgb(0,15,255)";
                   } else {
-                      sectorColor = "#e7f300";
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
                   }
-                  startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                  endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                }
-                else {
-                  if (this._addtionalsector == 'Planned') {
-                      sectorColor = "rgb(0,15,255)";
+                  break;
+                case 3:
+                  let sector6 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 6
+                  });
+                  if (sector6 !== undefined) {
+                    if (sector6.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth - 30;
+                      endAngle = sectorInner.azimuth - 5;
+                    } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                    }
                   } else {
-                      sectorColor = "#be0c2f";
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
                   }
-                  startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
-                  endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
-                }
-
-                sectorInner.pcicolor = sectorColor;
-
-                if (this._addtionalsector == 'Planned') {
-                  var sectorpieColor = '#fff';
-                } else {
-                  var sectorpieColor = '#000000';
-                }
-
-                //PIE GENERATOR GENERATES THE SHAPES BASED ON PARAMS PROVIDED. FOR EXAMPLE, START ANGLE, END ANGLE ETC 
-                let sectorPie = new createjs.Shape(this.pieGenerator(0, 0, startAngle, endAngle, outerRadius, innerRadius, carrierInnerRadius, carrierOrNot, sectorColor, sectorpieColor, 1));
-                sectorPie.alpha = 0.8;
-                sectorPie.shadow = shadow;
-                sectorPie.cursor = 'pointer';
-                sectorPie['latlng'] = latlng;
-                sectorPie['site'] = bandInner.siteArray;
-                sectorPie['sector'] = sectorInner;
-                
-                //EVENTS 
-                sectorPie.addEventListener("mouseover", (event) => {
-                  this.nodeOnMouseOver(info,event);
-                })
-                sectorPie.addEventListener("mouseout", (event) => {
-                  this.nodeOnMouseOut(info,event);
-                })
-                siteContainer.addChild(sectorPie)
+                  break;
+                case 4:
+                  let sector1 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 1
+                  });
+                  if (sector1 !== undefined) {
+                    if (sector1.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth + 5;
+                      endAngle = sectorInner.azimuth + 30;
+                    } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                    }
+                  } else {
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                case 5:
+                  let sector2 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 2
+                  });
+                  if (sector2 !== undefined) {
+                    if (sector2.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth + 5;
+                      endAngle = sectorInner.azimuth + 30;
+                    } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                    }
+                  } else {
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
+                case 6:
+                  let sector3 = _.findWhere(bandInner.siteArray, {
+                    sectorid: 3
+                  });
+                  if (sector3 !== undefined) {
+                    if (sector3.azimuth == sectorInner.azimuth) {
+                      startAngle = sectorInner.azimuth + 5;
+                      endAngle = sectorInner.azimuth + 30;
+                    } else {
+                      startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 4);
+                      endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 4);
+                    }
+                  } else {
+                    startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+                    endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+                  }
+                  break;
               }
             }
+            else if (bandInner.sitebandtype == 'site1800') {
+              if (this._addtionalsector == 'Planned') {
+                sectorColor = "rgb(0,15,255)";
+              } else {
+                sectorColor = "#e7f300";
+              }
+              startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+              endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+            }
+            else {
+              if (this._addtionalsector == 'Planned') {
+                sectorColor = "rgb(0,15,255)";
+              } else {
+                sectorColor = "#be0c2f";
+              }
+              startAngle = sectorInner.azimuth - (sectorInner.horizontalBeamWidth / 2);
+              endAngle = sectorInner.azimuth + (sectorInner.horizontalBeamWidth / 2);
+            }
+
+            sectorInner.pcicolor = sectorColor;
+
+            if (this._addtionalsector == 'Planned') {
+              var sectorpieColor = '#fff';
+            } else {
+              var sectorpieColor = '#000000';
+            }
+
+            //PIE GENERATOR GENERATES THE SHAPES BASED ON PARAMS PROVIDED. FOR EXAMPLE, START ANGLE, END ANGLE ETC 
+            let sectorPie = new createjs.Shape(this.pieGenerator(0, 0, startAngle, endAngle, outerRadius, innerRadius, carrierInnerRadius, carrierOrNot, sectorColor, sectorpieColor, 1));
+            sectorPie.alpha = 0.8;
+            sectorPie.shadow = shadow;
+            sectorPie.cursor = 'pointer';
+            sectorPie['latlng'] = latlng;
+            sectorPie['site'] = bandInner.siteArray;
+            sectorPie['sector'] = sectorInner;
+
+            //EVENTS 
+            sectorPie.addEventListener("mouseover", (event) => {
+              this.nodeOnMouseOver(info, event);
+            })
+            sectorPie.addEventListener("mouseout", (event) => {
+              this.nodeOnMouseOut(info, event);
+            })
+            siteContainer.addChild(sectorPie)
+          }
         }
+      }
 
-        //CENTER DOT OF EACH SHAPE
-        let siteDot = new createjs.Shape(siteCenterDot);
-        siteDot.name = "centerdot";
-        siteDot.shadow = shadow;
-        siteDot.cursor = 'pointer';
-        siteDot['site'] = bandInner.siteArray;
-        siteDot['latlng'] = latlng;
-        siteContainer.addChild(siteDot);
-       
+      //CENTER DOT OF EACH SHAPE
+      let siteDot = new createjs.Shape(siteCenterDot);
+      siteDot.name = "centerdot";
+      siteDot.shadow = shadow;
+      siteDot.cursor = 'pointer';
+      siteDot['site'] = bandInner.siteArray;
+      siteDot['latlng'] = latlng;
+      siteContainer.addChild(siteDot);
 
-        // SHOW LABELS FOR EACH SHAPE LAID ON MAP AT ZOOM LEVEL 15 AND ABOVE
-        if (info.zoom >= 15) {
-          let label = new createjs.Text(siteInner[0].sapid, "bold 30px RobotoDraft", "#FFFFFF");
-          label.textAlign = 'center';
-          label.outline = 3;
-          label.y = (scaleMatrix * 280) / this._pixelRatio;
-          
-          let outline = label.clone();
-          outline.shadow = shadow;
-          outline.color = '#000000';
-          siteContainer.addChild(label, outline);
-        }
 
-        info.bounds.extend(latlng);
-        this._container.addChild(siteContainer);
+      // SHOW LABELS FOR EACH SHAPE LAID ON MAP AT ZOOM LEVEL 15 AND ABOVE
+      if (info.zoom >= 15) {
+        let label = new createjs.Text(siteInner[0].sapid, "bold 30px RobotoDraft", "#FFFFFF");
+        label.textAlign = 'center';
+        label.outline = 3;
+        label.y = (scaleMatrix * 280) / this._pixelRatio;
+
+        let outline = label.clone();
+        outline.shadow = shadow;
+        outline.color = '#000000';
+        siteContainer.addChild(label, outline);
+      }
+
+      info.bounds.extend(latlng);
+      this._container.addChild(siteContainer);
     }
-    
+
     this._bounds = info.bounds;
     this._container.alpha = 1;
 
@@ -1054,12 +1111,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   }
 
   //ON MOUSE OVER OF SHAPE(FAN)
-  nodeOnMouseOver(info,event) {
+  nodeOnMouseOver(info, event) {
     let target = event.target;
     target.alpha = 1;
     target.graphics.strokeStyleCommand.width = 4;
     this._stage.update();
-    if (target.sector.sitebandtype !== undefined  && target.sector.sitebandtype !== null){
+    if (target.sector.sitebandtype !== undefined && target.sector.sitebandtype !== null) {
       let band = (target.sector.sitebandtype == 'site2300') ? 2300 : (target.sector.sitebandtype == 'site1800') ? 1800 : 850;
       let template = "";
       template += `<div class="layout-row"><span class="prefix">PCI : </span> <span class="value">${(target.sector.pci)} </span></div>`;
@@ -1067,9 +1124,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       this._simplePopup.setLatLng(target.latlng).setContent(template).openOn(info.layer._map);
     }
   }
- 
+
   //ON MOUSE OUT OF SHAPE(FAN)
-  nodeOnMouseOut(info,event){
+  nodeOnMouseOut(info, event) {
     let target = event.target;
     target.alpha = 0.8;
     target.graphics.strokeStyleCommand.width = 1;
@@ -1088,7 +1145,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     g.beginFill(fillColor);
     g.beginStroke(lineColor);
-    g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle),false);
+    g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle), false);
     g.lineTo(pie_x + Math.cos(this.toRad(endAngle)) * radius2, pie_y + Math.sin(this.toRad(endAngle)) * radius2);
     g.arc(pie_x, pie_y, radius2, this.toRad(endAngle), this.toRad(startAngle), true);
     g.closePath();
@@ -1096,44 +1153,44 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
 
     if (carrierStatus) {
-        g.setStrokeStyle(1);
-        g.moveTo(pie_x + Math.cos(this.toRad(newAngle)) * carrierInnerRadius, pie_y + Math.sin(this.toRad(newAngle)) * carrierInnerRadius);
-        g.lineTo(pie_x + Math.cos(this.toRad(newAngle)) * radius1, pie_y + Math.sin(this.toRad(newAngle)) * radius1);
-        g.closePath();
-        g.beginStroke("#CD4B5B");
-    } 
+      g.setStrokeStyle(1);
+      g.moveTo(pie_x + Math.cos(this.toRad(newAngle)) * carrierInnerRadius, pie_y + Math.sin(this.toRad(newAngle)) * carrierInnerRadius);
+      g.lineTo(pie_x + Math.cos(this.toRad(newAngle)) * radius1, pie_y + Math.sin(this.toRad(newAngle)) * radius1);
+      g.closePath();
+      g.beginStroke("#CD4B5B");
+    }
     return g;
   }
 
 
-  getPopup(){
-      var popup = L.popup({
-          className: 'leaflet-simple-popup',
-          minWidth: 120,
-          offset: L.point(0, -40),
-          closeButton: false
-      });
-      return popup;
+  getPopup() {
+    var popup = L.popup({
+      className: 'leaflet-simple-popup',
+      minWidth: 120,
+      offset: L.point(0, -40),
+      closeButton: false
+    });
+    return popup;
   }
 
 
   getPointGraphics(matrix, color) {
-      var g = new createjs.Graphics();
-      g.setStrokeStyle(1);
-      g.beginStroke(createjs.Graphics.getRGB(0, 0, 0));
-      g.beginFill(color);
-      g.drawCircle(0, 0, 10);
-      return g;
+    var g = new createjs.Graphics();
+    g.setStrokeStyle(1);
+    g.beginStroke(createjs.Graphics.getRGB(0, 0, 0));
+    g.beginFill(color);
+    g.drawCircle(0, 0, 10);
+    return g;
   };
 
 
   getSelectionGraphics(strokecolor, color) {
-      var g = new createjs.Graphics();
-      g.setStrokeStyle(5);
-      g.beginStroke(strokecolor);
-      g.beginFill(color);
-      g.drawCircle(0, 0, 90);
-      return g;
+    var g = new createjs.Graphics();
+    g.setStrokeStyle(5);
+    g.beginStroke(strokecolor);
+    g.beginFill(color);
+    g.drawCircle(0, 0, 90);
+    return g;
   };
 
 
