@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AgGridModule } from 'ag-grid-angular';
+// import { AgGridModule } from 'ag-grid-angular';
 import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
@@ -10,7 +10,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HistoryPopupComponent } from './history-popup/history-popup.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component'
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import{ConfigPopupDropdownComponent} from '../../../core/components/ag-grid-renders/config-popup-dropdown.component'
+//import{ConfigPopupDropdownComponent} from '../../../core/components/ag-grid-renders/config-popup-dropdown.component'
 import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
 interface Band {
   value: string;
