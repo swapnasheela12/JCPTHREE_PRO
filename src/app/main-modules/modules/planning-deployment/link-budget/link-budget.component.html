@@ -28,7 +28,7 @@
         <div fxFlex="auto">
             <mat-tab-group dynamicHeight fxFlex="auto"  (selectedTabChange)="onTabChanged($event)" >
                 <mat-tab label="Link Budget">
-                    <div class="overflow-auto">
+                    <div class="">
                         <div class="accordian-holder">
                             <div class="accordian-header" fxAlyout="row" fxLayoutAlign="start center">
                                 <span class="header-title">
@@ -160,11 +160,18 @@
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Operating Band (MHz)'"
-                                                        class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="operatingBand[i]">
-                                                            <mat-option value="n38">n38</mat-option>
-                                                            <mat-option value="n41">n41
-                                                            </mat-option>
+                                                        class="select-container" fxFlex="70">
+                                                        <mat-select disableOptionCentering [(value)]="operatingBand[i]" [matTooltip]="operatingBand[i]">
+                                                            <mat-option value="n38 : 2570 -2620 MHz">n38 : 2570 -2620 MHz</mat-option>
+                                                            <mat-option value="n41 : 2496 -2690 MHz">n41 : 2496 -2690 MHz</mat-option>
+                                                            <mat-option value="n50 : 1432 -1517 MHz">n50 : 1432 -1517 MHz</mat-option>
+                                                            <mat-option value="n51 : 1427 -1432 MHz">n51 : 1427 -1432 MHz</mat-option>
+                                                            <mat-option value="n78  : 3300 -3800 MHz">n78  : 3300 -3800 MHz</mat-option>
+                                                            <mat-option value="n77  : 3300 - 4200 MHz">n77  : 3300 - 4200 MHz</mat-option>
+                                                            <mat-option value="n79  : 4400 -5000 MHz">n79  : 4400 -5000 MHz</mat-option>
+                                                            <mat-option value="n257 : 26500 -29500 MHz">n257 : 26500 -29500 MHz</mat-option>
+                                                            <mat-option value="n258 : 24250 –27500 MHz">n258 : 24250 –27500 MHz</mat-option>
+                                                            <mat-option value="n260 : 37000 -40000 MHz">n260 : 37000 -40000 MHz</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <div *ngIf="entity.parameter == 'Center Frequency of Channel (Fc)(GHz)'"
@@ -248,13 +255,14 @@
                                                     <mat-form-field fxFlex="65" class="select-container"
                                                         *ngIf="entity.parameter == 'Numerology : Subcarrier Spacing'">
                                                         <mat-select disableOptionCentering [(value)]="subcaSpacing[i]" [matTooltip]="subcaSpacing[i]">
-                                                            <mat-option value="On Demand" selected>On Demand
+                                                            <mat-option value="1: 30 KHz" selected>1: 30 KHz
                                                             </mat-option>
-                                                            <mat-option value="Scheduled">Scheduled</mat-option>
+                                                            <mat-option value="2: 60 KHz">2: 60 KHz</mat-option>
+                                                            <mat-option value="3: 120 KHz">3: 120 KHz</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Node Hardware'"
-                                                        class="select-container" fxFlex="65">
+                                                        class="select-container" fxFlex="70">
                                                         <mat-select disableOptionCentering [(value)]="nodeHardware[i]" [matTooltip]="nodeHardware[i]">
                                                             <mat-option value="Jio - gNB" selected>Jio - gNB
                                                             </mat-option>
@@ -300,16 +308,16 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let entity of gnbList; index as index"
-                                            [ngClass]="[!entity.editable ? 'non-editable-background': '']">
+                                            [ngClass]="[entity.editable == 'false' ? 'non-editable-background': '']">
                                             <td>
                                                 <span
-                                                    [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
+                                                    [ngClass]="entity.editable == 'true' ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
                                                 *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
                                                 class="max-width-0">
                                                 <div *ngIf="!showGnbInfo">
-                                                    <div class="editable-field" *ngIf="entity.editable">
+                                                    <div class="editable-field" *ngIf="entity.editable == 'true'">
                                                         <editCell (update)="updateGnbField(index, 'value1')"
                                                             *ngIf="i==0">
                                                             <ng-template appViewMode>{{entity.value1}}</ng-template>
@@ -347,7 +355,7 @@
                                                             </ng-template>
                                                         </editCell>
                                                     </div>
-                                                    <div *ngIf="!entity.editable">
+                                                    <div *ngIf="entity.editable  == 'false'">
                                                         <input readonly fxFlex="60" value="{{entity.value1}}"
                                                             class="intermediate-input-field" *ngIf="i==0">
                                                         <input readonly fxFlex="60" value="{{entity.value3}}"
@@ -356,6 +364,17 @@
                                                             class="intermediate-input-field" *ngIf="i==2">
                                                         <input readonly fxFlex="60" value="{{entity.value4}}"
                                                             class="intermediate-input-field" *ngIf="i==3">
+                                                    </div>
+                                                    <div *ngIf="entity.editable == 'dropdown'">
+                                                        <mat-form-field
+                                                        class="select-container" fxFlex="65">
+                                                        <mat-select disableOptionCentering [(value)]="mcsValue[i]">
+                                                            <mat-option value="3">3</mat-option>
+                                                            <mat-option value="4">4</mat-option>
+                                                            <mat-option value="5">5</mat-option>
+                                                            <mat-option value="6">6</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
                                                     </div>
                                                 </div>
                                             </td>
@@ -525,8 +544,19 @@
                                                     </div>
                                                     <mat-form-field *ngIf="entity.parameter == 'Clutter Type'"
                                                         class="select-container" style="min-width: 65px; max-width: 70px;">
-                                                        <mat-select disableOptionCentering [(value)]="clutterType">
+                                                        <mat-select disableOptionCentering [(value)]="clutterType[i]">
                                                             <mat-option value="DU" selected>DU</mat-option>
+                                                            <mat-option value="U" selected>U</mat-option>
+                                                            <mat-option value="SU" selected>SU</mat-option>
+                                                            <mat-option value="RU" selected>RU</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field *ngIf="entity.parameter == 'Select Propagation Model'"
+                                                        class="select-container" fxFlex="65" style="margin-top: -15px;">
+                                                        <mat-select disableOptionCentering [(value)]="propagationModel[i]" [matTooltip]="propagationModel[i]">
+                                                            <mat-option value="Uma-Propagation Model" selected>Uma-Propagation Model</mat-option>
+                                                            <mat-option value="Rma-Propagation Model" selected>Rma-Propagation Model</mat-option>
+                                                            <mat-option value="Umi Propagation Model" selected>Umi Propagation Model</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </div>
@@ -570,10 +600,10 @@
                             <table class="table mb-0">
                                 <thead class="summary-table-header">
                                     <tr>
-                                        <th style="width: 33%;">Downlink Budget</th>
-                                        <th>UL</th>
+                                        <th style="width: 33%;">DL Link Budget</th>
                                         <th>DL</th>
-                                        <th style="width: 33%;">UI Link Budget</th>
+                                        <th>UL</th>
+                                        <th style="width: 33%;">UL Link Budget</th>
                                     </tr>
                                 </thead>
                                 <tbody>
