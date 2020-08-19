@@ -10,7 +10,6 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HistoryPopupComponent } from './history-popup/history-popup.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component'
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import{ConfigPopupDropdownComponent} from '../../../core/components/ag-grid-renders/config-popup-dropdown.component'
 import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
 interface Band {
   value: string;
@@ -86,7 +85,7 @@ url_1 = "assets/data/layers/popup-data/datap.json"
 
     this.frameworkComponentsConfigDropdown = {
 
-      'ConfigPopupDropdown': ConfigPopupDropdownComponent
+      'dropDownThreeDotRenderer': dropDownThreeDotRendererComponent
     }
   }
 
@@ -167,7 +166,7 @@ url_1 = "assets/data/layers/popup-data/datap.json"
       },
       {
         headerName: "",
-        cellRenderer: "ConfigPopupDropdown",
+        cellRenderer: "dropDownThreeDotRenderer",
       //  id: "config-menu-render",
         field: "",
         width: 80,

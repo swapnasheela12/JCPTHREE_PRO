@@ -6,10 +6,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 //Underscore: Added temporarily. Will be replaced with javascript functions
 import * as _ from 'underscore';
-
+import * as Highcharts from 'highcharts';
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
+import * as leafletimage from 'leaflet-image';
 // import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 // import {CanvasLayer} from  '../../../js/L.CanvasLayer.js';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
@@ -42,15 +43,32 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public chartDivWidth;
   public chartDivHeight;
 
-  customControl;
-  customControlList;
+  public customControl;
+  public customControlPanIndia;
+  public customControlList;
 
   public currentZoom;
   
 
 
 
-
+  public distanceInKms:any = 0;
+  public chartJson: any = [
+    {
+      name: "1",
+      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    }, {
+      name: "2",
+      data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+    }, {
+      name: "3",
+      data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+    }, {
+      name: "4",
+      data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+    }]
+  public distanceKm = 0;
+ 
   //CANVAS LIBRARY CONTENT
   public canvasLibrary:DataObject;
 
@@ -148,14 +166,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     //CanvasLibrary
     this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
-
+    this.connectPoints(this.map);
     const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
     tiles.addTo(this.map);
 
-
+    this.screenshotCapture(this.map);
     //geo json control
     var options = {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -179,6 +197,45 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.currentZoom = this.map.getZoom();
 
     //custome controller//
+   
+
+    this.customControlPanIndia = L.Control.extend({
+
+      options: {
+        position: 'bottomright',
+      },
+
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+
+        // container.innerHTML = '<div class="leaflet-control-custom-count-Layers"><div class="icon-control-count">4</div><div class="icon-control"><span class="ic ic-layers-01"></span></div></div>';
+        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-style"><i class="ic ic-pan-01"></i></div></div>';
+        container.style.backgroundColor = 'white';
+        // container.style.backgroundImage = "url(https://t1.gstatic.com/images?q=tbn:ANd9GcR6FCUMW5bPn8C4PbKak2BJQQsmC-K9-mbYBeFZm1ZM2w2GRy40Ew)";
+        container.style.backgroundSize = "40px 40px";
+        // container.style.position = 'absolute';
+        // container.style.bottom = '0px';
+        // container.style.right = '50px';
+        container.style.width = '40px';
+        container.style.height = '40px';
+
+        container.onclick = function () {
+          
+          let zoomLev = map.getZoom();
+          if (zoomLev != 5) {
+            map.setZoom(5);
+          }
+
+        }
+
+        return container;
+      },
+      onRemove: function (map) {
+       // console.log('buttonClicked?????????');
+      }
+    });
+    this.map.addControl(new this.customControlPanIndia());
+    
     this.customControl = L.Control.extend({
 
       options: {
@@ -231,7 +288,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
        // console.log('buttonClicked?????????');
       }
     });
-
     this.map.addControl(new this.customControl());
 
     let _dialog = this.dialog;
@@ -565,9 +621,102 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     alert("canvasObj toString= " + canvasObj.toString());
   }
 
+  connectPoints(map) {
+    let latA: any;
+    let latB: any;
+    let counterid: number = 1;
+    let pointA: any;
+    let pointB: any;
+    this.map.on('click', function (e) {
+      this.containerID = ++counterid;
+        if (!latA) {
+          latA = e.latlng;
+          this.latAdata = latA;
+          //POINT A
+          pointA = new L.Marker(latA, {
+            draggable: true
+          });
+          pointA.addTo(this.map);
+          pointA.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+            minWidth: 245
+          }).openPopup();
 
+        }
+        else {
+          latB = e.latlng;
+          this.latAdata = latB;
+          //POINT B
+          pointB = new L.Marker(latB, {
+            draggable: true
+          });
+          pointB.addTo(this.map);
+          pointB.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+            minWidth: 245
+          }).openPopup();
+      }
 
+      if (latA && latB) {
+        console.log(L);
+        var polyline =  L.polyline([latA, latB], {
+          color: 'red',
+          weight: 7,
+          opacity: 7,
+          smoothFactor: 10
+        }).addTo(this.map);
+        latA = latB
 
+        //DRAW A NEW LAYER
+        L.DomEvent.on(
+          document.getElementById('newline'), 'click',
+          function (ev) {
+            console.log('before-click',latA,latB)
+            latA = undefined;
+            latB = undefined;
+          }
+        );
+      }
+
+    }.bind(this))
+
+    //HIGHCHARTS POPUP
+    this.map.on('popupopen', function (e) {
+      console.log(this.distanceKm);
+      new Highcharts.Chart({
+        title: { text: this.distanceKm + 'Km' },
+        chart: {
+          renderTo: 'container' + this.containerID,
+          height: 175,
+          width: 295,
+        },
+        series: this.chartJson
+      });
+    }.bind(this));
+  }
+
+  calculateDistance(latA: any, latB: any) {
+    if (latA !== undefined && latB !== undefined) {
+      let dis: any = latA.distanceTo(latB);
+      this.distanceInKms = ((dis) / 1000).toFixed(0);
+      this.distanceKm = this.distanceInKms;
+      console.log('hi')
+      return this.distanceInKms || 0;
+    }
+    else {
+      console.log('hi')
+      return 0;
+    }
+  }
+
+  screenshotCapture(map){
+    document.getElementById('screenshot').addEventListener('click', function () {
+      leafletimage(map, function (err, canvas) {
+        var link = document.createElement("a");
+        link.download = "screenshot.png";
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    });
+  }
 
   //LOAD JSON DATA FOR SHAPE (FAN)
   siteDataJson(){

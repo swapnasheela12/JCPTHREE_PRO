@@ -88,6 +88,7 @@ import { SpiderViewComponent } from './main-layer/spider-view/spider-view.compon
 import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
 import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
+import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-
     SpiderViewComponent,
     SpiderViewDirective,
     TreeNodeComponent,
-    AlarmsPopupComponent
+    AlarmsPopupComponent,
+    CustomLegendsComponent
   ],
   imports: [
     CommonModule,

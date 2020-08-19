@@ -25,9 +25,12 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
   selectedChip: string = "";
   selectedToggleButton: string = "Uplink";
   technology = '5g';
-  operatingBand: string[] = ['n38', 'n41', 'n38', 'n41'];
-  subcaSpacing: string[] = ['On Demand', 'Scheduled', 'On Demand', 'Scheduled'];
+  operatingBand: string[] = ['n38 : 2570 -2620 MHz', 'n41 : 2496 -2690 MHz', 'n50 : 1432 -1517 MHz', 'n51 : 1427 -1432 MHz'];
+  mcsValue: string[] = ['3', '4', '5', '6'];
+  subcaSpacing: string[] = ['1: 30 KHz', '2: 60 KHz', '3: 120 KHz', '1: 30 KHz'];
   nodeHardware: string[] = ['Jio - gNB', 'Samsung - gNB', 'Samsung - ODSC', 'Samsung - gNB'];
+  clutterType: string[] = ['DU', 'U', 'SU', 'RU'];
+  propagationModel: string[] = ['Uma-Propagation Model', 'Rma-Propagation Model', 'Umi Propagation Model', 'Uma-Propagation Model'];
   summaryDropdownList: string[] = [];
   designControls: FormArray;
   networkInputsControls: FormArray;
@@ -43,7 +46,6 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
   showGnbInfo: boolean;
   checkSelected: boolean = false;
   saveAsShowSummaryHideDisable: boolean = true;
-  clutterType = "DU";
   subscription;
   showDownloadButton: boolean = false;
   toggleDesignInfo() {
@@ -86,24 +88,24 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
     { parameter: 'Node Hardware', info: 'Info About This Line' }
   ]
   gnbList = [
-    { parameter: 'Total Tx Power (dBm)', value1: '52', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'No of Tx Port', value1: '32', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'No of Rx Port', value1: '0', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Tx Power Per Port (dBm)', value1: '36.94', value2: '52.1', value3: '23.22', value4: '21.21', editable: false, info: 'Info About This Line' },
-    { parameter: 'RB Allocated for Target DL Cell edge Throughput', value1: '27.64', value2: '30.61', value3: '12.12', value4: '23.21', editable: false, info: 'Info About This Line' },
-    { parameter: 'Tx Power per RB at Radio', value1: '22.12', value2: '12.22', value3: '34.21', value4: '11.11', editable: false, info: 'Info About This Line' },
-    { parameter: 'Cable Loss (dB)', value1: '17', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Antenna Height (m)', value1: '6.5', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Antenna Gain (dBi)', value1: '15', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Antenna Array Gain)', value1: '0', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Tx Diversity Gain (dB)', value1: '75.45', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'RX Diversity Gain', value1: '3.5', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Total TX EIRP Composite Channel (dBm)', value1: '4', value2: '52', value3: '52', value4: '52', editable: false, info: 'Info About This Line' },
-    { parameter: 'gNB Noise Figure', value1: '-6.3', value2: '52', value3: '52', value4: '52', editable: false, info: 'Info About This Line' },
-    { parameter: 'MCS', value1: '4', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Min SINR Required (dB)', value1: '-6.3', value2: '52', value3: '52', value4: '52', editable: true, info: 'Info About This Line' },
-    { parameter: 'Rx Faded Sensitivity (dBm)', value1: '-106.19', value2: '52', value3: '52', value4: '52', editable: false, info: 'Info About This Line' },
-    { parameter: 'Effective Rx Faded Sensitivity (dBm)', value1: '-123.19', value2: '-12.11', value3: '-23.23', value4: '-45.78', editable: false, info: 'Info About This Line' },
+    { parameter: 'Total Tx Power (dBm)', value1: '52', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'No of Tx Port', value1: '32', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'No of Rx Port', value1: '0', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Tx Power Per Port (dBm)', value1: '36.94', value2: '52.1', value3: '23.22', value4: '21.21', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'RB Allocated for Target DL Cell edge Throughput', value1: '27.64', value2: '30.61', value3: '12.12', value4: '23.21', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'Tx Power per RB at Radio', value1: '22.12', value2: '12.22', value3: '34.21', value4: '11.11', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'Cable Loss (dB)', value1: '17', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Antenna Height (m)', value1: '6.5', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Antenna Gain (dBi)', value1: '15', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Antenna Array Gain)', value1: '0', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Tx Diversity Gain (dB)', value1: '75.45', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'RX Diversity Gain', value1: '3.5', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Total TX EIRP Composite Channel (dBm)', value1: '4', value2: '52', value3: '52', value4: '52', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'gNB Noise Figure', value1: '-6.3', value2: '52', value3: '52', value4: '52', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'MCS', value1: '4', value2: '52', value3: '52', value4: '52', editable: 'dropdown', info: 'Info About This Line' },
+    { parameter: 'Min SINR Required (dB)', value1: '-6.3', value2: '52', value3: '52', value4: '52', editable: 'true', info: 'Info About This Line' },
+    { parameter: 'Rx Faded Sensitivity (dBm)', value1: '-106.19', value2: '52', value3: '52', value4: '52', editable: 'false', info: 'Info About This Line' },
+    { parameter: 'Effective Rx Faded Sensitivity (dBm)', value1: '-123.19', value2: '-12.11', value3: '-23.23', value4: '-45.78', editable: 'false', info: 'Info About This Line' },
   ]
   ueList = [
     { parameter: 'Total Tx Power (dBm)', value1: '12', value2: '21', value3: '30', value4: '4', editable: true, info: 'Info About This Line' },
@@ -119,8 +121,8 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
     { parameter: 'UE Noise Figure', value1: '12', value2: '21', value3: '30', value4: '4', editable: true, info: 'Info About This Line' },
     { parameter: 'MCS Required', value1: '12', value2: '21', value3: '30', value4: '4', editable: true, info: 'Info About This Line' },
     { parameter: 'Min SINR Required', value1: '12', value2: '21', value3: '30', value4: '4', editable: true, info: 'Info About This Line' },
-    { parameter: 'Rx Faded Sensivity (BW)', value1: '12', value2: '21', value3: '30', value4: '4', editable: false, info: 'Info About This Line' },
-    { parameter: 'Effective RX-faded Sensivity ', value1: '12', value2: '21', value3: '30', value4: '4', editable: false, info: 'Info About This Line' }
+    { parameter: 'Rx Faded Sensitivity (dBm)', value1: '12', value2: '21', value3: '30', value4: '4', editable: false, info: 'Info About This Line' },
+    { parameter: 'Effective RX-faded Sensitivity (dBm)', value1: '12', value2: '21', value3: '30', value4: '4', editable: false, info: 'Info About This Line' }
   ]
   enviAndMarList = [
     { parameter: 'Clutter Type', editable: false, info: 'Info About This Line' },
@@ -130,7 +132,8 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
     { parameter: 'Interference Margin', value1: '12', value2: '8', value3: '4', value4: '1', editable: true, info: 'Info About This Line' },
     { parameter: 'Hand Over Gain', value1: '12', value2: '8', value3: '4', value4: '1', editable: true, info: 'Info About This Line' },
     { parameter: 'S.D of Log Normal Fading', value1: '12', value2: '8', value3: '4', value4: '1', editable: false, info: 'Info About This Line' },
-    { parameter: 'Slow Fading Margin', value1: '12', value2: '8', value3: '4', value4: '1', editable: false, info: 'Info About This Line' }
+    { parameter: 'Slow Fading Margin', value1: '12', value2: '8', value3: '4', value4: '1', editable: false, info: 'Info About This Line' },
+    { parameter: 'Select Propagation Model', editable: false, info: 'Info About This Line' },
   ]
   linkBudEstList = [
     { parameter: 'MAPL Outdoor (OD)', dl: '156.82', ul: '140.99', empty:"-" },
@@ -139,19 +142,19 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
     { parameter: 'RSRP Threshold (ID)', dl: '-100.98', ul: '-', empty:"-" }
   ]
   odIdList = [
-    { parameter: 'MAPL Outdoor (OD)', dl: '156.82', ul: '140.99', empty:"-" },
-    { parameter: 'MAPL Indoor (ID)', dl: '134.83', ul: '118.99', empty:"-" },
+    { parameter: 'Cell Radius-OD (mt)', dl: '156.82', ul: '140.99', empty:"-" },
+    { parameter: 'Cell Radius-ID (mt)', dl: '134.83', ul: '118.99', empty:"-" },
   ]
   summaryList = [
     { dlBudget: 'Clutter', dl: 'DU', ul: 'DU', ulBudget: 'Clutter' },
     { dlBudget: 'Total TX Output Power', dl: '52', ul: '23', ulBudget: 'Total TX Output Power' },
-    { dlBudget: '#Allocated PRB', dl: '273', ul: '32', ulBudget: '#Allocated PRB' },
+    { dlBudget: 'No of Allocated DL RB', dl: '273', ul: '32', ulBudget: 'No of Allocated UL RB' },
     { dlBudget: 'Tx Power per RB', dl: '27.65', ul: '7.94', ulBudget: 'Tx Power per RB' },
     { dlBudget: 'Thermal Noise (dBm/Hz)', dl: '-174', ul: '-174', ulBudget: 'Thermal Noise (dBm/Hz)' },
-    { dlBudget: 'Noise Figure UE', dl: '7', ul: '3', ulBudget: 'Noise Figure UE' },
-    { dlBudget: 'Target cell edge DL TP', dl: '2B', ul: '1', ulBudget: 'Target cell edge UL TP' },
-    { dlBudget: 'Required SINR at UE', dl: '-2', ul: '-6.3', ulBudget: 'Required SINR' },
-    { dlBudget: 'Sensitivity of UE@target DL TP', dl: '-92.07', ul: '-125.5', ulBudget: 'Sensitivity of UE@target UL TP' },
+    { dlBudget: 'Noise Figure of UE', dl: '7', ul: '3', ulBudget: 'Noise Figure of gNB' },
+    { dlBudget: 'Target Cell edge DL TP (Mbps)', dl: '2B', ul: '1', ulBudget: 'Target Cell edge UL TP (Mbps)' },
+    { dlBudget: 'Required SINR at UE', dl: '-2', ul: '-6.3', ulBudget: 'Required SINR at gNB' },
+    { dlBudget: 'Sensitivity of gNB at target DL TP', dl: '-92.07', ul: '-125.5', ulBudget: 'Sensitivity of gNB at target UL TP' },
     { dlBudget: 'Gain gNB Antenna', dl: '23.5', ul: '23.5', ulBudget: 'Gain gNB Antenna' },
     { dlBudget: 'Gain UE Antenna ', dl: '0', ul: '0', ulBudget: 'Gain UE Antenna' },
     { dlBudget: 'Losses (cable)', dl: '0', ul: '0', ulBudget: 'Losses (cable)' },
@@ -160,7 +163,7 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
     { dlBudget: 'Margin(LNF+Fast Fading)', dl: '8', ul: '8', ulBudget: 'Margin(LNF+Fast Fading)' },
     { dlBudget: 'Max Path Loss OD', dl: '154.88', ul: '144.00', ulBudget: 'Max Path Loss OD' },
     { dlBudget: 'Max Path Loss ID', dl: '132.88', ul: '122.00', ulBudget: 'Max Path Loss ID' },
-    { dlBudget: 'Cell Radius (m)', dl: '550', ul: '320', ulBudget: 'Cell Radius (m)' },
+    { dlBudget: 'Cell Radius-Indoor (m)', dl: '550', ul: '320', ulBudget: 'Cell Radius-Indoor (m)' },
   ]
 
   constructor(public dialog: MatDialog, private dataShare: DataSharingService, private cdRef: ChangeDetectorRef) { }

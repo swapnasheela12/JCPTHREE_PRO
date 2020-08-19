@@ -112,6 +112,9 @@ import { AlarmsPopupComponent } from '../../src/app/modules/components/alarms-po
 import { CapacityComponent } from '../app/modules/components/capacity/capacity.component';
 import { ConfigurationComponent} from '../app/modules/components/configuration/configuration.component';
 import { from } from 'rxjs';
+import { GoldenParameterComponent } from './modules/components/properties/golden-parameter/golden-parameter.component';
+import { RadioParameterComponent } from './modules/components/properties/radio-parameter/radio-parameter.component';
+import { AntennaParameterComponent } from './modules/components/properties/antenna-parameter/antenna-parameter.component';
 
 declare var $: any;
 
@@ -143,7 +146,10 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    GoldenParameterComponent,
+    RadioParameterComponent,
+    AntennaParameterComponent
   ],
   imports: [
     BrowserModule,
