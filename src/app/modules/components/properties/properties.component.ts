@@ -33,4 +33,9 @@ export class PropertiesComponent implements OnInit {
   ngOnInit(): void {
     // throw new Error("Method not implemented.");
   }
+
+  showWifiBand(evt) {
+    console.log("wifi band clicked", evt);
+
+  }
 }

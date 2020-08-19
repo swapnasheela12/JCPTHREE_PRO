@@ -1,5 +1,23 @@
 .inventory-wrapper {
     .side-bar {
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        > div {
+            mat-radio-group {
+                mat-radio-button {
+                    padding-left: 15px;
+                    line-height: 2;
+                    color: rgba(0,0,0,.54);
+                    font-size: 14px;
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                mat-radio-button:checked {
+                    color: #2196f3;
+                }
+            }
+        }
 
     }
     .dialog-container {
