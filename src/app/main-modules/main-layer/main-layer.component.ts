@@ -233,7 +233,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
             var screenshortListDialogRef = {
               width: '650px',
-              height: '450px',
+              height: '500px',
               data: {
                 imageDataURL: image
               },
@@ -1198,4 +1198,3 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     return (angle - 90) * Math.PI / 180;
   }
 }
-

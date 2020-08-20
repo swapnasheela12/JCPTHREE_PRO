@@ -19,13 +19,15 @@ export class ScreenshotPreviewComponent implements OnInit {
       var imgDiv = document.getElementById('screens').prepend(img);
       $('img').addClass('MyClass');
 
-    }, 500);
+    }, 2000);
   }
 
   
 
   private inited;
   ngOnInit(): void {
+  console.log(this.data);
+
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
     })

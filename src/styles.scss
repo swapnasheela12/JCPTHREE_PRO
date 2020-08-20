@@ -1676,23 +1676,7 @@ table {
 }
 
 .bg-in-progress {
-     background-color: #ff8000 !important;
- }
-
- .overview-wrapper{
-    .overview-container {
-        .left-pane {
-            .images {
-                .left-carousel {
-                    .carousel{
-                        .carousel-inner {
-                            height: 57vh !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    background-color: #ff8000 !important;
 }
 
 svg {
@@ -1719,20 +1703,3 @@ svg {
         stroke-width: 2px;
     }
 }
-
-.redFont {
-    color: red!important;
-}
-
-.greenFont {
-    color: green!important;
-}
-
-
-.material-dialog-container .mat-dialog-container{
-       overflow: hidden;
-   }
-
-svg {
-    display: none !important
-}   
