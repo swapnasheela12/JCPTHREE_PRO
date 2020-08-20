@@ -27,7 +27,9 @@ import { concatAll } from 'rxjs/operators';
 import { saveAs } from 'file-saver';
 import '../../../js/leaflet-ruler.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter'
+import 'leaflet-contextmenu';
 import { stringToArray } from 'ag-grid-community';
+import { any } from 'underscore';
 
 declare var $: any;
 declare const testName: any;
@@ -156,14 +158,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = iconDefault;
-
+    console.log(L, "L")
     this.map = L.map('map', {
       center: [25.0000, 79.0000],
       //center:[19.04,72.90],
       zoomControl: false,
-      zoom: 5
+      zoom: 5,
+     
     });
-    console.log(L, "L")
+
+    
     //console.log(this.map, "this.map");
     //console.log(L, "L.....");
     this.map.on('pm:globalremovalmodetoggled', e => { });
@@ -254,6 +258,63 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         // console.log('buttonClicked?????????');
       }
     });
+
+    this.map.on('contextmenu', function(e) {
+      console.log(e,"e");
+      alert(e.latlng);
+      
+      // var map = L.map('map', {
+      //   contextmenu: true,
+      //     contextmenuWidth: 140,
+      //   contextmenuItems: [{
+      //       text: 'Show coordinates',
+      //       callback: showCoordinates
+      //   }, {
+      //       text: 'Center map here',
+      //       callback: centerMap
+      //   }, '-', {
+      //       text: 'Zoom in',
+      //       icon: 'images/zoom-in.png',
+      //       callback: zoomIn
+      //   }, {
+      //       text: 'Zoom out',
+      //       icon: 'images/zoom-out.png',
+      //       callback: zoomOut
+      //   }]
+      // });
+      
+      
+      // function showCoordinates (e) {
+      //   alert(e.latlng);
+      // }
+      
+      // function centerMap (e) {
+      //   map.panTo(e.latlng);
+      // }
+      
+      // function zoomIn (e) {
+      //   map.zoomIn();
+      // }
+      
+      // function zoomOut (e) {
+      //   map.zoomOut();
+      // }
+      
+      // this.openPopup();
+    });
+    console.log(L,"OOOOOOOOOOOO");
+    
+    // var jsonLayer = L.geoJson(jsonData, {
+    //   onEachFeature: function (feature, layer) {
+    //         layer.bindContextMenu({
+    //             contextmenu: true,
+    //           contextmenuItems: [{
+    //               text: 'Marker item'
+    //           }]
+    //         });
+    //   }
+    //  }).addTo(map);
+
 
     this.map.on('simpleMapScreenshoter.error', function (event) {
       var el = document.createElement('div')

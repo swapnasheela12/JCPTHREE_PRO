@@ -90,6 +90,7 @@ import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
 import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
 import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
+import { ContextmenuLayerComponent } from './main-layer/contextmenu-layer/contextmenu-layer.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     TreeNodeComponent,
     AlarmsPopupComponent,
     CustomLegendsComponent,
-    ScreenshotPreviewComponent
+    ScreenshotPreviewComponent,
+    ContextmenuLayerComponent
   ],
   imports: [
     CommonModule,
