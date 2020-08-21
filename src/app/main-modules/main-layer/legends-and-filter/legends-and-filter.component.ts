@@ -1,5 +1,6 @@
+import { CustomLegendsComponent } from './custom-legends/custom-legends.component';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
 
@@ -73,7 +74,7 @@ export class LegendsAndFilterComponent implements OnInit {
   ];
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
-  constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) private data: any,
+  constructor(public dialog: MatDialog,private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<LegendsAndFilterComponent>) { }
 
   ngOnInit(): void {
@@ -88,6 +89,23 @@ export class LegendsAndFilterComponent implements OnInit {
     if (this.inited) {
       this.dialogRef.close();
     }
+  }
+
+  customLegendsSettingPopFun(){
+    var customLegendsSettingListDialogRef = {
+      width: '536px',
+      height: '965px',
+      position: { bottom: '0px', right: "0px" },
+      panelClass: "customLegends-setting-layers-dialog-container",
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      disableClose: true,
+      hasBackdrop: true
+    }
+    const dialogRef = this.dialog.open(CustomLegendsComponent, customLegendsSettingListDialogRef);
+
+    dialogRef.backdropClick().subscribe(_ => {
+      dialogRef.close();
+    });
   }
 
 

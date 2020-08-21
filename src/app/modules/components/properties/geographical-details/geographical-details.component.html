@@ -1,0 +1,56 @@
+<div class="geographical-wrapper">
+    <mat-card class="geographical-container h-100" fxLayout="row">
+        <div class="h-100 geo-left-panel" fxFlex="60%">
+            <div class="link-prop1">
+                <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                    <div class="p-2 link-flex-item col-4" *ngFor="let link1 of zone" style="padding: 15px !important;">
+                        <div class="link-form-field-read">
+                            <div class="link-form-input-title" style="font-size: 13px;">{{link1.label}}</div>
+                            <div class="link-form-input-value">{{link1.value}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <mat-divider></mat-divider>
+
+
+
+            <div class="link-prop1">
+                <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                    <div class="p-2 link-flex-item col-4" *ngFor="let link1 of jc" style="padding: 15px !important;">
+                        <div class="link-form-field-read">
+                            <div class="link-form-input-title" style="font-size: 13px;">{{link1.label}}</div>
+                            <div class="link-form-input-value">{{link1.value}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+
+            <div class="link-prop1">
+                <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                    <div class="p-2 link-flex-item col-4" *ngFor="let link1 of city" style="padding: 15px !important;">
+                        <div class="link-form-field-read">
+                            <div class="link-form-input-title" style="font-size: 13px;">{{link1.label}}</div>
+                            <div class="link-form-input-value">{{link1.value}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="h-100 geo-map-panel" fxFlex="40%">
+            <img src="assets/images/Layers/sites-expand/map.PNG" alt="map">
+
+        </div>
+
+        <!-- </div> -->
+    </mat-card>
+</div>

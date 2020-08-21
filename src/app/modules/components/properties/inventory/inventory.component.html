@@ -1,0 +1,35 @@
+<div class="inventory-wrapper" fxLayout="row">
+    <div class="side-bar" fxFlex="20">
+        <mat-card>Active</mat-card>
+        <div>
+            <mat-radio-group aria-label="Select an option" (change)="onChange($event)" #active name="gender">
+                <mat-radio-button class="w-100" value="lte">LTE Antenna</mat-radio-button>
+                <mat-radio-button class="w-100" value="bbu">BBU</mat-radio-button>
+                <mat-radio-button class="w-100" value="rrh">RRH</mat-radio-button>
+                <mat-radio-button class="w-100" value="microwave">Microwave</mat-radio-button>
+                <mat-radio-button class="w-100" value="isp">ISP</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-card>Passive</mat-card>
+        <div>
+            <mat-radio-group aria-label="Select an option" #passive (change)="onChange($event)">
+                <mat-radio-button class="w-100" value="tower">Tower</mat-radio-button>
+                <mat-radio-button class="w-100" value="rack">Rack</mat-radio-button>
+                <mat-radio-button class="w-100" value="smps">SMPS</mat-radio-button>
+                <mat-radio-button class="w-100" value="eb">EB</mat-radio-button>
+                <mat-radio-button class="w-100" value="dg">DG</mat-radio-button>
+                <mat-radio-button class="w-100" value="battery">Battery</mat-radio-button>
+                <mat-radio-button class="w-100" value="earthing">Earthing</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+    </div>
+
+
+    <div class="dialog-container" fxFlex="80">
+        <app-lte-antenna [radioType]="radioSelected"></app-lte-antenna>
+        <!-- <app-bbu ></app-bbu> -->
+    </div>
+
+</div>

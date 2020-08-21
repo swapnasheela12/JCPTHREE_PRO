@@ -1,0 +1,54 @@
+// 
+
+
+$md-primary: #0070db;
+$color-white: #ffffff;
+.properties-container {
+    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
+    .task-summary-view {
+        .task-flex-container {
+            .task-flex-item {
+                margin: 15px;
+                    > .prop-label {
+                        font-size: 13px;
+                        color: rgba(0,0,0,.54);
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                    >.prop-value {
+                        font-size: 14px;
+                        color: rgba(0,0,0,.87);
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+            }
+        }
+    }
+}
+
+
+
+//////Add this css to wrapper in end
+.prop-label {
+    font-size: 13px;
+    color: rgba(0,0,0,.54);
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+}
+.prop-value {
+    font-size: 14px;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
