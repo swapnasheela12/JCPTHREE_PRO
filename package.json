@@ -76,6 +76,7 @@
         "ngx-mat-select-search": "^3.0.0",
         "ngx-perfect-scrollbar": "^9.0.0",
         "ngx-take-until-destroy": "^5.4.0",
+        "ng2-search-filter": "^0.5.1",
         "popper.js": "^1.16.1",
         "puppeteer": "^5.2.1",
         "rxjs": "~6.5.5",
