@@ -62,7 +62,6 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
 // import { LayersModule } from './layers/layers.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { MainLayerComponent } from './main-layer/main-layer.component';
 import '@geoman-io/leaflet-geoman-free';
 import { MarkerService } from '../_services/leaflate/marker.service';
 import { MyJcpComponent } from './my-jcp/my-jcp.component';
@@ -88,6 +87,8 @@ import { SpiderViewComponent } from './main-layer/spider-view/spider-view.compon
 import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
 import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
+import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
+import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,7 @@ import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-
     ReportsWizardComponent,
     CreateReportComponent,
     ButtonRendererComponent,
-    MainLayerComponent,
+  //  MainLayerComponent,
     MyJcpComponent,
     BackhaulViolatorsComponent,
     CustomerExperienceComponent,
@@ -112,7 +113,10 @@ import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-
     SpiderViewComponent,
     SpiderViewDirective,
     TreeNodeComponent,
-    AlarmsPopupComponent
+    AlarmsPopupComponent,
+    
+    CustomLegendsComponent,
+    ScreenshotPreviewComponent
   ],
   imports: [
     CommonModule,
@@ -190,7 +194,7 @@ import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-
     // SuccessfulComponent
     MyReportsComponent,
     ReportsWizardComponent,
-    MainLayerComponent,
+   // MainLayerComponent,
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,

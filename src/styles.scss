@@ -87,6 +87,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 //END font icons
+@import "~leaflet-contextmenu/dist/leaflet.contextmenu.css";
 // * {
 //   font-family: 'Lato Regular', 'Lato Bold' !important;
 // }
@@ -106,7 +107,6 @@ body {
 // Home Page
 $md-primary: #0070db;
 $color-white: #ffffff;
-.container-jcp {}
 
 .mat-menu-panel.notifications-dropdown {
     // background-color: red;
@@ -252,7 +252,6 @@ $color-white: #ffffff;
                 height: auto;
             }
         }
-        .activeParent-main-content {}
         .notifications-content-more {
             padding: 0;
             color: #464D69;
@@ -847,9 +846,7 @@ $color-white: #ffffff;
             padding: 0px 15px;
             border-radius: 4px;
             background-color: #fff;
-            .table-condensed {
-                .drp-animate {}
-            }
+           
             td.active,
             .md-drppicker td.active:hover {
                 background-color: #0078D7;
@@ -1203,7 +1200,7 @@ $color-white: #ffffff;
 //angular meterial glob css
 .aggridMenuPanelRender {
     .mat-menu-content {
-        .mat-menu-item {}
+       
          :hover {
             color: #0070DB;
         }
@@ -1280,7 +1277,6 @@ table {
 .jcp-two-lines-progress {
     line-height: 24px;
     margin: 9px 0;
-    .values {}
     .progress {
         display: -webkit-box;
         display: flex;
@@ -1716,3 +1712,6 @@ svg {
 .material-dialog-container .mat-dialog-container{
        overflow: hidden;
    }
+// .ag-theme-material .ag-header{
+//     background-color: #EAECEC;
+// }

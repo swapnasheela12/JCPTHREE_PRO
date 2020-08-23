@@ -141,7 +141,8 @@ declare var $: any;
     ConfigurationComponent,
     ConfigDotmenuComponent,
     QuestionPopupComponent,
-    HistoryPopupComponent
+    HistoryPopupComponent,
+    ConfigurationComponent
   ],
 
   imports: [
