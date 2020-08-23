@@ -9,6 +9,7 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 
 import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
+import { HelpiconRendererComponent } from '../ag-grid-renders/helpicon-renderer.component';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
-    viewHistroyRenderer: viewHistoryRendererComponent
+    viewHistroyRenderer: viewHistoryRendererComponent,
+    helpicon: HelpiconRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];

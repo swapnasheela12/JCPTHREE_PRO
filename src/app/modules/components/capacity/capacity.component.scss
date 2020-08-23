@@ -1,5 +1,5 @@
-@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
-@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+// @import "@ag-grid-community/core/dist/styles/ag-grid.scss";
+// @import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
 .capacity-toolbar {
     background: #1976d2;
 
@@ -93,30 +93,9 @@ body {
 
 
 .ag-pinned-right-cols-container div.ag-row div.ag-cell app-helpicon{
- display: block;
+  //  display: none;
 }
-   :host ::ng-deep .mat-dialog-container {
-    overflow: hidden !important;
-   }
+   
 
-.material-dialog-container .mat-dialog-container{
-       overflow: hidden;
-   }
 
-.capcity-container {
-    height:400px;
-    overflow: hidden;
-}
-.capacity-data-table {
-    height: 400px;
-}
 
-:host ::ng-deep app-table-ag-grid .pagination-aggrid{
-    width: calc(100% - 310px);
-    position: absolute;
-    bottom: 20px!important;
-    height: 50px;
-    // left: 161px!important;
-    right: 565px;
-    /* top: 0; */
-}

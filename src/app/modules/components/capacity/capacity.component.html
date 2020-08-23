@@ -1,4 +1,4 @@
-<div class="capacity-container">
+<div class="capacity-container" style="height: 518px;width: 850px;">
     <div class="capacity-toolbar">
         <div class="popup-title">
 
@@ -6,11 +6,11 @@
 
 
             <div class="close-btn">
-                <button (click)="close()" class="close-popup mat-icon-button">
-                    <span class="material-icons">
-                        close
+                <div (click)="close()" class="close-popup">
+                    <span class="zmdi zmdi-close">
+                        
                     </span>
-                </button>
+                </div>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="capacity-data-table">
-        <!-- <ag-grid-angular style="height: 400px;" 
+        <ag-grid-angular style="height: 400px;" 
     class="ag-theme-material ag-jcp3"
     [rowData]="rowData" 
     [columnDefs]="capacityColumns" 
@@ -46,7 +46,7 @@
     [frameworkComponents]="frameworkComponentsHelpIcon"
     
     >
-</ag-grid-angular> -->
-        <app-table-ag-grid style="width: 100%; height:400px; overflow: scroll;"></app-table-ag-grid>
+</ag-grid-angular>
+        <!-- <app-table-ag-grid></app-table-ag-grid> -->
     </div>
 </div>

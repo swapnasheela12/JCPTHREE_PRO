@@ -39,14 +39,10 @@ export class HistoryPopupComponent implements OnInit {
     const dialogRef = this.matDialog.open(HistoryPopupComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-      //data: { name: this.name, animal: this.animal }
+      
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
-    //  this.animal = result;
-    });
-
+ 
   };
 
   close() {

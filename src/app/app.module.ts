@@ -115,6 +115,9 @@ import { AlarmsPopupComponent } from '../../src/app/modules/components/alarms-po
 import { CapacityComponent } from '../app/modules/components/capacity/capacity.component';
 import { ConfigurationComponent} from '../app/modules/components/configuration/configuration.component';
 import { from } from 'rxjs';
+import { ConfigDotmenuComponent } from './modules/components/config-dotmenu/config-dotmenu.component';
+import { QuestionPopupComponent } from './modules/components/capacity/question-popup/question-popup.component';
+import { HistoryPopupComponent } from './modules/components/configuration/history-popup/history-popup.component';
 declare var $: any;
 
 @NgModule({
@@ -135,7 +138,10 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ConfigDotmenuComponent,
+    QuestionPopupComponent,
+    HistoryPopupComponent
   ],
 
   imports: [

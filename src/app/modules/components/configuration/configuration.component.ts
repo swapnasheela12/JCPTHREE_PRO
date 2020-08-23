@@ -10,7 +10,8 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HistoryPopupComponent } from './history-popup/history-popup.component';
 import { InfoPopupComponent } from './info-popup/info-popup.component'
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
+import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { ConfigDotmenuComponent} from '../config-dotmenu/config-dotmenu.component';
 interface Band {
   value: string;
   viewValue: string;
@@ -49,7 +50,6 @@ export class ConfigurationComponent implements OnInit {
 
 
   public frameworkComponentsConfigmenu;
-  public frameworkComponentsConfigDropdown;
   gridColumnApi: any;
   public rowSelection;
   show: any;
@@ -83,9 +83,9 @@ url_1 = "assets/data/layers/popup-data/datap.json"
    // this.getConfigdata();
 
 
-    this.frameworkComponentsConfigDropdown = {
+    this.frameworkComponentsConfigmenu = {
 
-      'dropDownThreeDotRenderer': dropDownThreeDotRendererComponent
+      'configmenu': ConfigDotmenuComponent
     }
   }
 
@@ -166,8 +166,8 @@ url_1 = "assets/data/layers/popup-data/datap.json"
       },
       {
         headerName: "",
-        cellRenderer: "dropDownThreeDotRenderer",
-      //  id: "config-menu-render",
+        cellRendererFramework: ConfigDotmenuComponent,
+       id: "config-menu-render",
         field: "",
         width: 80,
         pinned: 'right'

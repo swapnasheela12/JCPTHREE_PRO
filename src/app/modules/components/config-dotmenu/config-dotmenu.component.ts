@@ -44,14 +44,10 @@ constructor(public matDialog: MatDialog, public matselect: MatSelectModule, publ
       const dialogRef = this.matDialog.open(HistoryPopupComponent, {
         width: "850px",
         panelClass: "material-dialog-container",
-        //data: { name: this.name, animal: this.animal }
+       
       });
   
-      dialogRef.afterClosed().subscribe(result => {
-  
-      //  this.animal = result;
-      });
-  
+     
     };
   
   
@@ -59,13 +55,10 @@ constructor(public matDialog: MatDialog, public matselect: MatSelectModule, publ
       const dialogRef = this.matDialog.open(InfoPopupComponent, {
         width: "500px",
         panelClass: "material-dialog-container",
-        //data: { name: this.name, animal: this.animal }
+      
       });
   
-      dialogRef.afterClosed().subscribe(result => {
-  
-      //  this.animal = result;
-      });
+   
   
     };
   
