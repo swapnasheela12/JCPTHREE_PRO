@@ -47,22 +47,25 @@ export class ConfigurationComponent implements OnInit {
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  gridColumnApi: any;
+  public rowSelection;
+  public defaultColDef;
+  public gridPinned
 
 
   public frameworkComponentsConfigmenu;
-  gridColumnApi: any;
-  public rowSelection;
+
   show: any;
   searchGrid = '';
+
   public showGlobalOperation: Boolean = false;
   public dataTest: any;
   private paginationPageSize = 10;
   public paths;
   public configColumn;
   public configRow;
-public configData;
-public defaultColDef;
-public gridPinned;
+  public configData;
+
 
 
 
@@ -70,7 +73,9 @@ url_1 = "assets/data/layers/popup-data/datap.json"
 
 
 
-  constructor( public datatable: TableAgGridService, public matDialog: MatDialog, 
+  constructor( 
+    public datatable: TableAgGridService, 
+    public matDialog: MatDialog, 
     public matselect: MatSelectModule, 
     public datashare: DataSharingService,
     private http: HttpClient, 

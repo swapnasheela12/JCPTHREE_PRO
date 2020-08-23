@@ -13,6 +13,7 @@ import { HelpiconComponent } from './helpicon/helpicon.component';
 import { QuestionPopupComponent } from './question-popup/question-popup.component';
 import { from } from 'rxjs';
 import { HelpiconRendererComponent} from '../../../core/components/ag-grid-renders/helpicon-renderer.component'
+import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
 
 @Component({
   selector: 'app-capacity',
@@ -26,9 +27,13 @@ export class CapacityComponent implements OnInit {
   public gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  
   public rowData: any;
+  
   public columnDefs: any[];
   public rowCount: string;
+  
+  
   public capacityColumndata;
   public capacityRowdata;
   public capacityColumns
@@ -37,16 +42,22 @@ export class CapacityComponent implements OnInit {
 
   public showGlobalOperation: Boolean = false;
   public kpivalue;
+gridPinned;
+defaultColDef;
+
   rowClassRules: {};
 
+  url_1 = "assets/data/layers/popup-data/capacity-popup-data.json"
 
-
-  //cellClassRules: { show: (params: any) => void; hide: (params: any) => void; };
 
 
 public cellClassRules;
 
-  constructor(public dialog: MatDialog, 
+  constructor(
+    
+    public datatable: TableAgGridService,
+
+    public dialog: MatDialog, 
     public matDialog: MatDialog, 
     public matselect: MatSelectModule, 
     public datashare: DataSharingService,
@@ -58,14 +69,14 @@ public cellClassRules;
       'helpicon': HelpiconComponent
     };
     
-
+    this.createCapacityColumndata();
+    this.httpClientRowData();
 
   }
 
   ngOnInit(): void {
-    this.createCapacityColumndata();
-
-    this.getCapacityPopupData();
+   
+  //  this.getCapacityPopupData();
     
   
    
@@ -82,32 +93,32 @@ public cellClassRules;
   };
 
   private createCapacityColumndata() {
-    this.capacityColumns = [
+    this.columnDefs = [
       {
         headerName: "KPIs",
-
         field: "kpis",
         width: 200,
         cellClass: 'lock-pinned'
-      }, {
+      }, 
+      {
         headerName: "2300 MHz-C1",
-
         field: 'mhzc12300',
         width: 160,
         cellClass: 'lock-pinned',
-      }, {
+      }, 
+      {
         headerName: "2300 MHz-C2",
         field: 'mhzc22300',
         width: 160,
         cellClass: 'lock-pinned'
       },
-
       {
         headerName: "1800 MHz",
         field: 'mhz1800',
         width: 140,
         cellClass: 'lock-pinned',
-      }, {
+      }, 
+      {
         headerName: "850 MHz-C1",
         field: 'mhzc1850',
         width: 160,
@@ -122,7 +133,6 @@ public cellClassRules;
       {
         headerName: "",
         cellRendererFramework: HelpiconRendererComponent,
-
         id: "helpicon-render",
         field: "",
         width: 120,
@@ -136,15 +146,15 @@ public cellClassRules;
 
   }
 
-  private getCapacityPopupData() {
-    this.http.get("assets/data/layers/popup-data/capacity-popup-data.json")
-      .subscribe(data => {
-        console.log(data);
+  // private getCapacityPopupData() {
+  //   this.http.get("assets/data/layers/popup-data/capacity-popup-data.json")
+  //     .subscribe(data => {
+  //       console.log(data);
 
-        this.rowData = data;
+  //       this.rowData = data;
 
-      });
-  }
+  //     });
+  // }
 
   close() {
     this.dialogRef.close();
@@ -168,7 +178,20 @@ public cellClassRules;
 
 
 
-
+  private httpClientRowData() {
+    this.http
+      .get("assets/data/layers/popup-data/capacity-popup-data.json")
+      .subscribe(data => {
+        this.rowData = data;
+        this.datatable.rowDataURLServices = this.url_1;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridPinnedServices = this.gridPinned;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
+      this.datatable.columnDefsServices = this.columnDefs;
+    }
   
   
 

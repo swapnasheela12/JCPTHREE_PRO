@@ -43,7 +43,6 @@ export class HelpiconComponent implements ICellRendererAngularComp {
         panelClass: "material-dialog-container",
        
       });
-  
-    
+   
     };
   }
