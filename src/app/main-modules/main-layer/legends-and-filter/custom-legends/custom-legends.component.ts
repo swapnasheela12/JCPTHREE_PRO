@@ -249,4 +249,78 @@ export class CustomLegendsComponent implements OnInit {
   ];
 
 
+  kpidisplayslist = [{
+    name: 'In-Building',
+    checks: [{
+      staus: true,
+      disabled:false,
+      name: 'Atoll'
+    }, {
+      staus: false,
+      disabled:true,
+      name: 'Customer Measured Coverage'
+    },
+     {
+      staus: true,
+      disabled:false,
+      name: 'Smart Network Coverage'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'Netvelocity'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'Live Drive/ Quick Drive'
+    }, 
+     {
+      staus: false,
+      disabled:true,
+      name: 'Sites'
+    }, 
+     {
+      staus: false,
+      disabled:true,
+      name: 'Indoor Coverage'
+    }, 
+     {
+      staus: false,
+      disabled:true,
+      name: 'Indoor Coverage'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'Accuver'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'Competitive Coverage'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'I-Smart Network Coverage'
+    }, 
+     {
+      staus: true,
+      disabled:false,
+      name: 'Network Accepted Coverage'
+    }, 
+     {
+      staus: false,
+      disabled:true,
+      name: 'GeoBond Drive'
+    }, 
+    {
+      staus: true,
+      disabled:false,
+      name: 'GeoBond Drive'
+    }]
+  }];
+
+
 }
