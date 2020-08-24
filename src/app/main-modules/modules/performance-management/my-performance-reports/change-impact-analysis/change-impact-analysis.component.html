@@ -1,0 +1,133 @@
+<div fxLayout="column" class="pre-post-report h-100">
+    <mat-card style="height: auto;" class="p-0 mb-3">
+        <mat-card-header class="card-header m-0" fxLayout="row" fxLayoutAlign="start center">
+            <mat-card-title class="card-title">Change Impact Analysis&nbsp;:&nbsp;</mat-card-title>
+            <mat-card-subtitle class="card-subtitle">Test Pre-Post Report</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="card-content p-3 height-65" fxLayout="row wrap">
+            <mat-form-field fxFlex="15">
+                <mat-select [(value)]="primaryKpi" placeholder="Primary KPI" disableOptionCentering
+                    (selectionChange)="primaryKpiSelectionChanged(primaryKpi)">
+                    <mat-option value="IPThroughput">IP Throughput</mat-option>
+                    <mat-option value="Traffic">Traffic</mat-option>
+                    <mat-option value="DropCallRate">Drop Call Rate</mat-option>
+                    <mat-option value="Handover">Handover</mat-option>
+                    <mat-option value="MuteCallRate">Mute Call Rate</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="10">
+                <mat-select [(value)]="timeValue" disableOptionCentering>
+                    <mat-option value="Daily">Daily</mat-option>
+                    <mat-option value="BBH">BBH</mat-option>
+                    <mat-option value="Hourly">Hourly</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="20">
+                <mat-select [(value)]="secondaryKpi" placeholder="Secondary KPI" disableOptionCentering
+                    (selectionChange)="selectChangedSecondaryKPI(secondaryKpi, primaryKpi)">
+                    <mat-option value="Traffic">Traffic</mat-option>
+                    <mat-option value="DropCallRate">Drop Call Rate</mat-option>
+                    <mat-option value="Handover">Handover</mat-option>
+                    <mat-option value="MuteCallRate">Mute Call Rate</mat-option>
+                    <mat-option value="None">None</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="col"></div>
+            <mat-form-field class="" fxFlex="10">
+                <mat-select [(value)]="sectorValue" disableOptionCentering>
+                    <mat-option value="Cells">Cells</mat-option>
+                    <mat-option value="Sector">Sector</mat-option>
+                    <mat-option value="eNodeB">eNodeB</mat-option>
+                    <mat-option value="JC">JC</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="20" *ngIf="sectorValue =='Cells'">
+                <mat-select [(value)]="cellListValue" placeholder="Cells List" disableOptionCentering
+                    (openedChange)="openedChange($event)">
+                    <input matInput [(ngModel)]="searchListValue" autocomplete="off"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search Cells List...."
+                        style="height: 40px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of cellsList | filter:searchListValue" [value]="item.cell">
+                        {{item.cell}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="22" *ngIf="sectorValue =='Sector'">
+                <mat-select [(value)]="sectorListValue" placeholder="Sector List" disableOptionCentering
+                    (openedChange)="openedChange($event)">
+                    <input matInput [(ngModel)]="searchListValue" autocomplete="off"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search Cells List...."
+                        style="height: 40px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of sectorList | filter:searchListValue" [value]="item.sector">
+                        {{item.sector}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="20" *ngIf="sectorValue =='eNodeB'">
+                <mat-select [(value)]="enodebListValue" placeholder="eNodeB List" disableOptionCentering
+                    (openedChange)="openedChange($event)">
+                    <input matInput [(ngModel)]="searchListValue" autocomplete="off"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search Cells List...."
+                        style="height: 40px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of enodebList | filter:searchListValue" [value]="item.enodeb">
+                        {{item.enodeb}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="pl-4" fxFlex="20" *ngIf="sectorValue =='JC'">
+                <mat-select [(value)]="jcListValue" placeholder="JC List" [disabled]="true" disableOptionCentering
+                    (openedChange)="openedChange($event)">
+                    <input matInput [(ngModel)]="searchListValue" autocomplete="off"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search Cells List...."
+                        style="height: 40px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of jcList | filter:searchListValue" [value]="item.jc">
+                        {{item.jc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <div fxLayout="row wrap" class="calc-height-196">
+        <mat-card class="px-0 pt-0 left-card" fxFlex="65">
+            <div class="left-card-header m-0" fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div>Pre Value</div>
+                <div>Post Value</div>
+            </div>
+            <mat-divider style="z-index: 2;"></mat-divider>
+            <mat-card-content class="card-content">
+                <div id="Chart" class="pr-2" [chart]="ciaChart"></div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="p-0 right-card" fxFlex="auto">
+            <mat-card-header class="card-header m-0" fxLayoutAlign="center center" style="height: 48px;">
+                <mat-card-title class="card-title">IP Throughput</mat-card-title>
+            </mat-card-header>
+            <div class="card-subheader px-4" fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="row">
+                    <span>Pre Value : </span>
+                    <span style="color:#0000008a"> 1000</span>
+                </div>
+                <div fxLayout="row">
+                    <span>Post Value : </span>
+                    <span style="color:#0000008a"> 1001</span>
+                </div>
+            </div>
+            <mat-card-content class="card-content" style="width: 100%; height: 100%;">
+                <ag-grid-angular style="width: 100%; height: calc(100% - 98px);" class="ag-theme-material ag-jcp3"
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+                    [tooltipShowDelay]="tooltipShowDelay" [rowData]="rowData" enableColResize enableSorting enableFilter
+                    groupHeaders [defaultColDef]="defaultColDef" [suppressCellSelection]="true" toolPanelSuppressGroups
+                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+                    [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                    [debug]="true" (gridReady)="onReady($event)" [frameworkComponents]="frameworkComponents">
+                </ag-grid-angular>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="d-flex">
+        <div class="col"></div>
+        <div class="p-2">
+            <button mat-stroked-button color="primary" class="button-full button" routerLink="/{{pathsCIAViewSummary}}">View Summary</button>
+        </div>
+    </div>
+</div>

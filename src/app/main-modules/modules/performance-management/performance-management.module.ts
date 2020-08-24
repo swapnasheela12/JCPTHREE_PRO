@@ -14,7 +14,9 @@ import { CommonModule } from '@angular/common';
 
 import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
 // import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HighchartsChartModule } from "highcharts-angular";
+import { ChartModule } from 'angular-highcharts';
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 // import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -73,6 +75,10 @@ import { ComputationSettingsPoupComponent } from './kpi-editor/create-kpi/comput
 import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-impact-analysis.module';
+import { CustomTooltip } from './my-performance-reports/custom-tooltip.component';
+// import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
+import { ViewSummaryComponent } from './my-performance-reports/view-summary/view-summary.component';
+import { ChangeImpactAnalysisComponent } from './my-performance-reports/change-impact-analysis/change-impact-analysis.component';
 import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
 
 
@@ -95,7 +101,10 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
     ComputationSettingsPoupComponent,
     IfElsePopupComponent,
     HextodocPopupComponent,
-    MyPerformanceReportsComponent
+    MyPerformanceReportsComponent,
+    ViewSummaryComponent,
+    ChangeImpactAnalysisComponent,
+    CustomTooltip
   ],
   imports: [
     CommonModule,
@@ -104,11 +113,14 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
     // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     //Angular meterial
     FormsModule,
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     A11yModule,
+    ChartModule,
+    HighchartsChartModule,
     // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
@@ -165,7 +177,7 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
     DeleteCreatedKpiRendererComponent,
     dropdownRendererComponent
   ],
-  entryComponents : [
+  entryComponents: [
     AddGroupPopupComponent
   ],
   providers: []

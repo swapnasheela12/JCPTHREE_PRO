@@ -1,1 +1,33 @@
-<p>my-performance-works</p>
+<mat-card class="p-0" style="height:calc(100% - 52px)">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title">{{title}}</mat-card-title>
+        <div class="col"></div>
+        <div class="col-8 my-performance-reports-flex-item d-flex justify-content-end align-items-center">
+            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <span class="zmdi zmdi-search"></span>
+            </mat-icon>
+            <mat-form-field *ngIf="show" class="col-4">
+                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"  placeholder="">
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+    <mat-divider style="position: relative;"></mat-divider>
+    <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
+        headerHeight="48" [gridOptions]="gridMyPerformanceGridOptions" [columnDefs]="gridMyPerformanceColumnDefs" [rowData]="gridMyPerformanceRowData" enableColResize
+        enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
+        toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+        [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder" 
+        [paginationPageSize]="PaginationPageSize" [pagination]="true" [suppressPaginationPanel]="true"
+        (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'>
+    </ag-grid-angular>
+    <app-pagination 
+        [pageSize]="PaginationPageSize"
+        [gridApi]="gridAPI"
+        [noOfPages]="gridAPI?.paginationGetTotalPages()"
+        [rowCount]="gridAPI?.getDisplayedRowCount()"
+        [paginationArray] = "[10, 20, 30, 40]"
+    ></app-pagination>
+</mat-card>
