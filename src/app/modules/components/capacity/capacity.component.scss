@@ -1,10 +1,9 @@
-// @import "@ag-grid-community/core/dist/styles/ag-grid.scss";
-// @import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+
 .capacity-toolbar {
     background: #1976d2;
 
     color: #ffffff;
-    padding: 0.5rem;
+    padding: 0 1rem;
     font-family: "Lato-Medium", sans-serif;
 }
 
@@ -60,9 +59,10 @@ body {
 }
 .close-popup {
     line-height: 55px;
-    font-size: 15px;
+    font-size: 20px;
 }
 .close-btn {
+    text-align: center;
     flex: 1;
 }
 
