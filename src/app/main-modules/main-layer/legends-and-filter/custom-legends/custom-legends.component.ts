@@ -64,8 +64,9 @@ export class CustomLegendsComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    buttonRenderer: ButtonRendererComponent,
+    // colorDropdownRenderer:colorDropdownRendererComponent
   };
+
 
   url = "assets/data/report/my-report.json";
 
@@ -121,7 +122,7 @@ export class CustomLegendsComponent implements OnInit {
       }, {
         headerName: "Color",
         field: "color",
-        // cellRenderer: this.progressTaskFunc,
+        cellRenderer: 'colorDropdownRenderer',
         width: 130
       }, {
         headerName: "2G",
