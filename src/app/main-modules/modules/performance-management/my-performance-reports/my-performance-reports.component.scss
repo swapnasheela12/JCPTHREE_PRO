@@ -1,0 +1,15 @@
+.card-header {
+    height: 64px;
+    margin: 0px 8px;
+    background-color: white;
+    padding:0px;
+    .card-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 0px !important;
+        font-family: lato medium;
+    }
+}
+.ag-theme-material .ag-header {
+    background: #EAECEC;
+}

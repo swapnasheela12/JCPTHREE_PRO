@@ -1,0 +1,65 @@
+$blueactive-color: #0078D7;
+
+::ng-deep.container-jcp .body-sidenav-container .jcp-toolbar .jcp-page-route{
+    overflow: hidden !important;
+}
+::ng-deep.pre-post-report{
+    .card-header {
+        height: 64px;
+        margin: 0px 8px;
+        background-color: white;
+        padding:0px;
+        .mat-card-header-text{
+            flex-direction: row;
+            box-sizing: border-box;
+            display: flex;
+            place-content: center flex-start;
+            align-items: center;
+            .card-title {
+                // display: inline-flex;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 0px !important;
+                font-family: lato medium;
+            }
+            .card-subtitle {
+                margin-bottom: 0px;
+                margin-top: 2px;
+                // display: inline-flex;
+                font-size: 14px;
+                font-family: lato medium;
+            }
+        }
+    }
+    .height-65{
+        height: 65px;
+    }
+    .calc-height-196{
+        height: calc(100% - 196px);
+        .left-card{
+            margin-right: 15px;
+            overflow: hidden; 
+            height: 100%;
+            .left-card-header{
+                height: 48px; 
+                color: rgba(0, 0, 0, .8);
+                font-family: lato medium;
+            }
+            .card-content{
+                overflow: auto; 
+                height: calc(100% - 22px);
+            }
+        }
+        .right-card{
+            .card-subheader{
+                height: 48px;color: rgba(0, 0, 0, .8);
+                font-family: lato medium; 
+                border: 0px
+            }
+        }
+    }
+}
+.button-full {
+    border-color: $blueactive-color !important;
+    width: 100%;
+}

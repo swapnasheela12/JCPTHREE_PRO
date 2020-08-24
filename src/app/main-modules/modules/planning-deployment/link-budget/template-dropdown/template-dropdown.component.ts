@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewChecked, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -25,7 +25,7 @@ var TEMPLATE_GALLERY: templateDropdown[] = [
   styleUrls: ['./template-dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TemplateDropdownComponent implements OnInit {
+export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnDestroy  {
   public templateGallery = TEMPLATE_GALLERY;
   templateGalleryForm: FormGroup;
   templateGallerySearch = new FormControl();
@@ -39,7 +39,8 @@ export class TemplateDropdownComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private datashare: DataSharingService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private cdRef : ChangeDetectorRef
   ) {
     this.templateGalleryForm = this.formBuilder.group({
       templateGalleryArray: this.formBuilder.array(this.templateGallery.map(x => false))
@@ -66,7 +67,10 @@ export class TemplateDropdownComponent implements OnInit {
         }
       }
     );
-    this.datashare.templateGalleryValueMessage.subscribe((value) => {
+    this.subscription = this.datashare.templateGalleryValueMessage.subscribe((value) => {
+    //   setInterval(() => {
+    //    console.log(value)
+    // },1000)
       if (Object.keys(value).length !== 0) {
         if (this.templateGallery.findIndex(list => list.name === value) == -1) {
           this.templateGallery.push({ 'name': value.toString() })
@@ -81,6 +85,9 @@ export class TemplateDropdownComponent implements OnInit {
             },
             panelClass: ["success"]
           });
+        //    setInterval(() => {
+        //     value="";
+        // },1000)
         } else {
           this._snackBar.openFromComponent(snackBarToastComponent, {
             duration: 4000,
@@ -127,5 +134,14 @@ export class TemplateDropdownComponent implements OnInit {
   }
   get templateGalleryArray() {
     return this.templateGalleryForm.get('templateGalleryArray') as FormArray;
+  }
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+      console.log(this.subscription)
+    }
+  }
+  ngAfterViewChecked(){
+    this.cdRef.detectChanges();
   }
 }

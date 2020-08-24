@@ -12,7 +12,7 @@ export const City: dropdown[] = [
 
 export const ClutterType:  dropdown[] = [
     {name: 'DU'},
-    {name: 'LU'},
-    {name: 'MU'},
-    {name: 'PU'}
+    {name: 'U'},
+    {name: 'SU'},
+    {name: 'RU'}
 ];
