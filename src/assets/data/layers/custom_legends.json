@@ -1,22 +1,22 @@
 [{
     "srno": "1",
-    "color": "red",
+    "color": "#ffff00",
     "2g": "RSSI > -65",
     "3g": "RSSI > -75",
     "4g": "RSSI > -85",
     "legend": "3 Wall Coverage"
 }, {
     "srno": "2",
-    "color": "blue",
+    "color": "#ff3300",
     "2g": "RSSI > -65",
     "3g": "RSSI > -75",
     "4g": "RSSI > -85",
     "legend": "3 Wall Coverage"
 }, {
     "srno": "3",
-    "color": "green",
+    "color": "#0000ff",
     "2g": "RSSI > -65",
     "3g": "RSSI > -75",
     "4g": "RSSI > -85",
     "legend": "3 Wall Coverage"
-}]  
+}]

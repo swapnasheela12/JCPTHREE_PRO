@@ -1,3 +1,4 @@
+import { colorDropdownRendererComponent } from './../../../../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { TableAgGridService } from '../../../../core/components/table-ag-grid/table-ag-grid.service';
 import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
 // import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -64,7 +65,7 @@ export class CustomLegendsComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    // colorDropdownRenderer:colorDropdownRendererComponent
+    colorDropdownRenderer:colorDropdownRendererComponent
   };
 
 
@@ -121,9 +122,10 @@ export class CustomLegendsComponent implements OnInit {
         pinned: 'left'
       }, {
         headerName: "Color",
-        field: "color",
+        // field: "color",
         cellRenderer: 'colorDropdownRenderer',
-        width: 130
+        width: 100,
+        pinned: 'left'
       }, {
         headerName: "2G",
         field: "2g",
@@ -248,6 +250,49 @@ export class CustomLegendsComponent implements OnInit {
       ]
     }
   ];
+
+
+  selectedColor = 'NPE View';
+
+  colors = [
+    {
+      name: 'NPE View',
+      value: [
+        { colorName: "#F44336" },
+        { colorName: "#FF9800" },
+        { colorName: "#8BC34A" },
+        { colorName: "#4CAF50" },
+        { colorName: "#03A9F4" },
+        { colorName: "#3F51B5" },
+      ]
+    },
+    {
+      name: 'Red',
+      value: [
+        { colorName: "#F44336" },
+        { colorName: "#FF9800" },
+        { colorName: "#8BC34A" },
+        { colorName: "#4CAF50" },
+        { colorName: "#03A9F4" },
+        { colorName: "#3F51B5" },
+      ]
+    },
+    {
+      name: 'Blue',
+      value: [
+        { colorName: "#F44336" },
+        { colorName: "#FF9800" },
+        { colorName: "#8BC34A" },
+        { colorName: "#4CAF50" },
+        { colorName: "#03A9F4" },
+        { colorName: "#3F51B5" },
+      ]
+    }
+  ];
+
+  onChange(value){
+    this.selectedColor = value;
+  }
 
 
   kpidisplayslist = [{
