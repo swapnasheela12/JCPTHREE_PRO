@@ -275,6 +275,7 @@
                 // }
                 .customLegends-setting-card {
                     margin: 15px;
+                    border-radius: 4px;
                     .customLegends-setting-row {
                         .customLegends-setting-type {
                             .form-field-selected-layers {
@@ -284,6 +285,37 @@
                                     height: 4px;
                                     background: red;
                                 }
+                            }
+                        }
+                    }
+                    .toolbar-kpi-setting-control-layers {
+                        height: 48px;
+                        background: #F0F0F0;
+                        .toolbar-kpi-setting-control-title {
+                            font-size: 16px;
+                            font-family: Lato Bold;
+                        }
+                        .toolbar-kpi-setting-control-icon-list {
+                            font-size: 22px;
+                        }
+                    }
+                    .kpi-setting-container {
+                        height: calc(100% - 110px) !important;
+                        max-height: calc(100% - 110px) !important;
+                        min-height: calc(100% - 110px) !important;
+                        padding: 15px 10px;
+                        overflow: auto;
+                        .kpi-setting-list-container {
+                            .kpi-setting-list-title {
+                                font-size: 18px;
+                                font-family: Lato Regular;
+                                opacity: .5 !important;
+                                margin: 10px 0;
+                            }
+                            .kpi-setting-list-child-container {
+                                font-size: 16px;
+                                font-family: Lato Medium;
+                                .kpi-setting-list-child-check {}
                             }
                         }
                     }

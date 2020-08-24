@@ -88,11 +88,32 @@
                 </div>
             </div>
         </mat-card>
-        <mat-card class="customLegends-setting-card p-0" style="height: 210px;">
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;height: 210px;">
             <app-table-ag-grid></app-table-ag-grid>
         </mat-card>
-        <mat-card class="customLegends-setting-card">
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;">
+            <div class="toolbar-kpi-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+                <div class="toolbar-kpi-setting-control-title" fxFlex>
+                    <!-- <span class="ic ic-KPI-01 pr-1" style="font-size: 16px;"></span> -->
+                    <span>Apply To</span>
+                </div>
+                <!-- <div class="toolbar-kpi-setting-control-icon-list">
+                    <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+                </div> -->
+            </div>
+            <mat-divider></mat-divider>
+            <div class="kpi-setting-container">
+                <div fxLayout="column" class="kpi-setting-list-container p-0" *ngFor="let kpi of kpidisplayslist ; first as isFirst; last as isLast">
+                    <!-- <div class="kpi-setting-list-title  px-1">{{ kpi.name }}</div> -->
+                    <div class="kpi-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div class="kpi-setting-list-child-check" fxFlex="50" *ngFor="let item of kpi.checks">
+                            <mat-checkbox [checked]="item.staus" [disabled]="item.disabled">{{item.name}}</mat-checkbox>
+                        </div>
+                    </div>
+                    <mat-divider *ngIf="!isLast"></mat-divider>
+                </div>
 
+            </div>
         </mat-card>
 
     </div>
