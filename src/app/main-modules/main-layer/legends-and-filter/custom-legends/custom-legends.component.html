@@ -41,17 +41,25 @@
 
                 </div>
                 <div class="customLegends-setting-type" fxFlex="70">
-                    <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select (selectionChange)="onChange($event.value)" [(ngModel)]="selectedColor" [ngStyle]="{'background-color':selectedColor}" disableOptionCentering class="mat-select-selected-layers" placeholder="">
-                            <mat-option *ngFor="let color of colors; index as i;" [value]="color.value">
+                    <mat-form-field class="form-field-selected-palette px-3 w-100">
+                        <mat-select id="colorPalette" (selectionChange)="onChange($event)" [(value)]="paletteSelected" disableOptionCentering class="mat-select-selected-layers" placeholder="">
+
+                            <mat-option *ngFor="let color of paletteList; index as i;" [value]="color.name">
                                 <div style="display: inline-flex;">
                                     <div class="px-2"> {{color.name}}</div>
                                     <div style="display: inline-flex;margin: auto;">
                                         <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
                                     </div>
                                 </div>
-
                             </mat-option>
+                            <mat-select-trigger *ngFor="let color of paletteList; index as i;">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
+                            </mat-select-trigger>
                         </mat-select>
                     </mat-form-field>
                 </div>
