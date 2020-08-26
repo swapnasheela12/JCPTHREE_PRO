@@ -3,7 +3,6 @@ import { DataSharHttpService } from '../data-shar-http.service';
 //declare const D3: any;
 //import * as d3 from 'd3';
 import * as D3 from 'd3/index';
-import { AnyCnameRecord } from 'dns';
 import { Router } from '@angular/router';
 
 

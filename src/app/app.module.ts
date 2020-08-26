@@ -119,7 +119,16 @@ import { GoldenParameterComponent } from './modules/components/properties/golden
 import { RadioParameterComponent } from './modules/components/properties/radio-parameter/radio-parameter.component';
 import { AntennaParameterComponent } from './modules/components/properties/antenna-parameter/antenna-parameter.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-//import { CarouselModule } from 'ngx-bootstrap';
+import { OverviewComponent } from './modules/components/properties/overview/overview.component';
+import { GeographicalDetailsComponent } from './modules/components/properties/geographical-details/geographical-details.component';
+import { InventoryComponent } from './modules/components/properties/inventory/inventory.component';
+import { BackhaulComponent } from './modules/components/properties/backhaul/backhaul.component';
+import { SiteMilestoneComponent } from './modules/components/properties/site-milestone/site-milestone.component';
+import { PowerComponent } from './modules/components/properties/power/power.component';
+import { EmsDetailsComponent } from './modules/components/properties/ems-details/ems-details.component';
+import { PropertiesComponent } from './modules/components/properties/properties.component';
+import { LteAntennaComponent } from './modules/components/properties/inventory/lte-antenna/lte-antenna.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 declare var $: any;
 
@@ -134,6 +143,19 @@ declare var $: any;
     RowRenderingComponent,
     ColumnRenderingComponent,
     TreeRenderingComponent,
+    OverviewComponent,
+    GeographicalDetailsComponent,
+    InventoryComponent,
+    BackhaulComponent,
+    SiteMilestoneComponent,
+    PowerComponent,
+    EmsDetailsComponent,
+    AntennaParameterComponent,
+    GoldenParameterComponent,
+    RadioParameterComponent,
+    PropertiesComponent,
+    LteAntennaComponent,
+
     // MainLayerComponent,
     ModalTemplateComponent,
     AgGridRowRenderingComponent,
@@ -162,10 +184,10 @@ declare var $: any;
     FlexLayoutModule,
 
     ///ngx corausal
-   // CarouselModule,
+    CarouselModule,
     MDBBootstrapModule,
     MDBBootstrapModule.forRoot(),
-    //CarouselModule.forRoot(),
+    CarouselModule.forRoot(),
 
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([]),
