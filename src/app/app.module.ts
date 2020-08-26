@@ -130,6 +130,7 @@ import { PropertiesComponent } from './modules/components/properties/properties.
 import { LteAntennaComponent } from './modules/components/properties/inventory/lte-antenna/lte-antenna.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 declare var $: any;
 
 @NgModule({
@@ -163,7 +164,8 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    LayersCustComponent
   ],
 
   imports: [

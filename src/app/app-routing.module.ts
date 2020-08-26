@@ -1,3 +1,4 @@
+import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.component";
