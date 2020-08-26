@@ -43,6 +43,8 @@
                             }
                         ],
                         "scripts": [
+                            "./src/js/Map.ContextMenu.js",
+                            "./src/js/Leaflet.CustomLayer.js",
                             "./src/js/L.CanvasLayer.js",
                             "./src/js/leaflet-ruler.js",
                             "./node_modules/jquery/dist/jquery.min.js",
