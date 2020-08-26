@@ -1,1 +1,96 @@
-<p>ems-details works!</p>
+<div class="ems-wrapper" fxLayout="row" *ngIf="showTab">
+    <div class="side-bar" fxFlex="20">
+        <mat-card>Active</mat-card>
+        <div>
+            <mat-radio-group aria-label="Select an option" #active name="gender" (change)="setEmsDialog($event);">
+                <mat-radio-button class="w-100" value="details">EMS Details</mat-radio-button>
+                <mat-radio-button class="w-100" value="oam">eNodeB OAM</mat-radio-button>
+                <mat-radio-button class="w-100" value="signal">eNodeB Signalling</mat-radio-button>
+                <mat-radio-button class="w-100" value="bearer">eNideB Bearer</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+
+    <div class="dialog-container" fxFlex="80">
+
+        <mat-card class="dialog-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Rack</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let r of ems">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{r.label}}
+                            </div>
+                            <div class="input-value">{{r.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-card>
+
+        <mat-card class="dialog-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Rack</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let r of oam">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{r.label}}
+                            </div>
+                            <div class="input-value">{{r.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="dialog-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Rack</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let r of signalling">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{r.label}}
+                            </div>
+                            <div class="input-value">{{r.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="dialog-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Rack</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-3" *ngFor="let r of bearer">
+                        <div class="form-field-read-only">
+                            <div class="input-title">
+                                {{r.label}}
+                            </div>
+                            <div class="input-value">{{r.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+</div>

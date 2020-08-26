@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -15,7 +15,7 @@ import { SelectionChangedEvent } from 'ag-grid-community';
   templateUrl: './backhaul.component.html',
   styleUrls: ['./backhaul.component.scss']
 })
-export class BackhaulComponent {
+export class BackhaulComponent implements OnChanges {
   link1Properties = [
     {
       label: "Link",
@@ -139,6 +139,8 @@ export class BackhaulComponent {
   public frameworkComponentsSectorMisalignment = {
     viewHistroyRenderer: viewHistoryRendererComponent
   };
+  showTab: boolean = false;
+  @Input('selectedTab') public selectedTab;
 
   public url: string = "assets/data/modules/properties/backhaul.json";
 
@@ -160,32 +162,34 @@ export class BackhaulComponent {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
-    this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
+  }
+  ngOnChanges() {
+    if (this.selectedTab === "BACKHAUL") {
+      this.showTab = true;
+      this.gridOptions = <GridOptions>{};
+      this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message) => {
-      this.sidenavBarStatus = message;
-    });
-
-    this.httpClient.get(this.url)
-      .subscribe(data => {
-        this.rowData = data;
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
-        // <!-- TODO For enabling and disabling pagination and auto page size based on condition -->
-        // this.datatable.paginationRequired = false;
-        // this.datatable.autoPageSizeRequired = false;
+      this.datashare.currentMessage.subscribe((message) => {
+        this.sidenavBarStatus = message;
       });
+
+      this.httpClient.get(this.url)
+        .subscribe(data => {
+          this.rowData = data;
+          this.datatable.rowDataURLServices = this.url;
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.rowDataServices = this.rowData;
+          this.datatable.gridOptionsServices = this.gridOptions;
+          this.datatable.defaultColDefServices = this.defaultColDef;
+        });
+    }
   }
 
   getSelection() {
     var selectedRows = this.gridOptions.api.getSelectedRows();
   }
 
-  private createColumnDefs() {
+  createColumnDefs() {
     this.columnDefs = [{
       headerName: "Node Id",
       field: "nodeId",

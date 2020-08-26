@@ -1,0 +1,54 @@
+.power-wrapper {
+    .side-bar {
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        .power-container-one {
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            .sub-header {
+                height: 45px;
+                background: #e9ecec;
+                .sub-header-title {
+                    color: rgba(0, 0, 0, 0.87);
+                    font-size: 15px;
+                    font-family: Lato Bold;
+    
+                }
+            }
+            .sub-content-container {
+                .sub-content {
+                    .sub-content-flex-item {
+                        .form-field-read-only {
+                            margin-bottom: 20px;
+                            .input-title {
+                                font-size: 13px;
+                                color: rgba(0,0,0,.54);
+                            }
+                            .input-value {
+                                font-size: 15px;
+                                width: 100%;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                            }
+    
+                        }
+                    }
+    
+                }
+            }
+    }
+
+    }
+    .dialog-container {
+        .jcp-table-container{
+            app-table-ag-grid {
+                .ag-material-customer-pager-wrapper {
+                    .pagination-aggrid {
+                        position: absolute;
+                        right: 329px;
+                        bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

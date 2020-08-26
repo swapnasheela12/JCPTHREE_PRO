@@ -1,8 +1,9 @@
 <div class="overview-wrapper" fxFlex="100">
+    <style></style>
     <div class="overview-container" fxLayout="row">
 
         <div class="left-pane" fxFlex="50">
-            <div class="images">
+            <div class="images" style="position: relative;">
                 <carousel class="left-carousel">
                     <slide class="slide" *ngFor="let product of sitesimages">
                         <img [src]="product.imageurl" alt="first slide" style="display: block; width: 100%;">
@@ -10,9 +11,7 @@
                 </carousel>
             </div>
 
-            <div class="site-address">
-
-
+            <div class="site-address" style="position: relative;">
                 <mat-icon class="site-icon">
                     <div class="zmdi zmdi-map"></div>
                 </mat-icon>
@@ -35,48 +34,21 @@
 
             <div class="comp-courasal" style="height: 120px;">
                 <div class="indi-slider">
-
-                    <!-- <carousel>
-                        <slide *ngFor="let signal of signals">
-                            <div class="col-4" *ngFor="let card of signal; let cardIndex = index">
-                                <div class="signal-indicator">
-                                    <div>{{signal.type}}</div>
-                                    <div>{{signal.date}}</div>
-                                    <div>{{signal.signalStrength}}</div>
-                                </div>
-                            </div>
-                        </slide>
-                    </carousel> -->
-
-                    <!-- <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
+                    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
                         [type]="'carousel-multi-item'" [animation]="'slide'">
-                        <mdb-carousel-item *ngFor="let item of slides; let i = index">
-                            <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
-                                <mdb-card class="my-1">
+                        <mdb-carousel-item *ngFor="let item of slides; let i = index" class="carousal-item">
+                            <div class="col-md-4 carousel-repeat" *ngFor="let card of item; let cardIndex = index">
+                                <mdb-card class="my-1 carousel-card">
                                     <mdb-card-body>
-                                        <mdb-card-title>
-                                            <h4>{{card.type}}</h4>
-                                        </mdb-card-title>
-                                        <p>{{card.date}}</p>
+                                        <div class="signal-type">{{card.type}}</div>
+                                        <div class="signal-date">{{card.date}}</div>
+                                        <div class="signal-strength">{{card.signalStrength}}</div>
+
                                     </mdb-card-body>
                                 </mdb-card>
                             </div>
                         </mdb-carousel-item>
-                    </mdb-carousel> -->
-
-                    <!-- <carousel class="templates">
-                        <template ngFor let-indx="index" let-multiListItem [ngForOf]="multiList">
-                            <slide>
-                                <template ngFor let-indx2="index" let-item [ngForOf]="multiListItem">
-                                    <div class="col-xs-12 col-sm-4 col-md-2">
-                                        item - {{indx2}}
-                                        <div>{{item}}</div>
-                                    </div>
-                                </template>
-                            </slide>
-                        </template>
-                    </carousel> -->
-
+                    </mdb-carousel>
                 </div>
             </div>
 
@@ -154,15 +126,15 @@
     </div>
 
     <!-- //////////////////////////////////////////////////////////// -->
-    <div class="status-wrapper overview-lower-container" style="height: 70vh;">
+    <div class="status-wrapper overview-lower-container" style="height: 54vh;">
         <div class="status-table p-2" style="padding-right: 20px !important;">
-            <div *ngFor="let status of statusDetails1" class="status" style="padding: 20px 0 20px 0;">
+            <div *ngFor="let status of statusDetails1" class="status">
                 <div>{{status.key}}</div>
                 <div>{{status.value}}</div>
             </div>
         </div>
         <div class="status-table">
-            <div *ngFor="let status of statusDetails2" class="status" style="padding: 20px 0 20px 0;">
+            <div *ngFor="let status of statusDetails2" class="status">
                 <div>{{status.key}}</div>
                 <div>{{status.value}}</div>
             </div>

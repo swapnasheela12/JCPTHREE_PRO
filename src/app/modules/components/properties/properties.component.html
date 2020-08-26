@@ -1,80 +1,94 @@
-<div mat-dialog-content class="wo-sector-container">
-    <mat-card class="task-summary-view p-0">
-        <div class="d-flex mx-2 flex-row flex-wrap task-flex-container" fxLayout="row">
+<div mat-dialog-content class="properties-container">
+    <div class="properties-header p-0">
+        <div class="d-flex mx-2 flex-row flex-wrap prop-container" fxLayout="row">
 
-            <div class="p-2 task-flex-item" style="padding: 15px;">
+            <div class="prop-flex-item">
                 <div class="prop-label">Building Name</div>
                 <div class="prop-value">Champabaug</div>
             </div>
-            <div class="p-2 task-flex-item" style="padding: 15px;">
+            <div class="prop-flex-item">
                 <div class="prop-label">R4G</div>
                 <div class="prop-value">Andhra Pradesh</div>
             </div>
-            <div class="p-2 task-flex-item" style="padding: 15px;">
+            <div class="prop-flex-item">
                 <div class="prop-label">MP Name</div>
                 <div class="prop-value">Durg Bhilainagar</div>
             </div>
-            <div class="p-2 task-flex-item" style="padding: 15px;">
+            <div class="prop-flex-item">
                 <div class="prop-label">Jio Center</div>
                 <div class="prop-value">AP-NRRP-JCP01-0102</div>
             </div>
 
-            <div class="p-2 task-flex-item">
-                <!-- <mat-icon class="search-icon" aria-label="search" ">
-                    <span class=" style="color: rgba(0,0,0,0.54);"></span>
-                </mat-icon> -->
-
+            <div class="prop-flex-item prop-flex-item-wifi">
                 <button mat-button
                     class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center"
                     (click)="showWifiBand($event)">
-                    <div class="zmdi zmdi-portable-wifi" style="font-size: 22px;    margin-bottom: 1px;"></div>
+                    <div class="zmdi zmdi-portable-wifi"></div>
                 </button>
+
 
             </div>
 
-        </div>
-    </mat-card>
+            <div id="chart" class="donut-chart">
+            </div>
 
-    <!-- <mat-card class="tab-container p-0">
-        <mat-dialog-content class="date">
-            <mat-tab-group>
-                <mat-tab label="OVERVEW">
-                    <app-overview></app-overview>
+            <!-- <div class="prop-flex-item prop-flex-item-wifi" >
+                <button mat-button
+                    class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center"
+                    (click)="showWifiBand($event)">
+                    <div class="zmdi zmdi-portable-wifi"></div>
+                </button>
+                <div id="chart" class="donut-chart">
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+
+    <div class="prop-tab-container p-0" *ngIf="showPropTabs">
+        <div class="tabs">
+            <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                <mat-tab label="OVERVIEW">
+                    <app-overview [selectedTab]="selectedTab"></app-overview>
                 </mat-tab>
                 <mat-tab label="GEOGRAPHICAL DETAILS">
-                    <app-geographical-details></app-geographical-details>
+                    <app-geographical-details [selectedTab]="selectedTab"></app-geographical-details>
                 </mat-tab>
                 <mat-tab label="INVENTORY">
-                    <app-inventory></app-inventory>
+                    <app-inventory [selectedTab]="selectedTab"></app-inventory>
                 </mat-tab>
                 <mat-tab label="BACKHAUL">
-                    <app-backhaul></app-backhaul>
+                    <app-backhaul [selectedTab]="selectedTab"></app-backhaul>
                 </mat-tab>
                 <mat-tab label="SITE MILESTONES">
-                    <app-site-milestone></app-site-milestone>
+                    <app-site-milestone [selectedTab]="selectedTab"></app-site-milestone>
                 </mat-tab>
-                <mat-tab label="POWER"> POWER </mat-tab>
-                <mat-tab label="EMS DETAILS"> EMS DETAILS </mat-tab>
+                <mat-tab label="POWER">
+                    <app-power [selectedTab]="selectedTab"> </app-power>
+                </mat-tab>
+                <mat-tab label="EMS DETAILS">
+                    <app-ems-details [selectedTab]="selectedTab"></app-ems-details>
+                </mat-tab>
             </mat-tab-group>
-        </mat-dialog-content>
-    </mat-card> -->
+        </div>
+    </div>
 
-    <mat-card class="tab-container p-0">
-        <mat-dialog-content class="date">
-            <mat-tab-group>
+    <div class="prop-tab-container p-0" *ngIf="showWifiTabs">
+        <div class="tabs h-100">
+            <mat-tab-group class="h-100" (selectedTabChange)="tabChanged($event)">
                 <mat-tab label="OVERVEW">
                     <app-overview></app-overview>
                 </mat-tab>
                 <mat-tab label="ANTENNA PARAMETER">
-                    <app-antenna-parameter></app-antenna-parameter>
+                    <app-antenna-parameter [selectedTab]="selectedTab"></app-antenna-parameter>
                 </mat-tab>
                 <mat-tab label="RADIO PARAMETER">
-                    <app-radio-parameter></app-radio-parameter>
+                    <app-radio-parameter [selectedTab]="selectedTab"></app-radio-parameter>
                 </mat-tab>
                 <mat-tab label="GOLDEN PARAMETER">
-                    <app-golden-parameter></app-golden-parameter>
+                    <app-golden-parameter [selectedTab]="selectedTab"></app-golden-parameter>
                 </mat-tab>
             </mat-tab-group>
-        </mat-dialog-content>
-    </mat-card>
+        </div>
+    </div>
 </div>

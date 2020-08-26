@@ -1,36 +1,107 @@
 .overview-wrapper{
     .overview-container {
-        .longitude-mapping {
-            .graphs {
-                width: 100%;
-                border: 1px sold lightgray;
-                padding: 15px;
-                > div {
-                    width: 49%;
-                    height: 80px;
-                    border: 1px solid lightgray;
-                    display: inline-block;
-                    mat-icon {
-                        text-align: center;
-                        position: relative;
-                        top: 16px;
-                        color: rgba(0,0,0,0.54);
-                        font-size: 34px;
-                        width: 25%;
-                    }
-                    > div{
+        margin-top: 20px;
+        .right-pane {
+            .header-on-air {
+                margin: 0 37px;
+                >label:first-child {
+                    color: black;
+                    font-size: 15px;
+                    font-weight: 500;
+                    border-right: 1px solid lightgray;
+                    padding-right: 15px;
+                }
+                >label:last-child {
+                    margin-left: 15px;
+                    font-size: 14px;
+                    color: rgba(0,0,0,.87);
+                }
+            }
+            .comp-courasal {
+                margin-top: 15px;
+                .indi-slider {
+                    .carousel-multi-item {
                         display: inline-block;
-                        width: 75%;
-                        .overview-value {
-                            position: relative;
-                            top: 15px;
-                            font-size: 16px;
+                        width: 100%;
+                        mdb-carousel-item {
+                            div {
+                                mdb-card {
+                                    mdb-card-body {
+                                        .signal-type {
+                                            font-size: 14px;
+                                            color: rgba(0,0,0,.44);
+                                        }
+                                        .signal-date {
+                                            font-size: 16px;
+                                            color: rgba(0,0,0,.87);
+                                            font-weight: 500;
+                                        }
+                                        .signal-strength {
+                                            font-size: 14px;
+                                            color: rgba(0,0,0,.87);
+        
+                                        
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        .overview-label {
+                        .controls-top {
+                            > a:first-child {
+                                color: black;
+                                position: relative;
+                                top: 77px;
+                            }
+                            > a:last-child {
+                                right: 0;
+                                bottom: 43px;
+                                color: black;
+                                position: absolute;
+                            }
+                        }
+                        .carousel-inner {
+                            display: inline-block;
                             position: relative;
-                            top: 15px;
+                            left: 25px;
+                        }
+                        
+                    }
+                }
+            }
+
+            .longitude-mapping {
+                .graphs {
+                    width: 100%;
+                    border: 1px sold lightgray;
+                    padding-left: 15px;
+                    > div {
+                        width: 49%;
+                        height: 80px;
+                        border: 1px solid lightgray;
+                        display: inline-block;
+                        mat-icon {
+                            text-align: center;
+                            position: relative;
+                            top: 16px;
                             color: rgba(0,0,0,0.54);
-                            font-size: 12px;
+                            font-size: 34px;
+                            width: 25%;
+                        }
+                        > div{
+                            display: inline-block;
+                            width: 75%;
+                            .overview-value {
+                                position: relative;
+                                top: 15px;
+                                font-size: 16px;
+                                color: rgba(0,0,0,.87);
+                            }
+                            .overview-label {
+                                position: relative;
+                                top: 15px;
+                                color: rgba(0,0,0,0.54);
+                                font-size: 12px;
+                            }
                         }
                     }
                 }
@@ -63,7 +134,7 @@
                 .site-address-text {
                     padding: 10px;
                     width: 85%;
-                    font-family: lato medium;
+                    font-family: lato regular;
                     display: inline-block;
                     .site-label {
                         color: rgba(0,0,0,.54);
@@ -109,13 +180,30 @@
         display: inline-block;
         width: 50%;
         .indi-slider {
-            > div {
+            .carousel-multi-item {
                 display: inline-block;
                 width: 20%;
-                .signal-indicator{
-                    border: 1px solid lightgray;
+                mdb-carousel-item {
                     div {
-                        text-align: center;
+                        mdb-card {
+                            mdb-card-body {
+                                .signal-type {
+                                    font-size: 14px;
+                                    color: rgba(0,0,0,.44);
+                                }
+                                .signal-date {
+                                    font-size: 16px;
+                                    color: rgba(0,0,0,.87);
+                                    font-weight: 500;
+                                }
+                                .signal-strength {
+                                    font-size: 14px;
+                                    color: rgba(0,0,0,.87);
+
+                                
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -163,7 +251,8 @@
                 display: inline-block; 
                 border-bottom: 1px solid lightgray;
                 height: 30px;
-                font-family: lato medium;
+                font-family: lato regular;
+                margin: 5px 10px;
                 > div:first-child {
                     width: 50%;
                     display: inline-block;
@@ -189,15 +278,35 @@
         display: inline-block;
         color: rgba(0,0,0,.54);
         font-size: 14px;
+        font-family: lato regular;
     }
     overview-value {
-        font-size: 15px;
+        font-size: 14px;
         color: rgba(0, 0, 0, 0.87);
         width: 100%;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        font-family: lato regular;
     }
     
 }
+
+
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(33.33%);
+}
+
+.carousel-inner .carousel-item-left.active, 
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-33.33%)
+}
+  
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+
 

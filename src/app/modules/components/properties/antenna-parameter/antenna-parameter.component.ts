@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
@@ -15,7 +15,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './antenna-parameter.component.html',
   styleUrls: ['./antenna-parameter.component.scss']
 })
-export class AntennaParameterComponent {
+export class AntennaParameterComponent implements OnChanges {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public paths;
@@ -35,6 +35,9 @@ export class AntennaParameterComponent {
   // public frameworkComponentsSectorMisalignment = {
   //   viewHistroyRenderer: viewHistoryRendererComponent
   // };
+
+  showTab: boolean = false;
+  @Input('selectedTab') public selectedTab;
 
   public url: string = "assets/data/modules/properties/antenna-parameter.json";
 
@@ -56,22 +59,28 @@ export class AntennaParameterComponent {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
-    this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
+  }
+  ngOnChanges() {
+    if (this.selectedTab === "ANTENNA PARAMETER") {
+      this.showTab = true;
+      this.gridOptions = <GridOptions>{};
+      this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message) => {
-      this.sidenavBarStatus = message;
-    });
-
-    this.httpClient.get(this.url)
-      .subscribe(data => {
-        this.rowData = data;
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
+      this.datashare.currentMessage.subscribe((message) => {
+        this.sidenavBarStatus = message;
       });
+
+      this.httpClient.get(this.url)
+        .subscribe(data => {
+          this.rowData = data;
+          this.datatable.rowDataURLServices = this.url;
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.rowDataServices = this.rowData;
+          this.datatable.gridOptionsServices = this.gridOptions;
+          this.datatable.defaultColDefServices = this.defaultColDef;
+        });
+
+    }
   }
 
   getSelection() {

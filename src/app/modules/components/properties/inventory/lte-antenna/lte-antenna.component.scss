@@ -1,6 +1,4 @@
 .lte-antenna-wrapper {
-    height:calc(100% - 52px);
-    overflow: auto;
     background: transparent;
     margin: 15px;
     .execution-task-container-one {
@@ -18,6 +16,7 @@
             }
         }
         .sub-content-container {
+            margin-top: 1px;
             .sub-content {
                 .sub-content-flex-item {
                     .form-field-read-only {
@@ -37,6 +36,14 @@
                 }
 
             }
+        }
+        .site-task-label {
+            padding-bottom: 15px;
+            margin: 15px 15px 0 15px;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(0,0,0,.87);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
         }
     }
 }

@@ -1736,3 +1736,100 @@ svg {
 svg {
     display: none !important
 }   
+
+.overview-wrapper{
+    mdb-carousel {
+        .carousel-multi-item {
+            .controls-top {
+                height: 0px;
+                > a:first-child {
+                    color: rgba(0,0,0,.46);
+                    position: relative;
+                    top: 29px;
+                    left: 16px;
+                    font-size: 20px;
+                    padding: 24px 2px;
+                    border: 1px solid rgba(0,0,0,.1);
+                    z-index: 1;
+                    background-color: #f2f2f2;
+                }
+                > a:last-child {
+                    right: 12px;
+                    bottom: 11px;
+                    color: rgba(0, 0, 0, 0.46);
+                    position: absolute;
+                    font-size: 20px;
+                    padding: 22px 2px;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    z-index: 1;
+                    background-color: #f2f2f2;
+                }
+            }
+            .carousel-indicators {
+                display: none;
+            }
+            .carousel-inner {
+                display: inline-block;
+                position: relative;
+                width: 85%;
+                height: 100%;
+                left: 43px;
+                > mdb-carousel-item {
+                    .col-md-4 {
+                        mdb-card {
+                            mdb-card-body {
+                                padding: 5px 15px;
+                                > div {
+                                    width: 100%;
+                                    text-overflow: ellipsis;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                }
+                               
+                            }
+                        }
+                    }
+                }
+            }
+        }
+     }
+    carousel{
+        .carousel {
+            .carousel-inner {
+                > slide {
+                    .active {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.properties-container {
+    svg {
+        display: inline-block !important;
+        display: inline-block !important;
+        position: absolute;
+        top: 60px;
+        right: 366px;
+        z-index: 100;
+        text {
+            font-size: 11px;
+        }
+        > g:first-child {
+            text {
+                transform: rotate(-54deg);
+                transform-origin: 42% -23%; 
+            }
+        }
+        > g:last-child {
+            text {
+                transform: rotate(62deg);
+                transform-origin: -37% -19%;
+            }
+            
+        }
+    }
+}

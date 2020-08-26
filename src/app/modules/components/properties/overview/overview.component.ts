@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
 // import { CarouselComponent } from 'ngx-bootstrap';
 
-
+declare var $: any;
+declare var require: any;
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnChanges {
   // @ViewChild(CarouselComponent) myCarousel: CarouselComponent;
   products = [
     { source: "../../assets/images/factory.jpg" },
@@ -15,26 +16,22 @@ export class OverviewComponent implements OnInit {
     // { source: "../../assets/images/factory2.jpg" }
   ]
   sitesimages = [{
-    // imageurl: "assets/images/layers/sector-property/2.png"
     imageurl: "assets/images/Layers/sites-expand/sitesexpand2.jpg"
   }, {
-    // imageurl: "assets/images/layers/sector-property/3.png"
     imageurl: "assets/images/Layers/sites-expand/sitesexpand3.jpg"
   }, {
-    // imageurl: "assets/images/layers/sector-property/4.png"
     imageurl: "assets/images/Layers/sites-expand/sitesexpand4.jpg"
   }, {
-    // imageurl: "assets/images/layers/sector-property/4.png"
     imageurl: "assets/images/Layers/sites-expand/sitesexpand6.jpg"
   },
   {
-    // imageurl: "assets/images/layers/sector-property/4.png"
     imageurl: "assets/images/Layers/sites-expand/sitesexpand7.jpg"
   }, {
     imageurl: "assets/images/Layers/sites-expand/sitesexpand8.jpg"
   }
   ];
-  slides = [[]]
+
+  slides: any = [[]];
   signals = [
     {
       type: "Alpha",
@@ -146,48 +143,32 @@ export class OverviewComponent implements OnInit {
     }
   ];
 
-  multiList = ['https://valor-software.com/ngx-bootstrap/assets/images/nature/1.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/2.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/3.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/4.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/5.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/6.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/7.jpg',
-    'https://valor-software.com/ngx-bootstrap/assets/images/nature/8.jpg',
-  ];
-  constructor() { }
 
-  // ngOnInit(): void {
-  //   this.slides = this.chunk(this.signals, 3);
-  // }
-  // chunk(arr, chunkSize) {
-  //   let R = [];
-  //   for (let i = 0, len = arr.length; i < len; i += chunkSize) {
-  //     R.push(arr.slice(i, i + chunkSize));
-  //   }
-  //   return R;
-  // }
+  itemsPerSlide = 3;
+  singleSlideOffset = false;
+  noWrap = false;
 
-  ngOnInit() {
-
+  slidesChangeMessage = '';
+  // showTab: boolean = false;
+  // @Input('selectedTab') public selectedTab;
+  onSlideRangeChange(indexes: number[]): void {
+    this.slidesChangeMessage = `Slides have been switched: ${indexes}`;
   }
-  loopcomplete: boolean = false;
-  itemsPerSlide = 2;
-  singleSlideOffset = true;
-  noWrap = true;
-  activeRange = 0;
-  gotRangeChange() {
-    if (!this.loopcomplete) {
 
-      if (this.activeRange + 2 < this.multiList.length) {
-        this.activeRange = this.activeRange + 2;
-        // this.imagesArray = this.imagesArray.concat(this.masterArray[this.activeRange]);
-        // this.imagesArray = this.imagesArray.concat(this.masterArray[this.activeRange + 1]);
-      } else {
-        this.loopcomplete = true;
-      }
+  ngOnChanges() {
+    // if (this.selectedTab === "OVERVIEW") {
+    //   this.showTab = true;
+    // }
+  }
+
+  ngOnInit(): void {
+    this.slides = this.chunk(this.signals, 3);
+  }
+  chunk(arr, chunkSize) {
+    let R = [];
+    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
+      R.push(arr.slice(i, i + chunkSize));
     }
-
+    return R;
   }
-
 }

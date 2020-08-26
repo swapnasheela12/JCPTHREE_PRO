@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -37,6 +37,8 @@ export class SiteMilestoneComponent {
   public frameworkComponentsSectorMisalignment = {
     viewHistroyRenderer: viewHistoryRendererComponent
   };
+  showTab: boolean = false;
+  @Input('selectedTab') public selectedTab;
 
   public url: string = "assets/data/modules/properties/site-milestone/site-milestone.json";
 
@@ -58,22 +60,28 @@ export class SiteMilestoneComponent {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
-    this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
+  }
 
-    this.datashare.currentMessage.subscribe((message) => {
-      this.sidenavBarStatus = message;
-    });
+  ngOnChanges() {
+    if (this.selectedTab === "SITE MILESTONES") {
+      this.showTab = true;
+      this.gridOptions = <GridOptions>{};
+      this.createColumnDefs();
 
-    this.httpClient.get(this.url)
-      .subscribe(data => {
-        this.rowData = data;
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
+      this.datashare.currentMessage.subscribe((message) => {
+        this.sidenavBarStatus = message;
       });
+
+      this.httpClient.get(this.url)
+        .subscribe(data => {
+          this.rowData = data;
+          this.datatable.rowDataURLServices = this.url;
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.rowDataServices = this.rowData;
+          this.datatable.gridOptionsServices = this.gridOptions;
+          this.datatable.defaultColDefServices = this.defaultColDef;
+        });
+    }
   }
 
   getSelection() {

@@ -1,7 +1,10 @@
 .inventory-wrapper {
+    height: 100%;
     .side-bar {
+        overflow: auto;
         border: 1px solid rgba(0, 0, 0, 0.12);
-        > div {
+        > .radio {
+            margin-top: 10px;
             mat-radio-group {
                 mat-radio-button {
                     padding-left: 15px;
@@ -17,6 +20,17 @@
                     color: #2196f3;
                 }
             }
+        }
+        >.radio-title {
+            font-family: lato bold;
+            background-color: #f9f9f9;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0,0,0,.12);
+            border: 0px;
+            color: black;
         }
 
     }
