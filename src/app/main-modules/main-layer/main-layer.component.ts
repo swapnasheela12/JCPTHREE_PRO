@@ -28,6 +28,8 @@ import '../../../js/leaflet-ruler.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter'
 import { stringToArray } from 'ag-grid-community';
 import { MarcoService } from './sites/outdoor/macro/marco.service';
+import 'leaflet-contextmenu';
+// import '../../../../node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.min.js';
 declare var $: any;
 declare const testName: any;
 
@@ -42,7 +44,7 @@ interface DataObject {
   styleUrls: ['./main-layer.component.scss']
 })
 export class MainLayerComponent implements OnInit, AfterViewInit {
-  // map: L.Map;
+
   map: any;
   CanvasLayer: any;
   public chartDivWidth;
@@ -54,7 +56,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public customControlList;
 
   public currentZoom;
-
+  mapContextMenuItems;
   //CANVAS LIBRARY CONTENT
   public canvasLibrary: DataObject;
 
@@ -64,7 +66,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public fanDataError: String;
 
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient,private marcoService:MarcoService
+    private http: HttpClient, private marcoService: MarcoService
   ) {
     this.datashare.currentMessage.subscribe((message) => {
 
@@ -91,9 +93,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
   }
-
+  cotMenu;
   ngOnInit(): void {
     this.canvasLibrary = canvasLayerForLeaflet();
+    this.cotMenu = contextLayerMenu();
     this.siteDataJson();
   }
 
@@ -101,7 +104,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.initMap();
     this.markerService.makeCapitalMarkers(this.map);
-   }
+  }
 
 
   private initMap(): void {
@@ -117,31 +120,40 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       tooltipAnchor: [16, -28],
       shadowSize: [41, 41]
     });
+
     L.Marker.prototype.options.icon = iconDefault;
 
-    this.map = L.map('map', {
+
+
+    let optionMap = {
+      layers: [L.tileLayer(
+        'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], maxZoom: 5 })],
       center: [25.0000, 79.0000],
       //center:[19.04,72.90],
       zoomControl: false,
-      zoom: 5
-    });
-    console.log(L, "L")
-    //console.log(this.map, "this.map");
-    //console.log(L, "L.....");
+      zoom: 5,
+      contextmenu: true,
+      contextmenuWidth: 140,
+      contextmenuItems: [
+        {
+          text: 'ScreenShort',
+          callback: this.screenShortFun
+        },
+        {
+          text: 'Distance Measure',
+          callback: (e) => { this.distanceMeasureFun(e); }
+          // callback: this.distanceMeasureFun
+        },
+      ]
+    }
+
+    this.map = this.cotMenu.map('map', optionMap);
+
     this.map.on('pm:globalremovalmodetoggled', e => { });
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.map);
-
-    //CanvasLibrary
-    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
-    // this.connectPoints(this.map);
-    const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-      maxZoom: 20,
-      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    });
-    tiles.addTo(this.map);
-
 
     //geo json control
     var options = {
@@ -163,8 +175,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.map.pm.addControls(options);
     //geo json control
 
-    this.currentZoom = this.map.getZoom();
+    //CanvasLibrary
+    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
 
+
+
+    this.currentZoom = this.map.getZoom();
 
     //screenshort
     this.screenShotControl = L.Control.extend({
@@ -227,7 +243,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //screenshort
 
     //custome controller//
-
 
     this.customControlPanIndia = L.Control.extend({
 
@@ -455,147 +470,29 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       },
 
     });
-
     this.map.addControl(new this.customControlList());
-
-    //custome controller end//
-
-    // var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-    //   denver = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-    //   aurora = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-    //   golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
-
-    // var cities = L.layerGroup([littleton, denver, aurora, golden]);
-    // cities.addTo(this.map);    // Adding layer group to map
-
-
+    //custome controller//
 
     this.shapeService.getStateShapes().subscribe(states => {
       // console.log(states, "states");
-
       this.states = states;
       this.initStatesLayer();
     });
 
-    //console.log(L, "l{{{{{{");
-    // console.log(L.canvasLayer().drawing(this)
-    // .addTo(this.map),"l{{{{{{");
+  }
 
+  screenShortFun(e) {
+    alert(e.latlng);
 
-    // //add layer in overlay
-    // var layer1 = L.marker([51.505, -0.10]);
-    // var layer2 = L.marker([51.505, -0.09]);
-    // var layer3 = L.marker([51.505, -0.8]);
+    
+  }
 
-    // var basemaps = {
-    //   "OSM": tiles
-    // };
+  distanceMeasureFun(e) {
+    alert(e.latlng);
 
-    // var overlays = {
-    //   "Layer1": layer1,
-    //   "Layer2": layer2,
-    //   "Layer3": layer3
-    // }
-
-    // var controlObj = L.control.layers(basemaps, overlays, { collapsed: false }).addTo(this.map);
-
-    // layer1.on("add", function () {
-    //   console.log(controlObj, "??????")
-    // });
-
-    // //add layer in overlay
-    var stage = new createjs.Stage("demoCanvas");
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-    circle.x = 100;
-    circle.y = 100;
-    stage.addChild(circle);
-    stage.update();
-
-    ///////////////
-    // this.map.setView([25.0000, 79.0000], 5);
-
-    // var myRenderer = L.canvas({ padding: 0.5 });
-    // for (var i = 0; i < 100000; i += 1) { // 100k points
-    //   L.circleMarker(this.getRandomLatLng(), {
-    //     renderer: myRenderer
-    //   }).addTo(this.map).bindPopup('marker ' + i);
-    // }
-
-    //console.log(L, ">>>>>>>>>");
-    //console.log(L.FeatureGroup, ">>>>>>>>>");
-
-    let extlayer = L.LayerGroup.extend({
-
-      addLayer: function (layer) {
-        // console.log(layer, "layer");
-
-        L.LayerGroup.prototype.addLayer.call(this, layer);
-      },
-
-
-    });
-    // console.log(extlayer, "extlayer");
-
-
-
-    //////////////////////
-
-    // var markers = L.markerClusterGroup();
-
-    // function populate() {
-    //   for (var i = 0; i < 10; i++) {
-    //     var bounds = map.getBounds();
-    //     var southWest = bounds.getSouthWest();
-    //     var northEast = bounds.getNorthEast();
-    //     var lngSpan = northEast.lng - southWest.lng;
-    //     var latSpan = northEast.lat - southWest.lat;
-    //     var latR = southWest.lat + latSpan * Math.random();
-    //     var lngR = southWest.lng + lngSpan * Math.random();
-
-    //     var myIcon = L.divIcon({
-    //       iconSize: new L.Point(50, 50),
-    //       html: String(i)
-    //     });
-
-    //     var m = L.marker(L.latLng(latR, lngR), { icon: myIcon });
-    //     markers.addLayer(m);
-    //   }
-    //   return false;
-    // }
-
-    // var MyLayer = (L as any).CanvasLayer.extend({
-    //   render: function () {
-    //     var canvas = this.getCanvas();
-    //     var ctx = canvas.getContext('2d');
-    //     // render
-    //   }
-    // });
-    // create and add to the map
-    //var layer = new MyLayer();
-    //console.log(layer, "layer");
-
-    //layer.addTo(this.map);
-
-    // populate();
-    // this.map.addLayer(markers);
-
-
-
-
-
-
-    //////////////
 
   }
 
-
-  // getRandomLatLng() {
-  //   return [
-  //     -90 + 180 * Math.random(),
-  //     -180 + 360 * Math.random()
-  //   ];
-  // }
 
   states;
   private initStatesLayer() {
@@ -641,18 +538,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   }
 
   //LOAD JSON DATA FOR SHAPE (FAN)
-  siteDataJson(){
+  siteDataJson() {
     this.http.get("assets/data/layers/microsites-onair.json")
-    .subscribe(data => {
-      this.initializeNodes(data);
-    },
-    error => {
-      this.fanDataError = error;
-    });
+      .subscribe(data => {
+        this.initializeNodes(data);
+      },
+        error => {
+          this.fanDataError = error;
+        });
   }
 
   //LOAD ALL THE NODES ONTO THE MAP
-  initializeNodes(data){
+  initializeNodes(data) {
     this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
     let nodes = new this.marcoService.nodeCreationInitializer(data);
     nodes.addTo(this.map);

@@ -32,6 +32,7 @@ const routes: Routes = [
       { path: "Ag-Tree-Rendering", component:AgGridTreeRenderingComponent},
       { path: "My-JCP", component:MyJcpComponent},
       {path: "Properties", component: PropertiesComponent},
+      { path: "Layers_Cust", component:LayersCustComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       {
