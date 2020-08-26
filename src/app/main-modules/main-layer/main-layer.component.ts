@@ -128,7 +128,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     let optionMap = {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], maxZoom: 5 })],
+        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3']})],
       center: [25.0000, 79.0000],
       //center:[19.04,72.90],
       zoomControl: false,
