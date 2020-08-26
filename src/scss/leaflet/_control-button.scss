@@ -275,15 +275,48 @@
                 // }
                 .customLegends-setting-card {
                     margin: 15px;
+                    border-radius: 4px;
                     .customLegends-setting-row {
                         .customLegends-setting-type {
+                            color: #666666;
                             .form-field-selected-layers {
                                 width: 100%;
                                 .colorpalette {
                                     width: 20px;
                                     height: 4px;
-                                    background:red;
+                                    background: red;
                                 }
+                            }
+                        }
+                    }
+                    .toolbar-kpi-setting-control-layers {
+                        height: 48px;
+                        background: #F0F0F0;
+                        .toolbar-kpi-setting-control-title {
+                            font-size: 16px;
+                            font-family: Lato Bold;
+                        }
+                        .toolbar-kpi-setting-control-icon-list {
+                            font-size: 22px;
+                        }
+                    }
+                    .kpi-setting-container {
+                        height: calc(100% - 110px) !important;
+                        max-height: calc(100% - 110px) !important;
+                        min-height: calc(100% - 110px) !important;
+                        padding: 15px 10px;
+                        overflow: auto;
+                        .kpi-setting-list-container {
+                            .kpi-setting-list-title {
+                                font-size: 18px;
+                                font-family: Lato Regular;
+                                opacity: .5 !important;
+                                margin: 10px 0;
+                            }
+                            .kpi-setting-list-child-container {
+                                font-size: 16px;
+                                font-family: Lato Medium;
+                                .kpi-setting-list-child-check {}
                             }
                         }
                     }
@@ -311,4 +344,41 @@
         // filter: blur(10px);
         margin: -20px;
     }
+}
+
+.MyClass {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.form-field-selected-color {
+    .mat-form-field-wrapper {
+        .mat-form-field-appearance-legacy .mat-form-field-underline {
+            background-color: rgba(0, 0, 0, 0);
+        }
+    }
+    .mat-form-field-infix {
+        line-height: 2 !important;
+        padding: 0em 0 !important;
+    }
+    // background: red;
+    .mat-select-arrow {
+        margin: 10px 30px;
+    }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     height: 0px;
+    //     ba
+    // }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     background-color: #e0e0e0 !important;
+    // }
+    // .mat-input-underline {
+    //     display: none !important;
+    // }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     background-color: rgb(0 0 0 / 0%) !important;
+    // }
+    // .mat-form-field-disabled .mat-form-field-underline {
+    //     background-image: none !important;
+    // }
 }

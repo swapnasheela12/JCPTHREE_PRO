@@ -1,7 +1,6 @@
 <div #container class="jcp-customLegends-setting-control-layers-container">
     <div class="toolbar-customLegends-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
         <div class="toolbar-customLegends-setting-control-title" fxFlex>
-            <!-- <span class="ic ic-customLegends-01 pr-1" style="font-size: 16px;"></span> -->
             <span>Custom Legends & Ranges : Layer Settings</span>
         </div>
         <div class="toolbar-customLegends-setting-control-icon-list">
@@ -10,21 +9,12 @@
     </div>
     <mat-divider></mat-divider>
     <div class="customLegends-setting-container">
-        <!-- <div fxLayout="column" class="customLegends-setting-list-container" *ngFor="let customLegends of customLegendsdisplayslist ; first as isFirst; last as isLast">
-            <div class="customLegends-setting-list-title  px-1">{{ customLegends.name }}</div>
-            <div class="customLegends-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
-                <div class="customLegends-setting-list-child-check" fxFlex="30" *ngFor="let item of customLegends.checks">
-                    <mat-checkbox>{{item.name}}</mat-checkbox>
-                </div>
-            </div>
-            <mat-divider *ngIf="!isLast"></mat-divider>
-        </div> -->
 
         <mat-card class="customLegends-setting-card">
             <div class="customLegends-setting-row" fxLayout="row wrap" fxLayoutAlign="space-around center">
                 <div class="customLegends-setting-type" fxFlex="50">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select Technology" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="technologySelected" class="mat-select-selected-layers" placeholder="Select Technology" #singleSelect>
                             <mat-option *ngFor="let layer of technologyList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
@@ -33,7 +23,7 @@
                 </div>
                 <div class="customLegends-setting-type" fxFlex="50">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select KPI" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="kpiSelected" class="mat-select-selected-layers" placeholder="Select KPI" #singleSelect>
                             <mat-option *ngFor="let layer of kpiList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
@@ -42,30 +32,34 @@
                 </div>
                 <div class="customLegends-setting-type" fxFlex="100">
                     <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Select Band" #singleSelect>
+                        <mat-select disableOptionCentering [(value)]="bandSelected" class="mat-select-selected-layers" placeholder="Select Band" #singleSelect>
                             <mat-option *ngFor="let layer of bandList" [value]="layer.value">
                                 {{layer.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+
                 </div>
                 <div class="customLegends-setting-type" fxFlex="70">
-                    <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Palette" #singleSelect>
-                            <!-- <mat-option *ngFor="let layer of paletteList" [value]="layer.value">
-                                <div>{{layer.value}}</div> -->
-                            <!-- <div class="w-100" *ngFor="let item of layer.colorpalette"> -->
-                            <!-- <div class="colorpalette" [ngStyle]="{'background-color':item.colorName}"></div> -->
-                            <!-- <div class="colorpalette"></div> -->
-                            <!-- </div> -->
-                            <!-- </mat-option> -->
-                            <mat-option>
-                                <div style="display: inline-flex;">
-                                    <div>NPE View</div>
-                                    <div class="colorpalette"></div>
-                                </div>
+                    <mat-form-field class="form-field-selected-palette px-3 w-100">
+                        <mat-select id="colorPalette" (selectionChange)="onChange($event)" [(value)]="paletteSelected" disableOptionCentering class="mat-select-selected-layers" placeholder="">
 
+                            <mat-option *ngFor="let color of paletteList; index as i;" [value]="color.name">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
                             </mat-option>
+                            <mat-select-trigger *ngFor="let color of paletteList; index as i;">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
+                            </mat-select-trigger>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -76,8 +70,29 @@
                 </div>
             </div>
         </mat-card>
-        <mat-card class="customLegends-setting-card"></mat-card>
-        <mat-card class="customLegends-setting-card"></mat-card>
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;height: 210px;">
+            <app-table-ag-grid></app-table-ag-grid>
+        </mat-card>
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;">
+            <div class="toolbar-kpi-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+                <div class="toolbar-kpi-setting-control-title" fxFlex>
+                    <span>Apply To</span>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+            <div class="kpi-setting-container">
+                <div fxLayout="column" class="kpi-setting-list-container p-0" *ngFor="let kpi of kpidisplayslist ; first as isFirst; last as isLast">
+                    <div class="kpi-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div class="kpi-setting-list-child-check" fxFlex="50" *ngFor="let item of kpi.checks">
+                            <mat-checkbox [checked]="item.staus" [disabled]="item.disabled">{{item.name}}</mat-checkbox>
+                        </div>
+                    </div>
+                    <mat-divider *ngIf="!isLast"></mat-divider>
+                </div>
+
+            </div>
+        </mat-card>
 
     </div>
     <mat-divider></mat-divider>

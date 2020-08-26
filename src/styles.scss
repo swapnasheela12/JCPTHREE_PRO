@@ -87,6 +87,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 //END font icons
+@import "~leaflet-contextmenu/dist/leaflet.contextmenu.css";
 // * {
 //   font-family: 'Lato Regular', 'Lato Bold' !important;
 // }
@@ -1328,6 +1329,14 @@ table {
     background-color: #0078D7;
 }
 
+.form-field-selected-color {
+    .mat-form-field-wrapper {
+        .mat-form-field-underline {
+            display: none;
+        }
+    }
+}
+
 // .md-drppicker{
 //  background: #ffffff;
 // }
@@ -1676,23 +1685,7 @@ table {
 }
 
 .bg-in-progress {
-     background-color: #ff8000 !important;
- }
-
- .overview-wrapper{
-    .overview-container {
-        .left-pane {
-            .images {
-                .left-carousel {
-                    .carousel{
-                        .carousel-inner {
-                            height: 57vh !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    background-color: #ff8000 !important;
 }
 
 svg {
@@ -1720,6 +1713,11 @@ svg {
     }
 }
 
+// .ag-theme-material .ag-header{
+//     background-color: #EAECEC;
+// }
+
+
 .redFont {
     color: red!important;
 }
@@ -1732,10 +1730,6 @@ svg {
 .material-dialog-container .mat-dialog-container{
        overflow: hidden;
    }
-
-svg {
-    display: none !important
-}   
 
 .overview-wrapper{
     mdb-carousel {

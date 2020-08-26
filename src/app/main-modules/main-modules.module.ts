@@ -1,3 +1,4 @@
+import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
@@ -89,6 +90,7 @@ import { SpiderViewDirective } from './main-layer/spider-view/spider-view.direct
 import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
 import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
+import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-l
     SpiderViewDirective,
     TreeNodeComponent,
     AlarmsPopupComponent,
-    CustomLegendsComponent
+    CustomLegendsComponent,
+    ScreenshotPreviewComponent,colorDropdownRendererComponent
   ],
   imports: [
     CommonModule,
@@ -129,7 +132,7 @@ import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-l
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent,colorDropdownRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -196,6 +199,7 @@ import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-l
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
+    colorDropdownRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,

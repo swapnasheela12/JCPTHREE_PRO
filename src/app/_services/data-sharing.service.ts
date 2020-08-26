@@ -35,6 +35,7 @@ export class DataSharingService {
 
   templateGalleryValue(value: Object) {
     this.templateGalleryValueSource.next(value);
+      this.templateGalleryValueSource.next('');
   }
 
   chechboxChangeMessage(checkBox: Object) {

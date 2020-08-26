@@ -16,6 +16,33 @@ import { LocaleConfig } from 'ngx-daterangepicker-material';
 })
 export class LegendsAndFilterComponent implements OnInit {
 
+  // selectedColor = '';
+  // selectedColorValue;
+
+  // colors = [
+  //   {
+  //     name: 'yellow',
+  //     value: '#ffff00'
+  //   },
+  //   {
+  //     name: 'red',
+  //     value: '#ff3300'
+  //   },
+  //   {
+  //     name: 'blue',
+  //     value: '#0000ff'
+  //   }
+  // ];
+
+  // onChange(value){
+  //   console.log(value,"value");
+    
+  //   this.selectedColor = value;
+  //   this.selectedColorValue = value;
+  // }
+
+
+
   items = [
     { value: 1, legend: '#F44336' },
     { value: 3, legend: '#FF9800' },

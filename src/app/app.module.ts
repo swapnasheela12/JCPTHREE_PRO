@@ -14,8 +14,6 @@ import { AppComponent } from "./app.component";
 import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.component";
 import { HomeJcpThreeComponent } from "./home-jcp-three/home-jcp-three.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import * as _ from "lodash";
@@ -23,6 +21,8 @@ import * as _ from "lodash";
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 // import {ClipboardModule} from '@angular/cdk/clipboard';
+
+
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -63,7 +63,11 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
+
+
 // import { FilterUniquePipe } from './_pipes/filterUnique/filter-unique.pipe';
+
+
 import { ClickOutsideDirective } from './_directive/click-outside.directive';
 import { CoreModule } from './core/core.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -72,19 +76,29 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SuccessfulComponent } from './core/components/commanPopup/successful/successful.component';
 import { SideNavService } from './_services/side-nav.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 // import { MyReportsComponent } from './main-modules/reports-dashboards/my-reports/my-reports.component';
 // import { ReportsWizardComponent } from './main-modules/reports-dashboards/reports-wizard/reports-wizard.component';
 // import { CreateReportComponent } from './main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 // import { ButtonRendererComponent } from './main-modules/reports-dashboards/my-reports/button-renderer.component';
+
+
 import { MainModulesModule } from './main-modules/main-modules.module';
 import { LandingHomeComponent } from './home-jcp-three/landing-home/landing-home.component';
+
+
 // import { HighchartsChartComponent } from 'highcharts-angular';
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
 // import { MainLayerComponent } from './main-layer/main-layer.component';
 import { MarkerService } from './_services/leaflate/marker.service';
 import '@geoman-io/leaflet-geoman-free';
+
+
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SettingsDialogComponent } from './core/components/header/myjcpdropdownpanel/settings-dialog/settings-dialog.component';
 import { RowRenderingComponent, ModalTemplateComponent } from './modules/components/row-rendering/row-rendering.component';
@@ -97,17 +111,6 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
 import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
 import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
-import { PropertiesComponent } from './modules/components/properties/properties.component';
-import { OverviewComponent } from './modules/components/properties/overview/overview.component';
-import { SiteMilestoneComponent } from './modules/components/properties/site-milestone/site-milestone.component';
-import { BackhaulComponent } from './modules/components/properties/backhaul/backhaul.component';
-import { InventoryComponent } from './modules/components/properties/inventory/inventory.component';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { GeographicalDetailsComponent } from './modules/components/properties/geographical-details/geographical-details.component';
-import { PowerComponent } from './modules/components/properties/power/power.component';
-import { EmsDetailsComponent } from './modules/components/properties/ems-details/ems-details.component';
-import { LteAntennaComponent } from './modules/components/properties/inventory/lte-antenna/lte-antenna.component';
-import { BbuComponent } from './modules/components/properties/inventory/bbu/bbu.component';
 import { AlarmsPopupComponent } from '../../src/app/modules/components/alarms-popup/alarms-popup.component';
 import { CapacityComponent } from '../app/modules/components/capacity/capacity.component';
 import { ConfigurationComponent } from '../app/modules/components/configuration/configuration.component';
@@ -116,6 +119,7 @@ import { GoldenParameterComponent } from './modules/components/properties/golden
 import { RadioParameterComponent } from './modules/components/properties/radio-parameter/radio-parameter.component';
 import { AntennaParameterComponent } from './modules/components/properties/antenna-parameter/antenna-parameter.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+//import { CarouselModule } from 'ngx-bootstrap';
 
 declare var $: any;
 
@@ -130,16 +134,6 @@ declare var $: any;
     RowRenderingComponent,
     ColumnRenderingComponent,
     TreeRenderingComponent,
-    PropertiesComponent,
-    OverviewComponent,
-    InventoryComponent,
-    BackhaulComponent,
-    SiteMilestoneComponent,
-    GeographicalDetailsComponent,
-    PowerComponent,
-    EmsDetailsComponent,
-    LteAntennaComponent,
-    BbuComponent,
     // MainLayerComponent,
     ModalTemplateComponent,
     AgGridRowRenderingComponent,
@@ -147,11 +141,9 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
-    ConfigurationComponent,
-    GoldenParameterComponent,
-    RadioParameterComponent,
-    AntennaParameterComponent
+    ConfigurationComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -170,10 +162,11 @@ declare var $: any;
     FlexLayoutModule,
 
     ///ngx corausal
-    CarouselModule,
+   // CarouselModule,
     MDBBootstrapModule,
     MDBBootstrapModule.forRoot(),
-    CarouselModule.forRoot(),
+    //CarouselModule.forRoot(),
+
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([]),
 

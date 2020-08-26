@@ -1,0 +1,47 @@
+<div class="h-100">
+    <mat-card style="height: auto;" class="view-summary-top-card p-0 mb-3 mx-0">
+        <mat-card-header class="m-0" fxLayoutAlign="start center">
+            <mat-card-title class="card-title" fxFlex="20">View Summary</mat-card-title>
+            <div fxLayoutAlign="center center" fxFlex="auto">
+                <span class="name">Cell Data:</span>
+                <div fxLayout="row" *ngFor="let item of dataList">
+                    <span class="name">{{item.name}} :</span>
+                    <span class="value"> {{item.value}}</span>
+                    <mat-divider *ngIf="item.name !='2300-C2'" class="mx-2" style="height:20px" [vertical]="true"></mat-divider>
+                </div>
+            </div>
+            <div fxLayoutAlign="end center" fxLayout="row wrap" class="pr-4" fxFlex="20">
+                <mat-form-field fxFlex="55">
+                    <mat-select [(value)]="cellList" disableOptionCentering [matTooltip]="cellList">
+                        <mat-option value="Custom Cell List">Custom Cell List</mat-option>
+                        <mat-option value="Cell List + Neighbor">Cell List + Neighbor</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="pl-3" fxFlex="40">
+                    <mat-select disableOptionCentering [(value)]="time">
+                        <mat-option value="Daily">Daily</mat-option>
+                        <mat-option value="BBH">BBH</mat-option>
+                        <mat-option value="Hourly">Hourly</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="card-content p-3" fxLayout="row wrap">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="35">
+                <div fxLayoutAlign="space-between center" *ngFor="let item of legendsList" class="legends-holder">
+                    <div [ngClass]="item.class" class="square"></div>
+                    <span class="pl-2 name">{{item.name}}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="view-summary-card">
+        <mat-divider></mat-divider>
+        <mat-card-content class="view-summary-card-content">
+            <ag-grid-angular style="width: 100%; height: calc(100% - 2px);" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="28" [gridOptions]="gridViewSummaryGridOptions" [columnDefs]="gridViewSummaryColumnDefs" [rowData]="gridViewSummaryRowData" enableColResize
+                enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true">
+            </ag-grid-angular>
+        </mat-card-content>
+    </mat-card>
+</div>

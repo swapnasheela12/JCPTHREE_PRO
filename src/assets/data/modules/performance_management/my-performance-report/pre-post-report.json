@@ -1,0 +1,48 @@
+[{
+  "kpiImpact": "%Change",
+  "overall": 25,
+  "850": -30,
+  "1800": 20,
+  "2300C1": -40,
+  "2300C2": 30,
+  "pre": 10,
+  "post": 15
+
+}, {
+  "kpiImpact": "%Improved cells",
+  "overall": 25,
+  "850": 30,
+  "1800": 20,
+  "2300C1": 25,
+  "2300C2": 25
+}, {
+  "kpiImpact": "%Degraded cells",
+  "overall": 25,
+  "850": 20,
+  "1800": 40,
+  "2300C1": 10,
+  "2300C2": 45
+}, {
+  "kpiImpact": "%No Impact Cells",
+  "overall": 25,
+  "850": 20,
+  "1800": 20,
+  "2300C1": 10,
+  "2300C2": 25
+},
+{
+  "kpiImpact": "%Cells Excluded",
+  "overall": 25,
+  "850": 30,
+  "1800": 20,
+  "2300C1": 40,
+  "2300C2": 40
+},
+{
+  "kpiImpact": "Total Cells",
+  "overall": 100,
+  "850": 100,
+  "1800": 100,
+  "2300C1": 100,
+  "2300C2": 20
+}]

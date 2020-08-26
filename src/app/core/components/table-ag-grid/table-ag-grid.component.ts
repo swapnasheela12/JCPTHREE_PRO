@@ -1,3 +1,4 @@
+import { colorDropdownRendererComponent } from './../ag-grid-renders/color-dropdown-renderer.component';
 import { FormControl } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
@@ -25,12 +26,13 @@ export class TableAgGridComponent implements OnInit, OnChanges {
   gridOptionsObj;
   defaultColDef;
   typeOfAgGridTable;
-  // paginationRequired: boolean = false;
-  // autoPageSizeRequired: boolean = false;
+  // paginationRequired: boolean = true;
+  // autoPageSizeRequired: boolean = true;
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
-    viewHistroyRenderer: viewHistoryRendererComponent
+    viewHistroyRenderer: viewHistoryRendererComponent,
+    colorDropdownRenderer:colorDropdownRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];
@@ -56,17 +58,12 @@ export class TableAgGridComponent implements OnInit, OnChanges {
       // }
 
     });
-    //////////////////////////////////////////////////////
-    // <!-- TODO For enabling and disabling pagination and auto page size based on condition -->
-    // if (data.paginationRequired && data.autoPageSizeRequired) {
-    //   this.paginationRequired = data.paginationRequired;
-    //   this.autoPageSizeRequired = data.autoPageSizeRequired;
-    //   console.log("this.pagination", this.paginationRequired)
-    //   console.log("this.autoPageSixe", this.autoPageSizeRequired)
-    // }
+
     this.gridOptions = <GridOptions>{};
     this.columnDefs = data.columnDefsServices;
     this.rowData = data.rowDataServices;
+    // this.paginationRequired = data.paginationRequired;
+    // this.autoPageSizeRequired = data.autoPageSizeRequired;
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
