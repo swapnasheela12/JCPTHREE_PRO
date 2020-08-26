@@ -118,7 +118,7 @@ import { from } from 'rxjs';
 import { GoldenParameterComponent } from './modules/components/properties/golden-parameter/golden-parameter.component';
 import { RadioParameterComponent } from './modules/components/properties/radio-parameter/radio-parameter.component';
 import { AntennaParameterComponent } from './modules/components/properties/antenna-parameter/antenna-parameter.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { OverviewComponent } from './modules/components/properties/overview/overview.component';
 import { GeographicalDetailsComponent } from './modules/components/properties/geographical-details/geographical-details.component';
 import { InventoryComponent } from './modules/components/properties/inventory/inventory.component';
@@ -187,8 +187,8 @@ declare var $: any;
 
     ///ngx corausal
     CarouselModule,
-    MDBBootstrapModule,
-    MDBBootstrapModule.forRoot(),
+    // MDBBootstrapModule,
+    // MDBBootstrapModule.forRoot(),
     CarouselModule.forRoot(),
 
     NgxDaterangepickerMd.forRoot(),
