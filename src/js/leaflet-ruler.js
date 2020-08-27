@@ -174,4 +174,6 @@ function rulerLeaflet() {
             };
             return L;
         }, window));
+
+    return L;
 }

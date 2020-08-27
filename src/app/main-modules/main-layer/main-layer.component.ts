@@ -60,6 +60,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   //CANVAS LIBRARY CONTENT
   public canvasLibrary: DataObject;
 
+  // screenShortFun;
+  simpleMapScreenshoterContext
 
   //PIE JSON DATA
   public siteData: DataObject;
@@ -93,10 +95,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
   }
-  cotMenu;
+  contextMenuLib;
+  rulerLeafletLib;
   ngOnInit(): void {
     this.canvasLibrary = canvasLayerForLeaflet();
-    this.cotMenu = contextLayerMenu();
+    this.rulerLeafletLib = rulerLeaflet();
+    this.contextMenuLib = contextLayerMenu();
     this.siteDataJson();
   }
 
@@ -128,7 +132,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     let optionMap = {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3']})],
+        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
       center: [25.0000, 79.0000],
       //center:[19.04,72.90],
       zoomControl: false,
@@ -138,17 +142,65 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       contextmenuItems: [
         {
           text: 'ScreenShort',
-          callback: this.screenShortFun
+          callback: (e) => {
+            console.log(e, "e");
+
+            // L.DomEvent.preventDefault(e);
+            setTimeout(() => {
+              this.simpleMapScreenshoterContext = L.simpleMapScreenshoter({
+                hidden: true, // hide screen icon
+
+              }).addTo(this.map)
+              this.simpleMapScreenshoterContext.takeScreen('image', {
+                caption: function () {
+                  return 'Jio Cognitive Platform'
+                }
+              }).then(image => {
+
+                var screenshortListDialogRef = {
+                  width: '650px',
+                  height: '450px',
+                  data: {
+                    imageDataURL: image
+                  },
+                  panelClass: "table-view-layers-dialog-container",
+
+                }
+                const dialogRef = _dialog.open(ScreenshotPreviewComponent, screenshortListDialogRef);
+
+              }).catch(e => {
+                alert(e.toString())
+              })
+
+              this.simpleMapScreenshoterContext.addTo(this.map)
+            }, 2000);
+
+            // alert(e.latlng);
+            $(".leaflet-contextmenu").hide();
+          }
         },
         {
           text: 'Distance Measure',
-          callback: (e) => { this.distanceMeasureFun(e); }
+          callback: (e) => {
+            var options = {
+              // hidden: true,
+              position: 'bottomright',
+              lengthUnit: {
+                display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
+                decimal: 2,                 // Distance result will be fixed to this value. 
+                factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+                label: 'Distance:'
+              }
+            };
+            this.rulerLeafletLib.control.ruler(options).addTo(this.map);
+
+          }
           // callback: this.distanceMeasureFun
         },
       ]
     }
 
-    this.map = this.cotMenu.map('map', optionMap);
+    this.map = this.contextMenuLib.map('map', optionMap);
 
     this.map.on('pm:globalremovalmodetoggled', e => { });
     L.control.zoom({
@@ -178,7 +230,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //CanvasLibrary
     this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
 
-
+    // this.connectPoints(this.map);
 
     this.currentZoom = this.map.getZoom();
 
@@ -479,18 +531,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       this.initStatesLayer();
     });
 
+
+
   }
 
-  screenShortFun(e) {
-    alert(e.latlng);
 
-    
-  }
 
   distanceMeasureFun(e) {
-    alert(e.latlng);
+    console.log(e, "e?");
 
-
+    // alert(e.latlng);
   }
 
 
@@ -536,6 +586,97 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       fillColor: '#6DB65B'
     });
   }
+
+
+  // connectPoints(map) {
+  //   let latA: any;
+  //   let latB: any;
+  //   let counterid: number = 1;
+  //   let pointA: any;
+  //   let pointB: any;
+  //   this.map.on('click', function (e) {
+  //     this.containerID = ++counterid;
+  //     if (!latA) {
+  //       latA = e.latlng;
+  //       this.latAdata = latA;
+  //       //POINT A
+  //       pointA = new L.Marker(latA, {
+  //         draggable: true
+  //       });
+  //       pointA.addTo(this.map);
+  //       pointA.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+  //         minWidth: 245
+  //       }).openPopup();
+
+  //     }
+  //     else {
+  //       latB = e.latlng;
+  //       this.latAdata = latB;
+  //       //POINT B
+  //       pointB = new L.Marker(latB, {
+  //         draggable: true
+  //       });
+  //       pointB.addTo(this.map);
+  //       pointB.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
+  //         minWidth: 245
+  //       }).openPopup();
+  //     }
+
+  //     if (latA && latB) {
+  //       console.log(L);
+  //       var polyline = L.polyline([latA, latB], {
+  //         color: 'red',
+  //         weight: 7,
+  //         opacity: 7,
+  //         smoothFactor: 10
+  //       }).addTo(this.map);
+  //       latA = latB
+
+  //       //DRAW A NEW LAYER
+  //       L.DomEvent.on(
+  //         document.getElementById('newline'), 'click',
+  //         function (ev) {
+  //           console.log('before-click', latA, latB)
+  //           latA = undefined;
+  //           latB = undefined;
+  //         }
+  //       );
+  //     }
+
+  //   }.bind(this))
+
+  //   //HIGHCHARTS POPUP
+  //   this.map.on('popupopen', function (e) {
+  //     console.log(this.distanceKm);
+  //     new Highcharts.Chart({
+  //       title: { text: this.distanceKm + 'Km' },
+  //       chart: {
+  //         renderTo: 'container' + this.containerID,
+  //         height: 175,
+  //         width: 295,
+  //       },
+  //       series: this.chartJson
+  //     });
+  //   }.bind(this));
+  // }
+
+  // calculateDistance(latA: any, latB: any) {
+  //   if (latA !== undefined && latB !== undefined) {
+  //     let dis: any = latA.distanceTo(latB);
+  //     this.distanceInKms = ((dis) / 1000).toFixed(0);
+  //     this.distanceKm = this.distanceInKms;
+  //     console.log('hi')
+  //     return this.distanceInKms || 0;
+  //   }
+  //   else {
+  //     console.log('hi')
+  //     return 0;
+  //   }
+  // }
+
+
+
+
 
   //LOAD JSON DATA FOR SHAPE (FAN)
   siteDataJson() {
