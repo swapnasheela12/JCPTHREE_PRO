@@ -193,7 +193,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
               }
             };
             this.rulerLeafletLib.control.ruler(options).addTo(this.map);
-
+            $(".leaflet-contextmenu").hide();
           }
           // callback: this.distanceMeasureFun
         },
