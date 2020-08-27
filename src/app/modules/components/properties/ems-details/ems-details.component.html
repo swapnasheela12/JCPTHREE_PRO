@@ -1,7 +1,7 @@
-<div class="ems-wrapper" fxLayout="row" *ngIf="showTab">
+<div class="ems-wrapper h-100" fxLayout="row" *ngIf="showTab">
     <div class="side-bar" fxFlex="20">
-        <mat-card>Active</mat-card>
-        <div>
+        <div class="radio-title">Active</div>
+        <div style="margin-top: 10px;">
             <mat-radio-group aria-label="Select an option" #active name="gender" (change)="setEmsDialog($event);">
                 <mat-radio-button class="w-100" value="details">EMS Details</mat-radio-button>
                 <mat-radio-button class="w-100" value="oam">eNodeB OAM</mat-radio-button>
@@ -12,7 +12,7 @@
     </div>
 
 
-    <div class="dialog-container" fxFlex="80">
+    <div class="dialog-container" fxFlex="80" style="overflow-y: auto;">
 
         <mat-card class="dialog-container-one p-0">
             <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">

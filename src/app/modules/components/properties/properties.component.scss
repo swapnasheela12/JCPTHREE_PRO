@@ -65,6 +65,14 @@ $color-white: #ffffff;
                     mat-tab-header {
                         border-top: 1px solid rgba(0, 0, 0, 0.12);
                     }
+                    .mat-tab-body-wrapper {
+                        >mat-tab-body:nth-child(3) {
+                            overflow-y: hidden;
+                        }
+                        >mat-tab-body:last-child {
+                            overflow-y: hidden;
+                        } 
+                    }
                 }
         }
     }

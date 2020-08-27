@@ -5,7 +5,7 @@ $color-white: #ffffff;
     min-height: calc(100% - 50px);
     max-height: calc(100% - 50px);
     .wo-sector-card-one {
-        background-color: #288ae2;
+        background-color:rgb(255,255,255);
         border-radius: 4px 4px 0 0;
         .report-flex-container {
             // margin-top: 10px;
@@ -30,11 +30,11 @@ $color-white: #ffffff;
                 .report-form-field-read {
                     .report-form-input-title {
                         font-size: 10px;
-                        color: #767676;
+                        color: rgba(0,0,0,.54);
                     }
                     .report-form-input-value {
                         font-size: 15px;
-                        color: #fff;
+                        color: rgba(0,0,0,.87);
                     }
                 }
             }

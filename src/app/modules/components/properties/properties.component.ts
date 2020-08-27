@@ -101,7 +101,7 @@ export class PropertiesComponent implements OnInit {
         this.showWifiTabs = true;
         this.showPropTabs = false;
       })
-    // .on("mousemove", function (d) {
+    // .on("hover", function (d) {
     //   D3.select("#chart")
     //     .attr("stroke", "#fff")
     //     .attr("stroke-width", "2px")

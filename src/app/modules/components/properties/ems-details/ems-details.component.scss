@@ -1,6 +1,17 @@
 .ems-wrapper {
     .side-bar {
         border: 1px solid rgba(0, 0, 0, 0.12);
+        .radio-title {
+            font-family: lato bold;
+            background-color: #f9f9f9;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            border: 0px;
+            color: black;
+        }
         > div {
             mat-radio-group {
                 mat-radio-button {

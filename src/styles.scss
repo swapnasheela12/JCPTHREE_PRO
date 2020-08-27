@@ -1732,6 +1732,11 @@ svg {
    }
 
 .overview-wrapper{
+    carousel{
+        .carousel-inner {
+            height: 57vh !important;
+        }
+    }
     mdb-carousel {
         .carousel-multi-item {
             .controls-top {

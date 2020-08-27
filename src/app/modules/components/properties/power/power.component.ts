@@ -58,17 +58,27 @@ export class PowerComponent implements OnChanges {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
+      this.gridOptions = <GridOptions>{};
+      this.createColumnDefs();
+      this.httpClient.get(this.url)
+    .subscribe((data: any) => {
+      this.rowData = data.equipmentDetailsList;
+      this.siteMileStoneDetailWrapper = data.siteMileStoneDetailWrapper;
+      this.datatable.rowDataURLServices = this.url;
+      this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+      this.datatable.rowDataServices = this.rowData;
+      this.datatable.gridOptionsServices = this.gridOptions;
+      this.datatable.defaultColDefServices = this.defaultColDef;
+    });
+
+    this.datashare.currentMessage.subscribe((message) => {
+      this.sidenavBarStatus = message;
+    });
   }
   ngOnChanges() {
     if (this.selectedTab === "POWER") {
       this.showTab = true;
-      this.gridOptions = <GridOptions>{};
-
-
-      this.datashare.currentMessage.subscribe((message) => {
-        this.sidenavBarStatus = message;
-      });
-
+      this.createColumnDefs();
       this.httpClient.get(this.url)
         .subscribe((data: any) => {
           this.rowData = data.equipmentDetailsList;
@@ -147,11 +157,5 @@ export class PowerComponent implements OnChanges {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
-  cellClickedDetails(evt) {
-    console.log(evt, "evt");
-    if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
-    }
-  }
 
 }
