@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
@@ -14,7 +14,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './radio-parameter.component.html',
   styleUrls: ['./radio-parameter.component.scss']
 })
-export class RadioParameterComponent {
+export class RadioParameterComponent implements OnChanges {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public paths;
@@ -31,10 +31,8 @@ export class RadioParameterComponent {
   public searchGrid = '';
   public show;
   public gridFilterValueServices = {};
-  // public frameworkComponentsSectorMisalignment = {
-  //   viewHistroyRenderer: viewHistoryRendererComponent
-  // };
-
+  showTab: boolean = false;
+  @Input('selectedTab') public selectedTab;
   public url: string = "assets/data/modules/properties/radio-parameter.json";
 
   onReadyModeUpdate(params) {
@@ -55,22 +53,29 @@ export class RadioParameterComponent {
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
-    this.gridOptions = <GridOptions>{};
-    this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message) => {
-      this.sidenavBarStatus = message;
-    });
 
-    this.httpClient.get(this.url)
-      .subscribe(data => {
-        this.rowData = data;
-        this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
+  }
+
+  ngOnChanges() {
+    if (this.selectedTab === "RADIO PARAMETER") {
+      this.showTab = true;
+      this.gridOptions = <GridOptions>{};
+
+      this.datashare.currentMessage.subscribe((message) => {
+        this.sidenavBarStatus = message;
       });
+      this.createColumnDefs();
+      this.httpClient.get(this.url)
+        .subscribe(data => {
+          this.rowData = data;
+          this.datatable.rowDataURLServices = this.url;
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.rowDataServices = this.rowData;
+          this.datatable.gridOptionsServices = this.gridOptions;
+          this.datatable.defaultColDefServices = this.defaultColDef;
+        });
+    }
   }
 
   getSelection() {

@@ -1,3 +1,4 @@
+import { colorDropdownRendererComponent } from './../ag-grid-renders/color-dropdown-renderer.component';
 import { FormControl } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
@@ -30,7 +31,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
-    viewHistroyRenderer: viewHistoryRendererComponent
+    viewHistroyRenderer: viewHistoryRendererComponent,
+    colorDropdownRenderer:colorDropdownRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];

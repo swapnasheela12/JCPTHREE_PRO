@@ -1,3 +1,5 @@
+
+import { colorDropdownRendererComponent } from './../../../../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { TableAgGridService } from '../../../../core/components/table-ag-grid/table-ag-grid.service';
 import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
 // import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -7,7 +9,7 @@ import { ButtonRendererComponent } from './../../../reports-dashboards/my-report
 // import * as agGrid from 'ag-grid-community';
 // import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
 // import { TableAgGridService } from './../../../core/components/table-ag-grid/table-ag-grid.service';
-// import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+// import { Component, Input, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -32,7 +34,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ElementRef } from '@angular/core';
 
 
 declare var $: any;
@@ -64,8 +66,9 @@ export class CustomLegendsComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    buttonRenderer: ButtonRendererComponent,
+    colorDropdownRenderer: colorDropdownRendererComponent
   };
+
 
   url = "assets/data/report/my-report.json";
 
@@ -88,7 +91,7 @@ export class CustomLegendsComponent implements OnInit {
   }
 
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
+  constructor(private elRef:ElementRef,private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<CustomLegendsComponent>,) {
 
     this.gridOptions = <GridOptions>{};
@@ -120,9 +123,10 @@ export class CustomLegendsComponent implements OnInit {
         pinned: 'left'
       }, {
         headerName: "Color",
-        field: "color",
-        // cellRenderer: this.progressTaskFunc,
-        width: 130
+        // field: "color",
+        cellRenderer: 'colorDropdownRenderer',
+        width: 100,
+        pinned: 'left'
       }, {
         headerName: "2G",
         field: "2g",
@@ -152,50 +156,15 @@ export class CustomLegendsComponent implements OnInit {
 
 
 
-  searchGrid = '';
-  onFilterChanged(value) {
-    console.log(value, "value");
-    console.log(this.gridOptions.api.setQuickFilter(value), "valthis.gridOptions.api.setQuickFilter(value)ue");
-    this.datatable.gridFilterValueServices = value;
-    // this.gridOptions.api.setQuickFilter(value);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
 
-  //END table search
 
 
 
   //////////////////
 
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.progressby;
-    var taskprogress = params.data.progressbar;
-    // var taskprogresscolor = params.data.taskColor;
 
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
 
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
 
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-    if (taskcompletion == "Generated") {
-      return template1;
-    } else if (taskcompletion == "#5 in Queue") {
-      return template2;
-    } else {
-      return template3;
-    }
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 
   private inited;
   ngOnInit(): void {
@@ -231,13 +200,30 @@ export class CustomLegendsComponent implements OnInit {
     { value: '1800 MHz', viewValue: '1800 MHz' },
     { value: '2300 MHz', viewValue: '2300 MHz' },
   ];
-  
+
+  // paletteSelected = 'NPE View';
+  // paletteList: any = [
+  //   {
+  //     value: 'NPE View',
+  //     viewValue: 'NPE View',
+  //     colorList: [
+  //       { colorName: "#F44336" },
+  //       { colorName: "#FF9800" },
+  //       { colorName: "#8BC34A" },
+  //       { colorName: "#4CAF50" },
+  //       { colorName: "#03A9F4" },
+  //       { colorName: "#3F51B5" },
+  //     ]
+  //   }
+  // ];
+
+
   paletteSelected = 'NPE View';
-  paletteList: any = [
+
+  paletteList = [
     {
-      value: 'NPE View',
-      viewValue: 'NPE View',
-      colorList: [
+      name: 'NPE View',
+      value: [
         { colorName: "#F44336" },
         { colorName: "#FF9800" },
         { colorName: "#8BC34A" },
@@ -248,76 +234,85 @@ export class CustomLegendsComponent implements OnInit {
     }
   ];
 
+  onChange(item) {
+    console.log(item, "item");
+
+    this.paletteSelected = item.value;
+
+   
+
+  }
+
 
   kpidisplayslist = [{
     name: 'In-Building',
     checks: [{
       staus: true,
-      disabled:false,
+      disabled: false,
       name: 'Atoll'
     }, {
       staus: false,
-      disabled:true,
+      disabled: true,
       name: 'Customer Measured Coverage'
     },
-     {
-      staus: true,
-      disabled:false,
-      name: 'Smart Network Coverage'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'Netvelocity'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'Live Drive/ Quick Drive'
-    }, 
-     {
-      staus: false,
-      disabled:true,
-      name: 'Sites'
-    }, 
-     {
-      staus: false,
-      disabled:true,
-      name: 'Indoor Coverage'
-    }, 
-     {
-      staus: false,
-      disabled:true,
-      name: 'Indoor Coverage'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'Accuver'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'Competitive Coverage'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'I-Smart Network Coverage'
-    }, 
-     {
-      staus: true,
-      disabled:false,
-      name: 'Network Accepted Coverage'
-    }, 
-     {
-      staus: false,
-      disabled:true,
-      name: 'GeoBond Drive'
-    }, 
     {
       staus: true,
-      disabled:false,
+      disabled: false,
+      name: 'Smart Network Coverage'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'Netvelocity'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'Live Drive/ Quick Drive'
+    },
+    {
+      staus: false,
+      disabled: true,
+      name: 'Sites'
+    },
+    {
+      staus: false,
+      disabled: true,
+      name: 'Indoor Coverage'
+    },
+    {
+      staus: false,
+      disabled: true,
+      name: 'Indoor Coverage'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'Accuver'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'Competitive Coverage'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'I-Smart Network Coverage'
+    },
+    {
+      staus: true,
+      disabled: false,
+      name: 'Network Accepted Coverage'
+    },
+    {
+      staus: false,
+      disabled: true,
+      name: 'GeoBond Drive'
+    },
+    {
+      staus: true,
+      disabled: false,
       name: 'GeoBond Drive'
     }]
   }];

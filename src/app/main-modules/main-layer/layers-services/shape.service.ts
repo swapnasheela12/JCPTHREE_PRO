@@ -10,7 +10,7 @@ export class ShapeService {
   constructor(private http: HttpClient) { }
 
   getStateShapes(): Observable<any> {
-    return this.http.get('/assets/data/india-states.json');
+    return this.http.get('/assets/data/jcp3_state.json');
   }
 
 

@@ -278,6 +278,7 @@
                     border-radius: 4px;
                     .customLegends-setting-row {
                         .customLegends-setting-type {
+                            color: #666666;
                             .form-field-selected-layers {
                                 width: 100%;
                                 .colorpalette {
@@ -348,4 +349,36 @@
 .MyClass {
     max-width: 100%;
     max-height: 100%;
+}
+
+.form-field-selected-color {
+    .mat-form-field-wrapper {
+        .mat-form-field-appearance-legacy .mat-form-field-underline {
+            background-color: rgba(0, 0, 0, 0);
+        }
+    }
+    .mat-form-field-infix {
+        line-height: 2 !important;
+        padding: 0em 0 !important;
+    }
+    // background: red;
+    .mat-select-arrow {
+        margin: 10px 30px;
+    }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     height: 0px;
+    //     ba
+    // }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     background-color: #e0e0e0 !important;
+    // }
+    // .mat-input-underline {
+    //     display: none !important;
+    // }
+    // .mat-form-field-appearance-legacy .mat-form-field-underline {
+    //     background-color: rgb(0 0 0 / 0%) !important;
+    // }
+    // .mat-form-field-disabled .mat-form-field-underline {
+    //     background-image: none !important;
+    // }
 }

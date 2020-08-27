@@ -105,16 +105,32 @@ import { RowRenderingComponent, ModalTemplateComponent } from './modules/compone
 import { ColumnRenderingComponent } from './modules/components/column-rendering/column-rendering.component';
 import { TreeRenderingComponent } from './modules/components/tree-rendering/tree-rendering.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {OverlayContainer} from '@angular/cdk/overlay';
-import {AppOverlayContainer} from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { AppOverlayContainer } from './core/components/header/myjcpdropdownpanel/myjcp-settings-overlay-container';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AgGridRowRenderingComponent } from './modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
 import { AgGridColumnRenderingComponent } from './modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
 import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
 import { AlarmsPopupComponent } from '../../src/app/modules/components/alarms-popup/alarms-popup.component';
 import { CapacityComponent } from '../app/modules/components/capacity/capacity.component';
-import { ConfigurationComponent} from '../app/modules/components/configuration/configuration.component';
+import { ConfigurationComponent } from '../app/modules/components/configuration/configuration.component';
 import { from } from 'rxjs';
+import { GoldenParameterComponent } from './modules/components/properties/golden-parameter/golden-parameter.component';
+import { RadioParameterComponent } from './modules/components/properties/radio-parameter/radio-parameter.component';
+import { AntennaParameterComponent } from './modules/components/properties/antenna-parameter/antenna-parameter.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { OverviewComponent } from './modules/components/properties/overview/overview.component';
+import { GeographicalDetailsComponent } from './modules/components/properties/geographical-details/geographical-details.component';
+import { InventoryComponent } from './modules/components/properties/inventory/inventory.component';
+import { BackhaulComponent } from './modules/components/properties/backhaul/backhaul.component';
+import { SiteMilestoneComponent } from './modules/components/properties/site-milestone/site-milestone.component';
+import { PowerComponent } from './modules/components/properties/power/power.component';
+import { EmsDetailsComponent } from './modules/components/properties/ems-details/ems-details.component';
+import { PropertiesComponent } from './modules/components/properties/properties.component';
+import { LteAntennaComponent } from './modules/components/properties/inventory/lte-antenna/lte-antenna.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
+import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 declare var $: any;
 
 @NgModule({
@@ -128,6 +144,19 @@ declare var $: any;
     RowRenderingComponent,
     ColumnRenderingComponent,
     TreeRenderingComponent,
+    OverviewComponent,
+    GeographicalDetailsComponent,
+    InventoryComponent,
+    BackhaulComponent,
+    SiteMilestoneComponent,
+    PowerComponent,
+    EmsDetailsComponent,
+    AntennaParameterComponent,
+    GoldenParameterComponent,
+    RadioParameterComponent,
+    PropertiesComponent,
+    LteAntennaComponent,
+
     // MainLayerComponent,
     ModalTemplateComponent,
     AgGridRowRenderingComponent,
@@ -135,7 +164,8 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    LayersCustComponent
   ],
 
   imports: [
@@ -155,6 +185,11 @@ declare var $: any;
     CoreModule,
     FlexLayoutModule,
 
+    ///ngx corausal
+    CarouselModule,
+    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
+    CarouselModule.forRoot(),
 
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([]),
@@ -215,12 +250,12 @@ declare var $: any;
     NgxDaterangepickerMd,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-    
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: OverlayContainer, useClass: AppOverlayContainer},
+    { provide: OverlayContainer, useClass: AppOverlayContainer },
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,

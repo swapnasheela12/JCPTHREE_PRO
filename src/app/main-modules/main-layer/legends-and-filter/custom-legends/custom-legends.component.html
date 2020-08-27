@@ -1,7 +1,6 @@
 <div #container class="jcp-customLegends-setting-control-layers-container">
     <div class="toolbar-customLegends-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
         <div class="toolbar-customLegends-setting-control-title" fxFlex>
-            <!-- <span class="ic ic-customLegends-01 pr-1" style="font-size: 16px;"></span> -->
             <span>Custom Legends & Ranges : Layer Settings</span>
         </div>
         <div class="toolbar-customLegends-setting-control-icon-list">
@@ -10,15 +9,6 @@
     </div>
     <mat-divider></mat-divider>
     <div class="customLegends-setting-container">
-        <!-- <div fxLayout="column" class="customLegends-setting-list-container" *ngFor="let customLegends of customLegendsdisplayslist ; first as isFirst; last as isLast">
-            <div class="customLegends-setting-list-title  px-1">{{ customLegends.name }}</div>
-            <div class="customLegends-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
-                <div class="customLegends-setting-list-child-check" fxFlex="30" *ngFor="let item of customLegends.checks">
-                    <mat-checkbox>{{item.name}}</mat-checkbox>
-                </div>
-            </div>
-            <mat-divider *ngIf="!isLast"></mat-divider>
-        </div> -->
 
         <mat-card class="customLegends-setting-card">
             <div class="customLegends-setting-row" fxLayout="row wrap" fxLayoutAlign="space-around center">
@@ -48,36 +38,28 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <!-- <mat-form-field class="form-field-container">
-                        <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering
-                          disableOptionCentering ngDefaultControl #domainCtrlSelect>
-                          <mat-option>
-                            <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
-                              noEntriesFoundLabel="no matching found" ngDefaultControl>
-                            </ngx-mat-select-search>
-                          </mat-option>
-                          <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
-                            {{domain.name}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field> -->
+
                 </div>
                 <div class="customLegends-setting-type" fxFlex="70">
-                    <mat-form-field class="form-field-selected-layers px-3">
-                        <mat-select disableOptionCentering [(value)]="paletteSelected" class="mat-select-selected-layers" placeholder="Palette" #singleSelect>
-                            <!-- <mat-option *ngFor="let layer of paletteList" [value]="layer.value">
-                                <div>{{layer.value}}</div> -->
-                            <!-- <div class="w-100" *ngFor="let item of layer.colorpalette"> -->
-                            <!-- <div class="colorpalette" [ngStyle]="{'background-color':item.colorName}"></div> -->
-                            <!-- <div class="colorpalette"></div> -->
-                            <!-- </div> -->
-                            <!-- </mat-option> -->
-                            <mat-option value="NPE View">
+                    <mat-form-field class="form-field-selected-palette px-3 w-100">
+                        <mat-select id="colorPalette" (selectionChange)="onChange($event)" [(value)]="paletteSelected" disableOptionCentering class="mat-select-selected-layers" placeholder="">
+
+                            <mat-option *ngFor="let color of paletteList; index as i;" [value]="color.name">
                                 <div style="display: inline-flex;">
-                                    <div>NPE View</div>
-                                    <div class="colorpalette"></div>
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
                                 </div>
                             </mat-option>
+                            <mat-select-trigger *ngFor="let color of paletteList; index as i;">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
+                            </mat-select-trigger>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -94,17 +76,13 @@
         <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;">
             <div class="toolbar-kpi-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
                 <div class="toolbar-kpi-setting-control-title" fxFlex>
-                    <!-- <span class="ic ic-KPI-01 pr-1" style="font-size: 16px;"></span> -->
                     <span>Apply To</span>
                 </div>
-                <!-- <div class="toolbar-kpi-setting-control-icon-list">
-                    <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
-                </div> -->
+
             </div>
             <mat-divider></mat-divider>
             <div class="kpi-setting-container">
                 <div fxLayout="column" class="kpi-setting-list-container p-0" *ngFor="let kpi of kpidisplayslist ; first as isFirst; last as isLast">
-                    <!-- <div class="kpi-setting-list-title  px-1">{{ kpi.name }}</div> -->
                     <div class="kpi-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
                         <div class="kpi-setting-list-child-check" fxFlex="50" *ngFor="let item of kpi.checks">
                             <mat-checkbox [checked]="item.staus" [disabled]="item.disabled">{{item.name}}</mat-checkbox>

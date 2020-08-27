@@ -80,6 +80,9 @@ import { CustomTooltip } from './my-performance-reports/custom-tooltip.component
 import { ViewSummaryComponent } from './my-performance-reports/view-summary/view-summary.component';
 import { ChangeImpactAnalysisComponent } from './my-performance-reports/change-impact-analysis/change-impact-analysis.component';
 import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
+import { CeilingPopupComponent } from './kpi-editor/create-kpi/ceiling-popup/ceiling-popup.component';
+import { InfoPopupComponent } from './kpi-editor/create-kpi/info-popup/info-popup.component';
+import { FloorPopupComponent } from './kpi-editor/create-kpi/floor-popup/floor-popup.component';
 
 
 @NgModule({
@@ -104,7 +107,10 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
     MyPerformanceReportsComponent,
     ViewSummaryComponent,
     ChangeImpactAnalysisComponent,
-    CustomTooltip
+    CustomTooltip,
+    CeilingPopupComponent,
+    InfoPopupComponent,
+    FloorPopupComponent
   ],
   imports: [
     CommonModule,

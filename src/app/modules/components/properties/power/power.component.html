@@ -1,1 +1,80 @@
-<p>power works!</p>
+<div class="power-wrapper" fxLayout="row" *ngIf="showTab">
+    <div class="side-bar" fxFlex="30">
+        <mat-card class="power-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Electrical Load</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 w-100">
+                        <div class="form-field-read-only">
+                            <div class="input-title">Rated Site Load</div>
+                            <div class="input-value">{{siteMileStoneDetailWrapper.ratedSiteLoad}}</div>
+                        </div>
+
+                        <div class="form-field-read-only">
+                            <div class="input-title">Total DC Load</div>
+                            <div class="input-value">{{siteMileStoneDetailWrapper.totalDGLoad}}</div>
+                        </div>
+
+                        <div class="form-field-read-only">
+                            <div class="input-title">Actual Load</div>
+                            <!-- <div class="input-value">{{siteMileStoneDetailWrapper.actualLoad}}</div> -->
+                            <div class="input-value">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Electrical Infra</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="sub-content-container h-100">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 w-100">
+                        <div class="form-field-read-only">
+                            <div class="input-title">SMPS</div>
+                            <div class="input-value">16 KW</div>
+                        </div>
+
+                        <div class="form-field-read-only">
+                            <div class="input-title">Battery</div>
+                            <div class="input-value">{{siteMileStoneDetailWrapper.totalDGLoad}}</div>
+                        </div>
+
+                        <div class="form-field-read-only">
+                            <div class="input-title">DG</div>
+                            <!-- <div class="input-value">{{siteMileStoneDetailWrapper.actualLoad}}</div> -->
+                            <div class="input-value">-</div>
+                        </div>
+
+                        <div class="form-field-read-only">
+                            <div class="input-title">EB</div>
+                            <!-- <div class="input-value">{{siteMileStoneDetailWrapper.actualLoad}}</div> -->
+                            <div class="input-value">-</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+
+
+        <mat-card class="power-container-one p-0">
+
+        </mat-card>
+    </div>
+
+
+    <div class="dialog-container" fxFlex="70">
+        <div class="jcp-table-container" style="height: 62vh">
+            <app-table-ag-grid>
+            </app-table-ag-grid>
+
+        </div>
+    </div>
+
+</div>

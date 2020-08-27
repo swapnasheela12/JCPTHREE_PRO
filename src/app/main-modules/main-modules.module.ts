@@ -1,3 +1,4 @@
+import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
@@ -116,7 +117,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     TreeNodeComponent,
     AlarmsPopupComponent,
     CustomLegendsComponent,
-    ScreenshotPreviewComponent
+    ScreenshotPreviewComponent,colorDropdownRendererComponent
   ],
   imports: [
     CommonModule,
@@ -131,7 +132,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent,colorDropdownRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -198,6 +199,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
+    colorDropdownRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,

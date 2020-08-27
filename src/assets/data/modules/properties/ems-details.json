@@ -1,0 +1,106 @@
+{
+    "ems": [
+        {
+            "label": "lsmrHostName",
+            "value": "MU-MU-REM-05-A"
+        },
+        {
+            "label": "lsmrIpv6Address",
+            "value": "2405:200:310:2614::12"
+        },
+        {
+            "label": "enodeBId",
+            "value": "2720"
+        },
+        {
+            "label": "enodeState",
+            "value": "Equipped"
+        },
+        {
+            "label": "adminState",
+            "value": "Unlocked"
+        },
+        {
+            "label": "emsLiveDate",
+            "value": "14 Mar, 2017"
+        }
+    ],
+    "oam": [
+        {
+            "label": "oamVlan",
+            "value": "103"
+        },
+        {
+            "label": "lsmrId",
+            "value": "INMUNVMBXXXXNB0001AG3REM006"
+        },
+        {
+            "label": "oamIpv6Address",
+            "value": "2405:200:101:800:3:2:103:a6"
+        },
+        {
+            "label": "oamIpv6SubnetMask",
+            "value": "126"
+        },
+        {
+            "label": "oamGatewayIpv6Address",
+            "value": "2405:200:101:800:3:2:103:a6"
+        },
+        {
+            "label": "oamGatewayIpv6SubnetMask",
+            "value": "126"
+        }
+    ],
+    "signalling": [
+        {
+            "label": "signalVlan",
+            "value": "102"
+        },
+        {
+            "label": "signalMmeGroupId",
+            "value": "WEST1MME8003"
+        },
+        {
+            "label": "signalIpv6Address",
+            "value": "2405:200:101:800:3:2:102:a6"
+        },
+        {
+            "label": "signalIpv6SubnetMask",
+            "value": "126"
+        },
+        {
+            "label": "signalGatewayIpv6Address",
+            "value": "2405:200:101:800:3:2:102:a5"
+        },
+        {
+            "label": "signalGatewayIpv6SubnetMask",
+            "value": "126"
+        }
+    ],
+    "bearer": [
+        {
+            "label": "bearerVlan",
+            "value": "101"
+        },
+        {
+            "label": "bearerSAEGWPriGId",
+            "value": "NVMBSAEPR0000"
+        },
+        {
+            "label": "bearerIpv6Address",
+            "value": "2405:200:101:800:3:2:101:a6"
+        },
+        {
+            "label": "bearerIpv6SubnetMask",
+            "value": "126"
+        },
+        {
+            "label": "bearerGatewayIpv6Address",
+            "value": "2405:200:101:800:3:2:101:a5"
+        },
+        {
+            "label": "bearerGatewayIpv6SubnetMask",
+            "value": "126"
+        }
+    ]
+}

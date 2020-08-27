@@ -4,19 +4,10 @@
     }
     .geographical-container {
         padding: 0px !important;
-        // .link-prop {
-        //     .link-prop-subheader {
-        //         padding: 15px;
-        //         font-size: 15px;
-        //         font-weight: 500;
-        //         color: rgba(0,0,0,.87);
-        //     }
-        // }
         .geo-left-panel {
             padding: 5px;
-            mat-divider {
-                width: 60% !important;
-                padding: 0 5px;
+            .link-prop1 {
+                border-bottom: 1px solid lightgray;
             }
         }
         .geo-map-panel {

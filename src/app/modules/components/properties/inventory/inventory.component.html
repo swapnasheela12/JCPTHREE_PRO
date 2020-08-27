@@ -1,7 +1,7 @@
-<div class="inventory-wrapper" fxLayout="row">
+<div class="inventory-wrapper" fxLayout="row" *ngIf="showTab">
     <div class="side-bar" fxFlex="20">
-        <mat-card>Active</mat-card>
-        <div>
+        <div class="radio-title">Active</div>
+        <div class="radio">
             <mat-radio-group aria-label="Select an option" (change)="onChange($event)" #active name="gender">
                 <mat-radio-button class="w-100" value="lte">LTE Antenna</mat-radio-button>
                 <mat-radio-button class="w-100" value="bbu">BBU</mat-radio-button>
@@ -11,8 +11,8 @@
             </mat-radio-group>
         </div>
 
-        <mat-card>Passive</mat-card>
-        <div>
+        <div class="radio-title">Passive</div>
+        <div class="radio">
             <mat-radio-group aria-label="Select an option" #passive (change)="onChange($event)">
                 <mat-radio-button class="w-100" value="tower">Tower</mat-radio-button>
                 <mat-radio-button class="w-100" value="rack">Rack</mat-radio-button>
@@ -27,7 +27,7 @@
     </div>
 
 
-    <div class="dialog-container" fxFlex="80">
+    <div class="dialog-container" fxFlex="80" style="overflow-y: auto;">
         <app-lte-antenna [radioType]="radioSelected"></app-lte-antenna>
         <!-- <app-bbu ></app-bbu> -->
     </div>

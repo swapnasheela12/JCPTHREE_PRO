@@ -1,6 +1,6 @@
 <div class="h-100">
-    <mat-card style="height: auto;" class="p-0 mb-3">
-        <mat-card-header class="view-summary-card-header m-0" fxLayoutAlign="start center">
+    <mat-card style="height: auto;" class="view-summary-top-card p-0 mb-3 mx-0">
+        <mat-card-header class="m-0" fxLayoutAlign="start center">
             <mat-card-title class="card-title" fxFlex="20">View Summary</mat-card-title>
             <div fxLayoutAlign="center center" fxFlex="auto">
                 <span class="name">Cell Data:</span>
@@ -26,6 +26,7 @@
                 </mat-form-field>
             </div>
         </mat-card-header>
+        <mat-divider></mat-divider>
         <mat-card-content class="card-content p-3" fxLayout="row wrap">
             <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="35">
                 <div fxLayoutAlign="space-between center" *ngFor="let item of legendsList" class="legends-holder">
