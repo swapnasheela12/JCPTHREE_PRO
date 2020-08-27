@@ -21,6 +21,8 @@ import { IfElsePopupComponent } from './if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './hextodoc-popup/hextodoc-popup.component';
 
 import * as _ from "lodash";
+import { CeilingPopupComponent } from './ceiling-popup/ceiling-popup.component';
+import { FloorPopupComponent } from './floor-popup/floor-popup.component';
 const PATHS = [
   {goBack: "JCP/Modules/Performance-Management/KPI-Editor"}
 ]
@@ -465,6 +467,16 @@ export class CreateKpiComponent implements OnInit {
       });
     } else if ('HextoDec' == conditionValue) {
       const dialogRef = this.dialog.open(HextodocPopupComponent, {
+        width: '460px',
+        height: '320px'
+      });
+    } else if ('Ceiling' == conditionValue) {
+      const dialogRef = this.dialog.open(CeilingPopupComponent, {
+        width: '460px',
+        height: '320px'
+      });
+    } else if ('Floor' == conditionValue) {
+      const dialogRef = this.dialog.open(FloorPopupComponent, {
         width: '460px',
         height: '320px'
       });

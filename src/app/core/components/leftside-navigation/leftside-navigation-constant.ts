@@ -974,7 +974,7 @@ const SITES_OUTDOOR_lIST = [
     },
     {
         name: 'ESC',
-        link: 'ESC',
+        link: 'JCP/Layers_Cust',
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,

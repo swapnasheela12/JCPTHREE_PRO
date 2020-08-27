@@ -1,0 +1,29 @@
+[
+    {
+        "metrics": "2.5",
+        "significance":1,
+        "result":3,
+        "description": "Rounds 2.5 up to nearest multiple of 1"
+    },
+    {
+        "metrics": "-2.5",
+        "significance":-2,
+        "result":-2,
+        "description": "Rounds -2.5 up to nearest multiple of -2"
+    },{
+        "metrics": "-2.5",
+        "significance":2,
+        "result":-4,
+        "description": "Rounds -2.5 up to nearest multiple of 2"
+    },{
+        "metrics": "1.5",
+        "significance":0.1,
+        "result":1.5,
+        "description": "Rounds 1.5 up to nearest multiple of 0.1"
+    },{
+        "metrics": "0.234",
+        "significance":0.01,
+        "result":0.23,
+        "description": "Rounds 0.234 up to nearest multiple of 0.01"
+    }
+]

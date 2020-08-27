@@ -13,18 +13,28 @@
     }
 }
 
+
 /* temporarily added. */
-#newline{
+
+#newline {
     right: 375px !important;
 }
-#screenshot, #newline{
-    position:absolute;
-    bottom:0;
-    right:200px;
+
+#screenshot,
+#newline {
+    position: absolute;
+    bottom: 0;
+    right: 200px;
     z-index: 9999;
 }
 
 ::ng-deep .spider-view-custom-dialog>mat-dialog-container {
     background-color: transparent;
     box-shadow: none;
+}
+
+.contextMenu-ss {
+    width: 100px;
+    height: 300px;
+    background: red;
 }

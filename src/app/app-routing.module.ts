@@ -1,3 +1,4 @@
+import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginJcpThreeComponent } from "./login-jcp-three/login-jcp-three.component";
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: "Ag-Tree-Rendering", component:AgGridTreeRenderingComponent},
       { path: "My-JCP", component:MyJcpComponent},
       {path: "Properties", component: PropertiesComponent},
+      { path: "Layers_Cust", component:LayersCustComponent},
       { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule"},
       { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
       {

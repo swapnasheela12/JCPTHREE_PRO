@@ -66,6 +66,7 @@
         "leaflet-canvas-layer": "^1.0.8",
         "leaflet-canvaslayer-field": "^1.4.1",
         "leaflet-contextmenu": "^1.4.0",
+        "leaflet-customlayer": "^2.1.0",
         "leaflet-image": "^0.4.0",
         "leaflet-simple-map-screenshoter": "^0.3.9",
         "leaflet.pm": "^2.2.0",

@@ -1,0 +1,36 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Floor</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content class="floor-popup-content" fxLayout="column" fxLayoutAlign="space-evenly center">
+        <form style="width:100%" fxLayoutAlign="center">
+            <mat-form-field fxFlex="80">
+                <mat-select placeholder="Metrics*">
+                    <mat-option value=""></mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <div>
+            <label>The function converts Ceiling value to decimal value
+                <span class="ic ic-question" (click)="FloorInfoPopup()"></span>
+            </label>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>
