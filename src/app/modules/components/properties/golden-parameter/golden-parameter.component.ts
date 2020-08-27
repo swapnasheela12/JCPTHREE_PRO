@@ -71,7 +71,7 @@ export class GoldenParameterComponent implements OnChanges {
         .subscribe(data => {
           this.rowDataGolden = data;
           this.datatable.rowDataURLServices = this.url;
-          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
           this.datatable.rowDataServices = this.rowDataGolden;
           this.datatable.gridOptionsServices = this.gridOptionsGolden;
           this.datatable.defaultColDefServices = this.defaultColDef;

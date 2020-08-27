@@ -1,4 +1,7 @@
 <div class="execution-task-container">
+    <mat-card class="comp-title">
+        Execution Task IAN Lead
+    </mat-card>
     <mat-card class="execution-task-container-one p-0">
         <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
             <div class="sub-header-title">Task Retrigger Details</div>
@@ -77,7 +80,7 @@
         <mat-divider></mat-divider>
         <div class="sub-content-container h-100">
             <div class="sub-content d-flex mx-2 flex-row flex-wrap">
-                <div class="sub-content-flex-item p-2 col-3" *ngFor="let site of siteDetails">
+                <div class="sub-content-flex-item p-1rem col-3" *ngFor="let site of siteDetails">
                     <div class="form-field-read-only">
                         <div class="input-title">
                             {{site.label}}
@@ -97,7 +100,7 @@
         <mat-divider></mat-divider>
         <div class="sub-content-container h-100">
             <div class="sub-content d-flex mx-2 flex-row flex-wrap">
-                <div class="sub-content-flex-item p-2 col-3" *ngFor="let fmi of fieldMeasurementInformation">
+                <div class="sub-content-flex-item p-1rem col-3" *ngFor="let fmi of fieldMeasurementInformation">
                     <div class="form-field-read-only">
                         <div class="input-title">{{fmi.label}}</div>
                         <div class="input-value">{{fmi.value}}</div>
@@ -117,7 +120,7 @@
         <mat-divider></mat-divider>
         <div class="sub-content-container h-100">
             <div class="sub-content d-flex mx-2 flex-row flex-wrap">
-                <div class="sub-content-flex-item p-2 col-3" *ngFor="let oi of observedIssues">
+                <div class="sub-content-flex-item p-1rem col-3" *ngFor="let oi of observedIssues">
                     <div class="form-field-read-only">
                         <div class="input-title">{{oi.label}}</div>
                         <div class="input-value">{{oi.value}}</div>
@@ -154,8 +157,7 @@
 
                     <div class="sub-content-flex-item " style="width: 100%">
                         <mat-form-field>
-                            <input matInput class="input-field"
-                                style="position: inherit; top: 35px; opacity: 0.6;font-size: 14px;"
+                            <input matInput class="input-field" style="position: inherit; opacity: 0.6;font-size: 14px;"
                                 placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
                             <button class="browse-button"
                                 style="position: absolute; right: 0; bottom :0; font-size: 14px;" (click)="onClick()"
@@ -187,34 +189,6 @@
             </div>
         </div>
     </mat-card>
-
-
-
-    <!-- 
- <mat-card class="execution-task-container-one p-0">
-        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="sub-header-title">Solution Implementation</div>
-        </div>
-        <mat-divider></mat-divider>
-        <div class="sub-content-container h-100">
-            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
-                <div class="p-3">
-                    Select the solution to be implemented for mitigation of Sector Misalignment cell*
-                </div>
-                <div class="sol-imp-row p-3" style="font-family: lato medium; color: #000000">
-                    <mat-radio-group aria-label="Select an option">
-                        <mat-radio-button class="mr-2" value="E-Tilt">E-Tilt/Tx attenuation Change
-                        </mat-radio-button>
-                        <mat-radio-button class="mr-2" value="Parameter Optimization">Physical Parameter Optimization
-                        </mat-radio-button>
-                    </mat-radio-group>
-                </div>
-            </div>
-        </div>
-    </mat-card> -->
-
-
-
 
 
 

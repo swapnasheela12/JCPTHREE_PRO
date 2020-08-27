@@ -1,5 +1,5 @@
-<div class="power-wrapper" fxLayout="row" *ngIf="showTab">
-    <div class="side-bar" fxFlex="30">
+<div class="power-wrapper h-100" fxLayout="row" *ngIf="showTab">
+    <div class="side-bar" fxFlex="20">
         <mat-card class="power-container-one p-0">
             <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="sub-header-title">Electrical Load</div>
@@ -69,7 +69,7 @@
     </div>
 
 
-    <div class="dialog-container" fxFlex="70">
+    <div class="dialog-container" fxFlex="80" style="overflow-y: auto;">
         <div class="jcp-table-container" style="height: 62vh">
             <app-table-ag-grid>
             </app-table-ag-grid>

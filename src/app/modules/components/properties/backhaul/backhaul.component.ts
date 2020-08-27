@@ -177,7 +177,7 @@ export class BackhaulComponent implements OnChanges {
         .subscribe(data => {
           this.rowData = data;
           this.datatable.rowDataURLServices = this.url;
-          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-without-Pagination";
           this.datatable.rowDataServices = this.rowData;
           this.datatable.gridOptionsServices = this.gridOptions;
           this.datatable.defaultColDefServices = this.defaultColDef;

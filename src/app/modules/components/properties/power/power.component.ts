@@ -23,9 +23,9 @@ export class PowerComponent implements OnChanges {
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
-  public gridOptions: GridOptions;
-  public rowData: any;
-  public columnDefs: any[];
+  public gridOptionsPower: GridOptions;
+  public rowDataPower: any;
+  public columnDefsPower: any[];
   public rowCount: string;
   public defaultColDef = { resizable: true };
   public searchGrid = '';
@@ -49,27 +49,27 @@ export class PowerComponent implements OnChanges {
     this.calculateRowCount();
   }
   public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
+    if (this.gridOptionsPower.api && this.rowDataPower) {
       setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
+        this.gridOptionsPower.api.sizeColumnsToFit();
       }, 1000);
     }
   }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
-      this.gridOptions = <GridOptions>{};
-      this.createColumnDefs();
-      this.httpClient.get(this.url)
-    .subscribe((data: any) => {
-      this.rowData = data.equipmentDetailsList;
-      this.siteMileStoneDetailWrapper = data.siteMileStoneDetailWrapper;
-      this.datatable.rowDataURLServices = this.url;
-      this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-      this.datatable.rowDataServices = this.rowData;
-      this.datatable.gridOptionsServices = this.gridOptions;
-      this.datatable.defaultColDefServices = this.defaultColDef;
-    });
+    this.gridOptionsPower = <GridOptions>{};
+    this.createColumnDefs();
+    this.httpClient.get(this.url)
+      .subscribe((data: any) => {
+        this.rowDataPower = data.equipmentDetailsList;
+        this.siteMileStoneDetailWrapper = data.siteMileStoneDetailWrapper;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.rowDataPower;
+        this.datatable.gridOptionsServices = this.gridOptionsPower;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -81,30 +81,30 @@ export class PowerComponent implements OnChanges {
       this.createColumnDefs();
       this.httpClient.get(this.url)
         .subscribe((data: any) => {
-          this.rowData = data.equipmentDetailsList;
+          this.rowDataPower = data.equipmentDetailsList;
           this.siteMileStoneDetailWrapper = data.siteMileStoneDetailWrapper;
           this.datatable.rowDataURLServices = this.url;
-          this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
-          this.datatable.rowDataServices = this.rowData;
-          this.datatable.gridOptionsServices = this.gridOptions;
+          this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+          this.datatable.rowDataServices = this.rowDataPower;
+          this.datatable.gridOptionsServices = this.gridOptionsPower;
           this.datatable.defaultColDefServices = this.defaultColDef;
         });
     }
   }
 
   getSelection() {
-    var selectedRows = this.gridOptions.api.getSelectedRows();
+    var selectedRows = this.gridOptionsPower.api.getSelectedRows();
   }
 
   private createColumnDefs() {
-    this.columnDefs = [{
+    this.columnDefsPower = [{
       headerName: "Equipment Details",
       field: "equipmentName",
       enableRowGroup: true,
       width: 120
     }, {
       headerName: "Unit Load (Watt)",
-      field: "unitLoad",
+      field: "ratedPower",
       width: 195
     }, {
       headerName: "Quantity",
@@ -115,7 +115,7 @@ export class PowerComponent implements OnChanges {
       field: "ratedPower",
       width: 120
     }];
-    this.datatable.columnDefsServices = this.columnDefs;
+    this.datatable.columnDefsServices = this.columnDefsPower;
   }
 
   public eventsSubject: Subject<any> = new Subject();

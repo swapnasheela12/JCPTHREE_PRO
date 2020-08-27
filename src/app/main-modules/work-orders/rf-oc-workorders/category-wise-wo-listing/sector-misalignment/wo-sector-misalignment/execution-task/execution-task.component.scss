@@ -2,12 +2,20 @@
     height:calc(100% - 52px);
     overflow: auto;
     background: transparent;
+    .comp-title {
+        margin-bottom: 10px;
+        font-weight: 400;
+        font-family: lato bold;
+        font-size: 14px;
+        color: black;
+        padding-left: 25px;
+    }
     .execution-task-container-one {
         border: 4px;
         margin-bottom: 15px;
         .sub-header {
-            height: 43px;
-            background: #e9ecec;
+            height: 46px;
+            background: white;
             //line-height: 2.5;
             .sub-header-title {
                 color: #464D69;
@@ -215,4 +223,9 @@
     text-align: center;
     border: 1px solid lightgray;
     height: 52px;
+}
+
+
+.p-1rem {
+    padding: 1rem !important;
 }
