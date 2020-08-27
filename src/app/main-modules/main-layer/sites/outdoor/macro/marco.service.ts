@@ -1,18 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable,ViewChild,ViewContainerRef, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
 import * as _ from 'underscore';
 import * as L from 'leaflet';
 import * as createjs from 'createjs-module';
-
+import { SpiderViewComponent } from '../../../spider-view/spider-view.component';
+import { Subject, Observable, observable, of, BehaviorSubject } from 'rxjs';
 // TYPE FOR OBJECT FORMAT
 interface DataObject{
   [key:string]:any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class MarcoService {
+  @ViewChild('container',{read:ViewContainerRef,static:true})
+  containerRef;
 
-
+  // constructor(private resolver:ComponentFactoryResolver,
+  // private vc:ViewContainerRef  
+  // ) { }
   //SHAPE(FAN) CONFIG
    
   public _pixelRatio:number;
@@ -27,11 +33,14 @@ export class MarcoService {
   public _stage:DataObject;
   public _addtionalsector:String;;
   public scaleMatrix:number;
-
-  constructor() { }
+  public mydata;
+  ngAfterViewInit(){
+    //console.log(this.vc)
+    this.get();
+  }
   
   
-  public nodeCreationInitializer= function(jsonData):void{
+  public nodeCreationInitializer= function(jsonData?){
     this._pixelRatio = window.devicePixelRatio || 1;
     this.siteData = jsonData;
     if(typeof(this.siteData) ==='object' && this.siteData !== undefined){
@@ -311,11 +320,26 @@ export class MarcoService {
                 sectorPie['site'] = bandInner.siteArray;
                 sectorPie['sector'] = sectorInner;
 
+
+                let div = document.createElement('div');
+                div.setAttribute('class','spiderview-content')
+                div.innerHTML  =`<div #container></div>`;
+                document.body.appendChild(div);
+
+
+                
                 //EVENTS 
-                sectorPie.addEventListener("mouseover", (event) => {
-                  this.nodeOnMouseOver(info, event);
+                sectorPie.on("click", (event) => {
+                  
+                  
+                  
+
+                  this.nodeOnMouseClick(info, event);
                 })
-                sectorPie.addEventListener("mouseout", (event) => {
+                sectorPie.on("mouseover", (event) => {
+                  this.nodeOnMouseOver(info, event);
+                });
+                sectorPie.on("mouseout", (event) => {
                   this.nodeOnMouseOut(info, event);
                 })
                 siteContainer.addChild(sectorPie)
@@ -358,16 +382,38 @@ export class MarcoService {
         this._stage.update();
       }
 
+      
+
+      this.nodeOnMouseClick= function(info,event){
+        let viewData = {};
+        viewData['currentBands'] = event.target.site;
+        viewData['sector'] = event.target.sector;
+        let container = info.layer._map.getContainer();
+        var parent = this._container.getChildByName(event.target.site[0].sapid);
+        this.data(viewData);
+        this.mydata  = viewData;
+
+        console.log(event);
+
+      }
+      this.data = function(response){
+        let s = new BehaviorSubject(null);
+        s.next(response);
+        console.log(s);
+       // return of(response);
+      }
+  
       //ON MOUSE OVER OF SHAPE(FAN)
       this.nodeOnMouseOver= function(info,event){
         let target = event.target;
+        let c = event.currentTarget;
         target.alpha = 1;
         target.graphics.strokeStyleCommand.width = 4;
         this._stage.update();
         if (target.sector.sitebandtype !== undefined  && target.sector.sitebandtype !== null){
-          let band = (target.sector.sitebandtype == 'site2300') ? 2300 : (target.sector.sitebandtype == 'site1800') ? 1800 : 850;
+          let band = (c.sector.sitebandtype == 'site2300') ? 2300 : (c.sector.sitebandtype == 'site1800') ? 1800 : 850;
           let template = "";
-          template += `<div class="layout-row"><span class="prefix">PCI : </span> <span class="value">${(target.sector.pci)} </span></div>`;
+          template += `<div class="layout-row"><span class="prefix">PCI : </span> <span class="value">${(c.sector.pci)} </span></div>`;
           template += `<div class="layout-row"><span class="prefix">Band : </span> <span class="value">${(band)} MHz</span></div>`;
           this._simplePopup.setLatLng(target.latlng).setContent(template).openOn(info.layer._map);
         }
@@ -445,6 +491,10 @@ export class MarcoService {
     else{
       throw new Error("JSON object data not found")
     }
+  }
+
+  get(){
+    console.log(this.mydata)
   }
 }
 
