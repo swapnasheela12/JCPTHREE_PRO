@@ -2,28 +2,17 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import * as _ from 'underscore';
 import * as L from 'leaflet';
 import * as createjs from 'createjs-module';
+import { HttpClient } from '@angular/common/http';
 
 // Type for Library Canvas
 interface DataObject{
   [key:string]:any;
 }
 
-
-
-@Component({
-  selector: 'app-macro',
-  templateUrl: './macro.component.html',
-  styleUrls: ['./macro.component.scss']
-})
-export class MacroComponent implements AfterViewInit{
-  showSpiderView = false;
-  //@ViewChild('container', { read: ViewContainerRef }) 
-  //viewContainerRef: ViewContainerRef;
-  constructor() {}
+export class nodeComponent {
+  
   //SHAPE(FAN) CONFIG
-  ngAfterViewInit(){
-    //console.log('cccc=>',this.viewContainerRef);
-  } 
+   
   public _pixelRatio:number;
   public _map:DataObject;
   public _simplePopup:DataObject;
@@ -37,8 +26,7 @@ export class MacroComponent implements AfterViewInit{
   public _addtionalsector:String;;
   public scaleMatrix:number;
   public mydata;
-
-
+  constructor(private http?:HttpClient) { }
   
   public nodeCreationInitializer= function(jsonData?){
     this._pixelRatio = window.devicePixelRatio || 1;
@@ -393,17 +381,7 @@ export class MacroComponent implements AfterViewInit{
         this.data(viewData);
         this.mydata  = viewData;
 
-        this.showSpiderView = true;
-        console.log("event", event)
-        console.log("this.spiderView", this.showSpiderView);
-
-      //  //re
-      //  console.log('div', this.componentFactoryResolver)
-      //  //this.ref.clear();
-      //  const factory = this.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
-       
-      //  const ref = this.viewContainerRef.createComponent(factory);
-      //  ref.changeDetectorRef.detectChanges();
+        console.log(event);
 
       }
       this.data = function(response){

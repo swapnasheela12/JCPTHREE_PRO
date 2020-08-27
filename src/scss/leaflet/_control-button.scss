@@ -382,3 +382,28 @@
     //     background-image: none !important;
     // }
 }
+
+.leaflet-contextmenu {
+    a.leaflet-contextmenu-item {
+        display: block;
+        color: #222;
+        font-family: Lato Regular;
+        font-size: 12px;
+        line-height: 20px;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        cursor: default;
+        outline: none;
+    }
+    // background: red;
+    // z-index: 10000;
+    // position: absolute;
+    // width: 165px;
+    // left: 236px;
+    // right: auto;
+    // top: 261px;
+    // bottom: auto;
+    // display: block;
+}
