@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { SpiderViewComponent } from './spider-view/spider-view.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
@@ -28,6 +29,7 @@ import '../../../js/leaflet-ruler.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter'
 import { stringToArray } from 'ag-grid-community';
 import { MarcoService } from './sites/outdoor/macro/marco.service';
+import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import 'leaflet-contextmenu';
 // import '../../../../node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.min.js';
 declare var $: any;
@@ -67,9 +69,15 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public siteData: DataObject;
   public fanDataError: String;
 
+  public routPathVal;
+
+
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private marcoService: MarcoService
+    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,
   ) {
+
+
+
     this.datashare.currentMessage.subscribe((message) => {
 
       var divWidth;
@@ -94,14 +102,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     });
 
+
+    this.router.events.subscribe((event: any) => {
+      console.log(event.url, "event");
+      this.routPathVal = event.url;
+    })
   }
   contextMenuLib;
   rulerLeafletLib;
+  libCustomLayer;
   ngOnInit(): void {
+    this.libCustomLayer = leaflayer();
     this.canvasLibrary = canvasLayerForLeaflet();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
     this.siteDataJson();
+    this.smallCellServiceFunc();
   }
 
 
@@ -531,16 +547,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       this.initStatesLayer();
     });
 
-
-
+    this.shapeService.mapServiceData = this.map;
+    this.routeLayersType();
   }
 
+  routeLayersType() {
 
 
-  distanceMeasureFun(e) {
-    console.log(e, "e?");
-
-    // alert(e.latlng);
   }
 
 
@@ -692,7 +705,26 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   //LOAD ALL THE NODES ONTO THE MAP
   initializeNodes(data) {
     this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
+    console.log(this.marcoService.nodeCreationInitializer.prototype, "this.marcoService.nodeCreationInitializer.prototype");
+
     let nodes = new this.marcoService.nodeCreationInitializer(data);
     nodes.addTo(this.map);
   }
+
+  smallCellServiceFunc() {
+    // this.smallCellService.draw.prototype = new this.libCustomLayer.CustomLayer();
+
+    // console.log(this.smallCellService.draw.prototype,"node small cell");
+    // let node = new this.smallCellService.draw();
+    // console.log(node,"node small cell");
+
+    // node.addTo(this.map);
+  }
+
+
+
+
+
+
+
 }

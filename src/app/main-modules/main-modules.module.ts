@@ -117,7 +117,8 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     TreeNodeComponent,
     AlarmsPopupComponent,
     CustomLegendsComponent,
-    ScreenshotPreviewComponent,colorDropdownRendererComponent
+    ScreenshotPreviewComponent,
+    colorDropdownRendererComponent,
   ],
   imports: [
     CommonModule,

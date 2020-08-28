@@ -966,7 +966,7 @@ const MODULE_LIST_CHANGE_IMPACT = [
 const SITES_OUTDOOR_lIST = [
     {
         name: 'Macro',
-        link: 'Macro',
+        link: 'JCP/Layers/Macro',
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
@@ -974,7 +974,7 @@ const SITES_OUTDOOR_lIST = [
     },
     {
         name: 'ESC',
-        link: 'JCP/Layers_Cust',
+        link: 'JCP/ESC',
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
@@ -982,7 +982,7 @@ const SITES_OUTDOOR_lIST = [
     },
     {
         name: 'Small Cell',
-        link: 'Small-Cell',
+        link: 'JCP/Layers/Small-Cell',
         icon: 'fas fa-home',
         level: 3,
         component: HomeJcpThreeComponent,
