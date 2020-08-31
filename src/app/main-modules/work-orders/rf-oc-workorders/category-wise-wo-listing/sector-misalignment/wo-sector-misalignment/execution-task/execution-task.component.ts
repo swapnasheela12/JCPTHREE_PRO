@@ -108,7 +108,8 @@ export class ExecutionTaskComponent implements OnInit {
     },
     {
       "label": "Antenna Make:",
-      "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
+      "value": "S-Wave 18/18/23/23-65-18DV10"
+      // "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
     },
     {
       "label": "Antenna Model:",

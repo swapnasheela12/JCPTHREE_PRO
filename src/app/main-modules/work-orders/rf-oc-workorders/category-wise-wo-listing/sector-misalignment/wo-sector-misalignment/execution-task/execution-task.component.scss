@@ -63,6 +63,9 @@
                             letter-spacing: 0px;
                             color: #000000;
                             opacity: 0.54;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                         .input-value {
                             text-align: left;
@@ -71,6 +74,9 @@
                             letter-spacing: 0px;
                             color: #000000;
                             opacity: 0.9;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
 
                     }
@@ -88,6 +94,9 @@
                             letter-spacing: 0px;
                             color: #000000;
                             opacity: 0.54;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                         .input-value {
                             text-align: left;
@@ -96,6 +105,9 @@
                             letter-spacing: 0px;
                             color: #000000;
                             opacity: 0.9;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                         
                     }
