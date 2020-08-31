@@ -2,6 +2,7 @@ import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-re
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { HttpClient } from '@angular/common/http';
+import { GridOptions } from '@ag-grid-community/all-modules';
 
 export class GroupLevel {
   level = 0;
@@ -18,6 +19,7 @@ export class AgGridTreeComponent implements OnInit {
   @Input('columnDefs') columnDefs;
   @Input('rowData') rowData;
   columnDef: any;
+  public gridOptions: GridOptions;
   //columnDefs = COLUMNDEFS;
   // @Input('columnDefs') columnDefs: [];
 
@@ -42,6 +44,12 @@ export class AgGridTreeComponent implements OnInit {
     // this.setGroupDetails(1, 'zone');
     // this.setGroupDetails(2, 'circle');
     // this.setGroupDetails(3, 'jiocenter');
+    this.gridOptions = <GridOptions>{};
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
   }
 
   ngOnChanges() {
@@ -151,11 +159,11 @@ export class AgGridTreeComponent implements OnInit {
   // onCellClicked(event) {
   //   console.log(event, "e");
   //   if (event.colDef.headerName == " ") {
-     
+
   //   }else{
   //     this.cellClicked.emit(event);
   //   }
-    
+
   // }
 
   /**
@@ -172,7 +180,7 @@ export class AgGridTreeComponent implements OnInit {
       } else if (row.data.expand === true) {
         this.onGroupClick(row.data, row.rowIndex, 'collapse');
       }
-    }else{
+    } else {
       if (row.data.level >= 2) {
         this.cellClicked.emit(row);
       }
@@ -306,7 +314,7 @@ export class AgGridTreeComponent implements OnInit {
     }
   }
 
- 
+
 
 
 

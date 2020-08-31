@@ -23,6 +23,10 @@ export class WoSectorMisalignmentComponent {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
+  public gridApi;
+  public gridColumnApi;
+  public gridCore: GridCore;
+  public gridOptions: GridOptions;
   public sidenavBarStatus;
   public rowData: any;
   public columnDefs: any[];
@@ -58,15 +62,36 @@ export class WoSectorMisalignmentComponent {
     }
   ];
   showFullScreen: boolean = false;
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
     private httpClient: HttpClient) {
+
+    // this.gridOptions = <GridOptions>{};
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
+
       if (!message) {
+        this.calculateRowCount();
         this.showFullScreen = true;
       }
+      // this.getMyStyles()
     });
 
     //API call to get WO Service details
@@ -95,9 +120,16 @@ export class WoSectorMisalignmentComponent {
   }
 
   getMyStyles() {
-    let myStyles = {
-      'width': this.showFullScreen ? '20%' : '25%'
-    };
+    let myStyles = {}
+    if (this.showFullScreen) {
+      myStyles = {
+        'width': '20%'
+      };
+    } else {
+      myStyles = {
+        'width': '25%'
+      };
+    }
     return myStyles;
   }
 

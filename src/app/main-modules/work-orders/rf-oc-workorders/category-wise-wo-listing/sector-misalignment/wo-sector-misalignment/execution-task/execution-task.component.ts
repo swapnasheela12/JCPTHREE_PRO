@@ -19,6 +19,9 @@ import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-gr
 import { ExecutionTaskSaveComponent } from './execution-task-save.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+import { CommonPopupComponent, CommonDialogModel } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
+import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 
 @Component({
   selector: 'app-execution-task',
@@ -108,8 +111,7 @@ export class ExecutionTaskComponent implements OnInit {
     },
     {
       "label": "Antenna Make:",
-      "value": "S-Wave 18/18/23/23-65-18DV10"
-      // "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
+      "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
     },
     {
       "label": "Antenna Model:",
@@ -371,10 +373,10 @@ export class ExecutionTaskComponent implements OnInit {
   }
 
   openSuccessPopup() {
-    const dialogRef = this.dialog.open(ExecutionTaskSaveComponent, {
-      width: '700px',
-      height: '290px',
-      panelClass: 'file-upload-dialog'
+
+    const message = `Are you sure want to submit the workorder?`;
+    const dialogRef = this.dialog.open(SuccessfulModalComponent, {
+      data: message
     });
     dialogRef.afterClosed().subscribe(data => {
       //console.log(data);

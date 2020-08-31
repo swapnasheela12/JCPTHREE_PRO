@@ -131,6 +131,7 @@ import { LteAntennaComponent } from './modules/components/properties/inventory/l
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
+import { SuccessfulModalComponent } from './core/components/commanPopup/successful-modal/successful-modal.component';
 declare var $: any;
 
 @NgModule({
@@ -265,6 +266,7 @@ declare var $: any;
   exports: [HomeJcpThreeComponent],
   entryComponents: [
     // CreateReportComponent,
+    SuccessfulModalComponent,
     SuccessfulComponent,
     SettingsDialogComponent,
     ModalTemplateComponent

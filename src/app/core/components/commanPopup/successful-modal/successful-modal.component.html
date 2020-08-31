@@ -1,23 +1,21 @@
 <div class="successful-container">
     <div class="successful-circle-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="circle-type" fxLayout="row" fxLayoutAlign="space-evenly center">
-            <div [ngClass]="[image == 'warning'? 'ic ic-warning warning-icon': '']"></div>
+            <div class="icon-success ic ic-success--2-1"></div>
         </div>
     </div>
-
     <div class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
-        <div class="p-3 successful-text-header warning">{{title}}</div>
+        <div class="p-3 successful-text-header success">Success!</div>
         <div class="p-4 successful-text-subheader">{{message}}</div>
     </div>
-
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
         <div class="mr-1 successful-text-button">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;"
-                (click)="onCancel()">Cancel</button>
+            <button class=" success-butt" (click)="clickYes()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Create New Reports</button>
         </div>
         <div class="ml-1 successful-text-button">
-            <button class=" success-butt" mat-raised-button color="primary" style=" margin-left: 3px;"
-                (click)="onConfirm()">Confirm</button>
+            <button class=" success-butt" (click)="clickNo()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Go To My Reports</button>
         </div>
     </div>
 </div>

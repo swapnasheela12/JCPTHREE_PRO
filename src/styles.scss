@@ -1653,7 +1653,7 @@ table {
     height: 24px;
     border-radius: 4px;
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.8;
 }
 
 .bg-in-progress {
@@ -1817,15 +1817,25 @@ ag-grid-angular {
     }
 }
 
-//Delete button renederer
+//// change icon of tree grid
+:host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
+    content: "\f13a"!important;
+    font-family: "Font Awesome 5 Free";
 
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 
-// .delete-trash-icon:hover {
-//     border-radius: 20px;
-//     background: #0078D7 0% 0% no-repeat padding-box;
-//     opacity: 0.05;
-//     width: 37px;
-//     height: 37px;
-// }
+}
+
+:host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
+    content: "\f139"!important;
+    font-family: "Font Awesome 5 Free";
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+}   
 
 

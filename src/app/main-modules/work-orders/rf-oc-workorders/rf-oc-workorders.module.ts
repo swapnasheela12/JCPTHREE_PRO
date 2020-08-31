@@ -69,7 +69,8 @@ import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector
 import { DropdownComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/dropdown.component';
 import { WostatusComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/wostatus.component';
 
-import {TextfieldComponent} from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/textfield.component';
+import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/textfield.component';
+import { ExecutionTaskSaveComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task-save.component';
 
 
 @NgModule({
@@ -77,10 +78,11 @@ import {TextfieldComponent} from './category-wise-wo-listing/overshooting-cell/r
     SectorMisalignmentComponent,
     OvershootingCellComponent,
     ExecutionTaskComponent,
+    ExecutionTaskSaveComponent,
     WoSectorMisalignmentComponent,
-   
+
     TextfieldComponent,
-   
+
     OvershootingExeTaskComponent,
     IanLeadComponent,
     WoOvershootingCellComponent,

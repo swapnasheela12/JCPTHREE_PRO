@@ -5,11 +5,11 @@ import { Inject, Component } from '@angular/core';
     selector: 'app-execution-task-save',
     template: `
     <div mat-dialog-content>
-  <p>Are you sure want to submit the workorder?</p>
-<div mat-dialog-actions>
-  <button mat-stroked-button color="primary" (click)="onNoClick()">No</button>
-  <button mat-stroked-button color="primary"  (click)="onNoClick()"cdkFocusInitial>Yes</button>
-</div>
+    <p>Are you sure want to submit the workorder?</p>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="onNoClick()">No</button>
+        <button mat-raised-button color="primary"  (click)="onNoClick()"cdkFocusInitial>Yes</button>
+    </div>
     `,
 })
 export class ExecutionTaskSaveComponent {

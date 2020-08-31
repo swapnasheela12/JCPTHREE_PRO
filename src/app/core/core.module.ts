@@ -67,6 +67,7 @@ import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.comp
 import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
 import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
+import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -76,6 +77,7 @@ import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workord
     LeftsideNavigationComponent,
     MmenuDirective,
     SuccessfulComponent,
+    SuccessfulModalComponent,
     MyjcpdropdownpanelComponent,
     isEllipsisActiveDirective,
     ConfirmPopupComponent,
@@ -154,6 +156,7 @@ import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workord
     MmenuDirective,
     isEllipsisActiveDirective,
     SuccessfulComponent,
+    SuccessfulModalComponent,
     dropDownThreeDotRendererComponent,
     viewHistoryRendererComponent,
     TableAgGridComponent,
@@ -161,7 +164,8 @@ import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workord
     DeleteRendererComponent
     // PaginationComponent
   ], entryComponents: [
-    SuccessfulComponent
+    SuccessfulComponent,
+    SuccessfulModalComponent
   ]
 })
 export class CoreModule { }

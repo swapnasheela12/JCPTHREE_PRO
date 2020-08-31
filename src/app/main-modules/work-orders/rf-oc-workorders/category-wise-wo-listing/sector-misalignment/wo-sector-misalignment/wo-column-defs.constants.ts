@@ -45,7 +45,7 @@ export const COLUMN_DEFS = [
     {
         headerName: 'Due Date',
         field: 'duedate',
-        width: 140
+        width: 160
     },
     {
         headerName: 'Assigned To',
@@ -59,45 +59,13 @@ export const COLUMN_DEFS = [
             return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div><div class="values color-54">' + assignedby + '</div></div>';
             // }
         },
-        width: 150
+        width: 170
     },
     {
         headerName: 'last Modified Date',
         field: 'lastmodified',
-        width: 180
-    },
-    {
-        headerName: 'Task Completion',
-        field: 'taskCompletion',
-        cellRenderer: function (params) {
-            var taskcompletion = params.data.taskcompletion;
-            var taskprogress = params.data.progressbar;
-            // var taskprogresscolor = params.data.taskColor;
-
-            var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
-                ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-            var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
-                ' <div class="progress"> <div class="progress-bar bg-in-progress" style="width:' + taskprogress + '%"></div> </div></div>';
-
-            var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
-                ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-            if (taskcompletion == "Successful") {
-                return template1;
-            } else if (taskcompletion == "In Progress") {
-                return template2;
-            } else {
-                return template3;
-            }
-        },
-        pinned: 'right',
-        width: 170
+        width: 180,
+        pinned: "right"
     }
-    // , {
-    //     headerName: "",
-    //     cellRenderer: 'viewHistroyRenderer',
-    //     pinned: 'right',
-    //     width: 90
-    // }
 
 ];

@@ -51,6 +51,22 @@ export class SectorMisalignmentComponent {
   public url: string = "assets/data/report/sector-misalignment/sector-misalignment.json";
 
 
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
     this.gridOptions = <GridOptions>{};

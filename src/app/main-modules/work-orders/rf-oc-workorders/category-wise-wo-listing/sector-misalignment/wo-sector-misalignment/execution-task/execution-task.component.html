@@ -40,7 +40,8 @@
                         <div class="input-title">
                             {{site.label}}
                         </div>
-                        <div class="input-value" placement="top" ngbTooltip="Triggered from component">{{site.value}}
+                        <div class="input-value" [matTooltip]="site.value" matTooltipPosition="after">
+                            {{site.value}}
                         </div>
                     </div>
                 </div>
@@ -115,7 +116,8 @@
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-2 col-3">
                     <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 14px;">Task Closure Remarks*</mat-label>
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">Task
+                            Closure Remarks*</mat-label>
                         <mat-select disableOptionCentering [(value)]="taskClosureRemarks[0]"
                             style="font-family: lato Regular; font-size: 14px;">
                             <mat-option value="option1" class="sector-title" *ngFor="let tcr of taskClosureRemarks"
