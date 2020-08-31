@@ -2,6 +2,7 @@
     height: calc(100% - 52px);
     overflow: auto;
     background: transparent;
+
     .blocks {
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 0px 6px #00000029;
@@ -26,21 +27,26 @@
         p {
             margin: 0;
         }
+
         div.prev-page {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right:10px;
-            width: 37px;height: 37px;
+            margin-right: 10px;
+            width: 37px;
+            height: 37px;
             border-radius: 50px;
             background: #f2f8fd;
             text-align: center;
         }
+
         .main-title {
             text-align: left;
-font: normal normal bold 15px/18px Lato;
-letter-spacing: 0px;
-color: #000000;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
+            letter-spacing: 0px;
+            color: #000000;
         }
     }
 
@@ -50,7 +56,9 @@ color: #000000;
         header {
 
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -70,18 +78,25 @@ color: #000000;
     .site-details {
         text-align: left;
 
-color: #000000;
+        color: #000000;
+
         .label {
             color: #000000;
         }
+
         .details {
-            font: normal normal normal 14px/22px Lato;
-letter-spacing: 0px;
+            font-size: 14px;
+            line-height: 22px;
+            font-family: "Lato Regular";
+            letter-spacing: 0px;
             color: #000000;
         }
+
         .body-text {
             text-align: left;
-            font: normal normal normal 14px/22px Lato;
+            font-size: 14px;
+            line-height: 22px;
+            font-family: "Lato Regular";
             letter-spacing: 0px;
             color: #000000;
             opacity: 0.54;
@@ -89,7 +104,9 @@ letter-spacing: 0px;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -117,7 +134,7 @@ letter-spacing: 0px;
             .sitepdetails-cell {
                 font-size: 12px;
                 font-family: lato;
-               
+
             }
         }
     }
@@ -127,7 +144,9 @@ letter-spacing: 0px;
 
         header {
             text-align: left;
-    font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -166,7 +185,9 @@ letter-spacing: 0px;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -186,7 +207,7 @@ letter-spacing: 0px;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-           
+
         }
 
         .os-cell {
@@ -195,8 +216,9 @@ letter-spacing: 0px;
             .details {
                 color: #000000;
                 font-size: 14px;
-               
+
             }
+
             .value {
                 color: #000000;
                 opacity: 0.54;
@@ -211,7 +233,9 @@ letter-spacing: 0px;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -245,7 +269,9 @@ letter-spacing: 0px;
 
     .blocks-text {
         text-align: left;
-        font: normal normal normal 12px/18px Lato;
+        font-size: 12px;
+        line-height: 18px;
+        font-family: "Lato Regular";
         letter-spacing: 0px;
         color: #000000;
         opacity: 0.54;
@@ -322,7 +348,8 @@ letter-spacing: 0px;
 
     }
 }
-.task-footer{
+
+.task-footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -337,7 +364,9 @@ letter-spacing: 0px;
 
 .block-heading {
     text-align: left;
-    font: normal normal bold 15px/18px Lato;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: "Lato Bold";
     letter-spacing: 0.03px;
     color: #464D69;
     text-transform: capitalize;
@@ -348,6 +377,7 @@ letter-spacing: 0px;
 .remarks {
     width: 352px;
     padding: 1rem;
+
     input {
         width: 100%;
     }
@@ -356,8 +386,10 @@ letter-spacing: 0px;
 .os-cell {
     .details {
         text-align: left;
-font: normal normal normal 12px/18px Lato;
-letter-spacing: 0px;
-color: #000000;
+        font-size: 12px;
+        line-height: 18px;
+        font-family: "Lato Regular";
+        letter-spacing: 0px;
+        color: #000000;
     }
 }

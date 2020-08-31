@@ -66,7 +66,7 @@ import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.c
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
-import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
+//import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
 import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 

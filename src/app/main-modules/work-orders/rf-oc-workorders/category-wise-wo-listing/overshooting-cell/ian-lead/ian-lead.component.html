@@ -2,11 +2,11 @@
 
   <div class="section-title">
 
-      <div class="prev-page" routerLink="../WO-Overshooting-Cell">
-        <span class="zmdi zmdi-arrow-left"></span></div>
+    <div class="prev-page" routerLink="../WO-Overshooting-Cell">
+      <span class="zmdi zmdi-arrow-left"></span></div>
 
-      <span class="main-title">Execution Task IAN Lead</span>
-   
+    <span class="main-title">Execution Task IAN Lead</span>
+
   </div>
 
   <div class="task-retrigger-details mb-3 blocks">
@@ -28,20 +28,20 @@
     <div class="data-table body-text">
       <div class="sitedetails-row">
         <div class="sitedetails-cell">
-          <div class="label">SAP  ID</div>
-          
+          <div class="label">SAP ID</div>
+
           <div class="details">1-AS-PTRK-ENB-HQ04</div>
         </div>
         <div class="sitedetails-cell">
-         <div class="label">Sector ID</div> 
-         <div class="details">1</div>
+          <div class="label">Sector ID</div>
+          <div class="details">1</div>
         </div>
         <div class="sitedetails-cell">
-          <div class="label">Band</div> 
-        <div class="details">2300</div>  
+          <div class="label">Band</div>
+          <div class="details">2300</div>
         </div>
         <div class="sitedetails-cell">
-        <div class="label"> Cell Name</div> 
+          <div class="label"> Cell Name</div>
           <div class="details">I-MU-THNE-ENB-0306-15</div>
 
         </div>
@@ -101,15 +101,33 @@
       </div>
       <div class="os-row">
         <div class="os-cell">
-         <div class="details"></div>
+          <div class="details">
+            <mat-form-field appearance="fill">
+              <mat-label>Task Closure Remarks</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let taskclosure of taskclosures" [value]="taskclosure.value">
+                  {{taskclosure.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
 
         </div>
 
 
       </div>
+      <div class="os-row">
+        <div class="os-cell">
+          <mat-form-field class="example-full-width">
+            <mat-label>Site Photos*</mat-label>
+            <input type="" matInput placeholder="Upload Photos" value="">
+          </mat-form-field>
+        </div>
+      </div>
     </div>
   </div>
-  
+
   <div class="implemented-parameter-details mb-3 blocks">
     <header class="impheader">
       <div class="title">Implememnted parameter Details</div>
@@ -132,13 +150,13 @@
 
     </div>
   </div>
- 
+
   <div class="d-flex task-footer">
     <div class="col"></div>
     <div class="p-2">
-        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="goBack()">Cancel</button>
     </div>
     <div class="p-2">
-        <button mat-raised-button color="primary" class="buttonWidth button">Submit</button>
+      <button mat-raised-button color="primary" class="buttonWidth button" (click)="openSuccessPopup()">Submit</button>
     </div>
-</div>
+  </div>

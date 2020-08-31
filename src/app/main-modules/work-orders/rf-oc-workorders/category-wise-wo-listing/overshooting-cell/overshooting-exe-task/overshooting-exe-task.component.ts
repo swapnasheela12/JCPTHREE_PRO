@@ -1,11 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClient } from "@angular/common/http";
-import { AgGridModule } from 'ag-grid-angular';
 import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { WoRanPopupComponent} from "./ran-popup/wo-ran-popup/wo-ran-popup.component"
+import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
+import {TextfieldComponent} from '../renderer/wostatus/textfield.component';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { Router } from '@angular/router';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+// import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
+import { FormControl } from '@angular/forms';
+import { MatSidenav } from '@angular/material/sidenav';
+import { FileUploadService } from 'src/app/_services/file-upload.service';
+import { map } from 'lodash';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
+import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
+import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
+
 interface sitep {
   value: string;
   viewValue: string;
@@ -17,10 +32,25 @@ interface sitep {
 })
 export class OvershootingExeTaskComponent implements OnInit {
 
-  
+  public paths;
+  public sidenavBarStatus;
+  public tableWidth;
   public gridApi;
+  public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  public gridOptionsImpl: GridOptions;
+  public gridOptionsSite: GridOptions;
+  public rowData: any;
+  public columnDefs: any;
+  public rowCount: string;
+  public formControlPageCount = new FormControl();
+  public showGlobalOperation: Boolean = false;
+  public taskColDef;
+  public siteColDef;
+  public implColDef;
+  public taskRowdata;
+  public addRemoveRows;
   //public rowData: any;
   public columnDefswo;
   public rowDatawo;
@@ -28,8 +58,26 @@ export class OvershootingExeTaskComponent implements OnInit {
   public rowExecutionTask;
   public spdetailsColumndata;
   public spdetailsRowdata;
+public frameworkComponentsos;
+  impParameterDetailsColumndata;
 
-  constructor(public flexlayout: FlexLayoutModule, private http: HttpClient) {
+public  imppdetailsRowdata;
+public imppdetailsColumndata;
+  public implnRowdata;
+  public physicalParameterColumndata;
+public physicalParameterrowdata;
+  public pspRowdata: any;
+
+  constructor(private http: HttpClient, private datashare: DataSharingService,
+    private router: Router, 
+    private overlayContainer: OverlayContainer, 
+    private httpClient: HttpClient,
+    private fileUploadService: FileUploadService, 
+    public dialog: MatDialog) {
+
+      this.frameworkComponentsTaskExecution = {
+      deleteRenderer: DeleteRendererComponent
+      };
 
   }
 
@@ -42,24 +90,45 @@ export class OvershootingExeTaskComponent implements OnInit {
     this.createRowdata();
     this.createspdetailsColumndata();
     this.createspdetailsRowdata();
+    this.createimppdetailsColumndata();
+    this.createImplRowdata();
+    this.createphysicalParametersColumndata();
+    this.createpspRowdata();
   }
+  
+
+
+
+
+  public frameworkComponentsTaskExecution;
+  taskClosureRemark = [
+    { value: 'taskClosure', name: 'Task Closure' },
+    { value: 'databaseMismatch', name: 'Database Mismatch' },
+    { value: 'siteAccessIssue', name: 'Site Access Issue' },
+    { value: 'spaceConstraint', name: 'Space Constraint' },
+    { value: 'materialRequired', name: 'Material Required' },
+    { value: 'requiredClutter', name: 'Required based on clutter' },
+    { value: 'implementationDone', name: 'Implementation Done' }
+  ];
+  taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
+
   private createColumndata() {
 this.columnDefswo = [
 
   {
     headerName: "Date",
     field: "date",
-   width: 500
+   width: 400
    
   }, {
     headerName: "Reason for Reassignmenet",
     field: "reasonforreassignment",
-    width: 500
+    width: 400
    
   }, {
     headerName: "Remarks",
     field: "remarks",
-    width: 500
+    width: 400
     
   }
 ]
@@ -109,12 +178,168 @@ sitepos: sitep[] = [
   {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'},
   {value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)'}
 ];
-cloneformelements: any = [1];
-addRow(){
- 
+
+// private createimppdetailsColumndata() {
+//   this.impParameterDetailsColumndata = [
+//     {
+//       headerName: "Site Parameter*",
+//       field: "siteparameter",
+//       width: 400,
+//       cellRendererFramework: DropdownComponent
+     
+//     },
+//     {
+//       headerName: "New Value*",
+//       field: "newvalue",
+//       width: 400,
+//       cellRendererFramework: TextfieldComponent
+
+     
+//     },
+//     {
+//       headerName: "",
+//       field: "",
+//       width: 300,
+//       template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
+     
+//     }
+//   ]
   
-     this.cloneformelements.push(this.cloneformelements.length + 1)
+
+// }
+private createimppdetailsColumndata() {
+  this.impParameterDetailsColumndata = [
+    {
+      headerName: "Site Paraameter*",
+      field: "siteparameter",
+      width: 400,
+      cellRendererFramework: DropdownComponent
+     
+    },
+    {
+      headerName: "New Value*",
+      field: "newvalue",
+      width: 400,
+      cellRendererFramework: TextfieldComponent
+
+     
+    },
+    {
+      headerName: "",
+      field: "",
+      width: 300,
+      cellRendererFramework: DeleteRendererComponent  
+     
+    }
+  ]
+  
+
+}
+
+// private createImplRowdata() {
+//   this.http.get("assets/data/layers/workorders/impl-details.json")
+//     .subscribe(data => {
+//       console.log(data);
+//       this.implnRowdata = data;
+//   });
+// }
+private createImplRowdata() {
+  this.http.get("assets/data/layers/workorders/impl-details.json")
+    .subscribe(data => {
+      console.log(data);
+      this.implnRowdata = data;
+  });
+}
+
+
+
+
+private createphysicalParametersColumndata() {
+  this.physicalParameterColumndata = [
+    {
+      headerName: "Site Paraameter*",
+      field: "siteparameter",
+      width: 400,
+      cellRendererFramework: DropdownComponent
+     
+    },
+    {
+      headerName: "New Value*",
+      field: "newvalue",
+      width: 400,
+      cellRendererFramework: TextfieldComponent
+
+     
+    },
+    {
+      headerName: "",
+      field: "",
+      width: 300,
+      cellRendererFramework: DeleteRendererComponent
+     
+    }
+  ]}
+
+
+  private createpspRowdata() {
+    this.http.get("assets/data/layers/workorders/physical-parameter-data.json")
+      .subscribe(data => {
+        console.log(data);
+        this.pspRowdata = data;
+    });
+  }
+  addGridImplementedParameterDetails() {
+    this.gridOptionsImpl.api.addItems([{
+      "siteparameter": "",
+      "newvalue": "",
+      "": ""
+    }]);
+  };
+
+  
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
   }
 
 
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.gridOptionsImpl.api && this.gridOptionsSite.api &&
+      this.taskRowdata) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+        this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsSite.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+  openSuccessPopup() {
+    const dialogRef = this.dialog.open(SubmitWorkordedPopupComponent, {
+      width: '700px',
+      height: '290px',
+      panelClass: 'file-upload-dialog'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      //console.log(data);
+    });
+  }
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
