@@ -38,7 +38,7 @@ export class WoSectorMisalignmentComponent {
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
   public gridFilterValueServices = {};
-  public showGlobalOperation: Boolean = false;
+  public showGlobalOperation: boolean = true;
   woHeader = [
     {
       "label": "Category",
@@ -62,21 +62,21 @@ export class WoSectorMisalignmentComponent {
     }
   ];
   showFullScreen: boolean = false;
-  onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
+  // onReadyModeUpdate(params) {
+  //   this.calculateRowCount();
+  // }
 
-  public onReady(params) {
-    this.gridApi = params.api;
-    this.calculateRowCount();
-  }
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
+  // public onReady(params) {
+  //   this.gridApi = params.api;
+  //   this.calculateRowCount();
+  // }
+  // public calculateRowCount() {
+  //   if (this.gridOptions.api && this.rowData) {
+  //     setTimeout(() => {
+  //       this.gridOptions.api.sizeColumnsToFit();
+  //     }, 1000);
+  //   }
+  // }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
@@ -88,8 +88,9 @@ export class WoSectorMisalignmentComponent {
       this.sidenavBarStatus = message;
 
       if (!message) {
-        this.calculateRowCount();
-        this.showFullScreen = true;
+        console.log("message", message);
+        //this.calculateRowCount();
+        this.showFullScreen = false;
       }
       // this.getMyStyles()
     });
