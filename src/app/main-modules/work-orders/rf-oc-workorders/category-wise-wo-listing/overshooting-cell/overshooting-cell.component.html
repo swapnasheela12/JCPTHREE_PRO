@@ -1,198 +1,36 @@
-<!-- <div class="overshooting-cell-container">
-  <div color="" class="oc-toolbar">
-    <div class="popup-title">
-      <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
-
-        <div fxFlex="80" class="rantext">WO-RAN-OvershootingCell-03_05_19-0001</div>
-        <button fxFlex="20" class="close-popup">
-          <span class="material-icons" style="font-size: 20px;">
-            close
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="woranrf-oc-lead">
-    <p><span class="zmdi zmdi-arrow-left"></span> 0015_2300_7_T01
-      :
-      Execution Task-RF OC Lead</p>
-  </div>
-  <div class="main-content" style="height: 500px; overflow: scroll;">
-    <div class="task-retrigger-details mb-3">
-      <header> <h1 class="font1">Task Retrigger Details</h1></header>
-     
-      <div class="data-table-1">
-        <ag-grid-angular style="height: 200px;" 
-        class="ag-theme-material ag-jcp3"
-            [rowData]="rowrt" 
-            [columnDefs]="columnDefswo" 
-            rowHeight="48" 
-            headerHeight="48"
-          
-            enableColResize 
-            enableSorting 
-            enableFilter 
-            groupHeaders
-            suppressRowClickSelection 
-            toolPanelSuppressGroups 
-            toolPanelSuppressValues 
-           
-            rowSelection="multiple">
-        </ag-grid-angular>
-      </div>
-    </div>
-    <div class="site-details mb-3">
-      <header class="header-styles"><h1>Site Details</h1></header>
-      <div class="data-table">
-        <div class="sitedetails-row">
-          <div class="sitedetails-cell">
-            SAP
-            ID<BR/>
-            1-AS-PTRK-ENB-HQ04
-          </div>
-          <div class="sitedetails-cell">
-            SECTRO ID<br/>
-            1
-          </div>
-          <div class="sitedetails-cell">
-            Band<br/>
-            2300
-          </div>
-          <div class="sitedetails-cell">
-            Cell Name<br/>
-            I-MU-THNE-ENB-0306-15
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="site-parameter-details mb-3">
-      <header class="header-styles"><h1>Site Parameter Details</h1></header>
-      <div class="sitepdetails-row">
-        <div class="sitepdetails-cell">
-          Site Parameter
-          <div>
-            Azimuth(deg)
-          </div>
-          <div>Antenna Height(meters)</div>
-        
-        </div>
-        <div class="sitepdetails-cell">
-        <div>Current Value<br/></div> 
-         <div>
-          Azimuth(deg)
-        </div>
-        <div>Antenna Height(meters)</div>
-        
-      
-        </div>
-     
-      </div>
-    </div>
-    <div class="oveershooting-cell-statistical-details boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Overshooting Cell Statistical Details</h1></header>
-      <div class="os-row">
-        <div class="os-cell">
-         Calculated cell range(m):<br/>
-         400
-        </div>
-        <div class="os-cell">
-          Overshooting Samples(% of Toatal, As per LSMR data):<br/>
-          31
-        </div>
-        <div class="os-cell">
-          Good Coverage Limit (m, As per geo-located data):
-<br/>
-          1400
-        </div>
-       
-      </div>
-      <div class="os-row">
-        <div class="os-cell">
-          Overshoot Start Distance(m):
-
-          ID<BR/>
-          1450
-        </div>
-        <div class="os-cell">
-          Overshoot End Distance (m):
-5000<br/>
-          1
-        </div>
-        <div class="os-cell">
-          % Samples Beyond Good Coverage Limit (As per geo-located data):
-<br/>
-          14
-        </div>
-       
-      </div>
-      <div class="os-row">
-        <div class="os-cell">
-          Proposed Incremental E-Tilt:
-
-          <BR/>
-         0
-        </div>
-      
-       
-      </div>
-    </div>
-    <div class="solution-implementation boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Solution Implementation Details</h1></header>
-      <div class="sol-impl-details-title p-3">
-       
-          Select the solution to be implemented for mitigation of overshooting cell
-      </div>
-        <div class="sol-imp-row">
-          <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">E-Tilt/Tx attenuation Change
-            </mat-radio-button>
-            <mat-radio-button value="2">Physical Parameter Optimization</mat-radio-button>
-          </mat-radio-group>
-        </div>
-      
-    </div>
-    <div class="Implemented-paratmeter-details boxshadowdiv mb-3">
-      <header class="header-styles"><h1>Implememnted parameter Details</h1></header>
-<div class="imp-details-row p-3">
-
-</div>
-    </div>
-    <div class="suggestions-for-physical-parameter-opt-details boxshadowdiv">
-      <header class="header-styles"><h1>Suggestions for physical Optimization Details</h1></header>
-
-    </div>
-  </div>
-  <div class="footer">
-    <button type="button" mat-raised-button class="cancel-btn">CANCEL</button>
-    <button type="submit" mat-raised button class="submit-btn">SUBMIT</button>
-  </div>
-</div> -->
-
-<div class="h-100 overshooting-cell-container">
+<mat-card class="h-100 overshooting-container">
 
   <div class="overshooting-flex-container">
-    <div class="d-flex mx-2 flex-row justify-content-between" style="align-items:center; ">
-      <div class="col-4 overshooting-flex-item">
-        <div class="overshooting-title">Overshooting Cell</div>
-        <a class="mr-10" routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/Rfoc-lead">RFOC LEAD</a>
-        <a routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/Ian-Lead">IAN LEAD</a>
-
+    <div class="d-flex mx-2 flex-row justify-content-between">
+      <div class="px-3 pt-3 col-4 sector-flex-item" fxFlex>
+        <div class="py-3 overshooting-title">Overshooting Cell</div>
       </div>
 
+      <div class="px-2 pt-3 col-4 sector-flex-item">
+        <!-- <mat-icon class="icon-button" aria-label="search">
+          <span class="zmdi zmdi-search"></span>
+        </mat-icon> -->
 
-      <div class="px-2 col-4 pt-2 overshooting-flex-item">
-        <mat-icon class="icon-button" aria-label="search">
+        <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
           <span class="zmdi zmdi-search"></span>
         </mat-icon>
 
+        <mat-form-field *ngIf="show">
+          <!-- <mat-label>Filter</mat-label> -->
+          <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+          <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+            <span class="zmdi zmdi-close"></span>
+          </mat-icon>
+        </mat-form-field>
+
       </div>
     </div>
   </div>
 
-
+  <mat-divider style="position: relative;"></mat-divider>
   <div class="jcp-table-container">
-    <app-table-ag-grid (cellClicked)="cellClickedDetails($event)"></app-table-ag-grid>
-  </div>
+    <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+    </app-table-ag-grid>
 
-</div>
+  </div>
+</mat-card>

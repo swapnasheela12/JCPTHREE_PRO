@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 // import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -59,16 +60,16 @@ import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misali
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
-import { SelectDropdownComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/select-dropdown/select-dropdown.component';
-import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/textfield/textfield.component';
-import { DeletebuttonComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
+
 import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 import { TaskInputRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-input-renderer.component';
 import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector-misalignment/renderer/task-dropdown-renderer.component';
+import { DropdownComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/dropdown.component';
+import { WostatusComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/wostatus.component';
 
-
+import {TextfieldComponent} from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/textfield.component';
 
 
 @NgModule({
@@ -77,14 +78,16 @@ import { TaskDropdownRendererComponent } from './category-wise-wo-listing/sector
     OvershootingCellComponent,
     ExecutionTaskComponent,
     WoSectorMisalignmentComponent,
-    SelectDropdownComponent,
+   
     TextfieldComponent,
-    DeletebuttonComponent,
+   
     OvershootingExeTaskComponent,
     IanLeadComponent,
     WoOvershootingCellComponent,
     TaskDropdownRendererComponent,
-    TaskInputRendererComponent
+    TaskInputRendererComponent,
+    DropdownComponent,
+    WostatusComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,

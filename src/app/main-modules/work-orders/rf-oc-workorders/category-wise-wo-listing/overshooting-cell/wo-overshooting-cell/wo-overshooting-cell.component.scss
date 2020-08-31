@@ -1,15 +1,19 @@
 $md-primary: #0070db;
 $color-white: #ffffff;
-.wo-sector-container {
+
+.wo-overshooting-container {
     height: calc(100% - 50px);
     min-height: calc(100% - 50px);
     max-height: calc(100% - 50px);
-    .wo-sector-card-one {
-        background-color: #288ae2;
+
+    .wo-overshooting-card-one {
+        background-color: rgb(255, 255, 255);
         border-radius: 4px 4px 0 0;
+
         .report-flex-container {
             // margin-top: 10px;
             padding: 15px;
+
             .wo-flex-item {
                 .col-1 {
                     span {
@@ -23,25 +27,142 @@ $color-white: #ffffff;
                     }
                 }
             }
+
             .report-flex-item {
                 .report-form-field {
                     width: 100%;
                 }
+
                 .report-form-field-read {
                     .report-form-input-title {
                         font-size: 10px;
-                        color: #767676;
+                        color: rgba(0, 0, 0, .54);
                     }
+
                     .report-form-input-value {
                         font-size: 15px;
-                        color: #fff;
+                        color: rgba(0, 0, 0, .87);
                     }
                 }
             }
         }
     }
+
     .jcp-table-container {
         height: calc(100% - 155px) !important;
         max-height: calc(100% - 155px) !important;
     }
+}
+
+.wo-flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+div.prev-page {
+
+    margin-right: 10px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50px;
+    background: #f2f8fd;
+    text-align: center;
+}
+
+.wo-progress-bar {
+    width: 100px;
+    height: 5px;
+    background: #F8C93A;
+    border-radius: 3px;
+}
+
+.section-title {
+    color: #000000;
+    font: normal normal bold 15px/18px Lato;
+    letter-spacing: 0px;
+
+}
+
+.work-order-status {
+    text-align: left;
+    font: normal normal normal 12px/14px Lato;
+    letter-spacing: 0px;
+    color: #666666;
+    opacity: 1;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .wo-percent {
+        text-align: left;
+        font: normal normal normal 12px/14px Lato;
+        letter-spacing: 0px;
+        color: #666666;
+        opacity: 1;
+    }
+}
+
+.report-form-input-value {
+    text-align: left;
+    font: normal normal normal 14px/22px Lato !important;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.9;
+}
+
+.report-form-input-title {
+
+    text-align: left;
+    font: normal normal normal 12px/18px Lato !important;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.54;
+}
+
+.page-title {
+    text-align: left;
+font: normal normal bold 15px/18px Lato;
+letter-spacing: 0px;
+color: #000000;
+opacity: 1;
+}
+
+.block-heading {
+    text-align: left;
+    font: normal normal bold 15px/18px Lato;
+    letter-spacing: 0.03px;
+    color: #464D69;
+    text-transform: capitalize;
+    opacity: 1;
+      
+}
+
+:host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
+    content: "\f13a"!important;
+    font-family: "Font Awesome 5 Free";
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+
+}
+
+:host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
+    content: "\f139"!important;
+    font-family: "Font Awesome 5 Free";
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+
 }

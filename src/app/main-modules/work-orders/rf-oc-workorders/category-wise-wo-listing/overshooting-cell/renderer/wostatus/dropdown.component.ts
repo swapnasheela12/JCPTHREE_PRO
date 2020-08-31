@@ -1,0 +1,52 @@
+import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { ICellRendererAngularComp } from 'ag-grid-angular';
+@Component({
+  selector: 'app-dropdown',
+  template: `
+    <mat-form-field fxFlex="100" style="max-width: 100%">
+      <mat-select [(ngModel)]="siteParameter">
+        <mat-option *ngFor="let sp of siteParameterList" [value]="sp">
+            {{sp}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    `,
+  encapsulation: ViewEncapsulation.None
+})
+export class DropdownComponent implements ICellRendererAngularComp {
+
+ 
+
+  ngOnInit(): void {
+  }
+  params;
+  siteParameter = "E-Tilt(deg)";
+ // customModule = "Disable";
+
+  siteParameterList = [
+    'E-Tilt',
+    'Tx attenuation-Port1 (db)',
+    'Tx attenuation-Port2 (db)',
+ 
+  ];
+ 
+  columnName: string;
+  rowIndex: number;
+  constructor(
+  ) {
+  }
+
+  agInit(params): void {
+    this.params = params;
+    console.log(params)
+    // this.columnName = params.column.colDef.headerName;
+    // this.rowIndex = params.rowIndex;
+    // this.daysImprovementVal = this.daysImprovementList[this.rowIndex];
+  }
+
+  refresh(params?: any): boolean {
+    return true;
+  }
+
+}
+

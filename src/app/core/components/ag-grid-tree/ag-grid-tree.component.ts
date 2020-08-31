@@ -66,8 +66,8 @@ export class AgGridTreeComponent implements OnInit {
         }
       });
       this.icons = {
-        columnGroupClosed: '<i class="material-icons">add_circle_outline</i>',
-        columnGroupOpened: '<i class="material-icons">remove_circle_outline</i>'
+        columnGroupClosed: '<i class="ic ic-circle-up"></i>',
+        columnGroupOpened: '<i class=ic ic-circle-down"></i>'
       };
     }
   }

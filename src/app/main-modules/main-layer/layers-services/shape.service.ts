@@ -6,11 +6,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ShapeService {
-
+mapServiceData;
   constructor(private http: HttpClient) { }
 
   getStateShapes(): Observable<any> {
     return this.http.get('/assets/data/jcp3_state.json');
+  }
+  getSmallCellData(): Observable<any> {
+    return this.http.get('assets/data/layers/smallcell.json');
   }
 
 

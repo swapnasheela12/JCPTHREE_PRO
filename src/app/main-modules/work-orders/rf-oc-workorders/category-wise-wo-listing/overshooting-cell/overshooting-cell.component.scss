@@ -1,23 +1,16 @@
 
-
-
 $md-primary: #0070db;
 $color-white: #ffffff;
 
-.overshooting-cell-container {
-    height: 99%;
+.overshooting-container {
+    height: 98%;
     min-height: 99%;
     min-width: 100%;
     width: 100%;
     padding: 0px;
     position: relative;
     .overshooting-flex-container {
-        color: #000000;
-        background:#ffffff;
-        height: 64px !important;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border-bottom: 1px solid #e2e2e2;
+        height: 80px !important;
         .overshooting-flex-item {
             font-size: 14px;
             .overshooting-title {
@@ -64,4 +57,3 @@ $color-white: #ffffff;
         // box-shadow: 2px 2px 3px #f5f5f5;
     }
 }
-

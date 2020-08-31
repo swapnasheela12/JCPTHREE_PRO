@@ -48,12 +48,12 @@ const routes: Routes = [
             component: WoOvershootingCellComponent
           },
           {
-            path: 'Rfoc-lead',
+            path: 'RFOC-L2',
           component: OvershootingExeTaskComponent,
 
           },
           {
-            path: 'Ian-Lead',
+            path: 'IAN-Lead',
           component: IanLeadComponent
 
           }
