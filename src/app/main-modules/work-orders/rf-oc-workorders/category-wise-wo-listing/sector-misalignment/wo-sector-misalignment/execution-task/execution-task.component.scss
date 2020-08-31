@@ -3,53 +3,74 @@
     overflow: auto;
     background: transparent;
     .comp-title {
-        margin-bottom: 10px;
-        font-weight: 400;
-        font-family: lato bold;
-        font-size: 14px;
-        color: black;
-        padding-left: 25px;
+        margin-bottom: 5px;
+        padding: 0px;
+        .exec-title {
+            font-family: Lato Bold;
+            font-size: 15px;
+            letter-spacing: 0px;
+        }
+        .icon-btn-exe:hover {
+            float: right;
+            padding: 8px 12px;
+            text-align: center;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 25px;
+            line-height: 0;
+        }
     }
     .execution-task-container-one {
-        border: 4px;
+        border-radius: 4px;
         margin-bottom: 15px;
         .sub-header {
             height: 46px;
             background: white;
-            //line-height: 2.5;
+            border-radius: 4px;
             .sub-header-title {
-                color: #464D69;
+                text-align: left;
+                font-family: Lato bold;
                 font-size: 15px;
-                font-family: Lato Bold;
-
+                letter-spacing: 0.03px;
+                color: #464D69;
+                text-transform: capitalize;
+                opacity: 1;
+                height: 15px;
+                line-height: 1;
             }
-        }
-        .sub-content-container {
-            .sub-content-table {
-
-            }
-            .content-list{
-                .content-list-container {
-                    .input-content {
-                        
-                    }
-                }
+            > button {
+                width: 71px;
+                height: 28px;
+                background: #0078D7 0% 0% no-repeat padding-box;
+                border: 1px solid #0078D7;
+                border-radius: 4px;
+                opacity: 1;
+                color: #FFFFFF;
+                text-transform: capitalize;
+                opacity: 1;
+                line-height: 1.5;
             }
         }
         .sub-content-container {
             .sub-content {
                 .sub-content-flex-item {
                     .form-field-read-only {
+                        line-height: 1.9;
                         .input-title {
-                            font-size: 13px;
-                            color: rgba(0,0,0,.54);
+                            text-align: left;
+                            font-family: Lato Regular;
+                            font-size: 12px;
+                            letter-spacing: 0px;
+                            color: #000000;
+                            opacity: 0.54;
                         }
                         .input-value {
-                            font-size: 15px;
-                            width: 100%;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
-                            white-space: nowrap;
+                            text-align: left;
+                            font-family: Lato Medium;
+                            font-size: 14px;
+                            letter-spacing: 0px;
+                            color: #000000;
+                            opacity: 0.9;
                         }
 
                     }
@@ -58,7 +79,24 @@
             }
             .content-list{
                 .content-list-container {
-                    .input-content {
+                    .form-field-read-only {
+                        line-height: 1.9;
+                        .input-title {
+                            text-align: left;
+                            font-family: Lato Regular;
+                            font-size: 12px;
+                            letter-spacing: 0px;
+                            color: #000000;
+                            opacity: 0.54;
+                        }
+                        .input-value {
+                            text-align: left;
+                            font-family: Lato Medium;
+                            font-size: 14px;
+                            letter-spacing: 0px;
+                            color: #000000;
+                            opacity: 0.9;
+                        }
                         
                     }
                 }

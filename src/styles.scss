@@ -1592,6 +1592,35 @@ table {
             }
         }
     }
+    app-ag-grid-tree {
+        ag-grid-angular {
+            .ag-root-wrapper {
+                .ag-root-wrapper-body {
+                    .ag-root {
+                        .ag-header {
+                            > div {
+                                .ag-header-row {
+                                    > .ag-header-cell {
+                                        .ag-cell-label-container {
+                                            .ag-header-cell-label {
+                                                .ag-header-cell-text {
+                                                    letter-spacing: 0px;
+                                                    color: #000000;
+                                                    opacity: 0.8;
+                                                    font-family: lato bold;
+                                                    font-size: 16px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 //////////////
@@ -1611,6 +1640,20 @@ table {
 .md-two-lines-cell .align-v-middle {
     vertical-align: middle;
     margin-top: 0px;
+}
+///////////////////@extend.
+.status-bar {
+    display: inline-block;
+    font-weight: Lato Regular;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.5;
 }
 
 .bg-in-progress {
@@ -1761,17 +1804,28 @@ svg {
         }
     }
 }
-// app-ag-grid-tree {
-    ag-grid-angular {
-        .ag-root-wrapper {
-            .ag-root-wrapper-body {
-                .ag-root {
-                    .ag-header {
-                        background: #e9ecec;
-                    }
+
+ag-grid-angular {
+    .ag-root-wrapper {
+        .ag-root-wrapper-body {
+            .ag-root {
+                .ag-header {
+                    background: #e9ecec;
                 }
             }
         }
     }
+}
+
+//Delete button renederer
+
+
+// .delete-trash-icon:hover {
+//     border-radius: 20px;
+//     background: #0078D7 0% 0% no-repeat padding-box;
+//     opacity: 0.05;
+//     width: 37px;
+//     height: 37px;
+// }
 
 

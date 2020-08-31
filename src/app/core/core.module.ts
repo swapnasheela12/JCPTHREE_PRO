@@ -65,6 +65,8 @@ import { FileUploadPopupComponent } from './components/commanPopup/file-upload-p
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
+import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
+import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -79,6 +81,7 @@ import { TemplateDropdownComponent } from './../main-modules/modules/planning-de
     ConfirmPopupComponent,
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
+    DeleteRendererComponent,
     viewHistoryRendererComponent,
     FileUploadPopupComponent,
     TableAgGridComponent,
@@ -91,7 +94,7 @@ import { TemplateDropdownComponent } from './../main-modules/modules/planning-de
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -154,7 +157,8 @@ import { TemplateDropdownComponent } from './../main-modules/modules/planning-de
     dropDownThreeDotRendererComponent,
     viewHistoryRendererComponent,
     TableAgGridComponent,
-    AgGridTreeComponent
+    AgGridTreeComponent,
+    DeleteRendererComponent
     // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent

@@ -3,19 +3,20 @@ $md-primary: #0070db;
 $color-white: #ffffff;
 
 .sector-misalignment-container {
-    height: 98%;
+    height: 98% !important;
     min-height: 99%;
     min-width: 100%;
     width: 100%;
     padding: 0px;
     position: relative;
     .sector-flex-container {
-        height: 80px !important;
+        height: 60px !important;
         .sector-flex-item {
             font-size: 14px;
             .sector-title {
                 font-size: 16px;
                 font-family: Lato Bold;
+                line-height: 2;
             }
             .icon-button {
                 padding: 10px 16px;
@@ -27,8 +28,8 @@ $color-white: #ffffff;
         }
     }
     .jcp-table-container {
-        height: calc(100% - 80px) !important;
-        max-height: calc(100% - 80px) !important;
+        height: calc(100% - 60px) !important;
+        max-height: calc(100% - 60px) !important;
         .ag-theme-material.ag-jcp3 .ag-header {
             background-color: #D3D5DC;
         }

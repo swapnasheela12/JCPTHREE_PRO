@@ -20,7 +20,7 @@ import { SideNavService } from 'src/app/_services/side-nav.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { AlarmsPopupComponent } from '../../../modules/components/alarms-popup/alarms-popup.component';
 import { CapacityComponent } from '../../../modules/components/capacity/capacity.component';
-import { ConfigurationComponent} from '../../../modules/components/configuration/configuration.component';
+import { ConfigurationComponent } from '../../../modules/components/configuration/configuration.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HelpiconComponent } from '../../../modules/components/capacity/helpicon/helpicon.component';
 import { QuestionPopupComponent } from '../../../modules/components/capacity/question-popup/question-popup.component';
@@ -123,14 +123,14 @@ export class HeaderComponent implements OnInit {
   message: string;
   routeUrlLinkPage;
   truncatedBCStr;
-  
+
   constructor(
-  
-    public dialog: MatDialog, 
-    private datashare: DataSharingService, 
-    private _formBuilder: FormBuilder, private location: Location, 
-    private router: Router, private authenticationService: AuthenticationService, 
-    @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer, 
+
+    public dialog: MatDialog,
+    private datashare: DataSharingService,
+    private _formBuilder: FormBuilder, private location: Location,
+    private router: Router, private authenticationService: AuthenticationService,
+    @Inject(DOCUMENT) private document: any, private overlayContainer: OverlayContainer,
     private sideNavService: SideNavService,
     public matDialog: MatDialog, public matselect: MatSelectModule,
     private http: HttpClient) {
@@ -459,21 +459,21 @@ export class HeaderComponent implements OnInit {
 
     this.sideNavService.toggle();
   }
-  
+
   openDialogAlarms() {
     const dialogRef = this.dialog.open(AlarmsPopupComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-     
+
     });
- 
+
   };
 
   openDialogCapacity(): void {
     const dialogRef = this.dialog.open(CapacityComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-       });
+    });
   };
 
   // closeDialog(){
@@ -486,11 +486,6 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.matDialog.open(ConfigurationComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-    
     });
-
-
   };
-
-
 }

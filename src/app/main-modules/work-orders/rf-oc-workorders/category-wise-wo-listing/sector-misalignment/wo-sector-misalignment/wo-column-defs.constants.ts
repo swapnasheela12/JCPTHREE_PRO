@@ -22,26 +22,26 @@ export const COLUMN_DEFS = [
                 barColor = '#f21400';
             }
 
-            return '<span class="md-line-status" style="background-color: ' +
+            return '<span class="status-bar" style="background-color: ' +
                 barColor +
-                ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
-                status + '</div></div>';
+                ';">' +
+                status + '</span>';
         },
         pinned: 'left',
-        width: 130
+        width: 140
     },
     {
         headerName: 'Task Id',
         field: 'taskid',
         pinned: 'left',
         width: 180
-        },
+    },
     {
         headerName: 'Task',
         field: 'taskid',
         width: 180
     },
-   
+
     {
         headerName: 'Due Date',
         field: 'duedate',
@@ -56,7 +56,7 @@ export const COLUMN_DEFS = [
             // if (assignedbyname) {
             //     return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div></div>';
             // } else {
-                return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div><div class="values color-54">' + assignedby + '</div></div>';
+            return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div><div class="values color-54">' + assignedby + '</div></div>';
             // }
         },
         width: 150
@@ -64,13 +64,13 @@ export const COLUMN_DEFS = [
     {
         headerName: 'last Modified Date',
         field: 'lastmodified',
-        width: 140
+        width: 180
     },
     {
         headerName: 'Task Completion',
         field: 'taskCompletion',
         cellRenderer: function (params) {
-           var taskcompletion = params.data.taskcompletion;
+            var taskcompletion = params.data.taskcompletion;
             var taskprogress = params.data.progressbar;
             // var taskprogresscolor = params.data.taskColor;
 

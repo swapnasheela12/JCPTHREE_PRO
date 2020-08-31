@@ -189,18 +189,18 @@ export class SectorMisalignmentComponent {
     var status = params.value;
     var barColor = '';
     if (status == "Completed" || status == "Successful") {
-      barColor = '#39b54a';
+      barColor = '#60DD5C';
     } else if (status == "In Progress" || status == "Started") {
-      barColor = '#ff8000';
+      barColor = '#F8C93A';
     } else if (status == "Not Started") {
       barColor = '#ff8000';
     } else {
       barColor = '#f21400';
     }
-    return '<span class="md-line-status" style="background-color: ' +
+    return '<span class="status-bar" style="font-size: 14px; font-family: lato Regular; background-color: ' +
       barColor +
-      ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
-      status + '</div></div>';
+      ';">' +
+      status + '</span>';
   }
 
   cellClickedDetails(evt) {

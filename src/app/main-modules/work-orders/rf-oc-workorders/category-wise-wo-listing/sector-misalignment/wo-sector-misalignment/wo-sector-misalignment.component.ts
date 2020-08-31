@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COLUMN_DEFS } from './wo-column-defs.constants'; 
+import { COLUMN_DEFS } from './wo-column-defs.constants';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -11,6 +11,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { Subject } from 'rxjs';
 
 const COLUMNDEFS = COLUMN_DEFS;
 @Component({
@@ -28,9 +29,11 @@ export class WoSectorMisalignmentComponent {
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
   };
+  public searchGrid = '';
+  public show;
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
-
+  public gridFilterValueServices = {};
   public showGlobalOperation: Boolean = false;
   woHeader = [
     {
@@ -50,18 +53,20 @@ export class WoSectorMisalignmentComponent {
       "value": "24 Sep, 2019"
     },
     {
-      "label": "Planned End Date",
-      "value": "30 Sep, 2019"
-    },
-    {
       "label": "Work Order Status",
       "value": "In Progress"
     }
   ];
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+  showFullScreen: boolean = false;
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
+    private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
+    private httpClient: HttpClient) {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
+      if (!message) {
+        this.showFullScreen = true;
+      }
     });
 
     //API call to get WO Service details
@@ -73,13 +78,32 @@ export class WoSectorMisalignmentComponent {
 
   }
 
+  public eventsSubject: Subject<any> = new Subject();
+  onFilterChanged(evt) {
+    this.gridFilterValueServices["filter"] = evt.target.value;
+    this.eventsSubject.next(this.gridFilterValueServices);
+  };
+  show: any;
+  toggleSearch() {
+    this.show = !this.show;
+  };
+
   cellClickedDetails(evt) {
-    console.log(evt,"evt?????");
-    
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
     }
+  }
 
+  getMyStyles() {
+    let myStyles = {
+      'width': this.showFullScreen ? '20%' : '25%'
+    };
+    return myStyles;
+  }
+
+
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment'])
   }
 
 

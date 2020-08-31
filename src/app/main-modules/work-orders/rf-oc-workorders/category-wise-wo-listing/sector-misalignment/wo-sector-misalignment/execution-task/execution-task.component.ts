@@ -18,6 +18,7 @@ import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-rend
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { ExecutionTaskSaveComponent } from './execution-task-save.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 
 @Component({
   selector: 'app-execution-task',
@@ -70,7 +71,12 @@ export class ExecutionTaskComponent implements OnInit {
       "sector": "",
       "band": "",
       "newAzimuthValue": ""
-    }
+    },
+    {
+      "sector": "",
+      "band": "",
+      "newAzimuthValue": ""
+    },
   ];
   public frameworkComponentsTaskExecution;
   taskClosureRemark = [
@@ -188,7 +194,8 @@ export class ExecutionTaskComponent implements OnInit {
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,
-      'dropdown': dropDownThreeDotRendererComponent
+      'dropdown': dropDownThreeDotRendererComponent,
+      deleteRenderer: DeleteRendererComponent
     };
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
@@ -203,20 +210,6 @@ export class ExecutionTaskComponent implements OnInit {
       this.calculateRowCount();
     });
 
-
-
-    // this.httpClient.get(this.site_url)
-    //   .subscribe(data => {
-    //     this.siteRowdata = data;
-    //     console.log("this.siteRowData", this.siteRowdata)
-    //   });
-
-    // this.httpClient.get(this.impl_url)
-    //   .subscribe(data => {
-    //     this.implRowdata = data;
-    //     console.log("impl", this.implRowdata)
-    //   });
-
     this.httpClient.get(this.task_url)
       .subscribe(data => {
         this.taskRowdata = data;
@@ -224,8 +217,7 @@ export class ExecutionTaskComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   createColumnDefs() {
     return this.columnDefs = [
@@ -260,7 +252,6 @@ export class ExecutionTaskComponent implements OnInit {
         width: 150
       }
     ];
-    // this.datatable.columnDefsServices = this.columnDefs;
   }
 
   createImplColumnDefs() {
@@ -287,10 +278,10 @@ export class ExecutionTaskComponent implements OnInit {
         headerName: "",
         field: "",
         width: 100,
-        template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
+        cellRenderer: 'deleteRenderer',
+        // template: '<mat-icon (click)="delete()" style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon ic ic-custom-delete"></span></mat-icon>'
       }
     ]
-    //this.datatable.columnDefsServices = this.columnDefs;
   }
 
 
@@ -312,6 +303,7 @@ export class ExecutionTaskComponent implements OnInit {
     this.gridOptionsSite.api.setQuickFilter(value);
   };
   show: any;
+
   toggleSearch() {
     this.show = !this.show;
   };
@@ -326,15 +318,6 @@ export class ExecutionTaskComponent implements OnInit {
   }
 
   addGridImplementedParameterDetails() {
-    ////////////////////Add during multiple impl///////////////////////
-
-    // this.addRemoveRows = {
-    //   add: {
-    //     "sector": "",
-    //     "band": "",
-    //     "newAzimuthValue": ""
-    //   }
-    // }
     this.gridOptionsImpl.api.addItems([{
       "sector": "",
       "band": "",
@@ -393,8 +376,10 @@ export class ExecutionTaskComponent implements OnInit {
       panelClass: 'file-upload-dialog'
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
   }
-
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment'])
+  }
 }
