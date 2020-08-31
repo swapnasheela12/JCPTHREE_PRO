@@ -1,0 +1,19 @@
+[
+    {
+    "siteparameter": "E-Tilt(deg)",
+    "newvalue": 10
+},
+{
+    "siteparameter": "Tx-Attenuation-Port-1(db)",
+    "newvalue": 24
+},
+{
+    "siteparameter": "Tx-Attenuation-Port-2(db)",
+    "newvalue": 30
+}
+
+
+
+
+
+]

@@ -3,39 +3,33 @@
     "grouplist": "In Progress",
     "status": "In Progress",    
     "taskid": "0015_2300_7_T01",
-    "task": "Cell Name I-MU-THNE-ENB-0306-15",
-    "duedate": "28 Jul, 2017",
+    "task": "RFOC L2",
+    "createddate": "12 Dec, 2019",
     "assignedto": "Me",
-    "assignedby": "IAN Lead",
-    "lastmodified": "28 Jun, 2017",
-    "progressby": "In Progress",
-    "progressbar": 25
+    "lastdate": "28 Jun, 2017"
+   
    
 },
 {
     "grouplist": "In Progress",
     "status": "In Progress",    
     "taskid": "0015_2300_7_T01",
-    "task": "Cell Name I-MU-THNE-ENB-0306-15",
-    "duedate": "28 Jul, 2017",
+    "task": "IAN Lead",
+    "createddate": "12 Dec, 2019",
     "assignedto": "Me",
-    "assignedby": "IAN Lead",
-    "lastmodified": "28 Jun, 2017",
-    "progressby": "In Progress",
-    "progressbar": 25
+    "lastdate": "28 Jun, 2017"
+   
    
 },
 {
     "grouplist": "In Progress",
     "status": "In Progress",    
     "taskid": "0015_2300_7_T01",
-    "task": "Cell Name I-MU-THNE-ENB-0306-15",
-    "duedate": "28 Jul, 2017",
+    "task": "RFOC L2",
+    "createddate": "12 Dec, 2019",
     "assignedto": "Me",
-    "assignedby": "IAN Lead",
-    "lastmodified": "28 Jun, 2017",
-    "progressby": "In Progress",
-    "progressbar": 25
+    "lastdate": "28 Jun, 2017"
+  
    
 }
 ]

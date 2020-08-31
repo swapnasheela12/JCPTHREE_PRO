@@ -5,7 +5,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { WoRanPopupComponent} from "./ran-popup/wo-ran-popup/wo-ran-popup.component"
+import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
+import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
+import { Route, ActivatedRoute } from '@angular/router';
+
 interface sitep {
   value: string;
   viewValue: string;
@@ -33,8 +36,22 @@ export class IanLeadComponent implements OnInit {
   public rowExecutionTask;
   public spdetailsColumndata;
   public spdetailsRowdata;
+public frameworkComponentsos;
+  impParameterDetailsColumndata;
 
-  constructor(public flexlayout: FlexLayoutModule, private http: HttpClient) {
+public  imppdetailsRowdata;
+public imppdetailsColumndata;
+  public implnRowdata;
+  public physicalParameterColumndata;
+public physicalParameterrowdata;
+  public pspRowdata: any;
+
+  constructor(private router: ActivatedRoute, public flexlayout: FlexLayoutModule, private http: HttpClient) {
+
+    this.frameworkComponentsos = {
+      "dropdownrender": DropdownComponent,
+      "textfieldrender": TextfieldComponent
+    }
 
   }
 
@@ -47,6 +64,9 @@ export class IanLeadComponent implements OnInit {
     this.createRowdata();
     this.createspdetailsColumndata();
     this.createspdetailsRowdata();
+    this.createimppdetailsColumndata();
+    this.createImplRowdata();
+   
   }
   private createColumndata() {
 this.columnDefswo = [
@@ -54,17 +74,17 @@ this.columnDefswo = [
   {
     headerName: "Date",
     field: "date",
-   width: 500
+   width: 400
    
   }, {
     headerName: "Reason for Reassignmenet",
     field: "reasonforreassignment",
-    width: 500
+    width: 400
    
   }, {
     headerName: "Remarks",
     field: "remarks",
-    width: 500
+    width: 400
     
   }
 ]
@@ -114,19 +134,49 @@ sitepos: sitep[] = [
   {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'},
   {value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)'}
 ];
-cloneformelements: any = [1];
-addRow(){
- 
+
+private createimppdetailsColumndata() {
+  this.impParameterDetailsColumndata = [
+    {
+      headerName: "Site Paraameter*",
+      field: "siteparameter",
+      width: 400,
+      cellRendererFramework: DropdownComponent
+     
+    },
+    {
+      headerName: "New Value*",
+      field: "newvalue",
+      width: 400,
+      cellRendererFramework: TextfieldComponent
+
+     
+    },
+    {
+      headerName: "",
+      field: "",
+      width: 300,
+      template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
+     
+    }
+  ]
   
-     this.cloneformelements.push(this.cloneformelements.length + 1)
-  }
-  taskclosures: taskclosures[] = [
-    {value: 'Antenna Pole Mount Uptilt corrected', viewValue: 'Antenna Pole Mount Uptilt corrected'},
-    {value: 'Site Access Issues', viewValue: 'Site Access Issues'},
-    {value: 'Space Constraint', viewValue: 'Space Constraint'},
-    {value: 'Implementation Done', viewValue: 'Implementation Done'},
-    {value: 'Material Required', viewValue: 'Material Required'}
-  ];
-  selectedRemarks = this.taskclosures[2].value;
+
+}
+
+
+private createImplRowdata() {
+  this.http.get("assets/data/layers/workorders/impl-details.json")
+    .subscribe(data => {
+      console.log(data);
+      this.implnRowdata = data;
+  });
+}
+
+
+
+  // gotoPrevview(details) {
   
+  //   this.route.navigate(['/Overshooting-Cell/WO-Overshooting-Cell'], { relativeTo: this.route });
+  // }
 }

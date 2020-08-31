@@ -1,4 +1,6 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { FormControl } from '@angular/forms';
@@ -6,21 +8,17 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
+import { Subject } from 'rxjs';
 
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClient } from "@angular/common/http";
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
-
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { WoRanPopupComponent} from "./ran-popup/wo-ran-popup/wo-ran-popup.component"
 
 
 
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
+import { WostatusComponent } from './renderer/wostatus/wostatus.component';
+import { DropdownComponent } from './renderer/wostatus/dropdown.component';
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
 
 
@@ -30,11 +28,10 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
   styleUrls: ['./overshooting-cell.component.scss']
 })
 export class OvershootingCellComponent implements OnInit {
-  @ViewChild('accessrow') rowinstance:ElementRef;
+  ngOnInit(){}  
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
-
   public paths;
   public sidenavBarStatus;
   public tableWidth;
@@ -45,10 +42,13 @@ export class OvershootingCellComponent implements OnInit {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
-  public frameworkComponentsSectorMisalignment = {
-    statusFlagRenderer: StatusRendererComponent,
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
-    viewHistroyRenderer: viewHistoryRendererComponent
+  public defaultColDef = { resizable: true };
+  public searchGrid = '';
+  public show;
+  public gridFilterValueServices = {};
+  tableCompData = {};
+  public frameworkComponentsOvershooting = {
+   "statusbar" : WostatusComponent
   };
   public formControlPageCount = new FormControl();
 
@@ -56,9 +56,14 @@ export class OvershootingCellComponent implements OnInit {
   public url: string = "assets/data/layers/osc-data-table.json";
 
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
-    router.events.subscribe((url: any) => console.log(url));
-    //this.paths = PATHS;
+  constructor(
+    private datatable: TableAgGridService, 
+    private datashare: DataSharingService, 
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private overlayContainer: OverlayContainer, 
+    private httpClient: HttpClient) {
+    router.events.subscribe((url: any) => { });
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
@@ -69,56 +74,46 @@ export class OvershootingCellComponent implements OnInit {
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
-
-        console.log(this.rowData);
         this.datatable.rowDataURLServices = this.url;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-Report";
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
         this.datatable.rowDataServices = this.rowData;
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
-ngOnInit(){}  
 
-getSelection() {
+  getSelection() {
     var selectedRows = this.gridOptions.api.getSelectedRows();
-    console.log("selectedRows", selectedRows);
   }
 
   private createColumnDefs() {
     this.columnDefs = [
       {
         headerName: "Status",
-        cellRenderer: this.statusFunc,
+        cellRendererFramework: WostatusComponent,
         field: "status",
-        width: 150,
+        width: 140,
         pinned: "left"
       },
       {
         headerName: "SAP ID",
         field: "sapid",
-        width: 200,
-       
+        width: 200
       },
       {
         headerName: "Zone",
         field: "zone",
-        width: 120,
+        width: 100,
       },
       {
         headerName: "Circle",
         field: "circle",
-        width: 130,
+        width: 120,
       },
       {
         headerName: "JC ID",
         field: "jcid",
         width: 160,
-      },
-      {
-        headerName: "Category",
-        field: "category",
-        width: 200,
       },
       {
         headerName: "Workorder",
@@ -138,20 +133,17 @@ getSelection() {
       {
         headerName: "SLA Violation",
         field: "slaviolation",
-        width: 135,
+        width: 150,
         pinned: "right"
       }
-     
-     
     ];
     this.datatable.columnDefsServices = this.columnDefs;
-
   }
 
-  defaultColDef = { resizable: true };
-  searchGrid = '';
-  onFilterChanged(value) {
-    this.gridOptions.api.setQuickFilter(value);
+  public eventsSubject: Subject<any> = new Subject();
+  onFilterChanged(evt) {
+    this.gridFilterValueServices["filter"] = evt.target.value;
+    this.eventsSubject.next(this.gridFilterValueServices);
   };
   show: any;
   toggleSearch() {
@@ -175,7 +167,8 @@ getSelection() {
     return template;
   };
 
-  
+  //END table search//////////////////
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
@@ -183,17 +176,13 @@ getSelection() {
 
   onSelectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
     if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
     }
   }
 
   selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    console.log("console.log(lengthOfSelectedRow);", lengthOfSelectedRow);
     if (1 < lengthOfSelectedRow) {
-      console.log("row clicked", event)
     }
   }
 
@@ -201,7 +190,6 @@ getSelection() {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4);
-
   }
 
   onPageSizeChanged(newPageSize) {
@@ -220,40 +208,16 @@ getSelection() {
     } else {
       barColor = '#f21400';
     }
-
     return '<span class="md-line-status" style="background-color: ' +
       barColor +
       ';"></span><div class="md-two-lines-cell align-v-middle"><div class="values color-87">' +
       status + '</div></div>';
   }
 
-  progressTaskFunc(params) {
-    var taskcompletion = params.data.perrating;
-    var taskprogress = params.data.ratingnumber;
-     var taskprogresscolor = params.data.taskColor;
-
-    var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
-    var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
-      ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
-
-
-    if (taskcompletion == "Generated") {
-      return template1;
-    } else if (taskcompletion == "#5 in Queue") {
-      return template2;
-    } else {
-      return template3;
-    }
-  }
   cellClickedDetails(evt) {
+    console.log(evt, "evt");
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell"]);
     }
-
   }
 }

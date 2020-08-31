@@ -1,33 +1,26 @@
-<div mat-dialog-content class="wo-sector-container">
-    <mat-card class="wo-sector-card-one p-0">
+<div mat-dialog-content class="wo-overshooting-container">
+    <mat-card class="wo-overshooting-card-one p-0">
         <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
-            <div class="col m-3 wo-flex-item">
-                <div style="color:#fff">WO-RAN-Overshooting Cell-03_05_19-0001</div>
+            <div class="m-3 wo-flex-item">
+
+                <div class="prev-page" routerLink="../../Overshooting-Cell">
+                    <span class="zmdi zmdi-arrow-left"></span></div>
+                <div style="color: black">WO-RAN-Overshooting Cell-03_05_19-0001</div>
+              
             </div>
-            <div class="col-3 m-3 wo-flex-item d-flex justify-content-end align-items-center wo-headet-btn">
-                <!-- <div class="col-1">
-                    <button
-                        routerLink="/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task">
-                        WO</button>
-                </div> -->
-                <!-- <div class="col-1" style="margin-left: 20px;">
-                    <span class="ic ic-question" style="color: rgb(255,255,255);
-                    fill: rgb(255,255,255);"></span>
+            <div class="m-3 wo-flex-item d-flex justify-content-end align-items-center wo-headet-btn">
+               
+                <div class="work-order-status">
+                   <div class="label">Work Order Status: </div> 
+                   <div class="wo-status-bar">
+                       <div class="wo-percent">100%</div>
+                       <div class="wo-progress-bar">
+                           
+                       </div>
+                   </div>
                 </div>
-
                 <div class="col-1" style="margin-left: 20px;">
-                    <span class="ic ic-printer" style="color: rgb(255,255,255);
-                    fill: rgb(255,255,255);"></span>
-                </div>
-
-                <div class="col-1" style="margin-left: 20px;">
-                    <span class="ic ic-download3" style="color: rgb(255,255,255);
-                    fill: rgb(255,255,255);"></span>
-                </div> -->
-
-                <div class="col-1" style="margin-left: 20px;">
-                    <span class="ic ic-search" style="color: rgb(255,255,255);
-                    fill: rgb(255,255,255);"></span>
+                    <span class="ic ic-search" style="color: rgba(0,0,0,.54);"></span>
                 </div>
             </div>
         </div>
@@ -35,10 +28,9 @@
 
         <mat-card-content class="h-100">
             <div class="d-flex mx-2 flex-row flex-wrap report-flex-container">
-                <div class="p-2 report-flex-item col-3" *ngFor="let wo of woHeader">
+                <div class="p-2 report-flex-item col-2" *ngFor="let wo of woHeader">
                     <div class="report-form-field-read">
-                        <div class="report-form-input-title" style="font-size: 13px;
-                        color: rgba(255,255,255,.54);">{{wo.label}}</div>
+                        <div class="report-form-input-title" style="font-size: 13px;">{{wo.label}}</div>
                         <div class="report-form-input-value">{{wo.value}}</div>
 
                     </div>
