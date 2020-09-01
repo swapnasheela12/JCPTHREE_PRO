@@ -4,7 +4,10 @@
             <span class="zmdi zmdi-arrow-left"></span>
         </mat-icon>
         <div class="col exec-title" style="padding: 19px 0;">
-            <div style="color: black">Execution Task IAN Lead</div>
+            <div *ngIf="execLead" style="color: black">Execution Task IAN Lead</div>
+            <div *ngIf="ianLead" style="color: black">0015_2300_7_T01
+                :
+                Execution Task - RF OC L2</div>
         </div>
     </mat-card>
 
@@ -112,7 +115,7 @@
             <div class="sub-header-title">Solution Implementation</div>
         </div>
         <mat-divider></mat-divider>
-        <div class="sub-content-container h-100">
+        <div class="sub-content-container h-100" *ngIf="execLead">
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-2 col-3">
                     <mat-form-field class="form-field-read-only">
@@ -128,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="sub-content d-flex  flex-row flex-wrap">
+            <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="execLead">
                 <div class="sub-content-flex-item col-5">
 
                     <div class="sub-content-flex-item " style="width: 100%">
@@ -146,7 +149,7 @@
                 </div>
             </div>
 
-            <div class="sub-content d-flex  flex-row flex-wrap">
+            <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="execLead">
                 <div class="sub-content-flex-item col-5">
                     <div class=" sub-content-flex-item  tribe-post-controls-uploader-mini-wrapper col-5"
                         style="display: inline;" *ngIf="showFileUploadwidget">
@@ -163,11 +166,38 @@
                     </div>
                 </div>
             </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;" *ngIf="ianLead">
+                <div class="sub-content-flex-item p-2 col-3">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">Task
+                            Closure Remarks*</mat-label>
+                        <mat-select disableOptionCentering [(value)]="taskClosureRemarks[0]" disabled
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of taskClosureRemarks"
+                                [value]="tcr">
+                                {{tcr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="ianLead">
+                <div class="sub-content-flex-item col-3" style="line-height: 2;">
+                    <mat-label style="font-family: Lato Regular; font-size: 12px;color: #000000;opacity: 0.54;">Site
+                        Photos*
+                    </mat-label>
+                    <img src="../../../../../../../assets/images/logo/user.jpeg"
+                        style="height: 170px; width: 170px; margin-bottom: 10px;">
+                </div>
+            </div>
+
+
         </div>
     </mat-card>
 
 
-    <mat-card class="execution-task-container-one p-0">
+    <mat-card class="execution-task-container-one p-0" *ngIf="execLead">
         <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
             <div class="sub-header-title">Implemented Parameter Details</div>
 
@@ -193,6 +223,46 @@
                         <div class="input-title">Remark :</div>
                         <input class="input-value" matInput placeholder=""
                             value="Loremipsum Lorem Ipsum Lorem-ipsum ipsum loremipsumlorem" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+
+
+    <mat-card class="execution-task-container-one p-0" *ngIf="ianLead">
+        <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="sub-header-title">Implemented Parameter Details</div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="sub-content-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 105px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptionsImplIan" [columnDefs]="implColDefIan"
+                    [rowData]="implRowdataIAN" enableColResize enableSorting enableFilter groupHeaders
+                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)" [frameworkComponents]="frameworkComponentsTaskExecution">
+                </ag-grid-angular>
+            </div>
+
+            <div class="content-list">
+                <div class="content-list-container p-3 " fxFlex="50">
+                    <div class="form-field-read-only">
+                        <div class="input-title">Remark (by IAN Lead)</div>
+                        <input class="input-value" matInput placeholder="" value="Issue Resolved"
+                            style="border-bottom: 1px dotted lightgray;" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-list">
+                <div class="content-list-container p-3 " fxFlex="50">
+                    <div class="form-field-read-only">
+                        <div class="input-title">Remark* </div>
+                        <input class="input-value" matInput placeholder="" value="" required
+                            style="border-bottom: 1px solid lightgray;">
                     </div>
                 </div>
             </div>
