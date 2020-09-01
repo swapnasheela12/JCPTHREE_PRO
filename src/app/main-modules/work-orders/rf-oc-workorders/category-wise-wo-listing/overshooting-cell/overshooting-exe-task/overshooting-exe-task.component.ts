@@ -20,6 +20,7 @@ import { MultipleTableAgGridService } from 'src/app/core/components/multiple-tab
 import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
+import { AgGridModule, AgGridAngular } from 'ag-grid-angular';
 
 interface sitep {
   value: string;
@@ -31,6 +32,10 @@ interface sitep {
   styleUrls: ['./overshooting-exe-task.component.scss']
 })
 export class OvershootingExeTaskComponent implements OnInit {
+
+  @ViewChild('agGrid') agGrid: AgGridAngular;
+  @ViewChild('sugGrid') sugGrid: AgGridAngular;
+
 
   public paths;
   public sidenavBarStatus;
@@ -226,7 +231,7 @@ private createimppdetailsColumndata() {
     },
     {
       headerName: "",
-      field: "",
+      field: "delete",
       width: 300,
       cellRendererFramework: DeleteRendererComponent  
      
@@ -235,6 +240,16 @@ private createimppdetailsColumndata() {
   
 
 }
+onAddRowimp()
+   {
+     this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+  
+   }
+onAddRowsug()
+   {
+     this.sugGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+  
+   }
 
 // private createImplRowdata() {
 //   this.http.get("assets/data/layers/workorders/impl-details.json")

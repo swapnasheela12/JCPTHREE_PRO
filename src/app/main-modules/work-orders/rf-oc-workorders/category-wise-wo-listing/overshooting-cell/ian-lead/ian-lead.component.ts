@@ -11,6 +11,7 @@ import { Route, ActivatedRoute } from '@angular/router';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+import {  AgGridAngular } from 'ag-grid-angular';
 
 interface sitep {
   value: string;
@@ -26,12 +27,16 @@ interface taskclosures {
   styleUrls: ['./ian-lead.component.scss']
 })
 export class IanLeadComponent implements OnInit {
+  @ViewChild('agGrid') agGrid: AgGridAngular;
 
  
  
   public gridApi;
+  public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
+  public gridOptionsImpl: GridOptions;
+  public gridOptionsSite: GridOptions;
   //public rowData: any;
   public columnDefswo;
   public rowDatawo;
@@ -173,6 +178,17 @@ private createimppdetailsColumndata() {
 }
 
 
+// onGridReady(params) {
+//   this.gridApi = params.api;
+//   this.gridColumnApi = params.columnApi;
+// }
+// onAddRowimpl()
+//    {
+//      this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+  
+//    }
+
+
 private createImplRowdata() {
   this.http.get("assets/data/layers/workorders/impl-details.json")
     .subscribe(data => {
@@ -206,5 +222,39 @@ taskclosures: taskclosures[] = [
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
   }
+
+  // fileName;
+  // uploadFile(file) {
+  //   this.fileName = file.name;
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   let obj;
+  //   if (file) {
+  //     //this.uploadedImg = [];
+  //     this.showFileUploadwidget = true;
+  //     let url = `../../../../../../../assets/images/logo/${this.fileName}`
+  //     obj = {
+  //       src: url
+  //     }
+  //     this.uploadedImg.push(obj);
+  //   }
+  // }
+
+
+
+  // onClick() {
+  //   const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
+  //     const file = fileUpload.files[0];
+  //     this.files = file;
+  //     //this.files.push({ data: file });
+  //     this.uploadFiles();
+  //   };
+  //   fileUpload.click();
+  // }
+
+  // private uploadFiles() {
+  //   this.fileUpload.nativeElement.value = '';
+  //   this.uploadFile(this.files);
+  // }
 }
 

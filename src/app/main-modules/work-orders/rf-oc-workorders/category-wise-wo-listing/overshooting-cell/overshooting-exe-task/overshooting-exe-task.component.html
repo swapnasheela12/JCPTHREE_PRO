@@ -155,12 +155,12 @@
   <div class="implemented-parameter-details mb-3 blocks">
     <header class="impheader">
       <div class="title">Implememnted parameter Details</div>
-      <div class="clone-btn" (click)="addGridImplementedParameterDetails()">
+      <div class="clone-btn" (click)="onAddRowimp()">
         <button type="button" class="btn-clone">ADD</button>
       </div>
     </header>
     <div class="data-table">
-      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
+      <ag-grid-angular #agGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
         [columnDefs]="impParameterDetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
         enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
         [frameworkComponents]="frameworkComponentsTaskExecution" rowSelection="multiple">
@@ -180,12 +180,12 @@
   <div class="suggestions-details blocks">
     <header class="heading block-heading">
       <div class="title">Suggestions for Physical Parameter Optimization Details</div>
-      <div class="clone-btn" style="text-align:right;" (click)="addGridImplementedParameterDetails()">
+      <div class="clone-btn" style="text-align:right;" (click)="onAddRowsug()">
         <button type="button" class="btn-clone" >ADD</button>
       </div>
     </header>
     <div class="data-table">
-      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="pspRowdata"
+      <ag-grid-angular #sugGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="pspRowdata"
         [columnDefs]="physicalParameterColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
         enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
         [frameworkComponents]="frameworkComponentsos" rowSelection="multiple">

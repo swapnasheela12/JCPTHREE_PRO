@@ -119,10 +119,16 @@
       </div>
       <div class="os-row">
         <div class="os-cell">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" style="position:relative;">
             <mat-label>Site Photos*</mat-label>
             <input type="" matInput placeholder="Upload Photos" value="">
           </mat-form-field>
+         
+
+          <input style="position: absolute;z-index: 999;opacity:0;      
+          top: 242px;
+          left: 68px;
+          width: 180px;" type="file" class="uploadfilesOssd">
         </div>
       </div>
     </div>
@@ -130,13 +136,13 @@
 
   <div class="implemented-parameter-details mb-3 blocks">
     <header class="impheader">
-      <div class="title">Implememnted parameter Details</div>
+      <div class="title">Implemented parameter Details</div>
       <div class="clone-btn">
         <button type="button" class="btn-clone">ADD</button>
       </div>
     </header>
     <div class="data-table">
-      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
+      <ag-grid-angular #impLGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
         [columnDefs]="impParameterDetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
         enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
         [frameworkComponents]="frameworkComponentsos" rowSelection="multiple">
