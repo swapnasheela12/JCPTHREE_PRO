@@ -31,16 +31,16 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   dataTest: any = false;
 
   constructor(
-    public dialog: MatDialog,
-    public datashare: DataSharingService
+public dialog: MatDialog,
+public datashare: DataSharingService
   ) {
   }
 
   agInit(params): void {
     this.params = params;
-    this.datashare.checkboxMessage.subscribe((checkbox) => {
-      this.dataTest = checkbox;
-    });
+    // this.datashare.checkboxMessage.subscribe((checkbox) => {
+    //   this.dataTest = checkbox;
+    // });
   }
 
   refresh(params?: any): boolean {

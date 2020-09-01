@@ -7,7 +7,7 @@
         opacity: 1;
     }
 
- 
+
 
     .section-title {
         display: flex;
@@ -36,12 +36,7 @@
             background: #f2f8fd;
             text-align: center;
         }
-        .main-title {
-            text-align: left;
-font: normal normal bold 15px/18px Lato;
-letter-spacing: 0px;
-color: #000000;
-        }
+
     }
 
 
@@ -49,8 +44,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
-
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -78,8 +74,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
-
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -119,7 +116,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
 
             letter-spacing: 0.03px;
             color: #464D69;
@@ -159,7 +158,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
 
             letter-spacing: 0.03px;
             color: #464D69;
@@ -200,8 +201,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
-
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -223,7 +225,7 @@ color: #000000;
             text-align: left;
             font-size: 14px;
             line-height: 22px;
-            font-family: Lato;
+            font-family: "Lato Regular";
             letter-spacing: 0px;
             font-weight: medium;
             letter-spacing: 0px;
@@ -239,8 +241,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
-
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -277,8 +280,9 @@ color: #000000;
 
         header {
             text-align: left;
-            font: normal normal bold 15px/18px Lato;
-
+            font-size: 15px;
+            line-height: 18px;
+            font-family: "Lato Bold";
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -309,16 +313,16 @@ color: #000000;
 
     .blocks-text {
         text-align: left;
-        font: normal normal normal 12px/18px Lato;
+        font-size: 12px;
+        line-height: 18px;
+        font-family: "Lato Regular";
         letter-spacing: 0px;
         color: #000000;
         opacity: 0.54;
     }
 }
 
-.boxshadowdiv {
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-}
+
 
 
 .footer {
@@ -329,7 +333,7 @@ color: #000000;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     position: fixed;
     bottom: 0;
@@ -363,77 +367,7 @@ color: #000000;
     margin-right: 20px;
 }
 
-// .execution-task-container {
-//     height: calc(100% - 52px);
-//     overflow: auto;
-//     background: transparent;
 
-//     .comp-title {
-//         margin-bottom: 10px;
-//         font-weight: 400;
-//         font-family: lato bold;
-//         font-size: 14px;
-//         color: black;
-//         padding-left: 25px;
-//     }
-
-//     .execution-task-container-one {
-//         border: 4px;
-//         margin-bottom: 15px;
-
-//         .sub-header {
-//             height: 46px;
-//             background: white;
-
-//             //line-height: 2.5;
-//             .sub-header-title {
-//                 color: #464D69;
-//                 font-size: 15px;
-//                 font-family: Lato Bold;
-
-//             }
-//         }
-
-//         .sub-content-container {
-//             .sub-content-table {}
-
-//             .content-list {
-//                 .content-list-container {
-//                     .input-content {}
-//                 }
-//             }
-//         }
-
-//         .sub-content-container {
-//             .sub-content {
-//                 .sub-content-flex-item {
-//                     .form-field-read-only {
-//                         .input-title {
-//                             font-size: 13px;
-//                             color: rgba(0, 0, 0, .54);
-//                         }
-
-//                         .input-value {
-//                             font-size: 15px;
-//                             width: 100%;
-//                             text-overflow: ellipsis;
-//                             overflow: hidden;
-//                             white-space: nowrap;
-//                         }
-
-//                     }
-//                 }
-
-//             }
-
-//             .content-list {
-//                 .content-list-container {
-//                     .input-content {}
-//                 }
-//             }
-//         }
-//     }
-// }
 
 .impheader {
     display: flex;
@@ -452,10 +386,13 @@ color: #000000;
     }
 
     .btn-clone {
-        background: blue;
+        background: #0078d7;
+        border: 1px solid #0078d7;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: "Lato Medium";
         color: #ffffff;
         border-radius: 4px;
-        border: none;
         cursor: pointer;
         text-align: right;
 
@@ -472,10 +409,13 @@ color: #000000;
     }
 
     .btn-clone {
-        background: blue;
+        background: #0078d7;
+        border: 1px solid #0078d7;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: "Lato Medium";
         color: #ffffff;
         border-radius: 4px;
-        border: none;
         cursor: pointer;
         text-align: right;
 
@@ -485,10 +425,13 @@ color: #000000;
 
 .implemented-parameter-details {
     .btn-clone {
-        background: blue;
+        background: #0078d7;
+        border: 1px solid #0078d7;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: "Lato Medium";
         color: #ffffff;
         border-radius: 4px;
-        border: none;
         cursor: pointer;
         text-align: right;
 
@@ -497,7 +440,9 @@ color: #000000;
 
 .block-heading {
     text-align: left;
-    font: normal normal bold 15px/18px Lato;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: "Lato Bold";
     letter-spacing: 0.03px;
     color: #464D69;
     text-transform: capitalize;
@@ -509,7 +454,9 @@ color: #000000;
 
     .title {
         text-align: left;
-        font: normal normal normal 12px/18px Lato;
+        font-size: 12px;
+        line-height: 18px;
+        font-family: "Lato Regular";
         letter-spacing: 0px;
         color: #000000;
 
@@ -517,7 +464,9 @@ color: #000000;
 
     .value {
         text-align: left;
-        font: normal normal bold 14px/22px Lato;
+        font-size: 12px;
+        line-height: 18px;
+        font-family: "Lato Regular";
         letter-spacing: 0px;
         color: #000000;
 
@@ -529,14 +478,18 @@ color: #000000;
         .os-cell {
             .details {
                 text-align: left;
-                font: normal normal normal 12px/18px Lato;
+                font-size: 12px;
+                line-height: 18px;
+                font-family: "Lato Regular";
                 letter-spacing: 0px;
                 color: #000000;
             }
 
             .value {
                 text-align: left;
-                font: normal normal normal 14px/22px Lato;
+                font-size: 14px;
+                line-height: 22px;
+                font-family: "Lato Regular";
                 letter-spacing: 0px;
                 color: #000000;
 
@@ -562,7 +515,9 @@ color: #000000;
 .sol-imp-row {
 
     .radiobtn {
-        font: normal normal bold 14px/22px Lato;
+        font-size: 14px;
+        line-height: 22px;
+        font-family: "Lato Bold";
         letter-spacing: 0px;
         color: #000000;
     }
@@ -570,31 +525,33 @@ color: #000000;
 }
 
 .tx-attn {
-    font: normal normal bold 14px/22px Lato;
+    font-size: 14px;
+    line-height: 22px;
+    font-family: "Lato Bold";
     letter-spacing: 0px;
     color: #000000;
-}
-
-
-.section-title .main-title {
-    text-align: left;
-    font: normal normal bold 15px/18px Lato;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
 }
 
 
 .section-title {
 
     .main-title {
-
         text-align: left;
-        font: normal normal bold 15px/18px Lato;
+        font-size: 15px;
+        line-height: 18px;
+        font-family: "Lato Bold";
         letter-spacing: 0px;
         color: #000000;
+        opacity: 1;
     }
+
+
 }
+
+
+
+
+
 
 .overshooting-cell-container {
     height: calc(100% - 52px);
@@ -605,14 +562,26 @@ color: #000000;
 .tx-attenuation {
     font-size: 14px;
     line-height: 22px;
-    font-family: Lato;
+    font-family: "Lato Bold";
     letter-spacing: 0px;
-    font-weight:  lighter;
+    font-weight: lighter;
     letter-spacing: 0px;
     color: #000000;
 }
 
 .remarks-field {
     width: 352px;
-    padding:1.5rem;
+    padding: 1.5rem;
+}
+
+.task-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border: 1px solid lightgray;
+    height: 52px;
 }

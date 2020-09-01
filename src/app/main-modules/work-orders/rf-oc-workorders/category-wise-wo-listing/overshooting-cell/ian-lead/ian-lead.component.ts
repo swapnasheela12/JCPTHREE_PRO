@@ -8,6 +8,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
 import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
 import { Route, ActivatedRoute } from '@angular/router';
+import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
+import { Router } from '@angular/router';
+import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 
 interface sitep {
   value: string;
@@ -46,7 +49,12 @@ public imppdetailsColumndata;
 public physicalParameterrowdata;
   public pspRowdata: any;
 
-  constructor(private router: ActivatedRoute, public flexlayout: FlexLayoutModule, private http: HttpClient) {
+  constructor(
+    public flexlayout: FlexLayoutModule, 
+    private http: HttpClient,
+    private router: Router, 
+    private httpClient: HttpClient,
+    public dialog: MatDialog) {
 
     this.frameworkComponentsos = {
       "dropdownrender": DropdownComponent,
@@ -156,7 +164,7 @@ private createimppdetailsColumndata() {
       headerName: "",
       field: "",
       width: 300,
-      template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
+      cellRendererFramework: DeleteRendererComponent
      
     }
   ]
@@ -173,10 +181,30 @@ private createImplRowdata() {
   });
 }
 
-
+taskclosures: taskclosures[] = [
+  {value: '0', viewValue: 'Antenna Pole Mount Uptilt corrected'},
+  {value: '1', viewValue: 'Site Access Issues'},
+  {value: '2', viewValue: 'Space Constraint'},
+  {value: '3', viewValue: 'Material Required'},
+  {value: '4', viewValue: 'Implementation Done'}
+];
 
   // gotoPrevview(details) {
   
   //   this.route.navigate(['/Overshooting-Cell/WO-Overshooting-Cell'], { relativeTo: this.route });
   // }
+  openSuccessPopup() {
+    const dialogRef = this.dialog.open(SubmitWorkordedPopupComponent, {
+      width: '700px',
+      height: '290px',
+      panelClass: 'file-upload-dialog'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      //console.log(data);
+    });
+  }
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
+  }
 }
+

@@ -37,11 +37,17 @@ $color-white: #ffffff;
                     .report-form-input-title {
                         font-size: 10px;
                         color: rgba(0, 0, 0, .54);
+                     
+                        font-size: 12px;
+                        line-height: 18px;
+                        font-family: "Lato Regular";
                     }
 
                     .report-form-input-value {
+                        
                         font-size: 15px;
-                        color: rgba(0, 0, 0, .87);
+                        line-height: 18px;
+                        font-family: "Lato Medium";
                     }
                 }
             }
@@ -81,7 +87,10 @@ div.prev-page {
 
 .section-title {
     color: #000000;
-    font: normal normal bold 15px/18px Lato;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: bold;
+    font-family: "Lato Bold";
     letter-spacing: 0px;
 
 }
@@ -106,22 +115,22 @@ div.prev-page {
     }
 }
 
-.report-form-input-value {
-    text-align: left;
-    font: normal normal normal 14px/22px Lato !important;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 0.9;
-}
+// .report-form-input-value {
+//     text-align: left;
+//     font: normal normal normal 14px/22px Lato !important;
+//     letter-spacing: 0px;
+//     color: #000000;
+//     opacity: 0.9;
+// }
 
-.report-form-input-title {
+// .report-form-input-title {
 
-    text-align: left;
-    font: normal normal normal 12px/18px Lato !important;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 0.54;
-}
+//     text-align: left;
+//     font: normal normal normal 12px/18px Lato !important;
+//     letter-spacing: 0px;
+//     color: #000000;
+//     opacity: 0.54;
+// }
 
 .page-title {
     text-align: left;
@@ -144,9 +153,7 @@ opacity: 1;
 :host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
     content: "\f13a"!important;
     font-family: "Font Awesome 5 Free";
-    // position: absolute;
-    // top: 0;
-    // right: 0;
+    
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;
@@ -157,9 +164,7 @@ opacity: 1;
 :host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
     content: "\f139"!important;
     font-family: "Font Awesome 5 Free";
-    // position: absolute;
-    // top: 0;
-    // right: 0;
+   
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;

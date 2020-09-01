@@ -13,7 +13,24 @@ export const COLUMN_DEFS = [
     {
         headerName: 'Status',
         field: 'status',
-        cellRendererFramework: WostatusComponent,
+        cellRenderer:  function (params) {
+            var status = params.value;
+            var barColor = '';
+            if (status == "Successful") {
+                barColor = '#39b54a';
+            } else if (status == "In Progress" || status == "Started") {
+                barColor = '#ff8000';
+            } else if (status == "Not Started") {
+                barColor = '#ff8000';
+            } else {
+                barColor = '#f21400';
+            }
+
+            return '<span class="status-bar" style="background-color: ' +
+                barColor +
+                ';">' +
+                status + '</span>';
+        },
         pinned: 'left',
         width: 130
     },
