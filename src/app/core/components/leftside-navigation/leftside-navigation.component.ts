@@ -1,18 +1,22 @@
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { selectedLayer } from './../../../main-modules/main-layer/table-view-control/table-view-data';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject } from 'rxjs';
+import { any } from 'underscore';
 
 declare var $: any;
 
-export class SideNavNode  {
+export class SideNavNode {
   name: string;
   link: string;
   icon: string;
-  classId? :String;
-  level? : number;
+  eventname: string;
+  classId?: String;
+  level?: number;
   children?: SideNavNode[];
 }
 
@@ -40,7 +44,7 @@ export class LeftsideNavigationComponent implements OnInit {
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: any[];
   get data(): SideNavNode[] { return this.dataChange.value; }
-  
+
 
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
 
@@ -49,7 +53,7 @@ export class LeftsideNavigationComponent implements OnInit {
       if (btn.target.children[0].classList[1] == 'ic-layers-01') {
         this.router.navigate(['/JCP/Layers']);
       }
-    } else if (btn.target.classList[1] != 'undefined')  {
+    } else if (btn.target.classList[1] != 'undefined') {
       if (btn.target.classList[1] == 'ic-layers-01') {
         this.router.navigate(['/JCP/Layers']);
       }
@@ -67,12 +71,13 @@ export class LeftsideNavigationComponent implements OnInit {
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
-      node => node.level, node => node.expandable);
+    node => node.level, node => node.expandable);
   treeFlattener = new MatTreeFlattener(
-      this.transformer, node => node.level, node => node.expandable, node => node.children);
+    this.transformer, node => node.level, node => node.expandable, node => node.children);
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor(
+    private datashare: DataSharingService,
     private route: ActivatedRoute,
     private router: Router,
     private renderer: Renderer2
@@ -86,7 +91,7 @@ export class LeftsideNavigationComponent implements OnInit {
       mmenuDirective.menu.API.closeAllPanels()
     }
   }
-  
+
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   isLevelZero = (_: number, node: ExampleFlatNode) => node.level === 0 && node.expandable;
   isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable;
@@ -102,8 +107,7 @@ export class LeftsideNavigationComponent implements OnInit {
 
   filterChanged(filterText: string) {
     // this.filter(filterText);
-    if(filterText)
-    {
+    if (filterText) {
       this.treeControl.expandAll();
     } else {
       this.treeControl.collapseAll();
@@ -115,7 +119,7 @@ export class LeftsideNavigationComponent implements OnInit {
     this.hoverLayer0 = 'layers-menu-0';
     const levelNode = this.treeControl.getLevel(node);
     if (iconlayers != '') {
-        iconlayers._elementRef.nativeElement.style.marginLeft = '20px';
+      iconlayers._elementRef.nativeElement.style.marginLeft = '20px';
     }
   }
 
@@ -124,32 +128,31 @@ export class LeftsideNavigationComponent implements OnInit {
     if (iconlayers != '') {
       const treeNode = iconlayers._elementRef.nativeElement.parentNode.parentNode.parentNode.classList;
       if (treeNode.contains('layer-0')) {
-          iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
+        iconlayers._elementRef.nativeElement.style.marginLeft = '0px';
       } else if (treeNode.contains('active-nested-layer')) {
-          iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
+        iconlayers._elementRef.nativeElement.style.marginLeft = '0px';
       } else {
-          iconlayers._elementRef.nativeElement.style.marginLeft= '0px';
+        iconlayers._elementRef.nativeElement.style.marginLeft = '0px';
       }
     }
   }
 
-  recNode(arr:any[], data:any[], index:number, maxIndex:number):any[]{
+  recNode(arr: any[], data: any[], index: number, maxIndex: number): any[] {
     if (arr === undefined)
       arr = [];
-    for (let i = 0; i < data.length; i++){
-          index++
-          if (index ===  maxIndex){
-            return ([true, index, arr]);
-          }
-          if (data[i].children.length) {
-            let res = this.recNode(arr, data[i].children, index, maxIndex)
-            index = res[1];
-            if (res[0] === true)
-            {
-              arr.splice(0, 0, (i !== (data.length - 1)));
-              return ([true, index, arr]);
-            }
+    for (let i = 0; i < data.length; i++) {
+      index++
+      if (index === maxIndex) {
+        return ([true, index, arr]);
+      }
+      if (data[i].children.length) {
+        let res = this.recNode(arr, data[i].children, index, maxIndex)
+        index = res[1];
+        if (res[0] === true) {
+          arr.splice(0, 0, (i !== (data.length - 1)));
+          return ([true, index, arr]);
         }
+      }
     }
     return ([false, index, arr]);
   }
@@ -157,110 +160,110 @@ export class LeftsideNavigationComponent implements OnInit {
   activenode(node, horizontalLine) {
     const levelNode = this.treeControl.getLevel(node);
     const currentIndexNode = this.treeControl.dataNodes.indexOf(node);
-    let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length+currentIndexNode + 1];
+    let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length + currentIndexNode + 1];
 
     if (this.treeControl.isExpanded(node) == true) {
       if (typeof test != 'undefined') {
         if (test.name == 'Prediction Layers') {
-          $('#prediction-layer-border').css({'border-top': '1px solid #eaecec'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
+          $('#prediction-layer-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
         } else if (test.name == 'Measured Layers') {
-          $('#measured-layer-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
+          $('#measured-layer-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
         } else if (test.name == 'Hybrid Layers') {
-          $('#hybrid-layer-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
+          $('#hybrid-layer-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
         } else if (test.name == 'Alarms') {
-          $('#alarms-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
+          $('#alarms-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
         } else if (test.name == 'Analytics') {
-          $('#analytics-layer-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
-        }else if (test.name == 'Topologies') {
-          $('#topologies-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
-        }else if (test.name == 'Locations and Boundaries') {
-          $('#locations-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#base-map-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
-        }else if (test.name == 'Base Maps') {
-          $('#base-map-border').css({'border-top': '1px solid #eaecec'});
-          $('#prediction-layer-border').css({'border-top': 'none'});
-          $('#measured-layer-border').css({'border-top': 'none'});
-          $('#hybrid-layer-border').css({'border-top': 'none'});
-          $('#alarms-border').css({'border-top': 'none'});
-          $('#analytics-layer-border').css({'border-top': 'none'});
-          $('#topologies-border').css({'border-top': 'none'});
-          $('#locations-border').css({'border-top': 'none'});
-          $('#my-layers-border').css({'border-top': 'none'});
+          $('#analytics-layer-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
+        } else if (test.name == 'Topologies') {
+          $('#topologies-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
+        } else if (test.name == 'Locations and Boundaries') {
+          $('#locations-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#base-map-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
+        } else if (test.name == 'Base Maps') {
+          $('#base-map-border').css({ 'border-top': '1px solid #eaecec' });
+          $('#prediction-layer-border').css({ 'border-top': 'none' });
+          $('#measured-layer-border').css({ 'border-top': 'none' });
+          $('#hybrid-layer-border').css({ 'border-top': 'none' });
+          $('#alarms-border').css({ 'border-top': 'none' });
+          $('#analytics-layer-border').css({ 'border-top': 'none' });
+          $('#topologies-border').css({ 'border-top': 'none' });
+          $('#locations-border').css({ 'border-top': 'none' });
+          $('#my-layers-border').css({ 'border-top': 'none' });
         }
       }
       else if (currentIndexNode == 277) {
-        $('#my-layers-border').css({'border-top': '1px solid #eaecec'});
-        $('#prediction-layer-border').css({'border-top': 'none'});
-        $('#measured-layer-border').css({'border-top': 'none'});
-        $('#hybrid-layer-border').css({'border-top': 'none'});
-        $('#alarms-border').css({'border-top': 'none'});
-        $('#analytics-layer-border').css({'border-top': 'none'});
-        $('#topologies-border').css({'border-top': 'none'});
-        $('#locations-border').css({'border-top': 'none'});
-        $('#base-map-border').css({'border-top': 'none'});
+        $('#my-layers-border').css({ 'border-top': '1px solid #eaecec' });
+        $('#prediction-layer-border').css({ 'border-top': 'none' });
+        $('#measured-layer-border').css({ 'border-top': 'none' });
+        $('#hybrid-layer-border').css({ 'border-top': 'none' });
+        $('#alarms-border').css({ 'border-top': 'none' });
+        $('#analytics-layer-border').css({ 'border-top': 'none' });
+        $('#topologies-border').css({ 'border-top': 'none' });
+        $('#locations-border').css({ 'border-top': 'none' });
+        $('#base-map-border').css({ 'border-top': 'none' });
       }
-    
+
       this.parentNode = node;
       this.treeControl.collapseAll();
-      if (levelNode == 0){
-          this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(node)]);
+      if (levelNode == 0) {
+        this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(node)]);
       } else {
-        for (let i=0; i<=levelNode; i++) {
+        for (let i = 0; i <= levelNode; i++) {
           if (this.parentNode != null) {
             this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(this.parentNode)]);
             this.parentNode = this.getParent(this.parentNode);
@@ -268,39 +271,40 @@ export class LeftsideNavigationComponent implements OnInit {
         }
       }
     } else {
-      if ( currentIndexNode != 7 && test.name == 'Prediction Layers') {
-        $('#prediction-layer-border').css({'border-top': 'none'});
-      } 
-      else if (currentIndexNode != 38 && test.name == 'Measured Layers') {
-        $('#measured-layer-border').css({'border-top': 'none'});
-      } else if (currentIndexNode != 135 && test.name == 'Hybrid Layers') {
-        $('#hybrid-layer-border').css({'border-top': 'none'});
-      } else if (currentIndexNode != 192 && test.name == 'Alarms') {
-        $('#alarms-border').css({'border-top': 'none'});
-      } else if (test.name == 'Analytics') {
-        $('#analytics-layer-border').css({'border-top': 'none'});
-      }else if (test.name == 'Topologies') {
-        $('#topologies-border').css({'border-top': 'none'});
-      }else if (currentIndexNode != 261 && test.name == 'Locations and Boundaries') {
-        $('#locations-border').css({'border-top': 'none'});
-      }else if (test.name == 'Base Maps') {
-        $('#base-map-border').css({'border-top': 'none'});
-      }else if (test.name == 'My Layers') {
-        $('#my-layers-border').css({'border-top': 'none'});
+      if (currentIndexNode != 7 && test.name == 'Prediction Layers') {
+        $('#prediction-layer-border').css({ 'border-top': 'none' });
       }
-      
+      else if (currentIndexNode != 38 && test.name == 'Measured Layers') {
+        $('#measured-layer-border').css({ 'border-top': 'none' });
+      } else if (currentIndexNode != 135 && test.name == 'Hybrid Layers') {
+        $('#hybrid-layer-border').css({ 'border-top': 'none' });
+      } else if (currentIndexNode != 192 && test.name == 'Alarms') {
+        $('#alarms-border').css({ 'border-top': 'none' });
+      } else if (test.name == 'Analytics') {
+        $('#analytics-layer-border').css({ 'border-top': 'none' });
+      } else if (test.name == 'Topologies') {
+        $('#topologies-border').css({ 'border-top': 'none' });
+      } else if (currentIndexNode != 261 && test.name == 'Locations and Boundaries') {
+        $('#locations-border').css({ 'border-top': 'none' });
+      } else if (test.name == 'Base Maps') {
+        $('#base-map-border').css({ 'border-top': 'none' });
+      } else if (test.name == 'My Layers') {
+        $('#my-layers-border').css({ 'border-top': 'none' });
+      }
+
     }
   }
 
   todoItemSelectionToggle(checked, node, activeCheckbox) {
     node.selected = checked;
+
     if (node.selected == true) {
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       this.router.navigate([node.link]);
     } else {
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
-    
+
   }
 
   /**
@@ -322,7 +326,9 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
 
+  selectedLayerArr: any = [];
   onChecked(selected, node, activeCheckbox, eventChecked) {
+
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -331,10 +337,25 @@ export class LeftsideNavigationComponent implements OnInit {
     }
 
     if (node.selected == true) {
+      this.selectedLayerArr.push(node);
+      this.datashare.changeMessage(this.selectedLayerArr);
+
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-      this.router.navigate([node.link]);
+      // this.router.navigate([node.link]);
     } else {
+
+      for (let item of this.selectedLayerArr) {
+        if (item.selected == node.selected) {
+          this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
+          break;
+        }
+      }
+      this.datashare.changeMessage(this.selectedLayerArr);
+
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
+
+
+
   }
 }
