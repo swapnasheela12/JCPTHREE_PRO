@@ -41,6 +41,7 @@ export class ExecutionTaskComponent implements OnInit {
   public gridOptions: GridOptions;
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
+  public gridOptionsImplIan: GridOptions;
   public rowData: any;
   public columnDefs: any;
   public rowCount: string;
@@ -49,8 +50,11 @@ export class ExecutionTaskComponent implements OnInit {
   public taskColDef;
   public siteColDef;
   public implColDef;
+  public implColDefIan;
   public taskRowdata;
   public addRemoveRows;
+  public ianLead: boolean = false;
+  public execLead: boolean = true;
   public siteRowdata = [
     {
       "siteParameter": "Antenna Azimuth(deg)",
@@ -80,6 +84,14 @@ export class ExecutionTaskComponent implements OnInit {
       "band": "",
       "newAzimuthValue": ""
     },
+  ];
+
+  public implRowdataIAN = [
+    {
+      "sector": "Alpha",
+      "band": "2300",
+      "newAzimuthValue": "1600"
+    }
   ];
   public frameworkComponentsTaskExecution;
   taskClosureRemark = [
@@ -173,8 +185,6 @@ export class ExecutionTaskComponent implements OnInit {
     this.calculateRowCount();
   }
 
-
-
   public onReady(params) {
     this.gridApi = params.api;
     this.calculateRowCount();
@@ -185,6 +195,7 @@ export class ExecutionTaskComponent implements OnInit {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
         this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsImplIan.api.sizeColumnsToFit();
         this.gridOptionsSite.api.sizeColumnsToFit();
       }, 1000);
     }
@@ -203,10 +214,12 @@ export class ExecutionTaskComponent implements OnInit {
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
+    this.gridOptionsImplIan = <GridOptions>{};
     this.gridOptionsSite = <GridOptions>{};
     this.taskColDef = this.createColumnDefs();
     this.siteColDef = this.createSiteColumnDefs();
     this.implColDef = this.createImplColumnDefs();
+    this.implColDefIan = this.createImplColumnDefsIan();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -287,6 +300,26 @@ export class ExecutionTaskComponent implements OnInit {
     ]
   }
 
+  createImplColumnDefsIan() {
+    return this.columnDefs = [
+      {
+        headerName: "Sector*",
+        field: "sector",
+        width: 150,
+      },
+      {
+        headerName: "Band*",
+        field: "band",
+        width: 150,
+      },
+      {
+        headerName: "New Azimuth Value(Deg)*",
+        field: "newAzimuthValue",
+        width: 150,
+      }
+    ]
+  }
+
 
   drp() {
     return ` <mat-form-field fxFlex="50">
@@ -303,6 +336,7 @@ export class ExecutionTaskComponent implements OnInit {
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
     this.gridOptionsImpl.api.setQuickFilter(value);
+    this.gridOptionsImplIan.api.setQuickFilter(value);
     this.gridOptionsSite.api.setQuickFilter(value);
   };
   show: any;
