@@ -194,19 +194,23 @@ export class ExecutionTaskComponent implements OnInit {
       this.taskRowdata && this.siteRowdata && this.implRowdata) {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
-        this.gridOptionsImpl.api.sizeColumnsToFit();
-        this.gridOptionsImplIan.api.sizeColumnsToFit();
+
+        if (this.ianLead) {
+          this.gridOptionsImplIan.api.sizeColumnsToFit();
+        } else {
+          this.gridOptionsImpl.api.sizeColumnsToFit();
+        }
         this.gridOptionsSite.api.sizeColumnsToFit();
       }, 1000);
     }
   }
 
-  constructor(private datatable: TableAgGridService, 
+  constructor(private datatable: TableAgGridService,
     private datashare: DataSharingService,
-    private router: Router, 
-    private overlayContainer: OverlayContainer, 
+    private router: Router,
+    private overlayContainer: OverlayContainer,
     private httpClient: HttpClient,
-    private fileUploadService: FileUploadService, 
+    private fileUploadService: FileUploadService,
     public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.frameworkComponentsTaskExecution = {
@@ -339,8 +343,12 @@ export class ExecutionTaskComponent implements OnInit {
   searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
-    this.gridOptionsImpl.api.setQuickFilter(value);
-    this.gridOptionsImplIan.api.setQuickFilter(value);
+    if (this.ianLead) {
+      this.gridOptionsImplIan.api.setQuickFilter(value);
+    } else {
+      this.gridOptionsImpl.api.setQuickFilter(value);
+    }
+
     this.gridOptionsSite.api.setQuickFilter(value);
   };
   show: any;
