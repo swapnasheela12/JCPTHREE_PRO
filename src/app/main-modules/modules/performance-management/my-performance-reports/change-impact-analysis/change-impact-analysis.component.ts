@@ -1,32 +1,30 @@
 import { Component, OnInit, Optional, SimpleChanges, HostListener, Input, ViewChild, ViewEncapsulation, AfterViewChecked, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Chart } from "angular-highcharts";
-import { first } from 'rxjs/operators';
-import { Options } from 'highcharts';
 import * as _ from 'lodash';
-
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi } from 'ag-grid-community';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HttpClient } from '@angular/common/http';
 import rounded from 'highcharts-rounded-corners';
 import { CustomTooltip } from '../custom-tooltip.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlarmDetailsPopupComponent } from './alarm-details-popup/alarm-details-popup.component';
 // import { CustomTooltip } from './custom-tooltip.component';
 
 declare var $: any;
 rounded(Highcharts)
 const PATHS = [
-  { changeImpactAnalysisViewSummary: "JCP/Modules/Performance-Management/My-Performance-Reports/Change-Impact-Analysis/View-Summary"}
+  { changeImpactAnalysisViewSummary: "JCP/Modules/Performance-Management/My-Performance-Reports/Change-Impact-Analysis/View-Summary" },
+  { goToMyPerformanceReports: "JCP/Modules/Performance-Management/My-Performance-Reports" }
 ];
 @Component({
   selector: 'app-my-performance-reports',
   templateUrl: './change-impact-analysis.component.html',
-  styleUrls: ['./change-impact-analysis.component.scss'],
-
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./change-impact-analysis.component.scss']
 })
-  
+
 export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   public pathsCIAViewSummary: String;
+  public pathMyPerformanceReports: String;
   public rowData: any;
   public columnDefs: any[];
   private gridApi;
@@ -48,7 +46,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   jcListValue: string = "GJ-JMGR-JC01-0259";
   @Input() config: any;
   tooltipShowDelay: number;
-  kardeBhai: any;
+  messageSubscription: any;
   searchListValue;
   cellsList = [
     { cell: 'I-DL-DLHI-IBS-0155_c1' },
@@ -67,16 +65,17 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     { enodeb: 'I-GJ-JMGS-0ENB-9199' },
     { enodeb: 'I-GJ-JMGS-0ENB-9120' }
   ];
- jcList = [
+  jcList = [
     { jc: 'GJ-JMGR-JC01-0259' },
     { jc: 'GJ-JMGR-JC01-0260' },
     { jc: 'GJ-JMGR-JC01-0261' },
     { jc: 'GJ-JMGR-JC01-0262' }
   ];
+  // onPointSelect: any;
 
-  constructor(private datashare: DataSharingService, private http: HttpClient, private cdRef: ChangeDetectorRef) {
+  constructor(private datashare: DataSharingService, private http: HttpClient, private cdRef: ChangeDetectorRef, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{};
-    this.kardeBhai = this.datashare.currentMessage.subscribe((message) => {
+    this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       setTimeout(() => {
         this.makeDo(this.secondaryKpi, this.primaryKpi);
       }, 500);
@@ -169,22 +168,13 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     this.tooltipShowDelay = 0;
     this.frameworkComponents = { customTooltip: CustomTooltip };
   }
-  // progressTaskFunc(params) {
-  //   var kpiImpact = params.data.kpiImpact;
-  //   var overall = params.data.overall;
-  //   var eightFifty = params.data[850];
-  //   var eighteenHundred = params.data[1800];
-  //   var twoThreeC1 = params.data["2300C1"];
-  //   var twoThreeC2 = params.data["2300C2"];
-  //   console.log(params)
-  //   if (kpiImpact == "%Change" && overall > 0) {
-  //     return '<div class="ag-grid-trend-cell" style="color:green"><span>' + params.value + '</span></div>';
-  //   } else if (kpiImpact == "%Change" && overall < 0) {
-  //     return '<div class="ag-grid-trend-cell" style="color:red"><span>' + params.value + '</span></div>';
-  //   } else {
-  //     return params.value
-  //   }
-  // }
+  onSeriesClick(event) {
+    const dialogRef = this.dialog.open(AlarmDetailsPopupComponent, {
+      width: '1000px',
+      height: '503px',
+      panelClass: 'alarms-details-popup'
+    });
+  }
   makeDo(value1, value2) {
     //@ts-ignore
     this.ciaChart = Highcharts.chart('Chart', {
@@ -245,6 +235,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
         series: {
           cursor: "pointer",
           events: {
+            click: this.onSeriesClick.bind(this),
             legendItemClick: function (e) {
               var name = this.name.substring(this.name.length - 4, this.name.length);
               var _i = e.target.index
@@ -336,12 +327,10 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.pathsCIAViewSummary = PATHS[0].changeImpactAnalysisViewSummary;
+    this.pathMyPerformanceReports = PATHS[1].goToMyPerformanceReports;
     this.createColumnDefs();
     this.getData();
-    // setTimeout(() => {
     this.makeDo(this.secondaryKpi, this.primaryKpi);
-    // console.log(this.ciaChart.reflow)
-    // }, 1000);
   }
   get gridAPI(): GridApi {
     return this.gridApi;
@@ -360,20 +349,13 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
         this.rowData = data;
       });
   }
-  // redraw(value) {
-  // };
-  // chart1: Chart;
   primaryKpiSelectionChanged(value1) {
-    // if (value == 'IPThroughput') {
     this.makeDo(value1, value1)
 
   }
   selectChangedSecondaryKPI(value1, value2) {
     this.makeDo(value1, value2)
-    // console.log(this.ciaChart.options)
     if (value1 === 'None') {
-
-      // this.ciaChart.legend.allItems.forEach(item => item.setVisible(false));
       this.ciaChart.options.series[0]['showInLegend'] = false;
       this.ciaChart.options.series[1]['showInLegend'] = false;
       this.ciaChart.options.series[2]['showInLegend'] = false;
@@ -390,48 +372,19 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       this.ciaChart.options.series[8]['showInLegend'] = true;
       this.ciaChart.options.series[9]['showInLegend'] = true;
       Highcharts.chart('Chart', this.ciaChart.options);
-      // console.log( this.ciaChart.options)
-      setTimeout(() => {
-        // this.ciaChart.setOptions({
-        //   legend: {
-        //     enabled: false
-        //   }
-        // })
-        // this.ciaChart.legend.allItems.forEach(item => item.setVisible(false));
-        //   this.ciaChart.legend.update(i == "spline" ? {
-        //     enabled: true,
-        // } : {
-
-        // enabled: false,
-        //    });
-        // this.ciaChart.redraw();
-      }, 1000);
     }
     else {
       this.ciaChart.options.series[9].visible = true
     }
   };
   openedChange(sda) {
-   console.log(sda)
-   this.searchListValue = ""
+    console.log(sda)
+    this.searchListValue = ""
   }
   ngOnDestroy() {
-    if (this.kardeBhai) {
-      this.kardeBhai.unsubscribe();
-      console.log(this.kardeBhai)
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+      console.log(this.messageSubscription)
     }
   }
-  // ngAfterViewChecked(){
-  //   // this.cdRef.detectChanges();
-  // }
-  // ngOnChanges(changes: SimpleChanges) {
-  //   const { config } = changes;
-  //   if(config.currentValue) {
-  //     this.chartSrv.redraw(this.host.nativeElement, config.currentValue);
-  //   }
-  // }
-  // redrawSecond(modeltwo) {
-  //   console.log(this.asdachart.options.yAxis[0].title.text)
-  //   this.asdachart.options.yAxis[0].title.text = "sdasd";
-  // };
 }
