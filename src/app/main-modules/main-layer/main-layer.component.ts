@@ -1,3 +1,4 @@
+import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
 import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { SpiderViewComponent } from './spider-view/spider-view.component';
@@ -349,14 +350,34 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         container.style.height = '40px';
 
         container.onclick = function () {
-          var spiderViewListDialogRef = {
-            panelClass: 'spider-view-custom-dialog'
-          }
-          const dialogRef = _dialog.open(SpiderViewComponent, spiderViewListDialogRef);
-          dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-            dialogRef.close();
-          });
+          // var spiderViewListDialogRef = {
+          //   panelClass: 'spider-view-custom-dialog'
+          // }
+          // const dialogRef = _dialog.open(SpiderViewComponent, spiderViewListDialogRef);
+          // dialogRef.afterClosed().subscribe(result => {
+          //   console.log(`Dialog result: ${result}`);
+          //   dialogRef.close();
+          // });
+
+         
+            var selectedLayerMenuListDialogRef = {
+              width: '250px',
+              // height: '150px',
+              position: { bottom: '310px', right: "60px" },
+              panelClass: "table-view-layers-dialog-container",
+              backdropClass: 'cdk-overlay-transparent-backdrop',
+              disableClose: true,
+              hasBackdrop: true
+            }
+            const dialogRef = _dialog.open(SelectedLayerMenuComponent, selectedLayerMenuListDialogRef);
+  
+            dialogRef.backdropClick().subscribe(_ => {
+              dialogRef.close();
+            });
+  
+       
+          
+
 
         }
         this._container = container;
@@ -524,7 +545,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
     this.shapeService.mapServiceData = this.map;
-   
+
   }
 
 
