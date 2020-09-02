@@ -1,9 +1,12 @@
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { selectedLayer } from './../../../main-modules/main-layer/table-view-control/table-view-data';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject } from 'rxjs';
+import { any } from 'underscore';
 
 declare var $: any;
 
@@ -11,6 +14,7 @@ export class SideNavNode {
   name: string;
   link: string;
   icon: string;
+  eventName?: string;
   classId?: String;
   level?: number;
   children?: SideNavNode[];
@@ -63,6 +67,7 @@ export class LeftsideNavigationComponent implements OnInit {
       level: level,
       link: node.link,
       classId: node.classId,
+      eventName:node.eventName,
       children: node.children
     };
   }
@@ -73,6 +78,7 @@ export class LeftsideNavigationComponent implements OnInit {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor(
+    private datashare: DataSharingService,
     private route: ActivatedRoute,
     private router: Router,
     private renderer: Renderer2
@@ -292,6 +298,7 @@ export class LeftsideNavigationComponent implements OnInit {
 
   todoItemSelectionToggle(checked, node, activeCheckbox) {
     node.selected = checked;
+
     if (node.selected == true) {
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       this.router.navigate([node.link]);
@@ -305,7 +312,7 @@ export class LeftsideNavigationComponent implements OnInit {
    * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
    */
   getParent(node) {
-    const { treeControl } = this;
+   const { treeControl } = this;
     const currentLevel = treeControl.getLevel(node);
     if (currentLevel < 1) {
       return null;
@@ -320,7 +327,11 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
 
+  selectedLayerArr: any = [];
   onChecked(selected, node, activeCheckbox, eventChecked) {
+    console.log(node,"node");
+    
+    
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -329,10 +340,25 @@ export class LeftsideNavigationComponent implements OnInit {
     }
 
     if (node.selected == true) {
+      this.selectedLayerArr.push(node);
+      this.datashare.changeMessage(this.selectedLayerArr);
+
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-      this.router.navigate([node.link]);
+      // this.router.navigate([node.link]);
     } else {
+
+      for (let item of this.selectedLayerArr) {
+        if (item.selected == node.selected) {
+          this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
+          break;
+        }
+      }
+      this.datashare.changeMessage(this.selectedLayerArr);
+
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
+
+
+
   }
 }
