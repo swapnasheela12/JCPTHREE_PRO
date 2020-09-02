@@ -197,15 +197,15 @@ public implRowdata;
   private createspdetailsColumndata() {
     this.spdetailsColumndata = [
       {
-        headerName: "Site Paraameter",
+        headerName: "Site Parameter",
         field: "siteparameter",
-        width: 700
+        width: 300
 
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
-        width: 700
+        width: 300
 
       }
     ]

@@ -609,3 +609,10 @@
 .suggestions-details {
     border-radius: 4px !important;
 }
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: none;
+}
+:host ::ng-deep ag-grid-angular .ag-center-cols-container {
+    width: 100vw!important;
+}
