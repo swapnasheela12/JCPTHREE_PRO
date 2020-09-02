@@ -34,6 +34,7 @@ export class WoOvershootingCellComponent  {
   public formControlPageCount = new FormControl();
 
   public showGlobalOperation: Boolean = false;
+  searchGrid='';
   woHeader = [
     {
       "label": "Category",
@@ -87,6 +88,11 @@ export class WoOvershootingCellComponent  {
   toggleSearch() {
     this.show = !this.show;
   };
+
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+  }
   cellClickedDetails(params) {
     
     

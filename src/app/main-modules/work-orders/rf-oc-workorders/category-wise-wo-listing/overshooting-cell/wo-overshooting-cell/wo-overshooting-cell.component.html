@@ -28,18 +28,17 @@
                     </div>
                 </div>
             </div>
-            <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
-                    *ngIf="!show">
-                    <span class="zmdi zmdi-search"></span>
+            <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <span class="zmdi zmdi-search"></span>
+              </mat-icon>
+      
+              <mat-form-field *ngIf="show">
+                <!-- <mat-label>Filter</mat-label> -->
+                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                  <span class="zmdi zmdi-close"></span>
                 </mat-icon>
-
-                <mat-form-field *ngIf="show">
-                    <input matInput (keyup)="onFilterChanged($event);" autocomplete="off"
-                        placeholder="">
-                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                        <span class="zmdi zmdi-close"></span>
-                    </mat-icon>
-                </mat-form-field>
+              </mat-form-field>
             </div>
         </div>
         <mat-divider></mat-divider>
