@@ -13,15 +13,15 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
 import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
-import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.component';
-import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { ExecutionTaskSaveComponent } from './execution-task-save.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { CommonPopupComponent, CommonDialogModel } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
+import { TaskDropdownRendererComponent } from '../../../sector-misalignment/renderer/task-dropdown-renderer.component';
+import { TaskInputRendererComponent } from '../../../sector-misalignment/renderer/task-input-renderer.component';
 
 @Component({
   selector: 'app-execution-task',
@@ -194,12 +194,8 @@ export class ExecutionTaskComponent implements OnInit {
       this.taskRowdata && this.siteRowdata && this.implRowdata) {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
-
-        if (this.ianLead) {
-          this.gridOptionsImplIan.api.sizeColumnsToFit();
-        } else {
-          this.gridOptionsImpl.api.sizeColumnsToFit();
-        }
+        this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsImplIan.api.sizeColumnsToFit();
         this.gridOptionsSite.api.sizeColumnsToFit();
       }, 1000);
     }
@@ -343,12 +339,8 @@ export class ExecutionTaskComponent implements OnInit {
   searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
-    if (this.ianLead) {
-      this.gridOptionsImplIan.api.setQuickFilter(value);
-    } else {
-      this.gridOptionsImpl.api.setQuickFilter(value);
-    }
-
+    this.gridOptionsImpl.api.setQuickFilter(value);
+    this.gridOptionsImplIan.api.setQuickFilter(value);
     this.gridOptionsSite.api.setQuickFilter(value);
   };
   show: any;
@@ -432,3 +424,4 @@ export class ExecutionTaskComponent implements OnInit {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment'])
   }
 }
+

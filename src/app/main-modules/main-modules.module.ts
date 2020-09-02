@@ -91,6 +91,7 @@ import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
 import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
 import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
+import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/selected-layer-menu.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     CustomLegendsComponent,
     ScreenshotPreviewComponent,
     colorDropdownRendererComponent,
+    SelectedLayerMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -133,7 +135,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent,colorDropdownRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,

@@ -14,7 +14,7 @@ export class SideNavNode {
   name: string;
   link: string;
   icon: string;
-  eventname: string;
+  eventName?: string;
   classId?: String;
   level?: number;
   children?: SideNavNode[];
@@ -67,6 +67,7 @@ export class LeftsideNavigationComponent implements OnInit {
       level: level,
       link: node.link,
       classId: node.classId,
+      eventName:node.eventName,
       children: node.children
     };
   }
@@ -311,7 +312,7 @@ export class LeftsideNavigationComponent implements OnInit {
    * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
    */
   getParent(node) {
-    const { treeControl } = this;
+   const { treeControl } = this;
     const currentLevel = treeControl.getLevel(node);
     if (currentLevel < 1) {
       return null;
@@ -328,7 +329,9 @@ export class LeftsideNavigationComponent implements OnInit {
 
   selectedLayerArr: any = [];
   onChecked(selected, node, activeCheckbox, eventChecked) {
-
+    console.log(node,"node");
+    
+    
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;

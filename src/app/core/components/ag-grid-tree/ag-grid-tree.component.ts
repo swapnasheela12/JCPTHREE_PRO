@@ -1,6 +1,5 @@
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions } from '@ag-grid-community/all-modules';
 
@@ -8,7 +7,6 @@ export class GroupLevel {
   level = 0;
   field = '';
 }
-const COLUMNDEFS = COLUMN_DEFS;
 
 @Component({
   selector: 'app-ag-grid-tree',
@@ -20,8 +18,6 @@ export class AgGridTreeComponent implements OnInit {
   @Input('rowData') rowData;
   columnDef: any;
   public gridOptions: GridOptions;
-  //columnDefs = COLUMNDEFS;
-  // @Input('columnDefs') columnDefs: [];
 
   public frameworkComponentsList = {
     viewHistroyRenderer: viewHistoryRendererComponent
@@ -33,24 +29,13 @@ export class AgGridTreeComponent implements OnInit {
   displayedColumns: string[] = [];
   columnsToDisplay: string[] = [];
   columnObject = {};
-  //rowData = [];
   firstHeaderGroup = [];
   groupList: GroupLevel[] = [];
   count = 0;
   icons: { columnGroupClosed: string; columnGroupOpened: string };
   // columnDefs2: ({ headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer: (params: any) => string; } | { headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer?: undefined; })[];
 
-  constructor(private httpService: HttpClient) {
-    // this.setGroupDetails(1, 'zone');
-    // this.setGroupDetails(2, 'circle');
-    // this.setGroupDetails(3, 'jiocenter');
-    this.gridOptions = <GridOptions>{};
-    if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
+  constructor(private httpService: HttpClient) { }
 
   ngOnChanges() {
     if (this.columnDefs) {
@@ -80,9 +65,7 @@ export class AgGridTreeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   /**
    *

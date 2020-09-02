@@ -18,7 +18,8 @@
     <div class="data-table-1">
       <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="rowExecutionTask"
         [columnDefs]="columnDefswo" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
-        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple">
+        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" (modelUpdated)="onReadyModeUpdate($event)"
+        (gridReady)="onReady($event)" [gridOptions]="gridOptions">
       </ag-grid-angular>
     </div>
   </div>
@@ -156,7 +157,7 @@
     <header class="impheader">
       <div class="title">Implememnted parameter Details</div>
       <div class="clone-btn" (click)="onAddRowimp()">
-        <button type="button" class="btn-clone">ADD</button>
+        <button type="button" class="btn-clone">Add</button>
       </div>
     </header>
     <div class="data-table">
@@ -181,7 +182,7 @@
     <header class="heading block-heading">
       <div class="title">Suggestions for Physical Parameter Optimization Details</div>
       <div class="clone-btn" style="text-align:right;" (click)="onAddRowsug()">
-        <button type="button" class="btn-clone" >ADD</button>
+        <button type="button" class="btn-clone" >Add</button>
       </div>
     </header>
     <div class="data-table">

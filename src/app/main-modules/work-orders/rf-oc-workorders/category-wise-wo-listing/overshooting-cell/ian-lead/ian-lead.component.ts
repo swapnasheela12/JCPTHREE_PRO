@@ -311,7 +311,8 @@ taskclosures: taskclosures[] = [
 
 
   onClick() {
-    const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
+    const fileUpload = this.fileUpload.nativeElement; 
+    fileUpload.onchange = () => {
       const file = fileUpload.files[0];
       this.files = file;
       //this.files.push({ data: file });
