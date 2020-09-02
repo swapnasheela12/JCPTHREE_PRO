@@ -7,6 +7,8 @@ import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector
 import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
+import { CellDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/cell-decongestion.component';
+import { WoDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/wo-decongestion.component';
 
 
 const routes: Routes = [
@@ -37,7 +39,7 @@ const routes: Routes = [
       },
       {
         path: "Overshooting-Cell",
-       // component: OvershootingCellComponent,
+        // component: OvershootingCellComponent,
         children: [
           {
             path: '',
@@ -49,17 +51,36 @@ const routes: Routes = [
           },
           {
             path: 'RFOC-L2',
-          component: OvershootingExeTaskComponent,
+            component: OvershootingExeTaskComponent,
 
           },
           {
             path: 'IAN-Lead',
-          component: IanLeadComponent
+            component: IanLeadComponent
 
           }
         ]
-       
+
       },
+      {
+        path: "Cell-Decongestion",
+        children: [
+          {
+            path: '',
+            component: CellDecongestionComponent,
+          },
+          {
+            path: 'WO-Cell-Decongestion',
+            children: [
+              {
+                path: '',
+                component: WoDecongestionComponent,
+              }
+            ]
+          }
+        ]
+      }
+
     ]
   },
 ];

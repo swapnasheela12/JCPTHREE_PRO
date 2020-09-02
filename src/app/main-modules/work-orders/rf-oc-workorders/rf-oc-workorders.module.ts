@@ -72,6 +72,9 @@ import { WostatusComponent } from './category-wise-wo-listing/overshooting-cell/
 import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/textfield.component';
 import { ExecutionTaskSaveComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task-save.component';
 import { SubmitWorkordedPopupComponent } from './category-wise-wo-listing/overshooting-cell/submit-workorded-popup.component';
+import { CellDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/cell-decongestion.component';
+//import { WoWidgetComponent } from './category-wise-wo-listing/common/widget/work-order-widget/wo-widget/wo-widget.component';
+import { WoDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/wo-decongestion.component';
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { SubmitWorkordedPopupComponent } from './category-wise-wo-listing/oversh
     TaskInputRendererComponent,
     DropdownComponent,
     WostatusComponent,
-    SubmitWorkordedPopupComponent
+    SubmitWorkordedPopupComponent,
+    CellDecongestionComponent,
+    //WoWidgetComponent,
+    WoDecongestionComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,

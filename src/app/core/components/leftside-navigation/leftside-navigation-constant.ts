@@ -2855,6 +2855,14 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
         children: []
+    },
+    {
+        name: 'Cell Decongestion',
+        link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion',
+        level: 3,
+        component: HomeJcpThreeComponent,
+        icon: 'fas fa-home',
+        children: []
     }
 ]
 
