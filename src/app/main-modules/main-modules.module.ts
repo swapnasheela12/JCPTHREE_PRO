@@ -133,7 +133,7 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent,colorDropdownRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
