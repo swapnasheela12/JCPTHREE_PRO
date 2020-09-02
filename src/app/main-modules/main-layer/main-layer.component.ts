@@ -71,43 +71,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   public routPathVal;
 
+  public selectedLayerArrList: any = [];
+  public countOfLayerSelected = 0;
+
+  countDiv;
 
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,
   ) {
-
-
-
-    this.datashare.currentMessage.subscribe((message) => {
-
-      var divWidth;
-      var divHeight;
-
-      setTimeout(() => {
-        divWidth = $("#layerDivId").width();
-        divHeight = $("#layerDivId").height();
-
-        this.chartDivWidth = divWidth;
-        this.chartDivHeight = divHeight;
-
-      }, 1000);
-
-      if (!message) {
-        this.chartDivWidth = divWidth + 280;
-        this.chartDivHeight = divHeight;
-      } else {
-        this.chartDivWidth = divWidth - 280;
-        this.chartDivHeight = divHeight;
-      }
-
-    });
-
 
     this.router.events.subscribe((event: any) => {
       console.log(event.url, "event");
       this.routPathVal = event.url;
     })
   }
+
+
   contextMenuLib;
   rulerLeafletLib;
   libCustomLayer;
@@ -349,58 +328,55 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
     this.map.addControl(new this.customControlPanIndia());
 
+    let _datashare = this.datashare;
+    var countTest = this.countOfLayerSelected;
     this.customControl = L.Control.extend({
-
       options: {
         position: 'bottomright',
       },
 
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
-
-        // container.innerHTML = '<div class="leaflet-control-custom-count-Layers"><div class="icon-control-count">4</div><div class="icon-control"><span class="ic ic-layers-01"></span></div></div>';
-        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;">4</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+        _datashare.currentMessage.subscribe((val) => {
+          this.selectedLayerArrList = val;
+          this.countOfLayerSelected = this.selectedLayerArrList.length;
+          container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+        });
+        container.innerHTML = ' <div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + countTest + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
         container.style.backgroundColor = 'white';
-        // container.style.backgroundImage = "url(https://t1.gstatic.com/images?q=tbn:ANd9GcR6FCUMW5bPn8C4PbKak2BJQQsmC-K9-mbYBeFZm1ZM2w2GRy40Ew)";
         container.style.backgroundSize = "40px 40px";
-        // container.style.position = 'absolute';
-        // container.style.bottom = '0px';
-        // container.style.right = '50px';
         container.style.width = '40px';
         container.style.height = '40px';
 
         container.onclick = function () {
-          console.log('buttonClicked');
-
-
           var spiderViewListDialogRef = {
-            // width: '50%',
-            // height: '100%',
             panelClass: 'spider-view-custom-dialog'
-            // position: { bottom: '60px', right: "60px" },
-            // panelClass: "table-view-layers-dialog-container",
-            // backdropClass: 'cdk-overlay-transparent-backdrop',
-            // disableClose: true,
-            // hasBackdrop: true
           }
           const dialogRef = _dialog.open(SpiderViewComponent, spiderViewListDialogRef);
           dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
             dialogRef.close();
           });
-          // dialogRef.backdropClick().subscribe(_ => {
-          //   dialogRef.close();
-          // });
-
 
         }
-
-        return container;
+        this._container = container;
+        this._update();
+        return this._container;
       },
       onRemove: function (map) {
         // console.log('buttonClicked?????????');
+      },
+      _update: function () {
+        if (!this._map) {
+          return;
+        }
+
+        // this._container.innerHTML = this.countDiv;
+        // this._makeButton(this._button);
+
       }
     });
+
     this.map.addControl(new this.customControl());
 
     let _dialog = this.dialog;
@@ -548,12 +524,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
     this.shapeService.mapServiceData = this.map;
-    this.routeLayersType();
-  }
-
-  routeLayersType() {
-
-
+   
   }
 
 

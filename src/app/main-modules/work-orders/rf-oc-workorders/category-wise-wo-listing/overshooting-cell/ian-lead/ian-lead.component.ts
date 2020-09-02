@@ -12,6 +12,9 @@ import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.compone
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import {  AgGridAngular } from 'ag-grid-angular';
+import { FileUploadService } from 'src/app/_services/file-upload.service';
+import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 interface sitep {
   value: string;
@@ -28,6 +31,7 @@ interface taskclosures {
 })
 export class IanLeadComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
+  @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
  
  
@@ -55,6 +59,9 @@ public physicalParameterrowdata;
   public pspRowdata: any;
 
   constructor(
+
+    private datatable: TableAgGridService, 
+    private fileUploadService: FileUploadService, 
     public flexlayout: FlexLayoutModule, 
     private http: HttpClient,
     private router: Router, 
@@ -65,7 +72,10 @@ public physicalParameterrowdata;
       "dropdownrender": DropdownComponent,
       "textfieldrender": TextfieldComponent
     }
-
+    this.gridOptions = <GridOptions>{};
+    this.gridOptionsImpl = <GridOptions>{};
+    this.gridOptionsImpl = <GridOptions>{};
+   
   }
 
   ngOnInit(): void {
@@ -147,6 +157,26 @@ sitepos: sitep[] = [
   {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'},
   {value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)'}
 ];
+uploadedImg = [];
+  showFileUploadwidget: boolean = false;
+  taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.gridOptionsImpl.api && this.gridOptionsSite.api) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+        this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsSite.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
 
 private createimppdetailsColumndata() {
   this.impParameterDetailsColumndata = [
@@ -223,38 +253,76 @@ taskclosures: taskclosures[] = [
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
   }
 
-  // fileName;
-  // uploadFile(file) {
-  //   this.fileName = file.name;
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   let obj;
-  //   if (file) {
-  //     //this.uploadedImg = [];
-  //     this.showFileUploadwidget = true;
-  //     let url = `../../../../../../../assets/images/logo/${this.fileName}`
-  //     obj = {
-  //       src: url
-  //     }
-  //     this.uploadedImg.push(obj);
-  //   }
-  // }
+
+
+  defaultColDef = { resizable: true };
+  searchGrid = '';
+  onFilterChanged(value) {
+    this.gridOptions.api.setQuickFilter(value);
+    this.gridOptionsImpl.api.setQuickFilter(value);
+    this.gridOptionsSite.api.setQuickFilter(value);
+  };
+  show: any;
+
+  toggleSearch() {
+    this.show = !this.show;
+  };
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  onAddRowimpl()
+   {
+     this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+  
+   }
 
 
 
-  // onClick() {
-  //   const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
-  //     const file = fileUpload.files[0];
-  //     this.files = file;
-  //     //this.files.push({ data: file });
-  //     this.uploadFiles();
-  //   };
-  //   fileUpload.click();
-  // }
 
-  // private uploadFiles() {
-  //   this.fileUpload.nativeElement.value = '';
-  //   this.uploadFile(this.files);
-  // }
+
+
+
+
+
+  fileName;
+  uploadFile(file) {
+    this.fileName = file.name;
+    const formData = new FormData();
+    formData.append('file', file);
+    let obj;
+    if (file) {
+      //this.uploadedImg = [];
+      this.showFileUploadwidget = true;
+      let url = `../../../../../../../assets/images/logo/${this.fileName}`
+      obj = {
+        src: url
+      }
+      this.uploadedImg.push(obj);
+    }
+  }
+
+
+
+  onClick() {
+    const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
+      const file = fileUpload.files[0];
+      this.files = file;
+      //this.files.push({ data: file });
+      this.uploadFiles();
+    };
+    fileUpload.click();
+  }
+
+  private uploadFiles() {
+    this.fileUpload.nativeElement.value = '';
+    this.uploadFile(this.files);
+  }
 }
 

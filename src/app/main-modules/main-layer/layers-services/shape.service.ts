@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class ShapeService {
 mapServiceData;
+lServiceData;
+canvasLayerServiceData;
   constructor(private http: HttpClient) { }
 
   getStateShapes(): Observable<any> {

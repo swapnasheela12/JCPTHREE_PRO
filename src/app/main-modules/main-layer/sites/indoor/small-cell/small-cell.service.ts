@@ -1,3 +1,4 @@
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { ShapeService } from './../../../layers-services/shape.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,38 +12,40 @@ export class SmallCellService {
   map: any;
   lib;
   public mydata;
-  constructor(private router: Router,private shapeService: ShapeService,private http: HttpClient,) {
+  _canvasLayer;
+  constructor(private datashare: DataSharingService, private router: Router, private shapeService: ShapeService, private http: HttpClient,) {
     this.lib = leaflayer();
     console.log(this.lib, ">>>>");
     this.redrawLayer();
 
     this.router.events.subscribe((event: any) => {
-      console.log(event.url,"event");
-      
+      console.log(event.url, "event");
+
     })
 
   }
 
 
   redrawLayer() {
-    console.log(this.shapeService,"this.shapeService");
-   setTimeout(() => {
-    this.shapeService.getSmallCellData().subscribe(states => {
-      console.log(states, "states");
-      this.draw(states);
-    });
-   }, 2000);
-   
+    console.log(this.shapeService, "this.shapeService");
+    setTimeout(() => {
+      this.shapeService.getSmallCellData().subscribe(states => {
+        console.log(states, "states");
+        this.draw(states);
+      });
+    }, 2000);
+
 
   }
-  
-  public draw = function(dataVal) {
+
+  public draw = function (dataVal) {
 
     console.log(L, "L");
     var data = dataVal;
-    console.log(this.map,"this.map");
-     // data loaded from city.js
+    console.log(this.map, "this.map");
+    // data loaded from city.js
     let _map = this.shapeService.mapServiceData;
+
 
     var resizeContainer = function () {
       var canvas = this.getContainer();
@@ -117,11 +120,26 @@ export class SmallCellService {
       console.log("layer-destroyed");
     });
 
-    canvasLayer.addTo(_map);
+    
+    this.datashare.currentMessage.subscribe(val => {
+      this.selectedLayerArrList = val;
+      canvasLayer.remove(_map);
+
+      for (let index = 0; index < this.selectedLayerArrList.length; index++) {
+        const ele = this.selectedLayerArrList[index];
+        if (ele.link == "JCP/Layers/Small-Cell") {
+          console.log("got it all amll ESC");
+          return canvasLayer.addTo(_map);
+        }
+
+      }
+
+    });
+
 
 
   }
 
 
- 
+
 }

@@ -119,7 +119,7 @@
       </div>
       <div class="os-row">
         <div class="os-cell">
-          <mat-form-field class="example-full-width" style="position:relative;">
+          <!-- <mat-form-field class="example-full-width" style="position:relative;">
             <mat-label>Site Photos*</mat-label>
             <input type="" matInput placeholder="Upload Photos" value="">
           </mat-form-field>
@@ -128,7 +128,17 @@
           <input style="position: absolute;z-index: 999;opacity:0;      
           top: 242px;
           left: 68px;
-          width: 180px;" type="file" class="uploadfilesOssd">
+          width: 180px;" type="file" class="uploadfilesOssd"> -->
+          <mat-form-field>
+            <input matInput class="input-field" style="position: inherit; opacity: 0.6;font-size: 14px;"
+                placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+            <button class="browse-button"
+                style="position: absolute; right: 0; bottom :0; font-size: 14px;" (click)="onClick()"
+                mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+
+            <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                style="display: none;" />
+        </mat-form-field>
         </div>
       </div>
     </div>
@@ -137,12 +147,12 @@
   <div class="implemented-parameter-details mb-3 blocks">
     <header class="impheader">
       <div class="title">Implemented parameter Details</div>
-      <div class="clone-btn">
+      <div class="clone-btn" (click)="onAddRowimpl()">
         <button type="button" class="btn-clone">ADD</button>
       </div>
     </header>
     <div class="data-table">
-      <ag-grid-angular #impLGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
+      <ag-grid-angular #agGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
         [columnDefs]="impParameterDetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
         enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
         [frameworkComponents]="frameworkComponentsos" rowSelection="multiple">
