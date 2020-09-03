@@ -19,7 +19,7 @@
         border: 1px solid #ffffff;
         border-radius: 4px;
         height: 64px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
 
         p {
             margin: 0;
@@ -32,6 +32,7 @@
             margin-right: 10px;
             width: 37px;
             height: 37px;
+            font-size: 25px;
             border-radius: 50px;
             font-size: 25px;
             text-align: center;
@@ -71,9 +72,14 @@
     }
 
     .site-details {
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        
         .body-text {
             text-align: left;
-            font: normal normal normal 14px/22px Lato;
+            font-size: 14px;
+            line-height: 22px;
+            font-family: 'Lato Regular';
             letter-spacing: 0px;
             color: #000000;
             opacity: 0.9;
@@ -111,7 +117,7 @@
             .sitepdetails-cell {
                 font-size: 12px;
                 font-family: lato;
-                ;
+                
                 color: #000000;
                 opacity: 0.54;
             }
@@ -119,6 +125,7 @@
     }
 
     .site-parameter-details {
+        border: 1px solid #cccccc;
 border-radius: 4px;
 
         header {
