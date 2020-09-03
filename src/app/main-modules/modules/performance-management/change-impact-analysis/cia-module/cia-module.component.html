@@ -12,13 +12,20 @@
           <div class="content-holder">
             <div class="pt-3 pb-4">
               <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(ngModel)]="selectedRadio">
-                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name" [disableRipple]="true">
+                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name"
+                  [disableRipple]="true">
                   {{type.name}}</mat-radio-button>
               </mat-radio-group>
             </div>
             <div *ngIf="selectedRadio == 'Custom'">
-              <mat-checkbox [disableRipple]="true" class="example-margin">Neighbor Impact Analysis
-              </mat-checkbox>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-checkbox [disableRipple]="true" class="">Neighbor Impact Analysis
+                </mat-checkbox>
+                <mat-icon
+                  matTooltip="This Option Provides Additional Analysis including High Ranked Neighbors for the Cells Uploaded."
+                  matTooltipPosition="after" matTooltipHideDelay="1000" class="zmdi zmdi-help-outline mt-2 ml-2">
+                </mat-icon>
+              </div>
               <div class="pt-3">
                 <button class="next-button p-0" mat-button color="primary" (click)="openFileUploadPopup()">
                   <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
@@ -36,8 +43,8 @@
                 <i class="ic ic-warning mr-2 icon"> </i>
                 <span>Maximum 1001 cells entries are allowed.</span>
               </div>
-               <!-- Code For upload Failure -->
-               
+              <!-- Code For upload Failure -->
+
             </div>
             <div *ngIf="selectedRadio == 'JC Circle Level'" class="mt-2">
               <form [formGroup]="selectJcCircleLevelFormControl">
@@ -84,43 +91,30 @@
           <div class="border-box mb10" fxLayout="row">
             <div class="left-holder" fxFlex="25">
               <div class="select-kpi">
-                  <div class="height-50">
-                    <mat-form-field class="search-input full-width" fxLayout="row">
-                      <input matInput [(ngModel)]="searchGrid" (ngModelChange)="searchKPIGrid($event);"
-                        autocomplete="off" placeholder="">
-                      <i class="search-icon zmdi zmdi-search"></i>
-                    </mat-form-field>
-                  </div>
-                  <div class="height-calc-49">
-                    <ag-grid-angular
-                      [tooltipShowDelay]="tooltipShowDelay"
-                      #agGrid style="width: 100%; height: 100%;"
-                      id="myGrid1"
-                      class="ag-theme-material"
-                      [headerHeight]="0"
-                      [gridOptions]="leftGridKpiOptions"
-                      [rowData]="leftRowData"
-                      (gridReady)="onGridLeftReady($event)">
-                    </ag-grid-angular>
-                  </div>
+                <div class="height-50">
+                  <mat-form-field class="search-input full-width" fxLayout="row">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="searchKPIGrid($event);" autocomplete="off"
+                      placeholder="">
+                    <i class="search-icon zmdi zmdi-search"></i>
+                  </mat-form-field>
+                </div>
+                <div class="height-calc-49">
+                  <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                    id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridKpiOptions"
+                    [rowData]="leftRowData" (gridReady)="onGridLeftReady($event)">
+                  </ag-grid-angular>
+                </div>
               </div>
             </div>
             <div class="right-holder">
-                <div style="height:100%;width:100%">
-                  <ag-grid-angular
-                    [tooltipShowDelay]="tooltipShowDelay"
-                    #agGrid style="width: 100%; height: 100%;"
-                    id="myGridRight"
-                    class="ag-theme-material"
-                    [headerHeight]="50"
-                    [gridOptions]="rightGridKpiOptions"
-                    [overlayLoadingTemplate]="overlayLoadingTemplate"
-                    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
-                    (gridReady)="onGridRightReady($event)"
-                    [context]="getContext()"
-                    (selectionChanged)="selectionChanged($event)">
+              <div style="height:100%;width:100%">
+                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                  id="myGridRight" class="ag-theme-material" [headerHeight]="50" [gridOptions]="rightGridKpiOptions"
+                  [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                  (gridReady)="onGridRightReady($event)" [context]="getContext()"
+                  (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
-                </div>
+              </div>
             </div>
           </div>
           <div class="d-flex">
@@ -130,7 +124,7 @@
             <div class="p-2">
               <button class="next-button button" [disabled]="!showSuccessKpiFailure" mat-raised-button color="primary"
                 matStepperNext>Next</button>
-              </div>
+            </div>
             <div class="col"></div>
             <div class="py-2">
               <button mat-button color="primary" (click)="openKpiFileUploadPopup()">Upload KPI</button>
@@ -141,73 +135,61 @@
           <div class="duration-frequency">
             <div class="top p-3">
               <div class="top-first" fxLayoutGap="40px" fxLayout="row wrap" fxLayoutAlign="start end">
-                      <mat-form-field fxFlex="60">
-                      <mat-chip-list #postChipList aria-label="Post Date Selection"
-                          (click)="postPicker.open()">
-                          <mat-chip
-                          *ngFor="let postValue of postModel"
-                          [selectable]="false"
-                          [removable]="true"
-                          (removed)="postRemove(postValue)">
-                          {{ postValue | date }}
-                          <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-                          </mat-chip>
-                          <input
-                          [value]="resetModelPostDate"
-                          matInput
-                          [matDatepicker]="postPicker"
-                          placeholder="Post Date Selection"
-                          (dateChange)="postDateChanged($event)"
-                          [max]="maxPostDate"
-                          [min]="minPostDate"
-                          [matChipInputFor]="postChipList" hidden />
-                      </mat-chip-list>
-                      <mat-datepicker-toggle matSuffix [for]="postPicker"></mat-datepicker-toggle>
-                      <mat-datepicker #postPicker [startAt]="initPostDatePicker" [dateClass]="dateClassPostModel"></mat-datepicker>
-                      </mat-form-field>
-                      <mat-form-field fxFlex="20" class="mt-2">
-                          <mat-label>Post Hourly Selection </mat-label>
-                          <mat-select multiple disableOptionCentering>
-                              <mat-option *ngFor="let postHourly of postHourlyList" [value]="postHourly">{{postHourly}}</mat-option>
-                          </mat-select>
-                          <span matSuffix> hrs</span>
-                      </mat-form-field>
-                      <mat-checkbox class="mt-2" [disableRipple]="true"
-                      matTooltip="This is like to like functionality.This is like to like functionality."
-                      [(ngModel)]="likeToLikeChecked">Like To Like</mat-checkbox>
+                <mat-form-field fxFlex="55">
+                  <mat-chip-list #postChipList aria-label="Post Date Selection" (click)="postPicker.open()">
+                    <mat-chip *ngFor="let postValue of postModel" [selectable]="false" [removable]="true"
+                      (removed)="postRemove(postValue)">
+                      {{ postValue | date }}
+                      <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                    </mat-chip>
+                    <input [value]="resetModelPostDate" matInput [matDatepicker]="postPicker"
+                      placeholder="Post Date Selection" (dateChange)="postDateChanged($event)" [max]="maxPostDate"
+                      [min]="minPostDate" [matChipInputFor]="postChipList" hidden />
+                  </mat-chip-list>
+                  <mat-datepicker-toggle matSuffix [for]="postPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #postPicker [startAt]="initPostDatePicker" [dateClass]="dateClassPostModel">
+                  </mat-datepicker>
+                </mat-form-field>
+                <mat-form-field fxFlex="20" class="mt-2">
+                  <mat-label>Post Hourly Selection </mat-label>
+                  <mat-select multiple disableOptionCentering>
+                    <mat-option *ngFor="let postHourly of postHourlyList" [value]="postHourly">{{postHourly}}
+                    </mat-option>
+                  </mat-select>
+                  <span matSuffix> hrs</span>
+                </mat-form-field>
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="auto">
+                  <mat-checkbox class="mt-2" [disableRipple]="true" [(ngModel)]="likeToLikeChecked">Like To Like
+                  </mat-checkbox>
+                  <mat-icon matTooltip="Option will Analyze for similar days or hours i.e Monday (Pre) to Monday (Post) or Hour 1(Pre) to Hour 1(Post)."
+                    matTooltipPosition="below" matTooltipHideDelay="1000" class="zmdi zmdi-help-outline mt-2 ml-2">
+                  </mat-icon>
+                </div>
               </div>
-              <div class="top-second"  fxLayoutGap="40px" fxLayout="row wrap" fxLayoutAlign="start end">
-                  <mat-form-field fxFlex="60">
-                    <mat-chip-list #preChipList aria-label="Pre Date Selection"
-                (click)="prePicker.open()">
-                <mat-chip
-                  *ngFor="let preValue of preModel"
-                  [selectable]="false"
-                  [removable]="true"
-                  (removed)="preRemove(preValue)">
-                  {{ preValue | date }}
-                  <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-                </mat-chip>
-                <input
-                  [value]="resetModelPreDate"
-                  matInput
-                  [matDatepicker]="prePicker"
-                  placeholder="Pre Date Selection"
-                  [max]="maxPreDate"
-                  [min]="minPreDate"
-                  (dateChange)="preDateChanged($event)"
-                  [matChipInputFor]="preChipList" hidden />
-                    </mat-chip-list>
-                    <mat-datepicker-toggle matSuffix [for]="prePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #prePicker [startAt]="initPreDatePicker" [dateClass]="dateClassPreModel"></mat-datepicker>
-                  </mat-form-field>
-                    <mat-form-field fxFlex="20" class="mt-2">
-                      <mat-label>Post Hourly Selection</mat-label>
-                      <mat-select multiple disableOptionCentering>
-                        <mat-option *ngFor="let postHourly of postHourlyList" [value]="postHourly">{{postHourly}}</mat-option>
-                      </mat-select>
-                      <span matSuffix> hrs</span>
-                    </mat-form-field>
+              <div class="top-second" fxLayoutGap="40px" fxLayout="row wrap" fxLayoutAlign="start end">
+                <mat-form-field fxFlex="55">
+                  <mat-chip-list #preChipList aria-label="Pre Date Selection" (click)="prePicker.open()">
+                    <mat-chip *ngFor="let preValue of preModel" [selectable]="false" [removable]="true"
+                      (removed)="preRemove(preValue)">
+                      {{ preValue | date }}
+                      <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                    </mat-chip>
+                    <input [value]="resetModelPreDate" matInput [matDatepicker]="prePicker"
+                      placeholder="Pre Date Selection" [max]="maxPreDate" [min]="minPreDate"
+                      (dateChange)="preDateChanged($event)" [matChipInputFor]="preChipList" hidden />
+                  </mat-chip-list>
+                  <mat-datepicker-toggle matSuffix [for]="prePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #prePicker [startAt]="initPreDatePicker" [dateClass]="dateClassPreModel">
+                  </mat-datepicker>
+                </mat-form-field>
+                <mat-form-field fxFlex="20" class="mt-2">
+                  <mat-label>Post Hourly Selection</mat-label>
+                  <mat-select multiple disableOptionCentering>
+                    <mat-option *ngFor="let postHourly of postHourlyList" [value]="postHourly">{{postHourly}}
+                    </mat-option>
+                  </mat-select>
+                  <span matSuffix> hrs</span>
+                </mat-form-field>
               </div>
             </div>
             <div class="border-top">
@@ -215,13 +197,14 @@
                 <label class="radio-group-label">Frequency</label>
                 <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
                   [(value)]="frequencySelected">
-                  <mat-radio-button [disableRipple]="true" fxFlex="20" *ngFor="let frequency of frequencyData" [value]="frequency">
+                  <mat-radio-button [disableRipple]="true" fxFlex="20" *ngFor="let frequency of frequencyData"
+                    [value]="frequency">
                     {{frequency}}
                   </mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
-        </div>
+          </div>
           <div class="next-button py-2">
             <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
           </div>
@@ -237,7 +220,8 @@
       <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
     </div>
     <div class="p-2">
-      <button mat-raised-button color="primary"  [disabled]="generateDisabled" class="buttonWidth button">Generate</button>
+      <button mat-raised-button color="primary" [disabled]="generateDisabled"
+        class="buttonWidth button">Generate</button>
     </div>
   </div>
 </div>
