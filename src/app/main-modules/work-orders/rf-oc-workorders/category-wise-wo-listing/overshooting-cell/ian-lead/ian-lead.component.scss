@@ -143,7 +143,8 @@
             .sitedetails-cell,
             .sitepdetails-cell {
                 font-size: 12px;
-                font-family: lato;
+                font-family: lato Regular;
+                
 
             }
         }
@@ -397,17 +398,17 @@
     font-size: 14px;
     line-height: 18px;
     font-family: "Lato Medium";
+    .remarks label {
+        display: block;
+    }
+    .remarks-field {
+        border: none;
+        color: #000000;
+        font-size: 14px;
+       
+    }
 }
-.remarks label {
-    display: block;
-}
-.remarks-field {
-    border: none;
-    color: #000000;
-    font-size: 14px;
 
-
-}
 
 .os-cell {
     .details {
@@ -424,5 +425,9 @@
     background: none;
 }
 :host ::ng-deep ag-grid-angular .ag-center-cols-container {
+    width: 100%!important;
+}
+
+:host ::ng-deep ag-grid-angular .ag-theme-material .ag-row {
     width: 100%!important;
 }
