@@ -1,16 +1,14 @@
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
 import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
-import { SpiderViewComponent } from './spider-view/spider-view.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
 import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
-import * as createjs from 'createjs-module';
 import * as L from 'leaflet';
 
 // import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
@@ -47,6 +45,8 @@ interface DataObject {
   styleUrls: ['./main-layer.component.scss']
 })
 export class MainLayerComponent implements OnInit, AfterViewInit {
+  @ViewChild('spiderView', {read: ViewContainerRef}) target: ViewContainerRef;
+  private componentRef: ComponentRef<any>;
 
   map: any;
   CanvasLayer: any;
@@ -78,7 +78,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   countDiv;
 
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,
+    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,private componentFactoryResolver?: ComponentFactoryResolver
   ) {
 
     this.router.events.subscribe((event: any) => {
@@ -129,10 +129,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      center: [25.0000, 79.0000],
-      //center:[19.04,72.90],
+      //center: [25.0000, 79.0000],
+      center:[19.04,72.90],
       zoomControl: false,
-      zoom: 5,
+      zoom: 16,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
@@ -545,7 +545,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     });
 
     this.shapeService.mapServiceData = this.map;
-
   }
 
 
@@ -593,96 +592,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   }
 
 
-  // connectPoints(map) {
-  //   let latA: any;
-  //   let latB: any;
-  //   let counterid: number = 1;
-  //   let pointA: any;
-  //   let pointB: any;
-  //   this.map.on('click', function (e) {
-  //     this.containerID = ++counterid;
-  //     if (!latA) {
-  //       latA = e.latlng;
-  //       this.latAdata = latA;
-  //       //POINT A
-  //       pointA = new L.Marker(latA, {
-  //         draggable: true
-  //       });
-  //       pointA.addTo(this.map);
-  //       pointA.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
-  //         minWidth: 245
-  //       }).openPopup();
-
-  //     }
-  //     else {
-  //       latB = e.latlng;
-  //       this.latAdata = latB;
-  //       //POINT B
-  //       pointB = new L.Marker(latB, {
-  //         draggable: true
-  //       });
-  //       pointB.addTo(this.map);
-  //       pointB.bindPopup(`<div id="container${this.containerID}">${e.latlng} <br/> ${this.calculateDistance(latA, latB)} Kms</div>`, {
-  //         minWidth: 245
-  //       }).openPopup();
-  //     }
-
-  //     if (latA && latB) {
-  //       console.log(L);
-  //       var polyline = L.polyline([latA, latB], {
-  //         color: 'red',
-  //         weight: 7,
-  //         opacity: 7,
-  //         smoothFactor: 10
-  //       }).addTo(this.map);
-  //       latA = latB
-
-  //       //DRAW A NEW LAYER
-  //       L.DomEvent.on(
-  //         document.getElementById('newline'), 'click',
-  //         function (ev) {
-  //           console.log('before-click', latA, latB)
-  //           latA = undefined;
-  //           latB = undefined;
-  //         }
-  //       );
-  //     }
-
-  //   }.bind(this))
-
-  //   //HIGHCHARTS POPUP
-  //   this.map.on('popupopen', function (e) {
-  //     console.log(this.distanceKm);
-  //     new Highcharts.Chart({
-  //       title: { text: this.distanceKm + 'Km' },
-  //       chart: {
-  //         renderTo: 'container' + this.containerID,
-  //         height: 175,
-  //         width: 295,
-  //       },
-  //       series: this.chartJson
-  //     });
-  //   }.bind(this));
-  // }
-
-  // calculateDistance(latA: any, latB: any) {
-  //   if (latA !== undefined && latB !== undefined) {
-  //     let dis: any = latA.distanceTo(latB);
-  //     this.distanceInKms = ((dis) / 1000).toFixed(0);
-  //     this.distanceKm = this.distanceInKms;
-  //     console.log('hi')
-  //     return this.distanceInKms || 0;
-  //   }
-  //   else {
-  //     console.log('hi')
-  //     return 0;
-  //   }
-  // }
-
-
-
-
-
   //LOAD JSON DATA FOR SHAPE (FAN)
   siteDataJson() {
     this.http.get("assets/data/layers/microsites-onair.json")
@@ -696,10 +605,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   //LOAD ALL THE NODES ONTO THE MAP
   initializeNodes(data) {
+    console.log(data,this);
     this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
-    console.log(this.marcoService.nodeCreationInitializer.prototype, "this.marcoService.nodeCreationInitializer.prototype");
-
-    let nodes = new this.marcoService.nodeCreationInitializer(data);
+    let nodes = new this.marcoService.nodeCreationInitializer(data,this);
     nodes.addTo(this.map);
   }
 
@@ -712,11 +620,4 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
     // node.addTo(this.map);
   }
-
-
-
-
-
-
-
 }

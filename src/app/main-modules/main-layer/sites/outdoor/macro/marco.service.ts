@@ -1,51 +1,29 @@
-import { Injectable,ViewChild,ViewContainerRef, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as _ from 'underscore';
 import * as L from 'leaflet';
 import * as createjs from 'createjs-module';
-import { SpiderViewComponent } from '../../../spider-view/spider-view.component';
-import { Subject, Observable, observable, of, BehaviorSubject } from 'rxjs';
-// TYPE FOR OBJECT FORMAT
-interface DataObject{
-  [key:string]:any;
-}
+import { SpiderComponent } from '../spider/spider.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarcoService {
-  @ViewChild('container',{read:ViewContainerRef,static:true})
-  containerRef;
 
-  // constructor(private resolver:ComponentFactoryResolver,
-  // private vc:ViewContainerRef  
-  // ) { }
-  //SHAPE(FAN) CONFIG
-   
-  public _pixelRatio:number;
-  public _map:DataObject;
-  public _simplePopup:DataObject;
-  public _container:DataObject;
-  public _selectionContainer:DataObject;
-  public _points:DataObject;
-  public _hightlightCell:DataObject;
-  public _bounds:Array<{key:string}>;
-  public _colors:String[] = ['#666666', '#b3b3b3', '#11808B', '#74BB26', '#CBE010', '#FFC51E', '#8CC90E', '#218A7B', '#359667', '#E7EA10', '#CBE010', '#FFB023', '#FF6239', '#FFB023', '#E8EB10', '#FF6239'];
-  public _stage:DataObject;
-  public _addtionalsector:String;;
-  public scaleMatrix:number;
-  public mydata;
-  ngAfterViewInit(){
-    //console.log(this.vc)
-    this.get();
-  }
-  
-  
-  public nodeCreationInitializer= function(jsonData?){
+export class MarcoService {
+
+  /**
+   * @param {jsonData} Object site json data
+   * @param {mainComponentRef} Object Main component  reference
+   */
+
+  public nodeCreationInitializer = function (jsonData, mainComponentRef) {
+    console.log(mainComponentRef);
+    this._requestCanceller = null;
     this._pixelRatio = window.devicePixelRatio || 1;
     this.siteData = jsonData;
-    if(typeof(this.siteData) ==='object' && this.siteData !== undefined){
+    if (typeof (this.siteData) === 'object' && this.siteData !== undefined) {
       //FUNCTION FROM CANVAS LIBRARY WHICH PROVIDES THE CANVAS AND COORDINATES(BOUNDS)
-      this.onDrawLayer =function(info) {
+      this.onDrawLayer = function (info) {
         //STAGE
         this._container = new createjs.Container();
 
@@ -317,23 +295,11 @@ export class MarcoService {
                 sectorPie.shadow = shadow;
                 sectorPie.cursor = 'pointer';
                 sectorPie['latlng'] = latlng;
-                sectorPie['site'] = bandInner.siteArray;
+                sectorPie['site'] = siteInner;
                 sectorPie['sector'] = sectorInner;
 
-
-                let div = document.createElement('div');
-                div.setAttribute('class','spiderview-content')
-                div.innerHTML  =`<div #container></div>`;
-                document.body.appendChild(div);
-
-
-                
                 //EVENTS 
                 sectorPie.on("click", (event) => {
-                  
-                  
-                  
-
                   this.nodeOnMouseClick(info, event);
                 })
                 sectorPie.on("mouseover", (event) => {
@@ -382,35 +348,42 @@ export class MarcoService {
         this._stage.update();
       }
 
-      
-
-      this.nodeOnMouseClick= function(info,event){
+      this.nodeOnMouseClick = function (info, event) {
         let viewData = {};
-        viewData['currentBands'] = event.target.site;
+        viewData['currentbands'] = event.target.site;
         viewData['sector'] = event.target.sector;
-        let container = info.layer._map.getContainer();
-        var parent = this._container.getChildByName(event.target.site[0].sapid);
-        this.data(viewData);
-        this.mydata  = viewData;
-
-        console.log(event);
-
+        
+        if (mainComponentRef) {
+          mainComponentRef.target.clear();
+          /** * @param {datashare} object  Data sharing service */ 
+          if(mainComponentRef.datashare){
+              mainComponentRef.datashare.sendDataToSpider(viewData);
+          }
+          else{
+            throw new Error("Data sharing service not found. Please add one.");
+          }
+          
+          if(mainComponentRef.componentFactoryResolver){
+            let spiderComponent = mainComponentRef.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
+            mainComponentRef.componentRef = mainComponentRef.target.createComponent(spiderComponent);
+          }
+          else{
+            throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
+          }
+        }
+        else{
+          throw new Error("Main component reference not found. Please pass 'this' as a second parameter/")
+        }
       }
-      this.data = function(response){
-        let s = new BehaviorSubject(null);
-        s.next(response);
-        console.log(s);
-       // return of(response);
-      }
-  
+
       //ON MOUSE OVER OF SHAPE(FAN)
-      this.nodeOnMouseOver= function(info,event){
+      this.nodeOnMouseOver = function (info, event) {
         let target = event.target;
         let c = event.currentTarget;
         target.alpha = 1;
         target.graphics.strokeStyleCommand.width = 4;
         this._stage.update();
-        if (target.sector.sitebandtype !== undefined  && target.sector.sitebandtype !== null){
+        if (target.sector.sitebandtype !== undefined && target.sector.sitebandtype !== null) {
           let band = (c.sector.sitebandtype == 'site2300') ? 2300 : (c.sector.sitebandtype == 'site1800') ? 1800 : 850;
           let template = "";
           template += `<div class="layout-row"><span class="prefix">PCI : </span> <span class="value">${(c.sector.pci)} </span></div>`;
@@ -420,7 +393,7 @@ export class MarcoService {
       }
 
       //ON MOUSE OUT OF SHAPE(FAN)
-      this.nodeOnMouseOut= function(info,event){
+      this.nodeOnMouseOut = function (info, event) {
         let target = event.target;
         target.alpha = 0.8;
         target.graphics.strokeStyleCommand.width = 1;
@@ -429,44 +402,44 @@ export class MarcoService {
       }
 
 
-      this.pieGenerator= function(pie_x, pie_y, startAngle, endAngle, radius1, radius2, carrierInnerRadius, carrierStatus, fillColor, lineColor, lineThickness){
+      this.pieGenerator = function (pie_x, pie_y, startAngle, endAngle, radius1, radius2, carrierInnerRadius, carrierStatus, fillColor, lineColor, lineThickness) {
         var newAngles = (endAngle - startAngle) / 2;
         var newAngle = startAngle + newAngles;
-    
+
         var g = new createjs.Graphics();
         var strokeStyleCommand = g.setStrokeStyle(lineThickness).command;
         g['strokeStyleCommand'] = strokeStyleCommand;
-    
+
         g.beginFill(fillColor);
         g.beginStroke(lineColor);
-        g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle),false);
+        g.arc(pie_x, pie_y, radius1, this.toRad(startAngle), this.toRad(endAngle), false);
         g.lineTo(pie_x + Math.cos(this.toRad(endAngle)) * radius2, pie_y + Math.sin(this.toRad(endAngle)) * radius2);
         g.arc(pie_x, pie_y, radius2, this.toRad(endAngle), this.toRad(startAngle), true);
         g.closePath();
         g.endFill();
-    
-    
+
+
         if (carrierStatus) {
-            g.setStrokeStyle(1);
-            g.moveTo(pie_x + Math.cos(this.toRad(newAngle)) * carrierInnerRadius, pie_y + Math.sin(this.toRad(newAngle)) * carrierInnerRadius);
-            g.lineTo(pie_x + Math.cos(this.toRad(newAngle)) * radius1, pie_y + Math.sin(this.toRad(newAngle)) * radius1);
-            g.closePath();
-            g.beginStroke("#CD4B5B");
-        } 
+          g.setStrokeStyle(1);
+          g.moveTo(pie_x + Math.cos(this.toRad(newAngle)) * carrierInnerRadius, pie_y + Math.sin(this.toRad(newAngle)) * carrierInnerRadius);
+          g.lineTo(pie_x + Math.cos(this.toRad(newAngle)) * radius1, pie_y + Math.sin(this.toRad(newAngle)) * radius1);
+          g.closePath();
+          g.beginStroke("#CD4B5B");
+        }
         return g;
       }
-      
-      this.getPopup= function(){
+
+      this.getPopup = function () {
         var popup = L.popup({
-            className: 'leaflet-simple-popup',
-            minWidth: 120,
-            offset: L.point(0, -40),
-            closeButton: false
+          className: 'leaflet-simple-popup',
+          minWidth: 120,
+          offset: L.point(0, -40),
+          closeButton: false
         });
         return popup;
       }
 
-      this.getPointGraphics = function(matrix, color) {
+      this.getPointGraphics = function (matrix, color) {
         var g = new createjs.Graphics();
         g.setStrokeStyle(1);
         g.beginStroke(createjs.Graphics.getRGB(0, 0, 0));
@@ -475,7 +448,7 @@ export class MarcoService {
         return g;
       };
 
-      this.getSelectionGraphics = function(strokecolor, color) {
+      this.getSelectionGraphics = function (strokecolor, color) {
         var g = new createjs.Graphics();
         g.setStrokeStyle(5);
         g.beginStroke(strokecolor);
@@ -484,17 +457,109 @@ export class MarcoService {
         return g;
       };
 
-      this.toRad =function(angle) {
+      this.toRad = function (angle) {
         return (angle - 90) * Math.PI / 180;
       }
+
+
+      //BOUNDARIES
+      // this.reloadLayer = function (event) {
+
+      //   if (this._requestCanceller) {
+      //       this._requestCanceller.resolve();
+      //       this._requestCanceller = null;
+      //       this._requestCanceller = $q.defer();
+      //   } else {
+      //       this._requestCanceller = $q.defer();
+      //   }
+
+      //   // this._container.alpha = 0;
+      //   // this._stage.update();
+      //   var info = event.info;
+      //   // info.bounds._northEast, // info.bounds._southWest
+
+      //   var url = null;
+      //   var sitesView = (info.zoom > 13);
+
+      //   if (!sitesView) {
+      //       var boundariesFile = '';
+      //       switch (true) {
+
+      //           case (info.zoom < 4):
+      //               this.textRatio = 0;
+      //               this.countMin = 5000;
+      //               this.countMax = 30000;
+      //               boundariesFile = 'circles';
+      //               break;
+
+      //           case (info.zoom < 8):
+      //               this.textRatio = 13;
+      //               this.countMin = 5000;
+      //               this.countMax = 30000;
+      //               boundariesFile = 'circles';
+      //               break;
+      //           case (info.zoom < 10):
+      //               this.textRatio = 13;
+      //               this.countMin = 5000;
+      //               this.countMax = 30000;
+      //               boundariesFile = 'jiostates';
+      //               break;
+      //           case (info.zoom < 11):
+      //               this.textRatio = 11;
+      //               this.countMin = 500;
+      //               this.countMax = 5000;
+      //               boundariesFile = 'cities';
+      //               break;
+      //           case (info.zoom < 12):
+      //               this.textRatio = 9;
+      //               this.countMin = 10;
+      //               this.countMax = 100;
+      //               boundariesFile = 'jiocenters';
+      //               break;
+      //           default:
+      //               this.textRatio = 9;
+      //               this.countMin = 5;
+      //               this.countMax = 20;
+      //               boundariesFile = 'clusters';
+      //       }
+      //       url = 'assets/data/layers/boundaries/' + boundariesFile + '.json';
+      //   } else {
+      //       //url = 'assets/data/layers/sites-onair.json';
+      //       url = 'assets/data/layers/macrosites-onair.json';
+      //   }
+
+      //   if (!sitesView) {
+      //       this.drawBoundaries(event, this._previousData);
+      //   } else {
+      //       this.drawSites(event, this._previousData);
+      //   }
+
+      //   $http({
+      //       method: 'GET',
+      //       url: url,
+      //       timeout: this._requestCanceller.promise
+      //   }).then(function successCallback(response) {
+      //       var data = response.data;
+      //       this._requestCanceller.resolve();
+      //       if (!sitesView) {
+      //           this._previousData = null;
+      //           this.drawBoundaries(event, data);
+      //           this._previousData = data;
+      //       } else {
+      //           this._previousData = null;
+      //           this.drawSites(event, data);
+      //           this._previousData = data;
+      //       }
+      //   }, function errorCallback(response) {
+      //       $log.log(response);
+      //       // called asynchronously if an error occurs
+      //       // or server returns response with an error status.
+      //   });
+      // };
     }
-    else{
+    else {
       throw new Error("JSON object data not found")
     }
-  }
-
-  get(){
-    console.log(this.mydata)
   }
 }
 
