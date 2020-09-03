@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
+const PATHS = [
+    { goToCiaReport: "JCP/Modules/Performance-Management/My-Performance-Reports/Change-Impact-Analysis" }
+];
 @Component({
     selector: 'app-view-summary',
     templateUrl: './view-summary.component.html',
@@ -11,11 +14,11 @@ export class ViewSummaryComponent implements OnInit {
     secondaryKpi: string = "Traffic";
     time: string = "time";
     cellList: string = "Custom Cell List";
-    legendsList = [
-        { class: 'green', name: 'Improvement' },
-        { class: 'red', name: 'Degradation' },
-        { class: 'blue', name: 'No Impact' },
-    ]
+    // legendsList = [
+    //     { class: 'green', name: 'Improvement' },
+    //     { class: 'red', name: 'Degradation' },
+    //     { class: 'blue', name: 'No Impact' },
+    // ]
     dataList = [
         { name: 'Overall', value: '1,00,00' },
         { name: '850', value: '15,000' },
@@ -80,6 +83,7 @@ export class ViewSummaryComponent implements OnInit {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
                 },
                 suppressMenu: true,
+                headerTooltip: 'Improvement',
                 headerComponentParams: {
                     template:
                         '<div class="ag-cell-label-container" role="presentation">' +
@@ -101,6 +105,7 @@ export class ViewSummaryComponent implements OnInit {
 
                 width: 100,
                 suppressMenu: true,
+                headerTooltip: 'Degradation',
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
                 },
@@ -125,6 +130,7 @@ export class ViewSummaryComponent implements OnInit {
 
                 width: 100,
                 cellClass: "border-right",
+                headerTooltip: 'No Impact',
                 suppressMenu: true,
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
@@ -184,7 +190,7 @@ export class ViewSummaryComponent implements OnInit {
                 headerClass: 'childHeader',
             }, {
                 headerName: "% green",
-
+                headerTooltip: 'Improvement',
                 width: 100,
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
@@ -208,7 +214,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% red",
-
+                headerTooltip: 'Degradation',
                 width: 100,
                 suppressMenu: true,
                 cellRenderer: function () {
@@ -232,7 +238,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% blue",
-
+                headerTooltip: 'No Impact',
                 width: 100,
                 cellClass: "border-right",
                 suppressMenu: true,
@@ -295,7 +301,7 @@ export class ViewSummaryComponent implements OnInit {
                 headerClass: 'childHeader',
             }, {
                 headerName: "% green",
-
+                headerTooltip: 'Improvement',
                 width: 100,
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
@@ -319,7 +325,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% red",
-
+                headerTooltip: 'Degradation',
                 width: 100,
                 suppressMenu: true,
                 cellRenderer: function () {
@@ -347,6 +353,7 @@ export class ViewSummaryComponent implements OnInit {
                 width: 100,
                 cellClass: "border-right",
                 suppressMenu: true,
+                headerTooltip: 'No Impact',
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
                 },
@@ -406,7 +413,7 @@ export class ViewSummaryComponent implements OnInit {
                 headerClass: 'childHeader',
             }, {
                 headerName: "% green",
-
+                headerTooltip: 'Improvement',
                 width: 100,
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
@@ -430,7 +437,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% red",
-
+                headerTooltip: 'Degradation',
                 width: 100,
                 suppressMenu: true,
                 cellRenderer: function () {
@@ -454,7 +461,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% blue",
-
+                headerTooltip: 'No Impact',
                 width: 100,
                 cellClass: "border-right",
                 suppressMenu: true,
@@ -516,7 +523,7 @@ export class ViewSummaryComponent implements OnInit {
                 headerClass: 'childHeader',
             }, {
                 headerName: "% green",
-
+                headerTooltip: 'Improvement',
                 width: 100,
                 cellRenderer: function () {
                     return '<div>' + Math.round(Math.random() * 100) + '</div>'
@@ -540,7 +547,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% red",
-
+                headerTooltip: 'Degradation',
                 width: 100,
                 suppressMenu: true,
                 cellRenderer: function () {
@@ -564,7 +571,7 @@ export class ViewSummaryComponent implements OnInit {
                 },
             }, {
                 headerName: "% blue",
-
+                headerTooltip: 'No Impact',
                 width: 100,
                 cellClass: "border-right",
                 suppressMenu: true,
@@ -590,6 +597,7 @@ export class ViewSummaryComponent implements OnInit {
             }]
         }
     ];
+    pathCiaReport: any;
     constructor(
         private http: HttpClient
     ) {
@@ -597,6 +605,8 @@ export class ViewSummaryComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.pathCiaReport = PATHS[0].goToCiaReport;
         this.createColumnDefs();
         this.getViewSummaryData();
     }

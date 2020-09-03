@@ -4,12 +4,15 @@ $blueactive-color: #0078D7;
     margin: 0px 8px;
     background-color: white;
     padding: 0px;
-    .card-title {
-        white-space: pre;
-        font-size: 15px;
-        font-weight: 600;
-        margin-bottom: 0px !important;
-        font-family: lato medium;
+    .mat-card-header-text{
+        margin:0px;
+        .card-title {
+            white-space: pre;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 0px !important;
+            font-family: lato medium;
+        }
     }
     .name {
         font-size: 13px;
@@ -46,7 +49,7 @@ $blueactive-color: #0078D7;
 
 .view-summary-card {
     padding: 0px !important;
-    height: calc(100% - 133px);
+    height: calc(100% - 94px);
     .view-summary-card-content {
         height: 100%;
         .green {
