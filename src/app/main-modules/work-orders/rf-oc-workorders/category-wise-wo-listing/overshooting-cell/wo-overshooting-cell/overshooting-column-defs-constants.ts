@@ -107,5 +107,5 @@ export const COLUMN_DEFS = [
     //     pinned: 'right',
     //     width: 90
     // }
-
+   
 ];

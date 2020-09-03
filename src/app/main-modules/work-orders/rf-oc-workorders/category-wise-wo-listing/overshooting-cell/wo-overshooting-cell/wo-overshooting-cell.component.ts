@@ -52,10 +52,10 @@ export class WoOvershootingCellComponent  {
       "label": "Work Order Creation Date",
       "value": "24 Sep, 2019"
     },
-    {
-      "label": "Planned End Date",
-      "value": "30 Sep, 2019"
-    },
+    // {
+    //   "label": "Planned End Date",
+    //   "value": "30 Sep, 2019"
+    // },
     {
       "label": "Work Order Status",
       "value": "In Progress"
@@ -104,7 +104,9 @@ export class WoOvershootingCellComponent  {
 
   }
 
-
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell'])
+  }
 }
 
 
