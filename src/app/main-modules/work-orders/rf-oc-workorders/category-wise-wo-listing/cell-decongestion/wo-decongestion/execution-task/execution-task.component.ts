@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
@@ -22,6 +22,7 @@ import { SuccessfulComponent } from 'src/app/core/components/commanPopup/success
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 import { TaskDropdownRendererComponent } from '../../../sector-misalignment/renderer/task-dropdown-renderer.component';
 import { TaskInputRendererComponent } from '../../../sector-misalignment/renderer/task-input-renderer.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-execution-task',
@@ -151,7 +152,7 @@ export class CellExecutionTaskComponent implements OnInit {
   uploadedImg = [];
   showFileUploadwidget: boolean = false;
   taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
-
+  executionType: string;
 
   public task_url: string = "assets/data/report/cell-decongestion/execution-task/execution-task.json";
 
@@ -173,7 +174,7 @@ export class CellExecutionTaskComponent implements OnInit {
         this.gridOptionsBiSector.api.sizeColumnsToFit();
         this.gridOptionsIdsc.api.sizeColumnsToFit();
         this.gridOptionsProposedOutdoor.api.sizeColumnsToFit();
-        this.gridOptionsProposedIndoor.api.sizeColumnsToFit();
+        //this.gridOptionsProposedIndoor.api.sizeColumnsToFit();
         this.gridOptionsMacroSiteData.api.sizeColumnsToFit();
         if (this.ianLead) {
           this.gridOptionsImplIan.api.sizeColumnsToFit();
@@ -190,8 +191,14 @@ export class CellExecutionTaskComponent implements OnInit {
     private overlayContainer: OverlayContainer,
     private httpClient: HttpClient,
     private fileUploadService: FileUploadService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    public route: ActivatedRoute) {
     router.events.subscribe((url: any) => console.log(url));
+
+    this.route.paramMap.subscribe((data: any) => {
+      console.log("from url", data)
+      this.executionType = data.params.title
+    })
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,

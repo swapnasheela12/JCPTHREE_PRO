@@ -284,10 +284,11 @@
         <div class="sub-content-container innertable-container">
             <div class="sub-content-table">
                 <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
-                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsIdsc"
-                    [columnDefs]="proposedIndoorColDef" [rowData]="rowDataProposedIndoor" enableColResize enableSorting
-                    enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptionsProposedIndoor" [columnDefs]="proposedIndoorColDef"
+                    [rowData]="rowDataProposedIndoor" enableColResize enableSorting enableFilter groupHeaders
+                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
                     (gridReady)="onReady($event)">
                 </ag-grid-angular>
             </div>
