@@ -8,7 +8,7 @@
                 <div class="section-title">WO-RAN-Overshooting Cell-03_05_19-0001</div>
               
             </div>
-            <div class="m-3 wo-flex-item d-flex justify-content-end align-items-center wo-headet-btn">
+            <div class="m-3 wo-flex-item d-flex justify-content-between align-items-center wo-headet-btn">
 <!--                
                 <div class="work-order-status">
                    <div class="label">Work Order Status: </div> 
@@ -19,34 +19,32 @@
                        </div>
                    </div>
                 </div> -->
-                <div class="status-label">Work Order Status:</div>
-            <div class="jcp-two-lines-progress col-2" style="width: 120px">
-
-                <div class="values" style="font-family:Lato Regular; font-size: 12px;">75%</div>
-                <div class="progress">
-                    <div class="progress-bar bg-success" style="width: 75%;">
+                <div class="status-label" style="margin-right:20px;">Work Order Status:</div>
+                <div class="jcp-two-lines-progress" style="width: 120px">
+    
+                    <div class="values" style="font-family:Lato Regular; font-size: 12px;">75%</div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: 75%;">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
-                    *ngIf="!show">
-                    <span class="zmdi zmdi-search"></span>
+            <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <span class="zmdi zmdi-search"></span>
+              </mat-icon>
+      
+              <mat-form-field *ngIf="show">
+                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                  <span class="zmdi zmdi-close"></span>
                 </mat-icon>
-
-                <mat-form-field *ngIf="show">
-                    <input matInput (keyup)="onFilterChanged($event);" autocomplete="off"
-                        placeholder="">
-                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                        <span class="zmdi zmdi-close"></span>
-                    </mat-icon>
-                </mat-form-field>
+              </mat-form-field>
             </div>
         </div>
         <mat-divider></mat-divider>
 
         <mat-card-content class="h-100">
             <div class="d-flex mx-2 flex-row flex-wrap report-flex-container">
-                <div class="p-2 report-flex-item col-2" *ngFor="let wo of woHeader">
+                <div class="p-2 report-flex-item" *ngFor="let wo of woHeader">
                     <div class="report-form-field-read">
                         <div class="report-form-input-title" style="font-size: 13px;">{{wo.label}}</div>
                         <div class="report-form-input-value">{{wo.value}}</div>
@@ -57,6 +55,13 @@
         </mat-card-content>
     </mat-card>
     <div class="jcp-table-container">
-        <app-ag-grid-tree (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData"></app-ag-grid-tree>
+        <app-ag-grid-tree  (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData"></app-ag-grid-tree>
     </div>
 </div>
+<div class="d-flex task-footer">
+    <div class="col"></div>
+    <div class="p-2">
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="goBack()">Cancel</button>
+    </div>
+   
+  </div>

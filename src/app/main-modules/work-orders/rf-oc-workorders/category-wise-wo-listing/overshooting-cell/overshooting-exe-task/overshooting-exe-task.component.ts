@@ -2,7 +2,7 @@ import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/a
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
-import {TextfieldComponent} from '../renderer/wostatus/textfield.component';
+import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
@@ -35,6 +35,7 @@ export class OvershootingExeTaskComponent implements OnInit {
 
   @ViewChild('agGrid') agGrid: AgGridAngular;
   @ViewChild('sugGrid') sugGrid: AgGridAngular;
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
 
   public paths;
@@ -46,14 +47,20 @@ export class OvershootingExeTaskComponent implements OnInit {
   public gridOptions: GridOptions;
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
+public gridOptionsTaskretrigger: GridOptions;
+
+  public taskColDef;
+  public siteColDef;
+  public implColDef;
+  public implColDefIan;
+
+
   public rowData: any;
   public columnDefs: any;
   public rowCount: string;
   public formControlPageCount = new FormControl();
   public showGlobalOperation: Boolean = false;
-  public taskColDef;
-  public siteColDef;
-  public implColDef;
+
   public taskRowdata;
   public addRemoveRows;
   //public rowData: any;
@@ -63,26 +70,67 @@ export class OvershootingExeTaskComponent implements OnInit {
   public rowExecutionTask;
   public spdetailsColumndata;
   public spdetailsRowdata;
-public frameworkComponentsos;
+  public frameworkComponentsos;
   impParameterDetailsColumndata;
 
-public  imppdetailsRowdata;
-public imppdetailsColumndata;
+  public imppdetailsRowdata;
+  public imppdetailsColumndata;
   public implnRowdata;
   public physicalParameterColumndata;
-public physicalParameterrowdata;
+  public physicalParameterrowdata;
   public pspRowdata: any;
 
-  constructor(private http: HttpClient, private datashare: DataSharingService,
-    private router: Router, 
-    private overlayContainer: OverlayContainer, 
+  public siteRowdata;
+public implRowdata;
+  gridOptionsImplIan: GridOptions;
+
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptionsTaskretrigger.api && this.gridOptionsImpl.api && this.gridOptionsSite.api &&
+      this.rowExecutionTask && this.spdetailsRowdata && this.implnRowdata) {
+      setTimeout(() => {
+        this.gridOptionsTaskretrigger.api.sizeColumnsToFit();
+        this.gridOptionsImpl.api.sizeColumnsToFit();
+        this.gridOptionsImplIan.api.sizeColumnsToFit();
+        this.gridOptionsSite.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
+  constructor(
+    
+    private http: HttpClient, 
+    private datashare: DataSharingService,
+    private router: Router,
+    private overlayContainer: OverlayContainer,
     private httpClient: HttpClient,
-    private fileUploadService: FileUploadService, 
+    private fileUploadService: FileUploadService,
     public dialog: MatDialog) {
 
-      this.frameworkComponentsTaskExecution = {
+      this.gridOptionsTaskretrigger = <GridOptions>{};
+      this.gridOptionsImpl = <GridOptions>{};
+      this.gridOptionsImplIan = <GridOptions>{};
+      this.gridOptionsSite = <GridOptions>{};
+      this.taskColDef = this.createColumndata();
+      this.siteColDef = this.createspdetailsColumndata();
+      this.implColDef = this.createimppdetailsColumndata();
+      this.implColDefIan = this.createphysicalParametersColumndata();
+  
+      this.datashare.currentMessage.subscribe((message) => {
+        this.sidenavBarStatus = message;
+        this.calculateRowCount();
+      });
+
+    this.frameworkComponentsTaskExecution = {
       deleteRenderer: DeleteRendererComponent
-      };
+    };
 
   }
 
@@ -90,7 +138,7 @@ public physicalParameterrowdata;
 
     this.gridOptions = <GridOptions>{};
     //this.httpClientRowData();
-  
+
     this.createColumndata();
     this.createRowdata();
     this.createspdetailsColumndata();
@@ -100,7 +148,7 @@ public physicalParameterrowdata;
     this.createphysicalParametersColumndata();
     this.createpspRowdata();
   }
-  
+
 
 
 
@@ -118,182 +166,181 @@ public physicalParameterrowdata;
   taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
 
   private createColumndata() {
-this.columnDefswo = [
+    this.columnDefswo = [
 
-  {
-    headerName: "Date",
-    field: "date",
-   width: 400
-   
-  }, {
-    headerName: "Reason for Reassignmenet",
-    field: "reasonforreassignment",
-    width: 400
-   
-  }, {
-    headerName: "Remarks",
-    field: "remarks",
-    width: 400
-    
-  }
-]
+      {
+        headerName: "Date",
+        field: "date",
+        width: 400
+
+      }, {
+        headerName: "Reason for Reassignmenet",
+        field: "reasonforreassignment",
+        width: 400
+
+      }, {
+        headerName: "Remarks",
+        field: "remarks",
+        width: 400
+
+      }
+    ]
   }
   private createRowdata() {
     this.http.get("assets/data/layers/workorders/execution-task.json")
       .subscribe(data => {
         console.log(data);
         this.rowExecutionTask = data;
-    });
+      });
   }
 
   private createspdetailsColumndata() {
     this.spdetailsColumndata = [
       {
-        headerName: "Site Paraameter",
+        headerName: "Site Parameter",
         field: "siteparameter",
-        width: 700
-       
+        width: 300
+
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
-        width: 700
-       
+        width: 300
+
       }
     ]
-    
 
-}
-private createspdetailsRowdata() {
-  this.http.get("assets/data/layers/workorders/site-parameter-data.json")
-    .subscribe(data => {
-      console.log(data);
-      this.spdetailsRowdata = data;
-  });
-}
 
-siteps: sitep[] = [
-  {value: 'p-0', viewValue: 'E-Tilt(deg)'},
-  {value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)'},
-  {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'}
-];
-sitepos: sitep[] = [
-  {value: 'p-0', viewValue: 'E-Tilt(deg)'},
-  {value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)'},
-  {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'},
-  {value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)'}
-];
+  }
+  private createspdetailsRowdata() {
+    this.http.get("assets/data/layers/workorders/site-parameter-data.json")
+      .subscribe(data => {
+        console.log(data);
+        this.spdetailsRowdata = data;
+      });
+  }
 
-// private createimppdetailsColumndata() {
-//   this.impParameterDetailsColumndata = [
-//     {
-//       headerName: "Site Parameter*",
-//       field: "siteparameter",
-//       width: 400,
-//       cellRendererFramework: DropdownComponent
-     
-//     },
-//     {
-//       headerName: "New Value*",
-//       field: "newvalue",
-//       width: 400,
-//       cellRendererFramework: TextfieldComponent
+  siteps: sitep[] = [
+    { value: 'p-0', viewValue: 'E-Tilt(deg)' },
+    { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
+    { value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)' }
+  ];
+  sitepos: sitep[] = [
+    { value: 'p-0', viewValue: 'E-Tilt(deg)' },
+    { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
+    { value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)' },
+    { value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)' }
+  ];
 
-     
-//     },
-//     {
-//       headerName: "",
-//       field: "",
-//       width: 300,
-//       template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
-     
-//     }
-//   ]
-  
+  // private createimppdetailsColumndata() {
+  //   this.impParameterDetailsColumndata = [
+  //     {
+  //       headerName: "Site Parameter*",
+  //       field: "siteparameter",
+  //       width: 400,
+  //       cellRendererFramework: DropdownComponent
 
-// }
-private createimppdetailsColumndata() {
-  this.impParameterDetailsColumndata = [
-    {
-      headerName: "Site Paraameter*",
-      field: "siteparameter",
-      width: 400,
-      cellRendererFramework: DropdownComponent
-     
-    },
-    {
-      headerName: "New Value*",
-      field: "newvalue",
-      width: 400,
-      cellRendererFramework: TextfieldComponent
+  //     },
+  //     {
+  //       headerName: "New Value*",
+  //       field: "newvalue",
+  //       width: 400,
+  //       cellRendererFramework: TextfieldComponent
 
-     
-    },
-    {
-      headerName: "",
-      field: "delete",
-      width: 300,
-      cellRendererFramework: DeleteRendererComponent  
-     
-    }
-  ]
-  
 
-}
-onAddRowimp()
-   {
-     this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
-  
-   }
-onAddRowsug()
-   {
-     this.sugGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
-  
-   }
+  //     },
+  //     {
+  //       headerName: "",
+  //       field: "",
+  //       width: 300,
+  //       template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
 
-// private createImplRowdata() {
-//   this.http.get("assets/data/layers/workorders/impl-details.json")
-//     .subscribe(data => {
-//       console.log(data);
-//       this.implnRowdata = data;
-//   });
-// }
-private createImplRowdata() {
-  this.http.get("assets/data/layers/workorders/impl-details.json")
-    .subscribe(data => {
-      console.log(data);
-      this.implnRowdata = data;
-  });
-}
+  //     }
+  //   ]
+
+
+  // }
+  private createimppdetailsColumndata() {
+    this.impParameterDetailsColumndata = [
+      {
+        headerName: "Site Paraameter*",
+        field: "siteparameter",
+        width: 400,
+        cellRendererFramework: DropdownComponent
+
+      },
+      {
+        headerName: "New Value*",
+        field: "newvalue",
+        width: 400,
+        cellRendererFramework: TextfieldComponent
+
+
+      },
+      {
+        headerName: "",
+        field: "delete",
+        width: 300,
+        cellRendererFramework: DeleteRendererComponent
+
+      }
+    ]
+
+
+  }
+  onAddRowimp() {
+    this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+
+  }
+  onAddRowsug() {
+    this.sugGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+
+  }
+
+  // private createImplRowdata() {
+  //   this.http.get("assets/data/layers/workorders/impl-details.json")
+  //     .subscribe(data => {
+  //       console.log(data);
+  //       this.implnRowdata = data;
+  //   });
+  // }
+  private createImplRowdata() {
+    this.http.get("assets/data/layers/workorders/impl-details.json")
+      .subscribe(data => {
+        console.log(data);
+        this.implnRowdata = data;
+      });
+  }
 
 
 
 
-private createphysicalParametersColumndata() {
-  this.physicalParameterColumndata = [
-    {
-      headerName: "Site Paraameter*",
-      field: "siteparameter",
-      width: 400,
-      cellRendererFramework: DropdownComponent
-     
-    },
-    {
-      headerName: "New Value*",
-      field: "newvalue",
-      width: 400,
-      cellRendererFramework: TextfieldComponent
+  private createphysicalParametersColumndata() {
+    this.physicalParameterColumndata = [
+      {
+        headerName: "Site Paraameter*",
+        field: "siteparameter",
+        width: 400,
+        cellRendererFramework: DropdownComponent
 
-     
-    },
-    {
-      headerName: "",
-      field: "",
-      width: 300,
-      cellRendererFramework: DeleteRendererComponent
-     
-    }
-  ]}
+      },
+      {
+        headerName: "New Value*",
+        field: "newvalue",
+        width: 400,
+        cellRendererFramework: TextfieldComponent
+
+
+      },
+      {
+        headerName: "",
+        field: "",
+        width: 300,
+        cellRendererFramework: DeleteRendererComponent
+
+      }
+    ]
+  }
 
 
   private createpspRowdata() {
@@ -301,37 +348,11 @@ private createphysicalParametersColumndata() {
       .subscribe(data => {
         console.log(data);
         this.pspRowdata = data;
-    });
+      });
   }
-  addGridImplementedParameterDetails() {
-    this.gridOptionsImpl.api.addItems([{
-      "siteparameter": "",
-      "newvalue": "",
-      "": ""
-    }]);
-  };
+ 
 
-  
-  onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
-
-
-
-  public onReady(params) {
-    this.gridApi = params.api;
-    this.calculateRowCount();
-  }
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.gridOptionsImpl.api && this.gridOptionsSite.api &&
-      this.taskRowdata) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-        this.gridOptionsImpl.api.sizeColumnsToFit();
-        this.gridOptionsSite.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
+ 
   openSuccessPopup() {
     const dialogRef = this.dialog.open(SubmitWorkordedPopupComponent, {
       width: '700px',

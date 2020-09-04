@@ -74,8 +74,12 @@ div.prev-page {
     width: 37px;
     height: 37px;
     border-radius: 50px;
-    background: #f2f8fd;
+    font-size:25px;
     text-align: center;
+
+    &:hover {
+        background: #f2f8fd;
+    }
 }
 
 .wo-progress-bar {
@@ -170,4 +174,24 @@ opacity: 1;
     font-weight: 900;
     z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 
+}
+
+:host ::ng-deep ag-grid-angular .ag-center-cols-container {
+    width: 100vw!important;
+}
+
+.report-flex-item {
+    width: 20%;
+}
+
+.task-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border: 1px solid lightgray;
+    height: 52px;
 }

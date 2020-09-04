@@ -27,6 +27,10 @@ export class DataSharingService {
 
   private templateRemoveSource = new BehaviorSubject({});
   templateRemoveMessage = this.templateRemoveSource.asObservable()
+
+  private spiderViewData = new BehaviorSubject({});
+  currentSpiderData = this.spiderViewData.asObservable();
+  
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -63,5 +67,7 @@ export class DataSharingService {
   templateDataRemoveMessage(template) {
     this.templateRemoveSource.next(template);
   }
-
+  sendDataToSpider(message){
+    this.spiderViewData.next(message);
+  }
 }

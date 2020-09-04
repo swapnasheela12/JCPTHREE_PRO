@@ -24,7 +24,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -85,12 +85,13 @@ import { KpiDetailsChartComponent } from './main-layer/kpi-details/kpi-details-c
 
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
-import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
 import { TreeNodeComponent } from './main-layer/spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from './main-layer/spider-view/tree-node/alarms-popup/alarms-popup.component';
 import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-legends/custom-legends.component';
 import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
+import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/selected-layer-menu.component';
+import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 
 @NgModule({
   declarations: [
@@ -112,13 +113,16 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     KpiDetailsComponent,
     KpiSettingsComponent,
     KpiDetailsChartComponent,
-    SpiderViewComponent,
     SpiderViewDirective,
     TreeNodeComponent,
     AlarmsPopupComponent,
     CustomLegendsComponent,
     ScreenshotPreviewComponent,
     colorDropdownRendererComponent,
+    SelectedLayerMenuComponent,
+    ScreenshotPreviewComponent,colorDropdownRendererComponent,
+    ScreenshotPreviewComponent,
+    SpiderComponent
   ],
   imports: [
     CommonModule,
@@ -183,11 +187,16 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
     NgxMatSelectSearchModule,
     PerformanceManagementModule,
     PlanningDeploymentModule,
-    RfOcWorkordersModule
+    RfOcWorkordersModule,
+    
 
   ], providers: [
     SideNavService,
-    MarkerService
+    MarkerService,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
   ],
   exports: [
     // HeaderComponent,
@@ -204,7 +213,8 @@ import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/scre
   ],
   entryComponents: [
     CreateReportComponent,
-    TableViewControlComponent
+    TableViewControlComponent,
+    SpiderComponent
     // SuccessfulComponent
   ]
 

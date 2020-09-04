@@ -1,0 +1,41 @@
+<mat-toolbar class="dialog-header">
+    <mat-toolbar-row>
+        <div fxFlex="grow">
+            <div>Alarm Details</div>
+        </div>
+        <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content>
+    <mat-tab-group dynamicHeight fxFlex="100">
+        <mat-tab label="ACTIVE ALARMS">
+            <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                headerHeight="48" [gridOptions]="activeAlarmsGridOptions" [columnDefs]="gridActiveAlarmsColumnDefs"
+                [rowData]="gridActiveAlarmsData" enableColResize enableSorting enableFilter groupHeaders
+                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
+                [suppressPaginationPanel]="true">
+            </ag-grid-angular>
+        </mat-tab>
+        <mat-tab label="ALARMS HISTORY">
+            <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                headerHeight="48" [gridOptions]="alarmsHistoryGridOptions" [columnDefs]="gridAlarmsHistoryColumnDefs"
+                [rowData]="gridAlarmsHistoryData" enableColResize enableSorting enableFilter groupHeaders
+                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
+                [suppressPaginationPanel]="true">
+            </ag-grid-angular>
+        </mat-tab>
+        <mat-tab label="SITE STATUS">
+            <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                headerHeight="28" [gridOptions]="siteDetailsGridOptions" [columnDefs]="gridSiteDetailsColumnDefs"
+                [rowData]="gridSiteDetailsData" enableColResize enableSorting enableFilter groupHeaders
+                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
+                [suppressPaginationPanel]="true">
+            </ag-grid-angular>
+        </mat-tab>
+    </mat-tab-group>
+</div>

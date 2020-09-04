@@ -34,6 +34,7 @@ export class WoOvershootingCellComponent  {
   public formControlPageCount = new FormControl();
 
   public showGlobalOperation: Boolean = false;
+  searchGrid='';
   woHeader = [
     {
       "label": "Category",
@@ -51,10 +52,10 @@ export class WoOvershootingCellComponent  {
       "label": "Work Order Creation Date",
       "value": "24 Sep, 2019"
     },
-    {
-      "label": "Planned End Date",
-      "value": "30 Sep, 2019"
-    },
+    // {
+    //   "label": "Planned End Date",
+    //   "value": "30 Sep, 2019"
+    // },
     {
       "label": "Work Order Status",
       "value": "In Progress"
@@ -87,6 +88,11 @@ export class WoOvershootingCellComponent  {
   toggleSearch() {
     this.show = !this.show;
   };
+
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+  }
   cellClickedDetails(params) {
     
     
@@ -98,7 +104,9 @@ export class WoOvershootingCellComponent  {
 
   }
 
-
+  goBack() {
+    this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell'])
+  }
 }
 
 

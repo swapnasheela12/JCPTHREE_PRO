@@ -83,6 +83,7 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
 import { CeilingPopupComponent } from './kpi-editor/create-kpi/ceiling-popup/ceiling-popup.component';
 import { InfoPopupComponent } from './kpi-editor/create-kpi/info-popup/info-popup.component';
 import { FloorPopupComponent } from './kpi-editor/create-kpi/floor-popup/floor-popup.component';
+import { AlarmDetailsPopupComponent } from './my-performance-reports/change-impact-analysis/alarm-details-popup/alarm-details-popup.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { FloorPopupComponent } from './kpi-editor/create-kpi/floor-popup/floor-p
     CustomTooltip,
     CeilingPopupComponent,
     InfoPopupComponent,
-    FloorPopupComponent
+    FloorPopupComponent,
+    AlarmDetailsPopupComponent
   ],
   imports: [
     CommonModule,
@@ -184,7 +186,7 @@ import { FloorPopupComponent } from './kpi-editor/create-kpi/floor-popup/floor-p
     dropdownRendererComponent
   ],
   entryComponents: [
-    AddGroupPopupComponent
+    AddGroupPopupComponent, AlarmDetailsPopupComponent
   ],
   providers: []
 })

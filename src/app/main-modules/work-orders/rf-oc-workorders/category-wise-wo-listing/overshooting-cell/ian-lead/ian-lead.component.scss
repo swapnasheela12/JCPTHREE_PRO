@@ -22,7 +22,7 @@
         border: 1px solid #ffffff;
         border-radius: 4px;
         height: 64px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
 
         p {
             margin: 0;
@@ -35,9 +35,17 @@
             margin-right: 10px;
             width: 37px;
             height: 37px;
+            font-size: 25px;
             border-radius: 50px;
-            background: #f2f8fd;
+           
             text-align: center;
+
+            &:hover {
+                background: #f2f8fd;
+                border-radius: 50px;
+                width: 37px;
+                height: 37px;
+            }
         }
 
         .main-title {
@@ -81,7 +89,10 @@
         color: #000000;
 
         .label {
-            color: #000000;
+            color: #9c9c9c;
+            font-size: 12px;
+            line-height: 18px;
+            font-family: "Lato Regular";
         }
 
         .details {
@@ -133,7 +144,8 @@
             .sitedetails-cell,
             .sitepdetails-cell {
                 font-size: 12px;
-                font-family: lato;
+                font-family: lato Regular;
+
 
             }
         }
@@ -330,22 +342,31 @@
     align-items: center;
 
     .title {
-        flex: 0 0 80%;
+        flex: 0 0 92%;
     }
 
     .clone-btn {
-        flex: 0 0 20%;
+        flex: 0 0 0;
         text-align: right;
     }
 
     .btn-clone {
-        background: blue;
+        width: 71px;
+        height: 28px;
+
+        border-radius: 4px;
+        opacity: 1;
+        color: #FFFFFF;
+        text-transform: capitalize;
+        background: #0078d7;
+        border: 1px solid #0078d7;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: "Lato Medium";
         color: #ffffff;
         border-radius: 4px;
-        border: none;
         cursor: pointer;
-        text-align: right;
-
+        text-align: center;
     }
 }
 
@@ -373,15 +394,22 @@
     opacity: 1;
 
 }
-
 .remarks {
-    width: 352px;
-    padding: 1rem;
-
-    input {
-        width: 100%;
+    padding:1rem;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Lato Medium";
+    .remarks label {
+        display: block;
+    }
+    .remarks-field {
+        border: none;
+        color: #000000;
+        font-size: 14px;
+       
     }
 }
+
 
 .os-cell {
     .details {
@@ -392,4 +420,15 @@
         letter-spacing: 0px;
         color: #000000;
     }
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: none;
+}
+:host ::ng-deep ag-grid-angular .ag-center-cols-container {
+    width: 100%!important;
+}
+
+:host ::ng-deep ag-grid-angular .ag-theme-material .ag-row {
+    width: 100%!important;
 }
