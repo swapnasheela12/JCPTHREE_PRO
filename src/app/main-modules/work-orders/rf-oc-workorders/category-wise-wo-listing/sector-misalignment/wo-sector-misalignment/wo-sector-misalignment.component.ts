@@ -106,6 +106,7 @@ export class WoSectorMisalignmentComponent {
 
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {
+    console.log(evt, "evt");
     this.gridFilterValueServices["filter"] = evt.target.value;
     this.eventsSubject.next(this.gridFilterValueServices);
   };

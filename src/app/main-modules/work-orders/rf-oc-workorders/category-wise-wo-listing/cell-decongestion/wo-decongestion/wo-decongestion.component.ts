@@ -119,8 +119,9 @@ export class WoDecongestionComponent {
   };
 
   cellClickedDetails(evt) {
+    console.log("proposedIndoorColDef", evt)
     if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion/WO-Cell-Decongestion/Execution-Task", { title: evt.data.name, skipLocationChange: true }]);
     }
   }
 

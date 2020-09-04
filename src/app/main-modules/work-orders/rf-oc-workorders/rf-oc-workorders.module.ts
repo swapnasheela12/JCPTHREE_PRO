@@ -75,6 +75,7 @@ import { SubmitWorkordedPopupComponent } from './category-wise-wo-listing/oversh
 import { CellDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/cell-decongestion.component';
 //import { WoWidgetComponent } from './category-wise-wo-listing/common/widget/work-order-widget/wo-widget/wo-widget.component';
 import { WoDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/wo-decongestion.component';
+import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/execution-task/execution-task.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { WoDecongestionComponent } from './category-wise-wo-listing/cell-deconge
     SubmitWorkordedPopupComponent,
     CellDecongestionComponent,
     //WoWidgetComponent,
-    WoDecongestionComponent
+    WoDecongestionComponent,
+    CellExecutionTaskComponent
   ],
   imports: [
     RfOcWorkordersModuleRoutingModule,

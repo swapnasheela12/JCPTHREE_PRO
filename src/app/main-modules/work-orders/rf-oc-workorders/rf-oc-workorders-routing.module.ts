@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
 import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
-import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
+import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/execution-task/execution-task.component';
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
 import { OvershootingExeTaskComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-exe-task/overshooting-exe-task.component';
 import { IanLeadComponent } from './category-wise-wo-listing/overshooting-cell/ian-lead/ian-lead.component';
 import { WoOvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/wo-overshooting-cell/wo-overshooting-cell.component';
 import { CellDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/cell-decongestion.component';
 import { WoDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/wo-decongestion.component';
+import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
 
 
 const routes: Routes = [
@@ -75,6 +76,10 @@ const routes: Routes = [
               {
                 path: '',
                 component: WoDecongestionComponent,
+              },
+              {
+                path: 'Execution-Task',
+                component: CellExecutionTaskComponent
               }
             ]
           }

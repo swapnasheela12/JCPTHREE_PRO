@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
@@ -13,8 +13,8 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
 import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { CommonPopupComponent, CommonDialogModel } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
@@ -22,13 +22,14 @@ import { SuccessfulComponent } from 'src/app/core/components/commanPopup/success
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 import { TaskDropdownRendererComponent } from '../../../sector-misalignment/renderer/task-dropdown-renderer.component';
 import { TaskInputRendererComponent } from '../../../sector-misalignment/renderer/task-input-renderer.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-execution-task',
   templateUrl: './execution-task.component.html',
   styleUrls: ['./execution-task.component.scss']
 })
-export class ExecutionTaskComponent implements OnInit {
+export class CellExecutionTaskComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   /////
@@ -42,6 +43,12 @@ export class ExecutionTaskComponent implements OnInit {
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
   public gridOptionsImplIan: GridOptions;
+  public gridOptionsBandAddition: GridOptions;
+  public gridOptionsBiSector: GridOptions;
+  public gridOptionsIdsc: GridOptions;
+  public gridOptionsProposedOutdoor: GridOptions;
+  public gridOptionsProposedIndoor: GridOptions;
+  public gridOptionsMacroSiteData: GridOptions;
   public rowData: any;
   public columnDefs: any;
   public rowCount: string;
@@ -51,48 +58,25 @@ export class ExecutionTaskComponent implements OnInit {
   public siteColDef;
   public implColDef;
   public implColDefIan;
+  public implBandAddition;
+  public implBandBiSector;
+  public propIdscColDef;
+  public proposedOutdoorColDef;
+  public proposedIndoorColDef;
+  public columnDefsproposedmacrosite;
   public taskRowdata;
   public addRemoveRows;
   public ianLead: boolean = false;
   public execLead: boolean = true;
-  public siteRowdata = [
-    {
-      "siteParameter": "Antenna Azimuth(deg)",
-      "currentValue": "67"
-    },
-    {
-      "siteParameter": "Antenna M-Tilt(deg)",
-      "currentValue": "7.5"
-    },
-    {
-      "siteParameter": "Antenna Height(m)",
-      "currentValue": "30"
-    },
-    {
-      "siteParameter": "E-Tilt(deg)",
-      "currentValue": "4"
-    }
-  ];
-  public implRowdata = [
-    {
-      "sector": "",
-      "band": "",
-      "newAzimuthValue": ""
-    },
-    {
-      "sector": "",
-      "band": "",
-      "newAzimuthValue": ""
-    },
-  ];
-
-  public implRowdataIAN = [
-    {
-      "sector": "Alpha",
-      "band": "2300",
-      "newAzimuthValue": "1600"
-    }
-  ];
+  public siteRowdata;
+  public implRowdata;
+  public implRowdataIAN;
+  public implRowDataBandAddition;
+  public implRowDataBiSector;
+  public rowDataIdsc;
+  public rowDataProposedOutdoor;
+  public rowDataProposedIndoor;
+  public rowDataMacroSiteData;
   public frameworkComponentsTaskExecution;
   taskClosureRemark = [
     { value: 'taskClosure', name: 'Task Closure' },
@@ -120,14 +104,6 @@ export class ExecutionTaskComponent implements OnInit {
     {
       "label": "Cell Name:",
       "value": "I-MU-THNE-ENB-0306-15"
-    },
-    {
-      "label": "Antenna Make:",
-      "value": "S-Wave 18/18/23/23-65-18DV10C-F - TYPE1 (MULTIBAND)"
-    },
-    {
-      "label": "Antenna Model:",
-      "value": "4T4R"
     }
   ];
 
@@ -171,15 +147,14 @@ export class ExecutionTaskComponent implements OnInit {
       "label": "Average bearing of all prominent samples (Deg):",
       "value": "39.1"
     }
-  ]
+  ];
+  issueIdentified = "Dead Cell IP Throughput <512 Kbps and PRB Utilization>70% (BBH Value)for last 7 out of 10 days";
   uploadedImg = [];
   showFileUploadwidget: boolean = false;
   taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
+  executionType: string;
 
-
-  public task_url: string = "assets/data/report/sector-misalignment/execution-task/execution-task.json";
-  public site_url: string = "assets/data/report/sector-misalignment/execution-task/implementation-details.json";
-  public impl_url: string = "assets/data/report/sector-misalignment/execution-task/site-parameter.json";
+  public task_url: string = "assets/data/report/cell-decongestion/execution-task/execution-task.json";
 
   onReadyModeUpdate(params) {
     this.calculateRowCount();
@@ -190,13 +165,22 @@ export class ExecutionTaskComponent implements OnInit {
     this.calculateRowCount();
   }
   public calculateRowCount() {
-    if (this.gridOptions.api && this.gridOptionsImpl.api && this.gridOptionsSite.api &&
-      this.taskRowdata && this.siteRowdata && this.implRowdata) {
+    if (this.gridOptions.api && this.gridOptionsSite.api &&
+      this.gridOptionsBandAddition.api) {
       setTimeout(() => {
         this.gridOptions.api.sizeColumnsToFit();
-        this.gridOptionsImpl.api.sizeColumnsToFit();
-        this.gridOptionsImplIan.api.sizeColumnsToFit();
         this.gridOptionsSite.api.sizeColumnsToFit();
+        this.gridOptionsBandAddition.api.sizeColumnsToFit();
+        this.gridOptionsBiSector.api.sizeColumnsToFit();
+        this.gridOptionsIdsc.api.sizeColumnsToFit();
+        this.gridOptionsProposedOutdoor.api.sizeColumnsToFit();
+        //this.gridOptionsProposedIndoor.api.sizeColumnsToFit();
+        this.gridOptionsMacroSiteData.api.sizeColumnsToFit();
+        if (this.ianLead) {
+          this.gridOptionsImplIan.api.sizeColumnsToFit();
+        } else {
+          this.gridOptionsImpl.api.sizeColumnsToFit();
+        };
       }, 1000);
     }
   }
@@ -207,23 +191,41 @@ export class ExecutionTaskComponent implements OnInit {
     private overlayContainer: OverlayContainer,
     private httpClient: HttpClient,
     private fileUploadService: FileUploadService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    public route: ActivatedRoute) {
     router.events.subscribe((url: any) => console.log(url));
+
+    this.route.paramMap.subscribe((data: any) => {
+      console.log("from url", data)
+      this.executionType = data.params.title
+    })
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,
       'dropdown': dropDownThreeDotRendererComponent,
-      deleteRenderer: DeleteRendererComponent
+      'deleteRenderer': DeleteRendererComponent
     };
     //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
     this.gridOptionsImplIan = <GridOptions>{};
     this.gridOptionsSite = <GridOptions>{};
+    this.gridOptionsBandAddition = <GridOptions>{};
+    this.gridOptionsBiSector = <GridOptions>{};
+    this.gridOptionsIdsc = <GridOptions>{};
+    this.gridOptionsProposedOutdoor = <GridOptions>{};
+    this.gridOptionsProposedIndoor = <GridOptions>{};
+    this.gridOptionsMacroSiteData = <GridOptions>{};
     this.taskColDef = this.createColumnDefs();
     this.siteColDef = this.createSiteColumnDefs();
     this.implColDef = this.createImplColumnDefs();
     this.implColDefIan = this.createImplColumnDefsIan();
+    this.implBandAddition = this.createBandAdditionStatusColumnDefs();
+    this.implBandBiSector = this.createBiSectorization();
+    this.propIdscColDef = this.createPropIDSC();
+    this.proposedOutdoorColDef = this.createProposedOutdoor();
+    this.proposedIndoorColDef = this.createProposedIndoor();
+    this.columnDefsproposedmacrosite = this.createProposedMacroSite();
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -231,8 +233,17 @@ export class ExecutionTaskComponent implements OnInit {
     });
 
     this.httpClient.get(this.task_url)
-      .subscribe(data => {
-        this.taskRowdata = data;
+      .subscribe((data: any) => {
+        this.taskRowdata = data.taskExec;
+        this.siteRowdata = data.siteRowdata;
+        this.implRowdata = data.implRowdata;
+        this.implRowdataIAN = data.implRowdataIAN;
+        this.implRowDataBandAddition = data.implRowDataBandAddition;
+        this.implRowDataBiSector = data.implRowDataBiSector;
+        this.rowDataIdsc = data.rowDataIdsc;
+        this.rowDataProposedOutdoor = data.proposedoutdoordata;
+        this.rowDataProposedIndoor = data.proposedindoordata;
+        this.rowDataMacroSiteData = data.proposedmacrositedata;
       });
 
   }
@@ -277,14 +288,8 @@ export class ExecutionTaskComponent implements OnInit {
   createImplColumnDefs() {
     return this.columnDefs = [
       {
-        headerName: "Sector*",
-        field: "sector",
-        width: 150,
-        cellRenderer: 'dropdownRenderer'
-      },
-      {
-        headerName: "Band*",
-        field: "band",
+        headerName: "Site Parameter",
+        field: "siteParameter",
         width: 150,
         cellRenderer: 'dropdownRenderer'
       },
@@ -299,7 +304,6 @@ export class ExecutionTaskComponent implements OnInit {
         field: "",
         width: 100,
         cellRenderer: 'deleteRenderer',
-        // template: '<mat-icon (click)="delete()" style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon ic ic-custom-delete"></span></mat-icon>'
       }
     ]
   }
@@ -324,6 +328,253 @@ export class ExecutionTaskComponent implements OnInit {
     ]
   }
 
+  createBandAdditionStatusColumnDefs() {
+    return this.columnDefs = [
+      {
+        headerName: "Band",
+        field: "band",
+        width: 150
+      },
+      {
+        headerName: "Status",
+        field: "status",
+        width: 150
+      }
+    ];
+  }
+
+
+  createBiSectorization() {
+    return this.columnDefs = [
+      {
+        headerName: "Band(MHz)",
+        field: "band",
+        width: 150
+      },
+      {
+        headerName: "Requirement  ",
+        field: "requirement",
+        width: 150
+      },
+      {
+        headerName: "Status",
+        field: "status",
+        width: 150
+      }
+    ];
+  }
+
+
+  createPropIDSC() {
+    return this.columnDefs = [
+      {
+        headerName: "Sr No",
+        field: "srno",
+        width: 200,
+        pinned: "left"
+      },
+      {
+        headerName: "Bldg RJID",
+        field: "bldgrjid",
+        width: 200
+      },
+      {
+        headerName: "Bldg Name",
+        field: "bldgrjname",
+        width: 200
+      },
+      {
+        headerName: "Lat",
+        field: "lat",
+        width: 200
+      },
+      {
+        headerName: "Long",
+        field: "long",
+        width: 200
+      },
+      {
+        headerName: "Distance(Meter)",
+        field: "distance",
+        width: 200
+      },
+      {
+        headerName: "Priority",
+        field: "priority",
+        width: 200
+      },
+      {
+        headerName: "% Area covered >=-100dBm",
+        field: "areacovered",
+        width: 200
+      },
+      {
+        headerName: "DL Volume (GB)",
+        field: "dlvolume",
+        width: 200
+      },
+      {
+        headerName: "UL Volume (GB)",
+        field: "ulvolume",
+        width: 200
+      },
+      {
+        headerName: "Total Volume (GB)",
+        field: "totalvolume",
+        width: 200
+      },
+      {
+        headerName: "Expected Data Volume Off-Load (GB)",
+        field: "expecteddata",
+        width: 250,
+        pinned: "right"
+      }]
+  }
+
+
+  createProposedOutdoor() {
+    return this.columnDefs = [
+      {
+        headerName: "Bldg RJID",
+        field: "bldgrjid",
+        width: 200,
+        pinned: "left"
+      },
+      {
+        headerName: "Bldg Name",
+        field: "bldgrjname",
+        width: 200
+      },
+      {
+        headerName: "Lat",
+        field: "lat",
+        width: 200
+      },
+      {
+        headerName: "Long",
+        field: "long",
+        width: 200
+      },
+      {
+        headerName: "Distance(Meter)",
+        field: "distance",
+        width: 200
+      },
+      {
+        headerName: "Avg. unique users per day (%)",
+        field: "avgunique",
+        width: 200
+      },
+      {
+        headerName: "Expected Data Volume Off-Load (GB)",
+        field: "expecteddata",
+        width: 250,
+        pinned: "right"
+      }]
+  }
+
+  createProposedIndoor() {
+    return this.columnDefs = [
+      {
+        headerName: "Bldg RJID",
+        field: "bldgrjid",
+        width: 240,
+        pinned: "left"
+      },
+      {
+        headerName: "Bldg Name",
+        field: "bldgrjname",
+        width: 240
+      },
+      {
+        headerName: "Lat",
+        field: "lat",
+        width: 250
+      },
+      {
+        headerName: "Long",
+        field: "long",
+        width: 250
+      },
+      {
+        headerName: "Distance(Meter)",
+        field: "distance",
+        width: 280
+      },
+      {
+        headerName: "Avg. unique users per day (%)",
+        field: "avgunique",
+        width: 290
+      },
+      {
+        headerName: "DL Volume (GB)",
+        field: "dlvolume",
+        width: 280
+      },
+      {
+        headerName: "UL Volume (GB)",
+        field: "ulvolume",
+        width: 280
+      },
+      {
+        headerName: "Total Volume (GB)",
+        field: "totalvolume",
+        width: 280
+      },
+      {
+        headerName: "Expected Data Volume Off-Load (GB)",
+        field: "expecteddata",
+        width: 290,
+        pinned: "right"
+      }]
+  }
+
+  createProposedMacroSite() {
+    return this.columnDefs = [
+      {
+        headerName: "Bldg RJID",
+        field: "bldgrjid",
+        width: 200,
+        pinned: "left"
+      },
+      {
+        headerName: "Bldg Name",
+        field: "bldgrjname",
+        width: 200
+      },
+      {
+        headerName: "Lat",
+        field: "lat",
+        width: 200
+      },
+      {
+        headerName: "Long",
+        field: "long",
+        width: 200
+      },
+      {
+        headerName: "Distance(Meter)",
+        field: "distance",
+        width: 200
+      },
+      {
+        headerName: "Rollout Status",
+        field: "rolloutstatus",
+        width: 200
+      },
+      {
+        headerName: "EMS_Live Status",
+        field: "emslivestatus",
+        width: 200
+      },
+      {
+        headerName: "Expected Data Volume Off-Load (GB)",
+        field: "expecteddata",
+        width: 250,
+        pinned: "right"
+      }]
+  }
+
 
   drp() {
     return ` <mat-form-field fxFlex="50">
@@ -339,9 +590,18 @@ export class ExecutionTaskComponent implements OnInit {
   searchGrid = '';
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
-    this.gridOptionsImpl.api.setQuickFilter(value);
-    this.gridOptionsImplIan.api.setQuickFilter(value);
     this.gridOptionsSite.api.setQuickFilter(value);
+    this.gridOptionsBandAddition.api.setQuickFilter(value);
+    this.gridOptionsBiSector.api.setQuickFilter(value);
+    this.gridOptionsIdsc.api.setQuickFilter(value);
+    this.gridOptionsProposedOutdoor.api.setQuickFilter(value);
+    this.gridOptionsProposedIndoor.api.setQuickFilter(value);
+    this.gridOptionsMacroSiteData.api.setQuickFilter(value);
+    if (this.ianLead) {
+      this.gridOptionsImplIan.api.setQuickFilter(value);
+    } else {
+      this.gridOptionsImpl.api.setQuickFilter(value);
+    }
   };
   show: any;
 
@@ -424,4 +684,3 @@ export class ExecutionTaskComponent implements OnInit {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment'])
   }
 }
-
