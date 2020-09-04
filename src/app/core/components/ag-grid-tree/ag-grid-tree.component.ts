@@ -16,6 +16,7 @@ export class GroupLevel {
 export class AgGridTreeComponent implements OnInit {
   @Input('columnDefs') columnDefs;
   @Input('rowData') rowData;
+  @Input('events') public filterChange;
   columnDef: any;
   public gridOptions: GridOptions;
 
@@ -38,6 +39,11 @@ export class AgGridTreeComponent implements OnInit {
   constructor(private httpService: HttpClient) { }
 
   ngOnChanges() {
+    ////As grid options in now available here .. Need to fing a way to expose this functionality..
+    // this.filterChange.subscribe((data) => {
+    //   this.gridOptions.api.setQuickFilter(data.filter);
+    // });
+
     if (this.columnDefs) {
       this.setGroupDetails(1, this.columnDefs[0].field);
       if (this.columnDefs[0].headerName) {

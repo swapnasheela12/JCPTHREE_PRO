@@ -50,7 +50,8 @@
 
 
     <div class="wo-grid" style="margin-top: 10px;height: 52%;">
-        <app-ag-grid-tree (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData">
+        <app-ag-grid-tree [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)"
+            [columnDefs]="columnDefs" [rowData]="rowData">
         </app-ag-grid-tree>
 
     </div>

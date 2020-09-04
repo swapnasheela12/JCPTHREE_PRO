@@ -116,6 +116,16 @@
         </div>
         <mat-divider></mat-divider>
         <div class="sub-content-container h-100" *ngIf="execLead">
+
+            <div class="content-list">
+                <div class="content-list-container p-3 " fxFlex="50">
+                    <div class="form-field-read-only">
+                        <div class="input-title">Issue Identified</div>
+                        <div class="input-value">{{issueIdentified}}</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-2 col-3">
                     <mat-form-field class="form-field-read-only">
@@ -182,6 +192,16 @@
                 </div>
             </div>
 
+            <div class="content-list">
+                <div class="content-list-container p-3 " fxFlex="50">
+                    <div class="form-field-read-only">
+                        <div class="input-title">*Note:</div>
+                        <div class="input-value">Task will be assigned to IAN Lead for further Physical Optimization
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="ianLead">
                 <div class="sub-content-flex-item col-3" style="line-height: 2;">
                     <mat-label style="font-family: Lato Regular; font-size: 12px;color: #000000;opacity: 0.54;">Site
@@ -197,72 +217,111 @@
     </mat-card>
 
 
-    <mat-card class="execution-task-container-one p-0" *ngIf="execLead">
+    <mat-card class="execution-task-container-one p-0">
         <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="sub-header-title">Implemented Parameter Details</div>
+            <div class="sub-header-title">Capacity Solution Details</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="grid-inner-label">Band Addition Status:</div>
 
-            <button class="search-icon" mat-raised-button color="primary"
-                (click)="addGridImplementedParameterDetails()">Add</button>
+        <div class="sub-content-container innertable-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 230px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptionsBandAddition" [columnDefs]="implBandAddition"
+                    [rowData]="implRowDataBandAddition" enableColResize enableSorting enableFilter groupHeaders
+                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
+            </div>
         </div>
 
-        <mat-divider></mat-divider>
-        <div class="sub-content-container">
+        <div class="grid-inner-label">Bi-Sectorization Status:</div>
+        <div class="sub-content-container innertable-container">
             <div class="sub-content-table">
-                <ag-grid-angular style="width: 100%; height: 146px;" class="ag-theme-material ag-jcp3" rowHeight="48"
-                    headerHeight="48" [gridOptions]="gridOptionsImpl" [columnDefs]="implColDef" [rowData]="implRowdata"
+                <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptionsBiSector" [columnDefs]="implBandBiSector" [rowData]="implRowDataBiSector"
                     enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
                     toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                     [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
-                    (gridReady)="onReady($event)" [frameworkComponents]="frameworkComponentsTaskExecution">
+                    (gridReady)="onReady($event)">
                 </ag-grid-angular>
             </div>
+        </div>
 
-            <div class="content-list">
-                <div class="content-list-container p-3 " fxFlex="50">
-                    <div class="form-field-read-only">
-                        <div class="input-title">Remark :</div>
-                        <input class="input-value" matInput placeholder=""
-                            value="Loremipsum Lorem Ipsum Lorem-ipsum ipsum loremipsumlorem" required>
-                    </div>
-                </div>
+        <div class="grid-inner-label">Proposed IDSC information:</div>
+        <div class="sub-content-container innertable-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsIdsc"
+                    [columnDefs]="propIdscColDef" [rowData]="rowDataIdsc" enableColResize enableSorting enableFilter
+                    groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                    rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
+            </div>
+        </div>
+
+
+        <div class="grid-inner-label">Proposed Outdoor Solutions information:</div>
+        <div class="sub-content-container innertable-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptionsProposedOutdoor" [columnDefs]="proposedOutdoorColDef"
+                    [rowData]="rowDataProposedOutdoor" enableColResize enableSorting enableFilter groupHeaders
+                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
+            </div>
+        </div>
+
+
+        <div class="grid-inner-label">Planned Indoor Solutions information:</div>
+        <div class="sub-content-container innertable-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsIdsc"
+                    [columnDefs]="proposedIndoorColDef" [rowData]="rowDataProposedIndoor" enableColResize enableSorting
+                    enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                    rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
+            </div>
+        </div>
+
+
+        <div class="grid-inner-label">Planned Macro Site Solutions information:</div>
+        <div class="sub-content-container innertable-container">
+            <div class="sub-content-table">
+                <ag-grid-angular style="width: 100%; height: 165px; padding-bottom: 5px;"
+                    class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptionsMacroSiteData" [columnDefs]="columnDefsproposedmacrosite"
+                    [rowData]="rowDataMacroSiteData" enableColResize enableSorting enableFilter groupHeaders
+                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
+                    (gridReady)="onReady($event)">
+                </ag-grid-angular>
             </div>
         </div>
     </mat-card>
 
-
-    <mat-card class="execution-task-container-one p-0" *ngIf="ianLead">
+    <mat-card class="execution-task-container-one p-0">
         <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="sub-header-title">Implemented Parameter Details</div>
+            <div class="sub-header-title">Remark</div>
         </div>
-
         <mat-divider></mat-divider>
-        <div class="sub-content-container">
-            <div class="sub-content-table">
-                <ag-grid-angular style="width: 100%; height: 105px;" class="ag-theme-material ag-jcp3" rowHeight="48"
-                    headerHeight="48" [gridOptions]="gridOptionsImplIan" [columnDefs]="implColDefIan"
-                    [rowData]="implRowdataIAN" enableColResize enableSorting enableFilter groupHeaders
-                    suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                    [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)"
-                    (gridReady)="onReady($event)" [frameworkComponents]="frameworkComponentsTaskExecution">
-                </ag-grid-angular>
-            </div>
-
-            <div class="content-list">
-                <div class="content-list-container p-3 " fxFlex="50">
-                    <div class="form-field-read-only">
-                        <div class="input-title">Remark (by IAN Lead)</div>
-                        <input class="input-value" matInput placeholder="" value="Issue Resolved"
-                            style="border-bottom: 1px dotted lightgray;" disabled>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-list">
-                <div class="content-list-container p-3 " fxFlex="50">
-                    <div class="form-field-read-only">
-                        <div class="input-title">Remark* </div>
-                        <input class="input-value" matInput placeholder="" value="" required
-                            style="border-bottom: 1px solid lightgray;">
+        <div class="sub-content-container h-100">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="content-list">
+                    <div class="content-list-container p-3 " fxFlex="50">
+                        <div class="form-field-read-only">
+                            <div class="input-title">Issue Identified</div>
+                            <div class="input-value">{{issueIdentified}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
