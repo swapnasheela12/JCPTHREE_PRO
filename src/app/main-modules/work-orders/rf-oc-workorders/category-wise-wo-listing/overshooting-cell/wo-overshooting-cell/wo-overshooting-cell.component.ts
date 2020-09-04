@@ -10,7 +10,7 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-
+import { AgGridModule} from 'ag-grid-angular';
 const COLUMNDEFS = COLUMN_DEFS;
 @Component({
   selector: 'app-wo-overshooting-cell',
@@ -18,7 +18,10 @@ const COLUMNDEFS = COLUMN_DEFS;
   styleUrls: ['./wo-overshooting-cell.component.scss']
 })
 export class WoOvershootingCellComponent  {
-
+private colDefs;
+private gridApi;
+private gridColumnApi;
+private searchValue;
 
  url: string = "assets/data/layers/workorders/wo-overshooting-cell-data.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
@@ -89,6 +92,13 @@ export class WoOvershootingCellComponent  {
     this.show = !this.show;
   };
 
+//   onGridReady(){
+//     this.gridApi = params.api;
+//     this.gridColumnApi = params.columnApi;
+//   }
+// quickSearch(){
+//   this.gridApi.setQuickFilter(data);
+// }
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
