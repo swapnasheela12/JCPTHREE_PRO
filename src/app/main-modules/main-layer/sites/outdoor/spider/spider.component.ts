@@ -533,6 +533,10 @@ export class SpiderComponent implements OnInit {
             .on('mouseout', function () {
                 d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
             })
+            .on('click', function(d) {
+                //event inside d.data
+                console.log('d',d);
+            });
 
         svgGroup.on('click', function () {
             $(element).parent().remove();
@@ -541,4 +545,3 @@ export class SpiderComponent implements OnInit {
 
     };
 }
-
