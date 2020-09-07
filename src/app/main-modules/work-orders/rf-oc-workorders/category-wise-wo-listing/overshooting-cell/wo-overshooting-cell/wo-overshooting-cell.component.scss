@@ -45,9 +45,9 @@ $color-white: #ffffff;
 
                     .report-form-input-value {
                         
-                        font-size: 15px;
-                        line-height: 18px;
-                        font-family: "Lato Medium";
+                        font-size: 14px;
+                        line-height: 22px;
+                        font-family: "Lato Regular";
                     }
                 }
             }
@@ -166,10 +166,10 @@ opacity: 1;
 }
 
 :host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
-    content: "\f139"!important;
-    font-family: "Font Awesome 5 Free";
+    content: "\eb0e"!important;
+    font-family: "icomoon";
    
-    color: #0078d7;
+    // color: #0078d7;
     font-size: 15px;
     font-weight: 900;
     z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */

@@ -399,9 +399,11 @@
     font-size: 14px;
     line-height: 18px;
     font-family: "Lato Medium";
-    .remarks label {
-        display: block;
-    }
+    
+        label {
+            display: block;
+        }
+    
     .remarks-field {
         border: none;
         color: #000000;
@@ -431,4 +433,8 @@
 
 :host ::ng-deep ag-grid-angular .ag-theme-material .ag-row {
     width: 100%!important;
+}
+
+:host ::ng-deep .upload-files-section  {
+    width: 531px;
 }

@@ -199,13 +199,13 @@ public implRowdata;
       {
         headerName: "Site Parameter",
         field: "siteparameter",
-        width: 300
+        width: 450
 
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
-        width: 300
+        width: 450
 
       }
     ]

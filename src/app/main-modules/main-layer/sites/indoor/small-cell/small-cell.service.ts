@@ -4,15 +4,19 @@ import { ShapeService } from './../../../layers-services/shape.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
-
+import * as _ from 'underscore';
 @Injectable({
   providedIn: 'root'
 })
 export class SmallCellService {
   map: any;
+  _map;
+  states;
   lib;
   public mydata;
   _canvasLayer;
+  sitesData: any;
+  stateLayer: any;
   constructor(private datashare: DataSharingService, private router: Router, private shapeService: ShapeService, private http: HttpClient,) {
     this.lib = leaflayer();
     console.log(this.lib, ">>>>");
@@ -29,10 +33,15 @@ export class SmallCellService {
   redrawLayer() {
     console.log(this.shapeService, "this.shapeService");
     setTimeout(() => {
-      this.shapeService.getSmallCellData().subscribe(states => {
+      this.shapeService.getStateShapes().subscribe(states => {
         console.log(states, "states");
         this.draw(states);
       });
+      // this.shapeService.getMacroData().subscribe(data => {
+      //   console.log(data, "dada");
+      //   // this.draw(states);
+      //   this.sitesDraw(data);
+      // });
     }, 2000);
 
 
@@ -42,10 +51,9 @@ export class SmallCellService {
 
     console.log(L, "L");
     var data = dataVal;
-    console.log(this.map, "this.map");
+    console.log(dataVal, "dataVal");
     // data loaded from city.js
-    let _map = this.shapeService.mapServiceData;
-
+    this._map = this.shapeService.mapServiceData;
 
     var resizeContainer = function () {
       var canvas = this.getContainer();
@@ -93,23 +101,23 @@ export class SmallCellService {
 
     canvasLayer.on("layer-render", function () {
       console.log("layer-render");
+      // this.sitesDraw();
 
       var ctx = resizeContainer.bind(this)();
-      ctx.fillStyle = "rgba(255,116,0, 0.5)";
+      // ctx.fillStyle = "rgba(255,116,0, 0.5)";
 
+      var bounds = this._map.getBounds();
+      // for (var i = 0; i < data.length; i++) {
+      //   var d = data[i].latlng;
+      //   if (bounds.contains([d[0], d[1]])) {
+      //     let dot = this._map.latLngToContainerPoint([d[0], d[1]]);
+      //     ctx.beginPath();
+      //     ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2);
+      //     ctx.fill();
+      //     ctx.closePath();
+      //   }
+      // }
 
-      var bounds = _map.getBounds();
-
-      for (var i = 0; i < data.length; i++) {
-        var d = data[i].latlng;
-        if (bounds.contains([d[0], d[1]])) {
-          let dot = _map.latLngToContainerPoint([d[0], d[1]]);
-          ctx.beginPath();
-          ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.closePath();
-        }
-      }
     });
 
     canvasLayer.on("layer-beforedestroy", function () {
@@ -120,24 +128,94 @@ export class SmallCellService {
       console.log("layer-destroyed");
     });
 
-    
     this.datashare.currentMessage.subscribe(val => {
+
       this.selectedLayerArrList = val;
-      canvasLayer.remove(_map);
+      canvasLayer.remove(this._map);
+      if (this._map.hasLayer(this.stateLayer)) {
+        this._map.removeLayer(this.stateLayer)
+      }
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
         if (ele.link == "JCP/Layers/Small-Cell") {
           console.log("got it all amll ESC");
-          return canvasLayer.addTo(_map);
+          this.boundariesData();
+          // this.sitesDraw();
+          return canvasLayer.addTo(this._map);
         }
-
       }
+    });
 
+  }
+
+
+
+  // sitesDraw(itemData) {
+  //   console.log(itemData,"itemData");
+  // }
+
+
+
+  boundariesData() {
+    this.shapeService.getStateShapes().subscribe(states => {
+      console.log(states, "states");
+      this.states = states;
+      this.initStatesLayer();
+    });
+  }
+
+  private initStatesLayer() {
+    this.stateLayer = L.geoJSON(this.states, {
+      style: (feature) => ({
+        weight: 2,
+        opacity: 0.5,
+        color: '#008f68',
+        fillOpacity: 0.4,
+        fillColor: '#6DB65B'
+      }),
+      onEachFeature: (feature, layer) => (
+        layer.on({
+          mouseover: (e) => (this.highlightFeature(e)),
+          mouseout: (e) => (this.resetFeature(e)),
+          click: (e) => (this.zoomToFeature(e)),
+        })
+      )
     });
 
 
 
+
+    this._map.addLayer(this.stateLayer);
+  }
+
+  private highlightFeature(e) {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#DFA612',
+      fillOpacity: 1.0,
+      fillColor: '#FAE042',
+    });
+
+  }
+
+  private resetFeature(e) {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.5,
+      color: '#008f68',
+      fillOpacity: 0.4,
+      fillColor: '#6DB65B'
+    });
+
+  }
+
+  private zoomToFeature(e) {
+    const layer = e.target;
+    layer.fitBounds(e.target.getBounds());
   }
 
 

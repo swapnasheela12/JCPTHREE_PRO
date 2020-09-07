@@ -10,7 +10,9 @@ $color-white: #ffffff;
     padding: 0px;
     position: relative;
     .overshooting-flex-container {
+       .os-topbar {
         height: 64px !important;
+       }
         .overshooting-flex-item {
             font-size: 14px;
             .overshooting-title {

@@ -93,7 +93,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   libCustomLayer;
   ngOnInit(): void {
     this.libCustomLayer = leaflayer();
-    this.canvasLibrary = canvasLayerForLeaflet();
+    // this.canvasLibrary = canvasLayerForLeaflet();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
     this.siteDataJson();
@@ -129,10 +129,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      // center: [25.0000, 79.0000],
-      center: [19.04, 72.90],
+      center: [25.0000, 79.0000],
+      //center:[19.04,72.90],
       zoomControl: false,
-      zoom: 17,
+      zoom: 5,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
@@ -224,7 +224,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //geo json control
 
     //CanvasLibrary
-    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
+    // this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
 
     // this.connectPoints(this.map);
 
@@ -538,58 +538,58 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.map.addControl(new this.customControlList());
     //custome controller//
 
-    this.shapeService.getStateShapes().subscribe(states => {
-      // console.log(states, "states");
-      this.states = states;
-      this.initStatesLayer();
-    });
+    // this.shapeService.getStateShapes().subscribe(states => {
+    //   // console.log(states, "states");
+    //   this.states = states;
+    //   this.initStatesLayer();
+    // });
 
     this.shapeService.mapServiceData = this.map;
   }
 
 
-  states;
-  private initStatesLayer() {
-    const stateLayer = L.geoJSON(this.states, {
-      style: (feature) => ({
-        weight: 2,
-        opacity: 0.5,
-        color: '#008f68',
-        fillOpacity: 0.4,
-        fillColor: '#6DB65B'
-      }),
-      onEachFeature: (feature, layer) => (
-        layer.on({
-          mouseover: (e) => (this.highlightFeature(e)),
-          mouseout: (e) => (this.resetFeature(e)),
-        })
-      )
-    });
+  // states;
+  // private initStatesLayer() {
+  //   const stateLayer = L.geoJSON(this.states, {
+  //     style: (feature) => ({
+  //       weight: 2,
+  //       opacity: 0.5,
+  //       color: '#008f68',
+  //       fillOpacity: 0.4,
+  //       fillColor: '#6DB65B'
+  //     }),
+  //     onEachFeature: (feature, layer) => (
+  //       layer.on({
+  //         mouseover: (e) => (this.highlightFeature(e)),
+  //         mouseout: (e) => (this.resetFeature(e)),
+  //       })
+  //     )
+  //   });
 
-    //this.map.addLayer(stateLayer);
-  }
+  //   this.map.addLayer(stateLayer);
+  // }
 
-  private highlightFeature(e) {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 2,
-      opacity: 0.8,
-      color: '#DFA612',
-      fillOpacity: 1.0,
-      fillColor: '#FAE042',
-    });
-  }
+  // private highlightFeature(e) {
+  //   const layer = e.target;
+  //   layer.setStyle({
+  //     weight: 2,
+  //     opacity: 0.8,
+  //     color: '#DFA612',
+  //     fillOpacity: 1.0,
+  //     fillColor: '#FAE042',
+  //   });
+  // }
 
-  private resetFeature(e) {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 2,
-      opacity: 0.5,
-      color: '#008f68',
-      fillOpacity: 0.4,
-      fillColor: '#6DB65B'
-    });
-  }
+  // private resetFeature(e) {
+  //   const layer = e.target;
+  //   layer.setStyle({
+  //     weight: 2,
+  //     opacity: 0.5,
+  //     color: '#008f68',
+  //     fillOpacity: 0.4,
+  //     fillColor: '#6DB65B'
+  //   });
+  // }
 
 
   //LOAD JSON DATA FOR SHAPE (FAN)
@@ -606,9 +606,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   //LOAD ALL THE NODES ONTO THE MAP
   initializeNodes(data) {
     console.log(data, this);
-    this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
-    let nodes = new this.marcoService.nodeCreationInitializer(data, this);
-    nodes.addTo(this.map);
+    // this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
+    // let nodes = new this.marcoService.nodeCreationInitializer(data,this);
+    // nodes.addTo(this.map);
   }
 
   smallCellServiceFunc() {

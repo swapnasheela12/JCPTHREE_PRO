@@ -33,7 +33,8 @@
               </mat-icon>
       
               <mat-form-field *ngIf="show">
-                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" 
+                placeholder="">
                 <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                   <span class="zmdi zmdi-close"></span>
                 </mat-icon>
@@ -46,7 +47,7 @@
             <div class="d-flex mx-2 flex-row flex-wrap report-flex-container">
                 <div class="p-2 report-flex-item" *ngFor="let wo of woHeader">
                     <div class="report-form-field-read">
-                        <div class="report-form-input-title" style="font-size: 13px;">{{wo.label}}</div>
+                        <div class="report-form-input-title">{{wo.label}}</div>
                         <div class="report-form-input-value">{{wo.value}}</div>
 
                     </div>
