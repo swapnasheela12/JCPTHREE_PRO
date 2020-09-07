@@ -1,6 +1,13 @@
-import {  OnInit, ElementRef, Component } from '@angular/core';
+import { OnInit, ElementRef, Component } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import * as d3 from 'd3/index';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PropertiesComponent } from 'src/app/modules/components/properties/properties.component';
+import { ConfigurationComponent } from 'src/app/modules/components/configuration/configuration.component';
+import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
+import { KpiComponent } from './popup/kpi/kpi.component';
+import { CapacityComponent } from 'src/app/modules/components/capacity/capacity.component';
 declare var $: any; //will be replaced by TS
 @Component({
     selector: 'jcpBeta-spider',
@@ -9,8 +16,9 @@ declare var $: any; //will be replaced by TS
 })
 export class SpiderComponent implements OnInit {
 
-    constructor(private datashare: DataSharingService, private element: ElementRef) { }
-    
+    constructor(private datashare: DataSharingService, private element: ElementRef,
+        private router: Router, public dialog: MatDialog) { }
+
     public currentbands;
     public sector;
     public offAirData = [{
@@ -121,7 +129,7 @@ export class SpiderComponent implements OnInit {
         eventname: 'see-routers'
     }
     ];
-    
+
     ngOnInit() {
         this.datashare.currentSpiderData.subscribe((message) => {
             this.currentbands = message['currentbands'];
@@ -142,10 +150,10 @@ export class SpiderComponent implements OnInit {
         } else {
             data = this.onAirData;
         }
-        this.drawSVG(element, svg, data)
+        this.drawSVG(element, svg, data, this)
     }
 
-    drawSVG(element, svgGroup, data) {
+    drawSVG(element, svgGroup, data, ref?) {
         const clientWidth = element.offsetWidth;
         const clientHeight = element.offsetHeight;
         let screenWidth = clientWidth > 0 ? clientWidth : 500;
@@ -162,12 +170,12 @@ export class SpiderComponent implements OnInit {
 
         let translateX = ((screenWidth / 2) + 100);
         let translateY = (screenHeight / 2);
-        
-        
-        let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
-           .attr('transform', 'translate(' + translateX + ',' + translateY + ')')
 
-        
+
+        let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
+            .attr('transform', 'translate(' + translateX + ',' + translateY + ')')
+
+
         //Create an arc function
         let arc = d3.arc()
             .innerRadius(width * 0.75 / 2)
@@ -186,9 +194,9 @@ export class SpiderComponent implements OnInit {
 
         let line = d3.line()
             .x(function (point) { return point['lx'] })
-            .y(function (point) { return point['ly']});
+            .y(function (point) { return point['ly'] });
         function lineData(d) {
-            let points:any = [
+            let points: any = [
                 { lx: d.source.x, ly: d.source.y },
                 { lx: d.target.x, ly: d.target.y }
             ];
@@ -270,7 +278,7 @@ export class SpiderComponent implements OnInit {
             .attr('stroke-width', 1)
             .attr('stroke', '#FFFFFF')
             .attr('fill', 'none')
-         .attr('d', lineData);
+            .attr('d', lineData);
 
         linePointsGroup.append('circle')
             .attr('class', function (d, i) {
@@ -389,7 +397,7 @@ export class SpiderComponent implements OnInit {
         let currentselected = this.sector;
 
 
-       
+
         for (let i = 0, count = bands.length; i < count; i++) {
             let item = bands[i];
             let sectors = item.siteArray;
@@ -533,9 +541,18 @@ export class SpiderComponent implements OnInit {
             .on('mouseout', function () {
                 d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
             })
-            .on('click', function(d) {
-                //event inside d.data
-                console.log('d',d);
+            .on('click', function (d) {
+                if (d.data.name === "Properties") {
+                    ref.openPropDialogConfiguration();
+                } else if (d.data.name === "Capacity") {
+                    ref.openCapacityViewPopups();
+                } else if (d.data.name === "KPI's") {
+                    ref.openKpiDialogConfiguration();
+                } else if (d.data.name === "Alarms") {
+                    ref.openAlarmDialog();
+                } else if (d.data.name === "Configuration") {
+                    ref.openConfigDialog();
+                }
             });
 
         svgGroup.on('click', function () {
@@ -543,5 +560,50 @@ export class SpiderComponent implements OnInit {
             d3.event.stopPropagation();
         });
 
+    };
+
+    openCapacityViewPopups() {
+        // const dialogRef = this.dialog.open(popupName, {
+        this.dialog.open(CapacityComponent, {
+            width: "95vw",
+            maxWidth: "97vw",
+            height: "100%",
+            panelClass: "material-dialog-container",
+        });
+    };
+
+    openPropDialogConfiguration() {
+        const dialogRef = this.dialog.open(PropertiesComponent, {
+            width: "95vw",
+            maxWidth: "97vw",
+            height: "100%",
+            panelClass: "material-dialog-container",
+        });
+    };
+    openKpiDialogConfiguration() {
+        const dialogRef = this.dialog.open(KpiComponent, {
+            width: "75vw",
+            height: "90vh",
+            maxWidth: "97vw",
+            panelClass: "material-dialog-container",
+        });
+    };
+
+    openAlarmDialog() {
+        const dialogRef = this.dialog.open(AlarmsPopupComponent, {
+            width: "75vw",
+            height: "90vh",
+            maxWidth: "97vw",
+            panelClass: "material-dialog-container",
+        });
+    };
+
+    openConfigDialog() {
+        const dialogRef = this.dialog.open(ConfigurationComponent, {
+            width: "75vw",
+            height: "90vh",
+            maxWidth: "97vw",
+            panelClass: "material-dialog-container",
+        });
     };
 }

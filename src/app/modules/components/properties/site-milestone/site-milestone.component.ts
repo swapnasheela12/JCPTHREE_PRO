@@ -92,7 +92,7 @@ export class SiteMilestoneComponent {
     this.columnDefs = [{
       headerName: "Band",
       field: "brand",
-      width: 120
+      width: 180
     }, {
       headerName: "Milestone",
       field: "milestone",
@@ -104,7 +104,7 @@ export class SiteMilestoneComponent {
     }, {
       headerName: "Task Status",
       field: "taskstatus",
-      width: 170
+      width: 180
     }, {
       headerName: "Completion Date",
       field: "completiondate",
@@ -112,7 +112,7 @@ export class SiteMilestoneComponent {
     }, {
       headerName: "Task Days",
       field: "taskday",
-      width: 150
+      width: 190
     }];
     this.datatable.columnDefsServices = this.columnDefs;
   }

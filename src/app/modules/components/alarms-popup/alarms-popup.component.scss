@@ -12,6 +12,26 @@
 //     background: red;
 // }
 
+.alarms-container {
+    .alarms-dialog-content {
+        mat-tab-group {
+            mat-tab-header {
+                .mat-tab-label-container {
+                    .mat-tab-list {
+                        .mat-tab-labels {
+                            .mat-tab-label {
+                                .mat-tab-label-content {
+                                    color: rgba(0,0,0,0.54);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .alarms-toolbar {
     background: #1976D2;
     

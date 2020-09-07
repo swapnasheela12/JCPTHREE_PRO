@@ -1,5 +1,43 @@
 $md-primary: #0070db;
 $color-white: #ffffff;
+
+.prop-container {
+    .prop-toolbar {
+        background: #1976d2;
+        color: #ffffff;
+        font-family: "Lato-Medium", sans-serif;
+    }
+    .svg-wifi-btn {
+        width: 50px;
+        position: relative;
+        bottom: 40px;
+        border-radius: 40px;
+        background: white;
+        height: 50px;
+        border: 1px solid lightgray;
+}
+
+
+
+
+
+}
+// .kpi-toolbar {
+//     background: #1976d2;
+
+//     color: #ffffff;
+//     padding: 0.5rem;
+//     font-family: "Lato-Medium", sans-serif;
+// }
+
+// .popup-title {
+//     color: #ffffff;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-items: center;
+// }
 .properties-container {
     svg {
         display: inline-block !important;
