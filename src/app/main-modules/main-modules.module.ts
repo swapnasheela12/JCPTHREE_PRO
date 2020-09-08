@@ -92,6 +92,7 @@ import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-l
 import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
 import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/selected-layer-menu.component';
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
 
 @NgModule({
@@ -128,6 +129,7 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
   ],
   imports: [
     CommonModule,
+    Ng2SearchPipeModule,
     MainModulesRoutingModule,
     CoreModule,
     HighchartsChartModule,

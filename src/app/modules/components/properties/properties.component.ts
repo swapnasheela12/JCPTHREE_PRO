@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { DataSharHttpService } from '../data-shar-http.service';
 //declare const D3: any;
 //import * as d3 from 'd3';
 import * as D3 from 'd3/index';
 import { Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogData } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 
 
 export class GroupLevel {
@@ -44,106 +42,93 @@ export class PropertiesComponent implements OnInit {
   selectedTab;
   @ViewChild('ngCircleMenu') ngCircleMenu;
   scope: any;
-  showWifiSvg: boolean = false;
-  showWifi: boolean = true;
-  constructor(private router: Router, public dialogRef: MatDialogRef<PropertiesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-    dialogRef.disableClose = true;
+  constructor(private router: Router) {
 
   }
   ngOnInit() { }
-  showWifiBandSvg() {
-    this.showWifiSvg = false;
-    this.showWifi = true;
 
-  }
   showWifiBand() {
-    this.showWifiSvg = true;
-    this.showWifi = false;
-    if (this.showWifiSvg) {
+    var width = 200;
+    var height = 200;
 
-      var width = 200;
-      var height = 200;
+    var svg = D3.select("#chart").append("svg");
+    svg.attr("width", width)
+      .attr("height", height);
 
-      var svg = D3.select("#chart").append("svg");
-      svg.attr("width", width)
-        .attr("height", height);
+    var dataset: any = [
+      { name: '850 Mhz', value: 11 },
+      { name: '1800 Mhz', value: 13 },
+      { name: '2300 Mhz', value: 18 }
+    ];
 
-      var dataset: any = [
-        { name: '850 Mhz', value: 11 },
-        { name: '1800 Mhz', value: 13 },
-        { name: '2300 Mhz', value: 18 }
-      ];
+    var radius = width / 2;
+    var innerRadius = 0;
+    var arc: any = D3.arc()
+      .innerRadius(30)
+      .outerRadius(radius);
 
-      var radius = width / 2;
-      var innerRadius = 0;
-      var arc: any = D3.arc()
-        .innerRadius(30)
-        .outerRadius(radius);
+    // .innerRadius(width * 0.5 / 2)
+    // .outerRadius(width * 0.75 / 2 + 30);
 
-      // .innerRadius(width * 0.5 / 2)
-      // .outerRadius(width * 0.75 / 2 + 30);
+    var pie = D3.pie()
+      .startAngle(90 * Math.PI / 180)
+      .endAngle(270 * Math.PI / 180)
+      .value(function (d) {
+        return 15;
+      })
+      .padAngle(.05)
+      .sort(null);
 
-      var pie = D3.pie()
-        .startAngle(90 * Math.PI / 180)
-        .endAngle(270 * Math.PI / 180)
-        .value(function (d) {
-          return 15;
-        })
-        .padAngle(.05)
-        .sort(null);
+    var arcs = svg.selectAll("g.arc")
+      .data(pie(dataset))
+      .enter()
+      .append("g")
+      .attr("class", "arc")
+      .attr("transform", "translate(" + radius + ", " + radius + ")");
 
-      var arcs = svg.selectAll("g.arc")
-        .data(pie(dataset))
-        .enter()
-        .append("g")
-        .attr("class", "arc")
-        .attr("transform", "translate(" + radius + ", " + radius + ")");
+    //Draw arc paths
+    var color = D3.scaleOrdinal(['white', 'white', 'white'])
+    arcs.append("path")
+      // .attr("fill", (d, i: any) => { return color(i); })
+      .attr("fill", function (d, i: any) {
+        console.log(d);
+        return color(i);
+      })
+      .attr("id", "arc")
+      .attr("stroke", "lightgrey")
+      .attr("d", arc)
+      .on("click", (e, d) => {
+        this.showWifiTabs = true;
+        this.showPropTabs = false;
+      })
+    // .on("hover", function (d) {
+    //   D3.select("#chart")
+    //     .attr("stroke", "#fff")
+    //     .attr("stroke-width", "2px")
+    //     .style("filter", "url(#drop-shadow)");
+    // })
 
-      //Draw arc paths
-      var color = D3.scaleOrdinal(['white', 'white', 'white'])
-      arcs.append("path")
-        // .attr("fill", (d, i: any) => { return color(i); })
-        .attr("fill", function (d, i: any) {
-          console.log(d);
-          return color(i);
-        })
-        .attr("id", "arc")
-        .attr("stroke", "lightgrey")
-        .attr("d", arc)
-        .on("click", (e, d) => {
-          this.showWifiTabs = true;
-          this.showPropTabs = false;
-        })
-      // .on("hover", function (d) {
-      //   D3.select("#chart")
-      //     .attr("stroke", "#fff")
-      //     .attr("stroke-width", "2px")
-      //     .style("filter", "url(#drop-shadow)");
-      // })
+    var newarc = D3.arc()
+      .innerRadius(2 * radius / 3)
+      .outerRadius(radius);
 
-      var newarc = D3.arc()
-        .innerRadius(2 * radius / 3)
-        .outerRadius(radius);
+    // Place labels
+    arcs.append("text")
+      .attr("transform", (d: any) => {
+        console.log("d", d);
+        return "translate(" + newarc.centroid(d) + ")";
+      })
+      .attr("text-anchor", "middle")
+      .attr("fill", "blue")
+      .attr('font-size', '4em')
+      // .attr(" xlink:href", "#arc")
+      .attr("xlink:href", (d, i) => {
+        return "#arc" + i;
+      })
 
-      // Place labels
-      arcs.append("text")
-        .attr("transform", (d: any) => {
-          console.log("d", d);
-          return "translate(" + newarc.centroid(d) + ")";
-        })
-        .attr("text-anchor", "middle")
-        .attr("fill", "blue")
-        .attr('font-size', '4em')
-        // .attr(" xlink:href", "#arc")
-        .attr("xlink:href", (d, i) => {
-          return "#arc" + i;
-        })
-
-        .text(function (d: any) {
-          return d.data.name;
-        });
-    }
+      .text(function (d: any) {
+        return d.data.name;
+      });
   }
 
   tabChanged(evt) {
@@ -154,8 +139,4 @@ export class PropertiesComponent implements OnInit {
   // showWifiBand(evt) {
   //   this.showWifiWidget = true
   // }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }

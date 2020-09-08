@@ -469,12 +469,12 @@ export class HeaderComponent implements OnInit {
 
   };
 
-  // openDialogCapacity(): void {
-  //   const dialogRef = this.dialog.open(CapacityComponent, {
-  //     width: "850px",
-  //     panelClass: "material-dialog-container",
-  //   });
-  // };
+  openDialogCapacity(): void {
+    const dialogRef = this.dialog.open(CapacityComponent, {
+      width: "850px",
+      panelClass: "material-dialog-container",
+    });
+  };
 
   // closeDialog(){
   //   this.dialogRef.close();

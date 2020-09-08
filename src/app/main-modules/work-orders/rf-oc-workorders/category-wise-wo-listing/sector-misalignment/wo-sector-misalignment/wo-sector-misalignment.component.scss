@@ -91,6 +91,27 @@ $color-white: #ffffff;
     z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 }   
 
+.abc {
+    
+}
+
+.xyz {
+    
+}
+// @media  only screen and(min-width: 520px), (max-width: 800px) {
+//     .wo-sector-container {
+//         .wo-sector-card-one {
+//             .wo-container {
+//                 .wo-flex-container {
+//                     .mediaContainer {
+//                         width: 25%;
+//                     }
+//                 }
+//             }
+
+//         }
+//     }
+//   }
 
   @media  only screen and(min-width: 774px) {
     .wo-sector-container {
@@ -122,3 +143,17 @@ $color-white: #ffffff;
     }
   }
   
+//   @media (min-width: 1335px) {
+//     .wo-sector-container {
+//         .wo-sector-card-one {
+//             .wo-container {
+//                 .wo-flex-container {
+//                     .mediaContainer {
+//                         width: 20%;
+//                     }
+//                 }
+//             }
+
+//         }
+//     }
+ // }

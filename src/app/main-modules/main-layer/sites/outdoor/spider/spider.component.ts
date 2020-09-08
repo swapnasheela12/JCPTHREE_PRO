@@ -1,8 +1,8 @@
 import { OnInit, ElementRef, Component } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import * as d3 from 'd3/index';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { PropertiesComponent } from 'src/app/modules/components/properties/properties.component';
 import { ConfigurationComponent } from 'src/app/modules/components/configuration/configuration.component';
 import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
@@ -600,9 +600,9 @@ export class SpiderComponent implements OnInit {
 
     openConfigDialog() {
         const dialogRef = this.dialog.open(ConfigurationComponent, {
-            width: "75vw",
-            height: "60vh",
-            maxWidth: "70vw",
+            width: "60vw",
+            height: "65vh",
+            maxWidth: "97vw",
             panelClass: "material-dialog-container",
         });
     };

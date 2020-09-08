@@ -30,6 +30,12 @@ export class DataSharingService {
 
   private spiderViewData = new BehaviorSubject({});
   currentSpiderData = this.spiderViewData.asObservable();
+
+  private leftNavSelectedLayersSource =  new BehaviorSubject({});
+  leftNavSelectedLayerMessage = this.leftNavSelectedLayersSource.asObservable();
+
+  private macroComponentSource = new BehaviorSubject({});
+  macroLayerMessage = this.macroComponentSource.asObservable();
   
   constructor() { }
 
@@ -69,5 +75,13 @@ export class DataSharingService {
   }
   sendDataToSpider(message){
     this.spiderViewData.next(message);
+  }
+
+  leftSideNavLayerSelection(message) {
+    this.leftNavSelectedLayersSource.next(message)
+  }
+
+  macroLayerSelectionMessage(message) {
+    this.macroComponentSource.next(message);
   }
 }

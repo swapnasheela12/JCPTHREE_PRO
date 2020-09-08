@@ -329,7 +329,7 @@ function getValue(params: any) {
   } else if (params['data'].expand === true) {
     return (
       getspace(params.data) +
-      '<span><i class="fas fa-minus-square"></i>' +
+      '<span><i style="color: #0078D7;" class="fas fa-chevron-circle-up"></i>' +
       '&nbsp;' +
       // params.value +
       '</span>'

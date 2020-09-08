@@ -972,7 +972,8 @@ const SITES_OUTDOOR_lIST = [
         eventName: 'sites-outdoor-macro',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: []
+        children: [],
+        parentToChild: 'Sites-Outdoor-Macro'
     },
     {
         name: 'ESC',
@@ -981,7 +982,8 @@ const SITES_OUTDOOR_lIST = [
         eventName: 'sites-outdoor-esc',
         level: 3,
         component: HomeJcpThreeComponent,
-        children: []
+        children: [],
+        parentToChild: 'Sites-Outdoor-ESC'
     },
     {
         name: 'Small Cell',
@@ -989,7 +991,8 @@ const SITES_OUTDOOR_lIST = [
         icon: 'fas fa-home',
         eventName: 'sites-outdoor-small-cell', level: 3,
         component: HomeJcpThreeComponent,
-        children: []
+        children: [],
+        parentToChild: 'Sites-Outdoor-Small-Cell'
     },
     {
         name: 'Wi-Fi',
@@ -997,7 +1000,8 @@ const SITES_OUTDOOR_lIST = [
         icon: 'fas fa-home',
         eventName: 'sites-outdoor-wi-fi', level: 3,
         component: HomeJcpThreeComponent,
-        children: []
+        children: [],
+        parentToChild: 'Sites-Outdoor-Wi-Fi'
     },
     {
         name: 'Competitor',
@@ -1005,7 +1009,8 @@ const SITES_OUTDOOR_lIST = [
         icon: 'fas fa-home',
         eventName: 'sites-outdoor-competitor', level: 3,
         component: HomeJcpThreeComponent,
-        children: []
+        children: [],
+        parentToChild: 'Sites-Outdoor-Competitor'
     }
 ];
 
@@ -2804,6 +2809,17 @@ const LAYERS_LIST = [
     }
 ];
 
+const DASHBOARD_LIST = [
+    {
+        name: "Custom Dashboards",
+        icon: "fas fa-users fa-3",
+        link: 'JCP/Reports-and-Dashboards/Dashboards',
+        level: 1,
+        component: HomeJcpThreeComponent,
+        children:[]
+    }
+];
+
 const REPORTS_LIST = [
     {
         name: 'Report Wizard',
@@ -2827,7 +2843,7 @@ const REPORTS_LIST = [
         eventName: 'sites-outdoor-esc', level: 1,
         component: HomeJcpThreeComponent,
         icon: 'fas fa-home',
-        children: []
+        children: DASHBOARD_LIST
     },
     {
         name: 'My Subscriptions',
