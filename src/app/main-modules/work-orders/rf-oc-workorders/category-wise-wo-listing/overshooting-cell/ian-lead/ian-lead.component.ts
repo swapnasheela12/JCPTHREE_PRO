@@ -15,6 +15,7 @@ import {  AgGridAngular } from 'ag-grid-angular';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 
 interface sitep {
   value: string;
@@ -97,7 +98,7 @@ this.columnDefswo = [
   {
     headerName: "Date",
     field: "date",
-   width: 400
+   width: 200
    
   }, {
     headerName: "Reason for Reassignmenet",
@@ -123,15 +124,15 @@ this.columnDefswo = [
   private createspdetailsColumndata() {
     this.spdetailsColumndata = [
       {
-        headerName: "Site Paraameter",
+        headerName: "Site Parameter",
         field: "siteparameter",
-        width: 700
+        width: 300
        
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
-        width: 700
+        width: 300
        
       }
     ]
@@ -324,6 +325,18 @@ taskclosures: taskclosures[] = [
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
     this.uploadFile(this.files);
+  }
+
+
+  openUpdateDialog(): void {
+    const message = `Are you sure you want to submit the workorder ??`;
+    const image = 'warning';
+    const snackbarMode = 'success';
+    const snackbarText = 'Workorder submitted Successfully.';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
+    const dialogRef = this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
   }
 }
 

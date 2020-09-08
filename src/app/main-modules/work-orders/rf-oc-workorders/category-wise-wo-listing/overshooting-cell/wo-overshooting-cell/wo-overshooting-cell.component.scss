@@ -40,14 +40,14 @@ $color-white: #ffffff;
                      
                         font-size: 12px;
                         line-height: 18px;
-                        font-family: "Lato Regular";
+                        font-family: Lato Regular;
                     }
 
                     .report-form-input-value {
                         
                         font-size: 14px;
                         line-height: 22px;
-                        font-family: "Lato Regular";
+                        font-family: Lato Regular;
                     }
                 }
             }
@@ -93,8 +93,7 @@ div.prev-page {
     color: #000000;
     font-size: 15px;
     line-height: 18px;
-    font-weight: bold;
-    font-family: "Lato Bold";
+    font-family: Lato Bold;
     letter-spacing: 0px;
 
 }
@@ -136,13 +135,13 @@ div.prev-page {
 //     opacity: 0.54;
 // }
 
-.page-title {
-    text-align: left;
-font: normal normal bold 15px/18px Lato;
-letter-spacing: 0px;
-color: #000000;
-opacity: 1;
-}
+// .page-title {
+//     text-align: left;
+// font: normal normal bold 15px/18px Lato;
+// letter-spacing: 0px;
+// color: #000000;
+// opacity: 1;
+// }
 
 .block-heading {
     text-align: left;
