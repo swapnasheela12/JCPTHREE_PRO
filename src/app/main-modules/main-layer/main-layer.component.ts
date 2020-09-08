@@ -45,7 +45,7 @@ interface DataObject {
   styleUrls: ['./main-layer.component.scss']
 })
 export class MainLayerComponent implements OnInit, AfterViewInit {
-  @ViewChild('spiderView', {read: ViewContainerRef}) target: ViewContainerRef;
+  @ViewChild('spiderView', { read: ViewContainerRef }) target: ViewContainerRef;
   private componentRef: ComponentRef<any>;
 
   map: any;
@@ -78,7 +78,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   countDiv;
 
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,private componentFactoryResolver?: ComponentFactoryResolver
+    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver?: ComponentFactoryResolver
   ) {
 
     this.router.events.subscribe((event: any) => {
@@ -359,24 +359,24 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           //   dialogRef.close();
           // });
 
-         
-            var selectedLayerMenuListDialogRef = {
-              width: '250px',
-              // height: '150px',
-              position: { bottom: '310px', right: "60px" },
-              panelClass: "table-view-layers-dialog-container",
-              backdropClass: 'cdk-overlay-transparent-backdrop',
-              disableClose: true,
-              hasBackdrop: true
-            }
-            const dialogRef = _dialog.open(SelectedLayerMenuComponent, selectedLayerMenuListDialogRef);
-  
-            dialogRef.backdropClick().subscribe(_ => {
-              dialogRef.close();
-            });
-  
-       
-          
+
+          var selectedLayerMenuListDialogRef = {
+            width: '250px',
+            // height: '150px',
+            position: { bottom: '310px', right: "60px" },
+            panelClass: "table-view-layers-dialog-container",
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            disableClose: true,
+            hasBackdrop: true
+          }
+          const dialogRef = _dialog.open(SelectedLayerMenuComponent, selectedLayerMenuListDialogRef);
+
+          dialogRef.backdropClick().subscribe(_ => {
+            dialogRef.close();
+          });
+
+
+
 
 
         }
@@ -605,7 +605,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   //LOAD ALL THE NODES ONTO THE MAP
   initializeNodes(data) {
-    console.log(data,this);
+    console.log(data, this);
     // this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
     // let nodes = new this.marcoService.nodeCreationInitializer(data,this);
     // nodes.addTo(this.map);

@@ -115,6 +115,14 @@ $md-primary: #0070db;
 $color-white: #ffffff;
 .container-jcp {}
 
+// #cdk-overlay-4 {
+//     max-width: 100vw !important;
+//     pointer-events: auto;
+//     width: auto !important;
+//     position: static;
+//     height: 90% !important;
+// }
+
 .mat-menu-panel.notifications-dropdown {
     // background-color: red;
     max-width: none;
@@ -1776,15 +1784,16 @@ svg {
         }
     }
 }
-
+// svg {
+//     display: none !important;
+// }
 
 .properties-container {
     svg {
         display: inline-block !important;
-        display: inline-block !important;
         position: absolute;
-        top: 60px;
-        right: 366px;
+        top: 17px;
+        right: 623px;
         z-index: 100;
         text {
             font-size: 11px;
@@ -1811,6 +1820,41 @@ ag-grid-angular {
             .ag-root {
                 .ag-header {
                     background: #e9ecec;
+                }
+            }
+        }
+    }
+}
+
+.alarms-container {
+    .alarms-dialog-content {
+        mat-tab-group {
+            mat-tab-header {
+                .mat-tab-label-container {
+                    .mat-tab-list {
+                        .mat-tab-labels {
+                            .mat-tab-label {
+                                .mat-tab-label-content {
+                                    color: rgba(0,0,0,0.54);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        mat-tab-group {
+            mat-tab-header {
+                .mat-tab-label-container {
+                    .mat-tab-list {
+                        .mat-tab-labels {
+                            .mat-tab-label {
+                                .mat-tab-label-content:focus {
+                                    color: rgb(0, 112, 219);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
