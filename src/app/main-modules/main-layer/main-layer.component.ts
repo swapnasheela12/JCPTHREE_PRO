@@ -224,7 +224,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //geo json control
 
     //CanvasLibrary
-    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
+    // this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
 
     // this.connectPoints(this.map);
 
@@ -615,13 +615,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
   //LOAD JSON DATA FOR SHAPE (FAN)
   siteDataJson() {
-    this.http.get("assets/data/layers/microsites-onair.json")
-      .subscribe(data => {
-        this.initializeNodes(data);
-      },
-        error => {
-          this.fanDataError = error;
-        });
+    // this.http.get("assets/data/layers/microsites-onair.json")
+    //   .subscribe(data => {
+    //     this.initializeNodes(data);
+    //   },
+    //     error => {
+    //       this.fanDataError = error;
+    //     });
   }
 
   //LOAD ALL THE NODES ONTO THE MAP
