@@ -21,6 +21,7 @@ import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/tabl
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
 import { AgGridModule, AgGridAngular } from 'ag-grid-angular';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 
 interface sitep {
   value: string;
@@ -365,6 +366,17 @@ public implRowdata;
   }
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
+  }
+
+  openUpdateDialog(): void {
+    const message = `Are you sure you want to submit the workorder ?`;
+    const image = 'warning';
+    const snackbarMode = 'success';
+    const snackbarText = 'Workorder submitted Successfully.';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
+    const dialogRef = this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
   }
 }
 

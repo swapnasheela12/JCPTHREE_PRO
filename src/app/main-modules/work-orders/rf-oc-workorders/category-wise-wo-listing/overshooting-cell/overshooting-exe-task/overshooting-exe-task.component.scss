@@ -54,7 +54,7 @@
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -79,25 +79,23 @@
             text-align: left;
             font-size: 14px;
             line-height: 22px;
-            font-family: 'Lato Regular';
+            font-family: Lato Regular;
             letter-spacing: 0px;
             color: #000000;
-            opacity: 0.9;
+           
         }
 
         header {
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
             opacity: 1;
-
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
-
             padding: 1rem;
             border-bottom: 1px solid #cccccc;
             background: #ffffff;
@@ -132,7 +130,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
 
             letter-spacing: 0.03px;
             color: #464D69;
@@ -174,7 +172,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
 
             letter-spacing: 0.03px;
             color: #464D69;
@@ -203,7 +201,7 @@ border-radius: 4px;
 
             .details {
                 font-size: 14px;
-                color: #cecece;
+                color: #808080;
             }
         }
     }
@@ -217,7 +215,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -239,7 +237,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 14px;
             line-height: 22px;
-            font-family: "Lato Regular";
+            font-family: Lato Regular;
             letter-spacing: 0px;
             font-weight: medium;
             letter-spacing: 0px;
@@ -257,7 +255,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -296,7 +294,7 @@ border-radius: 4px;
             text-align: left;
             font-size: 15px;
             line-height: 18px;
-            font-family: "Lato Bold";
+            font-family: Lato Bold;
             letter-spacing: 0.03px;
             color: #464D69;
             text-transform: capitalize;
@@ -329,7 +327,7 @@ border-radius: 4px;
         text-align: left;
         font-size: 12px;
         line-height: 18px;
-        font-family: "Lato Regular";
+        font-family: Lato Regular;
         letter-spacing: 0px;
         color: #000000;
         opacity: 0.54;
@@ -412,7 +410,7 @@ border-radius: 4px;
         background: #0078d7;
         border: 1px solid #0078d7;
         font-size: 14px;
-        font-family: "Lato Medium";
+        font-family: Lato Medium;
         cursor: pointer;
         text-align: center;
 
@@ -431,17 +429,15 @@ border-radius: 4px;
     .btn-clone {
         width: 71px;
         height: 28px;
-
         border-radius: 4px;
         opacity: 1;
         color: #FFFFFF;
         text-transform: capitalize;
-
         line-height: 1.5;
         background: #0078d7;
         border: 1px solid #0078d7;
         font-size: 14px;
-        font-family: "Lato Medium";
+        font-family: Lato Medium;
         cursor: pointer;
         text-align: center;
 
@@ -455,7 +451,7 @@ border-radius: 4px;
         border: 1px solid #0078d7;
         font-size: 14px;
         line-height: 17px;
-        font-family: "Lato Medium";
+        font-family: Lato Medium;
         color: #ffffff;
         border-radius: 4px;
         cursor: pointer;
@@ -468,7 +464,7 @@ border-radius: 4px;
     text-align: left;
     font-size: 15px;
     line-height: 18px;
-    font-family: "Lato Bold";
+    font-family: Lato Bold;
     letter-spacing: 0.03px;
     color: #464D69;
     text-transform: capitalize;
@@ -482,19 +478,21 @@ border-radius: 4px;
         text-align: left;
         font-size: 12px;
         line-height: 18px;
-        font-family: "Lato Regular";
+        font-family: Lato Regular;
         letter-spacing: 0px;
         color: #000000;
+       
 
     }
 
     .value {
         text-align: left;
-        font-size: 12px;
-        line-height: 18px;
-        font-family: "Lato Regular";
+        font-size: 14px;
+        line-height: 22px;
+        font-family: Lato Regular;
         letter-spacing: 0px;
         color: #000000;
+        opacity: 0.9;
 
     }
 }
@@ -506,16 +504,16 @@ border-radius: 4px;
                 text-align: left;
                 font-size: 12px;
                 line-height: 18px;
-                font-family: "Lato Regular";
+                font-family: Lato Regular;
                 letter-spacing: 0px;
-                color: #000000;
+                color: #808080;
             }
 
             .value {
                 text-align: left;
                 font-size: 14px;
                 line-height: 22px;
-                font-family: "Lato Regular";
+                font-family: Lato Regular;
                 letter-spacing: 0px;
                 color: #000000;
 
@@ -543,7 +541,7 @@ border-radius: 4px;
     .radiobtn {
         font-size: 14px;
         line-height: 22px;
-        font-family: "Lato Regular";
+        font-family: Lato Regular;
         letter-spacing: 0px;
         color: #000000;
     }
@@ -552,10 +550,10 @@ border-radius: 4px;
 
 .tx-attn {
     font-size: 14px;
-    line-height: 22px;
-    font-family: "Lato Bold";
+    line-height: 17px;
+    font-family: Lato Medium;
     letter-spacing: 0px;
-    color: #000000;
+    color: #464d69;
 }
 
 
@@ -565,7 +563,7 @@ border-radius: 4px;
         text-align: left;
         font-size: 15px;
         line-height: 18px;
-        font-family: "Lato Bold";
+        font-family: Lato Bold;
         letter-spacing: 0px;
         color: #000000;
         opacity: 1;
@@ -585,15 +583,7 @@ border-radius: 4px;
     background: transparent;
 }
 
-.tx-attenuation {
-    font-size: 14px;
-    line-height: 22px;
-    font-family: "Lato Bold";
-    letter-spacing: 0px;
-    font-weight: lighter;
-    letter-spacing: 0px;
-    color: #000000;
-}
+
 
 
 
@@ -625,7 +615,7 @@ border-radius: 4px;
     padding:1rem;
     font-size: 14px;
     line-height: 18px;
-    font-family: "Lato Medium";
+    font-family: Lato Medium;
     .remarks-label {
         color: #000000!important;
         display: block!important;
@@ -637,4 +627,10 @@ border-radius: 4px;
         font-size: 14px;
        
     }
+}
+
+
+:host ::ng-deep .ag-center-cols-viewport {
+    width: 100%;
+    overflow-x: hidden;
 }
