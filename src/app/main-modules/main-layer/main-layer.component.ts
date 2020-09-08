@@ -545,7 +545,28 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     // });
 
     this.shapeService.mapServiceData = this.map;
+    // this.callingLayerSelected(this.map);
   }
+
+  // selectedLayerList: any = [];
+  // callingLayerSelected(mapData) {
+  //   console.log(mapData, "mapData");
+  //   this.datashare.currentMessage.subscribe(item => {
+  //     console.log(item, "item");
+  //     this.selectedLayerList = item;
+  //     for (let index = 0; index < this.selectedLayerList.length; index++) {
+  //       const element = this.selectedLayerList[index];
+  //       if (element.link == "JCP/Layers/Small-Cell") {
+  //         this.shapeService.mapServiceData = mapData;
+  //         // let node = new this.smallCellService.redrawLayer();
+  //         // console.log(node, "node small cell");
+  //         // node.addTo(this.map);
+  //       }
+  //     }
+
+  //   })
+  // };
+
 
 
   // states;

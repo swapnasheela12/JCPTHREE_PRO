@@ -22,10 +22,7 @@ export class SmallCellService {
     console.log(this.lib, ">>>>");
     this.redrawLayer();
 
-    this.router.events.subscribe((event: any) => {
-      console.log(event.url, "event");
-
-    })
+   
 
   }
 
@@ -33,26 +30,16 @@ export class SmallCellService {
   redrawLayer() {
     console.log(this.shapeService, "this.shapeService");
     setTimeout(() => {
-      this.shapeService.getStateShapes().subscribe(states => {
-        console.log(states, "states");
-        this.draw(states);
-      });
-      // this.shapeService.getMacroData().subscribe(data => {
-      //   console.log(data, "dada");
-      //   // this.draw(states);
-      //   this.sitesDraw(data);
-      // });
+        this.draw();
     }, 2000);
 
 
   }
 
-  public draw = function (dataVal) {
+  public draw = function () {
 
     console.log(L, "L");
-    var data = dataVal;
-    console.log(dataVal, "dataVal");
-    // data loaded from city.js
+   
     this._map = this.shapeService.mapServiceData;
 
     var resizeContainer = function () {
@@ -141,19 +128,13 @@ export class SmallCellService {
         if (ele.link == "JCP/Layers/Small-Cell") {
           console.log("got it all amll ESC");
           this.boundariesData();
-          // this.sitesDraw();
+          
           return canvasLayer.addTo(this._map);
         }
       }
     });
 
   }
-
-
-
-  // sitesDraw(itemData) {
-  //   console.log(itemData,"itemData");
-  // }
 
 
 
