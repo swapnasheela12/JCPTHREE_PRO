@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Chart } from "angular-highcharts";
 import * as Highcharts from 'highcharts';
 import { LocaleConfig } from 'ngx-daterangepicker-material';
 import * as moment from 'moment';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogData } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 
 declare var $: any;
 @Component({
@@ -48,19 +50,10 @@ export class KpiComponent implements OnInit {
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
   };
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<KpiComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    dialogRef.disableClose = true;
     this.stepperReportW();
-    // setTimeout(() => {
-    //   this.divWidthTraffic = $("#dailyTrafficChartIdDiv").width();
-    //   this.divHeightTraffic = $("#dailyTrafficChartIdDiv").height();
-    //   // this.chartDivWidth = divWidth;
-    //   // this.chartDivHeight = divHeight;
-    //   // this.chartDivWidthTraffic = divWidth;
-    //   // this.chartDivHeightTraffic = divHeight;
-    //   // this.resizeChart();
-    // }, 1000);
-
-
   }
   stepperReportW() {
     this.thirdFormGroup = this.fb.group({
@@ -264,6 +257,10 @@ export class KpiComponent implements OnInit {
 
       // loading: false
     });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

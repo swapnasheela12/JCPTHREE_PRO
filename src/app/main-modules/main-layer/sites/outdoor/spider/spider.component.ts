@@ -601,8 +601,8 @@ export class SpiderComponent implements OnInit {
     openConfigDialog() {
         const dialogRef = this.dialog.open(ConfigurationComponent, {
             width: "75vw",
-            height: "90vh",
-            maxWidth: "97vw",
+            height: "60vh",
+            maxWidth: "70vw",
             panelClass: "material-dialog-container",
         });
     };

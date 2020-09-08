@@ -132,6 +132,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 import { SuccessfulModalComponent } from './core/components/commanPopup/successful-modal/successful-modal.component';
+import { QuestionPopupComponent } from './modules/components/capacity/question-popup/question-popup.component';
 declare var $: any;
 
 @NgModule({
@@ -165,6 +166,7 @@ declare var $: any;
     AgGridTreeRenderingComponent,
     AlarmsPopupComponent,
     CapacityComponent,
+    QuestionPopupComponent,
     ConfigurationComponent,
     LayersCustComponent
   ],

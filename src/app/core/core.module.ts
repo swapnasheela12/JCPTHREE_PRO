@@ -68,6 +68,7 @@ import { TemplateDropdownComponent } from './../main-modules/modules/planning-de
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
 //import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
 import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
+import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.component';
 // import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
@@ -84,6 +85,7 @@ import { SuccessfulModalComponent } from './components/commanPopup/successful-mo
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
     DeleteRendererComponent,
+    GenhelpiconComponent,
     viewHistoryRendererComponent,
     FileUploadPopupComponent,
     TableAgGridComponent,
@@ -96,7 +98,7 @@ import { SuccessfulModalComponent } from './components/commanPopup/successful-mo
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent]),
+    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -159,6 +161,7 @@ import { SuccessfulModalComponent } from './components/commanPopup/successful-mo
     SuccessfulModalComponent,
     dropDownThreeDotRendererComponent,
     viewHistoryRendererComponent,
+    GenhelpiconComponent,
     TableAgGridComponent,
     AgGridTreeComponent,
     DeleteRendererComponent

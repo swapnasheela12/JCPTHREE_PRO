@@ -32,7 +32,8 @@ import { QuestionPopupComponent } from '../../../../app/modules/components/capac
 })
 export class GenhelpiconComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public matDialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public matDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
@@ -44,21 +45,18 @@ export class GenhelpiconComponent implements OnInit {
     return true;
   }
 
-
- 
   agInit(params): void {
     this.params = params;
-    this.kpis = this.params.data.kpis === "Average RRC Connected Users" || this.params.data.kpis === "AirMAC Cell DL Traffic (GB)" || this.params.data.kpis === "IP Throughput (Mbps)" 
+  };
 
-    };
-    
-    openDialoghelp(): void {
-      const dialogRef = this.dialog.open(QuestionPopupComponent, {
-        width: "550px",
-        panelClass: "material-dialog-container",
-       
-      });
-  
-    
-    };
-  }
+  openDialoghelp(): void {
+    // if (this.kpis = this.params.data.kpis === "Average RRC Connected Users" || this.params.data.kpis === "AirMAC Cell DL Traffic (GB)" || this.params.data.kpis === "IP Throughput (Mbps)"
+    // ) {
+    const dialogRef = this.dialog.open(QuestionPopupComponent, {
+      width: "500px",
+      height: "350px",
+      panelClass: "material-dialog-container",
+    });
+    // }
+  };
+}
