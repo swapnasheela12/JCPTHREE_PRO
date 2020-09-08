@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COLUMN_DEFS } from './wo-column-defs.constants';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -12,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { Subject } from 'rxjs';
+import { COLUMN_DEFS } from './wo-column-defs.constants';
 
 const COLUMNDEFS = COLUMN_DEFS;
 @Component({
@@ -20,6 +20,7 @@ const COLUMNDEFS = COLUMN_DEFS;
   styleUrls: ['./wo-sector-misalignment.component.scss']
 })
 export class WoSectorMisalignmentComponent {
+
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -62,21 +63,6 @@ export class WoSectorMisalignmentComponent {
     }
   ];
   showFullScreen: boolean = false;
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
-
-  // public onReady(params) {
-  //   this.gridApi = params.api;
-  //   this.calculateRowCount();
-  // }
-  // public calculateRowCount() {
-  //   if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
@@ -86,27 +72,21 @@ export class WoSectorMisalignmentComponent {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-
-      if (!message) {
-        console.log("message", message);
-        //this.calculateRowCount();
-        this.showFullScreen = false;
-      }
-      // this.getMyStyles()
     });
 
     //API call to get WO Service details
+
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
         this.columnDefs = COLUMNDEFS;
+        console.log("this.url", data);
       });
 
   }
 
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {
-    console.log(evt, "evt");
     this.gridFilterValueServices["filter"] = evt.target.value;
     this.eventsSubject.next(this.gridFilterValueServices);
   };
@@ -116,8 +96,9 @@ export class WoSectorMisalignmentComponent {
   };
 
   cellClickedDetails(evt) {
+    console.log("proposedIndoorColDef", evt)
     if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion/WO-Cell-Decongestion/Execution-Task", { title: evt.data.name, skipLocationChange: true }]);
     }
   }
 
@@ -142,3 +123,5 @@ export class WoSectorMisalignmentComponent {
 
 
 }
+
+

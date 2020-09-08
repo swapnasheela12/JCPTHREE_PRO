@@ -34,9 +34,6 @@ export class PowerComponent implements OnChanges {
   public siteMileStoneDetailWrapper;
   showTab: boolean = false;
   @Input('selectedTab') public selectedTab;
-  // public frameworkComponentsSectorMisalignment = {
-  //   viewHistroyRenderer: viewHistoryRendererComponent
-  // };
 
   public url: string = "assets/data/modules/properties/power.json";
 

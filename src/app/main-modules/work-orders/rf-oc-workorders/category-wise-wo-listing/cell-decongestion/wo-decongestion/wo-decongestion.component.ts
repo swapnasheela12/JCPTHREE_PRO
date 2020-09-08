@@ -64,21 +64,6 @@ export class WoDecongestionComponent {
     }
   ];
   showFullScreen: boolean = false;
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
-
-  // public onReady(params) {
-  //   this.gridApi = params.api;
-  //   this.calculateRowCount();
-  // }
-  // public calculateRowCount() {
-  //   if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
     private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
@@ -88,13 +73,6 @@ export class WoDecongestionComponent {
     router.events.subscribe((url: any) => console.log(url));
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-
-      // if (!message) {
-      //   console.log("message", message);
-      //   //this.calculateRowCount();
-      //   this.showFullScreen = false;
-      // }
-      // this.getMyStyles()
     });
 
     //API call to get WO Service details

@@ -171,4 +171,8 @@ export class OverviewComponent implements OnInit, OnChanges {
     }
     return R;
   }
+
+  createColumnDefs() {
+    //
+  }
 }

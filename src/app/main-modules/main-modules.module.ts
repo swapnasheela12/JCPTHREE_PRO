@@ -92,6 +92,7 @@ import { CustomLegendsComponent } from './main-layer/legends-and-filter/custom-l
 import { ScreenshotPreviewComponent } from './main-layer/screenshot-preview/screenshot-preview.component';
 import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/selected-layer-menu.component';
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
+import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
 
 @NgModule({
   declarations: [
@@ -120,9 +121,10 @@ import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.compon
     ScreenshotPreviewComponent,
     colorDropdownRendererComponent,
     SelectedLayerMenuComponent,
-    ScreenshotPreviewComponent,colorDropdownRendererComponent,
+    ScreenshotPreviewComponent, colorDropdownRendererComponent,
     ScreenshotPreviewComponent,
-    SpiderComponent
+    SpiderComponent,
+    KpiComponent
   ],
   imports: [
     CommonModule,
@@ -188,7 +190,7 @@ import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.compon
     PerformanceManagementModule,
     PlanningDeploymentModule,
     RfOcWorkordersModule,
-    
+
 
   ], providers: [
     SideNavService,
