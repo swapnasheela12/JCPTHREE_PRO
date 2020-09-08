@@ -17,6 +17,7 @@ export class SideNavNode {
   eventName?: string;
   classId?: String;
   level?: number;
+  parentToChild?: String;
   children?: SideNavNode[];
 }
 
@@ -68,6 +69,7 @@ export class LeftsideNavigationComponent implements OnInit {
       link: node.link,
       classId: node.classId,
       eventName:node.eventName,
+      parentToChild: node.parentToChild,
       children: node.children
     };
   }
@@ -342,6 +344,7 @@ export class LeftsideNavigationComponent implements OnInit {
     if (node.selected == true) {
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
+      this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
 
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       // this.router.navigate([node.link]);
