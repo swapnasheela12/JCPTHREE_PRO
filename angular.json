@@ -72,9 +72,9 @@
                             "vendorChunk": false,
                             "buildOptimizer": true,
                             "budgets": [{
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "150kb",
+                                    "maximumError": "150kb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -163,7 +163,7 @@
                         "main": "src/main.playground.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.playground.json",
-                        "aot": false,
+                        "aot": true,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
