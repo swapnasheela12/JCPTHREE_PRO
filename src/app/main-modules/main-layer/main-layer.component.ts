@@ -48,8 +48,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
-  public dataShareSub: Subscription;
-  public dataShareSubOne: Subscription;
+  public dataShareSub: Subscription = new Subscription();
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
   ) {
