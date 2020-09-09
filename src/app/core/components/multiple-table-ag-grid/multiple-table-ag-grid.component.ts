@@ -1,13 +1,11 @@
 import { FormControl } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
 import { DataSharingService } from './../../../_services/data-sharing.service';
-import { DataSharHttpService } from './../../../modules/components/data-shar-http.service';
 import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { MultipleTableAgGridService } from './multiple-table-ag-grid.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
-import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { Component, Output, EventEmitter } from '@angular/core';
+import { GridOptions, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
 
 
@@ -16,7 +14,7 @@ import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-re
   templateUrl: './multiple-table-ag-grid.component.html',
   styleUrls: ['./multiple-table-ag-grid.component.scss']
 })
-export class MultipleTableAgGridComponent implements OnInit {
+export class MultipleTableAgGridComponent {
 
   public gridApi;
   public gridOptions: GridOptions;
@@ -45,33 +43,16 @@ export class MultipleTableAgGridComponent implements OnInit {
 
     this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      // if(this.sidenavBarStatus == false){
-      //   setTimeout(() => {
-      //     this.gridOptions.api.sizeColumnsToFit();
-      //   }, 1000);
-      // }else{
-      //   setTimeout(() => {
-      //     this.gridOptions.api.sizeColumnsToFit();
-      //   }, 1000);
-      // }
-
     });
 
     this.gridOptions = <GridOptions>{};
     this.details = data.dataServices;
-    // this.columnDefs = data.columnDefsServices;
-    // this.rowData = data.rowDataServices;
     this.paginationRequired = data.paginationRequired;
     this.autoPageSizeRequired = data.autoPageSizeRequired;
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
   }
-
-  ngOnInit(): void {
-  }
-
-
 
   public onReady(params) {
     this.gridApi = params.api;

@@ -10,8 +10,7 @@ export class GroupLevel {
 
 @Component({
   selector: 'app-ag-grid-tree',
-  templateUrl: './ag-grid-tree.component.html',
-  styleUrls: ['./ag-grid-tree.component.scss'],
+  templateUrl: './ag-grid-tree.component.html'
 })
 export class AgGridTreeComponent implements OnInit {
   @Input('columnDefs') columnDefs;
@@ -34,16 +33,8 @@ export class AgGridTreeComponent implements OnInit {
   groupList: GroupLevel[] = [];
   count = 0;
   icons: { columnGroupClosed: string; columnGroupOpened: string };
-  // columnDefs2: ({ headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer: (params: any) => string; } | { headerName: string; field: string; sortable: boolean; filter: boolean; cellRenderer?: undefined; })[];
-
-  constructor(private httpService: HttpClient) { }
 
   ngOnChanges() {
-    ////As grid options in now available here .. Need to fing a way to expose this functionality..
-    // this.filterChange.subscribe((data) => {
-    //   this.gridOptions.api.setQuickFilter(data.filter);
-    // });
-
     if (this.columnDefs) {
       this.setGroupDetails(1, this.columnDefs[0].field);
       if (this.columnDefs[0].headerName) {
@@ -145,16 +136,6 @@ export class AgGridTreeComponent implements OnInit {
   }
 
   @Output() cellClicked = new EventEmitter();
-  // onCellClicked(event) {
-  //   console.log(event, "e");
-  //   if (event.colDef.headerName == " ") {
-
-  //   }else{
-  //     this.cellClicked.emit(event);
-  //   }
-
-  // }
-
   /**
    *
    * Ensures that the cell clicked is first column and further calls onGroupClick funtion depending on expand field.
@@ -213,12 +194,6 @@ export class AgGridTreeComponent implements OnInit {
         parameter.vendor = parameter.vendor + i.toString();
         for (const index in parameter) {
           if (parameter.hasOwnProperty(index)) {
-            // if (!isNaN(parseInt(parameter[index]))) {
-            //   if (obj[index] === undefined) {
-            //     obj[index] = 0;
-            //   }
-            //   obj[index] = obj[index] + parseInt(parameter[index]);
-            // }
             if (!isNaN(parameter[index]) && parseInt(parameter[index])) {
               if (obj[index] === undefined) {
                 obj[index] = 0;
@@ -302,12 +277,6 @@ export class AgGridTreeComponent implements OnInit {
         break;
     }
   }
-
-
-
-
-
-
 }
 
 /**
@@ -323,7 +292,6 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i class="fas fa-plus-square"></i>' +
       '&nbsp;' +
-      // params.value +
       '</span>'
     );
   } else if (params['data'].expand === true) {
@@ -331,11 +299,8 @@ function getValue(params: any) {
       getspace(params.data) +
       '<span><i style="color: #0078D7;" class="fas fa-chevron-circle-up"></i>' +
       '&nbsp;' +
-      // params.value +
       '</span>'
     );
-  } else {
-    // return getspace(params.data) + params.value;
   }
 }
 

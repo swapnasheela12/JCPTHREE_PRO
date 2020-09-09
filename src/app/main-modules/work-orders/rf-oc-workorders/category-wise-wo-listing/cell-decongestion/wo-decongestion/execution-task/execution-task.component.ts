@@ -1,24 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router, Route } from '@angular/router';
+import { Router } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
 import { FormControl } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { FileUploadService } from 'src/app/_services/file-upload.service';
-import { map } from 'lodash';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
-import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
-
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { CommonPopupComponent, CommonDialogModel } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 import { TaskDropdownRendererComponent } from '../../../sector-misalignment/renderer/task-dropdown-renderer.component';
 import { TaskInputRendererComponent } from '../../../sector-misalignment/renderer/task-input-renderer.component';
@@ -29,7 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './execution-task.component.html',
   styleUrls: ['./execution-task.component.scss']
 })
-export class CellExecutionTaskComponent implements OnInit {
+export class CellExecutionTaskComponent {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   /////
@@ -174,7 +164,6 @@ export class CellExecutionTaskComponent implements OnInit {
         this.gridOptionsBiSector.api.sizeColumnsToFit();
         this.gridOptionsIdsc.api.sizeColumnsToFit();
         this.gridOptionsProposedOutdoor.api.sizeColumnsToFit();
-        //this.gridOptionsProposedIndoor.api.sizeColumnsToFit();
         this.gridOptionsMacroSiteData.api.sizeColumnsToFit();
         if (this.ianLead) {
           this.gridOptionsImplIan.api.sizeColumnsToFit();
@@ -188,24 +177,19 @@ export class CellExecutionTaskComponent implements OnInit {
   constructor(private datatable: TableAgGridService,
     private datashare: DataSharingService,
     private router: Router,
-    private overlayContainer: OverlayContainer,
     private httpClient: HttpClient,
-    private fileUploadService: FileUploadService,
     public dialog: MatDialog,
     public route: ActivatedRoute) {
-    router.events.subscribe((url: any) => console.log(url));
+    router.events.subscribe();
 
     this.route.paramMap.subscribe((data: any) => {
-      console.log("from url", data)
       this.executionType = data.params.title
     })
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,
-      'dropdown': dropDownThreeDotRendererComponent,
       'deleteRenderer': DeleteRendererComponent
     };
-    //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
     this.gridOptionsImplIan = <GridOptions>{};
@@ -247,8 +231,6 @@ export class CellExecutionTaskComponent implements OnInit {
       });
 
   }
-
-  ngOnInit(): void { }
 
   createColumnDefs() {
     return this.columnDefs = [
@@ -627,7 +609,6 @@ export class CellExecutionTaskComponent implements OnInit {
   };
 
   delete(params) {
-    console.log(params);
     this.gridOptions.api.forEachNode(
       function (node) {
         if (node.data == params) {
@@ -645,7 +626,6 @@ export class CellExecutionTaskComponent implements OnInit {
     formData.append('file', file);
     let obj;
     if (file) {
-      //this.uploadedImg = [];
       this.showFileUploadwidget = true;
       let url = `../../../../../../../assets/images/logo/${this.fileName}`
       obj = {
@@ -659,7 +639,6 @@ export class CellExecutionTaskComponent implements OnInit {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
       this.files = file;
-      //this.files.push({ data: file });
       this.uploadFiles();
     };
     fileUpload.click();
@@ -675,9 +654,6 @@ export class CellExecutionTaskComponent implements OnInit {
     const message = `Are you sure want to submit the workorder?`;
     const dialogRef = this.dialog.open(SuccessfulModalComponent, {
       data: message
-    });
-    dialogRef.afterClosed().subscribe(data => {
-      //console.log(data);
     });
   }
   goBack() {

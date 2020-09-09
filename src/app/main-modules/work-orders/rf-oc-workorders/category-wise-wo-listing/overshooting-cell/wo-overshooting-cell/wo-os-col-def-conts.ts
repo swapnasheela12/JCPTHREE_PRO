@@ -2,7 +2,6 @@ export const COLUMN_DEFS = [
     {
         headerName: " ",
         field: "grouplist",
-        // rowGroup: true,
         pinned: 'left',
         width: 70,
     },
@@ -55,21 +54,17 @@ export const COLUMN_DEFS = [
         field: 'lastmodifieddate',
         width: 140
     },
-   
+
     {
         headerName: 'Task Completion',
         field: 'taskCompletion',
         cellRenderer: function (params) {
-           var taskcompletion = params.data.taskcompletion;
+            var taskcompletion = params.data.taskcompletion;
             var taskprogress = params.data.progressbar;
-            // var taskprogresscolor = params.data.taskColor;
-
             var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
                 ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
             var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
                 ' <div class="progress"> <div class="progress-bar bg-in-progress" style="width:' + taskprogress + '%"></div> </div></div>';
-
             var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskprogress + '%</div>' +
                 ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
             if (taskcompletion == "Successful") {
@@ -83,11 +78,4 @@ export const COLUMN_DEFS = [
         pinned: 'right',
         width: 170
     }
-    // , {
-    //     headerName: "",
-    //     cellRenderer: 'viewHistroyRenderer',
-    //     pinned: 'right',
-    //     width: 90
-    // }
-
 ];

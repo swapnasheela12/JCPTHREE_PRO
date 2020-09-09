@@ -1,7 +1,5 @@
 import { HomeJcpThreeComponent } from '../../../home-jcp-three/home-jcp-three.component';
 import { MyReportsComponent } from 'src/app/main-modules/reports-dashboards/my-reports/my-reports.component';
-import { LandingHomeComponent } from 'src/app/home-jcp-three/landing-home/landing-home.component';
-
 
 const MODULE_LIST_CONFIG_VENDOR = [
     {
@@ -2816,7 +2814,7 @@ const DASHBOARD_LIST = [
         link: 'JCP/Reports-and-Dashboards/Dashboards',
         level: 1,
         component: HomeJcpThreeComponent,
-        children:[]
+        children: []
     }
 ];
 

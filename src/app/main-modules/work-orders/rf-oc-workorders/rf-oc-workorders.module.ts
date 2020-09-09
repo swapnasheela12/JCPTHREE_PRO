@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
-// import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -52,8 +50,6 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { RfOcWorkordersModuleRoutingModule } from './rf-oc-workorders-routing.module';
 import { SectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/sector-misalignment.component';
-//import { OvershootingCellComponent } from './category-wise-wo-listing/overshooting-cell/overshooting-cell.component';
-// import { WoRanPopupComponent } from './category-wise-wo-listing/overshooting-cell/ran-popup/wo-ran-popup/wo-ran-popup.component';
 import { CoreModule } from '../../../core/core.module';
 import { WoSectorMisalignmentComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-sector-misalignment.component';
 import { ExecutionTaskComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task.component';
@@ -70,10 +66,8 @@ import { DropdownComponent } from './category-wise-wo-listing/overshooting-cell/
 import { WostatusComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/wostatus.component';
 
 import { TextfieldComponent } from './category-wise-wo-listing/overshooting-cell/renderer/wostatus/textfield.component';
-import { ExecutionTaskSaveComponent } from './category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/execution-task/execution-task-save.component';
 import { SubmitWorkordedPopupComponent } from './category-wise-wo-listing/overshooting-cell/submit-workorded-popup.component';
 import { CellDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/cell-decongestion.component';
-//import { WoWidgetComponent } from './category-wise-wo-listing/common/widget/work-order-widget/wo-widget/wo-widget.component';
 import { WoDecongestionComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/wo-decongestion.component';
 import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-decongestion/wo-decongestion/execution-task/execution-task.component';
 
@@ -83,11 +77,8 @@ import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-deco
     SectorMisalignmentComponent,
     OvershootingCellComponent,
     ExecutionTaskComponent,
-    ExecutionTaskSaveComponent,
     WoSectorMisalignmentComponent,
-
     TextfieldComponent,
-
     OvershootingExeTaskComponent,
     IanLeadComponent,
     WoOvershootingCellComponent,
@@ -97,7 +88,6 @@ import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-deco
     WostatusComponent,
     SubmitWorkordedPopupComponent,
     CellDecongestionComponent,
-    //WoWidgetComponent,
     WoDecongestionComponent,
     CellExecutionTaskComponent
   ],
@@ -105,15 +95,13 @@ import { CellExecutionTaskComponent } from './category-wise-wo-listing/cell-deco
     RfOcWorkordersModuleRoutingModule,
     CommonModule,
     CoreModule,
-    // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, TaskDropdownRendererComponent, TaskInputRendererComponent]),
-    //Angular meterial
+    //Angular material
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
-    // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,

@@ -1,7 +1,5 @@
-import { style } from '@angular/animations';
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 
 @Component({
   selector: 'app-colorDropdown-renderer',
@@ -13,12 +11,10 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
                     </mat-option>
                 </mat-select>
             </mat-form-field>`
-   
 })
 
 export class colorDropdownRendererComponent implements ICellRendererAngularComp {
-
-  params:any;
+  params: any;
   label: string;
   colordata;
   selectedColor;
@@ -34,8 +30,8 @@ export class colorDropdownRendererComponent implements ICellRendererAngularComp 
   }
 
   onClick($event) {
-    console.log($event,"kkk");
-    
+    console.log($event, "kkk");
+
     if (this.params.onClick instanceof Function) {
       // put anything into params u want pass into parents component
       const params = {
@@ -48,16 +44,10 @@ export class colorDropdownRendererComponent implements ICellRendererAngularComp 
     }
   }
 
-  
-
   colors = ['#ffff00', '#ff3300', '#0000ff'
   ];
-  
-  onChange(value){
-    console.log(value,"value");
-    
+
+  onChange(value) {
     this.selectedColor = value;
   }
-
-
 }

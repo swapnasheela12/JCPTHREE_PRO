@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -7,8 +7,6 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { SelectionChangedEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'app-backhaul',
@@ -160,7 +158,7 @@ export class BackhaulComponent implements OnChanges {
     }
   }
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
   }
   ngOnChanges() {
@@ -229,18 +227,7 @@ export class BackhaulComponent implements OnChanges {
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(evt) {
-    this.gridFilterValueServices["filter"] = evt.target.value;
-    this.eventsSubject.next(this.gridFilterValueServices);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
@@ -254,5 +241,4 @@ export class BackhaulComponent implements OnChanges {
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
-
 }

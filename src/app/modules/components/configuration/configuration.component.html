@@ -4,9 +4,8 @@
         <button class="close-popup mat-icon-button" (click)="close()">
             <span class="material-icons">
                 close
-            </span></button>
-
-
+            </span>
+        </button>
     </div>
 
     <div class="config-dialog-content">
@@ -16,15 +15,13 @@
                     <mat-form-field appearance="fill">
                         <h6 class="font12">Bands</h6>
                         <mat-select class="font12" [(value)]="selectedBands">
-                            <mat-option *ngFor="let band of bands" [value]="band.value" >
+                            <mat-option *ngFor="let band of bands" [value]="band.value">
                                 {{band.viewValue}}
                             </mat-option>
                         </mat-select>
-
                     </mat-form-field>
-
-
                 </div>
+
                 <div class="sector">
                     <mat-form-field appearance="fill">
                         <h6 class="font12">Sectors</h6>
@@ -34,42 +31,34 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-
-
                 </div>
             </div>
+
             <div class="config-topbar-right">
                 <div class="iconwrapper">
                     <div class="icon-button">
                         <div class="zmdi zmdi-search"></div>
-
                     </div>
+
                     <div class="icon-button">
                         <div class="zmdi zmdi-download"></div>
-
                     </div>
+
                     <div class="icon-button">
                         <div class="zmdi zmdi-print"></div>
-
                     </div>
+
                     <div class="icon-button">
                         <div class="zmdi zmdi-share"></div>
-
                     </div>
+
                     <div class="icon-button">
                         <div class="zmdi zmdi-time-restore"></div>
-
                     </div>
                 </div>
             </div>
         </div>
         <div class="config-data-table">
-            <!-- <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3" rowHeight="48"
-                headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="configColumn" [rowData]="configRow"
-                enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                [frameworkComponents]="frameworkComponentsConfigmenu">
-            </ag-grid-angular> -->
             <app-table-ag-grid style="width: 100%; height: 400px; overflow:scroll;"></app-table-ag-grid>
         </div>
     </div>

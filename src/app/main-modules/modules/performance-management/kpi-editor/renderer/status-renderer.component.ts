@@ -7,7 +7,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
   <button class="success-button" *ngIf="enabled">{{status}}</button>
   <button class="disabled-button" *ngIf="!enabled">{{status}}</button>
   `,
-    styles: [`
+  styles: [`
       .success-button {
           background-color: #60DD5C;
           width: 72px;
@@ -30,7 +30,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
         line-height: 2;
         color: white;
       }`
-    ]
+  ]
 })
 
 export class StatusRendererComponent implements ICellRendererAngularComp {

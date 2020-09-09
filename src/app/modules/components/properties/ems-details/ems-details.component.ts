@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,34 +6,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './ems-details.component.html',
   styleUrls: ['./ems-details.component.scss']
 })
-export class EmsDetailsComponent implements OnInit, OnChanges {
-  // emsDetails = [
-  //   {
-  //     label: "",
-  //     value: ""
-  //   },
-  //   {
-  //     label: "",
-  //     value: ""
-  //   },
-  //   {
-  //     label: "",
-  //     value: ""
-  //   },
-  //   {
-  //     label: "",
-  //     value: ""
-  //   },
-  //   {
-  //     label: "",
-  //     value: ""
-  //   },
-  //   {
-  //     label: "",
-  //     value: ""
-  //   }
-  // ];
-
+export class EmsDetailsComponent implements OnChanges {
   emsDetails;
   ems;
   oam;
@@ -60,11 +33,6 @@ export class EmsDetailsComponent implements OnInit, OnChanges {
       this.signalling = result.signalling;
       this.bearer = result.bearer;
     });
-  }
-
-
-
-  ngOnInit(): void {
   }
 
   setEmsDialog(evt) {

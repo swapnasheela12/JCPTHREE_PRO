@@ -1,11 +1,11 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-geographical-details',
   templateUrl: './geographical-details.component.html',
   styleUrls: ['./geographical-details.component.scss']
 })
-export class GeographicalDetailsComponent implements OnInit, OnChanges {
+export class GeographicalDetailsComponent implements OnChanges {
   zone = [
     {
       label: "Zone",
@@ -100,8 +100,4 @@ export class GeographicalDetailsComponent implements OnInit, OnChanges {
       this.showTab = true;
     }
   }
-
-  ngOnInit(): void {
-  }
-
 }

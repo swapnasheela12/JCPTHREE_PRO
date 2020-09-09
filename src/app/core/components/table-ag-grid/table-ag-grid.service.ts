@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TableAgGridService {
-  public columnDefsServices:string[] = [];
-  public rowDataServices:string[] = [];
+  public columnDefsServices: string[] = [];
+  public rowDataServices = [];
   public typeOfAgGridTable;
   public rowDataURLServices;
   public gridOptionsServices;

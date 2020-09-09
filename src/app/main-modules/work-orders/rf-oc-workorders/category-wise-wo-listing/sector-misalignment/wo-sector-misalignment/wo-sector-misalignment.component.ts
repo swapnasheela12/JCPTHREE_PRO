@@ -1,17 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { COLUMN_DEFS } from './wo-column-defs.constants';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { FormControl } from '@angular/forms';
-import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { IWoValues, IWo_Sector_grid } from '../../../Irf-oc';
 
 const COLUMNDEFS = COLUMN_DEFS;
 @Component({
@@ -27,90 +24,70 @@ export class WoSectorMisalignmentComponent {
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  public sidenavBarStatus;
-  public rowData: any;
-  public columnDefs: any[];
+  public sidenavBarStatus: boolean;
+  public rowData: Array<IWo_Sector_grid>;
+  public columnDefs: Array<{}>;
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
   };
   public searchGrid = '';
-  public show;
   public paginationValues: number[] = [10, 20, 30, 40];
   public formControlPageCount = new FormControl();
   public gridFilterValueServices = {};
   public showGlobalOperation: boolean = true;
-  woHeader = [
+  woHeader: Array<IWoValues> = [
     {
+      id: 1,
       "label": "Category",
       "value": "Sector Misalignment"
     },
     {
+      id: 2,
       "label": "SAP ID",
       "value": "I-MU-MUMB-0306"
     },
     {
+      id: 3,
       "label": "Template",
       "value": "Sector Misalignment"
     },
     {
+      id: 4,
       "label": "Work Order Creation Date",
       "value": "24 Sep, 2019"
     },
     {
+      id: 5,
       "label": "Work Order Status",
       "value": "In Progress"
     }
   ];
   showFullScreen: boolean = false;
-  // onReadyModeUpdate(params) {
-  //   this.calculateRowCount();
-  // }
+  trackHero(index, woHeader) {
+    return woHeader ? woHeader.id : undefined;
+  }
 
-  // public onReady(params) {
-  //   this.gridApi = params.api;
-  //   this.calculateRowCount();
-  // }
-  // public calculateRowCount() {
-  //   if (this.gridOptions.api && this.rowData) {
-  //     setTimeout(() => {
-  //       this.gridOptions.api.sizeColumnsToFit();
-  //     }, 1000);
-  //   }
-  // }
-
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
-    private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer,
-    private httpClient: HttpClient) {
-
-    // this.gridOptions = <GridOptions>{};
-    router.events.subscribe((url: any) => console.log(url));
-    this.datashare.currentMessage.subscribe((message) => {
+  constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
+    router.events.subscribe();
+    this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
-
-      if (!message) {
-        console.log("message", message);
-        //this.calculateRowCount();
-        this.showFullScreen = false;
-      }
-      // this.getMyStyles()
     });
 
     //API call to get WO Service details
     this.httpClient.get(this.url)
-      .subscribe(data => {
+      .subscribe((data: Array<IWo_Sector_grid>) => {
         this.rowData = data;
         this.columnDefs = COLUMNDEFS;
       });
-
   }
 
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {
-    console.log(evt, "evt");
     this.gridFilterValueServices["filter"] = evt.target.value;
     this.eventsSubject.next(this.gridFilterValueServices);
   };
-  show: any;
+
+  show: boolean;
   toggleSearch() {
     this.show = !this.show;
   };
@@ -121,24 +98,7 @@ export class WoSectorMisalignmentComponent {
     }
   }
 
-  getMyStyles() {
-    let myStyles = {}
-    if (this.showFullScreen) {
-      myStyles = {
-        'width': '20%'
-      };
-    } else {
-      myStyles = {
-        'width': '25%'
-      };
-    }
-    return myStyles;
-  }
-
-
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment'])
   }
-
-
 }

@@ -1,18 +1,9 @@
 
-//import { Component, OnInit } from '@angular/core';
-import { Component, ViewEncapsulation, Inject, OnInit } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { GridOptions, GridCore } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
-import { from } from 'rxjs';
-import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
-import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
 import { Router } from '@angular/router';
 
 
@@ -21,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './question-popup.component.html',
   styleUrls: ['./question-popup.component.scss']
 })
-export class QuestionPopupComponent implements OnInit {
+export class QuestionPopupComponent {
 
   public tableWidth;
   public gridApi;
@@ -53,31 +44,15 @@ export class QuestionPopupComponent implements OnInit {
     }
   }
 
-
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
-    private httpClient: HttpClient, dialog: MatDialog,
-    public matDialog: MatDialog,
-    public dialogRef: MatDialogRef<QuestionPopupComponent>) {
-    router.events.subscribe((url: any) => { });
+  constructor(private router: Router, private httpClient: HttpClient,
+    public matDialog: MatDialog, public dialogRef: MatDialogRef<QuestionPopupComponent>) {
+    router.events.subscribe();
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
-
-    // this.datashare.currentMessage.subscribe((message) => {
-    //   this.sidenavBarStatus = message;
-    // });
-
     this.httpClient.get("assets/data/layers/popup-data/help-popup-data.json")
       .subscribe(data => {
         this.rowData = data;
-        // this.datatable.rowDataURLServices = "assets/data/layers/popup-data/help-popup-data.json";
-        // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-        // this.datatable.rowDataServices = this.rowData;
-        // this.datatable.gridOptionsServices = this.gridOptions;
-        // this.datatable.defaultColDefServices = this.defaultColDef;
       });
-  }
-
-  ngOnInit(): void {
   }
 
   private createColumnDefs() {
@@ -97,7 +72,6 @@ export class QuestionPopupComponent implements OnInit {
         width: 200,
       }
     ];
-    //this.datatable.columnDefsServices = this.columnDefs;
   }
 
   onGridReady(params) {
@@ -108,5 +82,4 @@ export class QuestionPopupComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
 }

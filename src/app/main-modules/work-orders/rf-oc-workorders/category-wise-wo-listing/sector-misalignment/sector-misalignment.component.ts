@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -6,13 +6,12 @@ import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-gr
 import { FormControl } from '@angular/forms';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { Subject } from 'rxjs';
+import { ISector_Grid } from '../../Irf-oc';
 
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
@@ -24,20 +23,16 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
 export class SectorMisalignmentComponent {
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
-  public paths;
-  public sidenavBarStatus;
-  public tableWidth;
+  public sidenavBarStatus: boolean;
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  public rowData: any;
+  public rowData: Array<ISector_Grid>;
   public columnDefs: any[];
   public rowCount: string;
   public defaultColDef = { resizable: true };
   public searchGrid = '';
-  public show;
   public gridFilterValueServices = {};
   tableCompData = {};
   public frameworkComponentsSectorMisalignment = {
@@ -67,17 +62,18 @@ export class SectorMisalignmentComponent {
     }
   }
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private route: ActivatedRoute, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
-    router.events.subscribe((url: any) => { });
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
+    private router: Router, private httpClient: HttpClient) {
+    router.events.subscribe();
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message) => {
+    this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
     });
 
     this.httpClient.get(this.url)
-      .subscribe(data => {
+      .subscribe((data: Array<ISector_Grid>) => {
         this.rowData = data;
         this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
@@ -150,13 +146,12 @@ export class SectorMisalignmentComponent {
     this.gridFilterValueServices["filter"] = evt.target.value;
     this.eventsSubject.next(this.gridFilterValueServices);
   };
-  show: any;
+  show: boolean;
   toggleSearch() {
     this.show = !this.show;
   };
 
   shareStatus(params) {
-    var data = params.data;
     if (!params.data)
       return '';
     var status = params.data.status;
@@ -173,7 +168,6 @@ export class SectorMisalignmentComponent {
   };
 
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
@@ -220,7 +214,6 @@ export class SectorMisalignmentComponent {
   }
 
   cellClickedDetails(evt) {
-    console.log(evt, "evt");
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
     }

@@ -1,26 +1,16 @@
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
-
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GridOptions, GridCore } from "@ag-grid-community/all-modules";
+import { MatDialog } from '@angular/material/dialog';
 import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
 import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
-// import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
+import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { FileUploadService } from 'src/app/_services/file-upload.service';
-import { map } from 'lodash';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
-import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
-import { AgGridModule, AgGridAngular } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 
 interface sitep {
@@ -33,12 +23,9 @@ interface sitep {
   styleUrls: ['./overshooting-exe-task.component.scss']
 })
 export class OvershootingExeTaskComponent implements OnInit {
-
   @ViewChild('agGrid') agGrid: AgGridAngular;
   @ViewChild('sugGrid') sugGrid: AgGridAngular;
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-
-
   public paths;
   public sidenavBarStatus;
   public tableWidth;
@@ -48,13 +35,12 @@ export class OvershootingExeTaskComponent implements OnInit {
   public gridOptions: GridOptions;
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
-public gridOptionsTaskretrigger: GridOptions;
+  public gridOptionsTaskretrigger: GridOptions;
 
   public taskColDef;
   public siteColDef;
   public implColDef;
   public implColDefIan;
-
 
   public rowData: any;
   public columnDefs: any;
@@ -64,15 +50,13 @@ public gridOptionsTaskretrigger: GridOptions;
 
   public taskRowdata;
   public addRemoveRows;
-  //public rowData: any;
   public columnDefswo;
   public rowDatawo;
-  //public columnrt;
   public rowExecutionTask;
   public spdetailsColumndata;
   public spdetailsRowdata;
   public frameworkComponentsos;
-  impParameterDetailsColumndata;
+  public impParameterDetailsColumndata;
 
   public imppdetailsRowdata;
   public imppdetailsColumndata;
@@ -80,9 +64,8 @@ public gridOptionsTaskretrigger: GridOptions;
   public physicalParameterColumndata;
   public physicalParameterrowdata;
   public pspRowdata: any;
-
   public siteRowdata;
-public implRowdata;
+  public implRowdata;
   gridOptionsImplIan: GridOptions;
 
   onReadyModeUpdate(params) {
@@ -106,40 +89,28 @@ public implRowdata;
   }
 
   constructor(
-    
-    private http: HttpClient, 
-    private datashare: DataSharingService,
-    private router: Router,
-    private overlayContainer: OverlayContainer,
-    private httpClient: HttpClient,
-    private fileUploadService: FileUploadService,
-    public dialog: MatDialog) {
+    private http: HttpClient, private datashare: DataSharingService, private router: Router, public dialog: MatDialog) {
+    this.gridOptionsTaskretrigger = <GridOptions>{};
+    this.gridOptionsImpl = <GridOptions>{};
+    this.gridOptionsImplIan = <GridOptions>{};
+    this.gridOptionsSite = <GridOptions>{};
+    this.taskColDef = this.createColumndata();
+    this.siteColDef = this.createspdetailsColumndata();
+    this.implColDef = this.createimppdetailsColumndata();
+    this.implColDefIan = this.createphysicalParametersColumndata();
 
-      this.gridOptionsTaskretrigger = <GridOptions>{};
-      this.gridOptionsImpl = <GridOptions>{};
-      this.gridOptionsImplIan = <GridOptions>{};
-      this.gridOptionsSite = <GridOptions>{};
-      this.taskColDef = this.createColumndata();
-      this.siteColDef = this.createspdetailsColumndata();
-      this.implColDef = this.createimppdetailsColumndata();
-      this.implColDefIan = this.createphysicalParametersColumndata();
-  
-      this.datashare.currentMessage.subscribe((message) => {
-        this.sidenavBarStatus = message;
-        this.calculateRowCount();
-      });
+    this.datashare.currentMessage.subscribe((message) => {
+      this.sidenavBarStatus = message;
+      this.calculateRowCount();
+    });
 
     this.frameworkComponentsTaskExecution = {
       deleteRenderer: DeleteRendererComponent
     };
-
   }
 
   ngOnInit(): void {
-
     this.gridOptions = <GridOptions>{};
-    //this.httpClientRowData();
-
     this.createColumndata();
     this.createRowdata();
     this.createspdetailsColumndata();
@@ -149,10 +120,6 @@ public implRowdata;
     this.createphysicalParametersColumndata();
     this.createpspRowdata();
   }
-
-
-
-
 
   public frameworkComponentsTaskExecution;
   taskClosureRemark = [
@@ -168,29 +135,24 @@ public implRowdata;
 
   private createColumndata() {
     this.columnDefswo = [
-
       {
         headerName: "Date",
         field: "date",
         width: 400
-
       }, {
         headerName: "Reason for Reassignmenet",
         field: "reasonforreassignment",
         width: 400
-
       }, {
         headerName: "Remarks",
         field: "remarks",
         width: 400
-
       }
     ]
   }
   private createRowdata() {
     this.http.get("assets/data/layers/workorders/execution-task.json")
       .subscribe(data => {
-        console.log(data);
         this.rowExecutionTask = data;
       });
   }
@@ -201,17 +163,13 @@ public implRowdata;
         headerName: "Site Parameter",
         field: "siteparameter",
         width: 450
-
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
         width: 450
-
       }
     ]
-
-
   }
   private createspdetailsRowdata() {
     this.http.get("assets/data/layers/workorders/site-parameter-data.json")
@@ -226,6 +184,7 @@ public implRowdata;
     { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
     { value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)' }
   ];
+
   sitepos: sitep[] = [
     { value: 'p-0', viewValue: 'E-Tilt(deg)' },
     { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
@@ -233,34 +192,6 @@ public implRowdata;
     { value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)' }
   ];
 
-  // private createimppdetailsColumndata() {
-  //   this.impParameterDetailsColumndata = [
-  //     {
-  //       headerName: "Site Parameter*",
-  //       field: "siteparameter",
-  //       width: 400,
-  //       cellRendererFramework: DropdownComponent
-
-  //     },
-  //     {
-  //       headerName: "New Value*",
-  //       field: "newvalue",
-  //       width: 400,
-  //       cellRendererFramework: TextfieldComponent
-
-
-  //     },
-  //     {
-  //       headerName: "",
-  //       field: "",
-  //       width: 300,
-  //       template: '<mat-icon style="line-height: 0;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon fas fa-trash-alt"></span></mat-icon>'
-
-  //     }
-  //   ]
-
-
-  // }
   private createimppdetailsColumndata() {
     this.impParameterDetailsColumndata = [
       {
@@ -268,26 +199,20 @@ public implRowdata;
         field: "siteparameter",
         width: 400,
         cellRendererFramework: DropdownComponent
-
       },
       {
         headerName: "New Value*",
         field: "newvalue",
         width: 400,
         cellRendererFramework: TextfieldComponent
-
-
       },
       {
         headerName: "",
         field: "delete",
         width: 300,
         cellRendererFramework: DeleteRendererComponent
-
       }
     ]
-
-
   }
   onAddRowimp() {
     this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
@@ -295,16 +220,8 @@ public implRowdata;
   }
   onAddRowsug() {
     this.sugGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
-
   }
 
-  // private createImplRowdata() {
-  //   this.http.get("assets/data/layers/workorders/impl-details.json")
-  //     .subscribe(data => {
-  //       console.log(data);
-  //       this.implnRowdata = data;
-  //   });
-  // }
   private createImplRowdata() {
     this.http.get("assets/data/layers/workorders/impl-details.json")
       .subscribe(data => {
@@ -313,9 +230,6 @@ public implRowdata;
       });
   }
 
-
-
-
   private createphysicalParametersColumndata() {
     this.physicalParameterColumndata = [
       {
@@ -323,26 +237,21 @@ public implRowdata;
         field: "siteparameter",
         width: 400,
         cellRendererFramework: DropdownComponent
-
       },
       {
         headerName: "New Value*",
         field: "newvalue",
         width: 400,
         cellRendererFramework: TextfieldComponent
-
-
       },
       {
         headerName: "",
         field: "",
         width: 300,
         cellRendererFramework: DeleteRendererComponent
-
       }
     ]
   }
-
 
   private createpspRowdata() {
     this.http.get("assets/data/layers/workorders/physical-parameter-data.json")
@@ -351,19 +260,16 @@ public implRowdata;
         this.pspRowdata = data;
       });
   }
- 
 
- 
   openSuccessPopup() {
     const dialogRef = this.dialog.open(SubmitWorkordedPopupComponent, {
       width: '700px',
       height: '290px',
       panelClass: 'file-upload-dialog'
     });
-    dialogRef.afterClosed().subscribe(data => {
-      //console.log(data);
-    });
+    dialogRef.afterClosed().subscribe(data => { });
   }
+
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell'])
   }
@@ -374,7 +280,7 @@ public implRowdata;
     const snackbarMode = 'success';
     const snackbarText = 'Workorder submitted Successfully.';
     const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
-    const dialogRef = this.dialog.open(CommonPopupComponent, {
+    this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
   }

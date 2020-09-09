@@ -8,7 +8,6 @@ import { MmenuDirective } from '../_directive/mmenu.directive';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
-// import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -59,17 +58,14 @@ import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpa
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
 import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
 import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
-// import { PaginationComponent } from './../common/pagination/pagination.component'
 import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
-//import { DeletebuttonComponent } from '../main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/overshooting-cell/overshooting-exe-task/deletebutton/deletebutton.component';
 import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
 import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.component';
-// import { HomeJcpThreeComponent } from '../home-jcp-three/home-jcp-three.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +99,6 @@ import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.c
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
-    // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
@@ -165,7 +160,6 @@ import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.c
     TableAgGridComponent,
     AgGridTreeComponent,
     DeleteRendererComponent
-    // PaginationComponent
   ], entryComponents: [
     SuccessfulComponent,
     SuccessfulModalComponent

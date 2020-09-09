@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
@@ -52,9 +52,7 @@ export class RadioParameterComponent implements OnChanges {
   }
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
-    router.events.subscribe((url: any) => { });
-
-
+    router.events.subscribe();
   }
 
   ngOnChanges() {
@@ -76,10 +74,6 @@ export class RadioParameterComponent implements OnChanges {
           this.datatable.defaultColDefServices = this.defaultColDef;
         });
     }
-  }
-
-  getSelection() {
-    var selectedRows = this.gridOptions.api.getSelectedRows();
   }
 
   private createColumnDefs() {
@@ -116,30 +110,13 @@ export class RadioParameterComponent implements OnChanges {
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(evt) {
-    this.gridFilterValueServices["filter"] = evt.target.value;
-    this.eventsSubject.next(this.gridFilterValueServices);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
 
 
   onSelectionChanged(event: SelectionChangedEvent) {
-    let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    if (1 < lengthOfSelectedRow) {
-    }
-  }
-
-  selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
     }
@@ -154,13 +131,5 @@ export class RadioParameterComponent implements OnChanges {
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
-
-  cellClickedDetails(evt) {
-    console.log(evt, "evt");
-    if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
-    }
-  }
-
 }
 

@@ -1,20 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClient } from "@angular/common/http";
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
-
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GridOptions, GridCore } from "@ag-grid-community/all-modules";
+import { MatDialog } from '@angular/material/dialog';
 import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
 import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
-import { Route, ActivatedRoute } from '@angular/router';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import {  AgGridAngular } from 'ag-grid-angular';
-import { FileUploadService } from 'src/app/_services/file-upload.service';
-import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
-import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { AgGridAngular } from 'ag-grid-angular';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 
 interface sitep {
@@ -33,92 +27,67 @@ interface taskclosures {
 export class IanLeadComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
-
- 
- 
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
-  //public rowData: any;
   public columnDefswo;
   public rowDatawo;
-  //public columnrt;
   public rowExecutionTask;
   public spdetailsColumndata;
   public spdetailsRowdata;
-public frameworkComponentsos;
+  public frameworkComponentsos;
   impParameterDetailsColumndata;
-
-public  imppdetailsRowdata;
-public imppdetailsColumndata;
+  public imppdetailsRowdata;
+  public imppdetailsColumndata;
   public implnRowdata;
   public physicalParameterColumndata;
-public physicalParameterrowdata;
+  public physicalParameterrowdata;
   public pspRowdata: any;
 
   constructor(
-
-    private datatable: TableAgGridService, 
-    private fileUploadService: FileUploadService, 
-    public flexlayout: FlexLayoutModule, 
-    private http: HttpClient,
-    private router: Router, 
-    private httpClient: HttpClient,
-    public dialog: MatDialog) {
-
-    this.frameworkComponentsos = {
-      "dropdownrender": DropdownComponent,
-      "textfieldrender": TextfieldComponent
-    }
+    public flexlayout: FlexLayoutModule, private http: HttpClient, private router: Router, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
-   
   }
 
   ngOnInit(): void {
-
     this.gridOptions = <GridOptions>{};
-    //this.httpClientRowData();
-  
     this.createColumndata();
     this.createRowdata();
     this.createspdetailsColumndata();
     this.createspdetailsRowdata();
     this.createimppdetailsColumndata();
     this.createImplRowdata();
-   
+
   }
   private createColumndata() {
-this.columnDefswo = [
+    this.columnDefswo = [
+      {
+        headerName: "Date",
+        field: "date",
+        width: 200
+      }, {
+        headerName: "Reason for Reassignmenet",
+        field: "reasonforreassignment",
+        width: 400
+      }, {
+        headerName: "Remarks",
+        field: "remarks",
+        width: 400
+      }
+    ]
+  }
 
-  {
-    headerName: "Date",
-    field: "date",
-   width: 200
-   
-  }, {
-    headerName: "Reason for Reassignmenet",
-    field: "reasonforreassignment",
-    width: 400
-   
-  }, {
-    headerName: "Remarks",
-    field: "remarks",
-    width: 400
-    
-  }
-]
-  }
   private createRowdata() {
     this.http.get("assets/data/layers/workorders/execution-task.json")
       .subscribe(data => {
         console.log(data);
         this.rowExecutionTask = data;
-    });
+      });
   }
 
   private createspdetailsColumndata() {
@@ -127,38 +96,38 @@ this.columnDefswo = [
         headerName: "Site Parameter",
         field: "siteparameter",
         width: 300
-       
       },
       {
         headerName: "Current Value",
         field: "currentvalue",
         width: 300
-       
       }
     ]
-    
 
-}
-private createspdetailsRowdata() {
-  this.http.get("assets/data/layers/workorders/site-parameter-data.json")
-    .subscribe(data => {
-      console.log(data);
-      this.spdetailsRowdata = data;
-  });
-}
 
-siteps: sitep[] = [
-  {value: 'p-0', viewValue: 'E-Tilt(deg)'},
-  {value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)'},
-  {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'}
-];
-sitepos: sitep[] = [
-  {value: 'p-0', viewValue: 'E-Tilt(deg)'},
-  {value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)'},
-  {value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)'},
-  {value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)'}
-];
-uploadedImg = [];
+  }
+  private createspdetailsRowdata() {
+    this.http.get("assets/data/layers/workorders/site-parameter-data.json")
+      .subscribe(data => {
+        console.log(data);
+        this.spdetailsRowdata = data;
+      });
+  }
+
+  siteps: sitep[] = [
+    { value: 'p-0', viewValue: 'E-Tilt(deg)' },
+    { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
+    { value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)' }
+  ];
+
+  sitepos: sitep[] = [
+    { value: 'p-0', viewValue: 'E-Tilt(deg)' },
+    { value: 'p-1', viewValue: 'Tx-Atenuation-Port1(db)' },
+    { value: 'p-2', viewValue: 'Tx-Atenuation-Port2(db)' },
+    { value: 'p-3', viewValue: 'Tx-Atenuation-Port2(db)' }
+  ];
+
+  uploadedImg = [];
   showFileUploadwidget: boolean = false;
   taskClosureRemarks = ["DataMismatch", "Site Access Issue", "Space Constraints", "Material Required", "Required based on cluuter", "Implementation done"]
   onReadyModeUpdate(params) {
@@ -179,65 +148,61 @@ uploadedImg = [];
     }
   }
 
-private createimppdetailsColumndata() {
-  this.impParameterDetailsColumndata = [
-    {
-      headerName: "Site Paraameter*",
-      field: "siteparameter",
-      width: 400,
-      cellRendererFramework: DropdownComponent
-     
-    },
-    {
-      headerName: "New Value*",
-      field: "newvalue",
-      width: 400,
-      cellRendererFramework: TextfieldComponent
-
-     
-    },
-    {
-      headerName: "",
-      field: "",
-      width: 300,
-      cellRendererFramework: DeleteRendererComponent
-     
-    }
-  ]
-  
-
-}
+  private createimppdetailsColumndata() {
+    this.impParameterDetailsColumndata = [
+      {
+        headerName: "Site Paraameter*",
+        field: "siteparameter",
+        width: 400,
+        cellRendererFramework: DropdownComponent
+      },
+      {
+        headerName: "New Value*",
+        field: "newvalue",
+        width: 400,
+        cellRendererFramework: TextfieldComponent
+      },
+      {
+        headerName: "",
+        field: "",
+        width: 300,
+        cellRendererFramework: DeleteRendererComponent
+      }
+    ]
 
 
-// onGridReady(params) {
-//   this.gridApi = params.api;
-//   this.gridColumnApi = params.columnApi;
-// }
-// onAddRowimpl()
-//    {
-//      this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
-  
-//    }
+  }
 
 
-private createImplRowdata() {
-  this.http.get("assets/data/layers/workorders/impl-details.json")
-    .subscribe(data => {
-      console.log(data);
-      this.implnRowdata = data;
-  });
-}
+  // onGridReady(params) {
+  //   this.gridApi = params.api;
+  //   this.gridColumnApi = params.columnApi;
+  // }
+  // onAddRowimpl()
+  //    {
+  //      this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
 
-taskclosures: taskclosures[] = [
-  {value: '0', viewValue: 'Antenna Pole Mount Uptilt corrected'},
-  {value: '1', viewValue: 'Site Access Issues'},
-  {value: '2', viewValue: 'Space Constraint'},
-  {value: '3', viewValue: 'Material Required'},
-  {value: '4', viewValue: 'Implementation Done'}
-];
+  //    }
+
+
+  private createImplRowdata() {
+    this.http.get("assets/data/layers/workorders/impl-details.json")
+      .subscribe(data => {
+        console.log(data);
+        this.implnRowdata = data;
+      });
+  }
+
+  taskclosures: taskclosures[] = [
+    { value: '0', viewValue: 'Antenna Pole Mount Uptilt corrected' },
+    { value: '1', viewValue: 'Site Access Issues' },
+    { value: '2', viewValue: 'Space Constraint' },
+    { value: '3', viewValue: 'Material Required' },
+    { value: '4', viewValue: 'Implementation Done' }
+  ];
 
   // gotoPrevview(details) {
-  
+
   //   this.route.navigate(['/Overshooting-Cell/WO-Overshooting-Cell'], { relativeTo: this.route });
   // }
   openSuccessPopup() {
@@ -278,11 +243,10 @@ taskclosures: taskclosures[] = [
     this.gridColumnApi = params.columnApi;
   }
 
-  onAddRowimpl()
-   {
-     this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
-  
-   }
+  onAddRowimpl() {
+    this.agGrid.api.addItems([{ siteparameter: '', newvalue: '', delete: '' }]);
+
+  }
 
 
 
@@ -312,7 +276,7 @@ taskclosures: taskclosures[] = [
 
 
   onClick() {
-    const fileUpload = this.fileUpload.nativeElement; 
+    const fileUpload = this.fileUpload.nativeElement;
     fileUpload.onchange = () => {
       const file = fileUpload.files[0];
       this.files = file;

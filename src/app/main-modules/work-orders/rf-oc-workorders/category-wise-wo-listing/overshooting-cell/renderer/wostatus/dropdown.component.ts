@@ -14,39 +14,23 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
   encapsulation: ViewEncapsulation.None
 })
 export class DropdownComponent implements ICellRendererAngularComp {
-
- 
-
-  ngOnInit(): void {
-  }
   params;
   siteParameter = "E-Tilt(deg)";
- // customModule = "Disable";
 
   siteParameterList = [
     'E-Tilt',
     'Tx attenuation-Port1 (db)',
     'Tx attenuation-Port2 (db)',
- 
   ];
- 
   columnName: string;
   rowIndex: number;
-  constructor(
-  ) {
-  }
 
   agInit(params): void {
     this.params = params;
-    console.log(params)
-    // this.columnName = params.column.colDef.headerName;
-    // this.rowIndex = params.rowIndex;
-    // this.daysImprovementVal = this.daysImprovementList[this.rowIndex];
   }
 
   refresh(params?: any): boolean {
     return true;
   }
-
 }
 

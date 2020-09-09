@@ -1,15 +1,9 @@
 
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, Observer } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import {MatTabsModule} from '@angular/material/tabs';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
 import { HttpClient } from "@angular/common/http";
-import { AgGridModule } from 'ag-grid-angular';
-
-//import { ButtonRendererComponent } from '../button-renderer.component;
 
 declare var require: any;
 
@@ -19,8 +13,6 @@ declare var require: any;
   styleUrls: ['./alarms-popup.component.scss']
 })
 export class AlarmsPopupComponent implements OnInit {
-
-
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
@@ -309,7 +301,6 @@ export class AlarmsPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.rowClassRulesaa = {
       'redFont': function (params) {
         return params.data.jcpclassification == 'outage'
@@ -317,10 +308,6 @@ export class AlarmsPopupComponent implements OnInit {
       'greenFont': function (params) {
         return params.data.jcpclassification == 'pdegradation'
       },
-
-
-
-
     }
     this.rowClassRulesah = {
       'redFont': function (params) {
@@ -347,27 +334,18 @@ export class AlarmsPopupComponent implements OnInit {
           return params.data.plannedincidental == 'Planned'
         },
       }
-
-
-
   }
-
-
-
-
 
   openDialogAlarms() {
     const dialogRef = this.dialog.open(AlarmsPopupComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-
     });
-
   };
+
   closeDialog() {
     this.dialogRef.close();
   }
-
 
   private createRowdata() {
     this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-1.json")
@@ -376,15 +354,12 @@ export class AlarmsPopupComponent implements OnInit {
       });
   }
 
-
-
   private createRowah() {
     this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-2.json")
       .subscribe(data => {
         this.rowah = data;
       });
   }
-
 
   private createRowss() {
     this.http.get("assets/data/layers/popup-data/alarms-popup-dataset-site-status.json")

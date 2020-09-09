@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
@@ -18,8 +18,6 @@ import { SelectionChangedEvent } from 'ag-grid-community';
 export class SiteMilestoneComponent {
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
-  public paths;
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
@@ -33,7 +31,7 @@ export class SiteMilestoneComponent {
   public searchGrid = '';
   public show;
   public gridFilterValueServices = {};
-  tableCompData = {};
+  public tableCompData = {};
   public frameworkComponentsSectorMisalignment = {
     viewHistroyRenderer: viewHistoryRendererComponent
   };
@@ -117,30 +115,12 @@ export class SiteMilestoneComponent {
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(evt) {
-    this.gridFilterValueServices["filter"] = evt.target.value;
-    this.eventsSubject.next(this.gridFilterValueServices);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
 
-
   onSelectionChanged(event: SelectionChangedEvent) {
-    let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    if (1 < lengthOfSelectedRow) {
-    }
-  }
-
-  selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
     }
@@ -154,13 +134,6 @@ export class SiteMilestoneComponent {
 
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  }
-
-  cellClickedDetails(evt) {
-    console.log(evt, "evt");
-    if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
-    }
   }
 
 }

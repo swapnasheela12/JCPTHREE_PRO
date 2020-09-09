@@ -1,12 +1,10 @@
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { selectedLayer } from './../../../main-modules/main-layer/table-view-control/table-view-data';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject } from 'rxjs';
-import { any } from 'underscore';
 
 declare var $: any;
 
@@ -68,7 +66,7 @@ export class LeftsideNavigationComponent implements OnInit {
       level: level,
       link: node.link,
       classId: node.classId,
-      eventName:node.eventName,
+      eventName: node.eventName,
       parentToChild: node.parentToChild,
       children: node.children
     };
@@ -314,7 +312,7 @@ export class LeftsideNavigationComponent implements OnInit {
    * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
    */
   getParent(node) {
-   const { treeControl } = this;
+    const { treeControl } = this;
     const currentLevel = treeControl.getLevel(node);
     if (currentLevel < 1) {
       return null;
@@ -331,9 +329,9 @@ export class LeftsideNavigationComponent implements OnInit {
 
   selectedLayerArr: any = [];
   onChecked(selected, node, activeCheckbox, eventChecked) {
-    console.log(node,"node");
-    
-    
+    console.log(node, "node");
+
+
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -347,7 +345,6 @@ export class LeftsideNavigationComponent implements OnInit {
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
 
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-      // this.router.navigate([node.link]);
     } else {
 
       for (let item of this.selectedLayerArr) {

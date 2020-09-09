@@ -25,6 +25,7 @@
 
   <mat-divider style="position: relative;"></mat-divider>
   <div class="jcp-table-container">
+
     <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
     </app-table-ag-grid>
 
