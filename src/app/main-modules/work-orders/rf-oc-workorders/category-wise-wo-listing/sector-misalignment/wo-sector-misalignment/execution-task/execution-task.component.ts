@@ -1,5 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -12,13 +11,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 import { IExec_Task, IExec_Site, IExec_Impl, IExec_Impl_Ian, ILabelValue, IExec_Task_Closure_Remark } from '../../../../Irf-oc';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-execution-task',
   templateUrl: './execution-task.component.html',
   styleUrls: ['./execution-task.component.scss']
 })
-export class ExecutionTaskComponent {
+export class ExecutionTaskComponent implements OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   public sidenavBarStatus: boolean;
@@ -70,6 +70,8 @@ export class ExecutionTaskComponent {
       "newAzimuthValue": ""
     },
   ];
+  public destroySubscription: Subscription = new Subscription();
+
 
   public implRowdataIAN: Array<IExec_Impl_Ian> = [
     {
@@ -190,7 +192,7 @@ export class ExecutionTaskComponent {
     }
   }
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
+  constructor(private datashare: DataSharingService, private router: Router,
     private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe();
     this.frameworkComponentsTaskExecution = {
@@ -207,7 +209,7 @@ export class ExecutionTaskComponent {
     this.implColDef = this.createImplColumnDefs();
     this.implColDefIan = this.createImplColumnDefsIan();
 
-    this.datashare.currentMessage.subscribe((message: boolean) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
       this.calculateRowCount();
     });
@@ -392,11 +394,16 @@ export class ExecutionTaskComponent {
 
   openSuccessPopup() {
     const message = `Are you sure want to submit the workorder?`;
-    const dialogRef = this.dialog.open(SuccessfulModalComponent, {
+    this.dialog.open(SuccessfulModalComponent, {
       data: message
     });
   }
+
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment'])
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }

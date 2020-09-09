@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { ISector_Grid } from '../../Irf-oc';
 
 
@@ -20,7 +20,7 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
   templateUrl: './sector-misalignment.component.html',
   styleUrls: ['./sector-misalignment.component.scss']
 })
-export class SectorMisalignmentComponent {
+export class SectorMisalignmentComponent implements OnDestroy {
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   public sidenavBarStatus: boolean;
@@ -35,6 +35,7 @@ export class SectorMisalignmentComponent {
   public searchGrid = '';
   public gridFilterValueServices = {};
   tableCompData = {};
+  public destroySubscription: Subscription = new Subscription();
   public frameworkComponentsSectorMisalignment = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -68,7 +69,7 @@ export class SectorMisalignmentComponent {
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message: boolean) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
     });
 
@@ -217,6 +218,10 @@ export class SectorMisalignmentComponent {
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment"]);
     }
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 
 }

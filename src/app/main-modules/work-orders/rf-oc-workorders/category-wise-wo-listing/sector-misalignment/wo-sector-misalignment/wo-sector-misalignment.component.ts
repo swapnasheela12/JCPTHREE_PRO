@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { COLUMN_DEFS } from './wo-column-defs.constants';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -7,7 +7,7 @@ import { StatusRendererComponent } from 'src/app/main-modules/modules/performanc
 import { FormControl } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { IWoValues, IWo_Sector_grid } from '../../../Irf-oc';
 
 const COLUMNDEFS = COLUMN_DEFS;
@@ -16,7 +16,7 @@ const COLUMNDEFS = COLUMN_DEFS;
   templateUrl: './wo-sector-misalignment.component.html',
   styleUrls: ['./wo-sector-misalignment.component.scss']
 })
-export class WoSectorMisalignmentComponent {
+export class WoSectorMisalignmentComponent implements OnDestroy {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -63,13 +63,14 @@ export class WoSectorMisalignmentComponent {
     }
   ];
   showFullScreen: boolean = false;
+  public destroySubscription: Subscription = new Subscription();
   trackHero(index, woHeader) {
     return woHeader ? woHeader.id : undefined;
   }
 
   constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
-    this.datashare.currentMessage.subscribe((message: boolean) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
     });
 
@@ -100,5 +101,9 @@ export class WoSectorMisalignmentComponent {
 
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment'])
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }
