@@ -1,5 +1,5 @@
 import { KpiSettingsComponent } from './kpi-settings/kpi-settings.component';
-import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 
@@ -11,8 +11,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class KpiDetailsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<KpiDetailsComponent>,public dialog: MatDialog) { }
-
+    private dialogRef: MatDialogRef<KpiDetailsComponent>, public dialog: MatDialog) { }
   private inited;
   ngOnInit(): void {
     this.dialogRef.afterOpened().subscribe(() => {
@@ -91,5 +90,4 @@ export class KpiDetailsComponent implements OnInit {
   kpiDetailsChartPopFun() {
     this.showChart = true;
   }
-
 }
