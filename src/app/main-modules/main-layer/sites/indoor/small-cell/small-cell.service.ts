@@ -9,62 +9,46 @@ import * as _ from 'underscore';
   providedIn: 'root'
 })
 export class SmallCellService {
-  map: any;
-  _map;
-  states;
-  lib;
+  public map: any;
+  public _map;
+  public states;
+  public lib;
   public mydata;
-  _canvasLayer;
-  sitesData: any;
-  stateLayer: any;
+  public _canvasLayer;
+  public sitesData: any;
+  public stateLayer: any;
+  public dataShareSub: any;
   constructor(private datashare: DataSharingService, private router: Router, private shapeService: ShapeService, private http: HttpClient,) {
     this.lib = leaflayer();
-    console.log(this.lib, ">>>>");
     this.redrawLayer();
-
-   
-
   }
-
 
   redrawLayer() {
     console.log(this.shapeService, "this.shapeService");
     setTimeout(() => {
         this.draw();
-    }, 2000);
-
-
+    }, 1000);
   }
 
   public draw = function () {
 
-    console.log(L, "L");
-   
     this._map = this.shapeService.mapServiceData;
 
     var resizeContainer = function () {
       var canvas = this.getContainer();
-      console.log(L.Browser);
-
       var m = L.Browser.retina ? 2 : 1;
-
       var size = this._bounds.getSize();//resize
-
       var padding = this._padding;
       canvas.width = m * size.x;
       canvas.height = m * size.y;
       canvas.style.width = size.x + "px";
       canvas.style.height = size.y + "px";
-
       var ctx = canvas.getContext("2d");
-
       if (L.Browser.retina) {
         ctx.scale(m, m);
       }
       ctx.translate(padding.x, padding.y);
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       return ctx;
     };
 
@@ -78,21 +62,14 @@ export class SmallCellService {
       alwaysRender: true
     });
 
-    canvasLayer.on("layer-beforemount", function () {
-      console.log("layer-beforemount");
-    });
+    canvasLayer.on("layer-beforemount", function () {});
 
-    canvasLayer.on("layer-mounted", function () {
-      console.log("layer-mounted");
-    });
+    canvasLayer.on("layer-mounted", function () {});
 
     canvasLayer.on("layer-render", function () {
-      console.log("layer-render");
-      // this.sitesDraw();
-
+      
       var ctx = resizeContainer.bind(this)();
       // ctx.fillStyle = "rgba(255,116,0, 0.5)";
-
       var bounds = this._map.getBounds();
       // for (var i = 0; i < data.length; i++) {
       //   var d = data[i].latlng;
@@ -107,15 +84,11 @@ export class SmallCellService {
 
     });
 
-    canvasLayer.on("layer-beforedestroy", function () {
-      console.log("layer-beforedestroy");
-    });
+    canvasLayer.on("layer-beforedestroy", function () {});
 
-    canvasLayer.on("layer-destroyed", function () {
-      console.log("layer-destroyed");
-    });
+    canvasLayer.on("layer-destroyed", function () {});
 
-    this.datashare.currentMessage.subscribe(val => {
+    this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
       this.selectedLayerArrList = val;
       canvasLayer.remove(this._map);
@@ -136,11 +109,8 @@ export class SmallCellService {
 
   }
 
-
-
   boundariesData() {
     this.shapeService.getStateShapes().subscribe(states => {
-      console.log(states, "states");
       this.states = states;
       this.initStatesLayer();
     });
@@ -198,7 +168,6 @@ export class SmallCellService {
     const layer = e.target;
     layer.fitBounds(e.target.getBounds());
   }
-
 
 
 }

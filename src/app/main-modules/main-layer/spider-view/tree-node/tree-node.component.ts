@@ -12,11 +12,6 @@ import * as D3 from 'd3/index';
 })
 export class TreeNodeComponent implements OnInit {
 
-  // constructor() { }
-
-  // ngOnInit(): void {
-  // }
-
   private _issue;
   @Input() set issue(value) {
     this._issue = value;
@@ -25,47 +20,33 @@ export class TreeNodeComponent implements OnInit {
   get issue() {
     return this._issue;
   }
-  isOpen = true;
-
+  public isOpen = true;
   private host;
   private margin = { top: 20, right: 90, bottom: 30, left: 90 };
   private width = 500 - this.margin.left - this.margin.right;
   private height = 600 - this.margin.top - this.margin.bottom;
-  treemap = D3.tree().size([this.height, this.width]);
-
+  private treemap = D3.tree().size([this.height, this.width]);
   private htmlElement: HTMLElement;
 
   constructor(private element: ElementRef, public dialog: MatDialog,router: Router,public dialogRef: MatDialogRef<TreeNodeComponent>) {
     this.htmlElement = this.element.nativeElement;
     this.host = D3.select(this.element.nativeElement);
-
-     // Close any opened dialog when route changes
      router.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationStart),
       tap(() => this.dialog.closeAll())
     ).subscribe();
   }
 
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 
   draw(issue) {
     if (!issue) {
       return;
     }
 
-    // var zoom = D3.zoom()
-    //   .scaleExtent([1, 10])
-    //   .on("zoom", zoomed);
-
     var nodes = D3.hierarchy(issue, function (d) {
       return d.children;
     });
-
-    console.log(nodes, "nodes");
 
     nodes = this.treemap(nodes);
     while (this.htmlElement.hasChildNodes()) {
@@ -75,10 +56,7 @@ export class TreeNodeComponent implements OnInit {
       .attr("width", this.width + this.margin.left + this.margin.right)
       .attr("height", this.height + this.margin.top + this.margin.bottom);
     var g = svg.append("g")
-    //   .attr("transform",
-    //     "translate(" + this.margin.left + "," + this.margin.top + ")");
-    // svg.call(zoom);
-
+    
     // adds the links between the nodes
     var link = g.selectAll(".link")
       .data(nodes.descendants().slice(1))
@@ -161,11 +139,7 @@ export class TreeNodeComponent implements OnInit {
         return d.data.fontvalue;
       });
 
-
-
-
     // UPDATE
-    //var nodeUpdate = node.merge(node);
     // Transition to the proper position for the node
     node.transition()
       .duration(750)
@@ -205,7 +179,6 @@ export class TreeNodeComponent implements OnInit {
       })
       .text(function (d) { return d.data.name; });
 
-
     //line end circle
     node.append('circle')
       .attr('r', 3)
@@ -226,11 +199,7 @@ export class TreeNodeComponent implements OnInit {
       var AlarmsListDialogRef = {
         width: '800px',
         height: '500px',
-        // position: { bottom: '60px', right: "60px" },
         panelClass: "alarms-layers-dialog-container",
-        // backdropClass: 'cdk-overlay-transparent-backdrop',
-        // disableClose: true,
-        // hasBackdrop: true
       }
       const dialogRef = this.dialog.open(AlarmsPopupComponent,AlarmsListDialogRef);
       dialogRef.afterClosed().subscribe(result => {

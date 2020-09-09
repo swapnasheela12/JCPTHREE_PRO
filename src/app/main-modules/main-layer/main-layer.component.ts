@@ -4,40 +4,22 @@ import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-prev
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-
-import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import * as L from 'leaflet';
-
-// import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
-// import {CanvasLayer} from  '../../../js/L.CanvasLayer.js';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
-// import "../../../js/L.CanvasLayer.js";
-// import * as canvasLayer from 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MarkerService } from 'src/app/_services/leaflate/marker.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
-import { concatAll } from 'rxjs/operators';
-import { saveAs } from 'file-saver';
 import '../../../js/leaflet-ruler.js'
-import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter'
-import { stringToArray } from 'ag-grid-community';
+import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
 import { MarcoService } from './sites/outdoor/macro/marco.service';
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import 'leaflet-contextmenu';
-// import '../../../../node_modules/leaflet-contextmenu/dist/leaflet.contextmenu.min.js';
 declare var $: any;
-declare const testName: any;
-
-// Type for Library Canvas
-interface DataObject {
-  [key: string]: any;
-}
 
 @Component({
   selector: 'app-main-layer',
@@ -46,69 +28,47 @@ interface DataObject {
 })
 export class MainLayerComponent implements OnInit, AfterViewInit {
   @ViewChild('spiderView', { read: ViewContainerRef }) target: ViewContainerRef;
-  private componentRef: ComponentRef<any>;
-
-  map: any;
-  CanvasLayer: any;
+  public map: any;
+  public CanvasLayer: any;
   public chartDivWidth;
   public chartDivHeight;
-
   public customControl;
   public customControlPanIndia;
   public screenShotControl;
   public customControlList;
-
   public currentZoom;
-  mapContextMenuItems;
-  //CANVAS LIBRARY CONTENT
-  public canvasLibrary: DataObject;
-
-  // screenShortFun;
-  simpleMapScreenshoterContext
-
-  //PIE JSON DATA
-  public siteData: DataObject;
+  public mapContextMenuItems;
+  public simpleMapScreenshoterContext;
   public fanDataError: String;
-
   public routPathVal;
-
   public selectedLayerArrList: any = [];
   public countOfLayerSelected = 0;
-
-  countDiv;
-
+  public countDiv;
+  public contextMenuLib;
+  public rulerLeafletLib;
+  public libCustomLayer;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver?: ComponentFactoryResolver
+    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
   ) {
-
     this.router.events.subscribe((event: any) => {
-      console.log(event.url, "event");
       this.routPathVal = event.url;
     })
   }
 
-
-  contextMenuLib;
-  rulerLeafletLib;
-  libCustomLayer;
   ngOnInit(): void {
     this.libCustomLayer = leaflayer();
-    // this.canvasLibrary = canvasLayerForLeaflet();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
-    this.siteDataJson();
-    this.smallCellServiceFunc();
   }
-
 
   ngAfterViewInit() {
     this.initMap();
     this.markerService.makeCapitalMarkers(this.map);
   }
 
-
   private initMap(): void {
 
+    //marker code
     const iconRetinaUrl = 'assets/images/Layers/3.svg';
     const iconUrl = 'assets/images/Layers/3-1.svg';
     const iconDefault = L.icon({
@@ -120,11 +80,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       tooltipAnchor: [16, -28],
       shadowSize: [41, 41]
     });
-
     L.Marker.prototype.options.icon = iconDefault;
 
 
-
+    //map object create
     let optionMap = {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
@@ -195,15 +154,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
         },
       ]
     }
-
     this.map = this.contextMenuLib.map('map', optionMap);
 
+    //geo json control
     this.map.on('pm:globalremovalmodetoggled', e => { });
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.map);
 
-    //geo json control
     var options = {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
       drawMarker: true,  // adds button to draw markers
@@ -219,31 +177,23 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       editMode: false,
       dragMode: false,// drag and drop
     };
-
     this.map.pm.addControls(options);
     //geo json control
 
-    //CanvasLibrary
-    // this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
-
-    // this.connectPoints(this.map);
-
+    //pan india zoom
     this.currentZoom = this.map.getZoom();
+    let _currentZoom = this.currentZoom;
 
     //screenshort
     this.screenShotControl = L.Control.extend({
-
       options: {
         position: 'bottomright',
       },
-
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
-
         container.innerHTML = ' <div class="tab-container-layers"><div class="icon-style"><i class="ic ic-snapshot1"></i></div></div>';
         container.style.backgroundColor = 'white';
         container.style.backgroundSize = "40px 40px";
-
         container.style.width = '40px';
         container.style.height = '40px';
 
@@ -256,7 +206,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
               return 'Jio Cognitive Platform'
             }
           }).then(image => {
-
             var screenshortListDialogRef = {
               width: '650px',
               height: '450px',
@@ -264,23 +213,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
                 imageDataURL: image
               },
               panelClass: "table-view-layers-dialog-container",
-
             }
             const dialogRef = _dialog.open(ScreenshotPreviewComponent, screenshortListDialogRef);
-
           }).catch(e => {
             alert(e.toString())
           })
-
         }
-
         return container;
       },
-      onRemove: function (map) {
-        // console.log('buttonClicked?????????');
-      }
+      onRemove: function (map) {}
     });
-
     this.map.on('simpleMapScreenshoter.error', function (event) {
       var el = document.createElement('div')
       el.classList.add('create-screen-error')
@@ -291,6 +233,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     //screenshort
 
     //custome controller//
+    let _datashare = this.datashare;
+    let _dialog = this.dialog;
+    let _map = this.map;
 
     this.customControlPanIndia = L.Control.extend({
 
@@ -328,8 +273,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       }
     });
     this.map.addControl(new this.customControlPanIndia());
-
-    let _datashare = this.datashare;
     var countTest = this.countOfLayerSelected;
     this.customControl = L.Control.extend({
       options: {
@@ -397,13 +340,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
       }
     });
-
     this.map.addControl(new this.customControl());
-
-    let _dialog = this.dialog;
-    let _currentZoom = this.currentZoom;
-    let _map = this.map;
-
     this.customControlList = L.Control.Layers.extend({
       options: {
         position: 'bottomright',
@@ -538,107 +475,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.map.addControl(new this.customControlList());
     //custome controller//
 
-    // this.shapeService.getStateShapes().subscribe(states => {
-    //   // console.log(states, "states");
-    //   this.states = states;
-    //   this.initStatesLayer();
-    // });
-
     this.shapeService.mapServiceData = this.map;
-    // this.callingLayerSelected(this.map);
   }
 
-  // selectedLayerList: any = [];
-  // callingLayerSelected(mapData) {
-  //   console.log(mapData, "mapData");
-  //   this.datashare.currentMessage.subscribe(item => {
-  //     console.log(item, "item");
-  //     this.selectedLayerList = item;
-  //     for (let index = 0; index < this.selectedLayerList.length; index++) {
-  //       const element = this.selectedLayerList[index];
-  //       if (element.link == "JCP/Layers/Small-Cell") {
-  //         this.shapeService.mapServiceData = mapData;
-  //         // let node = new this.smallCellService.redrawLayer();
-  //         // console.log(node, "node small cell");
-  //         // node.addTo(this.map);
-  //       }
-  //     }
-
-  //   })
-  // };
-
-
-
-  // states;
-  // private initStatesLayer() {
-  //   const stateLayer = L.geoJSON(this.states, {
-  //     style: (feature) => ({
-  //       weight: 2,
-  //       opacity: 0.5,
-  //       color: '#008f68',
-  //       fillOpacity: 0.4,
-  //       fillColor: '#6DB65B'
-  //     }),
-  //     onEachFeature: (feature, layer) => (
-  //       layer.on({
-  //         mouseover: (e) => (this.highlightFeature(e)),
-  //         mouseout: (e) => (this.resetFeature(e)),
-  //       })
-  //     )
-  //   });
-
-  //   this.map.addLayer(stateLayer);
-  // }
-
-  // private highlightFeature(e) {
-  //   const layer = e.target;
-  //   layer.setStyle({
-  //     weight: 2,
-  //     opacity: 0.8,
-  //     color: '#DFA612',
-  //     fillOpacity: 1.0,
-  //     fillColor: '#FAE042',
-  //   });
-  // }
-
-  // private resetFeature(e) {
-  //   const layer = e.target;
-  //   layer.setStyle({
-  //     weight: 2,
-  //     opacity: 0.5,
-  //     color: '#008f68',
-  //     fillOpacity: 0.4,
-  //     fillColor: '#6DB65B'
-  //   });
-  // }
-
-
-  //LOAD JSON DATA FOR SHAPE (FAN)
-  siteDataJson() {
-    // this.http.get("assets/data/layers/microsites-onair.json")
-    //   .subscribe(data => {
-    //     this.initializeNodes(data);
-    //   },
-    //     error => {
-    //       this.fanDataError = error;
-    //     });
-  }
-
-  //LOAD ALL THE NODES ONTO THE MAP
-  initializeNodes(data) {
-    console.log(data, this);
-    // this.marcoService.nodeCreationInitializer.prototype = new this.canvasLibrary.canvasLayer();
-    // let nodes = new this.marcoService.nodeCreationInitializer(data,this);
-    // nodes.addTo(this.map);
-  }
-
-  smallCellServiceFunc() {
-    // this.smallCellService.draw.prototype = new this.libCustomLayer.CustomLayer();
-
-    // console.log(this.smallCellService.draw.prototype,"node small cell");
-    // let node = new this.smallCellService.draw();
-    // console.log(node,"node small cell");
-
-    // node.addTo(this.map);
-  }
+ 
 }

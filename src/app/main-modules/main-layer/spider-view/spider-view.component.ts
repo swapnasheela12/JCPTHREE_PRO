@@ -96,12 +96,6 @@ export class SpiderViewComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  ngOnInit(): void {
-
-
-
-  }
-
-
+  ngOnInit(): void {}
 
 }
