@@ -1,7 +1,6 @@
     .container-jcp .body-sidenav-container .jcp-toolbar .jcp-page-route{
         overflow: hidden !important;
     }
-    
     .card-header{
         padding:10px;
         .card-title{
@@ -106,7 +105,6 @@
                         font-family: lato bold;
                         max-width: 50%;
                         editCell{
-                            // display: inline !important;
                             .input-field{
                                 border: none;
                                 height: 30px;
@@ -213,10 +211,6 @@
                 }
             }
         }
-        // .collapsable-right-holder.opened {
-        //     max-width: 100%;
-        //     transition: ease-in-out 600ms max-width;
-        // }
     }  
     .button{
         &[disabled=true]{

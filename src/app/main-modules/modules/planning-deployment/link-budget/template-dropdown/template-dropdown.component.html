@@ -4,7 +4,6 @@
   <mat-menu #linkBudget="matMenu" class="template-gallery-menu" [hasBackdrop]="false">
     <div (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
       <form [formGroup]="templateGalleryForm" class="form-container">
-        <!-- <button (click)="addButton()" mat-button>Add</button> -->
         <div fxLayout="row" fxLayoutAlign="start center" class="menu-header">
           <span>Template Gallery</span>
           <div class="col"></div>
@@ -19,17 +18,13 @@
           <i class="search-icon zmdi zmdi-search"></i>
         </mat-form-field>
         <div class="overflow-auto menu-content">
-
-          <div *ngFor="let item of templateGalleryFilter | async ; let i=index" formArrayName="templateGalleryArray">
+          <div *ngFor="let item of templateGalleryFilter | async ; let i=index; trackBy:trackByCheckbox" formArrayName="templateGalleryArray">
             <mat-checkbox #divClick [formControlName]="i" [disableRipple]="true"
               (change)="templateGalleryCheckChange($event.checked)" id="template-gallery-{{i}}">
               {{item.name}}
             </mat-checkbox>
           </div>
         </div>
-        <!-- <mat-divider></mat-divider>
-          <button mat-raised-button color="primary" [disabled]="!templateGalleryForm.valid" (click)="submit();trigger.closeMenu()">Apply</button>
-        </div> -->
       </form>
     </div>
   </mat-menu>

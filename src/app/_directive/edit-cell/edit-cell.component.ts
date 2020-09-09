@@ -1,6 +1,6 @@
-import { Component, ContentChild, HostListener, ElementRef, EventEmitter, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
-import { switchMap, takeUntil, filter, take, switchMapTo } from 'rxjs/operators';
+import { filter, take, switchMapTo } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ViewModeDirective } from './view-mode.directive';
 import { EditModeDirective } from './edit-mode.directive';
@@ -9,19 +9,15 @@ import { EditModeDirective } from './edit-mode.directive';
   template: `
     <ng-container *ngTemplateOutlet="currentView"></ng-container>
   `,
-  // styleUrls: ['./edit-cell.component.scss']
 })
 export class EditCellComponent {
 
   @ContentChild(ViewModeDirective) viewModeTpl: ViewModeDirective;
   @ContentChild(EditModeDirective) editModeTpl: EditModeDirective;
   @Output() update = new EventEmitter();
-
   editMode = new Subject();
   editMode$ = this.editMode.asObservable();
-
   mode: 'view' | 'edit' = 'view';
-
 
   constructor(private host: ElementRef) {
   }
@@ -62,8 +58,6 @@ export class EditCellComponent {
   }
 
   get currentView() {
-    // console.log(';sasas')
-    // return true
     return this.mode === 'view' ? this.viewModeTpl.tpl : this.editModeTpl.tpl;
   }
 

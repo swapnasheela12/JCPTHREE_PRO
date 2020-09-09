@@ -31,11 +31,13 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
   templateGallerySearch = new FormControl();
   searchTemplateList: any;
   templateGalleryFilter: Observable<any[]>;
-  subscription: Subscription;
+  messageSubscription: Subscription = new Subscription();;
   submittedValue: any;
   templateGalleryChecked: number = 0;
   formDataPushed: any = [];
-
+  trackByCheckbox(index: number, item: any): string {
+    return item.name;
+  }
   constructor(
     private formBuilder: FormBuilder,
     private datashare: DataSharingService,
@@ -54,7 +56,7 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
 
   ngOnInit(): void {
     const checkboxControl = (this.templateGalleryForm.get('templateGalleryArray') as FormArray);
-    this.datashare.templateRemoveMessage.subscribe(
+    this.messageSubscription.add(this.datashare.templateRemoveMessage.subscribe(
       (template) => {
         if (Object.keys(template).length !== 0) {
           checkboxControl.controls.forEach((item, i) => {
@@ -65,12 +67,8 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
             }
           });
         }
-      }
-    );
-    this.subscription = this.datashare.templateGalleryValueMessage.subscribe((value) => {
-    //   setInterval(() => {
-    //    console.log(value)
-    // },1000)
+      }));
+    this.messageSubscription.add(this.datashare.templateGalleryValueMessage.subscribe((value) => {
       if (Object.keys(value).length !== 0) {
         if (this.templateGallery.findIndex(list => list.name === value) == -1) {
           this.templateGallery.push({ 'name': value.toString() })
@@ -85,9 +83,6 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
             },
             panelClass: ["success"]
           });
-        //    setInterval(() => {
-        //     value="";
-        // },1000)
         } else {
           this._snackBar.openFromComponent(snackBarToastComponent, {
             duration: 4000,
@@ -99,7 +94,7 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
           });
         }
       }
-    });
+    }));
   }
 
   templateFilter(name: string) {
@@ -136,9 +131,8 @@ export class TemplateDropdownComponent implements  OnInit, AfterViewChecked, OnD
     return this.templateGalleryForm.get('templateGalleryArray') as FormArray;
   }
   ngOnDestroy(){
-    if(this.subscription){
-      this.subscription.unsubscribe();
-      console.log(this.subscription)
+    if(this.messageSubscription){
+      this.messageSubscription.unsubscribe();
     }
   }
   ngAfterViewChecked(){
