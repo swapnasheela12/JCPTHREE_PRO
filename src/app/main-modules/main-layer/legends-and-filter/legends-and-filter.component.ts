@@ -16,66 +16,29 @@ import { LocaleConfig } from 'ngx-daterangepicker-material';
 })
 export class LegendsAndFilterComponent implements OnInit {
 
-  // selectedColor = '';
-  // selectedColorValue;
-
-  // colors = [
-  //   {
-  //     name: 'yellow',
-  //     value: '#ffff00'
-  //   },
-  //   {
-  //     name: 'red',
-  //     value: '#ff3300'
-  //   },
-  //   {
-  //     name: 'blue',
-  //     value: '#0000ff'
-  //   }
-  // ];
-
-  // onChange(value){
-  //   console.log(value,"value");
-    
-  //   this.selectedColor = value;
-  //   this.selectedColorValue = value;
-  // }
-
-
-
-  items = [
+  public items = [
     { value: 1, legend: '#F44336' },
     { value: 3, legend: '#FF9800' },
     { value: 5, legend: '#8BC34A' },
-    // { value: 7, legend: '#4CAF50' },
     { value: 8, legend: '#3F51B5' },
     { value: 9, legend: '#03A9F4' }
   ];
-  value: number = 10;
-  minValue: number = 40;
-  maxValue: number = 80;
-  // highValue: number = 90;
-  options: Options = {
+  public value: number = 10;
+  public minValue: number = 40;
+  public maxValue: number = 80;
+  public options: Options = {
     floor: -140,
     ceil: -40,
     step: 20,
     showSelectionBarFromValue: 0,
-    // selectionBarGradient: {
-    //   from: 'white',
-    //   to: '#0078D7'
-    // },
     showTicks: true,
-    // showTicksValues: true,
     getLegend: (value: number): string => {
       return '<b></b>' + value;
     },
-   
   };
   
-  
-
   // ///////datepicker//////////
-  form = this.fb.group({
+  public form = this.fb.group({
     selected: [
       {
         startDate: '2019-12-11T18:30:00.000Z',
@@ -84,7 +47,7 @@ export class LegendsAndFilterComponent implements OnInit {
       Validators.required,
     ],
   });
-  locale: LocaleConfig = {
+  public locale: LocaleConfig = {
     format: 'YYYY-MM-DDTHH:mm:ss.SSSSZ',
     displayFormat: 'YYYY-MM-DD',
     applyLabel: 'Ok',
@@ -92,17 +55,17 @@ export class LegendsAndFilterComponent implements OnInit {
 
   };
 
-  private inited;
+  public inited;
 
-  layers: any = [
+  public layers: any = [
     { value: 'Analytics - RF In Bulding', viewValue: 'Analytics - RF In Bulding' },
     { value: 'Analytics - RF In Bding', viewValue: 'Analytics - RF In Bding' },
     { value: 'Analytics - RF In B', viewValue: 'Analytics - RF In B' },
   ];
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
-  constructor(public dialog: MatDialog,private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<LegendsAndFilterComponent>) { }
+  public date = new FormControl(new Date());
+  public serializedDate = new FormControl((new Date()).toISOString());
+  constructor(public dialog: MatDialog,public fb: FormBuilder,@Inject(MAT_DIALOG_DATA) private data: any,
+  public dialogRef: MatDialogRef<LegendsAndFilterComponent>) { }
 
   ngOnInit(): void {
 
@@ -135,5 +98,8 @@ export class LegendsAndFilterComponent implements OnInit {
     });
   }
 
+  trackByMethod(index:number, el:any): number {
+    return el.id;
+  }
 
 }

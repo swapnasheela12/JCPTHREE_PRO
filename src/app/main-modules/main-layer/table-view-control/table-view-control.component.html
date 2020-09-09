@@ -21,7 +21,7 @@
                             </div>
                         </ngx-mat-select-search>
                     </mat-option>
-                    <mat-option (click)="$event.stopPropagation();" *ngFor="let selectedLayer of filteredselectedLayers | async" [value]="selectedLayer">
+                    <mat-option (click)="$event.stopPropagation();" *ngFor="let selectedLayer of filteredselectedLayers | async; trackBy: trackByMethod" [value]="selectedLayer">
                         {{selectedLayer.name}}
                     </mat-option>
                 </mat-select>
@@ -51,7 +51,7 @@
             </mat-form-field>
             </button>
             <div style="height: 200px;overflow: auto;">
-                <button mat-menu-item *ngFor='let state of JioStatesList' (click)="jioStateFunc(state,'jioState');areaSelectionFunc();">
+                <button mat-menu-item *ngFor='let state of JioStatesList; trackBy: trackByMethod' (click)="jioStateFunc(state,'jioState');areaSelectionFunc();">
                                     <div>{{ state.nameState }}</div>
                                 </button>
             </div>
@@ -79,7 +79,7 @@
                     </mat-form-field>
                     </button>
                     <div style="height: 200px;overflow: auto;">
-                        <button mat-menu-item *ngFor='let state of jioCentersList' (click)="jioCentersFunc(state,'jioCenter');areaSelectionFunc();">
+                        <button mat-menu-item *ngFor='let state of jioCentersList; trackBy: trackByMethod' (click)="jioCentersFunc(state,'jioCenter');areaSelectionFunc();">
                                     <div>{{ state.nameState }}</div>
                                 </button>
                     </div>

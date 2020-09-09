@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
 
 @Component({
   selector: 'app-button-renderer',
@@ -37,11 +36,9 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
 
   onClick($event) {
     if (this.params.onClick instanceof Function) {
-      // put anything into params u want pass into parents component
       const params = {
         event: $event,
         rowData: this.params.node.data
-        // ...something
       }
       this.params.onClick(params);
 

@@ -1,14 +1,15 @@
+import { Subscription } from 'rxjs';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { ShapeService } from './../../../layers-services/shape.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
 @Injectable({
   providedIn: 'root'
 })
-export class SmallCellService {
+export class SmallCellService implements OnDestroy{
   public map: any;
   public _map;
   public states;
@@ -17,7 +18,7 @@ export class SmallCellService {
   public _canvasLayer;
   public sitesData: any;
   public stateLayer: any;
-  public dataShareSub: any;
+  public dataShareSub: Subscription;
   constructor(private datashare: DataSharingService, private router: Router, private shapeService: ShapeService, private http: HttpClient,) {
     this.lib = leaflayer();
     this.redrawLayer();
@@ -167,6 +168,10 @@ export class SmallCellService {
   private zoomToFeature(e) {
     const layer = e.target;
     layer.fitBounds(e.target.getBounds());
+  }
+
+  ngOnDestroy() {
+    this.dataShareSub.unsubscribe();
   }
 
 
