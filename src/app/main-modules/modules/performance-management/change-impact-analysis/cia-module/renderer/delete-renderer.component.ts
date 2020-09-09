@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { GridOptions } from '@ag-grid-community/all-modules';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'delete-renderer',
@@ -13,26 +14,26 @@ import { GridOptions } from '@ag-grid-community/all-modules';
   `,
 })
 
-export class DeleteRendererComponent implements ICellRendererAngularComp {
+export class DeleteRendererComponent implements ICellRendererAngularComp, OnDestroy {
 
   params;
   leftGridKpiOptions: GridOptions;
   rightGridKpiOptions: GridOptions;
   public showGlobalDeleteKpiOperation;
+  private subscriptionMessage: Subscription = new Subscription();
 
   constructor(
     public datashare: DataSharingService
   ) {
     this.showGlobalDeleteKpiOperation = false;
-    console.log(this.showGlobalDeleteKpiOperation);
   }
 
   agInit(params): void {
     this.params = params;
     this.showGlobalDeleteKpiOperation = false;
-    this.datashare.checkboxMessage.subscribe((data)=>{
+    this.subscriptionMessage.add(this.datashare.checkboxMessage.subscribe((data) => {
       this.showGlobalDeleteKpiOperation = data;
-    })
+    }))
   }
 
   refresh(params?: any): boolean {
@@ -40,9 +41,8 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   }
 
   delete(params) {
-    this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
+    this.subscriptionMessage.add(this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
       this.leftGridKpiOptions = leftGridOptionSample;
-      console.log(this.leftGridKpiOptions);
       this.leftGridKpiOptions.api.applyTransaction(
         {
           add: [params.node.data]
@@ -53,8 +53,13 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
           remove: [params.node.data]
         }
       );
-      params.api.refreshCells({force: true})
-    });
-    
+      params.api.refreshCells({ force: true })
+    }));
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionMessage) {
+      this.subscriptionMessage.unsubscribe();
+    }
   }
 }

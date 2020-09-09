@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { ITooltipAngularComp } from 'ag-grid-angular';
 
 @Component({
@@ -38,9 +38,9 @@ import { ITooltipAngularComp } from 'ag-grid-angular';
   ],
 })
 export class CustomTooltip implements ITooltipAngularComp {
-  public params: any;
+  public params: object;
   public data: any;
-  public row: any;
+  public row: string;
 
   agInit(params): void {
     this.params = params;

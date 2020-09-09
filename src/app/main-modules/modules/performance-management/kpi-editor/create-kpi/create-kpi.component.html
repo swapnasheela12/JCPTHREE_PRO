@@ -1,9 +1,5 @@
 <div class="h-100">
   <mat-card class="create-kpi-mat-card">
-    <!-- <mat-card-header class="header">
-      <mat-card-title class="card-title">Create KPI</mat-card-title>
-    </mat-card-header> -->
-    <!-- <mat-divider></mat-divider> -->
     <mat-card-content class="create-kpi-card-content">
       <mat-horizontal-stepper #nodeCounterStepper [linear]="false" (selectionChange)="selectNodeStepper($event)">
         <mat-step [stepControl]="selectNodeCtrl">
@@ -515,16 +511,6 @@
                   class="form-control textarea-editable {{status}}" id="textareaFormula">
                 </div>
               </div>
-              <!-- <form style="height:calc(100% - 50px);" fxLayout="column" fxLayoutAlign="start center"
-                [formGroup]="formGroupFormula">
-                <div style="height: 100%;width:100%">
-                  <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
-                    id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptionsFormula"
-                    [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
-                    [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowClassRules]="rowClassRules"
-                    [rowData]="rowDataFormula" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
-                </div>
-              </form> -->
             </div>
           </div>
           <div class="d-flex mt10 ml15">
@@ -546,7 +532,8 @@
       <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
     </div>
     <div class="p-2">
-      <button mat-raised-button color="primary"  [disabled]="disabledGenerate" class="buttonWidth button">Generate</button>
+      <button mat-raised-button color="primary" [disabled]="disabledGenerate"
+        class="buttonWidth button">Generate</button>
     </div>
   </div>
 </div>

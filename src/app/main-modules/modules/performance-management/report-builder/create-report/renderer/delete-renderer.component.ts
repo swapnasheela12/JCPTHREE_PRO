@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { GridOptions } from '@ag-grid-community/all-modules';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'delete-renderer',
@@ -11,17 +12,16 @@ import { GridOptions } from '@ag-grid-community/all-modules';
   `,
 })
 
-export class DeleteRendererComponent implements ICellRendererAngularComp {
-
+export class DeleteRendererComponent implements ICellRendererAngularComp, OnDestroy {
   params;
   leftGridOptionData: GridOptions;
   rightGridOptionData: GridOptions;
   fifteenMinsKpiGridOptionsData: GridOptions;
+  subscriptionMessage: Subscription;
 
   constructor(
     public datashare: DataSharingService
-  ) {
-  }
+  ) {}
 
   agInit(params): void {
     this.params = params;
@@ -33,8 +33,7 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
 
   delete(params) {
     if (params.data["15MinValue"] == "No") {
-
-      this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
+      this.subscriptionMessage.add(this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
         this.leftGridOptionData = leftGridOptionSample;
         this.leftGridOptionData.api.applyTransaction(
           {
@@ -47,10 +46,10 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
           }
         );
         params.api.refreshCells({force: true})
-      });
+      }));
     }
     if (params.data["15MinValue"] == "Yes") {
-      this.datashare.fifteenMinsKpiGridMessage.subscribe((ifteenMinsKpiGridSample) => {
+      this.subscriptionMessage.add(this.datashare.fifteenMinsKpiGridMessage.subscribe((ifteenMinsKpiGridSample) => {
         this.fifteenMinsKpiGridOptionsData = ifteenMinsKpiGridSample;
         this.fifteenMinsKpiGridOptionsData.api.applyTransaction(
           {
@@ -64,7 +63,13 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
         );
         
         params.api.refreshCells({force: true})
-      });
+      }));
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionMessage) {
+      this.subscriptionMessage.unsubscribe();
     }
   }
 }

@@ -3,10 +3,10 @@
         <mat-card-title class="card-title">KPI Settings</mat-card-title>
         <div class="col"></div>
         <div class="col-8 kpi-editor-flex-item d-flex justify-content-end align-items-center">
-            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
+            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="showSearchInput = !showSearchInput;" *ngIf="!showSearchInput">
                 <span class="zmdi zmdi-search"></span>
             </mat-icon>
-            <mat-form-field *ngIf="show" class="col-4">
+            <mat-form-field *ngIf="showSearchInput" class="col-4">
                 <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
                     autocomplete="off" placeholder="">
                 <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">

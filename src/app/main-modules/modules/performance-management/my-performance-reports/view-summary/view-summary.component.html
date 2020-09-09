@@ -6,7 +6,7 @@
                 </button>View Summary</mat-card-title>
             <div fxLayoutAlign="center center" fxFlex="auto">
                 <span class="name">Cell Data:</span>
-                <div fxLayout="row" *ngFor="let item of dataList">
+                <div fxLayout="row" *ngFor="let item of dataList; trackBy:trackByDataList">
                     <span class="name">{{item.name}} :</span>
                     <span class="value"> {{item.value}}</span>
                     <mat-divider *ngIf="item.name !='2300-C2'" class="mx-2" style="height:20px" [vertical]="true">
@@ -31,15 +31,6 @@
                     class="ml-3">Download</button>
             </div>
         </mat-card-header>
-        <!-- <mat-divider></mat-divider>
-        <mat-card-content class="card-content p-3" fxLayout="row wrap">
-            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="35">
-                <div fxLayoutAlign="space-between center" *ngFor="let item of legendsList" class="legends-holder">
-                    <div [ngClass]="item.class" class="square"></div>
-                    <span class="pl-2 name">{{item.name}}</span>
-                </div>
-            </div>
-        </mat-card-content> -->
     </mat-card>
     <mat-card class="view-summary-card">
         <mat-divider></mat-divider>

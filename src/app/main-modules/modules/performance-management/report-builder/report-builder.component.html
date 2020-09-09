@@ -1,24 +1,27 @@
 <mat-card class="report-builder-card p-0">
-
     <div class="report-builder-flex-container">
         <div class="d-flex mx-2 flex-row justify-content-between">
             <div class="px-3 pt-3 col-6 report-builder-flex-item" fxFlex>
                 <div class="py-3 report-builder-title">Report Builder</div>
             </div>
             <div class="px-1 pt-3 col-4 report-builder-flex-item">
-                <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                <mat-icon class="icon-button" aria-label="search" (click)="showInputField = !showInputField;"
+                    *ngIf="!showInputField">
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
-                <mat-form-field *ngIf="show">
-                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <mat-form-field *ngIf="showInputField">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                        autocomplete="off" placeholder="">
                     <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
             </div>
             <div class="px-1 pt-3 col-2" style="margin:6px">
-                <button mat-raised-button class="submit-button" color="primary" routerLink="/{{paths[0].createReport}}">Create Report</button>
-                <button mat-icon-button [matMenuTriggerFor]="reportBuilderMenu" aria-label="Example icon-button with a menu" *ngIf="showGlobalOperation">
+                <button mat-raised-button class="submit-button" color="primary"
+                    routerLink="/{{paths[0].createReport}}">Create Report</button>
+                <button mat-icon-button [matMenuTriggerFor]="reportBuilderMenu"
+                    aria-label="Example icon-button with a menu" *ngIf="showGlobalOperation">
                     <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span>
                     </mat-icon>
                 </button>
@@ -36,28 +39,8 @@
             </div>
         </div>
     </div>
-
     <mat-divider style="position: relative;"></mat-divider>
     <div class="jcp-table-container">
-
-        <!-- <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="true" [pagination]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder"
-            (gridReady)="onGridReady($event)" (selectionChanged)="selectionChanged($event)">
-        </ag-grid-angular> -->
         <app-table-ag-grid></app-table-ag-grid>
-        <!-- <div class="ag-material-customer-pager-wrapper">
-            <div class="pagination-aggrid" fxLayout="row" fxLayoutAlign="end center">
-                <div class="labels">Rows Per Page :</div>
-                <mat-form-field class="col-2">
-                    <mat-select panelClass="ag-grid-pagination" [formControl]="formControlPageCount" (selectionChange)="onPageSizeChanged(formControlPageCount)" id="page-size">
-                        <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
-                            {{pageNumber}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div> -->
-
     </div>
-
 </mat-card>

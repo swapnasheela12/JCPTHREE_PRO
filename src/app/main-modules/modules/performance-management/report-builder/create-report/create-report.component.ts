@@ -9,12 +9,12 @@ import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
 import "@ag-grid-community/core/dist/styles/ag-grid.scss";
 import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi, RowNode, Column } from 'ag-grid-community';
+import { GridOptions, SelectionChangedEvent, RowNode, Column } from 'ag-grid-community';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { DeleteRendererComponent } from './renderer/delete-renderer.component';
 import { dropdownRendererComponent } from './renderer/dropdown-renderer.component';
 import { conditionalDropdownRendererComponent } from './renderer/conditional-dropdown-renderer.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddGroupPopupComponent } from './add-group-popup/add-group-popup.component';
 import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
 
@@ -29,6 +29,12 @@ const PATHS = [
   encapsulation: ViewEncapsulation.None
 })
 export class CreateReportComponent implements OnInit {
+  trackByCheckbox(index: number, checkboxSelect: any): string {
+    return checkboxSelect.name;
+  }
+  trackByRadioButton(index: number, frequency: any): string {
+    return frequency.name;
+  }
   public paths;
   public disabled: boolean = false;
   // Geography Dropdown 
@@ -196,9 +202,7 @@ export class CreateReportComponent implements OnInit {
   selectNodeAndAggregationCtrl: FormGroup;
   selectDurationFrequency: FormGroup;
   protected _onDestroy = new Subject<void>();
-
   public frameworkComponentsCreateKPIEditor;
-
   public showGlobalDeleteOperation;
   kpiGridSearch = '';
   conditionValue = '';
@@ -257,16 +261,12 @@ export class CreateReportComponent implements OnInit {
       return false;
     }
   };
-
   rangeClicked(range): void {
     this.selectedDateTimeValue = true;
   }
-
   datesUpdated(range): void {
     this.selectedDateTimeValue = true;
   }
-
-
   onKpiInput(value) {
     this.leftGridOptions.api.setQuickFilter(value);
   };
@@ -482,8 +482,6 @@ export class CreateReportComponent implements OnInit {
     };
     this.datashare.leftGridOptionMessage(this.leftGridOptions, this.rightGridOptions);
     this.datashare.fifteenMinsKpiOptionMessage(this.fifteenMinsKpiGridOptions, this.rightGridOptions);
-
-
     this.rightGridOptions = <GridOptions>{
       defaultColDef: {
         flex: 1,
@@ -523,11 +521,9 @@ export class CreateReportComponent implements OnInit {
   kpiFilterChange(value) {
     this.leftGridOptions.api.setQuickFilter(value);
   }
-
   getRowNodeId(data: any) {
     return data.id;
   }
-
   createReportData() {
     this.http.get("assets/data/modules/performance_management/report-builder/create-kpi/kpi-list.json")
       .subscribe(data => {
@@ -573,7 +569,6 @@ export class CreateReportComponent implements OnInit {
     if (!listData) {
       return;
     }
-
     let search = filterCtrl.value;
     if (!search) {
       filterSubject.next(
@@ -583,7 +578,6 @@ export class CreateReportComponent implements OnInit {
     } else {
       search = search.toLowerCase();
     }
-
     filterSubject.next(
       listData.filter(
         data => data.name.toLowerCase().indexOf(search) > -1
@@ -716,17 +710,13 @@ export class CreateReportComponent implements OnInit {
   reportTypeSelectValue(value, params) {
     if (value == "Exception Report") {
       this.gridColumnApi = params.columnApi;
-      // this.gridApi.redrawRows();
       this.rightGridOptions.api.redrawRows();
-      // this.rightGridOptions.api.setRowData([]);
       this.gridColumnApi.setColumnsVisible(['thresholdCondition', 'gridConditionValue'], true);
     }
     else {
       this.gridColumnApi = params.columnApi;
 
       this.rightGridOptions.api.redrawRows();
-      // this.gridApi.redrawRows();
-      // this.rightGridOptions.api.setRowData([]);
       this.gridColumnApi.setColumnsVisible(['thresholdCondition', 'gridConditionValue'], false);
     }
   }

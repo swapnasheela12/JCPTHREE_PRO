@@ -1,27 +1,17 @@
 import { TableAgGridService } from './../../../../core/components/table-ag-grid/table-ag-grid.service';
-import { ButtonRendererComponent } from './../../../reports-dashboards/my-reports/button-renderer.component';
 import { dropDownThreeDotRendererComponent } from './../../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { FormControl } from '@angular/forms';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-// import { VerticaldotRendererComponent } from './../kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { MatSelect } from '@angular/material/select';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import * as moment from 'moment';
-
-// ag grid
-import * as agGrid from 'ag-grid-community';
-import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { GridOptions, GridCore, SelectionChangedEvent } from "@ag-grid-community/all-modules";
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { Subscription } from 'rxjs';
 
 declare var $: any;
 const PATHS = [
@@ -41,17 +31,12 @@ export interface DialogData {
   selector: 'app-report-builder',
   templateUrl: './report-builder.component.html',
   styleUrls: ['./report-builder.component.scss'],
-
-  // encapsulation: ViewEncapsulation.None
 })
-export class ReportBuilderComponent implements OnInit {
-
+export class ReportBuilderComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
   public paths;
   public sidenavBarStatus;
   public tableWidth;
-  // public gridApi;
   public gridPinned = true;
   public gridColumnApi;
   public gridCore: GridCore;
@@ -59,50 +44,42 @@ export class ReportBuilderComponent implements OnInit {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
+  messageSubscription: Subscription;
+  
   public frameworkComponentsReportBuilder = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
-  // public paginationValues: number[] = [10, 20, 30, 40];
-  // public formControlPageCount = new FormControl();
-
   public showGlobalOperation: Boolean = false;
   public rowSelection;
 
-
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService,
+    private router: Router,
+    private httpClient: HttpClient,
+    public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
     this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.rowSelection = 'multiple';
     this.createColumnDefs();
 
-    // console.log(datatable,"datatable");
-    
-
-    this.datashare.currentMessage.subscribe((message) => {
+    this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
 
     this.httpClient.get('assets/data/modules/performance_dashboard/report_builder.json')
       .subscribe(data => {
         this.rowData = data;
-
-        console.log(this.rowData);
-
-        // this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
         this.datatable.gridPinnedServices = this.gridPinned;
         this.datatable.rowDataServices = this.rowData;
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
       });
-
   }
 
   private createColumnDefs() {
     this.columnDefs = [
-
       {
         headerName: "Name",
         field: "reportName",
@@ -164,7 +141,6 @@ export class ReportBuilderComponent implements OnInit {
         cellRenderer: 'dropDownThreeDotRenderer',
         width: 90,
         pinned: 'right',
-        // id: "dot-rendered-rep-local"
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
@@ -175,13 +151,12 @@ export class ReportBuilderComponent implements OnInit {
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
   };
-  show: any;
+  showInputField: boolean;
   toggleSearch() {
-    this.show = !this.show;
+    this.showInputField = !this.showInputField;
   };
 
   shareStatus(params) {
-    var data = params.data;
     if (!params.data)
       return '';
     var status = params.data.status;
@@ -197,17 +172,10 @@ export class ReportBuilderComponent implements OnInit {
     return template;
   };
 
-  //END table search
-
-  //////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
-
   ngOnInit() { }
-
-
   selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
@@ -217,31 +185,20 @@ export class ReportBuilderComponent implements OnInit {
     }
   }
 
-  // onGridReady(params) {
-  //   this.gridApi = params.api;
-  //   console.log(this.gridApi,"this.gridApi");
-  //   this.gridColumnApi = params.columnApi;
-  //   params.api.paginationGoToPage(4);
-
-  // }
-
-  // onPageSizeChanged(newPageSize) {
-  //   console.log(newPageSize,"newPageSize");
-    
-  //   // console.log(datatable.gridApiServices,"this.datatable.gridApiServices");
-  //   // this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  //   // this.datatable.gridApiServices.paginationSetPageSize(Number(newPageSize.value));
-  // }
-
   openBulkDeleteDialog(): void {
     const message = `Are you Sure you want to perform this action?`;
     const image = 'warning';
     const snackbarMode = 'success';
     const snackbarText = 'Action Performed Successfully';
-    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);    const dialogRef = this.dialog.open(CommonPopupComponent, {
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText); const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
   }
 
+  ngOnDestroy() {
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
+  }
 
 }

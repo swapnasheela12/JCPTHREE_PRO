@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { GridOptions, GridApi } from 'ag-grid-community';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { dropDownThreeDotRendererComponent } from './../../../../core/components
 import { Router } from '@angular/router';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 const HEADER_PERFORMANCE_REPORTS = [
   {
@@ -93,12 +94,12 @@ const PATHS = [
   encapsulation: ViewEncapsulation.None
 })
 
-export class MyPerformanceReportsComponent implements OnInit {
+export class MyPerformanceReportsComponent implements OnInit, OnDestroy {
   public gridMyPerformanceColumnDefs: any[];
-  public gridMyPerformanceRowData: any;
+  public gridMyPerformanceRowData: object;
   public gridMyPerformanceGridOptions : GridOptions;
   public frameworkComponentsMyPerformanceReports;
-  show: any;
+  showSearchInput: boolean;
   searchGrid = '';
   public sidenavBarStatus;
   public gridPinned = true;
@@ -106,9 +107,9 @@ export class MyPerformanceReportsComponent implements OnInit {
   public gridColumnApi;
   public title = 'My Performance Reports';
   public url: string = "assets/data/modules/performance_management/my-performance-report/my-performance-report.json";
-  public rowSelection;
-  public frameworkComponentsReportBuilder;
+  public frameworkComponentsReportBuilder : object;
   private paginationPageSize = 10;
+  private messageSubscription: Subscription;
 
   public fitColumns() {
     if (this.gridMyPerformanceGridOptions.api && this.gridMyPerformanceRowData) {
@@ -129,9 +130,8 @@ export class MyPerformanceReportsComponent implements OnInit {
       'VerticaldotRenderer': dropDownThreeDotRendererComponent
     };
     this.paginationPageSize = 10;
-    this.datashare.currentMessage.subscribe((message) => {
+    this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-      // this.fitColumns();
     });
   }
 
@@ -151,13 +151,10 @@ export class MyPerformanceReportsComponent implements OnInit {
   public onReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // setTimeout(() => {
-    //   this.fitColumns();
-    // }, 500);
   }
 
   toggleSearch() {
-    this.show = !this.show;
+    this.showSearchInput = !this.showSearchInput;
   };
 
   public createColumnDefs() {
@@ -184,7 +181,6 @@ export class MyPerformanceReportsComponent implements OnInit {
   };
 
   shareStatus(params) {
-    var data = params.data;
     if (!params.data)
       return '';
     var status = params.data.status;
@@ -203,13 +199,10 @@ export class MyPerformanceReportsComponent implements OnInit {
   progressTaskFunc(params) {
     var taskcompletion = params.data.progressby;
     var taskprogress = params.data.progressbar;
-
     var template1 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-success" style="width:' + taskprogress + '%"></div> </div></div>';
-
     var template2 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-warning" style="width:' + taskprogress + '%"></div> </div></div>';
-
     var template3 = '<div class="jcp-two-lines-progress">' + '<div class="values">' + taskcompletion + '</div>' +
       ' <div class="progress"> <div class="progress-bar bg-danger" style="width:' + taskprogress + '%"></div> </div></div>';
     if (taskcompletion == "Generated") {
@@ -232,7 +225,6 @@ export class MyPerformanceReportsComponent implements OnInit {
 
   onCellClicked(evt) {
     if (evt.node.data) {
-      console.log(evt.column.colDef.colId)
       if (evt.column.colDef.colId == 'dots-id') {
         return false;
       } else {
@@ -250,5 +242,11 @@ export class MyPerformanceReportsComponent implements OnInit {
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  ngOnDestroy() {
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
   }
 }

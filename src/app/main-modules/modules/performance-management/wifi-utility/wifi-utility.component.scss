@@ -18,11 +18,8 @@ html, body {
 
     .wifi-title{
         flex: 0 0 50%;
-        
         line-height: 1;
-
-
-color: #000000;
+        color: #000000;
     }
     .printer-links{
         flex: 0 0 30%;
@@ -42,7 +39,6 @@ color: #000000;
         }
     }
 }
-
 .wifi-wrapper{
     background: #ffffff;
     height:100%;
@@ -57,13 +53,11 @@ color: #000000;
     flex-wrap: wrap;
     align-items: center;
 }
-
 .msi-title {
     font-size: 14px;
     color: #000000;
     font-family: Lato Medium;
 }
-
 .icon-btn {
     line-height: 2;
     float: right;
@@ -73,38 +67,10 @@ color: #000000;
  width: 50px !important;
  height: 50px !important;
  border-radius: 25px;
- 
 }
 .icon-btn:hover {
     background: RGBA(0, 112, 219, 0.13);
-   }
-.msis-wrapper {
-    padding: 2rem;
-}
-.half-width {
-    width: 50%;
-}
-
-.conversion-section{
-  
-padding: 2rem;
-    .imei-field{
-      
-
-    }
-    .client-mac-field {
-       
-    }
-}
-
-.msis-wrapper {
-    margin-bottom:2rem;
-}
-
+ }
 .full-width {
     width: 95%;
-}
-
-.mb-2 {
-    margin-bottom: 2rem;
 }

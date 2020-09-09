@@ -2,7 +2,6 @@
 $md-primary: #0070DB;
 .mat-dialog-container {
     padding: 0px;
-    // overflow: hidden;
     .dialog-header{
         height: 54px;
         max-height: 54px;
@@ -15,8 +14,8 @@ $md-primary: #0070DB;
             .mat-button-focus-overlay {
                 background-color: transparent!important;
             }
-            }
-            }
+         }
+     }
     }
     .floor-popup-content {
         padding: 0px;
