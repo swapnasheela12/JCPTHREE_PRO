@@ -1,19 +1,17 @@
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { selectedLayer } from './../../../main-modules/main-layer/table-view-control/table-view-data';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject } from 'rxjs';
-import { any } from 'underscore';
 
 declare var $: any;
 
 export class SideNavNode {
   name: string;
   link: string;
-  icon: string;
+  icon?: string;
   eventName?: string;
   classId?: String;
   level?: number;
@@ -37,18 +35,15 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
 })
 export class LeftsideNavigationComponent implements OnInit {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
-  isParentLevel = false;
-  routeArray = [];
-  parentNode: any;
-  hoverLayer0: any = '';
-  level: any = 1;
+  parentNode: ExampleFlatNode;
+  hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
-  treeData: any[];
+  treeData: ExampleFlatNode[];
   get data(): SideNavNode[] { return this.dataChange.value; }
-
 
   @ViewChild('recursiveListTmpl') recursiveListTmpl;
 
+  /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
       if (btn.target.children[0].classList[1] == 'ic-layers-01') {
@@ -104,17 +99,6 @@ export class LeftsideNavigationComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-    });
-  }
-
-  filterChanged(filterText: string) {
-    // this.filter(filterText);
-    if (filterText) {
-      this.treeControl.expandAll();
-    } else {
-      this.treeControl.collapseAll();
-    }
   }
 
   layersLevelHover(node, iconlayers) {
@@ -300,7 +284,6 @@ export class LeftsideNavigationComponent implements OnInit {
 
   todoItemSelectionToggle(checked, node, activeCheckbox) {
     node.selected = checked;
-
     if (node.selected == true) {
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       this.router.navigate([node.link]);
@@ -311,7 +294,8 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   /**
-   * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
+   * Iterate over each node in reverse order and return the first node 
+   * that has a lower level than the passed node.
    */
   getParent(node) {
    const { treeControl } = this;
@@ -331,9 +315,6 @@ export class LeftsideNavigationComponent implements OnInit {
 
   selectedLayerArr: any = [];
   onChecked(selected, node, activeCheckbox, eventChecked) {
-    console.log(node,"node");
-    
-    
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -345,11 +326,8 @@ export class LeftsideNavigationComponent implements OnInit {
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
-
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-      // this.router.navigate([node.link]);
     } else {
-
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
@@ -357,11 +335,12 @@ export class LeftsideNavigationComponent implements OnInit {
         }
       }
       this.datashare.changeMessage(this.selectedLayerArr);
-
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
+  }
 
-
-
+  navigationTrackBy(index, item) {
+    if (!item) return null;
+    return index;
   }
 }
