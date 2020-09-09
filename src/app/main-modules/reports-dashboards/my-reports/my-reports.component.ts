@@ -1,21 +1,10 @@
 import { TableAgGridService } from './../../../core/components/table-ag-grid/table-ag-grid.service';
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from "@angular/common/http";
-
-
-// ag grid
-import * as agGrid from 'ag-grid-community';
-import { GridOptions, GridCore, GridApi, ColumnApi, } from "@ag-grid-community/all-modules";
-// import { GridOptions } from "ag-grid/main";
-// import {Grid} from "ag-grid-community";
-// import { AllCommunityModules } from '@ag-grid-community/all-modules';
-// import { AllCommunityModules } from 'ag-grid-community';
+import { GridOptions, GridCore } from "@ag-grid-community/all-modules";
 import { ButtonRendererComponent } from './button-renderer.component';
-import { CreateReportComponent } from '../reports-wizard/create-report/create-report.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -41,9 +30,7 @@ export interface DialogData {
   styleUrls: ['./my-reports.component.scss']
 })
 export class MyReportsComponent implements OnInit {
-
   @Input() commonTableAggrid: TemplateRef<any>;
-
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -60,10 +47,8 @@ export class MyReportsComponent implements OnInit {
     buttonRenderer: ButtonRendererComponent,
   };
   url = "assets/data/report/my-report.json";
-  // ///////my report tabel//////////
+ 
   public products;
-
-  // ///////my report tabel//////////
   ///////report measure/////////////
   public reportMeasureSelected = "Performance Management";
   @ViewChild(MatSelect, { static: true }) _mySelect: MatSelect;
@@ -92,8 +77,6 @@ export class MyReportsComponent implements OnInit {
     this.gridApi = params.api;
     this.calculateRowCount();
   }
-
-  
 
   constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
@@ -161,14 +144,11 @@ export class MyReportsComponent implements OnInit {
 
   defaultColDef = { resizable: true };
 
-
-
   searchGrid = '';
   onFilterChanged(value) {
     console.log(value,"value");
     console.log(this.gridOptions.api.setQuickFilter(value),"valthis.gridOptions.api.setQuickFilter(value)ue");
     this.datatable.gridFilterValueServices = value;
-    // this.gridOptions.api.setQuickFilter(value);
   };
   show: any;
   toggleSearch() {
@@ -176,9 +156,6 @@ export class MyReportsComponent implements OnInit {
   };
 
   //END table search
-
-
-
   //////////////////
 
   progressTaskFunc(params) {
@@ -205,12 +182,10 @@ export class MyReportsComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnInit() {
 
-    // this.onGridReadyMyReport();
     // ///////mat seletec report measure////////////
     this._mySelect.openedChange
       .subscribe((opened) => {
@@ -223,7 +198,6 @@ export class MyReportsComponent implements OnInit {
   beforeOpen() {
     this.overlayContainer.getContainerElement().classList.add('select-overlay');
   }
-
 
   openDialog(): void {
     this.router.navigate(['/JCP/Reports-and-Dashboard/Report-Wizard']);

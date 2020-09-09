@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { takeUntil } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { dropdown, R4GState, JC } from './cia-module-dropdown';
 import { ReplaySubject, Subject } from 'rxjs';
 import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
@@ -40,7 +40,18 @@ export class CiaModuleComponent implements OnInit {
   public selectJcFilterControl: FormControl = new FormControl();
   public selectJcFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
   // Select JC Dropdown 
-
+  trackByRadioButtonType(index: number, type: any): string {
+    return type.name;
+  }
+  trackByChipsPost(index: number, postValue: any): string {
+    return postValue;
+  }
+  trackByChipsPre(index: number, preValue: any): string {
+    return preValue;
+  }
+  trackByRadioButtonFrequency(index: number, frequency: any): string {
+    return frequency;
+  }
   public radioTypeList: any[] = [
     { 'name': 'Custom' },
     { 'name': 'JC Circle Level' }
@@ -136,11 +147,11 @@ export class CiaModuleComponent implements OnInit {
       data: dialogData,
       panelClass: 'file-upload-dialog'
     });
-    dialogRef.afterClosed().subscribe(data=>{
-      if(data == 'uploadClicked'){
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == 'uploadClicked') {
         this.showSuccessFailure = true;
       }
-  })
+    })
   }
 
   ngOnInit(): void {
@@ -160,7 +171,7 @@ export class CiaModuleComponent implements OnInit {
         cellClass: 'first-draw-column'
       }
     ];
-    this.leftGridKpiOptions =  <GridOptions>{
+    this.leftGridKpiOptions = <GridOptions>{
       defaultColDef: {
         flex: 1,
         // minWidth: 100,
@@ -185,7 +196,7 @@ export class CiaModuleComponent implements OnInit {
         field: "id",
         checkboxSelection: true,
         maxWidth: 150,
-        minWidth:150,
+        minWidth: 150,
         suppressMenu: true,
         headerCheckboxSelection: true,
         cellRenderer: function (params) {
@@ -209,7 +220,7 @@ export class CiaModuleComponent implements OnInit {
         cellRenderer: 'deleteFlagRenderer'
       }
     ];
-    this.rightGridKpiOptions =  <GridOptions>{
+    this.rightGridKpiOptions = <GridOptions>{
       defaultColDef: {
         flex: 1,
         // minWidth: 100,
@@ -240,40 +251,40 @@ export class CiaModuleComponent implements OnInit {
       Drag Here
     </span>
   `;
-  this.tooltipShowDelay = 0;
-  this.datashare.leftGridOptionMessage(
-    this.leftGridKpiOptions,
-    this.rightGridKpiOptions
-  );
+    this.tooltipShowDelay = 0;
+    this.datashare.leftGridOptionMessage(
+      this.leftGridKpiOptions,
+      this.rightGridKpiOptions
+    );
     this.selectJcCircleLevelFormControl = this._formBuilder.group({
     });
-     // R4G Circle Dropdown 
-     this.r4gCircleControl.setValue(this.circleData[1]);
-     this.r4gFilter.next(this.circleData.slice());
-     this.r4gFilterControl.valueChanges
-       .pipe(takeUntil(this._onDestroy))
-       .subscribe(() => {
-         this.filterData(
-           this.circleData,
-           this.r4gFilterControl,
-           this.r4gFilter
-         );
-       });
-     // R4G Circle Dropdown 
+    // R4G Circle Dropdown 
+    this.r4gCircleControl.setValue(this.circleData[1]);
+    this.r4gFilter.next(this.circleData.slice());
+    this.r4gFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.circleData,
+          this.r4gFilterControl,
+          this.r4gFilter
+        );
+      });
+    // R4G Circle Dropdown 
 
-     // Select JC Dropdown 
-     this.selectJcControl.setValue(this.jcData[1]);
-     this.selectJcFilter.next(this.jcData.slice());
-     this.selectJcFilterControl.valueChanges
-       .pipe(takeUntil(this._onDestroy))
-       .subscribe(() => {
-         this.filterData(
-           this.jcData,
-           this.selectJcFilterControl,
-           this.selectJcFilter
-         );
-       });
-     // Select JC Dropdown 
+    // Select JC Dropdown 
+    this.selectJcControl.setValue(this.jcData[1]);
+    this.selectJcFilter.next(this.jcData.slice());
+    this.selectJcFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.jcData,
+          this.selectJcFilterControl,
+          this.selectJcFilter
+        );
+      });
+    // Select JC Dropdown 
   }
   protected filterData(listData, filterCtrl, filterSubject) {
     if (!listData) {
@@ -299,11 +310,11 @@ export class CiaModuleComponent implements OnInit {
 
   stepperChanged(event) {
     if (event.selectedIndex == 2) {
-    this.generateDisabled = false
+      this.generateDisabled = false
     } else {
-    this.generateDisabled = true
+      this.generateDisabled = true
     }
-    }
+  }
 
   preDateFilter = (d: Date): boolean => {
     return this.filterDate(d);
@@ -360,12 +371,12 @@ export class CiaModuleComponent implements OnInit {
       }
     });
     console.log(rightGridKpiOptions.api.getDisplayedRowCount())
-        if (0 < rightGridKpiOptions.api.getDisplayedRowCount()) {
-          this.showGlobalDeleteKpiOperation = true;
-        } else {
-          this.showGlobalDeleteKpiOperation = false;
-        }
-        this.datashare.chechboxChangeMessage(this.showGlobalDeleteKpiOperation);
+    if (0 < rightGridKpiOptions.api.getDisplayedRowCount()) {
+      this.showGlobalDeleteKpiOperation = true;
+    } else {
+      this.showGlobalDeleteKpiOperation = false;
+    }
+    this.datashare.chechboxChangeMessage(this.showGlobalDeleteKpiOperation);
     params.api.addRowDropZone(dropZoneParams);
   }
 
@@ -395,24 +406,24 @@ export class CiaModuleComponent implements OnInit {
       data: dialogData,
       panelClass: 'file-upload-dialog'
     });
-    dialogRef.afterClosed().subscribe(data=>{
-      if(data == 'uploadClicked'){
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == 'uploadClicked') {
         this.showSuccessKpiFailure = true;
       }
-  })
+    })
   }
   public dateClassPreModel = (date: Date) => {
     if (this.preFindDate(date) !== -1) {
-      return [ 'selected' ];
+      return ['selected'];
     }
-    return [ ];
+    return [];
   }
 
   public dateClassPostModel = (date: Date) => {
     if (this.postFindDate(date) !== -1) {
-      return [ 'selected' ];
+      return ['selected'];
     }
-    return [ ];
+    return [];
   }
 
   public postDateChanged(event: MatDatepickerInputEvent<Date>): void {

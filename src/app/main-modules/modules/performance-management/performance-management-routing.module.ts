@@ -12,7 +12,6 @@ import { MyPerformanceReportsComponent } from './my-performance-reports/my-perfo
 const routes: Routes = [
   {
     path: "Report-Builder", children: [
-
       { path: "", component: ReportBuilderComponent },
       { path: "Create-Report", component: CreateReportComponent },
     ]
@@ -39,7 +38,6 @@ const routes: Routes = [
       }
     ]
   }
-
 ];
 
 @NgModule({

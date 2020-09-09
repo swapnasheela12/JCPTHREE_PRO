@@ -1,35 +1,18 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, OnInit, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, EventEmitter, ElementRef } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from "@angular/common/http";
-
-// ag grid
-import * as agGrid from 'ag-grid-community';
 import { GridOptions } from "@ag-grid-community/all-modules";
-
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router, Event } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { ButtonRendererComponent } from '../../reports-dashboards/my-reports/button-renderer.component';
-
 import { FormControl } from '@angular/forms';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject, Subject, Subscription } from 'rxjs';
 import { take, takeUntil, timeout } from 'rxjs/operators';
 import { selectedLayer, selectedLayerS } from './table-view-data';
-
-
 declare var $: any;
-
-interface reportsMeasure {
-  value: string;
-  viewValue: string;
-}
 
 export interface DialogData {
   animal: string;
@@ -82,20 +65,14 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   public _onDestroy = new Subject<void>();
   //filter table
 
-
-  // public selectedOptionArea;
-  // public selectedAreaCtrl: FormControl = new FormControl();
   public selectedOptionArea = "Pan India";
   public selectedOptionAreaState;
   public selectedOptionAreaCenter;
-
   private inited;
-  selectedValue: string;
+  public selectedValue: string;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
   public sidenavBarStatus;
-
   public gridApi;
   public gridColumnApi;
   public rowData: any[string];
@@ -104,25 +81,27 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   public defaultColDef;
   public defaultColGroupDef;
   public columnTypes;
-
   public areaParentSelect: FormControl = new FormControl();
-
-  objSelectedArea;
-  onAdd = new EventEmitter();
-  onAddDropDown = new EventEmitter();
-  filterDataList = {
+  public objSelectedArea;
+  public onAdd = new EventEmitter();
+  public onAddDropDown = new EventEmitter();
+  public filterDataList = {
     selectedLayerName: null,
     selectedAreaName: null,
     selectedAreaNameParent: null,
     rowDataTable: null,
     objArea: null,
   };
-
-  constructor(public hostElement: ElementRef, private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, public dialog: MatDialog) {
+  public selectedOptionParent;
+  public selectedOptionJioState;
+  public optionJioStateValue;
+  public selectedOptionJioCenter;
+  public optionjioCentersValue;
+  private subValue1 : Subscription;
+  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-    this.datashare.currentMessage.subscribe((message) => {
+   this.subValue1 = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
-
     });
 
     this.JioStatesList = this.jioState_List;
@@ -164,12 +143,14 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   }
 
-  ngOnInit() {
+  trackByMethod(index:number, el:any): number {
+    return el.id;
+  }
 
+  ngOnInit() {
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
     })
-
     //filter  selectedLayers
     this.selectedLayerCtrl.setValue(this.selectedLayers[10]);
     this.filteredselectedLayers.next(this.selectedLayers.slice());
@@ -182,9 +163,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   }
 
-  selectedOptionParent;
-  selectedOptionJioState;
-  optionJioStateValue;
   jioStateFunc(value, item) {
     this.objSelectedArea = value;
     this.selectedOptionParent = item;
@@ -194,8 +172,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.listFilterJioStates = "";
   }
 
-  selectedOptionJioCenter;
-  optionjioCentersValue;
   jioCentersFunc(value, item) {
     this.objSelectedArea = value;
     this.selectedOptionParent = item;
@@ -205,9 +181,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.listFilterjioCenters = "";
   }
 
-
   //Jio State
-  _listFilterJioStates: string;
+  public _listFilterJioStates: string;
   get listFilterJioStates(): string {
     return this._listFilterJioStates;
   }
@@ -215,8 +190,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this._listFilterJioStates = value;
     this.JioStatesList = this.listFilterJioStates ? this.PerformFilter(this.listFilterJioStates) : this.jioState_List;
   }
-  JioStatesList: JioState[];
-  jioState_List: JioState[] = [
+  public JioStatesList: JioState[];
+  public jioState_List: JioState[] = [
     {
       "nameState": "Maharashtra",
       "latitude": 19.7515,
@@ -256,10 +231,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //Jio State
 
-
-
   //Jio Center
-  _listFilterjioCenters: string;
+  public _listFilterjioCenters: string;
   get listFilterjioCenters(): string {
     return this._listFilterjioCenters;
   }
@@ -267,8 +240,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this._listFilterjioCenters = value;
     this.jioCentersList = this.listFilterjioCenters ? this.PerformFilterjioCenter(this.listFilterjioCenters) : this.jioCenter_List;
   }
-  jioCentersList: jioCenter[];
-  jioCenter_List: jioCenter[] = [
+  public jioCentersList: jioCenter[];
+  public jioCenter_List: jioCenter[] = [
     {
       "nameState": "AP-DMVM-JC01-0094",
       "latitude": 19.0385,
@@ -313,28 +286,16 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //Jio Center
 
-
-
   //filter  selectedLayers
 
   ngAfterViewInit() {
     this.setInitialValue();
   }
 
-  ngOnDestroy() {
-    this._onDestroy.next();
-    this._onDestroy.complete();
-  }
-
   protected setInitialValue() {
     this.filteredselectedLayers
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredselectedLayers are loaded initially
-        // and after the mat-option elements are available
         this.singleSelect.compareWith = (a: selectedLayer, b: selectedLayer) => a && b && a.id === b.id;
       });
   }
@@ -358,7 +319,6 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //filter  selectedLayers
 
-
   public text: String;
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -366,11 +326,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
       this.text = "clicked inside";
     } else {
       this.text = "clicked outside";
-      // this.onCloseClick();
     }
   }
 
-  // @HostListener('window:click')
   onCloseClick(): void {
     if (this.inited) {
       this.dialogRef.close();
@@ -378,7 +336,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public getName;
-  areaSelectionFunc() {
+  public areaSelectionFunc() {
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
 
     setTimeout(() => {
@@ -514,14 +472,13 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     }, 500);
   }
 
-  onGridReady(params) {
+  public onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // this.gridApi.sizeColumnsToFit();
   }
 
 
-  areaDropDownFunc(item, val) {
+  public areaDropDownFunc(item, val) {
   }
 
   onRowClicked(event: any) {
@@ -532,12 +489,12 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
       rowDataTable: event.data,
       objArea: this.objSelectedArea
     };
-
     this.onAdd.emit(this.filterDataList);
-
   }
 
-
-
-
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+    this.subValue1.unsubscribe();
+  }
 }

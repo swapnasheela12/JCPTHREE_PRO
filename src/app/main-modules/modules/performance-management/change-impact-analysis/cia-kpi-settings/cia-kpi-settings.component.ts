@@ -13,16 +13,15 @@ import { ciaDropdownRenderersComponent } from '../renderer/cia-renderer.componen
 })
 export class CiaKpiSettingsComponent implements OnInit {
   public columnDefs: any[];
-  public rowData: any;
+  public rowData: object;
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public frameworkComponentsKpiSettings;
   gridColumnApi: any;
   public rowSelection;
-  show: any;
+  showSearchInput: boolean;
   searchGrid = '';
-  public dataTest: any;
 
   HEADER_KPI = [
     {
@@ -83,7 +82,6 @@ export class CiaKpiSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.createColumnDefs();
     this.getData();
-
   }
 
   get gridAPI(): GridApi {
@@ -95,7 +93,7 @@ export class CiaKpiSettingsComponent implements OnInit {
   }
 
   toggleSearch() {
-    this.show = !this.show;
+    this.showSearchInput = !this.showSearchInput;
   };
 
   onFilterChanged(value) {

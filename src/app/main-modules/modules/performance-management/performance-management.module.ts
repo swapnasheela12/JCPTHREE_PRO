@@ -8,18 +8,14 @@ import { DeleteRendererComponent } from './report-builder/create-report/renderer
 import { dropdownRendererComponent } from './report-builder/create-report/renderer/dropdown-renderer.component';
 import { createKpiDropdownRendererComponent } from './kpi-editor/renderer/dropdown-renderer.component';
 import { DeleteCreatedKpiRendererComponent } from './kpi-editor/renderer/delete-renderer.component';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PerformanceManagementRoutingModule } from './performance-management-routing.module';
-// import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis/change-impact-analysis-routing.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
-// import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -61,7 +57,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -76,7 +71,6 @@ import { IfElsePopupComponent } from './kpi-editor/create-kpi/if-else-popup/if-e
 import { HextodocPopupComponent } from './kpi-editor/create-kpi/hextodoc-popup/hextodoc-popup.component';
 import { ChangeImpactAnanlysisModule } from './change-impact-analysis/change-impact-analysis.module';
 import { CustomTooltip } from './my-performance-reports/custom-tooltip.component';
-// import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';
 import { ViewSummaryComponent } from './my-performance-reports/view-summary/view-summary.component';
 import { ChangeImpactAnalysisComponent } from './my-performance-reports/change-impact-analysis/change-impact-analysis.component';
 import { MyPerformanceReportsComponent } from './my-performance-reports/my-performance-reports.component';

@@ -33,7 +33,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20" *ngFor="let conditionDiv of conditionArray, let i = index">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20" *ngFor="let conditionDiv of conditionArray, let i = index ; trackBy:trackByDiv">
                 <mat-form-field fxFlex="20">
                     <mat-select placeholder="Condition {{i + 2}}">
                         <mat-option value=""></mat-option>

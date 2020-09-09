@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-if-else-popup',
@@ -8,7 +8,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   encapsulation: ViewEncapsulation.None
 })
 export class IfElsePopupComponent implements OnInit {
-
+  trackByDiv(index: number, conditionDiv: any): string {
+    return conditionDiv;
+  }
   conditionArray = [];
   addCondition() {
     this.conditionArray.push(this.conditionArray.length);

@@ -1,25 +1,21 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula} from './create-kpi-constant';
 import { ReplaySubject, Subject } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
 import "@ag-grid-community/core/dist/styles/ag-grid.scss";
 import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi, RowNode, Column } from 'ag-grid-community';
+import { GridOptions, SelectionChangedEvent, RowNode, Column } from 'ag-grid-community';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { DeleteCreatedKpiRendererComponent } from '../renderer/delete-renderer.component';
 import { createKpiDropdownRendererComponent } from '../renderer/dropdown-renderer.component';
-// import { conditionalDropdownRendererComponent } from '../renderer/conditional-dropdown-renderer.component';
-// import { ComputationSettingsPoupComponent } from './computation-settings-popup/computation-settings-popup.component'
 import { MatDialog } from '@angular/material/dialog';
 import { ComputationSettingsPoupComponent } from './computation-settings-poup/computation-settings-poup.component';
 import { IfElsePopupComponent } from './if-else-popup/if-else-popup.component';
 import { HextodocPopupComponent } from './hextodoc-popup/hextodoc-popup.component';
-
 import * as _ from "lodash";
 import { CeilingPopupComponent } from './ceiling-popup/ceiling-popup.component';
 import { FloorPopupComponent } from './floor-popup/floor-popup.component';
@@ -126,7 +122,6 @@ export class CreateKpiComponent implements OnInit {
   tooltipShowDelay: number;
   status: string;
   disabledGenerate: boolean = true;
-  // dataFiltered: any[];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -172,13 +167,6 @@ export class CreateKpiComponent implements OnInit {
       },
     ];
     this.leftColumnFormulaDefs = [
-      // {
-      //   colId: 'checkbox',
-      //   maxWidth: 50,
-      //   checkboxSelection: true,
-      //   suppressMenu: true,
-      //   headerCheckboxSelection: false
-      // },
       {
         field: "Name",
         suppressMenu: true,
@@ -210,11 +198,6 @@ export class CreateKpiComponent implements OnInit {
         field: "timeAggr",
         cellRenderer: 'dropDownCellRenderer'
       },
-      // {
-      //   headerName:'Threshold Condition',
-      //   field: "threshold",
-      //   cellRenderer: 'conditionalDropdownRenderer'
-      // },
       {headerName: '',
         suppressMenu: true,
         maxWidth: 30,
@@ -452,8 +435,6 @@ export class CreateKpiComponent implements OnInit {
   }
 
   validateFormula() {
-
-    /** this will be a post call */
     this.http.get("assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json")
     .subscribe(data => {
       this.status = (data[0].statuskpi == 'success')? 'green':'red';
@@ -515,22 +496,22 @@ export class CreateKpiComponent implements OnInit {
       }
     });
   }
-  addGridDropFormulaLeftZone(rightGridOptionsFormula) {
-    let allRightNodes = this.rightGridOptionsFormula.api.forEachNode(
-      (node) => {
-        this.leftGridOptionsFormula.api.applyTransaction(
-          {
-            add: [node.data]
-          }
-        );
-        this.rightGridOptionsFormula.api.applyTransaction(
-          {
-            remove: [node.data]
-          }
-        );
-      }
-    )
-  }
+  // addGridDropFormulaLeftZone(rightGridOptionsFormula) {
+  //   let allRightNodes = this.rightGridOptionsFormula.api.forEachNode(
+  //     (node) => {
+  //       this.leftGridOptionsFormula.api.applyTransaction(
+  //         {
+  //           add: [node.data]
+  //         }
+  //       );
+  //       this.rightGridOptionsFormula.api.applyTransaction(
+  //         {
+  //           remove: [node.data]
+  //         }
+  //       );
+  //     }
+  //   )
+  // }
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -578,21 +559,6 @@ export class CreateKpiComponent implements OnInit {
   }
 
   onApply() {
-    // this.rightGridOptions.rowClassRules = {
-    //   'green': function(params) {
-    //     if (params.data.statusFormula == 'success') {
-    //       return true;
-    //     }
-    //   },
-    //   'red': function(params) {
-    //     if (params.data.statusFormula == 'error') {
-    //       return true;
-
-
-
-    //     }
-    //   },
-    // }
     this.rightGridOptions.getRowStyle = function (params) {
       if (params.data.statusFormula == 'success') {
         return { backround: 'green' }
@@ -635,8 +601,6 @@ export class CreateKpiComponent implements OnInit {
     });
     params.api.addRowDropZone(dropZoneParams);
   }
-
-
 
   protected filterData(listData, filterCtrl, filterSubject) {
     if (!listData) {
@@ -717,8 +681,6 @@ export class CreateKpiComponent implements OnInit {
       width: '550px',
       height: '550px',
       panelClass:'computation-setting-popup'
-      // maxHeight: '500px',
-      // minHeight: '240px'
     });
   }
 
@@ -747,7 +709,6 @@ export class CreateKpiComponent implements OnInit {
     formGroup
   ) {
     let keyData = this.createKey;
-    // let formGroup = formGroup;
     let dropZoneParams = this.rightGridOptions.api.getRowDropZoneParams({
       onDragStop: function (params) {
         var nodes = params.nodes;
@@ -765,8 +726,6 @@ export class CreateKpiComponent implements OnInit {
               formGroup.addControl(key, new FormControl())
               rightGridOptions.api.refreshCells({ force: true, columns: [column] });
               this.formGroup = formGroup;
-              // rightGridOptions.api.refreshCells({force: true, columns: [column]});
-              // rightGridOptions.api.sizeColumnsToFit();
             })
         });
       }

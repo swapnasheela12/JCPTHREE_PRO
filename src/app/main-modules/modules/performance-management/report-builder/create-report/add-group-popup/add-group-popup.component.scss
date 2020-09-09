@@ -17,9 +17,9 @@ $md-primary: #0070DB;
             .mat-button-focus-overlay {
                 background-color: transparent!important;
             }
-            }
-            }
-    }
+         }
+     }
+ }
     .mat-dialog-content{
         padding: 0px;
         margin: 0px;
@@ -30,7 +30,6 @@ $md-primary: #0070DB;
             font-size: 14px;
         }
       .inline-button{
-            // background: #e4f1fb;
             font-size: 20px;
             color: #666666;
             &:hover{

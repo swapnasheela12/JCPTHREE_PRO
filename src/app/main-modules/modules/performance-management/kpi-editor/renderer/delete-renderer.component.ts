@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { GridOptions } from '@ag-grid-community/all-modules';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'delete-renderer',
@@ -20,12 +21,13 @@ import { GridOptions } from '@ag-grid-community/all-modules';
   `,
 })
 
-export class DeleteCreatedKpiRendererComponent implements ICellRendererAngularComp {
+export class DeleteCreatedKpiRendererComponent implements ICellRendererAngularComp, OnDestroy {
 
   params;
   leftGridOptionData: GridOptions;
   rightGridOptionData: GridOptions;
   fifteenMinsKpiGridOptionsData: GridOptions;
+  subscriptionMessage: Subscription = new Subscription();
 
   constructor(
     public datashare: DataSharingService
@@ -42,34 +44,40 @@ export class DeleteCreatedKpiRendererComponent implements ICellRendererAngularCo
 
   delete(params) {
     if (params.data["KPIValue"] == "No") {
-      this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
-      this.leftGridOptionData = leftGridOptionSample;
-      this.leftGridOptionData.api.applyTransaction(
-        {
-        add: [params.node.data]
-        }
-    );
-      params.api.applyTransaction(
-      {
-      remove: [params.node.data]
-      }
-    );
-    });
+      this.subscriptionMessage.add(this.datashare.leftGridMessage.subscribe((leftGridOptionSample) => {
+        this.leftGridOptionData = leftGridOptionSample;
+        this.leftGridOptionData.api.applyTransaction(
+          {
+            add: [params.node.data]
+          }
+        );
+        params.api.applyTransaction(
+          {
+            remove: [params.node.data]
+          }
+        );
+      }));
     }
     if (params.data["KPIValue"] == "Yes") {
-    this.datashare.fifteenMinsKpiGridMessage.subscribe((ifteenMinsKpiGridSample) => {
-    this.fifteenMinsKpiGridOptionsData = ifteenMinsKpiGridSample;
-    this.fifteenMinsKpiGridOptionsData.api.applyTransaction(
-    {
-    add: [params.node.data]
+      this.subscriptionMessage.add(this.datashare.fifteenMinsKpiGridMessage.subscribe((ifteenMinsKpiGridSample) => {
+        this.fifteenMinsKpiGridOptionsData = ifteenMinsKpiGridSample;
+        this.fifteenMinsKpiGridOptionsData.api.applyTransaction(
+          {
+            add: [params.node.data]
+          }
+        );
+        params.api.applyTransaction(
+          {
+            remove: [params.node.data]
+          }
+        );
+      }));
     }
-    );
-    params.api.applyTransaction(
-    {
-    remove: [params.node.data]
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionMessage) {
+      this.subscriptionMessage.unsubscribe();
     }
-    );
-    });
-    }
-    }
+  }
 }

@@ -68,7 +68,6 @@ export class ciaDropdownRenderersComponent implements ICellRendererAngularComp {
 
   agInit(params): void {
     this.params = params;
-    console.log(params)
     this.columnName = params.column.colDef.headerName;
     this.rowIndex = params.rowIndex;
     this.daysImprovementVal = this.daysImprovementList[this.rowIndex];

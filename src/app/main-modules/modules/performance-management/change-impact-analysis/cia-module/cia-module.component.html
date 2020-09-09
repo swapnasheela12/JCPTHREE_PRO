@@ -12,7 +12,7 @@
           <div class="content-holder">
             <div class="pt-3 pb-4">
               <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(ngModel)]="selectedRadio">
-                <mat-radio-button *ngFor="let type of radioTypeList" class="mr-4" [value]="type.name"
+                <mat-radio-button *ngFor="let type of radioTypeList;trackBy:trackByRadioButtonType" class="mr-4" [value]="type.name"
                   [disableRipple]="true">
                   {{type.name}}</mat-radio-button>
               </mat-radio-group>
@@ -84,7 +84,6 @@
           <div class="d-flex">
             <button class="next-button button" [disabled]="!showSuccessFailure" mat-raised-button color="primary"
               matStepperNext>Next</button>
-            <!-- <div class="col"></div> -->
           </div>
         </mat-step>
         <mat-step label="Select KPI">
@@ -137,7 +136,7 @@
               <div class="top-first" fxLayoutGap="40px" fxLayout="row wrap" fxLayoutAlign="start end">
                 <mat-form-field fxFlex="55">
                   <mat-chip-list #postChipList aria-label="Post Date Selection" (click)="postPicker.open()">
-                    <mat-chip *ngFor="let postValue of postModel" [selectable]="false" [removable]="true"
+                    <mat-chip *ngFor="let postValue of postModel;trackBy:trackByChipsPost" [selectable]="false" [removable]="true"
                       (removed)="postRemove(postValue)">
                       {{ postValue | date }}
                       <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
@@ -169,7 +168,7 @@
               <div class="top-second" fxLayoutGap="40px" fxLayout="row wrap" fxLayoutAlign="start end">
                 <mat-form-field fxFlex="55">
                   <mat-chip-list #preChipList aria-label="Pre Date Selection" (click)="prePicker.open()">
-                    <mat-chip *ngFor="let preValue of preModel" [selectable]="false" [removable]="true"
+                    <mat-chip *ngFor="let preValue of preModel;trackBy:trackByChipsPre" [selectable]="false" [removable]="true"
                       (removed)="preRemove(preValue)">
                       {{ preValue | date }}
                       <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
@@ -197,7 +196,7 @@
                 <label class="radio-group-label">Frequency</label>
                 <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
                   [(value)]="frequencySelected">
-                  <mat-radio-button [disableRipple]="true" fxFlex="20" *ngFor="let frequency of frequencyData"
+                  <mat-radio-button [disableRipple]="true" fxFlex="20" *ngFor="let frequency of frequencyData;trackBy:trackByRadioButtonFrequency"
                     [value]="frequency">
                     {{frequency}}
                   </mat-radio-button>

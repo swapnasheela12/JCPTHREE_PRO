@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, SimpleChanges, HostListener, Input, ViewChild, ViewEncapsulation, AfterViewChecked, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import * as _ from 'lodash';
 import { GridOptions, GridCore, GridApi } from 'ag-grid-community';
@@ -8,7 +8,7 @@ import rounded from 'highcharts-rounded-corners';
 import { CustomTooltip } from '../custom-tooltip.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AlarmDetailsPopupComponent } from './alarm-details-popup/alarm-details-popup.component';
-// import { CustomTooltip } from './custom-tooltip.component';
+import { Subscription } from 'rxjs';
 
 declare var $: any;
 rounded(Highcharts)
@@ -25,15 +25,13 @@ const PATHS = [
 export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   public pathsCIAViewSummary: String;
   public pathMyPerformanceReports: String;
-  public rowData: any;
+  public rowData: object;
   public columnDefs: any[];
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  primaryKpiValue;
-  kpiDetailsChart;
   secondaryKpi: string = "Traffic";
-  ciaChart;
+  ciaChart: Highcharts.Chart;
   public frameworkComponents;
   public defaultColDef;
   public colDefs;
@@ -44,9 +42,8 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   sectorListValue: string = "I-GJ-JMGR-ENB-9196 (BETA)";
   enodebListValue: string = "I-GJ-JMGS-0ENB-9197";
   jcListValue: string = "GJ-JMGR-JC01-0259";
-  @Input() config: any;
   tooltipShowDelay: number;
-  messageSubscription: any;
+  messageSubscription: Subscription;
   searchListValue;
   cellsList = [
     { cell: 'I-DL-DLHI-IBS-0155_c1' },
@@ -71,7 +68,6 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     { jc: 'GJ-JMGR-JC01-0261' },
     { jc: 'GJ-JMGR-JC01-0262' }
   ];
-  // onPointSelect: any;
 
   constructor(private datashare: DataSharingService, private http: HttpClient, private cdRef: ChangeDetectorRef, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{};
@@ -200,7 +196,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           zIndex: 5
         }]
       },
-      yAxis: [{ // Secondary yAxis
+      yAxis: [{ 
         labels: {
           format: '{value}'
         },
@@ -208,9 +204,9 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           text: value1
         },
         opposite: true
-      }, { // Primary yAxis
+      }, { 
 
-        min: 0, // minimum value
+        min: 0,
         max: 100,
         title: {
           text: value2
@@ -239,13 +235,11 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
             legendItemClick: function (e) {
               var name = this.name.substring(this.name.length - 4, this.name.length);
               var _i = e.target.index
-              // if () {
               Highcharts.each(this.chart.series, function (p, i) {
                 if (_i < 5 && name === p.name.substring(p.name.length - 4, p.name.length) && _i !== p._i) {
                   (!p.visible) ? p.show() : p.hide()
                 }
               })
-              // }
             }
           }
         }
@@ -377,14 +371,12 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       this.ciaChart.options.series[9].visible = true
     }
   };
-  openedChange(sda) {
-    console.log(sda)
+  openedChange(event) {
     this.searchListValue = ""
   }
   ngOnDestroy() {
     if (this.messageSubscription) {
       this.messageSubscription.unsubscribe();
-      console.log(this.messageSubscription)
     }
   }
 }

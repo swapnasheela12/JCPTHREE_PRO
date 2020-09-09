@@ -33,30 +33,30 @@ export class ReportsWizardComponent implements OnInit {
   ///////////////
 
   ///////////stepar//////////////
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
+  public isLinear = false;
+  public firstFormGroup: FormGroup;
+  public secondFormGroup: FormGroup;
+  public thirdFormGroup: FormGroup;
   ///////////stepar//////////////
 
 
   //////////breadcrums///////////////
-  breadcrumbLinksList: string;
-  urlPathPage: string;
+  public  breadcrumbLinksList: string;
+  public urlPathPage: string;
   //////////breadcrums///////////////
 
   ///////datepicker//////////
-  opens = 'center';
-  drops = 'up';
+  public opens = 'center';
+  public  drops = 'up';
   public todaysDay = new Date();
-  selectedDateTime: any;
-  selectedDateTimeValue: boolean = false;
-  invalidDates: moment.Moment[] = [];
-  tooltips = [
+  public  selectedDateTime: any;
+  public selectedDateTimeValue: boolean = false;
+  public  invalidDates: moment.Moment[] = [];
+  public tooltips = [
     { date: moment(), text: 'Today is just unselectable' },
     { date: moment().add(2, 'days'), text: 'Yeeeees!!!' },
   ];
-  ranges = {
+  public ranges = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
@@ -65,8 +65,6 @@ export class ReportsWizardComponent implements OnInit {
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
   };
-
-
 
   ///////datepicker//////////
   public reportTabIndex = 0;
@@ -97,8 +95,7 @@ export class ReportsWizardComponent implements OnInit {
 
   }
 
-
-  constructor(private location: Location, private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog,) {
+  constructor( private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog,) {
   }
 
   ///////datepicker//////////
@@ -124,9 +121,6 @@ export class ReportsWizardComponent implements OnInit {
   }
   ///////datepicker//////////
 
-
-
-
   ngOnInit() {
     this.stepperReportW();
     setTimeout(() => {
@@ -147,9 +141,7 @@ export class ReportsWizardComponent implements OnInit {
       selectedDateTime: {
         startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
         endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
-        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
-      },
+        },
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,
       showRangeLabelOnInput: true,
@@ -157,8 +149,8 @@ export class ReportsWizardComponent implements OnInit {
 
   }
 
-  animal: string;
-  name: string;
+  public animal: string;
+  public name: string;
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateReportComponent, {
       width: "700px",
@@ -172,8 +164,8 @@ export class ReportsWizardComponent implements OnInit {
     });
   };
 
-  gotomyreport: string;
-  createnewreport: string;
+  public gotomyreport: string;
+  public createnewreport: string;
   openDialogSuccessful(): void {
     const dialogRef = this.dialog.open(SuccessfulComponent, {
       width: "470px",

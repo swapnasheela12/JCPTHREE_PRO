@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { GridOptions, GridCore, GridApi } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ciaDropdownRenderersComponent } from '../renderer/cia-renderer.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cia-kpi-admin-settings',
@@ -12,10 +13,10 @@ import { ciaDropdownRenderersComponent } from '../renderer/cia-renderer.componen
   styleUrls: ['./cia-kpi-admin-settings.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CiaAdminSettingsComponent implements OnInit {
+export class CiaAdminSettingsComponent implements OnInit, OnDestroy {
   public columnDefs: any[];
   public sidenavBarStatus;
-  public rowData: any;
+  public rowData: object;
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
@@ -24,6 +25,7 @@ export class CiaAdminSettingsComponent implements OnInit {
   public rowSelection;
   searchGrid = '';
   public showGlobalOperation: Boolean = false;
+  messageSubscription: Subscription;
 
   colDefs = [
     {
@@ -64,7 +66,7 @@ export class CiaAdminSettingsComponent implements OnInit {
     this.frameworkComponentsKpiSettings = {
       'dropdownRenderer': ciaDropdownRenderersComponent,
     };
-    this.datashare.currentMessage.subscribe((message) => {
+    this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
       this.fitColumns();
     });
@@ -83,7 +85,6 @@ export class CiaAdminSettingsComponent implements OnInit {
   private createColumnDefs() {
     this.columnDefs = this.colDefs;
   }
-
 
   onFilterChanged(value) {
     this.gridOptions.api.setQuickFilter(value);
@@ -114,5 +115,11 @@ export class CiaAdminSettingsComponent implements OnInit {
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  ngOnDestroy() {
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
   }
 }

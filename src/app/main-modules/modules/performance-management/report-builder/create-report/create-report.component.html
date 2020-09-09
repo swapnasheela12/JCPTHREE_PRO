@@ -1,9 +1,5 @@
 <div class="h-100">
   <mat-card class="mat-card">
-    <!-- <mat-card-header class="header">
-    <mat-card-title class="card-title">Add Performance Report : {{mode}} {{reportType}}</mat-card-title>
-  </mat-card-header>
-  <mat-divider></mat-divider> -->
     <mat-card-content class="card-content">
       <mat-horizontal-stepper #nodeCounterStepper [linear]="false"
         (selectionChange)="selectNodeStepper($event)">
@@ -40,48 +36,6 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <!-- <div fxLayout="row wrap" fxLayoutAlign="" class="pl-3" fxLayoutGap="10px">
-              <div fxFlex>
-                <mat-form-field class="form-field-container mx-3">
-                  <input matInput placeholder="Report Name" formControlName="keyName" required>
-                </mat-form-field>
-              </div>
-              <div fxFlex>
-                <mat-form-field class="form-field-container mx-3">
-                  <mat-select disableOptionCentering placeholder="Report Type" [(value)]="reportType"
-                    (selectionChange)="reportTypeSelectValue(reportType, this.rightGridOptions)">
-                    <mat-option value="KPI Report" selected>KPI Report</mat-option>
-                    <mat-option value="Exception Report">Exception Report</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div fxFlex>
-                <mat-form-field class="form-field-container mx-3">
-                  <mat-select disableOptionCentering placeholder="Mode" [(value)]="mode">
-                    <mat-option value="On Demand" selected>On Demand</mat-option>
-                    <mat-option value="Scheduled">Scheduled</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div fxFlex>
-                <mat-form-field class="form-field-container mx-3">
-                  <mat-select disableOptionCentering placeholder="Domain" name="domain" [(value)]="domain">
-                    <mat-option *ngFor="let domain of domainList" [value]="domain.domainName">{{domain.domainName}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div fxFlex>
-                <mat-form-field class="form-field-container mx-3">
-                  <mat-select disableOptionCentering placeholder="Vendor" [(value)]="vendor">
-                    <mat-option value="Airspan" selected>Airspan</mat-option>
-                    <mat-option value="Samsung">Samsung</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-
-            </div> -->
           </form>
           <div>
             <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
@@ -318,7 +272,7 @@
                 </div>
                 <div fxLayout="row wrap" class="m20" *ngIf="mode=='Scheduled'">
                   <mat-checkbox fxFlex="33" [(value)]="checkboxSelectGroup" [value]="checkboxSelect.name"
-                    *ngFor="let checkboxSelect of checkboxSelectList">
+                    *ngFor="let checkboxSelect of checkboxSelectList;trackBy:trackByCheckbox">
                     {{checkboxSelect.name}}
                   </mat-checkbox>
                 </div>
@@ -328,7 +282,7 @@
                     <label class="radio-group-label">Frequency</label>
                     <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
                       [(value)]="frequencyGroup">
-                      <mat-radio-button *ngFor="let frequency of frequencyList" [value]="frequency.name">
+                      <mat-radio-button *ngFor="let frequency of frequencyList;trackBy:trackByRadioButton" [value]="frequency.name">
                         {{frequency.name}}</mat-radio-button>
                     </mat-radio-group>
                   </div>

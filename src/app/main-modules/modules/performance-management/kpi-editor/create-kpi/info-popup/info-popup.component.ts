@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions } from 'ag-grid-community';
-import { CustomTooltip } from '../../../my-performance-reports/custom-tooltip.component';
 
 const HELP_DEFS = [
   {
@@ -73,7 +72,6 @@ export class InfoPopupComponent implements OnInit {
       tooltipComponent: 'customTooltip',
     };
     this.tooltipShowDelay = 0;
-    // this.frameworkComponents = { customTooltip: CustomTooltip };
   }
 
   ngOnInit(): void {
@@ -95,7 +93,6 @@ export class InfoPopupComponent implements OnInit {
   public getCustomDashboardData() {
     this.http.get(this.dataUrl)
       .subscribe(data => {
-        console.log(data)
         this.helpGridData = data;       
     });
   }

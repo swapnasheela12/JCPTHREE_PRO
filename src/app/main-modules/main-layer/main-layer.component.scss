@@ -2,19 +2,11 @@
     height: 100%;
     width: 100%;
     padding: 0;
-    // img {
-    //   position: relative;
-    //   display: block;
-    //   max-width: 100%;
-    // }
     .leaflet-control-container {
         background: red !important;
         .leaflet-bottom .leaflet-right {}
     }
 }
-
-
-/* temporarily added. */
 
 #newline {
     right: 375px !important;

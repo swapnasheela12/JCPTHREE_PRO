@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
  import { IHeaderAngularComp } from 'ag-grid-angular';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { GridOptions } from '@ag-grid-community/all-modules';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'custom-header',
@@ -13,11 +14,12 @@ import { GridOptions } from '@ag-grid-community/all-modules';
     </div>
   `
 })
-export class CustomHeaderComponent implements IHeaderAngularComp{
-  public params: any;
+export class CustomHeaderComponent implements IHeaderAngularComp, OnDestroy {
+  public params: object;
   leftGridKpiOptions: GridOptions;
   rightGridKpiOptions: GridOptions;
   public showGlobalDeleteKpiOperation;
+  messageSubscription: Subscription;
 
   constructor(
     public datashare: DataSharingService
@@ -27,7 +29,7 @@ export class CustomHeaderComponent implements IHeaderAngularComp{
 
   agInit(params): void {
     this.params = params;
-    this.datashare.checkboxMessage.subscribe((data)=>{
+    this.messageSubscription = this.datashare.checkboxMessage.subscribe((data)=>{
       this.showGlobalDeleteKpiOperation = data;
     })
   }
@@ -48,5 +50,11 @@ export class CustomHeaderComponent implements IHeaderAngularComp{
       );
     params.context.leftGridKpiOptions.api.refreshCells({force: true})
     });
+  }
+
+  ngOnDestroy() {
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
   }
 }

@@ -14,11 +14,9 @@ export class ViewSummaryComponent implements OnInit {
     secondaryKpi: string = "Traffic";
     time: string = "time";
     cellList: string = "Custom Cell List";
-    // legendsList = [
-    //     { class: 'green', name: 'Improvement' },
-    //     { class: 'red', name: 'Degradation' },
-    //     { class: 'blue', name: 'No Impact' },
-    // ]
+    trackByDataList(index: number, item: any): string {
+        return item.name;
+    }
     dataList = [
         { name: 'Overall', value: '1,00,00' },
         { name: '850', value: '15,000' },

@@ -1,11 +1,8 @@
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-import { CommonPopupComponent, CommonDialogModel } from '../../../../../core/components/commanPopup/common-popup/common-popup.component';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormArray } from '@angular/forms';
 
-@Component({ 
+@Component({
   selector: 'dropdown-button-renderer',
   template: `
     <div *ngIf="formGroup" [formGroup]="formGroup">
@@ -16,11 +13,10 @@ import { FormArray } from '@angular/forms';
         </mat-option>
       </mat-select>
     </mat-form-field>
-    
     </div>
     `,
-    styles: [
-        `
+  styles: [
+    `
         .kpi-editor-menu-render .mat-menu-content .mat-menu-item:hover {
             background-color: #f3f7fc;
         }
@@ -38,10 +34,10 @@ export class createKpiDropdownRendererComponent implements ICellRendererAngularC
   ];
 
   formGroup: FormArray;
-    key;
-    private value;
-    columnName: string;
-    private rowId: number;
+  key;
+  private value;
+  columnName: string;
+  private rowId: number;
   constructor(
   ) {
   }
@@ -56,8 +52,8 @@ export class createKpiDropdownRendererComponent implements ICellRendererAngularC
   }
 
   refresh(params?: any): boolean {
-      this.formGroup = params.context.formGroup;
-      return true;
+    this.formGroup = params.context.formGroup;
+    return true;
   }
 
 }

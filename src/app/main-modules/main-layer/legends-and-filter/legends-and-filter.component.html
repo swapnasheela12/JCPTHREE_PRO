@@ -1,32 +1,3 @@
-<!-- <div class="modal-body-wrapper">
-    <mat-dialog-content class="dialog-title">
-        <h2>Legends & Filters</h2>
-        <mat-icon>close</mat-icon>
-    </mat-dialog-content>
-    <mat-dialog-content class="layers">
-        <mat-form-field appearance="fill">
-            <mat-label class="drp-label">Select Layer</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let layer of layers" [value]="layer.value">
-                    {{layer.value}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </mat-dialog-content>
-    <mat-dialog-content class="date">
-        <span>Date:
-            <mat-form-field appearance="fill">
-                <input matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-        </span>
-    </mat-dialog-content>
-    <mat-dialog-content class="slider">
-        <input type="text" class="js-range-slider" name="my_range" value="" />
-    </mat-dialog-content>
-</div> -->
-
 <div #container class="jcp-table-control-layers-container">
     <div class="toolbar-table-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
         <div class="toolbar-table-control-title" fxFlex>
@@ -43,26 +14,13 @@
         <div class="filter-selected-layers px-3" fxFlex="45">
             <mat-form-field class="form-field-selected-layers pt-2 w-100">
                 <mat-select disableOptionCentering class="mat-select-selected-layers" placeholder="Selected Layer" #singleSelect>
-                    <mat-option *ngFor="let layer of layers" [value]="layer.value">
+                    <mat-option *ngFor="let layer of layers;trackBy: trackByMethod " [value]="layer.value">
                         {{layer.value}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <!-- <div class="filter-selected-layers px-3" fxFlex="15"> -->
-        <!-- <mat-form-field class="form-field-selected-layers pt-2 w-100">
-                <mat-select (selectionChange)="onChange($event.value)" [(ngModel)]="selectedColorValue" [ngStyle]="{'background-color':selectedColor}" disableOptionCentering class="mat-select-selected-layers" placeholder="">
-                    <mat-option *ngFor="let color of colors" [value]="color.value">
-                        <div [ngStyle]="{'background-color':color.value}" style="width: 25px;height: 25px;"></div>
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-        <!-- <select (change)="onChange($event.target.value)" [ngStyle]="{'background-color':selectedColor}">
-                <option *ngFor="let color of colors" [value]="color.value" >
-                    <div [ngStyle]="{'background-color':color.value}" style="width: 50px;height: 50px;">{{color.value}}</div>
-                </option>
-            </select> -->
-        <!-- </div> -->
+
     </div>
     <mat-divider></mat-divider>
     <div class="legends-and-filters">
@@ -70,18 +28,9 @@
             <div>Date:</div>
             <form [formGroup]="form" class="report-filter-form">
                 <div class="filter-selected-layers px-3" fxFlex="35">
-                    <!-- <mat-form-field class="form-field-selected-layers p-0 w-100" appearance="fill">
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field> -->
-
                     <mat-form-field class="">
-                        <!-- <div class="daterange-container"> -->
                         <input class="daterange-container-input" matInput ngxDaterangepickerMd formControlName="selected" placeholder="" [showDropdowns]="true" [singleDatePicker]="true" [showCancel]="true" [locale]="locale" />
-                        <!-- </div> -->
                     </mat-form-field>
-
                 </div>
             </form>
         </div>
@@ -95,7 +44,4 @@
         </div>
         <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
     </div>
-
-
-
 </div>

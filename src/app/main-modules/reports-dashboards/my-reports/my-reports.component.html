@@ -18,7 +18,6 @@
                 </mat-icon>
 
                 <mat-form-field *ngIf="show">
-                    <!-- <mat-label>Filter</mat-label> -->
                     <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
                     <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
@@ -30,13 +29,7 @@
 
     <mat-divider style="position: relative;"></mat-divider>
     <div class="jcp-table-container">
-
-        <!-- <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
-            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)" [frameworkComponents]="frameworkComponentsMyReport" (gridReady)="onReady($event)">
-        </ag-grid-angular> -->
-
         <app-table-ag-grid></app-table-ag-grid>
-
     </div>
     <div class="float">
         <button mat-fab color="primary" aria-label="create report" (click)="openDialog()">

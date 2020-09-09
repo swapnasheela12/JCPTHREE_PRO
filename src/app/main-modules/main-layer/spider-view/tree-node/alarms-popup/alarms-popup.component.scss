@@ -1,25 +1,9 @@
 @import "@ag-grid-community/core/dist/styles/ag-grid.scss";
 @import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
-
-
-// .alarms-container .text-green{
-//     color: #1c4a77 !important;
-//     background: green;
-// }
-
-// .alarms-container .text-red {
-//     color: #bb1b2f !important;
-//     background: red;
-// }
-
 .alarms-toolbar {
     background: #1976D2;
-    
     color: #ffffff;
-    //padding:1rem;
     font-family: "Lato Medium", sans-serif;
-   // height: 50px;
-   
 }
 
 .popup-title {
@@ -31,18 +15,24 @@
     align-items: center;
     padding: 10px;
 }
+
 .header {
     padding-left: 5px;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: .01em;
     line-height: 24px;
-    flex:90%;
+    flex: 90%;
 }
+
 .close-popup {
     flex: 1;
-    border: none;border-radius: 50px;background: #1976D2;color:#ffffff
+    border: none;
+    border-radius: 50px;
+    background: #1976D2;
+    color: #ffffff
 }
+
 .mat-dialog-container {
     overflow: hidden;
 }
@@ -58,6 +48,7 @@
 .ag-theme-material .ag-pinned-left-header {
     border-right: none;
 }
+
 .ag-theme-material .ag-pinned-right-header {
     border-left: none;
 }
@@ -78,10 +69,10 @@
     overflow: scroll !important;
 }
 
- .redFont {
+.redFont {
     color: #bb1b2f;
 }
 
-.greenFont{
+.greenFont {
     color: green;
 }

@@ -34,8 +34,7 @@ $md-primary: #0070DB;
         }
         .dummy-input{
             margin-left: 25px; 
-            border-bottom: 1px solid #949494; 
-            // height: 25px;
+            border-bottom: 1px solid #949494;
             padding: 2px 0px;
             font-size: 14px !important;
             font-family: roboto;
@@ -44,7 +43,6 @@ $md-primary: #0070DB;
             font-size: 14px;
         }
       .inline-button{
-            // background: #e4f1fb;
             font-size: 20px;
             color: #666666;
             &:hover{

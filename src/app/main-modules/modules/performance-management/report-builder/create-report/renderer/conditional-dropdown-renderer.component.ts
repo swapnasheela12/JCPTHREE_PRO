@@ -1,10 +1,8 @@
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormArray } from '@angular/forms';
 
-@Component({ 
+@Component({
   selector: 'dropdown-button-renderer',
   template: `
     <div *ngIf="formGroup" [formGroup]="formGroup" fxLayout="row" fxLayouAlign="start center">
@@ -23,7 +21,7 @@ import { FormArray } from '@angular/forms';
     </mat-form-field>
     </div>
     `,
-    encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 
 export class conditionalDropdownRendererComponent implements ICellRendererAngularComp {
@@ -36,17 +34,15 @@ export class conditionalDropdownRendererComponent implements ICellRendererAngula
     '>',
     'Between'
   ];
-  ifBetween:Boolean = false;
-  ifnotBetween:Boolean = true;
-
+  ifBetween: Boolean = false;
+  ifnotBetween: Boolean = true;
   formGroup: FormArray;
-    key;
-    private value;
-    columnName: string;
-    private rowId: number;
+  key;
+  private value;
+  columnName: string;
+  private rowId: number;
   constructor(
-  ) {
-  }
+  ) {}
 
   agInit(params): void {
     this.params = params;
@@ -54,20 +50,18 @@ export class conditionalDropdownRendererComponent implements ICellRendererAngula
     this.key = params.context.createKey(params.columnApi, params.column);
     this.value = params.value;
     this.rowId = params.node.id;
-
   }
 
   refresh(params?: any): boolean {
-      this.formGroup = params.context.formGroup;
-      // this.formGroup.controls[this.key].patchValue(params.value);
-      return true;
+    this.formGroup = params.context.formGroup;
+    return true;
   }
 
   changeOnCondition(condition) {
-    if ('Between'== condition.value) {
-        this.ifBetween = true;
+    if ('Between' == condition.value) {
+      this.ifBetween = true;
     } else {
-        this.ifBetween = false;
+      this.ifBetween = false;
     }
   }
 }

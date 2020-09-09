@@ -20,20 +20,18 @@ const PATHS = [
 })
 export class KpiEditorComponent implements OnInit {
   public columnDefs: any[];
-  public rowData: any;
+  public rowData: object;
   private gridApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public frameworkComponentsKPIEditor;
   gridColumnApi: any;
   public rowSelection;
-  show: any;
+  show: boolean;
   searchGrid = '';
   public showGlobalOperation:Boolean = false;
-  public dataTest: any;
   private paginationPageSize = 10;
   public paths;
-
   HEADER_KPI = [
     {
       headerName: "Status",
@@ -136,7 +134,6 @@ export class KpiEditorComponent implements OnInit {
   ngOnInit(): void {
     this.createColumnDefs();
     this.getKPIData();
-
   }
 
   get PaginationPageSize(): number {
