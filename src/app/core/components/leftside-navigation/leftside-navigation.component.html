@@ -1,6 +1,6 @@
 <nav id="nav-menu" mmenu #varWithDirective="mmenuDirectiveExport">
     <ul class="listview-icons">
-        <li *ngFor="let item of menuListAll">
+        <li *ngFor="let item of menuListAll;trackBy: navigationTrackBy">
             <ng-container [ngTemplateOutlet]="recursiveListTmpl" [ngTemplateOutletContext]="{item:item}">
             </ng-container>
         </li>
@@ -21,7 +21,7 @@
         </a>
         <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
             <ul>
-                <li *ngFor="let item of item.children; let i= index" id="{{item.name.split(' ').join('_')}}">
+                <li *ngFor="let item of item.children; let i= index; trackBy: navigationTrackBy" id="{{item.name.split(' ').join('_')}}">
                     <ng-container [ngTemplateOutlet]="recursiveListTmpl" [ngTemplateOutletContext]="{item:item}">
                     </ng-container>
                 </li>
@@ -39,7 +39,6 @@
                         <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1"
                             [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}"></li>
                     </span>
-                    <!-- <div [style.border-left]="setBorder(node)" [style.padding-left]="setPadding(node)"> -->
                     <button mat-icon-button disabled></button>
                     <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1"
                         class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>

@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { Router } from '@angular/router';
 import { SideNavService } from '../_services/side-nav.service';
 import { DataSharingService } from '../_services/data-sharing.service';
@@ -8,6 +8,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Location } from '@angular/common';
 import * as moment from 'moment';
 declare var $: any;
+
+interface DataObject {
+  [key: string]: any;
+}
+
+
 @Component({
   selector: "app-home-jcp-three",
   templateUrl: "./home-jcp-three.component.html",
@@ -33,22 +39,25 @@ declare var $: any;
     ]),
   ]
 })
+
+
 export class HomeJcpThreeComponent implements OnInit {
-  expanded: boolean;
-  toggleActive = true;
-  state: string = 'default';
-  isHamburguer = true;
-  displayHomeHeader = false;
-  route: string;
+  public expanded: boolean;
+  public toggleActive:boolean = true;
+  public state: string = 'default';
+  public isHamburguer:boolean = true;
+  public displayHomeHeader:boolean = false;
+  public route: string;
+
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
 
-  lastIn: any = '';
-  currentPage = '';
-  timeSpentOnPages = [];
-  moment = moment;
-  pageUrlVar;
-  timeSpendVar;
+  public lastIn:any = '';
+  public currentPage:string = '';
+  public timeSpentOnPages:DataObject = [];
+  public moment:DataObject = moment;
+  public pageUrlVar:string;
+  public timeSpendVar:number;
 
   constructor(private router: Router, private location: Location, private sidenavService: SideNavService, private datashare: DataSharingService) {
     router.events.subscribe(val => {
@@ -93,26 +102,26 @@ export class HomeJcpThreeComponent implements OnInit {
         this.currentPage = event.url;
       }
     })
-
-
-
   }
+
 
   toggleSidenav() {
     this.toggleActive = !this.toggleActive;
     this.datashare.changeMessage(this.toggleActive)
-
   }
+
 
   ngOnInit() {
     this.sidenavService.setSidenav(this.sidenav);
   }
+
+
   toggle() {
     this.expanded = !this.expanded;
   }
 
+
   changeIcon() {
     this.isHamburguer = !this.isHamburguer;
   }
-
 }

@@ -2,31 +2,27 @@
     <mat-card-header class="card-header" fxLayoutAlign="start center">
         <mat-card-title class="card-title mb-0">
             <mat-chip-list #templateGalleryChipList aria-label="Template Gallery">
-                <!-- <mat-chip *ngFor="let template of templateGalleryList" [selectable]="true" [removable]="true"
-                    (removed)="removeTemplateChip(template)" selected="{{template.value}}" (click)="shdkjahjad(templateGalleryChipList)">
-                    {{ template }}
-                    <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-                </mat-chip> -->
-                <mat-chip *ngFor="let template of templateGalleryList" [removable]="true" class="existing-template-chips"
-                          #lbl="matChip" (click)="isSelected(lbl, template)"  (removed)="removeTemplateChip(lbl, template)">
-                   {{template}}
-                  <!-- <span fxLayoutAlign="center center" > -->
+                <mat-chip *ngFor="let template of templateGalleryList; trackBy:trackByMatChip" [removable]="true"
+                    class="existing-template-chips" #lbl="matChip" (click)="isSelected(lbl, template)"
+                    (removed)="removeTemplateChip(lbl, template)">
+                    {{template}}
                     <mat-icon class="chip-remove-icon" matChipRemove *ngIf="true">close</mat-icon>
-                  <!-- </span> -->
                 </mat-chip>
-                <mat-chip class="new-template-chip" *ngIf=" templateGalleryListCount < 4" [removable]="true" (click)="newSaveAsTemplatePopup('New Template')">
+                <mat-chip class="new-template-chip" *ngIf=" templateGalleryListCount < 4" [removable]="true"
+                    (click)="newSaveAsTemplatePopup('New Template')">
                     New Template
                     <mat-icon *ngIf="true">add</mat-icon>
                 </mat-chip>
             </mat-chip-list>
         </mat-card-title>
         <div class="col"></div>
-        <button class="ic ic-list1 link-icon-button" style="font-size: 18px;color:#464D69" mat-icon-button (click)="showRightHolderToggle()">
+        <button class="ic ic-list1 link-icon-button" style="font-size: 18px;color:#464D69" mat-icon-button
+            (click)="showRightHolderToggle()">
         </button>
     </mat-card-header>
     <mat-card-content fxLayout="row" class="card-content">
         <div fxFlex="auto">
-            <mat-tab-group dynamicHeight fxFlex="auto"  (selectedTabChange)="onTabChanged($event)" >
+            <mat-tab-group dynamicHeight fxFlex="auto" (selectedTabChange)="onTabChanged($event)">
                 <mat-tab label="Link Budget">
                     <div class="">
                         <div class="accordian-holder">
@@ -45,7 +41,7 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngFor="let templateEach of templateGalleryList">
+                                            <th *ngFor="let templateEach of templateGalleryList; trackBy:trackByTemplate">
                                                 <span *ngIf="!showDesignInfo">
                                                     {{templateEach}}
                                                 </span>
@@ -54,19 +50,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let entity of designList; index as index">
+                                        <tr *ngFor="let entity of designList; index as index; trackBy:trackByEntity">
                                             <td>
                                                 <span class="text-field">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                *ngFor="let templateEach of templateGalleryList; let i=index"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy:trackByTemplate"
                                                 class="max-width-0">
                                                 <div class="editable-field" *ngIf="!showDesignInfo">
                                                     <editCell (update)="updateDesignField(index, 'value')" *ngIf="i==0">
                                                         <ng-template appViewMode>{{entity.value}}</ng-template>
                                                         <ng-template appEditMode>
-                                                            <input (change)="compute($event)" fxFlex="80"
-                                                                class="input-field"
+                                                            <input fxFlex="80" class="input-field"
                                                                 [formControl]="getDesignControl(index, 'value')"
                                                                 appFocusable appEditOnEnter>
                                                         </ng-template>
@@ -75,8 +70,7 @@
                                                         *ngIf="i==1">
                                                         <ng-template appViewMode>{{entity.value2}}</ng-template>
                                                         <ng-template appEditMode>
-                                                            <input (change)="compute($event)" fxFlex="80"
-                                                                class="input-field"
+                                                            <input fxFlex="80" class="input-field"
                                                                 [formControl]="getDesignControl(index, 'value2')"
                                                                 appFocusable appEditOnEnter>
                                                         </ng-template>
@@ -85,8 +79,7 @@
                                                         *ngIf="i==2">
                                                         <ng-template appViewMode>{{entity.value3}}</ng-template>
                                                         <ng-template appEditMode>
-                                                            <input (change)="compute($event)" fxFlex="80"
-                                                                class="input-field"
+                                                            <input fxFlex="80" class="input-field"
                                                                 [formControl]="getDesignControl(index, 'value3')"
                                                                 appFocusable appEditOnEnter>
                                                         </ng-template>
@@ -95,8 +88,7 @@
                                                         *ngIf="i==3">
                                                         <ng-template appViewMode>{{entity.value4}}</ng-template>
                                                         <ng-template appEditMode>
-                                                            <input (change)="compute($event)" fxFlex="80"
-                                                                class="input-field"
+                                                            <input fxFlex="80" class="input-field"
                                                                 [formControl]="getDesignControl(index, 'value4')"
                                                                 appFocusable appEditOnEnter>
                                                         </ng-template>
@@ -127,7 +119,7 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngFor="let templateEach of templateGalleryList">
+                                            <th *ngFor="let templateEach of templateGalleryList; trackBy:trackByTemplate">
                                                 <span *ngIf="!showNetworkInputsInfo">
                                                     {{templateEach}}
                                                 </span>
@@ -136,13 +128,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let entity of networkInputsList; index as index">
+                                        <tr *ngFor="let entity of networkInputsList; index as index; trackBy:trackByEntity">
                                             <td>
                                                 <span class="text-field" style="padding-top:20px;">
                                                     {{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy:trackByTemplate"
                                                 class="max-width-0" style="padding: 0px 15px;">
                                                 <div *ngIf="!showNetworkInputsInfo">
                                                     <mat-form-field *ngIf="entity.parameter == 'Technology'"
@@ -161,17 +153,28 @@
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Operating Band (MHz)'"
                                                         class="select-container" fxFlex="70">
-                                                        <mat-select disableOptionCentering [(value)]="operatingBand[i]" [matTooltip]="operatingBand[i]">
-                                                            <mat-option value="n38 : 2570 -2620 MHz">n38 : 2570 -2620 MHz</mat-option>
-                                                            <mat-option value="n41 : 2496 -2690 MHz">n41 : 2496 -2690 MHz</mat-option>
-                                                            <mat-option value="n50 : 1432 -1517 MHz">n50 : 1432 -1517 MHz</mat-option>
-                                                            <mat-option value="n51 : 1427 -1432 MHz">n51 : 1427 -1432 MHz</mat-option>
-                                                            <mat-option value="n78  : 3300 -3800 MHz">n78  : 3300 -3800 MHz</mat-option>
-                                                            <mat-option value="n77  : 3300 - 4200 MHz">n77  : 3300 - 4200 MHz</mat-option>
-                                                            <mat-option value="n79  : 4400 -5000 MHz">n79  : 4400 -5000 MHz</mat-option>
-                                                            <mat-option value="n257 : 26500 -29500 MHz">n257 : 26500 -29500 MHz</mat-option>
-                                                            <mat-option value="n258 : 24250 –27500 MHz">n258 : 24250 –27500 MHz</mat-option>
-                                                            <mat-option value="n260 : 37000 -40000 MHz">n260 : 37000 -40000 MHz</mat-option>
+                                                        <mat-select disableOptionCentering [(value)]="operatingBand[i]"
+                                                            [matTooltip]="operatingBand[i]">
+                                                            <mat-option value="n38 : 2570 -2620 MHz">n38 : 2570 -2620
+                                                                MHz</mat-option>
+                                                            <mat-option value="n41 : 2496 -2690 MHz">n41 : 2496 -2690
+                                                                MHz</mat-option>
+                                                            <mat-option value="n50 : 1432 -1517 MHz">n50 : 1432 -1517
+                                                                MHz</mat-option>
+                                                            <mat-option value="n51 : 1427 -1432 MHz">n51 : 1427 -1432
+                                                                MHz</mat-option>
+                                                            <mat-option value="n78  : 3300 -3800 MHz">n78 : 3300 -3800
+                                                                MHz</mat-option>
+                                                            <mat-option value="n77  : 3300 - 4200 MHz">n77 : 3300 - 4200
+                                                                MHz</mat-option>
+                                                            <mat-option value="n79  : 4400 -5000 MHz">n79 : 4400 -5000
+                                                                MHz</mat-option>
+                                                            <mat-option value="n257 : 26500 -29500 MHz">n257 : 26500
+                                                                -29500 MHz</mat-option>
+                                                            <mat-option value="n258 : 24250 –27500 MHz">n258 : 24250
+                                                                –27500 MHz</mat-option>
+                                                            <mat-option value="n260 : 37000 -40000 MHz">n260 : 37000
+                                                                -40000 MHz</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                     <div *ngIf="entity.parameter == 'Center Frequency of Channel (Fc)(GHz)'"
@@ -254,7 +257,8 @@
                                                     </div>
                                                     <mat-form-field fxFlex="65" class="select-container"
                                                         *ngIf="entity.parameter == 'Numerology : Subcarrier Spacing'">
-                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing[i]" [matTooltip]="subcaSpacing[i]">
+                                                        <mat-select disableOptionCentering [(value)]="subcaSpacing[i]"
+                                                            [matTooltip]="subcaSpacing[i]">
                                                             <mat-option value="1: 30 KHz" selected>1: 30 KHz
                                                             </mat-option>
                                                             <mat-option value="2: 60 KHz">2: 60 KHz</mat-option>
@@ -263,7 +267,8 @@
                                                     </mat-form-field>
                                                     <mat-form-field *ngIf="entity.parameter == 'Node Hardware'"
                                                         class="select-container" fxFlex="70">
-                                                        <mat-select disableOptionCentering [(value)]="nodeHardware[i]" [matTooltip]="nodeHardware[i]">
+                                                        <mat-select disableOptionCentering [(value)]="nodeHardware[i]"
+                                                            [matTooltip]="nodeHardware[i]">
                                                             <mat-option value="Jio - gNB" selected>Jio - gNB
                                                             </mat-option>
                                                             <mat-option value="Samsung - gNB">Samsung - gNB</mat-option>
@@ -298,23 +303,23 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngFor="let templateEach of templateGalleryList">
+                                            <th *ngFor="let templateEach of templateGalleryList;trackBy:trackByTemplate">
                                                 <span *ngIf="!showGnbInfo">
                                                     {{templateEach}}
                                                 </span>
                                             </th>
-                                            <th style="width: 50%;"  *ngIf="showGnbInfo">Info</th>
+                                            <th style="width: 50%;" *ngIf="showGnbInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let entity of gnbList; index as index"
+                                        <tr *ngFor="let entity of gnbList; index as index; trackBy:trackByEntity"
                                             [ngClass]="[entity.editable == 'false' ? 'non-editable-background': '']">
                                             <td>
                                                 <span
                                                     [ngClass]="entity.editable == 'true' ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy:trackByTemplate"
                                                 class="max-width-0">
                                                 <div *ngIf="!showGnbInfo">
                                                     <div class="editable-field" *ngIf="entity.editable == 'true'">
@@ -366,15 +371,14 @@
                                                             class="intermediate-input-field" *ngIf="i==3">
                                                     </div>
                                                     <div *ngIf="entity.editable == 'dropdown'">
-                                                        <mat-form-field
-                                                        class="select-container" fxFlex="65">
-                                                        <mat-select disableOptionCentering [(value)]="mcsValue[i]">
-                                                            <mat-option value="3">3</mat-option>
-                                                            <mat-option value="4">4</mat-option>
-                                                            <mat-option value="5">5</mat-option>
-                                                            <mat-option value="6">6</mat-option>
-                                                        </mat-select>
-                                                    </mat-form-field>
+                                                        <mat-form-field class="select-container" fxFlex="65">
+                                                            <mat-select disableOptionCentering [(value)]="mcsValue[i]">
+                                                                <mat-option value="3">3</mat-option>
+                                                                <mat-option value="4">4</mat-option>
+                                                                <mat-option value="5">5</mat-option>
+                                                                <mat-option value="6">6</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
                                                     </div>
                                                 </div>
                                             </td>
@@ -402,27 +406,28 @@
                                     <thead class="table-header">
                                         <tr>
                                             <th>Parameter</th>
-                                            <th *ngFor="let templateEach of templateGalleryList">
+                                            <th *ngFor="let templateEach of templateGalleryList; trackBy:trackByTemplate">
                                                 <span *ngIf="!showUserEquipmentInfo">
                                                     {{templateEach}}
                                                 </span>
                                             </th>
-                                            <th style="width: 50%;"  *ngIf="showUserEquipmentInfo">Info</th>
+                                            <th style="width: 50%;" *ngIf="showUserEquipmentInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let entity of ueList; index as index"
+                                        <tr *ngFor="let entity of ueList; index as index; trackBy:trackByEntity"
                                             [ngClass]="[!entity.editable ? 'non-editable-background': '']">
                                             <td>
                                                 <span
                                                     [ngClass]="entity.editable ? 'text-field' : 'intermediate-text-field'">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn"
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy:trackByTemplate"
                                                 class="max-width-0">
                                                 <div *ngIf="!showUserEquipmentInfo">
                                                     <div class="editable-field" *ngIf="entity.editable">
-                                                        <editCell (update)="updateUeField(index, 'value1')" *ngIf="i==0">
+                                                        <editCell (update)="updateUeField(index, 'value1')"
+                                                            *ngIf="i==0">
                                                             <ng-template appViewMode>{{entity.value1}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -430,7 +435,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateUeField(index, 'value2')" *ngIf="i==1">
+                                                        <editCell (update)="updateUeField(index, 'value2')"
+                                                            *ngIf="i==1">
                                                             <ng-template appViewMode>{{entity.value2}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -438,7 +444,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateUeField(index, 'value3')" *ngIf="i==2">
+                                                        <editCell (update)="updateUeField(index, 'value3')"
+                                                            *ngIf="i==2">
                                                             <ng-template appViewMode>{{entity.value3}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -446,7 +453,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateUeField(index, 'value4')" *ngIf="i==3">
+                                                        <editCell (update)="updateUeField(index, 'value4')"
+                                                            *ngIf="i==3">
                                                             <ng-template appViewMode>{{entity.value4}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -492,24 +500,27 @@
                                         <tr>
                                             <th>Parameter</th>
 
-                                            <th *ngFor="let templateEach of templateGalleryList">
+                                            <th *ngFor="let templateEach of templateGalleryList; trackBy:trackByTemplate">
                                                 <span *ngIf="!showEnviMarInfo">
                                                     {{templateEach}}
                                                 </span>
                                             </th>
-                                            <th style="width: 50%;"  *ngIf="showEnviMarInfo">Info</th>
+                                            <th style="width: 50%;" *ngIf="showEnviMarInfo">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody class="envir-mar-tbody">
-                                        <tr *ngFor="let entity of enviAndMarList; index as index">
+                                        <tr *ngFor="let entity of enviAndMarList; index as index; trackBy:trackByEntity">
                                             <td>
                                                 <span class="text-field">{{entity.parameter}}</span>
                                             </td>
                                             <td class="max-width-0"
-                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy: trackByFn" [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']">
+                                                *ngFor="let templateEach of templateGalleryList; let i=index; trackBy:trackByTemplate"
+                                                [ngClass]="[entity.parameter == 'Clutter Type' ? 'pt-0': '']">
                                                 <div *ngIf="!showEnviMarInfo">
-                                                    <div class="editable-field" *ngIf="entity.parameter != 'Clutter Type'">
-                                                        <editCell (update)="updateEnviMarField(index, 'value1')" *ngIf="i == 0">
+                                                    <div class="editable-field"
+                                                        *ngIf="entity.parameter != 'Clutter Type'">
+                                                        <editCell (update)="updateEnviMarField(index, 'value1')"
+                                                            *ngIf="i == 0">
                                                             <ng-template appViewMode>{{entity.value1}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -517,7 +528,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateEnviMarField(index, 'value2')" *ngIf="i == 1">
+                                                        <editCell (update)="updateEnviMarField(index, 'value2')"
+                                                            *ngIf="i == 1">
                                                             <ng-template appViewMode>{{entity.value2}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -525,7 +537,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateEnviMarField(index, 'value3')" *ngIf="i == 2">
+                                                        <editCell (update)="updateEnviMarField(index, 'value3')"
+                                                            *ngIf="i == 2">
                                                             <ng-template appViewMode>{{entity.value3}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -533,7 +546,8 @@
                                                                     appFocusable appEditOnEnter>
                                                             </ng-template>
                                                         </editCell>
-                                                        <editCell (update)="updateEnviMarField(index, 'value4')" *ngIf="i == 3">
+                                                        <editCell (update)="updateEnviMarField(index, 'value4')"
+                                                            *ngIf="i == 3">
                                                             <ng-template appViewMode>{{entity.value4}}</ng-template>
                                                             <ng-template appEditMode>
                                                                 <input fxFlex="80" class="input-field"
@@ -543,7 +557,8 @@
                                                         </editCell>
                                                     </div>
                                                     <mat-form-field *ngIf="entity.parameter == 'Clutter Type'"
-                                                        class="select-container" style="min-width: 65px; max-width: 70px;">
+                                                        class="select-container"
+                                                        style="min-width: 65px; max-width: 70px;">
                                                         <mat-select disableOptionCentering [(value)]="clutterType[i]">
                                                             <mat-option value="DU" selected>DU</mat-option>
                                                             <mat-option value="U" selected>U</mat-option>
@@ -551,12 +566,18 @@
                                                             <mat-option value="RU" selected>RU</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
-                                                    <mat-form-field *ngIf="entity.parameter == 'Select Propagation Model'"
+                                                    <mat-form-field
+                                                        *ngIf="entity.parameter == 'Select Propagation Model'"
                                                         class="select-container" fxFlex="65" style="margin-top: -15px;">
-                                                        <mat-select disableOptionCentering [(value)]="propagationModel[i]" [matTooltip]="propagationModel[i]">
-                                                            <mat-option value="Uma-Propagation Model" selected>Uma-Propagation Model</mat-option>
-                                                            <mat-option value="Rma-Propagation Model" selected>Rma-Propagation Model</mat-option>
-                                                            <mat-option value="Umi Propagation Model" selected>Umi Propagation Model</mat-option>
+                                                        <mat-select disableOptionCentering
+                                                            [(value)]="propagationModel[i]"
+                                                            [matTooltip]="propagationModel[i]">
+                                                            <mat-option value="Uma-Propagation Model" selected>
+                                                                Uma-Propagation Model</mat-option>
+                                                            <mat-option value="Rma-Propagation Model" selected>
+                                                                Rma-Propagation Model</mat-option>
+                                                            <mat-option value="Umi Propagation Model" selected>Umi
+                                                                Propagation Model</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </div>
@@ -574,12 +595,14 @@
                 <mat-tab label="Summary">
                     <div class="overflow-auto">
                         <mat-card class="mr-1 ml-2 mt-2 mb-2 p-0 summary-card">
-                            <mat-card-header class="summary-card-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-card-header class="summary-card-header px-3" fxLayout="row"
+                                fxLayoutAlign="space-between center">
                                 <mat-card-title *ngIf="!saveAsShowSummaryHideDisable" class="title m-0">{{selectedChip}}
                                 </mat-card-title>
                                 <mat-button-toggle-group class="summary-toggle-group" #group="matButtonToggleGroup"
                                     [value]="selectedToggleButton">
-                                    <mat-button-toggle value="Uplink" aria-label="Text align left" [disableRipple]="true">
+                                    <mat-button-toggle value="Uplink" aria-label="Text align left"
+                                        [disableRipple]="true">
                                         Uplink
                                     </mat-button-toggle>
                                     <mat-button-toggle value="Downlink" aria-label="Text align center"
@@ -587,7 +610,6 @@
                                         Downlink
                                     </mat-button-toggle>
                                 </mat-button-toggle-group>
-                                <!-- <div ></div> -->
                             </mat-card-header>
                             <mat-card-content>
                                 <div fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="center center" class="p-3">
@@ -607,7 +629,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let entity of summaryList; index as index">
+                                    <tr *ngFor="let entity of summaryList; index as index; trackBy:trackByEntity">
                                         <td>
                                             <span class="text-field">{{entity.dlBudget}}</span>
                                         </td>
@@ -629,8 +651,7 @@
             </mat-tab-group>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <div [ngClass]="showRightHolder ? 'opened' : 'closed'"
-            class="collapsable-right-holder">
+        <div [ngClass]="showRightHolder ? 'opened' : 'closed'" class="collapsable-right-holder">
             <div class="right-accordian-header" fxLayout="row" fxLayoutAlign="start center">
                 <span class="right-holder-title"> Link Budget Estimation</span>
                 <div class="col"></div>
@@ -665,17 +686,21 @@
                                 </tr>
                             </thead>
                             <tbody class="link-budget-estimation-tbody">
-                                <tr *ngFor="let entity of linkBudEstList; index as index">
+                                <tr *ngFor="let entity of linkBudEstList; index as index; trackBy:trackByEntity">
                                     <td>
                                         <span class="text-field">{{entity.parameter}}</span>
                                     </td>
                                     <td>
-                                        <span *ngIf="templateGalleryListCount >0" class="text-field">{{entity.dl}}</span>
-                                        <span *ngIf="templateGalleryListCount == 0" class="text-field">{{entity.empty}}</span>
+                                        <span *ngIf="templateGalleryListCount >0"
+                                            class="text-field">{{entity.dl}}</span>
+                                        <span *ngIf="templateGalleryListCount == 0"
+                                            class="text-field">{{entity.empty}}</span>
                                     </td>
                                     <td>
-                                        <span *ngIf="templateGalleryListCount >0" class="text-field">{{entity.ul}}</span>
-                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">{{entity.empty}}</span>
+                                        <span *ngIf="templateGalleryListCount >0"
+                                            class="text-field">{{entity.ul}}</span>
+                                        <span *ngIf="templateGalleryListCount == 0"
+                                            class="text-field">{{entity.empty}}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -690,17 +715,19 @@
                         </div>
                         <table class="table mb-0">
                             <tbody class="od-id-tbody">
-                                <tr *ngFor="let entity of odIdList; index as index">
+                                <tr *ngFor="let entity of odIdList; index as index; trackBy:trackByEntity">
                                     <td>
                                         <span class="od-id-text">{{entity.parameter}}</span>
                                     </td>
                                     <td>
-                                        <span *ngIf="templateGalleryListCount > 0" class="editable-field">{{entity.dl}}</span>
-                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
+                                        <span *ngIf="templateGalleryListCount > 0"
+                                            class="editable-field">{{entity.dl}}</span>
+                                        <span *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
                                     </td>
                                     <td>
-                                        <span *ngIf="templateGalleryListCount > 0" class="editable-field">{{entity.ul}}</span>
-                                        <span  *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
+                                        <span *ngIf="templateGalleryListCount > 0"
+                                            class="editable-field">{{entity.ul}}</span>
+                                        <span *ngIf="templateGalleryListCount == 0" class="text-field">-</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -718,9 +745,10 @@
     </div>
     <div class="col"></div>
     <div class="p-2" (click)="newSaveAsTemplatePopup('Save As Template')">
-        <button mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As template</button>
+        <button mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As
+            template</button>
     </div>
-    <div  *ngIf="showDownloadButton" class="p-2">
+    <div *ngIf="showDownloadButton" class="p-2">
         <button mat-raised-button color="primary" class="button">Download</button>
     </div>
 </div>

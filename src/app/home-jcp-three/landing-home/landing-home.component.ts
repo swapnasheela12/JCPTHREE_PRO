@@ -1,30 +1,48 @@
-import { Component, OnInit, Optional, SimpleChanges, HostListener } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import { Component, OnInit } from '@angular/core';
 import { Chart } from "angular-highcharts";
-import { first } from 'rxjs/operators';
-import { Options } from 'highcharts';
 import * as _ from 'lodash';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-declare var $: any;
+
+declare let $: any;
+
+type siteList = {
+  iconsite: string,
+  namesite: string,
+  countsite: string
+}
+
+
+type siteListObject = {
+  [key: string]: siteList;
+}
+
+
+interface DataObject {
+  [key: string]: any;
+}
 
 @Component({
   selector: 'app-landing-home',
   templateUrl: './landing-home.component.html',
   styleUrls: ['./landing-home.component.scss']
 })
-export class LandingHomeComponent implements OnInit {
-  public chartDivWidth;
-  public chartDivHeight;
-  public chartDivWidthTraffic;
-  public chartDivHeightTraffic;
+
+
+export class LandingHomeComponent  {
+  public chartDivWidth: number;
+  public chartDivHeight: number;
+  public chartDivWidthTraffic: number;
+  public chartDivHeightTraffic: number;
+  public testValueHeight: number;
+  public testValueWidth: number;
 
   constructor(private datashare: DataSharingService) {
     this.datashare.currentMessage.subscribe((message) => {
 
-      var divWidth;
-      var divHeight;
-      var divWidthTraffic;
-      var divHeightTraffic;
+      let divWidth: number;
+      let divHeight: number;
+      let divWidthTraffic: number;
+      let divHeightTraffic: number;
 
       setTimeout(() => {
         divWidth = $("#chartTotalSubscriberIdDiv").width();
@@ -52,13 +70,11 @@ export class LandingHomeComponent implements OnInit {
         this.chartDivHeightTraffic = divHeightTraffic;
         this.resizeChart();
       }
-
     });
-
   }
 
 
-  sitesListArr = [
+  public sitesListArr: siteList[] = [
     {
       iconsite: "ic ic-Macro-Sites",
       namesite: "Macro Sites",
@@ -91,27 +107,28 @@ export class LandingHomeComponent implements OnInit {
     },
   ];
 
-  hsiItemSelected = "HSI";
-  lteItemSelected = "LTE";
-  panIndiaItemSelected = "PAN India";
-  hsiList = ["HSI", "VoLTE"]
-  lteList = ["LTE", "Wi-FI"]
-  panIndiaList = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
 
-  hsiItemSelecteddaily = "HSI";
-  lteItemSelecteddaily = "LTE";
-  panIndiaItemSelecteddaily = "PAN India";
-  hsiListdaily = ["HSI", "VoLTE"]
-  lteListdaily = ["LTE", "Wi-FI"]
-  panIndiaListdaily = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  public hsiItemSelected: string = "HSI";
+  public lteItemSelected: string = "LTE";
+  public panIndiaItemSelected: string = "PAN India";
+  public hsiList: string[] = ["HSI", "VoLTE"]
+  public lteList: string[] = ["LTE", "Wi-FI"]
+  public panIndiaList: string[] = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
 
-  panIndiaItemSelectedsites = "PAN India";
-  panIndiaListsites = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
-  panIndiaItemSelectedusage = "PAN India";
-  panIndiaListusage = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  public hsiItemSelecteddaily: string = "HSI";
+  public lteItemSelecteddaily: string = "LTE";
+  public panIndiaItemSelecteddaily: string = "PAN India";
+  public hsiListdaily: string[] = ["HSI", "VoLTE"]
+  public lteListdaily: string[] = ["LTE", "Wi-FI"]
+  public panIndiaListdaily = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
 
-  // chart1: Chart;
-  dailyTrafficChart = new Chart({
+  public panIndiaItemSelectedsites: string = "PAN India";
+  public panIndiaListsites: string[] = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+  public panIndiaItemSelectedusage: string = "PAN India";
+  public panIndiaListusage: string[] = ["PAN India", "Andhra Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu", "Jharkhand", "Karnataka", "Kashmir", "Kerala", "Kolkata", " Madhya Pradesh", "Maharashtra", "Mumbai", "North East", "Odisha", "Punjab", "Rajasthan", "Tamil Nadu", "Telangana", "Uttar Pradesh (East)", "Uttar Pradesh (West)", "Uttarakhand", " West Bengal"]
+
+  
+  public dailyTrafficChart:DataObject = new Chart({
     chart: {
       type: 'column',
       zoomType: "xy",
@@ -254,7 +271,7 @@ export class LandingHomeComponent implements OnInit {
   });
 
 
-  chartTotalSubscriber = new Chart({
+  public chartTotalSubscriber:DataObject = new Chart({
     chart: {
       type: 'areaspline',
       zoomType: "xy",
@@ -348,34 +365,19 @@ export class LandingHomeComponent implements OnInit {
   });
 
 
-
-  public testValueHeight;
-  public testValueWidth;
-
-  ngOnInit() { }
-
-
   resizeChart() {
-    var chartTotalSubscriberRef = this.chartTotalSubscriber.ref$.source;
+    let chartTotalSubscriberRef = this.chartTotalSubscriber.ref$.source;
     chartTotalSubscriberRef.subscribe((response) => {
       response.chartWidth = this.chartDivWidth;
       response.chartHeight = this.chartDivHeight;
       this.chartTotalSubscriber.ref.setSize(response.chartWidth, response.chartHeight);
     });
 
-    var dailyTrafficrRef = this.dailyTrafficChart.ref$.source;
+    let dailyTrafficrRef = this.dailyTrafficChart.ref$.source;
     dailyTrafficrRef.subscribe((response) => {
       response.chartWidth = this.chartDivWidthTraffic;
       response.chartHeight = this.chartDivHeightTraffic;
       this.dailyTrafficChart.ref.setSize(response.chartWidth, response.chartHeight);
     });
-
   }
-
-
-
-
-
-
-
 }
