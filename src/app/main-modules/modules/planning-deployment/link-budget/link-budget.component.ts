@@ -1,17 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef,OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { NewAndSaveTemplatePopupComponent, NewAndSaveTemplatePopupModel } from './new-and-save-template-popup/new-and-save-template-popup.component';
 import { MatChip } from '@angular/material/chips';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-link-budget',
   templateUrl: './link-budget.component.html',
@@ -46,7 +39,7 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
   showGnbInfo: boolean;
   checkSelected: boolean = false;
   saveAsShowSummaryHideDisable: boolean = true;
-  subscription;
+  messageSubscription: Subscription;
   showDownloadButton: boolean = false;
   toggleDesignInfo() {
     this.showDesignInfo = !this.showDesignInfo;
@@ -169,7 +162,7 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
   constructor(public dialog: MatDialog, private dataShare: DataSharingService, private cdRef: ChangeDetectorRef) { }
   
   ngOnInit(): void {
-    this.subscription = this.dataShare.templateGalleryMessage.subscribe(
+    this.messageSubscription = this.dataShare.templateGalleryMessage.subscribe(
       (formData) => {
         this.templateGalleryList = [];
         this.selectedTemplates = [];
@@ -348,9 +341,6 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
       this.onlyOneSelectedChip = this.templateGalleryList;
     }
   }
-  compute(e) {
-    // console.log(e)
-  }
   showRightHolderToggle() {
     this.showRightHolder = !this.showRightHolder;
   }
@@ -376,21 +366,7 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
       this.saveAsShowSummaryHideDisable = true;
     }
   }
-  // toggleOffer(template: any): void {
-  //   let index = this.selectedTemplates.indexOf(template);
-  //   if (index >= 0) {
-  //     this.selectedTemplates.splice(index, 1);
-  //   } else {
-  //     this.selectedTemplates.push(template);
-  //   }
-  //   this.selectedTemplate = this.selectedTemplates[1];
-  //   this.selectedTemplateCount = this.selectedTemplates.length;
-  //   if (this.selectedTemplateCount == 1) {
-  //     this.onlyOneSelectedTemplate = this.selectedTemplates;
-  //   }
-  // }
   onTabChanged(e) {
-    console.log(e)
     if(e.index == 1){
      this.showDownloadButton =  true
       this.showRightHolder = false
@@ -398,11 +374,20 @@ export class LinkBudgetComponent implements OnInit, OnDestroy {
       this.showDownloadButton =  false;
     }
   }
-  trackByFn(index, item) {
+
+  trackByMatChip(index) {
+    return index;
+  }
+
+  trackByTemplate(index) {
+    return index;
+  }
+
+  trackByEntity(index) {
     return index;
   }
 
   ngOnDestroy(){
-      this.subscription.unsubscribe()
+      this.messageSubscription.unsubscribe()
   }
 }
