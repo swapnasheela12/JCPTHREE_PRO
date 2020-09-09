@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -9,11 +9,9 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { Subject } from 'rxjs';
-
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
 @Component({
@@ -22,7 +20,6 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
   styleUrls: ['./cell-decongestion.component.scss']
 })
 export class CellDecongestionComponent {
-
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public paths;
@@ -49,7 +46,6 @@ export class CellDecongestionComponent {
 
   public showGlobalOperation: Boolean = false;
   public url: string = "assets/data/report/cell-decongestion/cell-decongestion.json";
-
 
   onReadyModeUpdate(params) {
     this.calculateRowCount();
@@ -92,7 +88,6 @@ export class CellDecongestionComponent {
   }
 
   private createColumnDefs() {
-
     this.columnDefs = [
       {
         headerName: "Status",
@@ -178,11 +173,9 @@ export class CellDecongestionComponent {
   };
 
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
-
 
   onSelectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
@@ -225,10 +218,8 @@ export class CellDecongestionComponent {
   }
 
   cellClickedDetails(evt) {
-    console.log(evt, "evt");
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion/WO-Cell-Decongestion"]);
-
     }
   }
 

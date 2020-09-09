@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { DataSharHttpService } from '../data-shar-http.service';
-//declare const D3: any;
-//import * as d3 from 'd3';
 import * as D3 from 'd3/index';
-import { Router } from '@angular/router';
-
 
 export class GroupLevel {
   level = 0;
@@ -16,7 +11,7 @@ export class GroupLevel {
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.scss']
 })
-export class PropertiesComponent implements OnInit {
+export class PropertiesComponent {
   woHeader = [
     {
       "label": "Category",
@@ -42,10 +37,6 @@ export class PropertiesComponent implements OnInit {
   selectedTab;
   @ViewChild('ngCircleMenu') ngCircleMenu;
   scope: any;
-  constructor(private router: Router) {
-
-  }
-  ngOnInit() { }
 
   showWifiBand() {
     var width = 200;
@@ -67,9 +58,6 @@ export class PropertiesComponent implements OnInit {
       .innerRadius(30)
       .outerRadius(radius);
 
-    // .innerRadius(width * 0.5 / 2)
-    // .outerRadius(width * 0.75 / 2 + 30);
-
     var pie = D3.pie()
       .startAngle(90 * Math.PI / 180)
       .endAngle(270 * Math.PI / 180)
@@ -89,9 +77,7 @@ export class PropertiesComponent implements OnInit {
     //Draw arc paths
     var color = D3.scaleOrdinal(['white', 'white', 'white'])
     arcs.append("path")
-      // .attr("fill", (d, i: any) => { return color(i); })
       .attr("fill", function (d, i: any) {
-        console.log(d);
         return color(i);
       })
       .attr("id", "arc")
@@ -100,13 +86,7 @@ export class PropertiesComponent implements OnInit {
       .on("click", (e, d) => {
         this.showWifiTabs = true;
         this.showPropTabs = false;
-      })
-    // .on("hover", function (d) {
-    //   D3.select("#chart")
-    //     .attr("stroke", "#fff")
-    //     .attr("stroke-width", "2px")
-    //     .style("filter", "url(#drop-shadow)");
-    // })
+      });
 
     var newarc = D3.arc()
       .innerRadius(2 * radius / 3)
@@ -115,7 +95,6 @@ export class PropertiesComponent implements OnInit {
     // Place labels
     arcs.append("text")
       .attr("transform", (d: any) => {
-        console.log("d", d);
         return "translate(" + newarc.centroid(d) + ")";
       })
       .attr("text-anchor", "middle")
@@ -132,11 +111,6 @@ export class PropertiesComponent implements OnInit {
   }
 
   tabChanged(evt) {
-    // console.log("evt", evt);
     this.selectedTab = evt.tab.textLabel;
   }
-
-  // showWifiBand(evt) {
-  //   this.showWifiWidget = true
-  // }
 }

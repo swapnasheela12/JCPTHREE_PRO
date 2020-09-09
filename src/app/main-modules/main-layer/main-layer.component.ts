@@ -1,10 +1,11 @@
+import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
 import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
@@ -26,7 +27,7 @@ declare var $: any;
   templateUrl: './main-layer.component.html',
   styleUrls: ['./main-layer.component.scss']
 })
-export class MainLayerComponent implements OnInit, AfterViewInit {
+export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild('spiderView', { read: ViewContainerRef }) target: ViewContainerRef;
   public map: any;
   public CanvasLayer: any;
@@ -47,6 +48,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
+  public dataShareSub: Subscription;
+  public dataShareSubOne: Subscription;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
   ) {
@@ -281,7 +284,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
-        _datashare.currentMessage.subscribe((val) => {
+        this.dataShareSub = _datashare.currentMessage.subscribe((val) => {
           this.selectedLayerArrList = val;
           this.countOfLayerSelected = this.selectedLayerArrList.length;
           container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
@@ -305,7 +308,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
 
           var selectedLayerMenuListDialogRef = {
             width: '250px',
-            // height: '150px',
             position: { bottom: '310px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',
@@ -318,26 +320,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
             dialogRef.close();
           });
 
-
-
-
-
         }
         this._container = container;
         this._update();
         return this._container;
       },
       onRemove: function (map) {
-        // console.log('buttonClicked?????????');
+      
       },
       _update: function () {
         if (!this._map) {
           return;
         }
-
-        // this._container.innerHTML = this.countDiv;
-        // this._makeButton(this._button);
-
       }
     });
     this.map.addControl(new this.customControl());
@@ -347,7 +341,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
       },
       onAdd: function () {
         var container = L.DomUtil.create('div', ' leaflet-bar leaflet-bar-horizontal ', this._control);
-        //console.log(container, "container");
+        
         container.style.display = 'flex';
         container.style.position = 'absolute';
         container.style.bottom = '0px';
@@ -383,16 +377,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           });
 
           dialogRef.afterClosed().subscribe(result => {
-            //console.log(result, "result after close data got");
-
+            
             L.DomUtil.addClass(tableViewControlButton, 'horizontal_icon_table_view');
             targetElement.classList.remove("control_layer_active");
           });
 
           const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
             // do something
-            // console.log(data, "still got data open");
-
+           
             if (data.selectedAreaName == "Pan India") {
               _map.fitBounds([
                 [data.rowDataTable.latitude, data.rowDataTable.longitude]
@@ -413,9 +405,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
           });
 
           const subDropDown = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
-            // do something
-            //console.log(data, ">>>>>>still got data open");
-
+            
             if (data.selectedAreaName == "Pan India") {
               _map.setZoom(5);
             } else if (data.selectedAreaNameParent == "jioState") {
@@ -478,5 +468,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit {
     this.shapeService.mapServiceData = this.map;
   }
 
- 
+  ngOnDestroy() {
+    this.dataShareSub.unsubscribe();
+  }
+
 }

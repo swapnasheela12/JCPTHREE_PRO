@@ -40,7 +40,6 @@ const routes: Routes = [
       },
       {
         path: "Overshooting-Cell",
-        // component: OvershootingCellComponent,
         children: [
           {
             path: '',

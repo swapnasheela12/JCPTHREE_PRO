@@ -1,19 +1,14 @@
 
-import { Component, OnInit, Injectable, Inject, Input, ViewChild, OnChanges, HostListener, ViewEncapsulation, Output } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild, HostListener } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BehaviorSubject, Observable, of as observableOf, from } from "rxjs";
+import { Observable } from "rxjs";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_services/authentication.service';
-import { User } from '../../../_models/user';
-import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import { MatSelectModule } from "@angular/material/select";
-
-
-declare var $: any;
+import { User } from '../../../_models/user'; import { MatSelectModule } from "@angular/material/select";
 import * as _ from "lodash";
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { SideNavService } from 'src/app/_services/side-nav.service';
@@ -21,15 +16,11 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { AlarmsPopupComponent } from '../../../modules/components/alarms-popup/alarms-popup.component';
 import { CapacityComponent } from '../../../modules/components/capacity/capacity.component';
 import { ConfigurationComponent } from '../../../modules/components/configuration/configuration.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HelpiconComponent } from '../../../modules/components/capacity/helpicon/helpicon.component';
-import { QuestionPopupComponent } from '../../../modules/components/capacity/question-popup/question-popup.component';
-//import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-
-
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+
+declare var $: any;
+
 export class searchList {
   constructor(
     public name: string,
@@ -166,13 +157,10 @@ export class HeaderComponent implements OnInit {
             this.addClassNew = true;
           }
         });
-        // this.mainHeaderName = this.breadcrumbLis.pop();
         this.count = this.breadcrumbList.length;
       } else {
         this.route = 'JCP';
       }
-
-
     });
 
     /////////////breadcrums////////////////////
@@ -192,10 +180,6 @@ export class HeaderComponent implements OnInit {
       map(state => (state ? this.filterStatesVisited(state) : this.recentvisitlist.slice()))
     );
     //////////////search///////////////////
-
-
-
-
   }
 
 
@@ -206,7 +190,6 @@ export class HeaderComponent implements OnInit {
     this.toggleActive = !this.toggleActive;
     this.datashare.changeMessage(this.toggleActive)
   }
-
 
   //////////////search///////////////////
   filterStates(name: string) {
@@ -231,7 +214,6 @@ export class HeaderComponent implements OnInit {
     }
   }
   //////////////search///////////////////
-
 
   ///////////////expand screen//////////////////////
   elem;

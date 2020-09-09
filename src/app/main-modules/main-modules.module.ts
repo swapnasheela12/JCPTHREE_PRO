@@ -7,7 +7,6 @@ import { MainModulesRoutingModule } from './main-modules-routing.module';
 
 //Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
-// import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -50,8 +49,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
-// import { RouterModule } from '@angular/router';
-// import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
@@ -61,7 +58,6 @@ import { CreateReportComponent } from './reports-dashboards/reports-wizard/creat
 import { ButtonRendererComponent } from './reports-dashboards/my-reports/button-renderer.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ReportsDashboardsModule } from './reports-dashboards/reports-dashboards.module';
-// import { LayersModule } from './layers/layers.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MainLayerComponent } from './main-layer/main-layer.component';
 import '@geoman-io/leaflet-geoman-free';
@@ -97,7 +93,6 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
 
 @NgModule({
   declarations: [
-    // SuccessfulComponent
     MyReportsComponent,
     ReportsWizardComponent,
     CreateReportComponent,
@@ -134,15 +129,13 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     CoreModule,
     HighchartsChartModule,
     ChartModule,
-    // RouterModule,
     FlexLayoutModule,
     ReportsDashboardsModule,
-    // LayersModule,
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
-    //Angular meterial
+    //Angular material
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
@@ -203,10 +196,6 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     }
   ],
   exports: [
-    // HeaderComponent,
-    // LeftsideNavigationComponent,
-    // MmenuDirective,
-    // SuccessfulComponent
     MyReportsComponent,
     ReportsWizardComponent,
     MainLayerComponent,
@@ -219,7 +208,6 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     CreateReportComponent,
     TableViewControlComponent,
     SpiderComponent
-    // SuccessfulComponent
   ]
 
 })

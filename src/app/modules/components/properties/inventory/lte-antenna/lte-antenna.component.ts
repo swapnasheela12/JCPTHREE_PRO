@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions } from '@ag-grid-community/all-modules';
 
@@ -7,7 +7,7 @@ import { GridOptions } from '@ag-grid-community/all-modules';
   templateUrl: './lte-antenna.component.html',
   styleUrls: ['./lte-antenna.component.scss']
 })
-export class LteAntennaComponent implements OnInit, OnChanges {
+export class LteAntennaComponent {
   @Input('radioType') public showSelectedInventory;
   url: any = "assets/data/modules/properties/inventory/lte-antenna.json"
   columnDefs;
@@ -273,19 +273,17 @@ export class LteAntennaComponent implements OnInit, OnChanges {
     this.calculateRowCount();
   }
 
-
-
   public onReady(params) {
     this.gridApi = params.api;
     this.calculateRowCount();
   }
+
   public calculateRowCount() {
     if (this.gridOptionsAlpha.api && this.gridOptionsBeta.api && this.gridOptionsGamma.api &&
       this.gridOptionsBbu.api && this.gridOptionsRrh.api && this.gridOptionsMicrowave.api && this.gridOptionsIsp.api &&
       this.alphaData && this.betaData && this.gammaData && this.bbuData && this.microwaveData && this.rrhData
       && this.ispData) {
       setTimeout(() => {
-
         this.gridOptionsAlpha.api.sizeColumnsToFit();
         this.gridOptionsBeta.api.sizeColumnsToFit();
         this.gridOptionsGamma.api.sizeColumnsToFit();
@@ -314,10 +312,8 @@ export class LteAntennaComponent implements OnInit, OnChanges {
     this.colDefRrh = this.createRRHDetails();
     this.colDefIsp = this.createISP();
 
-
     this.httpClient.get(this.url)
       .subscribe((data: any) => {
-
         this.alphaData = data.alpha;
         this.betaData = data.beta;
         this.gammaData = data.gamma;
@@ -328,12 +324,6 @@ export class LteAntennaComponent implements OnInit, OnChanges {
       });
 
 
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("showSelectedInventory", this.showSelectedInventory);
-  }
-
-  ngOnInit(): void {
   }
 
   createAlpha() {
@@ -481,7 +471,4 @@ export class LteAntennaComponent implements OnInit, OnChanges {
     }
     ]
   }
-
-
-
 }

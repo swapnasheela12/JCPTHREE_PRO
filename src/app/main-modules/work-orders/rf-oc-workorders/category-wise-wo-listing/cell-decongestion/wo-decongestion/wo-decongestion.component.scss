@@ -69,9 +69,6 @@ $color-white: #ffffff;
 :host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
     content: "\f13a"!important;
     font-family: "Font Awesome 5 Free";
-    // position: absolute;
-    // top: 0;
-    // right: 0;
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;
@@ -82,36 +79,11 @@ $color-white: #ffffff;
 :host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
     content: "\f139"!important;
     font-family: "Font Awesome 5 Free";
-    // position: absolute;
-    // top: 0;
-    // right: 0;
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;
     z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 }   
-
-.abc {
-    
-}
-
-.xyz {
-    
-}
-// @media  only screen and(min-width: 520px), (max-width: 800px) {
-//     .wo-sector-container {
-//         .wo-sector-card-one {
-//             .wo-container {
-//                 .wo-flex-container {
-//                     .mediaContainer {
-//                         width: 25%;
-//                     }
-//                 }
-//             }
-
-//         }
-//     }
-//   }
 
   @media  only screen and(min-width: 774px) {
     .wo-sector-container {
@@ -142,18 +114,3 @@ $color-white: #ffffff;
         }
     }
   }
-  
-//   @media (min-width: 1335px) {
-//     .wo-sector-container {
-//         .wo-sector-card-one {
-//             .wo-container {
-//                 .wo-flex-container {
-//                     .mediaContainer {
-//                         width: 20%;
-//                     }
-//                 }
-//             }
-
-//         }
-//     }
- // }

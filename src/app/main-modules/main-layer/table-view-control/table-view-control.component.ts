@@ -143,6 +143,10 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   }
 
+  trackByMethod(index:number, el:any): number {
+    return el.id;
+  }
+
   ngOnInit() {
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;

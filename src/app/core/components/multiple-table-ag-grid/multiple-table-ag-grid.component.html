@@ -1,7 +1,4 @@
 <div style="height: 100%;" #commonMultipleTableAggridreport *ngFor="let data of data.dataServices; index as i">
-    <!-- <b>rowdata{{data.rowdata[i] | json}}</b>
-    <b>col{{data.coloumnDef[i] | json}}</b> -->
-
     <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48"
         headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="data.coloumnDef[0]" [rowData]="data.rowdata[0]"
         enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups

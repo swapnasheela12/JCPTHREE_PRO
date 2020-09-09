@@ -1,40 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { HttpClient, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
 import { FormControl } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { FileUploadService } from 'src/app/_services/file-upload.service';
-import { map } from 'lodash';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { MultipleTableAgGridService } from 'src/app/core/components/multiple-table-ag-grid/multiple-table-ag-grid.service';
-import { TableAgGridComponent } from 'src/app/core/components/table-ag-grid/table-ag-grid.component';
 import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.component';
 import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { ExecutionTaskSaveComponent } from './execution-task-save.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { CommonPopupComponent, CommonDialogModel } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
+import { IExec_Task, IExec_Site, IExec_Impl, IExec_Impl_Ian, ILabelValue, IExec_Task_Closure_Remark } from '../../../../Irf-oc';
 
 @Component({
   selector: 'app-execution-task',
   templateUrl: './execution-task.component.html',
   styleUrls: ['./execution-task.component.scss']
 })
-export class ExecutionTaskComponent implements OnInit {
+export class ExecutionTaskComponent {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
-  /////
-  public paths;
-  public sidenavBarStatus;
-  public tableWidth;
+  public sidenavBarStatus: boolean;
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
@@ -42,20 +29,18 @@ export class ExecutionTaskComponent implements OnInit {
   public gridOptionsImpl: GridOptions;
   public gridOptionsSite: GridOptions;
   public gridOptionsImplIan: GridOptions;
-  public rowData: any;
   public columnDefs: any;
   public rowCount: string;
   public formControlPageCount = new FormControl();
   public showGlobalOperation: Boolean = false;
-  public taskColDef;
-  public siteColDef;
-  public implColDef;
-  public implColDefIan;
-  public taskRowdata;
-  public addRemoveRows;
+  public taskColDef: Array<{}>;
+  public siteColDef: Array<{}>;
+  public implColDef: Array<{}>;
+  public implColDefIan: Array<{}>;
+  public taskRowdata: Array<IExec_Task>;
   public ianLead: boolean = false;
   public execLead: boolean = true;
-  public siteRowdata = [
+  public siteRowdata: Array<IExec_Site> = [
     {
       "siteParameter": "Antenna Azimuth(deg)",
       "currentValue": "67"
@@ -73,7 +58,7 @@ export class ExecutionTaskComponent implements OnInit {
       "currentValue": "4"
     }
   ];
-  public implRowdata = [
+  public implRowdata: Array<IExec_Impl> = [
     {
       "sector": "",
       "band": "",
@@ -86,7 +71,7 @@ export class ExecutionTaskComponent implements OnInit {
     },
   ];
 
-  public implRowdataIAN = [
+  public implRowdataIAN: Array<IExec_Impl_Ian> = [
     {
       "sector": "Alpha",
       "band": "2300",
@@ -94,7 +79,7 @@ export class ExecutionTaskComponent implements OnInit {
     }
   ];
   public frameworkComponentsTaskExecution;
-  taskClosureRemark = [
+  taskClosureRemark: Array<IExec_Task_Closure_Remark> = [
     { value: 'taskClosure', name: 'Task Closure' },
     { value: 'databaseMismatch', name: 'Database Mismatch' },
     { value: 'siteAccessIssue', name: 'Site Access Issue' },
@@ -104,7 +89,7 @@ export class ExecutionTaskComponent implements OnInit {
     { value: 'implementationDone', name: 'Implementation Done' }
   ];
 
-  siteDetails = [
+  siteDetails: Array<ILabelValue> = [
     {
       "label": "SAP ID",
       "value": "I-AS-PTRK-ENB-H004"
@@ -131,7 +116,7 @@ export class ExecutionTaskComponent implements OnInit {
     }
   ];
 
-  observedIssues = [
+  observedIssues: Array<ILabelValue> = [
     {
       "label": "Deviation in Azimuth (Deg):",
       "value": "106.5"
@@ -154,7 +139,7 @@ export class ExecutionTaskComponent implements OnInit {
     }
   ]
 
-  fieldMeasurementInformation = [
+  fieldMeasurementInformation: Array<ILabelValue> = [
     {
       "label": "Total Valid Samples",
       "value": "4433"
@@ -205,21 +190,14 @@ export class ExecutionTaskComponent implements OnInit {
     }
   }
 
-  constructor(private datatable: TableAgGridService,
-    private datashare: DataSharingService,
-    private router: Router,
-    private overlayContainer: OverlayContainer,
-    private httpClient: HttpClient,
-    private fileUploadService: FileUploadService,
-    public dialog: MatDialog) {
-    router.events.subscribe((url: any) => console.log(url));
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
+    private httpClient: HttpClient, public dialog: MatDialog) {
+    router.events.subscribe();
     this.frameworkComponentsTaskExecution = {
       'dropdownRenderer': TaskDropdownRendererComponent,
       'inputRenderer': TaskInputRendererComponent,
-      'dropdown': dropDownThreeDotRendererComponent,
-      deleteRenderer: DeleteRendererComponent
+      'deleteRenderer': DeleteRendererComponent
     };
-    //this.paths = PATHS;
     this.gridOptions = <GridOptions>{};
     this.gridOptionsImpl = <GridOptions>{};
     this.gridOptionsImplIan = <GridOptions>{};
@@ -229,19 +207,16 @@ export class ExecutionTaskComponent implements OnInit {
     this.implColDef = this.createImplColumnDefs();
     this.implColDefIan = this.createImplColumnDefsIan();
 
-    this.datashare.currentMessage.subscribe((message) => {
+    this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
       this.calculateRowCount();
     });
 
     this.httpClient.get(this.task_url)
-      .subscribe(data => {
+      .subscribe((data: Array<IExec_Task>) => {
         this.taskRowdata = data;
       });
-
   }
-
-  ngOnInit(): void { }
 
   createColumnDefs() {
     return this.columnDefs = [
@@ -302,8 +277,7 @@ export class ExecutionTaskComponent implements OnInit {
         headerName: "",
         field: "",
         width: 100,
-        cellRenderer: 'deleteRenderer',
-        // template: '<mat-icon (click)="delete()" style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);"><span class="delete-trash-icon ic ic-custom-delete"></span></mat-icon>'
+        cellRenderer: 'deleteRenderer'
       }
     ]
   }
@@ -393,7 +367,6 @@ export class ExecutionTaskComponent implements OnInit {
     formData.append('file', file);
     let obj;
     if (file) {
-      //this.uploadedImg = [];
       this.showFileUploadwidget = true;
       let url = `../../../../../../../assets/images/logo/${this.fileName}`
       obj = {
@@ -407,7 +380,6 @@ export class ExecutionTaskComponent implements OnInit {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
       this.files = file;
-      //this.files.push({ data: file });
       this.uploadFiles();
     };
     fileUpload.click();
@@ -419,13 +391,9 @@ export class ExecutionTaskComponent implements OnInit {
   }
 
   openSuccessPopup() {
-
     const message = `Are you sure want to submit the workorder?`;
     const dialogRef = this.dialog.open(SuccessfulModalComponent, {
       data: message
-    });
-    dialogRef.afterClosed().subscribe(data => {
-      //console.log(data);
     });
   }
   goBack() {

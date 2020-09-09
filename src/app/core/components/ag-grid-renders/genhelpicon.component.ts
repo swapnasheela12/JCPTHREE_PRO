@@ -1,12 +1,5 @@
-import { Component, ViewEncapsulation, Inject, OnInit } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
-import { HttpClient } from '@angular/common/http';
-import { MatDialogRef } from "@angular/material/dialog";
 import { QuestionPopupComponent } from '../../../../app/modules/components/capacity/question-popup/question-popup.component'
 
 @Component({
@@ -22,7 +15,6 @@ import { QuestionPopupComponent } from '../../../../app/modules/components/capac
     height: 50px !important;
     border-radius: 25px;
     background: none;
-
 }
 
 .zmdi-help {
@@ -30,13 +22,9 @@ import { QuestionPopupComponent } from '../../../../app/modules/components/capac
     color:#777777;
 }`  ]
 })
-export class GenhelpiconComponent implements OnInit {
+export class GenhelpiconComponent {
 
-  constructor(public dialog: MatDialog, public matDialog: MatDialog
-  ) { }
-
-  ngOnInit(): void {
-  }
+  constructor(public dialog: MatDialog) { }
   params;
   public kpis;
   public showGlobalOperation: Boolean = false;

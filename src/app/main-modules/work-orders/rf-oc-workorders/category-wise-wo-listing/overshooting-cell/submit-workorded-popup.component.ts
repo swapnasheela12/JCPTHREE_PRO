@@ -1,10 +1,9 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject, Component } from '@angular/core';
 
-
 @Component({
   selector: 'app-submit-workorded-popup',
-  template:  `
+  template: `
   <div mat-dialog-content style="margin: 0 auto;
   width: 500px;
   height: 300px;
@@ -14,18 +13,15 @@ import { Inject, Component } from '@angular/core';
 <button mat-stroked-button color="primary" (click)="onNoClick()">No</button>
 <button mat-stroked-button color="primary"  (click)="onNoClick()"cdkFocusInitial>Yes</button>
 </div>
-  `,
-
- 
+  `
 })
 export class SubmitWorkordedPopupComponent {
-
   constructor(
     public dialogRef: MatDialogRef<SubmitWorkordedPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-onNoClick() {
+  onNoClick() {
     this.dialogRef.close('closed');
-}
+  }
 
 }

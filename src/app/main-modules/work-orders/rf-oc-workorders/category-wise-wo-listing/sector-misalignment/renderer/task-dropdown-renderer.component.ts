@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
@@ -38,22 +38,14 @@ export class TaskDropdownRendererComponent implements ICellRendererAngularComp {
     '7',
     '8'
   ];
-  public daysImprovementVal;
   columnName: string;
   rowIndex: number;
-  constructor(
-  ) {
-  }
 
   agInit(params): void {
     this.params = params;
-    console.log(params)
-    // this.columnName = params.column.colDef.headerName;
-    // this.rowIndex = params.rowIndex;
-    // this.daysImprovementVal = this.daysImprovementList[this.rowIndex];
   }
 
-  refresh(params?: any): boolean {
+  refresh(params): boolean {
     return true;
   }
 

@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
+import { Component, ViewChild, OnChanges, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { Subject } from 'rxjs';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -32,9 +30,6 @@ export class AntennaParameterComponent implements OnChanges {
   public searchGrid = '';
   public show;
   public gridFilterValueServices = {};
-  // public frameworkComponentsSectorMisalignment = {
-  //   viewHistroyRenderer: viewHistoryRendererComponent
-  // };
 
   showTab: boolean = false;
   @Input('selectedTab') public selectedTab;
@@ -57,7 +52,7 @@ export class AntennaParameterComponent implements OnChanges {
     }
   }
 
-  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe((url: any) => { });
   }
   ngOnChanges() {
@@ -113,18 +108,7 @@ export class AntennaParameterComponent implements OnChanges {
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(evt) {
-    this.gridFilterValueServices["filter"] = evt.target.value;
-    this.eventsSubject.next(this.gridFilterValueServices);
-  };
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
   //END table search//////////////////
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }

@@ -1,12 +1,9 @@
 <div class="overshooting-cell-container">
 
   <div class="section-title">
-
     <div class="prev-page" routerLink="../WO-Overshooting-Cell">
       <span class="zmdi zmdi-arrow-left"></span></div>
-
     <span class="main-title">Execution Task IAN Lead</span>
-
   </div>
 
   <div class="task-retrigger-details mb-3 blocks">
@@ -119,26 +116,15 @@
       </div>
       <div class="os-row">
         <div class="os-cell">
-          <!-- <mat-form-field class="example-full-width" style="position:relative;">
-            <mat-label>Site Photos*</mat-label>
-            <input type="" matInput placeholder="Upload Photos" value="">
-          </mat-form-field>
-         
-
-          <input style="position: absolute;z-index: 999;opacity:0;      
-          top: 242px;
-          left: 68px;
-          width: 180px;" type="file" class="uploadfilesOssd"> -->
           <mat-form-field class="upload-files-section">
             <input matInput class="input-field" style="position: inherit; opacity: 0.6;font-size: 14px;"
-                placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
-            <button class="browse-button"
-                style="position: absolute; right: 0; bottom :0; font-size: 14px;" (click)="onClick()"
-                mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+              placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+            <button class="browse-button" style="position: absolute; right: 0; bottom :0; font-size: 14px;"
+              (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
 
             <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
-                style="display: none;" />
-        </mat-form-field>
+              style="display: none;" />
+          </mat-form-field>
         </div>
       </div>
     </div>
@@ -160,7 +146,7 @@
     </div>
     <div class="remarks">
       <label for="">Remarks*</label>
-     <input class="remarks-field" type="text" placeholder="remarks" />
+      <input class="remarks-field" type="text" placeholder="remarks" />
     </div>
   </div>
 

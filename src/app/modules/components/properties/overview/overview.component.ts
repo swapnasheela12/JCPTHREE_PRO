@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
-// import { CarouselComponent } from 'ngx-bootstrap';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+
 
 declare var $: any;
 declare var require: any;
@@ -8,13 +8,7 @@ declare var require: any;
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit, OnChanges {
-  // @ViewChild(CarouselComponent) myCarousel: CarouselComponent;
-  products = [
-    { source: "../../assets/images/factory.jpg" },
-    // { source: "../../assets/images/factory1.jpg" },
-    // { source: "../../assets/images/factory2.jpg" }
-  ]
+export class OverviewComponent implements OnInit {
   sitesimages = [{
     imageurl: "assets/images/Layers/sites-expand/sitesexpand2.jpg"
   }, {
@@ -23,8 +17,7 @@ export class OverviewComponent implements OnInit, OnChanges {
     imageurl: "assets/images/Layers/sites-expand/sitesexpand4.jpg"
   }, {
     imageurl: "assets/images/Layers/sites-expand/sitesexpand6.jpg"
-  },
-  {
+  }, {
     imageurl: "assets/images/Layers/sites-expand/sitesexpand7.jpg"
   }, {
     imageurl: "assets/images/Layers/sites-expand/sitesexpand8.jpg"
@@ -71,7 +64,6 @@ export class OverviewComponent implements OnInit, OnChanges {
     { headerName: 'Price', field: 'price' },
     { headerName: 'abc', field: 'abc' }
   ];
-
 
   statusDetails1 = [
     {
@@ -143,27 +135,18 @@ export class OverviewComponent implements OnInit, OnChanges {
     }
   ];
 
-
   itemsPerSlide = 3;
   singleSlideOffset = false;
   noWrap = false;
-
   slidesChangeMessage = '';
-  // showTab: boolean = false;
-  // @Input('selectedTab') public selectedTab;
   onSlideRangeChange(indexes: number[]): void {
     this.slidesChangeMessage = `Slides have been switched: ${indexes}`;
-  }
-
-  ngOnChanges() {
-    // if (this.selectedTab === "OVERVIEW") {
-    //   this.showTab = true;
-    // }
   }
 
   ngOnInit(): void {
     this.slides = this.chunk(this.signals, 3);
   }
+
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {

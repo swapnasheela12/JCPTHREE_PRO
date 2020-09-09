@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { CommonModule } from '@angular/common';  
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-wostatus',
@@ -31,24 +29,20 @@ import { BrowserModule } from '@angular/platform-browser';
   line-height: 2;
   color: white;`]
 })
-export class WostatusComponent implements ICellRendererAngularComp  {
+export class WostatusComponent implements ICellRendererAngularComp {
   params;
   status: string;
   inprogress: boolean = false;
   successful: boolean = false;
-show: boolean;
+  show: boolean;
+
   agInit(params): void {
     this.params = params
     this.status = this.params.data.status;
- 
     this.status = this.params.data.status || null;
-//this.successful = (this.status.toLowerCase() === "successful");
-
-
-
-    if(this.params.data.status === "Successful"){
+    if (this.params.data.status === "Successful") {
       this.show = true;
-    } else if(this.params.data.status === "In Progress"){
+    } else if (this.params.data.status === "In Progress") {
       this.show = false;
     }
   }
@@ -56,5 +50,4 @@ show: boolean;
   refresh(params?: any): boolean {
     return true;
   }
-
 }

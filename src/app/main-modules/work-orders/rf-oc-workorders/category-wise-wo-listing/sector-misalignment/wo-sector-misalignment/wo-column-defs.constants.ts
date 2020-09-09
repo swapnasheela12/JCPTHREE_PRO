@@ -2,7 +2,6 @@ export const COLUMN_DEFS = [
     {
         headerName: " ",
         field: "grouplist",
-        // rowGroup: true,
         pinned: 'left',
         width: 70,
     },
@@ -53,11 +52,7 @@ export const COLUMN_DEFS = [
         cellRenderer: function (params) {
             var assignedbyname = params.data.assignedto;
             var assignedby = params.data.assignedby;
-            // if (assignedbyname) {
-            //     return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div></div>';
-            // } else {
             return '<div class="md-two-lines-cell"><div class="values color-54">' + assignedbyname + '</div><div class="values color-54">' + assignedby + '</div></div>';
-            // }
         },
         width: 170
     },

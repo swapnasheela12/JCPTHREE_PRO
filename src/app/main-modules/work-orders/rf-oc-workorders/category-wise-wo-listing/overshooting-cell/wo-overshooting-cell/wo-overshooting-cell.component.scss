@@ -11,7 +11,6 @@ $color-white: #ffffff;
         border-radius: 4px 4px 0 0;
 
         .report-flex-container {
-            // margin-top: 10px;
             padding: 15px;
 
             .wo-flex-item {
@@ -118,31 +117,6 @@ div.prev-page {
     }
 }
 
-// .report-form-input-value {
-//     text-align: left;
-//     font: normal normal normal 14px/22px Lato !important;
-//     letter-spacing: 0px;
-//     color: #000000;
-//     opacity: 0.9;
-// }
-
-// .report-form-input-title {
-
-//     text-align: left;
-//     font: normal normal normal 12px/18px Lato !important;
-//     letter-spacing: 0px;
-//     color: #000000;
-//     opacity: 0.54;
-// }
-
-// .page-title {
-//     text-align: left;
-// font: normal normal bold 15px/18px Lato;
-// letter-spacing: 0px;
-// color: #000000;
-// opacity: 1;
-// }
-
 .block-heading {
     text-align: left;
     font: normal normal bold 15px/18px Lato;
@@ -167,8 +141,6 @@ div.prev-page {
 :host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
     content: "\eb0e"!important;
     font-family: "icomoon";
-   
-    // color: #0078d7;
     font-size: 15px;
     font-weight: 900;
     z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */

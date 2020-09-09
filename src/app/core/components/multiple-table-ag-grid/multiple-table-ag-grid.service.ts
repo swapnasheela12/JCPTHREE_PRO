@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 
-// enum typeOfAgGridTable{
-
-// }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +14,5 @@ export class MultipleTableAgGridService {
   public onReadyServices;
   public paginationRequired?;
   public autoPageSizeRequired?;
-  // public gridApiServices;
-  // public columnDefs;
   constructor() { }
 }

@@ -1,9 +1,7 @@
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-// import { CommonPopupComponent, CommonDialogModel } from '../../../../../core/components/commanPopup/common-popup/common-popup.component';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 
@@ -49,8 +47,7 @@ export class dropDownThreeDotRendererComponent implements ICellRendererAngularCo
   constructor(
     public dialog: MatDialog,
     public datashare: DataSharingService
-  ) {
-  }
+  ) { }
 
   agInit(params): void {
     this.params = params;
@@ -59,7 +56,7 @@ export class dropDownThreeDotRendererComponent implements ICellRendererAngularCo
     });
   }
 
-  refresh(params?: any): boolean {
+  refresh(): boolean {
     return true;
   }
 
@@ -69,7 +66,7 @@ export class dropDownThreeDotRendererComponent implements ICellRendererAngularCo
     const snackbarMode = 'success';
     const snackbarText = 'Action Performed Successfully';
     const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
-    const dialogRef = this.dialog.open(CommonPopupComponent, {
+    this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
   }

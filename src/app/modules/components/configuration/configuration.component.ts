@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AgGridModule } from 'ag-grid-angular';
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
+import { Component } from '@angular/core';
+import { GridOptions, GridCore } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef, MatDialog } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-//import { ConfigDotmenuComponent } from '../config-dotmenu/config-dotmenu.component';
-import { HistoryPopupComponent } from './history-popup/history-popup.component';
-import { InfoPopupComponent } from './info-popup/info-popup.component'
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import { dropDownThreeDotRendererComponent} from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
+import { dropDownThreeDotRendererComponent } from '../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component'
 interface Band {
   value: string;
   viewValue: string;
@@ -25,7 +20,7 @@ interface Sector {
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent {
 
   bands: Band[] = [
     { value: 'band-1', viewValue: "2300MHz" },
@@ -60,50 +55,32 @@ export class ConfigurationComponent implements OnInit {
   public paths;
   public configColumn;
   public configRow;
-public configData;
-public defaultColDef;
-public gridPinned;
+  public configData;
+  public defaultColDef;
+  public gridPinned;
 
+  url_1 = "assets/data/layers/popup-data/datap.json"
 
-
-url_1 = "assets/data/layers/popup-data/datap.json"
-
-
-
-  constructor( public datatable: TableAgGridService, public matDialog: MatDialog, 
-    public matselect: MatSelectModule, 
+  constructor(public datatable: TableAgGridService, public matDialog: MatDialog,
+    public matselect: MatSelectModule,
     public datashare: DataSharingService,
-    private http: HttpClient, 
+    private http: HttpClient,
     public dialogRef: MatDialogRef<ConfigurationComponent>
   ) {
 
     this.gridOptions = <GridOptions>{};
     this.createconfigColumn();
     this.httpClientRowData();
-   // this.getConfigdata();
-
-
     this.frameworkComponentsConfigDropdown = {
-
       'dropDownThreeDotRenderer': dropDownThreeDotRendererComponent
     }
   }
-
-
-  ngOnInit(): void {
-
-   
-  }
-
 
   openDialogConfiguration(): void {
     const dialogRef = this.matDialog.open(ConfigurationComponent, {
       width: "850px",
       panelClass: "material-dialog-container",
-    
     });
-
-
   };
 
   close() {
@@ -167,22 +144,13 @@ url_1 = "assets/data/layers/popup-data/datap.json"
       {
         headerName: "",
         cellRenderer: "dropDownThreeDotRenderer",
-      //  id: "config-menu-render",
         field: "",
         width: 80,
         pinned: 'right'
-
-
       }
-
     ];
   }
-  // private getConfigdata() {
-  //   this.http.get("assets/data/layers/popup-data/datap.json")
-  //     .subscribe(data => {
-  //       this.configRow = data;
-  //     });
-  // }
+
   private httpClientRowData() {
     this.http
       .get("assets/data/layers/popup-data/datap.json")
@@ -195,6 +163,6 @@ url_1 = "assets/data/layers/popup-data/datap.json"
         this.datatable.gridOptionsServices = this.gridOptions;
         this.datatable.defaultColDefServices = this.defaultColDef;
       });
-      this.datatable.columnDefsServices = this.columnDefs;
-    }
+    this.datatable.columnDefsServices = this.columnDefs;
+  }
 }

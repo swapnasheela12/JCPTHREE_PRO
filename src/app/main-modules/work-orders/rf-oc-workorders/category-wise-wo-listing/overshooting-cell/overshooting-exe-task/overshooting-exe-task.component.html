@@ -1,13 +1,9 @@
 <div class="overshooting-cell-container">
-
   <div class="section-title">
     <div class="prev-page" routerLink="../WO-Overshooting-Cell">
       <span class="zmdi zmdi-arrow-left"></span></div>
-
-
     <span class="main-title">0015_2300_7_T01 :
       Execution Task-RFOC Lead</span>
-
   </div>
 
   <div class="task-retrigger-details mb-3 blocks">
@@ -18,33 +14,33 @@
     <div class="data-table-1">
       <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="rowExecutionTask"
         [columnDefs]="columnDefswo" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
-        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" (modelUpdated)="onReadyModeUpdate($event)"
-        (gridReady)="onReady($event)" [gridOptions]="gridOptions">
+        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+        (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)" [gridOptions]="gridOptions">
       </ag-grid-angular>
     </div>
   </div>
   <div class="site-details mb-3 blocks">
-    <header  class="block-heading">
+    <header class="block-heading">
       Site Details
     </header>
     <div class="data-table body-text">
       <div class="sitedetails-row">
         <div class="sitedetails-cell">
           <div class="title">SAP ID</div>
-        
-         <div class="value">1-AS-PTRK-ENB-HQ04</div> 
+
+          <div class="value">1-AS-PTRK-ENB-HQ04</div>
         </div>
         <div class="sitedetails-cell">
-         <div class="title">SECTOR ID</div>
-         <div class="value">1</div>
+          <div class="title">SECTOR ID</div>
+          <div class="value">1</div>
         </div>
         <div class="sitedetails-cell">
           <div class="title">Band</div>
           <div class="value">2300</div>
-          
+
         </div>
         <div class="sitedetails-cell">
-         <div class="title">Cell Name</div> 
+          <div class="title">Cell Name</div>
           <div class="value">I-MU-THNE-ENB-0306-15</div>
 
         </div>
@@ -72,56 +68,54 @@
           <div class="details">Calculated cell range(m):</div>
           <div class="value">400</div>
         </div>
+
         <div class="os-cell">
           <div class="details"> Overshooting Samples(% of Toatal, As per LSMR data):</div>
           <div class="value">31</div>
         </div>
+
         <div class="os-cell">
           <div class="details">Good Coverage Limit (m, As per geo-located data):</div>
           <div class="value">1400</div>
-
         </div>
 
       </div>
       <div class="os-row mb-2">
         <div class="os-cell">
           <div class="details"> Overshoot Start Distance(m):</div>
-
           <div class="value">1450</div>
-
         </div>
+
         <div class="os-cell">
           <div class="details"> Overshoot End Distance (m):</div>
           <div class="value"> 5000</div>
-
         </div>
+
         <div class="os-cell">
           <div class="details">% Samples Beyond Good Coverage Limit (As per geo-located data):
           </div>
           <div class="value"> 14</div>
         </div>
-
       </div>
+
       <div class="os-row">
         <div class="os-cell">
           <div class="details"> Proposed Incremental E-Tilt:</div>
-
           <div class="value">0</div>
-
         </div>
-
-
       </div>
+
     </div>
   </div>
   <div class="solution-implementation-details mb-3 blocks">
     <header class="block-heading">
       Solution Implementation Details
     </header>
-    <div class="sol-impl-details-title p-3">
 
+    <div class="sol-impl-details-title p-3">
       Select the solution to be implemented for mitigation of overshooting cell
     </div>
+
     <div class="sol-imp-row p-3">
       <mat-radio-group aria-label="Select an option">
         <mat-radio-button class="mr-2 radiobtn" value="E-Tilt">E-Tilt/Tx attenuation Change
@@ -130,28 +124,7 @@
         </mat-radio-button>
       </mat-radio-group>
     </div>
-
   </div>
-  <!-- <div class="implemented-parameter-details mb-3 blocks">
-    <header class="heading block-heading">
-      <div class="title">Implememnted parameter Details</div>
-      <div class="clone-btn">
-        <button type="button" class="btn-clone">ADD</button>
-      </div>
-    </header>
-    <div class="data-table">
-      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
-        [columnDefs]="impParameterDetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
-        enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
-        rowSelection="multiple">
-      </ag-grid-angular>
-    </div>
-    <div class="tx-attn">
-      <mat-checkbox class="mt-2">Confirm that Tx attenuation/E-Tilt change has been implemented on site.*
-      </mat-checkbox>
-
-    </div>
-  </div> -->
 
   <div class="implemented-parameter-details mb-3 blocks">
     <header class="impheader">
@@ -167,22 +140,16 @@
         [frameworkComponents]="frameworkComponentsTaskExecution" rowSelection="multiple">
       </ag-grid-angular>
     </div>
-    <!-- <div class="remarks" style="padding: 1rem;width: 352px;">
-      <mat-form-field class="remarks-field" style="width: 100%;">
-        <mat-label>Remarks*</mat-label>
-        <input matInput placeholder="" value="">
-      </mat-form-field>
 
-    </div> -->
-    <mat-checkbox class="tx-attenuation">Confirm that Tx attenuation/E-Tilt change has been implemented on site.*</mat-checkbox>
-
+    <mat-checkbox class="tx-attenuation">Confirm that Tx attenuation/E-Tilt change has been implemented on site.*
+    </mat-checkbox>
   </div>
- 
+
   <div class="suggestions-details blocks">
     <header class="heading block-heading">
       <div class="title">Suggestions for Physical Parameter Optimization Details</div>
       <div class="clone-btn" style="text-align:right;" (click)="onAddRowsug()">
-        <button type="button" class="btn-clone" >Add</button>
+        <button type="button" class="btn-clone">Add</button>
       </div>
     </header>
     <div class="data-table">
@@ -194,15 +161,10 @@
     </div>
     <div class="remarks">
       k<label class="remarks-label" for="">Remarks*</label>
-     <input class="remarks-field" type="text" placeholder="remarks" />
+      <input class="remarks-field" type="text" placeholder="remarks" />
     </div>
   </div>
 
-  <!-- <div class="footer p-2">
-    <button type="button" mat-raised-button color="primary" class="cancel-btn">CANCEL</button>
-    <button type="button" mat-raised button color="primary" class="submit-btn">SUBMIT</button>
-
-  </div> -->
   <div class="d-flex task-footer">
     <div class="col"></div>
     <div class="p-2">

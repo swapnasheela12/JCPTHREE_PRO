@@ -1,37 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
-import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { FormControl } from '@angular/forms';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject } from 'rxjs';
-
-
-
-
-import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { WostatusComponent } from './renderer/wostatus/wostatus.component';
-import { DropdownComponent } from './renderer/wostatus/dropdown.component';
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
-
 
 @Component({
   selector: 'app-overshooting-cell',
   templateUrl: './overshooting-cell.component.html',
   styleUrls: ['./overshooting-cell.component.scss']
 })
-export class OvershootingCellComponent implements OnInit {
-  ngOnInit(){}  
-
+export class OvershootingCellComponent {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
   public paths;
   public sidenavBarStatus;
   public tableWidth;
@@ -48,7 +35,7 @@ export class OvershootingCellComponent implements OnInit {
   public gridFilterValueServices = {};
   tableCompData = {};
   public frameworkComponentsOvershooting = {
-   "statusbar" : WostatusComponent
+    "statusbar": WostatusComponent
   };
   public formControlPageCount = new FormControl();
 
@@ -57,13 +44,11 @@ export class OvershootingCellComponent implements OnInit {
 
 
   constructor(
-    private datatable: TableAgGridService, 
-    private datashare: DataSharingService, 
-    private router: Router, 
-    private route: ActivatedRoute, 
-    private overlayContainer: OverlayContainer, 
+    private datatable: TableAgGridService,
+    private datashare: DataSharingService,
+    private router: Router,
     private httpClient: HttpClient) {
-    router.events.subscribe((url: any) => { });
+    router.events.subscribe();
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
@@ -213,9 +198,8 @@ export class OvershootingCellComponent implements OnInit {
       ';">' +
       status + '</span>';
   }
-  
+
   cellClickedDetails(evt) {
-    console.log(evt, "evt");
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell"]);
     }

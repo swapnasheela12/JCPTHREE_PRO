@@ -1,11 +1,6 @@
 @import "@ag-grid-community/core/dist/styles/ag-grid.scss";
 @import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
 
-
-
-
-
-
 html, body {
     height:100%;
 }
@@ -29,15 +24,10 @@ html, body {
         flex: 0 0 76%;
         color:#ffffff;
         line-height: 1;
-
-
-
     }
     .close-popup{
         line-height: 1px;
     }
-  
-   
 }
 
 

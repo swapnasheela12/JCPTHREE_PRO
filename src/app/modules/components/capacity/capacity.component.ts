@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatButtonModule } from "@angular/material/button";
-import { AgGridModule } from 'ag-grid-angular';
 import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { QuestionPopupComponent } from './question-popup/question-popup.component';
 import { TableAgGridService } from '../../../core/components/table-ag-grid/table-ag-grid.service';
-import { from } from 'rxjs';
 import { GenhelpiconComponent } from '../../../core/components/ag-grid-renders/genhelpicon.component';
 import { Router } from '@angular/router';
 
@@ -38,11 +34,9 @@ export class CapacityComponent {
   public capacityRows;
   public frameworkComponentsCapacitymenu;
   public frameworkComponentsHelpIcon;
-
   public showGlobalOperation: Boolean = false;
   public kpivalue;
   rowClassRules: {};
-  //cellClassRules: { show: (params: any) => void; hide: (params: any) => void; };
   public cellClassRules;
   url_1 = "assets//layers/popup-data/capacity-popup-data.json";
 
@@ -139,20 +133,10 @@ export class CapacityComponent {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // params.api.paginationGoToPage(4);
   }
 
-  // onPageSizeChanged(newPageSize) {
-  //   this.gridApi.paginationSetPageSize(Number(newPageSize.value));
-  // }
 
   close() {
     this.dialogRef.close();
   }
-
-  // isShow: boolean = false;
-
-  // toggleDisplay() {
-  //   this.isShow = !this.isShow;
-  // }
 }
