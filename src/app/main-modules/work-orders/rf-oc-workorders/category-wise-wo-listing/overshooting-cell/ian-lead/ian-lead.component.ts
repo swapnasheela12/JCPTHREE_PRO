@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { Subscribable, Subscription } from 'rxjs';
 
 interface sitep {
   value: string;
@@ -46,6 +47,7 @@ export class IanLeadComponent implements OnInit {
   public physicalParameterColumndata;
   public physicalParameterrowdata;
   public pspRowdata: any;
+  public destroySubscription: Subscription = new Subscription();
 
   constructor(
     public flexlayout: FlexLayoutModule, private http: HttpClient, private router: Router, public dialog: MatDialog) {
@@ -301,6 +303,10 @@ export class IanLeadComponent implements OnInit {
     const dialogRef = this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }
 

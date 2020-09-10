@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -11,7 +11,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { IDecongestionGrid } from '../../Irf-oc';
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
@@ -20,12 +20,9 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
   templateUrl: './cell-decongestion.component.html',
   styleUrls: ['./cell-decongestion.component.scss']
 })
-export class CellDecongestionComponent {
+export class CellDecongestionComponent implements OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
-  /////
-  public paths;
-  public sidenavBarStatus;
-  public tableWidth;
+  public sidenavBarStatus: boolean;
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
@@ -37,6 +34,7 @@ export class CellDecongestionComponent {
   public searchGrid = '';
   public gridFilterValueServices = {};
   tableCompData = {};
+  public destroySubscription: Subscription = new Subscription();
   public frameworkComponentsSectorMisalignment = {
     statusFlagRenderer: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
@@ -68,7 +66,7 @@ export class CellDecongestionComponent {
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
 
-    this.datashare.currentMessage.subscribe((message) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
     });
 
@@ -221,6 +219,10 @@ export class CellDecongestionComponent {
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion/WO-Cell-Decongestion"]);
     }
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe
   }
 
 }

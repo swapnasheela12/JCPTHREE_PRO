@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions, GridCore } from '@ag-grid-community/all-modules';
 import { FormControl } from '@angular/forms';
@@ -13,13 +12,14 @@ import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/su
 import { TaskDropdownRendererComponent } from '../../../sector-misalignment/renderer/task-dropdown-renderer.component';
 import { TaskInputRendererComponent } from '../../../sector-misalignment/renderer/task-input-renderer.component';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-execution-task',
   templateUrl: './execution-task.component.html',
   styleUrls: ['./execution-task.component.scss']
 })
-export class CellExecutionTaskComponent {
+export class CellExecutionTaskComponent implements OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   /////
@@ -68,6 +68,7 @@ export class CellExecutionTaskComponent {
   public rowDataProposedIndoor;
   public rowDataMacroSiteData;
   public frameworkComponentsTaskExecution;
+  public destroySubscription: Subscription = new Subscription();
   taskClosureRemark = [
     { value: 'taskClosure', name: 'Task Closure' },
     { value: 'databaseMismatch', name: 'Database Mismatch' },
@@ -182,7 +183,7 @@ export class CellExecutionTaskComponent {
     public route: ActivatedRoute) {
     router.events.subscribe();
 
-    this.route.paramMap.subscribe((data: any) => {
+    this.destroySubscription = this.route.paramMap.subscribe((data: any) => {
       this.executionType = data.params.title
     })
     this.frameworkComponentsTaskExecution = {
@@ -658,5 +659,9 @@ export class CellExecutionTaskComponent {
   }
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment'])
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }

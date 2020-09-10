@@ -1,11 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { COLUMN_DEFS } from '../../sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { FormControl } from '@angular/forms';
 
@@ -15,7 +15,7 @@ const COLUMNDEFS = COLUMN_DEFS;
   templateUrl: './wo-decongestion.component.html',
   styleUrls: ['./wo-decongestion.component.scss']
 })
-export class WoDecongestionComponent {
+export class WoDecongestionComponent implements OnDestroy {
 
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
@@ -36,6 +36,7 @@ export class WoDecongestionComponent {
   public formControlPageCount = new FormControl();
   public gridFilterValueServices = {};
   public showGlobalOperation: boolean = true;
+  public destroySubscription: Subscription = new Subscription();
   woHeader = [
     {
       "label": "Category",
@@ -62,7 +63,7 @@ export class WoDecongestionComponent {
 
   constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
-    this.datashare.currentMessage.subscribe((message) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
 
@@ -94,6 +95,10 @@ export class WoDecongestionComponent {
 
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment'])
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }
 

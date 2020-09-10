@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { FormControl } from '@angular/forms';
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { SelectionChangedEvent } from 'ag-grid-community';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { WostatusComponent } from './renderer/wostatus/wostatus.component';
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
 
@@ -17,7 +17,7 @@ const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/
   templateUrl: './overshooting-cell.component.html',
   styleUrls: ['./overshooting-cell.component.scss']
 })
-export class OvershootingCellComponent {
+export class OvershootingCellComponent implements OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   public paths;
   public sidenavBarStatus;
@@ -34,6 +34,7 @@ export class OvershootingCellComponent {
   public show;
   public gridFilterValueServices = {};
   tableCompData = {};
+  destroySubscription: Subscription = new Subscription();
   public frameworkComponentsOvershooting = {
     "statusbar": WostatusComponent
   };
@@ -203,5 +204,9 @@ export class OvershootingCellComponent {
     if (evt.value) {
       this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell/WO-Overshooting-Cell"]);
     }
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe
   }
 }

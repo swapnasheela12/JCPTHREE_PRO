@@ -2,7 +2,7 @@ import { GridOptions, GridCore } from "@ag-grid-community/all-modules";
 import { MatDialog } from '@angular/material/dialog';
 import { DropdownComponent } from '../renderer/wostatus/dropdown.component';
 import { TextfieldComponent } from '../renderer/wostatus/textfield.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { Subscription } from 'rxjs';
 
 interface sitep {
   value: string;
@@ -22,7 +23,7 @@ interface sitep {
   templateUrl: './overshooting-exe-task.component.html',
   styleUrls: ['./overshooting-exe-task.component.scss']
 })
-export class OvershootingExeTaskComponent implements OnInit {
+export class OvershootingExeTaskComponent implements OnInit, OnDestroy {
   @ViewChild('agGrid') agGrid: AgGridAngular;
   @ViewChild('sugGrid') sugGrid: AgGridAngular;
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
@@ -68,6 +69,8 @@ export class OvershootingExeTaskComponent implements OnInit {
   public implRowdata;
   gridOptionsImplIan: GridOptions;
 
+  destroySubscription: Subscription = new Subscription();
+
   onReadyModeUpdate(params) {
     this.calculateRowCount();
   }
@@ -99,7 +102,7 @@ export class OvershootingExeTaskComponent implements OnInit {
     this.implColDef = this.createimppdetailsColumndata();
     this.implColDefIan = this.createphysicalParametersColumndata();
 
-    this.datashare.currentMessage.subscribe((message) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
       this.calculateRowCount();
     });
@@ -283,6 +286,10 @@ export class OvershootingExeTaskComponent implements OnInit {
     this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
   }
 }
 

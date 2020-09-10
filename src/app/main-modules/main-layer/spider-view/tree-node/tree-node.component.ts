@@ -2,7 +2,7 @@ import { AlarmsPopupComponent } from './alarms-popup/alarms-popup.component';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { filter, tap } from 'rxjs/operators';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
-import { MatDialogRef,MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import * as D3 from 'd3/index';
 
 @Component({
@@ -13,7 +13,7 @@ import * as D3 from 'd3/index';
 export class TreeNodeComponent implements OnInit {
 
   private _issue;
-  @Input() set issue(value) {
+  @Input('issue') set issue(value) {
     this._issue = value;
     this.draw(value);
   }
@@ -28,16 +28,16 @@ export class TreeNodeComponent implements OnInit {
   private treemap = D3.tree().size([this.height, this.width]);
   private htmlElement: HTMLElement;
 
-  constructor(private element: ElementRef, public dialog: MatDialog,router: Router,public dialogRef: MatDialogRef<TreeNodeComponent>) {
+  constructor(private element: ElementRef, public dialog: MatDialog, router: Router, public dialogRef: MatDialogRef<TreeNodeComponent>) {
     this.htmlElement = this.element.nativeElement;
     this.host = D3.select(this.element.nativeElement);
-     router.events.pipe(
+    router.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationStart),
       tap(() => this.dialog.closeAll())
     ).subscribe();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   draw(issue) {
     if (!issue) {
@@ -56,7 +56,7 @@ export class TreeNodeComponent implements OnInit {
       .attr("width", this.width + this.margin.left + this.margin.right)
       .attr("height", this.height + this.margin.top + this.margin.bottom);
     var g = svg.append("g")
-    
+
     // adds the links between the nodes
     var link = g.selectAll(".link")
       .data(nodes.descendants().slice(1))
@@ -201,7 +201,7 @@ export class TreeNodeComponent implements OnInit {
         height: '500px',
         panelClass: "alarms-layers-dialog-container",
       }
-      const dialogRef = this.dialog.open(AlarmsPopupComponent,AlarmsListDialogRef);
+      const dialogRef = this.dialog.open(AlarmsPopupComponent, AlarmsListDialogRef);
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });

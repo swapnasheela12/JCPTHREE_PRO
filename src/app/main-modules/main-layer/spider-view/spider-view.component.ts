@@ -1,7 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-spider-view',
@@ -90,12 +91,13 @@ export class SpiderViewComponent implements OnInit {
     ]
   };
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private dialogRef: MatDialogRef<SpiderViewComponent>,
+    public dialog: MatDialog) { }
 
   open(content) {
     this.modalService.open(content);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

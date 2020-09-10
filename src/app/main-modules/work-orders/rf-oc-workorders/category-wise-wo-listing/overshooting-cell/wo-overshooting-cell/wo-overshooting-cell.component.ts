@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { COLUMN_DEFS } from './overshooting-column-defs-constants';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -6,7 +6,7 @@ import { StatusRendererComponent } from 'src/app/main-modules/modules/performanc
 import { FormControl } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 const COLUMNDEFS = COLUMN_DEFS;
 
 @Component({
@@ -14,14 +14,13 @@ const COLUMNDEFS = COLUMN_DEFS;
   templateUrl: './wo-overshooting-cell.component.html',
   styleUrls: ['./wo-overshooting-cell.component.scss']
 })
-export class WoOvershootingCellComponent {
+export class WoOvershootingCellComponent implements OnDestroy {
   url: string = "assets/data/layers/workorders/wo-overshooting-cell-data.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   public gridFilterValueServices = {};
-
   public sidenavBarStatus;
-  public rowData: any;
-  public columnDefs: any[];
+  public rowData: Array<{}>;
+  public columnDefs: Array<{}>;
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
   };
@@ -29,6 +28,7 @@ export class WoOvershootingCellComponent {
   public formControlPageCount = new FormControl();
 
   public showGlobalOperation: Boolean = false;
+  destroySubscription: Subscription = new Subscription();
   searchGrid = '';
   woHeader = [
     {
@@ -54,13 +54,13 @@ export class WoOvershootingCellComponent {
   ];
   constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
-    this.datashare.currentMessage.subscribe((message) => {
+    this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
 
     //API call to get WO Service details
     this.httpClient.get(this.url)
-      .subscribe(data => {
+      .subscribe((data: Array<{}>) => {
         this.rowData = data;
         this.columnDefs = COLUMNDEFS;
       });
@@ -89,6 +89,11 @@ export class WoOvershootingCellComponent {
   goBack() {
     this.router.navigate(['/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell'])
   }
+
+  ngOnDestroy() {
+    this.destroySubscription.unsubscribe();
+  }
+
 }
 
 

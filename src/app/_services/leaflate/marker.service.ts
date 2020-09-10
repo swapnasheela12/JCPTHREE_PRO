@@ -3,13 +3,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+import { SpiderViewComponent } from 'src/app/main-modules/main-layer/spider-view/spider-view.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkerService {
   capitals: string = '/assets/data/layers/markerData.json';
-  constructor(private http: HttpClient,public dialog: MatDialog) { }
+  ref;
+  constructor(private http: HttpClient, public dialog: MatDialog) {
+    this.ref = this;
+  }
   makeCapitalMarkers(map: L.Map): void {
     this.http.get(this.capitals).subscribe((res: any) => {
       console.log(res, "res");
@@ -17,12 +21,15 @@ export class MarkerService {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        const marker = L.marker([lon, lat]).addTo(map).on('click', this.onMapClick);;
+        const marker = L.marker([lon, lat]).addTo(map).on('click', (evt) => {
+          this.onMapClick(evt, this.ref);
+        });;
       }
     });
   }
-  onMapClick(e) {
-    console.log(e,"e");
+  onMapClick(e, ref) {
+    console.log(e, "e");
+    console.log(ref, "ref");
     var target = e.target;
 
     // var spiderViewPopDialogRef = {
@@ -34,13 +41,13 @@ export class MarkerService {
     //   disableClose: true,
     //   hasBackdrop: true
     // }
-    // const dialogRef = this.dialog.open(SpiderViewComponent, spiderViewPopDialogRef);
+    // const dialogRef = ref.dialog.open(SpiderViewComponent, spiderViewPopDialogRef);
 
     // dialogRef.backdropClick().subscribe(_ => {
     //   dialogRef.close();
     // });
 
-   // popup
+    // popup
     //     .setLatLng(e.latlng)
     //     .setContent("You clicked the map at " + e.latlng.toString())
     //     .openOn(macarte);
