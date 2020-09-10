@@ -28,11 +28,7 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   enabled: Boolean;
   dataTest: any = false;
 
-  constructor(
-    public dialog: MatDialog,
-    public datashare: DataSharingService
-  ) {
-  }
+  constructor(public dialog: MatDialog, public datashare: DataSharingService) { }
 
   agInit(params): void {
     this.params = params;
@@ -57,5 +53,4 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
     let deletedRow = this.params.node.data;
     this.params.api.updateRowData({ remove: [deletedRow] })
   }
-
 }

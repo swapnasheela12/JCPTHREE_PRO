@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
 import { Subject } from 'rxjs';
+import { IDecongestionGrid } from '../../Irf-oc';
 
 const paths = "JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment";
 @Component({
@@ -29,12 +30,11 @@ export class CellDecongestionComponent {
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  public rowData: any;
-  public columnDefs: any[];
+  public rowData: Array<IDecongestionGrid>;
+  public columnDefs: Array<{}>;
   public rowCount: string;
   public defaultColDef = { resizable: true };
   public searchGrid = '';
-  public show;
   public gridFilterValueServices = {};
   tableCompData = {};
   public frameworkComponentsSectorMisalignment = {
@@ -73,7 +73,7 @@ export class CellDecongestionComponent {
     });
 
     this.httpClient.get(this.url)
-      .subscribe(data => {
+      .subscribe((data: Array<IDecongestionGrid>) => {
         this.rowData = data;
         this.datatable.rowDataURLServices = this.url;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";

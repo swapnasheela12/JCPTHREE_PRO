@@ -1,6 +1,5 @@
 import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-renders/view-history-renderer.component';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { GridOptions } from '@ag-grid-community/all-modules';
 
 export class GroupLevel {
@@ -12,7 +11,7 @@ export class GroupLevel {
   selector: 'app-ag-grid-tree',
   templateUrl: './ag-grid-tree.component.html'
 })
-export class AgGridTreeComponent implements OnInit {
+export class AgGridTreeComponent {
   @Input('columnDefs') columnDefs;
   @Input('rowData') rowData;
   @Input('events') public filterChange;
@@ -22,7 +21,6 @@ export class AgGridTreeComponent implements OnInit {
   public frameworkComponentsList = {
     viewHistroyRenderer: viewHistoryRendererComponent
   };
-
   dataSource = [];
   allData = [];
   collapseColumn: boolean = true;
@@ -61,8 +59,6 @@ export class AgGridTreeComponent implements OnInit {
       };
     }
   }
-
-  ngOnInit() { }
 
   /**
    *

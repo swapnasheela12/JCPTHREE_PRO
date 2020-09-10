@@ -17,7 +17,6 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 })
 
 export class viewHistoryRendererComponent implements ICellRendererAngularComp {
-
   params;
   label: string;
 
@@ -36,7 +35,6 @@ export class viewHistoryRendererComponent implements ICellRendererAngularComp {
       const params = {
         event: $event,
         rowData: this.params.node.data
-        // ...something
       }
       this.params.onClick(params);
 

@@ -16,8 +16,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 export class colorDropdownRendererComponent implements ICellRendererAngularComp {
   params: any;
   label: string;
-  colordata;
-  selectedColor;
+  selectedColor: string;
 
   agInit(params): void {
     this.selectedColor = params.data.color;
@@ -30,8 +29,6 @@ export class colorDropdownRendererComponent implements ICellRendererAngularComp 
   }
 
   onClick($event) {
-    console.log($event, "kkk");
-
     if (this.params.onClick instanceof Function) {
       // put anything into params u want pass into parents component
       const params = {

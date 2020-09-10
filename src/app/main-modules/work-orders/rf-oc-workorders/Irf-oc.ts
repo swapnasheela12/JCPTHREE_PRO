@@ -68,3 +68,22 @@ export interface ILabelValue {
     "label": string,
     "value": string
 }
+
+export interface IDecongestionGrid {
+    "status": string,
+    "sapid": string,
+    "band": string,
+    "sectorid": string,
+    "cellname": string,
+    "zone": string,
+    "circle": string,
+    "jcid": string,
+    "category": string,
+    "workorder": string,
+    "createdon": string,
+    "duedate": string,
+    "slaviolation": string,
+    "taskcompletion": string,
+    "perrating": number,
+    "ratingnumber": string
+}

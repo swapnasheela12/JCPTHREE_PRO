@@ -26,7 +26,6 @@ export class GenhelpiconComponent {
 
   constructor(public dialog: MatDialog) { }
   params;
-  public kpis;
   public showGlobalOperation: Boolean = false;
 
   refresh(params?: any): boolean {
@@ -38,13 +37,10 @@ export class GenhelpiconComponent {
   };
 
   openDialoghelp(): void {
-    // if (this.kpis = this.params.data.kpis === "Average RRC Connected Users" || this.params.data.kpis === "AirMAC Cell DL Traffic (GB)" || this.params.data.kpis === "IP Throughput (Mbps)"
-    // ) {
     const dialogRef = this.dialog.open(QuestionPopupComponent, {
       width: "500px",
       height: "350px",
       panelClass: "material-dialog-container",
     });
-    // }
   };
 }

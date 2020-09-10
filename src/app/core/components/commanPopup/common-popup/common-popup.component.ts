@@ -14,10 +14,8 @@ export class CommonPopupComponent {
   snackbarMode: string;
   snackbarText: string;
 
-  constructor(
-    public dialogRef: MatDialogRef<CommonPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CommonDialogModel,
-    private _snackBar: MatSnackBar
+  constructor(public dialogRef: MatDialogRef<CommonPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: CommonDialogModel, private _snackBar: MatSnackBar
   ) {
     this.title = data.title;
     this.message = data.message;
