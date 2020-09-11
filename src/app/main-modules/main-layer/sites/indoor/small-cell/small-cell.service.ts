@@ -6,10 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
+import { any } from 'underscore';
 @Injectable({
   providedIn: 'root'
 })
-export class SmallCellService implements OnDestroy{
+export class SmallCellService implements OnDestroy {
   public map: any;
   public _map;
   public states;
@@ -18,7 +19,10 @@ export class SmallCellService implements OnDestroy{
   public _canvasLayer;
   public sitesData: any;
   public stateLayer: any;
+  public futureLayerData?: any;
   public dataShareSub: Subscription;
+
+
   constructor(private datashare: DataSharingService, private router: Router, private shapeService: ShapeService, private http: HttpClient,) {
     this.lib = leaflayer();
     this.redrawLayer();
@@ -27,7 +31,7 @@ export class SmallCellService implements OnDestroy{
   redrawLayer() {
     console.log(this.shapeService, "this.shapeService");
     setTimeout(() => {
-        this.draw();
+      this.draw();
     }, 1000);
   }
 
@@ -63,12 +67,12 @@ export class SmallCellService implements OnDestroy{
       alwaysRender: true
     });
 
-    canvasLayer.on("layer-beforemount", function () {});
+    canvasLayer.on("layer-beforemount", function () { });
 
-    canvasLayer.on("layer-mounted", function () {});
+    canvasLayer.on("layer-mounted", function () { });
 
     canvasLayer.on("layer-render", function () {
-      
+
       var ctx = resizeContainer.bind(this)();
       // ctx.fillStyle = "rgba(255,116,0, 0.5)";
       var bounds = this._map.getBounds();
@@ -85,9 +89,9 @@ export class SmallCellService implements OnDestroy{
 
     });
 
-    canvasLayer.on("layer-beforedestroy", function () {});
+    canvasLayer.on("layer-beforedestroy", function () { });
 
-    canvasLayer.on("layer-destroyed", function () {});
+    canvasLayer.on("layer-destroyed", function () { });
 
     this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
@@ -102,7 +106,7 @@ export class SmallCellService implements OnDestroy{
         if (ele.link == "JCP/Layers/Small-Cell") {
           console.log("got it all amll ESC");
           this.boundariesData();
-          
+
           return canvasLayer.addTo(this._map);
         }
       }
@@ -118,7 +122,16 @@ export class SmallCellService implements OnDestroy{
   }
 
   private initStatesLayer() {
+    var geojsonMarkerOptions = {
+      radius: 8,
+      fillColor: "#ff7800",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    };
     this.stateLayer = L.geoJSON(this.states, {
+
       style: (feature) => ({
         weight: 2,
         opacity: 0.5,
@@ -126,13 +139,28 @@ export class SmallCellService implements OnDestroy{
         fillOpacity: 0.4,
         fillColor: '#6DB65B'
       }),
-      onEachFeature: (feature, layer) => (
+
+      // onEachFeature: (feature, layer) => (
+      //   layer.on({
+      //     mouseover: (e) => (this.highlightFeature(e)),
+      //     mouseout: (e) => (this.resetFeature(e)),
+      //     click: (e) => (this.zoomToFeature(e)),
+      //   })
+      // )
+
+      onEachFeature: (feature, layer) => {
         layer.on({
-          mouseover: (e) => (this.highlightFeature(e)),
+          // mouseover: (e) => (this.highlightFeature(e)),
           mouseout: (e) => (this.resetFeature(e)),
           click: (e) => (this.zoomToFeature(e)),
-        })
-      )
+        });
+        layer.bindTooltip(feature.properties.NAME_1,
+          {
+            permanent: true,
+            direction: 'center',
+            className: 'countryLabel'
+          });
+      }
     });
 
 
