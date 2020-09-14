@@ -14,7 +14,6 @@ import { PerformanceManagementRoutingModule } from './performance-management-rou
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
-//Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
@@ -112,18 +111,15 @@ import { AlarmDetailsPopupComponent } from './my-performance-reports/change-impa
     CommonModule,
     PerformanceManagementRoutingModule,
     CoreModule,
-    // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
-    //Angular meterial
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     A11yModule,
     ChartModule,
     HighchartsChartModule,
-    // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,

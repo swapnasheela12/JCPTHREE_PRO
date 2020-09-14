@@ -12,7 +12,7 @@
                     <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"  placeholder="">
                     <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
-                    </mat-icon>
+                    </mat-icon> 
                 </mat-form-field>
                 <button mat-raised-button class="submit-button kpi-create" color="primary" routerLink="/{{paths[0].createKPI}}">Create KPI</button>
                 <button mat-icon-button style="margin-left: 12px;" [disableRipple]="true" [matMenuTriggerFor]="kpiEditorMenu" aria-label="Example icon-button with a menu" [style.display]="showGlobalOperation ? 'block' : 'none'">
