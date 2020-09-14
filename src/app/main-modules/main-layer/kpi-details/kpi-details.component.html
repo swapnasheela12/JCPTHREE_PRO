@@ -10,17 +10,66 @@
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div class="kpi-details-container " *ngIf="showChart == false">
-        <div class="kpi-details-card" *ngFor="let item of listOfKpiDetails">
-            <div class="kpi-details-card-container" (click)="kpiDetailsChartPopFun()" [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}" fxLayout="row">
-                <div class="value-container" fxLayout="column">
-                    <div class="kpi-details-card-title">{{item.title}}</div>
-                    <div class="kpi-details-card-value">{{item.value}}</div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <button *ngIf="showChart == true" mat-icon-button (click)="kpiDetailsChartPopFun()">
+            <mat-icon style="color: #7E7E7E; font-size: 18px;" class="zmdi zmdi-arrow-left"></mat-icon>
+        </button>
+        <!-- <ng-container [ngTemplateOutlet]="KpiViewTmplBack"></ng-container> -->
+        <!-- <mat-icon class="icon-button" fxFlex="20" aria-label="back page" (click)="kpiDetailsCartPopFun()">
+            <span class="zmdi zmdi-arrow-left"></span>
+        </mat-icon> -->
+        <mat-form-field class="form-field-selected-layers pt-2 px-3" fxFlex="40">
+            <mat-select [(value)]="layerListValue" placeholder="Selected Layer" disableOptionCentering
+                (openedChange)="openedChange($event)" [formControl]="selectedLayerCtrl"
+                (selectionChange)="onChangeLayer(selectedLayerCtrl)">
+                <input matInput [(ngModel)]="selectedLayerSearchValue" autocomplete="off"
+                    [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                    style="height: 48px !important;padding-left:15px">
+                <mat-option *ngFor="let layers of selectedLayers | filter:selectedLayerSearchValue"
+                    [value]="layers.parentToChild">
+                    {{layers.parentToChild}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="kpi-details-container">
+
+        <div *ngIf="!showChart">
+            <div class="kpi-details-card" *ngFor="let item of listOfKpiDetails">
+                <div class="kpi-details-card-container" (click)="kpiDetailsChartPopFun()"
+                    [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}"
+                    fxLayout="row">
+                    <div class="value-container" fxLayout="column">
+                        <div class="kpi-details-card-title">{{item.title}}</div>
+                        <div class="kpi-details-card-value">{{item.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showChart">
+            <div style="height: 100%;">
+                <div fxLayout="row wrap" class="kpi-summary-view">
+                    <div fxFlex="50" class="kpi-summary-grid">
+                        <div class="label">Atoll: On-Air DL Throughput COMBINED</div>
+                        <div class="label">Data Source: Atoll 04/03/2017</div>
+                    </div>
+                    <div fxFlex="50" class="kpi-summary-grid">
+                        <span class="label">On-Air Sites :</span>
+                        <span class="value">246562</span>
+                    </div>
+                    <div fxFlex="100">
+                        <div class="jcp-landing-card-chart-container">
+                            <div id="kpiDetailsChartID" [chart]="kpiDetailsChart"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="showChart == true" style="height: 100%;">
-        <app-kpi-details-chart></app-kpi-details-chart>
-    </div>
+
 </div>
+
+<!-- <ng-template #KpiViewTmpl>
+    <ng-container [ngTemplateOutlet]="KpiViewMacroTmpl"></ng-container>
+</ng-template> -->
