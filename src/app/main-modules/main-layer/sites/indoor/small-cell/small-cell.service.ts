@@ -159,7 +159,7 @@ export class SmallCellService implements OnDestroy {
             permanent: true,
             direction: 'center',
             className: 'countryLabel'
-          });
+          }); 
       }
     });
 
