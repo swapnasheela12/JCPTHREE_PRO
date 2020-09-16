@@ -23,6 +23,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "aot": true,
+                        "commonChunk": false,
                         "assets": [{
                                 "glob": "**/*",
                                 "input": "./node_modules/leaflet/dist/images",
@@ -164,6 +165,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.playground.json",
                         "aot": true,
+                        "commonChunk": false,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
