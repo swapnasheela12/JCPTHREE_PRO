@@ -88,6 +88,7 @@ export class TownBoundaryDialogComponent implements OnInit {
       template: this.townBoundaryLayerSettings
     }, {
       width: 536,
+      height: 500,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

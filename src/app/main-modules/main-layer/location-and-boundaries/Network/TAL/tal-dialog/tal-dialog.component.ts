@@ -84,6 +84,7 @@ export class TacNetworkDialogComponent implements OnInit {
       template: this.networkTalLayerSettings
     }, {
       width: 536,
+      height:500,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
@@ -94,6 +95,7 @@ export class TacNetworkDialogComponent implements OnInit {
   }
 
   private openDialog(dialogData: LeftsideSettingsModelsData, options: LeftsideSettingsModelsOptions): void {
+    console.log(this.dialog.context)
     this.dialog = this.navigationFactoryService.open(dialogData, options);
   }
 

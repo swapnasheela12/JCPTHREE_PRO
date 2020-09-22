@@ -84,6 +84,7 @@ export class DenseUrbanDialogComponent implements OnInit {
       template: this.denseUrbanLayerSettings
     }, {
       width: 536,
+      height:650,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

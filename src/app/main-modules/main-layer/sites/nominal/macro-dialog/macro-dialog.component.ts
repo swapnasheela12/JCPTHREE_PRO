@@ -85,6 +85,7 @@ export class NominalMacroDialogComponent implements OnInit {
       template: this.nominalMacroLayerSettings
     }, {
       width: 536,
+      height: 550,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

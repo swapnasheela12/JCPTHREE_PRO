@@ -88,6 +88,7 @@ export class ZonesJioDialogComponent implements OnInit {
       template: this.zonesJioLayerSettings
     }, {
       width: 536,
+      height:500,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

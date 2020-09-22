@@ -43,9 +43,8 @@ export class NavigationSettingsFactoryService<T = undefined> {
 
   open(
     dialogData: LeftsideSettingsModelsData<T>,
-    options: LeftsideSettingsModelsOptions = { width: 500, disableClose: true, backdropClass: '' },
+    options: LeftsideSettingsModelsOptions = { width: 500, height: 500, disableClose: true, backdropClass: '' },
   ): NavigationSettingsService<T> {
-    this.dialog.closeAll();
     const dialogRef = this.dialog.open<LeftsideSettingsPopupComponent<T>, LeftsideSettingsModelsData<T>>(
         LeftsideSettingsPopupComponent,
       {
@@ -61,14 +60,16 @@ export class NavigationSettingsFactoryService<T = undefined> {
 
   private fetchOptions({
     width,
+    height,
     backdropClass,
     disableClose
   }: LeftsideSettingsModelsOptions): Pick<
     MatDialogConfig<LeftsideSettingsModelsData<T>>,
-    'width' | 'backdropClass' | 'disableClose'
+    'width' | 'height' | 'backdropClass' | 'disableClose'
   > {
     return {
       width: `${width}px`,
+      height:  `${height}px`,
       backdropClass: `${backdropClass}`,
       disableClose
     };
