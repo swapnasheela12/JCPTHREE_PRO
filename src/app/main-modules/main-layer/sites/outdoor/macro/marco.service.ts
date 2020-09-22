@@ -349,29 +349,32 @@ export class MarcoService {
       }
 
       this.nodeOnMouseClick = function (info, event) {
+        console.log("event", event);
+        console.log("mainComponentRef", mainComponentRef);
         let viewData = {};
         viewData['currentbands'] = event.target.site;
         viewData['sector'] = event.target.sector;
-        
+
         if (mainComponentRef) {
           mainComponentRef.target.clear();
-          /** * @param {datashare} object  Data sharing service */ 
-          if(mainComponentRef.datashare){
-              mainComponentRef.datashare.sendDataToSpider(viewData);
+          /** * @param {datashare} object  Data sharing service */
+          if (mainComponentRef.datashare) {
+            console.log("viewData", viewData)
+            mainComponentRef.datashare.sendDataToSpider(viewData);
           }
-          else{
+          else {
             throw new Error("Data sharing service not found. Please add one.");
           }
-          
-          if(mainComponentRef.componentFactoryResolver){
+
+          if (mainComponentRef.componentFactoryResolver) {
             let spiderComponent = mainComponentRef.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
             mainComponentRef.componentRef = mainComponentRef.target.createComponent(spiderComponent);
           }
-          else{
+          else {
             throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
           }
         }
-        else{
+        else {
           throw new Error("Main component reference not found. Please pass 'this' as a second parameter/")
         }
       }
@@ -460,102 +463,6 @@ export class MarcoService {
       this.toRad = function (angle) {
         return (angle - 90) * Math.PI / 180;
       }
-
-
-      //BOUNDARIES
-      // this.reloadLayer = function (event) {
-
-      //   if (this._requestCanceller) {
-      //       this._requestCanceller.resolve();
-      //       this._requestCanceller = null;
-      //       this._requestCanceller = $q.defer();
-      //   } else {
-      //       this._requestCanceller = $q.defer();
-      //   }
-
-      //   // this._container.alpha = 0;
-      //   // this._stage.update();
-      //   var info = event.info;
-      //   // info.bounds._northEast, // info.bounds._southWest
-
-      //   var url = null;
-      //   var sitesView = (info.zoom > 13);
-
-      //   if (!sitesView) {
-      //       var boundariesFile = '';
-      //       switch (true) {
-
-      //           case (info.zoom < 4):
-      //               this.textRatio = 0;
-      //               this.countMin = 5000;
-      //               this.countMax = 30000;
-      //               boundariesFile = 'circles';
-      //               break;
-
-      //           case (info.zoom < 8):
-      //               this.textRatio = 13;
-      //               this.countMin = 5000;
-      //               this.countMax = 30000;
-      //               boundariesFile = 'circles';
-      //               break;
-      //           case (info.zoom < 10):
-      //               this.textRatio = 13;
-      //               this.countMin = 5000;
-      //               this.countMax = 30000;
-      //               boundariesFile = 'jiostates';
-      //               break;
-      //           case (info.zoom < 11):
-      //               this.textRatio = 11;
-      //               this.countMin = 500;
-      //               this.countMax = 5000;
-      //               boundariesFile = 'cities';
-      //               break;
-      //           case (info.zoom < 12):
-      //               this.textRatio = 9;
-      //               this.countMin = 10;
-      //               this.countMax = 100;
-      //               boundariesFile = 'jiocenters';
-      //               break;
-      //           default:
-      //               this.textRatio = 9;
-      //               this.countMin = 5;
-      //               this.countMax = 20;
-      //               boundariesFile = 'clusters';
-      //       }
-      //       url = 'assets/data/layers/boundaries/' + boundariesFile + '.json';
-      //   } else {
-      //       //url = 'assets/data/layers/sites-onair.json';
-      //       url = 'assets/data/layers/macrosites-onair.json';
-      //   }
-
-      //   if (!sitesView) {
-      //       this.drawBoundaries(event, this._previousData);
-      //   } else {
-      //       this.drawSites(event, this._previousData);
-      //   }
-
-      //   $http({
-      //       method: 'GET',
-      //       url: url,
-      //       timeout: this._requestCanceller.promise
-      //   }).then(function successCallback(response) {
-      //       var data = response.data;
-      //       this._requestCanceller.resolve();
-      //       if (!sitesView) {
-      //           this._previousData = null;
-      //           this.drawBoundaries(event, data);
-      //           this._previousData = data;
-      //       } else {
-      //           this._previousData = null;
-      //           this.drawSites(event, data);
-      //           this._previousData = data;
-      //       }
-      //   }, function errorCallback(response) {
-      //       $log.log(response);
-      //       // called asynchronously if an error occurs
-      //       // or server returns response with an error status.
-      //   });
-      // };
     }
     else {
       throw new Error("JSON object data not found")

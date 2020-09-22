@@ -1,0 +1,66 @@
+<div mat-dialog-content class="properties-container">
+    <div class="flex-container">
+        <div class="d-flex flex-row justify-content-between header">
+            <div class="col-6 sector-flex-item" fxFlex>
+                <mat-icon class="icon-button" style="color: white;float: left;line-height: 1.3;" aria-label="search">
+                    <span class="zmdi zmdi-balance"></span>
+                </mat-icon>
+
+                <div class="py-3 sector-title">Candidates for SAP ID: I-MH-AMBT-ENB-9088</div>
+            </div>
+
+            <div class="col-1 sector-flex-item" fxFlex>
+                <mat-icon class="close-icon" style="line-height: 2;position: relative; left: 43px;"
+                    (click)="closeDialog()" aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="properties-header p-0">
+        <div class="d-flex mx-2 flex-row flex-wrap prop-container col-9" fxLayout="row">
+
+            <div class="prop-flex-item">
+                <div class="prop-label">RF Site ID</div>
+                <div class="prop-value">-</div>
+            </div>
+            <div class="prop-flex-item">
+                <div class="prop-label">City</div>
+                <div class="prop-value">TEHSIL</div>
+            </div>
+            <div class="prop-flex-item">
+                <div class="prop-label">Circle</div>
+                <!-- <div class="prop-value">Durg Bhilainagar</div> -->
+            </div>
+            <div class="prop-flex-item">
+                <div class="prop-label">Ring Latitude</div>
+                <div class="prop-value">19.1096</div>
+            </div>
+            <div class="prop-flex-item">
+                <div class="prop-label">Ring Longitude</div>
+                <div class="prop-value">73.277329</div>
+            </div>
+        </div>
+        <div class="col-3 sector-flex-item" fxFlex>
+            <mat-icon class="icon-button col-4" (click)="closeDialog()"
+                style="line-height: 2.3; color: rgba(0, 0, 0, 0.38);" aria-label="search">
+                <span class="zmdi zmdi-download"></span>
+            </mat-icon>
+
+            <mat-icon class="icon-button col-4" aria-label="search"
+                style="line-height: 2.3; color: rgba(0, 0, 0, 0.38);" disabled>
+                <span class="zmdi zmdi-print"></span>
+            </mat-icon>
+
+            <mat-icon aria-label="search" class="icon-button col-4" style="line-height: 2.3;
+            color: rgba(0, 0, 0, 0.38);" disabled>
+                <span class="zmdi zmdi-share"></span>
+            </mat-icon>
+        </div>
+    </div>
+
+    <div class="prop-tab-container p-0" style="height: 60vh !important">
+        <app-table-ag-grid></app-table-ag-grid>
+    </div>
+
+</div>

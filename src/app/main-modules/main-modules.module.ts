@@ -90,6 +90,8 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
+import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
+import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,9 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     ScreenshotPreviewComponent, colorDropdownRendererComponent,
     ScreenshotPreviewComponent,
     SpiderComponent,
-    KpiComponent
+    KpiComponent,
+    CandidatesComponent,
+    NominalViewComponent
   ],
   imports: [
     CommonModule,

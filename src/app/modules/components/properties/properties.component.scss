@@ -7,6 +7,15 @@ $color-white: #ffffff;
     height: calc(100% - 7px);
     min-height: calc(100% - 50px);
     max-height: calc(100% - 7px);
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    .flex-container {
+        .header {
+            background-color: rgb(25, 118, 210);
+            color: rgb(255, 255, 255);
+        }
+    }
 
     .properties-header {
         background-color: #f9f9f9;
