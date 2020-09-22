@@ -91,10 +91,10 @@ import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.compon
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
 
-import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
-import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
-import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
-import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
+// import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
+// import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
+// import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
+// import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
 import { TacNetworkDialogComponent } from './main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
@@ -131,8 +131,8 @@ import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Ji
     ScreenshotPreviewComponent,
     SpiderComponent,
     KpiComponent,
-    CustomDashboardComponent,
-    TwampLiveDashboardComponent,
+    // CustomDashboardComponent,
+    // TwampLiveDashboardComponent,
     TacNetworkDialogComponent,
     DenseUrbanDialogComponent,
     TownBoundaryDialogComponent,
@@ -154,8 +154,8 @@ import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Ji
     AgGridModule.withComponents([
       ButtonRendererComponent,
       colorDropdownRendererComponent,
-      InfoRendererComponent,
-      AllExpandRendererComponent
+      // InfoRendererComponent,
+      // AllExpandRendererComponent
     ]),
     //Angular material
     FormsModule,
