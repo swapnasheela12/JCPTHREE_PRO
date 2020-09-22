@@ -45,6 +45,7 @@ export class NavigationSettingsFactoryService<T = undefined> {
     dialogData: LeftsideSettingsModelsData<T>,
     options: LeftsideSettingsModelsOptions = { width: 500, height: 500, disableClose: true, backdropClass: '' },
   ): NavigationSettingsService<T> {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open<LeftsideSettingsPopupComponent<T>, LeftsideSettingsModelsData<T>>(
         LeftsideSettingsPopupComponent,
       {

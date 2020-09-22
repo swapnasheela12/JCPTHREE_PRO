@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 import { LeftsideSettingsModelsData } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
 import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
-import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
+import { LABEL_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
 import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
@@ -19,12 +19,9 @@ import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 export class ZonesJioDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
   clickEventsubscription:Subscription;
-  thematicList = THEMATIC_LIST;
-  thematicListValue: string = THEMATIC_LIST[0].thematic_name;
-  hoverList = HOVER_LIST;
-  hoverListValue = HOVER_LIST[0].hover_name;
-  searchThematicListValue;
-  searchHoverListValue;
+  labelList = LABEL_LIST;
+  labelListValue: string = LABEL_LIST[0].label_name;
+  searchLabelListValue;
   options: Options;
   autoTicks = false;
   disabled = false;
@@ -38,9 +35,8 @@ export class ZonesJioDialogComponent implements OnInit {
   vertical = false;
   tickInterval = 1;
   someValue;
-  @Input() color: string;
-  @Output() colorChange = new EventEmitter<string>();
-  @Output() update = new EventEmitter<any>();
+  @Input() colorOutline: string;
+  @Input() colorFill: string;
 
   title = 'dialog-example';
   @ViewChild('zonesJioLayerSettings', { static: true }) zonesJioLayerSettings: TemplateRef<any>;
@@ -52,43 +48,28 @@ export class ZonesJioDialogComponent implements OnInit {
     private cpService: ColorPickerService
   ) {
     this.macroDialogForm = new FormGroup({
-      'outdoor':new FormControl(''),
-      'indoor':new FormControl(''),
-      'colorCoding': new FormControl(''),
-      'infillShades': new FormControl(''),
+      'outlineCoding':new FormControl(''),
+      'fillCoding':new FormControl(''),
       'opacity': new FormControl(''),
-      'thematic': new FormControl(''),
-      'hover': new FormControl('')
+      'label': new FormControl('')
     });
   }
-
-  changed(value) {
-    if (this.disabled) return;
-    this.color = value || this.color;
-    this.colorChange.emit(this.color);
-    this.update.emit();
-  } 
   
-  colorChanged(color) {
-    console.log(color);
-  }
-
   ngOnInit(): void {
     this.dispatchDialog();
   }
 
   openedChange(sda) {
-    this.searchThematicListValue = '';
-    this.searchHoverListValue = '';
+    this.searchLabelListValue = '';
    }
 
   dispatchDialog() {
     this.openDialog({
-      headerText: 'Boundaries: TAC Layer Settings',
+      headerText: 'Boundaries: Zones Layer Settings',
       template: this.zonesJioLayerSettings
     }, {
       width: 536,
-      height:500,
+      height:350,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
