@@ -19,12 +19,6 @@ import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 export class DenseUrbanDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
   clickEventsubscription:Subscription;
-  thematicList = THEMATIC_LIST;
-  thematicListValue: string = THEMATIC_LIST[0].thematic_name;
-  hoverList = HOVER_LIST;
-  hoverListValue = HOVER_LIST[0].hover_name;
-  searchThematicListValue;
-  searchHoverListValue;
   options: Options;
   autoTicks = false;
   disabled = false;
@@ -38,10 +32,7 @@ export class DenseUrbanDialogComponent implements OnInit {
   vertical = false;
   tickInterval = 1;
   someValue;
-  @Input() color: string;
-  @Output() colorChange = new EventEmitter<string>();
-  @Output() update = new EventEmitter<any>();
-
+  @Input() colorOutline: string;
   title = 'dialog-example';
   @ViewChild('denseUrbanLayerSettings', { static: true }) denseUrbanLayerSettings: TemplateRef<any>;
 
@@ -52,39 +43,22 @@ export class DenseUrbanDialogComponent implements OnInit {
     private cpService: ColorPickerService
   ) {
     this.macroDialogForm = new FormGroup({
-      'outdoor':new FormControl(''),
-      'indoor':new FormControl(''),
-      'colorCoding': new FormControl(''),
-      'infillShades': new FormControl(''),
-      'opacity': new FormControl(''),
-      'thematic': new FormControl(''),
-      'hover': new FormControl('')
+      'outlineCoding':new FormControl(''),
+      'opacity':new FormControl(''),
     });
   }
-
-  changed(value) {
-    if (this.disabled) return;
-    this.color = value || this.color;
-    this.colorChange.emit(this.color);
-    this.update.emit();
-  } 
 
   ngOnInit(): void {
     this.dispatchDialog();
   }
 
-  openedChange(sda) {
-    this.searchThematicListValue = '';
-    this.searchHoverListValue = '';
-   }
-
   dispatchDialog() {
     this.openDialog({
-      headerText: 'Boundaries: TAC Layer Settings',
+      headerText: 'Boundaries: Morphology Data Layer Settings',
       template: this.denseUrbanLayerSettings
     }, {
       width: 536,
-      height:650,
+      height:285,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
