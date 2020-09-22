@@ -90,6 +90,8 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
+import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
+import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
 
 // import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
 // import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
@@ -132,6 +134,8 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     ScreenshotPreviewComponent,
     SpiderComponent,
     KpiComponent,
+    CandidatesComponent,
+    NominalViewComponent,
     // CustomDashboardComponent,
     // TwampLiveDashboardComponent,
     TacNetworkDialogComponent,

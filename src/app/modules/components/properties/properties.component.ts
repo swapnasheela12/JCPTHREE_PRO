@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import * as D3 from 'd3/index';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 export class GroupLevel {
   level = 0;
@@ -37,6 +38,8 @@ export class PropertiesComponent {
   selectedTab;
   @ViewChild('ngCircleMenu') ngCircleMenu;
   scope: any;
+  constructor(private dialogRef: MatDialogRef<PropertiesComponent>,
+    public dialog: MatDialog,) { }
 
   showWifiBand() {
     var width = 200;
@@ -112,5 +115,9 @@ export class PropertiesComponent {
 
   tabChanged(evt) {
     this.selectedTab = evt.tab.textLabel;
+
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
