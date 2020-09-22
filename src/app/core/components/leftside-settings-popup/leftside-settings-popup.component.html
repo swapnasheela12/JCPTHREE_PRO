@@ -1,15 +1,14 @@
 <div class="leftside-settings-poup" mat-dialog-content>
-  <div class="leftnav-settings-layers px-3" fxLayout="row" fxLayoutAlign="start center">
-    <div class="leftnav-settings-title" fxLayout="row" fxLayoutAlign="start center" fxFlex>
-        <span>{{ data.headerText }}</span>
-    </div>
-    <div class="toolbar-table-control-icon-list">
-        <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
-    </div>
-</div>
-<mat-divider class="leftside-divider"></mat-divider>
-  <ng-container
-    [ngTemplateOutlet]="data.template"
-    [ngTemplateOutletContext]="data.context"
-  ></ng-container>
+  <mat-toolbar class="dialog-header" style="min-height:54px;height: 54px;">
+    <mat-toolbar-row>
+      <div fxFlex="grow">
+        <div>{{ data.headerText }}</div>
+      </div>
+      <button (click)="onCloseClick()" mat-icon-button class="dialog-close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-divider class="leftside-divider"></mat-divider>
+  <ng-container [ngTemplateOutlet]="data.template" [ngTemplateOutletContext]="data.context"></ng-container>
 </div>

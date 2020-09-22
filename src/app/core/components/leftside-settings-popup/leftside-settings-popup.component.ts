@@ -1,10 +1,11 @@
-import { Component, Inject, TemplateRef } from '@angular/core';
+import { Component, Inject, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leftside-settings-popup',
   templateUrl: './leftside-settings-popup.component.html',
-  styleUrls: ['./leftside-settings-popup.component.scss']
+  styleUrls: ['./leftside-settings-popup.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LeftsideSettingsPopupComponent<T> {
 
