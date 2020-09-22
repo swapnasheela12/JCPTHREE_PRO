@@ -95,7 +95,7 @@ export class KpiEditorComponent implements OnInit {
       },
       width: 160
     }, 
-    {
+    { 
       headerName: "Modified Date",
       field: 'modifierTime',
       width: 160,

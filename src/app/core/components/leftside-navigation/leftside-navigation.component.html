@@ -52,7 +52,8 @@
                             </div>
                         </mat-checkbox>
                     </div>
-                    <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay></mat-icon>
+                    <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay (click)="openSettingsDialog(node, $event)">
+                    </mat-icon>
                 </mat-tree-node>
                 <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle
                     (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)"
@@ -106,10 +107,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-
-
                     <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
-
                 </mat-tree-node>
             </mat-tree>
         </ul>

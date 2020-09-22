@@ -1,0 +1,15 @@
+<div class="leftside-settings-poup" mat-dialog-content>
+  <div class="leftnav-settings-layers px-3" fxLayout="row" fxLayoutAlign="start center">
+    <div class="leftnav-settings-title" fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <span>{{ data.headerText }}</span>
+    </div>
+    <div class="toolbar-table-control-icon-list">
+        <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+    </div>
+</div>
+<mat-divider class="leftside-divider"></mat-divider>
+  <ng-container
+    [ngTemplateOutlet]="data.template"
+    [ngTemplateOutletContext]="data.context"
+  ></ng-container>
+</div>

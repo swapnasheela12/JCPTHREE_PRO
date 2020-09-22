@@ -744,8 +744,8 @@
         <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
     </div>
     <div class="col"></div>
-    <div class="p-2" (click)="newSaveAsTemplatePopup('Save As Template')">
-        <button mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As
+    <div class="p-2">
+        <button (click)="newSaveAsTemplatePopup('Save As Template')" mat-raised-button color="primary" [disabled]="saveAsShowSummaryHideDisable" class="button">Save As
             template</button>
     </div>
     <div *ngIf="showDownloadButton" class="p-2">

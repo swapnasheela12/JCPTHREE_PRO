@@ -133,6 +133,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 import { SuccessfulModalComponent } from './core/components/commanPopup/successful-modal/successful-modal.component';
 import { QuestionPopupComponent } from './modules/components/capacity/question-popup/question-popup.component';
+import { InAppRootOverlayContainer } from './main-modules/in-app-root-overlay-container';
 declare var $: any;
 
 @NgModule({
@@ -258,7 +259,7 @@ declare var $: any;
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: OverlayContainer, useClass: AppOverlayContainer },
+    { provide: OverlayContainer,useClass: InAppRootOverlayContainer },
     // provider used to create fake backend
     fakeBackendProvider,
     SideNavService,

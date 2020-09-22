@@ -1,18 +1,35 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, OnInit, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject, HostListener, AfterViewInit, OnDestroy, Output, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from "@angular/common/http";
+
+// ag grid
+import * as agGrid from 'ag-grid-community';
 import { GridOptions } from "@ag-grid-community/all-modules";
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, Event } from '@angular/router';
+import { Location } from '@angular/common';
 import * as _ from 'lodash';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { ButtonRendererComponent } from '../../reports-dashboards/my-reports/button-renderer.component';
+
 import { FormControl } from '@angular/forms';
-import { ReplaySubject, Subject, Subscription } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil, timeout } from 'rxjs/operators';
 import { selectedLayer, selectedLayerS } from './table-view-data';
+
+
 declare var $: any;
+
+interface reportsMeasure {
+  value: string;
+  viewValue: string;
+}
 
 export interface DialogData {
   animal: string;
@@ -46,68 +63,133 @@ export interface jioCenter {
 })
 export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  //filter table
-  /** list of selectedLayers */
-  public selectedLayers: selectedLayer[] = selectedLayerS;
-
-  /** control for the selected selectedLayer */
+  public selectedLayers = {};
   public selectedLayerCtrl: FormControl = new FormControl();
 
-  /** control for the MatSelect filter keyword */
-  public selectedLayerFilterCtrl: FormControl = new FormControl();
-
-  /** list of selectedLayers filtered by search keyword */
-  public filteredselectedLayers: ReplaySubject<selectedLayer[]> = new ReplaySubject<selectedLayer[]>(1);
-
-  @ViewChild('singleSelect', { static: true }) singleSelect: MatSelect;
-
-  /** Subject that emits when the component has been destroyed. */
   public _onDestroy = new Subject<void>();
-  //filter table
-
   public selectedOptionArea = "Pan India";
   public selectedOptionAreaState;
   public selectedOptionAreaCenter;
+
   private inited;
-  public selectedValue: string;
+  selectedValue: string;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+  /////
   public sidenavBarStatus;
+
   public gridApi;
   public gridColumnApi;
   public rowData: any[string];
   public gridOptions: GridOptions;
+  public macroGridOptions: GridOptions;
   public columnDefs;
+  public macroColumnDefs;
   public defaultColDef;
   public defaultColGroupDef;
   public columnTypes;
+  public selectedLayerSearchValue;
+  public layerListValue;
+  public selectedLayerTableName;
+  @ViewChild('tableViewTmpl') tableViewTmpl;
   public areaParentSelect: FormControl = new FormControl();
-  public objSelectedArea;
-  public onAdd = new EventEmitter();
-  public onAddDropDown = new EventEmitter();
-  public filterDataList = {
+
+  objSelectedArea;
+  onAdd = new EventEmitter();
+  onAddDropDown = new EventEmitter();
+  filterDataList = {
     selectedLayerName: null,
     selectedAreaName: null,
     selectedAreaNameParent: null,
     rowDataTable: null,
     objArea: null,
   };
-  public selectedOptionParent;
-  public selectedOptionJioState;
-  public optionJioStateValue;
-  public selectedOptionJioCenter;
-  public optionjioCentersValue;
-  private subValue1 : Subscription;
-  constructor(public dialogRef: MatDialogRef<TableViewControlComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private eRef: ElementRef, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient, public dialog: MatDialog) {
+  rowDataMacro: Object;
+  jsonUrl: string = 'assets/data/layers/table-view-data/table-view-data.json';
+
+  constructor(public hostElement: ElementRef,
+    public dialogRef: MatDialogRef<TableViewControlComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private eRef: ElementRef,
+    private datashare: DataSharingService,
+    private location: Location,
+    private router: Router,
+    private overlayContainer: OverlayContainer,
+    private httpClient: HttpClient,
+    public dialog: MatDialog,
+    private cd: ChangeDetectorRef) {
     router.events.subscribe((url: any) => console.log(url));
-   this.subValue1 = this.datashare.currentMessage.subscribe((message) => {
+    this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
+    this.selectedLayerTableName = 'Other';
 
+    this.datashare.leftNavSelectedLayerMessage.subscribe((selectedLayersAll) => {
+      this.selectedLayers = selectedLayersAll;
+      // this.layerListValue = this.selectedLayers[0].name;
+      // this.selectedLayerCtrl.setValue(this.selectedLayers[0].name);
+    });
     this.JioStatesList = this.jioState_List;
     this.jioCentersList = this.jioCenter_List;
 
-    if (this.selectedOptionArea == "Pan India") {
+    // if (this.selectedOptionArea == "Pan India") {
+
+    // }
+
+  }
+
+  ngOnInit() {
+    console.log(this.layerListValue)
+    this.dialogRef.afterOpened().subscribe(() => {
+      this.inited = true;
+    })
+
+  }
+
+  onChangeLayer(layer) {
+    if (layer.value) {
+      this.selectedLayerTableName = layer.value;
+    } else {
+      this.selectedLayerTableName = 'Other';
+    }
+
+    if (this.selectedLayerTableName == 'Macro') {
+      this.columnDefs = [
+        {
+          headerName: "Jio State Macro",
+          field: "jiostate",
+          pinned: true,
+          width: 150
+        }, {
+          headerName: "<20° Macro",
+          field: "lessThanTwenty",
+          width: 100
+        }, {
+          headerName: "20°> to <40° Macro",
+          field: "greaterThanTwenty",
+          width: 150
+        },
+        {
+          headerName: "40°> to <60° Macro",
+          field: "greaterThanForty",
+          width: 150
+        },
+        {
+          headerName: ">60° Macro",
+          field: "greaterThanSixty",
+          width: 150
+        }
+      ];
+
+      this.httpClient
+        .get(this.jsonUrl)
+        .subscribe(data => {
+          this.rowData = data;
+        });
+      this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data-macro.json';
+    } else {
+
+
       this.columnDefs = [
         {
           headerName: "Jio State",
@@ -134,35 +216,28 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
           width: 150
         }
       ];
-      this.httpClient
-        .get("assets/data/layers/table-view-data/table-view-data.json")
-        .subscribe(data => {
-          this.rowData = data;
-        });
+      this.selectedLayerTableName = 'Other';
+      this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data.json';
     }
-
-  }
-
-  trackByMethod(index:number, el:any): number {
-    return el.id;
-  }
-
-  ngOnInit() {
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.inited = true;
-    })
-    //filter  selectedLayers
-    this.selectedLayerCtrl.setValue(this.selectedLayers[10]);
-    this.filteredselectedLayers.next(this.selectedLayers.slice());
-    this.selectedLayerFilterCtrl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterselectedLayers();
+    this.httpClient
+      .get(this.jsonUrl)
+      .subscribe(data => {
+        if (this.selectedLayerTableName == 'Macro') {
+          this.rowDataMacro = data;
+          console.log(this.rowDataMacro)
+        } else {
+          this.rowData = data;
+        }
       });
-    //filter  selectedLayers
-
+      this.cd.detectChanges();
   }
 
+  openedChange(sda) {
+    this.selectedLayerSearchValue = '';
+  }
+  selectedOptionParent;
+  selectedOptionJioState;
+  optionJioStateValue;
   jioStateFunc(value, item) {
     this.objSelectedArea = value;
     this.selectedOptionParent = item;
@@ -172,6 +247,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.listFilterJioStates = "";
   }
 
+  selectedOptionJioCenter;
+  optionjioCentersValue;
   jioCentersFunc(value, item) {
     this.objSelectedArea = value;
     this.selectedOptionParent = item;
@@ -181,8 +258,9 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this.listFilterjioCenters = "";
   }
 
+
   //Jio State
-  public _listFilterJioStates: string;
+  _listFilterJioStates: string;
   get listFilterJioStates(): string {
     return this._listFilterJioStates;
   }
@@ -190,8 +268,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this._listFilterJioStates = value;
     this.JioStatesList = this.listFilterJioStates ? this.PerformFilter(this.listFilterJioStates) : this.jioState_List;
   }
-  public JioStatesList: JioState[];
-  public jioState_List: JioState[] = [
+  JioStatesList: JioState[];
+  jioState_List: JioState[] = [
     {
       "nameState": "Maharashtra",
       "latitude": 19.7515,
@@ -231,8 +309,10 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //Jio State
 
+
+
   //Jio Center
-  public _listFilterjioCenters: string;
+  _listFilterjioCenters: string;
   get listFilterjioCenters(): string {
     return this._listFilterjioCenters;
   }
@@ -240,8 +320,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     this._listFilterjioCenters = value;
     this.jioCentersList = this.listFilterjioCenters ? this.PerformFilterjioCenter(this.listFilterjioCenters) : this.jioCenter_List;
   }
-  public jioCentersList: jioCenter[];
-  public jioCenter_List: jioCenter[] = [
+  jioCentersList: jioCenter[];
+  jioCenter_List: jioCenter[] = [
     {
       "nameState": "AP-DMVM-JC01-0094",
       "latitude": 19.0385,
@@ -286,38 +366,52 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
   //Jio Center
 
+
+
   //filter  selectedLayers
 
   ngAfterViewInit() {
-    this.setInitialValue();
+    // this.setInitialValue();
+    this.cd.detectChanges();
   }
 
-  protected setInitialValue() {
-    this.filteredselectedLayers
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.singleSelect.compareWith = (a: selectedLayer, b: selectedLayer) => a && b && a.id === b.id;
-      });
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
-  protected filterselectedLayers() {
-    if (!this.selectedLayers) {
-      return;
-    }
-    // get the search keyword
-    let search = this.selectedLayerFilterCtrl.value;
-    if (!search) {
-      this.filteredselectedLayers.next(this.selectedLayers.slice());
-      return;
-    } else {
-      search = search.toLowerCase();
-    }
-    // filter the selectedLayers
-    this.filteredselectedLayers.next(
-      this.selectedLayers.filter(selectedLayer => selectedLayer.name.toLowerCase().indexOf(search) > -1)
-    );
-  }
+  // protected setInitialValue() {
+  //   this.filteredselectedLayers
+  //     .pipe(take(1), takeUntil(this._onDestroy))
+  //     .subscribe(() => {
+  //       // setting the compareWith property to a comparison function
+  //       // triggers initializing the selection according to the initial value of
+  //       // the form control (i.e. _initializeSelection())
+  //       // this needs to be done after the filteredselectedLayers are loaded initially
+  //       // and after the mat-option elements are available
+  //       this.singleSelect.compareWith = (a: selectedLayer, b: selectedLayer) => a && b && a.id === b.id;
+  //     });
+  // }
+
+  // protected filterselectedLayers() {
+  //   if (!this.selectedLayers) {
+  //     return;
+  //   }
+  //   // get the search keyword
+  //   let search = this.selectedLayerFilterCtrl.value;
+  //   if (!search) {
+  //     this.filteredselectedLayers.next(this.selectedLayers.slice());
+  //     return;
+  //   } else {
+  //     search = search.toLowerCase();
+  //   }
+  //   // filter the selectedLayers
+  //   this.filteredselectedLayers.next(
+  //     this.selectedLayers.filter(selectedLayer => selectedLayer.name.toLowerCase().indexOf(search) > -1)
+  //   );
+  // }
   //filter  selectedLayers
+
 
   public text: String;
   @HostListener('document:click', ['$event'])
@@ -326,9 +420,11 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
       this.text = "clicked inside";
     } else {
       this.text = "clicked outside";
+      // this.onCloseClick();
     }
   }
 
+  // @HostListener('window:click')
   onCloseClick(): void {
     if (this.inited) {
       this.dialogRef.close();
@@ -336,7 +432,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public getName;
-  public areaSelectionFunc() {
+  areaSelectionFunc() {
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
 
     setTimeout(() => {
@@ -368,20 +464,21 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
           }
         ];
         this.httpClient
-          .get("assets/data/layers/table-view-data/table-view-data.json")
+          .get(this.jsonUrl)
           .subscribe(data => {
             this.rowData = data;
           });
 
-        this.filterDataList = {
-          selectedLayerName: this.selectedLayerCtrl.value,
-          selectedAreaName: this.selectedOptionArea,
-          selectedAreaNameParent: this.selectedOptionParent,
-          rowDataTable: null,
-          objArea: this.objSelectedArea
-        };
 
-        this.onAddDropDown.emit(this.filterDataList);
+        // this.filterDataList = {
+        //   selectedLayerName: this.selectedLayerTableName,
+        //   selectedAreaName: this.selectedOptionArea,
+        //   selectedAreaNameParent: this.selectedOptionParent,
+        //   rowDataTable: null,
+        //   objArea: this.objSelectedArea
+        // };
+
+        // this.onAddDropDown.emit(this.filterDataList);
 
       } else if ($(this.getName).is(':contains(Jio Center)')) {
         this.columnDefs = [
@@ -416,15 +513,15 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
             this.rowData = data;
           });
 
-        this.filterDataList = {
-          selectedLayerName: this.selectedLayerCtrl.value,
-          selectedAreaName: this.selectedOptionArea,
-          selectedAreaNameParent: this.selectedOptionParent,
-          rowDataTable: null,
-          objArea: this.objSelectedArea
-        };
+        // this.filterDataList = {
+        //   selectedLayerName: this.selectedLayerTableName,
+        //   selectedAreaName: this.selectedOptionArea,
+        //   selectedAreaNameParent: this.selectedOptionParent,
+        //   rowDataTable: null,
+        //   objArea: this.objSelectedArea
+        // };
 
-        this.onAddDropDown.emit(this.filterDataList);
+        // this.onAddDropDown.emit(this.filterDataList);
 
       } else if ($(this.getName).is(':contains(Jio State)')) {
         this.columnDefs = [
@@ -459,42 +556,43 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
             this.rowData = data;
           });
 
-        this.filterDataList = {
-          selectedLayerName: this.selectedLayerCtrl.value,
-          selectedAreaName: this.selectedOptionArea,
-          selectedAreaNameParent: this.selectedOptionParent,
-          rowDataTable: null,
-          objArea: this.objSelectedArea
-        };
+        // this.filterDataList = {
+        //   selectedLayerName: this.selectedLayerTableName,
+        //   selectedAreaName: this.selectedOptionArea,
+        //   selectedAreaNameParent: this.selectedOptionParent,
+        //   rowDataTable: null,
+        //   objArea: this.objSelectedArea
+        // };
 
-        this.onAddDropDown.emit(this.filterDataList);
+        // this.onAddDropDown.emit(this.filterDataList);
       }
     }, 500);
   }
 
-  public onGridReady(params) {
+  onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    // this.gridApi.sizeColumnsToFit();
   }
 
 
-  public areaDropDownFunc(item, val) {
+  areaDropDownFunc(item, val) {
   }
 
   onRowClicked(event: any) {
     this.filterDataList = {
-      selectedLayerName: this.selectedLayerCtrl.value,
+      selectedLayerName: this.selectedLayerTableName,
       selectedAreaName: this.selectedOptionArea,
       selectedAreaNameParent: this.selectedOptionParent,
       rowDataTable: event.data,
       objArea: this.objSelectedArea
     };
+
     this.onAdd.emit(this.filterDataList);
+
   }
 
-  ngOnDestroy() {
-    this._onDestroy.next();
-    this._onDestroy.complete();
-    this.subValue1.unsubscribe();
-  }
+
+
+
 }

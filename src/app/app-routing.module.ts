@@ -31,20 +31,25 @@ const routes: Routes = [
       { path: "Ag-Tree-Rendering", component: AgGridTreeRenderingComponent },
       { path: "My-JCP", component: MyJcpComponent },
       { path: "Layers_Cust", component: LayersCustComponent },
-      { path: "Layers", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
-      { path: "Reports-and-Dashboards", loadChildren: "../app/main-modules/main-modules.module#MainModulesModule" },
+      {
+        path: 'Layers',
+        loadChildren: () => import('../app/main-modules/main-modules.module').then(m => m.MainModulesModule)
+      },
+      {
+        path: 'Reports-and-Dashboards',
+        loadChildren: () => import('../app/main-modules/main-modules.module').then(m => m.MainModulesModule)
+      },
       {
         path: "Modules", children: [
-          { path: "Performance-Management", loadChildren: "../app/main-modules/modules/performance-management/performance-management.module#PerformanceManagementModule" },
-          { path: "Planning-Deployment", loadChildren: "../app/main-modules/modules/planning-deployment/planning-deployment.module#PlanningDeploymentModule" }
+          { path: 'Performance-Management',loadChildren: () => import('../app/main-modules/modules/performance-management/performance-management.module').then(m => m.PerformanceManagementModule)},
+          { path: 'Planning-Deployment',loadChildren: () => import('../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule)}
         ]
       },
       {
         path: "Work-Orders", children: [
-          { path: "Rf-Oc-Workorders", loadChildren: "../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module#RfOcWorkordersModule" },
+          { path: 'Rf-Oc-Workorders',loadChildren: () => import('../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule)}
         ]
-      },
-      // { path: "table-view-row", component:},src\app/main-modules/modules/planning-deployment/planning-deployment.module.ts
+      }
     ],
   },
 

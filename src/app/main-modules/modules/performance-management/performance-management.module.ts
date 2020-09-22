@@ -14,7 +14,6 @@ import { PerformanceManagementRoutingModule } from './performance-management-rou
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
-//Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
@@ -61,7 +60,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { PaginationComponent } from 'src/app/core/components/commanPopup/pagination/pagination.component';
 import { WifiUtilityComponent } from './wifi-utility/wifi-utility.component';
 import { CreateKpiComponent } from './kpi-editor/create-kpi/create-kpi.component';
 import { CreateReportComponent } from './report-builder/create-report/create-report.component';
@@ -86,7 +84,6 @@ import { AlarmDetailsPopupComponent } from './my-performance-reports/change-impa
     KpiEditorComponent,
     StatusRendererComponent,
     VerticaldotRendererComponent,
-    PaginationComponent,
     WifiUtilityComponent,
     CreateKpiComponent,
     CreateReportComponent,
@@ -112,18 +109,15 @@ import { AlarmDetailsPopupComponent } from './my-performance-reports/change-impa
     CommonModule,
     PerformanceManagementRoutingModule,
     CoreModule,
-    // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
-    //Angular meterial
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     A11yModule,
     ChartModule,
     HighchartsChartModule,
-    // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
@@ -172,7 +166,6 @@ import { AlarmDetailsPopupComponent } from './my-performance-reports/change-impa
     KpiEditorComponent,
     StatusRendererComponent,
     VerticaldotRendererComponent,
-    PaginationComponent,
     conditionalDropdownRendererComponent,
     DeleteRendererComponent,
     createKpiDropdownRendererComponent,

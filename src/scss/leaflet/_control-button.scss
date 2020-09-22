@@ -407,3 +407,14 @@
     // bottom: auto;
     // display: block;
 }
+
+.countryLabel {
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px;
+    overflow-wrap: break-word;
+    // color: #ffffff;
+    font-size: 14px !important;
+    font-family: Lato Bold !important;
+}

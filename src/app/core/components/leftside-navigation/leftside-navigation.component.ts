@@ -1,10 +1,11 @@
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 
 declare var $: any;
 
@@ -17,6 +18,7 @@ export class SideNavNode {
   level?: number;
   parentToChild?: String;
   children?: SideNavNode[];
+  component?: Component
 }
 
 class ExampleFlatNode {
@@ -40,9 +42,8 @@ export class LeftsideNavigationComponent implements OnInit {
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
   get data(): SideNavNode[] { return this.dataChange.value; }
-
-  @ViewChild('recursiveListTmpl') recursiveListTmpl;
-
+  
+  dialog: NavigationSettingsService;
   /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
@@ -65,7 +66,8 @@ export class LeftsideNavigationComponent implements OnInit {
       classId: node.classId,
       eventName: node.eventName,
       parentToChild: node.parentToChild,
-      children: node.children
+      children: node.children,
+      component: node.component
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -76,9 +78,10 @@ export class LeftsideNavigationComponent implements OnInit {
 
   constructor(
     private datashare: DataSharingService,
-    private route: ActivatedRoute,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
   }
@@ -342,5 +345,37 @@ export class LeftsideNavigationComponent implements OnInit {
   navigationTrackBy(index, item) {
     if (!item) return null;
     return index;
+  }
+
+  async openSettingsDialog(node, event) {
+    event.stopPropagation();
+    console.log(node.component)
+    this.viewContainerRef.clear();
+    if (node.component == 'TownBoundaryDialogComponent') {
+      const { TownBoundaryDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(TownBoundaryDialogComponent)
+      );
+    } else if (node.component == 'ZonesJioDialogComponent') {
+      const { ZonesJioDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(ZonesJioDialogComponent)
+      );
+    } else if (node.component == 'DenseUrbanDialogComponent') {
+      const { DenseUrbanDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(DenseUrbanDialogComponent)
+      );
+    } else if (node.component == 'TacNetworkDialogComponent') {
+      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
+      );
+    } else if (node.component == 'NominalMacroDialogComponent') {
+      const { NominalMacroDialogComponent } = await import('./../../../main-modules/main-layer/sites/nominal/macro-dialog/macro-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
+      );
+    }
   }
 }

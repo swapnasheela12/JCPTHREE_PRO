@@ -1,0 +1,92 @@
+<ng-template #townBoundaryLayerSettings>
+  <form fxLayout="column" fxLayoutAlign="start start" [formGroup]="macroDialogForm" class="form-macro-dialog">
+    <div>Layers</div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="100">
+        <mat-checkbox fxFlex="50" formControlName="outdoor" [disableRipple]="true" id="outdoor">
+          Outdoor
+          </mat-checkbox>
+        <mat-checkbox fxFlex="50" formControlName="indoor" [disableRipple]="true" id="indoor">
+          Indoor
+        </mat-checkbox>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="100">
+        <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="start center">
+          <input type="hidden"
+          formControlName="colorCoding"
+          [value]="color"/>
+          <div
+          [style.background]="color"
+          class="color-coding"></div>
+          <mat-icon class="zmdi zmdi-caret-down"
+            [(colorPicker)]="color"
+            [cpPosition]="'bottom'"></mat-icon>
+        </div>
+        <mat-checkbox fxFlex="50" formControlName="infillShades" [disableRipple]="true" id="infill-shades">
+          Infill Shades
+        </mat-checkbox>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="100">
+        Opacity
+        <mat-slider
+          color="primary"
+          class="opacity-slider"
+          [disabled]="disabled"
+          [invert]="invert"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [thumbLabel]="thumbLabel"
+          formControlName="opacity"
+          (input)="someValue = $event.value" 
+          [value]="someValue"
+          [vertical]="vertical">
+      </mat-slider>
+      <div *ngIf="someValue" style="display: inline-flex;">{{ someValue }}%</div>
+      </div>
+      
+      <!-- Opacity <ng5-slider class="opacity-slider" formControlName="opacity" [options]="options"></ng5-slider> -->
+    </div>
+    
+    <!-- <mat-checkbox formControlName="opacity" [disableRipple]="true" id="opacity">
+      Opacity
+    </mat-checkbox> -->
+    <mat-select [(value)]="thematicListValue" placeholder="Thematic" 
+        disableOptionCentering (openedChange)="openedChange($event)"
+        formControlName = "thematic"
+    >
+        <input matInput [(ngModel)]="searchThematicListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+        <mat-option *ngFor="let item of thematicList | filter:searchThematicListValue" [value]="item.thematic_name">
+            {{item.thematic_name}}
+        </mat-option>
+    </mat-select>
+    <mat-select [(value)]="hoverListValue" placeholder="Hover" 
+        disableOptionCentering (openedChange)="openedChange($event)"
+        formControlName = "hover"
+    >
+        <input matInput [(ngModel)]="searchHoverListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+        <mat-option *ngFor="let item of hoverList | filter:searchHoverListValue" [value]="item.hover_name">
+            {{item.hover_name}}
+        </mat-option>
+    </mat-select>
+  </form>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="">
+    <div class="mx10">
+      <button mat-stroked-button class="buttonWidth" (click)="closeDialog()">Reset</button>
+    </div>
+      <div class="col"></div>
+      <div class="mx10">
+          <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+      </div>
+      <div class="mx10">
+          <button mat-raised-button color="primary" class="buttonWidth"  (click)="closeDialog()">Apply</button>
+      </div>
+  </div>
+</ng-template>

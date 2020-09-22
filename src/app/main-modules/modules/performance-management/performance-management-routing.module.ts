@@ -24,7 +24,10 @@ const routes: Routes = [
     ]
   },
   { path: "MSISDN-To-Wi-Fi-MAC-Converter", component: WifiUtilityComponent },
-  { path: "Change-Impact-Analysis", loadChildren: "./change-impact-analysis/change-impact-analysis-routing.module#ChangeImpactAnanlysisRoutingModule" },
+  {
+    path: 'Change-Impact-Analysis',
+    loadChildren: () => import('./change-impact-analysis/change-impact-analysis-routing.module').then(m => m.ChangeImpactAnanlysisRoutingModule)
+  },
   {
     path: "My-Performance-Reports",
     children: [
