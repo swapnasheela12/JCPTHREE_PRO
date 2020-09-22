@@ -43,7 +43,7 @@ export class TacNetworkDialogComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
 
   title = 'dialog-example';
-  @ViewChild('tacLayerSettings', { static: true }) tacLayerSettings: TemplateRef<any>;
+  @ViewChild('networkTalLayerSettings', { static: true }) networkTalLayerSettings: TemplateRef<any>;
 
   macroDialogForm:FormGroup;
   
@@ -69,10 +69,6 @@ export class TacNetworkDialogComponent implements OnInit {
     this.update.emit();
   } 
   
-  colorChanged(color) {
-    console.log(color);
-  }
-
   ngOnInit(): void {
     this.dispatchDialog();
   }
@@ -85,7 +81,7 @@ export class TacNetworkDialogComponent implements OnInit {
   dispatchDialog() {
     this.openDialog({
       headerText: 'Boundaries: TAC Layer Settings',
-      template: this.tacLayerSettings
+      template: this.networkTalLayerSettings
     }, {
       width: 536,
       backdropClass: 'light-white-backdrop',
@@ -98,7 +94,6 @@ export class TacNetworkDialogComponent implements OnInit {
   }
 
   private openDialog(dialogData: LeftsideSettingsModelsData, options: LeftsideSettingsModelsOptions): void {
-    console.log(dialogData)
     this.dialog = this.navigationFactoryService.open(dialogData, options);
   }
 

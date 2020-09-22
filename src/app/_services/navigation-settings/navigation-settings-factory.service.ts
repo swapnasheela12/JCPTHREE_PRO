@@ -29,7 +29,10 @@ export interface ComponentLoader {
 })
 export class NavigationSettingsFactoryService<T = undefined> {
   private subject = new Subject<any>();
-  constructor(private dialog: MatDialog,private cfr: ComponentFactoryResolver) {}
+  constructor(
+    private dialog: MatDialog,
+    private cfr: ComponentFactoryResolver
+  ) {}
 
   forChild(vcr: ViewContainerRef, cl: ComponentLoader) {
     return from(cl.loadChildren()).pipe(
@@ -42,7 +45,7 @@ export class NavigationSettingsFactoryService<T = undefined> {
     dialogData: LeftsideSettingsModelsData<T>,
     options: LeftsideSettingsModelsOptions = { width: 500, disableClose: true, backdropClass: '' },
   ): NavigationSettingsService<T> {
-    console.log(options)
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open<LeftsideSettingsPopupComponent<T>, LeftsideSettingsModelsData<T>>(
         LeftsideSettingsPopupComponent,
       {

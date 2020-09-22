@@ -43,7 +43,7 @@ export class TownBoundaryDialogComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
 
   title = 'dialog-example';
-  @ViewChild('tacLayerSettings', { static: true }) tacLayerSettings: TemplateRef<any>;
+  @ViewChild('townBoundaryLayerSettings', { static: true }) townBoundaryLayerSettings: TemplateRef<any>;
 
   macroDialogForm:FormGroup;
   
@@ -85,7 +85,7 @@ export class TownBoundaryDialogComponent implements OnInit {
   dispatchDialog() {
     this.openDialog({
       headerText: 'Boundaries: TAC Layer Settings',
-      template: this.tacLayerSettings
+      template: this.townBoundaryLayerSettings
     }, {
       width: 536,
       backdropClass: 'light-white-backdrop',

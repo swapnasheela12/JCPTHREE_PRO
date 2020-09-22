@@ -806,12 +806,14 @@ const ANALYTICS_SUBSCRIBER_LIST = [
     }
 ];
 
-const LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST = [
+const 
+LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST = [
     {
         name: 'Zones',
         link: 'Zones',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'ZonesJioDialogComponent'
     },
     {
         name: 'Circles',
@@ -896,7 +898,8 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         name: 'Town Boundary',
         link: 'Towns',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'TownBoundaryDialogComponent'
     },
     {
         name: 'Village Boundary',
@@ -947,7 +950,8 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         name: 'Dense Urban',
         link: 'Dense-Urban',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'DenseUrbanDialogComponent'
     },
     {
         name: 'Urban',
@@ -1073,6 +1077,16 @@ const SITES_INDOOR_lIST = [
         children: []
     }
 ];
+
+const SITES_NOMINAL_lIST = [
+    {
+        name: 'Macro',
+        link: 'Macro',
+        eventName: 'sites-outdoor-esc',
+        children: [],
+        component: 'NominalMacroDialogComponent'
+    },
+]
 
 const PREDICTION_LAYERS_BAND_LIST = [
     {
@@ -1520,6 +1534,14 @@ const SITES_LIST = [
         link: "indoor",
         eventName: 'sites-outdoor-esc',
         children: SITES_INDOOR_lIST
+    },
+    {
+        name: "Nominal",
+        icon: "fas fa-user fa-3",
+        link: "indoor",
+        eventName: 'sites-outdoor-esc',
+        children: SITES_NOMINAL_lIST,
+        component: 'NominalMacroDialogComponent'
     }
 ];
 

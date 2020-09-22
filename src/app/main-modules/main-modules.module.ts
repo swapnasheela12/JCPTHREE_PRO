@@ -100,6 +100,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
 import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component';
 import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component';
+import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Ji
     TacNetworkDialogComponent,
     DenseUrbanDialogComponent,
     TownBoundaryDialogComponent,
-    ZonesJioDialogComponent
+    ZonesJioDialogComponent,
+    NominalMacroDialogComponent
   ],
   imports: [
     CommonModule,

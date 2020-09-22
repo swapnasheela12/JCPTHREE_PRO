@@ -349,11 +349,32 @@ export class LeftsideNavigationComponent implements OnInit {
 
   async openSettingsDialog(node, event) {
     event.stopPropagation();
+    console.log(node.component)
     this.viewContainerRef.clear();
-    if (node.component == 'TacNetworkDialogComponent') {
+    if (node.component == 'TownBoundaryDialogComponent') {
+      const { TownBoundaryDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(TownBoundaryDialogComponent)
+      );
+    } else if (node.component == 'ZonesJioDialogComponent') {
+      const { ZonesJioDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(ZonesJioDialogComponent)
+      );
+    } else if (node.component == 'DenseUrbanDialogComponent') {
+      const { DenseUrbanDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(DenseUrbanDialogComponent)
+      );
+    } else if (node.component == 'TacNetworkDialogComponent') {
       const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
+      );
+    } else if (node.component == 'NominalMacroDialogComponent') {
+      const { NominalMacroDialogComponent } = await import('./../../../main-modules/main-layer/sites/nominal/macro-dialog/macro-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
     }
   }

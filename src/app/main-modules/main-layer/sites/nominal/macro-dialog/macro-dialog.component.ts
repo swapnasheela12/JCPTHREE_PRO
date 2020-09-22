@@ -10,13 +10,13 @@ import { Options } from 'ng5-slider/options';
 import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
-  selector: 'zones-dialog',
-  templateUrl: './zones-dialog.component.html',
-  styleUrls: ['./zones-dialog.component.scss'],
+  selector: 'nominal-macro-dialog',
+  templateUrl: './macro-dialog.component.html',
+  styleUrls: ['./macro-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [ColorPickerService]
 })
-export class ZonesJioDialogComponent implements OnInit {
+export class NominalMacroDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
   clickEventsubscription:Subscription;
   thematicList = THEMATIC_LIST;
@@ -43,7 +43,7 @@ export class ZonesJioDialogComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
 
   title = 'dialog-example';
-  @ViewChild('zonesJioLayerSettings', { static: true }) zonesJioLayerSettings: TemplateRef<any>;
+  @ViewChild('nominalMacroLayerSettings', { static: true }) nominalMacroLayerSettings: TemplateRef<any>;
 
   macroDialogForm:FormGroup;
   
@@ -69,9 +69,6 @@ export class ZonesJioDialogComponent implements OnInit {
     this.update.emit();
   } 
   
-  colorChanged(color) {
-    console.log(color);
-  }
 
   ngOnInit(): void {
     this.dispatchDialog();
@@ -84,8 +81,8 @@ export class ZonesJioDialogComponent implements OnInit {
 
   dispatchDialog() {
     this.openDialog({
-      headerText: 'Boundaries: TAC Layer Settings',
-      template: this.zonesJioLayerSettings
+      headerText: 'Sites: Nominal Macro Layer Settings',
+      template: this.nominalMacroLayerSettings
     }, {
       width: 536,
       backdropClass: 'light-white-backdrop',
@@ -98,7 +95,6 @@ export class ZonesJioDialogComponent implements OnInit {
   }
 
   private openDialog(dialogData: LeftsideSettingsModelsData, options: LeftsideSettingsModelsOptions): void {
-    console.log(dialogData)
     this.dialog = this.navigationFactoryService.open(dialogData, options);
   }
 
