@@ -2,7 +2,7 @@ import { colorDropdownRendererComponent } from './../core/components/ag-grid-ren
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MainModulesRoutingModule } from './main-modules-routing.module';
 
 //Angular Material Components
@@ -91,6 +91,16 @@ import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.compon
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
 
+import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
+import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
+import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
+import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
+import { TacNetworkDialogComponent } from './main-layer/sites/outdoor/macro/macro-dialog/macro-dialog.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/Census Data/Town Boundary/town-boundary-dialog/town-boundary-dialog.component';
+import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/Dense Urban/dense-urban-dialog/dense-urban-dialog.component';
+import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component';
+
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -120,7 +130,13 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     ScreenshotPreviewComponent, colorDropdownRendererComponent,
     ScreenshotPreviewComponent,
     SpiderComponent,
-    KpiComponent
+    KpiComponent,
+    CustomDashboardComponent,
+    TwampLiveDashboardComponent,
+    TacNetworkDialogComponent,
+    DenseUrbanDialogComponent,
+    TownBoundaryDialogComponent,
+    ZonesJioDialogComponent
   ],
   imports: [
     CommonModule,
@@ -133,8 +149,14 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     ReportsDashboardsModule,
     LeafletModule,
     Ng5SliderModule,
+    Ng2SearchPipeModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
+    AgGridModule.withComponents([
+      ButtonRendererComponent,
+      colorDropdownRendererComponent,
+      InfoRendererComponent,
+      AllExpandRendererComponent
+    ]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,
@@ -182,14 +204,14 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    PerformanceManagementModule,
-    PlanningDeploymentModule,
-    RfOcWorkordersModule,
-
-
+    ColorPickerModule
+    // PerformanceManagementModule,
+    // PlanningDeploymentModule,
+    // RfOcWorkordersModule,
   ], providers: [
     SideNavService,
     MarkerService,
+    DatePipe,
     {
       provide: MatDialogRef,
       useValue: {}
@@ -202,7 +224,8 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
-    colorDropdownRendererComponent
+    colorDropdownRendererComponent,
+    ColorPickerModule
   ],
   entryComponents: [
     CreateReportComponent,
