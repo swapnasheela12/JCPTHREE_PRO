@@ -864,15 +864,28 @@ const LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST = [
 ];
 
 const LOCATION_BOUNDRIES_NETWORK_LIST = [
+    // {
+    //     name: 'EMS',
+    //     link: 'EMS',
+    //     eventName: 'sites-outdoor-esc',
+    //     children: LOCATION_BOUNDRIES_NETWORK_EMS_LIST
+    // },
     {
-        name: 'EMS',
-        link: 'EMS',
+        name: 'TAL',
+        link: 'TAL',
         eventName: 'sites-outdoor-esc',
-        children: LOCATION_BOUNDRIES_NETWORK_EMS_LIST
+        children: [],
+        component: 'TacNetworkDialogComponent'
     },
     {
-        name: 'TAC',
-        link: 'TAC',
+        name: 'TCA',
+        link: 'TCA',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    },
+    {
+        name: 'EMI',
+        link: 'EMI',
         eventName: 'sites-outdoor-esc',
         children: []
     }
@@ -880,31 +893,31 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
 
 const LOCATION_BOUNDRIES_CENSUS_LIST = [
     {
-        name: 'Towns',
+        name: 'Town Boundary',
         link: 'Towns',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
-        name: 'Villages',
+        name: 'Village Boundary',
         link: 'Villages',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
-        name: 'Panchayat',
+        name: 'Panchayat Boundary',
         link: 'Panchayat',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
-        name: 'DHQ',
+        name: 'DHQ Boundary',
         link: 'DHQ',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
-        name: 'Settlement',
+        name: 'Settlement Boundary',
         link: 'Settlement',
         eventName: 'sites-outdoor-esc',
         children: []
@@ -1584,25 +1597,11 @@ const TOPOLOGIES_LIST = [
 
 const LOCATION_BOUNDRIES_LIST = [
     {
-        name: "Administrative Boundaries",
+        name: "Jio",
         icon: "fas fa-user fa-3",
         link: "Administrative-Boundaries",
         eventName: 'sites-outdoor-esc',
         children: LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST
-    },
-    {
-        name: "Network Boundaries",
-        icon: "fas fa-user fa-3",
-        link: "Network-Boundaries",
-        eventName: 'sites-outdoor-esc',
-        children: LOCATION_BOUNDRIES_NETWORK_LIST
-    },
-    {
-        name: "Census Boundaries",
-        icon: "fas fa-user fa-3",
-        link: "Census-Boundaries",
-        eventName: 'sites-outdoor-esc',
-        children: LOCATION_BOUNDRIES_CENSUS_LIST
     },
     {
         name: "Morphology",
@@ -1610,6 +1609,20 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Morphology",
         eventName: 'sites-outdoor-esc',
         children: LOCATION_BOUNDRIES_MORPHOLOGY_LIST
+    },
+    {
+        name: "Census Data",
+        icon: "fas fa-user fa-3",
+        link: "Census-Boundaries",
+        eventName: 'sites-outdoor-esc',
+        children: LOCATION_BOUNDRIES_CENSUS_LIST
+    },
+    {
+        name: "Network",
+        icon: "fas fa-user fa-3",
+        link: "Network-Boundaries",
+        eventName: 'sites-outdoor-esc',
+        children: LOCATION_BOUNDRIES_NETWORK_LIST
     },
     {
         name: "Point of Interest",
@@ -2236,7 +2249,7 @@ const LAYERS_LIST = [
         classId: 'topologies-border'
     },
     {
-        name: "Locations and Boundaries",
+        name: "Locations & Boundaries",
         icon: "fas fa-users fa-3",
         link: "Locations-and-Boundaries",
         eventName: 'sites-outdoor-esc',

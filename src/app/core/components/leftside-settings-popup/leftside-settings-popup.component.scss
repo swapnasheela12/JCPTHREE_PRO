@@ -1,0 +1,24 @@
+:host {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.dialog-paragraph {
+  margin: 0;
+}
+.leftside-settings-poup {
+  padding: 0 !important;
+  margin: -24px !important;
+  .leftnav-settings-layers {
+    .leftnav-settings-title {
+      font-size: 16px;
+      font-family: Lato Bold;
+      opacity: 85%;
+    }
+  }
+  .leftside-divider {
+    border-top-width: 2px !important;
+  }
+}
+
+  

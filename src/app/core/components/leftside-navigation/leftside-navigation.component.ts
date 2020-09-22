@@ -1,10 +1,14 @@
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { LeftsideSettingsModelsData } from '../leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
+import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
+import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
+import { NavigationFilterHostDirective } from './leftside-navigation.directive';
 
 declare var $: any;
 
@@ -17,6 +21,7 @@ export class SideNavNode {
   level?: number;
   parentToChild?: String;
   children?: SideNavNode[];
+  component?: Component
 }
 
 class ExampleFlatNode {
@@ -40,9 +45,8 @@ export class LeftsideNavigationComponent implements OnInit {
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
   get data(): SideNavNode[] { return this.dataChange.value; }
-
-  @ViewChild('recursiveListTmpl') recursiveListTmpl;
-
+  
+  dialog: NavigationSettingsService;
   /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
     if (typeof btn.target.children[0] != 'undefined') {
@@ -65,7 +69,8 @@ export class LeftsideNavigationComponent implements OnInit {
       classId: node.classId,
       eventName: node.eventName,
       parentToChild: node.parentToChild,
-      children: node.children
+      children: node.children,
+      component: node.component
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -76,9 +81,10 @@ export class LeftsideNavigationComponent implements OnInit {
 
   constructor(
     private datashare: DataSharingService,
-    private route: ActivatedRoute,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
   }
@@ -342,5 +348,16 @@ export class LeftsideNavigationComponent implements OnInit {
   navigationTrackBy(index, item) {
     if (!item) return null;
     return index;
+  }
+
+  async openSettingsDialog(node, event) {
+    event.stopPropagation();
+    this.viewContainerRef.clear();
+    if (node.component == 'TacNetworkDialogComponent') {
+      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/sites/outdoor/macro/macro-dialog/macro-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
+      );
+    }
   }
 }

@@ -66,6 +66,8 @@ import { TemplateDropdownComponent } from './../main-modules/modules/planning-de
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
 import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
 import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.component';
+import { LeftsideSettingsPopupComponent } from './components/leftside-settings-popup/leftside-settings-popup.component';
+import { PaginationComponent } from './components/commanPopup/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -86,8 +88,9 @@ import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.c
     FileUploadPopupComponent,
     TableAgGridComponent,
     AgGridTreeComponent,
-    TemplateDropdownComponent
-    // PaginationComponent
+    TemplateDropdownComponent,
+    LeftsideSettingsPopupComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -144,8 +147,7 @@ import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.c
   providers: [
     SideNavService,
     MmenuDirective,
-    isEllipsisActiveDirective,
-
+    isEllipsisActiveDirective
   ],
   exports: [
     HeaderComponent,
@@ -159,7 +161,8 @@ import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.c
     GenhelpiconComponent,
     TableAgGridComponent,
     AgGridTreeComponent,
-    DeleteRendererComponent
+    DeleteRendererComponent,
+    PaginationComponent
   ], entryComponents: [
     SuccessfulComponent,
     SuccessfulModalComponent
