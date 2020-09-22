@@ -37,7 +37,7 @@ export class TacNetworkDialogComponent implements OnInit {
   value = 75;
   vertical = false;
   tickInterval = 1;
-  someValue;
+  someValue = 0;
   @Input() color: string;
   @Output() colorChange = new EventEmitter<string>();
   @Output() update = new EventEmitter<any>();
@@ -83,8 +83,8 @@ export class TacNetworkDialogComponent implements OnInit {
       headerText: 'Boundaries: TAC Layer Settings',
       template: this.networkTalLayerSettings
     }, {
-      width: 536,
-      height:500,
+      width: 540,
+      height:450,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
@@ -95,7 +95,7 @@ export class TacNetworkDialogComponent implements OnInit {
   }
 
   private openDialog(dialogData: LeftsideSettingsModelsData, options: LeftsideSettingsModelsOptions): void {
-    console.log(this.dialog.context)
+    // console.log(this.dialog.context)
     this.dialog = this.navigationFactoryService.open(dialogData, options);
   }
 
