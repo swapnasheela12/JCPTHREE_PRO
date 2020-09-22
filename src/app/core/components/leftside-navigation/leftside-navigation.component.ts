@@ -5,10 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { LeftsideSettingsModelsData } from '../leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
-import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
-import { NavigationFilterHostDirective } from './leftside-navigation.directive';
 
 declare var $: any;
 
@@ -354,7 +351,7 @@ export class LeftsideNavigationComponent implements OnInit {
     event.stopPropagation();
     this.viewContainerRef.clear();
     if (node.component == 'TacNetworkDialogComponent') {
-      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/sites/outdoor/macro/macro-dialog/macro-dialog.component');
+      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
       );
