@@ -1,3 +1,4 @@
+import { MacroNominalService } from './sites/nominal/macro-nominal.service';
 import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
 import { Router } from '@angular/router';
@@ -5,7 +6,7 @@ import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-prev
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentRef, OnDestroy, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
@@ -20,24 +21,14 @@ import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
 import { MarcoService } from './sites/outdoor/macro/marco.service';
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import 'leaflet-contextmenu';
-// import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
-// import 'leaflet-canvas-marker/dist/leaflet.canvas-markers.js';
-import { CanvasLayer } from '../../../js/L.CanvasLayer.js';
-import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
-// import "../../../js/L.CanvasLayer.js";
 declare var $: any;
 
-
-// Type for Library Canvas
-interface DataObject {
-  [key: string]: any;
-}
 @Component({
   selector: 'app-main-layer',
   templateUrl: './main-layer.component.html',
   styleUrls: ['./main-layer.component.scss']
 })
-export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
   @ViewChild('spiderView', { read: ViewContainerRef }) target: ViewContainerRef;
   public map: any;
   public CanvasLayer: any;
@@ -58,14 +49,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
-  public siteData;
-  public canvasLibrary: DataObject;
   public dataShareSub: Subscription = new Subscription();
-
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router,
-    //private spiderCreationService: SpiderCreationService, 
-    private componentFactoryResolver?: ComponentFactoryResolver
+    private http: HttpClient,private macroNominalService: MacroNominalService,private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
   ) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
@@ -76,38 +62,25 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.libCustomLayer = leaflayer();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
-    this.canvasLibrary = canvasLayerForLeaflet();
-    this.markerService.getReference(this);
   }
 
   ngAfterViewInit() {
     this.initMap();
-    this.siteDataJson();
-    this.markerService.makeCapitalMarkers(this.map);
-  }
-
-  siteDataJson() {
-    this.http.get("assets/data/layers/microsites-onair.json")
-      .subscribe(data => {
-        this.siteData = data;
-      },
-        error => {
-          this.fanDataError = error;
-        });
+    // this.markerService.makeCapitalMarkers(this.map);
   }
 
   private initMap(): void {
 
     //marker code
-    const iconRetinaUrl = 'assets/images/Layers/3.svg';
+    const iconRetinaUrl = 'assets/images/Layers/pin.svg';
     const iconUrl = 'assets/images/Layers/3-1.svg';
     const iconDefault = L.icon({
       iconRetinaUrl,
       iconUrl,
       iconSize: [25, 41],
       iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
+      // popupAnchor: [1, -34],
+      // tooltipAnchor: [16, -28],
       shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = iconDefault;
@@ -118,8 +91,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      //center: [25.0000, 79.0000],
-      center: [19.04, 72.90],
+      center: [25.0000, 79.0000],
+      //center:[19.04,72.90],
       zoomControl: false,
       zoom: 5,
       contextmenu: true,
@@ -128,6 +101,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           text: 'ScreenShort',
           callback: (e) => {
+            console.log(e, "e");
+
+            // L.DomEvent.preventDefault(e);
             setTimeout(() => {
               this.simpleMapScreenshoterContext = L.simpleMapScreenshoter({
                 hidden: true, // hide screen icon
@@ -156,6 +132,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
               this.simpleMapScreenshoterContext.addTo(this.map)
             }, 2000);
+
+            // alert(e.latlng);
             $(".leaflet-contextmenu").hide();
           }
         },
@@ -205,10 +183,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.pm.addControls(options);
     //geo json control
 
-
-    //CanvasLibrary
-    this.canvasLibrary.canvasLayer().delegate(this).addTo(this.map);
-
     //pan india zoom
     this.currentZoom = this.map.getZoom();
     let _currentZoom = this.currentZoom;
@@ -250,7 +224,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         return container;
       },
-      onRemove: function (map) { }
+      onRemove: function (map) {}
     });
     this.map.on('simpleMapScreenshoter.error', function (event) {
       var el = document.createElement('div')
@@ -311,6 +285,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
         this.dataShareSub = _datashare.currentMessage.subscribe((val) => {
+          console.log(val,"val");
+          
           this.selectedLayerArrList = val;
           this.countOfLayerSelected = this.selectedLayerArrList.length;
           container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
@@ -352,7 +328,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         return this._container;
       },
       onRemove: function (map) {
-
+      
       },
       _update: function () {
         if (!this._map) {
@@ -367,7 +343,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       onAdd: function () {
         var container = L.DomUtil.create('div', ' leaflet-bar leaflet-bar-horizontal ', this._control);
-
+        
         container.style.display = 'flex';
         container.style.position = 'absolute';
         container.style.bottom = '0px';
@@ -403,14 +379,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           });
 
           dialogRef.afterClosed().subscribe(result => {
-
+            
             L.DomUtil.addClass(tableViewControlButton, 'horizontal_icon_table_view');
             targetElement.classList.remove("control_layer_active");
           });
 
           const sub = dialogRef.componentInstance.onAdd.subscribe((data: any) => {
             // do something
-
+           
             if (data.selectedAreaName == "Pan India") {
               _map.fitBounds([
                 [data.rowDataTable.latitude, data.rowDataTable.longitude]
@@ -431,7 +407,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           });
 
           const subDropDown = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
-
+            
             if (data.selectedAreaName == "Pan India") {
               _map.setZoom(5);
             } else if (data.selectedAreaNameParent == "jioState") {

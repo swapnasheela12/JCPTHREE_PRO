@@ -1,8 +1,9 @@
+import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MainModulesRoutingModule } from './main-modules-routing.module';
 
 //Angular Material Components
@@ -90,19 +91,6 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
-import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
-import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
-
-// import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
-// import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
-// import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
-// import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
-import { TacNetworkDialogComponent } from './main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
-import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component';
-import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component';
-import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
 
 @NgModule({
   declarations: [
@@ -133,16 +121,8 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     ScreenshotPreviewComponent, colorDropdownRendererComponent,
     ScreenshotPreviewComponent,
     SpiderComponent,
-    KpiComponent,
-    CandidatesComponent,
-    NominalViewComponent,
-    // CustomDashboardComponent,
-    // TwampLiveDashboardComponent,
-    TacNetworkDialogComponent,
-    DenseUrbanDialogComponent,
-    TownBoundaryDialogComponent,
-    ZonesJioDialogComponent,
-    NominalMacroDialogComponent
+    SpiderViewComponent,
+    KpiComponent
   ],
   imports: [
     CommonModule,
@@ -155,14 +135,8 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     ReportsDashboardsModule,
     LeafletModule,
     Ng5SliderModule,
-    Ng2SearchPipeModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([
-      ButtonRendererComponent,
-      colorDropdownRendererComponent,
-      // InfoRendererComponent,
-      // AllExpandRendererComponent
-    ]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,
@@ -210,14 +184,14 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    ColorPickerModule
-    // PerformanceManagementModule,
-    // PlanningDeploymentModule,
-    // RfOcWorkordersModule,
+    PerformanceManagementModule,
+    PlanningDeploymentModule,
+    RfOcWorkordersModule,
+
+
   ], providers: [
     SideNavService,
     MarkerService,
-    DatePipe,
     {
       provide: MatDialogRef,
       useValue: {}
@@ -230,8 +204,7 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
-    colorDropdownRendererComponent,
-    ColorPickerModule
+    colorDropdownRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,

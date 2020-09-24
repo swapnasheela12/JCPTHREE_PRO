@@ -785,6 +785,44 @@ const SITES_OUTDOOR_lIST = [
     }
 ];
 
+const SITES_Nominal_lIST = [
+    {
+        name: 'Macro',
+        link: 'JCP/Layers/Nominal/Macro',
+        eventName: 'sites-nominal-macro',
+        children: [],
+        parentToChild: 'Sites-Nominal-Macro'
+    },
+    {
+        name: 'ESC',
+        link: 'JCP/Layers/ESC',
+        eventName: 'sites-outdoor-esc',
+        children: [],
+        parentToChild: 'Sites-Outdoor-ESC'
+    },
+    {
+        name: 'Small Cell',
+        link: 'JCP/Layers/Small-Cell',
+        eventName: 'sites-outdoor-small-cell',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Small-Cell'
+    },
+    {
+        name: 'Wi-Fi',
+        link: 'Wi-Fi',
+        eventName: 'sites-outdoor-wi-fi',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Wi-Fi'
+    },
+    {
+        name: 'Competitor',
+        link: 'Competitor',
+        eventName: 'sites-outdoor-competitor',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Competitor'
+    }
+];
+
 const ANALYTICS_SUBSCRIBER_LIST = [
     {
         name: 'Anomalies',
@@ -1538,10 +1576,9 @@ const SITES_LIST = [
     {
         name: "Nominal",
         icon: "fas fa-user fa-3",
-        link: "indoor",
-        eventName: 'sites-outdoor-esc',
-        children: SITES_NOMINAL_lIST,
-        component: 'NominalMacroDialogComponent'
+        link: "nominal",
+        eventName: 'sites-nominal-esc',
+        children: SITES_Nominal_lIST
     }
 ];
 
