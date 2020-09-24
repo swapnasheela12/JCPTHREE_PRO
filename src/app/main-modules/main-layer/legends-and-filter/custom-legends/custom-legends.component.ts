@@ -40,7 +40,8 @@ export class CustomLegendsComponent implements OnInit {
   public frameworkComponentsMyReport = {
     colorDropdownRenderer: colorDropdownRendererComponent
   };
-
+  
+  
   url = "assets/data/report/my-report.json";
 
   onReadyModeUpdate(params) {
@@ -254,6 +255,11 @@ export class CustomLegendsComponent implements OnInit {
 
   trackByMethod(index: number, el: any): number {
     return el.id;
+  }
+
+  addNumberRage = false;
+  addNumberRageFun(){
+    this.addNumberRage =! this.addNumberRage;
   }
 
 }
