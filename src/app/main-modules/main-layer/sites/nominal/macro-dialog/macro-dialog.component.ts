@@ -7,14 +7,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
-import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
   selector: 'nominal-macro-dialog',
   templateUrl: './macro-dialog.component.html',
   styleUrls: ['./macro-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [ColorPickerService]
+  // providers: [ColorPickerService]
 })
 export class NominalMacroDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
@@ -49,7 +49,7 @@ export class NominalMacroDialogComponent implements OnInit {
   
   constructor(
     private navigationFactoryService: NavigationSettingsFactoryService,
-    private cpService: ColorPickerService
+    // private cpService: ColorPickerService
   ) {
     this.macroDialogForm = new FormGroup({
       'outdoor':new FormControl(''),

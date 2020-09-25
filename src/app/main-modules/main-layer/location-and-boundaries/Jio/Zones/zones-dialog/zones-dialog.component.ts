@@ -7,14 +7,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { LABEL_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
-import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
   selector: 'zones-dialog',
   templateUrl: './zones-dialog.component.html',
   styleUrls: ['./zones-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [ColorPickerService]
+  // providers: [ColorPickerService]
 })
 export class ZonesJioDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
@@ -45,7 +45,7 @@ export class ZonesJioDialogComponent implements OnInit {
   
   constructor(
     private navigationFactoryService: NavigationSettingsFactoryService,
-    private cpService: ColorPickerService
+    // private cpService: ColorPickerService
   ) {
     this.macroDialogForm = new FormGroup({
       'outlineCoding':new FormControl(''),

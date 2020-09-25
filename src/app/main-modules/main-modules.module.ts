@@ -91,6 +91,12 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
+import { TacNetworkDialogComponent } from './main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component';
+import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component';
+import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
+import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component';
+import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
+import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +128,13 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     ScreenshotPreviewComponent,
     SpiderComponent,
     SpiderViewComponent,
-    KpiComponent
+    KpiComponent, 
+    TacNetworkDialogComponent,
+    DenseUrbanDialogComponent,
+    TownBoundaryDialogComponent,
+    ZonesJioDialogComponent,
+    CandidatesComponent,
+    NominalMacroDialogComponent
   ],
   imports: [
     CommonModule,
