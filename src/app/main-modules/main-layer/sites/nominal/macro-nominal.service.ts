@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+import { NominalViewComponent } from '../outdoor/spider/nominal-view/nominal-view.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,17 @@ export class MacroNominalService {
   theMarker;
   sitesValArr;
   arrayOfSites: any = [];
-  constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
+  mainlayerRef;
+  constructor(private datashare: DataSharingService, private http: HttpClient,
+    public dialog: MatDialog, private shapeService: ShapeService) {
     this.ref = this;
     // this._map = this.shapeService.mapServiceData;
     this.lib = leaflayer();
     this.redrawLayer();
+  }
 
+  getReference(ref) {
+    this.mainlayerRef = ref;
   }
 
   redrawLayer() {
@@ -38,9 +44,9 @@ export class MacroNominalService {
 
     var points = L.geoJSON(null, {
       pointToLayer: function (feature, latlng) {
-        console.log(feature,"feature");
-        console.log(latlng,"latlng");
-        
+        console.log(feature, "feature");
+        console.log(latlng, "latlng");
+
         var marker = L.marker(latlng, { icon: null });
         return marker;
       }
@@ -114,7 +120,7 @@ export class MacroNominalService {
         }
       }
       console.log("Current Zoom Level =" + zoomlevel)
-    
+
     });
 
     canvasLayer.on("layer-beforedestroy", function () { });
@@ -148,8 +154,8 @@ export class MacroNominalService {
       this.initStatesLayer();
     });
     this.shapeService.getNominalMacroData().subscribe(sitesVal => {
-      console.log(sitesVal,"sitesVal");
-      
+      console.log(sitesVal, "sitesVal");
+
       // this.sitesValArr = sitesVal.features;
       this.sitesValArr = sitesVal.features;
       console.log(this.sitesValArr, "this.sitesValArr");
@@ -224,43 +230,52 @@ export class MacroNominalService {
     layer.fitBounds(e.target.getBounds());
   }
 
+
   sitesNominalLayer
   sitesNominalLayerMap(item) {
-    console.log(item,"item");
-    
-    // var ratIcon = L.icon({
-    //   iconUrl: 'assets/images/Layers/3.svg',
-    //   iconSize: [25, 41],
-    //   iconAnchor: [12, 41],
-    //   shadowSize: [41, 41]
-    // });
+    console.log(item, "item");
 
-    // this.sitesNominalLayer = L.geoJSON(this.sitesValArr, {
-    //   pointToLayer: function (feature, latlng) {
-    //     console.log(feature, "feature");
-    //     console.log(latlng, "latlng");
+    var ratIcon = L.icon({
+      iconUrl: 'assets/images/Layers/3.svg',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      shadowSize: [41, 41]
+    });
 
-    //     var marker = L.marker(latlng, { icon: ratIcon });
-    //     // marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-    //     return marker;
-    //   },
+    this.sitesNominalLayer = L.geoJSON(this.sitesValArr, {
+      pointToLayer: function (feature, latlng) {
+        console.log(feature, "feature");
+        console.log(latlng, "latlng");
 
-    //   onEachFeature: (feature, layer) => (
-    //     layer.on({
-    //       // mouseover: (e) => (this.highlightFeature(e)),
-    //       // mouseout: (e) => (this.resetFeature(e)),
-    //       click: (e) => (this.spiderViewFeature(e)),
-    //     })
-    //   )
+        var marker = L.marker(latlng, { icon: ratIcon });
+        // marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+        return marker;
+      },
 
-    // });
+      onEachFeature: (feature, layer) => (
+        layer.on({
+          // mouseover: (e) => (this.highlightFeature(e)),
+          // mouseout: (e) => (this.resetFeature(e)),
+          click: (evt) => (this.spiderViewFeature(evt, this.ref, this.mainlayerRef)),
+        })
+      )
 
-    // this._map.addLayer(this.sitesNominalLayer);
+    });
+
+    this._map.addLayer(this.sitesNominalLayer);
   }
 
-  private spiderViewFeature(e) {
+  private spiderViewFeature(e, ref, mainlayer) {
     const layer = e.target;
     console.log(layer, "layer");
+
+    mainlayer.map.setView(e.target._latlng);
+    let data = {
+      ref: mainlayer
+    }
+    mainlayer.datashare.sendDataToSpider(data);
+    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(NominalViewComponent);
+    mainlayer.componentRef = mainlayer.target.createComponent(nominalViewComponent);
   }
 
 

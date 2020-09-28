@@ -4,7 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PropertiesComponent } from 'src/app/modules/components/properties/properties.component';
 import { HttpClient } from '@angular/common/http';
 import { CandidatesComponent } from 'src/app/modules/components/properties/candidates/candidates.component';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { SideNavService } from 'src/app/_services/side-nav.service';
 declare var $: any;
+
 @Component({
   selector: 'jcpBeta-spider',
   template: `
@@ -54,7 +57,8 @@ export class NominalViewComponent implements OnInit {
   bandGroup;
   currentBand = [];
 
-  constructor(private element: ElementRef, private http: HttpClient, public dialog: MatDialog) { }
+  constructor(private element: ElementRef, private http: HttpClient, public dialog: MatDialog
+    , private datashare: DataSharingService, private sideNavService: SideNavService) { }
   public currentbands;
   public onAirData = [
     {
@@ -76,6 +80,10 @@ export class NominalViewComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.datashare.currentSpiderData.subscribe((message) => {
+      console.log(":message", message)
+    });
+
     this.http.get("assets/data/layers/nominalssites/nominals.json")
       .subscribe(message => {
         this.currentbands = message["site2300"];
@@ -93,7 +101,7 @@ export class NominalViewComponent implements OnInit {
     this.drawSVG(element, svg, data, this)
   }
 
-  drawSVG(element, svgGroup, data, ref?) {
+  drawSVG(element, svgGroup, data, ref) {
     const clientWidth = element.offsetWidth;
     const clientHeight = element.offsetHeight;
     let screenWidth = clientWidth > 0 ? clientWidth : 500;
@@ -438,8 +446,11 @@ export class NominalViewComponent implements OnInit {
         return d.data.fontvalue;
       });
   }
+  toggleActive = true;
 
   openSpiderPopups(d, ref) {
+
+    //ref.sideNavService.close();
     if (d.data.name === "Properties") {
       ref.openPropDialogConfiguration();
     } else if (d.data.name === "Candidates") {

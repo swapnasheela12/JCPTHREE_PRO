@@ -8,6 +8,8 @@ import { ConfigurationComponent } from 'src/app/modules/components/configuration
 import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
 import { KpiComponent } from './popup/kpi/kpi.component';
 import { CapacityComponent } from 'src/app/modules/components/capacity/capacity.component';
+import { SideNavService } from 'src/app/_services/side-nav.service';
+
 declare var $: any; //will be replaced by TS
 @Component({
     selector: 'jcpBeta-spider',
