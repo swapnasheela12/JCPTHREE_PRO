@@ -1,3 +1,4 @@
+import { inputRendererComponent } from './../core/components/ag-grid-renders/input-renderer.component';
 import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
@@ -123,8 +124,9 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     CustomLegendsComponent,
     ScreenshotPreviewComponent,
     colorDropdownRendererComponent,
+    inputRendererComponent,
     SelectedLayerMenuComponent,
-    ScreenshotPreviewComponent, colorDropdownRendererComponent,
+    ScreenshotPreviewComponent,
     ScreenshotPreviewComponent,
     SpiderComponent,
     SpiderViewComponent,
@@ -148,7 +150,7 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent,inputRendererComponent]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,
@@ -216,7 +218,8 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
-    colorDropdownRendererComponent
+    colorDropdownRendererComponent,
+    inputRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,
