@@ -18,9 +18,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
-import { MarcoService } from './sites/outdoor/macro/marco.service';
+
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import { SideNavService } from 'src/app/_services/side-nav.service';
+import { NodesAndBoundariesManagerService } from './sites/outdoor/macro/nodes-and-boundaries-manager.service';
+
 import 'leaflet-contextmenu';
 declare var $: any;
 
@@ -52,9 +54,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public libCustomLayer;
   public dataShareSub: Subscription = new Subscription();
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
+    private http: HttpClient, private macroNominalService: MacroNominalService,  private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService) {
+    private sideNavService: SideNavService,private nodesAndBoundariesManagerService:NodesAndBoundariesManagerService) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -71,6 +73,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.initMap();
     // this.markerService.makeCapitalMarkers(this.map);
+    this.nodesAndboundariesCall();
   }
 
   private initMap(): void {
@@ -472,6 +475,19 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //custome controller//
 
     this.shapeService.mapServiceData = this.map;
+  }
+
+  nodesAndboundariesCall(){
+    let paramdata = {
+      map: this.map,
+      targetElementSpiderView: this.target 
+    }
+    //ADD LAYER FROM MACRO
+
+    this.nodesAndBoundariesManagerService.initialializeNodesAndBoundaries(paramdata)
+
+    //REMOVE LAYER FROM MACRO
+    //this.nodesAndBoundariesManagerService.removeCanvasFromMap();
   }
 
   ngOnDestroy() {
