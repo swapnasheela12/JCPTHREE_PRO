@@ -475,7 +475,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
   nodesAndboundariesCall(){
     let paramdata = {
       map: this.map,
-      targetElementSpiderView: this.target
+      targetElementSpiderView: this.target 
     }
     //ADD LAYER FROM MACRO
 

@@ -12,7 +12,7 @@ export class NodesAndBoundariesManagerService {
     private boundariesService:BoundariesService
   ) { }
 
-
+  
   initialializeNodesAndBoundaries(paramdata) {
     //INITIAL LOAD
     this.removeCanvasFromMap();
@@ -28,7 +28,7 @@ export class NodesAndBoundariesManagerService {
       }
     });
   }
-
+  
   removeCanvasFromMap(){
     let canvasElement = document.getElementsByTagName("canvas")[0];
     if(canvasElement){

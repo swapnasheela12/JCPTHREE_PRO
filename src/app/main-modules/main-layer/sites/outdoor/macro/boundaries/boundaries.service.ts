@@ -57,6 +57,8 @@ export class BoundariesService {
     setTimeout(() => {
       this.canvasLayerObj = canvasLayer;
     }, 1000);
+
+    
     canvasLayer.addTo(this.map);
   }
 
@@ -175,7 +177,7 @@ export class BoundariesService {
       }
       if (!polyPoints.length) continue;
 
-      let polyGraphic = this.getPolyGraphics(createjs.Graphics.getRGB(0, 90, 175, 0.7), '#ced4da', polyPoints);
+      let polyGraphic = this.getPolyGraphics(createjs.Graphics.getRGB(248, 152, 29, 0.8), '#E35425', polyPoints);
       let polyShape = new createjs.Shape(polyGraphic);
       polyShape.name = d.CIRCLENAME;
       polyShape.cursor = 'pointer';
