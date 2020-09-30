@@ -7,14 +7,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { LABEL_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
-// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
   selector: 'town-boundary-dialog',
   templateUrl: './town-boundary-dialog.component.html',
   styleUrls: ['./town-boundary-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [ColorPickerService]
+  providers: [ColorPickerService]
 })
 export class TownBoundaryDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
