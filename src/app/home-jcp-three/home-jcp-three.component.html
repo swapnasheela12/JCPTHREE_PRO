@@ -37,6 +37,14 @@
                 </div>
                 <div id="route-outlet-id" class="jcp-page-route"
                     [ngClass]="{'activeNot-jcp-page-route': !sidenav.opened}">
+                    <!-- <div style="color: black;">
+                                           <p *ngFor="let pageinfo of timeSpentOnPages">
+                                               <b> pageName: </b> {{pageinfo.pageUrl}} <br />
+                                               <b> time Enter:</b> {{moment.utc(pageinfo.timeEnter).local().format('H:mm:ss')}}<br />
+                                               <b> timeSpent:</b> {{moment.utc(pageinfo.timeSpent).format('H:mm:ss')}}<br />
+                                               <b> timeLeave:</b> {{moment.utc(pageinfo.timeLeave).local().format('H:mm:ss')}}<br />
+                                           </p>
+                                       </div> -->
                     <router-outlet></router-outlet>
                 </div>
             </div>

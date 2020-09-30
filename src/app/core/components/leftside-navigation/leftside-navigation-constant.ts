@@ -791,7 +791,8 @@ const SITES_Nominal_lIST = [
         link: 'JCP/Layers/Nominal/Macro',
         eventName: 'sites-nominal-macro',
         children: [],
-        parentToChild: 'Sites-Nominal-Macro'
+        parentToChild: 'Sites-Nominal-Macro',
+        component: 'NominalMacroDialogComponent'
     },
     {
         name: 'ESC',
@@ -1116,15 +1117,15 @@ const SITES_INDOOR_lIST = [
     }
 ];
 
-const SITES_NOMINAL_lIST = [
-    {
-        name: 'Macro',
-        link: 'Macro',
-        eventName: 'sites-outdoor-esc',
-        children: [],
-        component: 'NominalMacroDialogComponent'
-    },
-]
+// const SITES_NOMINAL_lIST = [
+//     {
+//         name: 'Macro',
+//         link: 'Macro',
+//         eventName: 'sites-outdoor-esc',
+//         children: [],
+//         component: 'NominalMacroDialogComponent'
+//     },
+// ]
 
 const PREDICTION_LAYERS_BAND_LIST = [
     {
