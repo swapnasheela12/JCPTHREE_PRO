@@ -145,7 +145,7 @@ export class ConfigurationComponent {
         headerName: "",
         cellRenderer: "dropDownThreeDotRenderer",
         field: "",
-        width: 80,
+        width: 90,
         pinned: 'right'
       }
     ];

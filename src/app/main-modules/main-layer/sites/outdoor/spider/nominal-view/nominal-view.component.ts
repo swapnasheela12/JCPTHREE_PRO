@@ -449,8 +449,12 @@ export class NominalViewComponent implements OnInit {
   toggleActive = true;
 
   openSpiderPopups(d, ref) {
-
     //ref.sideNavService.close();
+
+    let event = new CustomEvent("close-side-bar");
+
+    // Dispatch/Trigger/Fire the event
+    window.dispatchEvent(event);
     if (d.data.name === "Properties") {
       ref.openPropDialogConfiguration();
     } else if (d.data.name === "Candidates") {

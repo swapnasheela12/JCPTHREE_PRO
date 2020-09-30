@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { NominalViewComponent } from '../outdoor/spider/nominal-view/nominal-view.component';
+import { SpiderComponent } from '../outdoor/spider/spider.component';
 
 @Injectable({
   providedIn: 'root'
@@ -273,8 +274,9 @@ export class MacroNominalService {
     let data = {
       ref: mainlayer
     }
+    console.log("sideNavService", mainlayer.sideNavService);
     mainlayer.datashare.sendDataToSpider(data);
-    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(NominalViewComponent);
+    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
     mainlayer.componentRef = mainlayer.target.createComponent(nominalViewComponent);
   }
 

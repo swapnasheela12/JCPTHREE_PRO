@@ -79,7 +79,8 @@ export class AlarmsPopupComponent implements OnInit {
         headerName: "Site ID",
         field: "siteid",
         width: 220,
-        cellClass: 'lock-pinned'
+        cellClass: 'lock-pinned',
+        pinned: "left"
       }, {
         headerName: "Cell ID",
         field: "cellid",
@@ -119,7 +120,8 @@ export class AlarmsPopupComponent implements OnInit {
         headerName: "JCP Classification",
         field: 'jcpclassification',
         width: 180,
-        cellClass: 'lock-pinned'
+        cellClass: 'lock-pinned',
+        pinned: "right"
       }
 
     ];

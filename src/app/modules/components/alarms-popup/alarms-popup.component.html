@@ -10,7 +10,8 @@
     </div>
 
     <div class="alarms-dialog-content">
-
+        <div class="table-header">YASHODHA ARCADE Near Sai Mandir SECTOR 23 JUINAGAR 400705</div>
+        <mat-divider></mat-divider>
         <mat-tab-group mat-align-tabs="start">
             <mat-tab label="ACTIVE ALARMS">
                 <ag-grid-angular style="width: 100%; height: 400px;overflow: scroll;"
@@ -20,9 +21,8 @@
                     [rowClassRules]="rowClassRulesaa" rowSelection="multiple">
                 </ag-grid-angular>
             </mat-tab>
+
             <mat-tab label="ALARMS HISTORY">
-
-
                 <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-material ag-jcp3"
                     [columnDefs]="columnah" [rowData]="rowah" enableColResize enableSorting enableFilter groupHeaders
                     suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues

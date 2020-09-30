@@ -22,6 +22,7 @@ import { MarcoService } from './sites/outdoor/macro/marco.service';
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import { SideNavService } from 'src/app/_services/side-nav.service';
 import 'leaflet-contextmenu';
+import { MatSidenav } from '@angular/material/sidenav';
 declare var $: any;
 
 @Component({
@@ -51,6 +52,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public rulerLeafletLib;
   public libCustomLayer;
   public dataShareSub: Subscription = new Subscription();
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
@@ -59,6 +61,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       this.routPathVal = event.url;
     });
     this.macroNominalService.getReference(this);
+    console.log("sideNavService", this.sideNavService);
   }
 
   ngOnInit(): void {

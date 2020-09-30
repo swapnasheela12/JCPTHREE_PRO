@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Inject, ViewChild, HostListener } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild, HostListener, OnChanges } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from "rxjs";
@@ -42,7 +42,7 @@ export class recentVisitList {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
   ////authentication/////
@@ -115,6 +115,13 @@ export class HeaderComponent implements OnInit {
   routeUrlLinkPage;
   truncatedBCStr;
 
+  ngOnChanges() {
+    // Add an event listener
+    document.addEventListener("close-side-bar", () => {
+      this.sideNavService.close();
+    });
+  }
+
   constructor(
 
     public dialog: MatDialog,
@@ -125,6 +132,10 @@ export class HeaderComponent implements OnInit {
     private sideNavService: SideNavService,
     public matDialog: MatDialog, public matselect: MatSelectModule,
     private http: HttpClient) {
+    window.addEventListener("close-side-bar", () => {
+      this.sideNavService.close();
+    });
+
     /////////////breadcrums////////////////////
     router.events.subscribe((val) => {
       if (location.path() !== '') {
@@ -182,7 +193,6 @@ export class HeaderComponent implements OnInit {
     //////////////search///////////////////
   }
 
-
   toggleActive = true;
 
   toggleSidenav() {
@@ -219,6 +229,7 @@ export class HeaderComponent implements OnInit {
   elem;
   expandScreen = false;
   openFullscreen() {
+    console.log(" this.sideNavService", this.sideNavService)
     this.sideNavService.close();
     this.expandScreen = true;
     if (this.elem.requestFullscreen) {
