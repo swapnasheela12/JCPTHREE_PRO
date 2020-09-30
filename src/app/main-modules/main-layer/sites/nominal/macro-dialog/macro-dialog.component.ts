@@ -1,91 +1,81 @@
-import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 import { LeftsideSettingsModelsData } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
 import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
-import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
-import { Options } from 'ng5-slider/options';
-// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'nominal-macro-dialog',
   templateUrl: './macro-dialog.component.html',
   styleUrls: ['./macro-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [ColorPickerService]
 })
 export class NominalMacroDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
-  clickEventsubscription:Subscription;
-  thematicList = THEMATIC_LIST;
-  thematicListValue: string = THEMATIC_LIST[0].thematic_name;
-  hoverList = HOVER_LIST;
-  hoverListValue = HOVER_LIST[0].hover_name;
-  searchThematicListValue;
-  searchHoverListValue;
-  options: Options;
-  autoTicks = false;
-  disabled = false;
-  invert = false;
-  max = 100;
-  min = 0;
-  showTicks = false;
-  step = 1;
-  thumbLabel = false;
-  value = 75;
-  vertical = false;
-  tickInterval = 1;
-  someValue;
+  title: string;
+  @ViewChild('select') select: MatSelect;
+  allSelected=false;
+  siteStagesList: any[] = [
+    {value: 'Nominals', option: 'Nominals'},
+    {value: 'RFE 1 Survey', option: 'RFE1 Survey'},
+    {value: 'RFE 1 Acceptance', option: 'RFE 1 Acceptance'},
+    {value: 'Install eNb', option: 'Install eNb'}
+  ];
+  toggleAllSelection() {
+    if (this.allSelected) {
+      this.select.options.forEach((item: MatOption) => item.select());
+    } else {
+      this.select.options.forEach((item: MatOption) => item.deselect());
+    }
+  }
+   siteSatgesOptionClick() {
+    let newStatus = true;
+    this.select.options.forEach((item: MatOption) => {
+      if (!item.selected) {
+        newStatus = false;
+      }
+    });
+    this.allSelected = newStatus;
+  }
+  labelValue = 'Site ID';
+  towerIpValue = 'P1';
+  filterDropdownValue = 'P1';
+  sitePriorityValue = 'P1';
+  dataTypeValue = 'P1';
+  siteStagesValue = ['Nominals'];
+  gridsize: number = 30;
+  // updateSetting(event) {
+  //   this.gridsize = event.value;
+  // }
   @Input() color: string;
   @Output() colorChange = new EventEmitter<string>();
   @Output() update = new EventEmitter<any>();
 
-  title = 'dialog-example';
+  // title = 'dialog-example';
   @ViewChild('nominalMacroLayerSettings', { static: true }) nominalMacroLayerSettings: TemplateRef<any>;
 
   macroDialogForm:FormGroup;
   
   constructor(
     private navigationFactoryService: NavigationSettingsFactoryService,
-    // private cpService: ColorPickerService
   ) {
-    this.macroDialogForm = new FormGroup({
-      'outdoor':new FormControl(''),
-      'indoor':new FormControl(''),
-      'colorCoding': new FormControl(''),
-      'infillShades': new FormControl(''),
-      'opacity': new FormControl(''),
-      'thematic': new FormControl(''),
-      'hover': new FormControl('')
-    });
   }
-
-  changed(value) {
-    if (this.disabled) return;
-    this.color = value || this.color;
-    this.colorChange.emit(this.color);
-    this.update.emit();
-  } 
-  
 
   ngOnInit(): void {
     this.dispatchDialog();
   }
 
-  openedChange(sda) {
-    this.searchThematicListValue = '';
-    this.searchHoverListValue = '';
-   }
 
   dispatchDialog() {
     this.openDialog({
       headerText: 'Sites: Nominal Macro Layer Settings',
       template: this.nominalMacroLayerSettings
     }, {
-      width: 536,
-      height: 550,
+      width: 540,
+      height: 420,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
@@ -100,3 +90,4 @@ export class NominalMacroDialogComponent implements OnInit {
   }
 
 }
+

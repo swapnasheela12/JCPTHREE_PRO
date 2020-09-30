@@ -30,7 +30,7 @@
         <div class="filter-selected-area px-3" fxFlex="40">
             <mat-form-field class="form-field-selected-area pt-2 w-100">
                 <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering
-                    [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc();">
+                    [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc();onChangeLayer(selectedLayerCtrl)">
                     <mat-option value="Pan India">Pan India</mat-option>
                     <mat-option [value]="selectedOptionJioState">
                         <div (click)="$event.stopPropagation();" [matMenuTriggerFor]="jioState" fxLayout="row"
@@ -54,7 +54,7 @@
                             </button>
                             <div style="height: 200px;overflow: auto;">
                                 <button mat-menu-item *ngFor='let state of JioStatesList'
-                                    (click)="jioStateFunc(state,'jioState');areaSelectionFunc();">
+                                    (click)="jioStateFunc(state,'jioState');areaSelectionFunc();onChangeLayer(selectedLayerCtrl)">
                                     <div>{{ state.nameState }}</div>
                                 </button>
                             </div>
@@ -84,7 +84,7 @@
                             </button>
                             <div style="height: 200px;overflow: auto;">
                                 <button mat-menu-item *ngFor='let state of jioCentersList'
-                                    (click)="jioCentersFunc(state,'jioCenter');areaSelectionFunc();">
+                                    (click)="jioCentersFunc(state,'jioCenter');areaSelectionFunc();onChangeLayer(selectedLayerCtrl)">
                                     <div>{{ state.nameState }}</div>
                                 </button>
                             </div>

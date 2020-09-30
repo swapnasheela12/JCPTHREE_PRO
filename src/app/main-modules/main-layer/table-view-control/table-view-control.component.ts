@@ -104,8 +104,8 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
     rowDataTable: null,
     objArea: null,
   };
-  rowDataMacro: Object;
-  jsonUrl: string = 'assets/data/layers/table-view-data/table-view-data.json';
+  // rowDataMacro: Object;
+  jsonUrl: string;
 
   constructor(public hostElement: ElementRef,
     public dialogRef: MatDialogRef<TableViewControlComponent>,
@@ -147,89 +147,351 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   onChangeLayer(layer) {
-    if (layer.value) {
-      this.selectedLayerTableName = layer.value;
-    } else {
-      this.selectedLayerTableName = 'Other';
+    console.log(layer.value)
+    // if (layer.value) {
+    this.selectedLayerTableName = layer.value;
+    // } else {
+    //   this.selectedLayerTableName = 'Other';
+    // }
+    this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
+    switch (this.selectedLayerTableName) {
+      case "Macro": {
+        console.log("inside macroo")
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "Macro",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "<20° Macro",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "20°> to <40° Macro",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "40°> to <60° Macro",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: ">60° Macro",
+                field: "greaterThanSixty",
+                width: 150
+              }
+            ];
+            this.jsonUrl = '';
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data-macro.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "Macro Center",
+                field: "jiocenter",
+                pinned: true,
+                width: 180
+              }, {
+                headerName: "Total Sites",
+                field: "totalsites",
+                width: 180
+              }, {
+                headerName: "Total Cells",
+                field: "totalcells",
+                width: 150
+              },
+              {
+                headerName: "4G-LTE Sites",
+                field: "sites4glte",
+                width: 150
+              },
+              {
+                headerName: "5G-NR Sites",
+                field: "sites5gnr",
+                width: 180
+              }
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "Macro State",
+                field: "r4gstate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "Total Sites",
+                field: "totalsites",
+                width: 180
+              }, {
+                headerName: "Total Cells",
+                field: "totalcells",
+                width: 150
+              },
+              {
+                headerName: "4G-LTE Sites",
+                field: "sites4glte",
+                width: 150
+              },
+              {
+                headerName: "5G-NR Sites",
+                field: "sites5gnr",
+                width: 180
+              }
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+      }
+      break;
+      case "ESC": {
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "ESC Pan",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "<20°",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "20°> to <40°",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "40°> to <60°",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: ">60°",
+                field: "greaterThanSixty",
+                width: 100
+              }
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "ESC Center",
+                field: "jiocenter",
+                pinned: true,
+                width: 180
+              }, {
+                headerName: "Total Sites",
+                field: "totalsites",
+                width: 180
+              }, {
+                headerName: "Total Cells",
+                field: "totalcells",
+                width: 150
+              },
+              {
+                headerName: "4G-LTE Sites",
+                field: "sites4glte",
+                width: 150
+              },
+              {
+                headerName: "5G-NR Sites",
+                field: "sites5gnr",
+                width: 180
+              }
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "ESC State",
+                field: "r4gstate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "Total Sites",
+                field: "totalsites",
+                width: 180
+              }, {
+                headerName: "Total Cells",
+                field: "totalcells",
+                width: 150
+              },
+              {
+                headerName: "4G-LTE Sites",
+                field: "sites4glte",
+                width: 150
+              },
+              {
+                headerName: "5G-NR Sites",
+                field: "sites5gnr",
+                width: 180
+              }
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+        // this.columnDefs = [
+        //   {
+        //     headerName: "ESC",
+        //     field: "jiostate",
+        //     pinned: true,
+        //     width: 150
+        //   }, {
+        //     headerName: "<20° Macro",
+        //     field: "lessThanTwenty",
+        //     width: 100
+        //   }, {
+        //     headerName: "20°> to <40° Macro",
+        //     field: "greaterThanTwenty",
+        //     width: 150
+        //   },
+        //   {
+        //     headerName: "40°> to <60° Macro",
+        //     field: "greaterThanForty",
+        //     width: 150
+        //   },
+        //   {
+        //     headerName: ">60° Macro",
+        //     field: "greaterThanSixty",
+        //     width: 150
+        //   }
+        // ];
+        // this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data.json';
+        // this.httpClient
+        //   .get(this.jsonUrl)
+        //   .subscribe(data => {
+        //     this.rowData = data;
+        //   });
+        break;
+      }
+      default: {
+        this.columnDefs = [];
+        this.jsonUrl = '';
+        this.httpClient
+          .get(this.jsonUrl)
+          .subscribe(data => {
+            this.rowData = data;
+          });
+        break;
+      }
     }
+    // if (this.selectedLayerTableName == 'Macro') {
+    //   this.columnDefs = [
+    //     {
+    //       headerName: "Jio State Macro",
+    //       field: "jiostate",
+    //       pinned: true,
+    //       width: 150
+    //     }, {
+    //       headerName: "<20° Macro",
+    //       field: "lessThanTwenty",
+    //       width: 100
+    //     }, {
+    //       headerName: "20°> to <40° Macro",
+    //       field: "greaterThanTwenty",
+    //       width: 150
+    //     },
+    //     {
+    //       headerName: "40°> to <60° Macro",
+    //       field: "greaterThanForty",
+    //       width: 150
+    //     },
+    //     {
+    //       headerName: ">60° Macro",
+    //       field: "greaterThanSixty",
+    //       width: 150
+    //     }
+    //   ];
 
-    if (this.selectedLayerTableName == 'Macro') {
-      this.columnDefs = [
-        {
-          headerName: "Jio State Macro",
-          field: "jiostate",
-          pinned: true,
-          width: 150
-        }, {
-          headerName: "<20° Macro",
-          field: "lessThanTwenty",
-          width: 100
-        }, {
-          headerName: "20°> to <40° Macro",
-          field: "greaterThanTwenty",
-          width: 150
-        },
-        {
-          headerName: "40°> to <60° Macro",
-          field: "greaterThanForty",
-          width: 150
-        },
-        {
-          headerName: ">60° Macro",
-          field: "greaterThanSixty",
-          width: 150
-        }
-      ];
-
-      this.httpClient
-        .get(this.jsonUrl)
-        .subscribe(data => {
-          this.rowData = data;
-        });
-      this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data-macro.json';
-    } else {
+    //   this.httpClient
+    //     .get(this.jsonUrl)
+    //     .subscribe(data => {
+    //       this.rowData = data;
+    //     });
+    //   this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data-macro.json';
+    // } else {
 
 
-      this.columnDefs = [
-        {
-          headerName: "Jio State",
-          field: "jiostate",
-          pinned: true,
-          width: 150
-        }, {
-          headerName: "<20°",
-          field: "lessThanTwenty",
-          width: 100
-        }, {
-          headerName: "20°> to <40°",
-          field: "greaterThanTwenty",
-          width: 150
-        },
-        {
-          headerName: "40°> to <60°",
-          field: "greaterThanForty",
-          width: 150
-        },
-        {
-          headerName: ">60°",
-          field: "greaterThanSixty",
-          width: 150
-        }
-      ];
-      this.selectedLayerTableName = 'Other';
-      this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data.json';
-    }
-    this.httpClient
-      .get(this.jsonUrl)
-      .subscribe(data => {
-        if (this.selectedLayerTableName == 'Macro') {
-          this.rowDataMacro = data;
-          console.log(this.rowDataMacro)
-        } else {
-          this.rowData = data;
-        }
-      });
-      this.cd.detectChanges();
+    //   this.columnDefs = [
+    //     {
+    //       headerName: "Jio State",
+    //       field: "jiostate",
+    //       pinned: true,
+    //       width: 150
+    //     }, {
+    //       headerName: "<20°",
+    //       field: "lessThanTwenty",
+    //       width: 100
+    //     }, {
+    //       headerName: "20°> to <40°",
+    //       field: "greaterThanTwenty",
+    //       width: 150
+    //     },
+    //     {
+    //       headerName: "40°> to <60°",
+    //       field: "greaterThanForty",
+    //       width: 150
+    //     },
+    //     {
+    //       headerName: ">60°",
+    //       field: "greaterThanSixty",
+    //       width: 150
+    //     }
+    //   ];
+    //   this.selectedLayerTableName = 'Other';
+    //   this.jsonUrl = 'assets/data/layers/table-view-data/table-view-data.json';
+    // }
+    this.cd.detectChanges();
   }
 
   openedChange(sda) {
@@ -435,138 +697,138 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   areaSelectionFunc() {
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
 
-    setTimeout(() => {
-      if ($(this.getName).is(':contains(Pan India)')) {
-        this.columnDefs = [
-          {
-            headerName: "Jio State",
-            field: "jiostate",
-            pinned: true,
-            width: 150
-          }, {
-            headerName: "<20°",
-            field: "lessThanTwenty",
-            width: 100
-          }, {
-            headerName: "20°> to <40°",
-            field: "greaterThanTwenty",
-            width: 150
-          },
-          {
-            headerName: "40°> to <60°",
-            field: "greaterThanForty",
-            width: 150
-          },
-          {
-            headerName: ">60°",
-            field: "greaterThanSixty",
-            width: 100
-          }
-        ];
-        this.httpClient
-          .get(this.jsonUrl)
-          .subscribe(data => {
-            this.rowData = data;
-          });
+    // setTimeout(() => {
+    //   if ($(this.getName).is(':contains(Pan India)')) {
+    //     this.columnDefs = [
+    //       {
+    //         headerName: "Jio State",
+    //         field: "jiostate",
+    //         pinned: true,
+    //         width: 150
+    //       }, {
+    //         headerName: "<20°",
+    //         field: "lessThanTwenty",
+    //         width: 100
+    //       }, {
+    //         headerName: "20°> to <40°",
+    //         field: "greaterThanTwenty",
+    //         width: 150
+    //       },
+    //       {
+    //         headerName: "40°> to <60°",
+    //         field: "greaterThanForty",
+    //         width: 150
+    //       },
+    //       {
+    //         headerName: ">60°",
+    //         field: "greaterThanSixty",
+    //         width: 100
+    //       }
+    //     ];
+    //     this.httpClient
+    //       .get(this.jsonUrl)
+    //       .subscribe(data => {
+    //         this.rowData = data;
+    //       });
 
 
-        // this.filterDataList = {
-        //   selectedLayerName: this.selectedLayerTableName,
-        //   selectedAreaName: this.selectedOptionArea,
-        //   selectedAreaNameParent: this.selectedOptionParent,
-        //   rowDataTable: null,
-        //   objArea: this.objSelectedArea
-        // };
+    //     // this.filterDataList = {
+    //     //   selectedLayerName: this.selectedLayerTableName,
+    //     //   selectedAreaName: this.selectedOptionArea,
+    //     //   selectedAreaNameParent: this.selectedOptionParent,
+    //     //   rowDataTable: null,
+    //     //   objArea: this.objSelectedArea
+    //     // };
 
-        // this.onAddDropDown.emit(this.filterDataList);
+    //     // this.onAddDropDown.emit(this.filterDataList);
 
-      } else if ($(this.getName).is(':contains(Jio Center)')) {
-        this.columnDefs = [
-          {
-            headerName: "jio Center",
-            field: "jiocenter",
-            pinned: true,
-            width: 180
-          }, {
-            headerName: "Total Sites",
-            field: "totalsites",
-            width: 180
-          }, {
-            headerName: "Total Cells",
-            field: "totalcells",
-            width: 150
-          },
-          {
-            headerName: "4G-LTE Sites",
-            field: "sites4glte",
-            width: 150
-          },
-          {
-            headerName: "5G-NR Sites",
-            field: "sites5gnr",
-            width: 180
-          }
-        ];
-        this.httpClient
-          .get("assets/data/layers/table-view-data/table-jio-center.json")
-          .subscribe(data => {
-            this.rowData = data;
-          });
+    //   } else if ($(this.getName).is(':contains(Jio Center)')) {
+    //     this.columnDefs = [
+    //       {
+    //         headerName: "jio Center",
+    //         field: "jiocenter",
+    //         pinned: true,
+    //         width: 180
+    //       }, {
+    //         headerName: "Total Sites",
+    //         field: "totalsites",
+    //         width: 180
+    //       }, {
+    //         headerName: "Total Cells",
+    //         field: "totalcells",
+    //         width: 150
+    //       },
+    //       {
+    //         headerName: "4G-LTE Sites",
+    //         field: "sites4glte",
+    //         width: 150
+    //       },
+    //       {
+    //         headerName: "5G-NR Sites",
+    //         field: "sites5gnr",
+    //         width: 180
+    //       }
+    //     ];
+    //     this.httpClient
+    //       .get("assets/data/layers/table-view-data/table-jio-center.json")
+    //       .subscribe(data => {
+    //         this.rowData = data;
+    //       });
 
-        // this.filterDataList = {
-        //   selectedLayerName: this.selectedLayerTableName,
-        //   selectedAreaName: this.selectedOptionArea,
-        //   selectedAreaNameParent: this.selectedOptionParent,
-        //   rowDataTable: null,
-        //   objArea: this.objSelectedArea
-        // };
+    //     // this.filterDataList = {
+    //     //   selectedLayerName: this.selectedLayerTableName,
+    //     //   selectedAreaName: this.selectedOptionArea,
+    //     //   selectedAreaNameParent: this.selectedOptionParent,
+    //     //   rowDataTable: null,
+    //     //   objArea: this.objSelectedArea
+    //     // };
 
-        // this.onAddDropDown.emit(this.filterDataList);
+    //     // this.onAddDropDown.emit(this.filterDataList);
 
-      } else if ($(this.getName).is(':contains(Jio State)')) {
-        this.columnDefs = [
-          {
-            headerName: "R4G State",
-            field: "r4gstate",
-            pinned: true,
-            width: 150
-          }, {
-            headerName: "Total Sites",
-            field: "totalsites",
-            width: 180
-          }, {
-            headerName: "Total Cells",
-            field: "totalcells",
-            width: 150
-          },
-          {
-            headerName: "4G-LTE Sites",
-            field: "sites4glte",
-            width: 150
-          },
-          {
-            headerName: "5G-NR Sites",
-            field: "sites5gnr",
-            width: 180
-          }
-        ];
-        this.httpClient
-          .get("assets/data/layers/table-view-data/table-r4gstate.json")
-          .subscribe(data => {
-            this.rowData = data;
-          });
+    //   // } else if ($(this.getName).is(':contains(Jio State)')) {
+    //   //   this.columnDefs = [
+    //   //     {
+    //   //       headerName: "R4G State",
+    //   //       field: "r4gstate",
+    //   //       pinned: true,
+    //   //       width: 150
+    //   //     }, {
+    //   //       headerName: "Total Sites",
+    //   //       field: "totalsites",
+    //   //       width: 180
+    //   //     }, {
+    //   //       headerName: "Total Cells",
+    //   //       field: "totalcells",
+    //   //       width: 150
+    //   //     },
+    //   //     {
+    //   //       headerName: "4G-LTE Sites",
+    //   //       field: "sites4glte",
+    //   //       width: 150
+    //   //     },
+    //   //     {
+    //   //       headerName: "5G-NR Sites",
+    //   //       field: "sites5gnr",
+    //   //       width: 180
+    //   //     }
+    //   //   ];
+    //   //   this.httpClient
+    //   //     .get("assets/data/layers/table-view-data/table-r4gstate.json")
+    //   //     .subscribe(data => {
+    //   //       this.rowData = data;
+    //   //     });
 
-        // this.filterDataList = {
-        //   selectedLayerName: this.selectedLayerTableName,
-        //   selectedAreaName: this.selectedOptionArea,
-        //   selectedAreaNameParent: this.selectedOptionParent,
-        //   rowDataTable: null,
-        //   objArea: this.objSelectedArea
-        // };
+    //     // this.filterDataList = {
+    //     //   selectedLayerName: this.selectedLayerTableName,
+    //     //   selectedAreaName: this.selectedOptionArea,
+    //     //   selectedAreaNameParent: this.selectedOptionParent,
+    //     //   rowDataTable: null,
+    //     //   objArea: this.objSelectedArea
+    //     // };
 
-        // this.onAddDropDown.emit(this.filterDataList);
-      }
-    }, 500);
+    //     // this.onAddDropDown.emit(this.filterDataList);
+    //   }
+    // }, 500);
   }
 
   onGridReady(params) {
