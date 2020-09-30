@@ -276,7 +276,7 @@ export class MacroNominalService {
     }
     console.log("sideNavService", mainlayer.sideNavService);
     mainlayer.datashare.sendDataToSpider(data);
-    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
+    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(NominalViewComponent);
     mainlayer.componentRef = mainlayer.target.createComponent(nominalViewComponent);
   }
 
