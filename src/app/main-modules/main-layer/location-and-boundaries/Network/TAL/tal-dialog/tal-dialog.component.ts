@@ -7,14 +7,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
-// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
   selector: 'tal-dialog',
   templateUrl: './tal-dialog.component.html',
   styleUrls: ['./tal-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [ColorPickerService]
+  providers: [ColorPickerService]
 })
 export class TacNetworkDialogComponent implements OnInit {
   dialog: NavigationSettingsService;
