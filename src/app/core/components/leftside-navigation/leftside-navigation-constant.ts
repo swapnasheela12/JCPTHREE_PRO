@@ -789,7 +789,7 @@ const SITES_OnAir_lIST = [
         children: SITES_OnAir_4GHpodsc_lIST
     },
     {
-        name: 'Small Cell',
+        name: 'Outdoor Small Cell',
         link: 'JCP/Layers/OnAir/Small-Cell',
         eventName: 'sites-onAir-small-cell',
         children: SITES_OnAir_4GSmallCell_lIST
@@ -836,12 +836,6 @@ const SITES_Nominal_lIST = [
         link: 'JCP/Layers/Nominal/Hpodsc',
         eventName: 'sites-nominal-hpodsc',
         children: SITES_Nominal_4GHpodsc_lIST
-    },
-    {
-        name: 'Small Cell',
-        link: 'JCP/Layers/Nominal/Small-Cell',
-        eventName: 'sites-nominal-small-cell',
-        children: SITES_Nominal_4GSmallCell_lIST
     }
 ];
 
@@ -887,7 +881,7 @@ const SITES_Planned_lIST = [
         children: SITES_Planned_4GHpodsc_lIST
     },
     {
-        name: 'Small Cell',
+        name: 'Outdoor Small Cell',
         link: 'JCP/Layers/Planned/Small-Cell',
         eventName: 'sites-planned-small-cell',
         children: SITES_Planned_4GSmallCell_lIST
