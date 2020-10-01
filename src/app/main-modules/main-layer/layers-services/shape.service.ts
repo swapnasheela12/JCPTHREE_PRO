@@ -18,8 +18,8 @@ canvasLayerServiceData;
     return this.http.get('assets/data/layers/smallcell.json');
   }
   getNominalMacroData(): Observable<any> {
-    return this.http.get('/assets/data/layers/markerData.json');
-    // return this.http.get('/assets/data/layers/nominalSitesMacro.json');
+    // return this.http.get('/assets/data/layers/markerData.json');
+    return this.http.get('assets/data/layers/nominalSitesMacro.json');
   }
 
 }

@@ -91,10 +91,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      center: [25.0000, 79.0000],
-      //center:[19.04,72.90],
+      // center: [25.0000, 79.0000],
+      center:[19.04,72.90],
       zoomControl: false,
-      zoom: 5,
+      zoom: 17,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
