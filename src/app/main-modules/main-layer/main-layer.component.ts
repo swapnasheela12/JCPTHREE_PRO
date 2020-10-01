@@ -94,7 +94,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
       // center: [25.0000, 79.0000],
       center:[19.04,72.90],
       zoomControl: false,
-      zoom: 17,
+      zoom: 12,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
