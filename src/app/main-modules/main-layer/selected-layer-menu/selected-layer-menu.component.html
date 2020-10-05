@@ -1,4 +1,8 @@
 <div class="selectled-layer-menu">
+    <div class="selected-layers-title px-3 pb-1" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title">Selected Layer</div>
+        <div class="icon zmdi zmdi-close"></div>
+    </div>
     <div *ngFor="let item of listSelectedLayerArr; trackBy: trackByMethod" class="selectled-layer-menu-list px-3" fxLayout="row" fxLayoutAlign="space-between center">
         <div fxFlex="10">
             <span class="zmdi zmdi-portable-wifi"></span>

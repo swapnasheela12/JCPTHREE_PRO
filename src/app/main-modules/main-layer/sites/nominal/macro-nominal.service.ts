@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
 import * as createjs from 'createjs-module';
+//STEP 1: ADD THE MODULE 
+import * as preloadjs from 'preload-js';
 
 interface DataObject {
   [key: string]: any;
@@ -17,30 +19,29 @@ interface DataObject {
 })
 export class MacroNominalService {
 
-  ref;
-  map;
-  lib;
-  theMarker;
-  sitesValArr;
-  arrayOfSites: any = [];
-  siteData;
-  container;
-  _simplePopup;
-  _points;
+  public ref;
+  public map;
+  public lib;
+  public theMarker;
+  public sitesValArr;
+  public arrayOfSites: any = [];
+  public siteData;
+  public container;
+  public _simplePopup;
+  public _points;
   public pixelRatio: number = window.devicePixelRatio || 1;
   public hightlightCell: string;
   public selectionContainer: DataObject;
-  addtionalsector;
-  scaleMatrix;
-  _container;
-
-  stage;
-  _bounds;
-  zoomLevel;
-  _assetQueue = null;
-  _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
-  _siteImagePath = 'assets/images/Layers/';
-  _plannedSiteImageManifest = [{
+  public addtionalsector;
+  public scaleMatrix;
+  public _container;
+  public stage;
+  public _bounds;
+  public zoomLevel;
+  public _assetQueue = null;
+  public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
+  public _siteImagePath = 'assets/images/Layers/';
+  public _plannedSiteImageManifest = [{
     id: 'smallcellpetal',
     src: this._siteImagePath + '3-1.svg',
     type: createjs.LoadQueue.IMAGE
@@ -157,6 +158,8 @@ export class MacroNominalService {
       //KEEPING STAGE READY BY PASSING CANVAS LAYER OFFERED BY CANAVAS LIBRARY
       this.stage = new createjs.Stage(canvasElement);
 
+      createjs.Ticker.addEventListener("tick", this.stage);
+
       this.stage.enableDOMEvents(true);
       this.stage.enableMouseOver(50);
 
@@ -194,6 +197,9 @@ export class MacroNominalService {
       let shadow = new createjs.Shadow("rgba(0,0,0,0.2)", 1, 2, 5);
       let bounds = this.map.getBounds();
 
+      let preload = new preloadjs.LoadQueue(true);
+      preload.loadManifest(this._plannedSiteImageManifest,true);  
+
       for (const site in data) {
         let siteInner = data[site];
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
@@ -229,37 +235,17 @@ export class MacroNominalService {
               let cell = bandInner.siteArray[j];
               let id = cell.cellStatus == "Landmark Coverage" ? "smallcellpetalyellow" : "smallcellpetal";
 
-              let siteImage;
-              if (cell.cellStatus == "Landmark Coverage") {
-                siteImage = new createjs.Bitmap("assets/images/Layers/3.svg");
-              } else {
-                siteImage = new createjs.Bitmap("assets/images/Layers/3-1.svg");
-              }
-
-              siteImage.scaleX = 5.0;
-              siteImage.scaleY = 5.0;
-              siteImage.regX = 13.5;
-              siteImage.regY = 27;
-              siteImage['latlng'] = latlng;
-              siteImage['data'] = band;
-              siteImage['current'] = cell;
-
-
-
-              siteImage.addEventListener('click', function (evt) {
-                console.log(evt, "evt");
-
-                let target = evt;
-                // this.spiderViewFeature(evt); 
+              preload.on('complete', (event) => {
+                let payLoad = {
+                  preload:preload,
+                  latlng:latlng,
+                  band:band,
+                  cell:cell,
+                  siteContainer:siteContainer,
+                  id:id
+                };
+                this.loadSVGiconsOverCanvas(payLoad) 
               });
-              siteImage.addEventListener('click', function (evt) {
-                console.log(evt, "evt");
-
-                let target = evt;
-                // this.spiderViewFeature(evt); 
-              });
-
-              siteContainer.addChild(siteImage);
 
             }
 
@@ -295,6 +281,19 @@ export class MacroNominalService {
 
     }
 
+  }
+
+  loadSVGiconsOverCanvas(payLoad) {
+    let siteImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
+    siteImage.scaleX = 5.0;
+    siteImage.scaleY = 5.0;
+    siteImage.regX = 14.5;
+    siteImage.regY = 27;
+    // siteImage.rotation = angle;
+    siteImage['latlng'] = payLoad.latlng;
+    siteImage['data'] = payLoad.band;
+    siteImage['current'] = payLoad.cell;
+    payLoad.siteContainer.addChild(siteImage);
   }
 
   getPopup() {

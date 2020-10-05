@@ -309,7 +309,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
 
 
           var selectedLayerMenuListDialogRef = {
-            width: '250px',
+            width: '340px',
             position: { bottom: '310px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',
