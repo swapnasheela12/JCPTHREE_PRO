@@ -66,15 +66,15 @@
                     <div class="zmdi zmdi-delete"></div>
                 </div>
                 <div *ngIf="addNumberRage" class="customLegends-setting-type" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
-                    <div fxFlex="50">
-                        <mat-form-field class="example-full-width">
+                    <div class="px-3" fxFlex="50">
+                        <mat-form-field class="w-100">
                             <input matInput #nameMsg placeholder="Name" maxlength="25" value="3">
                             <mat-hint style="font-family: 'Lato Italic';font-size :10px" align="start">(Max.25 Characters)</mat-hint>
                             <mat-hint align="end">{{nameMsg.value.length}} / 25</mat-hint>
                         </mat-form-field>
                     </div>
-                    <div fxFlex="50">
-                        <mat-form-field class="example-full-width">
+                    <div class="px-3" fxFlex="50">
+                        <mat-form-field class="w-100">
                             <input matInput #nameMsgRange placeholder="Number of Range" value="33">
                             <mat-hint style="font-family: 'Lato Italic';font-size :10px" align="start">(Max. 2 Max. 9)</mat-hint>
                             <mat-hint align="end">{{nameMsgRange.value.length}} / 9</mat-hint>
