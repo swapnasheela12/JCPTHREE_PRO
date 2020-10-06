@@ -322,6 +322,21 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
             dialogRef.close();
           });
 
+          const selectedLayer = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
+            
+            console.log(data,"data????");
+            console.log(_map,"Layerssssss");
+            // canvasLayer.remove(_map);
+            const dataSelected = _datashare.currentMessage.subscribe((val) => {
+              console.log(val,"val");
+              
+              // this.selectedLayerArrList = val;
+              // this.countOfLayerSelected = this.selectedLayerArrList.length;
+              // container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+            });
+            
+          });
+
         }
         this._container = container;
         this._update();

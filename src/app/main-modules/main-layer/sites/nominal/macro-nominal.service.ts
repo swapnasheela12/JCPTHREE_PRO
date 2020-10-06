@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
 import * as createjs from 'createjs-module';
-//STEP 1: ADD THE MODULE 
 import * as preloadjs from 'preload-js';
 
 interface DataObject {
@@ -108,12 +107,16 @@ export class MacroNominalService {
     this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
       this.selectedLayerArrList = val;
+      // if (val.selected == false) {
+      //   canvasLayer.remove(this._map);
+      //   this.removeAllMarkers();
+      // }
       canvasLayer.remove(this._map);
       this.removeAllMarkers();
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.eventName == "sites-nominal-macro-macro4G") {
+        if (ele.eventName == "sites-nominal-macro-macro4G" && ele.selected == true) {
           this.boundariesData();
           return canvasLayer.addTo(this.map);
         }

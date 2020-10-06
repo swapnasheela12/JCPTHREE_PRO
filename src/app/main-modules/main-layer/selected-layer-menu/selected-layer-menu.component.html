@@ -3,16 +3,21 @@
         <div class="title">Selected Layer</div>
         <div class="icon zmdi zmdi-close"></div>
     </div>
-    <div *ngFor="let item of listSelectedLayerArr; trackBy: trackByMethod" class="selectled-layer-menu-list px-3" fxLayout="row" fxLayoutAlign="space-between center">
-        <div fxFlex="10">
-            <span class="zmdi zmdi-portable-wifi"></span>
+    <div *ngFor="let item of listSelectedLayerArr; trackBy: trackByMethod" class="selectled-layer-menu-list" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="right-icon" fxFlex="10">
+            <span class="zmdi zmdi-more-vert" style="padding-right: 2px;"></span>
+            <span class="zmdi zmdi-more-vert"></span>
         </div>
-        <div fxFlex="70">{{item.eventName}}</div>
+        <div fxFlex="60" class="selected-layer">{{item.eventName}}</div>
         <div fxFlex="10">
-            <span class="zmdi zmdi-eye-off"></span>
+            <span *ngIf="item.selected == true" class="zmdi zmdi-eye"></span>
+            <span *ngIf="item.selected == false" class="zmdi zmdi-eye-off"></span>
         </div>
         <div fxFlex="10">
-            <span class="zmdi zmdi-close"></span>
+            <span class="zmdi zmdi-tune"></span>
+        </div>
+        <div fxFlex="10" (click)="removeSelectedLayer(item)">
+            <span class="zmdi zmdi-close-circle"></span>
         </div>
     </div>
 </div>

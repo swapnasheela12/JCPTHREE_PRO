@@ -14,8 +14,20 @@
     .selectled-layer-menu-list {
         height: 40px;
         border-radius: 10px;
-        margin: 0 8px;
-        border: 1px solid rgba(0, 0, 0, 0.12);
+        margin: 0 8px 4px 8px;
+        background: rgba(0, 118, 214, 0.2);
+        color: #0070D7;
         text-align: center;
+        .right-icon {
+            font-size: 16px;
+        }
+        .selected-layer {
+            font-size: 14px;
+            font-family: Lato Regular;
+            white-space: pre;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
     }
 }
