@@ -104,10 +104,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      center: [25.0000, 79.0000],
-      //center:[19.04,72.90],
+      // center: [25.0000, 79.0000],
+      center:[19.04,72.90],
       zoomControl: false,
-      zoom: 5,
+      zoom: 12,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
@@ -351,7 +351,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
           var selectedLayerMenuListDialogRef = {
-            width: '250px',
+            width: '340px',
             position: { bottom: '310px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',
@@ -362,6 +362,21 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
           dialogRef.backdropClick().subscribe(_ => {
             dialogRef.close();
+          });
+
+          const selectedLayer = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
+            
+            console.log(data,"data????");
+            console.log(_map,"Layerssssss");
+            // canvasLayer.remove(_map);
+            const dataSelected = _datashare.currentMessage.subscribe((val) => {
+              console.log(val,"val");
+              
+              // this.selectedLayerArrList = val;
+              // this.countOfLayerSelected = this.selectedLayerArrList.length;
+              // container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+            });
+            
           });
 
         }

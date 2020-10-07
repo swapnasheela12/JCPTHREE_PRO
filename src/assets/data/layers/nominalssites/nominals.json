@@ -1,13 +1,11 @@
 {
     "site1800": null,
-    "site2300": [
-        {
+    "site2300": [{
             "circle": null,
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2303",
                     "cellid": 1182992,
                     "sectorid": 1,
@@ -318,8 +316,7 @@
             "longitude": 72.86402,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33658384,
                     "cellName": "SMC001",
                     "pci": 156,
@@ -362,19 +359,17 @@
             "longitude": 72.92693,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33720592,
-                    "cellName": "SMC001",
-                    "pci": 356,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742028910",
-                    "azimuth": 100,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33720592,
+                "cellName": "SMC001",
+                "pci": 356,
+                "currentStage": "HOTO",
+                "ecgi": "4058742028910",
+                "azimuth": 100,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -395,8 +390,7 @@
             "longitude": 72.92214,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33692176,
                     "cellName": "SMC001",
                     "pci": 21,
@@ -432,26 +426,23 @@
             "onAirScCount": 2,
             "smallCellNumber": 2,
             "plannedScCount": null
-        },
-        {
+        }, {
             "sapid": "I-MU-MUMB-OSC-3815",
             "latitude": 19.03798,
             "longitude": 72.84043,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33731088,
-                    "cellName": "SMC001",
-                    "pci": 225,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202B210",
-                    "azimuth": 130,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33731088,
+                "cellName": "SMC001",
+                "pci": 225,
+                "currentStage": "HOTO",
+                "ecgi": "405874202B210",
+                "azimuth": 130,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -472,19 +463,17 @@
             "longitude": 72.84512,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33663504,
-                    "cellName": "SMC001",
-                    "pci": 354,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874201AA10",
-                    "azimuth": 300,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33663504,
+                "cellName": "SMC001",
+                "pci": 354,
+                "currentStage": "HOTO",
+                "ecgi": "405874201AA10",
+                "azimuth": 300,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -505,19 +494,17 @@
             "longitude": 73.00449,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33643280,
-                    "cellName": "SMC001",
-                    "pci": 182,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742015B10",
-                    "azimuth": 40,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33643280,
+                "cellName": "SMC001",
+                "pci": 182,
+                "currentStage": "HOTO",
+                "ecgi": "4058742015B10",
+                "azimuth": 40,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -538,8 +525,7 @@
             "longitude": 72.85845,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33744656,
                     "cellName": "SMC001",
                     "pci": 63,
@@ -582,8 +568,7 @@
             "longitude": 72.90668,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33590544,
                     "cellName": "SMC001",
                     "pci": 148,
@@ -626,8 +611,7 @@
             "longitude": 72.84027,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33583888,
                     "cellName": "SMC001",
                     "pci": 236,
@@ -670,8 +654,7 @@
             "longitude": 72.85092,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33648144,
                     "cellName": "SMC001",
                     "pci": 262,
@@ -714,8 +697,7 @@
             "longitude": 72.84319,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33610256,
                     "cellName": "SMC001",
                     "pci": 222,
@@ -751,15 +733,13 @@
             "onAirScCount": 2,
             "smallCellNumber": 2,
             "plannedScCount": null
-        },
-        {
+        }, {
             "sapid": "I-MU-MUMB-OSC-0113",
             "latitude": 19.09928,
             "longitude": 72.85427,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33631504,
                     "cellName": "SMC001",
                     "pci": 2,
@@ -802,8 +782,7 @@
             "longitude": 72.8393,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33564944,
                     "cellName": "SMC001",
                     "pci": 138,
@@ -846,19 +825,17 @@
             "longitude": 72.83563,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33809936,
-                    "cellName": "SMC001",
-                    "pci": 35,
-                    "currentStage": "ATP_11B",
-                    "ecgi": "405874203E610",
-                    "azimuth": 240,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33809936,
+                "cellName": "SMC001",
+                "pci": 35,
+                "currentStage": "ATP_11B",
+                "ecgi": "405874203E610",
+                "azimuth": 240,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "ATP_11B",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -879,19 +856,17 @@
             "longitude": 72.87406,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33741328,
-                    "cellName": "SMC001",
-                    "pci": 313,
-                    "currentStage": "ATP_11B",
-                    "ecgi": "405874202DA10",
-                    "azimuth": 50,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33741328,
+                "cellName": "SMC001",
+                "pci": 313,
+                "currentStage": "ATP_11B",
+                "ecgi": "405874202DA10",
+                "azimuth": 50,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "ATP_11B",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -912,19 +887,17 @@
             "longitude": 72.91421,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33697040,
-                    "cellName": "SMC001",
-                    "pci": 196,
-                    "currentStage": "SCFT",
-                    "ecgi": "4058742022D10",
-                    "azimuth": 160,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33697040,
+                "cellName": "SMC001",
+                "pci": 196,
+                "currentStage": "SCFT",
+                "ecgi": "4058742022D10",
+                "azimuth": 160,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -945,19 +918,17 @@
             "longitude": 72.93506,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33692944,
-                    "cellName": "SMC001",
-                    "pci": 45,
-                    "currentStage": "ATP_11B",
-                    "ecgi": "4058742021D10",
-                    "azimuth": 240,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33692944,
+                "cellName": "SMC001",
+                "pci": 45,
+                "currentStage": "ATP_11B",
+                "ecgi": "4058742021D10",
+                "azimuth": 240,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "ATP_11B",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -978,19 +949,17 @@
             "longitude": 72.90787,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33708304,
-                    "cellName": "SMC001",
-                    "pci": 69,
-                    "currentStage": "ATP_11B",
-                    "ecgi": "4058742025910",
-                    "azimuth": 330,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33708304,
+                "cellName": "SMC001",
+                "pci": 69,
+                "currentStage": "ATP_11B",
+                "ecgi": "4058742025910",
+                "azimuth": 330,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "ATP_11B",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1011,8 +980,7 @@
             "longitude": 72.89431,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33667600,
                     "cellName": "SMC001",
                     "pci": 159,
@@ -1048,6 +1016,7 @@
                     "coeInfo": null,
                     "cellStatus": "HUC"
                 }
+
             ],
             "currentStage": "ATP_11B",
             "cvt": null,
@@ -1069,19 +1038,17 @@
             "longitude": 72.92072,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33726736,
-                    "cellName": "SMC001",
-                    "pci": 263,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202A110",
-                    "azimuth": 90,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33726736,
+                "cellName": "SMC001",
+                "pci": 263,
+                "currentStage": "HOTO",
+                "ecgi": "405874202A110",
+                "azimuth": 90,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1102,19 +1069,17 @@
             "longitude": 72.92354,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33725200,
-                    "cellName": "SMC001",
-                    "pci": 286,
-                    "currentStage": "SCFT",
-                    "ecgi": "4058742029B10",
-                    "azimuth": 60,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33725200,
+                "cellName": "SMC001",
+                "pci": 286,
+                "currentStage": "SCFT",
+                "ecgi": "4058742029B10",
+                "azimuth": 60,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1135,19 +1100,17 @@
             "longitude": 73.03906,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33737744,
-                    "cellName": "SMC001",
-                    "pci": 177,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202CC10",
-                    "azimuth": 280,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33737744,
+                "cellName": "SMC001",
+                "pci": 177,
+                "currentStage": "HOTO",
+                "ecgi": "405874202CC10",
+                "azimuth": 280,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1168,19 +1131,17 @@
             "longitude": 72.84251,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33674256,
-                    "cellName": "SMC001",
-                    "pci": 147,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874201D410",
-                    "azimuth": 230,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33674256,
+                "cellName": "SMC001",
+                "pci": 147,
+                "currentStage": "HOTO",
+                "ecgi": "405874201D410",
+                "azimuth": 230,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1201,8 +1162,7 @@
             "longitude": 72.89398,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33589520,
                     "cellName": "SMC001",
                     "pci": 292,
@@ -1245,8 +1205,7 @@
             "longitude": 72.90677,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33563920,
                     "cellName": "SMC001",
                     "pci": 212,
@@ -1289,8 +1248,7 @@
             "longitude": 72.84391,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33583376,
                     "cellName": "SMC001",
                     "pci": 184,
@@ -1333,8 +1291,7 @@
             "longitude": 73.02635,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33569552,
                     "cellName": "SMC001",
                     "pci": 44,
@@ -1377,8 +1334,7 @@
             "longitude": 72.84127,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33564432,
                     "cellName": "SMC001",
                     "pci": 274,
@@ -1421,19 +1377,17 @@
             "longitude": 72.84952,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33731344,
-                    "cellName": "SMC001",
-                    "pci": 61,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202B310",
-                    "azimuth": 150,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33731344,
+                "cellName": "SMC001",
+                "pci": 61,
+                "currentStage": "HOTO",
+                "ecgi": "405874202B310",
+                "azimuth": 150,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1454,19 +1408,17 @@
             "longitude": 72.90295,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33729296,
-                    "cellName": "SMC001",
-                    "pci": 171,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202AB10",
-                    "azimuth": 250,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33729296,
+                "cellName": "SMC001",
+                "pci": 171,
+                "currentStage": "HOTO",
+                "ecgi": "405874202AB10",
+                "azimuth": 250,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1487,8 +1439,7 @@
             "longitude": 72.91738,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33622032,
                     "cellName": "SMC001",
                     "pci": 285,
@@ -1531,19 +1482,17 @@
             "longitude": 72.90009,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33688592,
-                    "cellName": "SMC001",
-                    "pci": 158,
-                    "currentStage": "SCFT",
-                    "ecgi": "4058742020C10",
-                    "azimuth": 140,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33688592,
+                "cellName": "SMC001",
+                "pci": 158,
+                "currentStage": "SCFT",
+                "ecgi": "4058742020C10",
+                "azimuth": 140,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1564,19 +1513,17 @@
             "longitude": 72.93247,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33677328,
-                    "cellName": "SMC001",
-                    "pci": 64,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874201E010",
-                    "azimuth": 150,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33677328,
+                "cellName": "SMC001",
+                "pci": 64,
+                "currentStage": "HOTO",
+                "ecgi": "405874201E010",
+                "azimuth": 150,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1597,19 +1544,17 @@
             "longitude": 72.86279,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33657872,
-                    "cellName": "SMC001",
-                    "pci": 188,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742019410",
-                    "azimuth": 130,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33657872,
+                "cellName": "SMC001",
+                "pci": 188,
+                "currentStage": "HOTO",
+                "ecgi": "4058742019410",
+                "azimuth": 130,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1630,19 +1575,17 @@
             "longitude": 72.85483,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33752080,
-                    "cellName": "SMC001",
-                    "pci": 91,
-                    "currentStage": "ATP_11B",
-                    "ecgi": "4058742030410",
-                    "azimuth": 200,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33752080,
+                "cellName": "SMC001",
+                "pci": 91,
+                "currentStage": "ATP_11B",
+                "ecgi": "4058742030410",
+                "azimuth": 200,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "ATP_11B",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1663,19 +1606,17 @@
             "longitude": 72.90157,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33641232,
-                    "cellName": "SMC001",
-                    "pci": 90,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742015310",
-                    "azimuth": 240,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33641232,
+                "cellName": "SMC001",
+                "pci": 90,
+                "currentStage": "HOTO",
+                "ecgi": "4058742015310",
+                "azimuth": 240,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1696,19 +1637,17 @@
             "longitude": 72.93605,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33654800,
-                    "cellName": "SMC001",
-                    "pci": 314,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742018810",
-                    "azimuth": 60,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33654800,
+                "cellName": "SMC001",
+                "pci": 314,
+                "currentStage": "HOTO",
+                "ecgi": "4058742018810",
+                "azimuth": 60,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1729,19 +1668,17 @@
             "longitude": 72.85802,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33733648,
-                    "cellName": "SMC001",
-                    "pci": 116,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202BC10",
-                    "azimuth": 10,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33733648,
+                "cellName": "SMC001",
+                "pci": 116,
+                "currentStage": "HOTO",
+                "ecgi": "405874202BC10",
+                "azimuth": 10,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1762,19 +1699,17 @@
             "longitude": 72.92107,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33717264,
-                    "cellName": "SMC001",
-                    "pci": 12,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742027C10",
-                    "azimuth": 300,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33717264,
+                "cellName": "SMC001",
+                "pci": 12,
+                "currentStage": "HOTO",
+                "ecgi": "4058742027C10",
+                "azimuth": 300,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1795,19 +1730,17 @@
             "longitude": 72.92732,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33722640,
-                    "cellName": "SMC001",
-                    "pci": 330,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742029110",
-                    "azimuth": 140,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33722640,
+                "cellName": "SMC001",
+                "pci": 330,
+                "currentStage": "HOTO",
+                "ecgi": "4058742029110",
+                "azimuth": 140,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1828,19 +1761,17 @@
             "longitude": 72.84725,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33687056,
-                    "cellName": "SMC001",
-                    "pci": 47,
-                    "currentStage": "SCFT",
-                    "ecgi": "4058742020610",
-                    "azimuth": 270,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33687056,
+                "cellName": "SMC001",
+                "pci": 47,
+                "currentStage": "SCFT",
+                "ecgi": "4058742020610",
+                "azimuth": 270,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1861,19 +1792,17 @@
             "longitude": 72.89682,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33702928,
-                    "cellName": "SMC001",
-                    "pci": 76,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742024410",
-                    "azimuth": 20,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33702928,
+                "cellName": "SMC001",
+                "pci": 76,
+                "currentStage": "HOTO",
+                "ecgi": "4058742024410",
+                "azimuth": 20,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1894,19 +1823,17 @@
             "longitude": 72.92787,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33720848,
-                    "cellName": "SMC001",
-                    "pci": 197,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742028A10",
-                    "azimuth": 157,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33720848,
+                "cellName": "SMC001",
+                "pci": 197,
+                "currentStage": "HOTO",
+                "ecgi": "4058742028A10",
+                "azimuth": 157,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1927,19 +1854,17 @@
             "longitude": 72.8805,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33741072,
-                    "cellName": "SMC001",
-                    "pci": 237,
-                    "currentStage": "SCFT",
-                    "ecgi": "405874202D910",
-                    "azimuth": 100,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33741072,
+                "cellName": "SMC001",
+                "pci": 237,
+                "currentStage": "SCFT",
+                "ecgi": "405874202D910",
+                "azimuth": 100,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1960,19 +1885,17 @@
             "longitude": 72.84935,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33714704,
-                    "cellName": "SMC001",
-                    "pci": 16,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742027210",
-                    "azimuth": 180,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33714704,
+                "cellName": "SMC001",
+                "pci": 16,
+                "currentStage": "HOTO",
+                "ecgi": "4058742027210",
+                "azimuth": 180,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -1993,8 +1916,7 @@
             "longitude": 72.89535,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33728784,
                     "cellName": "SMC001",
                     "pci": 125,
@@ -2005,8 +1927,7 @@
                     "containInEson": false,
                     "coeInfo": null,
                     "cellStatus": "HUC"
-                },
-                {
+                }, {
                     "cellid": 33745886,
                     "cellName": "SMC002",
                     "pci": 179,
@@ -2031,6 +1952,7 @@
                     "cellStatus": "HUC"
                 }
             ],
+
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2051,19 +1973,17 @@
             "longitude": 73.01078,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33736464,
-                    "cellName": "SMC001",
-                    "pci": 355,
-                    "currentStage": "HOTO",
-                    "ecgi": "405874202C710",
-                    "azimuth": 90,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33736464,
+                "cellName": "SMC001",
+                "pci": 355,
+                "currentStage": "HOTO",
+                "ecgi": "405874202C710",
+                "azimuth": 90,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2084,19 +2004,17 @@
             "longitude": 73.01254,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33724944,
-                    "cellName": "SMC001",
-                    "pci": 57,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742029A10",
-                    "azimuth": 320,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33724944,
+                "cellName": "SMC001",
+                "pci": 57,
+                "currentStage": "HOTO",
+                "ecgi": "4058742029A10",
+                "azimuth": 320,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2117,8 +2035,7 @@
             "longitude": 72.84243,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33679888,
                     "cellName": "SMC001",
                     "pci": 125,
@@ -2129,8 +2046,7 @@
                     "containInEson": false,
                     "coeInfo": null,
                     "cellStatus": "HUC"
-                },
-                {
+                }, {
                     "cellid": 33745886,
                     "cellName": "SMC002",
                     "pci": 179,
@@ -2175,19 +2091,17 @@
             "longitude": 72.89588,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33644816,
-                    "cellName": "SMC001",
-                    "pci": 353,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742016110",
-                    "azimuth": 40,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33644816,
+                "cellName": "SMC001",
+                "pci": 353,
+                "currentStage": "HOTO",
+                "ecgi": "4058742016110",
+                "azimuth": 40,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2208,19 +2122,17 @@
             "longitude": 72.88371,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33707536,
-                    "cellName": "SMC001",
-                    "pci": 107,
-                    "currentStage": "SCFT",
-                    "ecgi": "4058742025610",
-                    "azimuth": 320,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33707536,
+                "cellName": "SMC001",
+                "pci": 107,
+                "currentStage": "SCFT",
+                "ecgi": "4058742025610",
+                "azimuth": 320,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "SCFT",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2241,8 +2153,7 @@
             "longitude": 72.89653,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33729808,
                     "cellName": "SMC001",
                     "pci": 6,
@@ -2252,8 +2163,7 @@
                     "smallCellStage": null,
                     "containInEson": false,
                     "coeInfo": null
-                },
-                {
+                }, {
                     "cellid": 33745804,
                     "cellName": "SMC002",
                     "pci": 179,
@@ -2296,8 +2206,7 @@
             "longitude": 72.83922,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33662736,
                     "cellName": "SMC001",
                     "pci": 125,
@@ -2308,8 +2217,7 @@
                     "containInEson": false,
                     "coeInfo": null,
                     "cellStatus": "HUC"
-                },
-                {
+                }, {
                     "cellid": 33745704,
                     "cellName": "SMC002",
                     "pci": 179,
@@ -2354,19 +2262,17 @@
             "longitude": 72.91447,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
-                    "cellid": 33646352,
-                    "cellName": "SMC001",
-                    "pci": 228,
-                    "currentStage": "HOTO",
-                    "ecgi": "4058742016710",
-                    "azimuth": 30,
-                    "smallCellStage": null,
-                    "containInEson": false,
-                    "coeInfo": null
-                }
-            ],
+            "siteArray": [{
+                "cellid": 33646352,
+                "cellName": "SMC001",
+                "pci": 228,
+                "currentStage": "HOTO",
+                "ecgi": "4058742016710",
+                "azimuth": 30,
+                "smallCellStage": null,
+                "containInEson": false,
+                "coeInfo": null
+            }],
             "currentStage": "HOTO",
             "cvt": null,
             "cvt_ActualEndDate": null,
@@ -2387,8 +2293,7 @@
             "longitude": 72.84194,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33582352,
                     "cellName": "SMC001",
                     "pci": 48,
@@ -2433,8 +2338,7 @@
             "longitude": 72.85822,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33747216,
                     "cellName": "SMC001",
                     "pci": 1,
@@ -2484,15 +2388,13 @@
             "onAirScCount": 3,
             "smallCellNumber": 3,
             "plannedScCount": null
-        },
-        {
+        }, {
             "sapid": "I-MU-MUMB-OSC-3618",
             "latitude": 19.02387,
             "longitude": 72.85808,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33746448,
                     "cellName": "SMC001",
                     "pci": 1,
@@ -2549,8 +2451,7 @@
             "longitude": 73.01138,
             "buildingRjid": null,
             "coordinates": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "cellid": 33752224,
                     "cellName": "SMC001",
                     "pci": 267,
@@ -2561,8 +2462,7 @@
                     "containInEson": false,
                     "coeInfo": null,
                     "cellStatus": "HUC"
-                },
-                {
+                }, {
                     "cellid": 33745704,
                     "cellName": "SMC002",
                     "pci": 179,
@@ -2600,14 +2500,12 @@
             "onAirScCount": 1,
             "smallCellNumber": 1,
             "plannedScCount": null
-        },
-        {
+        }, {
             "circle": null,
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2245",
                     "cellid": 259344,
                     "sectorid": 1,
@@ -2914,8 +2812,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2208",
                     "cellid": 1086480,
                     "sectorid": 1,
@@ -3222,8 +3119,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6822",
                     "cellid": 451088,
                     "sectorid": 1,
@@ -3530,8 +3426,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2308",
                     "cellid": 135696,
                     "sectorid": 1,
@@ -3838,8 +3733,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2273",
                     "cellid": 247568,
                     "sectorid": 1,
@@ -4146,8 +4040,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2056",
                     "cellid": 367376,
                     "sectorid": 1,
@@ -4451,8 +4344,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2019",
                     "cellid": 244752,
                     "sectorid": 1,
@@ -4759,8 +4651,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2014",
                     "cellid": 132368,
                     "sectorid": 1,
@@ -5067,8 +4958,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6864",
                     "cellid": 469008,
                     "sectorid": 1,
@@ -5375,8 +5265,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2700",
                     "cellid": 1113104,
                     "sectorid": 1,
@@ -5685,8 +5574,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I086",
                     "cellid": 464912,
                     "sectorid": 1,
@@ -5993,8 +5881,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0926",
                     "cellid": 1047312,
                     "sectorid": 1,
@@ -6301,8 +6188,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V182",
                     "cellid": 910864,
                     "sectorid": 1,
@@ -6609,8 +6495,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I114",
                     "cellid": 912144,
                     "sectorid": 1,
@@ -6917,8 +6802,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V218",
                     "cellid": 998416,
                     "sectorid": 1,
@@ -7225,8 +7109,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A180",
                     "cellid": 868368,
                     "sectorid": 1,
@@ -7533,8 +7416,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I221",
                     "cellid": 1072912,
                     "sectorid": 1,
@@ -7841,8 +7723,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I200",
                     "cellid": 1050384,
                     "sectorid": 1,
@@ -8149,8 +8030,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2265",
                     "cellid": 1175056,
                     "sectorid": 1,
@@ -8457,8 +8337,7 @@
             "jioCenter": "MU-NVMB-JC23-0023",
             "city": "NAVI MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-U040",
                     "cellid": 1105680,
                     "sectorid": 1,
@@ -8762,8 +8641,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-4353",
                     "cellid": 138256,
                     "sectorid": 1,
@@ -9094,8 +8972,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2344",
                     "cellid": 905744,
                     "sectorid": 1,
@@ -9402,8 +9279,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0617",
                     "cellid": 332560,
                     "sectorid": 1,
@@ -9710,8 +9586,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2184",
                     "cellid": 285968,
                     "sectorid": 1,
@@ -10018,8 +9893,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2239",
                     "cellid": 257552,
                     "sectorid": 1,
@@ -10326,8 +10200,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2259",
                     "cellid": 1086736,
                     "sectorid": 1,
@@ -10634,8 +10507,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2194",
                     "cellid": 1040144,
                     "sectorid": 1,
@@ -10942,8 +10814,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V221",
                     "cellid": 1048080,
                     "sectorid": 1,
@@ -11250,8 +11121,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V117",
                     "cellid": 656400,
                     "sectorid": 1,
@@ -11582,8 +11452,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-U098",
                     "cellid": 1160720,
                     "sectorid": 1,
@@ -11890,8 +11759,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2224",
                     "cellid": 162064,
                     "sectorid": 1,
@@ -12198,8 +12066,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0007",
                     "cellid": 1143056,
                     "sectorid": 1,
@@ -12506,8 +12373,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-U031",
                     "cellid": 1078288,
                     "sectorid": 1,
@@ -12814,8 +12680,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I075",
                     "cellid": 248336,
                     "sectorid": 1,
@@ -13122,8 +12987,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6574",
                     "cellid": 666384,
                     "sectorid": 1,
@@ -13454,8 +13318,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V102",
                     "cellid": 246032,
                     "sectorid": 1,
@@ -13786,8 +13649,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6803",
                     "cellid": 442128,
                     "sectorid": 1,
@@ -14094,8 +13956,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I033",
                     "cellid": 454672,
                     "sectorid": 1,
@@ -14426,8 +14287,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2264",
                     "cellid": 246800,
                     "sectorid": 1,
@@ -14734,8 +14594,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-U029",
                     "cellid": 1070864,
                     "sectorid": 1,
@@ -15042,8 +14901,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A088",
                     "cellid": 661264,
                     "sectorid": 1,
@@ -15374,8 +15232,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6892",
                     "cellid": 665872,
                     "sectorid": 1,
@@ -15706,8 +15563,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A045",
                     "cellid": 622864,
                     "sectorid": 1,
@@ -16038,8 +15894,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6969",
                     "cellid": 727824,
                     "sectorid": 1,
@@ -16370,8 +16225,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6825",
                     "cellid": 451856,
                     "sectorid": 1,
@@ -16678,8 +16532,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0265",
                     "cellid": 234768,
                     "sectorid": 1,
@@ -16986,8 +16839,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6894",
                     "cellid": 666896,
                     "sectorid": 1,
@@ -17318,8 +17170,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6874",
                     "cellid": 471568,
                     "sectorid": 1,
@@ -17650,8 +17501,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2304",
                     "cellid": 135184,
                     "sectorid": 1,
@@ -17982,8 +17832,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A184",
                     "cellid": 920848,
                     "sectorid": 1,
@@ -18290,8 +18139,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6872",
                     "cellid": 471056,
                     "sectorid": 1,
@@ -18622,8 +18470,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A204",
                     "cellid": 1133584,
                     "sectorid": 1,
@@ -18931,8 +18778,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6870",
                     "cellid": 470544,
                     "sectorid": 1,
@@ -19263,8 +19109,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6867",
                     "cellid": 469776,
                     "sectorid": 1,
@@ -19595,8 +19440,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0929",
                     "cellid": 920336,
                     "sectorid": 1,
@@ -19904,8 +19748,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V169",
                     "cellid": 876304,
                     "sectorid": 1,
@@ -20212,8 +20055,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A155",
                     "cellid": 849424,
                     "sectorid": 1,
@@ -20541,8 +20383,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6849",
                     "cellid": 460304,
                     "sectorid": 1,
@@ -20873,8 +20714,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6824",
                     "cellid": 451600,
                     "sectorid": 1,
@@ -21205,8 +21045,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A157",
                     "cellid": 647696,
                     "sectorid": 1,
@@ -21514,8 +21353,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6952",
                     "cellid": 718864,
                     "sectorid": 1,
@@ -21846,8 +21684,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2537",
                     "cellid": 249616,
                     "sectorid": 1,
@@ -22178,8 +22015,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A075",
                     "cellid": 677648,
                     "sectorid": 1,
@@ -22510,8 +22346,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0430",
                     "cellid": 238864,
                     "sectorid": 1,
@@ -22842,8 +22677,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2233",
                     "cellid": 133136,
                     "sectorid": 1,
@@ -23174,8 +23008,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2721",
                     "cellid": 171536,
                     "sectorid": 1,
@@ -23506,8 +23339,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6640",
                     "cellid": 634384,
                     "sectorid": 1,
@@ -23838,8 +23670,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2185",
                     "cellid": 254480,
                     "sectorid": 1,
@@ -24170,8 +24001,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6486",
                     "cellid": 605456,
                     "sectorid": 1,
@@ -24502,8 +24332,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6483",
                     "cellid": 604688,
                     "sectorid": 1,
@@ -24834,8 +24663,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2622",
                     "cellid": 136208,
                     "sectorid": 1,
@@ -25142,8 +24970,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2707",
                     "cellid": 350224,
                     "sectorid": 1,
@@ -25474,8 +25301,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2222",
                     "cellid": 245264,
                     "sectorid": 1,
@@ -25806,8 +25632,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6435",
                     "cellid": 580368,
                     "sectorid": 1,
@@ -26138,8 +25963,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6299",
                     "cellid": 393488,
                     "sectorid": 1,
@@ -26470,8 +26294,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6298",
                     "cellid": 393232,
                     "sectorid": 1,
@@ -26802,8 +26625,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6744",
                     "cellid": 425744,
                     "sectorid": 1,
@@ -27131,8 +26953,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6094",
                     "cellid": 715280,
                     "sectorid": 1,
@@ -27463,8 +27284,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V159",
                     "cellid": 912656,
                     "sectorid": 1,
@@ -27771,8 +27591,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6676",
                     "cellid": 408848,
                     "sectorid": 1,
@@ -28103,8 +27922,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6604",
                     "cellid": 721424,
                     "sectorid": 1,
@@ -28411,8 +28229,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-7052",
                     "cellid": 652304,
                     "sectorid": 1,
@@ -28743,8 +28560,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2219",
                     "cellid": 132880,
                     "sectorid": 1,
@@ -29075,8 +28891,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2706",
                     "cellid": 801040,
                     "sectorid": 1,
@@ -29407,8 +29222,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2701",
                     "cellid": 136464,
                     "sectorid": 1,
@@ -29739,8 +29553,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2272",
                     "cellid": 247312,
                     "sectorid": 1,
@@ -30071,8 +29884,7 @@
             "jioCenter": "MU-MUMB-JC05-0005",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0392",
                     "cellid": 119056,
                     "sectorid": 1,
@@ -30403,8 +30215,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6565",
                     "cellid": 464656,
                     "sectorid": 1,
@@ -30735,8 +30546,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-U050",
                     "cellid": 1075472,
                     "sectorid": 1,
@@ -31043,8 +30853,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V015",
                     "cellid": 580112,
                     "sectorid": 1,
@@ -31375,8 +31184,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2260",
                     "cellid": 246544,
                     "sectorid": 1,
@@ -31683,8 +31491,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2557",
                     "cellid": 249872,
                     "sectorid": 1,
@@ -32015,8 +31822,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6962",
                     "cellid": 724240,
                     "sectorid": 1,
@@ -32347,8 +32153,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-7021",
                     "cellid": 640016,
                     "sectorid": 1,
@@ -32679,8 +32484,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2270",
                     "cellid": 247056,
                     "sectorid": 1,
@@ -33011,8 +32815,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2703",
                     "cellid": 360720,
                     "sectorid": 1,
@@ -33343,8 +33146,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2261",
                     "cellid": 133904,
                     "sectorid": 1,
@@ -33675,8 +33477,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2283",
                     "cellid": 134416,
                     "sectorid": 1,
@@ -34007,8 +33808,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6829",
                     "cellid": 452624,
                     "sectorid": 1,
@@ -34339,8 +34139,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2632",
                     "cellid": 759312,
                     "sectorid": 1,
@@ -34671,8 +34470,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0120",
                     "cellid": 102672,
                     "sectorid": 1,
@@ -34979,8 +34777,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0519",
                     "cellid": 123152,
                     "sectorid": 1,
@@ -35311,8 +35108,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2623",
                     "cellid": 250128,
                     "sectorid": 1,
@@ -35643,8 +35439,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2230",
                     "cellid": 245520,
                     "sectorid": 1,
@@ -35975,8 +35770,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2715",
                     "cellid": 350480,
                     "sectorid": 1,
@@ -36307,8 +36101,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2000",
                     "cellid": 132112,
                     "sectorid": 1,
@@ -36639,8 +36432,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2223",
                     "cellid": 161808,
                     "sectorid": 1,
@@ -36965,8 +36757,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V155",
                     "cellid": 861456,
                     "sectorid": 1,
@@ -37273,8 +37064,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2018",
                     "cellid": 244496,
                     "sectorid": 1,
@@ -37602,8 +37392,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2619",
                     "cellid": 135952,
                     "sectorid": 1,
@@ -37910,8 +37699,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2534",
                     "cellid": 249360,
                     "sectorid": 1,
@@ -38242,8 +38030,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2704",
                     "cellid": 136720,
                     "sectorid": 1,
@@ -38574,8 +38361,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2242",
                     "cellid": 753936,
                     "sectorid": 1,
@@ -38906,8 +38692,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A144",
                     "cellid": 19216,
                     "sectorid": 1,
@@ -39238,8 +39023,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6879",
                     "cellid": 472848,
                     "sectorid": 1,
@@ -39570,8 +39354,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2009",
                     "cellid": 243728,
                     "sectorid": 1,
@@ -39902,8 +39685,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0965",
                     "cellid": 1062160,
                     "sectorid": 1,
@@ -40211,8 +39993,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V111",
                     "cellid": 479504,
                     "sectorid": 1,
@@ -40543,8 +40324,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6865",
                     "cellid": 469264,
                     "sectorid": 1,
@@ -40875,8 +40655,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2229",
                     "cellid": 347664,
                     "sectorid": 1,
@@ -41207,8 +40986,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0395",
                     "cellid": 238096,
                     "sectorid": 1,
@@ -41539,8 +41317,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-1198",
                     "cellid": 144912,
                     "sectorid": 1,
@@ -41871,8 +41648,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2215",
                     "cellid": 245008,
                     "sectorid": 1,
@@ -42203,8 +41979,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-1199",
                     "cellid": 759568,
                     "sectorid": 1,
@@ -42535,8 +42310,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2205",
                     "cellid": 132624,
                     "sectorid": 1,
@@ -42867,8 +42641,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A099",
                     "cellid": 161040,
                     "sectorid": 1,
@@ -43187,8 +42960,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A060",
                     "cellid": 982032,
                     "sectorid": 1,
@@ -43495,8 +43267,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2190",
                     "cellid": 369680,
                     "sectorid": 1,
@@ -43827,8 +43598,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-1848",
                     "cellid": 156944,
                     "sectorid": 1,
@@ -44135,8 +43905,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2183",
                     "cellid": 369424,
                     "sectorid": 1,
@@ -44467,8 +44236,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6876",
                     "cellid": 472080,
                     "sectorid": 1,
@@ -44799,8 +44567,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A032",
                     "cellid": 425488,
                     "sectorid": 1,
@@ -45131,8 +44898,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2012",
                     "cellid": 243984,
                     "sectorid": 1,
@@ -45463,8 +45229,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2705",
                     "cellid": 336400,
                     "sectorid": 1,
@@ -45795,8 +45560,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2249",
                     "cellid": 246288,
                     "sectorid": 1,
@@ -46127,8 +45891,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2016",
                     "cellid": 244240,
                     "sectorid": 1,
@@ -46459,8 +46222,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0266",
                     "cellid": 112656,
                     "sectorid": 1,
@@ -46767,8 +46529,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2013",
                     "cellid": 1053712,
                     "sectorid": 1,
@@ -47075,8 +46836,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2340",
                     "cellid": 248080,
                     "sectorid": 1,
@@ -47383,8 +47143,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6589",
                     "cellid": 682512,
                     "sectorid": 1,
@@ -47715,8 +47474,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-V095",
                     "cellid": 443408,
                     "sectorid": 1,
@@ -48047,8 +47805,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6871",
                     "cellid": 470800,
                     "sectorid": 1,
@@ -48379,8 +48136,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I298",
                     "cellid": 1148688,
                     "sectorid": 1,
@@ -48687,8 +48443,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6562",
                     "cellid": 463632,
                     "sectorid": 1,
@@ -49019,8 +48774,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A100",
                     "cellid": 457232,
                     "sectorid": 1,
@@ -49351,8 +49105,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2196",
                     "cellid": 19472,
                     "sectorid": 1,
@@ -49683,8 +49436,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-0254",
                     "cellid": 112144,
                     "sectorid": 1,
@@ -50015,8 +49767,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2257",
                     "cellid": 335888,
                     "sectorid": 1,
@@ -50347,8 +50098,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6823",
                     "cellid": 451344,
                     "sectorid": 1,
@@ -50679,8 +50429,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I053",
                     "cellid": 874768,
                     "sectorid": 1,
@@ -50987,8 +50736,7 @@
             "jioCenter": "MU-MUMB-JC11-0011",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6830",
                     "cellid": 452880,
                     "sectorid": 1,
@@ -51319,8 +51067,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-6855",
                     "cellid": 466192,
                     "sectorid": 1,
@@ -51648,8 +51395,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-A071",
                     "cellid": 471824,
                     "sectorid": 1,
@@ -51980,8 +51726,7 @@
             "jioCenter": "MU-MUMB-JC04-0004",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-I205",
                     "cellid": 1031952,
                     "sectorid": 1,
@@ -52288,8 +52033,7 @@
             "jioCenter": "MU-MUMB-JC12-0012",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2750",
                     "cellid": 886800,
                     "sectorid": 1,
@@ -52620,8 +52364,7 @@
             "jioCenter": "MU-MUMB-JC10-0010",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-2198",
                     "cellid": 19728,
                     "sectorid": 1,
@@ -52952,8 +52695,7 @@
             "jioCenter": "MU-MUMB-JC06-0006",
             "city": "MUMBAI",
             "polygon": null,
-            "siteArray": [
-                {
+            "siteArray": [{
                     "sapid": "I-MU-MUMB-ENB-1840",
                     "cellid": 803088,
                     "sectorid": 1,
@@ -53281,8 +53023,7 @@
         }
     ],
     "site850": null,
-    "overshooters": [
-        {
+    "overshooters": [{
             "severity": null,
             "jioCenterName": null,
             "stateCode": null,

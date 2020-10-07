@@ -1,3 +1,4 @@
+import { inputRendererComponent } from './../core/components/ag-grid-renders/input-renderer.component';
 import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
@@ -125,8 +126,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CustomLegendsComponent,
     ScreenshotPreviewComponent,
     colorDropdownRendererComponent,
+    inputRendererComponent,
     SelectedLayerMenuComponent,
-    ScreenshotPreviewComponent, colorDropdownRendererComponent,
+    ScreenshotPreviewComponent,
     ScreenshotPreviewComponent,
     SpiderComponent,
     SpiderViewComponent,
@@ -152,7 +154,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent,inputRendererComponent]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,
@@ -217,7 +219,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CreateReportComponent,
     ButtonRendererComponent,
     TableViewControlComponent,
-    colorDropdownRendererComponent
+    colorDropdownRendererComponent,
+    inputRendererComponent
   ],
   entryComponents: [
     CreateReportComponent,

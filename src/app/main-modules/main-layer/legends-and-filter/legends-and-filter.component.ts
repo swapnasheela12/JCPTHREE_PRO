@@ -80,7 +80,7 @@ export class LegendsAndFilterComponent implements OnInit {
   
 
   // ///////datepicker//////////
-  form = this.fb.group({
+  formDate = this.fb.group({
     selected: [
       {
         startDate: '2019-12-11T18:30:00.000Z',

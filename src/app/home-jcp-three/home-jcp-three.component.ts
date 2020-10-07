@@ -52,7 +52,7 @@ export class HomeJcpThreeComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
 
-  public lastIn:any = '';
+  public initialEnter:any = '';
   public currentPage:string = '';
   public timeSpentOnPages:DataObject = [];
   public moment:DataObject = moment;
@@ -89,16 +89,20 @@ export class HomeJcpThreeComponent implements OnInit {
     this.router.events.subscribe((event: any) => {
       if (!this.currentPage) {
         this.currentPage = event.url;
-        this.lastIn = Date.now();
+        this.initialEnter = Date.now();
       }
       if (this.currentPage !== event.url) {
-        const timeSpent = Date.now() - this.lastIn;
+        const timeSpent = Date.now() - this.initialEnter;
+        const timeLeave = Date.now();
+        const timeEnter = this.initialEnter;
         const pageInfo = {
           pageUrl: this.currentPage,
-          timeSpent
+          timeEnter,
+          timeSpent,
+          timeLeave
         }
         this.timeSpentOnPages.push(pageInfo);
-        this.lastIn = Date.now();
+        this.initialEnter = Date.now();
         this.currentPage = event.url;
       }
     })
@@ -125,3 +129,4 @@ export class HomeJcpThreeComponent implements OnInit {
     this.isHamburguer = !this.isHamburguer;
   }
 }
+
