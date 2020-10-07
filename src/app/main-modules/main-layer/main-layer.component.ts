@@ -61,9 +61,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService,
-    private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService
-  ) {
+    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
