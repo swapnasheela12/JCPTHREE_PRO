@@ -1,3 +1,4 @@
+import { Hpodsc4gService } from './sites/planned/hpodsc/hpodsc4g.service';
 import { MacroNominalService } from './sites/nominal/macro-nominal.service';
 import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
@@ -51,7 +52,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit,OnDestroy {
   public libCustomLayer;
   public dataShareSub: Subscription = new Subscription();
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient,private macroNominalService: MacroNominalService,private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
+    private http: HttpClient,private Hpodsc4gService:Hpodsc4gService ,private macroNominalService: MacroNominalService,private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
   ) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
