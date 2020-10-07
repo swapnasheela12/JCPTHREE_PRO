@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
+import { ImportKmlComponent } from './import-kml/import-kml.component'
+import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,11 +19,15 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js'
+import '../../../js/Leaflet.GoogleMutant.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
-import { MarcoService } from './sites/outdoor/macro/marco.service';
+
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import { SideNavService } from 'src/app/_services/side-nav.service';
+import { NodesAndBoundariesManagerService } from './sites/outdoor/macro/nodes-and-boundaries-manager.service';
+
 import 'leaflet-contextmenu';
+import { MatSidenav } from '@angular/material/sidenav';
 declare var $: any;
 
 @Component({
@@ -50,15 +56,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
+  public
   public dataShareSub: Subscription = new Subscription();
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService, private marcoService: MarcoService, private smallCellService: SmallCellService, private router: Router
+    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService) {
+    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
     this.macroNominalService.getReference(this);
+    console.log("sideNavService", this.sideNavService);
   }
 
   ngOnInit(): void {
@@ -71,6 +80,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.initMap();
     // this.markerService.makeCapitalMarkers(this.map);
+    this.nodesAndboundariesCall();
   }
 
   private initMap(): void {
@@ -159,6 +169,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           // callback: this.distanceMeasureFun
         },
+        {
+          text: 'Import KML',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
       ]
     }
     this.map = this.contextMenuLib.map('map', optionMap);
@@ -185,6 +201,28 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       dragMode: false,// drag and drop
     };
     this.map.pm.addControls(options);
+
+    this.map.on('pm:create', ({ marker }) => {
+      // marker.on('pm:vertexadded', e => {
+      //   console.log("e", e);
+      var screenshortListDialogRef = {
+        width: '578px',
+        height: '556px',
+        panelClass: "table-view-layers-dialog-container",
+      }
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      // });
+      marker.on('pm:snapdrag', e => {
+        console.log("e", e);
+        var screenshortListDialogRef = {
+          width: '575px',
+          height: '346px',
+          panelClass: "table-view-layers-dialog-container",
+        }
+        const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      });
+    });
+
     //geo json control
 
     //pan india zoom
@@ -472,6 +510,19 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //custome controller//
 
     this.shapeService.mapServiceData = this.map;
+  }
+
+  nodesAndboundariesCall() {
+    let paramdata = {
+      map: this.map,
+      targetElementSpiderView: this.target
+    }
+    //ADD LAYER FROM MACRO
+
+    this.nodesAndBoundariesManagerService.initialializeNodesAndBoundaries(paramdata)
+
+    //REMOVE LAYER FROM MACRO
+    //this.nodesAndBoundariesManagerService.removeCanvasFromMap();
   }
 
   ngOnDestroy() {
