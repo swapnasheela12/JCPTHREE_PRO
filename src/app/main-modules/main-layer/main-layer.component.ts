@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
-// import { ImportKmlComponent } from './import-kml/import-kml.component'
-// import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
+//import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +18,7 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js'
+import '../../../js/Leaflet.GoogleMutant.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
 
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
@@ -207,9 +207,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       var screenshortListDialogRef = {
         width: '578px',
         height: '556px',
+        background: '#FFFFFF 0% 0% no-repeat padding-box',
         panelClass: "table-view-layers-dialog-container",
       }
-      // const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      //  const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
       // });
       marker.on('pm:snapdrag', e => {
         console.log("e", e);
@@ -218,7 +219,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           height: '346px',
           panelClass: "table-view-layers-dialog-container",
         }
-        //    const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+        //const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
       });
     });
 
