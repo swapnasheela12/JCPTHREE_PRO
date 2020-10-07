@@ -100,6 +100,8 @@ import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Ji
 import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
 import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ImportKmlComponent } from './main-layer/import-kml/import-kml.component';
+import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +142,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
     TownBoundaryDialogComponent,
     ZonesJioDialogComponent,
     CandidatesComponent,
-    NominalMacroDialogComponent
+    NominalMacroDialogComponent,
+    ImportKmlComponent,
+    PinZoomComponent
   ],
   imports: [
     CommonModule,

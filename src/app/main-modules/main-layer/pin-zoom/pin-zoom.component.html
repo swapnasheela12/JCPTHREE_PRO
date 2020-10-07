@@ -1,0 +1,80 @@
+<div #container class="h-100">
+    <div class="toolbar-table-control-layers px-3" style="height: 50px;" fxLayout="row"
+        fxLayoutAlign="space-around center">
+        <div class="toolbar-table-control-title" fxLayout="row" fxLayoutAlign="start center" fxFlex>
+            <div>65, Dainik Janyug Society, Abhimanyu Apartment, Mumbai 400101</div>
+        </div>
+        <div class="toolbar-table-control-icon-list">
+            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="pinGroupDetails">
+        <div style="margin-top : 10px;">
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Pin Name</mat-label>
+                <input matInput value="Convert" formControlName="pinName">
+            </mat-form-field>
+
+            <div class="row-flex">
+                <mat-form-field class="example-full-width col-6">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput value="Convert" formControlName="latitude">
+                </mat-form-field>
+                <mat-form-field class="example-full-width col-6">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput value="Convert" formControlName="longitude">
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Comment</mat-label>
+                <input matInput value="Convert" formControlName="comment">
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+
+            <div style="margin-top: 10px;">
+                <label style="margin-left: 15px;">Add In</label>
+                <div class="check-selection" style="margin-left: 5px;">
+                    <mat-checkbox class="example-margin" formControlName="newGroup">New Group</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="existingGroup">Existing Group</mat-checkbox>
+                </div>
+
+                <mat-form-field class="example-full-width col-12">
+                    <mat-label>Group Name</mat-label>
+                    <input matInput value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
+                        formControlName="groupName">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <div fxLayout="row wrap" style="margin-bottom: 10px;">
+            <div class="mr-1 successful-text-button">
+                <button class=" success-butt" mat-stroked-button color="primary"
+                    style=" margin-left: 8px;">Cancel</button>
+            </div>
+            <div class="ml-1 successful-text-button">
+                <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;"
+                    (click)="createNewPinDetails()">Save</button>
+            </div>
+        </div>
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="successful-text-action-container" fxLayout="row">
+        <div class="mr-1 successful-text-button col-8">
+            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Reset to
+                Default</button>
+        </div>
+        <div class="mr-1 successful-text-button">
+            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Cancel</button>
+        </div>
+        <div class="ml-1 successful-text-button">
+            <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;">Save</button>
+        </div>
+    </div>
+</div>

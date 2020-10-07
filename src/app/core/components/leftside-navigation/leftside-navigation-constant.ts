@@ -1846,6 +1846,17 @@ const BASE_MAPS_LIST = [
     }
 ];
 
+const PINS_LIST_A = [
+    {
+        name: "pins",
+        icon: "fas fa-user fa-3",
+        link: "pins",
+        eventName: 'sites-outdoor-esc',
+        children: []
+    }
+];
+
+
 const MY_LAYERS_LIST = [
     {
         name: "KML",
@@ -1859,7 +1870,7 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: PINS_LIST_A
     },
     {
         name: "Polygons",
@@ -1876,6 +1887,7 @@ const MY_LAYERS_LIST = [
         children: []
     }
 ]
+
 
 const PREDICTION_LAYERS_LIST = [
     {
@@ -2638,3 +2650,4 @@ export const LEFTSIDE_MENU_LIST = [
         children: []
     }
 ];
+

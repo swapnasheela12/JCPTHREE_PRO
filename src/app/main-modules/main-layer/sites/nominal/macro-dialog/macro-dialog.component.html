@@ -1,130 +1,73 @@
 <ng-template #nominalMacroLayerSettings>
-  <div class="overflow-auto sites-nominal-macro-popup">
-  <section class="w-100 px-3">
-    <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Properities</label>
-    <div fxLayout="row" fxLayoutAlign="start center" class="py-2">
-      <div fxFlex="50">
-        <mat-form-field class="form-field-container" fxFlex="80">
-          <mat-select disableOptionCentering placeholder="Label" [(value)]="labelValue">
-            <mat-option value="Site ID" selected>Site ID</mat-option>
-            <mat-option value="Site Name">Site Name</mat-option>
-            <mat-option value="None">None</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxFlex="50">
-        <mat-form-field class="form-field-container" fxFlex="90">
-          <mat-select disableOptionCentering placeholder="Tower IP" [(value)]="towerIpValue">
-            <mat-option value="P1" selected>P1</mat-option>
-            <mat-option value="IP1">IP1</mat-option>
-            <mat-option value="RP1">RP1</mat-option>
-          </mat-select>
-        </mat-form-field>
+  <form fxLayout="column" fxLayoutAlign="start start" [formGroup]="macroDialogForm" class="form-macro-dialog">
+    <div>Layers</div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="100">
+        <mat-checkbox fxFlex="50" formControlName="outdoor" [disableRipple]="true" id="outdoor">
+          Outdoor
+        </mat-checkbox>
+        <mat-checkbox fxFlex="50" formControlName="indoor" [disableRipple]="true" id="indoor">
+          Indoor
+        </mat-checkbox>
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center" class="pb-2">
-      <div fxFlex="15">Opacity : </div>
-      <mat-slider fxFlex="75" class="example-margin mr-2" color="primary" max="100" min="0" #gridsize [value]="gridsize" thumbLabel="false">
-      </mat-slider>
-      <div fxFlex="10">{{gridsize.value}} %</div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="start center" class="py-2">
-      <div fxFlex="50">
-        <!-- <mat-form-field class="form-field-container" fxFlex="80">
-                <mat-select disableOptionCentering placeholder="Site Stages" [(value)]="siteStagesValue">
-                    <mat-checkbox [(ngModel)]="allSelected"
-                    [ngModelOptions]="{standalone: true}"
-                    (change)="toggleAllSelection()">Select All</mat-checkbox> -->
-        <!-- <mat-option value="Site ID" selected>Site ID</mat-option>
-                    <mat-option value="Site Name">Site Name</mat-option>
-                    <mat-option value="None">None</mat-option> -->
-        <!-- <mat-option (click)="optionClick()" *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-        <mat-form-field class="form-field-container" fxFlex="80">
-          <mat-select disableOptionCentering #select multiple [(value)]="siteStagesValue" placeholder="Site Stages">
-            <!-- <div class="select-all"> -->
-            <mat-checkbox [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}"
-              (change)="toggleAllSelection()">Select All</mat-checkbox>
-            <!-- </div> -->
-            <mat-option (click)="siteSatgesOptionClick()" *ngFor="let item of siteStagesList" [value]="item.value">
-              {{item.option}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxFlex="50">
-        <mat-form-field class="form-field-container" fxFlex="90">
-          <mat-select disableOptionCentering placeholder="Site Priority" [(value)]="sitePriorityValue">
-            <mat-option value="All" selected>All</mat-option>
-            <mat-option value="VIP">VIP</mat-option>
-            <mat-option value="VVIP">VVIP</mat-option>
-            <mat-option value="Airport">Airport</mat-option>
-            <mat-option value="Normal">Normal</mat-option>
-          </mat-select>
-        </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="100">
+        <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="start center">
+          <input type="hidden" formControlName="colorCoding" [value]="color" />
+          <div [style.background]="color" class="color-coding"></div>
+          <!-- <mat-icon class="zmdi zmdi-caret-down"
+            [(colorPicker)]="color"
+            [cpPosition]="'bottom'"></mat-icon> -->
+        </div>
+        <mat-checkbox fxFlex="50" formControlName="infillShades" [disableRipple]="true" id="infill-shades">
+          Infill Shades
+        </mat-checkbox>
       </div>
     </div>
-  </section>
+    <div fxLayout="row">
+      <div fxFlex="100">
+        Opacity
+        <mat-slider color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert" [max]="max"
+          [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity"
+          (input)="someValue = $event.value" [value]="someValue" [vertical]="vertical">
+        </mat-slider>
+        <div *ngIf="someValue" style="display: inline-flex;">{{ someValue }}%</div>
+      </div>
 
-  <mat-divider class="w-100" style="position: relative;"></mat-divider>
-  <section class="w-100 px-3">
-    <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Thematic</label>
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="">
-      <span>Data Type: </span>
-      <mat-form-field class="form-field-container" fxFlex="80">
-        <mat-select disableOptionCentering placeholder="" [(value)]="dataTypeValue">
-          <mat-option value="Default" selected>Default</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <!-- Opacity <ng5-slider class="opacity-slider" formControlName="opacity" [options]="options"></ng5-slider> -->
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center" class="pb-2">
-      <mat-checkbox fxFlex="25">Filter : </mat-checkbox>
-      <div fxFlex="50">
-        <mat-form-field class="form-field-container" fxFlex="70">
-          <mat-select disableOptionCentering placeholder="" [(value)]="filterDropdownValue">
-            <mat-option value="<" selected>
-              < </mat-option>
-                <mat-option value=">">></mat-option>
-                <mat-option value="=">=</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <mat-form-field class="example-form-field">
-        <input fxFlex="25" disabled matInput autocomplete="off" placeholder="" value="0">
-      </mat-form-field>
-    </div>
-  </section>
-  <mat-divider class="w-100" style="position: relative;"></mat-divider>
-  <section class="w-100 px-3">
-    <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Sites
-      Category</label>
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox fxFlex="35">Scope Sites</mat-checkbox>
-      <mat-checkbox fxFlex="35">Non-Scope Sites</mat-checkbox>
-    </div>
-  </section>
-  <mat-divider class="w-100" style="position: relative;"></mat-divider>
-  <section class="w-100 px-3">
-    <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Sites Status</label>
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox fxFlex="35">De-commissioned</mat-checkbox>
-      <mat-checkbox fxFlex="35">Commissioned</mat-checkbox>
-    </div>
-  </section>
-</div>
+
+    <!-- <mat-checkbox formControlName="opacity" [disableRipple]="true" id="opacity">
+      Opacity
+    </mat-checkbox> -->
+    <mat-select [(value)]="thematicListValue" placeholder="Thematic" disableOptionCentering
+      (openedChange)="openedChange($event)" formControlName="thematic">
+      <input matInput [(ngModel)]="searchThematicListValue" autocomplete="off" [ngModelOptions]="{standalone: true}"
+        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+      <mat-option *ngFor="let item of thematicList | filter:searchThematicListValue" [value]="item.thematic_name">
+        {{item.thematic_name}}
+      </mat-option>
+    </mat-select>
+    <mat-select [(value)]="hoverListValue" placeholder="Hover" disableOptionCentering
+      (openedChange)="openedChange($event)" formControlName="hover">
+      <input matInput [(ngModel)]="searchHoverListValue" autocomplete="off" [ngModelOptions]="{standalone: true}"
+        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+      <mat-option *ngFor="let item of hoverList | filter:searchHoverListValue" [value]="item.hover_name">
+        {{item.hover_name}}
+      </mat-option>
+    </mat-select>
+  </form>
   <mat-divider></mat-divider>
   <div mat-dialog-actions class="">
     <div class="ml-3">
       <button mat-stroked-button class="buttonWidth" (click)="closeDialog()">Reset</button>
     </div>
     <div class="col"></div>
-    <div class="mx-3">
+    <div class="mx10">
       <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
     </div>
-    <div class="mr-3">
+    <div class="mx10">
       <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
     </div>
   </div>

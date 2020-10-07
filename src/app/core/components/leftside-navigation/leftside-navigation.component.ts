@@ -42,7 +42,7 @@ export class LeftsideNavigationComponent implements OnInit {
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
   get data(): SideNavNode[] { return this.dataChange.value; }
-  
+
   dialog: NavigationSettingsService;
   /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
@@ -376,6 +376,11 @@ export class LeftsideNavigationComponent implements OnInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
+      // } else if (node.component == 'ImportKmlComponent') {
+      //   const { ImportKmlComponent } = await import('./../../../main-modules/main-layer/import-kml/import-kml.component');
+      //   this.viewContainerRef.createComponent(
+      //     this.cfr.resolveComponentFactory(ImportKmlComponent)
+      //   );
     }
   }
 }
