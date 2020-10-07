@@ -1,3 +1,4 @@
+import { inputRendererComponent } from './../../../../core/components/ag-grid-renders/input-renderer.component';
 
 import { colorDropdownRendererComponent } from './../../../../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { TableAgGridService } from '../../../../core/components/table-ag-grid/table-ag-grid.service';
@@ -38,7 +39,8 @@ export class CustomLegendsComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    colorDropdownRenderer: colorDropdownRendererComponent
+    colorDropdownRenderer: colorDropdownRendererComponent,
+    inputRenderer: inputRendererComponent
   };
   
   
@@ -102,6 +104,7 @@ export class CustomLegendsComponent implements OnInit {
       }, {
         headerName: "2G",
         field: "2g",
+        cellRenderer: 'inputRenderer',
         width: 140
       },
       {

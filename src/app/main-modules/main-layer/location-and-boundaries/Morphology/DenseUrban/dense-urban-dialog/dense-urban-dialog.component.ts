@@ -7,14 +7,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Options } from 'ng5-slider/options';
-// import { ColorPickerService, Cmyk } from 'ngx-color-picker'
+import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 @Component({
   selector: 'dense-urban-dialog',
   templateUrl: './dense-urban-dialog.component.html',
   styleUrls: ['./dense-urban-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [ColorPickerService]
+  providers: [ColorPickerService]
 })
 export class DenseUrbanDialogComponent implements OnInit {
   dialog: NavigationSettingsService;

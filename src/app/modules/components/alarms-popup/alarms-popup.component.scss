@@ -11,6 +11,16 @@
 //     color: #bb1b2f !important;
 //     background: red;
 // }
+.alarms-container {
+    .alarms-dialog-content {
+        .table-header {
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.54);
+            height: 50px;
+            line-height: 3;
+        }
+    }
+}
 
 .alarms-toolbar {
     background: #1976D2;

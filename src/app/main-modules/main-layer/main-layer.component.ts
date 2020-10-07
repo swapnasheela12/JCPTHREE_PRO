@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
-import { ImportKmlComponent } from './import-kml/import-kml.component'
-import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
+// import { ImportKmlComponent } from './import-kml/import-kml.component'
+// import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -19,7 +19,6 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js'
-import '../../../js/Leaflet.GoogleMutant.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
 
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
@@ -62,7 +61,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService,
+    private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService
+  ) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -105,10 +106,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       layers: [L.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
-      center: [25.0000, 79.0000],
-      //center:[19.04,72.90],
+      // center: [25.0000, 79.0000],
+      center: [19.04, 72.90],
       zoomControl: false,
-      zoom: 5,
+      zoom: 12,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [
@@ -210,7 +211,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         height: '556px',
         panelClass: "table-view-layers-dialog-container",
       }
-      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      // const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
       // });
       marker.on('pm:snapdrag', e => {
         console.log("e", e);
@@ -219,7 +220,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           height: '346px',
           panelClass: "table-view-layers-dialog-container",
         }
-        const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+        //    const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
       });
     });
 
@@ -351,7 +352,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
           var selectedLayerMenuListDialogRef = {
-            width: '250px',
+            width: '340px',
             position: { bottom: '310px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',
@@ -362,6 +363,21 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
           dialogRef.backdropClick().subscribe(_ => {
             dialogRef.close();
+          });
+
+          const selectedLayer = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
+
+            console.log(data, "data????");
+            console.log(_map, "Layerssssss");
+            // canvasLayer.remove(_map);
+            const dataSelected = _datashare.currentMessage.subscribe((val) => {
+              console.log(val, "val");
+
+              // this.selectedLayerArrList = val;
+              // this.countOfLayerSelected = this.selectedLayerArrList.length;
+              // container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
+            });
+
           });
 
         }

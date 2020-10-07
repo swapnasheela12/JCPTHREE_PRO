@@ -38,30 +38,28 @@ export class PropertiesComponent {
   selectedTab;
   @ViewChild('ngCircleMenu') ngCircleMenu;
   scope: any;
-  constructor(private dialogRef: MatDialogRef<PropertiesComponent>,
-    public dialog: MatDialog,) { }
+  constructor(private dialogRef: MatDialogRef<PropertiesComponent>, public dialog: MatDialog) { }
 
   showWifiBand() {
-    var width = 200;
-    var height = 200;
+    let width = 200;
+    let height = 200;
 
-    var svg = D3.select("#chart").append("svg");
+    let svg = D3.select("#chart").append("svg");
     svg.attr("width", width)
       .attr("height", height);
 
-    var dataset: any = [
+    let dataset: any = [
       { name: '850 Mhz', value: 11 },
       { name: '1800 Mhz', value: 13 },
       { name: '2300 Mhz', value: 18 }
     ];
 
-    var radius = width / 2;
-    var innerRadius = 0;
-    var arc: any = D3.arc()
+    let radius = width / 2;
+    let arc: any = D3.arc()
       .innerRadius(30)
       .outerRadius(radius);
 
-    var pie = D3.pie()
+    let pie = D3.pie()
       .startAngle(90 * Math.PI / 180)
       .endAngle(270 * Math.PI / 180)
       .value(function (d) {
@@ -70,7 +68,7 @@ export class PropertiesComponent {
       .padAngle(.05)
       .sort(null);
 
-    var arcs = svg.selectAll("g.arc")
+    let arcs = svg.selectAll("g.arc")
       .data(pie(dataset))
       .enter()
       .append("g")
@@ -78,7 +76,7 @@ export class PropertiesComponent {
       .attr("transform", "translate(" + radius + ", " + radius + ")");
 
     //Draw arc paths
-    var color = D3.scaleOrdinal(['white', 'white', 'white'])
+    let color = D3.scaleOrdinal(['white', 'white', 'white'])
     arcs.append("path")
       .attr("fill", function (d, i: any) {
         return color(i);
@@ -91,7 +89,7 @@ export class PropertiesComponent {
         this.showPropTabs = false;
       });
 
-    var newarc = D3.arc()
+    let newarc = D3.arc()
       .innerRadius(2 * radius / 3)
       .outerRadius(radius);
 

@@ -1,3 +1,4 @@
+import { inputRendererComponent } from './../ag-grid-renders/input-renderer.component';
 import { colorDropdownRendererComponent } from './../ag-grid-renders/color-dropdown-renderer.component';
 import { FormControl } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from './../ag-grid-renders/dropDownThreeDot-renderer.component';
@@ -35,6 +36,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
     viewHistroyRenderer: viewHistoryRendererComponent,
     colorDropdownRenderer: colorDropdownRendererComponent,
+    inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
     helpicon: GenhelpiconComponent
   };
