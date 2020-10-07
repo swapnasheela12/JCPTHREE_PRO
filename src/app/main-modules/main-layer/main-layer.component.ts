@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
+import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +18,7 @@ import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js'
+import '../../../js/Leaflet.GoogleMutant.js'
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
 
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
@@ -53,12 +55,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
+  public
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService,  private smallCellService: SmallCellService, private router: Router
+    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
     , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService,private nodesAndBoundariesManagerService:NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -165,6 +168,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           // callback: this.distanceMeasureFun
         },
+        {
+          text: 'Import KML',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
       ]
     }
     this.map = this.contextMenuLib.map('map', optionMap);
@@ -191,6 +200,29 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       dragMode: false,// drag and drop
     };
     this.map.pm.addControls(options);
+
+    this.map.on('pm:create', ({ marker }) => {
+      // marker.on('pm:vertexadded', e => {
+      //   console.log("e", e);
+      var screenshortListDialogRef = {
+        width: '578px',
+        height: '556px',
+        background: '#FFFFFF 0% 0% no-repeat padding-box',
+        panelClass: "table-view-layers-dialog-container",
+      }
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      // });
+      marker.on('pm:snapdrag', e => {
+        console.log("e", e);
+        var screenshortListDialogRef = {
+          width: '575px',
+          height: '346px',
+          panelClass: "table-view-layers-dialog-container",
+        }
+        const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+      });
+    });
+
     //geo json control
 
     //pan india zoom
@@ -480,10 +512,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.shapeService.mapServiceData = this.map;
   }
 
-  nodesAndboundariesCall(){
+  nodesAndboundariesCall() {
     let paramdata = {
       map: this.map,
-      targetElementSpiderView: this.target 
+      targetElementSpiderView: this.target
     }
     //ADD LAYER FROM MACRO
 
