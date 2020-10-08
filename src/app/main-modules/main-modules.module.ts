@@ -102,6 +102,7 @@ import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-di
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ImportKmlComponent } from './main-layer/import-kml/import-kml.component';
 import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
+import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
     CandidatesComponent,
     NominalMacroDialogComponent,
     ImportKmlComponent,
+    CmcSettingsPopupComponent,
     PinZoomComponent
   ],
   imports: [

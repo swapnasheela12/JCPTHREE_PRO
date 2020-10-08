@@ -1,3 +1,4 @@
+
 const MODULE_LIST_CONFIG_VENDOR = [
     {
         name: 'Node',
@@ -467,25 +468,29 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'CmcSettingsPopupComponent'
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'CmcSettingsPopupComponent'
     },
     {
         name: 'Unique Users',
         link: 'Unique-Users',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'CmcSettingsPopupComponent'
     },
     {
         name: 'Data Volume',
         link: 'Data-Volume',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: 'CmcSettingsPopupComponent'
     }
 ];
 
@@ -747,196 +752,82 @@ const MODULE_LIST_CHANGE_IMPACT = [
     }
 ];
 
-const SITES_OnAir_4GMacro_lIST = [
+const SITES_OUTDOOR_lIST = [
     {
-        name: '4G Macro',
-        link: 'JCP/Layers/OnAir/Macro/Macro4G',
-        eventName: 'sites-onAir-macro-macro4G',
+        name: 'Macro',
+        link: 'JCP/Layers/Macro',
+        eventName: 'sites-outdoor-macro',
         children: [],
-        parentToChild: 'Sites-OnAir-Macro-Macro4G'
-    }
-];
-const SITES_OnAir_4GHpodsc_lIST = [
-    {
-        name: '4G HP ODSC',
-        link: 'JCP/Layers/OnAir/Hpodsc/HPODSC4g',
-        eventName: 'sites-onAir-hpodsc-hPODSC4g',
-        children: [],
-        parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g'
-    }
-];
-const SITES_OnAir_4GSmallCell_lIST = [
-    {
-        name: '4G Small Cell',
-        link: 'JCP/Layers/OnAir/smallCell/smallCell4g',
-        eventName: 'sites-OnAir-smallCell-smallCell4g',
-        children: [],
-        parentToChild: 'Sites-OnAir-SmallCell-SmallCell4g'
-    }
-];
-
-const SITES_OnAir_lIST = [
-    {
-        name: "Macro",
-        link: "Macro",
-        eventName: 'sites-onAir-Macro',
-        children: SITES_OnAir_4GMacro_lIST
+        parentToChild: 'Sites-Outdoor-Macro'
     },
     {
-        name: 'Hpodsc',
-        link: 'JCP/Layers/OnAir/Hpodsc',
-        eventName: 'sites-onAir-hpodsc',
-        children: SITES_OnAir_4GHpodsc_lIST
+        name: 'ESC',
+        link: 'JCP/Layers/ESC',
+        eventName: 'sites-outdoor-esc',
+        children: [],
+        parentToChild: 'Sites-Outdoor-ESC'
     },
     {
-        name: 'Outdoor Small Cell',
-        link: 'JCP/Layers/OnAir/Small-Cell',
-        eventName: 'sites-onAir-small-cell',
-        children: SITES_OnAir_4GSmallCell_lIST
-    }
-];
-
-const SITES_Nominal_4GMacro_lIST = [
-    {
-        name: '4G Macro',
-        link: 'JCP/Layers/Nominal/Macro/Macro4G',
-        eventName: 'sites-nominal-macro-macro4G',
+        name: 'Small Cell',
+        link: 'JCP/Layers/Small-Cell',
+        eventName: 'sites-outdoor-small-cell',
         children: [],
-        parentToChild: 'Sites-Nominal-Macro-Macro4G',
-        component: 'NominalMacroDialogComponent'
+        parentToChild: 'Sites-Outdoor-Small-Cell'
     },
-];
-const SITES_Nominal_4GHpodsc_lIST = [
     {
-        name: '4G HP ODSC',
-        link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
-        eventName: 'sites-nominal-hpodsc-hPODSC4g',
+        name: 'Wi-Fi',
+        link: 'Wi-Fi',
+        eventName: 'sites-outdoor-wi-fi',
         children: [],
-        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g'
-    }
-];
-const SITES_Nominal_4GSmallCell_lIST = [
+        parentToChild: 'Sites-Outdoor-Wi-Fi'
+    },
     {
-        name: '4G Small Cell',
-        link: 'JCP/Layers/Nominal/smallCell/smallCell4g',
-        eventName: 'sites-Nominal-smallCell-smallCell4g',
+        name: 'Competitor',
+        link: 'Competitor',
+        eventName: 'sites-outdoor-competitor',
         children: [],
-        parentToChild: 'Sites-Nominal-SmallCell-SmallCell4g'
+        parentToChild: 'Sites-Outdoor-Competitor'
     }
 ];
 
 const SITES_Nominal_lIST = [
     {
-        name: "Macro",
-        link: "Macro",
-        eventName: 'sites-nominal-Macro',
-        children: SITES_Nominal_4GMacro_lIST
+        name: 'Macro',
+        link: 'JCP/Layers/Nominal/Macro',
+        eventName: 'sites-nominal-macro',
+        children: [],
+        parentToChild: 'Sites-Nominal-Macro',
+        component: 'NominalMacroDialogComponent'
     },
     {
-        name: 'Hpodsc',
-        link: 'JCP/Layers/Nominal/Hpodsc',
-        eventName: 'sites-nominal-hpodsc',
-        children: SITES_Nominal_4GHpodsc_lIST
-    }
-];
-
-const SITES_Planned_4GMacro_lIST = [
-    {
-        name: '4G Macro',
-        link: 'JCP/Layers/Planned/Macro/Macro4G',
-        eventName: 'sites-planned-macro-macro4G',
+        name: 'ESC',
+        link: 'JCP/Layers/ESC',
+        eventName: 'sites-outdoor-esc',
         children: [],
-        parentToChild: 'Sites-Planned-Macro-Macro4G'
-    }
-];
-const SITES_Planned_4GHpodsc_lIST = [
-    {
-        name: '4G HP ODSC',
-        link: 'JCP/Layers/Planned/Hpodsc/HPODSC4g',
-        eventName: 'sites-planned-hpodsc-hPODSC4g',
-        children: [],
-        parentToChild: 'Sites-Planned-Hpodsc-HPODSC4g'
-    }
-];
-const SITES_Planned_4GSmallCell_lIST = [
-    {
-        name: '4G Small Cell',
-        link: 'JCP/Layers/Planned/smallCell/smallCell4g',
-        eventName: 'sites-Planned-smallCell-smallCell4g',
-        children: [],
-        parentToChild: 'Sites-Planned-SmallCell-SmallCell4g'
-    }
-];
-
-const SITES_Planned_lIST = [
-    {
-        name: "Macro",
-        link: "Macro",
-        eventName: 'sites-planned-Macro',
-        children: SITES_Planned_4GMacro_lIST
+        parentToChild: 'Sites-Outdoor-ESC'
     },
     {
-        name: 'Hpodsc',
-        link: 'JCP/Layers/Planned/Hpodsc',
-        eventName: 'sites-planned-hpodsc',
-        children: SITES_Planned_4GHpodsc_lIST
+        name: 'Small Cell',
+        link: 'JCP/Layers/Small-Cell',
+        eventName: 'sites-outdoor-small-cell',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Small-Cell'
     },
     {
-        name: 'Outdoor Small Cell',
-        link: 'JCP/Layers/Planned/Small-Cell',
-        eventName: 'sites-planned-small-cell',
-        children: SITES_Planned_4GSmallCell_lIST
+        name: 'Wi-Fi',
+        link: 'Wi-Fi',
+        eventName: 'sites-outdoor-wi-fi',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Wi-Fi'
+    },
+    {
+        name: 'Competitor',
+        link: 'Competitor',
+        eventName: 'sites-outdoor-competitor',
+        children: [],
+        parentToChild: 'Sites-Outdoor-Competitor'
     }
 ];
-
-
-// const SITES_Nominal_lIST = [
-//     {
-//         name: 'Macro',
-//         link: 'JCP/Layers/Nominal/Macro',
-//         eventName: 'sites-nominal-macro',
-//         children: [],
-//         parentToChild: 'Sites-Nominal-Macro'
-//     },
-//     {
-//         name: 'HP ODSC',
-//         link: 'JCP/Layers/Nominal/Hpodsc',
-//         eventName: 'sites-nominal-Hpodsc',
-//         children: [],
-//         parentToChild: 'Sites-Nominal-Hpodsc'
-//     },
-//     {
-//         name: 'Small Cell',
-//         link: 'JCP/Layers/Nominal/Small-Cell',
-//         eventName: 'sites-nominal-small-cell',
-//         children: [],
-//         parentToChild: 'Sites-Nominal-Small-Cell'
-//     }
-// ];
-
-// const SITES_Planned_lIST = [
-//     {
-//         name: 'Macro',
-//         link: 'JCP/Layers/Planned/Macro',
-//         eventName: 'sites-planned-macro',
-//         children: [],
-//         parentToChild: 'Sites-Planned-Macro'
-//     },
-//     {
-//         name: 'HP ODSC',
-//         link: 'JCP/Layers/Planned/Hpodsc',
-//         eventName: 'sites-planned-Hpodsc',
-//         children: [],
-//         parentToChild: 'Sites-Planned-Hpodsc'
-//     },
-//     {
-//         name: 'Small Cell',
-//         link: 'JCP/Layers/Planned/Small-Cell',
-//         eventName: 'sites-planned-small-cell',
-//         children: [],
-//         parentToChild: 'Sites-Planned-Small-Cell'
-//     }
-// ];
 
 const ANALYTICS_SUBSCRIBER_LIST = [
     {
@@ -1675,18 +1566,18 @@ const MODULE_LIST_CONFIGURATION = [
 
 const SITES_LIST = [
     {
-        name: "On-Air",
+        name: "Outdoor",
         icon: "fas fa-user fa-3",
-        link: "onAir",
-        eventName: 'sites-OnAir-esc',
-        children: SITES_OnAir_lIST
+        link: "Outdoor",
+        eventName: 'sites-outdoor-esc',
+        children: SITES_OUTDOOR_lIST
     },
     {
-        name: "Planned",
+        name: "Indoor",
         icon: "fas fa-user fa-3",
-        link: "planned",
-        eventName: 'sites-planned-esc',
-        children: SITES_Planned_lIST
+        link: "indoor",
+        eventName: 'sites-outdoor-esc',
+        children: SITES_INDOOR_lIST
     },
     {
         name: "Nominal",
@@ -1871,7 +1762,7 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
-        children: PINS_LIST_A
+        children: []
     },
     {
         name: "Polygons",
@@ -1888,7 +1779,6 @@ const MY_LAYERS_LIST = [
         children: []
     }
 ]
-
 
 const PREDICTION_LAYERS_LIST = [
     {
@@ -2651,4 +2541,3 @@ export const LEFTSIDE_MENU_LIST = [
         children: []
     }
 ];
-

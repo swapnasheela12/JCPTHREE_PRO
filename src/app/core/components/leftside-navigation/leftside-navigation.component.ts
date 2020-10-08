@@ -396,5 +396,11 @@ export class LeftsideNavigationComponent implements OnInit {
         this.cfr.resolveComponentFactory(ImportKmlComponent)
       );
     }
+    else if (node.component == 'CmcSettingsPopupComponent') {
+      const { CmcSettingsPopupComponent } = await import('./../../../main-modules/main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(CmcSettingsPopupComponent)
+      );
+    }
   }
 }
