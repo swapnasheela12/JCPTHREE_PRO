@@ -39,14 +39,10 @@ export class MacroNominalService {
   public zoomLevel;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
-  public _siteImagePath = 'assets/images/Layers/';
+  public _siteImagePath = 'assets/images/Layers/macro-nominal/';
   public _plannedSiteImageManifest = [{
     id: 'smallcellpetal',
-    src: this._siteImagePath + '3-1.svg',
-    type: createjs.LoadQueue.IMAGE
-  }, {
-    id: 'smallcellpetalyellow',
-    src: this._siteImagePath + '3.svg',
+    src: this._siteImagePath + '0.svg',
     type: createjs.LoadQueue.IMAGE
   }]
 

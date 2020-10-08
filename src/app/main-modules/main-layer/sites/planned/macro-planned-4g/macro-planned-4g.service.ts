@@ -16,8 +16,7 @@ interface DataObject {
 @Injectable({
   providedIn: 'root'
 })
-export class Hpodsc4gService {
-
+export class MacroPlanned4gService {
   public ref;
   public map;
   public lib;
@@ -39,14 +38,9 @@ export class Hpodsc4gService {
   public zoomLevel;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
-  public _siteImagePath = 'assets/images/Layers/hpodsc4g/';
+  public _siteImagePath = 'assets/images/Layers/planned-macro/';
 
-  public _plannedSiteImageManifest = [{
-    id: 'smallcellpetal',
-    src: this._siteImagePath + '3.svg',
-    type: createjs.LoadQueue.IMAGE
-  }]
-
+  public _plannedSiteImageManifest = []
 
 
   constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
@@ -64,7 +58,7 @@ export class Hpodsc4gService {
   }
 
   public getJSON(): Observable<any> {
-    return this.http.get("assets/data/layers/plannedhpodsc4g/sites-hpodsc4g.json");
+    return this.http.get("assets/data/layers/planned-macro/sites-planned-macro.json");
   }
 
   redrawLayer() {
@@ -114,7 +108,7 @@ export class Hpodsc4gService {
         const ele = this.selectedLayerArrList[index];
         console.log(ele, "ele");
 
-        if (ele.link == "JCP/Layers/Planned/Hpodsc/HPODSC4g") {
+        if (ele.link == "JCP/Layers/Planned/Macro/Macro4G") {
           // this.boundariesData();
           console.log(canvasLayer.addTo(this.map), "canvasLayer.addTo(this.map)");
 
@@ -132,6 +126,16 @@ export class Hpodsc4gService {
 
     this.siteData = this.sitesValArr;
     let _pixelRatio: number = window.devicePixelRatio || 1;
+
+    for (var i = 0; i < 10; i++) {
+      this._plannedSiteImageManifest.push({
+        id: 'planned-' + i,
+        src: this._siteImagePath + i + '.svg',
+        type: createjs.LoadQueue.IMAGE
+      });
+      console.log(this._plannedSiteImageManifest, "this._plannedSiteImageManifest");
+
+    }
 
     if (typeof (this.siteData) === 'object' && this.siteData !== undefined) {
       //STAGE
@@ -185,8 +189,6 @@ export class Hpodsc4gService {
         let siteInner = data[site];
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
 
-
-
         // PLACING THE COORDINATES
         if (!(bounds.contains(latlng))) continue;
         let dot = this.map.latLngToContainerPoint(latlng);
@@ -210,44 +212,38 @@ export class Hpodsc4gService {
 
           for (let band in siteInner) {
             let bandInner = siteInner[band];
-            var percent = 0;
+            let percent = 0;
             let petalLength = bandInner.siteArray.length;
-            for (let j = 0, jCount = petalLength; j < jCount; j++) {
-              let cell = bandInner.siteArray[j];
-              // let id = cell.cellStatus == "purple" ? "planned-1" : "planned-2";
-              let id;
 
-              if (bandInner.cellStatus == "purple") {
-                id = "planned-1";
-              }
-              else if (bandInner.cellStatus == "darkblue") {
-                id = "planned-2";
-              }
-              else {
-                id = "smallcellpetal";
-              }
-              // var id = 'planned-' + percent;
-              preload.on('complete', (event) => {
-                let payLoad = {
-                  preload: preload,
-                  latlng: latlng,
-                  band: band,
-                  cell: cell,
-                  siteContainer: siteContainer,
-                  id: id
-                };
-                this.loadSVGiconsOverCanvas(payLoad)
-              });
+            for (var j = 0, jCount = bandInner.siteTask.length; j < jCount; j++) {
+              console.log(bandInner.siteTask, "d.siteTask");
 
-            }
+              if (bandInner.siteTask[j].status.toLowerCase() == 'close') {
+                console.log(bandInner.siteTask[j], "d.siteTask[j]");
+
+                percent++;
+              }
+            };
+
+            let id = 'planned-' + percent;
+
+            preload.on('complete', (event) => {
+              let payLoad = {
+                preload: preload,
+                latlng: latlng,
+                band: band,
+                cell: bandInner,
+                siteContainer: siteContainer,
+                id: id
+              };
+              this.loadSVGiconsOverCanvas(payLoad)
+            });
 
           }
 
           let label = new createjs.Text(siteInner[0].sapid, "bold 60px Lato-Medium", "#FFFFFF");
           label.textAlign = 'center';
-          //label.outline = 3;
           label.y = (scaleMatrix * 200) / this.pixelRatio;
-
           let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
