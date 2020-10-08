@@ -1,153 +1,56 @@
-<!-- <div #container class="h-100">
-    <div class="toolbar-table-control-layers px-3" style="height: 50px;" fxLayout="row"
-        fxLayoutAlign="space-around center">
-        <div class="toolbar-table-control-title" fxLayout="row" fxLayoutAlign="start center" fxFlex>
-            <div>KML Layers Setting</div>
+<ng-template #networkTalLayerSettings>
+    <form [formGroup]="macroDialogForm" class="form-macro-dialog px-3">
+
+        <div class="d-flex flex-row" style="margin-top: 10px;">
+            <mat-form-field class="example-full-width col-6" style="margin-top: 10px;">
+                <mat-label>Group Name</mat-label>
+                <input matInput value="Convert">
+            </mat-form-field>
+
+            <mat-form-field class="col-6">
+                <mat-label>Select Symbol</mat-label>
+                <mat-select [(value)]="selected2" [compareWith]="compareFn">
+                    <mat-select-trigger>
+                        <mat-icon class="selection-icon">{{selected2.icon}}</mat-icon>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let food of foods" [value]="food">
+                        <mat-icon>{{food.icon}}</mat-icon>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-        <div class="toolbar-table-control-icon-list">
-            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
-        </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div style="margin: 10px 5px;">
-        <form [formGroup]="importKMLGroup">
-            <div class="d-flex flex-row">
+        <label class="section-header">Properties</label>
 
-                <mat-form-field class="example-full-width col-6">
-                    <mat-label>Group Name</mat-label>
-                    <input matInput value="Convert">
-                </mat-form-field>
-
-                <mat-form-field class="col-6">
-                    <mat-select [(value)]="selected2" [compareWith]="compareFn">
-                        <mat-select-trigger>
-                            <mat-icon class="selection-icon">{{selected2.icon}}</mat-icon>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let food of foods" [value]="food">
-                            <mat-icon>{{food.icon}}</mat-icon>
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
-                    <label class="color-grey" fxFlex="45">Color Coding</label>
-                    <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
-                        <div [style.background]="color" class="color-coding"></div>
-                        <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="color" style="text-align: center;"
-                            [cpPosition]="'bottom'"></mat-icon>
-                    </div>
-                </div>
-
-                <mat-checkbox class="color-grey" fxFlex="50" formControlName="infillShades" [disableRipple]="true"
-                    id="infill-shades">
-                    Infill Shades
-                </mat-checkbox>
-            </div>
-
-            <div class="screenshort-container mx-2">
-                <div fxLayout="row" fxLayoutAlign="start center">
-                    <div fxFlex="15">Opacity</div>
-                    <mat-slider fxFlex="75" color="primary" class="opacity-slider" [disabled]="disabled"
-                        [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel"
-                        formControlName="opacity" (input)="someValue = $event.value" [value]="someValue"
-                        [vertical]="vertical">
-                    </mat-slider>
-                    <div fxFlex="10" class="color-grey ml-1">{{ someValue }}%</div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <mat-divider></mat-divider>
-
-    <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap">
-        <div class="mr-1 successful-text-button col-8">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Reset to
-                Default</button>
-        </div>
-        <div class="mr-1 successful-text-button">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Cancel</button>
-        </div>
-        <div class="ml-1 successful-text-button">
-            <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;">Save</button>
-        </div>
-    </div>
-</div> -->
-
-
-<ng-template #nominalMacroLayerSettings>
-    <form fxLayout="column" fxLayoutAlign="start start" [formGroup]="macroDialogForm" class="form-macro-dialog">
-        <div>Layers</div>
         <div fxLayout="row" fxLayoutAlign="start center">
-            <div fxFlex="100">
-                <mat-checkbox fxFlex="50" formControlName="outdoor" [disableRipple]="true" id="outdoor">
-                    Outdoor
-                </mat-checkbox>
-                <mat-checkbox fxFlex="50" formControlName="indoor" [disableRipple]="true" id="indoor">
-                    Indoor
-                </mat-checkbox>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="start center">
-            <div fxFlex="100">
-                <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="start center">
-                    <input type="hidden" formControlName="colorCoding" [value]="color" />
+            <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
+                <label class="color-grey" fxFlex="45">Color</label>
+                <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
                     <div [style.background]="color" class="color-coding"></div>
-                    <!-- <mat-icon class="zmdi zmdi-caret-down"
-              [(colorPicker)]="color"
-              [cpPosition]="'bottom'"></mat-icon> -->
+                    <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="color" style="text-align: center;"
+                        [cpPosition]="'bottom'"></mat-icon>
                 </div>
-                <mat-checkbox fxFlex="50" formControlName="infillShades" [disableRipple]="true" id="infill-shades">
-                    Infill Shades
-                </mat-checkbox>
             </div>
         </div>
-        <div fxLayout="row">
-            <div fxFlex="100">
-                Opacity
-                <mat-slider color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert" [max]="max"
-                    [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity"
-                    (input)="someValue = $event.value" [value]="someValue" [vertical]="vertical">
-                </mat-slider>
-                <div *ngIf="someValue" style="display: inline-flex;">{{ someValue }}%</div>
-            </div>
 
-            <!-- Opacity <ng5-slider class="opacity-slider" formControlName="opacity" [options]="options"></ng5-slider> -->
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="15">Opacity</div>
+            <mat-slider fxFlex="75" color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert"
+                [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity"
+                (input)="someValue = $event.value" [value]="someValue" [vertical]="vertical">
+            </mat-slider>
+            <div fxFlex="10" class="color-grey ml-1">{{ someValue }}%</div>
         </div>
-
-        <!-- <mat-checkbox formControlName="opacity" [disableRipple]="true" id="opacity">
-        Opacity
-      </mat-checkbox> -->
-        <mat-select [(value)]="thematicListValue" placeholder="Thematic" disableOptionCentering
-            (openedChange)="openedChange($event)" formControlName="thematic">
-            <input matInput [(ngModel)]="searchThematicListValue" autocomplete="off"
-                [ngModelOptions]="{standalone: true}" placeholder="Search..."
-                style="height: 48px !important;padding-left:15px">
-            <mat-option *ngFor="let item of thematicList | filter:searchThematicListValue" [value]="item.thematic_name">
-                {{item.thematic_name}}
-            </mat-option>
-        </mat-select>
-        <mat-select [(value)]="hoverListValue" placeholder="Hover" disableOptionCentering
-            (openedChange)="openedChange($event)" formControlName="hover">
-            <input matInput [(ngModel)]="searchHoverListValue" autocomplete="off" [ngModelOptions]="{standalone: true}"
-                placeholder="Search..." style="height: 48px !important;padding-left:15px">
-            <mat-option *ngFor="let item of hoverList | filter:searchHoverListValue" [value]="item.hover_name">
-                {{item.hover_name}}
-            </mat-option>
-        </mat-select>
     </form>
     <mat-divider></mat-divider>
     <div mat-dialog-actions class="">
-        <div class="mx10">
-            <button mat-stroked-button class="buttonWidth" (click)="closeDialog()">Reset</button>
+        <div class="mx-3">
+            <button mat-stroked-button class="buttonWidth w-100" (click)="closeDialog()">Reset To Defaults</button>
         </div>
         <div class="col"></div>
-        <div class="mx10">
+        <div class="mx-3">
             <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
         </div>
-        <div class="mx10">
+        <div class="mr-3">
             <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
         </div>
     </div>

@@ -84,6 +84,21 @@ export class LeftsideNavigationComponent implements OnInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
+
+    this.datashare.currentMessage.subscribe((data: any) => {
+      let addPin: any = {
+        name: data.pinName,
+        icon: "fas fa-user fa-3",
+        link: "Pins",
+        eventName: 'new-pin',
+        component: 'ImportKmlComponent'
+      };
+      console.log("data", LAYERS_DATA);
+      if (data) {
+        this.dataSource.data[9].children[1].children.push(addPin);
+        console.log("pins", this.dataSource.data[9].children[1].children);
+      }
+    });
   }
 
 
@@ -101,8 +116,7 @@ export class LeftsideNavigationComponent implements OnInit {
     return node.children;
   };
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
@@ -135,7 +149,7 @@ export class LeftsideNavigationComponent implements OnInit {
       if (index === maxIndex) {
         return ([true, index, arr]);
       }
-      if (data[i].children.length) {
+      if (data[i].children.length || data[i]) {
         let res = this.recNode(arr, data[i].children, index, maxIndex)
         index = res[1];
         if (res[0] === true) {
@@ -376,11 +390,11 @@ export class LeftsideNavigationComponent implements OnInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
-      // } else if (node.component == 'ImportKmlComponent') {
-      //   const { ImportKmlComponent } = await import('./../../../main-modules/main-layer/import-kml/import-kml.component');
-      //   this.viewContainerRef.createComponent(
-      //     this.cfr.resolveComponentFactory(ImportKmlComponent)
-      //   );
+    } else if (node.component == 'ImportKmlComponent') {
+      const { ImportKmlComponent } = await import('./../../../main-modules/main-layer/import-kml/import-kml.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(ImportKmlComponent)
+      );
     }
   }
 }

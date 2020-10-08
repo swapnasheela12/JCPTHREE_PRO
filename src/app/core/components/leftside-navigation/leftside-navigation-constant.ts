@@ -1848,11 +1848,12 @@ const BASE_MAPS_LIST = [
 
 const PINS_LIST_A = [
     {
-        name: "pins",
+        name: "Dummy",
         icon: "fas fa-user fa-3",
-        link: "pins",
-        eventName: 'sites-outdoor-esc',
-        children: []
+        link: "Pins",
+        eventName: 'new-pin',
+        children: [],
+        component: 'ImportKmlComponent'
     }
 ];
 

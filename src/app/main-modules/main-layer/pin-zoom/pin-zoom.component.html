@@ -52,29 +52,31 @@
         </div>
 
         <div fxLayout="row wrap" style="margin-bottom: 10px;">
+            <div class="col"></div>
             <div class="mr-1 successful-text-button">
                 <button class=" success-butt" mat-stroked-button color="primary"
-                    style=" margin-left: 8px;">Cancel</button>
+                    style=" margin-left: 8px;">Delete</button>
             </div>
             <div class="ml-1 successful-text-button">
-                <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;"
-                    (click)="createNewPinDetails()">Save</button>
+                <button class=" success-butt" mat-raised-button color="primary" style="margin: 0px 15px;"
+                    (click)="createNewPinDetails()">Apply</button>
             </div>
+
         </div>
     </form>
 
     <mat-divider></mat-divider>
 
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row">
-        <div class="mr-1 successful-text-button col-8">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Reset to
-                Default</button>
-        </div>
         <div class="mr-1 successful-text-button">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">Cancel</button>
+            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;">
+                <span class="zmdi zmdi-bookmark-outline"></span>Save All Pins
+            </button>
         </div>
-        <div class="ml-1 successful-text-button">
-            <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;">Save</button>
+        <div class="ml-1 successful-text-button" style="position: absolute; right: 0; margin-right: 10px;">
+            <button class=" success-butt" mat-raised-button color="primary" style=" margin: 0px3px;">
+                <span class="ic ic-download"></span>Export All Pins
+            </button>
         </div>
     </div>
 </div>

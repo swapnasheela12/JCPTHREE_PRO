@@ -1,12 +1,6 @@
-import { Component, OnInit, Inject, ViewChild, TemplateRef, ViewContainerRef, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
-import { LeftsideSettingsModelsData } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
-import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
-import { THEMATIC_LIST, HOVER_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
-import { Options } from 'ng5-slider/options';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { DataSharingService } from 'src/app/_services/data-sharing.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
@@ -24,7 +18,7 @@ export class PinZoomComponent implements OnInit {
     existingGroup: [true],
     groupName: ['ConvertCSV']
   });
-  constructor(private dialogRef: MatDialogRef<PinZoomComponent>, public dialog: MatDialog,
+  constructor(private dataShare: DataSharingService, private dialogRef: MatDialogRef<PinZoomComponent>, public dialog: MatDialog,
     private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data?: any,
   ) {
   }
@@ -45,6 +39,7 @@ export class PinZoomComponent implements OnInit {
 
   createNewPinDetails() {
     console.log("this.user", this.pinGroupDetails.value);
+    this.dataShare.changeMessage(this.pinGroupDetails.value);
   }
 
 }
