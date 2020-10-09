@@ -850,64 +850,64 @@ const ANALYTICS_SUBSCRIBER_LIST = [
     }
 ];
 
-const 
-LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST = [
-    {
-        name: 'Zones',
-        link: 'Zones',
-        eventName: 'sites-outdoor-esc',
-        children: [],
-        component: 'ZonesJioDialogComponent'
-    },
-    {
-        name: 'Circles',
-        link: 'Circles',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Focus Town',
-        link: 'Focus-Town',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Jio Centers',
-        link: 'Jio-Centers',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Jio Points',
-        link: 'Jio-Points',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Zones',
-        link: 'Zones',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Clusters',
-        link: 'Clusters',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'Maintenance Points',
-        link: 'Maintenance-Points',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    },
-    {
-        name: 'R4G States',
-        link: 'R4G-States',
-        eventName: 'sites-outdoor-esc',
-        children: []
-    }
-];
+const
+    LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST = [
+        {
+            name: 'Zones',
+            link: 'Zones',
+            eventName: 'sites-outdoor-esc',
+            children: [],
+            component: 'ZonesJioDialogComponent'
+        },
+        {
+            name: 'Circles',
+            link: 'Circles',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Focus Town',
+            link: 'Focus-Town',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Jio Centers',
+            link: 'Jio-Centers',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Jio Points',
+            link: 'Jio-Points',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Zones',
+            link: 'Zones',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Clusters',
+            link: 'Clusters',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'Maintenance Points',
+            link: 'Maintenance-Points',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        },
+        {
+            name: 'R4G States',
+            link: 'R4G-States',
+            eventName: 'sites-outdoor-esc',
+            children: []
+        }
+    ];
 
 const LOCATION_BOUNDRIES_NETWORK_LIST = [
     // {
@@ -1736,6 +1736,18 @@ const BASE_MAPS_LIST = [
         children: []
     }
 ];
+
+const PINS_LIST_A = [
+    {
+        name: "Dummy",
+        icon: "fas fa-user fa-3",
+        link: "Pins",
+        eventName: 'new-pin',
+        children: [],
+        component: 'ImportKmlComponent'
+    }
+];
+
 
 const MY_LAYERS_LIST = [
     {

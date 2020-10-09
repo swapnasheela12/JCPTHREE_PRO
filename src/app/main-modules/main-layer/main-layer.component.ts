@@ -1,3 +1,5 @@
+import { MacroPlanned4gService } from './sites/planned/macro-planned-4g/macro-planned-4g.service';
+import { Hpodsc4gService } from './sites/planned/hpodsc/hpodsc4g.service';
 import { MacroNominalService } from './sites/nominal/macro-nominal.service';
 import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
@@ -5,7 +7,7 @@ import { Router } from '@angular/router';
 import { ScreenshotPreviewComponent } from './screenshot-preview/screenshot-preview.component';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
-//import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
+import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -59,9 +61,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
-    , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
+    private sideNavService: SideNavService,private macroPlanned4gService :MacroPlanned4gService,private Hpodsc4gService:Hpodsc4gService , private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+
+ 
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -210,17 +213,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         background: '#FFFFFF 0% 0% no-repeat padding-box',
         panelClass: "table-view-layers-dialog-container",
       }
-      //  const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
-      // });
-      marker.on('pm:snapdrag', e => {
-        console.log("e", e);
-        var screenshortListDialogRef = {
-          width: '575px',
-          height: '346px',
-          panelClass: "table-view-layers-dialog-container",
-        }
-        //const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
-      });
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+    });
+    this.map.on('pm:snapdrag', e => {
+      console.log("e", e);
+      var screenshortListDialogRef = {
+        width: '575px',
+        height: '346px',
+        panelClass: "table-view-layers-dialog-container",
+      }
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
     });
 
     //geo json control
