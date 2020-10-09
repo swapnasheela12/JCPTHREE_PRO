@@ -485,8 +485,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         middle.onclick = function () {
           //console.log('buttonClicked_middle');
           var kpiDetailsListDialogRef = {
-            width: '740px',
-            height: '350px',
+            maxWidth: '700px',
+            height: '450px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',

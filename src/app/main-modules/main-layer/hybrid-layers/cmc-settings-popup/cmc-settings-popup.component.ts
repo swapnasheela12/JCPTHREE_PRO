@@ -34,7 +34,7 @@ export class CmcSettingsPopupComponent implements OnInit {
       template: this.hybridLayerCmcSettingsPopup
     }, {
       width: 536,
-      height:350,
+      height:440,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
