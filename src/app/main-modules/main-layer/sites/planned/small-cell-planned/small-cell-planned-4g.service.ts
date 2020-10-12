@@ -1,8 +1,7 @@
+import { ShapeService } from './../../../layers-services/shape.service';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Observable } from 'rxjs';
-import { DataSharingService } from './../../../../_services/data-sharing.service';
-import { ShapeService } from './../../layers-services/shape.service';
 import { MatDialog } from '@angular/material/dialog';
-// import { SpiderViewComponent } from './../../main-modules/main-layer/spider-view/spider-view.component';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
@@ -13,10 +12,11 @@ import * as preloadjs from 'preload-js';
 interface DataObject {
   [key: string]: any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
-export class MacroNominalService {
+export class SmallCellPlanned4gService {
 
   public ref;
   public map;
@@ -39,28 +39,32 @@ export class MacroNominalService {
   public zoomLevel;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
-  public _siteImagePath = 'assets/images/Layers/macro-nominal/';
+  public _siteImagePath = 'assets/images/Layers/smallCellPlanned/';
+
   public _plannedSiteImageManifest = [{
     id: 'smallcellpetal',
-    src: this._siteImagePath + '0.svg',
+    src: this._siteImagePath + '3.svg',
     type: createjs.LoadQueue.IMAGE
   }]
+
 
 
   constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
     this.ref = this;
     // this._map = this.shapeService.mapServiceData;
     this.lib = leaflayer();
+    console.log(this.lib, "lib");
     this.redrawLayer();
 
     this.getJSON().subscribe(data => {
+      console.log(data, "dataMMMMMMM");
       this.sitesValArr = data;
     });
 
   }
 
   public getJSON(): Observable<any> {
-    return this.http.get("assets/data/layers/nominalssites/nominals.json");
+    return this.http.get("assets/data/layers/plannedSmallCell/sites-smallCellPlanned.json");
   }
 
   redrawLayer() {
@@ -91,7 +95,7 @@ export class MacroNominalService {
     canvasLayer.on("layer-render", function () {
 
       let customLayerThis: any = this;
-      componentRef.sitesNominalLayerMap(customLayerThis);
+      componentRef.sitesSmallCellPlannedLayerMap(customLayerThis);
     });
 
     canvasLayer.on("layer-beforedestroy", function () { });
@@ -101,34 +105,33 @@ export class MacroNominalService {
     this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
       this.selectedLayerArrList = val;
-      
-      canvasLayer.remove(this._map);
+
+      canvasLayer.remove(this.map);
       this.removeAllMarkers();
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.eventName == "sites-nominal-macro-macro4G" && ele.selected == true) {
+        console.log(ele, "ele");
+
+        if (ele.link == "JCP/Layers/Planned/Hpodsc/HPODSC4g") {
           // this.boundariesData();
+          console.log(canvasLayer.addTo(this.map), "canvasLayer.addTo(this.map)");
+
           return canvasLayer.addTo(this.map);
         }
       }
     });
   }
 
-  // public states;
-  // public stateLayer: any;
-  // boundariesData() {
-  //   this.shapeService.getStateShapes().subscribe(states => {
-  //     this.states = states;
-  //   });
-
-  // }
-
-  sitesNominalLayer;
-  sitesNominalLayerMap(itemSitesMap) {
+  sitesSmallCellPlannedLayer;
+  sitesSmallCellPlannedLayerMap(itemSitesMap) {
+    console.log(itemSitesMap, "itemSitesMap");
     let canvasElement = this.resizeContainer(itemSitesMap);
+    console.log(canvasElement, "canvasElement");
 
     this.siteData = this.sitesValArr;
+    console.log(this.siteData,"this.siteData");
+    
     let _pixelRatio: number = window.devicePixelRatio || 1;
 
     if (typeof (this.siteData) === 'object' && this.siteData !== undefined) {
@@ -177,13 +180,13 @@ export class MacroNominalService {
       let bounds = this.map.getBounds();
 
       let preload = new preloadjs.LoadQueue(true);
-      preload.loadManifest(this._plannedSiteImageManifest,true);  
+      preload.loadManifest(this._plannedSiteImageManifest, true);
 
       for (const site in data) {
         let siteInner = data[site];
-        console.log(siteInner,"siteInner");
-        
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
+
+
 
         // PLACING THE COORDINATES
         if (!(bounds.contains(latlng))) continue;
@@ -202,44 +205,118 @@ export class MacroNominalService {
         siteContainer.scaleY = scaleMatrix;
         siteContainer.name = siteInner[0].sapid;
 
-        this._assetQueue = new createjs.LoadQueue(false, null, true);
-        this._assetQueue.loadManifest(this._plannedSiteImageManifest, true);
-        if (this.zoomLevel >= 12) {
+        var color = this._colors[0];
+        // if (siteInner.currentStage) {
+        //   switch (siteInner.currentStage) {
+        //     case 'INSTALLATION':
+        //       color = this._colors[1];
+        //       break;
+        //     case 'ATP11_A':
+        //       color = this._colors[2];
+        //       break;
+        //     case 'INTEGRATION':
+        //       color = this._colors[3];
+        //       break;
+        //     case 'ATP11_B':
+        //       color = this._colors[4];
+        //       break;
+        //     case 'SCFT':
+        //       color = this._colors[5];
+        //       break;
+        //     case 'EMF':
+        //       color = this._colors[6];
+        //       break;
+        //     case 'HOTO':
+        //       color = this._colors[7];
+        //       break;
+        //     default:
+        //       color = this._colors[0];
+        //   }
+        // }
 
-          for (let band in siteInner) {
-            let bandInner = siteInner[band];
+        var stageCircleGraphic = this.getCircleGraphics(color, 29);
+        var stageCircleShape = new createjs.Shape(stageCircleGraphic);
+        siteContainer.addChild(stageCircleShape);
 
-            let petalLength = bandInner.siteArray.length;
-            for (let j = 0, jCount = petalLength; j < jCount; j++) {
-              let cell = bandInner.siteArray[j];
-              let id = cell.cellStatus == "Landmark Coverage" ? "smallcellpetalyellow" : "smallcellpetal";
+        // var petalLength = d.siteArray.length;
+        // for (var j = 0, jCount = petalLength; j < jCount; j++) {
+        //   var cell = d.siteArray[j];
+        //   var angle = cell.azimuth - (20 / 2);
+        //   var siteImage = this._siteImagePetal.clone()
+        //   siteImage.regX = 10;
+        //   siteImage.regY = 20;
+        //   siteImage.rotation = angle;
+        //   siteImage.latlng = latlng;
+        //   siteImage.data = d;
+        //   siteImage.data.color = color;
+        //   siteImage.current = cell;
+        //   siteContainer.addChild(siteImage);
 
-              preload.on('complete', (event) => {
-                let payLoad = {
-                  preload:preload,
-                  latlng:latlng,
-                  band:band,
-                  cell:cell,
-                  siteContainer:siteContainer,
-                  id:id
-                };
-                this.loadSVGiconsOverCanvas(payLoad) 
-              });
 
-            }
+        //   siteImage.addEventListener('click', function (evt) {
+        //     var target = evt.target;
+        //     $timeout(function () {
+        //       currentMap.closePopup();
+        //       currentMap.invalidateSize()
+        //       currentMap.setView(target.latlng);
 
-          }
+        //       var scope = $rootScope.$new();
+        //       scope.currentcell = target.current;
+        //       scope.data = target.data;
 
-          let label = new createjs.Text(siteInner[0].sapid, "bold 60px Lato-Medium", "#FFFFFF");
+        //       scope.show = function () {
+        //         var parent = this._container.getChildByName(target.data.sapid);
+        //         parent.alpha = 1;
+        //         stage.update();
+        //       };
+
+        //       scope.hide = function () {
+        //         var parent = this._container.getChildByName(target.data.sapid);
+        //         parent.alpha = 0;
+        //         stage.update();
+        //       };
+
+        //       var mapElement = angular.element(currentMap.getContainer());
+        //       var mapParent = mapElement.parent();
+        //       var el = $compile('<div class="layers-maptreecontainer"><div class="layers-maptreecontainercenter" smallcellplannedoutdoorspider-view currentcell="currentcell" data="data" siteshow="show()" sitehide="hide()"></div></div>')(scope);
+        //       mapParent.prepend(el);
+        //       return false;
+        //     }, 300);
+        //   });
+
+
+        // }
+
+        // if (d.siteArray && d.siteArray.length > 1) {
+
+        //   var textContainer = new createjs.Container();
+        //   textContainer.x = stageCircleGraphic.command.radius;
+        //   textContainer.y = -(stageCircleGraphic.command.radius - circleGraphic.command.radius);
+
+        //   var circleCountClone = circleCountShape.clone();
+        //   textContainer.addChild(circleCountClone);
+
+        //   var label = new createjs.Text(d.siteArray.length, "bold 12px RobotoDraft", "#000000");
+        //   label.textAlign = 'center';
+        //   label.textBaseline = 'middle';
+        //   textContainer.addChild(label);
+
+        //   siteContainer.addChild(textContainer);
+        // }
+
+        if (this.zoomLevel >= 14) {
+          ;
+          var label = new createjs.Text(siteContainer.name, "bold 16px RobotoDraft", "#FFFFFF");
           label.textAlign = 'center';
-          //label.outline = 3;
-          label.y = (scaleMatrix * 200) / this.pixelRatio;
-
-          let outline = label.clone();
+          label.outline = 3;
+          // label.x = (siteImage.image.width / 2);
+          // label.y = stageCircleGraphic.command.radius + 2;
+          var outline = label.clone();
+          // outline.outline = false;
           outline.shadow = shadow;
           outline.color = '#000000';
-          siteContainer.addChild(label, outline);
 
+          siteContainer.addChild(label, outline);
         }
 
         bounds.extend(latlng);
@@ -300,7 +377,18 @@ export class MacroNominalService {
   };
 
   removeAllMarkers() {
-    
+
   }
+
+  getCircleGraphics = function (color, matrix) {
+    var g = new createjs.Graphics();
+    g.setStrokeStyle(1);
+    g.beginStroke(createjs.Graphics.getRGB(0, 0, 0, 0.5));
+    g.beginFill(color);
+    g.drawCircle(0, 0, matrix);
+    return g;
+  };
+
+
 
 }

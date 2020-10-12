@@ -1,3 +1,6 @@
+import { SmallCellPlanned4gService } from './sites/planned/small-cell-planned/small-cell-planned-4g.service';
+import { MacroPlanned4gService } from './sites/planned/macro-planned-4g/macro-planned-4g.service';
+import { Hpodsc4gService } from './sites/planned/hpodsc/hpodsc4g.service';
 import { MacroNominalService } from './sites/nominal/macro-nominal.service';
 import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
@@ -59,13 +62,14 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router
-    , private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
+    private sideNavService: SideNavService, private smallCellPlanned4gService :SmallCellPlanned4gService, private macroPlanned4gService :MacroPlanned4gService,private Hpodsc4gService:Hpodsc4gService , private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+
+ 
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
-    this.macroNominalService.getReference(this);
+    // this.macroNominalService.getReference(this);
     console.log("sideNavService", this.sideNavService);
   }
 
@@ -73,7 +77,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.libCustomLayer = leaflayer();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
-    this.macroNominalService.getReference(this);
+    // this.macroNominalService.getReference(this);
   }
 
   ngAfterViewInit() {

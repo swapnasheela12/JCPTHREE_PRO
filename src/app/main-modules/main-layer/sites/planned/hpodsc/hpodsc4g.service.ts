@@ -1,8 +1,7 @@
+import { ShapeService } from './../../../layers-services/shape.service';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Observable } from 'rxjs';
-import { DataSharingService } from './../../../../_services/data-sharing.service';
-import { ShapeService } from './../../layers-services/shape.service';
 import { MatDialog } from '@angular/material/dialog';
-// import { SpiderViewComponent } from './../../main-modules/main-layer/spider-view/spider-view.component';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
@@ -13,10 +12,11 @@ import * as preloadjs from 'preload-js';
 interface DataObject {
   [key: string]: any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
-export class MacroNominalService {
+export class Hpodsc4gService {
 
   public ref;
   public map;
@@ -39,31 +39,36 @@ export class MacroNominalService {
   public zoomLevel;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
-  public _siteImagePath = 'assets/images/Layers/macro-nominal/';
+  public _siteImagePath = 'assets/images/Layers/hpodsc4g/';
+
   public _plannedSiteImageManifest = [{
     id: 'smallcellpetal',
-    src: this._siteImagePath + '0.svg',
+    src: this._siteImagePath + '3.svg',
     type: createjs.LoadQueue.IMAGE
   }]
+
 
 
   constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
     this.ref = this;
     // this._map = this.shapeService.mapServiceData;
     this.lib = leaflayer();
+    console.log(this.lib, "lib");
     this.redrawLayer();
 
     this.getJSON().subscribe(data => {
+      console.log(data, "data");
       this.sitesValArr = data;
     });
 
   }
 
   public getJSON(): Observable<any> {
-    return this.http.get("assets/data/layers/nominalssites/nominals.json");
+    return this.http.get("assets/data/layers/plannedhpodsc4g/sites-hpodsc4g.json");
   }
 
   redrawLayer() {
+    console.log(this.shapeService, "this.shapeService");
     setTimeout(() => {
       this.draw();
     }, 1000);
@@ -91,7 +96,7 @@ export class MacroNominalService {
     canvasLayer.on("layer-render", function () {
 
       let customLayerThis: any = this;
-      componentRef.sitesNominalLayerMap(customLayerThis);
+      componentRef.siteshpodsc4GLayerMap(customLayerThis);
     });
 
     canvasLayer.on("layer-beforedestroy", function () { });
@@ -101,32 +106,29 @@ export class MacroNominalService {
     this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
       this.selectedLayerArrList = val;
-      
-      canvasLayer.remove(this._map);
+
+      canvasLayer.remove(this.map);
       this.removeAllMarkers();
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.eventName == "sites-nominal-macro-macro4G" && ele.selected == true) {
+        console.log(ele, "ele");
+
+        if (ele.link == "JCP/Layers/Planned/Hpodsc/HPODSC4g") {
           // this.boundariesData();
+          console.log(canvasLayer.addTo(this.map), "canvasLayer.addTo(this.map)");
+
           return canvasLayer.addTo(this.map);
         }
       }
     });
   }
 
-  // public states;
-  // public stateLayer: any;
-  // boundariesData() {
-  //   this.shapeService.getStateShapes().subscribe(states => {
-  //     this.states = states;
-  //   });
-
-  // }
-
-  sitesNominalLayer;
-  sitesNominalLayerMap(itemSitesMap) {
+  siteshpodsc4GLayer;
+  siteshpodsc4GLayerMap(itemSitesMap) {
+    console.log(itemSitesMap, "itemSitesMap");
     let canvasElement = this.resizeContainer(itemSitesMap);
+    console.log(canvasElement, "canvasElement");
 
     this.siteData = this.sitesValArr;
     let _pixelRatio: number = window.devicePixelRatio || 1;
@@ -177,13 +179,13 @@ export class MacroNominalService {
       let bounds = this.map.getBounds();
 
       let preload = new preloadjs.LoadQueue(true);
-      preload.loadManifest(this._plannedSiteImageManifest,true);  
+      preload.loadManifest(this._plannedSiteImageManifest, true);
 
       for (const site in data) {
         let siteInner = data[site];
-        console.log(siteInner,"siteInner");
-        
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
+
+
 
         // PLACING THE COORDINATES
         if (!(bounds.contains(latlng))) continue;
@@ -208,22 +210,33 @@ export class MacroNominalService {
 
           for (let band in siteInner) {
             let bandInner = siteInner[band];
-
+            var percent = 0;
             let petalLength = bandInner.siteArray.length;
             for (let j = 0, jCount = petalLength; j < jCount; j++) {
               let cell = bandInner.siteArray[j];
-              let id = cell.cellStatus == "Landmark Coverage" ? "smallcellpetalyellow" : "smallcellpetal";
+              // let id = cell.cellStatus == "purple" ? "planned-1" : "planned-2";
+              let id;
 
+              if (bandInner.cellStatus == "purple") {
+                id = "planned-1";
+              }
+              else if (bandInner.cellStatus == "darkblue") {
+                id = "planned-2";
+              }
+              else {
+                id = "smallcellpetal";
+              }
+              // var id = 'planned-' + percent;
               preload.on('complete', (event) => {
                 let payLoad = {
-                  preload:preload,
-                  latlng:latlng,
-                  band:band,
-                  cell:cell,
-                  siteContainer:siteContainer,
-                  id:id
+                  preload: preload,
+                  latlng: latlng,
+                  band: band,
+                  cell: cell,
+                  siteContainer: siteContainer,
+                  id: id
                 };
-                this.loadSVGiconsOverCanvas(payLoad) 
+                this.loadSVGiconsOverCanvas(payLoad)
               });
 
             }
@@ -300,7 +313,6 @@ export class MacroNominalService {
   };
 
   removeAllMarkers() {
-    
-  }
 
+  }
 }

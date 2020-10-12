@@ -802,9 +802,8 @@ const SITES_Nominal_4GMacro_lIST = [
         link: 'JCP/Layers/Nominal/Macro/Macro4G',
         eventName: 'sites-nominal-macro-macro4G',
         children: [],
-        parentToChild: 'Sites-Nominal-Macro-Macro4G',
-        component: 'NominalMacroDialogComponent'
-    },
+        parentToChild: 'Sites-Nominal-Macro-Macro4G'
+    }
 ];
 const SITES_Nominal_4GHpodsc_lIST = [
     {
@@ -1231,15 +1230,15 @@ const SITES_INDOOR_lIST = [
     }
 ];
 
-// const SITES_NOMINAL_lIST = [
-//     {
-//         name: 'Macro',
-//         link: 'Macro',
-//         eventName: 'sites-outdoor-esc',
-//         children: [],
-//         component: 'NominalMacroDialogComponent'
-//     },
-// ]
+const SITES_NOMINAL_lIST = [
+    {
+        name: 'Macro',
+        link: 'Macro',
+        eventName: 'sites-outdoor-esc',
+        children: [],
+        component: 'NominalMacroDialogComponent'
+    },
+]
 
 const PREDICTION_LAYERS_BAND_LIST = [
     {
@@ -1846,11 +1845,6 @@ const BASE_MAPS_LIST = [
     }
 ];
 
-const PINS_LIST_A = [
-
-];
-
-
 const MY_LAYERS_LIST = [
     {
         name: "KML",
@@ -1881,7 +1875,6 @@ const MY_LAYERS_LIST = [
         children: []
     }
 ]
-
 
 const PREDICTION_LAYERS_LIST = [
     {
@@ -2644,4 +2637,3 @@ export const LEFTSIDE_MENU_LIST = [
         children: []
     }
 ];
-
