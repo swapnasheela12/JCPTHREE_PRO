@@ -11,12 +11,12 @@ import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 import { DataSharingService } from 'src/app/_services/data-sharing.service'
 
 @Component({
-  selector: 'app-import-kml',
-  templateUrl: './import-kml.component.html',
-  styleUrls: ['./import-kml.component.scss'],
+  selector: 'app-pin-group-setting',
+  templateUrl: './pin-group-setting.component.html',
+  styleUrls: ['./pin-group-setting.component.scss'],
   providers: [ColorPickerService]
 })
-export class ImportKmlComponent implements OnInit {
+export class PinGroupSettingComponent implements OnInit {
   dialog: NavigationSettingsService;
   clickEventsubscription: Subscription;
   thematicList = THEMATIC_LIST;
@@ -90,7 +90,7 @@ export class ImportKmlComponent implements OnInit {
       template: this.networkTalLayerSettings
     }, {
       width: 540,
-      height: 450,
+      height: 320,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

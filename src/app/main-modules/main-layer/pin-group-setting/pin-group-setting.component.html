@@ -1,13 +1,13 @@
 <ng-template #networkTalLayerSettings>
-    <form [formGroup]="macroDialogForm" class="form-macro-dialog px-3">
+    <form [formGroup]="macroDialogForm" class="px-3">
 
         <div class="d-flex flex-row" style="margin-top: 10px;">
-            <mat-form-field class="example-full-width col-6" style="margin-top: 10px;">
+            <mat-form-field class="example-full-width col-6" style="padding: 0; line-height: 2;">
                 <mat-label>Group Name</mat-label>
                 <input matInput value="Convert">
             </mat-form-field>
 
-            <mat-form-field class="col-6">
+            <mat-form-field class="col-6" style="padding: 4px 0 0 10px;">
                 <mat-label>Select Symbol</mat-label>
                 <mat-select [(value)]="selected2" [compareWith]="compareFn">
                     <mat-select-trigger>

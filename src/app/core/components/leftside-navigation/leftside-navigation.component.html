@@ -21,7 +21,8 @@
         </a>
         <div *ngIf="item.children.length > 0 && item.name !='Layers'" class="listview-icons">
             <ul>
-                <li *ngFor="let item of item.children; let i= index; trackBy: navigationTrackBy" id="{{item.name.split(' ').join('_')}}">
+                <li *ngFor="let item of item.children; let i= index; trackBy: navigationTrackBy"
+                    id="{{item.name.split(' ').join('_')}}">
                     <ng-container [ngTemplateOutlet]="recursiveListTmpl" [ngTemplateOutletContext]="{item:item}">
                     </ng-container>
                 </li>
@@ -29,7 +30,7 @@
         </div>
 
         <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" #treeSelector>
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
                     matTreeNodePaddingIndent="0" (click)="onChecked(node.selected, node, activeCheckbox, 'no')"
                     (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"
@@ -52,7 +53,8 @@
                             </div>
                         </mat-checkbox>
                     </div>
-                    <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay (click)="openSettingsDialog(node, $event)">
+                    <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay
+                        (click)="openSettingsDialog(node, $event)">
                     </mat-icon>
                 </mat-tree-node>
                 <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle

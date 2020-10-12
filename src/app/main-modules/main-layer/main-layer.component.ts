@@ -86,7 +86,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     //marker code
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
-    const iconUrl = 'assets/images/Layers/3-1.svg';
+    const iconUrl = 'assets/images/Layers/pin-drop.svg';
     const iconDefault = L.icon({
       iconRetinaUrl,
       iconUrl,
@@ -201,22 +201,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     this.map.pm.addControls(options);
 
-    this.map.on('pm:create', ({ marker }) => {
-      // marker.on('pm:vertexadded', e => {
-      //   console.log("e", e);
+    this.map.on('pm:create', (e) => {
+      e.layer.on('pm:edit', ({ layer }) => {
+        console.log("layer", layer)
+      });
       var screenshortListDialogRef = {
         width: '578px',
-        height: '556px',
-        background: '#FFFFFF 0% 0% no-repeat padding-box',
-        panelClass: "table-view-layers-dialog-container",
-      }
-      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
-    });
-    this.map.on('pm:snapdrag', e => {
-      console.log("e", e);
-      var screenshortListDialogRef = {
-        width: '575px',
-        height: '346px',
+        height: '515px',
         panelClass: "table-view-layers-dialog-container",
       }
       const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);

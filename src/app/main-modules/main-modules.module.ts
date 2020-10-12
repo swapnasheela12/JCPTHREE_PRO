@@ -100,9 +100,9 @@ import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Ji
 import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
 import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { ImportKmlComponent } from './main-layer/import-kml/import-kml.component';
 import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
 import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component';
+import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-group-setting.component';
 
 @NgModule({
   declarations: [
@@ -144,9 +144,9 @@ import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settin
     ZonesJioDialogComponent,
     CandidatesComponent,
     NominalMacroDialogComponent,
-    ImportKmlComponent,
     CmcSettingsPopupComponent,
-    PinZoomComponent
+    PinZoomComponent,
+    PinGroupSettingComponent
   ],
   imports: [
     CommonModule,
@@ -160,7 +160,7 @@ import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settin
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent,inputRendererComponent]),
+    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent, inputRendererComponent]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,

@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulatio
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
+import { MatTreeFlattener, MatTreeFlatDataSource, MatTree } from '@angular/material/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 
@@ -41,6 +41,9 @@ export class LeftsideNavigationComponent implements OnInit {
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
+  dontUpdateTree: boolean = true;
+  updateTree: boolean = false;
+  @ViewChild('treeSelector') tree;
   get data(): SideNavNode[] { return this.dataChange.value; }
 
   dialog: NavigationSettingsService;
@@ -56,6 +59,7 @@ export class LeftsideNavigationComponent implements OnInit {
       }
     }
   }
+
 
   private transformer = (node: SideNavNode, level: number) => {
     return {
@@ -84,21 +88,6 @@ export class LeftsideNavigationComponent implements OnInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
-
-    this.datashare.currentMessage.subscribe((data: any) => {
-      let addPin: any = {
-        name: data.pinName,
-        icon: "fas fa-user fa-3",
-        link: "Pins",
-        eventName: 'new-pin',
-        component: 'ImportKmlComponent'
-      };
-      console.log("data", LAYERS_DATA);
-      if (data) {
-        this.dataSource.data[9].children[1].children.push(addPin);
-        console.log("pins", this.dataSource.data[9].children[1].children);
-      }
-    });
   }
 
 
@@ -116,7 +105,29 @@ export class LeftsideNavigationComponent implements OnInit {
     return node.children;
   };
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.datashare.currentMessage.subscribe((data: any) => {
+      let addPin: any = {
+        name: data.pinName,
+        icon: "fas fa-user fa-3",
+        link: "Pins",
+        eventName: 'new-pin',
+        component: 'PinGroupSettingComponent'
+      };
+
+      if (data.pinName) {
+        let dataSource = this.dataSource.data;
+        dataSource[9].children[1].children.push(addPin);
+        //this.dataSource.data = [];
+        console.log("this.dataSource.data", this.dataSource.data);
+        this.dataSource.data = dataSource;
+        //  this.tree.renderNodeChanges();
+        console.log("pins", this.dataSource.data);
+      }
+    });
+  }
+
+  ngOnChanges() { }
 
   layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
@@ -149,14 +160,14 @@ export class LeftsideNavigationComponent implements OnInit {
       if (index === maxIndex) {
         return ([true, index, arr]);
       }
-      if (data[i].children.length || data[i]) {
-        let res = this.recNode(arr, data[i].children, index, maxIndex)
-        index = res[1];
-        if (res[0] === true) {
-          arr.splice(0, 0, (i !== (data.length - 1)));
-          return ([true, index, arr]);
-        }
-      }
+      //if (data[i].children.length || data[i]) {
+      let res = this.recNode(arr, data[i].children, index, maxIndex)
+      index = res[1];
+      //  if (res[0] === true) {
+      arr.splice(0, 0, (i !== (data.length - 1)));
+      return ([true, index, arr]);
+      //  }
+      // }
     }
     return ([false, index, arr]);
   }
@@ -390,10 +401,10 @@ export class LeftsideNavigationComponent implements OnInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
-    } else if (node.component == 'ImportKmlComponent') {
-      const { ImportKmlComponent } = await import('./../../../main-modules/main-layer/import-kml/import-kml.component');
+    } else if (node.component == 'PinGroupSettingComponent') {
+      const { PinGroupSettingComponent } = await import('./../../../main-modules/main-layer/pin-group-setting/pin-group-setting.component');
       this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(ImportKmlComponent)
+        this.cfr.resolveComponentFactory(PinGroupSettingComponent)
       );
     }
     else if (node.component == 'CmcSettingsPopupComponent') {
