@@ -118,11 +118,7 @@ export class LeftsideNavigationComponent implements OnInit {
       if (data.pinName) {
         let dataSource = this.dataSource.data;
         dataSource[9].children[1].children.push(addPin);
-        //this.dataSource.data = [];
-        console.log("this.dataSource.data", this.dataSource.data);
         this.dataSource.data = dataSource;
-        //  this.tree.renderNodeChanges();
-        console.log("pins", this.dataSource.data);
       }
     });
   }

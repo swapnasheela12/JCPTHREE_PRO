@@ -1845,6 +1845,8 @@ const BASE_MAPS_LIST = [
     }
 ];
 
+const PINS_SETTING = []
+
 const MY_LAYERS_LIST = [
     {
         name: "KML",
@@ -1858,7 +1860,7 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: PINS_SETTING
     },
     {
         name: "Polygons",
