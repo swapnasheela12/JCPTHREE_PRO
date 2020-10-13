@@ -226,4 +226,5 @@ export class BoundariesService {
   removeLayerFromMap() {
     this.canvasLayerObj.remove();
   }
+
 }
