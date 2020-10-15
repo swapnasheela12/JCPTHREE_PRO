@@ -58,14 +58,21 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
-  public
+  public mapType = { map: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" };
+  public mapSelected;
+  public optionMap;
+  layerTiles = [
+    L.tileLayer(
+      'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+      { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+  ];
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private smallCellPlanned4gService :SmallCellPlanned4gService, private macroPlanned4gService :MacroPlanned4gService,private Hpodsc4gService:Hpodsc4gService , private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
 
- 
+
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -77,7 +84,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.libCustomLayer = leaflayer();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
-    // this.macroNominalService.getReference(this);
   }
 
   ngAfterViewInit() {
@@ -87,6 +93,29 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initMap(): void {
+    this.datashare.currentMessage.subscribe((mapSelected: any) => {
+      this.selectedLayerArrList = mapSelected;
+      if (mapSelected instanceof Array) {
+        this.selectedLayerArrList.forEach((map) => {
+          if (map.name === "Terrain") {
+            // this.optionMap.layers.pop();
+            // let map = {
+            //   "terrain": L.tileLayer(
+            //     "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+            //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+            // }
+            // this.optionMap.layers.push(map.terrain);
+
+            this.layerTiles = [
+              L.tileLayer(
+                "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+                { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+            ]
+          }
+        });
+      }
+    });
+
 
     //marker code
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
@@ -101,13 +130,29 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = iconDefault;
-
-
     //map object create
-    let optionMap = {
-      layers: [L.tileLayer(
-        'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })],
+
+    // var baselayers = {
+    //   "map": L.tileLayer(
+    //     'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+    //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
+    //   "Terrian": L.tileLayer(
+    //     "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+    //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+    // };
+    // var overlays = {};
+
+    // L.control.layers(baselayers, overlays).addTo(this.map);
+
+    // baselayers["Terrian"].addTo(this.map);
+
+    this.optionMap = {
+      // layers: [
+      //   L.tileLayer(
+      //     'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+      //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+      // ],
+      layers: this.layerTiles,
       // center: [25.0000, 79.0000],
       center: [19.04, 72.90],
       zoomControl: false,
@@ -180,7 +225,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       ]
     }
-    this.map = this.contextMenuLib.map('map', optionMap);
+    console.log("updation", this.optionMap.layers)
+    this.map = this.contextMenuLib.map('map', this.optionMap);
 
     //geo json control
     this.map.on('pm:globalremovalmodetoggled', e => { });
@@ -206,8 +252,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.pm.addControls(options);
 
     this.map.on('pm:create', (e) => {
-      e.layer.on('pm:edit', ({ layer }) => {
-        console.log("layer", layer)
+      this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
+        //console.log("dataFromPinZoom", dataFromPinZoom);
+        if (dataFromPinZoom === "pin-zoom-closed") {
+          //e.layer.remove();
+          this.map.removeLayer(e)
+        }
+      });
+      //console.log("event create", e)
+      e.layer.on('pm:markerdragend', ({ layer }) => {
+        console.log("layer end", layer)
       });
       var screenshortListDialogRef = {
         width: '578px',
@@ -321,8 +375,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
         this.dataShareSub = _datashare.currentMessage.subscribe((val) => {
-          console.log(val, "val");
-
           this.selectedLayerArrList = val;
           this.countOfLayerSelected = this.selectedLayerArrList.length;
           container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
@@ -364,7 +416,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             console.log(_map, "Layerssssss");
             // canvasLayer.remove(_map);
             const dataSelected = _datashare.currentMessage.subscribe((val) => {
-              console.log(val, "val");
+              // console.log(val, "val");
 
               // this.selectedLayerArrList = val;
               // this.countOfLayerSelected = this.selectedLayerArrList.length;

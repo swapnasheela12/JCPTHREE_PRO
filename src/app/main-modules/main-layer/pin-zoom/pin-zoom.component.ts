@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
 
 @Component({
   selector: 'app-pin-zoom',
@@ -18,6 +19,7 @@ export class PinZoomComponent implements OnInit {
     existingGroup: [true],
     groupName: ['ConvertCSV']
   });
+  @Output() public pinZoomClosed = new EventEmitter();
   constructor(private dataShare: DataSharingService, private dialogRef: MatDialogRef<PinZoomComponent>, public dialog: MatDialog,
     private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data?: any,
   ) {
@@ -25,7 +27,6 @@ export class PinZoomComponent implements OnInit {
 
   private inited;
   ngOnInit(): void {
-    console.log(this.data);
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
     })
@@ -33,13 +34,26 @@ export class PinZoomComponent implements OnInit {
 
   onCloseClick(): void {
     if (this.inited) {
+      this.dataShare.changeMessage("pin-zoom-closed");
+      this.pinZoomClosed.emit('closed');
       this.dialogRef.close();
     }
   }
 
   createNewPinDetails() {
-    console.log("this.user", this.pinGroupDetails.value);
+    this.dialogRef.close();
+  }
+
+  saveNewPin() {
+    this.dialogRef.close();
     this.dataShare.changeMessage(this.pinGroupDetails.value);
+    const message = {
+      message: `Pin group created successfully.`,
+      showActionBtn: false
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
   }
 
 }

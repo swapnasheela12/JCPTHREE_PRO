@@ -1845,7 +1845,15 @@ const BASE_MAPS_LIST = [
     }
 ];
 
-const PINS_SETTING = []
+const CREATE_PINS = [
+    {
+        name: 'CREATE PIN',
+        link: 'CREATE-PIN',
+        eventName: 'sites-outdoor-esc',
+        children: [],
+        component: 'TacNetworkDialogComponent'
+    },
+]
 
 const MY_LAYERS_LIST = [
     {
@@ -1860,7 +1868,7 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
-        children: PINS_SETTING
+        children: CREATE_PINS
     },
     {
         name: "Polygons",

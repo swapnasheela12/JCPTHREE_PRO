@@ -30,7 +30,7 @@
         </div>
 
         <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" #treeSelector>
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
                     matTreeNodePaddingIndent="0" (click)="onChecked(node.selected, node, activeCheckbox, 'no')"
                     (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"

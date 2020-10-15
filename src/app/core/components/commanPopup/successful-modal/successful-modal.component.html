@@ -8,7 +8,8 @@
         <div class="p-3 successful-text-header success">Success!</div>
         <div class="p-4 successful-text-subheader">{{message}}</div>
     </div>
-    <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div mat-dialog-actions *ngIf="showActionBtn" class="successful-text-action-container" fxLayout="row wrap"
+        fxLayoutAlign="center center">
         <div class="mr-1 successful-text-button">
             <button class=" success-butt" (click)="clickYes()" mat-stroked-button color="primary"
                 style=" margin-left: 8px;">Create New Reports</button>

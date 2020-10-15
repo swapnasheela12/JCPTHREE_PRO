@@ -69,7 +69,8 @@
 
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row">
         <div class="mr-1 successful-text-button">
-            <button class="success-butt save-all-pins" mat-stroked-button color="primary" style=" margin-left: 8px;">
+            <button class="success-butt save-all-pins" mat-stroked-button (click)="saveNewPin()" color="primary"
+                style=" margin-left: 8px;">
                 <span class="zmdi zmdi-bookmark-outline save-all-pins-logo"></span>Save All Pins
             </button>
         </div>
