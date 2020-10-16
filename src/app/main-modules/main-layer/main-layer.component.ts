@@ -1,4 +1,3 @@
-import { SmallCellPlanned4gService } from './sites/planned/small-cell-planned/small-cell-planned-4g.service';
 import { MacroPlanned4gService } from './sites/planned/macro-planned-4g/macro-planned-4g.service';
 import { Hpodsc4gService } from './sites/planned/hpodsc/hpodsc4g.service';
 import { MacroNominalService } from './sites/nominal/macro-nominal.service';
@@ -53,6 +52,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public fanDataError: String;
   public routPathVal;
   public selectedLayerArrList: any = [];
+  public selectedBaseMap: any = [];
   public countOfLayerSelected = 0;
   public countDiv;
   public contextMenuLib;
@@ -63,9 +63,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private smallCellPlanned4gService :SmallCellPlanned4gService, private macroPlanned4gService :MacroPlanned4gService,private Hpodsc4gService:Hpodsc4gService , private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
 
- 
+
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
@@ -90,7 +90,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     //marker code
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
-    const iconUrl = 'assets/images/Layers/pin-drop.svg';
+    const iconUrl = 'assets/images/Layers/3-1.svg';
     const iconDefault = L.icon({
       iconRetinaUrl,
       iconUrl,
@@ -182,8 +182,31 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.map = this.contextMenuLib.map('map', optionMap);
 
+    console.log(this.map, "this.map");
+
+    // this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
+
+    //   this.selectedLayerArrList = val;
+    //   // console.log(this.map.removeLayer(this.map._layer), "this.map.removeLayer(this.map._layer);");
+
+
+    //   for (let index = 0; index < this.selectedLayerArrList.length; index++) {
+    //     const ele = this.selectedLayerArrList[index];
+    //     if (ele.link == "JCP/Layers/BaseMaps/Terrain") {
+    //       // this.boundariesData();
+    //       // return canvasLayer.addTo(this.map);
+    //       if (this.map._layer) {
+    //         this.map.removeLayer(this.map._layer);
+    //       }
+
+    //     }
+    //   }
+    // });
+
+   
     //geo json control
     this.map.on('pm:globalremovalmodetoggled', e => { });
+    
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.map);
@@ -205,13 +228,22 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     this.map.pm.addControls(options);
 
-    this.map.on('pm:create', (e) => {
-      e.layer.on('pm:edit', ({ layer }) => {
-        console.log("layer", layer)
-      });
+    this.map.on('pm:create', ({ marker }) => {
+      // marker.on('pm:vertexadded', e => {
+      //   console.log("e", e);
       var screenshortListDialogRef = {
         width: '578px',
-        height: '515px',
+        height: '556px',
+        background: '#FFFFFF 0% 0% no-repeat padding-box',
+        panelClass: "table-view-layers-dialog-container",
+      }
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+    });
+    this.map.on('pm:snapdrag', e => {
+      console.log("e", e);
+      var screenshortListDialogRef = {
+        width: '575px',
+        height: '346px',
         panelClass: "table-view-layers-dialog-container",
       }
       const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
@@ -322,8 +354,11 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
         this.dataShareSub = _datashare.currentMessage.subscribe((val) => {
           console.log(val, "val");
-
           this.selectedLayerArrList = val;
+          for (let index = 0; index < this.selectedLayerArrList.length; index++) {
+            const element = this.selectedLayerArrList[index];
+            // baselayers[element.name].addTo(_map);
+          }
           this.countOfLayerSelected = this.selectedLayerArrList.length;
           container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
         });
@@ -365,7 +400,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             // canvasLayer.remove(_map);
             const dataSelected = _datashare.currentMessage.subscribe((val) => {
               console.log(val, "val");
-
+              
               // this.selectedLayerArrList = val;
               // this.countOfLayerSelected = this.selectedLayerArrList.length;
               // container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
@@ -479,8 +514,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         middle.onclick = function () {
           //console.log('buttonClicked_middle');
           var kpiDetailsListDialogRef = {
-            width: '740px',
-            height: '350px',
+            maxWidth: '700px',
+            height: '450px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",
             backdropClass: 'cdk-overlay-transparent-backdrop',
@@ -519,6 +554,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //custome controller//
 
     this.shapeService.mapServiceData = this.map;
+
+    this.basemapfunc();
   }
 
   nodesAndboundariesCall() {
@@ -532,6 +569,51 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     //REMOVE LAYER FROM MACRO
     //this.nodesAndBoundariesManagerService.removeCanvasFromMap();
+  }
+
+  basemapfunc(){
+    let baselayers: any = {
+      "Satellite": L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      }),
+      "Terrain": L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      }),
+      "Streets": L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+      }),
+      "Tile Layer 4": L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        { subdomains: ['mt0', 'mt1', 'mt2', 'mt3']}),
+    };
+
+    let overlays = {};
+    // L.control.layers(baselayers, overlays).addTo(this.map);
+    L.control.layers(baselayers, overlays, {
+      collapsed: false,
+      position: "bottomright",
+      //  sortLayers: true
+    }).addTo(this.map);
+    this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
+
+      this.selectedBaseMap = val;
+      // console.log(this.map.removeLayer(this.map._layer), "this.map.removeLayer(this.map._layer);");
+
+      for (let index = 0; index < this.selectedBaseMap.length; index++) {
+        const ele = this.selectedBaseMap[index];
+        baselayers[ele.name].addTo(this.map);
+      }
+    });
+
+
+
+
+
+
+    
+
   }
 
   ngOnDestroy() {

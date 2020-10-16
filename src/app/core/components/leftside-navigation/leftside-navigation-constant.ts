@@ -1810,29 +1810,29 @@ const BASE_MAPS_LIST = [
     {
         name: "Terrain",
         icon: "fas fa-user fa-3",
-        link: "Terrain",
-        eventName: 'sites-outdoor-esc',
+        link: "JCP/Layers/BaseMaps/Terrain",
+        eventName: 'sites-basemaps-terrain',
         children: []
     },
     {
         name: "Satellite",
         icon: "fas fa-user fa-3",
         link: "Satellite",
-        eventName: 'sites-outdoor-esc',
+        eventName: 'sites-basemaps-satellite',
         children: []
     },
     {
         name: "Streets Gray Scale",
         icon: "fas fa-user fa-3",
         link: "Streets-Gray-Scale",
-        eventName: 'sites-outdoor-esc',
+        eventName: 'sites-basemaps-streets-gray-scale',
         children: []
     },
     {
         name: "Streets Night",
         icon: "fas fa-user fa-3",
         link: "Streets-Night",
-        eventName: 'sites-outdoor-esc',
+        eventName: 'sites-basemaps-streets-night',
 
         children: []
     },
@@ -1840,12 +1840,10 @@ const BASE_MAPS_LIST = [
         name: "Streets Colored",
         icon: "fas fa-user fa-3",
         link: "Streets-Colored",
-        eventName: 'sites-outdoor-esc',
+        eventName: 'sites-basemaps-streets-colored',
         children: []
     }
 ];
-
-const PINS_SETTING = []
 
 const MY_LAYERS_LIST = [
     {
@@ -1860,7 +1858,7 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
-        children: PINS_SETTING
+        children: []
     },
     {
         name: "Polygons",

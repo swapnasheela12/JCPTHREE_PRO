@@ -107,7 +107,7 @@ export class MacroNominalService {
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.eventName == "sites-nominal-macro-macro4G" && ele.selected == true) {
+        if (ele.link == "JCP/Layers/Nominal/Macro/Macro4G" && ele.selected == true) {
           // this.boundariesData();
           return canvasLayer.addTo(this.map);
         }

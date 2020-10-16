@@ -75,6 +75,7 @@
         "leaflet-customlayer": "^2.1.0",
         "leaflet-image": "^0.4.0",
         "leaflet-simple-map-screenshoter": "^0.3.9",
+        "leaflet.gridlayer.googlemutant": "^0.10.0",
         "leaflet.pm": "^2.2.0",
         "lodash": "^4.17.19",
         "material-design-iconic-font": "^2.2.0",
