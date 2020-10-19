@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoutePopupComponent } from './route-popup.component';
+import { SettingsPopupComponent } from './settings-popup.component';
 
-describe('RoutePopupComponent', () => {
-  let component: RoutePopupComponent;
-  let fixture: ComponentFixture<RoutePopupComponent>;
+describe('SettingsPopupComponent', () => {
+  let component: SettingsPopupComponent;
+  let fixture: ComponentFixture<SettingsPopupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoutePopupComponent ]
+      declarations: [ SettingsPopupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoutePopupComponent);
+    fixture = TestBed.createComponent(SettingsPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

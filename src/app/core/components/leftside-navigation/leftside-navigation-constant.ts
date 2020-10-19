@@ -1922,14 +1922,16 @@ const FIBRE_ROUTES_LIST = [
         icon: "fas fa-user fa-3",
         link: "planned",
         children: [],
-        componentLayer: 'RoutePlannedFibreCoreComponent'
+        componentLayer: 'RoutePlannedFibreCoreComponent',
+        component: "SettingsPopupComponent"
     },
     {
         name: "Ready",
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
-        componentLayer: 'RouteReadyFibreCoreComponent'
+        componentLayer: 'RouteReadyFibreCoreComponent',
+        component: "SettingsPopupComponent"
     }
 ];
 

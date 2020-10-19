@@ -2,11 +2,14 @@ import { Component, AfterViewInit, OnDestroy, ComponentFactoryResolver, ViewCont
 import * as L from 'leaflet';
 import { CustomLayer } from 'leaflet-customlayer';
 import * as createjs from 'createjs-module';
-import { ShapeService } from '../../layers-services/shape.service';
+import { ShapeService } from '../../../../layers-services/shape.service';
 import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Subscription } from 'rxjs';
 import { ceil } from 'lodash';
+import { MatDialog } from '@angular/material/dialog';
+import { PropertiesComponent } from 'src/app/modules/components/properties/properties.component';
+import { RouteTableViewComponent } from '../route-table-view/route-table-view.component';
 
 @Component({
   selector: 'app-route-planned-fibre-core',
@@ -48,7 +51,8 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     private http: HttpClient,
     private dataShare: DataSharingService,
     private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
+    private dialog: MatDialog
   ) {
     this.routeReadyFibreCoreSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) =>{
@@ -121,7 +125,7 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     console.log(routePlannedData[0][4].boundary[0][0])
       this.stageRouteContainer = new createjs.Stage(container);
       this.stageRouteContainer.enableDOMEvents(true);
-      this.stageRouteContainer.enableMouseOver(50);
+      this.stageRouteContainer.enableMouseOver(50000);
   
       this.lineContainer = new createjs.Container();
       // alert(routePlannedData.length)
@@ -153,14 +157,13 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
         this.lineShape.cursor = 'pointer';
         this.lineShape['points'] = this.allLinePoints;
         this.lineShape['latLng'] = this.positionLatLng;
-        let outerContainerThis = this;
-        this.lineContainer.addEventListener('click', function(evt) {
-          outerContainerThis.routeClicked();
-        });
         this.lineContainer.addChild(this.lineShape);
       }
-
-      console.log(this.lineContainer);
+      let outerContainerThis = this;
+      this.lineContainer.addEventListener('click', function(evt) {
+        outerContainerThis.routeClicked();
+      });
+      // console.log(this.lineContainer);
       this.lineContainer.alpha = 1;
       this.stageRouteContainer.addChild(this.lineContainer);
       this.stageRouteContainer.update();
@@ -180,14 +183,22 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     return this.drawPolyGraphic;
   }
 
-  async routeClicked() {
-    this.viewContainerRef.clear();
-    const { RoutePopupComponent } = await import('./../route-popup/route-popup.component');
-    const data = this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(RoutePopupComponent)
-    );
-    data.instance.routeName = "hello world";
-    console.log(data)
+  routeClicked() {
+    const dialogRef = this.dialog.open(RouteTableViewComponent, {
+      width: "1200px",
+      height: "500px",
+      position: {
+        left: "18.5rem",
+        top: "4rem"
+      },
+      hasBackdrop: false,
+      disableClose: false,
+      panelClass: "material-dialog-container",
+    });
+    // const { RoutePopupComponent } = await import('./../route-popup/route-popup.component');
+    //   this.viewContainerRef.createComponent(
+    //     this.cfr.resolveComponentFactory(RoutePopupComponent)
+    //   );
   }
 
   removeLayer() {
