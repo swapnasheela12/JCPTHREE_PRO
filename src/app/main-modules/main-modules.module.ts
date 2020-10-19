@@ -3,7 +3,7 @@ import { colorDropdownRendererComponent } from './../core/components/ag-grid-ren
 import { KpiSettingsComponent } from './main-layer/kpi-details/kpi-settings/kpi-settings.component';
 import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MainModulesRoutingModule } from './main-modules-routing.module';
 
 //Angular Material Components
@@ -91,7 +91,17 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
-
+import { CandidatesComponent } from '../modules/components/properties/candidates/candidates.component';
+import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
+import { TacNetworkDialogComponent } from './main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component';
+import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component';
+import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
+import { ZonesJioDialogComponent } from './main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component';
+import { NominalMacroDialogComponent } from './main-layer/sites/nominal/macro-dialog/macro-dialog.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { RouteReadyFibreCoreComponent } from './main-layer/topologies/route-ready-fibre-core/route-ready-fibre-core.component';
+import { RoutePlannedFibreCoreComponent } from './main-layer/topologies/route-planned-fibre-core/route-planned-fibre-core.component';
+import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-popup.component';
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -122,7 +132,17 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     ScreenshotPreviewComponent,
     SpiderComponent,
     SpiderViewComponent,
-    KpiComponent
+    KpiComponent,
+    CandidatesComponent,
+    NominalViewComponent,
+    TacNetworkDialogComponent,
+    DenseUrbanDialogComponent,
+    TownBoundaryDialogComponent,
+    ZonesJioDialogComponent,
+    NominalMacroDialogComponent,
+    RouteReadyFibreCoreComponent,
+    RoutePlannedFibreCoreComponent,
+    RoutePopupComponent
   ],
   imports: [
     CommonModule,
@@ -184,14 +204,11 @@ import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.co
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    PerformanceManagementModule,
-    PlanningDeploymentModule,
-    RfOcWorkordersModule,
-
-
+    ColorPickerModule
   ], providers: [
     SideNavService,
     MarkerService,
+    DatePipe,
     {
       provide: MatDialogRef,
       useValue: {}

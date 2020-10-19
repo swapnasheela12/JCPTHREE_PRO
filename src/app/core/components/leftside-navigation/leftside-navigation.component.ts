@@ -1,5 +1,5 @@
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -18,7 +18,8 @@ export class SideNavNode {
   level?: number;
   parentToChild?: String;
   children?: SideNavNode[];
-  component?: Component
+  component?: Component;
+  componentLayer?: Component;
 }
 
 class ExampleFlatNode {
@@ -67,7 +68,8 @@ export class LeftsideNavigationComponent implements OnInit {
       eventName: node.eventName,
       parentToChild: node.parentToChild,
       children: node.children,
-      component: node.component
+      component: node.component,
+      componentLayer: node.componentLayer
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -97,6 +99,7 @@ export class LeftsideNavigationComponent implements OnInit {
   isLevelZero = (_: number, node: ExampleFlatNode) => node.level === 0 && node.expandable;
   isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable;
   isLevelGreterThanOne = (_: number, node: ExampleFlatNode) => node.level > 1 && node.expandable;
+  hasNoContent = (_: number, node: ExampleFlatNode) => !node.expandable;
   getChildren = (node: SideNavNode) => {
     return node.children;
   };
@@ -330,12 +333,18 @@ export class LeftsideNavigationComponent implements OnInit {
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+      if ('' !== node.componentLayer) {
+        this.renderLayerComponent(node.componentLayer);
+      }
     } else {
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
           break;
         }
+      }
+      if ('' !== node.componentLayer) {
+        this.removeLayerComponent(node.componentLayer);
       }
       this.datashare.changeMessage(this.selectedLayerArr);
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
@@ -376,6 +385,27 @@ export class LeftsideNavigationComponent implements OnInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
+    }
+  }
+
+  layerComponent;
+  async renderLayerComponent(layersToShow) {
+    if (layersToShow == 'RoutePlannedFibreCoreComponent') {
+      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/route-planned-fibre-core/route-planned-fibre-core.component');
+      this.layerComponent = this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
+      );
+    } else if (layersToShow == 'RouteReadyFibreCoreComponent') {
+      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/route-ready-fibre-core/route-ready-fibre-core.component');
+      this.layerComponent = this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
+      );
+    }
+  }
+
+  removeLayerComponent(layerToRemove) {
+    if ('' !== layerToRemove) {
+      this.datashare.removeLayer(layerToRemove)
     }
   }
 }
