@@ -118,12 +118,11 @@ export class LeftsideNavigationComponent implements OnInit {
       if (data.pinName) {
         let dataSource = this.dataSource.data;
         dataSource[9].children[1].children.push(addPin);
+        this.dataSource.data = [];
         this.dataSource.data = dataSource;
       }
     });
   }
-
-  ngOnChanges() { }
 
   layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
