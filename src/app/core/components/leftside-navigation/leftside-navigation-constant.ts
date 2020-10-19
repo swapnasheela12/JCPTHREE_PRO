@@ -753,7 +753,8 @@ const SITES_OnAir_4GMacro_lIST = [
         link: 'JCP/Layers/OnAir/Macro/Macro4G',
         eventName: 'sites-onAir-macro-macro4G',
         children: [],
-        parentToChild: 'Sites-OnAir-Macro-Macro4G'
+        parentToChild: 'Sites-OnAir-Macro-Macro4G',
+        component: 'NominalMacroDialogComponent'
     }
 ];
 const SITES_OnAir_4GHpodsc_lIST = [
@@ -762,7 +763,8 @@ const SITES_OnAir_4GHpodsc_lIST = [
         link: 'JCP/Layers/OnAir/Hpodsc/HPODSC4g',
         eventName: 'sites-onAir-hpodsc-hPODSC4g',
         children: [],
-        parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g'
+        parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g',
+        component: 'NominalMacroDialogComponent'
     }
 ];
 const SITES_OnAir_4GSmallCell_lIST = [
@@ -795,17 +797,52 @@ const SITES_OnAir_lIST = [
         children: SITES_OnAir_4GSmallCell_lIST
     }
 ];
+const SITES_Nominal_4GHpodsc_lIST = [
+    {
+        name: '4G HP ODSC',
+        link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
+        eventName: 'sites-nominal-hpodsc-hPODSC4g',
+        children: [],
+        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g'
+    }
+];
 
 const SITES_Nominal_4GMacro_lIST = [
     {
         name: '4G Macro',
         link: 'JCP/Layers/Nominal/Macro/Macro4G',
         eventName: 'sites-nominal-macro-macro4G',
+        parentToChild: 'Sites-Nominal-Macro-Macro4G',
+        component: 'NominalMacroDialogComponent',
+        children: []
+    },
+];
+const SITES_Planned_4GSmallCell_lIST = [
+    {
+        name: '4G Small Cell',
+        link: 'JCP/Layers/Planned/smallCell/smallCell4g',
+        eventName: 'sites-Planned-smallCell-smallCell4g',
         children: [],
-        parentToChild: 'Sites-Nominal-Macro-Macro4G'
+        parentToChild: 'Sites-Planned-SmallCell-SmallCell4g'
     }
 ];
-const SITES_Nominal_4GHpodsc_lIST = [
+
+const SITES_Planned_4GMacro_lIST = [
+    {
+        name: '4G Macro',
+        link: 'JCP/Layers/Planned/Macro/Macro4G',
+        eventName: 'sites-planned-macro-macro4G',
+        children: [],
+        parentToChild: 'Sites-Planned-Macro-Macro4G'
+    }
+];
+const SITES_Planned_lIST = [
+    {
+        name: "Macro",
+        link: "Macro",
+        eventName: 'sites-planned-Macro',
+        children: SITES_Planned_4GMacro_lIST
+    },
     {
         name: '4G HP ODSC',
         link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
@@ -839,15 +876,6 @@ const SITES_Nominal_lIST = [
     }
 ];
 
-const SITES_Planned_4GMacro_lIST = [
-    {
-        name: '4G Macro',
-        link: 'JCP/Layers/Planned/Macro/Macro4G',
-        eventName: 'sites-planned-macro-macro4G',
-        children: [],
-        parentToChild: 'Sites-Planned-Macro-Macro4G'
-    }
-];
 const SITES_Planned_4GHpodsc_lIST = [
     {
         name: '4G HP ODSC',
@@ -857,37 +885,6 @@ const SITES_Planned_4GHpodsc_lIST = [
         parentToChild: 'Sites-Planned-Hpodsc-HPODSC4g'
     }
 ];
-const SITES_Planned_4GSmallCell_lIST = [
-    {
-        name: '4G Small Cell',
-        link: 'JCP/Layers/Planned/smallCell/smallCell4g',
-        eventName: 'sites-Planned-smallCell-smallCell4g',
-        children: [],
-        parentToChild: 'Sites-Planned-SmallCell-SmallCell4g'
-    }
-];
-
-const SITES_Planned_lIST = [
-    {
-        name: "Macro",
-        link: "Macro",
-        eventName: 'sites-planned-Macro',
-        children: SITES_Planned_4GMacro_lIST
-    },
-    {
-        name: 'Hpodsc',
-        link: 'JCP/Layers/Planned/Hpodsc',
-        eventName: 'sites-planned-hpodsc',
-        children: SITES_Planned_4GHpodsc_lIST
-    },
-    {
-        name: 'Outdoor Small Cell',
-        link: 'JCP/Layers/Planned/Small-Cell',
-        eventName: 'sites-planned-small-cell',
-        children: SITES_Planned_4GSmallCell_lIST
-    }
-];
-
 
 // const SITES_Nominal_lIST = [
 //     {
@@ -1744,28 +1741,519 @@ const ANALYTICS_LIST = [
     }
 ];
 
+const ROUTE_FIBRE_NLD_INTER_READY = [
+    {
+        name: "Core",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+        componentLayer: 'RouteReadyFibreCoreComponent'
+    },
+    {
+        name: "Collector",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    }
+];
+
+const ROUTE_FIBRE_NLD_INTER_PLANNED = [
+    {
+        name: "Core",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    },
+    {
+        name: "Collector",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    }
+];
+
+const ROUTE_FIBRE_NLD_INTRA_READY = [
+    {
+        name: "Aggregator",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    },
+    {
+        name: "CSS",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    }
+];
+
+const ROUTE_FIBRE_NLD_INTRA_PLANNED = [
+    {
+        name: "Aggregator",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    },
+    {
+        name: "CSS",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+    }
+];
+
+const ROUTE_FIBRE_FTTX_READY = [
+    {
+        name: "FTTX Transmedia - Feeder",
+        icon: "fas fa-user fa-3",
+        link: "fttx-transmedia-feeder",
+        children: []
+    },
+    {
+        name: "FTTX Transmedia - Distribution",
+        icon: "fas fa-user fa-3",
+        link: "fttx-transmedia-distribution",
+        children: []
+    }
+];
+
+const ROUTE_FIBRE_FTTX_PLANNED = [
+    {
+        name: "FTTX Transmedia - Feeder",
+        icon: "fas fa-user fa-3",
+        link: "fttx-transmedia-feeder",
+        children: []
+    },
+    {
+        name: "FTTX Transmedia - Distribution",
+        icon: "fas fa-user fa-3",
+        link: "fttx-transmedia-distribution",
+        children: []
+    }
+];
+
+const FIBRE_ROUTE_LIST = [
+    {
+        name: "NW Ready-Fibre-NLD",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: ROUTE_FIBRE_NLD_INTER_READY
+    },
+    {
+        name: "NW Ready-Fibre-Intra City",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: ROUTE_FIBRE_NLD_INTRA_READY
+    },
+    {
+        name: "NW Ready-FTTX",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: ROUTE_FIBRE_FTTX_READY
+    },
+    {
+        name: "Planned-Fibre-NLD",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: ROUTE_FIBRE_NLD_INTER_PLANNED
+    },
+    {
+        name: "Planned-Fibre-Intra City",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: ROUTE_FIBRE_NLD_INTRA_PLANNED
+    },
+    {
+        name: "Planned-FTTX",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: ROUTE_FIBRE_FTTX_PLANNED
+    }
+];
+
+const STRUCTURE_ROUTE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: [],
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const EQUIPMENT_ROUTE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const LOGICAL_ROUTE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const FIBRE_ROUTES_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: [],
+        componentLayer: 'RoutePlannedFibreCoreComponent'
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: [],
+        componentLayer: 'RouteReadyFibreCoreComponent'
+    }
+];
+
+const FIBRE_STRUCTURE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const FIBRE_EQUIPMENTS_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const FIBRE_LOGICAL_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const FIBRE_LIST = [
+    {
+        name: "Route",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: FIBRE_ROUTES_LIST
+    },
+    {
+        name: "Structure",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: FIBRE_STRUCTURE_LIST
+    },
+    {
+        name: "Equipments",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: FIBRE_EQUIPMENTS_LIST
+    },
+    {
+        name: "Logical Topology",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: FIBRE_LOGICAL_LIST
+    }
+];
+
+const IPO_ROUTES_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const IPO_STRUCTURE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const IPO_EQUIPMENTS_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const IPO_LOGICAL_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const IPO_LIST = [
+    {
+        name: "Route",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: IPO_ROUTES_LIST
+    },
+    {
+        name: "Structure",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: IPO_STRUCTURE_LIST
+    },
+    {
+        name: "Equipments",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: IPO_STRUCTURE_LIST
+    },
+    {
+        name: "Logical Topology",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: IPO_LOGICAL_LIST
+    }
+];
+
+const MICROWAVE_ROUTES_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const MICROWAVE_STRUCTURE_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const MICROWAVE_EQUIPMENTS_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const MICROWAVE_LOGICAL_LIST = [
+    {
+        name: "Planned",
+        icon: "fas fa-user fa-3",
+        link: "planned",
+        children: []
+    },
+    {
+        name: "Ready",
+        icon: "fas fa-user fa-3",
+        link: "ready",
+        children: []
+    }
+];
+
+const MICROWAVE_LIST = [
+    {
+        name: "Route",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: MICROWAVE_ROUTES_LIST
+    },
+    {
+        name: "Structure",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: MICROWAVE_STRUCTURE_LIST
+    },
+    {
+        name: "Equipments",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: MICROWAVE_EQUIPMENTS_LIST
+    },
+    {
+        name: "Logical Topology",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        children: MICROWAVE_LOGICAL_LIST
+    }
+];
+
 const TOPOLOGIES_LIST = [
     {
-        name: "IP",
+        name: "Fibre",
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: FIBRE_LIST
+    },
+    {
+        name: "IPO",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        eventName: 'sites-outdoor-esc',
+        children: IPO_LIST
     },
     {
         name: "Microwave",
         icon: "fas fa-user fa-3",
-        link: "Microwave",
+        link: "IP",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: MICROWAVE_LIST
+    }
+];
+
+
+const TOPOLOGIES_LIST_OLD = [
+    {
+        name: "Fibre Route",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        eventName: 'sites-outdoor-esc',
+        children: FIBRE_ROUTE_LIST
     },
     {
-        name: "FTTX",
+        name: "Structure",
         icon: "fas fa-user fa-3",
-        link: "FTTX",
+        link: "IP",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: STRUCTURE_ROUTE_LIST
+    },
+    {
+        name: "Equipment",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        eventName: 'sites-outdoor-esc',
+        children: EQUIPMENT_ROUTE_LIST
+    },
+    {
+        name: "Logical Connectivity",
+        icon: "fas fa-user fa-3",
+        link: "IP",
+        eventName: 'sites-outdoor-esc',
+        children: LOGICAL_ROUTE_LIST
     }
+    // {
+    //     name: "IP",
+    //     icon: "fas fa-user fa-3",
+    //     link: "IP",
+    //     eventName: 'sites-outdoor-esc',
+    //     children: []
+    // },
+    // {
+    //     name: "Microwave",
+    //     icon: "fas fa-user fa-3",
+    //     link: "Microwave",
+    //     eventName: 'sites-outdoor-esc',
+    //     children: []
+    // },
+    // {
+    //     name: "FTTX",
+    //     icon: "fas fa-user fa-3",
+    //     link: "FTTX",
+    //     eventName: 'sites-outdoor-esc',
+    //     children: []
+    // }
 ];
 
 const LOCATION_BOUNDRIES_LIST = [
@@ -1844,7 +2332,6 @@ const BASE_MAPS_LIST = [
         children: []
     }
 ];
-
 const CREATE_PINS = [
     {
         name: 'CREATE PIN',
@@ -1885,6 +2372,7 @@ const MY_LAYERS_LIST = [
         children: []
     }
 ]
+
 
 const PREDICTION_LAYERS_LIST = [
     {

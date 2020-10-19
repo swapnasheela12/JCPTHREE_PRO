@@ -61,7 +61,7 @@ export class KpiDetailsComponent implements OnInit {
       chart: {
         type: 'column',
         backgroundColor: "transparent",
-        height: 178,
+        height: 250,
         spacingTop: 20
       },
       title: {
@@ -157,6 +157,8 @@ export class KpiDetailsComponent implements OnInit {
           // pointWidth: 30
         },
         column: {
+          borderRadius: 8,
+          pointWidth: 16,
           dataLabels: {
             enabled: true,
             style: {
@@ -219,52 +221,52 @@ export class KpiDetailsComponent implements OnInit {
   listOfKpiDetailsOther = [
     {
       title: "Atoll Planned RSRP ALL",
-      color: "#0f73bd",
+      color: "#4CAF50",
       value: "-60.54 dBm"
     },
     {
       title: "Atoll Planned RSRP 2300",
-      color: "#0f73bd",
+      color: "#03A9F4",
       value: "-66.39 dBm"
     },
     {
       title: "Atoll Planned RSRP 1800",
-      color: "#0f73bd",
+      color: "#4CAF50",
       value: "-63.01 dBm"
     },
     {
       title: "Atoll Planned RSRP 850",
-      color: "#0f73bd",
+      color: "#FF9800",
       value: "-61.38 dBm"
     },
     {
       title: "NetVelocity RSRP ALL",
-      color: "#96ce58",
+      color: "#F44336",
       value: "-100.90 dBm"
     },
     {
       title: "NetVelocity RSRP 2300",
-      color: "#96ce58",
+      color: "#FF9800",
       value: "-100.92 dBm"
     },
     {
       title: "NetVelocity RSRP 1800",
-      color: "#96ce58",
+      color: "#F44336",
       value: "-100.63 dBm"
     },
     {
       title: "NetVelocity RSRP 850",
-      color: "#96ce58",
+      color: "#3F51B5",
       value: "-100.38 dBm"
     },
   ]
 
   kpiSettingPopFun() {
     var kpiSettingListDialogRef = {
-      width: '550px',
+      // width: '550px',
       height: '600px',
       // position: { bottom: '60px', right: "60px" },
-      panelClass: "kpi-setting-layers-dialog-container",
+      panelClass: "table-view-layers-dialog-container",
       backdropClass: 'cdk-overlay-transparent-backdrop',
       disableClose: true,
       hasBackdrop: true
@@ -285,13 +287,13 @@ export class KpiDetailsComponent implements OnInit {
 
   onChangeLayer(layer) {
     // if(layer.value) {
-      
-      if (this.kpiDetailsChart) {
-        this.kpiDetailsChart.destroy();
-      }
+
+    if (this.kpiDetailsChart) {
+      this.kpiDetailsChart.destroy();
+    }
     this.selectedLayerTableName = layer.value;
     switch (this.selectedLayerTableName) {
-      case "Sites-Outdoor-Macro":
+      case "Sites-OnAir-Macro-Macro4G":
         this.listOfKpiDetails = [
           {
             title: "Macro Planned RSRP ALL",
@@ -343,7 +345,7 @@ export class KpiDetailsComponent implements OnInit {
             chart: {
               type: 'column',
               backgroundColor: "transparent",
-              height: 178,
+              height: 250,
               spacingTop: 20
             },
             title: {
@@ -379,8 +381,8 @@ export class KpiDetailsComponent implements OnInit {
               max: 100,
               tickInterval: 50,
               title: {
-                text: '% Area covered wrt DL <br> Throughput range(PDF)',
-                x: -15,
+                text: '% Area covered wrt DL Throughput range(PDF)',
+                // x: -15,
                 style: {
                   color: '#000000',
                   fontFamily: 'Roboto',
@@ -439,6 +441,8 @@ export class KpiDetailsComponent implements OnInit {
                 // pointWidth: 30
               },
               column: {
+                borderRadius: 8,
+                pointWidth: 16,
                 dataLabels: {
                   enabled: true,
                   style: {
@@ -494,7 +498,7 @@ export class KpiDetailsComponent implements OnInit {
         );
         break;
 
-      case "Sites-Outdoor-ESC":
+      case "Sites-OnAir-Hpodsc-HPODSC4g":
         this.listOfKpiDetails = this.listOfKpiDetailsOther;
         this.kpiDetailsChart = this.kpiDetailsChartOther;
     }

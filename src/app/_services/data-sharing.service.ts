@@ -36,6 +36,9 @@ export class DataSharingService {
 
   private macroComponentSource = new BehaviorSubject({});
   macroLayerMessage = this.macroComponentSource.asObservable();
+
+  private removeLayerSource = new BehaviorSubject({});
+  removeLayerMessage = this.removeLayerSource.asObservable();
   
   constructor() { }
 
@@ -83,5 +86,9 @@ export class DataSharingService {
 
   macroLayerSelectionMessage(message) {
     this.macroComponentSource.next(message);
+  }
+
+  removeLayer(message) {
+    this.removeLayerSource.next(message);
   }
 }
