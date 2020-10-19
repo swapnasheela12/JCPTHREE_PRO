@@ -13,6 +13,7 @@ import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
@@ -20,14 +21,11 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MarkerService } from 'src/app/_services/leaflate/marker.service';
 import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
-import '../../../js/leaflet-ruler.js'
-import '../../../js/Leaflet.GoogleMutant.js'
+import '../../../js/leaflet-ruler.js';
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
-
 import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
 import { SideNavService } from 'src/app/_services/side-nav.service';
 import { NodesAndBoundariesManagerService } from './sites/outdoor/macro/nodes-and-boundaries-manager.service';
-
 import 'leaflet-contextmenu';
 import { MatSidenav } from '@angular/material/sidenav';
 declare var $: any;
@@ -53,19 +51,17 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public fanDataError: String;
   public routPathVal;
   public selectedLayerArrList: any = [];
+  public selectedBaseMap: any = [];
   public countOfLayerSelected = 0;
   public countDiv;
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
-  public mapType = { map: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" };
   public mapSelected;
   public optionMap;
-  layerTiles = [
-    L.tileLayer(
-      'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-      { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
-  ];
+  public baselayers;
+  layerTiles;
+
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
@@ -76,8 +72,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
-    // this.macroNominalService.getReference(this);
-    console.log("sideNavService", this.sideNavService);
   }
 
   ngOnInit(): void {
@@ -93,30 +87,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initMap(): void {
-    this.datashare.currentMessage.subscribe((mapSelected: any) => {
-      this.selectedLayerArrList = mapSelected;
-      if (mapSelected instanceof Array) {
-        this.selectedLayerArrList.forEach((map) => {
-          if (map.name === "Terrain") {
-            // this.optionMap.layers.pop();
-            // let map = {
-            //   "terrain": L.tileLayer(
-            //     "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
-            //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
-            // }
-            // this.optionMap.layers.push(map.terrain);
-
-            this.layerTiles = [
-              L.tileLayer(
-                "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
-                { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
-            ]
-          }
-        });
-      }
-    });
-
-
     //marker code
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
     const iconUrl = 'assets/images/Layers/pin-drop.svg';
@@ -131,28 +101,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     L.Marker.prototype.options.icon = iconDefault;
     //map object create
-
-    // var baselayers = {
-    //   "map": L.tileLayer(
-    //     'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-    //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
-    //   "Terrian": L.tileLayer(
-    //     "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
-    //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
-    // };
-    // var overlays = {};
-
-    // L.control.layers(baselayers, overlays).addTo(this.map);
-
-    // baselayers["Terrian"].addTo(this.map);
-
     this.optionMap = {
-      // layers: [
-      //   L.tileLayer(
-      //     'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-      //     { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
-      // ],
-      layers: this.layerTiles,
+      layers: [
+        L.tileLayer(
+          'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+          { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+      ],
       // center: [25.0000, 79.0000],
       center: [19.04, 72.90],
       zoomControl: false,
@@ -163,7 +117,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           text: 'ScreenShort',
           callback: (e) => {
-            console.log(e, "e");
 
             // L.DomEvent.preventDefault(e);
             setTimeout(() => {
@@ -194,8 +147,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
               this.simpleMapScreenshoterContext.addTo(this.map)
             }, 2000);
-
-            // alert(e.latlng);
             $(".leaflet-contextmenu").hide();
           }
         },
@@ -225,7 +176,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       ]
     }
-    console.log("updation", this.optionMap.layers)
     this.map = this.contextMenuLib.map('map', this.optionMap);
 
     //geo json control
@@ -233,6 +183,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.map);
+    if (this.layerTiles === "Terrain") {
+      //
+    }
 
     var options = {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
@@ -323,6 +276,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       document.getElementById('screens').appendChild(el)
     })
     this.map.addControl(new this.screenShotControl());
+
     //screenshort
 
     //custome controller//
@@ -376,6 +330,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
         this.dataShareSub = _datashare.currentMessage.subscribe((val) => {
           this.selectedLayerArrList = val;
+          for (let index = 0; index < this.selectedLayerArrList.length; index++) {
+            const element = this.selectedLayerArrList[index];
+            // baselayers[element.name].addTo(_map);
+          }
           this.countOfLayerSelected = this.selectedLayerArrList.length;
           container.innerHTML = '<div class="tab-container-layers"><div class="icon-count"><span style="font-size: 12px;font-weight: 600;" id="command">' + this.countOfLayerSelected + '</span></div><div class="icon-style"><i class="ic ic-layers-01"></i></div></div>';
         });
@@ -411,9 +369,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           });
 
           const selectedLayer = dialogRef.componentInstance.onAddDropDown.subscribe((data: any) => {
-
-            console.log(data, "data????");
-            console.log(_map, "Layerssssss");
             // canvasLayer.remove(_map);
             const dataSelected = _datashare.currentMessage.subscribe((val) => {
               // console.log(val, "val");
@@ -562,18 +517,63 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             dialogRef.close();
           });
         }
-
         return container;
       },
-
     });
     this.map.addControl(new this.customControlList());
     //custome controller//
-
     this.shapeService.mapServiceData = this.map;
+    this.basemapfunc();
+  }
+
+  basemapfunc() {
+    this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
+      if (val instanceof Array) {
+        val.forEach((map) => {
+          if (map.name === "Terrain") {
+            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+              maxZoom: 18,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              detectRetina: true,
+            }));
+          } else if (map.name === "Satellite") {
+            // this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            //   maxZoom: 18,
+            //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            //   detectRetina: true,
+            // }));
+            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+              maxZoom: 20,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              detectRetina: true,
+            }));
+          } else if (map.name === "Streets Gray scale") {
+            this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+              maxZoom: 18,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              detectRetina: true,
+            }));
+          } else if (map.name === "Streets Night") {
+            this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+              maxZoom: 18,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              detectRetina: true,
+            }));
+          } else if (map.name === "Streets Colored") {
+            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+              maxZoom: 18,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              detectRetina: true,
+            }));
+          }
+        });
+      }
+    });
   }
 
   nodesAndboundariesCall() {
+    window['maps'] = this.map;
+    let wMap = window['maps'];
     let paramdata = {
       map: this.map,
       targetElementSpiderView: this.target

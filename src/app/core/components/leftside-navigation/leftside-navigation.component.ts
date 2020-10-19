@@ -423,7 +423,7 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   layerComponent;
-  async renderLayerComponent(layersToShow) { 
+  async renderLayerComponent(layersToShow) {
     if (layersToShow == 'RoutePlannedFibreCoreComponent') {
       const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
