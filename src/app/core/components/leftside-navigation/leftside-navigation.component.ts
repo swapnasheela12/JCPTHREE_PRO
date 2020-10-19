@@ -418,17 +418,23 @@ export class LeftsideNavigationComponent implements OnInit {
         this.cfr.resolveComponentFactory(CmcSettingsPopupComponent)
       );
     }
+    else if (node.component == 'SettingsPopupComponent') {
+      const { SettingsPopupComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/settings-popup/settings-popup.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(SettingsPopupComponent)
+      );
+    }
   }
 
   layerComponent;
-  async renderLayerComponent(layersToShow) {
+  async renderLayerComponent(layersToShow) { 
     if (layersToShow == 'RoutePlannedFibreCoreComponent') {
-      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/route-planned-fibre-core/route-planned-fibre-core.component');
+      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
       );
     } else if (layersToShow == 'RouteReadyFibreCoreComponent') {
-      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/route-ready-fibre-core/route-ready-fibre-core.component');
+      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
       );

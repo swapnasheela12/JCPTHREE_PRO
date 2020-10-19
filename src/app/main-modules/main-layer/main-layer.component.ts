@@ -528,7 +528,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     //ADD LAYER FROM MACRO
 
-    this.nodesAndBoundariesManagerService.initialializeNodesAndBoundaries(paramdata)
+    // this.nodesAndBoundariesManagerService.initialializeNodesAndBoundaries(paramdata)
 
     //REMOVE LAYER FROM MACRO
     //this.nodesAndBoundariesManagerService.removeCanvasFromMap();

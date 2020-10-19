@@ -103,9 +103,11 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
 import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component';
 import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-group-setting.component';
-import { RouteReadyFibreCoreComponent } from './main-layer/topologies/route-ready-fibre-core/route-ready-fibre-core.component';
-import { RoutePlannedFibreCoreComponent } from './main-layer/topologies/route-planned-fibre-core/route-planned-fibre-core.component';
-import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-popup.component';
+import { RouteReadyFibreCoreComponent } from './main-layer/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component';
+import { RoutePlannedFibreCoreComponent } from './main-layer/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component';
+// import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-popup.component';
+import { SettingsPopupComponent } from './main-layer/topologies/fibre/route/settings-popup/settings-popup.component';
+import { RouteTableViewComponent } from './main-layer/topologies/fibre/route/route-table-view/route-table-view.component';
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -152,7 +154,9 @@ import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-p
     NominalMacroDialogComponent,
     RouteReadyFibreCoreComponent,
     RoutePlannedFibreCoreComponent,
-    RoutePopupComponent
+    // RoutePopupComponent,
+    SettingsPopupComponent,
+    RouteTableViewComponent
   ],
   imports: [
     CommonModule,
