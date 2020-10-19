@@ -103,7 +103,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
 import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component';
 import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-group-setting.component';
-
+import { RouteReadyFibreCoreComponent } from './main-layer/topologies/route-ready-fibre-core/route-ready-fibre-core.component';
+import { RoutePlannedFibreCoreComponent } from './main-layer/topologies/route-planned-fibre-core/route-planned-fibre-core.component';
+import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-popup.component';
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -146,7 +148,11 @@ import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-gro
     NominalMacroDialogComponent,
     CmcSettingsPopupComponent,
     PinZoomComponent,
-    PinGroupSettingComponent
+    PinGroupSettingComponent,
+    NominalMacroDialogComponent,
+    RouteReadyFibreCoreComponent,
+    RoutePlannedFibreCoreComponent,
+    RoutePopupComponent
   ],
   imports: [
     CommonModule,
