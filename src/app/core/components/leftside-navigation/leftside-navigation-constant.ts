@@ -753,7 +753,8 @@ const SITES_OnAir_4GMacro_lIST = [
         link: 'JCP/Layers/OnAir/Macro/Macro4G',
         eventName: 'sites-onAir-macro-macro4G',
         children: [],
-        parentToChild: 'Sites-OnAir-Macro-Macro4G'
+        parentToChild: 'Sites-OnAir-Macro-Macro4G',
+        component: 'NominalMacroDialogComponent'
     }
 ];
 const SITES_OnAir_4GHpodsc_lIST = [
@@ -762,7 +763,8 @@ const SITES_OnAir_4GHpodsc_lIST = [
         link: 'JCP/Layers/OnAir/Hpodsc/HPODSC4g',
         eventName: 'sites-onAir-hpodsc-hPODSC4g',
         children: [],
-        parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g'
+        parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g',
+        component: 'NominalMacroDialogComponent'
     }
 ];
 const SITES_OnAir_4GSmallCell_lIST = [
@@ -795,17 +797,52 @@ const SITES_OnAir_lIST = [
         children: SITES_OnAir_4GSmallCell_lIST
     }
 ];
+const SITES_Nominal_4GHpodsc_lIST = [
+    {
+        name: '4G HP ODSC',
+        link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
+        eventName: 'sites-nominal-hpodsc-hPODSC4g',
+        children: [],
+        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g'
+    }
+];
 
 const SITES_Nominal_4GMacro_lIST = [
     {
         name: '4G Macro',
         link: 'JCP/Layers/Nominal/Macro/Macro4G',
         eventName: 'sites-nominal-macro-macro4G',
+        parentToChild: 'Sites-Nominal-Macro-Macro4G',
+        component: 'NominalMacroDialogComponent',
+        children: []
+    },
+];
+const SITES_Planned_4GSmallCell_lIST = [
+    {
+        name: '4G Small Cell',
+        link: 'JCP/Layers/Planned/smallCell/smallCell4g',
+        eventName: 'sites-Planned-smallCell-smallCell4g',
         children: [],
-        parentToChild: 'Sites-Nominal-Macro-Macro4G'
+        parentToChild: 'Sites-Planned-SmallCell-SmallCell4g'
     }
 ];
-const SITES_Nominal_4GHpodsc_lIST = [
+
+const SITES_Planned_4GMacro_lIST = [
+    {
+        name: '4G Macro',
+        link: 'JCP/Layers/Planned/Macro/Macro4G',
+        eventName: 'sites-planned-macro-macro4G',
+        children: [],
+        parentToChild: 'Sites-Planned-Macro-Macro4G'
+    }
+];
+const SITES_Planned_lIST = [
+    {
+        name: "Macro",
+        link: "Macro",
+        eventName: 'sites-planned-Macro',
+        children: SITES_Planned_4GMacro_lIST
+    },
     {
         name: '4G HP ODSC',
         link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
@@ -839,15 +876,6 @@ const SITES_Nominal_lIST = [
     }
 ];
 
-const SITES_Planned_4GMacro_lIST = [
-    {
-        name: '4G Macro',
-        link: 'JCP/Layers/Planned/Macro/Macro4G',
-        eventName: 'sites-planned-macro-macro4G',
-        children: [],
-        parentToChild: 'Sites-Planned-Macro-Macro4G'
-    }
-];
 const SITES_Planned_4GHpodsc_lIST = [
     {
         name: '4G HP ODSC',
@@ -857,37 +885,6 @@ const SITES_Planned_4GHpodsc_lIST = [
         parentToChild: 'Sites-Planned-Hpodsc-HPODSC4g'
     }
 ];
-const SITES_Planned_4GSmallCell_lIST = [
-    {
-        name: '4G Small Cell',
-        link: 'JCP/Layers/Planned/smallCell/smallCell4g',
-        eventName: 'sites-Planned-smallCell-smallCell4g',
-        children: [],
-        parentToChild: 'Sites-Planned-SmallCell-SmallCell4g'
-    }
-];
-
-const SITES_Planned_lIST = [
-    {
-        name: "Macro",
-        link: "Macro",
-        eventName: 'sites-planned-Macro',
-        children: SITES_Planned_4GMacro_lIST
-    },
-    {
-        name: 'Hpodsc',
-        link: 'JCP/Layers/Planned/Hpodsc',
-        eventName: 'sites-planned-hpodsc',
-        children: SITES_Planned_4GHpodsc_lIST
-    },
-    {
-        name: 'Outdoor Small Cell',
-        link: 'JCP/Layers/Planned/Small-Cell',
-        eventName: 'sites-planned-small-cell',
-        children: SITES_Planned_4GSmallCell_lIST
-    }
-];
-
 
 // const SITES_Nominal_lIST = [
 //     {
@@ -2337,6 +2334,15 @@ const BASE_MAPS_LIST = [
 ];
 
 const PINS_SETTING = []
+const PINS_LIST_A = [
+    {
+        name: "pins",
+        icon: "fas fa-user fa-3",
+        link: "pins",
+        eventName: 'sites-outdoor-esc',
+        children: []
+    }
+];
 
 const MY_LAYERS_LIST = [
     {
@@ -2368,6 +2374,7 @@ const MY_LAYERS_LIST = [
         children: []
     }
 ]
+
 
 const PREDICTION_LAYERS_LIST = [
     {

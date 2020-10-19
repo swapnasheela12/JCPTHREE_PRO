@@ -10,7 +10,7 @@
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="start center" style="background: white; border-radius: 4px; margin: 10px;">
         <button *ngIf="showChart == true" mat-icon-button (click)="kpiDetailsChartPopFun()">
             <mat-icon style="color: #7E7E7E; font-size: 18px;" class="zmdi zmdi-arrow-left"></mat-icon>
         </button>
@@ -32,39 +32,36 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div class="kpi-details-container">
-
-        <div *ngIf="!showChart">
+    <div class="kpi-details-container" [style.background-color]="showChart ? 'white' : null">
+        <div *ngIf="!showChart" style="width: 585px;">
             <div class="kpi-details-card" *ngFor="let item of listOfKpiDetails">
                 <div class="kpi-details-card-container" (click)="kpiDetailsChartPopFun()"
-                    [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '5px'}"
-                    fxLayout="row">
-                    <div class="value-container" fxLayout="column">
+                    [ngStyle]="{'border-left-color': item.color,'border-left-style': 'solid','border-left-width': '3px'}">
+                    <div class="value-container" fxLayout="column" fxLayoutAlign="space-evenly start">
                         <div class="kpi-details-card-title">{{item.title}}</div>
-                        <div class="kpi-details-card-value">{{item.value}}</div>
+                        <div [ngStyle]="{'color': item.color}" class="kpi-details-card-value">{{item.value}}</div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div *ngIf="showChart">
-            <div style="height: 100%;">
-                <div fxLayout="row wrap" class="kpi-summary-view">
-                    <div fxFlex="50" class="kpi-summary-grid">
+        <div *ngIf="showChart"  style="width: 680px;">
+            <!-- <div style="height: 100%;"> -->
+                <!-- <div fxLayout="row wrap" class="kpi-summary-view"> -->
+                    <!-- <div fxFlex="50" class="kpi-summary-grid">
                         <div class="label">Atoll: On-Air DL Throughput COMBINED</div>
                         <div class="label">Data Source: Atoll 04/03/2017</div>
                     </div>
                     <div fxFlex="50" class="kpi-summary-grid">
                         <span class="label">On-Air Sites :</span>
                         <span class="value">246562</span>
-                    </div>
-                    <div fxFlex="100">
-                        <div class="jcp-landing-card-chart-container">
+                    </div> -->
+                    <!-- <div fxFlex="100"> -->
+                        <!-- <div class="jcp-landing-card-chart-container"> -->
                             <div id="kpiDetailsChartID" [chart]="kpiDetailsChart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
         </div>
     </div>
 

@@ -397,7 +397,7 @@ export class LegendsAndFilterComponent implements OnInit {
       width: '536px',
       height: '965px',
       position: { bottom: '0px', right: "0px" },
-      panelClass: "customLegends-setting-layers-dialog-container",
+      panelClass: "table-view-layers-dialog-container",
       backdropClass: 'cdk-overlay-transparent-backdrop',
       disableClose: true,
       hasBackdrop: true

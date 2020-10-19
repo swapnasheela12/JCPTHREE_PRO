@@ -17,7 +17,7 @@ export class DeleteRendererComponent implements ICellRendererAngularComp, OnDest
   leftGridOptionData: GridOptions;
   rightGridOptionData: GridOptions;
   fifteenMinsKpiGridOptionsData: GridOptions;
-  subscriptionMessage: Subscription;
+  subscriptionMessage: Subscription = new Subscription();
 
   constructor(
     public datashare: DataSharingService
