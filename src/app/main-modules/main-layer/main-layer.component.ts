@@ -13,6 +13,7 @@ import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+import * as esri from "esri-leaflet";
 
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
@@ -527,7 +528,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   basemapfunc() {
-    this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
+    this.dataShareSub = this.datashare.currentMessage.subscribe((val: any) => {
+      console.log("val", val);
       if (val instanceof Array) {
         val.forEach((map) => {
           if (map.name === "Terrain") {
@@ -537,11 +539,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               detectRetina: true,
             }));
           } else if (map.name === "Satellite") {
-            // this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            //   maxZoom: 18,
-            //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-            //   detectRetina: true,
-            // }));
+            esri.basemapLayer('ImageryLabels').addTo(this.map);
             this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
               maxZoom: 20,
               subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
@@ -568,6 +566,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
       }
+      if (val.length === 0) {
+        this.map.addLayer(L.tileLayer(
+          'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+          { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }));
+      }
+
     });
   }
 
