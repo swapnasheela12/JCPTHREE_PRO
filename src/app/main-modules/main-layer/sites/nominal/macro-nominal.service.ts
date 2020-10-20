@@ -1,3 +1,4 @@
+import { NominalViewComponent } from './nominal-view/nominal-view.component';
 import { Observable } from 'rxjs';
 import { DataSharingService } from './../../../../_services/data-sharing.service';
 import { ShapeService } from './../../layers-services/shape.service';
@@ -37,6 +38,7 @@ export class MacroNominalService {
   public stage;
   public _bounds;
   public zoomLevel;
+  public mainlayerRef;
   public _assetQueue;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
   public _siteImagePath = 'assets/images/Layers/macro-nominal/';
@@ -231,6 +233,13 @@ export class MacroNominalService {
             let outline = label.clone();
             outline.shadow = shadow;
             outline.color = '#000000';
+
+            siteContainer.on("click", (event) => {
+              console.log(event,"event");
+              
+              this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+            });
+            
             siteContainer.addChild(label, outline);
 
           }
@@ -291,6 +300,24 @@ export class MacroNominalService {
 
   removeAllMarkers() {
 
+  }
+
+  getReference(ref) {
+    this.mainlayerRef = ref;
+  }
+
+  private spiderViewFeature(e, ref, mainlayer) {
+    const layer = e.target;
+    console.log(layer, "layer");
+
+    mainlayer.map.setView(layer.latlng);
+    let data = {
+      ref: mainlayer
+    }
+    console.log("sideNavService", mainlayer.sideNavService);
+    mainlayer.datashare.sendDataToSpider(data);
+    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(NominalViewComponent);
+    mainlayer.componentRef = mainlayer.target.createComponent(nominalViewComponent);
   }
 
 }

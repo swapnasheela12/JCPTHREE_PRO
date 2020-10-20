@@ -1,3 +1,4 @@
+import { NominalViewComponent } from './../../main-modules/main-layer/sites/nominal/nominal-view/nominal-view.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Injectable, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -5,7 +6,7 @@ import * as L from 'leaflet';
 import { SpiderViewComponent } from 'src/app/main-modules/main-layer/spider-view/spider-view.component';
 import { SpiderComponent } from 'src/app/main-modules/main-layer/sites/outdoor/spider/spider.component';
 import { DataSharingService } from '../data-sharing.service';
-import { NominalViewComponent } from 'src/app/main-modules/main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
+// import { NominalViewComponent } from 'src/app/main-modules/main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
 
 declare var $: any;
 

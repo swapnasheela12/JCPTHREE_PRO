@@ -237,6 +237,7 @@ export class SmallCellPlanned4gService {
             siteImage['data'] = siteInner;
             siteImage['data'].color = color;
             siteImage['current'] = cell;
+
             siteContainer.addChild(siteImage);
 
           }
@@ -270,6 +271,10 @@ export class SmallCellPlanned4gService {
           outline.color = '#000000';
           siteContainer.addChild(label, outline);
 
+          siteContainer.on("click", (event,) => {
+            this.nodeOnMouseClick(event);
+          });
+
         }
 
         bounds.extend(latlng);
@@ -284,6 +289,36 @@ export class SmallCellPlanned4gService {
       
     }
 
+  }
+
+  nodeOnMouseClick(event) {
+    console.log();
+    
+    this.map.setView(event.target.latlng, 17);
+    this.loadSpiderViewComponent(event);
+  }
+
+  loadSpiderViewComponent(event) {
+    let biggerNodeData = {};
+    biggerNodeData['currentbands'] = event.target.site;
+    biggerNodeData['sector'] = event.target.sector;
+
+    // this.referenceComp.targetElementSpiderView.clear();
+
+    // if (this.dataSharingService) {
+    //   this.dataSharingService.sendDataToSpider(biggerNodeData);
+    // }
+    // else {
+    //   throw new Error("Data sharing service not found. Please add one.");
+    // }
+
+    // if (this.componentFactoryResolver) {
+    //   let spiderComponent = this.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
+    //   this.referenceComp.targetElementSpiderView.createComponent(spiderComponent);
+    // }
+    // else {
+    //   throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
+    // }
   }
 
   getPopup() {

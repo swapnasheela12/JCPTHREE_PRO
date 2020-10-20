@@ -69,7 +69,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
-    // this.macroNominalService.getReference(this);
+    this.macroNominalService.getReference(this);
     console.log("sideNavService", this.sideNavService);
   }
 
@@ -77,7 +77,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.libCustomLayer = leaflayer();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
-    // this.macroNominalService.getReference(this);
+    this.macroNominalService.getReference(this);
   }
 
   ngAfterViewInit() {
