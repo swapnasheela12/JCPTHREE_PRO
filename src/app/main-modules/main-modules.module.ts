@@ -105,9 +105,12 @@ import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settin
 import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-group-setting.component';
 import { RouteReadyFibreCoreComponent } from './main-layer/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component';
 import { RoutePlannedFibreCoreComponent } from './main-layer/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component';
-// import { RoutePopupComponent } from './main-layer/topologies/route-popup/route-popup.component';
 import { SettingsPopupComponent } from './main-layer/topologies/fibre/route/settings-popup/settings-popup.component';
 import { RouteTableViewComponent } from './main-layer/topologies/fibre/route/route-table-view/route-table-view.component';
+import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/custom-dashboard.component';
+import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
+import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
+import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -154,9 +157,10 @@ import { RouteTableViewComponent } from './main-layer/topologies/fibre/route/rou
     NominalMacroDialogComponent,
     RouteReadyFibreCoreComponent,
     RoutePlannedFibreCoreComponent,
-    // RoutePopupComponent,
     SettingsPopupComponent,
-    RouteTableViewComponent
+    RouteTableViewComponent,
+    CustomDashboardComponent,
+    TwampLiveDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -170,7 +174,13 @@ import { RouteTableViewComponent } from './main-layer/topologies/fibre/route/rou
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, colorDropdownRendererComponent, inputRendererComponent]),
+    AgGridModule.withComponents([
+      ButtonRendererComponent,
+      colorDropdownRendererComponent,
+      inputRendererComponent,
+      InfoRendererComponent,
+      AllExpandRendererComponent
+    ]),
     //Angular material
     FormsModule,
     ReactiveFormsModule,
