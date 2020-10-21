@@ -467,25 +467,29 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: "CmcSettingsPopupComponent"
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: "CmcSettingsPopupComponent"
     },
     {
         name: 'Unique Users',
         link: 'Unique-Users',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: "CmcSettingsPopupComponent"
     },
     {
         name: 'Data Volume',
         link: 'Data-Volume',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        component: "CmcSettingsPopupComponent"
     }
 ];
 

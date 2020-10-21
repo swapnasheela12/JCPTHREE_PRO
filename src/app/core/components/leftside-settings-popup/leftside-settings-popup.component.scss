@@ -4,6 +4,7 @@ overflow: hidden;
   .leftside-settings-poup {
     overflow: hidden;
     height: 450px;
+    max-height: 80vh;
     .dialog-header{
       background-color: white
     }
