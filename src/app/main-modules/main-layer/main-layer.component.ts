@@ -13,7 +13,8 @@ import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
-import * as esri from "esri-leaflet";
+//import * as esri from "esri-leaflet";
+//import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch';
 
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
@@ -62,6 +63,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public optionMap;
   public baselayers;
   layerTiles;
+  // search = new GeoSearchControl({
+  //   provider: new OpenStreetMapProvider(),
+  // });
 
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
@@ -203,19 +207,31 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       editMode: false,
       dragMode: false,// drag and drop
     };
+    // make markers not snappable during marker draw
+    // this.map.pm.enableDraw('Marker', { snappable: false });
+    // map.pm.disableDraw('Marker');
     this.map.pm.addControls(options);
-
     this.map.on('pm:create', (e) => {
+      //console.log("e", e);
+      // var lat = e.marker._latlng.lat;
+      // var lng = e.marker._latlng.lng;
+      // var latlng = new google.maps.LatLng(lat, lng);
+      // var geocoder = geocoder = new google.maps.Geocoder();
+      // geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      //     if (status == google.maps.GeocoderStatus.OK) {
+      //         if (results[1]) {
+      //             alert("Location: " + results[1].formatted_address);
+      //         }
+      //     }
+      // });
+
+
+
+      // this.geocoder.getFromLocation(e.marker._latlng.lat, e.marker._latlng.lat, 1);
       this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
-        //console.log("dataFromPinZoom", dataFromPinZoom);
         if (dataFromPinZoom === "pin-zoom-closed") {
-          //e.layer.remove();
-          this.map.removeLayer(e)
+          this.map.removeLayer(e.marker);
         }
-      });
-      //console.log("event create", e)
-      e.layer.on('pm:markerdragend', ({ layer }) => {
-        console.log("layer end", layer)
       });
       var screenshortListDialogRef = {
         width: '578px',
@@ -529,7 +545,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   basemapfunc() {
     this.dataShareSub = this.datashare.currentMessage.subscribe((val: any) => {
-      console.log("val", val);
       if (val instanceof Array) {
         val.forEach((map) => {
           if (map.name === "Terrain") {
@@ -539,34 +554,28 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               detectRetina: true,
             }));
           } else if (map.name === "Satellite") {
-            esri.basemapLayer('ImageryLabels').addTo(this.map);
             this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
               maxZoom: 20,
               subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true,
             }));
           } else if (map.name === "Streets Gray scale") {
-            this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-              maxZoom: 18,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true,
-            }));
+            // this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            //   maxZoom: 18,
+            //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            //   detectRetina: true,
+            // }));
+            //  esri.basemapLayer('DarkGray').addTo(this.map);
           } else if (map.name === "Streets Night") {
-            this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-              maxZoom: 18,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true,
-            }));
+            //
           } else if (map.name === "Streets Colored") {
-            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-              maxZoom: 18,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true,
-            }));
+            this.map.addLayer(L.tileLayer(
+              'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+              { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }));
           }
         });
       }
       if (val.length === 0) {
+        //  this.map.removeLayer(satelliteImageryLabel);
         this.map.addLayer(L.tileLayer(
           'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
           { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }));

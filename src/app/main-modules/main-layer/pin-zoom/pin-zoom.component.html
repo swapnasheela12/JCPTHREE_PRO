@@ -1,4 +1,4 @@
-<div #container class="h-100 pin-zoom-container">
+<div #container class="h-100 pin-zoom-container" style="background: white;">
     <div class="toolbar-table-control-layers px-3" style="height: 50px;" fxLayout="row"
         fxLayoutAlign="space-around center">
         <div class="toolbar-control-title" fxLayout="row" fxLayoutAlign="start center" fxFlex>
@@ -54,8 +54,8 @@
         <div fxLayout="row wrap" style="margin-bottom: 10px;">
             <div class="col"></div>
             <div class="mr-1 successful-text-button">
-                <button class=" success-butt" mat-stroked-button color="primary"
-                    style=" margin-left: 8px;">Delete</button>
+                <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;"
+                    (click)="deletePin()">Delete</button>
             </div>
             <div class="ml-1 successful-text-button">
                 <button class=" success-butt" mat-raised-button color="primary" style="margin: 0px 15px;"
