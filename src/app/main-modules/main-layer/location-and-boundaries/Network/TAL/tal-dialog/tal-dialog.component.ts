@@ -84,7 +84,7 @@ export class TacNetworkDialogComponent implements OnInit {
       template: this.networkTalLayerSettings
     }, {
       width: 540,
-      height:450,
+      height:460,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });

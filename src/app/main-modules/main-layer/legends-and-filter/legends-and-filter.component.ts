@@ -1,5 +1,5 @@
 import { CustomLegendsComponent } from './custom-legends/custom-legends.component';
-import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
@@ -46,8 +46,7 @@ export class LegendsAndFilterComponent implements OnInit {
   //   this.selectedColorValue = value;
   // }
 
-
-
+  manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   items = [
     { value: 1, legend: '#F44336' },
     { value: 3, legend: '#FF9800' },
@@ -57,8 +56,8 @@ export class LegendsAndFilterComponent implements OnInit {
     { value: 9, legend: '#03A9F4' }
   ];
   value: number = 10;
-  minValue: number = 40;
-  maxValue: number = 80;
+  minValue: number = -80;
+  maxValue: number = -40;
   // highValue: number = 90;
   options: Options = {
     floor: -140,
@@ -133,8 +132,8 @@ export class LegendsAndFilterComponent implements OnInit {
   onChangeLayer(layer) {
     if(layer.value == 'Macro') {
       // this.selectedLayerTableName = layer.value;
-      this.minValue =78;
-      this.maxValue = 210;
+      this.minValue = -110;
+      this.maxValue =  -40;
       this.options = {
         floor: -180,
         ceil: -20,
@@ -152,8 +151,8 @@ export class LegendsAndFilterComponent implements OnInit {
        
       };
     } else {
-      this.minValue = 40;
-      this.maxValue = 80;
+      this.minValue = -60;
+      this.maxValue = -40;
       this.options = {
         floor: -140,
         ceil: -40,
