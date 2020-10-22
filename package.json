@@ -27,6 +27,7 @@
         "@angular/forms": "^9.1.9",
         "@angular/localize": "^9.1.9",
         "@angular/material": "^9.2.4",
+        "@angular/material-moment-adapter": "^8.0.0",
         "@angular/platform-browser": "^9.1.9",
         "@angular/platform-browser-dynamic": "^9.1.9",
         "@angular/router": "^9.1.9",
@@ -54,6 +55,7 @@
         "ag-grid-community": "^23.1.1",
         "angular-bootstrap-md": "^9.3.1",
         "angular-highcharts": "^9.0.11",
+        "angular-resize-event": "^1.2.1",
         "bootstrap": "^4.5.0",
         "canvaslayer": "^1.0.3",
         "classlist.js": "^1.1.20150312",
@@ -106,8 +108,7 @@
         "web-animations-js": "^2.3.2",
         "webpack": "^4.43.0",
         "zeynepjs": "^1.0.2",
-        "zone.js": "~0.10.2",
-        "@angular/material-moment-adapter": "^8.0.0"
+        "zone.js": "~0.10.2"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.901.7",

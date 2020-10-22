@@ -1,5 +1,5 @@
 <ng-template #zonesJioLayerSettings>
-  <form  [formGroup]="macroDialogForm" class="form-macro-dialog px-3">
+  <form  [formGroup]="macroDialogForm" class="layers-settings-popup-content px-3">
     <label class="section-header">Properties</label>
     <div fxLayout="row" fxLayoutAlign="start center">
         <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
@@ -25,7 +25,7 @@
           </div>
         </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div  class="mt-3" fxLayout="row" fxLayoutAlign="start center">
       <div fxFlex="15">Opacity</div>
       <mat-slider fxFlex="75" color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert" [max]="max"
         [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity" (input)="someValue = $event.value"

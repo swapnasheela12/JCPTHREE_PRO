@@ -80,7 +80,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { RfOcWorkordersModule } from './work-orders/rf-oc-workorders/rf-oc-workorders.module';
 import { KpiDetailsComponent } from './main-layer/kpi-details/kpi-details.component';
 import { KpiDetailsChartComponent } from './main-layer/kpi-details/kpi-details-chart/kpi-details-chart.component';
-
+import { AngularResizedEventModule } from 'angular-resize-event';
 import { HighchartsChartModule } from "highcharts-angular";
 import { ChartModule } from 'angular-highcharts';
 import { SpiderViewDirective } from './main-layer/spider-view/spider-view.directive';
@@ -174,6 +174,7 @@ import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboar
     LeafletModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
+    AngularResizedEventModule,
     AgGridModule.withComponents([
       ButtonRendererComponent,
       colorDropdownRendererComponent,
