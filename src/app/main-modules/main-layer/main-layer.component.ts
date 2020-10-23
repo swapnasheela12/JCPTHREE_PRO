@@ -13,8 +13,6 @@ import { ShapeService } from './layers-services/shape.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
-//import * as esri from "esri-leaflet";
-//import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch';
 
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
@@ -59,6 +57,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
+  public googleMutant;
+  public geoCoder;
   public mapSelected;
   public optionMap;
   public baselayers;
@@ -83,6 +83,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.libCustomLayer = leaflayer();
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
+    this.googleMutant = googleMutant();
+    this.geoCoder = geoCoder();
   }
 
   ngAfterViewInit() {
@@ -93,6 +95,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private initMap(): void {
     //marker code
+    // console.log("google,", googleMutant);
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
     const iconUrl = 'assets/images/Layers/pin-drop.svg';
     const iconDefault = L.icon({
@@ -108,9 +111,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //map object create
     this.optionMap = {
       layers: [
-        L.tileLayer(
-          'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-          { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] })
+        this.googleMutant.gridLayer.googleMutant({
+          maxZoom: 18,
+          type: 'roadmap'
+        })
       ],
       // center: [25.0000, 79.0000],
       center: [19.04, 72.90],
@@ -224,6 +228,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       //         }
       //     }
       // });
+      // L.Control.Geocoder.LatLng(options);
+      console.log("geoCoder", this.geoCoder);
 
 
 
@@ -548,37 +554,196 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       if (val instanceof Array) {
         val.forEach((map) => {
           if (map.name === "Terrain") {
-            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            this.googleMutant.gridLayer.googleMutant({
               maxZoom: 18,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true,
-            }));
+              type: 'terrain'
+            }).addTo(this.map);
           } else if (map.name === "Satellite") {
-            this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-              maxZoom: 20,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-            }));
-          } else if (map.name === "Streets Gray scale") {
-            // this.map.addLayer(L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            //   maxZoom: 18,
-            //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-            //   detectRetina: true,
-            // }));
-            //  esri.basemapLayer('DarkGray').addTo(this.map);
+            this.googleMutant.gridLayer.googleMutant({
+              maxZoom: 18,
+              type: 'hybrid'
+            }).addTo(this.map);
+          } else if (map.name === "Streets Gray Scale") {
+            this.googleMutant.gridLayer.googleMutant({
+              type: 'roadmap',
+              maxZoom: 18,
+              styles: [{
+                "stylers": [{
+                  "saturation": -100
+                }]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              }
+              ]
+            }).addTo(this.map);
           } else if (map.name === "Streets Night") {
-            //
+            this.googleMutant.gridLayer.googleMutant({
+              type: 'roadmap',
+              maxZoom: 18,
+              styles: [{
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#242f3e"
+                }]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#746855"
+                }]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [{
+                  "color": "#242f3e"
+                }]
+              },
+              {
+                "featureType": "administrative",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#79473d"
+                }]
+              },
+              {
+                "featureType": "administrative.country",
+                "elementType": "geometry.stroke",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              },
+              {
+                "featureType": "administrative.locality",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#d59563"
+                }]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{
+                  "visibility": "on"
+                }]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#d59563"
+                }]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#263c3f"
+                }]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#6b9a76"
+                }]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#38414e"
+                }]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [{
+                  "color": "#212a37"
+                }]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#9ca5b3"
+                }]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#746855"
+                }]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [{
+                  "color": "#1f2835"
+                }]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#f3d19c"
+                }]
+              },
+              {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#2f3948"
+                }]
+              },
+              {
+                "featureType": "transit.station",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#d59563"
+                }]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{
+                  "color": "#17263c"
+                }]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                  "color": "#515c6d"
+                }]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.stroke",
+                "stylers": [{
+                  "color": "#17263c"
+                }]
+              }
+              ]
+            }).addTo(this.map);
           } else if (map.name === "Streets Colored") {
-            this.map.addLayer(L.tileLayer(
-              'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-              { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }));
+            this.googleMutant.gridLayer.googleMutant({
+              maxZoom: 18,
+              type: 'roadmap',
+            }).addTo(this.map);
           }
         });
       }
       if (val.length === 0) {
-        //  this.map.removeLayer(satelliteImageryLabel);
-        this.map.addLayer(L.tileLayer(
-          'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-          { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }));
+        this.googleMutant.gridLayer.googleMutant({
+          maxZoom: 18,
+          type: 'roadmap',
+        }).addTo(this.map);
       }
 
     });
