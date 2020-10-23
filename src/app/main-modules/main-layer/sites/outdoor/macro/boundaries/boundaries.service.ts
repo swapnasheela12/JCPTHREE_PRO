@@ -12,17 +12,17 @@ interface DataObject {
 })
 
 export class BoundariesService {
-  public customLayerLibrary:DataObject;
-  public map:DataObject;
+  public customLayerLibrary: DataObject;
+  public map: DataObject;
   public siteData = null;
-  public fanDataError:DataObject;
-  public container:DataObject;
-  public stage:DataObject;
-  public _points:DataObject;
+  public fanDataError: DataObject;
+  public container: DataObject;
+  public stage: DataObject;
+  public _points: DataObject;
   public pixelRatio: number = window.devicePixelRatio || 1;
-  public zoomLevel:number;
-  public componentRef:DataObject;
-  public canvasLayerObj:DataObject;
+  public zoomLevel: number;
+  public componentRef: DataObject;
+  public canvasLayerObj: DataObject;
   public textRatio: number;
   public countMin: number;
   public countMax: number;
@@ -30,7 +30,7 @@ export class BoundariesService {
   constructor() { }
 
   makeSiteJsonCall(url) {
-    return new Promise( (res, rej) => {
+    return new Promise((res, rej) => {
       let xhr = new XMLHttpRequest();
       xhr.onload = function () {
         res(this.responseText)
@@ -58,7 +58,7 @@ export class BoundariesService {
       this.canvasLayerObj = canvasLayer;
     }, 1000);
 
-    
+
     canvasLayer.addTo(this.map);
   }
 
@@ -127,9 +127,9 @@ export class BoundariesService {
           this.siteData = JSON.parse(dataResponse);
           this.boundariesDrawing(customLayerThis, this.siteData)
         })
-        .catch( (error) => {
-          console.error(error.message);
-        });
+          .catch((error) => {
+            console.error(error.message);
+          });
       }
     }
   }
@@ -219,10 +219,10 @@ export class BoundariesService {
     g.beginStroke(stroke);
     g.beginFill(color);
     //drawPolygon is a custom function present as of now in create JS module itself
-    g.drawPolygon(0, 0, data);
+    // g.drawPolygon(0, 0, data);
     return g;
   };
-  
+
   removeLayerFromMap() {
     this.canvasLayerObj.remove();
   }
