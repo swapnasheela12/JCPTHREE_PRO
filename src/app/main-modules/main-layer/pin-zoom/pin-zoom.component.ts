@@ -20,15 +20,18 @@ export class PinZoomComponent implements OnInit {
     existingGroup: [true],
     groupName: ['ConvertCSV']
   });
+  public location;
   @Output() public pinZoomClosed = new EventEmitter();
   constructor(private dataShare: DataSharingService, private dialogRef: MatDialogRef<PinZoomComponent>,
     public dialog: MatDialog, private _snackBar: MatSnackBar,
     private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data?: any,
-  ) {
-  }
+  ) {  }
 
   private inited;
   ngOnInit(): void {
+    this.dataShare.currentMessage.subscribe((evt)=> {
+      this.location = evt;
+    });
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
     })

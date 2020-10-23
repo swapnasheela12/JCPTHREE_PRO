@@ -14,6 +14,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, Componen
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
+import {} from 'google-maps';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
@@ -58,7 +59,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public rulerLeafletLib;
   public libCustomLayer;
   public googleMutant;
-  public geoCoder;
+  public address;
   public mapSelected;
   public optionMap;
   public baselayers;
@@ -84,7 +85,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
     this.googleMutant = googleMutant();
-    this.geoCoder = geoCoder();
   }
 
   ngAfterViewInit() {
@@ -216,25 +216,23 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     // map.pm.disableDraw('Marker');
     this.map.pm.addControls(options);
     this.map.on('pm:create', (e) => {
-      //console.log("e", e);
-      // var lat = e.marker._latlng.lat;
-      // var lng = e.marker._latlng.lng;
-      // var latlng = new google.maps.LatLng(lat, lng);
-      // var geocoder = geocoder = new google.maps.Geocoder();
-      // geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-      //     if (status == google.maps.GeocoderStatus.OK) {
-      //         if (results[1]) {
-      //             alert("Location: " + results[1].formatted_address);
-      //         }
-      //     }
-      // });
-      // L.Control.Geocoder.LatLng(options);
-      console.log("geoCoder", this.geoCoder);
+      let googleCoder = new google.maps.Geocoder();
+      let lat = e.marker._latlng.lat;
+      let lng = e.marker._latlng.lng;
+      let latlng = new google.maps.LatLng(lat, lng);
+      googleCoder.geocode({
+        'location': latlng
+    }, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var location = results[3] ? results[3] : results[2] ? results[2] : results[1] ? results[1] : results[0];
+            this.address = location.formatted_address
+        } else {
+          this.address = "";
+        }
+        this.datashare.changeMessage(this.address);
+    });
 
-
-
-      // this.geocoder.getFromLocation(e.marker._latlng.lat, e.marker._latlng.lat, 1);
-      this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
+     this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
         if (dataFromPinZoom === "pin-zoom-closed") {
           this.map.removeLayer(e.marker);
         }
@@ -243,6 +241,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         width: '578px',
         height: '515px',
         panelClass: "table-view-layers-dialog-container",
+        data: this.address
       }
       const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
     });

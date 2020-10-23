@@ -5,6 +5,12 @@
         letter-spacing: 0px;
         color: #000000;
         opacity: 0.85;
+        .location {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
     }
 }
 .save-all-pins {
