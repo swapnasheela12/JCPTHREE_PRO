@@ -7,6 +7,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
+import { MatRadioButton } from '@angular/material/radio';
 
 declare var $: any;
 
@@ -40,6 +41,11 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
 export class LeftsideNavigationComponent implements OnInit {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
   parentNode: ExampleFlatNode;
+  nodeType = 'TEST';
+  @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
+  // @Input() checked: Boolean;
+  @ViewChild('female',  { static: true }) femaleRB: MatRadioButton;
+  frequencyGroup = "Satellite";
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
@@ -56,6 +62,10 @@ export class LeftsideNavigationComponent implements OnInit {
       if (btn.target.classList[1] == 'ic-layers-01') {
         this.router.navigate(['/JCP/Layers']);
       }
+    }
+    if (btn.target.innerText == "Layers") {
+      console.log("asjdhgasdas")
+      this.router.navigate(['/JCP/Layers']);
     }
   }
 
@@ -167,6 +177,7 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   activenode(node, horizontalLine) {
+    this.nodeType = node.name;
     const levelNode = this.treeControl.getLevel(node);
     const currentIndexNode = this.treeControl.dataNodes.indexOf(node);
     let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length + currentIndexNode + 1];
@@ -336,6 +347,45 @@ export class LeftsideNavigationComponent implements OnInit {
   }
 
   selectedLayerArr: any = [];
+
+  onChangeTree(selected, node, activeCheckbox, eventChecked) {
+    // console.log(this.activeCheckbox.checked)
+    // console.log(test)
+    if (activeCheckbox._elementRef.nativeElement.tagName === 'MAT-RADIO-BUTTON') {
+      this.onRadioChecked(selected, node, activeCheckbox, eventChecked);
+    } else {
+      this.onChecked(selected, node, activeCheckbox, eventChecked);
+    }
+  }
+  onRadioChecked(selected, node, activeCheckbox, eventChecked) {
+    // console.log(this.activeCheckbox.checked)x
+    console.log('selected dhjfhsdkf', selected);
+    // if (node.selected == true) {
+      this.selectedLayerArr.push(node);
+      this.datashare.changeMessage(this.selectedLayerArr);
+      this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
+      this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+      if ('' !== node.componentLayer) {
+        this.renderLayerComponent(node.componentLayer);
+      }
+    // } else {
+    //   for (let item of this.selectedLayerArr) {
+    //     if (item.selected == node.selected) {
+    //       this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
+    //       break;
+    //     }
+    //   }
+    //   if ('' !== node.componentLayer) {
+    //     this.removeLayerComponent(node.componentLayer);
+    //   }
+    //   this.datashare.changeMessage(this.selectedLayerArr);
+    //   this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+    // }
+  }
+  onSelectionChange(event) {
+    console.log(event);
+    console.log(this.activeCheckbox.checked);
+  } 
   onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
     if (eventChecked != 'no') {

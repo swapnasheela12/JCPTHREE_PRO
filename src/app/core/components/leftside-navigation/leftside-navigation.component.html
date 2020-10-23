@@ -30,9 +30,10 @@
         </div>
 
         <ul *ngIf="item.children.length > 0 && item.name =='Layers'" class="listview-icons">
+           <mat-radio-group [(value)]="frequencyGroup"  (change)="onSelectionChange($event)">
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle
-                    matTreeNodePaddingIndent="0" (click)="onChecked(node.selected, node, activeCheckbox, 'no')"
+                    matTreeNodePaddingIndent="0" (click)="onChangeTree(node.selected, node, activeCheckbox, 'no')"
                     (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"
                     [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0': '']"
                     class="dashed-border">
@@ -47,11 +48,17 @@
                         class="node-icon icon-h-arw icon-ledger"></div>
                     <div class="name-node" style="margin-top: 9px;">
                         <mat-checkbox class="checklist-leaf-node"
-                            (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)"
-                            [checked]="node.selected" #activeCheckbox>
-                            <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
-                            </div>
-                        </mat-checkbox>
+                                *ngIf="nodeType !== 'Base Maps'"
+                                (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)"
+                                [checked]="node.selected" #activeCheckbox>
+                                <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
+                                </div>
+                            </mat-checkbox>
+                            <mat-radio-button
+                                *ngIf="nodeType === 'Base Maps'"
+                                [value]="node.name" #activeCheckbox>
+                                    {{node.name}}
+                            </mat-radio-button>
                     </div>
                     <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay
                         (click)="openSettingsDialog(node, $event)">
@@ -112,6 +119,7 @@
                     <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
                 </mat-tree-node>
             </mat-tree>
+           </mat-radio-group>
         </ul>
     </ng-template>
 </nav>

@@ -450,7 +450,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           const dialogRef = _dialog.open(TableViewControlComponent, optionsListDialogRef);
 
           dialogRef.backdropClick().subscribe(_ => {
-            dialogRef.close();
+            // dialogRef.close();
           });
 
           dialogRef.afterClosed().subscribe(result => {
@@ -547,6 +547,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataShareSub = this.datashare.currentMessage.subscribe((val: any) => {
       if (val instanceof Array) {
         val.forEach((map) => {
+          let outerThis = this;
+          this.map.eachLayer(function (layer) {
+            outerThis.map.removeLayer(layer);
+          });
           if (map.name === "Terrain") {
             this.map.addLayer(L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
               maxZoom: 18,
