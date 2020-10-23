@@ -219,7 +219,7 @@ export class BoundariesService {
     g.beginStroke(stroke);
     g.beginFill(color);
     //drawPolygon is a custom function present as of now in create JS module itself
-    // g.drawPolygon(0, 0, data);
+     g.drawPolygon(0, 0, data);
     return g;
   };
 

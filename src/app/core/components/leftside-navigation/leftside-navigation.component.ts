@@ -45,7 +45,7 @@ export class LeftsideNavigationComponent implements OnInit {
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
   // @Input() checked: Boolean;
   @ViewChild('female',  { static: true }) femaleRB: MatRadioButton;
-  frequencyGroup = "Satellite";
+  frequencyGroup = "Streets Colored";
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
@@ -64,7 +64,6 @@ export class LeftsideNavigationComponent implements OnInit {
       }
     }
     if (btn.target.innerText == "Layers") {
-      console.log("asjdhgasdas")
       this.router.navigate(['/JCP/Layers']);
     }
   }
@@ -349,8 +348,6 @@ export class LeftsideNavigationComponent implements OnInit {
   selectedLayerArr: any = [];
 
   onChangeTree(selected, node, activeCheckbox, eventChecked) {
-    // console.log(this.activeCheckbox.checked)
-    // console.log(test)
     if (activeCheckbox._elementRef.nativeElement.tagName === 'MAT-RADIO-BUTTON') {
       this.onRadioChecked(selected, node, activeCheckbox, eventChecked);
     } else {
@@ -358,9 +355,6 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
   onRadioChecked(selected, node, activeCheckbox, eventChecked) {
-    // console.log(this.activeCheckbox.checked)x
-    console.log('selected dhjfhsdkf', selected);
-    // if (node.selected == true) {
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
@@ -368,23 +362,9 @@ export class LeftsideNavigationComponent implements OnInit {
       if ('' !== node.componentLayer) {
         this.renderLayerComponent(node.componentLayer);
       }
-    // } else {
-    //   for (let item of this.selectedLayerArr) {
-    //     if (item.selected == node.selected) {
-    //       this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
-    //       break;
-    //     }
-    //   }
-    //   if ('' !== node.componentLayer) {
-    //     this.removeLayerComponent(node.componentLayer);
-    //   }
-    //   this.datashare.changeMessage(this.selectedLayerArr);
-    //   this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-    // }
   }
   onSelectionChange(event) {
-    console.log(event);
-    console.log(this.activeCheckbox.checked);
+    //
   } 
   onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
