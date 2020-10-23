@@ -58,18 +58,19 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public contextMenuLib;
   public rulerLeafletLib;
   public libCustomLayer;
-  public
+  public optionsSacle;
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private smallCellPlanned4gService :SmallCellPlanned4gService, private macroPlanned4gService :MacroPlanned4gService,private Hpodsc4gService:Hpodsc4gService , private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
 
- 
+
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
     this.macroNominalService.getReference(this);
+    this.smallCellPlanned4gService.getReference(this);
     console.log("sideNavService", this.sideNavService);
   }
 
@@ -78,6 +79,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
     this.macroNominalService.getReference(this);
+    this.smallCellPlanned4gService.getReference(this);
   }
 
   ngAfterViewInit() {
@@ -525,6 +527,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     });
     this.map.addControl(new this.customControlList());
+
+    this.optionsSacle = {
+      position: 'bottomleft'
+    };
+    let scale: any = L.control.scale({
+      position: this.optionsSacle.position,
+      imperial: false,
+      maxWidth: 100
+    }).addTo(this.map);
+
     //custome controller//
 
     this.shapeService.mapServiceData = this.map;

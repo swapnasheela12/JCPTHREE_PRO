@@ -104,6 +104,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PinZoomComponent } from './main-layer/pin-zoom/pin-zoom.component';
 import { CmcSettingsPopupComponent } from './main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component';
 import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-group-setting.component';
+import { SmallCellPlannedSpiderViewComponent } from './main-layer/sites/planned/small-cell-planned/small-cell-planned-spider-view/small-cell-planned-spider-view.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { PinGroupSettingComponent } from './main-layer/pin-group-setting/pin-gro
     NominalMacroDialogComponent,
     CmcSettingsPopupComponent,
     PinZoomComponent,
-    PinGroupSettingComponent
+    PinGroupSettingComponent,
+    SmallCellPlannedSpiderViewComponent
   ],
   imports: [
     CommonModule,

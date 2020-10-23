@@ -105,7 +105,7 @@ export class MacroNominalService {
     this.dataShareSub = this.datashare.currentMessage.subscribe(val => {
 
       this.selectedLayerArrList = val;
-
+      
       canvasLayer.remove(this._map);
       this.removeAllMarkers();
 

@@ -116,6 +116,11 @@
             }
         }
     }
+    .leaflet-bottom.leaflet-left {
+        .leaflet-control-scale {
+            margin-left: 25px !important;
+        }
+    }
 }
 
 // .leaflet-touch .leaflet-control-layers,

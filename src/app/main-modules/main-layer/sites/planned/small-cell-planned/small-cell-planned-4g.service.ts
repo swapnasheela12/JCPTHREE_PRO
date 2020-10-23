@@ -1,8 +1,9 @@
+import { SmallCellPlannedSpiderViewComponent } from './small-cell-planned-spider-view/small-cell-planned-spider-view.component';
 import { ShapeService } from './../../../layers-services/shape.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
@@ -36,6 +37,7 @@ export class SmallCellPlanned4gService {
   public stage;
   public _bounds;
   public zoomLevel;
+  public mainlayerRef;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
   public _siteImagePath = 'assets/images/Layers/planned-small-cell/';
@@ -45,7 +47,7 @@ export class SmallCellPlanned4gService {
     type: createjs.LoadQueue.IMAGE
   }]
 
-  constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
     this.ref = this;
     this.lib = leaflayer();
     this.redrawLayer();
@@ -269,12 +271,14 @@ export class SmallCellPlanned4gService {
           let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
-          siteContainer.addChild(label, outline);
+         
 
-          siteContainer.on("click", (event,) => {
-            this.nodeOnMouseClick(event);
+          siteContainer.on("click", (event) => {
+            console.log(event,"event");
+            
+            this.spiderViewFeature(event, this.ref, this.mainlayerRef)
           });
-
+          siteContainer.addChild(label, outline);
         }
 
         bounds.extend(latlng);
@@ -291,34 +295,58 @@ export class SmallCellPlanned4gService {
 
   }
 
-  nodeOnMouseClick(event) {
-    console.log();
-    
-    this.map.setView(event.target.latlng, 17);
-    this.loadSpiderViewComponent(event);
+  getReference(ref) {
+    this.mainlayerRef = ref;
   }
+  private spiderViewFeature(event, ref, mainlayer) {
+    const layer = event.target;
+    console.log(event, "event");
 
-  loadSpiderViewComponent(event) {
+    mainlayer.map.setView(layer.latlng,17);
+    let data = {
+      ref: mainlayer
+    }
+    console.log("sideNavService", mainlayer.sideNavService);
+    // mainlayer.datashare.sendDataToSpider(data);
+    // let smallCellPlannedSpiderViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(SmallCellPlannedSpiderViewComponent);
+    // mainlayer.componentRef = mainlayer.target.createComponent(smallCellPlannedSpiderViewComponent);
+
+    // let targetDivReference;
+    // this.dataSharingService.spiderViewReference.subscribe((reference) => {
+    //   targetDivReference = reference;
+    // });
+
+    if (event.target.color == "white") return false;
+
+
     let biggerNodeData = {};
     biggerNodeData['currentbands'] = event.target.site;
     biggerNodeData['sector'] = event.target.sector;
+   
 
-    // this.referenceComp.targetElementSpiderView.clear();
+    this.mainlayerRef.clear();
 
-    // if (this.dataSharingService) {
-    //   this.dataSharingService.sendDataToSpider(biggerNodeData);
-    // }
-    // else {
-    //   throw new Error("Data sharing service not found. Please add one.");
-    // }
+    if (this.datashare) {
+      this.datashare.sendDataToSpider(biggerNodeData);
+    }
+    else {
+      throw new Error("Data sharing service not found. Please add one.");
+    }
 
-    // if (this.componentFactoryResolver) {
-    //   let spiderComponent = this.componentFactoryResolver.resolveComponentFactory(SpiderComponent);
-    //   this.referenceComp.targetElementSpiderView.createComponent(spiderComponent);
-    // }
-    // else {
-    //   throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
-    // }
+    if (this.componentFactoryResolver) {
+      let spiderComponent = this.componentFactoryResolver.resolveComponentFactory(SmallCellPlannedSpiderViewComponent);
+      mainlayer.target.createComponent(spiderComponent);
+    }
+    else {
+      throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
+    }
+
+
+
+
+
+
+
   }
 
   getPopup() {
