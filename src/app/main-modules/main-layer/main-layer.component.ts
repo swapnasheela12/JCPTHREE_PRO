@@ -553,20 +553,26 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       if (val instanceof Array) {
         val.forEach((map) => {
           let outerThis = this;
-          // this.map.eachLayer(function (layer) {
-          //   outerThis.map.removeLayer(layer);
-          // });
           if (map.name === "Terrain") {
+            this.map.eachLayer(function (layer) {
+              outerThis.map.removeLayer(layer);
+            });
             this.googleMutant.gridLayer.googleMutant({
               maxZoom: 18,
               type: 'terrain'
             }).addTo(this.map);
           } else if (map.name === "Satellite") {
+            this.map.eachLayer(function (layer) {
+              outerThis.map.removeLayer(layer);
+            });
             this.googleMutant.gridLayer.googleMutant({
               maxZoom: 18,
               type: 'hybrid'
             }).addTo(this.map);
           } else if (map.name === "Streets Gray Scale") {
+            this.map.eachLayer(function (layer) {
+              outerThis.map.removeLayer(layer);
+            });
             this.googleMutant.gridLayer.googleMutant({
               type: 'roadmap',
               maxZoom: 18,
@@ -585,6 +591,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               ]
             }).addTo(this.map);
           } else if (map.name === "Streets Night") {
+            this.map.eachLayer(function (layer) {
+              outerThis.map.removeLayer(layer);
+            });
             this.googleMutant.gridLayer.googleMutant({
               type: 'roadmap',
               maxZoom: 18,
@@ -735,6 +744,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               ]
             }).addTo(this.map);
           } else if (map.name === "Streets Colored") {
+            this.map.eachLayer(function (layer) {
+              outerThis.map.removeLayer(layer);
+            });
             this.googleMutant.gridLayer.googleMutant({
               maxZoom: 18,
               type: 'roadmap',
