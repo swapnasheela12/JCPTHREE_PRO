@@ -553,9 +553,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       if (val instanceof Array) {
         val.forEach((map) => {
           let outerThis = this;
-          this.map.eachLayer(function (layer) {
-            outerThis.map.removeLayer(layer);
-          });
+          // this.map.eachLayer(function (layer) {
+          //   outerThis.map.removeLayer(layer);
+          // });
           if (map.name === "Terrain") {
             this.googleMutant.gridLayer.googleMutant({
               maxZoom: 18,
