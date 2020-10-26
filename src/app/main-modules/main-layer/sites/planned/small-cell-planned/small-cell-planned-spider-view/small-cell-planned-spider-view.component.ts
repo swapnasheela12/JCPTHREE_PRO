@@ -63,9 +63,7 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
   bandarc;
   bandGroup;
   message;
-  imageURL = 'assets/data/layers/nominalssites/0.svg';
-
-  currentcell
+  currentcell;
 
   constructor(private datashare: DataSharingService, private element: ElementRef,
     private router: Router, private http: HttpClient, public dialog: MatDialog) { }
@@ -183,6 +181,40 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
   }
   ];
 
+  public smallCellData = [
+    {
+      name: 'Properties',
+      value: 5,
+      color: '#8CC63F',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf112',
+      eventname: 'sites-tree-properties'
+    }, {
+      name: 'Create Workorder',
+      value: 5,
+      color: '#8dc63f',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf222',
+      disabled: true,
+      eventname: 'sites-tree-createworkorder'
+    }, {
+      name: 'RAN Performance',
+      value: 5,
+      color: '#ED1E79',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf130',
+      eventname: 'onaismallcell-tree-properties'
+    },
+    {
+      name: 'Alarms',
+      value: 5,
+      color: '#ED1C24',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf1fe',
+      eventname: 'sites-tree-onairalarms'
+    },
+  ];
+
   public sectorData = {
     "sapid": "I-MU-MUMB-ENB-I414",
     "sectorid": 3,
@@ -273,15 +305,14 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
   }
   currentBand = []
   ngOnInit() {
-    this.datashare.currentSpiderData.subscribe((message) => {
-      this.message = message;
+    this.datashare.currentsmallCellPlanned.subscribe(val => {
+      console.log(val, "val");
+
+      this.currentbands = val['currentbands'];
+      this.currentcell = val['currentcell'];
     });
-    this.http.get("assets/data/layers/microsites-onair.json")
-      .subscribe(message => {
-        this.currentbands = message["site2300"]
-        this.sector = this.sectorData
-        this.initializeBiggerNode();
-      })
+
+    this.initializeBiggerNode();
   }
 
   initializeBiggerNode() {
@@ -290,7 +321,7 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
     let rawSvg = $(element).find('svg');
     let svg: any = d3.select(rawSvg[0]);
     let data = [];
-    data = this.onAirData;
+    data = this.smallCellData;
     this.drawSVG(element, svg, data, this)
   }
 
@@ -310,153 +341,66 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
     const outerContext = this;
     let width = Math.min(screenWidth, 500) - margin.left - margin.right;
 
-    let translateX = ((screenWidth / 2) + 50);
+    let translateX = ((screenWidth / 2) + 100);
     let translateY = (screenHeight / 2);
 
     let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
       .attr('transform', 'translate(' + translateX + ',' + translateY + ')')
-
-    // let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
-    //   .attr('transform', 'translate(' + ((screenWidth / 2) + 100) + ',' + (screenHeight / 2) + ')');
 
     //Create an arc function
     this.arc = this.createArc(width);
 
     //Turn the pie chart 90 degrees counter clockwise, so it starts at the left
     this.pie = this.rotatePieChart();
-    // let d3 = $window.d3;
 
-    // let clientWidth = element[0].offsetWidth;
-    // let clientHeight = element[0].offsetHeight;
-    // let screenWidth = clientWidth > 0 ? clientWidth : 500;
-    // let screenHeight = clientHeight > 0 ? clientHeight : 500;
-
-    // let margin = {
-    //   left: 20,
-    //   top: 20,
-    //   right: 20,
-    //   bottom: 20
-    // };
-
-    // let width = Math.min(screenWidth, 500) - margin.left - margin.right;
-    // // let height = Math.min(screenHeight, 500) - margin.top - margin.bottom;
-
-    // let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
-    //   .attr('transform', 'translate(' + ((screenWidth / 2) + 100) + ',' + (screenHeight / 2) + ')');
-
-    //Create an arc function
-    // let arc = d3.svg.arc()
-    //   .innerRadius(width * 0.75 / 2)
-    //   .outerRadius(width * 0.75 / 2 + 30);
-
-    //Turn the pie chart 90 degrees counter clockwise, so it starts at the left
-    let pie = this.layoutPie(width);
-
-
-    let diagonal = this.diagonal(width);
-
+    this.createLines();
+    let diagonal = function link(d) {
+      return "M0" + "," + "0C" + (d.source.x + d.target.x) / 2 + "," + "0" + " " +
+        (d.source.x + d.target.x) / 2
+        + "," + d.target.y + " " + d.target.x + "," + d.target.y;
+    };
 
     let bandGroup = wrapgroup.append('g').attr('transform', 'translate(-100,0)');
-    //////////////////////////////////////////////////////////////
     //////////////////// Create Donut Chart //////////////////////
-    //////////////////////////////////////////////////////////////
-
     //Create the donut slices and also the invisible arcs for the text
     this.donutArcsGroup = this.createDonutGroup(wrapgroup, data);
     this.createDonutArc();
-    // let donutArcsGroup = wrapgroup.selectAll('.donutArcsGroup')
-    //   .data(pie(data))
-    //   .enter().append('g')
-    //   .attr('class', 'donutArcsGroup');
+    //createLinePoint
+    this.linePointsGroup = this.createLineGroup(wrapgroup, data);
+    this.appendLineGroupPath(element, diagonal);
+    this.appendLineToCircle(element);
 
-    // donutArcsGroup.append('path')
-    //   .attr('d', arc)
-    //   .style('fill', 'none')
-    //   .attr('class', function (d, i) {
-    //     //Search pattern for everything between the start and the first capital L
-    //     let firstArcSection = /(^.+?)L/;
+    //CreateCircleGroup
+    this.circleGroup = this.createCircleGroup(wrapgroup, this.pie, data, element)
+    this.createCircle();
+    //Append the label names on the outside
+    this.appendLabelsInsideCircle();
+    this.appendLabelOutside();
 
-    //     //Grab everything up to the first Line statement
-    //     let newArc = firstArcSection.exec(d3.select(this).attr('d'))[1];
-    //     //Replace all the comma's so that IE can handle it
-    //     newArc = newArc.replace(/,/g, ' ');
+    this.bandarc = d3.arc();
 
-    //     //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2)
-    //     //flip the end and start position
-    //     if (d.endAngle > 90 * Math.PI / 180) {
-    //       let startLoc = /M(.*?)A/, //Everything between the first capital M and first capital A
-    //         middleLoc = /A(.*?)0 0 1/, //Everything between the first capital A and 0 0 1
-    //         endLoc = /0 0 1 (.*?)$/; //Everything between the first 0 0 1 and the end of the string (denoted by $)
-    //       //Flip the direction of the arc by switching the start en end point (and sweep flag)
-    //       //of those elements that are below the horizontal line
-    //       let newStart = endLoc.exec(newArc)[1];
-    //       let newEnd = startLoc.exec(newArc)[1];
-    //       let middleSec = middleLoc.exec(newArc)[1];
+    this.bandsArcsGroup = bandGroup.append('g').attr('class', 'bandsArcsGroup');
 
-    //       //Build up the new arc notation, set the sweep-flag to 0
-    //       newArc = 'M' + newStart + 'A' + middleSec + '0 0 0 ' + newEnd;
-    //     } //if
-
-    //     //Create a new invisible arc that the text can flow along
-    //     d3.select(this.parentNode).append('path')
-    //       .attr('class', 'hiddenDonutArcs')
-    //       .attr('id', 'donutArc' + i)
-    //       .attr('d', newArc)
-    //       .style('fill', 'none');
-
-    //     return 'donutArcs';
-    //   });
+    let bands = this.currentbands;
+    let pointSource = {
+      x: 100,
+      y: 0
+    };
+    let pointTarget = {
+      x: 30,
+      y: 0
+    };
 
 
-    let linePointsGroup = wrapgroup.selectAll('.linePointsGroup')
-      .data(pie(data))
-      .enter().append('g')
-      .attr('class', 'linePointsGroup');
-
-
-    linePointsGroup.append('path')
-      .attr('class', function (d, i) {
-        let donutArc = $(element).find('#donutArc' + i)[0];
-        let pathEl = d3.select(donutArc).node();
-        let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
-        d.source = {
-          x: 0,
-          y: 0
-        };
-        d.target = {
-          x: midpoint.x,
-          y: midpoint.y
-        };
-        return 'linePoints';
+    //Turn the pie chart 90 degrees counter clockwise, so it starts at the left
+    let pie = d3.pie()
+      .startAngle(0)
+      .endAngle(-90 * Math.PI / 90 + 2 * Math.PI)
+      .value((d) => {
+        return d['value'];
       })
-      .attr('stroke-width', 1)
-      .attr('stroke', '#FFFFFF')
-      .attr('fill', 'none')
-      .attr('d', diagonal);
-
-    linePointsGroup.append('circle')
-      .attr('class', function (d, i) {
-        let donutArc = $(element).find('#donutArc' + i)[0];
-        let pathEl = d3.select(donutArc).node();
-        let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
-        d.source = {
-          x: 0,
-          y: 0
-        };
-        d.target = {
-          x: midpoint.x,
-          y: midpoint.y
-        };
-        return 'circlePointsEnd';
-      })
-      .attr('r', 3)
-      .attr('fill', '#FFFFFF')
-      .attr('cx', function (d) {
-        return d.target.x;
-      })
-      .attr('cy', function (d) {
-        return d.target.y;
-      });
+      .padAngle(.01)
+      .sort(null);
 
 
     let circleGroup = wrapgroup.selectAll('.circleGroup')
@@ -469,7 +413,7 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
         return 'all';
       })
       .attr('transform', function (d, i) {
-        let donutArc = $(element).find('#donutArc' + i)[0];
+        let donutArc = element.find('#donutArc' + i)[0];
         let pathEl = d3.select(donutArc).node();
         let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
         return 'translate(' + midpoint.x + ',' + midpoint.y + ')';
@@ -479,14 +423,11 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
       .attr('class', 'circlePoints')
       .attr('r', 20)
       .attr('stroke-width', 1)
+      .attr('stroke', '#FFFFFF')
       .attr('fill', function (d) {
         if (d.data.disabled) return '#b3b3b3';
         return d.data.color;
       })
-      .attr('stroke', '#FFFFFF')
-      // .attr('fill', function(d) {
-      //     return d.data.color;
-      // })
       .attr('cx', function (d) {
         return 25;
       })
@@ -499,14 +440,14 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
     circleGroup.append('text')
       .style('text-anchor', 'start')
       .style('fill', '#ffffff')
-      .style('fill', function (d) {
-        if (d.data.disabled) return '#b3b3b3';
-        return '#FFFFFF';
-      })
       .style('font-size', '12px')
       .attr('class', 'donutText')
       .attr('x', function (d) {
         return 50;
+      })
+      .style('fill', function (d) {
+        if (d.data.disabled) return '#b3b3b3';
+        return '#FFFFFF';
       })
       .attr('y', function (d) {
         let degree = d.endAngle * (180 / Math.PI);
@@ -539,86 +480,90 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
         return d.data.fontvalue;
       });
 
+    let linePointsGroup = wrapgroup.selectAll('.linePointsGroup')
+      .data(pie(data))
+      .enter().append('g')
+      .attr('class', 'linePointsGroup');
 
-    this.bandarc = d3.arc();
+    linePointsGroup.append('path')
+      .attr('class', function (d, i) {
+        let donutArc = element.find('#donutArc' + i)[0];
+        let pathEl = d3.select(donutArc).node();
+        let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
+        d.source = {
+          x: 0,
+          y: 0
+        };
+        d.target = {
+          x: midpoint.x,
+          y: midpoint.y
+        };
+        return 'linePoints';
+      })
+      .attr('stroke-width', 1)
+      .attr('stroke', '#FFFFFF')
+      .attr('fill', 'none')
+      .attr('d', diagonal);
 
+    linePointsGroup.append('circle')
+      .attr('class', function (d, i) {
+        let donutArc = element.find('#donutArc' + i)[0];
+        let pathEl = d3.select(donutArc).node();
+        let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
+        d.source = {
+          x: 0,
+          y: 0
+        };
+        d.target = {
+          x: midpoint.x,
+          y: midpoint.y
+        };
+        return 'circlePointsEnd';
+      })
+      .attr('r', 3)
+      .attr('fill', '#FFFFFF')
+      .attr('cx', function (d) {
+        return d.target.x;
+      })
+      .attr('cy', function (d) {
+        return d.target.y;
+      });
 
-    // bandGroup.append('circle')
-    //     .attr('r', 30)
-    //     .attr('stroke-width', 1)
-    //     .attr('stroke', '#000000')
-    //     .attr('fill', '#FFFFFF')
-    //     .style('cursor', 'pointer');
-
+    bandGroup.append('circle')
+      .attr('r', 30)
+      .attr('stroke-width', 1)
+      .attr('stroke', '#000000')
+      .attr('fill', bands.color)
+      .style('cursor', 'pointer');
 
     let bandsArcsGroup = bandGroup.append('g').attr('class', 'bandsArcsGroup');
 
-    let currentcell = this.currentcell;
-    let siteArray = data.siteArray;
+    let siteArray = bands.siteArray;
 
-    let pointSource = {
-      x: 100,
-      y: 0
-    };
-
-    let pointTarget = {
-      x: 0,
-      y: 0
-    };
-    let pointLine: any;
     for (let i = 0, count = siteArray.length; i < count; i++) {
       let cell = siteArray[i];
       let angle = cell.azimuth - (20 / 2);
-      pointLine = this.findNewPoint(0, 0, angle, 22.5);
-      let cellGroup = null;
+      let cellGroup: any = null;
+      cellGroup = bandsArcsGroup.append('g')
+        .attr('id', 'cellGroup-' + i)
+        .attr('class', 'cellGroup')
+        .attr('transform', 'translate(-12,-20) rotate(' + angle + ', 12, 20)')
+        .style('cursor', 'pointer')
+        .style('opacity', '0.3');
 
-      if (cell.pci == currentcell.pci) {
+      cellGroup.append('foreignObject')
+        .attr({ 'width': 20, 'height': 24.5 });
 
-
-
-        cellGroup = bandsArcsGroup.append('g')
-          .attr('id', 'cellGroup-' + i)
-          .attr('class', 'cellGroup')
-          .attr('transform', 'translate(-22.5,-39.4) rotate(' + angle + ', 22.5, 39.4)')
-          .style('cursor', 'pointer')
-
-        let cellGroupImageFor = cellGroup.append('foreignObject')
-          .attr({ 'width': 45, 'height': 45.4 });
-
-        let imageURL = 'assets/images/Layers/planned-small-cell/plannedwhite.svg'
-
-        let cellGroupImage = cellGroupImageFor.append('xhtml:img')
-          .attr({ 'width': 45, 'height': 45.4, 'src': imageURL });
-
-      } else {
-        cellGroup = bandsArcsGroup.append('g')
-          .attr('id', 'cellGroup-' + i)
-          .attr('class', 'cellGroup')
-          .attr('transform', 'translate(-13.5,-27) rotate(' + angle + ', 13.5, 27)')
-          .style('cursor', 'pointer')
-
-        let cellGroupImageFor = cellGroup.append('foreignObject')
-          .attr({ 'width': 27, 'height': 33 });
-
-        let imageURL = 'assets/images/maps/smallcell/plannedblue-new.svg'
-
-        let cellGroupImage = cellGroupImageFor.append('xhtml:img')
-          .attr({ 'width': 27, 'height': 33, 'src': imageURL });
+      let imageURL = 'assets/images/Layers/planned-small-cell/plannedwhite.svg';
+      if (cell.pci == this.currentcell.pci) {
+        cellGroup.style('opacity', '1');
       }
+      let cellGroupImage = cellGroup.append("svg:image")
+        .attr('width', 24)
+        .attr('height', 25.5)
+        .attr("xlink:href", imageURL);
+    }
 
-      cellGroup.on('click', (function (cell, currentcell) {
-        return function () {
-          this.currentcell = cell;
-          svgGroup.selectAll('*').remove();
-          this.drawSVG(element, svgGroup, data, this);
-          d3.event.stopPropagation();
-          return false;
-        };
-      })(cell, currentcell));
-
-    };
-
-    //leafSVG.attr('opacity', '1').attr('stroke-width', 2);
     bandGroup.append('line')
       .attr('class', 'lineBands')
       .attr('stroke-width', 1)
@@ -626,128 +571,16 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
       .attr('fill', 'none')
       .attr('x1', pointSource.x)
       .attr('y1', pointSource.y)
-      .attr('x2', pointLine.x)
-      .attr('y2', pointLine.y);
+      .attr('x2', pointTarget.x)
+      .attr('y2', pointTarget.y);
 
     bandGroup.append('circle')
       .attr('class', 'lineBandsCircle')
       .attr('r', 3)
       .attr('fill', '#FFFFFF')
-      .attr('cx', pointLine.x)
-      .attr('cy', pointLine.y);
+      .attr('cx', pointTarget.x)
+      .attr('cy', pointTarget.y);
 
-
-    circleGroup.on('mouseover', function () {
-      d3.select(this).select('circle').transition().attr('stroke', '#000000').attr('stroke-width', 2);
-    })
-      .on('mouseout', function () {
-        d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
-      })
-      .on('click', function (d) {
-        // $rootScope.$broadcast(d.data.eventname, currentcell);
-        //d3.event.stopPropagation();
-      });
-
-    svgGroup.on('click', function () {
-      // scope.siteshow();
-      $(element).parent().remove();
-      d3.event.stopPropagation();
-    });
-
-
-
-
-
-
-
-
-
-
-    // const clientWidth = element.offsetWidth;
-    // const clientHeight = element.offsetHeight;
-    // let screenWidth = clientWidth > 0 ? clientWidth : 500;
-    // let screenHeight = clientHeight > 0 ? clientHeight : 500;
-
-    // let margin = {
-    //   left: 20,
-    //   top: 20,
-    //   right: 20,
-    //   bottom: 20
-    // };
-    // const outerContext = this;
-    // let width = Math.min(screenWidth, 500) - margin.left - margin.right;
-
-    // let translateX = ((screenWidth / 2) + 100);
-    // let translateY = (screenHeight / 2);
-
-    // let wrapgroup = svgGroup.append('g').attr('class', 'wrapper')
-    //   .attr('transform', 'translate(' + translateX + ',' + translateY + ')')
-
-    // //Create an arc function
-    // this.arc = this.createArc(width);
-
-    // //Turn the pie chart 90 degrees counter clockwise, so it starts at the left
-    // this.pie = this.rotatePieChart();
-
-    // this.createLines();
-    // let diagonal = function link(d) {
-    //   return "M0" + "," + "0C" + (d.source.x + d.target.x) / 2 + "," + "0" + " " +
-    //     (d.source.x + d.target.x) / 2
-    //     + "," + d.target.y + " " + d.target.x + "," + d.target.y;
-    // };
-
-    // let bandGroup = wrapgroup.append('g').attr('transform', 'translate(-100,0)');
-    // //////////////////// Create Donut Chart //////////////////////
-    // //Create the donut slices and also the invisible arcs for the text
-    // this.donutArcsGroup = this.createDonutGroup(wrapgroup, data);
-    // this.createDonutArc();
-    // //createLinePoint
-    // this.linePointsGroup = this.createLineGroup(wrapgroup, data);
-    // this.appendLineGroupPath(element, diagonal);
-    // this.appendLineToCircle(element);
-
-    // //CreateCircleGroup
-    // this.circleGroup = this.createCircleGroup(wrapgroup, this.pie, data, element)
-    // this.createCircle();
-    // //Append the label names on the outside
-    // this.appendLabelsInsideCircle();
-    // this.appendLabelOutside();
-
-    // this.bandarc = d3.arc();
-
-    // this.bandsArcsGroup = bandGroup.append('g').attr('class', 'bandsArcsGroup');
-
-    // let bands = this.currentbands;
-    // let pointSource = {
-    //   x: 100,
-    //   y: 0
-    // };
-    // let pointTarget = {
-    //   x: 0,
-    //   y: 0
-    // };
-
-    // for (let i = 0, count = bands.length; i < count; i++) {
-    //   let cellGroup = null;
-    //   cellGroup = this.bandsArcsGroup.append('g')
-    //     .attr('id', 'cellGroup-' + i)
-    //     .attr('class', 'cellGroup')
-    //     .attr('transform', 'translate(-22.5,-39.4)')
-    //     .style('cursor', 'pointer')
-
-    //   let cellGroupImageFor = cellGroup.append('foreignObject')
-    //     .attr({
-    //       'width': 45,
-    //       'height': 45.4
-    //     });
-
-    //   let imageURL = 'assets/data/layers/nominalssites/0.svg'
-    //   let cellGroupImage = cellGroup.append("svg:image")
-    //     .attr('width', 45)
-    //     .attr('height', 45.4)
-
-    //     .attr("xlink:href", imageURL)
-    // }
 
     // bandGroup.append('circle')
     //   .attr('r', 3)
@@ -766,33 +599,33 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
     //   .attr('x2', 0)
     //   .attr('y2', 0);
 
-    // let cellGroup = null;
-    // cellGroup = this.bandsArcsGroup.append('g')
-    //   .attr('id', 'cellGroup-' + i)
-    //   .attr('class', 'cellGroup')
-    //   .attr('transform', 'translate(-22.5,-39.4)')
-    //   .style('cursor', 'pointer')
+    let cellGroup = null;
+    cellGroup = this.bandsArcsGroup.append('g')
+      // .attr('id', 'cellGroup-' + i)
+      .attr('class', 'cellGroup')
+      .attr('transform', 'translate(-22.5,-39.4)')
+      .style('cursor', 'pointer')
 
-    // let cellGroupImageFor = cellGroup.append('foreignObject')
-    //   .attr({
-    //     'width': 45,
-    //     'height': 45.4
-    //   });
+    let cellGroupImageFor = cellGroup.append('foreignObject')
+      .attr({
+        'width': 45,
+        'height': 45.4
+      });
 
-    // this.circleGroup.on('mouseover', function () {
-    //   d3.select(this).select('circle').transition().attr('stroke', '#000000').attr('stroke-width', 2);
-    // })
-    //   .on('mouseout', function () {
-    //     d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
-    //   })
-    //   .on('click', (d) => {
-    //     this.openSpiderPopups(d, ref);
-    //   });
+    this.circleGroup.on('mouseover', function () {
+      d3.select(this).select('circle').transition().attr('stroke', '#000000').attr('stroke-width', 2);
+    })
+      .on('mouseout', function () {
+        d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
+      })
+      .on('click', (d) => {
+        this.openSpiderPopups(d, ref);
+      });
 
-    // svgGroup.on('click', function () {
-    //   $(element).parent().remove();
-    //   d3.event.stopPropagation();
-    // });
+    svgGroup.on('click', function () {
+      $(element).parent().remove();
+      d3.event.stopPropagation();
+    });
 
   };
 
@@ -832,8 +665,6 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
         + " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
         + " " + d.target.y + "," + d.target.x;
     };
-
-
   }
 
   rotatePieChart() {
@@ -944,10 +775,6 @@ export class SmallCellPlannedSpiderViewComponent implements OnInit {
       .attr('cy', function (d) {
         return d.target.y;
       });
-
-  }
-  getstet() {
-    console.log("Pooja");
   }
 
   creatLeafSVG(innerRadius, outerRadius, startAngle, endAngle, i, j, sector) {
