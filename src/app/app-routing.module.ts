@@ -42,6 +42,7 @@ const routes: Routes = [
       {
         path: "Modules", children: [
           { path: 'Performance-Management',loadChildren: () => import('../app/main-modules/modules/performance-management/performance-management.module').then(m => m.PerformanceManagementModule)},
+          { path: 'Configuration-Management',loadChildren: () => import('../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule)},
           { path: 'Planning-Deployment',loadChildren: () => import('../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule)}
         ]
       },

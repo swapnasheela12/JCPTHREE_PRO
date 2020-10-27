@@ -241,6 +241,11 @@ export class SmallCellPlanned4gService {
 
             siteContainer.addChild(siteImage);
 
+            siteImage.on("click", (event) => {
+              console.log(event, "event");
+              this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+            });
+
           }
 
           let _command: any = stageCircleGraphic.command;
@@ -263,18 +268,18 @@ export class SmallCellPlanned4gService {
             siteContainer.addChild(textContainer);
           }
 
-          let label = new createjs.Text(siteInner.sapid, "bold 60px Lato-Medium", "#FFFFFF");
+          let label = new createjs.Text(siteInner.sapid, "bold 50px Lato-Medium", "#FFFFFF");
           label.textAlign = 'center';
-          label.outline = 3;
+          // label.outline = 3;
           label.y = _command.radius + 2;
           let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
 
-          siteContainer.on("click", (event) => {
-            console.log(event, "event");
-            this.spiderViewFeature(event, this.ref, this.mainlayerRef)
-          });
+          // siteContainer.on("click", (event) => {
+          //   console.log(event, "event");
+          //   this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+          // });
           siteContainer.addChild(label, outline);
         }
 

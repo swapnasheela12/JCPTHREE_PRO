@@ -184,6 +184,15 @@ const MODULE_LIST_CONFIG_LSMR = [
     }
 ];
 
+const MODULE_LIST_CONFIG_RQA = [
+    {
+        name: 'Samsung RQA Scheduling',
+        link: 'JCP/Modules/Configuration-Management/Config-Change/Rqa-Scheduling/Samsung-Rqa-Scheduling',
+        eventName: 'samsung-rqa-scheduling',
+        children: []
+    }
+];
+
 const PREDICTION_LAYERS_PLANNED_LIST = [
     {
         name: 'RSRP',
@@ -1326,7 +1335,7 @@ const MODULE_LIST_CONFIG = [
         name: 'RQA Scheduling',
         link: 'rqascheduling',
         eventName: 'sites-outdoor-esc',
-        children: MODULE_LIST_CONFIG_LSMR
+        children: MODULE_LIST_CONFIG_RQA
     },
     {
         name: 'Traceport',
