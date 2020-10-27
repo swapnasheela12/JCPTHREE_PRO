@@ -164,7 +164,8 @@ import { SmallCellPlannedSpiderViewComponent } from './main-layer/sites/planned/
     RouteTableViewComponent,
     CustomDashboardComponent,
     TwampLiveDashboardComponent,
-    SmallCellPlannedSpiderViewComponent
+    SmallCellPlannedSpiderViewComponent,
+    InfoRendererComponent
   ],
   imports: [
     CommonModule,
