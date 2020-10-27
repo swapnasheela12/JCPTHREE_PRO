@@ -1,3 +1,4 @@
+import { NominalViewComponent } from './nominal-view/nominal-view.component';
 import { Observable } from 'rxjs';
 import { DataSharingService } from './../../../../_services/data-sharing.service';
 import { ShapeService } from './../../layers-services/shape.service';
@@ -37,7 +38,8 @@ export class MacroNominalService {
   public stage;
   public _bounds;
   public zoomLevel;
-  public _assetQueue = null;
+  public mainlayerRef;
+  public _assetQueue;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
   public _siteImagePath = 'assets/images/Layers/macro-nominal/';
   public _plannedSiteImageManifest = [{
@@ -76,7 +78,6 @@ export class MacroNominalService {
 
     let canvasLayer = this.lib.customLayer({
       container: document.createElement("canvas"),
-      padding: 0.1,
       zooms: [0, 18],
       opacity: 1,
       visible: true,
@@ -92,6 +93,9 @@ export class MacroNominalService {
 
       let customLayerThis: any = this;
       componentRef.sitesNominalLayerMap(customLayerThis);
+
+      this._assetQueue = new createjs.LoadQueue(true, null, true);
+      this._assetQueue.loadManifest(this._plannedSiteImageManifest, true);
     });
 
     canvasLayer.on("layer-beforedestroy", function () { });
@@ -107,22 +111,13 @@ export class MacroNominalService {
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.eventName == "sites-nominal-macro-macro4G" && ele.selected == true) {
+        if (ele.link == "JCP/Layers/Nominal/Macro/Macro4G" && ele.selected == true) {
           // this.boundariesData();
           return canvasLayer.addTo(this.map);
         }
       }
     });
   }
-
-  // public states;
-  // public stateLayer: any;
-  // boundariesData() {
-  //   this.shapeService.getStateShapes().subscribe(states => {
-  //     this.states = states;
-  //   });
-
-  // }
 
   sitesNominalLayer;
   sitesNominalLayerMap(itemSitesMap) {
@@ -177,12 +172,10 @@ export class MacroNominalService {
       let bounds = this.map.getBounds();
 
       let preload = new preloadjs.LoadQueue(true);
-      preload.loadManifest(this._plannedSiteImageManifest,true);  
+      preload.loadManifest(this._plannedSiteImageManifest, true);
 
       for (const site in data) {
         let siteInner = data[site];
-        console.log(siteInner,"siteInner");
-        
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
 
         // PLACING THE COORDINATES
@@ -196,49 +189,60 @@ export class MacroNominalService {
         let siteContainer = new createjs.Container();
         siteContainer.cursor = 'pointer';
         siteContainer.shadow = shadow;
-        siteContainer.x = centerPoint.x;;
-        siteContainer.y = centerPoint.y;;
+        siteContainer.x = centerPoint.x;
+        siteContainer.y = centerPoint.y;
         siteContainer.scaleX = scaleMatrix;
         siteContainer.scaleY = scaleMatrix;
         siteContainer.name = siteInner[0].sapid;
 
-        this._assetQueue = new createjs.LoadQueue(false, null, true);
-        this._assetQueue.loadManifest(this._plannedSiteImageManifest, true);
-        if (this.zoomLevel >= 12) {
 
-          for (let band in siteInner) {
-            let bandInner = siteInner[band];
 
-            let petalLength = bandInner.siteArray.length;
-            for (let j = 0, jCount = petalLength; j < jCount; j++) {
-              let cell = bandInner.siteArray[j];
-              let id = cell.cellStatus == "Landmark Coverage" ? "smallcellpetalyellow" : "smallcellpetal";
+        for (let band in siteInner) {
+          let bandInner = siteInner[band];
+          let petalLength = bandInner.siteArray.length;
 
-              preload.on('complete', (event) => {
-                let payLoad = {
-                  preload:preload,
-                  latlng:latlng,
-                  band:band,
-                  cell:cell,
-                  siteContainer:siteContainer,
-                  id:id
-                };
-                this.loadSVGiconsOverCanvas(payLoad) 
-              });
-
-            }
+          for (let j = 0, jCount = petalLength; j < jCount; j++) {
+            let cell = bandInner.siteArray[j];
+            let id = cell.cellStatus == "Landmark Coverage" ? "smallcellpetalyellow" : "smallcellpetal";
+            let siteImage = new createjs.Bitmap('assets/images/Layers/macro-nominal/0.svg');
+            siteImage.regX = 10;
+            siteImage.regY = 30;
+            siteImage.scaleX = 5.0;
+            siteImage.scaleY = 5.0;
+            siteImage['latlng'] = latlng;
+            siteImage['data'] = cell;
+            siteImage['band'] = band;
+            siteContainer.addChild(siteImage);
+            // preload.on('complete', (event) => {
+            //   let payLoad = {
+            //     preload:preload,
+            //     latlng:latlng,
+            //     band:band,
+            //     cell:cell,
+            //     siteContainer:siteContainer,
+            //     id:id
+            //   };
+            //   this.loadSVGiconsOverCanvas(payLoad) 
+            // });
 
           }
+          if (this.zoomLevel >= 12) {
+            let label = new createjs.Text(siteInner[0].sapid, "bold 40px Lato-Medium", "#FFFFFF");
+            label.textAlign = 'center';
+            label.y = (scaleMatrix * 300) / this.pixelRatio;
+            let outline = label.clone();
+            outline.shadow = shadow;
+            outline.color = '#000000';
 
-          let label = new createjs.Text(siteInner[0].sapid, "bold 60px Lato-Medium", "#FFFFFF");
-          label.textAlign = 'center';
-          //label.outline = 3;
-          label.y = (scaleMatrix * 200) / this.pixelRatio;
+            siteContainer.on("click", (event) => {
+              console.log(event,"event");
+              
+              this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+            });
+            
+            siteContainer.addChild(label, outline);
 
-          let outline = label.clone();
-          outline.shadow = shadow;
-          outline.color = '#000000';
-          siteContainer.addChild(label, outline);
+          }
 
         }
 
@@ -247,12 +251,8 @@ export class MacroNominalService {
 
       }
 
-      // this.container.alpha = 1;
-
       //PUSH THE SHAPES SAVED IN CONTAINER AND DISPLAY IT 
       this.stage.addChild(this.container);
-      // this.stage.update();
-
       this._bounds = bounds;
       this.container.alpha = 1;
       this.stage.update();
@@ -268,7 +268,6 @@ export class MacroNominalService {
     siteImage.scaleY = 5.0;
     siteImage.regX = 14.5;
     siteImage.regY = 27;
-    // siteImage.rotation = angle;
     siteImage['latlng'] = payLoad.latlng;
     siteImage['data'] = payLoad.band;
     siteImage['current'] = payLoad.cell;
@@ -300,7 +299,25 @@ export class MacroNominalService {
   };
 
   removeAllMarkers() {
-    
+
+  }
+
+  getReference(ref) {
+    this.mainlayerRef = ref;
+  }
+
+  private spiderViewFeature(e, ref, mainlayer) {
+    const layer = e.target;
+    console.log(layer, "layer");
+
+    mainlayer.map.setView(layer.latlng);
+    let data = {
+      ref: mainlayer
+    }
+    console.log("sideNavService", mainlayer.sideNavService);
+    mainlayer.datashare.sendDataToSpider(data);
+    let nominalViewComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(NominalViewComponent);
+    mainlayer.componentRef = mainlayer.target.createComponent(nominalViewComponent);
   }
 
 }

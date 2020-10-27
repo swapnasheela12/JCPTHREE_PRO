@@ -96,6 +96,21 @@ export class LeftsideNavigationComponent implements OnInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
+
+    this.datashare.currentMessage.subscribe((data: any) => {
+      let addPin: any = {
+        name: data.pinName,
+        icon: "fas fa-user fa-3",
+        link: "Pins",
+        eventName: 'new-pin',
+        component: 'ImportKmlComponent'
+      };
+      console.log("data", LAYERS_DATA);
+      if (data) {
+        this.dataSource.data[9].children[1].children.push(addPin);
+        console.log("pins", this.dataSource.data[9].children[1].children);
+      }
+    });
   }
 
 

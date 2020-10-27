@@ -7,6 +7,10 @@ export class DataSharingService {
   private messageSource = new BehaviorSubject({});
   currentMessage = this.messageSource.asObservable();
 
+
+  private smallCellPlannedSource = new BehaviorSubject({});
+  currentsmallCellPlanned = this.smallCellPlannedSource.asObservable();
+
   private templateGalleryValueSource = new BehaviorSubject({});
   templateGalleryValueMessage = this.templateGalleryValueSource.asObservable();
 
@@ -44,6 +48,10 @@ export class DataSharingService {
 
   changeMessage(messages: Object) {
     this.messageSource.next(messages);
+  }
+
+  changesmallCellPlanned(smallCellPlanneds: Object) {
+    this.smallCellPlannedSource.next(smallCellPlanneds);
   }
 
   templateGalleryValue(value: Object) {

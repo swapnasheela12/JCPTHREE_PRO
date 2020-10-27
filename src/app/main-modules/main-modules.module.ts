@@ -1,3 +1,4 @@
+import { NominalViewComponent } from './main-layer/sites/nominal/nominal-view/nominal-view.component';
 import { inputRendererComponent } from './../core/components/ag-grid-renders/input-renderer.component';
 import { SpiderViewComponent } from './main-layer/spider-view/spider-view.component';
 import { colorDropdownRendererComponent } from './../core/components/ag-grid-renders/color-dropdown-renderer.component';
@@ -92,7 +93,7 @@ import { SelectedLayerMenuComponent } from './main-layer/selected-layer-menu/sel
 import { SpiderComponent } from './main-layer/sites/outdoor/spider/spider.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { KpiComponent } from './main-layer/sites/outdoor/spider/popup/kpi/kpi.component';
-import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
+// import { NominalViewComponent } from './main-layer/sites/outdoor/spider/nominal-view/nominal-view.component';
 import { TacNetworkDialogComponent } from './main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component';
 import { DenseUrbanDialogComponent } from './main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component';
 import { TownBoundaryDialogComponent } from './main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component';
@@ -111,6 +112,8 @@ import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/
 import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
 import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
 import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
+import { SmallCellPlannedSpiderViewComponent } from './main-layer/sites/planned/small-cell-planned/small-cell-planned-spider-view/small-cell-planned-spider-view.component';
+
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -160,7 +163,8 @@ import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboar
     SettingsPopupComponent,
     RouteTableViewComponent,
     CustomDashboardComponent,
-    TwampLiveDashboardComponent
+    TwampLiveDashboardComponent,
+    SmallCellPlannedSpiderViewComponent
   ],
   imports: [
     CommonModule,

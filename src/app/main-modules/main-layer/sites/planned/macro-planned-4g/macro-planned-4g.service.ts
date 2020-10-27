@@ -75,7 +75,6 @@ export class MacroPlanned4gService {
 
     let canvasLayer = this.lib.customLayer({
       container: document.createElement("canvas"),
-      padding: 0.1,
       zooms: [0, 18],
       opacity: 1,
       visible: true,
@@ -236,7 +235,17 @@ export class MacroPlanned4gService {
                 siteContainer: siteContainer,
                 id: id
               };
-              this.loadSVGiconsOverCanvas(payLoad)
+
+              let siteImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
+              siteImage.scaleX = 5.0;
+              siteImage.scaleY = 5.0;
+              siteImage.regX = 14.5;
+              siteImage.regY = 27;
+              // siteImage.rotation = angle;
+              siteImage['latlng'] = payLoad.latlng;
+              siteImage['data'] = payLoad.band;
+              siteImage['current'] = payLoad.cell;
+              payLoad.siteContainer.addChild(siteImage);
             });
 
           }
@@ -269,19 +278,6 @@ export class MacroPlanned4gService {
 
     }
 
-  }
-
-  loadSVGiconsOverCanvas(payLoad) {
-    let siteImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
-    siteImage.scaleX = 5.0;
-    siteImage.scaleY = 5.0;
-    siteImage.regX = 14.5;
-    siteImage.regY = 27;
-    // siteImage.rotation = angle;
-    siteImage['latlng'] = payLoad.latlng;
-    siteImage['data'] = payLoad.band;
-    siteImage['current'] = payLoad.cell;
-    payLoad.siteContainer.addChild(siteImage);
   }
 
   getPopup() {

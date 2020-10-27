@@ -14,7 +14,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, Componen
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
-import {} from 'google-maps';
+import { } from 'google-maps';
 import 'leaflet-canvas-layer/dist/leaflet-canvas-layer.js';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
@@ -68,6 +68,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   //   provider: new OpenStreetMapProvider(),
   // });
 
+  public optionsSacle;
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
@@ -78,6 +79,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
     });
+    this.macroNominalService.getReference(this);
+    this.smallCellPlanned4gService.getReference(this);
+    console.log("sideNavService", this.sideNavService);
   }
 
   ngOnInit(): void {
@@ -85,6 +89,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.rulerLeafletLib = rulerLeaflet();
     this.contextMenuLib = contextLayerMenu();
     this.googleMutant = googleMutant();
+    this.macroNominalService.getReference(this);
+    this.smallCellPlanned4gService.getReference(this);
   }
 
   ngAfterViewInit() {
@@ -97,7 +103,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //marker code
     // console.log("google,", googleMutant);
     const iconRetinaUrl = 'assets/images/Layers/pin.svg';
-    const iconUrl = 'assets/images/Layers/pin-drop.svg';
+    const iconUrl = 'assets/images/Layers/3-1.svg';
     const iconDefault = L.icon({
       iconRetinaUrl,
       iconUrl,
@@ -222,24 +228,38 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       let latlng = new google.maps.LatLng(lat, lng);
       googleCoder.geocode({
         'location': latlng
-    }, (results, status) => {
+      }, (results, status) => {
         if (status == google.maps.GeocoderStatus.OK) {
-            var location = results[3] ? results[3] : results[2] ? results[2] : results[1] ? results[1] : results[0];
-            this.address = location.formatted_address
+          var location = results[3] ? results[3] : results[2] ? results[2] : results[1] ? results[1] : results[0];
+          this.address = location.formatted_address
         } else {
           this.address = "";
         }
         this.datashare.changeMessage(this.address);
+      });
+    });
+     this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
+      if (dataFromPinZoom === "pin-zoom-closed") {
+        this.map.removeLayer(e.marker);
+      }
     });
 
-     this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
-        if (dataFromPinZoom === "pin-zoom-closed") {
-          this.map.removeLayer(e.marker);
-        }
-      });
+    this.map.on('pm:create', ({ marker }) => {
+      // marker.on('pm:vertexadded', e => {
+      //   console.log("e", e);
       var screenshortListDialogRef = {
         width: '578px',
-        height: '515px',
+        height: '556px',
+        background: '#FFFFFF 0% 0% no-repeat padding-box',
+        panelClass: "table-view-layers-dialog-container",
+      }
+      const dialogRef = _dialog.open(PinZoomComponent, screenshortListDialogRef);
+    });
+    this.map.on('pm:snapdrag', e => {
+      console.log("e", e);
+      var screenshortListDialogRef = {
+        width: '575px',
+        height: '346px',
         panelClass: "table-view-layers-dialog-container",
         data: this.address
       }
@@ -543,6 +563,16 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     });
     this.map.addControl(new this.customControlList());
+
+    this.optionsSacle = {
+      position: 'bottomleft'
+    };
+    let scale: any = L.control.scale({
+      position: this.optionsSacle.position,
+      imperial: false,
+      maxWidth: 100
+    }).addTo(this.map);
+
     //custome controller//
     this.shapeService.mapServiceData = this.map;
     this.basemapfunc();

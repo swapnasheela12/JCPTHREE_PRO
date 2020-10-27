@@ -1,8 +1,9 @@
+import { SmallCellPlannedSpiderViewComponent } from './small-cell-planned-spider-view/small-cell-planned-spider-view.component';
 import { ShapeService } from './../../../layers-services/shape.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import * as _ from 'underscore';
@@ -36,6 +37,7 @@ export class SmallCellPlanned4gService {
   public stage;
   public _bounds;
   public zoomLevel;
+  public mainlayerRef;
   public _assetQueue = null;
   public _colors = ['#757584', '#92D050', '#8C6900', '#006838', '#00506A', '#00ADEE', '#5900B2', '#0D47A1'];
   public _siteImagePath = 'assets/images/Layers/planned-small-cell/';
@@ -45,7 +47,7 @@ export class SmallCellPlanned4gService {
     type: createjs.LoadQueue.IMAGE
   }]
 
-  constructor(private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
     this.ref = this;
     this.lib = leaflayer();
     this.redrawLayer();
@@ -73,7 +75,6 @@ export class SmallCellPlanned4gService {
 
     let canvasLayer = this.lib.customLayer({
       container: document.createElement("canvas"),
-      padding: 0.1,
       zooms: [0, 18],
       opacity: 1,
       visible: true,
@@ -100,7 +101,7 @@ export class SmallCellPlanned4gService {
 
       this.selectedLayerArrList = val;
       canvasLayer.remove(this.map);
-      
+
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
         if (ele.link == "JCP/Layers/Planned/smallCell/smallCell4g") {
@@ -159,7 +160,7 @@ export class SmallCellPlanned4gService {
 
       let preload = new preloadjs.LoadQueue(true);
       preload.loadManifest(this._plannedSiteImageManifest, true);
-      
+
       for (const site in data) {
         let siteInner = data[site];
         let latlng = L.latLng(siteInner.latitude, siteInner.longitude);
@@ -220,9 +221,8 @@ export class SmallCellPlanned4gService {
           let stageCircleShape = new createjs.Shape(stageCircleGraphic);
           siteContainer.addChild(stageCircleShape);
 
-          let circleGraphic = this.getCircleGraphics('#FFFFFF', 15);
+          let circleGraphic = this.getCircleGraphics('#FFFFFF', 40);
           let circleCountShape = new createjs.Shape(circleGraphic);
-
 
           for (let j = 0, jCount = petalLength; j < jCount; j++) {
             let cell = siteInner.siteArray[j];
@@ -238,7 +238,13 @@ export class SmallCellPlanned4gService {
             siteImage['data'] = siteInner;
             siteImage['data'].color = color;
             siteImage['current'] = cell;
+
             siteContainer.addChild(siteImage);
+
+            siteImage.on("click", (event) => {
+              console.log(event, "event");
+              this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+            });
 
           }
 
@@ -250,11 +256,11 @@ export class SmallCellPlanned4gService {
 
             textContainer.x = _command.radius;
             textContainer.y = -(_command.radius - _commandCircle.radius);
-           
+
             let circleCountClone = circleCountShape.clone();
             textContainer.addChild(circleCountClone);
 
-            let label = new createjs.Text(siteInner.siteArray.length, "bold 12px RobotoDraft", "#000000");
+            let label = new createjs.Text(siteInner.siteArray.length, "bold 60px RobotoDraft", "#000000");
             label.textAlign = 'center';
             label.textBaseline = 'middle';
             textContainer.addChild(label);
@@ -262,15 +268,19 @@ export class SmallCellPlanned4gService {
             siteContainer.addChild(textContainer);
           }
 
-          let label = new createjs.Text(siteInner.sapid, "bold 60px Lato-Medium", "#FFFFFF");
+          let label = new createjs.Text(siteInner.sapid, "bold 50px Lato-Medium", "#FFFFFF");
           label.textAlign = 'center';
-          label.outline = 3;
+          // label.outline = 3;
           label.y = _command.radius + 2;
           let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
-          siteContainer.addChild(label, outline);
 
+          // siteContainer.on("click", (event) => {
+          //   console.log(event, "event");
+          //   this.spiderViewFeature(event, this.ref, this.mainlayerRef)
+          // });
+          siteContainer.addChild(label, outline);
         }
 
         bounds.extend(latlng);
@@ -282,22 +292,39 @@ export class SmallCellPlanned4gService {
       this._bounds = bounds;
       this.container.alpha = 1;
       this.stage.update();
-      
     }
-
   }
 
-  loadSVGiconsOverCanvas(payLoad) {
-    let siteImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
-    siteImage.scaleX = 5.0;
-    siteImage.scaleY = 5.0;
-    siteImage.regX = 14.5;
-    siteImage.regY = 27;
-    // siteImage.rotation = angle;
-    siteImage['latlng'] = payLoad.latlng;
-    siteImage['data'] = payLoad.band;
-    siteImage['current'] = payLoad.cell;
-    payLoad.siteContainer.addChild(siteImage);
+  getReference(ref) {
+    this.mainlayerRef = ref;
+  }
+  private spiderViewFeature(event, ref, mainlayer) {
+    const layer = event.target;
+    console.log(event, "event");
+
+    mainlayer.map.setView(layer.latlng, 17);
+    let data = {
+      ref: mainlayer
+    }
+
+    if (event.target.color == "white") return false;
+    let biggerNodeData = {};
+    biggerNodeData['currentbands'] = event.target.data;
+    biggerNodeData['currentcell'] = event.target.current;
+    if (this.datashare) {
+      this.datashare.changesmallCellPlanned(biggerNodeData);
+    }
+    else {
+      throw new Error("Data sharing service not found. Please add one.");
+    }
+
+    if (this.componentFactoryResolver) {
+      let spiderComponent = this.componentFactoryResolver.resolveComponentFactory(SmallCellPlannedSpiderViewComponent);
+      mainlayer.target.createComponent(spiderComponent);
+    }
+    else {
+      throw new Error("Dynamic component loader not found. Please include resolveComponentFactory module from the ng core.");
+    }
   }
 
   getPopup() {

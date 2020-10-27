@@ -81,7 +81,6 @@ export class Hpodsc4gService {
 
     let canvasLayer = this.lib.customLayer({
       container: document.createElement("canvas"),
-      padding: 0.1,
       zooms: [0, 18],
       opacity: 1,
       visible: true,
