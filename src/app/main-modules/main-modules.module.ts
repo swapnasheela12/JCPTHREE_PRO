@@ -160,7 +160,8 @@ import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboar
     SettingsPopupComponent,
     RouteTableViewComponent,
     CustomDashboardComponent,
-    TwampLiveDashboardComponent
+    TwampLiveDashboardComponent,
+    InfoRendererComponent
   ],
   imports: [
     CommonModule,
