@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlarmDetailsPopupComponent } from './alarm-details-popup/alarm-details-popup.component';
 import { Subscription } from 'rxjs';
 import Exporting from 'highcharts/modules/exporting';
-// Initialize exporting module.
 Exporting(Highcharts);
 declare var $: any;
 rounded(Highcharts)
@@ -322,8 +321,6 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let event = new CustomEvent("close-side-bar");
-    window.dispatchEvent(event);
     this.pathsCIAViewSummary = PATHS[0].changeImpactAnalysisViewSummary;
     this.pathMyPerformanceReports = PATHS[1].goToMyPerformanceReports;
     this.createColumnDefs();
@@ -339,6 +336,8 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   }
   public onReady(params) {
     this.gridApi = params.api;
+    let event = new CustomEvent("close-side-bar");
+    window.dispatchEvent(event);
   }
 
   private getData() {

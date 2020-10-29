@@ -4,7 +4,6 @@ import { LandingHomeComponent } from '../home-jcp-three/landing-home/landing-hom
 import { HomeJcpThreeComponent } from "../home-jcp-three/home-jcp-three.component";
 import { AuthGuard } from "../_helpers";
 import { LayersCustComponent } from '../modules/layers-cust/layers-cust.component';
-import { MyJcpComponent } from '../main-modules/my-jcp/my-jcp.component';
 import { AgGridTreeRenderingComponent } from '../modules/components/ag-grid-tree-rendering/ag-grid-tree-rendering.component';
 import { AgGridColumnRenderingComponent } from '../modules/components/ag-grid-column-rendering/ag-grid-column-rendering.component';
 import { TreeRenderingComponent } from '../modules/components/tree-rendering/tree-rendering.component';

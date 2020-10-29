@@ -169,12 +169,10 @@ $color-white: #ffffff;
                 background-size: cover !important;
                 height: 234px;
             }
-            .header-jcp-container-layers {}
             .jcp-page-route {
                 height: calc(100% - 110px);
                 overflow: hidden;
                 margin-bottom: 0px;
-                .jcp-landing-page-container {}
             }
             .active-jcp-page-route {
                 margin-left: 20px;
@@ -183,8 +181,6 @@ $color-white: #ffffff;
                 margin-left: 0px;
             }
         }
-        .active-jcp-toolbar {}
-        .activeNot-jcp-toolbar {}
     }
     .active-body-sidenav {
         margin-left: 260px !important;

@@ -1,14 +1,9 @@
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid';
-// import { CommonPopupComponent, CommonDialogModel } from '../../../../../core/components/commanPopup/common-popup/common-popup.component';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import {  MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import{HistoryPopupComponent} from '../history-popup/history-popup.component'
-import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
-import { MatSelectModule } from "@angular/material/select";
 import{InfoPopupComponent} from '../info-popup/info-popup.component'
 
 
