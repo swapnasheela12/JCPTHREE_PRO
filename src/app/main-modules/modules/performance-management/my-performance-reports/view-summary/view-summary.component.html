@@ -5,7 +5,7 @@
                     <mat-icon style="color: #7E7E7E; font-size: 18px;" class="zmdi zmdi-arrow-left"></mat-icon>
                 </button>View Summary</mat-card-title>
             <div fxLayoutAlign="center center" fxFlex="auto">
-                <span class="name">Cell Data:</span>
+                <span class="name">Cell Data: 	&nbsp;</span>
                 <div fxLayout="row" *ngFor="let item of dataList; trackBy:trackByDataList">
                     <span class="name">{{item.name}} :</span>
                     <span class="value"> {{item.value}}</span>
@@ -36,7 +36,7 @@
         <mat-divider></mat-divider>
         <mat-card-content class="view-summary-card-content">
             <ag-grid-angular style="width: 100%; height: calc(100% - 2px);" class="ag-theme-material ag-jcp3"
-                rowHeight="48" headerHeight="28" [gridOptions]="gridViewSummaryGridOptions"
+                rowHeight="48" [tooltipShowDelay]="tooltipShowDelay"  headerHeight="28" [gridOptions]="gridViewSummaryGridOptions"
                 [columnDefs]="gridViewSummaryColumnDefs" [rowData]="gridViewSummaryRowData" enableColResize
                 enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
                 toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"

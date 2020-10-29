@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PlanningDeploymentRoutingModule } from './planning-deployment-routing.module';
 import { EnbscComponent } from './enbsc/enbsc.component';
-
-//Angular Material Components
 import { A11yModule } from "@angular/cdk/a11y";
-// import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { PortalModule } from "@angular/cdk/portal";
 import { ScrollingModule } from "@angular/cdk/scrolling";
@@ -48,7 +44,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -60,24 +55,17 @@ import { EditModeDirective } from './../../../_directive/edit-cell/edit-mode.dir
 import { FocusableDirective } from './../../../_directive/focusable.directive';
 import { EditOnEnterDirective } from './../../../_directive/edit-cell/edit-on-enter.directive';
 import { NewAndSaveTemplatePopupComponent } from './link-budget/new-and-save-template-popup/new-and-save-template-popup.component';
-// import { FocusableDirective } from './_directive/focusable.directive';
-// import { EditModeDirective } from './_directive/edit-cell/edit-mode.directive';
-// import { EditOnEnterDirective } from './_directive/edit-cell/edit-on-enter.directive';
 @NgModule({
   declarations: [EnbscComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
-    // RouterModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([]),
-
-    //Angular meterial
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
-    // ClipboardModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,

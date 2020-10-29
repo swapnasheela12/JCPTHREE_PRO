@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VERSION } from "@angular/material/core";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { CreateReportComponent } from './create-report/create-report.component';
-import { SuccessfulComponent } from 'src/app/core/components/commanPopup/successful/successful.component';
+import { SuccessfulComponent } from 'src/app/core/components/commonPopup/successful/successful.component';
 
 export interface DialogData {
   animal: string;

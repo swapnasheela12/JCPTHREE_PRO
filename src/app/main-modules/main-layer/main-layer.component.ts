@@ -1,7 +1,7 @@
-import { SmallCellPlanned4gService } from './sites/planned/small-cell-planned/small-cell-planned-4g.service';
-import { MacroPlanned4gService } from './sites/planned/macro-planned-4g/macro-planned-4g.service';
-import { Hpodsc4gService } from './sites/planned/hpodsc/hpodsc4g.service';
-import { MacroNominalService } from './sites/nominal/macro-nominal.service';
+import { SmallCellPlanned4gService } from './layer-list/sites/planned/small-cell-planned/small-cell-planned-4g.service';
+import { MacroPlanned4gService } from './layer-list/sites/planned/macro-planned-4g/macro-planned-4g.service';
+import { Hpodsc4gService } from './layer-list/sites/planned/hpodsc/hpodsc4g.service';
+import { MacroNominalService } from './layer-list/sites/nominal/macro-nominal.service';
 import { Subscription } from 'rxjs';
 import { SelectedLayerMenuComponent } from './selected-layer-menu/selected-layer-menu.component';
 import { Router } from '@angular/router';
@@ -24,9 +24,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js';
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
-import { SmallCellService } from './sites/indoor/small-cell/small-cell.service';
+import { SmallCellService } from './layer-list/sites/indoor/small-cell/small-cell.service';
 import { SideNavService } from 'src/app/_services/side-nav.service';
-import { NodesAndBoundariesManagerService } from './sites/outdoor/macro/nodes-and-boundaries-manager.service';
+import { NodesAndBoundariesManagerService } from './layer-list/sites/outdoor/macro/nodes-and-boundaries-manager.service';
 import 'leaflet-contextmenu';
 import { MatSidenav } from '@angular/material/sidenav';
 declare var $: any;
@@ -240,7 +240,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     });
      this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
       if (dataFromPinZoom === "pin-zoom-closed") {
-        this.map.removeLayer(e.marker);
+        // this.map.removeLayer(e.marker);
       }
     });
 

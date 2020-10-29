@@ -9,7 +9,7 @@ import { TaskInputRendererComponent } from '../../renderer/task-input-renderer.c
 import { TaskDropdownRendererComponent } from '../../renderer/task-dropdown-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { IExec_Task, IExec_Site, IExec_Impl, IExec_Impl_Ian, ILabelValue, IExec_Task_Closure_Remark } from '../../../../Irf-oc';
 import { Subscription } from 'rxjs';
 

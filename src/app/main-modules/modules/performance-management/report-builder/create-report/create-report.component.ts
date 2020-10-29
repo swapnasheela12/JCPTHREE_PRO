@@ -16,7 +16,7 @@ import { dropdownRendererComponent } from './renderer/dropdown-renderer.componen
 import { conditionalDropdownRendererComponent } from './renderer/conditional-dropdown-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddGroupPopupComponent } from './add-group-popup/add-group-popup.component';
-import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
+import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
 
 const PATHS = [
   {goBack: "JCP/Modules/Performance-Management/Report-Builder"}

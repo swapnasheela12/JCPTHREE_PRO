@@ -1,9 +1,9 @@
-import { AlarmsPopupComponent } from './alarms-popup/alarms-popup.component';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { filter, tap } from 'rxjs/operators';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import * as D3 from 'd3/index';
+import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
 
 @Component({
   selector: 'app-tree-node',

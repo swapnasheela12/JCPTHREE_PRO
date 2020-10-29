@@ -14,6 +14,7 @@ export class ViewSummaryComponent implements OnInit {
     secondaryKpi: string = "Traffic";
     time: string = "time";
     cellList: string = "Custom Cell List";
+    tooltipShowDelay: number;
     trackByDataList(index: number, item: any): string {
         return item.name;
     }
@@ -611,6 +612,7 @@ export class ViewSummaryComponent implements OnInit {
 
     public createColumnDefs() {
         this.gridViewSummaryColumnDefs = this.VIEWSUMMARYDEFS;
+        this.tooltipShowDelay = 0;
     }
     public getViewSummaryData() {
         this.http.get(this.url)

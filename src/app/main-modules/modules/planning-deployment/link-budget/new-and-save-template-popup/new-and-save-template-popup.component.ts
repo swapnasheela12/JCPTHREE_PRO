@@ -6,7 +6,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { snackBarToastComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { snackBarToastComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 
 import { dropdown, ClutterType, City } from './dropdown-value';
 

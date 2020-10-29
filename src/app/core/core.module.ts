@@ -51,23 +51,23 @@ import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterUniquePipe } from '../_pipes/filterUnique/filter-unique.pipe';
 import { RouterModule } from '@angular/router';
-import { SuccessfulComponent } from './components/commanPopup/successful/successful.component';
+import { SuccessfulComponent } from './components/commonPopup/successful/successful.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavService } from '../_services/side-nav.service';
 import { MyjcpdropdownpanelComponent } from './components/header/myjcpdropdownpanel/myjcpdropdownpanel.component';
 import { isEllipsisActiveDirective } from '../_directive/is-ellipsis-active.directive';
-import { ConfirmPopupComponent } from './components/commanPopup/confirm-popup/confirm-popup.component';
-import { CommonPopupComponent } from './components/commanPopup/common-popup/common-popup.component';
+import { ConfirmPopupComponent } from './components/commonPopup/confirm-popup/confirm-popup.component';
+import { CommonPopupComponent } from './components/commonPopup/common-popup/common-popup.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { FileUploadPopupComponent } from './components/commanPopup/file-upload-popup/file-upload-popup.component';
+import { FileUploadPopupComponent } from './components/commonPopup/file-upload-popup/file-upload-popup.component';
 import { TableAgGridComponent } from './components/table-ag-grid/table-ag-grid.component';
 import { AgGridTreeComponent } from './components/ag-grid-tree/ag-grid-tree.component';
 import { TemplateDropdownComponent } from './../main-modules/modules/planning-deployment/link-budget/template-dropdown/template-dropdown.component';
 import { DeleteRendererComponent } from './components/ag-grid-renders/delete-renderer.component';
-import { SuccessfulModalComponent } from './components/commanPopup/successful-modal/successful-modal.component';
+import { SuccessfulModalComponent } from './components/commonPopup/successful-modal/successful-modal.component';
 import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.component';
 import { LeftsideSettingsPopupComponent } from './components/leftside-settings-popup/leftside-settings-popup.component';
-import { PaginationComponent } from './components/commanPopup/pagination/pagination.component';
+import { PaginationComponent } from './components/commonPopup/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +89,7 @@ import { PaginationComponent } from './components/commanPopup/pagination/paginat
     TableAgGridComponent,
     AgGridTreeComponent,
     TemplateDropdownComponent,
-    LeftsideSettingsPopupComponent,
+    // LeftsideSettingsPopupComponent,
     PaginationComponent
   ],
   imports: [

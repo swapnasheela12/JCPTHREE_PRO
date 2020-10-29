@@ -1936,7 +1936,7 @@ const FIBRE_ROUTES_LIST = [
         link: "planned",
         children: [],
         componentLayer: 'RoutePlannedFibreCoreComponent',
-        component: "SettingsPopupComponent"
+        component: "FibreRouteSettingsPopupComponent"
     },
     {
         name: "Ready",
@@ -1944,7 +1944,7 @@ const FIBRE_ROUTES_LIST = [
         link: "ready",
         children: [],
         componentLayer: 'RouteReadyFibreCoreComponent',
-        component: "SettingsPopupComponent"
+        component: "FibreRouteSettingsPopupComponent"
     }
 ];
 

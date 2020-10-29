@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { snackBarToastComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { snackBarToastComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 
 interface templateDropdown {
   name: string;

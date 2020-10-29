@@ -1,6 +1,6 @@
 import { TableAgGridService } from './../../../../core/components/table-ag-grid/table-ag-grid.service';
 import { dropDownThreeDotRendererComponent } from './../../../../core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { StatusRendererComponent } from './../kpi-editor/renderer/status-renderer.component';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { HttpClient } from "@angular/common/http";

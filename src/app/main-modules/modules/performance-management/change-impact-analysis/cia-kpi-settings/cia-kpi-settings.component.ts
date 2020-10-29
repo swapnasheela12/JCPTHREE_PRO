@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GridOptions, GridCore, GridApi } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { ciaDropdownRenderersComponent } from '../renderer/cia-renderer.component';
 
 @Component({

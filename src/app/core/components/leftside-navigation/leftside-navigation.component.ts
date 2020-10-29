@@ -422,27 +422,27 @@ export class LeftsideNavigationComponent implements OnInit {
     console.log(node.component)
     this.viewContainerRef.clear();
     if (node.component == 'TownBoundaryDialogComponent') {
-      const { TownBoundaryDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component');
+      const { TownBoundaryDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(TownBoundaryDialogComponent)
       );
     } else if (node.component == 'ZonesJioDialogComponent') {
-      const { ZonesJioDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component');
+      const { ZonesJioDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(ZonesJioDialogComponent)
       );
     } else if (node.component == 'DenseUrbanDialogComponent') {
-      const { DenseUrbanDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component');
+      const { DenseUrbanDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(DenseUrbanDialogComponent)
       );
     } else if (node.component == 'TacNetworkDialogComponent') {
-      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
+      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
       );
     } else if (node.component == 'NominalMacroDialogComponent') {
-      const { NominalMacroDialogComponent } = await import('./../../../main-modules/main-layer/sites/nominal/macro-dialog/macro-dialog.component');
+      const { NominalMacroDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/sites/nominal/macro-dialog/macro-dialog.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
       );
@@ -454,15 +454,15 @@ export class LeftsideNavigationComponent implements OnInit {
       );
     }
     else if (node.component == 'CmcSettingsPopupComponent') {
-      const { CmcSettingsPopupComponent } = await import('./../../../main-modules/main-layer/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component');
+      const { CmcSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(CmcSettingsPopupComponent)
       );
     }
-    else if (node.component == 'SettingsPopupComponent') {
-      const { SettingsPopupComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/settings-popup/settings-popup.component');
+    else if (node.component == 'FibreRouteSettingsPopupComponent') {
+      const { FibreRouteSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/settings-popup/settings-popup.component');
       this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(SettingsPopupComponent)
+        this.cfr.resolveComponentFactory(FibreRouteSettingsPopupComponent)
       );
     }
   }
@@ -470,12 +470,12 @@ export class LeftsideNavigationComponent implements OnInit {
   layerComponent;
   async renderLayerComponent(layersToShow) {
     if (layersToShow == 'RoutePlannedFibreCoreComponent') {
-      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
+      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
       );
     } else if (layersToShow == 'RouteReadyFibreCoreComponent') {
-      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
+      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
       );

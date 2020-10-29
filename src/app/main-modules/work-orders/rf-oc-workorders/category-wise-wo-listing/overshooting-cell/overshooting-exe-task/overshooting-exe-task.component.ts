@@ -11,7 +11,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.component';
 import { AgGridAngular } from 'ag-grid-angular';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Subscription } from 'rxjs';
 
 interface sitep {

@@ -9,7 +9,7 @@ import { SubmitWorkordedPopupComponent } from '../submit-workorded-popup.compone
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { AgGridAngular } from 'ag-grid-angular';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commanPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Subscribable, Subscription } from 'rxjs';
 
 interface sitep {

@@ -26,7 +26,7 @@ import { ChangeImpactAnanlysisRoutingModule } from './change-impact-analysis-rou
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ciaDropdownRenderersComponent } from './renderer/cia-renderer.component';
-import { snackBarToastComponent } from './../../../../core/components/commanPopup/common-popup/common-popup.component';
+import { snackBarToastComponent } from './../../../../core/components/commonPopup/common-popup/common-popup.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DataSharingService } from 'src/app/_services/data-sharing.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { SuccessfulModalComponent } from 'src/app/core/components/commanPopup/successful-modal/successful-modal.component';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

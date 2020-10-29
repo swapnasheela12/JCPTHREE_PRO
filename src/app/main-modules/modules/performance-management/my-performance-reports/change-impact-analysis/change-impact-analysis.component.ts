@@ -9,7 +9,9 @@ import { CustomTooltip } from '../custom-tooltip.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AlarmDetailsPopupComponent } from './alarm-details-popup/alarm-details-popup.component';
 import { Subscription } from 'rxjs';
-
+import Exporting from 'highcharts/modules/exporting';
+// Initialize exporting module.
+Exporting(Highcharts);
 declare var $: any;
 rounded(Highcharts)
 const PATHS = [
@@ -84,7 +86,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "Overall",
-        width: 120,
+        width: 95,
         field: "overall",
         tooltipField: 'overall',
         cellRenderer: function (params) {
@@ -99,7 +101,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "850",
-        width: 100,
+        width: 80,
         field: "850",
         tooltipField: '850',
         cellRenderer: function (params) {
@@ -114,7 +116,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "1800",
-        width: 110,
+        width: 85,
         field: "1800",
         tooltipField: '1800',
         cellRenderer: function (params) {
@@ -129,7 +131,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "2300-C1",
-        width: 130,
+        width: 105,
         field: "2300C1",
         tooltipField: '2300C1',
         cellRenderer: function (params) {
@@ -144,7 +146,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "2300-C2",
-        width: 130,
+        width: 105,
         field: "2300C2",
         tooltipField: '2300C2',
         cellRenderer: function (params) {
@@ -176,7 +178,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     this.ciaChart = Highcharts.chart('Chart', {
       //@ts-ignore
       exporting: {
-        enabled: false
+        enabled: true
       },
       chart: {
         type: 'column',
@@ -196,7 +198,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           zIndex: 5
         }]
       },
-      yAxis: [{ 
+      yAxis: [{
         labels: {
           format: '{value}'
         },
@@ -204,7 +206,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           text: value1
         },
         opposite: true
-      }, { 
+      }, {
 
         min: 0,
         max: 100,
@@ -320,6 +322,8 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    let event = new CustomEvent("close-side-bar");
+    window.dispatchEvent(event);
     this.pathsCIAViewSummary = PATHS[0].changeImpactAnalysisViewSummary;
     this.pathMyPerformanceReports = PATHS[1].goToMyPerformanceReports;
     this.createColumnDefs();
