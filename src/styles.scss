@@ -1761,6 +1761,23 @@ ag-grid-angular {
     }
 }
 
+app-ag-grid-tree {
+    ag-grid-angular {
+        .ag-root-wrapper {
+            .ag-root-wrapper-body {
+                .ag-root {
+                    .ag-body-viewport {
+                        .ag-center-cols-clipper {
+                            .ag-center-cols-viewport {
+                                overflow-x: hidden !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 //// change icon of tree grid
 :host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
     content: "\f13a"!important;

@@ -37,8 +37,7 @@
                     [pagination]="true" [suppressPaginationPanel]="true" (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'>
                 </ag-grid-angular> -->
 
-                <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
-                </app-table-ag-grid>
+                <app-table-ag-grid></app-table-ag-grid>
                 <!-- <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination> -->
             </div>
         </div>
