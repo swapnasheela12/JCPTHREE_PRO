@@ -2955,7 +2955,13 @@ const DASHBOARD_LIST = [
     {
         name: "Custom Dashboards",
         icon: "fas fa-users fa-3",
-        link: 'JCP/Reports-and-Dashboards/Dashboards',
+        link: 'JCP/Reports-and-Dashboards/Custom-Dashboards',
+        children: []
+    },
+    {
+        name: "ZoomData Dashboard",
+        icon: "fas fa-users fa-3",
+        link: 'JCP/Reports-and-Dashboards/ZoomData-Dashboards',
         children: []
     }
 ];

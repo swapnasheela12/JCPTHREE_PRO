@@ -13,6 +13,7 @@ import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
 import { DeleteRendererComponent } from '../ag-grid-renders/delete-renderer.component';
 import { GenhelpiconComponent } from '../ag-grid-renders/genhelpicon.component';
+import { InfoRendererComponent } from 'src/app/main-modules/reports-dashboards/custom-dashboard/renderer/info-renderer.component';
 
 
 @Component({
@@ -38,7 +39,9 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     colorDropdownRenderer: colorDropdownRendererComponent,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
-    helpicon: GenhelpiconComponent
+    helpicon: GenhelpiconComponent,
+    InfoRenderer: InfoRendererComponent
+
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];

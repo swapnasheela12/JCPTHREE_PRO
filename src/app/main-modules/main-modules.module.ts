@@ -111,6 +111,8 @@ import { CustomDashboardComponent } from './reports-dashboards/custom-dashboard/
 import { InfoRendererComponent } from './reports-dashboards/custom-dashboard/renderer/info-renderer.component';
 import { TwampLiveDashboardComponent } from './reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.component';
 import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboard/renderer/all-expand-renderer.component';
+import { ZoomDataComponent } from './reports-dashboards/zoom-data/zoom-data.component';
+//import { SlaConformanceComponent } from './reports-dashboards/custom-dashboard/sla-conformance/sla-conformance.component';
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -161,7 +163,9 @@ import { AllExpandRendererComponent } from './reports-dashboards/custom-dashboar
     RouteTableViewComponent,
     CustomDashboardComponent,
     TwampLiveDashboardComponent,
-    InfoRendererComponent
+    InfoRendererComponent,
+    ZoomDataComponent,
+    // SlaConformanceComponent
   ],
   imports: [
     CommonModule,
