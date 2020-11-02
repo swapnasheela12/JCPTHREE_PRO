@@ -38,7 +38,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     colorDropdownRenderer: colorDropdownRendererComponent,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
-    helpicon: GenhelpiconComponent
+    helpicon: GenhelpiconComponent,
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];
