@@ -1,3 +1,4 @@
+import { CmWorkordersModule } from './main-modules/work-orders/cm-workorders/cm-workorders.module';
 import { LayersCustComponent } from './modules/layers-cust/layers-cust.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -48,7 +49,8 @@ const routes: Routes = [
       },
       {
         path: "Work-Orders", children: [
-          { path: 'Rf-Oc-Workorders',loadChildren: () => import('../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule)}
+          { path: 'Rf-Oc-Workorders',loadChildren: () => import('../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule)},
+          { path: 'Cm-Workorders',loadChildren: () => import('../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule)}
         ]
       }
     ],

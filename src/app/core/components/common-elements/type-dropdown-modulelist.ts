@@ -37,3 +37,14 @@ export const SapId : dropdown[] = [
     {name: 'I-DL-GRGN-ENB-6083'},
     {name: 'I-DL-GRGN-ENB-6084'}
 ];
+
+export interface executionStatusDropdown {
+    value: string;
+  }
+
+export const executionStatus : executionStatusDropdown[] = [
+    { value: 'All Status'},
+    { value: 'Executed'},
+    { value: 'Cancelled'},
+    { value: 'Expired'}
+  ];
