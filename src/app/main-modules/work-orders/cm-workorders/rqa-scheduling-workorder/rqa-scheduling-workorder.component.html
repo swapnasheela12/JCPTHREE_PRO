@@ -5,7 +5,6 @@
             <mat-toolbar-row class="mat-blue-grey">
                 <div class="col pl-0">
                     <div class="header">Configuration Change Request</div>
-
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -31,25 +30,11 @@
                         <mat-form-field fxFlex="100">
                             <mat-select disableOptionCentering placeholder="Execution Status" (openedChange)="openedChange($event)" [multiple]="true" [formControl]="executionStatusControl" ngDefaultControl #executionStatusControlSelect>
                                 <input matInput [(ngModel)]="selectedLayerSearchValue" autocomplete="off" [ngModelOptions]="{standalone: true}" placeholder="Search..." style="height: 48px !important;padding-left:15px">
-                                <!-- <mat-option>
-                                    <ngx-mat-select-search placeholderLabel="Execution Status" [formControl]="executionStatusFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                    </ngx-mat-select-search>
-                                </mat-option> -->
                                 <mat-option *ngFor="let executionStatus of executionStatusFilter | async" [value]="executionStatus">
                                     {{executionStatus.value}}
                                 </mat-option>
                             </mat-select>
-                            <!-- <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
-                            ngDefaultControl #nodeMultiCtrlSelect>
-                            <mat-option>
-                              <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
-                                noEntriesFoundLabel="no matching found" ngDefaultControl>
-                              </ngx-mat-select-search>
-                            </mat-option>
-                            <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
-                              {{node.name}}
-                            </mat-option>
-                          </mat-select> -->
+
                         </mat-form-field>
                     </form>
                 </div>
