@@ -15,6 +15,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { GridOptions, GridCore } from 'ag-grid-community';
 import * as _ from 'lodash';
+import { template } from 'lodash';
 
 declare var $: any;
 
@@ -130,16 +131,25 @@ export class RqaSchedulingWorkorderComponent implements OnInit {
         field: "workorder",
         width: 250,
         pinned: 'left',
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px;color:#f28926">'+params.data.workorder+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.schedule+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Actual Start Date & Time",
         field: "starttime",
-        width: 180
+        width: 200
       },
       {
         headerName: "Actual End Date & Time",
         field: "endttime",
-        width: 180
+        width: 200
       },
       {
         headerName: "Requested By",
