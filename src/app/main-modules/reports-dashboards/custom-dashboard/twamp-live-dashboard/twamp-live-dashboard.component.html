@@ -1,0 +1,165 @@
+<div  class="p-0" style="height: calc(100% - 10px);">
+    <mat-card class="twamp-live-dashboard-top-card p-0 mb-3 mx-0">
+        <form [formGroup]="twampForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="row wrap" class="p-3">
+                <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                    <mat-select [(value)]="geographyListValue" placeholder="Geography List" 
+                        disableOptionCentering (openedChange)="openedChange($event)"
+                        formControlName = "geographyList"
+                    >
+                        <input matInput [(ngModel)]="searchGeographyListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of geographyList | filter:searchGeographyListValue" [value]="item.geography_name">
+                            {{item.geography_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="twamp-field-container px-4">
+                    <input matInput
+                    [matDatepicker]="picker"
+                    placeholder="Date"
+                    formControlName = "date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                    <mat-select [(value)]="nodeListValue" placeholder="Node" 
+                        disableOptionCentering (openedChange)="openedChange($event)"
+                        formControlName = "nodeList"
+                    >
+                        <input matInput [(ngModel)]="searchNodeListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of nodeList | filter:searchNodeListValue" [value]="item.node_name">
+                            {{item.node_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                    <mat-select [(value)]="dscpListValue" placeholder="DSCP" 
+                        disableOptionCentering (openedChange)="openedChange($event)"
+                        formControlName = "dscpList"
+                    >
+                        <input matInput [(ngModel)]="searchDscpListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                        placeholder="Search...." style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of dscpList | filter:searchDscpListValue" [value]="item.dscp_name">
+                            {{item.dscp_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                    <mat-select [(value)]="kpiListValue" placeholder="KPI" 
+                        disableOptionCentering (openedChange)="openedChange($event)"
+                        formControlName = "kpiList"
+                    >
+                        <input matInput [(ngModel)]="searchKpiListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                        placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of kpiList | filter:searchKpiListValue" [value]="item.kpi_name">
+                            {{item.kpi_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="d-flex">
+                <div class="col"></div>
+                <div class="px-5 py-1 my-flex-item">
+                    <button mat-raised-button color="primary" type="submit" class="buttonWidth">Submit</button>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+    <mat-card class="twamp-ag-grid p-0">
+        <ng-container 
+            [ngTemplateOutlet]="recursiveListTmpl"
+            >
+        </ng-container>
+    </mat-card>
+</div>
+
+<ng-template #recursiveListTmpl *ngIf="showLiveDashboard == 'live-dashboard'">
+    <div class="ml-3 py-3 ag-grid-twamp-title" >{{displayName}}</div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <ag-grid-angular style="width: 100%; height: calc(100% - 40px)" class="twamp-grid-live ag-theme-material ag-jcp3"
+        [rowData]="rowData" [columnDefs]="columnDefs" (cellClicked)='onCellClicked($event)'
+        [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"  
+        [gridOptions]="twampGridOptions" [pinnedBottomRowData]="pinnedBottomRowData"
+        [suppressHorizontalScroll]="true" (gridReady)="onReady($event)">
+    </ag-grid-angular>
+    <div class="cover"></div>
+    <div class="graytooltip">
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">23 Hrs</div>
+           
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">29</div>
+        </div>
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">12 Hrs</div>
+            
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">30</div>
+        </div>
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">6 Hrs</div>
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">60</div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #recursiveListTmpl *ngIf="showLiveDashboard == 'live-violation-report'">
+    <div class="d-flex">
+        <div class="ml-3 py-3 ag-grid-twamp-title"> Live Violation Report : {{liveViolationReport}}</div>
+        <div class="col"></div>
+        <form [formGroup]="liveViolationReportForm" class="form-violation">
+            <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                <mat-select placeholder="Type" [formControl]="typeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #typeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Search..." [formControl]="typeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let type of typeMultiFilter | async" [value]="type">
+                      {{type.type_name}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+            <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                <mat-select [(value)]="directionListValue" placeholder="Direction" 
+                    disableOptionCentering (openedChange)="openedChange($event)"
+                    formControlName = "directionList"
+                >
+                    <input matInput [(ngModel)]="searchDirectionListValue" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                    placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of directionList | filter:searchDirectionListValue" [value]="item.direction_name">
+                        {{item.direction_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+       
+        <div>
+            <mat-icon id="twamp-grid-live" class="search-twamp-icon" (click)="previousPage(showLiveDashboard)" aria-label="search">
+                <span class="zmdi zmdi-close"></span>
+            </mat-icon>
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <ag-grid-angular style="width: 100%; height: calc(100% - 60px)" class="twamp-grid-live-violation ag-theme-material ag-jcp3"
+        [rowData]="rowDataViolationReport" [columnDefs]="columnDefsViolationReport" (cellClicked)='onCellClicked($event)'
+        [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons" [tooltipShowDelay]="tooltipShowDelay" 
+        [gridOptions]="twampLiveViolationReportGridOptions" 
+        [suppressHorizontalScroll]="true" (gridReady)="onViolationReportReady($event)">
+    </ag-grid-angular>
+</ng-template>
+
+<ng-template #recursiveListTmpl *ngIf="showLiveDashboard == 'live-chart'">
+    <div class="ml-3 py-3 ag-grid-twamp-title" > {{liveViolationReport}} Violation: {{displaySapIDName}}</div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div #graphViolationChart>
+        <div id="dailyTrafficChartID" [chart]="packetLossChart"></div>
+    </div>
+</ng-template>
