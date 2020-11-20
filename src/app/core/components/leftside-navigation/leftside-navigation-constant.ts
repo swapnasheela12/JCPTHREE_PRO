@@ -3031,6 +3031,14 @@ const WORKORDERS_RFOCWORKORDERS_LIST = [
         children: WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST
     }
 ]
+const WORKORDERS_CMWORKORDERS_LIST = [
+    {
+        name: 'RQA Scheduling',
+        link: 'JCP/Work-Orders/Cm-Workorders/Rqa-Scheduling-Workorder',
+        eventName: 'workorders-cm-rqa-scheduling',
+        children: []
+    }
+]
 
 const WORKORDERS_LIST = [
     {
@@ -3068,6 +3076,12 @@ const WORKORDERS_LIST = [
         link: '',
         eventName: 'sites-outdoor-esc',
         children: WORKORDERS_RFOCWORKORDERS_LIST
+    },
+    {
+        name: 'CM Workorders',
+        link: '',
+        eventName: 'sites-outdoor-esc',
+        children: WORKORDERS_CMWORKORDERS_LIST
     }
 ];
 

@@ -1,18 +1,17 @@
-import { DeleteCreatedKpiRendererComponent } from './../performance-management/kpi-editor/renderer/delete-renderer.component';
-import { createKpiDropdownRendererComponent } from './../performance-management/kpi-editor/renderer/dropdown-renderer.component';
-import { dropdownRendererComponent } from './../performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
-import { DeleteRendererComponent } from './../performance-management/change-impact-analysis/cia-module/renderer/delete-renderer.component';
-import { conditionalDropdownRendererComponent } from './../performance-management/report-builder/create-report/renderer/conditional-dropdown-renderer.component';
-import { VerticaldotRendererComponent } from './../performance-management/kpi-editor/renderer/verticaldot-renderer.component';
+import { DeleteCreatedKpiRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/delete-renderer.component';
+import { createKpiDropdownRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/dropdown-renderer.component';
+import { dropdownRendererComponent } from './../../modules/performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
+import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+import { conditionalDropdownRendererComponent } from './../../modules/performance-management/report-builder/create-report/renderer/conditional-dropdown-renderer.component';
+import { VerticaldotRendererComponent } from './../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
-import { CustomTooltip } from './../performance-management/my-performance-reports/custom-tooltip.component';
+import { CustomTooltip } from './../../modules/performance-management/my-performance-reports/custom-tooltip.component';
 import { CoreModule } from './../../../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ConfigurationManagementRoutingModule } from './configuration-management-routing.module';
-import { SamsungRqaSchedulingComponent } from './config-change/rqa-scheduling/samsung-rqa-scheduling/samsung-rqa-scheduling.component';
-
+import { CmWorkordersRoutingModule } from './cm-workorders-routing.module';
+import { RqaSchedulingWorkorderComponent } from './rqa-scheduling-workorder/rqa-scheduling-workorder.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HighchartsChartModule } from "highcharts-angular";
@@ -64,11 +63,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
+
 @NgModule({
-  declarations: [SamsungRqaSchedulingComponent],
+  declarations: [RqaSchedulingWorkorderComponent],
   imports: [
     CommonModule,
-    ConfigurationManagementRoutingModule,
+    CmWorkordersRoutingModule,
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
@@ -121,7 +121,6 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
-    // ChangeImpactAnanlysisModule
   ]
 })
-export class ConfigurationManagementModule { }
+export class CmWorkordersModule { }
