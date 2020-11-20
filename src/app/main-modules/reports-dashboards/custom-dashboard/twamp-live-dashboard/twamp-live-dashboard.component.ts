@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { Chart } from "angular-highcharts";
 
 import * as moment from 'moment';
 import { GridOptions } from '@ag-grid-community/all-modules';
@@ -17,12 +18,15 @@ import { CustomTooltip } from '../renderer/custom-tooltip.component';
 declare var $: any;
 import * as Highcharts from 'highcharts';
 import { CdkPortal, DomPortalOutlet } from '@angular/cdk/portal';
+//import { CustomTooltip } from '../../../../main-modules/modules/performance-management/my-performance-reports/custom-tooltip.component';
 
 export class GroupLevel {
   level = 0;
   field = '';
 }
-
+interface DataObject {
+  [key: string]: any;
+}
 const COLUMNDEFS = TWAMP_COLUMN_DEFS;
 const dateFormat = DATE_FORMATS;
 const COLUMNDEFSVIOLATIONREPORT = TWAMP_LIVE_VIOLATION_REPORT;
@@ -125,7 +129,7 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
       this.displaySapIDName = "hello";
       this.jsonUrl = history.state.json_url;
       if (this.displayName == undefined) {
-        this.displayName = 'Live Dasboard';
+        this.displayName = 'Live Dashboard';
       }
       if (this.jsonUrl == undefined) {
       this.jsonUrl = 'assets/data/report/reports-and-dashboard/twamp-live-dashboard.json';
@@ -214,9 +218,9 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
   }
 
   previousPage(currentPage) {
-    if (currentPage == 'live-violation-report') {
+    if (currentPage == 'live-chart') {
       this.twampLiveViolationReportGridOptions.api.showLoadingOverlay();
-      this.showLiveDashboard = 'live-dashboard';
+      this.showLiveDashboard = 'live-chart';
       this.httpService
         .get(this.jsonUrl)
         .subscribe((data: any[]) => {
@@ -333,7 +337,7 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
     } else {
       this.liveViolationReport = event.data.node;
       this.jsonUrlLiveViolationReport = "assets/data/report/reports-and-dashboard/twamp-live-violation-report.json";
-      this.showLiveDashboard = "live-violation-report";
+      this.showLiveDashboard = "live-chart";
       this.httpService
         .get(this.jsonUrlLiveViolationReport)
         .subscribe((data: any[]) => {
@@ -502,6 +506,102 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
       rowData: this.rowData
     }
   }
+  public packetLossChart:DataObject = new Chart({
+    chart: {
+      type: 'line',
+      zoomType: "xy",
+      backgroundColor: "transparent",
+      spacingTop: 30,
+      marginLeft: 100,
+      marginRight: 30,
+      marginBottom: 60,
+    },
+    title: {
+      text: ''
+  },
+
+  subtitle: {
+      text: ''
+  },
+
+  yAxis: {
+      title: {
+          text: 'Packet Loss in (%)',
+          y: 60
+      }
+  },
+
+  xAxis: {
+    title: {
+      text: 'Hours',
+      y: 15
+    },
+      accessibility: {
+          rangeDescription: 'Range: 0 to 16'
+      },
+      min:0,
+      max: 16,
+      tickInterval: 1,
+  },
+
+  legend: {
+      // layout: 'vertical',
+      // align: 'right',
+      // verticalAlign: 'middle'
+  },
+
+  plotOptions: {
+      series: {
+          label: {
+              connectorAllowed: false
+          },
+          pointStart: 0,
+          
+      }
+  },
+
+  series: [{
+      name: 'Latency',
+      type: 'line',
+      data: [0.2, 0.4, 0.6, 0.8, 1, 0.33, 1.2]
+  }, {
+      name: 'Packet Loss',
+      type: 'line',
+      data: [0.3, 0.4, 0.5, 0.7, 0.9, 1, 0.66]
+  }, {
+      name: 'Best Effort Outage simulation',
+      type: 'line',
+      data: [0.5, 0.88, 0.95, 1, 1.09, 1.2, 0.55]
+  }, {
+      name: 'Jitter',
+      type: 'line',
+      data: [0.33, 0.78, 0.4, 1.08, 1.09, 1.2, 0.48]
+  }, {
+      name: 'VOLTE Outage Simulation',
+      type: 'line',
+      data: [0.09, 0.68, 0.93, 1, 1.2, 0.76, 0.44]
+  },
+  {
+    name: 'MOS',
+    type: 'line',
+    data: [0, 0.5, 0.7, 1.2, 0.65, 0.33, 0.66]
+}],
+
+  responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              // legend: {
+              //     layout: 'horizontal',
+              //     align: 'center',
+              //     verticalAlign: 'bottom'
+              // }
+          }
+      }]
+  }
+  });
 }
 
 function getValue(params: any) {
