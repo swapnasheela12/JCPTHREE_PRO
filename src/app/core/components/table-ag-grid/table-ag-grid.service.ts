@@ -19,6 +19,7 @@ export class TableAgGridService {
   public gridFilterValueServices;
   public paginationRequired?;
   public autoPageSizeRequired?;
+  public gridOptionSuppressHorizontalScroll?;
   // public gridApiServices;
   // public columnDefs;
   constructor() { }

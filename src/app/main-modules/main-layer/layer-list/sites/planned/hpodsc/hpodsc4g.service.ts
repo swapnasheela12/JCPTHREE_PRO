@@ -113,7 +113,7 @@ export class Hpodsc4gService {
         const ele = this.selectedLayerArrList[index];
         console.log(ele, "ele");
 
-        if (ele.link == "JCP/Layers/Planned/Hpodsc/HPODSC4g") {
+        if (ele.link == "JCP/Layers/OnAir/Hpodsc/HPODSC4g") {
           // this.boundariesData();
           console.log(canvasLayer.addTo(this.map), "canvasLayer.addTo(this.map)");
 

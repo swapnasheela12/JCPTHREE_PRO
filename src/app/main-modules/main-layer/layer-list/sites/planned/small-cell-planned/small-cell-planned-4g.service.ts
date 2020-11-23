@@ -104,7 +104,7 @@ export class SmallCellPlanned4gService {
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
-        if (ele.link == "JCP/Layers/Planned/smallCell/smallCell4g") {
+        if (ele.link == "JCP/Layers/OnAir/smallCell/smallCell4g") {
           return canvasLayer.addTo(this.map);
         }
       }

@@ -35,7 +35,7 @@ export class DataSharingService {
   private spiderViewData = new BehaviorSubject({});
   currentSpiderData = this.spiderViewData.asObservable();
 
-  private leftNavSelectedLayersSource =  new BehaviorSubject({});
+  private leftNavSelectedLayersSource = new BehaviorSubject({});
   leftNavSelectedLayerMessage = this.leftNavSelectedLayersSource.asObservable();
 
   private macroComponentSource = new BehaviorSubject({});
@@ -43,7 +43,10 @@ export class DataSharingService {
 
   private removeLayerSource = new BehaviorSubject({});
   removeLayerMessage = this.removeLayerSource.asObservable();
-  
+
+  private mainLayerSource = new BehaviorSubject({});
+  mainLayerMessage = this.mainLayerSource.asObservable();
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -56,7 +59,7 @@ export class DataSharingService {
 
   templateGalleryValue(value: Object) {
     this.templateGalleryValueSource.next(value);
-      this.templateGalleryValueSource.next('');
+    this.templateGalleryValueSource.next('');
   }
 
   chechboxChangeMessage(checkBox: Object) {
@@ -67,7 +70,7 @@ export class DataSharingService {
     this.leftGridOptionsSource.next(leftgridOption);
     this.rightGridOptionsSource.next(rightgridOption);
   }
-  
+
   fifteenMinsKpiOptionMessage(fifteenMinsKpiGridOptions: Object, rightgridOption: Object) {
     this.fifteenMinsKpiGridOptionsSource.next(fifteenMinsKpiGridOptions);
     this.rightGridOptionsSource.next(rightgridOption);
@@ -84,7 +87,7 @@ export class DataSharingService {
   templateDataRemoveMessage(template) {
     this.templateRemoveSource.next(template);
   }
-  sendDataToSpider(message){
+  sendDataToSpider(message) {
     this.spiderViewData.next(message);
   }
 
@@ -96,7 +99,12 @@ export class DataSharingService {
     this.macroComponentSource.next(message);
   }
 
+
   removeLayer(message) {
     this.removeLayerSource.next(message);
+  }
+
+  mainLayer(message) {
+    this.mainLayerSource.next(message);
   }
 }

@@ -1,3 +1,4 @@
+import { FivegSpiderViewComponent } from './fiveg-spider-view/fiveg-spider-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '../../core/core.module';

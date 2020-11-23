@@ -1,3 +1,4 @@
+import { LogicaltopologyService } from './layer-list/topologies/fibre/logicaltopology/logicaltopology.service';
 import { SmallCellPlanned4gService } from './layer-list/sites/planned/small-cell-planned/small-cell-planned-4g.service';
 import { MacroPlanned4gService } from './layer-list/sites/planned/macro-planned-4g/macro-planned-4g.service';
 import { Hpodsc4gService } from './layer-list/sites/planned/hpodsc/hpodsc4g.service';

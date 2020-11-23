@@ -1349,6 +1349,12 @@ const MODULE_LIST_CONFIG = [
         link: 'newnetworkelement',
         eventName: 'sites-outdoor-esc',
         children: MODULE_LIST_CONFIG_LSMR
+    },
+    {
+        name: 'RET Change',
+        link: 'JCP/Modules/Configuration-Management/Config-Change/Ret-Change',
+        eventName: 'sites-configchange-retchange',
+        children: []
     }
 ];
 
@@ -1982,7 +1988,8 @@ const FIBRE_LOGICAL_LIST = [
     {
         name: "Planned",
         icon: "fas fa-user fa-3",
-        link: "planned",
+        eventName: 'topologies-fibre-logicaltopology-planned',
+        link: "JCP/Layers/Topologies/Fibre/LogicalTopology/Planned",
         children: []
     },
     {
