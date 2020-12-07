@@ -6,10 +6,19 @@ $md-primary: #0070DB;
 .leftIconHighlight {
     background-color: rgb(255, 0, 0);
   }
+  .cdk-overlay-pane{
+    // min-width: 100px !important;
+    // max-width: 100%;
+    // max-height: 100% !important;
+  }
 .mat-dialog-container {
     padding: 0px;
     height: auto;
-    min-height: 240px;
+    // max-width: 1200px !important;
+    // max-height: 1200px !important;
+    resize: both;
+    // min-width: 200px !important;
+    // min-height: 200px !important;
     // overflow: hidden;    
     background-color: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(2px);
@@ -17,7 +26,6 @@ $md-primary: #0070DB;
     .dialog-header{
         height: 54px;
         max-height: 54px;
-        min-height: 54px;
         background-color: transparent;
             .mat-toolbar-row{
             font-size: 18px;

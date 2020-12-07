@@ -1760,13 +1760,18 @@ const ROUTE_FIBRE_NLD_INTER_READY = [
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
-        componentLayer: 'RouteReadyFibreCoreComponent'
+        componentLayer: 'RouteReadyFibreCoreComponent',
+        component: "FibreRouteSettingsPopupComponent",
+        parentToChild : "Topologies-Fibre-Route-Ready-Core"
     },
     {
         name: "Collector",
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
+        componentLayer: 'RouteReadyFibreCoreComponent',
+        component: "FibreRouteSettingsPopupComponent",
+        parentToChild : "Topologies-Fibre-Route-Ready-Collector"
     }
 ];
 
@@ -1776,12 +1781,18 @@ const ROUTE_FIBRE_NLD_INTER_PLANNED = [
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
+        parentToChild : "Topologies-Fibre-Route-Planned-Core",
+        componentLayer: 'RoutePlannedFibreCoreComponent',
+        component: "FibreRouteSettingsPopupComponent"
     },
     {
         name: "Collector",
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
+        parentToChild : "Topologies-Fibre-Route-Planned-Collector",
+        componentLayer: 'RoutePlannedFibreCoreComponent',
+        component: "FibreRouteSettingsPopupComponent"
     }
 ];
 
@@ -1890,12 +1901,18 @@ const STRUCTURE_ROUTE_LIST = [
         icon: "fas fa-user fa-3",
         link: "planned",
         children: [],
+        parentToChild: 'Topologies-Structure-Planned',
+        componentLayer: 'StructurePlannedFibreCoreComponent',
+        component: "StructurePlannedSettingsPopupComponent"
     },
     {
         name: "Ready",
         icon: "fas fa-user fa-3",
         link: "ready",
-        children: []
+        children: [],
+        parentToChild: 'Topologies-Structure-Ready',
+        componentLayer: 'StructurePlannedFibreCoreComponent',
+        component: "StructurePlannedSettingsPopupComponent"
     }
 ];
 
@@ -1904,13 +1921,21 @@ const EQUIPMENT_ROUTE_LIST = [
         name: "Planned",
         icon: "fas fa-user fa-3",
         link: "planned",
-        children: []
+        children: [],
+        // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
+        // component: "EquipmentSettingsPopupComponent"
+
+
     },
     {
         name: "Ready",
         icon: "fas fa-user fa-3",
         link: "ready",
-        children: []
+        children: [],
+        // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
+        // component: "EquipmentSettingsPopupComponent"
+
+
     }
 ];
 
@@ -2931,7 +2956,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Topologies",
         eventName: 'sites-outdoor-esc',
-        children: TOPOLOGIES_LIST,
+        children: TOPOLOGIES_LIST_OLD,
         classId: 'topologies-border'
     },
     {
@@ -2964,7 +2989,13 @@ const DASHBOARD_LIST = [
     {
         name: "Custom Dashboards",
         icon: "fas fa-users fa-3",
-        link: 'JCP/Reports-and-Dashboards/Dashboards',
+        link: 'JCP/Reports-and-Dashboards/Custom-Dashboards',
+        children: []
+    },
+    {
+        name: "ZoomData Dashboard",
+        icon: "fas fa-users fa-3",
+        link: 'JCP/Reports-and-Dashboards/ZoomData-Dashboards',
         children: []
     }
 ];
@@ -3025,6 +3056,14 @@ const WORKORDERS_RFOCWORKORDERS_LIST = [
         children: WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST
     }
 ]
+const WORKORDERS_CMWORKORDERS_LIST = [
+    {
+        name: 'RQA Scheduling',
+        link: 'JCP/Work-Orders/Cm-Workorders/Rqa-Scheduling-Workorder',
+        eventName: 'workorders-cm-rqa-scheduling',
+        children: []
+    }
+]
 
 const WORKORDERS_LIST = [
     {
@@ -3062,6 +3101,12 @@ const WORKORDERS_LIST = [
         link: '',
         eventName: 'sites-outdoor-esc',
         children: WORKORDERS_RFOCWORKORDERS_LIST
+    },
+    {
+        name: 'CM Workorders',
+        link: '',
+        eventName: 'sites-outdoor-esc',
+        children: WORKORDERS_CMWORKORDERS_LIST
     }
 ];
 

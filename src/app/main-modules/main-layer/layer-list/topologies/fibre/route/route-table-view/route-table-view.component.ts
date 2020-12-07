@@ -1,17 +1,20 @@
-import { Component, OnInit, Inject, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, ViewChild, HostListener } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { GridOptions } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
+import { ResizedEvent } from 'angular-resize-event';
 const Header_Active_Alarms = [
 
   {
     headerName: "Site ID",
-    field: "siteid"
+    field: "siteid",
+    resizable: true
   },
   {
     headerName: "Cell ID",
-    field: "cellid"
+    field: "cellid",
+    resizable: true
   },
 ];
 @Component({
@@ -22,6 +25,7 @@ const Header_Active_Alarms = [
 })
 export class RouteTableViewComponent implements OnInit {
   title: string;
+  componName: string;
   public gridActiveAlarmsColumnDefs: any[]
   public activeAlarmsGridOptions: GridOptions;
   public gridActiveAlarmsData: any;
@@ -35,7 +39,10 @@ export class RouteTableViewComponent implements OnInit {
     { icon: 'alarm_add', color: '#B791C6', name: "AG2" },
     { icon: 'autorenew', color: '#8CAD8D', name: "AG3" }
   ];
-
+  onResized(event: ResizedEvent) {
+    this.activeAlarmsGridOptions.api.sizeColumnsToFit()
+  // console.log("asdasdasdasd")
+  }
   selectedItem = 'close';
   labelInfo = [
     {
@@ -61,6 +68,7 @@ export class RouteTableViewComponent implements OnInit {
     private http: HttpClient) {
     this.title = "CSS";
     this.activeAlarmsGridOptions = <GridOptions>{};
+    this.componName = data.componName;
   }
 
   closeDialog(): void {
@@ -133,7 +141,8 @@ export class RouteTableViewComponent implements OnInit {
 
 export class FibreTableViewPopupModel {
   constructor(
-    public title: string
+    public componName?: string,
+    public title?: string
   ) {
   }
 }

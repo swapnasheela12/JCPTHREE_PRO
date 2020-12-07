@@ -1,6 +1,6 @@
 import { CustomLegendsComponent } from './custom-legends/custom-legends.component';
 import { Component, OnInit, Inject, ChangeDetectorRef, EventEmitter } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef,MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
 
@@ -41,7 +41,7 @@ export class LegendsAndFilterComponent implements OnInit {
 
   // onChange(value){
   //   console.log(value,"value");
-    
+
   //   this.selectedColor = value;
   //   this.selectedColorValue = value;
   // }
@@ -55,9 +55,13 @@ export class LegendsAndFilterComponent implements OnInit {
     { value: 8, legend: '#3F51B5' },
     { value: 9, legend: '#03A9F4' }
   ];
-  value: number = 10;
-  minValue: number = -80;
-  maxValue: number = -40;
+  legendList = [
+    { svg: "assets/images/Layers/topologies/strcu-equip-legend/AG1.png", name: 'AG1' },
+    { svg: "assets/images/Layers/topologies/strcu-equip-legend/AG2.png", name: 'AG2' }
+  ];
+  value: number;
+  minValue: number;
+  maxValue: number;
   // highValue: number = 90;
   options: Options = {
     floor: -140,
@@ -73,10 +77,10 @@ export class LegendsAndFilterComponent implements OnInit {
     getLegend: (value: number): string => {
       return '<b></b>' + value;
     },
-   
+
   };
-  
-  
+
+
 
   // ///////datepicker//////////
   formDate = this.fb.group({
@@ -92,7 +96,7 @@ export class LegendsAndFilterComponent implements OnInit {
     format: 'YYYY-MM-DDTHH:mm:ss.SSSSZ',
     displayFormat: 'YYYY-MM-DD',
     applyLabel: 'Ok',
-    clearLabel:'Clear'
+    clearLabel: 'Clear'
 
   };
 
@@ -105,6 +109,8 @@ export class LegendsAndFilterComponent implements OnInit {
   ];
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
+  showRouteLegends: boolean = false;
+  showCommonLegends: boolean = false;
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
@@ -113,10 +119,10 @@ export class LegendsAndFilterComponent implements OnInit {
     private datashare: DataSharingService,
     private cd: ChangeDetectorRef
   ) {
-      this.datashare.leftNavSelectedLayerMessage.subscribe((selectedLayersAll) => {
-        this.selectedLayers = selectedLayersAll;
-      });
-    }
+    this.datashare.leftNavSelectedLayerMessage.subscribe((selectedLayersAll) => {
+      this.selectedLayers = selectedLayersAll;
+    });
+  }
 
   ngOnInit(): void {
 
@@ -130,46 +136,72 @@ export class LegendsAndFilterComponent implements OnInit {
     this.cd.detectChanges();
   }
   onChangeLayer(layer) {
-    if(layer.value == 'Macro') {
-      // this.selectedLayerTableName = layer.value;
-      this.minValue = -110;
-      this.maxValue =  -40;
-      this.options = {
-        floor: -180,
-        ceil: -20,
-        step: 30,
-        showSelectionBarFromValue: 0,
-        // selectionBarGradient: {
-        //   from: 'white',
-        //   to: '#0078D7'
-        // },
-        showTicks: true,
-        // showTicksValues: true,
-        getLegend: (value: number): string => {
-          return '<b></b>' + value;
-        },
-       
-      };
-    } else {
-      this.minValue = -60;
-      this.maxValue = -40;
-      this.options = {
-        floor: -140,
-        ceil: -40,
-        step: 20,
-        showSelectionBarFromValue: 0,
-        // selectionBarGradient: {
-        //   from: 'white',
-        //   to: '#0078D7'
-        // },
-        showTicks: true,
-        // showTicksValues: true,
-        getLegend: (value: number): string => {
-          return '<b></b>' + value;
-        },
-       
-      };
+    console.log(layer)
+    switch (layer.value) {
+      case "Sites-OnAir-Macro-Macro4G":
+        this.showRouteLegends = false;
+        this.showCommonLegends = true;
+        this.minValue = -110;
+        this.maxValue = -40;
+        this.options = {
+          floor: -180,
+          ceil: -20,
+          step: 30,
+          showSelectionBarFromValue: 0,
+          showTicks: true,
+          getLegend: (value: number): string => {
+            return '<b></b>' + value;
+          },
+        };
+        break;
+      case "Topologies-Fibre-Route-Ready-Core":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+      case "Topologies-Fibre-Route-Ready-Collector":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+      case "Topologies-Fibre-Route-Planned-Core":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+      case "Topologies-Fibre-Route-Planned-Collector":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+      case "Topologies-Structure-Planned":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+      case "Topologies-Structure-Ready":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        break;
+
+
     }
+    // if(layer.value == 'Macro') {
+    // } else {
+    //   this.minValue = -60;
+    //   this.maxValue = -40;
+    //   this.options = {
+    //     floor: -140,
+    //     ceil: -40,
+    //     step: 20,
+    //     showSelectionBarFromValue: 0,
+    //     // selectionBarGradient: {
+    //     //   from: 'white',
+    //     //   to: '#0078D7'
+    //     // },
+    //     showTicks: true,
+    //     // showTicksValues: true,
+    //     getLegend: (value: number): string => {
+    //       return '<b></b>' + value;
+    //     },
+
+    //   };
+    // }
 
     // if ( this.selectedLayerTableName == 'Macro') {
     //   // this.listOfKpiDetails = this.listOfKpiDetailsOther;
@@ -331,7 +363,7 @@ export class LegendsAndFilterComponent implements OnInit {
     //             },
     //           }
     //         }
-    
+
     //       },
     //       credits: {
     //         enabled: false
@@ -365,15 +397,15 @@ export class LegendsAndFilterComponent implements OnInit {
     //           y: 54.13,
     //           color: '#0f73bd'
     //         }]
-    
-    
+
+
     //       }, {
     //         name: 'Temperature',
     //         type: 'spline',
     //         data: [0, 3.05, 3.07, 40, 48, 100]
     //       }]
     //   }
-    
+
     //   );
     // } else {
     //   this.listOfKpiDetails = this.listOfKpiDetailsOther;
@@ -391,7 +423,7 @@ export class LegendsAndFilterComponent implements OnInit {
     }
   }
 
-  customLegendsSettingPopFun(){
+  customLegendsSettingPopFun() {
     var customLegendsSettingListDialogRef = {
       width: '536px',
       height: '965px',

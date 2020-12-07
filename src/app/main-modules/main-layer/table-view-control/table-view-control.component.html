@@ -21,7 +21,7 @@
                         [ngModelOptions]="{standalone: true}" placeholder="Search..."
                         style="height: 48px !important;padding-left:15px">
                     <mat-option *ngFor="let layers of selectedLayers | filter:selectedLayerSearchValue"
-                        [value]="layers.name">
+                        [value]="layers.parentToChild">
                         {{layers.parentToChild}}
                     </mat-option>
                 </mat-select>
@@ -30,7 +30,8 @@
         <div class="filter-selected-area px-3" fxFlex="40">
             <mat-form-field class="form-field-selected-area pt-2 w-100">
                 <mat-select id="matselectarea" placeholder="Select Area" disableOptionCentering
-                    [(ngModel)]="selectedOptionArea" (selectionChange)="areaSelectionFunc();onChangeLayer(selectedLayerCtrl)">
+                    [(ngModel)]="selectedOptionArea"
+                    (selectionChange)="areaSelectionFunc();onChangeLayer(selectedLayerCtrl)">
                     <mat-option value="Pan India">Pan India</mat-option>
                     <mat-option [value]="selectedOptionJioState">
                         <div (click)="$event.stopPropagation();" [matMenuTriggerFor]="jioState" fxLayout="row"
@@ -165,8 +166,30 @@
 </div>
 
 
-<ng-template #tableViewTmpl *ngIf="layerListValue">
-    <ag-grid-angular #agGrid style="width: 100%;max-height: calc(100% - 65px);height: 100%;"
+<ng-template #tableViewTmpl *ngIf="layerListValue">  
+    <div style="height: 56px" *ngIf="selectedLayerTableName == 'Topologies-Fibre-Route-Planned-Core'" fxLayout="row" fxLayoutAlign="space-between center" class="px-4">
+        <mat-radio-group color="primary" [(value)]="typeGroup" fxLayout="row wrap" fxFlex="50" aria-label="Select Frequency" class="radio-button-group">
+            <mat-radio-button fxFlex="40" value="Planned">
+                Planned</mat-radio-button>
+            <mat-radio-button value="Ready" fxFlex="40">
+                Ready</mat-radio-button>
+        </mat-radio-group>
+        <div fxLayout="row"> 
+            <div fxLayout="column" class="mr-2">
+                <label class="mb-0" style="font-size: 12px; color: #7e7e7e;">Geography</label>
+                <div class="value" style="font-size: 14px;">Pan India</div>
+            </div>
+            <mat-divider [vertical]="true"> </mat-divider>
+            <div fxLayout="column" class="ml-2">
+                <label class="mb-0" style="font-size: 12px; color: #7e7e7e;">Fiber Length- Planned (KM’s)</label>
+                <div class="value" style="font-size: 14px;">1122</div>
+            </div>
+            <div fxLayout="column">
+
+            </div>
+        </div>
+    </div>
+    <ag-grid-angular #agGrid style="width: 100%;max-height: calc(100% - 120px);height: 100%;"
         class="ag-theme-material table-view-zoom-ag-grid" [gridOptions]="gridOptions" id="myGrid" [rowData]="rowData"
         [columnDefs]="columnDefs" [enableFilter]="true" (gridReady)="onGridReady($event)"
         (rowClicked)='onRowClicked($event)'></ag-grid-angular>

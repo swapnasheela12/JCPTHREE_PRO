@@ -1,17 +1,25 @@
-<div>
-    <mat-toolbar class="dialog-header">
-        <mat-toolbar-row>
+<div (resized)="onResized($event)">
+    <mat-toolbar class="dialog-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+        <mat-toolbar-row cdkDragHandle>
             <button mat-icon-button class="dialog-close-button leftIconHighlight">
                 <mat-icon>{{selectedItem}}</mat-icon>
             </button>
             <div fxFlex="grow">
                 <div style="color: black" class="pl-3">{{title}}</div>
             </div>
-            <button *ngFor="let icon of icons" (click)="onClick(icon)" [matTooltip]="icon.name"
+            <div *ngIf="componName != 'Route'">
+                {{componName}}
+                <button *ngFor="let icon of icons" (click)="onClick(icon)" [matTooltip]="icon.name"
+                    [ngStyle]="{'background':icon.color}" mat-icon-button class="dialog-close-button mx-2"
+                    [ngClass]="{ 'hidden': icon.icon == selectedItem }">
+                    <mat-icon>{{icon.icon}}</mat-icon>
+                </button>
+            </div>
+            <!-- <button *ngFor="let icon of icons" (click)="onClick(icon)" [matTooltip]="icon.name"
                 [ngStyle]="{'background':icon.color}" mat-icon-button class="dialog-close-button mx-2"
                 [ngClass]="{ 'hidden': icon.icon == selectedItem }">
                 <mat-icon>{{icon.icon}}</mat-icon>
-            </button>
+            </button> -->
             <button (click)="closeDialog()" color="primary" mat-icon-button class="dialog-close-button">
                 <mat-icon>close</mat-icon>
             </button>
@@ -28,28 +36,29 @@
     </mat-toolbar>
     <mat-divider></mat-divider>
     <mat-toolbar class="dialog-header">
-        <mat-toolbar-row fxLayout="row">
-            <div fxFlex="60" fxLayout="row" fxLayoutAlign="space-evenly center">
+        <mat-toolbar-row class="overflow-auto">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div fxLayout="row" *ngFor="let info of labelInfo" fxLayoutAlign="space-evenly center">
                     <div style="color:black; font-size: 13px; font-family: lato bold;">{{info.label }} </div>
                     <div class="pl-1" style="color:gray; font-size: 13px;font-family: lato regular;"> {{info.value}}
                     </div>
-                    <mat-divider *ngIf="info.label !='Jio Center:'" style="height: 24px; padding-left: 20px;"
+                    <mat-divider *ngIf="info.label !='Jio Center:'" style="height: 24px; margin: 0px 10px;"
                         [vertical]="true"></mat-divider>
                 </div>
             </div>
-            <div fxFlex="40" class="text-right">
-                <button mat-button color="primary"><i class="ic ic-download pr-2"></i>Download</button></div>
+            <div class="col"></div>
+            <button mat-button color="primary"><i class="ic ic-download pr-2 text-right"></i>Download</button>
+            <!-- <div fxFlex="40" class="text-right">
+                <button mat-button color="primary"><i class="ic ic-download pr-2"></i>Download</button></div> -->
         </mat-toolbar-row>
     </mat-toolbar>
     <mat-divider></mat-divider>
     <div class="ag-grid-jcp-container">
         <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
-            style="width: 100%; height: 409px;" rowHeight="48" headerHeight="48"
-            [gridOptions]="activeAlarmsGridOptions" [columnDefs]="gridActiveAlarmsColumnDefs"
-            [rowData]="gridActiveAlarmsData" enableColResize enableSorting enableFilter groupHeaders
-            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-            [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
+            style="width: 100%; height: 409px;" rowHeight="48" headerHeight="48" [gridOptions]="activeAlarmsGridOptions"
+            [columnDefs]="gridActiveAlarmsColumnDefs" [rowData]="gridActiveAlarmsData" enableColResize enableSorting
+            enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+            rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
             [suppressPaginationPanel]="true">
         </ag-grid-angular>
     </div>

@@ -44,7 +44,7 @@ export class LeftsideNavigationComponent implements OnInit {
   nodeType = 'TEST';
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
   // @Input() checked: Boolean;
-  @ViewChild('female',  { static: true }) femaleRB: MatRadioButton;
+  @ViewChild('female', { static: true }) femaleRB: MatRadioButton;
   frequencyGroup = "Streets Colored";
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
@@ -370,17 +370,17 @@ export class LeftsideNavigationComponent implements OnInit {
     }
   }
   onRadioChecked(selected, node, activeCheckbox, eventChecked) {
-      this.selectedLayerArr.push(node);
-      this.datashare.changeMessage(this.selectedLayerArr);
-      this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
-      this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
-      if ('' !== node.componentLayer) {
-        this.renderLayerComponent(node.componentLayer);
-      }
+    this.selectedLayerArr.push(node);
+    this.datashare.changeMessage(this.selectedLayerArr);
+    this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
+    this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
+    if ('' !== node.componentLayer) {
+      this.renderLayerComponent(node.componentLayer);
+    }
   }
   onSelectionChange(event) {
     //
-  } 
+  }
   onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
     if (eventChecked != 'no') {
@@ -464,23 +464,46 @@ export class LeftsideNavigationComponent implements OnInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(FibreRouteSettingsPopupComponent)
       );
+    } else if (node.component == 'StructurePlannedSettingsPopupComponent') {
+      const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
+      );
+    } else if (node.component == 'EquipmentSettingsPopupComponent') {
+      const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
+      );
     }
   }
 
   layerComponent;
   async renderLayerComponent(layersToShow) {
+    this.viewContainerRef.clear();
     if (layersToShow == 'RoutePlannedFibreCoreComponent') {
       const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
       );
-    } else if (layersToShow == 'RouteReadyFibreCoreComponent') {
+    } else if(layersToShow == 'RouteReadyFibreCoreComponent') {
       const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
       );
+    } else if(layersToShow == 'StructurePlannedFibreCoreComponent') {
+      const { StructurePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-fibre-core.component');
+      this.layerComponent = this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(StructurePlannedFibreCoreComponent)
+      );
+    } else if(layersToShow == 'EquipmentsPlannedFibreCoreComponent') {
+      const { EquipmentsPlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/equipments-planned-fibre-core/equipments-planned-fibre-core.component');
+      this.layerComponent = this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(EquipmentsPlannedFibreCoreComponent)
+      );
     }
   }
+
+
 
   removeLayerComponent(layerToRemove) {
     if ('' !== layerToRemove) {

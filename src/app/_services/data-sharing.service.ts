@@ -43,6 +43,9 @@ export class DataSharingService {
 
   private removeLayerSource = new BehaviorSubject({});
   removeLayerMessage = this.removeLayerSource.asObservable();
+
+  private mainLayerSource = new BehaviorSubject({​​​​​​​}​​​​​​​);
+  mainLayerMessage = this.mainLayerSource.asObservable();
   
   constructor() { }
 
@@ -99,4 +102,8 @@ export class DataSharingService {
   removeLayer(message) {
     this.removeLayerSource.next(message);
   }
+
+  mainLayer(message) {​​​​​​​
+    this.mainLayerSource.next(message);
+  }​​​​​​​
 }

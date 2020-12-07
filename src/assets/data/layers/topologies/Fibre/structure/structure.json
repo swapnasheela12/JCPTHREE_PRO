@@ -1,0 +1,205 @@
+[
+    [
+        {
+            "measured_length": 1453
+        },
+        {
+            "rj_r4g_state_name": "Maharashtra"
+        },
+        {
+            "fiberrouteproperties": null
+        },
+        {
+            "centroidAvg": [
+                18.464728,
+                76.7720015
+            ]
+        },
+        {
+            "boundary":[
+                {
+                "line1":
+                    [{
+                            "latlng":[
+                                15.620236,
+                                73.729269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_115",
+                            "type":"AG2"
+                        },
+                        {
+                            "latlng":[
+                                15.146922,
+                                73.948996
+                            ],
+                            "sector":"alpha",
+                            "band":"850 MHz",
+                            "cnum":3,
+                            "sapid":"I-MU-MUMB_ENB_134",
+                            "type":"AG2"
+                        }, {
+                            "latlng":[
+                                15.146247,
+                                73.949259
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":4,
+                            "sapid":"I-MU-MUMB_ENB_015",
+                            "type":"AG2+OTN"
+                        },
+                        {
+                            "latlng":[
+                                15.820236,
+                                73.129269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_125",
+                            "type":"AG1"
+                        },
+                        {
+                            "latlng":[
+                                15.721236,
+                                73.022341
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_125",
+                            "type":"AG1"
+                        },
+                        {
+                            "latlng":[
+                                15.1456301,
+                                73.849063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_181",
+                            "type":"FiberPop"
+                        },
+                        {
+                            "latlng":[
+                                15.1656301,
+                                73.049063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_185",
+                            "type":"FiberPop"
+                        }, {
+                            "latlng":[
+                                15.532834,
+                                73.736288
+                            ],
+                            "sector":"alpha",
+                            "band":"2300 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_184",
+                            "type":"OSC"
+                        }, {
+                            "latlng":[
+                                15.620236,
+                                73.729269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_125",
+                            "type":"eNodeB"
+                        },
+                        {
+                            "latlng":[
+                                15.620236,
+                                73.729269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_215",
+                            "type":"eNodeB"
+                        }, {
+                            "latlng":[
+                                15.620236,
+                                73.729269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_113",
+                            "type":"eNodeB"
+                        }, {
+                            "latlng":[
+                                15.046922,
+                                73.948996
+                            ],
+                            "sector":"alpha",
+                            "band":"850 MHz",
+                            "cnum":3,
+                            "sapid":"I-MU-MUMB_ENB_194",
+                            "type":"eNodeB"
+                        }, {
+                            "latlng":[
+                                15.846247,
+                                73.949259
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":4,
+                            "sapid":"I-MU-MUMB_ENB_814",
+                            "type":"OSC"
+                        }, {
+                            "latlng":[
+                                15.676301,
+                                73.949063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_841",
+                            "type":"eNodeB"
+                        }, {
+                            "latlng":[
+                                15.476201,
+                                73.949163
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_404",
+                            "type":"eNodeB"
+                        }, {
+                            "latlng":[
+                                15.176301,
+                                73.949063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_154",
+                            "type":"OSC"
+                        }, {
+                            "latlng":[
+                                15.376301,
+                                73.949063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_765",
+                            "type":"eNodeB"
+                        }
+                    ]
+               
+                } 
+            ] 
+        }
+    ]
+]

@@ -39,23 +39,22 @@
     </div>
     <mat-divider></mat-divider>
 
-    <div class="table-control-layers-filter" fxLayout="row" fxLayoutAlign="space-between center" (click)="$event.stopPropagation();">
+    <div class="table-control-layers-filter" fxLayout="row" fxLayoutAlign="space-between center"
+        (click)="$event.stopPropagation();">
         <!-- <div class="filter-selected-layers px-3" fxFlex="45"> -->
-            <mat-form-field class="form-field-selected-layers pt-2 px-3" fxFlex="40">
-                <mat-select [(value)]="layerListValue" placeholder="Selected Layer" 
-                    disableOptionCentering (openedChange)="openedChange($event)"
-                    [formControl] = "selectedLayerCtrl"
-                    (selectionChange)="onChangeLayer(selectedLayerCtrl)"
-                >
-                    <input matInput [(ngModel)]="selectedLayerSearchValue" autocomplete="off" 
+        <mat-form-field class="form-field-selected-layers pt-2 px-3" fxFlex="40">
+            <mat-select [(value)]="layerListValue" placeholder="Selected Layer" disableOptionCentering
+                (openedChange)="openedChange($event)" [formControl]="selectedLayerCtrl"
+                (selectionChange)="onChangeLayer(selectedLayerCtrl)">
+                <input matInput [(ngModel)]="selectedLayerSearchValue" autocomplete="off"
                     [ngModelOptions]="{standalone: true}" placeholder="Search..."
                     style="height: 48px !important;padding-left:15px">
-                    <mat-option *ngFor="let layers of selectedLayers | filter:selectedLayerSearchValue"
-                    [value]="layers.name">
-                        {{layers.parentToChild}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-option *ngFor="let layers of selectedLayers | filter:selectedLayerSearchValue"
+                    [value]="layers.parentToChild">
+                    {{layers.parentToChild}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <!-- </div> -->
         <!-- <div class="filter-selected-layers px-3" fxFlex="15"> -->
         <!-- <mat-form-field class="form-field-selected-layers pt-2 w-100">
@@ -86,7 +85,9 @@
 
                     <mat-form-field class="">
                         <!-- <div class="daterange-container"> -->
-                        <input class="daterange-container-input" matInput ngxDaterangepickerMd formControlName="selected" placeholder="" [showDropdowns]="true" [singleDatePicker]="true" [showCancel]="true" [locale]="locale" />
+                        <input class="daterange-container-input" matInput ngxDaterangepickerMd
+                            formControlName="selected" placeholder="" [showDropdowns]="true" [singleDatePicker]="true"
+                            [showCancel]="true" [locale]="locale" />
                         <!-- </div> -->
                     </mat-form-field>
 
@@ -95,13 +96,23 @@
         </div>
     </div>
 
-    <div class="custom-slider p-3">
+    <div class="custom-slider p-3" *ngIf="showCommonLegends">
         <div class="container-color">
             <div class="container-color-list" *ngFor="let item of items">
                 <div class="container-color-block" [style.background-color]="item.legend"></div>
             </div>
         </div>
-        <ng5-slider  [manualRefresh]="manualRefresh" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+        <ng5-slider [manualRefresh]="manualRefresh" [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+        </ng5-slider>
+    </div>
+    <div *ngIf="showRouteLegends" style="height: calc(100% - 203px); overflow: auto;">
+        <div *ngFor="let item of legendList">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <img src="{{item.svg}}" alt="profile picture" style="width: 26px; margin: 10px 15px;" />
+                <div>{{item.name}}</div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
     </div>
 
 

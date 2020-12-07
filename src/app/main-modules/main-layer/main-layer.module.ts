@@ -78,7 +78,6 @@ import { PinZoomComponent } from './pin-zoom/pin-zoom.component';
 import { PinGroupSettingComponent } from './pin-group-setting/pin-group-setting.component';
 import { NominalMacroDialogComponent } from './layer-list/sites/nominal/macro-dialog/macro-dialog.component';
 import { RouteReadyFibreCoreComponent } from './layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component';
-import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/route-table-view/route-table-view.component';
 import { FibreRouteSettingsPopupComponent } from './layer-list/topologies/fibre/route/settings-popup/settings-popup.component';
 import { TreeNodeComponent } from './spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
@@ -86,6 +85,9 @@ import { SpiderComponent } from './layer-list/sites/outdoor/spider/spider.compon
 import { KpiComponent } from './layer-list/sites/outdoor/spider/popup/kpi/kpi.component';
 import { CandidatesComponent } from 'src/app/modules/components/properties/candidates/candidates.component';
 import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/nominal-view.component';
+import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/route-table-view/route-table-view.component';
+import { StructurePlannedSettingsPopupComponent } from './layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -121,8 +123,10 @@ import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/no
     KpiComponent,
     CandidatesComponent,
     NominalViewComponent,
+    StructurePlannedSettingsPopupComponent
   ],
   imports: [
+    DragDropModule,
     MainLayerRoutingModule,
     CommonModule,
     CoreModule,

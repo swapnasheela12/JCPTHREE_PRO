@@ -65,7 +65,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
 
   public selectedLayers = {};
   public selectedLayerCtrl: FormControl = new FormControl();
-
+  typeGroup = "Planned"
   public _onDestroy = new Subject<void>();
   public selectedOptionArea = "Pan India";
   public selectedOptionAreaState;
@@ -147,13 +147,14 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   onChangeLayer(layer) {
-    console.log(layer.value)
+    console.log(layer)
     // if (layer.value) {
     this.selectedLayerTableName = layer.value;
     // } else {
     //   this.selectedLayerTableName = 'Other';
     // }
     this.getName = document.querySelector('#matselectarea .ng-star-inserted').firstChild;
+    console.log(this.selectedLayerTableName)
     switch (this.selectedLayerTableName) {
       case "Macro": {
         console.log("inside macroo")
@@ -268,7 +269,7 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
           }
         }, 500);
       }
-      break;
+        break;
       case "ESC": {
         setTimeout(() => {
           if ($(this.getName).is(':contains(Pan India)')) {
@@ -414,11 +415,636 @@ export class TableViewControlComponent implements OnInit, AfterViewInit, OnDestr
         //   });
         break;
       }
+      case "Topologies-Fibre-Route-Ready-Core": {
+        console.log("Inside Fibre")
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "All ",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "AG1",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "AG2",
+                field: "greaterThanTwenty",
+                width: 150
+              }, {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JC",
+                field: "greaterThanTwenty",
+                width: 150
+              }, {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JS",
+                field: "greaterThanTwenty",
+                width: 150
+              }, {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+        //   });
+        break;
+      }
+      case "Topologies-Fibre-Route-Ready-Collector": {
+        console.log("Inside Fibre")
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "All ",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "AG1",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "AG2",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JC",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JS",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+        //   });
+        break;
+      }
+      case "Topologies-Fibre-Route-Planned-Core": {
+        console.log("Inside Fibre")
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "All ",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "AG1",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "AG2",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JC",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JS",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+        //   });
+        break;
+      }
+      case "Topologies-Fibre-Route-Planned-Collector": {
+        console.log("Inside Fibre")
+        setTimeout(() => {
+          if ($(this.getName).is(':contains(Pan India)')) {
+            this.columnDefs = [
+              {
+                headerName: "All ",
+                field: "jiostate",
+                pinned: true,
+                width: 150
+              }, {
+                headerName: "AG1",
+                field: "lessThanTwenty",
+                width: 100
+              }, {
+                headerName: "AG2",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-view-data.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+          } else if ($(this.getName).is(':contains(Jio Center)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JC",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-jio-center.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+          } else if ($(this.getName).is(':contains(Jio State)')) {
+            this.columnDefs = [
+              {
+                headerName: "AG2 JS",
+                field: "greaterThanTwenty",
+                width: 150
+              },
+              {
+                headerName: "AG2+OTN",
+                field: "greaterThanForty",
+                width: 150
+              },
+              {
+                headerName: "SAG2",
+                field: "greaterThanSixty",
+                width: 140
+              },
+              {
+                headerName: "ILA",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "OSC",
+                field: "greaterThanSixty",
+                width: 100
+              },
+              {
+                headerName: "eNodeB",
+                field: "greaterThanSixty",
+                width: 150
+              },
+              {
+                headerName: "Pole",
+                field: "greaterThanSixty",
+                width: 100
+              },
+            ];
+            this.httpClient
+              .get("assets/data/layers/table-view-data/table-r4gstate.json")
+              .subscribe(data => {
+                this.rowData = data;
+              });
+
+            this.filterDataList = {
+              selectedLayerName: this.selectedLayerTableName,
+              selectedAreaName: this.selectedOptionArea,
+              selectedAreaNameParent: this.selectedOptionParent,
+              rowDataTable: null,
+              objArea: this.objSelectedArea
+            };
+
+            this.onAddDropDown.emit(this.filterDataList);
+          }
+        }, 500);
+        //   });
+        break;
+      }
       default: {
         this.columnDefs = [];
         this.jsonUrl = '';
         this.httpClient
-          .get(this.jsonUrl)
+          .get("")
           .subscribe(data => {
             this.rowData = data;
           });
