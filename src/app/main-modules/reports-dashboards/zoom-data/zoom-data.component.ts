@@ -4,11 +4,10 @@ import { GridOptions, GridApi } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { AllCommunityModules, Module} from '@ag-grid-community/all-modules';
-import { InfoRendererComponent } from './renderer/info-renderer.component';
+import { InfoRendererComponent } from '../custom-dashboard/renderer/info-renderer.component'
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
-import { Subject } from 'rxjs';
 
 interface twampDashboard {
   value: string;
@@ -76,15 +75,15 @@ const CUSTOM_DASHBOARD_REPORTS = [
 ];
 
 @Component({
-  selector: 'app-custom-dashboard',
-  templateUrl: './custom-dashboard.component.html',
-  styleUrls: ['./custom-dashboard.component.scss'],
+  selector: 'app-zoom-data',
+  templateUrl: './zoom-data.component.html',
+  styleUrls: ['./zoom-data.component.scss'],
   encapsulation: ViewEncapsulation.None,
    animations: [
     fadeInOut('fadeInOut-1')
   ]
 })
-export class CustomDashboardComponent implements OnInit, AfterViewInit {
+export class ZoomDataComponent implements OnInit, AfterViewInit {
   public reportSelected = 'RF Planning';
   public gridCustomDashboardGridOptions: GridOptions;
   public customDashboardColumnDefs : any[];
@@ -99,7 +98,6 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
   private paginationPageSize = 10;
   public sidenavBarStatus;
   searchGrid = '';
-  gridFilterValueServices= {};
   show: any;
   public url: string = "assets/data/report/reports-and-dashboard/all-custom-dashboard.json";
   modules: Module[] = AllCommunityModules;
@@ -195,23 +193,19 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
     this.gridCustomDashboardGridOptions.api.sizeColumnsToFit();
   }
 
-  public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(evt) {
-    this.gridFilterValueServices["filter"] = evt.target.value;
-    this.eventsSubject.next(this.gridFilterValueServices);
+  onFilterChanged(value) {
+    this.gridCustomDashboardGridOptions.api.setQuickFilter(value);
   };
 
   toggleSearch() {
     this.show = !this.show;
   };
 
-  cellClickedDetails(evt) {
+  onRowClicked(evt) {
     if (evt.event.target.localName == 'mat-icon') {
       return false;
     }
-    console.log(evt)
     if(evt.data.router_link){
-      console.log(evt.data.router_link)
       this.router.navigate(
         [evt.data.router_link],
         { state:
@@ -244,3 +238,4 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
     }
   }
 }
+

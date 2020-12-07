@@ -8,8 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { ButtonRendererComponent } from './../../../main-modules/reports-dashboards/my-reports/button-renderer.component';
 import { TableAgGridService } from './table-ag-grid.service';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
-
-import { GridOptions, GridCore, GridApi, ColumnApi, SelectionChangedEvent } from "@ag-grid-community/all-modules";
+import { GridOptions, SelectionChangedEvent, RowNode, Column } from 'ag-grid-community';
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
 import { DeleteRendererComponent } from '../ag-grid-renders/delete-renderer.component';
 import { GenhelpiconComponent } from '../ag-grid-renders/genhelpicon.component';
@@ -38,7 +37,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     colorDropdownRenderer: colorDropdownRendererComponent,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
-    helpicon: GenhelpiconComponent
+    helpicon: GenhelpiconComponent,
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];
@@ -73,6 +72,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     this.gridOptionsObj = this.data.gridOptionsServices;
     this.defaultColDef = this.data.defaultColDefServices;
     this.typeOfAgGridTable = this.data.typeOfAgGridTable;
+    // this.gridOptions.api.setQuickFilter(this.data.gridFilterValueServices);
   }
 
   ngOnInit() { }

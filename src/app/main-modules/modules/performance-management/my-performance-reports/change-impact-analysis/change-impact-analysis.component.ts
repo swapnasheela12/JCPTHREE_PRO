@@ -73,9 +73,9 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     private cdRef: ChangeDetectorRef, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{};
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
-      setTimeout(() => {
-        this.makeDo(this.secondaryKpi, this.primaryKpi);
-      }, 500);
+      // setTimeout(() => {
+      //   this.makeDo(this.secondaryKpi, this.primaryKpi);
+      // }, 500);
     });
     this.colDefs = [
       {

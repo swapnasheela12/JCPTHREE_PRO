@@ -1,1 +1,246 @@
-<p>samsung-rqa-scheduling works!</p>
+<div class="h-100">
+    <mat-card class="cia-module-card">
+
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col pl-0">
+                    <div class="header">RQA Scheduling</div>
+
+                </div>
+
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <mat-card-content class="cia-card-content">
+            <mat-horizontal-stepper #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+                <mat-step label="Network Element">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 25px);overflow: hidden;">
+                        <div fxLayout="row wrap" fxFlex="49">
+                            <div fxFlex="100" class="my-3" style="height: 8%;">
+                                <mat-radio-group aria-label="" class="radio-button-group pl-3" [(ngModel)]="selectedRadio">
+                                    <mat-radio-button *ngFor="let type of radioTypeList;trackBy:trackByRadioButtonType" class="mr-4" [value]="type.name" [disableRipple]="true">
+                                        {{type.name}}</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div fxLayout="row wrap" fxFlex="100" *ngIf="selectedRadio == 'Bulk Upload'" style="height: 80%;">
+                                <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="space-between center">
+                                    <div class="px-2" fxFlex="40">
+                                        <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
+                                            <input matInput class="input-field" placeholder="Upload SAP ID" [(ngModel)]="fileNameSAP" [readonly]="true" required>
+                                            <button class="browse-button" (click)="onClick()" mat-icon-button color="primary" style="position: absolute;bottom: 0px;top: -2px;"><i
+                                                    class="ic ic-file"></i></button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="px-1" fxFlex="10">
+                                        <button class="next-button button" mat-raised-button color="primary">Upload</button>
+                                    </div>
+                                    <div class="px-2" fxFlex="35">
+                                        <button class="browse-button" mat-icon-button>
+                                            <i class="fa fa-download"></i>
+                                            <span style="color: #464d69;">SAP ID Template</span>
+                                        </button>
+                                    </div>
+                                    <input type="file" #fileUploadSAP id="fileUploadSAP" name="fileUploadSAP" accept="" style="display: none;" />
+                                </div>
+                                <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="space-between center">
+                                    <div class="px-2" fxFlex="40">
+                                        <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
+                                            <input matInput class="input-field" placeholder="Upload JC List" [(ngModel)]="fileNameJC" [readonly]="true" required style="position: relative;">
+                                            <button class="browse-button" (click)="onClickJC()" mat-icon-button color="primary" style="position: absolute;bottom: 0px;top: -2px;"><i
+                                                    class="ic ic-file"></i></button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="px-1" fxFlex="10">
+                                        <button class="next-button button" mat-raised-button color="primary">Upload</button>
+                                    </div>
+                                    <div class="px-2" fxFlex="35">
+                                        <button class="browse-button" mat-icon-button>
+                                            <i class="fa fa-download"></i>
+                                            <span style="color: #464d69;">JC Template</span>
+                                        </button>
+                                    </div>
+                                    <input type="file" #fileUploadJC id="fileUploadJC" name="fileUploadJC" accept="" style="display: none;" />
+                                </div>
+                                <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="space-between center">
+                                    <div class="px-2" fxFlex="40">
+                                        <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
+                                            <input matInput class="input-field" placeholder="Upload LSMR List" [(ngModel)]="fileNameLSMR" [readonly]="true" required>
+                                            <button class="browse-button" (click)="onClickLSMR()" mat-icon-button color="primary" style="position: absolute;bottom: 0px;top: -2px;"><i
+                                                    class="ic ic-file"></i></button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="px-1" fxFlex="10">
+                                        <button class="next-button button" mat-raised-button color="primary">Upload</button>
+                                    </div>
+                                    <div class="px-2" fxFlex="35">
+                                        <button class="browse-button" mat-icon-button>
+                                            <i class="fa fa-download"></i>
+                                            <span style="color: #464d69;">LSMR Template</span>
+                                        </button>
+                                    </div>
+                                    <input type="file" #fileUploadLSMR id="fileUploadLSMR" name="fileUploadLSMR" accept="" style="display: none;" />
+                                </div>
+                            </div>
+                            <div *ngIf="selectedRadio == 'Manual Selection'" class="mt-3" style="height: 100%;">
+                                <form [formGroup]="selectJcCircleLevelFormControl">
+                                    <div fxLayout="row wrap">
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Circle" [formControl]="r4gCircleControl" ngDefaultControl #cityControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Circle" [formControl]="r4gFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
+                                                        {{r4gCircle.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                                        {{city.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio Cluster" [formControl]="jioClusterControl" ngDefaultControl #jioClusterControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Cluster" [formControl]="jioClusterFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let jioCluster of jioClusterFilter | async" [value]="jioCluster">
+                                                        {{jioCluster.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="SAP Id" [formControl]="sapIdControl" ngDefaultControl #sapIdControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="SAP Id" [formControl]="sapIdFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let sapId of sapIdFilter | async" [value]="sapId">
+                                                        {{sapId.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="50" fxLayoutAlign="space-around center">
+                                            <button class="next-button button" mat-raised-button color="primary">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <div fxLayout="row wrap" fxFlex="50">
+                            <app-table-ag-grid style="width: 100%;"></app-table-ag-grid>
+                        </div>
+                    </div>
+
+                    <mat-divider></mat-divider>
+                    <div class="d-flex" style="padding: 10px;">
+                        <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Schedule">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 25px);">
+                        <form class="w-100" [formGroup]="selectDurationFrequency" fxLayout="row wrap">
+                            <div fxFlex="49">
+                                <div fxLayout="row wrap">
+                                    <div fxFlex="70" class="py-2">
+                                        <mat-form-field class="report-form-field" fxFlex="80">
+                                            <div class="daterange-container w-100">
+                                                <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false" formControlName="selectedDateTime" [showCustomRangeLabel]="true" [alwaysShowCalendars]="selectDurationFrequency.get('alwaysShowCalendars').value"
+                                                    [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false" [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                                    [keepCalendarOpeningWithRange]="selectDurationFrequency.get('keepCalendarOpeningWithRange').value" [showRangeLabelOnInput]="selectDurationFrequency.get('showRangeLabelOnInput').value" (rangeClicked)="rangeClicked($event)"
+                                                    (datesUpdated)="datesUpdated($event)" autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                                <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                            </div>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="30" style="line-height: 4;" class="py-2">
+                                        <mat-checkbox class="example-margin" (ngModelChange)="immediateTypeFunc($event);" [(ngModel)]="immediateType" [ngModelOptions]="{standalone: true}">Immediate</mat-checkbox>
+                                    </div>
+                                    <div fxFlex="70" class="py-2">
+                                        <mat-form-field class="report-form-field">
+                                            <mat-select disableOptionCentering placeholder="Duration" [(ngModel)]="durationType" [ngModelOptions]="{standalone: true}" panelClass="selectMenuPanel">
+                                                <mat-option value="15 Mins" selected>15 Mins</mat-option>
+                                                <mat-option value="30 Mins">30 Mins</mat-option>
+                                                <mat-option value="1 Hour">1 Hour</mat-option>
+                                                <mat-option value="NBH">NBH</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <mat-divider [vertical]="true"></mat-divider>
+                            <div fxFlex="50" fxLayout="row wrap" class="">
+                                <div fxLayout="row wrap" fxFlex="100">
+                                    <div class="p-3 w-100">
+                                        <div class="checkbox-group-label">Recurrence Pattern: *</div>
+                                        <mat-checkbox [disabled]="immediateType" [(value)]="recurrencePatternSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurrencePatternData;trackBy:trackByCheckbox">
+                                            {{checkboxSelect.name}}
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+
+                                <div fxLayout="row wrap" fxFlex="100" style="border-top: 1px solid #e0e0e0;">
+                                    <div class="p-3 w-100">
+                                        <div class="checkbox-group-label">
+                                            Recur every &nbsp;
+                                            <mat-form-field fxFlex="10" class="recur-every-input p-0" [style.marginBottom]="'-1.25em'" [style.marginTop]="'-1em'">
+                                                <input matInput formControlName="recurEveryControl" placeholder="">
+                                            </mat-form-field>
+                                            Times: *
+                                        </div>
+                                        <mat-checkbox [disabled]="immediateType" [(value)]="recurEveryTimesSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurEveryTimesData;trackBy:trackByCheckbox; let i = index">
+                                            {{checkboxSelect.name}}
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="d-flex">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="p-2">
+                            <button class="next-button button" mat-raised-button color="primary" matStepperNext>Submit</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </mat-step>
+
+            </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>
+
+</div>

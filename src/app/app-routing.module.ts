@@ -20,8 +20,43 @@ import { AgGridTreeRenderingComponent } from './modules/components/ag-grid-tree-
 const routes: Routes = [
   { path: "", component: LoginJcpThreeComponent },
   {
-    path: "JCP", loadChildren:  () => import("../app/home-jcp-three/home-jcp-three.module").then(m => m.HomeJcpThreeModule)
+    path: "JCP", component: HomeJcpThreeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: "Home", component: LandingHomeComponent },
+      { path: "Row-Rendering", component: RowRenderingComponent },
+      { path: "Column-Rendering", component: ColumnRenderingComponent },
+      { path: "Tree-Rendering", component: TreeRenderingComponent },
+      { path: "Ag-Column-Rendering", component: AgGridColumnRenderingComponent },
+      { path: "Ag-Row-Rendering", component: AgGridRowRenderingComponent },
+      { path: "Ag-Tree-Rendering", component: AgGridTreeRenderingComponent },
+      { path: "My-JCP", component: MyJcpComponent },
+      { path: "Layers_Cust", component: LayersCustComponent },
+      {
+        path: 'Layers',
+        loadChildren: () => import('../app/main-modules/main-modules.module').then(m => m.MainModulesModule)
+      },
+      {
+        path: 'Reports-and-Dashboards',
+        loadChildren: () => import('../app/main-modules/main-modules.module').then(m => m.MainModulesModule)
+      },
+      {
+        path: "Modules", children: [
+          { path: 'Performance-Management',loadChildren: () => import('../app/main-modules/modules/performance-management/performance-management.module').then(m => m.PerformanceManagementModule)},
+          { path: 'Configuration-Management',loadChildren: () => import('../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule)},
+          { path: 'Planning-Deployment',loadChildren: () => import('../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule)}
+        ]
+      },
+      {
+        path: "Work-Orders", children: [
+          { path: 'Rf-Oc-Workorders',loadChildren: () => import('../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule)},
+          { path: 'Cm-Workorders',loadChildren: () => import('../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule)}
+        ]
+      }
+    ],
   },
+
+
   { path: "**", redirectTo: "/JCP/Home", pathMatch: "full" }
 ];
 

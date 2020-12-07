@@ -61,7 +61,7 @@ import { TwampLiveDashboardComponent } from './custom-dashboard/twamp-live-dashb
 import { InfoRendererComponent } from './custom-dashboard/renderer/info-renderer.component';
 import { AllExpandRendererComponent } from './custom-dashboard/renderer/all-expand-renderer.component';
 import { SideNavService } from 'src/app/_services/side-nav.service';
-import { ZoomDataComponent } from 'src/app/main-modules/reports-dashboards/zoom-data/zoom-data.component';
+import { ZoomDataComponent } from './zoom-data/zoom-data.component';
 @NgModule({
   declarations: [
     MyReportsComponent,

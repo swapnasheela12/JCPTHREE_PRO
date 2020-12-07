@@ -80,10 +80,33 @@
     <mat-divider style="position: relative;"></mat-divider>
     <ag-grid-angular style="width: 100%; height: calc(100% - 40px)" class="twamp-grid-live ag-theme-material ag-jcp3"
         [rowData]="rowData" [columnDefs]="columnDefs" (cellClicked)='onCellClicked($event)'
-        [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons" [tooltipShowDelay]="tooltipShowDelay" 
+        [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"  
         [gridOptions]="twampGridOptions" [pinnedBottomRowData]="pinnedBottomRowData"
         [suppressHorizontalScroll]="true" (gridReady)="onReady($event)">
     </ag-grid-angular>
+    <div class="cover"></div>
+    <div class="graytooltip">
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">23 Hrs</div>
+           
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">29</div>
+        </div>
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">12 Hrs</div>
+            
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">30</div>
+        </div>
+        <div class="tooltip-data">
+            <div class="tooltip-hrs">6 Hrs</div>
+            <progress id="file" value="32" max="100"> 32% </progress>
+
+            <div class="tooltip-number">60</div>
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #recursiveListTmpl *ngIf="showLiveDashboard == 'live-violation-report'">
@@ -117,6 +140,7 @@
                 </mat-select>
             </mat-form-field>
         </form>
+       
         <div>
             <mat-icon id="twamp-grid-live" class="search-twamp-icon" (click)="previousPage(showLiveDashboard)" aria-label="search">
                 <span class="zmdi zmdi-close"></span>
@@ -132,8 +156,10 @@
     </ag-grid-angular>
 </ng-template>
 
-<ng-template #recursiveListTmpl *cdkPortal>
+<ng-template #recursiveListTmpl *ngIf="showLiveDashboard == 'live-chart'">
     <div class="ml-3 py-3 ag-grid-twamp-title" > {{liveViolationReport}} Violation: {{displaySapIDName}}</div>
     <mat-divider style="position: relative;"></mat-divider>
-    <div #graphViolationChart></div>
+    <div #graphViolationChart>
+        <div id="dailyTrafficChartID" [chart]="packetLossChart"></div>
+    </div>
 </ng-template>
