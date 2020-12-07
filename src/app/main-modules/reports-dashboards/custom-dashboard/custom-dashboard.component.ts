@@ -187,6 +187,7 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
       return false;
     }
     if(evt.data.router_link){
+      console.log(evt.data.router_link)
       this.router.navigate(
         [evt.data.router_link],
         { state:
