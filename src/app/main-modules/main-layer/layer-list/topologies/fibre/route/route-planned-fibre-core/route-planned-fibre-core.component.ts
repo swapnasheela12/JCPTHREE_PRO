@@ -244,6 +244,9 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     return this.http.get("assets/data/layers/boundaries/circles.json");
   }
   drawBoundaries(boundariesData) {
+    // if (!this.boundariesContainer){
+
+    // }
     this.boundariesContainer = new createjs.Container();
     this.labelsContainer = new createjs.Container();
     for (let i = 0; i < boundariesData.length; i++) {
@@ -320,7 +323,7 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
           0.75 : (this.zoomLevel <= 15) ?
             0.50 : 0.75;
     this.scaleMatrix = this.scaleMatrix * this.pixelRatio;
-    if (undefined != this.lineContainer) {
+    if (undefined != this.stageRouteContainer) {
       this.stageRouteContainer.removeAllChildren();
       this.stageRouteContainer.update();
     }

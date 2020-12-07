@@ -29,12 +29,14 @@ const routes: Routes = [
       {
         path: "Modules", children: [
           { path: "Performance-Management", loadChildren: () => import("../../app/main-modules/modules/performance-management/performance-management.module").then(m => m.PerformanceManagementModule) },
+          { path: 'Configuration-Management',loadChildren: () => import('./../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule)},
           { path: 'Planning-Deployment', loadChildren: () => import('../../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule) }
         ]
       },
       {
         path: "Work-Orders", children: [
-          { path: 'Rf-Oc-Workorders', loadChildren: () => import('../../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule) }
+          { path: 'Rf-Oc-Workorders', loadChildren: () => import('../../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule) },
+          { path: 'Cm-Workorders',loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule)}
         ]
       }
     ],

@@ -3,7 +3,6 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { dropdown, R4GState, JC, City, JioCluster, SapId } from './../../../../../../core/components/common-elements/type-dropdown-modulelist';
 import { DeleteRendererComponent } from './../../../../performance-management/change-impact-analysis/cia-module/renderer/delete-renderer.component';
 import { Component, OnInit, ViewEncapsulation, ViewChild, Input, TemplateRef, ElementRef } from '@angular/core';
-import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { takeUntil, map } from 'rxjs/operators';
