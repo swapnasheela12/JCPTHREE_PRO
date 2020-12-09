@@ -1,12 +1,43 @@
 import { RqaSchedulingWorkorderComponent } from './rqa-scheduling-workorder/rqa-scheduling-workorder.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CellDetailsComponent } from './ret-change/cell-details/cell-details.component';
+import { WorkorderDetailsComponent } from './ret-change/workorder-details/workorder-details.component';
+import { RetChangeComponent } from './ret-change/ret-change.component';
 
 
 const routes: Routes = [
   {
-    path: "Rqa-Scheduling-Workorder",  component: RqaSchedulingWorkorderComponent,
+    path: "Rqa-Scheduling-Workorder", component: RqaSchedulingWorkorderComponent,
   },
+
+  {
+    path: "Ret-Change",
+    children: [
+      {
+        path: '',
+        component: RetChangeComponent,
+      },
+      {
+        path: 'Cell-Details',
+        children: [
+          {
+            path: '',
+            component: CellDetailsComponent,
+          }
+        ]
+      },
+      {
+        path: 'Workorder-Details',
+        children: [
+          {
+            path: '',
+            component: WorkorderDetailsComponent,
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 @NgModule({

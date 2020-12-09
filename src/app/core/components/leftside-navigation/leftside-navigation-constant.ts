@@ -3062,6 +3062,12 @@ const WORKORDERS_CMWORKORDERS_LIST = [
         link: 'JCP/Work-Orders/Cm-Workorders/Rqa-Scheduling-Workorder',
         eventName: 'workorders-cm-rqa-scheduling',
         children: []
+    },
+    {
+        name: 'RET Change',
+        link: 'JCP/Work-Orders/Cm-Workorders/Ret-Change',
+        eventName: 'ret-change',
+        children: []
     }
 ]
 

@@ -62,17 +62,29 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { RetChangeComponent } from './ret-change/ret-change.component';
+import { ThreeDotRETRenderer } from 'src/app/main-modules/work-orders/cm-workorders/ret-change/threedot-ret-renderer.component';
+import { CellDetailsComponent } from './ret-change/cell-details/cell-details.component';
+import { WorkorderDetailsComponent } from './ret-change/workorder-details/workorder-details.component';
+import { IconRendererComponent } from './ret-change/icon-renderer.component';
+import { MmlCommandResultComponent } from './ret-change/cell-details/mml-command-result/mml-command-result.component';
 
 
 @NgModule({
-  declarations: [RqaSchedulingWorkorderComponent],
+  declarations: [RqaSchedulingWorkorderComponent,
+    RetChangeComponent,
+    ThreeDotRETRenderer,
+    CellDetailsComponent,
+    WorkorderDetailsComponent,
+    IconRendererComponent,
+    MmlCommandResultComponent],
   imports: [
     CommonModule,
     CmWorkordersRoutingModule,
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer, IconRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

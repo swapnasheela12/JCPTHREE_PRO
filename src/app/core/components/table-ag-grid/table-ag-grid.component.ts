@@ -12,6 +12,8 @@ import { GridOptions, SelectionChangedEvent, RowNode, Column } from 'ag-grid-com
 import { viewHistoryRendererComponent } from '../ag-grid-renders/view-history-renderer.component';
 import { DeleteRendererComponent } from '../ag-grid-renders/delete-renderer.component';
 import { GenhelpiconComponent } from '../ag-grid-renders/genhelpicon.component';
+import { ThreeDotRETRenderer } from '../../../main-modules/work-orders/cm-workorders/ret-change/threedot-ret-renderer.component';
+import { IconRendererComponent } from 'src/app/main-modules/work-orders/cm-workorders/ret-change/icon-renderer.component';
 
 
 @Component({
@@ -38,6 +40,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
     helpicon: GenhelpiconComponent,
+    threeDotRetRenderer: ThreeDotRETRenderer,
+    iconRenderer: IconRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];

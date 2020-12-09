@@ -4,7 +4,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 @Component({
   selector: 'app-input-renderer',
   template: `
-            <mat-form-field class="form-field-renderer-input" >
+            <mat-form-field class="form-field-renderer-input" style="width: 90%">
               <input matInput #inputRendererAgGrid placeholder="" value="ngModelLable" [(ngModel)]="ngModelLable">
             </mat-form-field>`
 })
@@ -15,8 +15,8 @@ export class inputRendererComponent implements ICellRendererAngularComp {
   selectedColor: string;
 
   agInit(params): void {
-    console.log(params,"params");
-    
+    console.log(params, "params");
+
     this.selectedColor = params.data.color;
     this.params = params;
     this.ngModelLable = params.value || null;
