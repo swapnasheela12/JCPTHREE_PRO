@@ -88,6 +88,9 @@ import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/no
 import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/route-table-view/route-table-view.component';
 import { StructurePlannedSettingsPopupComponent } from './layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FivegCircularSpiderViewComponent } from './fiveg-circular-spider-view/fiveg-circular-spider-view.component';
+// import { LogicalConnectivityComponent } from './layer-list/topologies/logical-connectivity/logical-connectivity.component';
+// import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/fiveg-adjacent-spider-view.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -123,7 +126,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     KpiComponent,
     CandidatesComponent,
     NominalViewComponent,
-    StructurePlannedSettingsPopupComponent
+    StructurePlannedSettingsPopupComponent,
+    FivegCircularSpiderViewComponent,
+    // LogicalConnectivityComponent,
+    // FivegAdjacentSpiderViewComponent
   ],
   imports: [
     DragDropModule,

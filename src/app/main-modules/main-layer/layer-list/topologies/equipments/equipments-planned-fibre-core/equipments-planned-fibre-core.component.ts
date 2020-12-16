@@ -1,16 +1,15 @@
 import * as L from 'leaflet';
 import { CustomLayer } from 'leaflet-customlayer';
 import * as createjs from 'createjs-module';
-// import { ShapeService } from '../../../../layers-services/shape.service';
 import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-// import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
 import { Component, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-// import { RouteTableViewComponent } from '../../../fibre/route/route-table-view/route-table-view.component';
-import { FibreTableViewPopupModel, RouteTableViewComponent } from '../fibre/route/route-table-view/route-table-view.component';
-import { ShapeService } from '../../../layers-services/shape.service';
+import { FibreTableViewPopupModel, RouteTableViewComponent } from '../../fibre/route/route-table-view/route-table-view.component';
+import { ShapeService } from '../../../../layers-services/shape.service';
+import { FivegCircularSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-circular-spider-view/fiveg-circular-spider-view.component';
+import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
 
 @Component({
   selector: 'app-equipments-planned-fibre-core',
@@ -67,128 +66,150 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
 
   ref: this;
   mainLayerRef: {};
-  routePlannedSpiderViewData = {
-    "name": "Route",
-    "value": 5,
-    "color": '#003A74',
-    "description": "Lorem Ipsum Lorem Lorem",
-    "font": 'Material-Design-Iconic-Font',
-    "fontvalue": '\uf323',
-    "children": [
-      {
-        name: 'CSS',
-        value: 5,
-        color: '#F44336',
+  equipmentColocatedData: any = [
+    {
+      name: 'Properties',
+      value: 5,
+      color: '#8CC63F',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf112',
+      frequency: 0.01492,
+      eventname: 'sites-tree-properties',
+      radiuscircle: 200,
+      deviceType: [
+        {
+        device: "css router",
+        color: "#94C65A",
         font: 'Material-Design-Iconic-Font',
         fontvalue: '\uf112',
-        eventname: 'sites-tree-properties-nominals'
-      },
-      {
-        name: 'Core',
         value: 5,
-        color: '#03A9F4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
+        },
+        {
+          device: "L2 Switch",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "AG1 Router",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "OLT",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "Splitter 2",
+          color: "#03A9F4",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "OTB",
+          color: "#03A9F4",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "L2 Switch",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "AG1 Router",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        }
+        ],
+    },
+    {
+        name: 'Create Workorder',
         value: 5,
-        color: '#E2C10D',
+        color: '#8dc63f',
         font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#3F51B4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#FF862C',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#4CAF50',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // }
-    ]
-    //   }
-    // ]
-
-  };
+        fontvalue: '\uf222',
+        disabled: true,
+        frequency: 0.02782,
+        radiuscircle: 100,
+        eventname: 'sites-tree-createworkorder',
+        deviceType: [
+          {
+            device: "L2 Switch",
+            color: "#94C65A",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          {
+            device: "AG1 Router",
+            color: "#94C65A",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          // {
+          //   device: "OLT",
+          //   color: "#94C65A",
+          //   font: 'Material-Design-Iconic-Font',
+          //   fontvalue: '\uf222',
+          //   value: 5,
+          // },
+          {
+            device: "Splitter 2",
+            color: "#03A9F4",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          {
+            device: "OTB",
+            color: "#03A9F4",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          }
+        ],
+    }
+  ];
+  equipmentData: any = [
+    {
+      name: 'Equipment',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I164'
+    },
+    {
+      name: 'Logical Connectivity',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I174'
+    }
+  ];
   siteImagePetal: createjs.Bitmap;
   equipmentContainerEach: createjs.Container;
   equipmentImage: createjs.Bitmap;
   equipmentPopup: any;
   equipmentImageText: any;
+  clonedArray: any[];
 
   constructor(
     private shapeService: ShapeService,
@@ -198,7 +219,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
   ) {
     this.routeReadyFibreCoreSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) => {
-        if ('StructurePlannedFibreCoreComponent' == removeLayer) {
+        if ('EquipmentsPlannedFibreCoreComponent' == removeLayer) {
           this.removeLayer();
         }
       }
@@ -280,7 +301,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
           0.75 : (this.zoomLevel <= 15) ?
             0.50 : 0.75;
     this.scaleMatrix = this.scaleMatrix * this.pixelRatio;
-    if (undefined != this.lineContainer) {
+    if (undefined != this.stageRouteContainer) {
       this.stageRouteContainer.removeAllChildren();
       this.stageRouteContainer.update();
     }
@@ -312,7 +333,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
                 routePlannedData[j][4].boundary[i][n][k].latlng[0],
                 routePlannedData[j][4].boundary[i][n][k].latlng[1]
               ]);
-              this.drawStructureImage(
+              this.drawEquipmentImage(
                 this.positionLatLng,
                 this.linksCenterPoint,
                 this.equipmentContainer,
@@ -388,7 +409,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
                 routePlannedData[j][4].boundary[i][n][k].latlng[0],
                 routePlannedData[j][4].boundary[i][n][k].latlng[1]
               ]);
-              this.drawStructureImage(
+              this.drawEquipmentImage(
                 this.positionLatLng,
                 this.linksCenterPoint,
                 this.equipmentContainer,
@@ -470,7 +491,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
                 routePlannedData[j][4].boundary[i][n][k].latlng[0],
                 routePlannedData[j][4].boundary[i][n][k].latlng[1]
               ]);
-              this.drawStructureImage(
+              this.drawEquipmentImage(
                 this.positionLatLng,
                 this.linksCenterPoint,
                 this.equipmentContainer,
@@ -523,7 +544,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.stageRouteContainer.update();
   }
 
-  drawStructureImage(latlng, centerpoint, equipmentContainer, equipmentData, imagePath) {
+  drawEquipmentImage(latlng, centerpoint, equipmentContainer, equipmentData, imagePath) {
     this.equipmentContainerEach = new createjs.Container();
     this.equipmentContainerEach.cursor = 'pointer';
     this.equipmentContainerEach.x = centerpoint.x;
@@ -583,6 +604,40 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     equipmentContainer.addChild(this.equipmentContainerEach);
   }
 
+  openSpiderCircularPopups(d, ref) {
+    let fivegSpiderComponent = ref.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
+    ref.componentRef = ref.target.createComponent(fivegSpiderComponent);
+    let colocatedData = [
+      { tileName: d.data.device,
+        fontValue: d.data.fontvalue,
+        fontFamily: d.data.font,
+        color: d.data.color,
+        radiusDeviceCircle: '56'}
+    ];
+    ref.componentRef.instance.colocatedCircleData = colocatedData;
+    ref.componentRef.instance.data = this.equipmentData;
+    ref.componentRef.instance.mainRef = this;
+  }
+
+  openSpiderPopups(d, ref) {
+    if (d.data.name == 'Equipment'){
+      const componName = "Route";
+      const dialogData = new FibreTableViewPopupModel(componName);
+      const dialogRef = this.dialog.open(RouteTableViewComponent, {
+        width: "1200px",
+        height: "500px",
+        position: {
+          left: "18.5rem",
+          top: "4rem"
+        },
+        data: dialogData,
+        hasBackdrop: false,
+        disableClose: false,
+        panelClass: "material-dialog-container",
+      });
+    }
+  }
+
   routeClicked() {
     const componName = "Equipment";
     const dialogData = new FibreTableViewPopupModel(componName);
@@ -598,12 +653,6 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
       disableClose: false,
       panelClass: "material-dialog-container",
     });
-  }
-
-  async colocatedLineClicked(event, mainLayerReference) {
-    // let nominalViewComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
-    // mainLayerReference.componentRef = mainLayerReference.target.createComponent(nominalViewComponent);
-    // mainLayerReference.componentRef.instance.data = this.routePlannedSpiderViewData;
   }
 
   removeLayer() {
@@ -652,8 +701,12 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.labelCount.scaleY = 0.4;
     this.labelCount['latlng'] =  this.textContainer.latLng;
 
+    let outerContainerThis = this;
     this.textContainer.addEventListener('click', function(evt) {
-      console.log('COlocated Clicked');
+      outerContainerThis.clonedArray = [...outerContainerThis.equipmentColocatedData];
+      outerContainerThis.clonedArray.splice(count, (outerContainerThis.clonedArray.length - count));
+      outerContainerThis.map.setView(positionCololatedLatLng);
+      outerContainerThis.colocatedEquipmentClicked(evt, mainLayerReference, colocatedData, outerContainerThis.clonedArray);
     });
     this.textContainer.addChild(this.circleCountShape, this.innercircleShape, this.labelCount);
     equipmentContainer.addChild(this.textContainer);
@@ -668,7 +721,14 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     return this.drawCircleGraphic;
   }
 
-
+  async colocatedEquipmentClicked(event, mainLayerReference, colocatedData, colocatedSpiderArray) {
+    let fivegCircularSpiderComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegCircularSpiderViewComponent);
+    mainLayerReference.componentRef = mainLayerReference.target.createComponent(fivegCircularSpiderComponent);
+    mainLayerReference.componentRef.instance.data = colocatedSpiderArray;
+    mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
+    mainLayerReference.componentRef.instance.mainRef = this;
+    mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+  }
 
   ngOnDestroy() {
     if (this.routeReadyFibreCoreSubscription) {

@@ -8,7 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FibreTableViewPopupModel, RouteTableViewComponent } from '../../fibre/route/route-table-view/route-table-view.component';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
-// import { FivegSpiderViewComponent } from '../../../fiveg-spider-view/fiveg-spider-view.component';
+import { FivegCircularSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-circular-spider-view/fiveg-circular-spider-view.component';
+import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
+// import { LogicalConnectivityComponent } from '../../logical-connectivity/logical-connectivity.component';
 
 @Component({
   selector: 'app-structure-planned-fibre-core',
@@ -62,131 +64,155 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
   colocatedLinkDot: any;
   colocatedLinksCenterPoint: { x: number; y: number; };
   allPoints = [];
+  allPoints1 = [];
 
   ref: this;
   mainLayerRef: {};
-  routePlannedSpiderViewData = {
-    "name": "Route",
-    "value": 5,
-    "color": '#003A74',
-    "description": "Lorem Ipsum Lorem Lorem",
-    "font": 'Material-Design-Iconic-Font',
-    "fontvalue": '\uf323',
-    "children": [
-      {
-        name: 'CSS',
-        value: 5,
-        color: '#F44336',
+  structureData: any = [
+    {
+      name: 'Structure',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I164'
+    },
+    {
+      name: 'Logical Connectivity',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I174'
+    }
+  ];
+  structureColocatedData: any = [
+    {
+      name: 'Properties',
+      value: 5,
+      color: '#8CC63F',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf112',
+      frequency: 0.01492,
+      eventname: 'sites-tree-properties',
+      radiuscircle: 200,
+      deviceType: [
+        {
+        device: "css router",
+        color: "#94C65A",
         font: 'Material-Design-Iconic-Font',
         fontvalue: '\uf112',
-        eventname: 'sites-tree-properties-nominals'
-      },
-      {
-        name: 'Core',
         value: 5,
-        color: '#03A9F4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
+        },
+        {
+          device: "L2 Switch",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "AG1 Router",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "OLT",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "Splitter 2",
+          color: "#03A9F4",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "OTB",
+          color: "#03A9F4",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "L2 Switch",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        },
+        {
+          device: "AG1 Router",
+          color: "#94C65A",
+          font: 'Material-Design-Iconic-Font',
+          fontvalue: '\uf112',
+          value: 5,
+        }
+        ],
+    },
+    {
+        name: 'Create Workorder',
         value: 5,
-        color: '#E2C10D',
+        color: '#8dc63f',
         font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#3F51B4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#FF862C',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#4CAF50',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // }
-    ]
-    //   }
-    // ]
-
-  };
+        fontvalue: '\uf222',
+        disabled: true,
+        frequency: 0.02782,
+        radiuscircle: 100,
+        eventname: 'sites-tree-createworkorder',
+        deviceType: [
+          {
+            device: "L2 Switch",
+            color: "#94C65A",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          {
+            device: "AG1 Router",
+            color: "#94C65A",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          // {
+          //   device: "OLT",
+          //   color: "#94C65A",
+          //   font: 'Material-Design-Iconic-Font',
+          //   fontvalue: '\uf222',
+          //   value: 5,
+          // },
+          {
+            device: "Splitter 2",
+            color: "#03A9F4",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          },
+          {
+            device: "OTB",
+            color: "#03A9F4",
+            font: 'Material-Design-Iconic-Font',
+            fontvalue: '\uf222',
+            value: 5,
+          }
+        ],
+    }
+  ];
+  
   siteImagePetal: createjs.Bitmap;
   structureContainerEach: createjs.Container;
   structureImage: createjs.Bitmap;
   structurePopup: any;
   structureImageText: any;
+  clonedArray: any[];
 
   constructor(
     private shapeService: ShapeService,
@@ -204,7 +230,6 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     this.dataShare.mainLayerMessage.subscribe(
       (test) => {
         this.mainLayerRef = test;
-        console.log(this.mainLayerRef)
       }
     )
   }
@@ -268,7 +293,6 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
   }
 
   createLayer = function (container, zoomLevel, routePlannedData, layerContainer, routeQueue) {
-    console.log(zoomLevel);
     this.lineColors = 'red';
     this.allLinePoints = [];
     this.zoomLevel = zoomLevel;
@@ -278,7 +302,7 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
           0.75 : (this.zoomLevel <= 15) ?
             0.50 : 0.75;
     this.scaleMatrix = this.scaleMatrix * this.pixelRatio;
-    if (undefined != this.lineContainer) {
+    if (undefined != this.stageRouteContainer) {
       this.stageRouteContainer.removeAllChildren();
       this.stageRouteContainer.update();
     }
@@ -288,53 +312,73 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     this.stageRouteContainer.removeAllChildren();
     this._assetQueue = new createjs.LoadQueue(false, null, true);
     this._assetQueue.loadManifest(this._plannedSiteImageManifest, true);
-    if (this.zoomLevel <= 4) {
-      this.structureContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              this.imagePath = 'assets/images/Layers/topologies/structure/AG3.svg';
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawStructureImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.structureContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
+    this.structureContainer = new createjs.Container();
+    for (let j = 0; j < routePlannedData.length; j++) {
+      for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
+        this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
+        this.allPoints1["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
+        for (let n in routePlannedData[j][4].boundary[i]) {
+          for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
+            this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
+              routePlannedData[j][4].boundary[i][n][k].latlng[0],
+              routePlannedData[j][4].boundary[i][n][k].latlng[1]
+            ]);
+            this.allPoints1["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
+              routePlannedData[j][4].boundary[i][n][k].latlng[0],
+              routePlannedData[j][4].boundary[i][n][k].latlng[1],
+              routePlannedData[j][4].boundary[i][n][k].sector,
+              routePlannedData[j][4].boundary[i][n][k].band,
+              routePlannedData[j][4].boundary[i][n][k].cnum,
+              routePlannedData[j][4].boundary[i][n][k].sapid,
+              routePlannedData[j][4].boundary[i][n][k].type
+            ]);
           }
         }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
       }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
+      let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
+      var count = {};
+      var greaterThanOne = {};
+
+      eachStatePoints.forEach(function(i) {
+        count[i] = (count[i]||0) + 1;
+        if (count[i] > 1) {
+          greaterThanOne[i] = count[i];
+        }
+      });
+      let eachStatePoints1 = this.allPoints1["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
+      var count1 = {};
+      var greaterThanOne1 = {};
+
+      eachStatePoints1.forEach(function(i) {
+        count1[i] = (count1[i]||0) + 1;
+        // if (count[i] > 1) {
+          greaterThanOne1[i] = count1[i];
+        // }
+      });
+    }
+    let outerContainerThis = this;
+    let entries:any = Object.entries(greaterThanOne);
+    let entries1:any = Object.entries(greaterThanOne1);
+    let data = [];
+    for (let g=0; g < entries.length; g++) {
+      let splittedArray = entries[g][0].split(',').map(Number);
+      for(let l=0; l < entries1.length; l++) {
+        let splittedArray1 = entries1[l][0].split(',').map(String);
+        if (splittedArray1[0] != splittedArray[0] && splittedArray1[1] != splittedArray[1]) {
+          data.push(entries1[l]);
+        }
+      }
+    }
+    for (let m=0; m < data.length; m++) {
+      this.drawStructureImage(
+        this.positionLatLng,
+        this.linksCenterPoint,
+        this.structureContainer,
+        data[m],
+        this.imagePath
+      );
+    }
+    for (let g=0; g < entries.length; g++) {
           let splittedArray = entries[g][0].split(',').map(Number);
           this.positionCololatedLatLng = L.latLng({
             lat: splittedArray[0],
@@ -357,317 +401,62 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
             splittedArray[1]
           );
           this.stageRouteContainer.addChild(this.structureContainer);
-      }
-    } else if (this.zoomLevel > 4 && this.zoomLevel <= 6) {
-      this.structureContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              if (routePlannedData[j][4].boundary[i][n][k].type == 'AG2'){
-                this.imagePath = 'assets/images/Layers/topologies/structure/AG2.svg';
-              } else {
-                this.imagePath = 'assets/images/Layers/topologies/structure/AG2+OTN.svg';
-              }
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawStructureImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.structureContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.structureContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.structureContainer);
-      }
-    } else if (this.zoomLevel > 6 && this.zoomLevel <= 7) {
-      this.structureContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              this.imagePath = 'assets/images/Layers/topologies/structure/AG1.svg';
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-               routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawStructureImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.structureContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.structureContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.structureContainer);
-      }
-    } else if (this.zoomLevel > 7 && this.zoomLevel <= 11) {
-      this.structureContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              if (routePlannedData[j][4].boundary[i][n][k].type == 'SAG2'){
-                this.imagePath = 'assets/images/Layers/topologies/structure/SAG2.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'ILA') {
-                this.imagePath = 'assets/images/Layers/topologies/structure/ILA.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'Pole') {
-                this.imagePath = 'assets/images/Layers/topologies/structure/Pole.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'ILA') {
-                this.imagePath = 'assets/images/Layers/topologies/structure/ManHole.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'ILA') {
-                this.imagePath = 'assets/images/Layers/topologies/structure/FiberPop.svg';
-              }
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawStructureImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.structureContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.structureContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.structureContainer);
-      }
-    } else if (this.zoomLevel > 11 && this.zoomLevel <= 12) {
-      this.structureContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              if (routePlannedData[j][4].boundary[i][n][k].type == 'OSC'){
-                this.imagePath = 'assets/images/Layers/topologies/structure/OSC.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'eNodeB') {
-                this.imagePath = 'assets/images/Layers/topologies/structure/eNodeB.svg';
-              } else {
-                this.imagePath = 'assets/images/Layers/topologies/structure/Others.svg';
-              }
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawStructureImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.structureContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.structureContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.structureContainer);
-      }
     }
     this.stageRouteContainer.addChild(this.structureContainer);
     this.stageRouteContainer.update();
   }
 
   drawStructureImage(latlng, centerpoint, structureContainer, structureData, imagePath) {
+    imagePath = '';
+    let structureEachData = structureData[0].split(',').map(String);
+    if (this.zoomLevel <= 4) {
+      imagePath = 'assets/images/Layers/topologies/structure/AG3.svg';
+    } else if (this.zoomLevel > 4 && this.zoomLevel <= 6) {
+      if (structureEachData[6] == 'AG2'){
+        imagePath = 'assets/images/Layers/topologies/structure/AG2.svg';
+      } else {
+        imagePath = 'assets/images/Layers/topologies/structure/AG2+OTN.svg';
+      }
+    } else if (this.zoomLevel > 6 && this.zoomLevel <= 7) {
+      imagePath = 'assets/images/Layers/topologies/structure/AG1.svg';
+    } else if (this.zoomLevel > 7 && this.zoomLevel <= 11) {
+      if (structureEachData[6] == 'SAG2'){
+        imagePath = 'assets/images/Layers/topologies/structure/SAG2.svg';
+      } else if (structureEachData[6] == 'ILA') {
+        imagePath = 'assets/images/Layers/topologies/structure/ILA.svg';
+      } else if (structureEachData[6] == 'Pole') {
+        imagePath = 'assets/images/Layers/topologies/structure/Pole.svg';
+      } else if (structureEachData[6] == 'ManHole') {
+        imagePath = 'assets/images/Layers/topologies/structure/ManHole.svg';
+      } else if (structureEachData[6] == 'FiberPop') {
+        imagePath = 'assets/images/Layers/topologies/structure/FiberPop.svg';
+      } else {
+        imagePath = 'assets/images/Layers/topologies/structure/AG1.svg';
+      }
+    } else if (this.zoomLevel > 11) {
+      if (structureEachData[6] == 'OSC'){
+        imagePath = 'assets/images/Layers/topologies/structure/OSC.svg';
+      } else if (structureEachData[6] == 'eNodeB') {
+        imagePath = 'assets/images/Layers/topologies/structure/eNodeB.svg';
+      } else {
+        imagePath = 'assets/images/Layers/topologies/structure/Others.svg';
+      }
+    }
+    this.positionLatLng = L.latLng(
+      structureEachData[0],
+      structureEachData[1]
+    );
+
+    this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
+    this.linksCenterPoint = {
+      x: this.linksDot.x * this.pixelRatio,
+      y: this.linksDot.y * this.pixelRatio
+    };
+
     this.structureContainerEach = new createjs.Container();
     this.structureContainerEach.cursor = 'pointer';
-    this.structureContainerEach.x = centerpoint.x;
-    this.structureContainerEach.y = centerpoint.y;
+    this.structureContainerEach.x = this.linksCenterPoint.x;
+    this.structureContainerEach.y = this.linksCenterPoint.y;
     this.structureContainerEach.scaleX = this.scaleMatrix;
     this.structureContainerEach.scaleY = this.scaleMatrix;
 
@@ -676,20 +465,19 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     this.structureImage.regY = 30;
     this.structureImage.scaleX = 1.0;
     this.structureImage.scaleY = 1.0;
-    this.structureImage['latlng'] = latlng;
-    this.structureImage['data'] = structureData;
+    this.structureImage['latlng'] = this.positionLatLng;
+    this.structureImage['data'] = structureEachData;
     this.structureImage.image.onload = function () {
       outerthis.stageRouteContainer.update();
     }
 
-    this.structureImageText = new createjs.Text(structureData.sapid, "15px Lato Bold", "#000000");
+    this.structureImageText = new createjs.Text(structureEachData[5], "15px Lato Bold", "#000000");
     this.structureImageText.textAlign = 'center';
     this.structureImageText.textBaseLine = 'middle';
     this.structureImageText.y = 50;
 
     let outerthis = this;
     this.structureImage.on('mouseover', function (event) {
-      console.log(event);
       let target = event['target'];
       let dot = L.point((event['rawX'] / outerthis.pixelRatio), (event['rawY'] / outerthis.pixelRatio));
       target.latlng = outerthis.map.containerPointToLatLng(dot);
@@ -697,16 +485,16 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">Sector:</span>' +
-        '<span class="value">' + target.data.sector + '</span></div>';
+        '<span class="value">' + target.data[2] + '</span></div>';
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">Band:</span>' +
-        '<span class="value">' + target.data.band + '</span>' +
+        '<span class="value">' + target.data[3] + '</span>' +
         '</div>';
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">cNum:</span>' +
-        '<span class="value">' + target.data.cnum + '</span>' +
+        '<span class="value">' + target.data[4] + '</span>' +
         '</div>';
       outerthis.structurePopup.setLatLng(target.latlng).setContent(template).openOn(outerthis.map);
     });
@@ -721,6 +509,45 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
 
     this.structureContainerEach.addChild(this.structureImage, this.structureImageText);
     structureContainer.addChild(this.structureContainerEach);
+  }
+
+  openSpiderCircularPopups(d, ref) {
+    let fivegSpiderComponent = ref.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
+    ref.componentRef = ref.target.createComponent(fivegSpiderComponent);
+    let colocatedData = [
+      { tileName: d.data.device,
+        fontValue: d.data.fontvalue,
+        fontFamily: d.data.font,
+        color: d.data.color,
+        radiusDeviceCircle: '56'}
+    ];
+    ref.componentRef.instance.colocatedCircleData = colocatedData;
+    ref.componentRef.instance.data = this.structureData;
+    ref.componentRef.instance.mainRef = this;
+    ref.componentRef.instance.mainLayerReference = this.mainLayerRef;
+  }
+
+  openSpiderPopups(d, ref) {
+    if (d.data.name == 'Structure'){
+      const componName = "Route";
+      const dialogData = new FibreTableViewPopupModel(componName);
+      const dialogRef = this.dialog.open(RouteTableViewComponent, {
+        width: "1200px",
+        height: "500px",
+        position: {
+          left: "18.5rem",
+          top: "4rem"
+        },
+        data: dialogData,
+        hasBackdrop: false,
+        disableClose: false,
+        panelClass: "material-dialog-container",
+      });
+    } else if (d.data.name == 'Logical Connectivity') {
+      // this.removeLayer();
+      // let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
+      // ref.componentRef = ref.target.createComponent(logicalComponent);
+    }
   }
 
   routeClicked() {
@@ -738,12 +565,6 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       disableClose: false,
       panelClass: "material-dialog-container",
     });
-  }
-
-  async colocatedLineClicked(event, mainLayerReference) {
-    // let nominalViewComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
-    // mainLayerReference.componentRef = mainLayerReference.target.createComponent(nominalViewComponent);
-    // mainLayerReference.componentRef.instance.data = this.routePlannedSpiderViewData;
   }
 
   removeLayer() {
@@ -764,7 +585,6 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
   ) {
     this.stageRouteContainer.removeAllChildren();
     this.stageRouteContainer.update();
-    // console.log(structureContainer)
     this.circleGraphic = this.drawCircleGraphics('#003B7440', 65);
     this.circleCountShape = new createjs.Shape(this.circleGraphic);
     this.circleCountShape.alpha = 0.4;
@@ -792,8 +612,12 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     this.labelCount.scaleY = 0.4;
     this.labelCount['latlng'] =  this.textContainer.latLng;
 
+    let outerContainerThis = this;
     this.textContainer.addEventListener('click', function(evt) {
-      console.log('COlocated Clicked');
+      outerContainerThis.clonedArray = [...outerContainerThis.structureColocatedData];
+      outerContainerThis.clonedArray.splice(count, (outerContainerThis.clonedArray.length - count));
+      outerContainerThis.map.setView(positionCololatedLatLng);
+      outerContainerThis.colocatedStructureClicked(evt, mainLayerReference, colocatedData, outerContainerThis.clonedArray);
     });
     this.textContainer.addChild(this.circleCountShape, this.innercircleShape, this.labelCount);
     structureContainer.addChild(this.textContainer);
@@ -808,7 +632,14 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     return this.drawCircleGraphic;
   }
 
-
+  async colocatedStructureClicked(event, mainLayerReference, colocatedData, colocatedSpiderArray) {
+    let fivegCircularSpiderComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegCircularSpiderViewComponent);
+    mainLayerReference.componentRef = mainLayerReference.target.createComponent(fivegCircularSpiderComponent);
+    mainLayerReference.componentRef.instance.data = colocatedSpiderArray;
+    mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
+    mainLayerReference.componentRef.instance.mainRef = this;
+    mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+  }
 
   ngOnDestroy() {
     if (this.routeReadyFibreCoreSubscription) {

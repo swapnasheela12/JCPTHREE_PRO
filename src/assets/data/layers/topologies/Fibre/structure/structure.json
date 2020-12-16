@@ -93,7 +93,29 @@
                             "band":"1800 MHz",
                             "cnum":1,
                             "sapid":"I-MU-MUMB_ENB_185",
-                            "type":"FiberPop"
+                            "type":"SAG2"
+                        },
+                        {
+                            "latlng":[
+                                15.2456301,
+                                73.949063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_181",
+                            "type":"ILA"
+                        },
+                        {
+                            "latlng":[
+                                15.2656301,
+                                73.149063
+                            ],
+                            "sector":"gamma",
+                            "band":"1800 MHz",
+                            "cnum":1,
+                            "sapid":"I-MU-MUMB_ENB_185",
+                            "type":"Pole"
                         }, {
                             "latlng":[
                                 15.532834,

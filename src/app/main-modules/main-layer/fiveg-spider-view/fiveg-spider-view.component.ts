@@ -15,6 +15,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
   data;
   colocatedCircleData;
   mainRef;
+  mainLayerReference;
   circleGroup;
   pie: any;
   linePointsGroup: any;
@@ -29,7 +30,6 @@ export class FivegSpiderViewComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.data);
     let mapElement = this.mapTree.nativeElement;
     let rawSvg = this.spiderView.nativeElement;
     let svg: any = d3.select(rawSvg);
@@ -61,7 +61,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
 
     let circle = canvas
           .append("circle")
-          .attr("r", 4.5 * screenHeight/10)
+          .attr("r", 275)
           .style("opacity", 0.7)
           .attr('class', 'circle-main')
           .style("fill", "white");
@@ -228,9 +228,27 @@ export class FivegSpiderViewComponent implements AfterViewInit {
     this.bandsArcsGroup
       .append('circle')
       .attr('r', 30)
-      .attr('stroke-width', 1)
-      .attr('stroke', '#000000')
-      .attr('fill', 'red')
+      .attr('stroke-width', (d)=> {
+        if (!d.fontValue) {
+          return 1;
+        } else {
+          return '';
+        }
+      })
+      .attr('stroke', (d)=> {
+        if (!d.fontValue) {
+          return '#000000';
+        } else {
+          return '#ffffff';
+        }
+      })
+      .attr('fill', (d)=> {
+        if (d.color) {
+          return d.color;
+        } else {
+          return 'red';
+        }
+      })
       .style('cursor', 'pointer');
 
     let imageURL = 'assets/images/Layers/planned-small-cell/plannedwhite.svg';
@@ -240,7 +258,11 @@ export class FivegSpiderViewComponent implements AfterViewInit {
     this.bandsArcsGroup.append("svg:image")
       .attr('width', 24)
       .attr('height', 25.5)
-      .attr("xlink:href", imageURL)
+      .attr("xlink:href", (d) => {
+        if (!d.fontValue) {
+          return imageURL
+        }
+      })
       .attr('stroke-width', 1)
       .attr('stroke', '#FFFFFF')
       .attr('fill', (d) => {
@@ -252,9 +274,24 @@ export class FivegSpiderViewComponent implements AfterViewInit {
       })
       .attr('y', (d) => {
         return - (pointSource.y + 10);
+      });
+
+      this.bandsArcsGroup.append('text')
+      .style('text-anchor', 'middle')
+      .style('dominant-baseline', 'middle')
+      .style('fill', '#ffffff')
+      .style('color', '#000')
+      .style('font-size', '33px')
+      .style('font-family', function (d) {
+        return d.fontFamily;
       })
-
-
+      .attr('y', function (d) {
+        return 3;
+      })
+      .attr('class', 'iconText')
+      .text(function (d) {
+        return d.fontValue;
+      });
     this.bandsArcsGroup.append('line')
       .attr('class', 'lineBands')
       .attr('stroke-width', 1)
@@ -276,16 +313,17 @@ export class FivegSpiderViewComponent implements AfterViewInit {
 
     this.bandsArcsGroup.append("text")
       .attr('x', (d, i) => {
-        console.log("pointSource.y", pointSource.y);
-        console.log("pointSource.y - 38", pointSource.y - 38);
-        return pointSource.y - 38;
+        if (d.fontValue){
+          return pointSource.y - 27;
+        } else {
+          return pointSource.y - 38;
+        }
       })
       .style('fill', () => {
         color: '#000000'
       })
       .style('font-size', '12px')
       .attr('y', (d, i) => {
-        console.log("pointSource.x", pointSource.x)
         return pointSource.x - 55;
       })
       .text(function (d) {
@@ -321,19 +359,27 @@ export class FivegSpiderViewComponent implements AfterViewInit {
         // }
       })
       .text((d) => {
-        return d.sapId;
+        if (d.sapId){
+          return d.sapId;
+        }
       });
 
 
 
     this.circleGroup.on('mouseover', function () {
-      d3.select(this).select('circle').transition().attr('stroke', '#000000').attr('stroke-width', 2);
+      d3.select(this)
+      .select('circle')
+      .transition()
+      .attr('stroke', (d) => {
+        return '#ffffff';
+      })
+      .attr('stroke-width', 2);
     })
       .on('mouseout', function () {
         d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
       })
       .on('click', (d) => {
-        this.mainRef.openSpiderPopups(d, ref);
+          this.mainRef.openSpiderPopups(d, this.mainLayerReference);
       });
 
     svgGroup.on('click', function () {

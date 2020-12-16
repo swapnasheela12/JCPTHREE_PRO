@@ -496,7 +496,7 @@ export class LeftsideNavigationComponent implements OnInit {
         this.cfr.resolveComponentFactory(StructurePlannedFibreCoreComponent)
       );
     } else if(layersToShow == 'EquipmentsPlannedFibreCoreComponent') {
-      const { EquipmentsPlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/equipments-planned-fibre-core/equipments-planned-fibre-core.component');
+      const { EquipmentsPlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/equipments/equipments-planned-fibre-core/equipments-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(EquipmentsPlannedFibreCoreComponent)
       );
