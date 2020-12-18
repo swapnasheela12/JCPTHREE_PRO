@@ -1,0 +1,43 @@
+.spidermain-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10000;
+    // background-color:red;
+    top:0;
+    overflow:auto
+}
+
+.spideroverlay,.spideroverlay svg{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow:auto
+}
+
+.spideroverlay svg g{
+    display: inline-block;
+}
+.wrapper{
+    display: inline-block;
+}
+// .layers-maptreecontainer {
+//     width: 100%;
+//     height: 100%;
+//     position: absolute;
+//     overflow: hidden;
+//     z-index: 2;
+//     background-color: rgba(#000, .5);
+//     .layers-maptreecontainercenter {
+//         width: 100%;
+//         height: 100%;
+//         position: relative;
+//         overflow: hidden;
+//     }
+//     .spiderview {
+//         width: 100%;
+//         height: 100%;
+//         position: relative;
+//         overflow: hidden;
+//     }
+// }

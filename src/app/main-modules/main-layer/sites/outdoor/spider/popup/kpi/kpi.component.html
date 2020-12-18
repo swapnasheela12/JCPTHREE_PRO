@@ -1,0 +1,98 @@
+<div class="kpi-container">
+    <div class="kpi-toolbar">
+        <div class="popup-title">
+            <div class="header">RAN Performance For I-MU-MUMB-ENB-5052</div>
+
+            <div class="close-btn">
+                <button class="close-popup mat-icon-button" (click)="onNoClick()">
+                    <span class="material-icons">
+                        close
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="kpi-topbar">
+        <div class="capacity-topbar-left">
+        </div>
+        <div class="capacity-topbar-right">
+            <div class="icon-button">
+                <div class="zmdi zmdi-download"></div>
+            </div>
+        </div>
+    </div>
+    <div class="capacity-data-table">
+        <div mat-dialog-content class="wo-sector-container">
+            <div class="wo-sector-card-one p-0 col-3" style="display: inline-block; margin: 18px">
+                <form [formGroup]="thirdFormGroup">
+                    <mat-form-field class="custom-field-container" fxFlex="90">
+                        <div class="daterange-container" style="top: 205px;
+                    left: 74px;">
+                            <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true"
+                                [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false"
+                                formControlName="selectedDateTime" [showCustomRangeLabel]="true"
+                                [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                                [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                                [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                                (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                            <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                            <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
+                        </div>
+                    </mat-form-field>
+                </form>
+
+                <!-- <label for="exampleInputEmail1">The range date</label>
+                    <input type="text" name="daterange" ngxDaterangepickerMd [(ngModel)]="selected"
+                        class="form-control" /> -->
+            </div>
+            <div class="wo-sector-card-one col-8" style="float: right; margin-top: 18px;">
+                <mat-form-field class="form-field-read-only col-3">
+                    <mat-select disableOptionCentering [(value)]="selectAlpha[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option value="option1" class="sector-title" *ngFor="let tcr of selectAlpha" [value]="tcr">
+                            {{tcr}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-read- col-3">
+                    <mat-select disableOptionCentering [(value)]="selectAccessibility[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option value="option1" class="sector-title" *ngFor="let sa of selectAccessibility"
+                            [value]="sa">
+                            {{sa}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-read-only col-3">
+                    <mat-select disableOptionCentering [(value)]="selectChart[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option value="option1" class="sector-title" *ngFor="let sc of selectChart" [value]="sc">
+                            {{sc}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-read-only col-3">
+                    <mat-select disableOptionCentering [(value)]="selectDaily[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option value="option1" class="sector-title" *ngFor="let daily of selectDaily"
+                            [value]="daily">
+                            {{daily}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <!-- <highchart ng-if="Change.section != 'sectional'" id="alphaBetaGammaChart" config="vm.alphaBetaGammaChartConfig"></highchart>
+        <highchart ng-if="Change.section == 'sectional'" id="sectorChart" config="vm.sectorChartConfig"></highchart> -->
+
+        <div class="jcp-landing-card-chart-container" id="container">
+            <!-- <div id="dailyTrafficChartID" [chart]="alphaBetaGammaChartConfig"></div> -->
+        </div>
+    </div>
+</div>
