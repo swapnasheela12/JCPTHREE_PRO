@@ -73,7 +73,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
+    private http: HttpClient,private logicaltopologyService : LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
     private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
 
 
@@ -82,6 +82,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.macroNominalService.getReference(this);
     this.smallCellPlanned4gService.getReference(this);
+    this.logicaltopologyService.getReference(this);
     console.log("sideNavService", this.sideNavService);
   }
 
@@ -92,6 +93,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.googleMutant = googleMutant();
     this.macroNominalService.getReference(this);
     this.smallCellPlanned4gService.getReference(this);
+    this.logicaltopologyService.getReference(this);
+    this.datashare.mainLayer(this);
   }
 
   ngAfterViewInit() {
@@ -126,7 +129,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       // center: [25.0000, 79.0000],
       center: [19.04, 72.90],
       zoomControl: false,
-      zoom: 12,
+      zoom: 5,
+      // zoom: 12,
       contextmenu: true,
       contextmenuWidth: 140,
       contextmenuItems: [

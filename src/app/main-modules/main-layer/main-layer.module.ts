@@ -87,6 +87,8 @@ import { SpiderComponent } from './layer-list/sites/outdoor/spider/spider.compon
 import { KpiComponent } from './layer-list/sites/outdoor/spider/popup/kpi/kpi.component';
 import { CandidatesComponent } from 'src/app/modules/components/properties/candidates/candidates.component';
 import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/nominal-view.component';
+import { LogicaltopologyMultiSpiderViewComponent } from './layer-list/topologies/fibre/logicaltopology/logicaltopology-multi-spider-view/logicaltopology-multi-spider-view.component';
+import { SpliterViewComponent } from './layer-list/topologies/fibre/logicaltopology/spliter-view/spliter-view.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -122,6 +124,9 @@ import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/no
     KpiComponent,
     CandidatesComponent,
     NominalViewComponent,
+    FivegSpiderViewComponent,
+    LogicaltopologyMultiSpiderViewComponent,
+    SpliterViewComponent
   ],
   imports: [
     MainLayerRoutingModule,
