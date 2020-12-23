@@ -1,0 +1,122 @@
+[
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    },
+    {
+        "alarmid": 9790,
+        "alarmname": "PI Threshhold Cross Alarm",
+        "domain": "RAN",
+        "devicetype": "eNodeB",
+        "vendor": "Samsung",
+        "unittype": "LTEeNodeB",
+        "severity": "Minor",
+        "emssource": "Samsung LSMI",
+        "emsrelease": "9.0.0",
+        "": ""
+    }
+]

@@ -2539,6 +2539,24 @@ const MODULE_LIST_FAULT = [
         eventName: 'sites-outdoor-esc',
 
         children: []
+    },
+    {
+
+        name: "Active Alarm",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Fault-Management/Active-Alarm",
+        eventName: 'sites-outdoor-esc',
+
+        children: []
+    },
+    {
+
+        name: "Active Library",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Fault-Management/Active-Library",
+        eventName: 'sites-outdoor-esc',
+
+        children: []
     }
 ];
 
