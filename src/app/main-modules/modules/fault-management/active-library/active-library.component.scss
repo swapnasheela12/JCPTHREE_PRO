@@ -1,0 +1,96 @@
+@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
+@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+div.container {
+    font-family: Lato Medium;
+    background: #ffffff;
+    border-radius: 5px;
+    
+}
+
+.height64 {
+    height: 64px !important;
+}
+
+.container {
+    height: 87%;
+    min-height: 87%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .aa-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        .full-height {
+            height: 64px !important;
+        }
+        .aa-title {
+            font-weight: 600;
+            color: #000000;
+        }
+        .aa-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+            .vertical-kpi {
+                margin-top: -6px;
+            }
+        }
+        .kpi-create {
+            margin-right: 10px;
+        }
+        .aa-card-toolbar-icon {
+            display: inline-block;
+            margin-left: 13px;
+            font-size: 24px;
+        }
+        .search-icon-kpi {
+            margin-right: 10px;
+        }
+    }
+    .aa-data-table {
+        height: calc(100% - 56px) !important;
+        max-height: calc(100% - 56px) !important;
+    }
+    .aa-menu-render .mat-menu-content .mat-menu-item:hover {
+        background-color: #f3f7fc;
+    }
+    .pagination-aggrid {
+        width: calc(100% - 380px);
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.btn-dl {
+    border: none;
+    margin-right: 10px;
+
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-field {
+    border: none;
+    border-bottom: 1px solid #cccccc;
+}
+
+.search-zone {
+
+    margin-right: 10px;
+}
+
+.search-zone select {
+border: none;
+}
+
+.btn {
+    margin: 0 !important;
+    background: none;
+}
