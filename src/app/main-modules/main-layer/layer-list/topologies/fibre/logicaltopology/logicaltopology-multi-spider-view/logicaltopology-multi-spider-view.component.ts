@@ -115,8 +115,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
       {
         device: "Splitter 1",
         color: "#1A7DDD",
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf112',
+        font: 'icomoon',
+        fontvalue: '\uec24',
         value: 5,
       },
       {
@@ -486,7 +486,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
           if (item.radiuscircle == "100") {
             return -5;
           } else {
-            return 0;
+            return 2;
           }
         })
         .attr('class', 'iconText')
@@ -540,6 +540,43 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         .attr("xlink:href", imageURL);
 
 
+      cellSite.append('text')
+        .style('text-anchor', 'middle')
+        .style('fill', '#848C95')
+        .style('color', '#848C95')
+        .style('font-family', 'Lato Medium')
+        .style('font-size', '12px')
+        .attr('class', 'donutTextHeder')
+        .attr('transform', 'translate(0,0)')
+        .attr('y', (d) => {
+          return 55;
+        })
+        .attr('x', function (d) {
+          return 12;
+        })
+        .text((d) => {
+          return "Lattitude & Longitude";
+        });
+
+      cellSite.append('text')
+        .style('text-anchor', 'middle')
+        .style('fill', '#212529')
+        .style('color', '#212529')
+        .style('font-family', 'Lato Medium')
+        .style('font-size', '12px')
+        .attr('class', 'donutTextHederVal')
+        .attr('transform', 'translate(0,0)')
+        .attr('y', (d) => {
+          return 70;
+        })
+        .attr('x', function (d) {
+          return 12;
+        })
+        .text((d) => {
+          return "1234’28718278274578’";
+        });
+
+
       svgGroup.on('click', function () {
         $(element).parent().remove();
         d3.event.stopPropagation();
@@ -568,8 +605,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
       ref.openPropDialogConfiguration();
     } else if (d.data.name === "Capacity") {
       ref.openCapacityViewPopups();
-    } else if (d.data.device === "AG1 Router") {
-      ref.openKpiDialogConfiguration();
+    } else if (d.data.device === "Splitter 1") {
+      ref.openSplitter1();
     } else if (d.data.name === "Alarms") {
       ref.openAlarmDialog();
     } else if (d.data.name === "Configuration") {
@@ -580,7 +617,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
 
   }
 
-  openKpiDialogConfiguration() {
+  openSplitter1() {
     setTimeout(() => {
       const dialogRef = this.dialog.open(SpliterViewComponent, {
         // width: "75vw",
@@ -592,7 +629,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         hasBackdrop: true
       });
     }, 500);
-    
+
   };
 
 

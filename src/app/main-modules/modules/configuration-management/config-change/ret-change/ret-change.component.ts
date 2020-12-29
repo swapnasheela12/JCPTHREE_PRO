@@ -78,6 +78,8 @@ export interface DialogData {
   encapsulation: ViewEncapsulation.None
 })
 export class RetChangeComponent implements OnInit {
+  filtervalue = "Search SAP ID"
+ 
   selectedRadio = "Manual Selection";
   showSuccessFailure: boolean = false;
   showSuccessKpiFailure: Boolean = false;
@@ -331,7 +333,7 @@ export class RetChangeComponent implements OnInit {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
         pinned: 'left',
-        cellClass: 'lock-pinned'
+        // cellClass: 'lock-pinned'
       },
       {
         headerName: "Cell ID",
@@ -378,7 +380,20 @@ export class RetChangeComponent implements OnInit {
         field: "refret",
         cellRenderer: 'inputRenderer',
         width: 180,
-      }
+      },
+      {
+        headerName: "Calibration",
+        field: "",
+        width: 150,
+        checkboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        headerCheckboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        // pinned: 'left',
+        cellClass: "grid-cell-centered"
+      },
     ];
 
     this.datatable.columnDefsServices = this.columnDefs;

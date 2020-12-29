@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, timeout } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { User } from '../../../_models/user'; import { MatSelectModule } from "@angular/material/select";
 import * as _ from "lodash";
@@ -45,6 +45,20 @@ export class recentVisitList {
 export class HeaderComponent implements OnInit, OnChanges {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
 
+  switchJCP2 : boolean= false;
+  
+  onChangeswitch(obj) {
+    console.log(obj,"obj");
+    
+      if (this.switchJCP2 == true) {
+         setTimeout(() => {
+          // let that = this;
+          let win = window.open('http://10.157.250.232/#/layers', '_self', 'MsgWindow');
+          win.focus();
+         }, 500);
+
+      }
+  };
   ////authentication/////
   currentUser: User;
   ////authentication/////

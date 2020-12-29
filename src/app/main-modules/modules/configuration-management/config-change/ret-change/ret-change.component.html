@@ -302,96 +302,113 @@
 
             <div *ngIf="Workorder == true" style="height: calc(100% - 40px);overflow: auto;">
                 <div class="px-3">
-                    <form [formGroup]="selectJcCircleLevelFormControl">
-                        <div fxLayout="row wrap">
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Template Type</div>
-                                <div class="value">RET Change</div>
+
+                    <div fxLayout="row wrap">
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Template Type</div>
+                            <div class="value">RET Change</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Workorder ID</div>
+                            <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Project Type</div>
+                            <div class="value">RET Change</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <mat-form-field class="p-0" fxFlex="100">
+                                <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
+                                </mat-label>
+                                <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="md-subhead">Schedule</div>
+                            <div class="label">Date</div>
+                            <div class="value">02-03-2016 </div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="pt-4">
+                                <div class="label">Time</div>
                             </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Workorder ID</div>
-                                <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
+                            <div class="value">08:05 AM</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="md-subhead">Work Order Expiry</div>
+                            <div class="label">Date</div>
+                            <div class="value">03-03-2016</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="pt-4">
+                                <div class="label">Time</div>
                             </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Project Type</div>
-                                <div class="value">RET Change</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <mat-form-field class="p-0" fxFlex="100">
-                                    <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
-                                    </mat-label>
-                                    <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
+                            <div class="value">08:05 AM</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Impact Area</div>
+                            <div class="value">Mumbai</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Risk Assessment</div>
+                            <div class="value">Low Risk</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Urgency</div>
+                            <div class="value">Low</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Reason For Change</div>
+                            <div class="value">Incident/Accidental Problem</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Requester ID</div>
+                            <div class="value">Shaika.gayal@ril.com</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Domain</div>
+                            <div class="value">RAN Operator</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Sub Domain</div>
+                            <div class="value">eNB</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Service</div>
+                            <div class="value">RANeNB</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Description</div>
+                            <div class="value">RET Change</div>
+                        </div>
+
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Risk Impact Analysis </div>
+                            <div class="value">-</div>
+                        </div>
+                        <div class="p-2" fxFlex="25">
+                            <div class="label">Implementation Comments</div>
+                            <div class="value">-</div>
+                        </div>
+                        <div class="p-2" fxFlex="100">
+                            <div fxFlex="25">
+                                <mat-form-field class="example-form-field">
+                                    <mat-label>Filter</mat-label>
+                                    <input matInput type="text" [(ngModel)]="filtervalue">
+                                    <button mat-button *ngIf="filtervalue" matSuffix mat-icon-button aria-label="Clear" (click)="filtervalue=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
                                 </mat-form-field>
                             </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="md-subhead">Schedule</div>
-                                <div class="label">Date</div>
-                                <div class="value">02-03-2016 </div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="pt-4">
-                                    <div class="label">Time</div>
+                            <div fxFlex></div>
+                            <div fxFlex="5">
+                                <div class="icon-button" style="padding: 12px 15px; font-size: 18px; color: #727375;">
+                                    <div class="zmdi zmdi-book"></div>
                                 </div>
-                                <div class="value">08:05 AM</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="md-subhead">Work Order Expiry</div>
-                                <div class="label">Date</div>
-                                <div class="value">03-03-2016</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="pt-4">
-                                    <div class="label">Time</div>
-                                </div>
-                                <div class="value">08:05 AM</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Impact Area</div>
-                                <div class="value">Mumbai</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Risk Assessment</div>
-                                <div class="value">Low Risk</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Urgency</div>
-                                <div class="value">Low</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Reason For Change</div>
-                                <div class="value">Incident/Accidental Problem</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Requester ID</div>
-                                <div class="value">Shaika.gayal@ril.com</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Domain</div>
-                                <div class="value">RAN Operator</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Sub Domain</div>
-                                <div class="value">eNB</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Service</div>
-                                <div class="value">RANeNB</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Description</div>
-                                <div class="value">RET Change</div>
-                            </div>
-
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Risk Impact Analysis </div>
-                                <div class="value">-</div>
-                            </div>
-                            <div class="p-2" fxFlex="25">
-                                <div class="label">Implementation Comments</div>
-                                <div class="value">-</div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
                 <mat-divider></mat-divider>
                 <div style="height: 100%">

@@ -437,3 +437,15 @@ input[type="file"] {
     font-weight: 400;
     font-family: Lato Bold;
 }
+
+.grid-cell-centered {
+    text-align: center !important;
+    .ag-cell-wrapper {
+        justify-content: center !important;
+    }
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+    font-size: 16px !important;
+    font-family: Lato Regular !important;
+}
