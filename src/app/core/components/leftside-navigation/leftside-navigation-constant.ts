@@ -3,6 +3,7 @@ const MODULE_LIST_CONFIG_VENDOR = [
         name: 'Node',
         link: 'Node',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -12,18 +13,21 @@ const MODULE_LIST_RAN_DL = [
         name: 'Discrepancy Library',
         link: 'DiscrepancyLibrary',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Query Builder',
         link: 'querybuilder',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Selective Parameter Live',
         link: 'selective-parameter-live',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -34,6 +38,7 @@ const MODULE_LIST_CONFIG_LSMR_DOMAIN = [
         name: 'Vendor',
         link: 'Vendor',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_VENDOR
     }
 ];
@@ -43,6 +48,7 @@ const ADMIN_CONFIGURATION_SM_RAN_LIST = [
         name: 'Package Details',
         link: 'package-details',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -52,6 +58,7 @@ const ADMIN_CONFIGURATION_RET_RAN_LIST = [
         name: 'RET',
         link: 'ret',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -61,6 +68,7 @@ const ADMIN_CONFIGURATION_GOLDEN_RAN_LIST = [
         name: 'Golden Parameters',
         link: 'golden-parameters',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -70,6 +78,7 @@ const ADMIN_CONFIGURATION_CMRECIPE_RAN_LIST = [
         name: 'CM Recipe',
         link: 'cm-recipe',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -79,6 +88,7 @@ const ADMIN_CONFIGURATION_NODE_PARAMETER_RAN_LIST = [
         name: 'New Node Parameter',
         link: 'new-node-parameter',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -88,6 +98,7 @@ const ADMIN_CONFIGURATION_TEC_RAN_LIST = [
         name: 'Traceport - TCE/ipv6',
         link: 'traceport-tce',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -97,6 +108,7 @@ const NETWORK_EMS_SAMSUNG_LIST = [
         name: 'LSMR',
         link: 'LSMR',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -106,6 +118,7 @@ const NETWORK_EMS_AIRSPAN_LIST = [
         name: 'Netspan',
         link: 'Netspan',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -115,18 +128,21 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST = [
         name: 'Config Template',
         link: 'config-template',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'ODSC SLA Configuration',
         link: 'odsc-sla-config',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Remarks Template',
         link: 'remarks-template',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -136,6 +152,7 @@ const ADMIN_ANALYTICS_NW_AL_ANALYTICS = [
         name: 'Algorithm selection',
         link: 'algorithm-selection',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -145,12 +162,14 @@ const MODULE_LIST_RAN = [
         name: 'Query',
         link: 'Query',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_RAN_DL
     },
     {
         name: 'Compare',
         link: 'Compare',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -159,18 +178,21 @@ const MODULE_LIST_CORE = [
         name: 'Compare',
         link: 'Compare',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Discrepancy',
         link: 'Discrepancy',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Query',
         link: 'Query',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -180,6 +202,7 @@ const MODULE_LIST_CONFIG_LSMR = [
         name: 'Domain',
         link: 'Domain',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR_DOMAIN
     }
 ];
@@ -198,24 +221,28 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DL Throughput',
         link: 'DLThroughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Best Server Plot',
         link: 'Best Server Plot',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -225,6 +252,7 @@ const ANALYTICS_NETWORK_QUALITY = [
         name: 'Infill Planning',
         link: 'Infill-Planning',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -234,12 +262,14 @@ const ANALYTICS_NETWORK_ANOMALIES = [
         name: 'Mis-aligned Sectors',
         link: 'Mis-aligned-Sectors',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Overshooting Cells',
         link: 'Overshooting-Cells',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -249,12 +279,14 @@ const ANALYTICS_NETWORK_COVERAGE = [
         name: 'Coverage Holes',
         link: 'Coverage-Holes',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Indoor Coverage Holes',
         link: 'Indoor-Coverage-Holes',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -264,6 +296,7 @@ const ANALYTICS_NETWORK_POI = [
         name: 'Building',
         link: 'Building',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -273,12 +306,14 @@ const PREDICTION_LAYERS_ONAIR_LIST = [
         name: 'KPIs',
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Best Server Plot',
         link: 'Best Server Plot',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -288,6 +323,7 @@ const MEASURED_LAYERS_BAND_KPI_LIST = [
         name: 'KPIs',
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -297,30 +333,35 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Latency',
         link: 'latency',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'UL Throughput',
         link: 'ul-throughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DL Throughput',
         link: 'dl-throughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -330,30 +371,35 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         name: 'VoLTE Drops',
         link: 'VoLTE-Drops',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DL Throughput',
         link: 'DL-Throughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Sessions',
         link: 'Sessions',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'RSRP',
         link: 'RSRP',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'CQI',
         link: 'CQI',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -363,53 +409,62 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         name: 'RSRP',
         link: 'RSRP',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'SINR',
         link: 'SINR',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DL Throughput',
         link: 'DL-Throughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'UL Throughput',
         link: 'UL-Throughput',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'RSRQ',
         link: 'RSRQ',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'CQI',
         link: 'CQI',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DL RB Utilization',
         link: 'DL RB Utilization',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'UL RB Utilization',
         link: 'UL RB Utilization',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }, {
         name: 'Rank Indicator',
         link: 'Rank Indicator',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -419,30 +474,35 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Call Muting',
         link: 'Call-Muting',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Call Drop',
         link: 'Call-Drop',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Coverage Experience',
         link: 'Coverage-Experience',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -452,6 +512,7 @@ const HYBRID_LAYERS_BAND_KPI_LIST = [
         name: 'KPIs',
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -461,12 +522,14 @@ const HYBRID_LAYERS_BAND_SNG_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -476,6 +539,7 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'RSRP',
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -483,6 +547,7 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'SINR',
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -490,6 +555,7 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'Unique Users',
         link: 'Unique-Users',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -497,6 +563,7 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         name: 'Data Volume',
         link: 'Data-Volume',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: "CmcSettingsPopupComponent"
     }
@@ -507,12 +574,14 @@ const PERFORMANCE_KPI = [
         name: 'Software Versions',
         link: 'software-versions',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Counter Categories',
         link: 'counter-categories',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -522,6 +591,7 @@ const PLATFORM_WORKORDERS_ANALYTICS_LIST = [
         name: 'RF OC Workorders',
         link: 'RF OC Workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -531,6 +601,7 @@ const PLATFORM_POI_JIP_LIST = [
         name: 'NE Data',
         link: 'ne-data',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -540,6 +611,7 @@ const ADMIN_CONFIGURATION_SM_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_SM_RAN_LIST
     }
 ];
@@ -549,6 +621,7 @@ const ADMIN_CONFIGURATION_RET_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_RET_RAN_LIST
     }
 ];
@@ -558,6 +631,7 @@ const ADMIN_CONFIGURATION_GOLDEN_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_GOLDEN_RAN_LIST
     }
 ];
@@ -567,6 +641,7 @@ const ADMIN_CONFIGURATION_CMRECIPE_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_CMRECIPE_RAN_LIST
     }
 ];
@@ -576,6 +651,7 @@ const ADMIN_CONFIGURATION_NODE_PARAMETER_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_NODE_PARAMETER_RAN_LIST
     }
 ];
@@ -585,6 +661,7 @@ const ADMIN_CONFIGURATION_TCE_LIST = [
         name: 'RAN',
         link: 'ran',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_TEC_RAN_LIST
     }
 ];
@@ -594,12 +671,14 @@ const PERFORMANCE_IMPACT = [
         name: 'KPI Settings',
         link: 'kpi-settings',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Algorithm Settings',
         link: 'algorithm settings',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -609,6 +688,7 @@ const MODULE_LIST_VENDOR = [
         name: 'Vendor',
         link: 'Vendor',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -618,12 +698,14 @@ const LOCATION_BOUNDRIES_NETWORK_EMS_LIST = [
         name: 'Samsung',
         link: 'Samsung',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: NETWORK_EMS_SAMSUNG_LIST
     },
     {
         name: 'Airspan',
         link: 'Airspan',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: NETWORK_EMS_AIRSPAN_LIST
     }
 ];
@@ -633,12 +715,14 @@ const LOCATION_BOUNDRIES_POI_LIST_JIO = [
         name: 'JIP',
         link: 'JIP',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'JIEM',
         link: 'JIEM',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -648,18 +732,21 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_LIST = [
         name: 'Site SLA Configuration',
         link: 'site-sla-configuration',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'P2B Admin',
         link: 'p2b-admin',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'ODSC',
         link: 'odsc',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST
     }
 ];
@@ -669,12 +756,14 @@ const ADMIN_PLANNING_TAC_MODULE_LIST = [
         name: 'MME Pool Architecture',
         link: 'mme-module-architecture',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'TAC Module Admin Panel',
         link: 'tac-module-admin-panel',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -684,12 +773,14 @@ const ADMIN_ANALYTICS_SUBSCRIBER_ANALYTICS = [
         name: 'CENA',
         link: 'cena',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Algorithms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -699,6 +790,7 @@ const ADMIN_ANALYTICS_NETWORK_ANALYTICS = [
         name: 'Algorithms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -708,30 +800,35 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         name: 'Self Correlation',
         link: 'Self-Correlation',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
         name: 'Alarm Block',
         link: 'Alarm-Block',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
         name: 'Impact Settings',
         link: 'Impact-Settings',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
         name: 'Dampening Time',
         link: 'Dampening-Time',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
         name: 'Count Based Mask',
         link: 'Count-Based-Mask',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -741,12 +838,14 @@ const MODULE_LIST_AUDIT = [
         name: 'RAN',
         link: 'RAN',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_RAN
     },
     {
         name: 'Core',
         link: 'Core',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CORE
     }
 ];
@@ -756,6 +855,7 @@ const MODULE_LIST_CHANGE_IMPACT = [
         name: 'RAN',
         link: 'RAN',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_VENDOR
     }
 ];
@@ -952,18 +1052,21 @@ const ANALYTICS_SUBSCRIBER_LIST = [
         name: 'Anomalies',
         link: 'Anomalies',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Coverage',
         link: 'Coverage',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Quality & Experience',
         link: 'Quality-Experience',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -974,6 +1077,7 @@ const
             name: 'Zones',
             link: 'Zones',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: [],
             component: 'ZonesJioDialogComponent'
         },
@@ -981,48 +1085,56 @@ const
             name: 'Circles',
             link: 'Circles',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Focus Town',
             link: 'Focus-Town',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Jio Centers',
             link: 'Jio-Centers',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Jio Points',
             link: 'Jio-Points',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Zones',
             link: 'Zones',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Clusters',
             link: 'Clusters',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'Maintenance Points',
             link: 'Maintenance-Points',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         },
         {
             name: 'R4G States',
             link: 'R4G-States',
             eventName: 'sites-outdoor-esc',
+        show:true,
             children: []
         }
     ];
@@ -1038,6 +1150,7 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
         name: 'TAL',
         link: 'TAL',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: 'TacNetworkDialogComponent'
     },
@@ -1045,12 +1158,14 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
         name: 'TCA',
         link: 'TCA',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'EMI',
         link: 'EMI',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1060,6 +1175,7 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         name: 'Town Boundary',
         link: 'Towns',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: 'TownBoundaryDialogComponent'
     },
@@ -1067,42 +1183,49 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         name: 'Village Boundary',
         link: 'Villages',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Panchayat Boundary',
         link: 'Panchayat',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DHQ Boundary',
         link: 'DHQ',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Settlement Boundary',
         link: 'Settlement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'State',
         link: 'State',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'District',
         link: 'District',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Cities',
         link: 'Cities',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1112,6 +1235,7 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         name: 'Dense Urban',
         link: 'Dense-Urban',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: 'DenseUrbanDialogComponent'
     },
@@ -1119,36 +1243,42 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         name: 'Urban',
         link: 'Urban',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Sub Urban',
         link: 'Sub-Urban',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Industrial',
         link: 'Industrial',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Rural',
         link: 'Rural',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Water Body',
         link: 'Water-Body',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Dense Vegetation',
         link: 'Dense-Vegetation',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1158,42 +1288,49 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         name: 'Railway Stations',
         link: 'Railway-Stations',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Malls',
         link: 'Malls',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Airports',
         link: 'Airports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Roads',
         link: 'Roads',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Railway Tracks',
         link: 'Railway-Tracks',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Buildings',
         link: 'Buildings',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Jio Infrastructure',
         link: 'Dense-Urban',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_POI_LIST_JIO
     }
 ];
@@ -1203,24 +1340,28 @@ const ANALYTICS_NETWORK_LIST = [
         name: 'Quality & Experience',
         link: 'Quality-Experience',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_NETWORK_QUALITY
     },
     {
         name: 'Anomalies',
         link: 'Anomalies',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_NETWORK_ANOMALIES
     },
     {
         name: 'Coverage',
         link: 'Coverage',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_NETWORK_COVERAGE
     },
     {
         name: 'Point of Interest',
         link: 'Point-of-Interest',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_NETWORK_POI
     }
 ];
@@ -1230,12 +1371,14 @@ const SITES_INDOOR_lIST = [
         name: 'Small Cell',
         link: 'Small-Cell',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Wi-Fi',
         link: 'Wi-Fi',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1245,6 +1388,7 @@ const SITES_NOMINAL_lIST = [
         name: 'Macro',
         link: 'Macro',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: 'NominalMacroDialogComponent'
     },
@@ -1255,12 +1399,14 @@ const PREDICTION_LAYERS_BAND_LIST = [
         name: 'Planned',
         link: 'planned',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_PLANNED_LIST
     },
     {
         name: 'On-Air',
         link: 'on-air',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_ONAIR_LIST
     }
 ];
@@ -1270,24 +1416,28 @@ const MEASURED_LAYERS_BAND_LIST = [
         name: 'Netvelocity',
         link: 'Netvelocity',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_MB_NETVELOCITY_LIST
     },
     {
         name: 'Jio Phone',
         link: 'Jio-Phone',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_KPI_JP_LIST
     },
     {
         name: 'LSR',
         link: 'LSR',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_LSR_LIST
     },
     {
         name: 'Accuver Drive Test',
         link: 'Accuver-Drive-test',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_KPI_ADT_LIST
     }
 ];
@@ -1297,12 +1447,14 @@ const HYBRID_LAYERS_BAND_LIST = [
         name: 'Smart Network Coverage',
         link: 'Accuver-Drive-test',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_SNG_LIST
     },
     {
         name: 'Customer Measured Coverage',
         link: 'Customer-Measured-Coverage',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_CMC_LIST
     }
 ];
@@ -1312,42 +1464,49 @@ const MODULE_LIST_CONFIG = [
         name: 'LSMR Rehoming',
         link: 'LSMRRehoming',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'Trial Management',
         link: 'TrialManagement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'Software Management',
         link: 'softwareManagement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'Parameter Change',
         link: 'parameterchange',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'RQA Scheduling',
         link: 'rqascheduling',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_RQA
     },
     {
         name: 'Traceport',
         link: 'traceport',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'New Network Element',
         link: 'newnetworkelement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG_LSMR
     }
 ];
@@ -1357,24 +1516,28 @@ const MODULE_LIST_ANALYTICS_SA = [
         name: 'User Experience Anaytics',
         link: 'user-experience-analytics',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Reports',
         link: 'reports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DashBoards',
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Workorders',
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1384,30 +1547,35 @@ const MODULE_LIST_ANALYTICS_NA = [
         name: 'Distance and Bearing Angle Calculator',
         link: 'distance-bearing-calculator',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Reports',
         link: 'reports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Dashboards',
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Workorders',
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Location Coverage Analysis Utility',
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1417,12 +1585,14 @@ const MODULE_LIST_NV_DEVICES = [
         name: 'Devices Manager',
         link: 'devices manager',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Group Manager',
         link: 'group manager',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1432,18 +1602,21 @@ const ADMIN_PERFORMANCE_LIST = [
         name: 'Algorithms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'KPI Editor',
         link: 'kpi-editor',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PERFORMANCE_KPI
     },
     {
         name: 'Change Impact Module',
         link: 'impact-module',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PERFORMANCE_IMPACT
     }
 ];
@@ -1453,6 +1626,7 @@ const PLATFORM_DASHBOARD_LIST = [
         name: 'Dashboard Administrator',
         link: 'Dashboard-Administrator',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1462,12 +1636,14 @@ const PLATFORM_DATA_INTEGRITY_LIST = [
         name: 'Audit',
         link: 'Audit',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Workorder',
         link: 'Workorder',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1477,36 +1653,43 @@ const PLATFORM_WORKORDERS_LIST = [
         name: 'Analytics',
         link: 'Analytics',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_WORKORDERS_ANALYTICS_LIST
     },
     {
         name: 'Performance Management',
         link: 'Performance-Management',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        show: false
     },
     {
         name: 'Configuration Management',
         link: 'Configuration-Management',
         eventName: 'sites-outdoor-esc',
-        children: []
+        show:true,
+        children: [],
+        disabled: true
     },
     {
         name: 'Fault Management',
         link: 'Fault-Management',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Planning and Deployment',
         link: 'Planning-and-Deployment',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Netvelocity',
         link: 'Netvelocity',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1516,6 +1699,7 @@ const PLATFORM_POI_LIST = [
         name: 'JIP',
         link: 'JIP',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_POI_JIP_LIST
     }
 ];
@@ -1525,42 +1709,49 @@ const ADMIN_CONFIGURATION_LIST = [
         name: 'Software Management',
         link: 'software-mangement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_SM_LIST
     },
     {
         name: 'RET',
         link: 'ret',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_RET_LIST
     },
     {
         name: 'Golden Parameter',
         link: 'golden parameter',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_GOLDEN_LIST
     },
     {
         name: 'CM Recipe',
         link: 'cm-recipe',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_CMRECIPE_LIST
     },
     {
         name: 'New Node Parameter',
         link: 'node-parameter',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_NODE_PARAMETER_LIST
     },
     {
         name: 'Traceport - TEC/ipv6',
         link: 'traceport',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_TCE_LIST
     },
     {
         name: 'Algorithms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1570,12 +1761,14 @@ const ADMIN_PLANNING_DEPLOYMENT_LIST = [
         name: 'Site Deployment',
         link: 'site-deployment',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_PLANNING_SITE_DEPLOYMENT_LIST
     },
     {
         name: 'TAC Module',
         link: 'tac-module',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_PLANNING_TAC_MODULE_LIST
     }
 ];
@@ -1585,12 +1778,14 @@ const ADMIN_ANALYTICS_LIST = [
         name: 'Subscriber Analytics',
         link: 'subscriber-analytics',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_SUBSCRIBER_ANALYTICS
     },
     {
         name: 'Network Analytics',
         link: 'network-analytics',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_NETWORK_ANALYTICS
     }
 ];
@@ -1600,12 +1795,14 @@ const ADMIN_FAULT_LIST = [
         name: 'Correlation Module',
         link: 'correlation-module',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_FAULT_CORRELATION_LIST
     },
     {
         name: 'Algoritms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1615,18 +1812,21 @@ const ADMIN_NETVELOCITY_LIST = [
         name: 'Profile',
         link: 'Profile',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'VoLTE Handset Upload History',
         link: 'VoLTE-Upload-History',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Algoritms',
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1636,48 +1836,56 @@ const MODULE_LIST_CONFIGURATION = [
         name: 'Planned Event Calendar',
         link: 'PlannedEventCalendar',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Config Change',
         link: 'ConfigChange',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIG
     },
     {
         name: 'Audit and Query',
         link: 'AuditandQuery',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_AUDIT
     },
     {
         name: 'Workorders',
         link: 'Workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'CM Change Impact',
         link: 'cmchangeimpact',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CHANGE_IMPACT
     },
     {
         name: 'Jobs',
         link: 'jobs',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Dashboards',
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Reports',
         link: 'reports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1712,6 +1920,7 @@ const ALARMS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Macro",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -1719,6 +1928,7 @@ const ALARMS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Wi-Fi",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -1726,6 +1936,7 @@ const ALARMS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Small-Cells",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1736,6 +1947,7 @@ const ANALYTICS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Subscriber",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_SUBSCRIBER_LIST
     },
     {
@@ -1743,6 +1955,7 @@ const ANALYTICS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Network",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_NETWORK_LIST
     },
     {
@@ -1750,6 +1963,7 @@ const ANALYTICS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Others",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -1922,20 +2136,18 @@ const EQUIPMENT_ROUTE_LIST = [
         icon: "fas fa-user fa-3",
         link: "planned",
         children: [],
+        parentToChild: 'Topologies-Equipment-Planned',
         // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
         // component: "EquipmentSettingsPopupComponent"
-
-
     },
     {
         name: "Ready",
         icon: "fas fa-user fa-3",
         link: "ready",
         children: [],
+        parentToChild: 'Topologies-Equipment-Ready',
         // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
         // component: "EquipmentSettingsPopupComponent"
-
-
     }
 ];
 
@@ -2225,6 +2437,7 @@ const TOPOLOGIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: FIBRE_LIST
     },
     {
@@ -2232,6 +2445,7 @@ const TOPOLOGIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: IPO_LIST
     },
     {
@@ -2239,6 +2453,7 @@ const TOPOLOGIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MICROWAVE_LIST
     }
 ];
@@ -2250,6 +2465,7 @@ const TOPOLOGIES_LIST_OLD = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: FIBRE_ROUTE_LIST
     },
     {
@@ -2257,6 +2473,7 @@ const TOPOLOGIES_LIST_OLD = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: STRUCTURE_ROUTE_LIST
     },
     {
@@ -2264,6 +2481,7 @@ const TOPOLOGIES_LIST_OLD = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: EQUIPMENT_ROUTE_LIST
     },
     {
@@ -2271,6 +2489,7 @@ const TOPOLOGIES_LIST_OLD = [
         icon: "fas fa-user fa-3",
         link: "IP",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOGICAL_ROUTE_LIST
     }
     // {
@@ -2302,6 +2521,7 @@ const LOCATION_BOUNDRIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "Administrative-Boundaries",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST
     },
     {
@@ -2309,6 +2529,7 @@ const LOCATION_BOUNDRIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "Morphology",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_MORPHOLOGY_LIST
     },
     {
@@ -2316,6 +2537,7 @@ const LOCATION_BOUNDRIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "Census-Boundaries",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_CENSUS_LIST
     },
     {
@@ -2323,6 +2545,7 @@ const LOCATION_BOUNDRIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "Network-Boundaries",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_NETWORK_LIST
     },
     {
@@ -2330,6 +2553,7 @@ const LOCATION_BOUNDRIES_LIST = [
         icon: "fas fa-user fa-3",
         link: "Point-of-Interest",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_POI_LIST
     }
 ];
@@ -2377,6 +2601,40 @@ const CREATE_PINS = [
         name: 'CREATE PIN',
         link: 'CREATE-PIN',
         eventName: 'sites-outdoor-esc',
+        show:true,
+        children: [],
+        component: 'TacNetworkDialogComponent'
+    },
+]
+
+const CREATE_KML = [
+    {
+        name: 'CREATE PIN',
+        link: 'CREATE-PIN',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: [],
+        component: 'TacNetworkDialogComponent'
+    },
+]
+
+const CREATE_POLYGONS = [
+    {
+        name: 'CREATE PIN',
+        link: 'CREATE-PIN',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: [],
+        component: 'TacNetworkDialogComponent'
+    },
+]
+
+const CREATE_SAVED_LAYERS = [
+    {
+        name: 'CREATE PIN',
+        link: 'CREATE-PIN',
+        eventName: 'sites-outdoor-esc',
+        show:true,
         children: [],
         component: 'TacNetworkDialogComponent'
     },
@@ -2388,13 +2646,15 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "KML",
         eventName: 'sites-outdoor-esc',
-        children: []
+        show:true,
+        children: CREATE_KML
     },
     {
         name: "Pins",
         icon: "fas fa-user fa-3",
         link: "Pins",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: CREATE_PINS
     },
     {
@@ -2402,14 +2662,16 @@ const MY_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "Polygons",
         eventName: 'sites-outdoor-esc',
-        children: []
+        show:true,
+        children: CREATE_POLYGONS
     },
     {
         name: "Saved Layers",
         icon: "fas fa-user fa-3",
         link: "Saved-Layers",
         eventName: 'sites-outdoor-esc',
-        children: []
+        show:true,
+        children: CREATE_SAVED_LAYERS
     }
 ]
 
@@ -2420,6 +2682,7 @@ const PREDICTION_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "combined",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2427,6 +2690,7 @@ const PREDICTION_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2434,6 +2698,7 @@ const PREDICTION_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2441,6 +2706,7 @@ const PREDICTION_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_BAND_LIST
     }
 ];
@@ -2451,6 +2717,7 @@ const MEASURED_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "combined",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2458,6 +2725,7 @@ const MEASURED_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2465,6 +2733,7 @@ const MEASURED_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2472,6 +2741,7 @@ const MEASURED_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_BAND_LIST
     }
 ];
@@ -2482,6 +2752,7 @@ const HYBRID_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "combined",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2489,6 +2760,7 @@ const HYBRID_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2496,6 +2768,7 @@ const HYBRID_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2503,6 +2776,7 @@ const HYBRID_LAYERS_LIST = [
         icon: "fas fa-user fa-3",
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_BAND_LIST
     }
 ];
@@ -2514,6 +2788,7 @@ const MODULE_LIST_ANALYTICS = [
         icon: "fas fa-user fa-3",
         link: "subsciber-analysis",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_ANALYTICS_SA
     },
     {
@@ -2522,6 +2797,7 @@ const MODULE_LIST_ANALYTICS = [
         icon: "fas fa-user fa-3",
         link: "network-analysis",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_ANALYTICS_NA
     }
 ];
@@ -2531,6 +2807,7 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "incident-manager-module",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2539,6 +2816,7 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "Reports",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2547,6 +2825,7 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "work-orders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2555,6 +2834,7 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
+        show:true,
 
         children: []
     }
@@ -2567,6 +2847,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "devices",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_NV_DEVICES
     },
     {
@@ -2575,6 +2856,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "recipe",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2583,6 +2865,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "reports",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2591,6 +2874,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2599,6 +2883,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "workorders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2607,6 +2892,7 @@ const MODULE_LIST_NET_VELOCITY = [
         icon: "fas fa-user fa-3",
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2617,6 +2903,7 @@ const CIA_MODULE_LIST = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Module",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2624,6 +2911,7 @@ const CIA_MODULE_LIST = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-KPI-Settings",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2631,6 +2919,7 @@ const CIA_MODULE_LIST = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Admin-Settings",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2642,6 +2931,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/Report-Builder",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2650,6 +2940,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/My-Performance-Reports",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2658,6 +2949,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/KPI-Editor",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2666,6 +2958,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Performance-Management/MSISDN-To-Wi-Fi-MAC-Converter",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2674,6 +2967,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "change-impact-analysis",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: CIA_MODULE_LIST
     },
     {
@@ -2682,6 +2976,7 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         icon: "fas fa-user fa-3",
         link: "workorders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2692,6 +2987,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2699,6 +2995,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "reports",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2706,6 +3003,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "workorders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2714,6 +3012,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "tac-tal-da",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2721,6 +3020,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Planning-Deployment/enbsc",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2728,6 +3028,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "workorders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2735,6 +3036,7 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Planning-Deployment/5G-Link-Budget",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2745,6 +3047,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "performance-management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_PERFORMANCE_LIST
     },
     {
@@ -2752,6 +3055,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "configuration-management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_CONFIGURATION_LIST
     },
     {
@@ -2759,6 +3063,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "planning-deployment",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_PLANNING_DEPLOYMENT_LIST
     },
     {
@@ -2766,6 +3071,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "analytics",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_ANALYTICS_LIST
     },
     {
@@ -2773,6 +3079,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "fault-mangement",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_FAULT_LIST
     },
     {
@@ -2780,6 +3087,7 @@ const MODULE_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "net-velocity",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ADMIN_NETVELOCITY_LIST
     }
 ];
@@ -2790,6 +3098,7 @@ const USER_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Access-Management",
         eventName: 'sites-outdoor-esc',
+        show:false,
         children: []
     },
     {
@@ -2797,6 +3106,7 @@ const USER_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Role-Management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2804,6 +3114,7 @@ const USER_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Team-Management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2811,6 +3122,7 @@ const USER_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "User-Management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
@@ -2818,6 +3130,7 @@ const USER_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Work-Group-Management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2828,6 +3141,7 @@ const PLATFORM_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Dashboard",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_DASHBOARD_LIST
     },
     {
@@ -2835,6 +3149,7 @@ const PLATFORM_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Data-Integrity-Management",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_DATA_INTEGRITY_LIST
     },
     {
@@ -2842,6 +3157,7 @@ const PLATFORM_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Workorders",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_WORKORDERS_LIST
     },
     {
@@ -2849,6 +3165,7 @@ const PLATFORM_ADMINISTRATION_LIST = [
         icon: "fas fa-user fa-3",
         link: "Usage-Analytics",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -2859,6 +3176,7 @@ const PLATFORM_LAYER_LIST = [
         icon: "fas fa-user fa-3",
         link: "Point-of-Interest",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_POI_LIST
     }
 ];
@@ -2868,36 +3186,42 @@ const MODULES_LIST = [
         name: 'Configuration Management',
         link: 'ConfigurationManagement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_CONFIGURATION
     },
     {
         name: 'Analytics',
         link: 'analytics',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_ANALYTICS
     },
     {
         name: 'Fault Management',
         link: 'faultmanagement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_FAULT
     },
     {
         name: 'Net Velocity',
         link: 'net-velocity',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_NET_VELOCITY
     },
     {
         name: 'Performance Management',
         link: 'performance-management',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_PERFORMANCE_MANAGEMENT
     },
     {
         name: 'Planning and Deployment',
         link: 'planning-deployment',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MODULE_LIST_PLANNING_DEPLOYMENT
     }
 ];
@@ -2908,6 +3232,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Sites",
         eventName: 'sites-outdoor-esc',
+        show:false,
         children: SITES_LIST
     },
     {
@@ -2915,6 +3240,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Prediction-Layers",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PREDICTION_LAYERS_LIST,
         classId: 'prediction-layer-border'
     },
@@ -2923,6 +3249,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Measured-Layers",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MEASURED_LAYERS_LIST,
         classId: 'measured-layer-border'
     },
@@ -2931,6 +3258,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Hybrid-Layers",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: HYBRID_LAYERS_LIST,
         classId: 'hybrid-layer-border'
     },
@@ -2939,6 +3267,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Alarms",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ALARMS_LIST,
         classId: 'alarms-border'
 
@@ -2948,6 +3277,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Analytics",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: ANALYTICS_LIST,
         classId: 'analytics-layer-border'
     },
@@ -2956,6 +3286,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Topologies",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: TOPOLOGIES_LIST_OLD,
         classId: 'topologies-border'
     },
@@ -2964,6 +3295,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Locations-and-Boundaries",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: LOCATION_BOUNDRIES_LIST,
         classId: 'locations-border'
     },
@@ -2972,6 +3304,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "Base-Maps",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: BASE_MAPS_LIST,
         classId: 'base-map-border'
     },
@@ -2980,6 +3313,7 @@ const LAYERS_LIST = [
         icon: "fas fa-users fa-3",
         link: "My-Layers",
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: MY_LAYERS_LIST,
         classId: 'my-layers-border'
     }
@@ -3005,24 +3339,28 @@ const REPORTS_LIST = [
         name: 'Report Wizard',
         link: 'JCP/Reports-and-Dashboards/Report-Wizard',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'My Reports',
         link: 'JCP/Reports-and-Dashboards/My-Reports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Dashboards',
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: DASHBOARD_LIST
     },
     {
         name: 'My Subscriptions',
         link: 'my-subscriptions',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ];
@@ -3032,18 +3370,21 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         name: 'Sector Misalignment',
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Overshooting Cell',
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Cell Decongestion',
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     }
 ]
@@ -3053,6 +3394,7 @@ const WORKORDERS_RFOCWORKORDERS_LIST = [
         name: 'Category Wise Workorder Listing',
         link: '',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST
     }
 ]
@@ -3076,42 +3418,49 @@ const WORKORDERS_LIST = [
         name: 'My Workorders',
         link: 'my-workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'All Workorders',
         link: 'all-workorders',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'Reports',
         link: 'reports',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'DashBoards',
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'My Approvals',
         link: 'my-approvals',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: []
     },
     {
         name: 'RF OC Workorders',
         link: '',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: WORKORDERS_RFOCWORKORDERS_LIST
     },
     {
         name: 'CM Workorders',
         link: '',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: WORKORDERS_CMWORKORDERS_LIST
     }
 ];
@@ -3121,24 +3470,28 @@ const ADMINISTRATION_LIST = [
         name: 'Module Management',
         link: 'module-management',
         eventName: 'sites-outdoor-esc',
+        show:false,
         children: MODULE_ADMINISTRATION_LIST
     },
     {
         name: 'User Management',
         link: 'user-management',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: USER_ADMINISTRATION_LIST
     },
     {
         name: 'Platform Management',
         link: 'platform-management',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_ADMINISTRATION_LIST
     },
     {
         name: 'Layer Management',
         link: 'layer-mangement',
         eventName: 'sites-outdoor-esc',
+        show:true,
         children: PLATFORM_LAYER_LIST
     }
 ];
@@ -3149,22 +3502,27 @@ export const LEFTSIDE_MENU_LIST = [
         link: 'JCP/Home',
         icon: 'ic ic-home-01',
         eventName: 'sites-outdoor-esc',
+        show0:true,
         level: 0,
-        children: []
+        children: [],
+        disabled: true,
     },
     {
         name: 'Layers',
         link: 'JCP/Layers',
         icon: 'ic ic-layers-01',
         eventName: 'sites-outdoor-esc',
+        show0:true,
         level: 0,
-        children: LAYERS_LIST
+        children: LAYERS_LIST,
+        disabled: false
     },
     {
         name: 'Modules',
         link: 'Modules',
         icon: 'ic ic-modules-01',
         eventName: 'sites-outdoor-esc',
+        show0:true,
         level: 0,
         children: MODULES_LIST
     },
@@ -3173,6 +3531,7 @@ export const LEFTSIDE_MENU_LIST = [
         link: 'Reports & Dashboard',
         icon: 'ic ic-reports',
         eventName: 'sites-outdoor-esc',
+        show0:false,
         level: 0,
         children: REPORTS_LIST
     },
@@ -3182,13 +3541,15 @@ export const LEFTSIDE_MENU_LIST = [
         icon: 'ic ic-work_Order-01',
         eventName: 'sites-outdoor-esc',
         level: 0,
-        children: WORKORDERS_LIST
+        children: WORKORDERS_LIST,
+        show0: true
     },
     {
         name: 'Administration',
         link: 'administration',
         icon: 'ic ic-administration-01',
         eventName: 'sites-outdoor-esc',
+        show0:true,
         level: 0,
         children: ADMINISTRATION_LIST
     },
@@ -3197,6 +3558,7 @@ export const LEFTSIDE_MENU_LIST = [
         link: '/JCP/My-JCP',
         icon: 'ic ic-my_jcp-01',
         eventName: 'sites-outdoor-esc',
+        show0:true,
         level: 0,
         children: []
     }

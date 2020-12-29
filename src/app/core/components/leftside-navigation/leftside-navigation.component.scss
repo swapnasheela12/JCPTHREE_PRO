@@ -364,3 +364,9 @@ $w240: 240px;
   right: 0;
   margin-right: 14px;
 }
+
+.disabled-menu-item-nav {
+    color: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+}

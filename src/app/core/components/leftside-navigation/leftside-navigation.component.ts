@@ -22,12 +22,16 @@ export class SideNavNode {
   children?: SideNavNode[];
   component?: Component;
   componentLayer?: Component;
+  disabled?: Boolean;
+  show?: Boolean;
+  show0?: Boolean;
 }
 
 class ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
+  show: Boolean;
 }
 
 const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
@@ -38,7 +42,7 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
   styleUrls: ['./leftside-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LeftsideNavigationComponent implements OnInit {
+export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
   parentNode: ExampleFlatNode;
   nodeType = 'TEST';
@@ -54,6 +58,8 @@ export class LeftsideNavigationComponent implements OnInit {
   dialog: NavigationSettingsService;
   /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
+    $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
+    $('.disabled-menu-item-nav').parent().css({'color': 'gray','cursor': 'not-allowed','pointer-events': 'none'});
     if (typeof btn.target.children[0] != 'undefined') {
       if (btn.target.children[0].classList[1] == 'ic-layers-01') {
         this.router.navigate(['/JCP/Layers']);
@@ -79,7 +85,10 @@ export class LeftsideNavigationComponent implements OnInit {
       parentToChild: node.parentToChild,
       children: node.children,
       component: node.component,
-      componentLayer: node.componentLayer
+      componentLayer: node.componentLayer,
+      disabled: node.disabled,
+      show: node.show,
+      show0: node.show0
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -97,32 +106,37 @@ export class LeftsideNavigationComponent implements OnInit {
   ) {
     this.dataSource.data = LAYERS_DATA;
 
-    this.datashare.currentMessage.subscribe((data: any) => {
-      let addPin: any = {
-        name: data.pinName,
-        icon: "fas fa-user fa-3",
-        link: "Pins",
-        eventName: 'new-pin',
-        component: 'ImportKmlComponent'
-      };
-      console.log("data", LAYERS_DATA);
-      if (data) {
-        this.dataSource.data[9].children[1].children.push(addPin);
-        console.log("pins", this.dataSource.data[9].children[1].children);
-      }
-    });
+    // this.datashare.currentMessage.subscribe((data: any) => {
+    //   console.log(data)
+    //   let addPin: any = {
+    //     name: data.pinName,
+    //     icon: "fas fa-user fa-3",
+    //     link: "Pins",
+    //     eventName: 'new-pin',
+    //     component: 'ImportKmlComponent'
+    //   };
+    //   console.log("data", LAYERS_DATA);
+    //   if (data) {
+    //     this.dataSource.data[9].children[1].children.push(addPin);
+    //     console.log("pins", this.dataSource.data[9].children[1].children);
+    //   }
+    // });
   }
 
-
+  ngAfterViewInit() {
+    $('.hide-menu-item-nav').parent().parent().css({ 'display': 'none' });
+    $('.hide-parent-menu-item-nav').parent().parent().css({ 'display': 'none' });
+    $('.disabled-menu-item-nav').parent().css({'color': 'gray','cursor': 'not-allowed','pointer-events': 'none'});
+  }
   parentIconClick(mmenuDirective, level) {
     if (level == 0) {
       mmenuDirective.menu.API.closeAllPanels()
     }
   }
-
+  // [ngClass]="{'hide-menu-item-nav': (item.show == false), 'disabled-menu-item-nav':(item.disabled == true) }"
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   isLevelZero = (_: number, node: ExampleFlatNode) => node.level === 0 && node.expandable;
-  isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable;
+  isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable && node.show != false;
   isLevelGreterThanOne = (_: number, node: ExampleFlatNode) => node.level > 1 && node.expandable;
   hasNoContent = (_: number, node: ExampleFlatNode) => !node.expandable;
   getChildren = (node: SideNavNode) => {
@@ -130,20 +144,23 @@ export class LeftsideNavigationComponent implements OnInit {
   };
 
   ngOnInit() {
+    $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
     this.datashare.currentMessage.subscribe((data: any) => {
-      const addPin: any = {
-        name: data.pinName,
-        link: 'CREATE-PIN',
-        eventName: 'sites-outdoor-esc',
-        children: [],
-        component: 'PinGroupSettingComponent'
-      };
-      if (data.pinName) {
-        let dataChange = this.dataSource.data;
-        dataChange[9].children[1].children.push(addPin);
-        this.dataSource.data = [];
-        this.dataSource.data = dataChange;
-      } else { }
+      if (Object.keys(data).length !== 0) {
+        const addPin: any = {
+          name: data.pinName,
+          link: 'CREATE-PIN',
+          eventName: 'sites-outdoor-esc',
+          children: [],
+          component: 'PinGroupSettingComponent'
+        };
+        if (data.pinName) {
+          let dataChange = this.dataSource.data;
+          dataChange[9].children[1].children.push(addPin);
+          this.dataSource.data = [];
+          this.dataSource.data = dataChange;
+        } else { }
+      }
     });
   }
 
@@ -173,20 +190,24 @@ export class LeftsideNavigationComponent implements OnInit {
   recNode(arr: any[], data: any[], index: number, maxIndex: number): any[] {
     if (arr === undefined)
       arr = [];
+    if (data.length != 0){
     for (let i = 0; i < data.length; i++) {
       index++
       if (index === maxIndex) {
         return ([true, index, arr]);
       }
-      if (data[i].children.length || data[i]) {
-        let res = this.recNode(arr, data[i].children, index, maxIndex);
-        index = res[1];
-        if (res[0] === true) {
-          arr.splice(0, 0, (i !== (data.length - 1)));
-          return ([true, index, arr]);
+      if (data[i].children != undefined){
+        if (data[i].children.length || data[i]) {
+          let res = this.recNode(arr, data[i].children, index, maxIndex);
+          index = res[1];
+          if (res[0] === true) {
+            arr.splice(0, 0, (i !== (data.length - 1)));
+            return ([true, index, arr]);
+          }
         }
       }
     }
+  }
     return ([false, index, arr]);
   }
 

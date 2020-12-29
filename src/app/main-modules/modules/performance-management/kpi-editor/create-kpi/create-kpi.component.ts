@@ -697,6 +697,17 @@ export class CreateKpiComponent implements OnInit {
       onDragStop: function(params) {
         var tile = params.node.data.Name;
         tileContainer.append(tile);
+       
+        let node = document.getElementById("textareaFormula");
+        node.focus();
+        node.innerHTML = node.innerHTML.replace(/['"]+/g, '');
+        let textNode = node.firstChild;
+        let range = document.createRange();
+        range.setStart(textNode,node.innerHTML.length);
+        range.setEnd(textNode,node.innerHTML.length);
+        let sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
       },
     };
   params.api.addRowDropZone(dropZone);
