@@ -83,7 +83,27 @@
     }
 }
 .jcp-table-control-layers-container{
-    height: 320px !important
+    height: 320px !important;
+    .parent-color-coding {
+        background:#f1f1f1;
+        height: 32px;
+        width: 48px;
+        border-radius: 6px;
+        .mat-icon {
+            font-size: 24px;
+        }
+        .color-coding {
+            width: 25px;
+            height: 24px;
+            border-radius: 4px;
+            background-color: white;
+            margin-left: 4px;
+        }
+    }
+    .color-picker.open{
+        top: 6px !important;
+        left: 186px !important;
+    }
 }
 .legends-and-filters {
     .date-legends-and-filters {

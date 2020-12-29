@@ -89,8 +89,8 @@ import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/rou
 import { StructurePlannedSettingsPopupComponent } from './layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FivegCircularSpiderViewComponent } from './fiveg-circular-spider-view/fiveg-circular-spider-view.component';
-// import { LogicalConnectivityComponent } from './layer-list/topologies/logical-connectivity/logical-connectivity.component';
-// import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/fiveg-adjacent-spider-view.component';
+import { LogicalConnectivityComponent } from './layer-list/topologies/logical-connectivity/logical-connectivity.component';
+import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/fiveg-adjacent-spider-view.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -128,8 +128,8 @@ import { FivegCircularSpiderViewComponent } from './fiveg-circular-spider-view/f
     NominalViewComponent,
     StructurePlannedSettingsPopupComponent,
     FivegCircularSpiderViewComponent,
-    // LogicalConnectivityComponent,
-    // FivegAdjacentSpiderViewComponent
+    LogicalConnectivityComponent,
+    FivegAdjacentSpiderViewComponent
   ],
   imports: [
     DragDropModule,

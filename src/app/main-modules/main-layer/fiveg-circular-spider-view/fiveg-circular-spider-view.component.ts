@@ -14,6 +14,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
   @ViewChild('mapTree', { static: false }) mapTree: ElementRef
   data;
   colocatedCircularCircleData;
+  latlng;
   leafSVG;
   mainRef;
   mainLayerReference;
@@ -317,7 +318,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
             d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
           })
           .on('click', (d) => {
-            this.mainRef.openSpiderCircularPopups(d, this.mainLayerReference);
+            this.mainRef.openSpiderCircularPopups(d, this.mainLayerReference, this.latlng);
           });
 
       let cellSite: any = circleOrbitGroup.append('g')

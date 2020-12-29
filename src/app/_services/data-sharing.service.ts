@@ -44,15 +44,24 @@ export class DataSharingService {
   private removeLayerSource = new BehaviorSubject({});
   removeLayerMessage = this.removeLayerSource.asObservable();
 
-  private mainLayerSource = new BehaviorSubject({​​​​​​​}​​​​​​​);
+  private mainLayerSource = new BehaviorSubject({});
   mainLayerMessage = this.mainLayerSource.asObservable();
+
+  private extraLayerSource = new BehaviorSubject({});
+  extraLayerMessage = this.extraLayerSource.asObservable();
+
+  private removeExtraLayerSource = new BehaviorSubject({});
+  removeExtraLayerMessage = this.removeExtraLayerSource.asObservable();
+
+  counter = 0;
+  private countLogicalSource = new BehaviorSubject(this.counter);
+  countLogical = this.countLogicalSource.asObservable();
   
   constructor() { }
 
   changeMessage(messages: Object) {
     this.messageSource.next(messages);
   }
-
   changesmallCellPlanned(smallCellPlanneds: Object) {
     this.smallCellPlannedSource.next(smallCellPlanneds);
   }
@@ -103,7 +112,19 @@ export class DataSharingService {
     this.removeLayerSource.next(message);
   }
 
-  mainLayer(message) {​​​​​​​
+  mainLayer(message) {
     this.mainLayerSource.next(message);
-  }​​​​​​​
+  }
+
+  setExtraLayer(message) {
+    this.extraLayerSource.next(message);
+  }
+
+  removeExtraLayer(message) {
+    this.removeExtraLayerSource.next(message);
+  }
+
+  countLogicalMessage(){   
+    this.countLogicalSource.next(++this.counter);
+  }
 }

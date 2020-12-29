@@ -1,19 +1,24 @@
 import { CustomLegendsComponent } from './custom-legends/custom-legends.component';
-import { Component, OnInit, Inject, ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, EventEmitter, ViewEncapsulation, ViewChild, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
+import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 
 import * as moment from 'moment';
 import { LocaleConfig } from 'ngx-daterangepicker-material';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { MatSelect } from '@angular/material/select';
+import { Subscription } from 'rxjs';
 
 // declare var $: any;
 
 @Component({
   selector: 'app-legends-and-filter',
   templateUrl: './legends-and-filter.component.html',
-  styleUrls: ['./legends-and-filter.component.scss']
+  styleUrls: ['./legends-and-filter.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  providers: [ColorPickerService]
 })
 export class LegendsAndFilterComponent implements OnInit {
   public selectedLayerSearchValue;
@@ -21,6 +26,13 @@ export class LegendsAndFilterComponent implements OnInit {
   public selectedLayerTableName;
   public selectedLayers = {};
   public selectedLayerCtrl: FormControl = new FormControl();
+  @ViewChild('select') select: MatSelect;
+  allSelected=false;
+  @Input() colorOutline: string;
+  @Input() colorFill: string = 'red';
+  @Input() colorFill2: string = 'orange';
+  @Input() colorFill3: string = 'blue';
+  @Input() colorFill4: string = 'pink';
   // selectedColor = '';
   // selectedColorValue;
 
@@ -110,27 +122,53 @@ export class LegendsAndFilterComponent implements OnInit {
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
   showRouteLegends: boolean = false;
+  showfivegLegends: boolean = false;
   showCommonLegends: boolean = false;
+  extraLayer: Subscription;
+  countSub: Subscription;
+  allLayers=[];
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<LegendsAndFilterComponent>,
     private datashare: DataSharingService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private cpService: ColorPickerService
   ) {
     this.datashare.leftNavSelectedLayerMessage.subscribe((selectedLayersAll) => {
       this.selectedLayers = selectedLayersAll;
     });
   }
-
+  counts = {};
   ngOnInit(): void {
-
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.inited = true;
-    })
-
+      this.datashare.extraLayerMessage.subscribe(
+        (layer) => {
+          if (Object.keys(layer).length !== 0) {
+            for (let i = 0; i < this.selectedLayers['length']; i++) {
+              this.allLayers.push(this.selectedLayers[i].parentToChild);
+            }
+            if (this.allLayers.includes('Topologies-Structure-Planned') && !this.allLayers.includes('Logical-Connectivity')) {
+              this.selectedLayers[this.selectedLayers['length']] = layer;
+            }
+            }
+          }
+        );
+      
+      this.datashare.removeExtraLayerMessage.subscribe(
+        (removeExtraLayer) => {
+          if (this.allLayers.includes(removeExtraLayer['parentToChild'])) {
+            let indexLogicalConnectivity = this.allLayers.indexOf(removeExtraLayer['parentToChild']);
+            this.selectedLayers[indexLogicalConnectivity] = {};
+            this.selectedLayers['length'] = this.selectedLayers['length'] - 1;
+          }
+        }
+      );
+      this.dialogRef.afterOpened().subscribe(() => {
+        this.inited = true;
+      })
   }
+
   ngAfterViewInit() {
     // this.setInitialValue();
     this.cd.detectChanges();
@@ -140,6 +178,7 @@ export class LegendsAndFilterComponent implements OnInit {
     switch (layer.value) {
       case "Sites-OnAir-Macro-Macro4G":
         this.showRouteLegends = false;
+        this.showfivegLegends = false;
         this.showCommonLegends = true;
         this.minValue = -110;
         this.maxValue = -40;
@@ -157,28 +196,48 @@ export class LegendsAndFilterComponent implements OnInit {
       case "Topologies-Fibre-Route-Ready-Core":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
       case "Topologies-Fibre-Route-Ready-Collector":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
       case "Topologies-Fibre-Route-Planned-Core":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
       case "Topologies-Fibre-Route-Planned-Collector":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
       case "Topologies-Structure-Planned":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
       case "Topologies-Structure-Ready":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
+        this.showfivegLegends = false;
         break;
-
+      case "Topologies-Equipment-Planned":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        this.showfivegLegends = false;
+        break;
+      case "Topologies-Equipment-Ready":
+        this.showRouteLegends = true;
+        this.showCommonLegends = false;
+        this.showfivegLegends = false;
+        break;
+      case "Logical-Connectivity":
+          this.showRouteLegends = false;
+          this.showCommonLegends = false;
+          this.showfivegLegends = true;
+          break;
 
     }
     // if(layer.value == 'Macro') {
@@ -440,5 +499,13 @@ export class LegendsAndFilterComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.countSub) {
+      this.countSub.unsubscribe();
+    }
+    if (this.extraLayer) {
+      this.extraLayer.unsubscribe();
+    }
+  }
 
 }

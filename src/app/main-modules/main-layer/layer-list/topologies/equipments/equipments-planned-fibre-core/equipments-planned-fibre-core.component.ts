@@ -7,9 +7,10 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FibreTableViewPopupModel, RouteTableViewComponent } from '../../fibre/route/route-table-view/route-table-view.component';
-import { ShapeService } from '../../../../layers-services/shape.service';
+import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { FivegCircularSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-circular-spider-view/fiveg-circular-spider-view.component';
 import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
+import { LogicalConnectivityComponent } from '../../logical-connectivity/logical-connectivity.component';
 
 @Component({
   selector: 'app-equipments-planned-fibre-core',
@@ -17,16 +18,16 @@ import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-
   styleUrls: ['./equipments-planned-fibre-core.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDestroy  {
+export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDestroy {
 
-  routeFibreCoreLayer: any;
-  routeFibreCoreLayerContainer: any;
+  equipmentPlannedCoreLayer: any;
+  equipmentStructurePlannedLayer: any;
   map: any;
   canvasCore: any;
   ctxCore: any;
   canvasLayer: HTMLElement;
   stageRouteContainer: createjs.Stage;
-  routePlannedData: Object;
+  equipmentPlannedData: Object;
   routeReadyFibreCoreSubscription: Subscription;
   fibreData: void;
   positionLatLng: any;
@@ -63,9 +64,31 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
   colocatedLinkDot: any;
   colocatedLinksCenterPoint: { x: number; y: number; };
   allPoints = [];
+  allPoints1 = [];
+  equipmentPlannedLayerContainer:any;
 
   ref: this;
   mainLayerRef: {};
+  equipmentData: any = [
+    {
+      name: 'Equipment',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I164'
+    },
+    {
+      name: 'Logical Connectivity',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I174'
+    }
+  ];
   equipmentColocatedData: any = [
     {
       name: 'Properties',
@@ -184,26 +207,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
         ],
     }
   ];
-  equipmentData: any = [
-    {
-      name: 'Equipment',
-      value: 5,
-      color: '#03A9F4',
-      font: 'Material-Design-Iconic-Font',
-      fontvalue: '\uf207',
-      eventname: 'sites-tree-candidates-nominals',
-      sapid: 'I-MU-MUMB_ENB_I164'
-    },
-    {
-      name: 'Logical Connectivity',
-      value: 5,
-      color: '#03A9F4',
-      font: 'Material-Design-Iconic-Font',
-      fontvalue: '\uf207',
-      eventname: 'sites-tree-candidates-nominals',
-      sapid: 'I-MU-MUMB_ENB_I174'
-    }
-  ];
+  
   siteImagePetal: createjs.Bitmap;
   equipmentContainerEach: createjs.Container;
   equipmentImage: createjs.Bitmap;
@@ -220,6 +224,8 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.routeReadyFibreCoreSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) => {
         if ('EquipmentsPlannedFibreCoreComponent' == removeLayer) {
+          let removeLayer = 'Logical-Connectivity';
+          this.dataShare.removeExtraLayer(removeLayer);
           this.removeLayer();
         }
       }
@@ -227,7 +233,6 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.dataShare.mainLayerMessage.subscribe(
       (test) => {
         this.mainLayerRef = test;
-        console.log(this.mainLayerRef)
       }
     )
   }
@@ -237,7 +242,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.equipmentPopup = this.getPopup();
 
     this.map = this.shapeService.mapServiceData;
-    this.routeFibreCoreLayer = new CustomLayer({
+    this.equipmentPlannedCoreLayer = new CustomLayer({
       container: document.createElement("canvas")
     });
     // this.map.setView(new L.LatLng(15.620236, 73.729269), 9);
@@ -246,23 +251,23 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.map.setZoom(4);
     let outerThis = this;
 
-    this.routeFibreCoreLayer.on("layer-render", function () {
+    this.equipmentPlannedCoreLayer.on("layer-render", function () {
       let that = this;
       const componentRef = this.componentRef = this;
       outerThis.getRouteData().subscribe((data) => {
-        this.routePlannedData = data;
-        that.routeFibreCoreLayerContainer = outerThis.resizeContainer();
+        this.equipmentPlannedData = data;
+        that.equipmentPlannedLayerContainer = outerThis.resizeContainer();
         outerThis.createLayer(
-          that.routeFibreCoreLayerContainer,
+          that.equipmentPlannedLayerContainer,
           that._zoom,
-          this.routePlannedData,
+          this.equipmentPlannedData,
           componentRef,
           that._assetQueue
         );
       });
     });
 
-    this.routeFibreCoreLayer.addTo(this.map);
+    this.equipmentPlannedCoreLayer.addTo(this.map);
   }
 
   getRouteData() {
@@ -280,9 +285,9 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
   }
 
   resizeContainer() {
-    this.canvasCore = this.routeFibreCoreLayer.getContainer();
+    this.canvasCore = this.equipmentPlannedCoreLayer.getContainer();
     let m = L.Browser.retina ? 2 : 1;
-    let size = this.routeFibreCoreLayer._bounds.getSize();
+    let size = this.equipmentPlannedCoreLayer._bounds.getSize();
     this.canvasCore.width = m * size.x;
     this.canvasCore.height = m * size.y;
     this.canvasCore.style.width = size.x + "px";
@@ -290,8 +295,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     return this.canvasCore;
   }
 
-  createLayer = function (container, zoomLevel, routePlannedData, layerContainer, routeQueue) {
-    console.log(zoomLevel);
+  createLayer = function (container, zoomLevel, equipmentPlannedData, layerContainer, routeQueue) {
     this.lineColors = 'red';
     this.allLinePoints = [];
     this.zoomLevel = zoomLevel;
@@ -311,53 +315,73 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.stageRouteContainer.removeAllChildren();
     this._assetQueue = new createjs.LoadQueue(false, null, true);
     this._assetQueue.loadManifest(this._plannedSiteImageManifest, true);
-    if (this.zoomLevel <= 7) {
-      this.equipmentContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              this.imagePath = 'assets/images/Layers/topologies/equipment/AG1Router.svg';
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawEquipmentImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.equipmentContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
+    this.equipmentContainer = new createjs.Container();
+    for (let j = 0; j < equipmentPlannedData.length; j++) {
+      for (let i = 0; i < equipmentPlannedData[j][4].boundary.length; i++) {
+        this.allPoints["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"]= [];
+        this.allPoints1["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"]= [];
+        for (let n in equipmentPlannedData[j][4].boundary[i]) {
+          for (let k = 0; k < equipmentPlannedData[j][4].boundary[i][n].length; k++) {
+            this.allPoints["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"].push([
+              equipmentPlannedData[j][4].boundary[i][n][k].latlng[0],
+              equipmentPlannedData[j][4].boundary[i][n][k].latlng[1]
+            ]);
+            this.allPoints1["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"].push([
+              equipmentPlannedData[j][4].boundary[i][n][k].latlng[0],
+              equipmentPlannedData[j][4].boundary[i][n][k].latlng[1],
+              equipmentPlannedData[j][4].boundary[i][n][k].sector,
+              equipmentPlannedData[j][4].boundary[i][n][k].band,
+              equipmentPlannedData[j][4].boundary[i][n][k].cnum,
+              equipmentPlannedData[j][4].boundary[i][n][k].sapid,
+              equipmentPlannedData[j][4].boundary[i][n][k].type
+            ]);
           }
         }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
       }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
+      let eachStatePoints = this.allPoints["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"];
+      var count = {};
+      var greaterThanOne = {};
+
+      eachStatePoints.forEach(function(i) {
+        count[i] = (count[i]||0) + 1;
+        if (count[i] > 1) {
+          greaterThanOne[i] = count[i];
+        }
+      });
+      let eachStatePoints1 = this.allPoints1["'"+equipmentPlannedData[j][1].rj_r4g_state_name+"'"];
+      var count1 = {};
+      var greaterThanOne1 = {};
+
+      eachStatePoints1.forEach(function(i) {
+        count1[i] = (count1[i]||0) + 1;
+        // if (count[i] > 1) {
+          greaterThanOne1[i] = count1[i];
+        // }
+      });
+    }
+    let outerContainerThis = this;
+    let entries:any = Object.entries(greaterThanOne);
+    let entries1:any = Object.entries(greaterThanOne1);
+    let data = [];
+    for (let g=0; g < entries.length; g++) {
+      let splittedArray = entries[g][0].split(',').map(Number);
+      for(let l=0; l < entries1.length; l++) {
+        let splittedArray1 = entries1[l][0].split(',').map(String);
+        if (splittedArray1[0] != splittedArray[0] && splittedArray1[1] != splittedArray[1]) {
+          data.push(entries1[l]);
+        }
+      }
+    }
+    for (let m=0; m < data.length; m++) {
+      this.drawEquipmentImage(
+        this.positionLatLng,
+        this.linksCenterPoint,
+        this.equipmentContainer,
+        data[m],
+        this.imagePath
+      );
+    }
+    for (let g=0; g < entries.length; g++) {
           let splittedArray = entries[g][0].split(',').map(Number);
           this.positionCololatedLatLng = L.latLng({
             lat: splittedArray[0],
@@ -380,175 +404,67 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
             splittedArray[1]
           );
           this.stageRouteContainer.addChild(this.equipmentContainer);
-      }
-    } else if (this.zoomLevel > 7 && this.zoomLevel <= 11) {
-      this.equipmentContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              if (routePlannedData[j][4].boundary[i][n][k].type == 'JointClosure'){
-                this.imagePath = 'assets/images/Layers/topologies/equipment/JointClosure.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'CSSRouter') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/CSSRouter.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'L2Switch') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/L2Switch.svg';
-              }
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawEquipmentImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.equipmentContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.equipmentContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.equipmentContainer);
-      }
-    } else if (this.zoomLevel > 11 && this.zoomLevel <= 12) {
-      this.equipmentContainer = new createjs.Container();
-      for (let j = 0; j < routePlannedData.length; j++) {
-        for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
-          this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"]= [];
-          for (let n in routePlannedData[j][4].boundary[i]) {
-            for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
-              this.positionLatLng = L.latLng(
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              );
-
-              this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
-              this.linksCenterPoint = {
-                x: this.linksDot.x * this.pixelRatio,
-                y: this.linksDot.y * this.pixelRatio
-              };
-              if (routePlannedData[j][4].boundary[i][n][k].type == 'Splitter2'){
-                this.imagePath = 'assets/images/Layers/topologies/equipment/Splitter2.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'Splitter1') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/Splitter1.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'OTB') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/OTB.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'ONT') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/ONT.svg';
-              } else if (routePlannedData[j][4].boundary[i][n][k].type == 'OLT') {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/OLT.svg';
-              } else {
-                this.imagePath = 'assets/images/Layers/topologies/equipment/Others.svg';
-              }
-              this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"].push([
-                routePlannedData[j][4].boundary[i][n][k].latlng[0],
-                routePlannedData[j][4].boundary[i][n][k].latlng[1]
-              ]);
-              this.drawEquipmentImage(
-                this.positionLatLng,
-                this.linksCenterPoint,
-                this.equipmentContainer,
-                routePlannedData[j][4].boundary[i][n][k],
-                this.imagePath
-              );
-            }
-          }
-        }
-        let eachStatePoints = this.allPoints["'"+routePlannedData[j][1].rj_r4g_state_name+"'"];
-          var count = {};
-          var greaterThanOne = {};
-
-          eachStatePoints.forEach(function(i) {
-            count[i] = (count[i]||0) + 1;
-            if (count[i] > 1) {
-              greaterThanOne[i] = count[i];
-            }
-          });
-      }
-      let outerContainerThis = this;
-      let entries:any = Object.entries(greaterThanOne);
-      for (let g=0; g < entries.length; g++) {
-          console.log(entries[g][0].split(','));
-          let splittedArray = entries[g][0].split(',').map(Number);
-          this.positionCololatedLatLng = L.latLng({
-            lat: splittedArray[0],
-            lng: splittedArray[1]
-          });
-          this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-          this.colocatedLinksCenterPoint = {
-              x: this.colocatedLinkDot.x * this.pixelRatio,
-              y: this.colocatedLinkDot.y * this.pixelRatio
-          };
-          let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1'}];
-          this.drawCircularCircle(
-            entries[g][1],
-            this.equipmentContainer,
-            this.colocatedLinksCenterPoint,
-            outerContainerThis.mainLayerRef,
-            this.positionCololatedLatLng,
-            colocatedData,
-            splittedArray[0],
-            splittedArray[1]
-          );
-          this.stageRouteContainer.addChild(this.equipmentContainer);
-      }
     }
     this.stageRouteContainer.addChild(this.equipmentContainer);
     this.stageRouteContainer.update();
   }
 
   drawEquipmentImage(latlng, centerpoint, equipmentContainer, equipmentData, imagePath) {
+    imagePath = '';
+    let equipmentEachData = equipmentData[0].split(',').map(String);
+    if (this.zoomLevel <= 7) {
+      imagePath = 'assets/images/Layers/topologies/equipment/AG1Router.svg';
+    } else if (this.zoomLevel > 7 && this.zoomLevel <= 11) {
+      if (equipmentEachData[6] == 'JointClosure'){
+        imagePath = 'assets/images/Layers/topologies/equipment/JointClosure.svg';
+      } else if (equipmentEachData[6] == 'CSSRouter') {
+        imagePath = 'assets/images/Layers/topologies/equipment/CSSRouter.svg';
+      } else if (equipmentEachData[6] == 'L2Switch') {
+        imagePath = 'assets/images/Layers/topologies/equipment/L2Switch.svg';
+      }
+    } else if (this.zoomLevel > 11 && this.zoomLevel <= 12) {
+      if (equipmentEachData[6] == 'Splitter2'){
+        imagePath = 'assets/images/Layers/topologies/equipment/Splitter2.svg';
+      } else if (equipmentEachData[6] == 'Splitter1') {
+        imagePath = 'assets/images/Layers/topologies/equipment/Splitter1.svg';
+      } else if (equipmentEachData[6] == 'OTB') {
+        imagePath = 'assets/images/Layers/topologies/equipment/OTB.svg';
+      } else if (equipmentEachData[6] == 'ONT') {
+        imagePath = 'assets/images/Layers/topologies/equipment/ONT.svg';
+      } else if (equipmentEachData[6] == 'OLT') {
+        imagePath = 'assets/images/Layers/topologies/equipment/OLT.svg';
+      } else {
+        imagePath = 'assets/images/Layers/topologies/equipment/Others.svg';
+      }
+      if (equipmentEachData[6] == 'SAG2'){
+        imagePath = 'assets/images/Layers/topologies/equipment/SAG2.svg';
+      } else if (equipmentEachData[6] == 'ILA') {
+        imagePath = 'assets/images/Layers/topologies/equipment/ILA.svg';
+      } else if (equipmentEachData[6] == 'Pole') {
+        imagePath = 'assets/images/Layers/topologies/equipment/Pole.svg';
+      } else if (equipmentEachData[6] == 'ManHole') {
+        imagePath = 'assets/images/Layers/topologies/equipment/ManHole.svg';
+      } else if (equipmentEachData[6] == 'FiberPop') {
+        imagePath = 'assets/images/Layers/topologies/equipment/FiberPop.svg';
+      } else {
+        imagePath = 'assets/images/Layers/topologies/equipment/AG1.svg';
+      }
+    }
+    this.positionLatLng = L.latLng(
+      equipmentEachData[0],
+      equipmentEachData[1]
+    );
+
+    this.linksDot = this.map.latLngToContainerPoint(this.positionLatLng);
+    this.linksCenterPoint = {
+      x: this.linksDot.x * this.pixelRatio,
+      y: this.linksDot.y * this.pixelRatio
+    };
+
     this.equipmentContainerEach = new createjs.Container();
     this.equipmentContainerEach.cursor = 'pointer';
-    this.equipmentContainerEach.x = centerpoint.x;
-    this.equipmentContainerEach.y = centerpoint.y;
+    this.equipmentContainerEach.x = this.linksCenterPoint.x;
+    this.equipmentContainerEach.y = this.linksCenterPoint.y;
     this.equipmentContainerEach.scaleX = this.scaleMatrix;
     this.equipmentContainerEach.scaleY = this.scaleMatrix;
 
@@ -557,20 +473,19 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     this.equipmentImage.regY = 30;
     this.equipmentImage.scaleX = 1.0;
     this.equipmentImage.scaleY = 1.0;
-    this.equipmentImage['latlng'] = latlng;
-    this.equipmentImage['data'] = equipmentData;
+    this.equipmentImage['latlng'] = this.positionLatLng;
+    this.equipmentImage['data'] = equipmentEachData;
     this.equipmentImage.image.onload = function () {
       outerthis.stageRouteContainer.update();
     }
 
-    this.equipmentImageText = new createjs.Text(equipmentData.sapid, "15px Lato Bold", "#000000");
+    this.equipmentImageText = new createjs.Text(equipmentEachData[5], "15px Lato Bold", "#000000");
     this.equipmentImageText.textAlign = 'center';
     this.equipmentImageText.textBaseLine = 'middle';
     this.equipmentImageText.y = 50;
 
     let outerthis = this;
     this.equipmentImage.on('mouseover', function (event) {
-      console.log(event);
       let target = event['target'];
       let dot = L.point((event['rawX'] / outerthis.pixelRatio), (event['rawY'] / outerthis.pixelRatio));
       target.latlng = outerthis.map.containerPointToLatLng(dot);
@@ -578,16 +493,16 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">Sector:</span>' +
-        '<span class="value">' + target.data.sector + '</span></div>';
+        '<span class="value">' + target.data[2] + '</span></div>';
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">Band:</span>' +
-        '<span class="value">' + target.data.band + '</span>' +
+        '<span class="value">' + target.data[3] + '</span>' +
         '</div>';
       template +=
         '<div class="layout-row popup-layout-padding">' +
         '<span class="prefix">cNum:</span>' +
-        '<span class="value">' + target.data.cnum + '</span>' +
+        '<span class="value">' + target.data[4] + '</span>' +
         '</div>';
       outerthis.equipmentPopup.setLatLng(target.latlng).setContent(template).openOn(outerthis.map);
     });
@@ -617,6 +532,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     ref.componentRef.instance.colocatedCircleData = colocatedData;
     ref.componentRef.instance.data = this.equipmentData;
     ref.componentRef.instance.mainRef = this;
+    ref.componentRef.instance.mainLayerReference = this.mainLayerRef;
   }
 
   openSpiderPopups(d, ref) {
@@ -635,11 +551,18 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
         disableClose: false,
         panelClass: "material-dialog-container",
       });
+    } else if (d.data.name == 'Logical Connectivity') {
+      let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Equipment-Planned'};
+      this.dataShare.setExtraLayer(extraLayer);
+      this.dataShare.countLogicalMessage();
+      this.removeLayer();
+      let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
+      ref.componentRef = ref.target.createComponent(logicalComponent);
     }
   }
 
   routeClicked() {
-    const componName = "Equipment";
+    const componName = "equipment";
     const dialogData = new FibreTableViewPopupModel(componName);
     const dialogRef = this.dialog.open(RouteTableViewComponent, {
       width: "1200px",
@@ -656,8 +579,8 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
   }
 
   removeLayer() {
-    if (undefined != this.routeFibreCoreLayer) {
-      this.map.removeLayer(this.routeFibreCoreLayer)
+    if (undefined != this.equipmentPlannedCoreLayer) {
+      this.map.removeLayer(this.equipmentPlannedCoreLayer)
     }
   }
 
@@ -673,7 +596,6 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
   ) {
     this.stageRouteContainer.removeAllChildren();
     this.stageRouteContainer.update();
-    // console.log(equipmentContainer)
     this.circleGraphic = this.drawCircleGraphics('#003B7440', 65);
     this.circleCountShape = new createjs.Shape(this.circleGraphic);
     this.circleCountShape.alpha = 0.4;
@@ -706,7 +628,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
       outerContainerThis.clonedArray = [...outerContainerThis.equipmentColocatedData];
       outerContainerThis.clonedArray.splice(count, (outerContainerThis.clonedArray.length - count));
       outerContainerThis.map.setView(positionCololatedLatLng);
-      outerContainerThis.colocatedEquipmentClicked(evt, mainLayerReference, colocatedData, outerContainerThis.clonedArray);
+      outerContainerThis.colocatedequipmentClicked(evt, mainLayerReference, colocatedData, outerContainerThis.clonedArray);
     });
     this.textContainer.addChild(this.circleCountShape, this.innercircleShape, this.labelCount);
     equipmentContainer.addChild(this.textContainer);
@@ -721,7 +643,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     return this.drawCircleGraphic;
   }
 
-  async colocatedEquipmentClicked(event, mainLayerReference, colocatedData, colocatedSpiderArray) {
+  async colocatedequipmentClicked(event, mainLayerReference, colocatedData, colocatedSpiderArray) {
     let fivegCircularSpiderComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegCircularSpiderViewComponent);
     mainLayerReference.componentRef = mainLayerReference.target.createComponent(fivegCircularSpiderComponent);
     mainLayerReference.componentRef.instance.data = colocatedSpiderArray;

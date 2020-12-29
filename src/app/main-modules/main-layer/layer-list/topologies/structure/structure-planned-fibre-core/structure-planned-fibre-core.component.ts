@@ -10,7 +10,7 @@ import { FibreTableViewPopupModel, RouteTableViewComponent } from '../../fibre/r
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { FivegCircularSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-circular-spider-view/fiveg-circular-spider-view.component';
 import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
-// import { LogicalConnectivityComponent } from '../../logical-connectivity/logical-connectivity.component';
+import { LogicalConnectivityComponent } from '../../logical-connectivity/logical-connectivity.component';
 
 @Component({
   selector: 'app-structure-planned-fibre-core',
@@ -223,6 +223,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     this.routeReadyFibreCoreSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) => {
         if ('StructurePlannedFibreCoreComponent' == removeLayer) {
+          let removeLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
+          this.dataShare.removeExtraLayer(removeLayer);
           this.removeLayer();
         }
       }
@@ -544,6 +546,9 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
         panelClass: "material-dialog-container",
       });
     } else if (d.data.name == 'Logical Connectivity') {
+      // let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
+      // this.dataShare.setExtraLayer(extraLayer);
+      // this.dataShare.countLogicalMessage();
       // this.removeLayer();
       // let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
       // ref.componentRef = ref.target.createComponent(logicalComponent);
