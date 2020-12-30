@@ -2137,8 +2137,8 @@ const EQUIPMENT_ROUTE_LIST = [
         link: "planned",
         children: [],
         parentToChild: 'Topologies-Equipment-Planned',
-        // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
-        // component: "EquipmentSettingsPopupComponent"
+        componentLayer: 'EquipmentsPlannedFibreCoreComponent',
+        component: "EquipmentSettingsPopupComponent"
     },
     {
         name: "Ready",
@@ -2146,8 +2146,8 @@ const EQUIPMENT_ROUTE_LIST = [
         link: "ready",
         children: [],
         parentToChild: 'Topologies-Equipment-Ready',
-        // componentLayer: 'EquipmentsPlannedFibreCoreComponent',
-        // component: "EquipmentSettingsPopupComponent"
+        componentLayer: 'EquipmentsPlannedFibreCoreComponent',
+        component: "EquipmentSettingsPopupComponent"
     }
 ];
 
