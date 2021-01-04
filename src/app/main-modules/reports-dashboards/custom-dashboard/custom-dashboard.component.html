@@ -28,15 +28,18 @@
             </div>
             <div class="accordian-content" style="height: calc(100% - 66px)">
                 <mat-divider style="position: relative;"></mat-divider>
-                <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" 
+                <!-- <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" 
                     rowHeight="48" headerHeight="48" [gridOptions]="gridCustomDashboardGridOptions" [columnDefs]="customDashboardColumnDefs"
                     [rowData]="gridCustomDashboardData" enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true" 
                     toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" 
                     [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" 
                     [paginationPageSize]="PaginationPageSize" [frameworkComponents]="frameworkComponentsCustomDashboards" 
                     [pagination]="true" [suppressPaginationPanel]="true" (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'>
-                </ag-grid-angular>
-                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+                </ag-grid-angular> -->
+
+                <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+                </app-table-ag-grid>
+                <!-- <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination> -->
             </div>
         </div>
     </div>

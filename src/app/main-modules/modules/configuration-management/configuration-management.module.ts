@@ -1,3 +1,4 @@
+
 import { RetChangeComponent } from './config-change/ret-change/ret-change.component';
 import { DeleteCreatedKpiRendererComponent } from './../performance-management/kpi-editor/renderer/delete-renderer.component';
 import { createKpiDropdownRendererComponent } from './../performance-management/kpi-editor/renderer/dropdown-renderer.component';
@@ -64,10 +65,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
-
-
-
 @NgModule({
   declarations: [
     SamsungRqaSchedulingComponent,
@@ -128,6 +125,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule,
+    // ChangeImpactAnanlysisModule
   ]
 })
 export class ConfigurationManagementModule { }

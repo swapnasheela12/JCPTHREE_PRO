@@ -16,7 +16,7 @@
     },
     {
         "name": "Twamp Live Dasboard 1",
-        "router_link": "JCP/Reports-and-Dashboards/Dashboards/Custom-Dashboard/Twamp-Live-Dashboard",
+        "router_link": "JCP/Reports-and-Dashboards/Custom-Dashboards/Twamp-Live-Dashboard",
         "display_name": "Live Dashboard",
         "dashboard_description":"Jc And Circle-Wise Of Actions Identified By The Proactive Action Engine",
         "category": "",

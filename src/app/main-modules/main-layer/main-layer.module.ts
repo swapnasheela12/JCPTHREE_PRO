@@ -79,7 +79,6 @@ import { PinZoomComponent } from './pin-zoom/pin-zoom.component';
 import { PinGroupSettingComponent } from './pin-group-setting/pin-group-setting.component';
 import { NominalMacroDialogComponent } from './layer-list/sites/nominal/macro-dialog/macro-dialog.component';
 import { RouteReadyFibreCoreComponent } from './layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component';
-import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/route-table-view/route-table-view.component';
 import { FibreRouteSettingsPopupComponent } from './layer-list/topologies/fibre/route/settings-popup/settings-popup.component';
 import { TreeNodeComponent } from './spider-view/tree-node/tree-node.component';
 import { AlarmsPopupComponent } from 'src/app/modules/components/alarms-popup/alarms-popup.component';
@@ -87,8 +86,15 @@ import { SpiderComponent } from './layer-list/sites/outdoor/spider/spider.compon
 import { KpiComponent } from './layer-list/sites/outdoor/spider/popup/kpi/kpi.component';
 import { CandidatesComponent } from 'src/app/modules/components/properties/candidates/candidates.component';
 import { NominalViewComponent } from './layer-list/sites/nominal/nominal-view/nominal-view.component';
+
 import { LogicaltopologyMultiSpiderViewComponent } from './layer-list/topologies/fibre/logicaltopology/logicaltopology-multi-spider-view/logicaltopology-multi-spider-view.component';
 import { SpliterViewComponent } from './layer-list/topologies/fibre/logicaltopology/spliter-view/spliter-view.component';
+import { RouteTableViewComponent } from './layer-list/topologies/fibre/route/route-table-view/route-table-view.component';
+import { StructurePlannedSettingsPopupComponent } from './layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FivegCircularSpiderViewComponent } from './fiveg-circular-spider-view/fiveg-circular-spider-view.component';
+import { LogicalConnectivityComponent } from './layer-list/topologies/logical-connectivity/logical-connectivity.component';
+import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/fiveg-adjacent-spider-view.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -126,9 +132,14 @@ import { SpliterViewComponent } from './layer-list/topologies/fibre/logicaltopol
     NominalViewComponent,
     FivegSpiderViewComponent,
     LogicaltopologyMultiSpiderViewComponent,
-    SpliterViewComponent
+    SpliterViewComponent,
+    StructurePlannedSettingsPopupComponent,
+    FivegCircularSpiderViewComponent,
+    LogicalConnectivityComponent,
+    FivegAdjacentSpiderViewComponent
   ],
   imports: [
+    DragDropModule,
     MainLayerRoutingModule,
     CommonModule,
     CoreModule,

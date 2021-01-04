@@ -204,29 +204,24 @@
                                 <div fxLayout="row wrap" fxFlex="100">
                                     <div class="p-3 w-100">
                                         <div class="checkbox-group-label">Recurrence Pattern: *</div>
-                                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                                            <mat-checkbox [disabled]="immediateType" [(value)]="recurrencePatternSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurrencePatternData;trackBy:trackByCheckbox">
-                                                {{checkboxSelect.name}}
-                                            </mat-checkbox>
-                                        </div>
-
+                                        <mat-checkbox [disabled]="immediateType" [(value)]="recurrencePatternSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurrencePatternData;trackBy:trackByCheckbox">
+                                            {{checkboxSelect.name}}
+                                        </mat-checkbox>
                                     </div>
                                 </div>
 
                                 <div fxLayout="row wrap" fxFlex="100" style="border-top: 1px solid #e0e0e0;">
-                                    <div class="p-3" fxFlex="100">
-                                        <div class="checkbox-group-label" fxFlex="100">
+                                    <div class="p-3 w-100">
+                                        <div class="checkbox-group-label">
                                             Recur every &nbsp;
                                             <mat-form-field fxFlex="10" class="recur-every-input p-0" [style.marginBottom]="'-1.25em'" [style.marginTop]="'-1em'">
                                                 <input matInput formControlName="recurEveryControl" placeholder="">
                                             </mat-form-field>
                                             Times: *
                                         </div>
-                                        <div fxFlex="10" fxLayout="row wrap" fxLayoutAlign="space-between center" style="display: block;">
-                                            <mat-checkbox [disabled]="immediateType" [(value)]="recurEveryTimesSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurEveryTimesData;trackBy:trackByCheckbox; let i = index">
-                                                {{checkboxSelect.name}}
-                                            </mat-checkbox>
-                                        </div>
+                                        <mat-checkbox [disabled]="immediateType" [(value)]="recurEveryTimesSelected" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of recurEveryTimesData;trackBy:trackByCheckbox; let i = index">
+                                            {{checkboxSelect.name}}
+                                        </mat-checkbox>
                                     </div>
                                 </div>
                             </div>

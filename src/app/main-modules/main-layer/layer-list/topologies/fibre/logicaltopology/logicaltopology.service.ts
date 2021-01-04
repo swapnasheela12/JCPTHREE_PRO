@@ -107,7 +107,7 @@ export class LogicaltopologyService {
     this.ref = this;
     this.lib = leaflayer();
     this.redrawLayer();
-
+console.log("asdasdasas")
     this.getJSON().subscribe(data => {
       this.sitesValArr = data;
     });
@@ -161,6 +161,7 @@ export class LogicaltopologyService {
 
       for (let index = 0; index < this.selectedLayerArrList.length; index++) {
         const ele = this.selectedLayerArrList[index];
+        console.log(this.selectedLayerArrList)
         if (ele.link == "JCP/Layers/Topologies/Fibre/LogicalTopology/Planned") {
           return canvasLayer.addTo(this.map);
         }

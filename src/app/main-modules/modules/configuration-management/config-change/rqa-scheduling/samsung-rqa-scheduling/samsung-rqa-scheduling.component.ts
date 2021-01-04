@@ -466,7 +466,7 @@ export class SamsungRqaSchedulingComponent implements OnInit {
 
   private httpClientRowData() {
     this.http
-      .get("assets/data/modules/configuration_management/rqa-scheduling/rqa-schedul.json")
+      .get("assets/data/configuration-management/rqa-scheduling/rqa-schedul.json")
       .subscribe(data => {
         this.rowData = data;
         // this.datatable.rowDataURLServices = this.url;

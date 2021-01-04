@@ -469,7 +469,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           targetElement.classList.add("control_layer_active");
 
           var optionsListDialogRef = {
-            width: '560px',
+            width: '700px',
             height: '470px',
             position: { bottom: '60px', right: "60px" },
             panelClass: "table-view-layers-dialog-container",

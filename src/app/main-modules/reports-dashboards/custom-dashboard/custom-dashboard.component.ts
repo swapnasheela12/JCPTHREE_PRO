@@ -7,6 +7,8 @@ import { AllCommunityModules, Module} from '@ag-grid-community/all-modules';
 import { InfoRendererComponent } from './renderer/info-renderer.component';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
+import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
+import { Subject } from 'rxjs';
 
 interface twampDashboard {
   value: string;
@@ -87,11 +89,17 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
   public gridCustomDashboardGridOptions: GridOptions;
   public customDashboardColumnDefs : any[];
   public gridCustomDashboardData;
-  gridApi: any;
-  gridColumnApi: any;
+  public gridApi: any;
+  public gridColumnApi: any;
+  public gridOptions: GridOptions;
+  public rowData;
+  public columnDefs: any[];
+  public rowCount: string;
+  public defaultColDef = { resizable: true };
   private paginationPageSize = 10;
   public sidenavBarStatus;
   searchGrid = '';
+  gridFilterValueServices= {};
   show: any;
   public url: string = "assets/data/report/reports-and-dashboard/all-custom-dashboard.json";
   modules: Module[] = AllCommunityModules;
@@ -110,6 +118,7 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
   frameworkComponentsCustomDashboards: {};
  
   constructor(
+    private datatable: TableAgGridService,
     private http: HttpClient,
     private dataShare: DataSharingService,
     private router: Router
@@ -123,6 +132,11 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
     this.frameworkComponentsCustomDashboards = {
       'InfoRenderer': InfoRendererComponent
     };
+    this.createColumnDefs();
+    this.getCustomDashboardData();
+    // this.httpClient.get(this.url)
+    //   .subscribe((data: Array<ISector_Grid>) => {
+    //          });
   }
 
   ngOnInit(){
@@ -142,13 +156,20 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
     this.customDashboardColumnDefs[4].cellRendererParams = {
       ngTemplate: this.likeCell
     }
+    this.datatable.columnDefsServices = this.customDashboardColumnDefs;
     console.log(this.customDashboardColumnDefs)
   }
 
   public getCustomDashboardData() {
     this.http.get(this.url)
       .subscribe(data => {
-        this.gridCustomDashboardData = data;       
+       // this.gridCustomDashboardData = data;   
+        this.rowData = data;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
     });
   }
 
@@ -174,19 +195,23 @@ export class CustomDashboardComponent implements OnInit, AfterViewInit {
     this.gridCustomDashboardGridOptions.api.sizeColumnsToFit();
   }
 
-  onFilterChanged(value) {
-    this.gridCustomDashboardGridOptions.api.setQuickFilter(value);
+  public eventsSubject: Subject<any> = new Subject();
+  onFilterChanged(evt) {
+    this.gridFilterValueServices["filter"] = evt.target.value;
+    this.eventsSubject.next(this.gridFilterValueServices);
   };
 
   toggleSearch() {
     this.show = !this.show;
   };
 
-  onRowClicked(evt) {
+  cellClickedDetails(evt) {
     if (evt.event.target.localName == 'mat-icon') {
       return false;
     }
+    console.log(evt)
     if(evt.data.router_link){
+      console.log(evt.data.router_link)
       this.router.navigate(
         [evt.data.router_link],
         { state:

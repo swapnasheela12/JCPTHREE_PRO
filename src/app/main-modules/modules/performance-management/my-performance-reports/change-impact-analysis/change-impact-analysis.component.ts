@@ -9,8 +9,7 @@ import { CustomTooltip } from '../custom-tooltip.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AlarmDetailsPopupComponent } from './alarm-details-popup/alarm-details-popup.component';
 import { Subscription } from 'rxjs';
-import Exporting from 'highcharts/modules/exporting';
-Exporting(Highcharts);
+
 declare var $: any;
 rounded(Highcharts)
 const PATHS = [
@@ -70,12 +69,13 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     { jc: 'GJ-JMGR-JC01-0262' }
   ];
 
-  constructor(private datashare: DataSharingService, private http: HttpClient, private cdRef: ChangeDetectorRef, public dialog: MatDialog) {
+  constructor(private datashare: DataSharingService, private http: HttpClient, 
+    private cdRef: ChangeDetectorRef, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{};
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
-      setTimeout(() => {
-        this.makeDo(this.secondaryKpi, this.primaryKpi);
-      }, 500);
+      // setTimeout(() => {
+      //   this.makeDo(this.secondaryKpi, this.primaryKpi);
+      // }, 500);
     });
     this.colDefs = [
       {
@@ -85,7 +85,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "Overall",
-        width: 95,
+        width: 120,
         field: "overall",
         tooltipField: 'overall',
         cellRenderer: function (params) {
@@ -100,7 +100,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "850",
-        width: 80,
+        width: 100,
         field: "850",
         tooltipField: '850',
         cellRenderer: function (params) {
@@ -115,7 +115,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "1800",
-        width: 85,
+        width: 110,
         field: "1800",
         tooltipField: '1800',
         cellRenderer: function (params) {
@@ -130,7 +130,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "2300-C1",
-        width: 105,
+        width: 130,
         field: "2300C1",
         tooltipField: '2300C1',
         cellRenderer: function (params) {
@@ -145,7 +145,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       {
         headerName: "2300-C2",
-        width: 105,
+        width: 130,
         field: "2300C2",
         tooltipField: '2300C2',
         cellRenderer: function (params) {
@@ -177,7 +177,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
     this.ciaChart = Highcharts.chart('Chart', {
       //@ts-ignore
       exporting: {
-        enabled: true
+        enabled: false
       },
       chart: {
         type: 'column',
@@ -197,7 +197,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           zIndex: 5
         }]
       },
-      yAxis: [{
+      yAxis: [{ 
         labels: {
           format: '{value}'
         },
@@ -205,7 +205,7 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
           text: value1
         },
         opposite: true
-      }, {
+      }, { 
 
         min: 0,
         max: 100,
@@ -254,29 +254,29 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
       },
       series: [{
         name: "Overall",
-        color: "rgba(0, 2, 219, 0.2)",
+        color: "rgba(0, 2, 219, 0.3)",
         type: 'column',
         data: [80.9, 80.8, 80.7, 80.6, 80.5, 80.9, 80.8, null, 80.6, 80.5, 80.7, 80.6, 80.5, 80.5, 80.5],
         borderRadiusTopLeft: '50%',
         borderRadiusTopRight: '50%'
       }, {
         name: "850",
-        color: "rgba(248, 185, 113, 0.2)",
+        color: "rgba(248, 185, 113, 0.3)",
         type: 'column',
         data: [50.9, 50.8, 50.7, 50.6, 50.5, 50.9, 50.8, null, 50.6, 50.5, 50.7, 50.6, 50.5, 50.5, 50.5]
       }, {
         name: "1800",
-        color: "rgba(25, 208, 67, 0.2)",
+        color: "rgba(25, 208, 67, 0.3)",
         type: 'column',
         data: [60.7, 60.6, 60.5, 60.4, 60.3, 60.7, 60.6, null, 60.4, 60.3, 60.5, 60.4, 60.3, 60.3, 60.3]
       }, {
         name: "2300-C1",
-        color: "rgba(104, 199, 255, 0.2)",
+        color: "rgba(104, 199, 255, 0.3)",
         type: 'column',
         data: [70.4, 70.3, 70.2, 70.1, 70, 70.4, 70.3, null, 70.1, 70, 70.2, 70.1, 70, 70, 70]
       }, {
         name: "2300-C2",
-        color: "rgba(252, 95, 95, 0.2)",
+        color: "rgba(252, 95, 95, 0.3)",
         type: 'column',
         data: [80.4, 80.3, 80.2, 80.1, 80, 80.4, 80.3, null, 80.1, 80, 80.2, 80.1, 80, 80, 80],
         borderRadiusBottomLeft: '50%',
@@ -336,8 +336,6 @@ export class ChangeImpactAnalysisComponent implements OnInit, OnDestroy {
   }
   public onReady(params) {
     this.gridApi = params.api;
-    let event = new CustomEvent("close-side-bar");
-    window.dispatchEvent(event);
   }
 
   private getData() {
