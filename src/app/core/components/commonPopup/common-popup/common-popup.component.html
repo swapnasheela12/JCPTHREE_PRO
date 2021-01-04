@@ -7,17 +7,15 @@
 
     <div class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="p-3 successful-text-header warning">{{title}}</div>
-        <div class="p-4 successful-text-subheader">{{message}}</div>
+        <div class="p-4 successful-text-subheader" style="height:1000px;">{{message}}</div>
     </div>
 
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
         <div class="mr-1 successful-text-button">
-            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;"
-                (click)="onCancel()">Cancel</button>
+            <button class=" success-butt" mat-stroked-button color="primary" style=" margin-left: 8px;" (click)="onCancel()">Cancel</button>
         </div>
         <div class="ml-1 successful-text-button">
-            <button class=" success-butt" mat-raised-button color="primary" style=" margin-left: 3px;"
-                (click)="onConfirm()">Confirm</button>
+            <button class=" success-butt" mat-raised-button color="primary" style=" margin-left: 3px;" (click)="onConfirm()">Confirm</button>
         </div>
     </div>
 </div>

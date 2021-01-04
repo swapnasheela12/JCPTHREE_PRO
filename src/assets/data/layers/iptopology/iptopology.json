@@ -1,6 +1,6 @@
 {
     "sites": [{
-            "neId": "NGPRSNGNCCR001",
+            "neId": "CSS Router",
             "latitude": 21.13482901,
             "longitude": 79.003227,
             "isSuperCore": true,
@@ -15,7 +15,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether370",
-                        "neID": "SLPRATMSCCR002",
+
                         "sourcePort": "Bundle-Ether370",
                         "cityCode": "SLPR",
                         "longitude": 75.91721389,
@@ -32,7 +32,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether335",
-                        "neID": "JBLPMMRSCCR002",
+
                         "sourcePort": "Bundle-Ether335",
                         "cityCode": "JBLP",
                         "longitude": 79.916167,
@@ -49,7 +49,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether350",
-                        "neID": "NDDGNDDGCCR002",
+
                         "sourcePort": "Bundle-Ether350",
                         "cityCode": "NDDG",
                         "longitude": 77.30897677,
@@ -66,7 +66,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether312",
-                        "neID": "AGBMMHJPCCR002",
+
                         "sourcePort": "Bundle-Ether312",
                         "cityCode": "AGBM",
                         "longitude": 75.349951,
@@ -83,7 +83,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether356",
-                        "neID": "HNJWWDGNCCR002",
+
                         "sourcePort": "Bundle-Ether356",
                         "cityCode": "HNJW",
                         "longitude": 73.735373,
@@ -100,7 +100,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether334",
-                        "neID": "INDRAGPSCCR002",
+
                         "sourcePort": "Bundle-Ether334",
                         "cityCode": "INDR",
                         "longitude": 75.925333,
@@ -117,7 +117,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether326",
-                        "neID": "DHULAYKCCCR002",
+
                         "sourcePort": "Bundle-Ether326",
                         "cityCode": "DHUL",
                         "longitude": 74.79083306,
@@ -134,7 +134,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether342",
-                        "neID": "KLPRSHPICCR002",
+
                         "sourcePort": "Bundle-Ether342",
                         "cityCode": "KLPR",
                         "longitude": 74.23108616,
@@ -149,7 +149,7 @@
                         "device": "Others",
                         "color": "#94C65A",
                         "port": "Bundle-Ether357",
-                        "neID": "RPURNRJNCCR002",
+
                         "sourcePort": "Bundle-Ether357",
                         "cityCode": "RPUR",
                         "longitude": 81.656461,
@@ -161,7 +161,7 @@
                 }
             ]
         }, {
-            "neId": "JPURTBNRCCR001",
+            "neId": "Others",
             "latitude": 26.836078,
             "longitude": 75.778714,
             "isSuperCore": false,
@@ -174,7 +174,7 @@
                         "device": "Others",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether417",
-                        "neID": "KOTAKOARCCR001",
+
                         "sourcePort": "Bundle-Ether417",
                         "cityCode": "KOTA",
                         "longitude": 75.846656,
@@ -189,7 +189,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether408",
-                        "neID": "BHLRBHCMCCR001",
+
                         "sourcePort": "Bundle-Ether408",
                         "cityCode": "BHLR",
                         "longitude": 74.62679598,
@@ -201,7 +201,7 @@
                 }
             ]
         }, {
-            "neId": "BHPLSHPRCCR001",
+            "neId": "OLT",
             "latitude": 23.182625,
             "longitude": 77.456153,
             "isSuperCore": false,
@@ -213,7 +213,7 @@
                         "device": "OLT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether411",
-                        "neID": "JBLPMMRSCCR001",
+
                         "sourcePort": "Bundle-Ether411",
                         "cityCode": "JBLP",
                         "longitude": 79.916167,
@@ -228,7 +228,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether409",
-                        "neID": "INDRAGPSCCR001",
+
                         "sourcePort": "Bundle-Ether409",
                         "cityCode": "INDR",
                         "longitude": 75.925333,
@@ -243,7 +243,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether410",
-                        "neID": "RPURNRJNCCR001",
+
                         "sourcePort": "Bundle-Ether410",
                         "cityCode": "RPUR",
                         "longitude": 81.656461,
@@ -255,7 +255,7 @@
                 }
             ]
         }, {
-            "neId": "JBLPMMRSCCR001",
+            "neId": "AG1 Router",
             "latitude": 23.157778,
             "longitude": 79.916167,
             "isSuperCore": false,
@@ -267,7 +267,7 @@
                         "device": "OLT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "JBLPMMRSCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "JBLP",
                         "longitude": 79.916167,
@@ -282,7 +282,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether416",
-                        "neID": "RPURNRJNCCR001",
+
                         "sourcePort": "Bundle-Ether416",
                         "cityCode": "RPUR",
                         "longitude": 81.656461,
@@ -294,7 +294,7 @@
                 }
             ]
         }, {
-            "neId": "KLKTKTBACCR001",
+            "neId": "Splitter 2",
             "latitude": 22.597306,
             "longitude": 88.327708,
             "isSuperCore": true,
@@ -306,7 +306,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether363",
-                    "neID": "SMBPSNDCCCR001",
+
                     "sourcePort": "Bundle-Ether363",
                     "cityCode": "SMBP",
                     "longitude": 83.97908,
@@ -317,7 +317,7 @@
                 }
             }]
         }, {
-            "neId": "NDDGNDDGCCR001",
+            "neId": "Splitter 2",
             "latitude": 19.12909879,
             "longitude": 77.30897677,
             "isSuperCore": false,
@@ -327,7 +327,7 @@
             "connectivity": [{
                     "target": {
                         "port": "Bundle-Ether10",
-                        "neID": "NDDGNDDGCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "NDDG",
                         "longitude": 77.30897677,
@@ -342,7 +342,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether351",
-                        "neID": "MOUDRAHDCCR001",
+
                         "sourcePort": "Bundle-Ether351",
                         "cityCode": "NGPR",
                         "longitude": 79.379278,
@@ -355,7 +355,7 @@
                 {
                     "target": {
                         "port": "Bundle-Ether419",
-                        "neID": "SLPRATMSCCR001",
+
                         "sourcePort": "Bundle-Ether419",
                         "cityCode": "SLPR",
                         "longitude": 75.91721389,
@@ -367,7 +367,7 @@
                 }
             ]
         }, {
-            "neId": "AGBMMHJPCCR001",
+            "neId": "L2 Switch",
             "latitude": 19.865703,
             "longitude": 75.349951,
             "isSuperCore": false,
@@ -379,7 +379,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether406",
-                        "neID": "HNJWWDGNCCR001",
+
                         "sourcePort": "Bundle-Ether406",
                         "cityCode": "HNJW",
                         "longitude": 73.735373,
@@ -394,7 +394,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether405",
-                        "neID": "DHULAYKCCCR001",
+
                         "sourcePort": "Bundle-Ether405",
                         "cityCode": "DHUL",
                         "longitude": 74.79083306,
@@ -407,7 +407,7 @@
                 {
                     "target": {
                         "port": "Bundle-Ether10",
-                        "neID": "AGBMMHJPCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "AGBM",
                         "longitude": 75.349951,
@@ -422,7 +422,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether313",
-                        "neID": "MOUDRAHDCCR001",
+
                         "sourcePort": "Bundle-Ether313",
                         "cityCode": "NGPR",
                         "longitude": 79.379278,
@@ -434,7 +434,7 @@
                 }
             ]
         }, {
-            "neId": "CMBRMRMCCCR001",
+            "neId": "L2 Switch",
             "latitude": 10.99931302,
             "longitude": 76.98063974,
             "isSuperCore": false,
@@ -446,7 +446,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "CMBRMRMCCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "CMBR",
                         "longitude": 76.98063974,
@@ -461,7 +461,7 @@
                         "device": "ONT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether414",
-                        "neID": "MDURMMSCCCR001",
+
                         "sourcePort": "Bundle-Ether414",
                         "cityCode": "MDUR",
                         "longitude": 78.175061,
@@ -476,7 +476,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether413",
-                        "neID": "SLEMREMMCCR001",
+
                         "sourcePort": "Bundle-Ether413",
                         "cityCode": "SLEM",
                         "longitude": 78.13328816,
@@ -491,7 +491,7 @@
                         "device": "OTB",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether323",
-                        "neID": "CHNNTFKRCCR001",
+
                         "sourcePort": "Bundle-Ether323",
                         "cityCode": "CHNN",
                         "longitude": 80.201189,
@@ -506,7 +506,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether851",
-                        "neID": "CMBRMRMCCCR002",
+
                         "sourcePort": "Bundle-Ether851",
                         "cityCode": "CMBR",
                         "longitude": 76.98063974,
@@ -518,7 +518,7 @@
                 }
             ]
         }, {
-            "neId": "PDCYWHTTCCR001",
+            "neId": "OTB",
             "latitude": 11.94027,
             "longitude": 79.82842,
             "isSuperCore": false,
@@ -532,7 +532,7 @@
                         "device": "OTB",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether361",
-                        "neID": "CHNNTFKRCCR001",
+
                         "sourcePort": "Bundle-Ether361",
                         "cityCode": "CHNN",
                         "longitude": 80.201189,
@@ -544,7 +544,7 @@
                 }
             ]
         }, {
-            "neId": "MDURMMSCCCR001",
+            "neId": "CSS Router",
             "latitude": 9.953125,
             "longitude": 78.175061,
             "isSuperCore": false,
@@ -556,7 +556,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether422",
-                        "neID": "SLEMREMMCCR001",
+
                         "sourcePort": "Bundle-Ether422",
                         "cityCode": "SLEM",
                         "longitude": 78.13328816,
@@ -571,7 +571,7 @@
                         "device": "OLT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "MDURMMSCCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "MDUR",
                         "longitude": 78.175061,
@@ -586,7 +586,7 @@
                         "device": "OTB",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether360",
-                        "neID": "CHNNTFKRCCR001",
+
                         "sourcePort": "Bundle-Ether360",
                         "cityCode": "CHNN",
                         "longitude": 80.201189,
@@ -598,7 +598,7 @@
                 }
             ]
         }, {
-            "neId": "SLEMREMMCCR001",
+            "neId": "L2 Switch",
             "latitude": 11.67526448,
             "longitude": 78.13328816,
             "isSuperCore": false,
@@ -610,7 +610,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "SLEMREMMCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "SLEM",
                         "longitude": 78.13328816,
@@ -625,7 +625,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether362",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether362",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -637,7 +637,7 @@
                 }
             ]
         }, {
-            "neId": "CHNNTFKRCCR001",
+            "neId": "L2 Switch",
             "latitude": 13.015921,
             "longitude": 80.201189,
             "isSuperCore": true,
@@ -649,7 +649,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether397",
-                        "neID": "SLEMREMMCCR002",
+
                         "sourcePort": "Bundle-Ether397",
                         "cityCode": "SLEM",
                         "longitude": 78.13328816,
@@ -664,7 +664,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether2002",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether2002",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -676,7 +676,7 @@
                 }
             ]
         }, {
-            "neId": "AMBDAMDBCCR001",
+            "neId": "OTB",
             "latitude": 23.09198864,
             "longitude": 72.67352308,
             "isSuperCore": true,
@@ -689,7 +689,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether373",
-                        "neID": "SURTKUMVCCR001",
+
                         "sourcePort": "Bundle-Ether373",
                         "cityCode": "SURT",
                         "longitude": 72.893972,
@@ -704,7 +704,7 @@
                         "device": "OTB",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether375",
-                        "neID": "VDDROPRDCCR001",
+
                         "sourcePort": "Bundle-Ether375",
                         "cityCode": "VDDR",
                         "longitude": 73.16375,
@@ -717,7 +717,7 @@
                 {
                     "target": {
                         "port": "Bundle-Ether853",
-                        "neID": "JMGRRLRNCCR002",
+
                         "sourcePort": "Bundle-Ether709",
                         "cityCode": "JMGR",
                         "longitude": 69.848711,
@@ -732,7 +732,7 @@
                         "device": "Others",
                         "color": "#94C65A",
                         "port": "Bundle-Ether340",
-                        "neID": "JMGRRLRNCCR002",
+
                         "sourcePort": "Bundle-Ether340",
                         "cityCode": "JMGR",
                         "longitude": 69.848711,
@@ -744,7 +744,7 @@
                 }
             ]
         }, {
-            "neId": "BGLRUPKWCCR001",
+            "neId": "ONT",
             "latitude": 12.98307737,
             "longitude": 77.75074385,
             "isSuperCore": true,
@@ -756,7 +756,7 @@
                     "device": "L2 Switch",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether235",
-                    "neID": "CHNNSMJRCCR002",
+
                     "sourcePort": "Bundle-Ether235",
                     "cityCode": null,
                     "longitude": 80.22242,
@@ -767,7 +767,7 @@
                 }
             }]
         }, {
-            "neId": "FRKKNTPSCCR002",
+            "neId": "L2 Switch",
             "latitude": 24.771973,
             "longitude": 87.921055,
             "isSuperCore": false,
@@ -780,7 +780,7 @@
                         "device": "ONT",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether416",
-                        "neID": "SLGRAIRSCCR002",
+
                         "sourcePort": "Bundle-Ether416",
                         "cityCode": "SLGR",
                         "longitude": 88.436778,
@@ -795,7 +795,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether404",
-                        "neID": "ASSLVNGRCCR002",
+
                         "sourcePort": "Bundle-Ether404",
                         "cityCode": "ASSL",
                         "longitude": 86.96694,
@@ -810,7 +810,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether10",
-                        "neID": "FRKKNTPSCCR001",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "FRKK",
                         "longitude": 87.921055,
@@ -825,7 +825,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether327",
-                        "neID": "KLKTSLEPCCR001",
+
                         "sourcePort": "Bundle-Ether327",
                         "cityCode": "KLKT",
                         "longitude": 88.43386111,
@@ -837,7 +837,7 @@
                 }
             ]
         }, {
-            "neId": "HBDDKITCCCR001",
+            "neId": "AG1 Router",
             "latitude": 15.351662,
             "longitude": 75.112088,
             "isSuperCore": false,
@@ -849,7 +849,7 @@
                     "device": "AG1 Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether333.1777",
-                    "neID": "KLPRSHPICCR001",
+
                     "sourcePort": "Bundle-Ether333.1777",
                     "cityCode": "KLPR",
                     "longitude": 74.23108616,
@@ -860,7 +860,7 @@
                 }
             }]
         }, {
-            "neId": "ASSLVNGRCCR002",
+            "neId": "ONT",
             "latitude": 23.70582,
             "longitude": 86.96694,
             "isSuperCore": false,
@@ -872,7 +872,7 @@
                     "device": "ONT",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether444",
-                    "neID": "SLGRAIRSCCR001",
+
                     "sourcePort": "Bundle-Ether444",
                     "cityCode": "SLGR",
                     "longitude": 88.436778,
@@ -883,7 +883,7 @@
                 }
             }]
         }, {
-            "neId": "CDDPZPHSCCR002",
+            "neId": "AG1 Router",
             "latitude": 14.48229,
             "longitude": 78.8085,
             "isSuperCore": false,
@@ -895,7 +895,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether323",
-                        "neID": "HDBDMAPRCCR001",
+
                         "sourcePort": "Bundle-Ether323",
                         "cityCode": "HDBD",
                         "longitude": 78.338,
@@ -910,7 +910,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether324",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether324",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -922,7 +922,7 @@
                 }
             ]
         }, {
-            "neId": "VDDROPRDCCR001",
+            "neId": "OTB",
             "latitude": 22.285,
             "longitude": 73.16375,
             "isSuperCore": false,
@@ -934,7 +934,7 @@
                         "device": "OTB",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether10",
-                        "neID": "VDDROPRDCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "VDDR",
                         "longitude": 73.16375,
@@ -949,7 +949,7 @@
                         "device": "L2 Switch",
                         "color": "#94C65A",
                         "port": "Bundle-Ether427",
-                        "neID": "SURTKUMVCCR001",
+
                         "sourcePort": "Bundle-Ether427",
                         "cityCode": "SURT",
                         "longitude": 72.893972,
@@ -961,7 +961,7 @@
                 }
             ]
         }, {
-            "neId": "HNJWWDGNCCR001",
+            "neId": "L2 Switch",
             "latitude": 18.583153,
             "longitude": 73.735373,
             "isSuperCore": false,
@@ -973,7 +973,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether10",
-                        "neID": "HNJWWDGNCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "HNJW",
                         "longitude": 73.735373,
@@ -988,7 +988,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether418",
-                        "neID": "KLPRSHPICCR001",
+
                         "sourcePort": "Bundle-Ether418",
                         "cityCode": "KLPR",
                         "longitude": 74.23108616,
@@ -1003,7 +1003,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether357",
-                        "neID": "MOUDRAHDCCR001",
+
                         "sourcePort": "Bundle-Ether357",
                         "cityCode": "NGPR",
                         "longitude": 79.379278,
@@ -1015,7 +1015,7 @@
                 }
             ]
         }, {
-            "neId": "BHLRBHCMCCR001",
+            "neId": "Splitter 2",
             "latitude": 25.36797211,
             "longitude": 74.62679598,
             "isSuperCore": false,
@@ -1027,7 +1027,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "BHLRBHCMCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "BHLR",
                         "longitude": 74.62679598,
@@ -1042,7 +1042,7 @@
                         "device": "Others",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether407",
-                        "neID": "KOTAKOARCCR001",
+
                         "sourcePort": "Bundle-Ether407",
                         "cityCode": "KOTA",
                         "longitude": 75.846656,
@@ -1057,7 +1057,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether407",
-                        "neID": "BHLRBHCMCCR002",
+
                         "sourcePort": "Bundle-Ether407",
                         "cityCode": "BHLR",
                         "longitude": 74.62679598,
@@ -1069,7 +1069,7 @@
                 }
             ]
         }, {
-            "neId": "VJYDAKHSCCR001",
+            "neId": "CSS Router",
             "latitude": 16.541221,
             "longitude": 80.593497,
             "isSuperCore": false,
@@ -1081,7 +1081,7 @@
                         "device": "ONT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "VJYDAKHSCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "VJYD",
                         "longitude": 80.593497,
@@ -1096,7 +1096,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether377",
-                        "neID": "HDBDBGTGCCR001",
+
                         "sourcePort": "Bundle-Ether377",
                         "cityCode": "HDBD",
                         "longitude": 78.546875,
@@ -1111,7 +1111,7 @@
                         "device": "AG1 Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether429",
-                        "neID": "WRGLFTMNCCR001",
+
                         "sourcePort": "Bundle-Ether429",
                         "cityCode": "WRGL",
                         "longitude": 79.52208831,
@@ -1126,7 +1126,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether428",
-                        "neID": "VKPMSHHPCCR001",
+
                         "sourcePort": "Bundle-Ether428",
                         "cityCode": "VKPM",
                         "longitude": 83.31062,
@@ -1138,7 +1138,7 @@
                 }
             ]
         }, {
-            "neId": "INDRAGPSCCR001",
+            "neId": "ONT",
             "latitude": 22.700375,
             "longitude": 75.925333,
             "isSuperCore": false,
@@ -1150,7 +1150,7 @@
                     "device": "Splitter 1",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether10",
-                    "neID": "INDRAGPSCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "INDR",
                     "longitude": 75.925333,
@@ -1161,7 +1161,7 @@
                 }
             }]
         }, {
-            "neId": "RNCHGWPTCCR001",
+            "neId": "ONT",
             "latitude": 23.371716,
             "longitude": 85.33474,
             "isSuperCore": false,
@@ -1171,7 +1171,7 @@
             "connectivity": [{
                     "target": {
                         "port": "Bundle-Ether10",
-                        "neID": "RNCHGWPTCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "RNCH",
                         "longitude": 85.33474,
@@ -1186,7 +1186,7 @@
                         "device": "CSS Router",
                         "color": "#94C65A",
                         "port": "Bundle-Ether424",
-                        "neID": "PTNARKPRCCR001",
+
                         "sourcePort": "Bundle-Ether424",
                         "cityCode": "PTNA",
                         "longitude": 85.06636667,
@@ -1198,7 +1198,7 @@
                 }
             ]
         }, {
-            "neId": "JMGRRLRNCCR001",
+            "neId": "CSS Router",
             "latitude": 22.358497,
             "longitude": 69.848711,
             "isSuperCore": false,
@@ -1210,7 +1210,7 @@
                         "device": "Others",
                         "color": "#94C65A",
                         "port": "Bundle-Ether10",
-                        "neID": "JMGRRLRNCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "JMGR",
                         "longitude": 69.848711,
@@ -1223,7 +1223,7 @@
                 {
                     "target": {
                         "port": "Bundle-Ether339",
-                        "neID": "AMBDJSBWCCR001",
+
                         "sourcePort": "Bundle-Ether339",
                         "cityCode": "AMBD",
                         "longitude": 72.5269111,
@@ -1235,7 +1235,7 @@
                 }
             ]
         }, {
-            "neId": "KOCHTPTACCR002",
+            "neId": "OLT",
             "latitude": 9.95109,
             "longitude": 76.3351,
             "isSuperCore": false,
@@ -1247,7 +1247,7 @@
                         "device": "OLT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether438",
-                        "neID": "MDURMMSCCCR002",
+
                         "sourcePort": "Bundle-Ether438",
                         "cityCode": "MDUR",
                         "longitude": 78.175061,
@@ -1262,7 +1262,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether699",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether699",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -1277,7 +1277,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether320",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether320",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -1289,7 +1289,7 @@
                 }
             ]
         }, {
-            "neId": "CDDPZPHSCCR001",
+            "neId": "L2 Switch",
             "latitude": 14.48229,
             "longitude": 78.8085,
             "isSuperCore": false,
@@ -1301,7 +1301,7 @@
                     "device": "AG1 Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether323",
-                    "neID": "HDBDBGTGCCR001",
+
                     "sourcePort": "Bundle-Ether323",
                     "cityCode": "HDBD",
                     "longitude": 78.546875,
@@ -1312,7 +1312,7 @@
                 }
             }]
         }, {
-            "neId": "KOTAKOARCCR002",
+            "neId": "AG1 Router",
             "latitude": 25.167455,
             "longitude": 75.846656,
             "isSuperCore": false,
@@ -1324,7 +1324,7 @@
                         "device": "Others",
                         "color": "#94C65A",
                         "port": "Bundle-Ether343",
-                        "neID": "NOIDNDFDCCR001",
+
                         "sourcePort": "Bundle-Ether343",
                         "cityCode": "DLHI",
                         "longitude": 77.38480556,
@@ -1339,7 +1339,7 @@
                         "device": "Others",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether10",
-                        "neID": "KOTAKOARCCR001",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "KOTA",
                         "longitude": 75.846656,
@@ -1352,7 +1352,7 @@
                 {
                     "target": {
                         "port": "Bundle-Ether420",
-                        "neID": "JPURTBNRCCR002",
+
                         "sourcePort": "Bundle-Ether420",
                         "cityCode": "JPUR",
                         "longitude": 75.778714,
@@ -1364,7 +1364,7 @@
                 }
             ]
         }, {
-            "neId": "SURTKUMVCCR001",
+            "neId": "Others",
             "latitude": 21.189361,
             "longitude": 72.893972,
             "isSuperCore": false,
@@ -1376,7 +1376,7 @@
                     "device": "L2 Switch",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "SURTKUMVCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "SURT",
                     "longitude": 72.893972,
@@ -1387,7 +1387,7 @@
                 }
             }]
         }, {
-            "neId": "PTNARKPRCCR001",
+            "neId": "L2 Switch",
             "latitude": 25.60666389,
             "longitude": 85.06636667,
             "isSuperCore": false,
@@ -1399,7 +1399,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether853",
-                    "neID": "RNCHGWPTCCR002",
+
                     "sourcePort": "Bundle-Ether853",
                     "cityCode": "RNCH",
                     "longitude": 85.33474,
@@ -1410,7 +1410,7 @@
                 }
             }]
         }, {
-            "neId": "HDBDBGTGCCR001",
+            "neId": "CSS Router",
             "latitude": 17.349988,
             "longitude": 78.546875,
             "isSuperCore": true,
@@ -1422,7 +1422,7 @@
                         "device": "OLT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether381",
-                        "neID": "WRGLFTMNCCR001",
+
                         "sourcePort": "Bundle-Ether381",
                         "cityCode": "WRGL",
                         "longitude": 79.52208831,
@@ -1437,7 +1437,7 @@
                         "device": "ONT",
                         "color": "#94C65A",
                         "port": "Bundle-Ether379",
-                        "neID": "VKPMSHHPCCR001",
+
                         "sourcePort": "Bundle-Ether379",
                         "cityCode": "VKPM",
                         "longitude": 83.31062,
@@ -1452,7 +1452,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether360",
-                        "neID": "APRRVDYNCCR001",
+
                         "sourcePort": "Bundle-Ether360",
                         "cityCode": "APRR",
                         "longitude": 77.5845,
@@ -1467,7 +1467,7 @@
                         "device": "L2 Switch",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether252",
-                        "neID": "CHNNSMJRCCR002",
+
                         "sourcePort": "Bundle-Ether252",
                         "cityCode": null,
                         "longitude": 80.22242,
@@ -1479,7 +1479,7 @@
                 }
             ]
         }, {
-            "neId": "WRGLFTMNCCR001",
+            "neId": "CSS Router",
             "latitude": 17.98464309,
             "longitude": 79.52208831,
             "isSuperCore": false,
@@ -1491,7 +1491,7 @@
                     "device": "OLT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "WRGLFTMNCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "WRGL",
                     "longitude": 79.52208831,
@@ -1502,7 +1502,7 @@
                 }
             }]
         }, {
-            "neId": "BBSRBDGLCCR001",
+            "neId": "OLT",
             "latitude": 20.24176,
             "longitude": 85.84129,
             "isSuperCore": false,
@@ -1514,7 +1514,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether412",
-                    "neID": "SMBPSNDCCCR001",
+
                     "sourcePort": "Bundle-Ether412",
                     "cityCode": "SMBP",
                     "longitude": 83.97908,
@@ -1525,7 +1525,7 @@
                 }
             }]
         }, {
-            "neId": "BBSRBDGLCCR002",
+            "neId": "CSS Router",
             "latitude": 20.24176,
             "longitude": 85.84129,
             "isSuperCore": false,
@@ -1537,7 +1537,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether440",
-                    "neID": "SMBPSNDCCCR002",
+
                     "sourcePort": "Bundle-Ether440",
                     "cityCode": "SMBP",
                     "longitude": 83.97908,
@@ -1548,7 +1548,7 @@
                 }
             }]
         }, {
-            "neId": "SMBPSNDCCCR001",
+            "neId": "L2 Switch",
             "latitude": 21.48033,
             "longitude": 83.97908,
             "isSuperCore": false,
@@ -1560,7 +1560,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "SMBPSNDCCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "SMBP",
                     "longitude": 83.97908,
@@ -1571,7 +1571,7 @@
                 }
             }]
         }, {
-            "neId": "DHULAYKCCCR001",
+            "neId": "Splitter 2",
             "latitude": 20.89080611,
             "longitude": 74.79083306,
             "isSuperCore": false,
@@ -1585,7 +1585,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether326",
-                        "neID": "DHULAYKCCCR002",
+
                         "sourcePort": "Bundle-Ether326",
                         "cityCode": "DHUL",
                         "longitude": 74.79083306,
@@ -1602,7 +1602,7 @@
                         "font": "Material-Design-Iconic-Font",
                         "fontvalue": "\uf112",
                         "port": "Bundle-Ether10",
-                        "neID": "DHULAYKCCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "DHUL",
                         "longitude": 74.79083306,
@@ -1617,7 +1617,7 @@
                         "device": "Splitter 2",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether327",
-                        "neID": "MOUDRAHDCCR001",
+
                         "sourcePort": "Bundle-Ether327",
                         "cityCode": "NGPR",
                         "longitude": 79.379278,
@@ -1629,7 +1629,7 @@
                 }
             ]
         }, {
-            "neId": "ABDDCVLLCCR001",
+            "neId": "OLT",
             "latitude": 25.45093,
             "longitude": 81.83054,
             "isSuperCore": false,
@@ -1639,7 +1639,7 @@
             "connectivity": [{
                     "target": {
                         "port": "Bundle-Ether10",
-                        "neID": "ABDDCVLLCCR002",
+
                         "sourcePort": "Bundle-Ether10",
                         "cityCode": "ABDD",
                         "longitude": 81.83054,
@@ -1654,7 +1654,7 @@
                         "device": "Splitter 1",
                         "color": "#1A7DDD",
                         "port": "Bundle-Ether303",
-                        "neID": "LCKNPLBGCCR001",
+
                         "sourcePort": "Bundle-Ether303",
                         "cityCode": "LCKN",
                         "longitude": 80.96452004,
@@ -1666,7 +1666,7 @@
                 }
             ]
         }, {
-            "neId": "APRRVDYNCCR002",
+            "neId": "Splitter 1",
             "latitude": 14.68396001,
             "longitude": 77.5845,
             "isSuperCore": false,
@@ -1678,7 +1678,7 @@
                     "device": "Splitter 1",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether360",
-                    "neID": "APRRVDYNCCR001",
+
                     "sourcePort": "Bundle-Ether360",
                     "cityCode": "APRR",
                     "longitude": 77.5845,
@@ -1690,7 +1690,7 @@
             }]
         },
         {
-            "neId": "SURTKUMVCCR002",
+            "neId": "L2 Switch",
             "latitude": 21.189361,
             "longitude": 72.893972,
             "isSuperCore": false,
@@ -1702,7 +1702,7 @@
                     "device": "L2 Switch",
                     "color": "#94C65A",
                     "port": "Bundle-Ether373",
-                    "neID": "SURTKUMVCCR001",
+
                     "sourcePort": "Bundle-Ether373",
                     "cityCode": "SURT",
                     "longitude": 72.893972,
@@ -1714,7 +1714,7 @@
             }]
         },
         {
-            "neId": "VDDROPRDCCR002",
+            "neId": "OTB",
             "latitude": 22.285,
             "longitude": 73.16375,
             "isSuperCore": false,
@@ -1726,7 +1726,7 @@
                     "device": "OTB",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether10",
-                    "neID": "VDDROPRDCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "VDDR",
                     "longitude": 73.16375,
@@ -1738,7 +1738,7 @@
             }]
         },
         {
-            "neId": "SLEMREMMCCR002",
+            "neId": "L2 Switch",
             "latitude": 11.67526448,
             "longitude": 78.13328816,
             "isSuperCore": false,
@@ -1750,7 +1750,7 @@
                     "device": "L2 Switch",
                     "color": "#94C65A",
                     "port": "Bundle-Ether397",
-                    "neID": "SLEMREMMCCR002",
+
                     "sourcePort": "Bundle-Ether397",
                     "cityCode": "SLEM",
                     "longitude": 78.13328816,
@@ -1762,7 +1762,7 @@
             }]
         },
         {
-            "neId": "VJYDAKHSCCR002",
+            "neId": "ONT",
             "latitude": 16.541221,
             "longitude": 80.593497,
             "isSuperCore": false,
@@ -1774,7 +1774,7 @@
                     "device": "ONT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "VJYDAKHSCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "VJYD",
                     "longitude": 80.593497,
@@ -1786,7 +1786,7 @@
             }]
         },
         {
-            "neId": "MDURMMSCCCR002",
+            "neId": "OLT",
             "latitude": 9.953125,
             "longitude": 78.175061,
             "isSuperCore": false,
@@ -1798,7 +1798,7 @@
                     "device": "OLT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether438",
-                    "neID": "MDURMMSCCCR002",
+
                     "sourcePort": "Bundle-Ether438",
                     "cityCode": "MDUR",
                     "longitude": 78.175061,
@@ -1810,7 +1810,7 @@
             }]
         },
         {
-            "neId": "LCKNPLBGCCR001",
+            "neId": "AG1 Router",
             "latitude": 26.91999328,
             "longitude": 80.96452004,
             "isSuperCore": true,
@@ -1822,7 +1822,7 @@
         {
             "device": "AG1 Router",
             "color": "#94C65A",
-            "neId": "KLPRSHPICCR002",
+            "neId": "AG1 Router",
             "latitude": 16.69905574,
             "longitude": 74.23108616,
             "isSuperCore": false,
@@ -1836,7 +1836,7 @@
                     "font": "Material-Design-Iconic-Font",
                     "fontvalue": "\uf112",
                     "port": "Bundle-Ether342",
-                    "neID": "KLPRSHPICCR002",
+
                     "sourcePort": "Bundle-Ether342",
                     "cityCode": "KLPR",
                     "longitude": 74.23108616,
@@ -1848,7 +1848,7 @@
             }]
         },
         {
-            "neId": "RPURNRJNCCR002",
+            "neId": "AG1 Router",
             "latitude": 21.225483,
             "longitude": 81.656461,
             "isSuperCore": false,
@@ -1860,7 +1860,7 @@
                     "device": "AG1 Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether410",
-                    "neID": "RPURNRJNCCR001",
+
                     "sourcePort": "Bundle-Ether410",
                     "cityCode": "RPUR",
                     "longitude": 81.656461,
@@ -1873,7 +1873,7 @@
         },
         {
 
-            "neId": "SLPRATMSCCR002",
+            "neId": "CSS Router",
             "latitude": 17.674075,
             "longitude": 75.91721389,
             "isSuperCore": false,
@@ -1887,7 +1887,7 @@
                     "font": "Material-Design-Iconic-Font",
                     "fontvalue": "\uf112",
                     "port": "Bundle-Ether342",
-                    "neID": "KLPRSHPICCR002",
+
                     "sourcePort": "Bundle-Ether342",
                     "cityCode": "KLPR",
                     "longitude": 74.23108616,
@@ -1899,7 +1899,7 @@
             }]
         },
         {
-            "neId": "AGBMMHJPCCR002",
+            "neId": "CSS Router",
             "latitude": 19.865703,
             "longitude": 75.349951,
             "isSuperCore": false,
@@ -1909,7 +1909,7 @@
             "connectivity": null
         },
         {
-            "neId": "VKPMSHHPCCR002",
+            "neId": "ONT",
             "latitude": 17.71817,
             "longitude": 83.31062,
             "isSuperCore": false,
@@ -1921,7 +1921,7 @@
                     "device": "ONT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether379",
-                    "neID": "VKPMSHHPCCR001",
+
                     "sourcePort": "Bundle-Ether379",
                     "cityCode": "VKPM",
                     "longitude": 83.31062,
@@ -1933,7 +1933,7 @@
             }]
         },
         {
-            "neId": "GWHTISBTCCR001",
+            "neId": "L2 Switch",
             "latitude": 26.116447,
             "longitude": 91.716769,
             "isSuperCore": false,
@@ -1943,7 +1943,7 @@
             "connectivity": null
         },
         {
-            "neId": "WRGLFTMNCCR002",
+            "neId": "ONT",
             "latitude": 17.98464309,
             "longitude": 79.52208831,
             "isSuperCore": false,
@@ -1955,7 +1955,7 @@
                     "device": "OLT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "WRGLFTMNCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "WRGL",
                     "longitude": 79.52208831,
@@ -1967,7 +1967,7 @@
             }]
         },
         {
-            "neId": "DHULAYKCCCR002",
+            "neId": "L2 Switch",
             "latitude": 20.89080611,
             "longitude": 74.79083306,
             "isSuperCore": false,
@@ -1981,7 +1981,7 @@
                     "font": "Material-Design-Iconic-Font",
                     "fontvalue": "\uf112",
                     "port": "Bundle-Ether10",
-                    "neID": "DHULAYKCCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "DHUL",
                     "longitude": 74.79083306,
@@ -1995,7 +1995,7 @@
         {
             "device": "Splitter 2",
             "color": "#1A7DDD",
-            "neId": "HNJWWDGNCCR002",
+            "neId": "Splitter 2",
             "latitude": 18.583153,
             "longitude": 73.735373,
             "isSuperCore": false,
@@ -2007,7 +2007,7 @@
                     "device": "Splitter 2",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether10",
-                    "neID": "HNJWWDGNCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "HNJW",
                     "longitude": 73.735373,
@@ -2019,7 +2019,7 @@
             }]
         },
         {
-            "neId": "JMGRRLRNCCR002",
+            "neId": "Others",
             "latitude": 22.358497,
             "longitude": 69.848711,
             "isSuperCore": false,
@@ -2031,7 +2031,7 @@
                     "device": "Others",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "JMGRRLRNCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "JMGR",
                     "longitude": 69.848711,
@@ -2043,7 +2043,7 @@
             }]
         },
         {
-            "neId": "JBLPMMRSCCR002",
+            "neId": "OLT",
             "latitude": 23.157778,
             "longitude": 79.916167,
             "isSuperCore": false,
@@ -2055,7 +2055,7 @@
                     "device": "OLT",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "JBLPMMRSCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "JBLP",
                     "longitude": 79.916167,
@@ -2067,7 +2067,7 @@
             }]
         },
         {
-            "neId": "SLGRAIRSCCR002",
+            "neId": "ONT",
             "latitude": 26.74875,
             "longitude": 88.436778,
             "isSuperCore": false,
@@ -2079,7 +2079,7 @@
                     "device": "ONT",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether416",
-                    "neID": "SLGRAIRSCCR002",
+
                     "sourcePort": "Bundle-Ether416",
                     "cityCode": "SLGR",
                     "longitude": 88.436778,
@@ -2091,7 +2091,7 @@
             }]
         },
         {
-            "neId": "PDCYWHTTCCR002",
+            "neId": "Splitter 2",
             "latitude": 11.94027,
             "longitude": 79.82842,
             "isSuperCore": false,
@@ -2103,7 +2103,7 @@
                     "device": "Splitter 2",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether10",
-                    "neID": "PDCYWHTTCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "PDCY",
                     "longitude": 79.82842,
@@ -2115,7 +2115,7 @@
             }]
         },
         {
-            "neId": "KOTAKOARCCR001",
+            "neId": "Others",
             "latitude": 25.167455,
             "longitude": 75.846656,
             "isSuperCore": false,
@@ -2127,7 +2127,7 @@
                     "device": "Others",
                     "color": "#1A7DDD",
                     "port": "Bundle-Ether10",
-                    "neID": "KOTAKOARCCR001",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "KOTA",
                     "longitude": 75.846656,
@@ -2139,7 +2139,7 @@
             }]
         },
         {
-            "neId": "INDRAGPSCCR002",
+            "neId": "Splitter 1",
             "latitude": 22.700375,
             "longitude": 75.925333,
             "isSuperCore": false,
@@ -2153,7 +2153,7 @@
                     "font": "Material-Design-Iconic-Font",
                     "fontvalue": "\uf112",
                     "port": "Bundle-Ether334",
-                    "neID": "INDRAGPSCCR002",
+
                     "sourcePort": "Bundle-Ether334",
                     "cityCode": "INDR",
                     "longitude": 75.925333,
@@ -2165,7 +2165,7 @@
             }]
         },
         {
-            "neId": "SMBPSNDCCCR002",
+            "neId": "CSS Router",
             "latitude": 21.48033,
             "longitude": 83.97908,
             "isSuperCore": false,
@@ -2177,7 +2177,7 @@
                     "device": "CSS Router",
                     "color": "#94C65A",
                     "port": "Bundle-Ether10",
-                    "neID": "SMBPSNDCCCR002",
+
                     "sourcePort": "Bundle-Ether10",
                     "cityCode": "SMBP",
                     "longitude": 83.97908,
@@ -2189,7 +2189,7 @@
             }]
         },
         {
-            "neId": "DLHIVKDECCR001",
+            "neId": "Others",
             "latitude": 28.63247222,
             "longitude": 77.06813889,
             "isSuperCore": true,
@@ -2201,7 +2201,7 @@
                     "device": "Others",
                     "color": "#94C65A",
                     "port": "Bundle-Ether343",
-                    "neID": "NOIDNDFDCCR001",
+
                     "sourcePort": "Bundle-Ether343",
                     "cityCode": "DLHI",
                     "longitude": 77.38480556,
@@ -2213,7 +2213,7 @@
             }]
         },
         {
-            "neId": "NOIDNDFDCCR001",
+            "neId": "Others",
             "latitude": 28.61536111,
             "longitude": 77.38480556,
             "isSuperCore": true,
@@ -2225,7 +2225,7 @@
                     "device": "Others",
                     "color": "#94C65A",
                     "port": "Bundle-Ether343",
-                    "neID": "NOIDNDFDCCR001",
+
                     "sourcePort": "Bundle-Ether343",
                     "cityCode": "DLHI",
                     "longitude": 77.38480556,
@@ -2238,7 +2238,7 @@
             "selected": true
         },
         {
-            "neId": "LCKNQMNRCCR001",
+            "neId": "Others",
             "latitude": 26.794972,
             "longitude": 80.915944,
             "isSuperCore": true,
@@ -2250,7 +2250,7 @@
                     "device": "Others",
                     "color": "#94C65A",
                     "port": "Bundle-Ether343",
-                    "neID": "NOIDNDFDCCR001",
+
                     "sourcePort": "Bundle-Ether343",
                     "cityCode": "DLHI",
                     "longitude": 77.38480556,

@@ -227,7 +227,6 @@ export class LogicaltopologyService {
       // for (const site in data) {
       for (var i = 0; i < length; i++) {
         let d = data[i];
-        // console.log(d, "d");
 
         let connectivity = d.connectivity;
         let latlng = L.latLng(d.latitude, d.longitude);
@@ -303,7 +302,7 @@ export class LogicaltopologyService {
             x: linksdot.x * this.pixelRatio,
             y: linksdot.y * this.pixelRatio
           };
-          let lineColor = "#41b021";
+          let lineColor = "#FB5246";
 
           lineShape = new createjs.Shape(this.iptopolinks(LinksPoint, lineColor, centerPoint));
           lineShape.cursor = 'pointer';
@@ -328,13 +327,12 @@ export class LogicaltopologyService {
 
         console.log(this.zoomLevel, "this.zoomLevel");
 
-        if (this.zoomLevel >= 6) {
+        if (this.zoomLevel >= 9) {
           nodeContainer.removeChild(stageCircleShape);
           linesContainer.removeChild(lineShape);
 
           for (let device in connectivity) {
             const ele = connectivity[device].target;
-            // console.log(ele, "ele");
             let id;
 
             let drawRoundRectGraphic = this.drawRoundRect(scaleMatrix, ele.color);
@@ -346,8 +344,6 @@ export class LogicaltopologyService {
             drawRoundRectShape.shadow = shadow;
             nodeContainer.addChild(drawRoundRectShape);
 
-            console.log(connectivity.length, "connectivity.length");
-            console.log(connectivity.length > 1, "connectivity.length > 1");
 
             if (connectivity.length > 1) {
               id = "all-device";
@@ -364,7 +360,7 @@ export class LogicaltopologyService {
                   nodeContainer: nodeContainer,
                   id: id
                 };
-  
+
                 let nodeImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
                 nodeImage.scaleX = scaleMatrix;
                 nodeImage.scaleY = scaleMatrix;
@@ -376,9 +372,9 @@ export class LogicaltopologyService {
                 nodeImage['data'] = payLoad.data;
                 // siteImage['current'] = payLoad.cell;
                 payLoad.nodeContainer.addChild(nodeImage);
-  
+
               });
-  
+
             } else {
               // nodeContainer.removeChild(allDeviceCircleShape);
               if (ele.device == "CSS Router") {
@@ -418,7 +414,7 @@ export class LogicaltopologyService {
                   nodeContainer: nodeContainer,
                   id: id
                 };
-  
+
                 let nodeImage = new createjs.Bitmap(payLoad.preload.getResult(payLoad.id));
                 nodeImage.scaleX = scaleMatrix;
                 nodeImage.scaleY = scaleMatrix;
@@ -430,13 +426,10 @@ export class LogicaltopologyService {
                 nodeImage['data'] = payLoad.data;
                 // siteImage['current'] = payLoad.cell;
                 payLoad.nodeContainer.addChild(nodeImage);
-  
+
               });
-  
 
             }
-
-            
 
             // let linksdata = connectivity[device].target;
             let linklatlng = L.latLng(ele.latitude, ele.longitude);
@@ -445,6 +438,7 @@ export class LogicaltopologyService {
               x: linksdot.x * this.pixelRatio,
               y: linksdot.y * this.pixelRatio
             };
+
             let lineColor = "#41b021";
 
             let lineShapeDevice = new createjs.Shape(this.iptopolinks(LinksPoint, lineColor, centerPoint));
@@ -467,10 +461,8 @@ export class LogicaltopologyService {
             })
             linesContainer.addChild(lineShapeDevice);
 
-
-
           }
-
+          console.log(d, "d");
 
           let label = new createjs.Text(d.neId, "bold 14px Lato-Medium", "#FFFFFF");
           label.textAlign = 'center';
@@ -479,15 +471,14 @@ export class LogicaltopologyService {
           let outline = label.clone();
           outline.shadow = shadow;
           outline.color = '#000000';
+          nodeContainer.addChild(label, outline);
 
           nodeContainer.on("click", (event: any) => {
-            // console.log(event, "event");
             if (event.target.data.connectivity.length > 1) {
               this.spiderViewFeature(event, this.ref, this.mainlayerRef)
             }
           });
 
-          nodeContainer.addChild(label, outline);
 
         }
 
@@ -578,7 +569,6 @@ export class LogicaltopologyService {
   };
 
   drawRoundRect(matrix, color) {
-    // console.log(matrix, "matrix");
 
     let g = new createjs.Graphics();
     // g.beginStroke("red")

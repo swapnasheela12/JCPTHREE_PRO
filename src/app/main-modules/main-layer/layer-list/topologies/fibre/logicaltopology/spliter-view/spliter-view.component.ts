@@ -597,6 +597,7 @@ export class SpliterViewComponent implements OnInit {
       });
 
     svgGroup.on('click', function () {
+      console.log($(element).parent(),"$(element).parent()")
       $(element).parent().remove();
       d3.event.stopPropagation();
     });
