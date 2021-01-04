@@ -11,42 +11,6 @@ declare let $: any;
   selector: 'app-spliter-view',
   templateUrl: './spliter-view.component.html',
   styleUrls: ['./spliter-view.component.scss']
-  // selector: 'jcpBeta-spider-view-spliter',
-  // template: `
-  //   <div class="spidermain-wrapper-logical-topology">
-  //   <div class="spideroverlayspliter">
-  //       <svg xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>
-  //   </div>
-  //   <div></div>
-  //   </div>
-  //   `,
-  // styles: [
-  //   `
-  //     .spidermain-wrapper-logical-topology{
-  //         width: 100%;
-  //         height: 100%;
-  //         position: absolute;
-  //         z-index: 10000;
-  //         background-color: rgba(0,0,0,0);
-  //         top:0;
-  //         overflow:auto
-  //     }
-
-  //     .spideroverlayspliter,.spideroverlayspliter svg{
-  //         width: 100%;
-  //         height: 100%;
-  //         position: relative;
-  //         overflow:auto
-  //     }
-
-  //     .spideroverlayspliter svg g{
-  //         display: inline-block;
-  //     }
-  //     .wrapper{
-  //         display: inline-block;
-  //     }
-  //     `
-  // ]
 })
 export class SpliterViewComponent implements OnInit {
 
@@ -156,44 +120,7 @@ export class SpliterViewComponent implements OnInit {
 
     this.createLines();
     let diagonal = function link(d) {
-      console.log(d, "d");
-      console.log((d.source.x + d.target.x), "(d.source.x + d.target.x)");
-      // return "M0" + "," + "0C" + (d.source.x + d.target.x) + 20 + "," + "0" + " " +
-      //   (d.source.x + d.target.x) + 20
-      //   + "," + d.target.y + " " + d.target.x + "," + d.target.y;
-      // return "M0" + "," + "0C" + d.x, height - d.y;
-
-      // return "M0" + "," + "0C" + d.source.x + "," + "0" + " "
-      //   + (height - d.source.y)
-      //   + "," + (height - (3 * d.source.y + 4 * d.target.y) / 7) + " "
-      //   + d.target.x + ","
-      //   + (height - d.target.y);
-
-      // return "M0" + d.source.y + "," + d.source.x
-      // + "0C" + (d.source.y + d.target.y) / 2 + "," + d.source.x
-      // + " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
-      // + " " + d.target.y + "," + d.target.x;
-
-      // return "M0" + d.source.x + "," + d.source.y
-      // + "C0" + d.source.x +  "," + (d.source.y + d.target.y) / 2
-      // + " " + d.target.x + "," + (d.source.y + d.target.y) / 2
-      // + " " + d.target.x + "," + d.target.y;
-
-      // return "M0" + d.source.x + "," + d.source.y
-      // + "C0" + (d.source.x + d.target.x) / 2 + "," + d.source.y
-      // + " " + (d.source.x + d.target.x) / 2 + "," + d.target.y
-      // + " " + d.target.x + "," + d.target.y;
-
-      // return "M0" + d.source.x + "," + ( d.source.y - 20 )
-      // + "0C" + (d.source.x + d.target.x) / 2 + "," + d.source.y
-      // + " " + (d.source.x + d.target.x) / 2 + "," + d.target.y
-      // + " " + d.target.x + "," + d.target.y;
-
-      // return "M0" + (d.source.x )/ 2 + "," + (d.source.y - 21)
-      //   + "0C" + (d.source.x + d.target.x) / 2 + "," + "0" + " " +
-      //   (d.source.x + d.target.x) / 2
-      //   + "," + d.target.y + " " + d.target.x + "," + d.target.y;
-
+      
       return "M" + d.source.x + "," + (d.source.y - 40) + "A" + 0 + "," + 0 + " 0 0,1 " + ((d.target.x + d.source.x) - 8) + "," + ((d.target.y + d.source.y) - 8);
 
     };
@@ -330,63 +257,6 @@ export class SpliterViewComponent implements OnInit {
         return d.data.fontvalue;
       });
 
-    // let linePointsGroup = wrapgroup.selectAll('.linePointsGroup')
-    //   .data(pie(data))
-    //   .enter().append('g')
-    //   .attr('class', 'linePointsGroup');
-
-    // linePointsGroup.append('path')
-    //   .attr('class', function (d, i) {
-    //     let donutArc = element.find('#donutArc' + i)[0];
-    //     let pathEl = d3.select(donutArc).node();
-    //     let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
-    //     d.source = {
-    //       x: 0,
-    //       y: 0
-    //     };
-    //     d.target = {
-    //       x: midpoint.x,
-    //       y: midpoint.y
-    //     };
-    //     return 'linePoints';
-    //   })
-    //   .attr('stroke-width', 1)
-    //   .attr('stroke', '#FFFFFF')
-    //   .attr('fill', 'none')
-    //   .attr('d', diagonal);
-
-    // linePointsGroup.append('circle')
-    //   .attr('class', function (d, i) {
-    //     let donutArc = element.find('#donutArc' + i)[0];
-    //     let pathEl = d3.select(donutArc).node();
-    //     let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
-    //     d.source = {
-    //       x: 0,
-    //       y: 0
-    //     };
-    //     d.target = {
-    //       x: midpoint.x,
-    //       y: midpoint.y
-    //     };
-    //     return 'circlePointsEnd';
-    //   })
-    //   .attr('r', 3)
-    //   .attr('fill', '#FFFFFF')
-    //   .attr('cx', function (d) {
-    //     return d.target.x;
-    //   })
-    //   .attr('cy', function (d) {
-    //     return d.target.y;
-    //   });
-
-    // bandGroup.append('circle')
-    //   .attr('r', 30)
-    //   .attr('stroke-width', 1)
-    //   .attr('stroke', '#000000')
-    //   .attr('fill', bands.color)
-    //   .attr('transform', 'translate(-150,0)')
-    //   .style('cursor', 'pointer');
-
     let cellSite: any = bandGroup.append('g')
       .attr('id', 'centerImgGroup')
       .attr('class', 'cellGroup')
@@ -428,28 +298,6 @@ export class SpliterViewComponent implements OnInit {
         return -10;
       })
       .attr("xlink:href", imageURL);
-
-    // this.circleGroup.append('text')
-    //   .style('text-anchor', 'middle')
-    //   .style('dominant-baseline', 'middle')
-    //   .style('fill', '#ffffff')
-    //   .style('color', '#ffffff')
-    //   .style('font-size', '24px')
-    //   .attr('transform', 'translate(-150,0)')
-    //   .style('font-family', (d) => {
-    //     return d.data.font;
-    //   })
-    //   .attr('x', function (d) {
-    //     return 20;
-    //   })
-    //   .attr('y', function (d) {
-    //     return 0;
-    //   })
-    //   .attr('class', 'iconText')
-    //   .text((d) => {
-    //     return d.data.fontvalue;
-    //   });
-
 
     cellSite.append('text')
       .style('text-anchor', 'middle')
@@ -506,72 +354,7 @@ export class SpliterViewComponent implements OnInit {
       });
 
 
-
-
     let bandsArcsGroup = bandGroup.append('g').attr('class', 'bandsArcsGroup');
-
-    // let siteArray = bands.siteArray;
-
-    // for (let i = 0, count = siteArray.length; i < count; i++) {
-    //   let cell = siteArray[i];
-    //   let angle = cell.azimuth - (20 / 2);
-    //   let cellGroup: any = null;
-    //   cellGroup = bandsArcsGroup.append('g')
-    //     .attr('id', 'cellGroup-' + i)
-    //     .attr('class', 'cellGroup')
-    //     .attr('transform', 'translate(-12,-20) rotate(' + angle + ', 12, 20)')
-    //     .style('cursor', 'pointer')
-    //     .style('opacity', '0.3');
-
-    //   cellGroup.append('foreignObject')
-    //     .attr({ 'width': 20, 'height': 24.5 });
-
-    //   let imageURL = 'assets/images/Layers/planned-small-cell/plannedwhite.svg';
-    //   if (cell.pci == this.currentcell.pci) {
-    //     cellGroup.style('opacity', '1');
-    //   }
-    //   let cellGroupImage = cellGroup.append("svg:image")
-    //     .attr('width', 24)
-    //     .attr('height', 25.5)
-    //     .attr("xlink:href", imageURL);
-    // }
-
-    // bandGroup.append('line')
-    //   .attr('class', 'lineBands')
-    //   .attr('stroke-width', 1)
-    //   // .attr('stroke', '#FFFFFF')
-    //   .attr('stroke', '#F03DA8')
-    //   .style("stroke-dasharray", ("3, 3"))
-    //   .attr('fill', 'none')
-    //   .attr('x1', pointSource.x)
-    //   .attr('y1', pointSource.y)
-    //   .attr('x2', pointTarget.x)
-    //   .attr('y2', pointTarget.y);
-
-    // bandGroup.append('circle')
-    //   .attr('class', 'lineBandsCircle')
-    //   .attr('r', 3)
-    //   .attr('fill', '#FFFFFF')
-    //   .attr('cx', pointTarget.x)
-    //   .attr('cy', pointTarget.y);
-
-
-    // bandGroup.append('circle')
-    //   .attr('r', 3)
-    //   .attr('stroke-width', 1)
-    //   .attr('stroke', '#000000')
-    //   .attr('fill', 'white')
-    //   .style('cursor', 'pointer');
-
-    // bandGroup.append('line')
-    //   .attr('class', 'lineBands')
-    //   .attr('stroke-width', 1)
-    //   .attr('stroke', '#FFFFFF')
-    //   .attr('fill', 'none')
-    //   .attr('x1', pointSource.x)
-    //   .attr('y1', pointSource.y)
-    //   .attr('x2', 0)
-    //   .attr('y2', 0);
 
     let cellGroup = null;
     cellGroup = this.bandsArcsGroup.append('g')
@@ -735,29 +518,7 @@ export class SpliterViewComponent implements OnInit {
   }
 
   appendLineToCircle(element) {
-    // return this.linePointsGroup.append('circle')
-    //   .attr('class', function (d, i) {
-    //     let donutArc = $(element).find('#donutArc' + i)[0];
-    //     let pathEl = d3.select(donutArc).node();
-    //     let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
-    //     d.source = {
-    //       x: 0,
-    //       y: 0
-    //     };
-    //     d.target = {
-    //       x: midpoint.x,
-    //       y: midpoint.y
-    //     };
-    //     return 'circlePointsEnd';
-    //   })
-    //   .attr('r', 3)
-    //   .attr('fill', '#FFFFFF')
-    //   .attr('cx', function (d) {
-    //     return d.target.x;
-    //   })
-    //   .attr('cy', function (d) {
-    //     return d.target.y;
-    //   });
+   
   }
 
   creatLeafSVG(innerRadius, outerRadius, startAngle, endAngle, i, j, sector) {
@@ -798,37 +559,7 @@ export class SpliterViewComponent implements OnInit {
   }
 
   createCircle() {
-    // circleGroup.append('rect')
-    //   .attr('class', 'rectPoints')
-    //   .attr("width", 40)
-    //   .attr("height", 40)
-    //   .attr("rx", 4)
-    //   .attr('stroke-width', 1)
-    //   .attr('stroke', '#FFFFFF')
-    //   .attr('fill', function (d) {
-    //     if (d.data.disabled) return '#b3b3b3';
-    //     return d.data.color;
-    //   })
-    //   .attr('y', (d) => {
-    //     if (item.radiuscircle == "100") {
-    //       return -25;
-    //     } else {
-    //       let degree = d.endAngle * (180 / Math.PI);
-    //       return (degree >= 0) ? -20 : (degree >= 90) ? 10 : (degree >= 180) ? 20 : (degree >= 270) ? 50 : -20;
-    //     }
-
-    //   })
-    //   .attr('x', function (d) {
-    //     if (item.radiuscircle == "100") {
-    //       return -25;
-    //     } else {
-    //       return 0;
-    //     }
-
-    //   });
-
-
-
+   
     return this.circleGroup.append('rect')
       .attr('class', 'rectPoints')
       .attr("width", 40)
@@ -902,26 +633,7 @@ export class SpliterViewComponent implements OnInit {
       .text((d) => {
         return d.data.name;
       });
-    // .style('text-anchor', 'start')
-    // .style('fill', '#ffffff')
-    // .style('font-size', '12px')
-    // .attr('class', 'donutText')
-    // .attr('transform', 'translate(-150,0)')
-    // .attr('x', (d) => {
-    //   return 50;
-    // })
-    // .style('font-weight', function (d) {
-    //   if (d.data.font) {
-    //     return "bold";
-    //   }
-    // })
-    // .attr('y', (d) => {
-    //   let degree = d.endAngle * (180 / Math.PI);
-    //   return (degree <= 90) ? -10 : (degree >= 180) ? 20 : 5
-    // })
-    // .text((d) => {
-    //   return d.data.name;
-    // });
+   
   }
 
   appendLabelOutside() {
