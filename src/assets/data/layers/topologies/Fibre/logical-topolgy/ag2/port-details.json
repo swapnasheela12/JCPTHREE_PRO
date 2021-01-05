@@ -1,0 +1,10 @@
+[
+    {
+        "AG2_Source": "INAPAPRRVDYNNB0001OA2AAR001",
+        "AG2_Source_Port": "TenGigE0/1/0/7",
+        "AG2_Destination": "INAPAPRRVNSCNB0001MA2AAR001",
+        "AG2_Destination_Port": "TenGigE0/1/0/23",
+        "OLT_NAME": "INAPAPRRAPRRNB0032FSAOLT001",
+        "EAST/WEST_Side_OLT_Port": "NT-A:XFP:1"
+    }
+]

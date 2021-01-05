@@ -1,0 +1,110 @@
+[
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "HEIGHT",
+        "sr-no": "1"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "WIDTH",
+        "sr-no": "2"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "LENGTH",
+        "sr-no": "3"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "DEPTH_PLACED",
+        "sr-no": "4"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "DIAMETER",
+        "sr-no": "5"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "WEIGHT",
+        "sr-no": "6"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "MATERIAL_TYPE",
+        "sr-no": "7"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "GROUND_HEIGHT",
+        "sr-no": "8"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "AVERAGE_FLOOR_HEIGHT",
+        "sr-no": "9"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "STARTING_FLOOR",
+        "sr-no": "10"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "ENDING_FLOOR",
+        "sr-no": "11"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "GROUND_FLOOR_NUMBER",
+        "sr-no": "12"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_TOWER_HEIGHT",
+        "sr-no": "13"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_NO_OF_POLES",
+        "sr-no": "14"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_TOWER_TYPE",
+        "sr-no": "15"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_STATUS",
+        "sr-no": "16"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_SITE_RADIUS",
+        "sr-no": "17"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "STRUCTURE",
+        "field-name": "RJ_RADIUS",
+        "sr-no": "18"
+    }
+]

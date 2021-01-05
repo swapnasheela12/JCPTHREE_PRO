@@ -95,6 +95,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FivegCircularSpiderViewComponent } from './fiveg-circular-spider-view/fiveg-circular-spider-view.component';
 import { LogicalConnectivityComponent } from './layer-list/topologies/logical-connectivity/logical-connectivity.component';
 import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/fiveg-adjacent-spider-view.component';
+import { LogicalToplogySpiderViewComponent } from './layer-list/topologies/fibre/logicaltopology/logical-topology-spider-view/logical-topology-spider-view.component';
+import { EquipmentComponent } from './layer-list/topologies/fibre/logicaltopology/logical-topology-spider-view/equipment/equipment.component';
+import { StructureComponent } from './layer-list/topologies/fibre/logicaltopology/logical-topology-spider-view/structure/structure.component';
+import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -132,11 +136,15 @@ import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/f
     NominalViewComponent,
     FivegSpiderViewComponent,
     LogicaltopologyMultiSpiderViewComponent,
+    LogicalToplogySpiderViewComponent,
     SpliterViewComponent,
     StructurePlannedSettingsPopupComponent,
     FivegCircularSpiderViewComponent,
     LogicalConnectivityComponent,
-    FivegAdjacentSpiderViewComponent
+    FivegAdjacentSpiderViewComponent,
+    StructureComponent,
+    EquipmentComponent,
+    AnchorRendererComponent
   ],
   imports: [
     DragDropModule,
@@ -145,7 +153,7 @@ import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/f
     CoreModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([colorDropdownRendererComponent,inputRendererComponent]),
+    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent]),
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,
@@ -195,17 +203,18 @@ import { FivegAdjacentSpiderViewComponent } from './fiveg-adjacent-spider-view/f
     HighchartsChartModule,
     NgxMatSelectSearchModule,
     FlexLayoutModule
-   
+
   ],
   providers: [
     MarkerService
 
   ],
-  exports: [ 
+  exports: [
     MainLayerComponent,
     TableViewControlComponent,
     colorDropdownRendererComponent,
-    inputRendererComponent
+    inputRendererComponent,
+    AnchorRendererComponent
   ], entryComponents: [
     TableViewControlComponent,
     SpiderComponent

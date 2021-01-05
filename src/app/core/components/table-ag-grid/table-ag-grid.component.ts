@@ -14,6 +14,7 @@ import { DeleteRendererComponent } from '../ag-grid-renders/delete-renderer.comp
 import { GenhelpiconComponent } from '../ag-grid-renders/genhelpicon.component';
 import { ThreeDotRETRenderer } from '../../../main-modules/work-orders/cm-workorders/ret-change/threedot-ret-renderer.component';
 import { IconRendererComponent } from 'src/app/main-modules/work-orders/cm-workorders/ret-change/icon-renderer.component';
+import { AnchorRendererComponent } from '../ag-grid-renders/anchor-renderer.component';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     deleteRenderer: DeleteRendererComponent,
     helpicon: GenhelpiconComponent,
     threeDotRetRenderer: ThreeDotRETRenderer,
-    iconRenderer: IconRendererComponent
+    iconRenderer: IconRendererComponent,
+    linkRenderer: AnchorRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];
