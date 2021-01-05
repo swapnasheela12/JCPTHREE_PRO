@@ -123,6 +123,7 @@ export class LegendsAndFilterComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
   showRouteLegends: boolean = false;
   showfivegLegends: boolean = false;
+  showLogicalTopology: boolean = false;
   showCommonLegends: boolean = false;
   extraLayer: Subscription;
   countSub: Subscription;
@@ -179,6 +180,7 @@ export class LegendsAndFilterComponent implements OnInit {
       case "Sites-OnAir-Macro-Macro4G":
         this.showRouteLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         this.showCommonLegends = true;
         this.minValue = -110;
         this.maxValue = -40;
@@ -197,46 +199,60 @@ export class LegendsAndFilterComponent implements OnInit {
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Fibre-Route-Ready-Collector":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Fibre-Route-Planned-Core":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Fibre-Route-Planned-Collector":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Structure-Planned":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Structure-Ready":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Equipment-Planned":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Topologies-Equipment-Ready":
         this.showRouteLegends = true;
         this.showCommonLegends = false;
         this.showfivegLegends = false;
+        this.showLogicalTopology = false;
         break;
       case "Logical-Connectivity":
           this.showRouteLegends = false;
           this.showCommonLegends = false;
           this.showfivegLegends = true;
+          this.showLogicalTopology = false;
+      case "Logical-Connectivity-Planned":
+          this.showRouteLegends = false;
+          this.showCommonLegends = false;
+          this.showfivegLegends = false;
+          this.showLogicalTopology = true;
           break;
 
     }
