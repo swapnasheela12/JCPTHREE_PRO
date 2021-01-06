@@ -2162,6 +2162,7 @@ const LOGICAL_ROUTE_LIST = [
         name: "Planned",
         icon: "fas fa-user fa-3",
         parentToChild: 'Logical-Connectivity-Planned',
+        component: "LogicalConnectivitySettingComponent",
         link: "JCP/Layers/Topologies/Fibre/LogicalTopology/Planned",
         children: []
     },

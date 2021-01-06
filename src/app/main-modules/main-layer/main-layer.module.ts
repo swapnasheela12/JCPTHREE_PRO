@@ -99,6 +99,7 @@ import { LogicalToplogySpiderViewComponent } from './layer-list/topologies/fibre
 import { EquipmentComponent } from './layer-list/topologies/fibre/logicaltopology/logical-topology-spider-view/equipment/equipment.component';
 import { StructureComponent } from './layer-list/topologies/fibre/logicaltopology/logical-topology-spider-view/structure/structure.component';
 import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
+import { LogicalConnectivitySettingComponent } from './layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -144,7 +145,8 @@ import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders
     FivegAdjacentSpiderViewComponent,
     StructureComponent,
     EquipmentComponent,
-    AnchorRendererComponent
+    AnchorRendererComponent,
+    LogicalConnectivitySettingComponent
   ],
   imports: [
     DragDropModule,

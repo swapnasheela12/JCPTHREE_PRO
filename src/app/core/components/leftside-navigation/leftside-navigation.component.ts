@@ -1,3 +1,4 @@
+import { LogicalConnectivitySettingComponent } from './../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 //\9
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input } from '@angular/core';
@@ -490,7 +491,14 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
       );
-    } else if (node.component == 'EquipmentSettingsPopupComponent') {
+    }
+    else if (node.component == 'LogicalConnectivitySettingComponent') {
+      const { LogicalConnectivitySettingComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(LogicalConnectivitySettingComponent)
+      );
+    }
+    else if (node.component == 'EquipmentSettingsPopupComponent') {
       const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
