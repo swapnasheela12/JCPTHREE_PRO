@@ -546,12 +546,12 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
         panelClass: "material-dialog-container",
       });
     } else if (d.data.name == 'Logical Connectivity') {
-      // let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
-      // this.dataShare.setExtraLayer(extraLayer);
-      // this.dataShare.countLogicalMessage();
-      // this.removeLayer();
-      // let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
-      // ref.componentRef = ref.target.createComponent(logicalComponent);
+      let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
+      this.dataShare.setExtraLayer(extraLayer);
+      this.dataShare.countLogicalMessage();
+      this.removeLayer();
+      let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
+      ref.componentRef = ref.target.createComponent(logicalComponent);
     }
   }
 
