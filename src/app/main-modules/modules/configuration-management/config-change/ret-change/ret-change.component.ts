@@ -79,7 +79,7 @@ export interface DialogData {
 })
 export class RetChangeComponent implements OnInit {
   filtervalue = "Search SAP ID"
- 
+
   selectedRadio = "Manual Selection";
   showSuccessFailure: boolean = false;
   showSuccessKpiFailure: Boolean = false;
@@ -385,6 +385,7 @@ export class RetChangeComponent implements OnInit {
         headerName: "Calibration",
         field: "",
         width: 150,
+        headerClass: 'check-col-header',
         checkboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },

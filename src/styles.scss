@@ -1907,3 +1907,27 @@ ag-grid-angular {
     height: 400px;
     overflow: scroll!important;
 }
+
+ag-grid-angular{
+    .ag-root-wrapper {
+        .ag-root-wrapper-body {
+            .ag-root {
+                .ag-body-viewport {
+                    .ag-center-cols-clipper {
+                        .ag-center-cols-viewport {
+                            overflow-x: hidden;
+                        }
+                    }
+                }
+                .ag-body-horizontal-scroll {
+                    .ag-body-horizontal-scroll-viewport {
+                        height: 11px !important;
+                        max-height: 11px !important;
+                        overflow-x: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+    
