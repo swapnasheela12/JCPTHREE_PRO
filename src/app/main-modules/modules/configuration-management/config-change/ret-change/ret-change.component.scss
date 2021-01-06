@@ -38,7 +38,7 @@ $color-grayBlue: #464d69;
         }
     }
     .cia-card-content {
-        height: calc(100% - 64px);
+        height: calc(100% - 8px);
         .mat-stepper-horizontal {
             height: 100%;
             .mat-horizontal-content-container {
@@ -301,132 +301,6 @@ input[type="file"] {
     cursor: pointer;
 }
 
-// .task-summary-view {
-//     &.grid-layouts {
-//         .task-summary-grid {
-//             border: 1px solid fade-out(#000, 0.90);
-//             &.selected-grid {
-//                 background-color: #f2f2f2;
-//             }
-//             .icons {
-//                 md-icon {
-//                     margin-right: 10px;
-//                 }
-//             }
-//             &:nth-child(odd) {
-//                 border-right: 0px;
-//                 border-bottom: 0px;
-//             }
-//             &:nth-child(even) {
-//                 border-bottom: 0px;
-//             }
-//             &:last-child {
-//                 border-bottom: 1px solid fade-out(#000, 0.90);
-//             }
-//             &:nth-last-child(2) {
-//                 border-bottom: 1px solid fade-out(#000, 0.90);
-//             }
-//         }
-//     }
-//     &.overview {
-//         padding: 0px;
-//         .task-summary-grid {
-//             .images-slidesview {
-//                 position: relative;
-//                 height: 320px;
-//                 .sitesimagesConfig {
-//                     padding: 0 30px;
-//                     padding-top: 10px;
-//                     border-right: 1px solid fade-out(#fff, 0.70);
-//                     .sitesimagelider {
-//                         margin: 0px 5.5px;
-//                         cursor: pointer;
-//                         .sitesimagelider-content {
-//                             img {
-//                                 &:focus {
-//                                     outline: none;
-//                                 }
-//                             }
-//                         }
-//                     }
-//                     .slick-arrow {
-//                         position: absolute;
-//                         width: 26px;
-//                         height: 100%;
-//                         z-index: 1;
-//                         line-height: 80px;
-//                         font-size: 30px;
-//                         color: fade-out(#fff, 0.70);
-//                         cursor: pointer;
-//                         top: 50%;
-//                         margin-top: -40px;
-//                         text-align: center;
-//                         &.leftimages-preview {
-//                             left: 0px;
-//                         }
-//                         &.rightimages-preview {
-//                             right: 0px;
-//                         }
-//                     }
-//                 }
-//                 i {
-//                     position: absolute;
-//                     right: 0px;
-//                     width: 40px;
-//                     height: 40px;
-//                     text-align: center;
-//                     line-height: 40px;
-//                     font-size: 24px;
-//                     color: #fff;
-//                     cursor: pointer;
-//                     background-color: rgba(0, 0, 0, 0.54);
-//                     &:focus {
-//                         outline: none;
-//                     }
-//                 }
-//                 .bottom-slider {
-//                     position: absolute;
-//                     bottom: 0px;
-//                     height: 100px;
-//                     background-color: rgba(0, 0, 0, 0.54);
-//                     width: 100%;
-//                     .threeDview {
-//                         .threeDview-box {
-//                             height: 100%;
-//                             cursor: pointer;
-//                             .threeDview-icons {
-//                                 font-size: 30px;
-//                                 color: fade-out(#fff, 0.46);
-//                             }
-//                             .threeDview-title {
-//                                 line-height: 30px;
-//                                 color: fade-out(#fff, 0.46);
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//             padding-bottom: 0px;
-//             padding-top: 10px;
-//             .grid-details {
-//                 padding-bottom: 10px;
-//                 border-bottom: 1px solid fade-out(#000, 0.90);
-//                 .label {
-//                     font-size: 14px;
-//                 }
-//                 .value {
-//                     text-align: right;
-//                 }
-//             }
-//         }
-//     }
-//     &.site-sectordetails {
-//         .task-summary-grid {
-//             padding-left: 0px;
-//             padding-right: 0px;
-//         }
-//     }
-// }
 .label {
     font-size: 14px;
     color: #818181;
@@ -442,6 +316,13 @@ input[type="file"] {
     text-align: center !important;
     .ag-cell-wrapper {
         justify-content: center !important;
+    }
+}
+
+.check-col-header {
+    .ag-header-select-all {
+        margin-right: 3px !important;
+        margin-left: -11px;
     }
 }
 

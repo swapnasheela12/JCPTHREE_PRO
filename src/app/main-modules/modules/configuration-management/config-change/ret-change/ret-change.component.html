@@ -1,15 +1,6 @@
 <div class="h-100">
     <mat-card class="cia-module-card">
 
-        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
-            <mat-toolbar-row class="mat-blue-grey">
-                <div class="col pl-0">
-                    <div class="header" *ngIf="Workorder == false">RET Change</div>
-                    <div class="header" *ngIf="Workorder == true">Config Work Order</div>
-                </div>
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <mat-divider></mat-divider>
         <mat-card-content class="cia-card-content">
             <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
                 <mat-step label="Basic Details">
@@ -138,12 +129,9 @@
                     </div>
                 </mat-step>
                 <mat-step label="Configuration">
-                    <div style="height: calc(100% - 25px);overflow: auto;">
-                        <!-- <div fxFlex="100"> -->
+                    <div style="height: calc(100% - 24px);overflow: auto;">
 
-
-                        <!-- <div fxFlex="100"> -->
-                        <div>
+                        <div style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);">
                             <div fxFlex="35">
                                 <div style="color: rgba(0, 0, 0, 0.54);font-size: 14px;">Select NE Type
                                 </div>
@@ -170,7 +158,7 @@
                             </div>
                             <div fxFlex="30"></div>
                         </div>
-                        <mat-divider></mat-divider>
+
                         <div>
                             <div fxFlex="100">
                                 <div class="p-2" fxLayout="row wrap" fxLayoutAlign="start center">
@@ -184,13 +172,9 @@
 
                             </div>
                         </div>
-                        <mat-divider></mat-divider>
-                        <!-- </div> -->
 
-                        <!-- </div> -->
-
-                        <div style="height: calc(100% - 138px);">
-                            <app-table-ag-grid style="width: 100%;"></app-table-ag-grid>
+                        <div style="height: 100%">
+                            <app-table-ag-grid style="width: 100%; height: 100%;"></app-table-ag-grid>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
@@ -292,143 +276,142 @@
                             <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
                         </div>
                         <div class="p-2">
-                            <button class="next-button button" (click)="showWorkorder()" mat-raised-button color="primary" matStepperNext>Create WO</button>
+                            <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
                         </div>
                         <div class="col"></div>
                     </div>
                 </mat-step>
+                <mat-step label="Summary">
+                    <div style="height: calc(100% - 24px);overflow: auto;">
+                        <div>
+                            <div fxLayout="row wrap">
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Template Type</div>
+                                    <div class="value">RET Change</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Workorder ID</div>
+                                    <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Project Type</div>
+                                    <div class="value">RET Change</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <mat-form-field class="p-0" fxFlex="100">
+                                        <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
+                                        </mat-label>
+                                        <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="md-subhead">Schedule</div>
+                                    <div class="label">Date</div>
+                                    <div class="value">02-03-2016 </div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="pt-4">
+                                        <div class="label">Time</div>
+                                    </div>
+                                    <div class="value">08:05 AM</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="md-subhead">Work Order Expiry</div>
+                                    <div class="label">Date</div>
+                                    <div class="value">03-03-2016</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="pt-4">
+                                        <div class="label">Time</div>
+                                    </div>
+                                    <div class="value">08:05 AM</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Impact Area</div>
+                                    <div class="value">Mumbai</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Risk Assessment</div>
+                                    <div class="value">Low Risk</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Urgency</div>
+                                    <div class="value">Low</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Reason For Change</div>
+                                    <div class="value">Incident/Accidental Problem</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Requester ID</div>
+                                    <div class="value">Shaika.gayal@ril.com</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Domain</div>
+                                    <div class="value">RAN Operator</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Sub Domain</div>
+                                    <div class="value">eNB</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Service</div>
+                                    <div class="value">RANeNB</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Description</div>
+                                    <div class="value">RET Change</div>
+                                </div>
 
-            </mat-horizontal-stepper>
-
-            <div *ngIf="Workorder == true" style="height: calc(100% - 40px);overflow: auto;">
-                <div class="px-3">
-
-                    <div fxLayout="row wrap">
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Template Type</div>
-                            <div class="value">RET Change</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Workorder ID</div>
-                            <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Project Type</div>
-                            <div class="value">RET Change</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <mat-form-field class="p-0" fxFlex="100">
-                                <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
-                                </mat-label>
-                                <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
-                            </mat-form-field>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="md-subhead">Schedule</div>
-                            <div class="label">Date</div>
-                            <div class="value">02-03-2016 </div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="pt-4">
-                                <div class="label">Time</div>
-                            </div>
-                            <div class="value">08:05 AM</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="md-subhead">Work Order Expiry</div>
-                            <div class="label">Date</div>
-                            <div class="value">03-03-2016</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="pt-4">
-                                <div class="label">Time</div>
-                            </div>
-                            <div class="value">08:05 AM</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Impact Area</div>
-                            <div class="value">Mumbai</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Risk Assessment</div>
-                            <div class="value">Low Risk</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Urgency</div>
-                            <div class="value">Low</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Reason For Change</div>
-                            <div class="value">Incident/Accidental Problem</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Requester ID</div>
-                            <div class="value">Shaika.gayal@ril.com</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Domain</div>
-                            <div class="value">RAN Operator</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Sub Domain</div>
-                            <div class="value">eNB</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Service</div>
-                            <div class="value">RANeNB</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Description</div>
-                            <div class="value">RET Change</div>
-                        </div>
-
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Risk Impact Analysis </div>
-                            <div class="value">-</div>
-                        </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Implementation Comments</div>
-                            <div class="value">-</div>
-                        </div>
-                        <div class="p-2" fxFlex="100">
-                            <div fxFlex="25">
-                                <mat-form-field class="example-form-field">
-                                    <mat-label>Filter</mat-label>
-                                    <input matInput type="text" [(ngModel)]="filtervalue">
-                                    <button mat-button *ngIf="filtervalue" matSuffix mat-icon-button aria-label="Clear" (click)="filtervalue=''">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
-                                </mat-form-field>
-                            </div>
-                            <div fxFlex></div>
-                            <div fxFlex="5">
-                                <div class="icon-button" style="padding: 12px 15px; font-size: 18px; color: #727375;">
-                                    <div class="zmdi zmdi-book"></div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Risk Impact Analysis </div>
+                                    <div class="value">-</div>
+                                </div>
+                                <div class="p-2" fxFlex="25">
+                                    <div class="label">Implementation Comments</div>
+                                    <div class="value">-</div>
+                                </div>
+                                <div class="p-2" fxFlex="100">
+                                    <div fxFlex="25">
+                                        <mat-form-field class="example-form-field">
+                                            <mat-label>Filter</mat-label>
+                                            <input matInput type="text" [(ngModel)]="filtervalue">
+                                            <button mat-button *ngIf="filtervalue" matSuffix mat-icon-button aria-label="Clear" (click)="filtervalue=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex></div>
+                                    <div fxFlex="5">
+                                        <div class="icon-button" style="padding: 12px 15px; font-size: 18px; color: #727375;">
+                                            <div class="zmdi zmdi-book"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+
+                        <div style="height: 100%">
+                            <!-- <app-table-ag-grid style="width: 100%;"></app-table-ag-grid> -->
+                            <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
+                                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReady($event)">
+                            </ag-grid-angular>
+                        </div>
+
                     </div>
 
-                </div>
-                <mat-divider></mat-divider>
-                <div style="height: 100%">
-                    <!-- <app-table-ag-grid style="width: 100%;"></app-table-ag-grid> -->
-                    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
-                        toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReady($event)">
-                    </ag-grid-angular>
-                </div>
+                    <mat-divider></mat-divider>
 
-            </div>
-            <mat-divider *ngIf="Workorder == true"></mat-divider>
-            <div class="px-3 d-flex" *ngIf="Workorder == true">
-                <div class="py-2">
-                    <button mat-stroked-button color="primary" class="buttonWidth">Previous</button>
-                </div>
-                <div class="p-2">
-                    <button class="next-button button" (click)="showWorkorder()" mat-raised-button color="primary">Submit</button>
-                </div>
-                <div class="col"></div>
-            </div>
+                    <div class="px-3 d-flex">
+                        <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        <div class="p-2">
+                            <button class="next-button button" (click)="showWorkorder()" mat-raised-button color="primary">Submit</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
         </mat-card-content>
     </mat-card>
 </div>
