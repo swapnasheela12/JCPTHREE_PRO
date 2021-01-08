@@ -79,6 +79,7 @@ export interface DialogData {
 })
 export class RetChangeComponent implements OnInit {
   filtervalue = "Search SAP ID"
+  showSummary =  false;
 
   selectedRadio = "Manual Selection";
   showSuccessFailure: boolean = false;
@@ -717,6 +718,7 @@ export class RetChangeComponent implements OnInit {
   showWorkorder() {
     this.Workorder = true;
   }
+  
   public fileName;
   clearupload() {
     this.fileName = "";
