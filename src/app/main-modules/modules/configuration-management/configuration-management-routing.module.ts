@@ -9,7 +9,7 @@ const routes: Routes = [
     path: "Config-Change", children: [
       // { path: "Samsung-Rqa-Scheduling", component: SamsungRqaSchedulingComponent }
       { path: "Rqa-Scheduling/Samsung-Rqa-Scheduling", component: SamsungRqaSchedulingComponent },
-      { path: "Ret-Change", component: RetChangeComponent }
+      { path: "RET-Change", component: RetChangeComponent }
     ]
   },
 ];
