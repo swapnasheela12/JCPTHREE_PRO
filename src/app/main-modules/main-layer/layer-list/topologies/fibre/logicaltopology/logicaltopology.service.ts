@@ -1,3 +1,6 @@
+import { LeftsideSettingsModelsData } from './../../../../../../core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-data.model';
+import { ViewChild, TemplateRef } from '@angular/core';
+import { LeftsideSettingsModelsOptions } from 'src/app/core/components/leftside-settings-popup/leftside-settings-models/leftside-settings-models-options.model';
 import { LogicaltopologyMultiSpiderViewComponent } from './logicaltopology-multi-spider-view/logicaltopology-multi-spider-view.component';
 import { Observable } from 'rxjs';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
@@ -9,6 +12,8 @@ import * as L from 'leaflet';
 import * as _ from 'underscore';
 import * as createjs from 'createjs-module';
 import * as preloadjs from 'preload-js';
+import { NavigationSettingsFactoryService } from 'src/app/_services/navigation-settings/navigation-settings-factory.service';
+import { NavigationSettingsService } from '../../../../../../_services/navigation-settings/navigation-settings.service';
 
 
 interface DataObject {
@@ -103,11 +108,11 @@ export class LogicaltopologyService {
     },
   ]
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private datashare: DataSharingService, private http: HttpClient, public dialog: MatDialog, private shapeService: ShapeService,) {
+  constructor(private navigationFactoryService: NavigationSettingsFactoryService, private componentFactoryResolver: ComponentFactoryResolver, private datashare: DataSharingService, private http: HttpClient, private shapeService: ShapeService,) {
     this.ref = this;
     this.lib = leaflayer();
     this.redrawLayer();
-console.log("asdasdasas")
+    console.log("asdasdasas")
     this.getJSON().subscribe(data => {
       this.sitesValArr = data;
     });
@@ -614,5 +619,42 @@ console.log("asdasdasas")
     // stage.removeEventListener('canvasLayerChanged', this.reloadLayer);
     stage.update();
   };
+
+  @ViewChild('logicalConnectivitySettingsPopup', { static: true }) logicalConnectivitySettingsPopup: TemplateRef<any>;
+
+  dialog: NavigationSettingsService;
+
+  dispatchDialog() {
+    this.openDialog({
+      headerText: 'LogicalConnectivity Settings',
+      template: this.logicalConnectivitySettingsPopup
+    }, {
+      width: 536,
+      height: 600,
+      backdropClass: 'light-white-backdrop',
+      disableClose: false
+    });
+  }
+
+  closeDialog() {
+    this.dialog.close();
+  }
+
+  private openDialog(dialogData: LeftsideSettingsModelsData, options: LeftsideSettingsModelsOptions): void {
+    this.dialog = this.navigationFactoryService.open(dialogData, options);
+  }
+
+  ngOnInit(): void {
+    this.dispatchDialog();
+    // this.thirdFormGroup = this.formBuilder.group({
+    //   selectedDateTime: {
+    //     startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+    //     endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+    //     },
+    //   alwaysShowCalendars: true,
+    //   keepCalendarOpeningWithRange: true,
+    //   showRangeLabelOnInput: true,
+    // });
+  }
 
 }

@@ -135,13 +135,17 @@
                 </form>
             </div>
             <mat-divider></mat-divider>
-            <mat-form-field style="width: 35%; margin-left: 20px">
-                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"
-                    placeholder="SEARCH JC / SAP / CELL ID">
-                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                    <span class="ic ic-search-01"></span>
-                </mat-icon>
-            </mat-form-field>
+            <div fxLayout="row wrap">
+                <div fxFlex="68"></div>
+                <mat-form-field fxFlex="30">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="SEARCH JC / SAP / CELL ID">
+                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                            <span class="zmdi zmdi-search"></span>
+                        </mat-icon>
+                </mat-form-field>
+            </div>
+          
             <mat-card-content class="cia-card-content" style="height: calc(100% - 49px);">
                 <div class="jcp-table-container" style="height: 100%;">
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>

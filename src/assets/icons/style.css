@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?w86dtt');
-  src:  url('fonts/icomoon.eot?w86dtt#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?w86dtt') format('truetype'),
-    url('fonts/icomoon.woff?w86dtt') format('woff'),
-    url('fonts/icomoon.svg?w86dtt#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?c9sfdf');
+  src:  url('fonts/icomoon.eot?c9sfdf#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?c9sfdf') format('truetype'),
+    url('fonts/icomoon.woff?c9sfdf') format('woff'),
+    url('fonts/icomoon.svg?c9sfdf#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,116 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-Union-12:before {
+  content: "\ec2d";
+}
+.ic-Equipment:before {
+  content: "\ec2e";
+}
+.ic-Other:before {
+  content: "\ec2f";
+}
+.ic-Path-28:before {
+  content: "\ec30";
+}
+.ic-Port-Details:before {
+  content: "\ec31";
+}
+.ic-Logical-1:before {
+  content: "\ec32";
+}
+.ic-Group-16519 .path1:before {
+  content: "\ec33";
+  color: rgb(3, 169, 244);
+}
+.ic-Group-16519 .path2:before {
+  content: "\ec34";
+  margin-left: -1em;
+  color: none;
+}
+.ic-Group-16519 .path3:before {
+  content: "\ec35";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Group-16519 .path4:before {
+  content: "\ec36";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Group-16522:before {
+  content: "\ec37";
+}
+.ic-Equipment1 .path1:before {
+  content: "\ec38";
+  color: rgb(3, 169, 244);
+}
+.ic-Equipment1 .path2:before {
+  content: "\ec39";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Equipment1 .path3:before {
+  content: "\ec3a";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Equipment1 .path4:before {
+  content: "\ec3b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Equipment1 .path5:before {
+  content: "\ec3c";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Group-13411 .path1:before {
+  content: "\ec3d";
+  color: rgb(3, 169, 244);
+}
+.ic-Group-13411 .path2:before {
+  content: "\ec3e";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Logical .path1:before {
+  content: "\ec3f";
+  color: rgb(3, 169, 244);
+}
+.ic-Logical .path2:before {
+  content: "\ec40";
+  margin-left: -1.013671875em;
+  color: rgb(255, 255, 255);
+}
+.ic-Others1 .path1:before {
+  content: "\ec41";
+  color: rgb(3, 169, 244);
+}
+.ic-Others1 .path2:before {
+  content: "\ec42";
+  margin-left: -1em;
+  color: rgb(253, 253, 251);
+}
+.ic-Port-Details1 .path1:before {
+  content: "\ec43";
+  color: rgb(3, 169, 244);
+}
+.ic-Port-Details1 .path2:before {
+  content: "\ec44";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Port-Details1 .path3:before {
+  content: "\ec45";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Port-Details1 .path4:before {
+  content: "\ec46";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
 .ic-AG1:before {
   content: "\ec15";
 }

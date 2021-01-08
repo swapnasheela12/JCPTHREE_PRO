@@ -1,0 +1,242 @@
+[
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_COUNTRY_NAME",
+        "sr-no": "1"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_TRAI_CIRCLE_NAME",
+        "sr-no": "2"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_TRAI_CIRCLE_CODE",
+        "sr-no": "3"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_STATE_NAME",
+        "sr-no": "4"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_STATE_CODE",
+        "sr-no": "5"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_R4G_STATE_NAME",
+        "sr-no": "6"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_R4G_STATE_CODE",
+        "sr-no": "7"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_MAINTENANCE_STATE",
+        "sr-no": "8"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_MAINTENANCE_STATE_CODE",
+        "sr-no": "9"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_MAINTENANCE_ZONE_NAME",
+        "sr-no": "10"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_MAINTENANCE_ZONE_CODE",
+        "sr-no": "11"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_JC_NAME",
+        "sr-no": "12"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_JC_CODE",
+        "sr-no": "13"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_JIOPOINT_NAME",
+        "sr-no": "14"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_CITY_CODE",
+        "sr-no": "15"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_DISTRICT_NAME",
+        "sr-no": "16"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_DISTRICT_CODE",
+        "sr-no": "17"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_TALUK_NAME",
+        "sr-no": "18"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_TALUK_CODE",
+        "sr-no": "19"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_VILLAGE_NAME",
+        "sr-no": "20"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_VILLAGE_CODE_2001",
+        "sr-no": "21"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_BUILDING_RJID",
+        "sr-no": "22"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_SITE_NAME",
+        "sr-no": "23"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_SITE_ADDRESS",
+        "sr-no": "24"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_RF_SITEID",
+        "sr-no": "25"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_PROMINANT_LANDMARK",
+        "sr-no": "26"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_PINCODE",
+        "sr-no": "27"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_LOCALITY_NAME",
+        "sr-no": "28"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_LOCALITY_CODE",
+        "sr-no": "29"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "LATITUDE",
+        "sr-no": "30"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "LONGITUDE",
+        "sr-no": "31"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "LOCATION_CODE",
+        "sr-no": "32"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_WARD_NAME",
+        "sr-no": "33"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_WARD_CODE_2011",
+        "sr-no": "34"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_LDCA_NAME",
+        "sr-no": "35"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_LDCA_CODE",
+        "sr-no": "36"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_SDCA_NAME",
+        "sr-no": "37"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_SDCA_CODE",
+        "sr-no": "38"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_CDP_HQ_NAME",
+        "sr-no": "39"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "GEOGRAPHY",
+        "field-name": "RJ_CITY_CLUSTER_HQ_NAME",
+        "sr-no": "40"
+    }
+]

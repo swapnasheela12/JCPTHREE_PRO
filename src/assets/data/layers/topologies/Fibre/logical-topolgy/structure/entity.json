@@ -1,0 +1,158 @@
+[
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "MANUFACTURER_CODE",
+        "sr-no": "1"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "PRODUCT_LINE_CODE",
+        "sr-no": "2"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_IIEP_DOMAIN",
+        "sr-no": "3"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_NETWORK_ENTITY_ID",
+        "sr-no": "4"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_NETWORK_TYPE",
+        "sr-no": "5"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_NETWORK_CATEGORY",
+        "sr-no": "6"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_FSA_ID",
+        "sr-no": "7"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_DSA_ID",
+        "sr-no": "8"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_CSA_ID",
+        "sr-no": "9"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_ESA_ID",
+        "sr-no": "10"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_FEEDER_NO",
+        "sr-no": "11"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "AIR_COND_REQUIREMENT",
+        "sr-no": "12"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "POWER_TYPE_AVAILABLE",
+        "sr-no": "13"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "MAX_POWER_REQUIREMENT",
+        "sr-no": "14"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_METER_READING_KWH",
+        "sr-no": "15"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_ENERGY_TYPE",
+        "sr-no": "16"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "SITE_TYPE",
+        "sr-no": "17"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_NO_OF_SECTORS",
+        "sr-no": "18"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_CONNECTIVITY_TYPE",
+        "sr-no": "19"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_MODEL_TYPE",
+        "sr-no": "20"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "PART_NUMBER",
+        "sr-no": "21"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_MWSTATUS",
+        "sr-no": "22"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_OLT_NUMBER",
+        "sr-no": "23"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_SWITCH_ON_NETWORK",
+        "sr-no": "24"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_FINAL_NETWORK",
+        "sr-no": "25"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "ENTITY",
+        "field-name": "RJ_ROUTE_LINK_ID",
+        "sr-no": "26"
+    }
+]
