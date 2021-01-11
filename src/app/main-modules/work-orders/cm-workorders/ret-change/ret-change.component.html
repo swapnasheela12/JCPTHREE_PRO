@@ -1,5 +1,5 @@
 <div class="h-100">
-    <mat-card class="cia-module-card">
+    <mat-card class="cia-module-card card-content">
         <div class="ret-change-tab-container prop-wifi-tabs p-0">
             <div class="tabs h-100">
                 <mat-tab-group class="tab-group h-100" (selectedTabChange)="tabChanged($event);">
@@ -64,9 +64,9 @@
 
                     <div fxFlex></div>
                     <div class="p-2 my-report-flex-item" style="margin-top: -15px;">
-                        <mat-icon class="icon-button" aria-label="search" (click)="showInputField = !showInputField;"
+                        <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;"
                             *ngIf="!showInputField">
-                            <span class="zmdi zmdi-search"></span>
+                            <span class="ic ic-search-01"></span>
                         </mat-icon>
                         <mat-form-field *ngIf="showInputField">
                             <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
@@ -134,9 +134,9 @@
                     </div>
                     <div fxFlex></div>
                     <div class="p-2 my-report-flex-item" style="margin-top: -15px;">
-                        <mat-icon class="icon-button" aria-label="search" (click)="showInputField = !showInputField;"
+                        <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;"
                             *ngIf="!showInputField">
-                            <span class="zmdi zmdi-search"></span>
+                            <span class="ic ic-search-01"></span>
                         </mat-icon>
                         <mat-form-field *ngIf="showInputField">
                             <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
@@ -204,9 +204,9 @@
                     </div>
                     <div fxFlex></div>
                     <div class="p-2 my-report-flex-item" style="margin-top: -15px;">
-                        <mat-icon class="icon-button" aria-label="search" (click)="showInputField = !showInputField;"
+                        <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;"
                             *ngIf="!showInputField">
-                            <span class="zmdi zmdi-search"></span>
+                            <span class="ic ic-search-01"></span>
                         </mat-icon>
                         <mat-form-field *ngIf="showInputField">
                             <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"

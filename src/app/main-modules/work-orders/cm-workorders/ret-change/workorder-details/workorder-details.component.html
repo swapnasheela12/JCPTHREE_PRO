@@ -4,16 +4,16 @@
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class="col pl-0 wo-header">
-                    <mat-icon class="icon-button mx-2" style="color: #7E7E7E;" aria-label="search" (click)="goBack()">
-                        <span class="zmdi zmdi-arrow-left" style="line-height: 1.5;"></span>
+                    <mat-icon class="icon-button mx-2" style="color: #7E7E7E; background-color: RGBA(0, 112, 219, 0.13);" aria-label="search" (click)="goBack()">
+                        <span class="ic ic-arrow-left2" style="line-height: 1.5;"></span>
                     </mat-icon>
                     <div class="header" fxFlex="90"> Workorder Details</div>
                     <mat-icon class="header-icon" aria-label="search" fxFlex="5">
-                        <span class="ic ic-cloud-upload"></span>
+                        <span class="ic ic-upload4"></span>
                     </mat-icon>
 
                     <mat-icon class="header-icon" aria-label="search" fxFlex="5">
-                        <span class="ic ic-download3"></span>
+                        <span class="ic ic-download"></span>
                     </mat-icon>
                 </div>
             </mat-toolbar-row>
@@ -30,45 +30,44 @@
                         </div>
                         <div class="p-2" fxFlex="25">
                             <div class="label">Workorder ID</div>
-                            <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
+                            <div class="value elipses-val" matTooltip="WO-RAN-E-KO-RET-07072017-0160863" matTooltipPosition="after">WO-RAN-E-KO-RET-07072017-0160863</div>
                         </div>
                         <div class="p-2" fxFlex="25">
                             <div class="label">Project Type</div>
                             <div class="value">RET Change</div>
                         </div>
-                        <div class="p-2" fxFlex="25">
+                        <div class="p-2" fxFlex="100">
                             <mat-form-field class="p-0" fxFlex="100">
                                 <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
                                 </mat-label>
-                                <textarea matInput placeholder="Description" required
-                                    style="line-height: 7px !important"></textarea>
+                                <textarea matInput placeholder="Description" required></textarea>
                             </mat-form-field>
                         </div>
 
                         <div class="p-2" fxFlex="25">
                             <div class="md-subhead">Schedule</div>
                             <div class="label">Date</div>
-                            <input type="date" class="date w-100" [value]="selectedDate" name="selectedDate" disabled>
+                            <div class="value">02-03-2016 </div>
                         </div>
 
                         <div class="p-2" fxFlex="25">
-                            <div class="pt-4">
+                            <div class="pt-4" sty>
                                 <div class="label">Time</div>
                             </div>
-                            <input type="time" class="time" [(ngModel)]="selectedTime" name="selectedTime" disabled>
+                            <div class="value">08:05 AM</div>
                         </div>
 
                         <div class="p-2" fxFlex="25">
                             <div class="md-subhead">Work Order Expiry</div>
                             <div class="label">Date</div>
-                            <input type="date" class="date w-100" [value]="selectedDate" name="expiryTime" disabled>
+                            <div class="value">03-03-2016</div>
                         </div>
 
                         <div class="p-2" fxFlex="25">
                             <div class="pt-4">
                                 <div class="label">Time</div>
                             </div>
-                            <input type="time" class="time" [(ngModel)]="selectedTime" name="expiryTime" disabled>
+                            <div class="value">08:05 AM</div>
                         </div>
 
                         <div class="p-2" fxFlex="25">
@@ -115,26 +114,38 @@
                             <div class="label">Risk Impact Analysis </div>
                             <div class="value">-</div>
                         </div>
-                        <div class="p-2" fxFlex="25">
-                            <div class="label">Implementation Comments</div>
-                            <textarea class="w-100" disabled></textarea>
+
+                        <div fxFlex="100" style="padding: 0 0.5rem;">
+                            <mat-form-field class="p-0" fxFlex="100">
+                                <mat-label>Implementation Comments <span class="px-1 zmdi zmdi-help-outline"></span>
+                                </mat-label>
+                                <textarea matInput placeholder="Description" required></textarea>
+                            </mat-form-field>
                         </div>
 
-                        <div class="p-2" fxFlex="100">
-                            <div class="label">Comments</div>
-                            <textarea class="w-100" disabled></textarea>
+                        <div fxFlex="100" style="padding: 0 0.5rem;">
+                            <mat-form-field class="p-0" fxFlex="100">
+                                <mat-label>Comments <span class="px-1 zmdi zmdi-help-outline"></span>
+                                </mat-label>
+                                <textarea matInput placeholder="Description" required></textarea>
+                            </mat-form-field>
                         </div>
+
                     </div>
                 </form>
             </div>
             <mat-divider></mat-divider>
-            <mat-form-field style="width: 35%; margin-left: 20px">
-                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"
-                    placeholder="SEARCH JC / SAP / CELL ID">
-                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                    <span class="zmdi zmdi-search"></span>
-                </mat-icon>
-            </mat-form-field>
+            <div fxLayout="row wrap">
+                <div fxFlex="68"></div>
+                <mat-form-field fxFlex="30">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="SEARCH JC / SAP / CELL ID">
+                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                            <span class="zmdi zmdi-search"></span>
+                        </mat-icon>
+                </mat-form-field>
+            </div>
+          
             <mat-card-content class="cia-card-content" style="height: calc(100% - 49px);">
                 <div class="jcp-table-container" style="height: 100%;">
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>

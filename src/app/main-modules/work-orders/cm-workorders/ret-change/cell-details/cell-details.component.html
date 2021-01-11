@@ -4,17 +4,17 @@
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar cell-details-header">
             <mat-toolbar-row class="mat-blue-grey">
                 <mat-icon class="icon-button mx-2" style="color: #7E7E7E;position: relative;
-                top: 4px;" aria-label="search" (click)="goBack()">
-                    <span class="zmdi zmdi-arrow-left" style="line-height: 1.5;"></span>
+                top: 4px; background-color: RGBA(0, 112, 219, 0.13);" aria-label="search" (click)="goBack()">
+                    <span class="ic ic-arrow-left2" style="line-height: 1.5;"></span>
                 </mat-icon>
 
                 <div class="header" fxFlex="90"> Configuration Change Request</div>
                 <mat-icon class="header-icon" aria-label="search" fxFlex="5">
-                    <span class="ic ic-cloud-upload"></span>
+                    <span class="ic ic-upload4"></span>
                 </mat-icon>
 
                 <mat-icon class="header-icon" aria-label="search" fxFlex="5">
-                    <span class="ic ic-download3"></span>
+                    <span class="ic ic-download"></span>
                 </mat-icon>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -23,22 +23,14 @@
         <!-- <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
             <mat-toolbar-row class="mat-blue-grey"> -->
         <div class="col pl-0">
-            <h3 class="workorder-id">Work Order Id: {{workOrderId}}</h3>
+            <h3 class="workorder-id">Work Order Id: <span style="color: #f28926">{{workOrderId}}</span> </h3>
         </div>
         <!-- </mat-toolbar-row>
         </mat-toolbar> -->
         <div class="rqa-scheduling-workorder-toolbar">
-            <div class="select-duration-border-box" fxLayoutAlign="space-around center" fxLayout="row wrap">
+            <div class="select-duration-border-box" fxLayout="row wrap">
 
-                <div fxFlex="25" class="p-2 my-report-flex-item">
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
-                            autocomplete="off" placeholder="SEARCH JC / SAP / CELL ID">
-                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                            <span class="zmdi zmdi-search"></span>
-                        </mat-icon>
-                    </mat-form-field>
-                </div>
+                
 
                 <div fxFlex="25" class="p-2 my-report-flex-item">
                     <mat-form-field class="form-field-container w-100">
@@ -72,7 +64,17 @@
                     </mat-form-field>
                 </div>
 
-                <div fxFlex></div>
+                <div fxFlex="22"></div>
+
+                <div fxFlex="25" class="p-2 my-report-flex-item">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                            autocomplete="off" placeholder="SEARCH JC / SAP / CELL ID">
+                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                            <span class="zmdi zmdi-search"></span>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
 
 
             </div>

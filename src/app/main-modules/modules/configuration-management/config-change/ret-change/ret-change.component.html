@@ -1,13 +1,14 @@
 <div class="h-100">
-    <mat-card class="cia-module-card">
+    <mat-card class="ret-module-card">
 
-        <mat-card-content class="cia-card-content">
-            <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+        <mat-card-content class="ret-card-content">
+            <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true"
+                (selectionChange)="stepperChanged($event)">
                 <mat-step label="Basic Details">
-                    <div class="mt-3" style="height: calc(100% - 40px);">
+                    <div class="mt-3" style="height: calc(100% - 40px); margin: 0 10px;">
                         <form [formGroup]="selectJcCircleLevelFormControl">
                             <div fxLayout="row wrap">
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Project Type" panelClass="selectMenuPanel" [(value)]="projectTypeSelected">
                                             <mat-option *ngFor="let projectType of projectTypeList" [value]="projectType.value">
@@ -16,14 +17,14 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="75">
+                                <div class="px-space-3 " fxFlex="75">
                                     <mat-form-field class="p-0" fxFlex="100">
                                         <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
                                         </mat-label>
                                         <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Network Element Type" panelClass="selectMenuPanel" [(value)]="riskAssessmentSelected">
                                             <mat-option *ngFor="let networkElementType of networkElementTypeList" [value]="networkElementType.value">
@@ -32,7 +33,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Vendor" panelClass="selectMenuPanel" [(value)]="vendorSelected">
                                             <mat-option *ngFor="let vendor of vendorList" [value]="vendor.value">
@@ -41,7 +42,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Version" panelClass="selectMenuPanel" [(value)]="versionSelected">
                                             <mat-option *ngFor="let version of versionList" [value]="version.value">
@@ -50,7 +51,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Impacted" panelClass="selectMenuPanel" [(value)]="impactedSelected">
                                             <mat-option *ngFor="let impacted of impactedList" [value]="impacted.value">
@@ -59,7 +60,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Urgency" panelClass="selectMenuPanel" [(value)]="urgencySelected">
                                             <mat-option *ngFor="let urgency of urgencyList" [value]="urgency.value">
@@ -68,7 +69,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Reason for Change" panelClass="selectMenuPanel" [(value)]="reasonForChangeSelected">
                                             <mat-option *ngFor="let reasonForChange  of reasonForChangeList" [value]="reasonForChange.value">
@@ -77,12 +78,12 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <input matInput placeholder="Risk Impact Analysis" value="-" required>
                                     </mat-form-field>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="px-space-3 " fxFlex="25">
                                     <mat-form-field fxFlex="100">
                                         <input matInput placeholder="Implementation Comments" value="-" required>
                                     </mat-form-field>
@@ -94,33 +95,42 @@
                         </form>
                     </div>
                     <mat-divider></mat-divider>
-                    <div class="d-flex" style="padding: 10px;">
-                        <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
+                    <div class="d-flex" style="padding: 10px 0;">
+                        <button class="next-button button footer-margin" mat-raised-button color="primary"
+                            matStepperNext>Next</button>
                     </div>
                 </mat-step>
-                <mat-step label="Network Element">
-                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 25px);">
+                <mat-step label="Network Element" class="network-element">
+                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 25px); margin: 0 10px;">
                         <div fxFlex="100">
-                            <div class="p-2" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div class="p-2" fxLayout="row wrap">
                                 <div class="px-2" fxFlex="40">
                                     <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
-                                        <input matInput class="input-field" placeholder="Upload SAP ID" [(ngModel)]="fileNameSAP" [readonly]="true" required>
-                                        <button class="browse-button" (click)="onClick()" mat-icon-button color="primary" style="position: absolute;bottom: 0px;top: -2px;"><i
+                                        <input matInput class="input-field" placeholder="Upload SAP ID"
+                                            [(ngModel)]="fileNameSAP" [readonly]="true" required>
+                                        <button class="browse-button upload-btn" (click)="onClick()" mat-icon-button
+                                            color="primary" style="position: absolute;bottom: 0px;top: -2px; font-size: 24px;"><i
                                                 class="ic ic-file"></i></button>
                                     </mat-form-field>
                                 </div>
-                                <div class="px-1" fxFlex="10">
-                                    <button class="next-button button" mat-raised-button color="primary">Upload</button>
-                                </div>
-                                <div fxFlex="35"></div>
-                                <input type="file" #fileUploadSAP id="fileUploadSAP" name="fileUploadSAP" accept="" style="display: none;" />
+                                <div class="py-3" fxFlex="10" style="margin-left: 20px;">
+                                    <button class="next-button p-0" mat-button color="primary">
+                                        <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                        </i>
+                                        <span>Upload</span>
+                                      </button>
+                                      <input type="file" #fileUploadSAP id="fileUploadSAP" name="fileUploadSAP" accept=""
+                                      style="display: none;" />
+                                    </div>
+                                
                             </div>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="d-flex">
-                        <div class="py-2">
-                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        <div class="py-2 footer-margin">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
                         </div>
                         <div class="p-2">
                             <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
@@ -131,21 +141,21 @@
                 <mat-step label="Configuration">
                     <div style="height: calc(100% - 24px);overflow: auto;">
 
-                        <div style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);">
-                            <div fxFlex="35">
-                                <div style="color: rgba(0, 0, 0, 0.54);font-size: 14px;">Select NE Type
+                        <div style="margin: 0 25px;">
+                            <div fxFlex="25">
+                                <div style="color: rgba(0, 0, 0);font-size: 14px; font-family: lato bold;">Select NE Type
                                 </div>
 
                                 <div class="px-2" fxLayout="row wrap" fxLayoutAlign="start center">
-                                    <div style="margin-left: -8px;">Sector Level</div>
+                                    <div style="margin-left: -8px; color: rgba(0, 0, 0, 0.55)">Sector Level</div>
                                     <div class="p-2">
                                         <mat-slide-toggle [(ngModel)]="selectNEType"></mat-slide-toggle>
                                     </div>
-                                    <div>eNodeB Level</div>
+                                    <div style="color: rgba(0, 0, 0, 0.55);">eNodeB Level</div>
                                 </div>
 
                             </div>
-                            <div fxFlex="35">
+                            <div fxFlex="25">
                                 <div class="px-2 pt-3" fxLayout="row wrap" fxLayoutAlign="space-between center">
                                     <mat-form-field fxFlex="100">
                                         <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Select Category" panelClass="selectMenuPanel" [(value)]="vendorSelected">
@@ -156,31 +166,41 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div fxFlex="30"></div>
-                        </div>
-
-                        <div>
-                            <div fxFlex="100">
+                            <div fxFlex="50">
                                 <div class="p-2" fxLayout="row wrap" fxLayoutAlign="start center">
                                     <div class="check-selection" style="margin-left: -8px;">
-                                        <mat-checkbox class="example-margin">CLOT RET : Proposed RET
+                                        <mat-checkbox class="">CLOT RET : Proposed RET
                                         </mat-checkbox>
-                                        <mat-checkbox class="example-margin">
+                                        <mat-checkbox style="margin-left: 20px;">
+                                            Approved : Proposed RET</mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div>
+                            <div fxFlex="100" style="margin: 0 20px;">
+                                <div class="p-2" fxLayout="row wrap" fxLayoutAlign="start center">
+                                    <div class="check-selection" style="margin-left: -8px;">
+                                        <mat-checkbox class="">CLOT RET : Proposed RET
+                                        </mat-checkbox>
+                                        <mat-checkbox style="margin-left: 20px;">
                                             Approved : Proposed RET</mat-checkbox>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div style="height: 100%">
-                            <app-table-ag-grid style="width: 100%; height: 100%;"></app-table-ag-grid>
+                        <div style="height: 56vh">
+                            <app-table-ag-grid></app-table-ag-grid>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="d-flex">
-                        <div class="py-2">
-                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        <div class="py-2 footer-margin">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
                         </div>
                         <div class="p-2">
                             <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
@@ -189,9 +209,9 @@
                     </div>
                 </mat-step>
                 <mat-step label="Schedule">
-                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 25px);">
-                        <form class="w-100" [formGroup]="selectDurationFrequency" fxLayout="row wrap">
-                            <div fxFlex="49">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 25px); margin: 0 20px;">
+                        <form class="w-100" [formGroup]="selectDurationFrequency" fxLayout="row wrap" style="border: 1px solid rgba(0, 0, 0, 0.12);padding: 0px 10px 0 20px;">
+                            <div fxFlex="49" style="padding: 20px 0">
                                 <div fxLayout="row wrap">
                                     <div class="checkbox-group-label" fxFlex="100">Schedule Date & Time: *</div>
                                     <div fxFlex="70" class="py-2">
@@ -224,9 +244,9 @@
 
                             </div>
                             <mat-divider [vertical]="true"></mat-divider>
-                            <div fxFlex="50" fxLayout="row wrap" class="">
-                                <form [formGroup]="selectJcCircleLevelFormControl">
-                                    <div fxLayout="row wrap">
+                            <div fxFlex="50" fxLayout="row wrap" style="padding: 10px 0">
+                                <form [formGroup]="selectJcCircleLevelFormControl" style="padding-left: 10px;">
+                                    <div fxLayout="row wrap" style="margin-top: 21px">
 
                                         <div class="p-2" fxFlex="50">
                                             <mat-form-field fxFlex="100">
@@ -270,10 +290,11 @@
                             </div>
                         </form>
                     </div>
-                    <mat-divider></mat-divider>
+                   
                     <div class="d-flex">
-                        <div class="py-2">
-                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        <div class="py-2 footer-margin">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
                         </div>
                         <div class="p-2">
                             <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
@@ -284,24 +305,24 @@
                 <mat-step label="Summary">
                     <div style="height: calc(100% - 24px);overflow: auto;">
                         <div>
-                            <div fxLayout="row wrap">
+                            <div fxLayout="row wrap" style="margin: 0 25px;">
                                 <div class="p-2" fxFlex="25">
                                     <div class="label">Template Type</div>
                                     <div class="value">RET Change</div>
                                 </div>
                                 <div class="p-2" fxFlex="25">
                                     <div class="label">Workorder ID</div>
-                                    <div class="value">WO-RAN-E-KO-RET-07072017-0160863</div>
+                                    <div class="value elipses-val" matTooltip="WO-RAN-E-KO-RET-07072017-0160863" matTooltipPosition="after">WO-RAN-E-KO-RET-07072017-0160863</div>
                                 </div>
                                 <div class="p-2" fxFlex="25">
                                     <div class="label">Project Type</div>
                                     <div class="value">RET Change</div>
                                 </div>
-                                <div class="p-2" fxFlex="25">
+                                <div class="p-2" fxFlex="100">
                                     <mat-form-field class="p-0" fxFlex="100">
                                         <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
                                         </mat-label>
-                                        <textarea matInput placeholder="Description" required style="line-height: 7px !important"></textarea>
+                                        <textarea matInput placeholder="Description" required></textarea>
                                     </mat-form-field>
                                 </div>
                                 <div class="p-2" fxFlex="25">
@@ -310,7 +331,7 @@
                                     <div class="value">02-03-2016 </div>
                                 </div>
                                 <div class="p-2" fxFlex="25">
-                                    <div class="pt-4">
+                                    <div class="pt-4" sty>
                                         <div class="label">Time</div>
                                     </div>
                                     <div class="value">08:05 AM</div>
@@ -393,25 +414,44 @@
                         </div>
 
                         <div style="height: 100%">
-                            <!-- <app-table-ag-grid style="width: 100%;"></app-table-ag-grid> -->
-                            <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
-                                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReady($event)">
+                            <ag-grid-angular style="width: 100%; height: 56vh;"
+                                class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
+                                [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting
+                                enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
+                                toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+                                [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReady($event)">
                             </ag-grid-angular>
                         </div>
+
+                        <div style="height: 10%"> </div>
 
                     </div>
 
                     <mat-divider></mat-divider>
 
-                    <div class="px-3 d-flex">
-                        <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
-                        <div class="p-2">
-                            <button class="next-button button" (click)="showWorkorder()" mat-raised-button color="primary">Submit</button>
+                    <div class="d-flex">
+                        <div class="py-2 footer-margin">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
                         </div>
+                        
                         <div class="col"></div>
                     </div>
+
                 </mat-step>
             </mat-horizontal-stepper>
         </mat-card-content>
     </mat-card>
+
+    <div class="d-flex p-2">
+        <div class="p-2 mr-auto"></div>
+        <div class="p-2">
+          <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="p-2">
+          <button mat-raised-button color="primary" [disabled]="generateDisabled"
+            class="buttonWidth button">Submit</button>
+        </div>
+
+      </div>
 </div>

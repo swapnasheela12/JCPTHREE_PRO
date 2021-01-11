@@ -1511,7 +1511,7 @@ const MODULE_LIST_CONFIG = [
     },
     {
         name: 'RET Change',
-        link: 'JCP/Modules/Configuration-Management/Config-Change/Ret-Change',
+        link: 'JCP/Modules/Configuration-Management/Config-Change/RET-Change',
         eventName: 'sites-configchange-retchange',
         children: []
     },
@@ -3440,7 +3440,7 @@ const WORKORDERS_CMWORKORDERS_LIST = [
     },
     {
         name: 'RET Change',
-        link: 'JCP/Work-Orders/Cm-Workorders/Ret-Change',
+        link: 'JCP/Work-Orders/Cm-Workorders/RET-Change',
         eventName: 'ret-change',
         children: []
     }

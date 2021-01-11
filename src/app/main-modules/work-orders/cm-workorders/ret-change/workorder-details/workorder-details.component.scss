@@ -345,6 +345,12 @@ input[type="file"] {
     color: #818181 !important;
 }
 
+.elipses-val {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .wo-details {
     height: 60px !important;
     mat-toolbar-row {
@@ -361,4 +367,17 @@ input[type="file"] {
         }
         
     }
+}
+
+.label {
+    font-size: 14px;
+    color: #818181;
+    font-family: Lato Regular;
+    line-height: 1.7;
+}
+
+.md-subhead {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-family: Lato Bold;
 }
