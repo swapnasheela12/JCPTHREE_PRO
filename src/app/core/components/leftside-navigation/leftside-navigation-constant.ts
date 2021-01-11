@@ -1514,6 +1514,12 @@ const MODULE_LIST_CONFIG = [
         link: 'JCP/Modules/Configuration-Management/Config-Change/Ret-Change',
         eventName: 'sites-configchange-retchange',
         children: []
+    },
+    {
+        name: 'Nominal Staterge',
+        link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Staterge',
+        eventName: 'sites-nominal-staterge',
+        children: []
     }
 ];
 
