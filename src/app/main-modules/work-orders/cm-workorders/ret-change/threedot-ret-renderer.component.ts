@@ -57,14 +57,14 @@ export class ThreeDotRETRenderer implements ICellRendererAngularComp {
     woClick(evt) {
 
         console.log("evt", evt);
-        this.router.navigate(["/JCP/Work-Orders/Cm-Workorders/Ret-Change/Workorder-Details"]);
+        this.router.navigate(["/JCP/Work-Orders/Cm-Workorders/RET-Change/Workorder-Details"]);
     }
 
     cellDetailsClick(evt) {
         console.log("this.s", this.params.data.workorder);
         console.log("cellDetailsClick", evt);
         this.datashare.changeMessage(this.params.data.workorder);
-        this.router.navigate(["/JCP/Work-Orders/Cm-Workorders/Ret-Change/Cell-Details"]);
+        this.router.navigate(["/JCP/Work-Orders/Cm-Workorders/RET-Change/Cell-Details"]);
     }
 
 }

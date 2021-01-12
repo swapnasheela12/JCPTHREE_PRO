@@ -190,7 +190,7 @@ export class WorkorderDetailsComponent implements OnInit {
 
 
   goBack() {
-    this.router.navigate(['/JCP/Work-Orders/Cm-Workorders/Ret-Change']);
+    this.router.navigate(['/JCP/Work-Orders/Cm-Workorders/RET-Change']);
   }
 
   ngOnDestroy() {

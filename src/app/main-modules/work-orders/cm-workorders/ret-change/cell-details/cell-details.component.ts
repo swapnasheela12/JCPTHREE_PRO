@@ -167,7 +167,7 @@ export class CellDetailsComponent implements OnInit {
   tabChanged(event) { }
 
   goBack() {
-    this.router.navigate(['/JCP/Work-Orders/Cm-Workorders/Ret-Change']);
+    this.router.navigate(['/JCP/Work-Orders/Cm-Workorders/RET-Change']);
   }
 
   ngOnDestroy() {
