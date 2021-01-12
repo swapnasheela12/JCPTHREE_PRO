@@ -1,3 +1,4 @@
+import { NetworkPlanningModule } from './../main-modules/modules/network-planning/network-planning.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingHomeComponent } from '../home-jcp-three/landing-home/landing-home.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
           { path: 'Planning-Deployment', loadChildren: () => import('../../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule) },
           { path: 'Configuration-Management',loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule)},
           { path: 'Fault-Management',loadChildren: () => import('../../app/main-modules/modules/fault-management/fault-management.module').then(m => m.FaultManagementModule)},
+          { path: 'Network-Planning',loadChildren: () => import('../../app/main-modules/modules/network-planning/network-planning.module').then(m => m.NetworkPlanningModule)},
         ]
       },
       {

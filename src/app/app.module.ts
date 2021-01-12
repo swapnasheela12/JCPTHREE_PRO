@@ -80,7 +80,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { SuccessfulModalComponent } from './core/components/commonPopup/successful-modal/successful-modal.component';
 import { QuestionPopupComponent } from './modules/components/capacity/question-popup/question-popup.component';
 import { InAppRootOverlayContainer } from './main-modules/in-app-root-overlay-container';
-import { CreateComponent } from './main-modules/modules/network-planning/rf-planning/nominal-generation-strategy/create/create.component';
 declare var $: any;
 
 @NgModule({
@@ -103,8 +102,7 @@ declare var $: any;
     LteAntennaComponent,
     CapacityComponent,
     QuestionPopupComponent,
-    ConfigurationComponent,
-    CreateComponent,
+    ConfigurationComponent
   ],
 
   imports: [

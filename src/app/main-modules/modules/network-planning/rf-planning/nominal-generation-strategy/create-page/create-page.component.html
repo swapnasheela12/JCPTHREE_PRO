@@ -1,0 +1,211 @@
+<div class="h-100">
+    <mat-card class="cia-module-card">
+
+        <mat-card-content class="cia-card-content">
+            <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+                <mat-step label="Basic Details">
+                    <div class="" style="height: calc(100% - 20px);">
+
+                        <div style="padding-right: 15px;" fxFlex="50">
+                            <div fxLayout="row wrap">
+                                <ng-template ad-host></ng-template>
+                            </div>
+                            <div fxLayout="row wrap">
+                                <div class="p-2" fxFlex="100">
+                                    <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedBoundaries">
+                                        <mat-radio-button fxFlex="50" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
+                                            {{ eachBoundaries }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <form [formGroup]="selectJcCircleLevelFormControl">
+                                <div style="height: 330px;overflow: auto;">
+                                    <div *ngIf="!showDiv" fxLayout="row wrap">
+                                        <div class="px-2" fxFlex="100">
+                                            <mat-form-field fxFlex="100" class="form-field-container">
+                                                <input matInput type="text">
+                                                <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                                                    <mat-icon>search</mat-icon>
+                                                </button>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100" class="form-field-container">
+                                                <mat-select disableOptionCentering placeholder="Zone" (selectionChange)="render()" [(value)]="zoneType" required>
+                                                    <mat-option value="West" selected>West</mat-option>
+                                                    <mat-option value="South">South</mat-option>
+                                                    <mat-option value="East">East</mat-option>
+                                                    <mat-option value="North">North</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Circle" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Circle" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio State" [formControl]="r4gCircleControl" ngDefaultControl #cityControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio State" [formControl]="r4gFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
+                                                        {{r4gCircle.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                                        {{city.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="showDiv" fxLayout="row wrap">
+                                        <div class="cust-nominal-container">
+                                            <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                                <div fxFlex="30" class="title">Polygon Name</div>
+                                                <div fxFlex></div>
+                                                <div class="icon-container">
+                                                    <button mat-icon-button>
+                                                        <mat-icon class="iconType">
+                                                            <div class="zmdi zmdi-edit"></div>
+                                                        </mat-icon>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="content-nominal-cust px-2">
+                                                <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsListPoly">
+                                                    <mat-checkbox color="primary" style="margin-bottom:0">
+                                                    </mat-checkbox>
+                                                    <div class="title-poly">{{item.name}}</div>
+                                                    <div class="sub-title-poly">{{item.date}}</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row wrap">
+                                        <div class="px-2" fxFlex="100">
+                                            <mat-form-field class="p-0" fxFlex="100">
+                                                <mat-label>Project Description</mat-label>
+                                                <input [formControl]="projectDescriptionCtrl" matInput placeholder="Description" required style="line-height: 7px !important">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2" fxFlex="25">
+                                            <button class="next-button button" mat-raised-button color="primary">Next</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- <div fxLayout="row wrap" *ngIf="showDiv">
+                                    <div fxLayout="row wrap" style="height:200px">
+                                        <div class="header-nominal-cust">
+                                            <div class="title">Polygon Name</div>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+                                <!-- <div fxLayout="row wrap">
+                                    <div class="px-2" fxFlex="100">
+                                        <mat-form-field class="p-0" fxFlex="100">
+                                            <mat-label>Project Description</mat-label>
+                                            <input [formControl]="projectDescriptionCtrl" matInput placeholder="Description" required style="line-height: 7px !important">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="px-2" fxFlex="25">
+                                        <button class="next-button button" mat-raised-button color="primary">Next</button>
+                                    </div>
+                                </div> -->
+
+                            </form>
+                        </div>
+                        <div fxFlex="50">
+                            <div id="map2"></div>
+                        </div>
+
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Back</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Cancel</button>
+                        </div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Save
+                                ?</button>
+                        </div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext disabled="true">Generate</button>
+                        </div>
+
+                    </div>
+                </mat-step>
+                <mat-step label="Network Element">
+                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 25px);">
+                        <div fxFlex="100">
+
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="d-flex">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="p-2">
+                            <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </mat-step>
+                <mat-step label="Configuration">
+
+                </mat-step>
+
+            </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>
+</div>
