@@ -2640,7 +2640,8 @@ const CREATE_POLYGONS = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: [],
-        component: 'TacNetworkDialogComponent'
+        // componentLayer: 'PolygonEditorComponent',
+        component: 'PolygonEditorComponent'
     },
 ]
 
