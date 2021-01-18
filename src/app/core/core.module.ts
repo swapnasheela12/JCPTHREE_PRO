@@ -68,6 +68,8 @@ import { SuccessfulModalComponent } from './components/commonPopup/successful-mo
 import { GenhelpiconComponent } from './components/ag-grid-renders/genhelpicon.component';
 import { LeftsideSettingsPopupComponent } from './components/leftside-settings-popup/leftside-settings-popup.component';
 import { PaginationComponent } from './components/commonPopup/pagination/pagination.component';
+import { RedirectLayersPopupComponent } from './components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
+import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { PaginationComponent } from './components/commonPopup/pagination/paginat
     AgGridTreeComponent,
     TemplateDropdownComponent,
     // LeftsideSettingsPopupComponent,
-    PaginationComponent
+    PaginationComponent,
+    RedirectLayersPopupComponent,
+    SavePolygonPopupComponent
   ],
   imports: [
     CommonModule,

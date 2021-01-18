@@ -33,7 +33,7 @@
 
                                         <div class="px-2" fxFlex="50">
                                             <mat-form-field fxFlex="100" class="form-field-container">
-                                                <mat-select disableOptionCentering placeholder="Zone" (selectionChange)="render()" [(value)]="zoneType" required>
+                                                <mat-select disableOptionCentering placeholder="Zone" [(value)]="zoneType" required>
                                                     <mat-option value="West" selected>West</mat-option>
                                                     <mat-option value="South">South</mat-option>
                                                     <mat-option value="East">East</mat-option>
@@ -86,7 +86,7 @@
 
                                         <div class="px-2" fxFlex="50">
                                             <mat-form-field fxFlex="100">
-                                                <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                <mat-select (selectionChange)="render()" disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
                                                     <mat-option>
                                                         <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                                         </ngx-mat-select-search>
@@ -105,7 +105,7 @@
                                                 <div fxFlex="30" class="title">Polygon Name</div>
                                                 <div fxFlex></div>
                                                 <div class="icon-container">
-                                                    <button mat-icon-button>
+                                                    <button mat-icon-button (click)="openDialogSuccessful()">
                                                         <mat-icon class="iconType">
                                                             <div class="zmdi zmdi-edit"></div>
                                                         </mat-icon>
@@ -114,7 +114,7 @@
                                             </div>
                                             <div class="content-nominal-cust px-2">
                                                 <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsListPoly">
-                                                    <mat-checkbox color="primary" style="margin-bottom:0">
+                                                    <mat-checkbox color="primary" [checked]="item.checked" (change)="polySelectedChange(item);" style="margin-bottom:0">
                                                     </mat-checkbox>
                                                     <div class="title-poly">{{item.name}}</div>
                                                     <div class="sub-title-poly">{{item.date}}</div>

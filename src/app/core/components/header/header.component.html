@@ -534,3 +534,27 @@
         </div>
     </div>
 </div>
+
+<div class="jcp-toolbar-container-layers-sub-header" fxLayout="row wrap" *ngIf="(this.route==='/JCP/Layers')  && (showNominalHeader == true)">
+    <div class="px-1" fxFlex="5" style="line-height: 3.5;">
+        <button mat-icon-button>
+            <mat-icon class="iconType">
+                <div class="zmdi zmdi-chevron-left"></div>
+            </mat-icon>
+        </button>
+    </div>
+    <div fxFlex="83" fxLayout="row wrap">
+        <div class="title-main">Back to Nominal Generation - </div>
+        <div class="sub-title"> Maharashtra-NP-CV-121020_V1</div>
+    </div>
+    <div fxFlex="5" style="line-height: 3.5;">
+        <button mat-icon-button>
+            <mat-icon class="iconType">
+                <div class="zmdi zmdi-assignment"></div>
+            </mat-icon>
+        </button>
+    </div>
+    <div fxFlex="5" style="line-height: 3.5;">
+        <button (click)="saveNominalPloy()" class="next-button button" mat-raised-button color="primary">Save</button>
+    </div>
+</div>

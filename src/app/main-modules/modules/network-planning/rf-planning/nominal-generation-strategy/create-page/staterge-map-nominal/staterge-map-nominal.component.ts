@@ -170,8 +170,7 @@ export class StatergeMapNominalComponent implements OnInit {
 
       for (const site in data) {
         let siteInner = data[site];
-        console.log(siteInner, "siteInner>>>>>");
-
+        
         let latlng = L.latLng(siteInner[0].latitude, siteInner[0].longitude);
 
         if (!(bounds.contains(latlng))) continue;

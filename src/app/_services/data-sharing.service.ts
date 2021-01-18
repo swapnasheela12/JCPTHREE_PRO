@@ -7,6 +7,8 @@ export class DataSharingService {
   private messageSource = new BehaviorSubject({});
   currentMessage = this.messageSource.asObservable();
 
+  private messageSourceDialog = new BehaviorSubject({});
+  currentMessageDialog = this.messageSourceDialog.asObservable();
 
   private smallCellPlannedSource = new BehaviorSubject({});
   currentsmallCellPlanned = this.smallCellPlannedSource.asObservable();
@@ -62,6 +64,11 @@ export class DataSharingService {
   changeMessage(messages: Object) {
     this.messageSource.next(messages);
   }
+
+  changeMessageDialog(messagesDialog: Object) {
+    this.messageSourceDialog.next(messagesDialog);
+  }
+
   changesmallCellPlanned(smallCellPlanneds: Object) {
     this.smallCellPlannedSource.next(smallCellPlanneds);
   }

@@ -427,3 +427,27 @@
         }
     }
 }
+
+.jcp-toolbar-container-layers-sub-header {
+    height: 58px;
+    background: #fff;
+    border-radius: 5px;
+    color: #000;
+    margin-left: 30px;
+    margin-right: 10px;
+    line-height: 3;
+    .iconType {
+        margin-bottom: 8px;
+        color: #717171;
+    }
+    .title-main {
+        font-family: Lato Bold;
+        font-size: 18px;
+    }
+    .sub-title {
+        color: #757574;
+        font-family: Lato Bold;
+        font-size: 14px;
+        line-height: 4;
+    }
+}

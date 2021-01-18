@@ -1,3 +1,4 @@
+import { SavePolygonPopupComponent } from './../commonPopup/save-polygon-popup/save-polygon-popup.component';
 
 import { Component, OnInit, Inject, ViewChild, HostListener, OnChanges } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
@@ -123,7 +124,8 @@ export class HeaderComponent implements OnInit, OnChanges {
   //////////search///////////////
 
 
-  addClassNew = false;
+  public addClassNew = false;
+  public showNominalHeader = false;
   public testval;
   message: string;
   routeUrlLinkPage;
@@ -182,6 +184,16 @@ export class HeaderComponent implements OnInit, OnChanges {
             this.addClassNew = true;
           }
         });
+
+
+        this.datashare.currentMessageDialog.subscribe((val:any) => {
+          if (val.headerNominal == true) {
+            this.showNominalHeader = true;
+          } else {
+            this.showNominalHeader = false;
+          }
+        });
+        
         this.count = this.breadcrumbList.length;
       } else {
         this.route = 'JCP';
@@ -495,4 +507,13 @@ export class HeaderComponent implements OnInit, OnChanges {
       panelClass: "material-dialog-container",
     });
   };
+
+  saveNominalPloy(){
+    const dialogRef = this.matDialog.open(SavePolygonPopupComponent, {
+      width: "500px",
+      height:'190px',
+      panelClass: "material-dialog-container",
+    });
+  }
+
 }

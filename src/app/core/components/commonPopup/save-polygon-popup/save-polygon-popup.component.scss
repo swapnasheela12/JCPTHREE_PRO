@@ -1,0 +1,21 @@
+.toolbar-nominal {
+    height: 48px;
+    .dialog-title {
+        font-family: 'Lato Bold';
+        font-size: 16px;
+        line-height: 3;
+        margin: 0;
+    }
+    .dialog-title-icon {
+        line-height: 3;
+    }
+}
+
+.dialog-content {
+    .browse-file-form-field {
+        font-family: 'Lato Medium';
+        font-size: 14px;
+    }
+}
+
+.dialog-button {}

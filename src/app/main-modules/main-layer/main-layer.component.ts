@@ -1,3 +1,6 @@
+import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
+import { AdDirective } from './../../_directive/dynamicComponent/ad.directive';
+import { RedirectLayersPopupComponent } from './../../core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { LogicaltopologyService } from './layer-list/topologies/fibre/logicaltopology/logicaltopology.service';
 import { SmallCellPlanned4gService } from './layer-list/sites/planned/small-cell-planned/small-cell-planned-4g.service';
 import { MacroPlanned4gService } from './layer-list/sites/planned/macro-planned-4g/macro-planned-4g.service';
@@ -21,7 +24,7 @@ import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { MarkerService } from 'src/app/_services/leaflate/marker.service';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { TableViewControlComponent } from './table-view-control/table-view-control.component';
 import '../../../js/leaflet-ruler.js';
 import { SimpleMapScreenshoter } from 'leaflet-simple-map-screenshoter';
@@ -65,6 +68,12 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public optionMap;
   public baselayers;
   layerTiles;
+
+  public polyRectangle;
+  public circle;
+  public poly;
+  public polyline;
+  // fileNameDialogRef: MatDialogRef<RedirectLayersPopupComponent>;
   // search = new GeoSearchControl({
   //   provider: new OpenStreetMapProvider(),
   // });
@@ -73,7 +82,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dataShareSub: Subscription = new Subscription();
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
-    private http: HttpClient,private logicaltopologyService : LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
+    private http: HttpClient, private logicaltopologyService: LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
     private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
 
 
@@ -96,6 +105,11 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.logicaltopologyService.getReference(this);
     this.datashare.mainLayer(this);
   }
+
+  @ViewChild(AdDirective) adHost: AdDirective;
+
+  public components = [PolygonEditorComponent];
+  public currentComponent = null;
 
   ngAfterViewInit() {
     this.initMap();
@@ -215,18 +229,35 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       drawCircle: true,  // adds button to draw a cricle
       drawCircleMarker: false,//add button with circle radius
       editPolygon: false,  // adds button to toggle global edit mode
-      deleteLayer: false,   // adds a button to delete layers
+      deleteLayer: true,   // adds a button to delete layers
       // removalMode: false,
-      cutPolygon: false,
+      // drawControls: true, 
+      // editControls: true, 
+      // optionsControls: true, 
+      // customControls: true, 
+      // oneBlock: false ,
+      cutPolygon: true,
       drawRectangle: false,
-      editMode: false,
-      dragMode: false,// drag and drop
+      editMode: true,
+      dragMode: true,// drag and drop
     };
     // make markers not snappable during marker draw
     // this.map.pm.enableDraw('Marker', { snappable: false });
     // map.pm.disableDraw('Marker');
     this.map.pm.addControls(options);
+
     this.map.on('pm:create', (e) => {
+      let testdataval
+      this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+        testdataval = dataPoly;
+        console.log(testdataval, "testdataval");
+
+        // if (dataPoly != {}) {
+
+        //   // this.polyDirectFunc();
+        // }
+      });
+
       let googleCoder = new google.maps.Geocoder();
       let lat = e.marker._latlng.lat;
       let lng = e.marker._latlng.lng;
@@ -242,12 +273,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         this.datashare.changeMessage(this.address);
       });
+
+
+
+
+
     });
-     this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
+    this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
       if (dataFromPinZoom === "pin-zoom-closed") {
         // this.map.removeLayer(e.marker);
       }
     });
+
 
     this.map.on('pm:create', ({ marker }) => {
       // marker.on('pm:vertexadded', e => {
@@ -581,7 +618,171 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     //custome controller//
     this.shapeService.mapServiceData = this.map;
     this.basemapfunc();
+    // this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+    //   if (dataPoly != {}) {
+    //     this.polyDirectFunc();
+    //   }
+    // });
+
+    this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+      if (dataPoly != {}) {
+
+        let options = {
+          // snapping
+          snappable: true,
+          snapDistance: 20,
+
+          // self intersection
+          allowSelfIntersection: true,
+
+          // the lines between coordinates/markers
+          templineStyle: {
+            color: 'red',
+          },
+
+          // the line from the last marker to the mouse cursor
+          hintlineStyle: {
+            color: 'red',
+            dashArray: [5, 5],
+          },
+
+          // show a marker at the cursor
+          cursorMarker: false,
+
+          // finish drawing on double click
+          // DEPRECATED: use finishOn: 'dblclick' instead
+          finishOnDoubleClick: false,
+
+          // specify type of layer event to finish the drawn shape
+          // example events: 'mouseout', 'dblclick', 'contextmenu'
+          // List: http://leafletjs.com/reference-1.2.0.html#interactive-layer-click
+          finishOn: 'contextmenu',
+
+          // custom marker style (only for Marker draw)
+          markerStyle: {
+            opacity: 0.5,
+            draggable: true,
+          },
+        };
+        this.dataPolyList = dataPoly;
+        for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
+          const ele = this.dataPolyList.transferDataPoly[index];
+          console.log(ele, "ele");
+          // enable drawing mode for shape - e.g. Poly, Line, etc
+          // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
+          // this.map.pm.enableDraw('Rectangle', options);
+          // this.map.pm.enableDraw('Line', options);
+          // this.map.pm.enableDraw('Marker', options);
+          // this.map.pm.enableDraw('Circle', options);
+
+          if (ele.polydata.properties.shape == 'Circle') {
+            this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
+              color: 'red',
+              fillColor: '#f03',
+              fillOpacity: 0.5
+            }).addTo(this.map);
+            this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
+          } else if (ele.polydata.properties.shape == 'Polygon') {
+            this.poly = L.polygon([
+              [19.060009, 72.876063],
+              [19.013112, 72.907984],
+              [19.065525, 72.916565],
+              [19.060009, 72.876063]
+            ]).addTo(this.map);
+            this.map.setZoom(14);
+          } else if (ele.polydata.properties.shape == 'Rectangle') {
+            this.polyRectangle = L.rectangle([
+              [19.045527, 72.902422],
+              [19.045527, 72.905597],
+              [19.049482, 72.905597],
+              [19.049482, 72.902422],
+              [19.045527, 72.902422]
+            ], { color: "#ff7800", weight: 1 }).addTo(this.map);
+            this.map.setZoom(14);
+
+          } else {
+            this.polyline = L.polyline([
+              [19.045568, 72.894765],
+              [19.046055, 72.898672],
+              [19.045933, 72.901742]
+            ]).addTo(this.map);
+            this.map.setZoom(14);
+          }
+
+
+
+
+
+
+
+
+        }
+
+
+
+        // // enable drawing mode for shape - e.g. Poly, Line, etc
+        // this.map.pm.enableDraw('Poly', options);
+        // this.map.pm.enableDraw('Rectangle', options);
+        // this.map.pm.enableDraw('Line', options);
+        // this.map.pm.enableDraw('Marker', options);
+        // this.map.pm.enableDraw('Circle', options);
+
+      }
+    });
+
   }
+
+
+  public dataPolyList;
+
+  // polyDirectFunc() {
+  //   this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+  //     console.log(dataPoly, "dataPoly");
+  //     // this.map.setZoom(16);
+  //     this.dataPolyList = dataPoly;
+  //     for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
+  //       const ele = this.dataPolyList.transferDataPoly[index];
+  //       console.log(ele,"ele");
+
+  //       // if (ele.checked == true) {
+  //         if (ele.polydata.properties.shape == 'Circle') {
+  //           this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
+  //             color: 'red',
+  //             fillColor: '#f03',
+  //             fillOpacity: 0.5
+  //           }).addTo(this.map);
+  //           this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0],14);
+  //         } else if (ele.polydata.properties.shape == 'Polygon') {
+  //           this.poly = L.polygon([
+  //             [19.060009, 72.876063],
+  //             [19.013112, 72.907984],
+  //             [19.065525, 72.916565],
+  //             [19.060009, 72.876063]
+  //           ]).addTo(this.map);
+  //           this.map.setZoom(14);
+  //         } else if (ele.polydata.properties.shape == 'Rectangle') {
+  //           this.polyRectangle = L.rectangle([
+  //             [19.045527, 72.902422],
+  //             [19.045527, 72.905597],
+  //             [19.049482, 72.905597],
+  //             [19.049482, 72.902422],
+  //             [19.045527, 72.902422]
+  //           ], { color: "#ff7800", weight: 1 }).addTo(this.map);
+  //           this.map.setZoom(14);
+
+  //         } else {
+  //           this.polyline = L.polyline([
+  //             [19.045568, 72.894765],
+  //             [19.046055, 72.898672],
+  //             [19.045933, 72.901742]
+  //           ]).addTo(this.map);
+  //           this.map.setZoom(14);
+  //         }
+  //     }
+  //   });
+  // }
+
+
 
   basemapfunc() {
     this.dataShareSub = this.datashare.currentMessage.subscribe((val: any) => {

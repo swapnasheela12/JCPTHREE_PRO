@@ -1,0 +1,24 @@
+<div class="px-3 toolbar-nominal" fxLayout="row wrap">
+    <div mat-dialog-title class="dialog-title" fxFlex>
+        Save Polygon
+    </div>
+    <div class="dialog-title-icon">
+        <button (click)="onCancel()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="dialog-content px-3">
+    <div class="py-3" fxLayoutAlign="center">
+        <mat-form-field fxFlex="100" class="browse-file-form-field">
+            <input matInput class="input-field" placeholder="Polygon Name" [(ngModel)]="polyName" required>
+        </mat-form-field>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="dialog-button px-3" fxLayout="row wrap">
+    <div fxFlex></div>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onApply()">Save</button>
+</div>

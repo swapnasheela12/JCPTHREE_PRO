@@ -1,3 +1,4 @@
+import { RedirectLayersPopupComponent } from './../../../../../../core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { ShapeService } from './../../../../../main-layer/layers-services/shape.service';
 import { AdDirective } from './../../../../../../_directive/dynamicComponent/ad.directive';
 import { StatergeMapNominalComponent } from './staterge-map-nominal/staterge-map-nominal.component';
@@ -19,10 +20,11 @@ import { ReplaySubject, Subject, of } from 'rxjs';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewEncapsulation, Type, ɵNG_COMP_DEF } from '@angular/core';
 import * as moment from 'moment';
-import * as L from 'leaflet';
+// import * as L from 'leaflet';
 import { } from 'google-maps';
-declare var $: any;
-// import 'leaflet-draw';
+declare let $: any;
+declare const L: any; // --> Works
+import 'leaflet-draw';
 
 interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
@@ -106,29 +108,114 @@ export class CreatePageComponent implements OnInit {
 
   public itemsListPoly = [
     {
-      'checked': true,
+      'checked': false,
       'name': 'Polygon_Mum_1 - ',
       'date': '20 th Nov 2020',
+      'polydata': {
+        "type": "Feature",
+        "properties": {
+          "shape": "Rectangle",
+          "name": "Unnamed Layer",
+          "category": "default"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [19.045527, 72.902422],
+            [19.045527, 72.905597],
+            [19.049482, 72.905597],
+            [19.049482, 72.902422],
+            [19.045527, 72.902422]
+
+          ]
+        },
+        "id": "15f0843f-24c2-4cce-8d73-b2b79c769eb5"
+      }
     },
     {
       'checked': false,
       'name': 'Polygon_Pune_1 - ',
       'date': '10 th Nov 2020',
+      'polydata': {
+        "type": "Feature",
+        "properties": {
+          "shape": "Circle",
+          "radius": 161.24681233404644,
+          "name": "Unnamed Layer",
+          "category": "default"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [72.896651, 19.048184]
+        },
+        "id": "6813e8a0-605d-4439-bbf8-d161abc30e6e"
+      }
     },
     {
-      'checked': true,
+      'checked': false,
       'name': 'Polygon_Mum_2 - ',
       'date': '15 th Nov 2020',
+      'polydata': {
+        "type": "Feature",
+        "properties": {
+          "shape": "Line",
+          "name": "Unnamed Layer",
+          "category": "default"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [19.045568, 72.894765],
+            [19.046055, 72.898672],
+            [19.045933, 72.901742]
+          ]
+        },
+        "id": "6af9a6fa-3b15-4854-b52c-1d3ffcfde641"
+      }
     },
     {
       'checked': false,
       'name': 'Polygon_Pune_34 - ',
       'date': '10 th Oct 2020',
+      'polydata': {
+        "type": "Feature",
+        "properties": {
+          "shape": "Polygon",
+          "name": "Unnamed Layer",
+          "category": "default"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+
+            [72.876063, 19.060009],
+            [72.907984, 19.013112],
+            [72.916565, 19.065525],
+            [72.876063, 19.060009]
+
+          ]
+        },
+        "id": "15f0843f-24c2-4cce-8d73-b2b79c769eb5"
+      }
     },
     {
       'checked': false,
       'name': 'Polygon_Banglore_4 - ',
       'date': '16 th Dec 2020',
+      'polydata': {
+        "type": "Feature",
+        "properties": {
+          "shape": "Circle",
+          "radius": 2316.4006321809024,
+          "name": "Unnamed Layer",
+          "category": "default"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [72.915879, 19.069906]
+        },
+        "id": "6813e8a0-605d-4439-bbf8-d161abc30e6e"
+      }
     }
   ];
   generateDisabled: boolean = true;
@@ -236,15 +323,51 @@ export class CreatePageComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.initMap();
-
   }
 
-  public render(): void {
-    // const index = Math.round(Math.random());
-    // const currentComponent = this.components[index];
-    console.log(this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent));
-    console.log(this.adHost.viewContainerRef);
+  // polyDataList = [
+  //   {
+  //     "type": "FeatureCollection",
+  //     "features": [
+  //       {
+  //         "type": "Feature",
+  //         "properties": {
+  //           "shape": "Polygon",
+  //           "name": "Unnamed Layer",
+  //           "category": "default"
+  //         },
+  //         "geometry": {
+  //           "type": "Polygon",
+  //           "coordinates": [
+  //             [
+  //               [72.876063, 19.060009],
+  //               [72.907984, 19.013112],
+  //               [72.916565, 19.065525],
+  //               [72.876063, 19.060009]
+  //             ]
+  //           ]
+  //         },
+  //         "id": "15f0843f-24c2-4cce-8d73-b2b79c769eb5"
+  //       },
+  //       {
+  //         "type": "Feature",
+  //         "properties": {
+  //           "shape": "Circle",
+  //           "radius": 2316.4006321809024,
+  //           "name": "Unnamed Layer",
+  //           "category": "default"
+  //         },
+  //         "geometry": {
+  //           "type": "Point",
+  //           "coordinates": [72.915879, 19.069906]
+  //         },
+  //         "id": "6813e8a0-605d-4439-bbf8-d161abc30e6e"
+  //       }
+  //     ]
+  //   }]
 
+  public render(): void {
+   
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
     let viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
@@ -252,7 +375,8 @@ export class CreatePageComponent implements OnInit {
     let componentRef = viewContainerRef.createComponent(componentFactory);
 
   }
-
+  public address;
+  public tempArr = [];
   private initMap(): void {
 
 
@@ -280,7 +404,7 @@ export class CreatePageComponent implements OnInit {
 
 
       onAdd: function (map2) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+        let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
         container.innerHTML = ' <div class="tab-container-layersMap2"><div class="icon-count"><span style="font-size: 9px;font-weight: 500;" id="command"></span></div><div class="icon-styleMap2"><i class="ic ic-layers-01"></i></div></div>';
         container.style.backgroundColor = 'white';
         container.style.backgroundSize = "38px 38px";
@@ -305,67 +429,139 @@ export class CreatePageComponent implements OnInit {
 
     this.shapeService.mapServiceData = this.mapTwo;
 
-
-
-
-
-    // // Initialise the FeatureGroup to store editable layers
-    // var editableLayers = new L.FeatureGroup();
-    // this.mapTwo.addLayer(editableLayers);
-
-    // var drawPluginOptions = {
-    //   position: 'topright',
-    //   draw: {
-    //     polygon: {
-    //       allowIntersection: false, // Restricts shapes to simple polygons
-    //       drawError: {
-    //         color: '#e1e100', // Color the shape will turn when intersects
-    //         message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-    //       },
-    //       shapeOptions: {
-    //         color: '#97009c'
-    //       }
-    //     },
-    //     // disable toolbar item by setting it to false
-    //     polyline: false,
-    //     circle: false, // Turns off this drawing tool
-    //     rectangle: false,
-    //     marker: false,
-    //   },
-    //   edit: {
-    //     featureGroup: editableLayers, //REQUIRED!!
-    //     remove: false
-    //   }
+    // let optionsPolyDraw = {
+    //   position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
+    //   drawMarker: true,  // adds button to draw markers
+    //   drawPolygon: true,  // adds button to draw a polygon
+    //   drawPolyline: false,  // adds button to draw a polyline
+    //   drawCircle: true,  // adds button to draw a cricle
+    //   drawCircleMarker: false,//add button with circle radius
+    //   editPolygon: false,  // adds button to toggle global edit mode
+    //   deleteLayer: false,   // adds a button to delete layers
+    //   // removalMode: false,
+    //   cutPolygon: false,
+    //   drawRectangle: false,
+    //   editMode: false,
+    //   dragMode: false,// drag and drop
     // };
+    // this.mapTwo.pm.addControls(optionsPolyDraw);
+    // let drawnItems = new L.FeatureGroup();
+    // this.mapTwo.addLayer(drawnItems);
 
-    // // Initialise the draw control and pass it the FeatureGroup of editable layers
-    // var drawControl = new L.Control.Draw(drawPluginOptions);
-    // this.mapTwo.addControl(drawControl);
+    // this.mapTwo.pm.Draw.getShapes();
 
-    // var editableLayers = new L.FeatureGroup();
-    // this.mapTwo.addLayer(editableLayers);
-
-    // this.mapTwo.on('draw:created', function (e) {
-    //   var type = e.layerType,
+    // this.mapTwo.on('pm:create', (e) => {
+    //   console.log(e, "eeeeeeeeee");
+    //   let shape = e.shape,
     //     layer = e.layer;
-
-    //   if (type === 'marker') {
-    //     layer.bindPopup('A popup!');
+    //   if (shape === "Polygon") {
+    //     // here you got the polygon points
+    //     let points = layer._latlngs;
+    //     console.log(points, "points>>>");
+    //     // here you can get it in geojson format
+    //     let geojson = layer.toGeoJSON();
+    //     console.log(geojson, "geojson>>>");
     //   }
+    //   drawnItems.addLayer(layer);
 
-    //   editableLayers.addLayer(layer);
+    //   let shapes = this.getShapes(drawnItems);
+    //   console.log(shapes, "shapes>>>");
+
+
     // });
 
 
+  }
+  public polyRectangle;
+  public circle;
+  public poly;
+  public polyline;
+  public dataPolygon = [];
+  polySelectedChange(item) {
+    console.log(item, "item");
+    this.dataPolygon.push(item);
+    item.checked = !item.checked;
+    // for (let index = 0; index < this.itemsListPoly.length; index++) {
+    //   const element = this.itemsListPoly[index];
+    //   console.log(element, "element");
 
 
+    if (item.checked == true) {
+      if (item.polydata.properties.shape == 'Circle') {
+        this.circle = L.circle([item.polydata.geometry.coordinates[1], item.polydata.geometry.coordinates[0]], item.polydata.properties.radius, {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5
+        }).addTo(this.mapTwo);
+      } else if (item.polydata.properties.shape == 'Polygon') {
+        this.poly = L.polygon([
+          [19.060009, 72.876063],
+          [19.013112, 72.907984],
+          [19.065525, 72.916565],
+          [19.060009, 72.876063]
+        ]).addTo(this.mapTwo);
+      } else if (item.polydata.properties.shape == 'Rectangle') {
+        this.polyRectangle = L.rectangle([
+          [19.045527, 72.902422],
+          [19.045527, 72.905597],
+          [19.049482, 72.905597],
+          [19.049482, 72.902422],
+          [19.045527, 72.902422]
+        ], { color: "#ff7800", weight: 1 }).addTo(this.mapTwo);
+      } else {
+        this.polyline = L.polyline([
+          [19.045568, 72.894765],
+          [19.046055, 72.898672],
+          [19.045933, 72.901742]
+        ]).addTo(this.mapTwo);
+      }
 
+    } else {
 
+      if (item.polydata.properties.shape == 'Rectangle') {
+        this.polyRectangle.remove();
+      } else if (item.polydata.properties.shape == 'Polygon') {
+        this.poly.remove();
+      } else if (item.polydata.properties.shape == 'Circle') {
+        this.circle.remove();
+      } else {
+        this.polyline.remove();
+      }
 
+    }
 
 
 
   }
+
+  getShapes(drawnItems) {
+
+    let shapes = [];
+
+    drawnItems.eachLayer(function (layer) {
+      console.log(layer, "layer");
+
+      // Note: Rectangle extends Polygon. Polygon extends Polyline.
+      // Therefore, all of them are instances of Polyline
+      if (layer instanceof L.Polyline) {
+        shapes.push(layer.getLatLngs())
+      }
+
+      if (layer instanceof L.Circle) {
+        shapes.push([layer.getLatLng()])
+      }
+
+      if (layer instanceof L.Marker) {
+        shapes.push([layer.getLatLng()]);
+      }
+
+    });
+    console.log(shapes, "shapes");
+
+
+    return shapes;
+  };
+
 
   protected filterData(listData, filterCtrl, filterSubject) {
     if (!listData) {
@@ -411,4 +607,16 @@ export class CreatePageComponent implements OnInit {
     this.fileName = "";
   }
 
+  openDialogSuccessful(): void {
+    const dialogRef = this.dialog.open(RedirectLayersPopupComponent, {
+      width: "470px",
+      panelClass: "material-dialog-container",
+      data: { transferDataPoly: this.dataPolygon,headerNominal:true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      // this.gotomyreport = result;
+    });
+  }
 }
