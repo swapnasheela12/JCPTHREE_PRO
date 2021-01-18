@@ -59,8 +59,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   dialog: NavigationSettingsService;
   /**Layers navigation functionality */
   @HostListener('click', ['$event']) onClick(btn) {
-    $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
-    $('.disabled-menu-item-nav').parent().css({'color': 'gray','cursor': 'not-allowed','pointer-events': 'none'});
+    $('.hide-menu-item-nav-children').parent().parent().css({ 'display': 'none' });
+    $('.hide-menu-item-nav-children-zero').parent().css({ 'display': 'none' });
+    $('.disabled-menu-item-nav').parent().css({ 'color': 'gray', 'cursor': 'not-allowed', 'pointer-events': 'none' });
     if (typeof btn.target.children[0] != 'undefined') {
       if (btn.target.children[0].classList[1] == 'ic-layers-01') {
         this.router.navigate(['/JCP/Layers']);
@@ -125,9 +126,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $('.hide-menu-item-nav').parent().parent().css({ 'display': 'none' });
     $('.hide-parent-menu-item-nav').parent().parent().css({ 'display': 'none' });
-    $('.disabled-menu-item-nav').parent().css({'color': 'gray','cursor': 'not-allowed','pointer-events': 'none'});
+    $('.disabled-menu-item-nav').parent().css({ 'color': 'gray', 'cursor': 'not-allowed', 'pointer-events': 'none' });
   }
   parentIconClick(mmenuDirective, level) {
     if (level == 0) {
@@ -145,7 +145,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   };
 
   ngOnInit() {
-    $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
+    // $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
     this.datashare.currentMessage.subscribe((data: any) => {
       if (Object.keys(data).length !== 0) {
         const addPin: any = {
@@ -191,24 +191,24 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   recNode(arr: any[], data: any[], index: number, maxIndex: number): any[] {
     if (arr === undefined)
       arr = [];
-    if (data.length != 0){
-    for (let i = 0; i < data.length; i++) {
-      index++
-      if (index === maxIndex) {
-        return ([true, index, arr]);
-      }
-      if (data[i].children != undefined){
-        if (data[i].children.length || data[i]) {
-          let res = this.recNode(arr, data[i].children, index, maxIndex);
-          index = res[1];
-          if (res[0] === true) {
-            arr.splice(0, 0, (i !== (data.length - 1)));
-            return ([true, index, arr]);
+    if (data.length != 0) {
+      for (let i = 0; i < data.length; i++) {
+        index++
+        if (index === maxIndex) {
+          return ([true, index, arr]);
+        }
+        if (data[i].children != undefined) {
+          if (data[i].children.length || data[i]) {
+            let res = this.recNode(arr, data[i].children, index, maxIndex);
+            index = res[1];
+            if (res[0] === true) {
+              arr.splice(0, 0, (i !== (data.length - 1)));
+              return ([true, index, arr]);
+            }
           }
         }
       }
     }
-  }
     return ([false, index, arr]);
   }
 
@@ -514,17 +514,17 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
       );
-    } else if(layersToShow == 'RouteReadyFibreCoreComponent') {
+    } else if (layersToShow == 'RouteReadyFibreCoreComponent') {
       const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
       );
-    } else if(layersToShow == 'StructurePlannedFibreCoreComponent') {
+    } else if (layersToShow == 'StructurePlannedFibreCoreComponent') {
       const { StructurePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(StructurePlannedFibreCoreComponent)
       );
-    } else if(layersToShow == 'EquipmentsPlannedFibreCoreComponent') {
+    } else if (layersToShow == 'EquipmentsPlannedFibreCoreComponent') {
       const { EquipmentsPlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/equipments/equipments-planned-fibre-core/equipments-planned-fibre-core.component');
       this.layerComponent = this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(EquipmentsPlannedFibreCoreComponent)

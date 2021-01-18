@@ -1,0 +1,42 @@
+.cnct-mat-card{
+    .card-header{
+        font-size: 15px;
+        font-family: lato bold;
+        padding-left: 0px;
+        .label{
+            font-size: 12px; color: rgb(0 0 0 / 0.54)
+        }
+        .value{
+            
+        }
+    }
+    padding:0px !important;
+    height: calc(100% - 52px);
+    .cnct-card-content{
+        height: calc(100% - 80px);
+        .mat-stepper-horizontal{
+            height: 100%;
+            .mat-horizontal-content-container{
+                height: calc(100% - 24px);
+                 padding-left: 10px;
+                .mat-horizontal-stepper-content[aria-expanded="true"]{
+                    height:100%;
+                    .content-holder{
+                        height: calc(100% - 70px);
+                        overflow: auto;
+                        .mat-checkbox-inner-container{
+                            margin:  12px 12px 0px 0px !important
+                        }
+                    }
+                }
+            }
+            }
+    }
+}
+
+.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple){
+    background: rgb(0 120 215 / .1);
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: rgb(0 0 0 / .87)
+}

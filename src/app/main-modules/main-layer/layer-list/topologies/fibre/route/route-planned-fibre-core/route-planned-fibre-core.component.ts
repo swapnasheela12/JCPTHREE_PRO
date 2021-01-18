@@ -9,18 +9,19 @@ import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { RouteTableViewComponent } from '../route-table-view/route-table-view.component';
-import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
+import { FibreTableViewPopupModel, RouteTableViewComponent } from '../route-table-view/route-table-view.component';
+import * as _ from 'lodash';
+import { PropertiesComponent } from 'src/app/modules/components/properties/properties.component';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
+import { FivegSpiderViewComponent } from 'src/app/main-modules/main-layer/fiveg-spider-view/fiveg-spider-view.component';
+import polylabel from 'polylabel';
 
 @Component({
   selector: 'app-route-planned-fibre-core',
   templateUrl: './route-planned-fibre-core.component.html',
-  styleUrls: ['./route-planned-fibre-core.component.scss'],
-  // providers: [MainLayerComponent]
+  styleUrls: ['./route-planned-fibre-core.component.scss']
 })
 export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy {
-  // @ViewChild(MainLayerComponent, {static: false}) mainLayerComp: MainLayerComponent;
   routeFibreCoreLayer: any;
   routeFibreCoreLayerContainer: any;
   map: any;
@@ -64,126 +65,103 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
   colocatedLinksCenterPoint: { x: number; y: number; };
   colocatedContainer: createjs.Container;
   boundaryContainer: createjs.Container;
+  allPoints = [];
   @ViewChild("tref", { read: ElementRef }) tref: ElementRef;
   ref: this;
   mainLayerRef: {};
-  routePlannedSpiderViewData = {
-    "name": "Route",
-    "value": 5,
-    "color": '#003A74',
-    "description": "Lorem Ipsum Lorem Lorem",
-    "font": 'Material-Design-Iconic-Font',
-    "fontvalue": '\uf323',
-    "children": [
-      {
-        name: 'CSS',
-        value: 5,
-        color: '#F44336',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf112',
-        eventname: 'sites-tree-properties-nominals'
-      },
-      {
-        name: 'Core',
-        value: 5,
-        color: '#03A9F4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#E2C10D',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#3F51B4',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#FF862C',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#4CAF50',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      {
-        name: 'Lorem',
-        value: 5,
-        color: '#C550F0',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf207',
-        eventname: 'sites-tree-candidates-nominals'
-      },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // },
-      // {
-      //   name: 'Lorem',
-      //   value: 5,
-      //   color: '#C550F0',
-      //   font: 'Material-Design-Iconic-Font',
-      //   fontvalue: '\uf207',
-      //   eventname: 'sites-tree-candidates-nominals'
-      // }
-    ]
-    //   }
-    // ]
-
+  routePlannedLayerHeader = {
+    "title": "Route Planned Fibre Core",
+    "headerSapid": "Maharashtra-NP-CV-121020_v1"
   };
+  routePlannedSpiderViewData = [
+    {
+      name: 'CSS',
+      value: 5,
+      color: '#F44336',
+      font: 'Lato Bold',
+      fontvalue: '\uf112',
+      eventname: 'sites-tree-properties-nominals',
+      sapid: 'I-MU-MUMB_ENB_I144'
+    },
+    {
+      name: 'Core',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I124'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#E2C10D',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I144'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#3F51B4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I244'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#FF862C',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I044'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#C550F0',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I544'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#4CAF50',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I134'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#C550F0',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I164'
+    },
+    {
+      name: 'Lorem',
+      value: 5,
+      color: '#C550F0',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I174'
+    }
+  ];
+  a = this.routePlannedSpiderViewData;
+  clonedArray: { name: string; value: number; color: string; font: string; fontvalue: string; eventname: string; sapid: string; }[];
+  pixelValue: string;
+  routeHover: any;
+  boundariesContainer: createjs.Container;
+  labelsContainer: createjs.Container;
 
   constructor(
     private shapeService: ShapeService,
@@ -194,8 +172,7 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     private dialog: MatDialog,
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    // private mainLayer: MainLayerComponent
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
     this.routeReadyFibreCoreSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) => {
@@ -214,7 +191,7 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
 
   ngAfterViewInit() {
     this.pixelRatio = window.devicePixelRatio || 1;
-
+    this.routeHover = this.getPopup();
     this.map = this.shapeService.mapServiceData;
     this.routeFibreCoreLayer = new CustomLayer({
       container: document.createElement("canvas")
@@ -253,7 +230,90 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     return this.canvasCore;
   }
 
+  getPopup() {
+    let popup = L.popup({
+      className: 'leaflet-fibre-tooltip',
+      minWidth: 120,
+      offset: L.point(0, 0),
+      closeButton: false
+    });
+    return popup;
+  }
+
+  getBoundariesData() {
+    return this.http.get("assets/data/layers/boundaries/circles.json");
+  }
+  drawBoundaries(boundariesData) {
+    // if (!this.boundariesContainer){
+
+    // }
+    this.boundariesContainer = new createjs.Container();
+    this.labelsContainer = new createjs.Container();
+    for (let i = 0; i < boundariesData.length; i++) {
+      let d = boundariesData[i];
+      let coordinates = d.coordinates;
+      let coordinatesLength = coordinates.length;
+      let polyPoints = [];
+      for (let j = 0; j < coordinatesLength; j++) {
+        let coord = coordinates[j];
+        let dot = this.map.latLngToContainerPoint([coord[0], coord[1]]);
+        let centerPoint = {
+          x: dot.x * this.pixelRatio,
+          y: dot.y * this.pixelRatio
+        };
+        polyPoints.push(centerPoint);
+      }
+      if (!polyPoints.length) continue;
+
+      let polyGraphic = this.getPolyGraphics(createjs.Graphics.getRGB(248, 152, 29, 0.8), '#E35425', polyPoints);
+      let polyShape = new createjs.Shape(polyGraphic);
+      polyShape.name = d.CIRCLENAME;
+      polyShape.cursor = 'pointer';
+      polyShape['points'] = polyPoints;
+      let shadow = new createjs.Shadow("rgba(0,0,0,0.5)", 1, 2, 5);
+
+      this.boundariesContainer.addChild(polyShape);
+      let pointLabel = polylabel([coordinates], 0.1);
+      if (pointLabel && pointLabel[0]) {
+        let dot = this.map.latLngToContainerPoint([pointLabel[0], pointLabel[1]]);
+        let labelPosition = {
+          x: dot.x * this.pixelRatio,
+          y: dot.y * this.pixelRatio
+        };
+        let textPixel = L.Browser.retina ? 30 : 15;
+        let htmlEncode: any = Math.floor(Math.random() * (25000) + 5000);
+        let label = new createjs.Text(htmlEncode, "bold " + textPixel + "px Roboto", "#000000");
+        label.textAlign = 'center';
+        label.textBaseline = 'middle';
+        label.outline = 2;
+        label.x = labelPosition.x;
+        label.y = labelPosition.y;
+
+        let outline: any = label.clone();
+        outline.outline = false;
+        outline.shadow = shadow;
+        outline.color = '#FFFFFF';
+        this.labelsContainer.addChild(label, outline);
+      }
+    }
+    this.stageRouteContainer.addChild(this.boundariesContainer, this.labelsContainer);
+    this.stageRouteContainer.update();
+  }
+
+  getPolyGraphics(color, stroke, data) {
+    let g = new createjs.Graphics();
+    g.setStrokeStyle(2);
+    g.beginStroke(stroke);
+    g.beginFill(color);
+    //drawPolygon is a custom function present as of now in create JS module itself
+    //g.drawPolygon(0, 0, data);
+    return g;
+  };
   createLayer = function (container, zoomLevel, routePlannedData, layerContainer) {
+    // let nominalViewComponent = this.mainLayerRef.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
+    // this.mainLayerRef.componentRef = this.mainLayerRef.target.createComponent(nominalViewComponent);
+    // this.mainLayerRef.componentRef.instance.headerData = this.routePlannedLayerHeader;
+
     this.lineColors = 'red';
     this.allLinePoints = [];
     this.zoomLevel = zoomLevel;
@@ -263,7 +323,7 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
           0.75 : (this.zoomLevel <= 15) ?
             0.50 : 0.75;
     this.scaleMatrix = this.scaleMatrix * this.pixelRatio;
-    if (undefined != this.lineContainer) {
+    if (undefined != this.stageRouteContainer) {
       this.stageRouteContainer.removeAllChildren();
       this.stageRouteContainer.update();
     }
@@ -273,25 +333,34 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     this.stageRouteContainer.removeAllChildren();
 
     if (this.zoomLevel <= 6) {
-      this.boundaryContainer = new createjs.Container();
-      for (let i = 0; i < routePlannedData.length; i++) {
-        this.centerBoundaryLatLng = L.latLng({
-          lat: routePlannedData[i][3].centroidAvg[0],
-          lng: routePlannedData[i][3].centroidAvg[1]
-        });
-        this.centerBoundaryDot = this.map.latLngToContainerPoint(this.centerBoundaryLatLng);
-        this.centerCenterPoint = {
-          x: this.centerBoundaryDot.x,
-          y: this.centerBoundaryDot.y
-        };
-        this.drawRouteCount(routePlannedData[i][0].measured_length, this.centerCenterPoint, this.boundaryContainer);
-        this.stageRouteContainer.addChild(this.boundaryContainer);
-      }
+      let url = 'assets/data/layers/boundaries/circles.json';
+      this.getBoundariesData(url).subscribe((data) => {
+        this.boundariesData = data;
+        this.drawBoundaries(
+          this.boundariesData,
+          this.routePlannedData
+        );
+      });
+      // this.boundaryContainer = new createjs.Container();
+      // for (let i = 0; i < routePlannedData.length; i++) {
+      //   this.centerBoundaryLatLng = L.latLng({
+      //     lat: routePlannedData[i][3].centroidAvg[0],
+      //     lng: routePlannedData[i][3].centroidAvg[1]
+      //   });
+      //   this.centerBoundaryDot = this.map.latLngToContainerPoint(this.centerBoundaryLatLng);
+      //   this.centerCenterPoint = {
+      //     x: this.centerBoundaryDot.x,
+      //     y: this.centerBoundaryDot.y
+      //   };
+      //   this.drawRouteCount(routePlannedData[i][0].measured_length, this.centerCenterPoint, this.boundaryContainer);
+      //   this.stageRouteContainer.addChild(this.boundaryContainer);
+      // }
     } else {
       this.colocatedContainer = new createjs.Container();
       this.lineContainer = new createjs.Container();
       for (let j = 0; j < routePlannedData.length; j++) {
         for (let i = 0; i < routePlannedData[j][4].boundary.length; i++) {
+          this.allPoints["'" + routePlannedData[j][1].rj_r4g_state_name + "'"] = [];
           for (let n in routePlannedData[j][4].boundary[i]) {
             this.allLinePoints = [];
             for (let k = 0; k < routePlannedData[j][4].boundary[i][n].length; k++) {
@@ -305,9 +374,11 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
                 x: this.linksDot.x * this.pixelRatio,
                 y: this.linksDot.y * this.pixelRatio
               };
-              console.log("this.allLinePoints", this.allLinePoints)
-              console.log("this.this.linksCenterPoint", this.linksCenterPoint)
               this.allLinePoints.push(this.linksCenterPoint);
+              this.allPoints["'" + routePlannedData[j][1].rj_r4g_state_name + "'"].push([
+                routePlannedData[j][4].boundary[i][n][k][0],
+                routePlannedData[j][4].boundary[i][n][k][1]
+              ]);
             }
             this.polyGraphic = this.drawPolyGraphics(
               this.lineColors,
@@ -317,43 +388,91 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
             this.lineShape = new createjs.Shape(
               this.polyGraphic
             );
-            //   console.log("connectTheDots", connectTheDots())
-
-            //   function connectTheDots(data){
-            //     var c = [];
-            //     for(var i in data._layers) {
-            //         var x = data._layers[i]._latlng.lat;
-            //         var y = data._layers[i]._latlng.lng;
-            //         c.push([x, y]);
-            //     }
-            //     return c;
-            // }
-            console.log("this.lineShape", this.lineShape);
-            // this.lineShape.setStrokeDash([2, 2]);
             this.lineShape.cursor = 'pointer';
             this.lineShape['points'] = this.allLinePoints;
             this.lineShape['latLng'] = this.positionLatLng;
             this.lineContainer.addChild(this.lineShape);
           }
         }
+        let eachStatePoints = this.allPoints["'" + routePlannedData[j][1].rj_r4g_state_name + "'"];
+        var count = {};
+        var greaterThanOne = {};
+
+        eachStatePoints.forEach(function (i) {
+          count[i] = (count[i] || 0) + 1;
+          if (count[i] > 1) {
+            greaterThanOne[i] = count[i];
+          }
+        });
       }
       let outerContainerThis = this;
       this.lineContainer.addEventListener('click', function (evt) {
         outerContainerThis.routeClicked(outerContainerThis.mainLayerRef);
       });
-      this.positionCololatedLatLng = L.latLng({
-        lat: 16.008437,
-        lng: 73.49981
-      });
-      this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
-      this.colocatedLinksCenterPoint = {
-        x: this.colocatedLinkDot.x * this.pixelRatio,
-        y: this.colocatedLinkDot.y * this.pixelRatio
-      };
+      let entries: any = Object.entries(greaterThanOne);
 
-      this.lineContainer.alpha = 1;
-      this.drawCountCircle('78', this.lineContainer, this.colocatedContainer, this.colocatedLinksCenterPoint, outerContainerThis.mainLayerRef);
-      this.stageRouteContainer.addChild(this.lineContainer, this.colocatedContainer);
+      for (let g = 0; g < entries.length; g++) {
+        console.log(entries[g][0].split(','));
+        let splittedArray = entries[g][0].split(',').map(Number);
+        this.positionCololatedLatLng = L.latLng({
+          lat: splittedArray[0],
+          lng: splittedArray[1]
+        });
+        this.colocatedLinkDot = this.map.latLngToContainerPoint(this.positionCololatedLatLng);
+        this.colocatedLinksCenterPoint = {
+          x: this.colocatedLinkDot.x * this.pixelRatio,
+          y: this.colocatedLinkDot.y * this.pixelRatio
+        };
+        this.lineContainer.alpha = 1;
+        let colocatedData = [{ sapId: 'I-MU-MUMB_ENB_014', tileName: 'Beta_1800_C1' }];
+        let outerthis = this;
+        this.lineContainer.on('mouseover', function (event) {
+          let target = event['target'];
+          target.alpha = 0.6;
+          target.graphics._strokeStyle.width = outerthis.scaleMatrix * 6;
+          outerthis.stageRouteContainer.update();
+          let dot = L.point((event['rawX'] / outerthis.pixelRatio), (event['rawY'] / outerthis.pixelRatio));
+          target.latlng = outerthis.map.containerPointToLatLng(dot);
+          let template = '';
+          template +=
+            '<div class="layout-row popup-layout-padding">' +
+            '<span class="prefix">Measured Length:</span>' +
+            '<span class="value">' + '2000km' + '</span></div>';
+          template +=
+            '<div class="layout-row popup-layout-padding">' +
+            '<span class="prefix">Start:</span>' +
+            '<span class="value">' + 'Mumbai' + '</span>' +
+            '</div>';
+          template +=
+            '<div class="layout-row popup-layout-padding">' +
+            '<span class="prefix">End:</span>' +
+            '<span class="value">' + 'Surat' + '</span>' +
+            '</div>';
+          template +=
+            '<div class="layout-row popup-layout-padding">' +
+            '<span class="prefix">Type:</span>' +
+            '<span class="value">' + 'Core' + '</span>' +
+            '</div>';
+          outerthis.routeHover.setLatLng(target.latlng).setContent(template).openOn(outerthis.map);
+        });
+        this.lineContainer.on('mouseout', function (event) {
+          outerthis.map.closePopup();
+          let target = event['target'];
+          target.alpha = 1;
+          target.graphics._strokeStyle.width = outerthis.scaleMatrix * 4;
+          outerthis.stageRouteContainer.update();
+        });
+        this.drawCountCircle(
+          entries[g][1],
+          this.lineContainer,
+          this.colocatedContainer,
+          this.colocatedLinksCenterPoint,
+          outerContainerThis.mainLayerRef,
+          this.positionCololatedLatLng,
+          colocatedData
+        );
+        this.stageRouteContainer.addChild(this.lineContainer, this.colocatedContainer);
+      }
     }
     this.stageRouteContainer.update();
   }
@@ -372,7 +491,16 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     return this.drawPolyGraphic;
   }
 
-  drawCountCircle(count, junctionContainer, colocatedContainer, linksCenterPoint, mainLayerReference) {
+  drawCountCircle(
+    count,
+    junctionContainer,
+    colocatedContainer,
+    linksCenterPoint,
+    mainLayerReference,
+    positionCololatedLatLng,
+    colocatedData,
+    colocatedSpiderArray
+  ) {
     this.circleGraphic = this.drawCircleGraphics('red', 15);
     this.circleCountShape = new createjs.Shape(this.circleGraphic);
 
@@ -380,17 +508,17 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
     this.textContainer.x = linksCenterPoint.x;
     this.textContainer.y = linksCenterPoint.y;
     this.textContainer.latLng = new L.LatLng(junctionContainer.children[0].latLng.lat, junctionContainer.children[0].latLng.lng);
-    // this.circleCountClone = this.circleCountShape.clone();
-    // this.textContainer.addChild(this.circleCountClone);
 
     this.labelCount = new createjs.Text(count, "bold 12px RobotoDraft", "#000000");
     this.labelCount.textAlign = 'center';
     this.labelCount.textBaseLine = 'middle';
-    // this.textContainer.addChild(this.labelCount);
     let outerContainerThis = this;
+
     this.textContainer.addEventListener('click', function (evt) {
-      console.log('route clicked');
-      outerContainerThis.colocatedLineClicked(evt, mainLayerReference);
+      outerContainerThis.clonedArray = [...outerContainerThis.routePlannedSpiderViewData];
+      outerContainerThis.clonedArray.splice(count, (outerContainerThis.clonedArray.length - count));
+      outerContainerThis.map.setView(positionCololatedLatLng);
+      outerContainerThis.colocatedLineClicked(evt, mainLayerReference, colocatedData, outerContainerThis.clonedArray);
     });
     this.textContainer.addChild(this.circleCountShape, this.labelCount)
     colocatedContainer.addChild(this.textContainer);
@@ -408,16 +536,19 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
   }
 
   drawRouteCount(fibreLength, lengthLatLng, container) {
+    let m = L.Browser.retina ? 2 : 1;
     this.textContainerBoundary = new createjs.Container();
-    this.textContainerBoundary.x = lengthLatLng.x;
-    this.textContainerBoundary.y = lengthLatLng.y
-    this.labelCountBoundary = new createjs.Text(fibreLength, "bold 15px RobotoDraft", "#000000");
+    this.textContainerBoundary.x = lengthLatLng.x * m;
+    this.textContainerBoundary.y = lengthLatLng.y * m;
+    this.pixelValue = L.Browser.retina ? "bold 30px RobotoDraft" : "bold 15px RobotoDraft"
+    this.labelCountBoundary = new createjs.Text(fibreLength, this.pixelValue, "#000000");
     this.labelCountBoundary.textAlign = 'center';
     this.textContainerBoundary.addChild(this.labelCountBoundary);
     container.addChild(this.textContainerBoundary);
   }
-
   routeClicked(mainl) {
+    const componName = "Route";
+    const dialogData = new FibreTableViewPopupModel(componName);
     const dialogRef = this.dialog.open(RouteTableViewComponent, {
       width: "1200px",
       height: "500px",
@@ -425,22 +556,42 @@ export class RoutePlannedFibreCoreComponent implements AfterViewInit, OnDestroy 
         left: "18.5rem",
         top: "4rem"
       },
+      data: dialogData,
       hasBackdrop: false,
       disableClose: false,
       panelClass: "material-dialog-container",
     });
   }
 
-  colocatedLineClicked(event, mainLayerReference) {
+  colocatedLineClicked(event, mainLayerReference, colocatedData, colocatedSpiderArray) {
     let nominalViewComponent = mainLayerReference.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
     mainLayerReference.componentRef = mainLayerReference.target.createComponent(nominalViewComponent);
-    mainLayerReference.componentRef.instance.data = this.routePlannedSpiderViewData;
+    mainLayerReference.componentRef.instance.data = colocatedSpiderArray;
+    mainLayerReference.componentRef.instance.colocatedCircleData = colocatedData;
+    mainLayerReference.componentRef.instance.mainRef = this;
   }
 
   removeLayer() {
     if (undefined != this.routeFibreCoreLayer) {
       this.map.removeLayer(this.routeFibreCoreLayer)
     }
+  }
+
+  openSpiderPopups(d, ref) {
+    const componName = "Route";
+    const dialogData = new FibreTableViewPopupModel(componName);
+    const dialogRef = this.dialog.open(RouteTableViewComponent, {
+      width: "1200px",
+      height: "500px",
+      position: {
+        left: "18.5rem",
+        top: "4rem"
+      },
+      data: dialogData,
+      hasBackdrop: false,
+      disableClose: false,
+      panelClass: "material-dialog-container",
+    });
   }
 
   ngOnDestroy() {

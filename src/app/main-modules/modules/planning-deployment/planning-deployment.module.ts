@@ -55,14 +55,17 @@ import { EditModeDirective } from './../../../_directive/edit-cell/edit-mode.dir
 import { FocusableDirective } from './../../../_directive/focusable.directive';
 import { EditOnEnterDirective } from './../../../_directive/edit-cell/edit-on-enter.directive';
 import { NewAndSaveTemplatePopupComponent } from './link-budget/new-and-save-template-popup/new-and-save-template-popup.component';
+import { NominalCapacityComponent } from './nominal-capacity/nominal-capacity.component';
+import { CreateTaskPageComponent } from './nominal-capacity/create-task-page/create-task-page.component';
+import { cnctDropdownRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-renderer.component';
 @NgModule({
-  declarations: [EnbscComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent],
+  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([cnctDropdownRendererComponent]),
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
@@ -110,7 +113,7 @@ import { NewAndSaveTemplatePopupComponent } from './link-budget/new-and-save-tem
     NgxMatSelectSearchModule
   ],
   providers: [],
-  exports: [EnbscComponent],
+  exports: [EnbscComponent, cnctDropdownRendererComponent],
   entryComponents : [
     NewAndSaveTemplatePopupComponent
   ],

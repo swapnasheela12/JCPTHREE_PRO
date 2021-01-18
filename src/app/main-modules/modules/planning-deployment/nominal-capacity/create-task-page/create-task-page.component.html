@@ -1,0 +1,117 @@
+<div class="h-100">
+    <mat-card class="cnct-mat-card">
+        <mat-card-header class="card-header bg-white" fxLayoutAlign="space-between center">
+            <mat-card-title class="card-title mb-0">Nominal Capacity</mat-card-title>
+            <!-- <div class="col"></div> -->
+            <div fxLayout="column" class="">
+                <label class="label">
+                    Project Name:
+                </label>
+                <div style="">
+                    Zone_Jio State_Jio Center_NP_CV_121020_V1
+                </div>
+            </div>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="cnct-card-content">
+            <mat-horizontal-stepper #nodeCounterStepper [linear]="false">
+                <mat-step label="Select Type">
+                    <div class="content-holder">
+                        <div fxLayout="row wrap" fxLayoutAlign="start center">
+                            <div fxFlex="45" fxLayout="row wrap">
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="Status" [(value)]="status">
+                                        <mat-option value="Completed" selected>Completed</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="Plan" [(value)]="plan">
+                                        <mat-option value="Coverage" selected>Coverage</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="Zone" [(value)]="zone">
+                                        <mat-option value="North" selected>North</mat-option>
+                                        <mat-option value="South">South</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                                        <mat-option value="-" selected>-</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                                        <mat-option value="-" selected>-</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                                        <mat-option value="-" selected>-</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                                        <mat-option value="-" selected>-</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field-container px-2" fxFlex="50">
+                                    <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                                        <mat-option value="-" selected>-</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="55">
+                                sadsdasdasd
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button class="next-button button" mat-raised-button color="primary"
+                            matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Select KPI">
+                    <div class="content-holder">
+                        <ag-grid-angular style="width: 100%; height: calc(100% - 66px);"
+                            class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                            [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+                            enableSorting enableFilter groupHeaders [suppressCellSelection]="true"
+                            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                            [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+                            [groupSelectsChildren]="true" [debug]="true"
+                            [frameworkComponents]="frameworkComponentsKpiSettings" (gridReady)="onReady($event)">
+                        </ag-grid-angular>
+                    </div>
+                    <div class="d-flex pb-1">
+                        <div class="">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="ml-2">
+                            <button class="next-button button" mat-raised-button color="primary"
+                                matStepperNext>Next</button>
+                        </div>
+                    </div>
+                </mat-step>
+                <mat-step label="Select Duration & Frequency">
+                    <div class="next-button py-2">
+                        <button mat-stroked-button color="primary" class="buttonWidth"
+                            matStepperPrevious>Previous</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+            <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+        </div>
+        <div class="p-2">
+            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button">Generate</button>
+        </div>
+    </div>
+</div>
