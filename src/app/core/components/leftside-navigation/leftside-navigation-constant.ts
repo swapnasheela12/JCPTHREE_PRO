@@ -3071,6 +3071,14 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: []
+    },
+    {
+        name: "Nominal Capacity",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: []
     }
 ];
 
@@ -3442,6 +3450,7 @@ const WORKORDERS_CMWORKORDERS_LIST = [
         name: 'RET Change',
         link: 'JCP/Work-Orders/Cm-Workorders/RET-Change',
         eventName: 'ret-change',
+        show:false,
         children: []
     }
 ]
@@ -3564,7 +3573,7 @@ export const LEFTSIDE_MENU_LIST = [
         link: 'Reports & Dashboard',
         icon: 'ic ic-reports',
         eventName: 'sites-outdoor-esc',
-        show0:false,
+        show0:true,
         level: 0,
         children: REPORTS_LIST
     },

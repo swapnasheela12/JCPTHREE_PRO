@@ -1,0 +1,136 @@
+<mat-card class="nominal-capacity p-0" style="height: 100%; min-height: 100%;">
+    <div class="nominal-capacity-flex-container">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
+            <div class="col-4 nominal-capacity-flex-item nc-title">
+                Nominal Capacity
+            </div>
+            <div class="col-8 nominal-capacity-flex-item d-flex justify-content-end align-items-center">
+                <mat-icon class="icon-button search-icon" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+                <mat-form-field *ngIf="show" class="col-4">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                        autocomplete="off" placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+                <button mat-raised-button class="submit-button create-button" color="primary"
+                    [matMenuTriggerFor]="createMenuList">Create</button>
+                <mat-menu #createMenuList="matMenu" class="nominal-capacity-menu-render" xPosition="before">
+                    <button mat-menu-item>
+                        <span>Strategy</span>
+                    </button>
+                    <button routerLink="/{{createRoute}}" mat-menu-item>
+                        <span>Capacity</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Coverage</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div class="nominal-capacity-flex-container" style="background:#f2f2f2">
+        <div class="d-flex mx-2 flex-row pt-1 justify-content-between align-items-center full-height">
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="Status" [(value)]="status">
+                    <mat-option value="Completed" selected>Completed</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="Plan" [(value)]="plan">
+                    <mat-option value="Coverage" selected>Coverage</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="Zone" [(value)]="zone">
+                    <mat-option value="North" selected>North</mat-option>
+                    <mat-option value="South">South</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="R4G States" [(value)]="r4gStates">
+                    <mat-option value="-" selected>-</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="Jio Center" [(value)]="jioCenter">
+                    <mat-option value="-" selected>-</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field-container px-2" fxFlex="15">
+                <mat-select disableOptionCentering placeholder="City" [(value)]="city">
+                    <mat-option value="-" selected>-</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-stroked-button class="submit-button create-button" color="primary">Apply</button>
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div class="cover-div">
+        <div class="holder-div overflow-auto">
+            <mat-card class="p-0 mb-2" *ngFor="let item of obs | async">
+                <mat-card-content fxLayout="row">
+                    <span
+                        [ngClass]="{'in-progress': item.status =='In Progress', 'completed': item.status =='Completed', 'draft': item.status =='Draft'}">
+                        &nbsp;
+                    </span>
+                    <div fxFlex="100" class="mx-2">
+                        <div class="header my-1" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="leftsSide" fxLayout="column">
+                                <div fxLayout="row">
+                                    <span class="area">{{item.area}} : &nbsp;</span>
+                                    <span class="place"
+                                        [ngClass]="{'label-yellow': item.status =='In Progress', 'label-green': item.status =='Completed', 'label-orange': item.status =='Draft'}">{{item.place}}</span>
+                                </div>
+                                <div class="category">
+                                    {{item.category}}
+                                </div>
+                            </div>
+                            <div class="rightSide" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="id pr-3">
+                                    {{item.id}}
+                                </span>
+                                <button mat-flat-button class="status-button"
+                                    [ngClass]="{'button-yellow': item.status =='In Progress', 'button-green': item.status =='Completed', 'button-orange': item.status =='Draft'}">
+                                    {{item.status}}</button>
+                            </div>
+                        </div>
+                        <mat-divider style="position: relative;"></mat-divider>
+                        <div class="body my-2" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxFlex="55" class="text">
+                                {{item.text}}
+                            </div>
+                            <div fxLayout="row">
+                                <div fxLayout="column" class="pd-r-37">
+                                    <div fxLayout="row">
+                                        <span class="info-lable">Created By: &nbsp; </span>
+                                        <span class="info">{{item.createdUser}} | {{item.createdDate}} |
+                                            {{item.createdTime}}</span>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <span class="info-lable">Modified By: &nbsp; </span>
+                                        <span class="info">{{item.modifiedUser}} | {{item.modifiedDate}} |
+                                            {{item.modifiedTime}}</span>
+                                    </div>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <button mat-icon-button>
+                                        <i routerLink="/{{layerRoute}}" style="color:#989898"
+                                            class="ic ic-layers-01"></i>
+                                    </button>
+                                    <button mat-icon-button>
+                                        <mat-icon style="color:#989898">more_vert</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</mat-card>
