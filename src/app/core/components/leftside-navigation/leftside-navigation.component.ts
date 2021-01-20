@@ -147,9 +147,18 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
     this.datashare.currentMessage.subscribe((data: any) => {
+      console.log(data,"data");
+      
       if (Object.keys(data).length !== 0) {
         const addPin: any = {
           name: data.pinName,
+          link: 'CREATE-PIN',
+          eventName: 'sites-outdoor-esc',
+          children: [],
+          component: 'PinGroupSettingComponent'
+        };
+        const addPinPoly: any = {
+          name: data.sideNav,
           link: 'CREATE-PIN',
           eventName: 'sites-outdoor-esc',
           children: [],
@@ -160,7 +169,14 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           dataChange[9].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
-        } else { }
+        } else if(data.sideNav) {
+          let dataChange = this.dataSource.data;
+          dataChange[9].children[2].children.push(addPinPoly);
+          this.dataSource.data = [];
+          this.dataSource.data = dataChange;
+        }else{ 
+         
+        }
       }
     });
   }

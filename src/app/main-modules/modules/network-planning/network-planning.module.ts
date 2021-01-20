@@ -1,3 +1,5 @@
+import { statusflagiconRenderComponent } from './../../../core/components/ag-grid-renders/statusflagicon.component';
+import { layerlayerDropDownDotRendererComponent } from './../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { AdDirective } from './../../../_directive/dynamicComponent/ad.directive';
 import { DeleteCreatedKpiRendererComponent } from './../performance-management/kpi-editor/renderer/delete-renderer.component';
 import { createKpiDropdownRendererComponent } from './../performance-management/kpi-editor/renderer/dropdown-renderer.component';
@@ -64,9 +66,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { StatergeMapNominalComponent } from './rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
+import { CandidatesACPComponent } from './rf-planning/nominal-generation-strategy/create-page/candidates-acp/candidates-acp.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective],
+  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,
@@ -74,7 +77,7 @@ import { StatergeMapNominalComponent } from './rf-planning/nominal-generation-st
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([CustomTooltip ,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

@@ -1,3 +1,5 @@
+import { statusflagiconRenderComponent } from './components/ag-grid-renders/statusflagicon.component';
+import { layerlayerDropDownDotRendererComponent } from './components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { dropDownThreeDotRendererComponent } from './components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { viewHistoryRendererComponent } from './components/ag-grid-renders/view-history-renderer.component';
 import { NgModule } from '@angular/core';
@@ -94,14 +96,16 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
     // LeftsideSettingsPopupComponent,
     PaginationComponent,
     RedirectLayersPopupComponent,
-    SavePolygonPopupComponent
+    SavePolygonPopupComponent,
+    layerlayerDropDownDotRendererComponent,
+    statusflagiconRenderComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -161,6 +165,8 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
     SuccessfulComponent,
     SuccessfulModalComponent,
     dropDownThreeDotRendererComponent,
+    layerlayerDropDownDotRendererComponent,
+    statusflagiconRenderComponent,
     viewHistoryRendererComponent,
     GenhelpiconComponent,
     TableAgGridComponent,

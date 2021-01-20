@@ -169,7 +169,8 @@
                     </div>
                     <div class="icon-container" style=" padding-left: 10px;">
                         <button style="line-height: 1px;" mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <mat-slide-toggle [(ngModel)]="switchJCP2" (change)="onChangeswitch(switchJCP2)"></mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="switchJCP2" (change)="onChangeswitch(switchJCP2)">
+                            </mat-slide-toggle>
                         </button>
                     </div>
                 </div>
@@ -494,7 +495,8 @@
                     </div>
                     <div class="icon-container" style=" padding-left: 10px;">
                         <button style="line-height: 1px;" mat-button class="icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                            <mat-slide-toggle [(ngModel)]="switchJCP2" (change)="onChangeswitch(switchJCP2)"></mat-slide-toggle>
+                            <mat-slide-toggle [(ngModel)]="switchJCP2" (change)="onChangeswitch(switchJCP2)">
+                            </mat-slide-toggle>
                         </button>
                     </div>
                 </div>
@@ -535,20 +537,28 @@
     </div>
 </div>
 
+<!-- <div class="jcp-toolbar-container-layers-sub-header" fxLayout="row wrap" *ngIf="(this.route==='/JCP/Layers')"> -->
 <div class="jcp-toolbar-container-layers-sub-header" fxLayout="row wrap" *ngIf="(this.route==='/JCP/Layers')  && (showNominalHeader == true)">
     <div class="px-1" fxFlex="5" style="line-height: 3.5;">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="backPageRout()">
             <mat-icon class="iconType">
                 <div class="zmdi zmdi-chevron-left"></div>
             </mat-icon>
         </button>
     </div>
-    <div fxFlex="83" fxLayout="row wrap">
+    <div fxFlex="78" fxLayout="row wrap">
         <div class="title-main">Back to Nominal Generation - </div>
         <div class="sub-title"> Maharashtra-NP-CV-121020_V1</div>
     </div>
     <div fxFlex="5" style="line-height: 3.5;">
         <button mat-icon-button>
+            <mat-icon class="iconType" style="margin-bottom: 0px;">
+                <div class="ic ic-layers-01"></div>
+            </mat-icon>
+        </button>
+    </div>
+    <div fxFlex="5" style="line-height: 3.5;">
+        <button mat-icon-button (click)="candidatesACP()">
             <mat-icon class="iconType">
                 <div class="zmdi zmdi-assignment"></div>
             </mat-icon>

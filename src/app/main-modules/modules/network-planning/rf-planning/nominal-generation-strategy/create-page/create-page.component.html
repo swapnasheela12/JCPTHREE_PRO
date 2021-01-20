@@ -1,6 +1,18 @@
 <div class="h-100">
     <mat-card class="cia-module-card">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col-8 pl-0">
+                    <div class="header">Nominal Staterge</div>
+                </div>
+                <div class="col pl-0">
+                    <div class="title">Project Name</div>
+                    <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
 
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
         <mat-card-content class="cia-card-content">
             <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
                 <mat-step label="Basic Details">

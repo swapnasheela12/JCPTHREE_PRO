@@ -1,0 +1,45 @@
+<div #container class="jcp-candidates-acp-control-layers-container">
+    <div class="toolbar-candidates-acp-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+        <div class="toolbar-candidates-acp-control-title" fxFlex>
+            <span>Candidates For ACP</span>
+        </div>
+        <div class="toolbar-candidates-acp-control-icon-list">
+            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="candidates-acp-container">
+        <mat-card class="candidates-acp-card py-0">
+            <div class="candidates-acp-row" fxLayout="row wrap" fxLayoutAlign="space-between center" style="    line-height: 3;">
+
+                <div class="candidates-acp-type" fxLayout="row wrap">
+                    <div>ACP Target</div>
+                    <div class="pl-2">
+                        <mat-slide-toggle color="primary"></mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="candidates-acp-type" fxLayout="row wrap">
+                    <div style="line-height: 3.2;">
+                        <i style="color: #0070DB;" class="zmdi zmdi-download"></i>
+                    </div>
+                    <div class="pl-2"><button mat-button color="primary">Download </button></div>
+                </div>
+
+            </div>
+        </mat-card>
+        <mat-card class="candidates-acp-card p-0" style="border-radius: 4px;height: 330px;">
+            <app-table-ag-grid></app-table-ag-grid>
+        </mat-card>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="candidates-acp-footer p-0" fxLayout="row">
+        <div class="px-3 my-flex-item">
+            <i style="color: #0070DB;" class="ic ic-upload4"></i>
+            <button mat-button color="primary" class="buttonCustomeLegends">Upload</button>
+        </div>
+        <div fxFlex></div>
+        <div class="px-3 my-flex-item">
+            <button mat-raised-button color="primary" class="buttonCustomeLegends">Save</button>
+        </div>
+    </div>
+</div>

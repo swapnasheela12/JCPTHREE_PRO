@@ -1,3 +1,5 @@
+import { CandidatesACPComponent } from './../../../main-modules/modules/network-planning/rf-planning/nominal-generation-strategy/create-page/candidates-acp/candidates-acp.component';
+import { KpiDetailsComponent } from './../../../main-modules/main-layer/kpi-details/kpi-details.component';
 import { SavePolygonPopupComponent } from './../commonPopup/save-polygon-popup/save-polygon-popup.component';
 
 import { Component, OnInit, Inject, ViewChild, HostListener, OnChanges } from "@angular/core";
@@ -139,7 +141,6 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   constructor(
-
     public dialog: MatDialog,
     private datashare: DataSharingService,
     private _formBuilder: FormBuilder, private location: Location,
@@ -514,6 +515,27 @@ export class HeaderComponent implements OnInit, OnChanges {
       height:'190px',
       panelClass: "material-dialog-container",
     });
+  }
+
+  candidatesACP(){
+    var kpiDetailsListDialogRef = {
+      width: '385px',
+      height: '510px',
+      position: { bottom: '0px', right: "55px" },
+      panelClass: "acp-table-view-layers-dialog-container",
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      disableClose: true,
+      hasBackdrop: true
+    }
+    const dialogRef = this.dialog.open(CandidatesACPComponent, kpiDetailsListDialogRef);
+
+    dialogRef.backdropClick().subscribe(_ => {
+      dialogRef.close();
+    });
+  }
+
+  backPageRout() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
 }

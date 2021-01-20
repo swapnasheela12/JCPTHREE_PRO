@@ -1,3 +1,7 @@
+import { statusflagiconRenderComponent } from './../ag-grid-renders/statusflagicon.component';
+import { layerlayerDropDownDotRendererComponent } from './../ag-grid-renders/layerDropDownThreeDot-renderer.component';
+import { VerticaldotRendererComponent } from './../../../main-modules/modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
+import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { inputRendererComponent } from './../ag-grid-renders/input-renderer.component';
 import { colorDropdownRendererComponent } from './../ag-grid-renders/color-dropdown-renderer.component';
 import { FormControl } from '@angular/forms';
@@ -36,6 +40,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
   public frameworkComponentsMyReport = {
     buttonRenderer: ButtonRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    layerDropDownThreeDotRenderer: layerlayerDropDownDotRendererComponent,
     viewHistroyRenderer: viewHistoryRendererComponent,
     colorDropdownRenderer: colorDropdownRendererComponent,
     inputRenderer: inputRendererComponent,
@@ -43,7 +48,9 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     helpicon: GenhelpiconComponent,
     threeDotRetRenderer: ThreeDotRETRenderer,
     iconRenderer: IconRendererComponent,
-    linkRenderer: AnchorRendererComponent
+    linkRenderer: AnchorRendererComponent,
+    VerticaldotRenderer: VerticaldotRendererComponent,
+    statusFlagRenderer: statusflagiconRenderComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];
@@ -72,6 +79,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
 
     this.gridOptions = <GridOptions>{};
     this.columnDefs = data.columnDefsServices;
+    console.log(this.columnDefs,"this.columnDefs");
+    
     this.rowData = data.rowDataServices;
     // this.paginationRequired = data.paginationRequired;
     // this.autoPageSizeRequired = data.autoPageSizeRequired;

@@ -1,0 +1,129 @@
+// .jcp-candidates-acp-control-layers-container {
+//     .toolbar-candidates-acp-control-layers {
+//         background-color: #0070DB;
+//         color: #ffffff;
+//         height: 48px;
+//         font-family: Lato Bold;
+//         font-size: 16px;
+//     }
+// }
+.jcp-candidates-acp-control-layers-container {
+    height: 100%;
+    .toolbar-candidates-acp-control-layers {
+        background-color: #0070DB;
+        color: #ffffff;
+        height: 48px;
+        font-family: Lato Bold;
+        font-size: 16px;
+        .toolbar-candidates-acp-control-title {
+            font-size: 18px;
+            font-family: Lato Bold;
+        }
+        .toolbar-candidates-acp-control-icon-list {
+            font-size: 22px;
+        }
+    }
+    .candidates-acp-container {
+        height: calc(100% - 99px) !important;
+        max-height: calc(100% - 99px) !important;
+        min-height: calc(100% - 99px) !important;
+        padding: 0px;
+        overflow: auto;
+        // .candidates-acp-list-container {
+        //     .candidates-acp-list-title {
+        //         font-size: 18px;
+        //         font-family: Lato Regular;
+        //         opacity: .5 !important;
+        //         margin: 10px 0;
+        //     }
+        //     .candidates-acp-list-child-container {
+        //         font-size: 16px;
+        //         font-family: Lato Medium;
+        //         .candidates-acp-list-child-check {}
+        //     }
+        // }
+        .candidates-acp-card {
+            margin: 10px;
+            border-radius: 4px;
+            .candidates-acp-row {
+                .candidates-acp-type {
+                    color: #666666;
+                    .form-field-selected-layers {
+                        width: 100%;
+                        .colorpalette {
+                            width: 20px;
+                            height: 4px;
+                            background: red;
+                        }
+                    }
+                }
+            }
+            .toolbar-kpi-setting-control-layers {
+                height: 48px;
+                background: #F0F0F0;
+                .toolbar-kpi-setting-control-title {
+                    font-size: 16px;
+                    font-family: Lato Bold;
+                }
+                .toolbar-kpi-setting-control-icon-list {
+                    font-size: 22px;
+                }
+            }
+            .kpi-setting-container {
+                height: calc(100% - 110px) !important;
+                max-height: calc(100% - 110px) !important;
+                min-height: calc(100% - 110px) !important;
+                padding: 15px 10px;
+                overflow: auto;
+                .kpi-setting-list-container {
+                    .kpi-setting-list-title {
+                        font-size: 18px;
+                        font-family: Lato Regular;
+                        opacity: .5 !important;
+                        margin: 10px 0;
+                    }
+                    .kpi-setting-list-child-container {
+                        font-size: 16px;
+                        font-family: Lato Medium;
+                        .kpi-setting-list-child-check {}
+                    }
+                }
+            }
+            .ag-theme-material {
+                .ag-root-wrapper {
+                    .ag-root-wrapper-body {
+                        .ag-root {
+                            .ag-header {
+                                background: #e9ecec;
+                                display: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .candidates-acp-footer {
+        height: 48px;
+    }
+    .mat-checkbox-layout {
+        white-space: normal !important;
+    }
+}
+
+.hide-header {
+    opacity: 0;
+}
+
+.ag-theme-material {
+    .ag-root-wrapper {
+        .ag-root-wrapper-body {
+            .ag-root {
+                .ag-header {
+                    background: #e9ecec;
+                    display: none !important;
+                }
+            }
+        }
+    }
+}

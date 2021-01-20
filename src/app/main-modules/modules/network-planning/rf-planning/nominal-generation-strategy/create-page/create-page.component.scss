@@ -34,6 +34,15 @@ $color-grayBlue: #464d69;
                     font-weight: 400;
                     color: $color-grayBlue;
                 }
+                .title {
+                    font-size: 12px;
+                    font-family: 'Lato Regular';
+                }
+                .sub-title {
+                    font-size: 14px;
+                    font-family: 'Lato Medium';
+                    line-height: 1;
+                }
             }
         }
     }

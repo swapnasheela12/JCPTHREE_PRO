@@ -6,14 +6,14 @@
     </div>
     <div class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="p-3 successful-text-header success">Success!</div>
-        <div class="p-4 successful-text-subheader">Report Request Sent Successfully</div>
+        <div class="p-4 successful-text-subheader">{{trasData.transferData.subtitle}}</div>
     </div>
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
         <div class="mr-1 successful-text-button">
-            <button class=" success-butt" (click)="clickCreateNewReport()" mat-stroked-button color="primary" style=" margin-left: 8px;">Create New Reports</button>
+            <button class=" success-butt" (click)="clickCreateNewReport()" mat-stroked-button color="primary" style=" margin-left: 8px;">{{trasData.transferData.buttonOne}}</button>
         </div>
         <div class="ml-1 successful-text-button">
-            <button class=" success-butt" (click)="clickGoMyReport()" mat-raised-button color="primary" style=" margin-left: 3px;">Go To My Reports</button>
+            <button class=" success-butt" (click)="clickGoMyReport()" mat-raised-button color="primary" style=" margin-left: 3px;">{{trasData.transferData.buttonTwo}}</button>
         </div>
     </div>
 </div>

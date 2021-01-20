@@ -203,6 +203,24 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           // callback: this.distanceMeasureFun
         },
         {
+          text: 'Select Sites',
+          callback: (e) => {
+            // var options = {
+            //   // hidden: true,
+            //   position: 'bottomright',
+            //   lengthUnit: {
+            //     display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
+            //     decimal: 2,                 // Distance result will be fixed to this value. 
+            //     factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+            //     label: 'Distance:'
+            //   }
+            // };
+            // this.rulerLeafletLib.control.ruler(options).addTo(this.map);
+            $(".leaflet-contextmenu").hide();
+          }
+          // callback: this.distanceMeasureFun
+        },
+        {
           text: 'Import KML',
           callback: (e) => {
             $(".leaflet-contextmenu").hide();
@@ -668,6 +686,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
           const ele = this.dataPolyList.transferDataPoly[index];
           console.log(ele, "ele");
+          // this.map.pm.toggleEdit(options);
           // enable drawing mode for shape - e.g. Poly, Line, etc
           // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
           // this.map.pm.enableDraw('Rectangle', options);
