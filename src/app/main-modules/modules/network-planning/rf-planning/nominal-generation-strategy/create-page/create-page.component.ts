@@ -56,6 +56,7 @@ export class CreatePageComponent implements OnInit {
   public optionMap;
   public googleMutant;
 
+  public zoneType: FormControl = new FormControl();
   public projectDescriptionCtrl: FormControl = new FormControl();
   public filtervalue = "Search SAP ID";
 
@@ -242,6 +243,24 @@ export class CreatePageComponent implements OnInit {
 
   }
 
+  zoneListArr = [
+    {
+      name: 'West',
+      latlong: [22.978624, 87.747803]
+    },
+    {
+      name: 'East',
+      latlong: [19.076090, 72.877426]
+    },
+    {
+      name: 'North',
+      latlong: [29.238478, 76.431885]
+    },
+    {
+      name: 'South',
+      latlong: [12.972442, 77.580643]
+    }
+  ]
 
   schedule = [{
     ID: "1",
@@ -257,7 +276,7 @@ export class CreatePageComponent implements OnInit {
   listBoundaries: string[] = ['Business Boundaries', 'Custom Boundaries'];
   showDiv: boolean = false;
   valueSearch = "";
-  zoneType = "West";
+
 
   radioButtonChanged(item) {
     if (item.value) {
@@ -265,12 +284,14 @@ export class CreatePageComponent implements OnInit {
     }
   }
 
+  public projectName;
   ngOnInit(): void {
     this.selectedBoundaries = this.listBoundaries[0];
 
     this.selectJcCircleLevelFormControl = this._formBuilder.group({
     });
 
+    this.zoneType.setValue("West");
     this.projectDescriptionCtrl.setValue("Generate 5G Nominal Plan Cover Dense Urban Area With Rsrp >= -95 Dbm");
     // R4G Circle Dropdown 
     this.r4gCircleControl.setValue(this.circleData[1]);
@@ -319,71 +340,25 @@ export class CreatePageComponent implements OnInit {
 
 
     // this.render();
+      this.projectName = 'Zone_Jio State_Jio Center_NP_CV_121020_V1';
+
+
   }
 
   ngAfterViewInit(): void {
     this.initMap();
   }
+  
 
-  // polyDataList = [
-  //   {
-  //     "type": "FeatureCollection",
-  //     "features": [
-  //       {
-  //         "type": "Feature",
-  //         "properties": {
-  //           "shape": "Polygon",
-  //           "name": "Unnamed Layer",
-  //           "category": "default"
-  //         },
-  //         "geometry": {
-  //           "type": "Polygon",
-  //           "coordinates": [
-  //             [
-  //               [72.876063, 19.060009],
-  //               [72.907984, 19.013112],
-  //               [72.916565, 19.065525],
-  //               [72.876063, 19.060009]
-  //             ]
-  //           ]
-  //         },
-  //         "id": "15f0843f-24c2-4cce-8d73-b2b79c769eb5"
-  //       },
-  //       {
-  //         "type": "Feature",
-  //         "properties": {
-  //           "shape": "Circle",
-  //           "radius": 2316.4006321809024,
-  //           "name": "Unnamed Layer",
-  //           "category": "default"
-  //         },
-  //         "geometry": {
-  //           "type": "Point",
-  //           "coordinates": [72.915879, 19.069906]
-  //         },
-  //         "id": "6813e8a0-605d-4439-bbf8-d161abc30e6e"
-  //       }
-  //     ]
-  //   }]
-
-  public render(): void {
-   
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
-    let viewContainerRef = this.adHost.viewContainerRef;
-    viewContainerRef.clear();
-
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-
-  }
   public address;
   public tempArr = [];
+
   private initMap(): void {
 
-
     this.mapTwo = L.map('map2', {
-      center: [19.0522, 72.9005],
+      center: [20.593683, 78.962883],
       zoomControl: false,
-      zoom: 15
+      zoom: 4
     });
 
     const tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -391,6 +366,15 @@ export class CreatePageComponent implements OnInit {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
     tiles.addTo(this.mapTwo);
+
+    // console.log(this.selectedZoneType.value,"this.selectedZoneType");
+    // if (this.selectedZoneType != '') {
+    //   // this.mapTwo.setView(this.selectedZoneType.latlong, 7);
+    // } else {
+    //   // this.mapTwo.setView([lat, lng], zoom);
+    // }
+    // console.log(this.selectedZoneType, "this.selectedZoneType");
+    // this.zoneChangeFunc($event:any,this.mapTwo);
 
     L.control.zoom({
       position: 'bottomright'
@@ -472,6 +456,28 @@ export class CreatePageComponent implements OnInit {
 
 
   }
+
+  public typeGenerate: boolean = true;
+  zoneChangeFunc(val) {
+    // this.selectedZoneType = val;
+    this.mapTwo.setView(val.value.latlong, 6);
+    this.typeGenerate = false;
+  }
+
+  public render(val): void {
+    this.mapTwo.setView([19.0522,72.9005], 13);
+    this.typeGenerate = false;
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
+    let viewContainerRef = this.adHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    let componentRef = viewContainerRef.createComponent(componentFactory);
+
+  }
+
+  
+
+
   public polyRectangle;
   public circle;
   public poly;
@@ -611,7 +617,7 @@ export class CreatePageComponent implements OnInit {
     const dialogRef = this.dialog.open(RedirectLayersPopupComponent, {
       width: "470px",
       panelClass: "material-dialog-container",
-      data: { transferDataPoly: this.dataPolygon,headerNominal:true }
+      data: { transferDataPoly: this.dataPolygon, headerNominal: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {

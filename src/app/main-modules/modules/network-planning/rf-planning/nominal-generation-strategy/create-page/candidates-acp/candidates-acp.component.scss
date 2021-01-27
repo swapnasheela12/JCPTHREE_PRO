@@ -89,13 +89,15 @@
                     }
                 }
             }
-            .ag-theme-material {
-                .ag-root-wrapper {
-                    .ag-root-wrapper-body {
-                        .ag-root {
-                            .ag-header {
-                                background: #e9ecec;
-                                display: none !important;
+            .candidates-acp-card-table {
+                .ag-theme-material {
+                    .ag-root-wrapper {
+                        .ag-root-wrapper-body {
+                            .ag-root {
+                                .ag-header {
+                                    background: #e9ecec;
+                                    display: none !important;
+                                }
                             }
                         }
                     }
@@ -113,17 +115,4 @@
 
 .hide-header {
     opacity: 0;
-}
-
-.ag-theme-material {
-    .ag-root-wrapper {
-        .ag-root-wrapper-body {
-            .ag-root {
-                .ag-header {
-                    background: #e9ecec;
-                    display: none !important;
-                }
-            }
-        }
-    }
 }

@@ -246,7 +246,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       drawPolyline: false,  // adds button to draw a polyline
       drawCircle: true,  // adds button to draw a cricle
       drawCircleMarker: false,//add button with circle radius
-      editPolygon: false,  // adds button to toggle global edit mode
+      editPolygon: true,  // adds button to toggle global edit mode
       deleteLayer: true,   // adds a button to delete layers
       // removalMode: false,
       // drawControls: true, 
@@ -265,7 +265,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.pm.addControls(options);
 
     this.map.on('pm:create', (e) => {
-      let testdataval
+      let testdataval;
+
       this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
         testdataval = dataPoly;
         console.log(testdataval, "testdataval");
@@ -280,6 +281,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       let lat = e.marker._latlng.lat;
       let lng = e.marker._latlng.lng;
       let latlng = new google.maps.LatLng(lat, lng);
+      
       googleCoder.geocode({
         'location': latlng
       }, (results, status) => {
@@ -292,11 +294,13 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.datashare.changeMessage(this.address);
       });
 
-
-
-
+      e.layer.on('pm:edit', ({ layer }) => {
+        // layer has been edited
+        console.log(layer.toGeoJSON(),"....>>");
+      });
 
     });
+
     this.datashare.currentMessage.subscribe((dataFromPinZoom) => {
       if (dataFromPinZoom === "pin-zoom-closed") {
         // this.map.removeLayer(e.marker);

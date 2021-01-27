@@ -20,15 +20,26 @@
                 </div>
                 <div class="candidates-acp-type" fxLayout="row wrap">
                     <div style="line-height: 3.2;">
-                        <i style="color: #0070DB;" class="zmdi zmdi-download"></i>
+                        <i style="color: #0070DB;" class="ic ic-download"></i>
                     </div>
-                    <div class="pl-2"><button mat-button color="primary">Download </button></div>
+                    <div class=""><button mat-button color="primary">Download </button></div>
                 </div>
 
             </div>
         </mat-card>
-        <mat-card class="candidates-acp-card p-0" style="border-radius: 4px;height: 330px;">
-            <app-table-ag-grid></app-table-ag-grid>
+        <mat-card class="candidates-acp-card p-0">
+            <div style="padding: 0 15px;border-bottom: 1px solid #e2e2e2;">
+                <mat-form-field fxFlex="100" class="form-field-container">
+                    <input matInput type="text">
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="candidates-acp-card-table" style="border-radius: 4px;height: 263px;">
+                <app-table-ag-grid (cellClicked)="cellClickedDetails($event)"></app-table-ag-grid>
+            </div>
+
         </mat-card>
     </div>
     <mat-divider></mat-divider>

@@ -5,10 +5,9 @@
                 <div class="col-8 pl-0">
                     <div class="header">Nominal Staterge</div>
                 </div>
-                <div class="col pl-0">
+                <div class="col pl-0" *ngIf="!typeGenerate">
                     <div class="title">Project Name</div>
                     <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
-
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -16,7 +15,7 @@
         <mat-card-content class="cia-card-content">
             <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
                 <mat-step label="Basic Details">
-                    <div class="" style="height: calc(100% - 20px);">
+                    <div class="" style="height: calc(100% - 58px);overflow: auto;">
 
                         <div style="padding-right: 15px;" fxFlex="50">
                             <div fxLayout="row wrap">
@@ -45,11 +44,8 @@
 
                                         <div class="px-2" fxFlex="50">
                                             <mat-form-field fxFlex="100" class="form-field-container">
-                                                <mat-select disableOptionCentering placeholder="Zone" [(value)]="zoneType" required>
-                                                    <mat-option value="West" selected>West</mat-option>
-                                                    <mat-option value="South">South</mat-option>
-                                                    <mat-option value="East">East</mat-option>
-                                                    <mat-option value="North">North</mat-option>
+                                                <mat-select disableOptionCentering placeholder="Zone" (selectionChange)="zoneChangeFunc(zoneType)" [formControl]="zoneType" required>
+                                                    <mat-option *ngFor="let item of zoneListArr" [value]="item" selected>{{item.name}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -59,20 +55,6 @@
                                                 <mat-select disableOptionCentering placeholder="Circle" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
                                                     <mat-option>
                                                         <ngx-mat-select-search placeholderLabel="Circle" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                                        </ngx-mat-select-search>
-                                                    </mat-option>
-                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
-                                                        {{selectJc.name}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-
-                                        <div class="px-2" fxFlex="50">
-                                            <mat-form-field fxFlex="100">
-                                                <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
-                                                    <mat-option>
-                                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                                         </ngx-mat-select-search>
                                                     </mat-option>
                                                     <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
@@ -98,9 +80,9 @@
 
                                         <div class="px-2" fxFlex="50">
                                             <mat-form-field fxFlex="100">
-                                                <mat-select (selectionChange)="render()" disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                <mat-select (selectionChange)="render(cityControl)" disableOptionCentering placeholder="Jio Center" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
                                                     <mat-option>
-                                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                                         </ngx-mat-select-search>
                                                     </mat-option>
                                                     <mat-option *ngFor="let city of cityFilter | async" [value]="city">
@@ -109,6 +91,22 @@
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="City" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+
                                     </div>
 
                                     <div *ngIf="showDiv" fxLayout="row wrap">
@@ -191,7 +189,7 @@
                                 ?</button>
                         </div>
                         <div class="p-2">
-                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext disabled="true">Generate</button>
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext [disabled]="typeGenerate">Generate</button>
                         </div>
 
                     </div>

@@ -1,3 +1,4 @@
+import { DeleteButtonRenderComponent } from './../ag-grid-renders/deleteButtonRender.component';
 import { statusflagiconRenderComponent } from './../ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { VerticaldotRendererComponent } from './../../../main-modules/modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
@@ -45,6 +46,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     colorDropdownRenderer: colorDropdownRendererComponent,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent,
+    deleteButtonRenderer: DeleteButtonRenderComponent,
     helpicon: GenhelpiconComponent,
     threeDotRetRenderer: ThreeDotRETRenderer,
     iconRenderer: IconRendererComponent,
@@ -74,6 +76,11 @@ export class TableAgGridComponent implements OnInit, OnChanges {
       //     this.gridOptions.api.sizeColumnsToFit();
       //   }, 1000);
       // }
+
+      console.log(this.gridApi,"this.gridApi");
+      // console.log(this.gridCore,"this.gridCore");
+      console.log(this.gridOptions,"this.gridOptions");
+      // console.log(this.agGrid,"this.gridApi");
 
     });
 

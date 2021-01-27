@@ -1,0 +1,25 @@
+[{
+        "flagname": "Flag Name 1",
+        "flag": "completed",
+        "flagid": 5,
+        "enableButton": false
+    },
+    {
+        "flagname": "Flag Name 2",
+        "flag": "Not completed",
+        "flagid": 9,
+        "enableButton": false
+    },
+    {
+        "flagname": "Flag Name 3",
+        "flag": "Not completed",
+        "flagid": 9,
+        "enableButton": true
+    },
+    {
+        "flagname": "Flag Name 4",
+        "flag": "In Process",
+        "flagid": 8,
+        "enableButton": true
+    }
+]

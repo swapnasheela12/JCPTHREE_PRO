@@ -5,7 +5,8 @@ import { QuestionPopupComponent } from '../../../modules/components/capacity/que
 @Component({
   selector: 'app-genhelpicon',
   template: `<div class="icon-help icon-button" id="helpicon-render" (click)="openDialoghelp()">
-  <div [ngStyle]="{'color': flagStatus=='completed'? '#11D800' : '#D80000'}" class="zmdi zmdi-flag"></div>
+  <!-- <div [ngStyle]="{'color': flagStatus=='completed'? '#11D800' : '#D80000'}" class="zmdi zmdi-flag"></div> -->
+  <div [style.color]="getColor(flagStatus)" class="zmdi zmdi-flag"></div>
   <!-- <div ng-class="{red: flagStatus == 'Not completed', green: flagStatus == 'completed'}" class="zmdi zmdi-flag"></div> -->
 </div>`,
   styles: [` .icon-button {
@@ -27,6 +28,10 @@ import { QuestionPopupComponent } from '../../../modules/components/capacity/que
     color: #11D800;
 }
 
+.blue{
+  color: #002AD8;
+}
+
 .zmdi-help {
     font-size: 20px;
     color:#777777;
@@ -35,8 +40,9 @@ import { QuestionPopupComponent } from '../../../modules/components/capacity/que
 export class statusflagiconRenderComponent {
 
   constructor(public dialog: MatDialog) { }
-  params;
+  public params;
   public flagStatus;
+  public numberFalgId;
   public showGlobalOperation: Boolean = false;
 
   refresh(params?: any): boolean {
@@ -45,8 +51,8 @@ export class statusflagiconRenderComponent {
 
   agInit(params): void {
     this.params = params;
-    console.log(this.params,"this.params");
-    this.flagStatus=params.data.flag;
+    this.flagStatus = params.data.flag;
+    this.numberFalgId = params.data.flagid;
   };
 
   openDialoghelp(): void {
@@ -56,4 +62,30 @@ export class statusflagiconRenderComponent {
       panelClass: "material-dialog-container",
     });
   };
+
+  getColor(mycolor: string): string {
+    switch (mycolor) {
+      case 'Not completed': return '#D80000';
+      case 'completed': return '#11D800';
+      case 'In Process': return '#002AD8'
+    }
+  }
+
+  // colorFlag(mycolorid: number): string {
+  //   let color = '';
+  //   switch (mycolorid) {
+  //     case 1: color = 'lightgray'; break;
+  //     case 2: color = 'lightblue'; break;
+  //     case 3: color = 'orange'; break;
+  //     case 4: color = 'yellow'; break;
+  //     case 5: color = '#11D800'; break;
+  //     case 6: color = 'purple'; break;
+  //     case 7: color = 'gray'; break;
+  //     case 8: color = '#002AD8'; break;
+  //     case 9: color = '#D80000'; break;
+  //     case 10: color = 'black'; break;
+  //   }
+  //   return color;
+  // }
+
 }

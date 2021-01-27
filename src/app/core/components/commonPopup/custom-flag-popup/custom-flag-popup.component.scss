@@ -1,0 +1,24 @@
+.customFlag-dialog-container {
+    .dialog-header {
+        height: 55px;
+        background-color: #0070DB;
+        color: #ffffff;
+        font-family: Lato Bold;
+        font-size: 18px;
+    }
+    .main-content {
+        height: 360px;
+    }
+}
+
+:host {
+    .mark-flag {
+        mat-icon {
+            position: absolute;
+            bottom: -3px;
+        }
+        span {
+            margin-left: 28px;
+        }
+    }
+}

@@ -1,3 +1,5 @@
+import { CustomFlagPopupComponent } from './../../../../../../../core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 import { statusflagiconRenderComponent } from './../../../../../../../core/components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../../../../../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
@@ -70,7 +72,7 @@ export class CandidatesACPComponent implements OnInit {
   }
 
 
-  constructor(private elRef: ElementRef, private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
+  constructor( public dialog: MatDialog,private elRef: ElementRef, private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<CustomLegendsComponent>,) {
 
     this.gridOptions = <GridOptions>{
@@ -100,7 +102,7 @@ export class CandidatesACPComponent implements OnInit {
       {
         headerName: "",
         field: "acpcandidate",
-        width: 200,
+        width: 190,
         checkboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
@@ -136,6 +138,22 @@ export class CandidatesACPComponent implements OnInit {
     if (this.inited) {
       this.dialogRef.close();
     }
+  }
+
+  cellClickedDetails(evt) {
+    console.log(evt,"evt");
+
+    // this.dialogRef.close();
+    // const dialogRef = this.dialog.open(CustomFlagPopupComponent, {
+    //   width: "700px",
+    //   panelClass: "material-dialog-container",
+    //   // data: { name: this.name, animal: this.animal }
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   // this.animal = result;
+    // });
+    
   }
 
   

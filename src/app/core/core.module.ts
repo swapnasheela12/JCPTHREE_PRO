@@ -1,3 +1,4 @@
+import { DeleteButtonRenderComponent } from './components/ag-grid-renders/deleteButtonRender.component';
 import { statusflagiconRenderComponent } from './components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { dropDownThreeDotRendererComponent } from './components/ag-grid-renders/dropDownThreeDot-renderer.component';
@@ -72,6 +73,7 @@ import { LeftsideSettingsPopupComponent } from './components/leftside-settings-p
 import { PaginationComponent } from './components/commonPopup/pagination/pagination.component';
 import { RedirectLayersPopupComponent } from './components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon-popup/save-polygon-popup.component';
+import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
     CommonPopupComponent,
     dropDownThreeDotRendererComponent,
     DeleteRendererComponent,
+    DeleteButtonRenderComponent,
     GenhelpiconComponent,
     viewHistoryRendererComponent,
     FileUploadPopupComponent,
@@ -98,14 +101,15 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
     RedirectLayersPopupComponent,
     SavePolygonPopupComponent,
     layerlayerDropDownDotRendererComponent,
-    statusflagiconRenderComponent
+    statusflagiconRenderComponent,
+    CustomFlagPopupComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -172,6 +176,7 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
     TableAgGridComponent,
     AgGridTreeComponent,
     DeleteRendererComponent,
+    DeleteButtonRenderComponent,
     PaginationComponent
   ], entryComponents: [
     SuccessfulComponent,

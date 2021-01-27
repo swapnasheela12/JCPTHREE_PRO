@@ -1,7 +1,9 @@
+import { Inject } from '@angular/core';
+import { CustomFlagPopupComponent } from './../commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 
@@ -17,7 +19,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
             <button mat-menu-item>
                 <span>View</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="cellClickedDetails($event)">
                 <span>Flag</span>
             </button>
             <!-- <button mat-menu-item (click)="openWarningDialog()">
@@ -46,6 +48,7 @@ export class layerlayerDropDownDotRendererComponent implements ICellRendererAngu
 
   constructor(
     public dialog: MatDialog,
+    public dialogRef: MatDialogRef<CustomFlagPopupComponent>,@Inject(MAT_DIALOG_DATA) public datatype:any,
     public datashare: DataSharingService
   ) { }
 
@@ -69,6 +72,23 @@ export class layerlayerDropDownDotRendererComponent implements ICellRendererAngu
     this.dialog.open(CommonPopupComponent, {
       data: dialogData
     });
+  }
+
+  cellClickedDetails(evt) {
+    console.log(evt,"evt");
+
+    this.dialogRef.close();
+    const dialogRef = this.dialog.open(CustomFlagPopupComponent, {
+      width: "535px",
+      height: "475px",
+      panelClass: "material-dialog-container",
+      // data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.animal = result;
+    });
+    
   }
 
 }
