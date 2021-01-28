@@ -1,11 +1,18 @@
 <div class="h-100">
     <mat-card class="cia-module-card">
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
-            <mat-toolbar-row class="mat-blue-grey">
-                <div class="col-8 pl-0">
+            <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="padding: 0 10px;">
+                <div class="pl-0" fxFlex="70" fxLayout="row wrap">
+                    <div class="px-1" style="line-height: 2.2;">
+                        <button mat-icon-button (click)="backPageRout()">
+                            <mat-icon class="iconType" style="font-size: 25px;">
+                                <div class="zmdi zmdi-chevron-left"></div>
+                            </mat-icon>
+                        </button>
+                    </div>
                     <div class="header">Nominal Staterge</div>
                 </div>
-                <div class="col pl-0" *ngIf="!typeGenerate">
+                <div class="pl-0" fxFlex *ngIf="!typeGenerate">
                     <div class="title">Project Name</div>
                     <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
                 </div>
@@ -24,14 +31,14 @@
                             <div fxLayout="row wrap">
                                 <div class="p-2" fxFlex="100">
                                     <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedBoundaries">
-                                        <mat-radio-button fxFlex="50" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
+                                        <mat-radio-button fxFlex="50" color="primary" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
                                             {{ eachBoundaries }}
                                         </mat-radio-button>
                                     </mat-radio-group>
                                 </div>
                             </div>
                             <form [formGroup]="selectJcCircleLevelFormControl">
-                                <div style="height: 330px;overflow: auto;">
+                                <div style="height: 290px;overflow: auto;">
                                     <div *ngIf="!showDiv" fxLayout="row wrap">
                                         <div class="px-2" fxFlex="100">
                                             <mat-form-field fxFlex="100" class="form-field-container">
@@ -141,9 +148,9 @@
                                                 <input [formControl]="projectDescriptionCtrl" matInput placeholder="Description" required style="line-height: 7px !important">
                                             </mat-form-field>
                                         </div>
-                                        <div class="px-2" fxFlex="25">
-                                            <button class="next-button button" mat-raised-button color="primary">Next</button>
-                                        </div>
+                                        <!-- <div class="px-2" fxFlex="25">
+                                            <button class="next-button button" matStepperNext mat-raised-button color="primary">Next</button>
+                                        </div> -->
                                     </div>
 
 
@@ -182,36 +189,57 @@
                         </div>
                         <div fxFlex></div>
                         <div class="p-2">
-                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Cancel</button>
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
                         </div>
                         <div class="p-2">
+                            <button class="next-button button" matStepperNext mat-raised-button color="primary">Next</button>
                             <!-- <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Save?</button> -->
                         </div>
-                        <div class="p-2">
+                        <!-- <div class="p-2">
                             <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext [disabled]="typeGenerate">Generate</button>
-                        </div>
+                        </div> -->
 
                     </div>
                 </mat-step>
-                <mat-step label="Network Element">
-                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 25px);">
+                <mat-step label="Link Budget">
+                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 58px);">
                         <div fxFlex="100">
 
                         </div>
                     </div>
                     <mat-divider></mat-divider>
-                    <div class="d-flex">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
                         <div class="py-2">
                             <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
                         </div>
                         <div class="p-2">
                             <button class="next-button button" mat-raised-button color="primary" matStepperNext>Next</button>
                         </div>
-                        <div class="col"></div>
                     </div>
                 </mat-step>
-                <mat-step label="Configuration">
+                <mat-step label="Data Source">
+                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 58px);">
+                        <div fxFlex="100">
 
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+                        </div>
+                        <div class="p-2">
+                            <button mat-raised-button color="primary" class="buttonWidth" matStepperNext [disabled]="typeGenerate">Generate</button>
+                        </div>
+                    </div>
                 </mat-step>
 
             </mat-horizontal-stepper>

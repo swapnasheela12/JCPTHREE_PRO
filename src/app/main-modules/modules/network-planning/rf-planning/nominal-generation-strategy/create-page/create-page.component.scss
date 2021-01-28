@@ -28,7 +28,8 @@ $color-grayBlue: #464d69;
                     font-size: 16px;
                     color: $color-grayBlue;
                     font-weight: 400;
-                    font-family: 'LATO MEDIUM';
+                    font-family: 'Lato Medium';
+                    line-height: 2.5;
                 }
                 .Sub-header {
                     font-weight: 400;
@@ -37,11 +38,12 @@ $color-grayBlue: #464d69;
                 .title {
                     font-size: 12px;
                     font-family: 'Lato Regular';
+                    line-height: 1.75;
                 }
                 .sub-title {
                     font-size: 14px;
                     font-family: 'Lato Medium';
-                    line-height: 1;
+                    line-height: 1.5;
                 }
             }
         }
@@ -341,7 +343,7 @@ input[type="file"] {
 }
 
 #map2 {
-    height: 335px;
+    height: 325px;
 }
 
 .tab-container-layersMap2 .icon-styleMap2 {
@@ -400,4 +402,9 @@ input[type="file"] {
 .mat-icon-button:hover .mat-button-focus-overlay {
     opacity: 0.1 !important;
     background-color: #0078D7;
+}
+
+.iconType {
+    margin-bottom: 8px;
+    color: #717171;
 }

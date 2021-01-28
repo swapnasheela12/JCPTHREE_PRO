@@ -8,6 +8,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -233,6 +234,7 @@ export class CreatePageComponent implements OnInit {
     private http: HttpClient,
     public datashare: DataSharingService,
     private router: Router,
+    private location: Location,
     private datatable: TableAgGridService,
     private fileUploadService: FileUploadService,
     private overlayContainer: OverlayContainer,
@@ -625,4 +627,10 @@ export class CreatePageComponent implements OnInit {
       // this.gotomyreport = result;
     });
   }
+
+  backPageRout() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+
 }
