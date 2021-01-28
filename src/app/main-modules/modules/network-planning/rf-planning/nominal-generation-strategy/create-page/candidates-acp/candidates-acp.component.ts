@@ -1,3 +1,10 @@
+import { FileUploadService } from './../../../../../../../_services/file-upload.service';
+import { catchError } from 'rxjs/operators/catchError';
+import { map } from 'rxjs/operators';
+import { ViewChild } from '@angular/core';
+// import { FileUploadService } from 'src/app/_services/file-upload.service';
+import { FileUploadPopupComponent } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
+// import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commanPopup/file-upload-popup/file-upload-popup.component';
 import { CustomFlagPopupComponent } from './../../../../../../../core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { statusflagiconRenderComponent } from './../../../../../../../core/components/ag-grid-renders/statusflagicon.component';
@@ -10,7 +17,7 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { inputRendererComponent } from './../../../../../../../core/components/ag-grid-renders/input-renderer.component';
 import { colorDropdownRendererComponent } from './../../../../../../../core/components/ag-grid-renders/color-dropdown-renderer.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEventType } from "@angular/common/http";
 import { GridOptions, GridCore, } from "@ag-grid-community/all-modules";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -20,7 +27,9 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
-import { Component,ViewEncapsulation, OnInit, Inject, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Inject, ElementRef } from '@angular/core';
+import { fileUploadPopupModel } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
+import { of } from 'rxjs';
 declare var $: any;
 
 export interface DialogData {
@@ -31,7 +40,7 @@ export interface DialogData {
   selector: 'app-candidates-acp',
   templateUrl: './candidates-acp.component.html',
   styleUrls: ['./candidates-acp.component.scss'],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class CandidatesACPComponent implements OnInit {
 
@@ -72,7 +81,7 @@ export class CandidatesACPComponent implements OnInit {
   }
 
 
-  constructor( public dialog: MatDialog,private elRef: ElementRef, private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
+  constructor(private fileUploadService: FileUploadService, public dialog: MatDialog, private elRef: ElementRef, private datatable: TableAgGridService, private datashare: DataSharingService, private location: Location, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<CustomLegendsComponent>,) {
 
     this.gridOptions = <GridOptions>{
@@ -110,9 +119,9 @@ export class CandidatesACPComponent implements OnInit {
       }, {
         headerName: "",
         // field: "flag",
-        cellClass: function(params) { return (params.value==='completed'?'red':'green'); },
+        cellClass: function (params) { return (params.value === 'completed' ? 'red' : 'green'); },
         cellRenderer: 'statusFlagRenderer',
-        width:60,
+        width: 60,
       }, {
         headerName: "",
         suppressMenu: true,
@@ -141,20 +150,68 @@ export class CandidatesACPComponent implements OnInit {
   }
 
   cellClickedDetails(evt) {
-    console.log(evt,"evt");
+    console.log(evt, "evt");
 
-    // this.dialogRef.close();
-    // const dialogRef = this.dialog.open(CustomFlagPopupComponent, {
-    //   width: "700px",
-    //   panelClass: "material-dialog-container",
-    //   // data: { name: this.name, animal: this.animal }
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // this.animal = result;
-    // });
-    
   }
 
+  openFileUploadPopup(): void {
+    const title = `Upload Nodes`;
+    var showExample = false;
+    const dialogData = new fileUploadPopupModel(title, showExample);
+    const dialogRef = this.dialog.open(FileUploadPopupComponent, {
+      width: '700px',
+      height: '250px',
+      data: dialogData,
+      panelClass: 'file-upload-dialog'
+    });
+  }
+
+
+  @ViewChild("fileUploadSAP", { static: false }) fileUploadSAP: ElementRef; filesSAP = [];
+ 
+  title: string;
+  showExample: boolean;
+  fileNameSAP: string;
+ 
+  uploadFile(file) {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    this.fileUploadService.upload(formData).pipe(
+      map(event => {
+        switch (event.type) {
+          case HttpEventType.Response:
+            return event;
+        }
+      }),
+      catchError(() => {
+        return of(`${file.data.name} upload failed.`);
+      })).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+        }
+      });
+  }
+
+  private uploadFiles() {
+    this.fileUploadSAP.nativeElement.value = '';
+    this.filesSAP.forEach(file => {
+      this.fileNameSAP = file.data.name;
+
+      this.uploadFile(file);
+    });
+  }
+ 
+  onClick() {
+    const fileUploadSAP = this.fileUploadSAP.nativeElement; fileUploadSAP.onchange = () => {
+      const file = fileUploadSAP.files[0];
+      this.filesSAP.push({ data: file });
+      this.uploadFiles();
+    };
+    fileUploadSAP.click();
+  }
   
+
+
+
+
+
 }

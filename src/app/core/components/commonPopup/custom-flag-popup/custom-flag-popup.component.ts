@@ -114,7 +114,9 @@ export class CustomFlagPopupComponent implements OnInit {
       field: "radioSelect",
       width: 120,
       cellRenderer: params => {
-        return `<input type="radio" name="radio5" id="radio4" class="css-checkbox" value="all" [checked]="!isSpecial"[(ngModel)]="selected" name="radioModel"/>`;
+        console.log(params,"params");
+        
+        return "<input type='radio' name='radio5' id='radio4' class='css-checkbox' value='all' [checked]='!isSpecial' [(ngModel)]='selectedRadioButn = "+ params.value +"' name='radioModel'/>";
       }
     }, {
       headerName: "Flag",
@@ -183,7 +185,7 @@ export class CustomFlagPopupComponent implements OnInit {
   addRow() {
     
     let row = {
-      radioSelect: '',
+      radioSelect: true,
       flagtype: this.mark.color,
       flagname: this.customFlagName,
       enableButton: true
