@@ -202,10 +202,121 @@
                     </div>
                 </mat-step>
                 <mat-step label="Link Budget">
-                    <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 58px);">
-                        <div fxFlex="100">
+                    <div class="link-budget-container" fxLayout="column wrap" fxFlex="100">
 
+                        <div style="padding-right: 15px;" fxFlex="100">
+                            <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                                <div class="p-2" fxFlex="100">
+                                    <mat-radio-group fxLayoutAlign="center center" aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedLinkBudget">
+                                        <mat-radio-button fxFlex="100" color="primary" class="radio-button pr-1" (change)="radioButtonLinkBudgetChanged($event);" *ngFor="let linkBudget of linkBudgetArr" [value]="linkBudget">
+                                            {{ linkBudget }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <form [formGroup]="selectLinkBudgetFormControl">
+                                <div class="link-budget-form">
+                                    <div *ngIf="showDivLinkBudget == 'Link Budget'" fxLayout="row wrap">
+                                        <!-- Link Budget -->
+                                        <div class="link-budget-form-container" fxFlex="100">
+                                            <div class="link-budget-header">Calculated Cell Radius</div>
+                                            <div fxLayout="row wrap">
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-title">Dense Urban</div>
+                                                    <div class="link-budget-value">0.3 KM</div>
+                                                </div>
+                                                <div fxFlex="35">
+                                                    <mat-form-field class="w-100 pr-5">
+                                                        <mat-select [formControl]="selectedSiteTemplate" placeholder="Site Template">
+                                                            <mat-option value="Site Template">Site Template</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-title">Sub Urban</div>
+                                                    <div class="link-budget-value">0.8 KM</div>
+                                                </div>
+                                                <div fxFlex="35">
+                                                    <mat-form-field class="w-100 pr-5">
+                                                        <mat-select [formControl]="selectedSiteTemplate" placeholder="Site Template">
+                                                            <mat-option value="Site Template">Site Template</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-title">Urban</div>
+                                                    <div class="link-budget-value">0.5 KM</div>
+                                                </div>
+                                                <div fxFlex="35">
+                                                    <mat-form-field class="w-100 pr-5">
+                                                        <mat-select [formControl]="selectedSiteTemplate" placeholder="Site Template">
+                                                            <mat-option value="Site Template">Site Template</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-title">Rural</div>
+                                                    <div class="link-budget-value">1.5 KM</div>
+                                                </div>
+                                                <div fxFlex="35">
+                                                    <mat-form-field class="w-100 pr-5">
+                                                        <mat-select [formControl]="selectedSiteTemplate" placeholder="Site Template">
+                                                            <mat-option value="Site Template">Site Template</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="link-budget-form-container" fxFlex="100">
+                                            <div class="link-budget-header">Default Cell Radius</div>
+                                            <div fxLayout="row wrap">
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Dense Urban" value="0.3">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Urban" value="0.5">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Sub Urban" value="0.8">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Rural" value="1.5">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="showDivLinkBudget == 'Upload Link Budget'" fxLayout="row wrap">
+                                        Upload Link Budget
+                                    </div>
+
+                                    <div *ngIf="showDivLinkBudget == 'Define Cell Radius'" fxLayout="row wrap">
+                                        Define Cell Radius
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                     <mat-divider></mat-divider>
                     <div fxLayout="row" fxLayoutAlign="space-around center">

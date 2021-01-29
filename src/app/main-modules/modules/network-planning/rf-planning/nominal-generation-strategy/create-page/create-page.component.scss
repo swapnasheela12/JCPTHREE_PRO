@@ -25,7 +25,7 @@ $color-grayBlue: #464d69;
                     color: $color-grayBlue;
                 }
                 .header {
-                    font-size: 16px;
+                    font-size: 15px;
                     color: $color-grayBlue;
                     font-weight: 400;
                     font-family: 'Lato Medium';
@@ -249,6 +249,25 @@ $color-grayBlue: #464d69;
                         .top-second {
                             margin-top: 20px;
                         }
+                    }
+                }
+            }
+        }
+        .link-budget-container {
+            height: calc(100% - 58px);
+            .link-budget-form {
+                height: 290px;
+                overflow: auto;
+                .link-budget-form-container {
+                    .link-budget-header {
+                        font-size: 14px;
+                        font-family: Lato Bold;
+                        padding: 15px 0px;
+                    }
+                    .link-budget-title {
+                        font-size: 13px;
+                        font-family: Lato Regular;
+                        color: #717171;
                     }
                 }
             }

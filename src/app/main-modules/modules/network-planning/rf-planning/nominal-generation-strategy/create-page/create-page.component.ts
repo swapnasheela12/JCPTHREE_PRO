@@ -59,12 +59,14 @@ export class CreatePageComponent implements OnInit {
 
   public zoneType: FormControl = new FormControl();
   public projectDescriptionCtrl: FormControl = new FormControl();
+  public selectedSiteTemplate: FormControl = new FormControl();
   public filtervalue = "Search SAP ID";
 
   public selectedRadio = "Manual Selection";
   public showSuccessFailure: boolean = false;
   public showSuccessKpiFailure: Boolean = false;
   public selectJcCircleLevelFormControl: FormGroup;
+  public selectLinkBudgetFormControl: FormGroup;
   protected _onDestroy = new Subject<void>();
 
   // R4G Circle Dropdown 
@@ -275,8 +277,11 @@ export class CreatePageComponent implements OnInit {
   }]
 
   selectedBoundaries: string;
+  selectedLinkBudget: string;
   listBoundaries: string[] = ['Business Boundaries', 'Custom Boundaries'];
+  linkBudgetArr: string[] = ['Link Budget', 'Upload Link Budget', 'Define Cell Radius'];
   showDiv: boolean = false;
+  showDivLinkBudget = "Link Budget";
   valueSearch = "";
 
 
@@ -286,15 +291,31 @@ export class CreatePageComponent implements OnInit {
     }
   }
 
+  radioButtonLinkBudgetChanged(item) {
+    console.log(item, "item");
+    if (item.value == "Link Budget") {
+      this.showDivLinkBudget = "Link Budget";
+    }
+    else if (item.value == "Upload Link Budget") {
+      this.showDivLinkBudget = "Upload Link Budget";
+    } else {
+      this.showDivLinkBudget = "Define Cell Radius";
+    }
+  }
+
   public projectName;
   ngOnInit(): void {
     this.selectedBoundaries = this.listBoundaries[0];
+    this.selectedLinkBudget =  "Link Budget";
 
+    this.selectLinkBudgetFormControl = this._formBuilder.group({
+    });
     this.selectJcCircleLevelFormControl = this._formBuilder.group({
     });
 
     this.zoneType.setValue("West");
     this.projectDescriptionCtrl.setValue("Generate 5G Nominal Plan Cover Dense Urban Area With Rsrp >= -95 Dbm");
+    this.selectedSiteTemplate.setValue("Site Template");
     // R4G Circle Dropdown 
     this.r4gCircleControl.setValue(this.circleData[1]);
     this.r4gFilter.next(this.circleData.slice());
@@ -342,7 +363,7 @@ export class CreatePageComponent implements OnInit {
 
 
     // this.render();
-      this.projectName = 'Zone_Jio State_Jio Center_NP_CV_121020_V1';
+    this.projectName = 'Zone_Jio State_Jio Center_NP_CV_121020_V1';
 
 
   }
@@ -350,7 +371,6 @@ export class CreatePageComponent implements OnInit {
   ngAfterViewInit(): void {
     this.initMap();
   }
-  
 
   public address;
   public tempArr = [];
@@ -467,7 +487,7 @@ export class CreatePageComponent implements OnInit {
   }
 
   public render(val): void {
-    this.mapTwo.setView([19.0522,72.9005], 13);
+    this.mapTwo.setView([19.0522, 72.9005], 13);
     this.typeGenerate = false;
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
     let viewContainerRef = this.adHost.viewContainerRef;
@@ -477,7 +497,7 @@ export class CreatePageComponent implements OnInit {
 
   }
 
-  
+
 
 
   public polyRectangle;
@@ -631,6 +651,12 @@ export class CreatePageComponent implements OnInit {
   backPageRout() {
     this.location.back(); // <-- go back to previous location on cancel
   }
+
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
 
 
 }
