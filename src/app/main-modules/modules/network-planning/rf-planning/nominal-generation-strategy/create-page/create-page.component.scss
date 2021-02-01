@@ -400,7 +400,19 @@ input[type="file"] {
 
 .content-nominal-cust {
     overflow: auto;
-    height: 155px;
+    height: 280px;
+    .ag-theme-material {
+        .ag-root-wrapper {
+            .ag-root-wrapper-body {
+                .ag-root {
+                    .ag-header {
+                        background: #e9ecec;
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
     .content-nominal-cust-row {
         .mat-checkbox-layout {
             margin-bottom: -0.5rem;

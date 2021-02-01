@@ -129,7 +129,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="content-nominal-cust px-2">
+                                            <div class="content-nominal-cust px-2" style="height: 155px;">
                                                 <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsListPoly">
                                                     <mat-checkbox color="primary" [checked]="item.checked" (change)="polySelectedChange(item);" style="margin-bottom:0">
                                                     </mat-checkbox>
@@ -306,12 +306,153 @@
                                         </div>
                                     </div>
 
-                                    <div *ngIf="showDivLinkBudget == 'Upload Link Budget'" fxLayout="row wrap">
-                                        Upload Link Budget
+                                    <div *ngIf="showDivLinkBudget == 'Upload Link Budget'">
+                                        <!-- Upload Link Budget -->
+                                        <div fxFlex="45">
+                                            <div class="cust-nominal-container m-0" style="height: 280px;">
+                                                <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                                    <div fxFlex="30" class="title">Project Name</div>
+                                                    <div fxFlex></div>
+                                                    <!-- <div class="icon-container">
+                                                        <button mat-icon-button (click)="openDialogSuccessful()">
+                                                            <mat-icon class="iconType">
+                                                                <div class="zmdi zmdi-edit"></div>
+                                                            </mat-icon>
+                                                        </button>
+                                                    </div> -->
+                                                </div>
+                                                <div class="content-nominal-cust px-2" style="    height: 225px;">
+                                                    <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsProjectName">
+                                                        <mat-radio-button color="primary" [checked]="item.checked" (change)="projectSelectedChange(item);" style="line-height: 3.5;margin-bottom:0">
+                                                        </mat-radio-button>
+                                                        <div class="title-poly">{{item.name}}</div>
+                                                        <!-- <div class="sub-title-poly">{{item.date}}</div> -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div fxFlex="55">
+                                            <div class="link-budget-form-container pl-4">
+                                                <div class="link-budget-header">Calculated Cell Radius</div>
+                                                <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Dense Urban" value="0.3">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Urban" value="0.5">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Sub Urban" value="0.8">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Rural" value="1.5">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="link-budget-form-container pl-4">
+                                                <div class="link-budget-header">Default Cell Radius</div>
+                                                <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Dense Urban" value="0.3">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Urban" value="0.5">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Sub Urban" value="0.8">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        <div class="link-budget-value" style="display: inline-flex;">
+                                                            <mat-form-field style="width: 75px;">
+                                                                <input matInput placeholder="Rural" value="1.5">
+                                                            </mat-form-field>
+                                                            <div style="margin: auto;">KM</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="link-budget-form-container pl-4" fxLayout="row" fxLayoutAlign="end center">
+                                                <div class="py-3">
+                                                    <button mat-button color="primary" (click)="openFileUploadPopup()">Upload Link Budget</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div *ngIf="showDivLinkBudget == 'Define Cell Radius'" fxLayout="row wrap">
-                                        Define Cell Radius
+                                        <div class="link-budget-form-container py-3" fxFlex="80">
+                                            <!-- <div class="link-budget-header">Default Cell Radius</div> -->
+                                            <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Dense Urban" value="0.3">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Urban" value="0.5">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Sub Urban" value="0.8">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                                <div fxFlex="15">
+                                                    <div class="link-budget-value" style="display: inline-flex;">
+                                                        <mat-form-field style="width: 75px;">
+                                                            <input matInput placeholder="Rural" value="1.5">
+                                                        </mat-form-field>
+                                                        <div style="margin: auto;">KM</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -334,8 +475,75 @@
                 </mat-step>
                 <mat-step label="Data Source">
                     <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 58px);">
-                        <div fxFlex="100">
+                        <div fxFlex="100" style="overflow: auto;">
+                            <div class="cust-nominal-container m-0" style="height: 350px;">
+                                <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                    <div fxFlex="30" class="title">Select Data Sources</div>
+                                    <div fxFlex></div>
+                                    <div class="icon-container">
+                                        <button mat-raised-button color="primary">Define Data Source</button>
+                                    </div>
+                                </div>
+                                <div class="content-nominal-cust px-2" style="height: 300px;">
+                                    <!-- <div class="content-nominal-cust-row" fxLayout="row wrap">
+                                        
+                                    </div> -->
+                                    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
+                                        toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="false" [pagination]="false" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                                        [debug]="true" [frameworkComponents]="frameworkComponentsMyReport" (gridReady)="onReady($event)">
+                                    </ag-grid-angular>
+                                </div>
+                                <div class="py-3" fxLayout="row" fxLayoutAlign="space-around center">
+                                    <div fxFlex="40">
+                                        <div fxFlex="50">
+                                            <div style="font-size: 14px;font-family: Lato Bold;">
+                                                <label class="example-margin">Existing Sites</label>
+                                            </div>
+                                            <section class="example-section" fxLayout="column wrap">
+                                                <mat-checkbox class="example-margin">On-Air Sites</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Plant Sites</mat-checkbox>
+                                            </section>
+                                        </div>
+                                        <div fxFlex="50">
+                                            <div style="font-size: 14px;font-family: Lato Bold;">
+                                                <label class="example-margin">Nominal Type</label>
+                                            </div>
+                                            <section class="example-section" fxLayout="column wrap">
+                                                <mat-checkbox class="example-margin">Macro</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Outdoor Small Cells</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Indoor Small Cells</mat-checkbox>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="60">
+                                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                                            <div fxFlex="50">
+                                                <mat-form-field style="width: 85%;">
+                                                    <mat-select placeholder="Data Source for Outdoor Small Cell" [(ngModel)]="OutdoorSmallCell">
+                                                        <mat-option [value]="OutdoorSmallCell" selected>Landmark</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="50">
+                                                <mat-form-field style="width: 85%;">
+                                                    <mat-select placeholder="Data Source for Indoor Small Cell" [(ngModel)]="IndoorSmallCell">
+                                                        <mat-option [value]="IndoorSmallCell" selected>Landmark</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="50">
+                                                <mat-form-field style="width: 85%;">
+                                                    <mat-select placeholder="Data Source for Macro Small Cell " [(ngModel)]="MacroSmallCell">
+                                                        <mat-option [value]="MacroSmallCell" selected>Landmark</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex></div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
@@ -344,6 +552,9 @@
                             <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
                         </div>
                         <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary">Create Query</button>
+                        </div>
                         <div class="p-2">
                             <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
                         </div>

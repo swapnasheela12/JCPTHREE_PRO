@@ -1,3 +1,5 @@
+import { dropdownPriorityRendererComponent } from './components/ag-grid-renders/dropdown-priority-renderer.component';
+import { dropdownQueryRendererComponent } from './components/ag-grid-renders/dropdown-query-renderer.component';
 import { DeleteButtonRenderComponent } from './components/ag-grid-renders/deleteButtonRender.component';
 import { statusflagiconRenderComponent } from './components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
@@ -102,6 +104,8 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     SavePolygonPopupComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    dropdownQueryRendererComponent,
+    dropdownPriorityRendererComponent,
     CustomFlagPopupComponent
   ],
   imports: [
@@ -109,7 +113,7 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -171,6 +175,8 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     dropDownThreeDotRendererComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    dropdownQueryRendererComponent,
+    dropdownPriorityRendererComponent,
     viewHistoryRendererComponent,
     GenhelpiconComponent,
     TableAgGridComponent,

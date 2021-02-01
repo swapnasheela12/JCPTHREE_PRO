@@ -1,3 +1,5 @@
+import { dropdownPriorityRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-priority-renderer.component';
+import { dropdownQueryRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
 import { statusflagiconRenderComponent } from './../../../core/components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { AdDirective } from './../../../_directive/dynamicComponent/ad.directive';
@@ -77,7 +79,7 @@ import { CandidatesACPComponent } from './rf-planning/nominal-generation-strateg
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip ,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

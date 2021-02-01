@@ -1,3 +1,9 @@
+import { dropdownPriorityRendererComponent } from './../../../../../../core/components/ag-grid-renders/dropdown-priority-renderer.component';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { dropdownQueryRendererComponent } from './../../../../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
+import { statusflagiconRenderComponent } from './../../../../../../core/components/ag-grid-renders/statusflagicon.component';
+import { DeleteButtonRenderComponent } from './../../../../../../core/components/ag-grid-renders/deleteButtonRender.component';
+import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
 import { RedirectLayersPopupComponent } from './../../../../../../core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { ShapeService } from './../../../../../main-layer/layers-services/shape.service';
 import { AdDirective } from './../../../../../../_directive/dynamicComponent/ad.directive';
@@ -56,6 +62,9 @@ export class CreatePageComponent implements OnInit {
   public contextMenuLib;
   public optionMap;
   public googleMutant;
+  public OutdoorSmallCell = "Landmark";
+  public IndoorSmallCell = "Landmark";
+  public MacroSmallCell = "Landmark";
 
   public zoneType: FormControl = new FormControl();
   public projectDescriptionCtrl: FormControl = new FormControl();
@@ -230,6 +239,38 @@ export class CreatePageComponent implements OnInit {
   public currentComponent = null;
   @ViewChild(AdDirective) adHost: AdDirective;
 
+
+  public gridApi;
+  public gridPinned = false;
+  public gridCore: GridCore;
+  public gridOptions: GridOptions;
+  public rowData: any;
+  public columnDefs: any[];
+  public rowCount: string;
+  public frameworkComponentsMyReport = {
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    dropdownQueryRenderer: dropdownQueryRendererComponent,
+    dropdownPriorityRenderer: dropdownPriorityRendererComponent,
+    statusFlagRenderer: statusflagiconRenderComponent,
+  };
+
+  @ViewChild('agGridFlag', { static: true }) agGridFlag: GridOptions;
+
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
+
+
+
   constructor(
     public dialog: MatDialog,
     private _formBuilder: FormBuilder,
@@ -244,7 +285,12 @@ export class CreatePageComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver
   ) {
     // router.events.subscribe((url: any) => console.log(url));
-
+    this.gridOptions = <GridOptions>{
+      suppressHorizontalScroll: false,
+    };
+    // this.gridOptions = <GridOptions>{};
+    this.httpClientRowData();
+    this.createColumnDefs();
   }
 
   zoneListArr = [
@@ -306,7 +352,7 @@ export class CreatePageComponent implements OnInit {
   public projectName;
   ngOnInit(): void {
     this.selectedBoundaries = this.listBoundaries[0];
-    this.selectedLinkBudget =  "Link Budget";
+    this.selectedLinkBudget = "Link Budget";
 
     this.selectLinkBudgetFormControl = this._formBuilder.group({
     });
@@ -652,11 +698,135 @@ export class CreatePageComponent implements OnInit {
     this.location.back(); // <-- go back to previous location on cancel
   }
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+  public itemsProjectName = [
+    {
+      'checked': false,
+      'name': 'Mumbai All Clutter',
+      'date': '20 th Nov 2020'
+    },
+    {
+      'checked': false,
+      'name': 'Delhi Dense Urban',
+      'date': '10 th Nov 2020'
+    },
+    {
+      'checked': false,
+      'name': 'Gujarat _12 Dec 20',
+      'date': '15 th Nov 2020'
+    },
+    {
+      'checked': false,
+      'name': 'Pune _24 Dec 20',
+      'date': '10 th Oct 2020'
+    },
+    {
+      'checked': false,
+      'name': 'Pune _24 Dec 30 ',
+      'date': '16 th Dec 2020'
+    }
   ];
 
+  projectSelectedChange(item) {
+    console.log(item, "item");
+    this.dataPolygon.push(item);
+    item.checked = !item.checked;
+
+  }
+
+  openFileUploadPopup(): void {
+    const title = `Upload Nodes`;
+    var showExample = false;
+    const dialogData = new fileUploadPopupModel(title, showExample);
+    const dialogRef = this.dialog.open(FileUploadPopupComponent, {
+      width: '700px',
+      height: '250px',
+      data: dialogData,
+      panelClass: 'file-upload-dialog'
+    });
+  }
+
+  url = "assets/data/modules/network-planning/staterge-map-nominal/datasource.json";
+
+  private httpClientRowData() {
+    this.http
+      .get("assets/data/modules/network-planning/staterge-map-nominal/datasource.json")
+      .subscribe(data => {
+        this.rowData = data;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid-without-Pagination";
+        this.datatable.rowDataServices = this.rowData;
+        this.gridOptions.rowData = this.rowData;
+        this.datatable.gridPinnedServices = this.gridPinned;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
+      });
+  }
+  selected = "all";
+  private createColumnDefs() {
+    this.columnDefs = [{
+      headerName: "",
+      field: "datasourcename",
+      width: 250,
+      checkboxSelection: function (params) {
+        return params.columnApi.getRowGroupColumns().length === 0;
+      },
+      // headerCheckboxSelection: function (params) {
+      //   return params.columnApi.getRowGroupColumns().length === 0;
+      // },
+      pinned: 'left',
+      // cellClass: 'lock-pinned'
+    },
+    {
+      headerName: "",
+      field: "attributes",
+      width: 140,
+    },
+    {
+      headerName: "",
+      field: "querydata",
+      cellRenderer: 'dropdownQueryRenderer',
+      // cellStyle: function (params: any) {
+      //   return { color: params.value };
+      // },
+      width: 200,
+    },
+    {
+      headerName: "",
+      field: "tablename",
+      width: 140,
+    },
+    {
+      headerName: "",
+      field: "filename",
+      width: 140,
+    },
+    {
+      headerName: "",
+      field: "ptype",
+      cellRenderer: 'dropdownPriorityRenderer',
+      // cellStyle: function (params: any) {
+      //   return { color: params.value };
+      // },
+      width: 180,
+    },
+    {
+      headerName: "",
+      cellRenderer: 'dropDownThreeDotRenderer',
+      width: 90,
+      pinned: 'right',
+    }
+    ];
+
+    this.datatable.columnDefsServices = this.columnDefs;
+    this.gridOptions.columnDefs = this.columnDefs;
+
+  }
+
+  defaultColDef = { resizable: true };
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
 
 }
