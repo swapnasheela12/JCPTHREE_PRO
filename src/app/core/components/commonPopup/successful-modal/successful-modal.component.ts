@@ -17,6 +17,7 @@ export interface DialogData {
 export class SuccessfulModalComponent {
   message;
   showActionBtn: boolean = true;
+  showMyTasks: boolean = true;
   constructor(public dialogRef: MatDialogRef<SuccessfulModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
@@ -24,6 +25,8 @@ export class SuccessfulModalComponent {
     if (!data.showActionBtn) {
       this.showActionBtn = false;
       this.message = data.message;
+    } else if (!data.showMyTasks) {
+      this.showMyTasks = false;
     }
     this.message = data.message;
 

@@ -4,7 +4,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 @Component({
   selector: 'app-input-renderer',
   template: `
-            <mat-form-field class="form-field-renderer-input" style="width: 90%">
+            <mat-form-field class="form-field-renderer-input" style="width: 90%"  *ngIf="params.value != ''">
               <input matInput #inputRendererAgGrid placeholder="" value="ngModelLable" [(ngModel)]="ngModelLable">
             </mat-form-field>`
 })

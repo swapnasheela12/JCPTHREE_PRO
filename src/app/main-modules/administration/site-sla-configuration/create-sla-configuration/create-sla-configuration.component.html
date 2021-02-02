@@ -1,0 +1,89 @@
+<div class="task-details-wrapper">
+    <mat-card class="cia-module-card h-100">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col pl-0 wo-header">
+                    <div class="header" fxFlex="90">Create Site SLA Configuration</div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <div class="td-flex-container">
+            <label class="sla-label">Select Location</label>
+            <div class="d-flex flex-row justify-content-between">
+                <div fxLayout="d-flex  flex-row" class="col">
+                    <div class="px-space-3 mx-2" fxFlex="25">
+                        <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                            <mat-select [(value)]="r4gStateList[0].value" placeholder="Geography List"
+                                disableOptionCentering (openedChange)="openedChange($event)">
+                                <input matInput [(ngModel)]="searchGeographyListValue" autocomplete="off"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                    style="height: 48px !important;padding-left:15px">
+                                <mat-option *ngFor="let item of r4gStateList | filter:searchGeographyListValue"
+                                    [value]="item.value">
+                                    {{item.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="px-space-3 mx-2" fxFlex="25">
+                        <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                            <mat-select [(value)]="maintentancePointName[0].value" placeholder="Maintentance Point Name"
+                                disableOptionCentering (openedChange)="openedChange($event)">
+                                <input matInput [(ngModel)]="searchMaintentancePointNameValue" autocomplete="off"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                    style="height: 48px !important;padding-left:15px">
+                                <mat-option
+                                    *ngFor="let mpn of maintentancePointName | filter:searchMaintentancePointNameValue"
+                                    [value]="mpn.value">
+                                    {{mpn.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="px-space-3 mx-4" fxFlex="25">
+                        <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                            <mat-select [(value)]="jioCenter[0].value" placeholder="Jio Center" disableOptionCentering
+                                (openedChange)="openedChange($event)">
+                                <input matInput [(ngModel)]="searchJioCenterValue" autocomplete="off"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                    style="height: 48px !important;padding-left:15px">
+                                <mat-option *ngFor="let item of jioCenter | filter:searchJioCenterValue"
+                                    [value]="item.value">
+                                    {{item.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="px-space-3 mx-4" fxFlex="25">
+                        <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                            <mat-select [(value)]="sapId[0].value" placeholder="SAP ID" disableOptionCentering
+                                (openedChange)="openedChange($event)">
+                                <input matInput [(ngModel)]="searchSapIDValue" autocomplete="off"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                    style="height: 48px !important;padding-left:15px">
+                                <mat-option *ngFor="let item of sapId | filter:searchSapIDValue" [value]="item.value">
+                                    {{item.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <mat-divider></mat-divider>
+        <label class="sla-label" style="margin-top: 20px">Define SLAs</label>
+        <div class="wo-grid" style="margin-top: 10px;height: 52%;">
+            <!-- <app-ag-grid-tree [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)"
+                [columnDefs]="columnDefs" [rowData]="rowData">
+            </app-ag-grid-tree> -->
+
+            <app-ag-grid-tree [columnDefs]="columnDefs" [rowData]="rowData">
+            </app-ag-grid-tree>
+
+        </div>
+    </mat-card>
+
+</div>
