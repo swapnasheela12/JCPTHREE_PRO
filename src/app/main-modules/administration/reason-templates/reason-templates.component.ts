@@ -84,7 +84,6 @@ export class ReasonTemplatesComponent implements OnDestroy {
     this.gridOptions = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.createDigitalFormsColumnDefs();
 
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -93,7 +92,7 @@ export class ReasonTemplatesComponent implements OnDestroy {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/administration/site-sla-configuration/site-sla-configuration.json')
+    this.httpClient.get('assets/data/administration/reason-template/reason-template.json')
       .subscribe(data => {
         this.rowData = data;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
@@ -111,35 +110,20 @@ export class ReasonTemplatesComponent implements OnDestroy {
   public createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "R4G State",
-        field: "r4GState",
-        width: 200,
+        headerName: "Milestone",
+        field: "milestone",
+        width: 250,
         pinned: "left"
       },
       {
-        headerName: "Maintainance Point",
-        field: "maintainancePoint",
-        width: 180,
+        headerName: "Task",
+        field: "task",
+        width: 300,
       },
       {
-        headerName: "JIO Center",
-        field: "jioCenter",
-        width: 150,
-      },
-      {
-        headerName: "Site Type",
-        field: "siteType",
-        width: 150,
-      },
-      {
-        headerName: "Last Updated On",
-        field: "lastUpdatedOn",
-        width: 170,
-      },
-      {
-        headerName: "Rule ID",
-        field: "ruleID",
-        width: 250,
+        headerName: "Reason",
+        field: "reason",
+        width: 402,
       },
       {
         headerName: "",
@@ -150,39 +134,6 @@ export class ReasonTemplatesComponent implements OnDestroy {
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
-  }
-
-
-
-  public createDigitalFormsColumnDefs() {
-    this.digitalFormColDefs = [
-      {
-        headerName: "Status",
-        cellRenderer: this.taskStatus,
-        field: "",
-        width: 90
-      },
-      {
-        headerName: "Milestone",
-        field: "mileStone",
-        width: 200,
-      },
-      {
-        headerName: "Task",
-        field: "task",
-        width: 350,
-      },
-      {
-        headerName: "Form Name",
-        field: "formName",
-        width: 200,
-      },
-      {
-        headerName: "Form Owner",
-        field: "formOwner",
-        width: 200,
-      }
-    ]
   }
 
   public eventsSubject: Subject<any> = new Subject();
