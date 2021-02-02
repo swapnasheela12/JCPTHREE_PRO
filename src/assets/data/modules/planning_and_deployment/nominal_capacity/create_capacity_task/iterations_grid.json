@@ -1,0 +1,52 @@
+[{
+    "name": "2540-Test",
+    "node": "CELL",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": true
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "node": "CELL",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": false
+  }, {
+    "name": "2536 - count of total throughput samples>=3Mbps &  samples<5Mbps",
+    "node": "ONT",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": true
+  }, {
+    "name": "1786-karan kpi",
+    "node": "CELL",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": false
+  }, {
+    "name": "2536 - count of total throughput samples>=3Mbps &  samples<5Mbps",
+    "node": "CELL",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": true
+  }, {
+    "name": "1786-karan kpi",
+    "node": "ONT",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": true
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "node": "CELL",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": true
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "node": "ONT",
+    "domain": "RAN",
+    "vendor": "Samsung",
+    "disabled": false
+  }
+
+]
+  

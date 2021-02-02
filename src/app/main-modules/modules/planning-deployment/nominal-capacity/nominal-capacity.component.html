@@ -107,7 +107,7 @@
                                 <div fxLayout="column" class="pd-r-37">
                                     <div fxLayout="row">
                                         <span class="info-lable">Created By: &nbsp; </span>
-                                        <span class="info">{{item.createdUser}} | {{item.createdDate}} |
+                                        <span isEllipsisActive attr.data-title1="{{item.createdUser}}"  class="info name-node">{{item.createdUser}} | {{item.createdDate}} |
                                             {{item.createdTime}}</span>
                                     </div>
                                     <div fxLayout="row">
@@ -121,9 +121,53 @@
                                         <i routerLink="/{{layerRoute}}" style="color:#989898"
                                             class="ic ic-layers-01"></i>
                                     </button>
-                                    <button mat-icon-button>
+                                    <button  [matMenuTriggerFor]="cardMenu" mat-icon-button>
                                         <mat-icon style="color:#989898">more_vert</mat-icon>
                                     </button>
+                                    <mat-menu #cardMenu="matMenu" class="nominal-capacity-menu-render" xPosition="before">
+                                        <div *ngIf="item.status =='Draft'">
+                                            <button  routerLink="/{{createRoute}}" mat-menu-item>
+                                                <span>Edit</span>
+                                            </button>
+                                            <button (click)="openUpdateDialog()" mat-menu-item>
+                                                <span>Delete</span>
+                                            </button>
+                                            <button (click)="sharePopup()" mat-menu-item>
+                                                <span>Share</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <span>Submit</span>
+                                            </button>
+                                        </div>
+                                        <div *ngIf="item.status =='In Progress'">
+                                            <button mat-menu-item>
+                                                <span>Clone</span>
+                                            </button>
+                                            <button  mat-menu-item>
+                                                <span>Abort</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <span>Share</span>
+                                            </button>
+                                        </div>
+                                        <div *ngIf="item.status =='Completed'">
+                                            <button mat-menu-item>
+                                                <span>Clone</span>
+                                            </button>
+                                            <button  mat-menu-item>
+                                                <span>Delete</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <span>Share</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <span>Summary</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <span>Validate</span>
+                                            </button>
+                                        </div>
+                                    </mat-menu>
                                 </div>
                             </div>
                         </div>
@@ -134,3 +178,6 @@
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </mat-card>
+<!-- *ngIf="item.status =='In Progress'"  -->
+<!-- *ngIf="item.status =='Draft'" -->
+<!-- *ngIf="item.status =='Completed'"  -->
