@@ -9,22 +9,22 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 </button>
 <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>
-    <div class="pr-3 fas fa-trash-alt"></div>
+    <!-- <div class="pr-3 fas fa-trash-alt"></div> -->
     <span>Edit</span>
   </button>
   <button mat-menu-item>
-    <div class="pr-3 fas fa-trash-alt"></div>
+    <!-- <div class="pr-3 fas fa-trash-alt"></div> -->
     <span>Delete</span>
   </button>
-  <button mat-menu-item disabled>
-    <div class="pr-3 fas fa-download"></div>
+  <button mat-menu-item>
+    <!-- <div class="pr-3 fas fa-download"></div> -->
     <span>Download</span>
   </button>
 </mat-menu>
     `
 })
 
-export class ButtonRendererComponent implements ICellRendererAngularComp {
+export class dropDownList3DotRendererComponent implements ICellRendererAngularComp {
 
   params;
   label: string;

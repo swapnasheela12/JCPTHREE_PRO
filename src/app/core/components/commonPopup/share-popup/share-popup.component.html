@@ -1,0 +1,87 @@
+<div class="share-popup-dialog">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Collaborations</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content class="main-content">
+        <!-- <div class=""> -->
+        <div fxLayoutAlign="center" fxLayout="column">
+            <mat-form-field class="example-chip-list">
+                <mat-label>Enter Email / Group ID</mat-label>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let person of shareWith" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(person)">
+                        {{person}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New person..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let person of filteredFruits | async" [value]="person">
+                        {{person}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <div>
+                <table>
+                    <thead>
+                        <tr style="height: 48px; background: #f2f2f2;">
+                            <th style="padding-left: 15px;width: 20%">Email With</th>
+                            <th style="padding-left: 10px;">
+                                Read
+                            </th>
+                            <th style="padding-left: 15px;">Write</th>
+                            <th style="padding-left: 15px;">Share</th>
+                            <th style="padding-left: 15px;">Full Control</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of shareList" style="border-bottom:1px solid #d8d8d8;">
+                            <td class="p-3">
+                                {{item.name}}
+                            </td>
+                            <td>
+                                <mat-checkbox> </mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox> </mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox> </mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox> </mat-checkbox>
+                            </td>
+                            <td (click)="deleteRow(item)">
+                                Delete
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <!-- <button mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
+        </button> -->
+        <div class="col"></div>
+        <div class="mx-1">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth">Upload</button>
+        </div>
+    </div>
+</div>

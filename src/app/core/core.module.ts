@@ -1,3 +1,4 @@
+import { dropDownList3DotRendererComponent } from './components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { dropdownPriorityRendererComponent } from './components/ag-grid-renders/dropdown-priority-renderer.component';
 import { dropdownQueryRendererComponent } from './components/ag-grid-renders/dropdown-query-renderer.component';
 import { DeleteButtonRenderComponent } from './components/ag-grid-renders/deleteButtonRender.component';
@@ -76,6 +77,8 @@ import { PaginationComponent } from './components/commonPopup/pagination/paginat
 import { RedirectLayersPopupComponent } from './components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { ViewAttributesComponent } from './components/commonPopup/view-attributes/view-attributes.component';
+import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
 
 @NgModule({
   declarations: [
@@ -106,14 +109,18 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     statusflagiconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
-    CustomFlagPopupComponent
+    dropDownList3DotRendererComponent,
+    CustomFlagPopupComponent,
+    ViewAttributesComponent,
+    CustomFlagPopupComponent,
+    SharePopupComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -177,6 +184,7 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     statusflagiconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
+    dropDownList3DotRendererComponent,
     viewHistoryRendererComponent,
     GenhelpiconComponent,
     TableAgGridComponent,

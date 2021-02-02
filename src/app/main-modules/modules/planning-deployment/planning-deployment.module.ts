@@ -58,14 +58,15 @@ import { NewAndSaveTemplatePopupComponent } from './link-budget/new-and-save-tem
 import { NominalCapacityComponent } from './nominal-capacity/nominal-capacity.component';
 import { CreateTaskPageComponent } from './nominal-capacity/create-task-page/create-task-page.component';
 import { cnctDropdownRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-renderer.component';
+import { ncCtTooltipComponent } from './nominal-capacity/create-task-page/renderer/nc-ct-tooltip.component';
 @NgModule({
-  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent],
+  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent, ncCtTooltipComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([cnctDropdownRendererComponent]),
+    AgGridModule.withComponents([cnctDropdownRendererComponent, ncCtTooltipComponent]),
     FormsModule,
     ReactiveFormsModule,
     A11yModule,

@@ -1,3 +1,6 @@
+import { NODE } from './../../../../performance-management/kpi-editor/create-kpi/create-kpi-constant';
+import { ViewAttributesComponent } from './../../../../../../core/components/commonPopup/view-attributes/view-attributes.component';
+import { dropDownList3DotRendererComponent } from './../../../../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { dropdownPriorityRendererComponent } from './../../../../../../core/components/ag-grid-renders/dropdown-priority-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { dropdownQueryRendererComponent } from './../../../../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
@@ -20,7 +23,7 @@ import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angula
 import { MatDialog } from '@angular/material/dialog';
 import { GridOptions, GridCore, SelectionChangedEvent, RowNode, Column } from 'ag-grid-community';
 import { MatSidenav } from '@angular/material/sidenav';
-import { dropdown, R4GState, JC, City, JioCluster, SapId } from './../../../../../../core/components/common-elements/type-dropdown-modulelist';
+import { dropdown, R4GState, JC, City, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../../../core/components/common-elements/type-dropdown-modulelist';
 import { MatSelect } from '@angular/material/select';
 import { ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { ReplaySubject, Subject, of } from 'rxjs';
@@ -94,6 +97,14 @@ export class CreatePageComponent implements OnInit {
   public cityFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
   // City Dropdown 
 
+  // // dataSourceOutdoor Dropdown 
+  // @ViewChild('dataSourceOutdoorControlSelect') dataSourceOutdoorControlSelect: MatSelect;
+  // protected dataSourceOutdoorData = dataSourceOutdoor;
+  // public dataSourceOutdoorControl: FormControl = new FormControl();
+  // public dataSourceOutdoorFilterControl: FormControl = new FormControl();
+  // public dataSourceOutdoorFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+  // // dataSourceOutdoor Dropdown 
+
   // Select JC Dropdown 
   @ViewChild('selectJcControlSelect') selectJcControlSelect: MatSelect;
   protected jcData = JC;
@@ -101,6 +112,12 @@ export class CreatePageComponent implements OnInit {
   public selectJcFilterControl: FormControl = new FormControl();
   public selectJcFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
   // Select JC Dropdown 
+
+  @ViewChild('dataSourceIndoorCtrlSelect') dataSourceIndoorCtrlSelect: MatSelect;
+  protected dataSourceIndoorListData = dataSourceIndoor;
+  public dataSourceIndoorCtrl: FormControl = new FormControl();
+  public dataSourceIndoorFilterCtrl: FormControl = new FormControl();
+  public dataSourceIndoorFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
 
   // trackByRadioButtonType(index: number, type: any): string {
   //   return type.name;
@@ -248,7 +265,7 @@ export class CreatePageComponent implements OnInit {
   public columnDefs: any[];
   public rowCount: string;
   public frameworkComponentsMyReport = {
-    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent,
+    dropDownThreeDotRenderer: dropDownList3DotRendererComponent,
     dropdownQueryRenderer: dropdownQueryRendererComponent,
     dropdownPriorityRenderer: dropdownPriorityRendererComponent,
     statusFlagRenderer: statusflagiconRenderComponent,
@@ -267,9 +284,6 @@ export class CreatePageComponent implements OnInit {
       }, 1000);
     }
   }
-
-
-
 
   constructor(
     public dialog: MatDialog,
@@ -390,6 +404,20 @@ export class CreatePageComponent implements OnInit {
       });
     // City Dropdown 
 
+    // // dataSourceOutdoor Dropdown 
+    // this.dataSourceOutdoorControl.setValue(this.dataSourceOutdoorData[1]);
+    // this.dataSourceOutdoorFilter.next(this.dataSourceOutdoorData.slice());
+    // this.dataSourceOutdoorFilterControl.valueChanges
+    //   .pipe(takeUntil(this._onDestroy))
+    //   .subscribe(() => {
+    //     this.filterData(
+    //       this.dataSourceOutdoorData,
+    //       this.dataSourceOutdoorFilterControl,
+    //       this.dataSourceOutdoorFilter
+    //     );
+    //   });
+    // // dataSourceOutdoor Dropdown 
+
     // Select JC Dropdown 
     this.selectJcControl.setValue(this.jcData[1]);
     this.selectJcFilter.next(this.jcData.slice());
@@ -403,6 +431,18 @@ export class CreatePageComponent implements OnInit {
         );
       });
     // Select JC Dropdown 
+
+    this.dataSourceIndoorCtrl.setValue([this.dataSourceIndoorListData[0]]);
+    this.dataSourceIndoorFilter.next(this.dataSourceIndoorListData.slice());
+    this.dataSourceIndoorFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.dataSourceIndoorListData,
+          this.dataSourceIndoorFilterCtrl,
+          this.dataSourceIndoorFilter
+        );
+      });
 
     this.contextMenuLib = contextLayerMenu();
     this.googleMutant = googleMutant();
@@ -828,5 +868,27 @@ export class CreatePageComponent implements OnInit {
     this.gridApi = params.api;
     this.calculateRowCount();
   }
+
+  onCellClicked(item) {
+    console.log(item, "item");
+    if (item.value == "View Attributes") {
+      const dialogRef = this.dialog.open(ViewAttributesComponent, {
+        width: "600px",
+        height: "535px",
+        panelClass: "material-dialog-container",
+        // data: { transferDataPoly: this.dataPolygon, headerNominal: true }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        // this.gotomyreport = result;
+      });
+    }
+
+    
+
+  }
+
+
+
 
 }

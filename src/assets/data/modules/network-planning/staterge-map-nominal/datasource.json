@@ -1,6 +1,6 @@
 [{
         "datasourcename": "Landmark",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Pune - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
@@ -8,7 +8,7 @@
     },
     {
         "datasourcename": "Major institutes/corporates/University/Schools",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Mumbai - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
@@ -16,7 +16,7 @@
     },
     {
         "datasourcename": "Building information",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Nagapur - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
@@ -24,7 +24,7 @@
     },
     {
         "datasourcename": "Rail and Road vectors",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Pune - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
@@ -32,7 +32,7 @@
     },
     {
         "datasourcename": "Traffic junctions",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Pune - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
@@ -40,7 +40,7 @@
     },
     {
         "datasourcename": "Landmark",
-        "attributes": "View  Attributes",
+        "attributes": "View Attributes",
         "querydata": "Pune - Query 1",
         "tablename": "Select Table",
         "filename": "Upload File",
