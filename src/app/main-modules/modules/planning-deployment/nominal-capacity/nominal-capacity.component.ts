@@ -4,7 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { GridCore, GridOptions } from 'ag-grid-community';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SharePopupComponent, SharePopupDialogModel } from 'src/app/core/components/commonPopup/share-popup/share-popup.component';
 export interface Card {
   area: string;
   place: string;
@@ -133,19 +135,17 @@ export class NominalCapacityComponent implements OnInit {
   searchGrid = '';
   public layerRoute: String;
   public createRoute: String;
-  show: any;
-  status = "Completed";
-  plan = "Coverage";
-  zone = "North";
-  r4gStates = "-";
-  jioCenter = "-";
+  zone = "";
+  circle = "";
+  jioState = "-";
+  jioCenters = "-";
   city = "-";
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource: MatTableDataSource<Card> = new MatTableDataSource<Card>(DATA);
 
   constructor(private changeDetectorRef: ChangeDetectorRef, 
-    private router: Router,) { }
+    private router: Router, public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.layerRoute = PATHS[0].layersPage;
@@ -157,6 +157,28 @@ export class NominalCapacityComponent implements OnInit {
   }
   onFilterChanged(value) {
   };
+
+  openUpdateDialog(): void {
+    const message = `Are you sure you want to perform this action?`;
+    const image = 'warning';
+    const snackbarMode = 'success';
+    const snackbarText = 'Admin Settings Updated Successfully.';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
+    const dialogRef = this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
+  }
+  
+  sharePopup(): void {
+    const dialogData = new SharePopupDialogModel();
+    const dialogRef = this.dialog.open(SharePopupComponent, {
+      data: dialogData,  
+      width: '900px',
+      height: '500px',
+      panelClass: 'share-popup-dialog'
+    });
+  }
+
   asdasd(value) {
     console.log("jhghj")
     this.router.navigate(['/JCP/Layers']);
@@ -168,7 +190,7 @@ export class NominalCapacityComponent implements OnInit {
       this.dataSource.disconnect();
     }
   }
-  toggleSearch() {
-    this.show = !this.show;
-  };
+  // toggleSearch() {
+  //   this.show = !this.show;
+  // };
 }

@@ -76,6 +76,7 @@ import { PaginationComponent } from './components/commonPopup/pagination/paginat
 import { RedirectLayersPopupComponent } from './components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-p
     statusflagiconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
-    CustomFlagPopupComponent
+    CustomFlagPopupComponent,
+    SharePopupComponent
   ],
   imports: [
     CommonModule,
