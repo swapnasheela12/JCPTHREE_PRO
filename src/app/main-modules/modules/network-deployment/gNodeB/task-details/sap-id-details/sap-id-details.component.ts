@@ -36,6 +36,8 @@ export class SapIdDetailsComponent implements OnDestroy {
   public formControlPageCount = new FormControl();
   public gridFilterValueServices = {};
   public showGlobalOperation: boolean = true;
+  assignTaskStatus: boolean = false;
+  hideAction: boolean = true;
   woHeader: Array<any> = [
     {
       id: 1,
@@ -119,13 +121,38 @@ export class SapIdDetailsComponent implements OnDestroy {
   };
 
   assignTask() {
-    this.dialog.open(RejectTaskComponent, {
-      width: "470px",
-      height: "305px",
-      panelClass: "material-dialog-container"
+    this.assignTaskStatus =  true;
+    this.hideAction = false;
+    // this.dialog.open(RejectTaskComponent, {
+    //   width: "470px",
+    //   height: "305px",
+    //   panelClass: "material-dialog-container"
+    // });
+  }
+
+  acceptTask() {
+    const message = {
+      message: `Task Completed successfully.`,
+      showMyTasks: true
+    }
+    this.dialog.open(AssignTaskComponent, {
+      data: message,
     });
   }
-  openSuccessPopup() { }
+  openSuccessPopup() { 
+    const message = {
+      message: `Task Completed successfully.`,
+      showMyTasks: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
+  }
+
+  previous() {
+    this.assignTaskStatus =  false;
+    this.hideAction = true;
+  }
 
   autoAssign() {
     const message = {
@@ -135,6 +162,8 @@ export class SapIdDetailsComponent implements OnDestroy {
     this.dialog.open(SuccessfulModalComponent, {
       data: message,
     });
+    this.assignTaskStatus =  false;
+    this.hideAction = true;
   }
 
   cellClickedDetails(evt) {

@@ -14,14 +14,26 @@
         <div class="px-4 mat-con">
             <div class="emp-label"> Select Employee Type</div>
             <mat-radio-group aria-label="Select an option">
-                <mat-radio-button style="width: 50%" value="1">Ril Employee</mat-radio-button>
-                <mat-radio-button value="2">Others</mat-radio-button>
+                <!-- <mat-radio-button style="width: 50%" value="1" (change)="radioChange($event)">Ril Employee</mat-radio-button>
+                <mat-radio-button value="2" (change)="radioChange($event)">Others</mat-radio-button>
+             -->
+                <mat-radio-group  name="opList" aria-label="Select an option">
+                    <mat-radio-button *ngFor="let op of listOfOptions"  style="width: 50%"
+                    [checked]="op.checked" [value]="op.ID" name="opList" (change)="radioChange($event)">{{ op.name}}</mat-radio-button>
+                </mat-radio-group>
             </mat-radio-group>
         </div>
-        <div class="px-4 mat-con">
+        <div *ngIf="showEmp" class="px-4 mat-con">
             <mat-form-field class="w-100">
                 <mat-label>Ril ID</mat-label>
                 <input matInput placeholder="" value="rita.bobde@ril.com">
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="showOther" class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="" value="9702123456">
             </mat-form-field>
         </div>
     </div>

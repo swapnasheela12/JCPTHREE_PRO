@@ -24,17 +24,6 @@
             </div>
         </mat-card-content>
         <mat-divider></mat-divider>
-
-        <!-- <mat-card-content class="h-100">
-            <div style="width: 35%; float: right;">
-                <button mat-raised-button color="basic" class="mx-3" (click)="autoAssign()">Auto Assign</button>
-                <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
-                <button mat-raised-button color="primary" class="auto-assign-btn">
-                    Accept
-                </button>
-            </div>
-        </mat-card-content> -->
-
     </mat-card>
 
     <div class="flex-row flex-wrap w-100" style="position: relative; height: calc(100% - 169px);
@@ -54,7 +43,18 @@
             </ul>
         </div>
 
-        <mat-card class="execution-task-container-one p-0">
+        <mat-card-content class="h-100" *ngIf="hideAction">
+            <div style="width: 35%; float: right;">
+                <button mat-raised-button color="basic" class="mx-3" (click)="autoAssign()">Auto Assign</button>
+                <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="acceptTask()">
+                    Accept
+                </button>
+            </div>
+        </mat-card-content>
+
+
+        <mat-card  *ngIf="assignTaskStatus" class="execution-task-container-one p-0">
             <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="sub-header-title">Site Details</div>
             </div>
@@ -563,7 +563,7 @@
 
             <div class="d-flex">
                 <div class="p-2">
-                    <button mat-stroked-button color="primary" class="buttonWidth">Previous</button>
+                    <button mat-stroked-button color="primary" class="buttonWidth" (click)="previous()">Previous</button>
                 </div>
                 <div class="p-2">
                     <button mat-raised-button color="primary" class="buttonWidth button"

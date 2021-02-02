@@ -18,18 +18,27 @@ export class AssignTaskComponent {
   message;
   showActionBtn: boolean = true;
   showMyTasks: boolean = true;
+  showEmp:boolean = true;
+  showOther: boolean = false
+
+  listOfOptions =  [
+      {"name": "Ril Employee", ID: "1", "checked": true},
+      {"name": "Others", ID: "2", "checked": false}
+    ]
   constructor(public dialogRef: MatDialogRef<AssignTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
+  }
 
-    // if (!data.showActionBtn) {
-    //   this.showActionBtn = false;
-    //   this.message = data.message;
-    // } else if (!data.showMyTasks) {
-    //   this.showMyTasks = false;
-    // }
-    // this.message = data.message;
-
+  radioChange(evt) {
+    console.log("event", evt);
+    if(evt.value === "1") {
+      this.showEmp = true;
+      this.showOther = false;
+    } else if(evt.value === "2") {
+      this.showOther = true;
+      this.showEmp = false;
+    }
   }
 
   closeDialog(): void {
