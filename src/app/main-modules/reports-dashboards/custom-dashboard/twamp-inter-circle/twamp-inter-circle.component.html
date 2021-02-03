@@ -67,16 +67,19 @@
     </mat-card>
 
     <mat-card class="twamp-ag-grid p-0 w-100" style=" overflow: auto;height: calc(100% - 163px);">
-        <ng-container [ngTemplateOutlet]="recursiveListTmpl"></ng-container>
-    </mat-card>
-</div>
+        <!-- <ng-container [ngTemplateOutlet]="recursiveListTmpl"></ng-container> -->
+        <div class="ml-3 py-3 ag-grid-twamp-title">Inter Circle Core to Core Matrix</div>
+        <mat-divider style="position: relative;"></mat-divider>
+        <ag-grid-angular style="width: 100%; height: calc(100% - 70px)" class="twamp-grid-live ag-theme-material ag-jcp3"
+            [rowData]="rowData" [columnDefs]="columnDefs" (cellClicked)='onCellClicked($event)'
+             [icons]="icons" [gridOptions]="gridOptions"  [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"  
+             [gridOptions]="twampGridOptions" [pinnedBottomRowData]="pinnedBottomRowData"
+             [suppressHorizontalScroll]="false"
+            (gridReady)="onReady($event)">
+        </ag-grid-angular>
+        </mat-card>
+    </div>
 
-<ng-template #recursiveListTmpl>
-    <div class="ml-3 py-3 ag-grid-twamp-title">Inter Circle Core to Core Matrix</div>
-    <mat-divider style="position: relative;"></mat-divider>
-    <ag-grid-angular style="width: 100%; height: calc(100% - 70px)" class="twamp-grid-live ag-theme-material ag-jcp3"
-        [rowData]="rowData" [columnDefs]="columnDefs" (cellClicked)='onCellClicked($event)' [groupHeaderHeight]="28"
-        [headerHeight]="28" [icons]="icons" [gridOptions]="twampGridOptions" [suppressHorizontalScroll]="true"
-        (gridReady)="onReady($event)">
-    </ag-grid-angular>
-</ng-template>
+<!-- <ng-template #recursiveListTmpl> -->
+    
+<!-- </ng-template> -->

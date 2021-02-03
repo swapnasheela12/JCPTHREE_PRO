@@ -38,6 +38,7 @@ export class TwampInterCircleComponent implements OnInit {
   public displayName;
   public jsonUrl;
   //columnDefsViolationReport = COLUMNDEFSVIOLATIONREPORT;
+  public gridColumnApi;
   columnDefs: any;
   columnDefSLAVoilation: any;
   dataSource = [];
@@ -76,7 +77,8 @@ export class TwampInterCircleComponent implements OnInit {
   directionList = DIRECTION_LIST;
 
   date = moment();
-  twampGridOptions: GridOptions;
+  gridApi;
+  gridOptions: GridOptions;
   slaGridOptions: GridOptions;
   public sidenavBarStatus;
   public frameworkComponentsTWAMP;
@@ -110,6 +112,26 @@ export class TwampInterCircleComponent implements OnInit {
   options;
   @ViewChild('graphViolationChart', { static: true }) graphViolationChart: ElementRef;
   private _chart: any;
+
+
+  onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+    this.fitColumns();
+    
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
   constructor(
     private httpService: HttpClient,
     private datePipe: DatePipe,
@@ -131,7 +153,9 @@ export class TwampInterCircleComponent implements OnInit {
       headerName: "From/To",
       field: "fromTo",
       width: 200,
-    }, {
+      pinned: 'left'
+    },
+    {
       headerName: "Agra",
       field: "Agra",
       width: 200
@@ -253,12 +277,12 @@ export class TwampInterCircleComponent implements OnInit {
     {
       headerName: "Srinagar",
       field: "Srinagar",
-      width: 100
-
+      width: 150,
+      pinned: 'right'
     }
     ]
 
-    this.twampGridOptions = <GridOptions>{
+    this.gridOptions = <GridOptions>{
       frameworkComponents: this.frameworkComponentsTWAMP,
       context: {
         componentParent: this
@@ -305,14 +329,16 @@ export class TwampInterCircleComponent implements OnInit {
   }
 
   fitColumns() {
-    if (this.twampGridOptions.api && this.rowData) {
+    if (this.gridOptions.api && this.rowData) {
       setTimeout(() => {
-        this.twampGridOptions.api.sizeColumnsToFit();
+        this.gridOptions.api.sizeColumnsToFit();
       }, 0);
     }
   }
-  onReady(event) {
-    this.fitColumns();
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
   }
 
   onCellClicked(event: any) {
