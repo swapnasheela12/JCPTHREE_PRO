@@ -753,6 +753,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
+    console.log(this.datashare,"datashare?????");
+    
+
   }
 
 

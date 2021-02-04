@@ -1,23 +1,25 @@
-.spidermain-wrapper{
+.spidermain-wrapper {
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 10000;
     // background-color:red;
-    top:0;
-    overflow:auto
+    top: 0;
+    overflow: auto
 }
 
-.spideroverlay,.spideroverlay svg{
+.spideroverlay,
+.spideroverlay svg {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow:auto
+    overflow: auto
 }
 
-.spideroverlay svg g{
+.spideroverlay svg g {
     display: inline-block;
 }
-.wrapper{
+
+.wrapper {
     display: inline-block;
 }

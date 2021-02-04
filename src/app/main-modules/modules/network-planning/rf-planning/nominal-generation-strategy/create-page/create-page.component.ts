@@ -80,6 +80,7 @@ export class CreatePageComponent implements OnInit {
   public selectJcCircleLevelFormControl: FormGroup;
   public selectLinkBudgetFormControl: FormGroup;
   protected _onDestroy = new Subject<void>();
+  public showMyContainer: boolean = false;
 
   // R4G Circle Dropdown 
   @ViewChild('cityControlSelect') cityControlSelect: MatSelect;

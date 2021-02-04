@@ -333,7 +333,7 @@ export class LogicaltopologyService {
 
         console.log(this.zoomLevel, "this.zoomLevel");
 
-        if (this.zoomLevel >= 9) {
+        if (this.zoomLevel >= 5) {
           nodeContainer.removeChild(stageCircleShape);
           linesContainer.removeChild(lineShape);
 

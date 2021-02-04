@@ -70,9 +70,10 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { StatergeMapNominalComponent } from './rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
 import { CandidatesACPComponent } from './rf-planning/nominal-generation-strategy/create-page/candidates-acp/candidates-acp.component';
+import { DefineDataSourceComponent } from './rf-planning/nominal-generation-strategy/create-page/define-data-source/define-data-source.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent],
+  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent, DefineDataSourceComponent],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,
