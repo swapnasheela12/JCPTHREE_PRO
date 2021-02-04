@@ -2613,12 +2613,8 @@ const BASE_MAPS_LIST = [
 ];
 const CREATE_PINS = [
     {
-        name: 'CREATE PIN',
-        link: 'CREATE-PIN',
-        eventName: 'sites-outdoor-esc',
-        show:true,
-        children: [],
-        component: 'TacNetworkDialogComponent'
+        name: 'No data available',
+        link: "No data available.",
     },
 ]
 
@@ -3563,7 +3559,7 @@ const WORKORDERS_CMWORKORDERS_LIST = [
         name: 'RET Change',
         link: 'JCP/Work-Orders/Cm-Workorders/RET-Change',
         eventName: 'ret-change',
-        show:false,
+        show:true,
         children: []
     }
 ]
