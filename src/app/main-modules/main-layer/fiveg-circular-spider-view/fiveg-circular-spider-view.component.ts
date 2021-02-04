@@ -270,9 +270,9 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
         })
         .attr('x', function (d) {
           if (item.radiuscircle == "100") {
-            return -25;
+            return -20;
           } else {
-            return -5;
+            return 5;
           }
 
         })
@@ -287,6 +287,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
         .style('fill', '#ffffff')
         .style('color', '#000')
         .style('font-size', '24px')
+        .style('margin-top', '24px')
         .style('font-family', function (d) {
           return d.data.font;
         })
@@ -301,9 +302,9 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
         .attr('y', function (d) {
           // return 20;
           if (item.radiuscircle == "100") {
-            return -5;
+            return -3;
           } else {
-            return 0;
+            return 3;
           }
         })
         .attr('class', 'iconText')
@@ -331,7 +332,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
       cellSite.append('foreignObject')
         .attr({ 'width': 30, 'height': 30 });
 
-      let imageURL = 'assets/images/Layers/topologies/structure/eNodeB.svg';
+      let imageURL = 'assets/images/Layers/topologies/structure/all-blue.svg';
       cellSite.style('opacity', '1');
       let cellGroupImage = cellSite.append("svg:image")
         .attr('width', 30)
