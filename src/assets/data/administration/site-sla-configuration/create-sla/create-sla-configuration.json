@@ -1,0 +1,101 @@
+[
+    {
+        "grouplist": "Installation",
+        "milestone": "Installation",
+        "task": "",
+        "responsible": "",
+        "position": "",
+        "ownerName": "",
+        "slaDays": "",
+        "slaEmailNo": "",
+        "ruleID": ""
+    },
+    {
+        "grouplist": "Installation",
+        "milestone": "",
+        "task": "Proposed Nominal",
+        "responsible": "State Head",
+        "position": "State RE Head",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "Installation",
+        "milestone": "",
+        "task": "Candidate Placed",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "Installation",
+        "milestone": "",
+        "task": "Fill Vendor Survey Form",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "Installation",
+        "milestone": "",
+        "task": "Fill Vendor Survey Form",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "RFS",
+        "milestone": "RFS",
+        "task": "",
+        "responsible": "",
+        "position": "",
+        "ownerName": "",
+        "slaDays": "",
+        "slaEmailNo": "",
+        "ruleID": ""
+    },
+    {
+        "grouplist": "RFS",
+        "milestone": "RFS",
+        "task": "Proposed Nominal",
+        "responsible": "State Head",
+        "position": "State RE Head",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "RFS",
+        "milestone": "RFS",
+        "task": "Candidate Placed",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "RFS",
+        "milestone": "RFS",
+        "task": "Fill Vendor Survey Form",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    }
+]

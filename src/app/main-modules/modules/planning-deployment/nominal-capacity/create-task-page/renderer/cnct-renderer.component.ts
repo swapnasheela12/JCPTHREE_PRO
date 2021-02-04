@@ -5,7 +5,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
   selector: 'dropdown-button-renderer',
   template: `
     <mat-form-field fxFlex="66" *ngIf="columnName == 'Grid Selection'">
-      <mat-select [(ngModel)]="changeImprovement">
+      <mat-select [(ngModel)]="changeImp">
         <mat-option fxLayout="column wrap" fxLayoutAlign="start start" style="height: 110px;" *ngFor="let changeImp of changeImpList" [value]="changeImp">
            <div style="height:30px"> {{changeImp}}</div>
           <div fxLayout="row wrap"> 
@@ -35,7 +35,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 export class cnctDropdownRendererComponent implements ICellRendererAngularComp {
   params;
-  changeImprovement = "+";
+  changeImp = "Pune-Query 1";
   ciaModule = "Enable";
   customModule = "Disable";
   changeImpList = [

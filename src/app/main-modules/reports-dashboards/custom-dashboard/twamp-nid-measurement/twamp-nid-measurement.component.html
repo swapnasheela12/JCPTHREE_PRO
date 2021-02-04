@@ -1,0 +1,176 @@
+<div class="p-0" style="height: calc(100% - 10px);">
+    <mat-card class="twamp-livfferf  e-dashboard-top-card p-0 mb-3 mx-0">
+        <form [formGroup]="twampForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="row wrap" class="p-3 flex-row">
+                <mat-form-field class="twamp-field-container px-4 col-2" fxFlex="auto">
+                    <mat-select [(value)]="geographyListValue" placeholder="Geography List" disableOptionCentering
+                        formControlName="geogrf  9 c,aphyList">
+                        <input matInput [(ngModel)]="searchGeographyListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of geographyList | filter:searchGeographyListValue"
+                            [value]="item.geography_name">
+                            {{item.geography_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="twamp-field-container px-4 col-2">
+                    <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="twamp-field-container px-4 col-2" fxFlex="auto">
+                    <mat-select [(value)]="nodeListValue" placeholder="Node" disableOptionCentering
+                        (openedChange)="openedChange($event)" formControlName="nodeList">
+                        <input matInput [(ngModel)]="searchNodeListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of nodeList | filter:searchNodeListValue" [value]="item.node_name">
+                            {{item.node_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="twamp-field-container px-4 col-2" fxFlex="auto">
+                    <mat-select [(value)]="dscpListValue" placeholder="DSCP" disableOptionCentering
+                        (openedChange)="openedChange($event)" formControlName="dscpList">
+                        <input matInput [(ngModel)]="searchDscpListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search...."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of dscpList | filter:searchDscpListValue" [value]="item.dscp_name">
+                            {{item.dscp_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="twamp-field-container px-4 col-2" fxFlex="auto">
+                    <mat-select [(value)]="kpiListValue" placeholder="KPI" disableOptionCentering
+                        (openedChange)="openedChange($event)" formControlName="kpiList">
+                        <input matInput [(ngModel)]="searchKpiListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of kpiList | filter:searchKpiListValue" [value]="item.kpi_name">
+                            {{item.kpi_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="twamp-field-container px-4 col-2" fxFlex="auto">
+                    <mat-select [(value)]="kpiListValue" placeholder="Types" disableOptionCentering
+                        (openedChange)="openedChange($event)" formControlName="kpiList" disabled>
+                        <input matInput [(ngModel)]="searchKpiListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option>
+                            Metro
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="d-flex">
+                <div class="col"></div>
+                <div class="px-5 py-1 my-flex-item">
+                    <button mat-raised-button color="primary" type="submit" class="buttonWidth">Submit</button>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+
+    <!-- <mat-card class="twamp-ag-grid p-0 w-100" style=" overflow: auto;height: calc(100% - 163px)">
+        <ng-container [ngTemplateOutlet]="recursiveListTmpl">
+        </ng-container>
+    </mat-card> -->
+    <div style="height: calc(100% - 162px); overflow-x: hidden;overflow-y: auto;">
+        <ng-container [ngTemplateOutlet]="recursiveListTmpl">
+        </ng-container>
+    </div>
+</div>
+
+
+
+<ng-template #recursiveListTmpl *ngIf="showSLAConformance === 'MGW SLA Conformance'">
+    <mat-card class="twamp-ag-grid p-0 h-100">
+        <div class="d-flex">
+            <div class="ml-3 py-3 ag-grid-twamp-title col-9" style="display: inline-block;">MGW : Weekly SLA Conformance
+            </div>
+            <form [formGroup]="liveViolationReportForm" class="col-3">
+                <mat-form-field class="twamp-field-container px-4" fxFlex="auto">
+                    <mat-select placeholder="Type" [formControl]="typeMultiCtrl" disableOptionCentering
+                        [multiple]="true" ngDefaultControl #typeMultiCtrlSelect>
+                        <mat-option>
+                            <ngx-mat-select-search placeholderLabel="Search..." [formControl]="typeMultiFilterCtrl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let type of direction" [value]="type">
+                            {{type.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+
+        <mat-divider style="position: relative;"></mat-divider>
+
+        <ag-grid-angular style="width: 100%;height: calc(100% - 70px);"
+            class="twamp-grid-live ag-theme-material ag-jcp3" [rowData]="rowData" [columnDefs]="columnDefs"
+            (cellClicked)='onCellClicked($event)' [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"
+            [gridOptions]="twampGridOptions" [suppressHorizontalScroll]="true" (gridReady)="onReady($event)">
+        </ag-grid-angular>
+    </mat-card>
+</ng-template>
+
+<ng-template #recursiveListTmpl *ngIf="showSLAConformance === 'mgw-voilation'">
+    <mat-card class="twamp-ag-grid p-0 h-100">
+        <div class="ml-3 py-3 ag-grid-twamp-title">eNodeB : Weekly SLA Conformance</div>
+
+        <mat-divider style="position: relative;"></mat-divider>
+
+        <ag-grid-angular style="width: 100%; height: calc(100% - 70px)"
+            class="twamp-grid-live ag-theme-material ag-jcp3" [rowData]="rowDataMGWVoilation"
+            [columnDefs]="columnDefMGWVoilation" [groupHeaderHeight]="28" [headerHeight]="28"
+            (cellClicked)='onCellClicked($event)' [gridOptions]="slaMGWGridOptions" [suppressHorizontalScroll]="true"
+            (gridReady)="onReady($event)">
+        </ag-grid-angular>
+    </mat-card>
+</ng-template>
+
+<ng-template #recursiveListTmpl *ngIf="showSLAConformance === 'sla-chart'">
+    <mat-card>
+        <div class="d-flex">
+            <div class="ag-grid-twamp-title col-11">7 Days eNodeB Violation: Packet Loss: I-MU-KLDM-ENB-V024
+            </div>
+            <div class="col-2">
+                <mat-icon id="twamp-grid-live" class="search-twamp-icon" aria-label=" search"
+                    (click)="previousPage(showSLAConformance)">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </div>
+        </div>
+        <div class="twamp-bar-chart">
+            <div id="twampBarChart" class="h-100" [chart]="chart"></div>
+        </div>
+
+        <div class="d-flex">
+            <div class="ag-grid-twamp-title col-11">Node Violation DSCP 10 (Mutltiple Node Select)
+            </div>
+        </div>
+
+        <div class="jcp-landing-card-chart-container">
+            <div id="chartConfig" [chart]="secondChart"></div>
+        </div>
+
+        <div class="d-flex">
+            <div class="ag-grid-twamp-title col-11">Node Violation DSCP 46 (Mutltiple Node Select)
+            </div>
+        </div>
+
+
+        <div class="jcp-landing-card-chart-container">
+            <div id="multiChartConfig" [chart]="thirdChart"></div>
+        </div>
+    </mat-card>
+</ng-template>

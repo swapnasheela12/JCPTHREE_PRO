@@ -78,6 +78,7 @@ import { RedirectLayersPopupComponent } from './components/commonPopup/redirect-
 import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { ViewAttributesComponent } from './components/commonPopup/view-attributes/view-attributes.component';
+import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,9 @@ import { ViewAttributesComponent } from './components/commonPopup/view-attribute
     dropdownPriorityRendererComponent,
     dropDownList3DotRendererComponent,
     CustomFlagPopupComponent,
-    ViewAttributesComponent
+    ViewAttributesComponent,
+    CustomFlagPopupComponent,
+    SharePopupComponent
   ],
   imports: [
     CommonModule,

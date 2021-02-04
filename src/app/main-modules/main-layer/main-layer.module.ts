@@ -101,6 +101,11 @@ import { StructureComponent } from './layer-list/topologies/fibre/logicaltopolog
 import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
 import { LogicalConnectivitySettingComponent } from './layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
+
+import { DropdownOwnerRendererComponent } from '../administration/site-sla-configuration/dropdown-owner-renderer.component';
+import { DropdownResponsibleRendererComponent } from '../administration/site-sla-configuration/dropdown-responsible-renderer.component';
+import { DropdownPositionRendererComponent } from '../administration/site-sla-configuration/dropdown-position-renderer.component';
+import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -148,7 +153,11 @@ import { PolygonEditorComponent } from './polygon-editor/polygon-editor.componen
     EquipmentComponent,
     AnchorRendererComponent,
     LogicalConnectivitySettingComponent,
-    PolygonEditorComponent
+    PolygonEditorComponent,
+    DropdownOwnerRendererComponent,
+    DropdownResponsibleRendererComponent,
+    DropdownPositionRendererComponent,
+    ToggleButtonRendererComponent
   ],
   imports: [
     DragDropModule,
@@ -157,7 +166,10 @@ import { PolygonEditorComponent } from './polygon-editor/polygon-editor.componen
     CoreModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent]),
+    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent,     DropdownOwnerRendererComponent,
+      DropdownResponsibleRendererComponent,
+      DropdownPositionRendererComponent,
+    ToggleButtonRendererComponent]),
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,

@@ -70,3 +70,8 @@ export const executionStatus : executionStatusDropdown[] = [
     { value: 'Cancelled'},
     { value: 'Expired'}
   ];
+
+export interface executionStatusDropdown {
+    value: string;
+  }
+
