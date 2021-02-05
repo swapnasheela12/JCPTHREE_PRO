@@ -313,10 +313,10 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
         });
 
         circleGroup.on('mouseover', function () {
-          d3.select(this).select('circle').transition().attr('stroke', '#000000').attr('stroke-width', 2);
+          d3.select(this).select('rect').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 2);
         })
           .on('mouseout', function () {
-            d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
+            d3.select(this).select('rect').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
           })
           .on('click', (d) => {
             this.mainRef.openSpiderCircularPopups(d, this.mainLayerReference, this.latlng);

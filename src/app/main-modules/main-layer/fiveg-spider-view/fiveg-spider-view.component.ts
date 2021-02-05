@@ -286,7 +286,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
         return d.fontFamily;
       })
       .attr('y', function (d) {
-        return 3;
+        return 7;
       })
       .attr('class', 'iconText')
       .text(function (d) {
@@ -371,7 +371,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
       .select('circle')
       .transition()
       .attr('stroke', (d) => {
-        return '#ffffff';
+        return '#FFFFFF';
       })
       .attr('stroke-width', 2);
     })
@@ -590,7 +590,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
       })
       .attr('y', (d) => {
         let degree = d.endAngle * (180 / Math.PI);
-        return (degree <= 90) ? -7.5 : (degree < 180) ? 2.5 : (degree >= 180) ? 12 : 0;
+        return (degree <= 90) ? -7.5 : (degree < 180) ? 2.5 : (degree >= 180) ? 15 : 0;
       })
       .attr('class', 'iconText')
       .text((d) => {

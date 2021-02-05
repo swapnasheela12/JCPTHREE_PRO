@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?cvbma');
-  src:  url('fonts/icomoon.eot?cvbma#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?cvbma') format('truetype'),
-    url('fonts/icomoon.woff?cvbma') format('woff'),
-    url('fonts/icomoon.svg?cvbma#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?nrbzd4');
+  src:  url('fonts/icomoon.eot?nrbzd4#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?nrbzd4') format('truetype'),
+    url('fonts/icomoon.woff?nrbzd4') format('woff'),
+    url('fonts/icomoon.svg?nrbzd4#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,106 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-equipments:before {
+  content: "\ec81";
+  color: #fff;
+}
+.ic-logical-connectivity:before {
+  content: "\ec82";
+  color: #fff;
+}
+.ic-port-details:before {
+  content: "\ec83";
+  color: #fff;
+}
+.ic-structure:before {
+  content: "\ec84";
+  color: #fff;
+}
+.ic-AG-3-01:before {
+  content: "\ec6c";
+  color: #fff;
+}
+.ic-AG2--ONT-01:before {
+  content: "\ec6d";
+  color: #fff;
+}
+.ic-All-01:before {
+  content: "\ec6e";
+  color: #fff;
+}
+.ic-eNode-01:before {
+  content: "\ec6f";
+  color: #fff;
+}
+.ic-Fiber-Pop-01:before {
+  content: "\ec70";
+  color: #fff;
+}
+.ic-ILA-01:before {
+  content: "\ec71";
+  color: #fff;
+}
+.ic-Manhole-01:before {
+  content: "\ec72";
+  color: #fff;
+}
+.ic-OSC--01:before {
+  content: "\ec73";
+  color: #fff;
+}
+.ic-Pole-01:before {
+  content: "\ec74";
+  color: #fff;
+}
+.ic-SAG-2-01:before {
+  content: "\ec75";
+  color: #fff;
+}
+.ic-AG-1-Router:before {
+  content: "\ec76";
+  color: #fff;
+}
+.ic-All:before {
+  content: "\ec77";
+  color: #fff;
+}
+.ic-CSS-Router:before {
+  content: "\ec78";
+  color: #fff;
+}
+.ic-Joint-Closure:before {
+  content: "\ec79";
+  color: #fff;
+}
+.ic-L2-Switch-01:before {
+  content: "\ec7a";
+  color: #fff;
+}
+.ic-OLT-01:before {
+  content: "\ec7b";
+  color: #fff;
+}
+.ic-ONT-01:before {
+  content: "\ec7c";
+  color: #fff;
+}
+.ic-OTB-01:before {
+  content: "\ec7d";
+  color: #fff;
+}
+.ic-Others-01:before {
+  content: "\ec7e";
+  color: #fff;
+}
+.ic-Splitter-2-01:before {
+  content: "\ec7f";
+  color: #fff;
+}
+.ic-Splitter-01:before {
+  content: "\ec80";
+  color: #fff;
+}
 .ic-AG-2:before {
   content: "\ec6b";
   color: #fff;
@@ -1092,7 +1192,7 @@
 .ic-AG3:before {
   content: "\ec18";
 }
-.ic-All:before {
+.ic-All1:before {
   content: "\ec19";
 }
 .ic-eNodeB:before {
