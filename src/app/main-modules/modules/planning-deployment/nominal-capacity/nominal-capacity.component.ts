@@ -138,13 +138,12 @@ export class NominalCapacityComponent implements OnInit {
   zone = "";
   circle = "";
   jioState = "-";
-  jioCenters = "-";
+  jioCenter = "-";
+  r4gStates = "-";
   city = "-";
+  plan = "-";
+  status = "-";
   show;
-  status;
-  plan;
-  r4gStates;
-  jioCenter;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource: MatTableDataSource<Card> = new MatTableDataSource<Card>(DATA);

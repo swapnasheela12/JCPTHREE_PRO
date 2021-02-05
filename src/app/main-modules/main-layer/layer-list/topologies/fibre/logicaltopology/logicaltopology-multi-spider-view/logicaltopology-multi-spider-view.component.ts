@@ -83,7 +83,184 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
       fontvalue: '\uf112',
       frequency: 0.01492,
       eventname: 'sites-tree-properties',
-      radiuscircle: 200,
+      radiuscircle: 250,
+      deviceType: [{
+        device: "css router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec26',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "AG1 Router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec27',
+        value: 5,
+      },
+      {
+        device: "OLT",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2b',
+        value: 5,
+      },
+      {
+        device: "Splitter 1",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec24',
+        value: 5,
+      },
+      {
+        device: "OTB",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec29',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "Other",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2c',
+        value: 5,
+      },{
+        device: "css router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec26',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "AG1 Router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec27',
+        value: 5,
+      },
+      {
+        device: "OLT",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2b',
+        value: 5,
+      },
+      {
+        device: "Splitter 1",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec24',
+        value: 5,
+      },
+      {
+        device: "OTB",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec29',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "Other",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2c',
+        value: 5,
+      },{
+        device: "css router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec26',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "AG1 Router",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec27',
+        value: 5,
+      },
+      {
+        device: "OLT",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2b',
+        value: 5,
+      },
+      {
+        device: "Splitter 1",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec24',
+        value: 5,
+      },
+      {
+        device: "OTB",
+        color: "#1A7DDD",
+        font: 'icomoon',
+        fontvalue: '\uec29',
+        value: 5,
+      },
+      {
+        device: "L2 Switch",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec28',
+        value: 5,
+      },
+      {
+        device: "Other",
+        color: "#94C65A",
+        font: 'icomoon',
+        fontvalue: '\uec2c',
+        value: 5,
+      },
+      ],
+    },
+    {
+      name: 'Properties',
+      value: 5,
+      color: '#8CC63F',
+      font: 'icomoon',
+      fontvalue: '\uf112',
+      frequency: 0.01492,
+      eventname: 'sites-tree-properties',
+      radiuscircle: 175,
       deviceType: [{
         device: "css router",
         color: "#94C65A",
@@ -141,7 +318,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         value: 5,
       }
       ],
-    }, {
+    },
+    {
       name: 'Create Workorder',
       value: 5,
       color: '#8dc63f',
@@ -227,13 +405,35 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
       .attr('transform', 'translate(0,0)');
 
     //background circle
+    // bandGroup.append('circle')
+    //   .attr('r', 275)
+    //   .attr('filter', "blur(10px)")
+    //   .attr('fill', "rgba(229,234,236,70%)")
+    //   .style('cursor', 'pointer');
+
+    // bandGroup.append('circle')
+    //   .attr('r', 175)
+    //   .attr('filter', "blur(10px)")
+    //   .attr('fill', "rgba(229,234,236,70%)")
+    //   .style('cursor', 'pointer');
+
     bandGroup.append('circle')
-      .attr('r', 275)
-      .attr('filter', "blur(10px)")
-      .attr('fill', "rgba(229,234,236,70%)")
-      .style('cursor', 'pointer');
+    .attr('r', 300)
+    .attr('filter', "blur(10px)")
+    .attr('fill', "rgba(229,234,236,70%)")
+    .style('cursor', 'pointer');
 
     this.smallCellData.forEach(item => {
+
+      // if (item.radiuscircle == "100") {
+        // bandGroup.append('circle')
+        //   .attr('r', 175)
+        //   .attr('filter', "blur(10px)")
+        //   .attr('fill', "rgba(229,234,236,70%)")
+        //   .style('cursor', 'pointer');
+      // } else {
+      
+      // }
 
       let margin = {
         left: 20,
@@ -246,12 +446,16 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
 
       //Create an arc function
       let arc = d3.arc()
-        .innerRadius(width * 0.75 / 2)
-        .outerRadius(width * 0.75 / 2 + 30);
+        .innerRadius(width * 0.95 / 2)
+        .outerRadius(width * 0.95 / 2 + 30);
 
       let arcInner = d3.arc()
         .innerRadius(width * 0.33 / 2)
         .outerRadius(width * 0.33 / 2 + 30);
+
+      let arcOuterMost = d3.arc()
+        .innerRadius(width * 0.63 / 2)
+        .outerRadius(width * 0.63 / 2 + 30);
 
       //Turn the pie chart 90 degrees counter clockwise, so it starts at the left
       let pie = d3.pie()
@@ -337,7 +541,52 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
             return 'donutArcsInner';
           });
 
-      } else {
+      } 
+      else if (item.radiuscircle == "175") {
+        donutArcsGroup.append('path')
+        .attr('d', arcOuterMost)
+        .style('fill', 'none')
+        .attr('class', function (d, i) {
+          //Search pattern for everything between the start and the first capital L
+          let firstArcSection = /(^.+?)L/;
+
+          //Grab everything up to the first Line statement
+          let newArc = firstArcSection.exec(d3.select(this).attr('d'))[1];
+          //Replace all the comma's so that IE can handle it
+          newArc = newArc.replace(/,/g, ' ');
+
+          //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2)
+          //flip the end and start position
+          if (d.endAngle > 90 * Math.PI / 270) {
+            let startLoc = /M(.*?)A/, //Everything between the first capital M and first capital A
+              middleLoc = /A(.*?)0 0 1/, //Everything between the first capital A and 0 0 1
+              endLoc = /0 0 1 (.*?)$/; //Everything between the first 0 0 1 and the end of the string (denoted by $)
+            //Flip the direction of the arc by switching the start en end point (and sweep flag)
+            //of those elements that are below the horizontal line
+            let newStart = endLoc.exec(newArc)[1];
+            let newEnd = startLoc.exec(newArc)[1];
+            let middleSec = middleLoc.exec(newArc)[1];
+
+            //Build up the new arc notation, set the sweep-flag to 0
+
+            newArc = 'M' + newStart + 'A' + middleSec + '0 0 0 ' + newEnd;
+          } //if
+
+          // console.log(this.parentNode, "this.parentNode");
+
+          //Create a new invisible arc that the text can flow along
+          // d3.select(this.parentNode).append('path')
+          d3.select(this.parentNode).append('path')
+            .attr('class', 'hiddenDonutArcs')
+            .attr('id', 'donutArcOuterMost' + i)
+            .attr('d', newArc)
+            .style('fill', 'none');
+
+          return 'donutArcs';
+        });
+
+      } 
+      else {
         donutArcsGroup.append('path')
           .attr('d', arc)
           .style('fill', 'none')
@@ -397,7 +646,12 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
             let pathEl = d3.select(donutArc).node();
             let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
             return 'translate(' + (midpoint.x) + ',' + (midpoint.y) + ')';
-          } else {
+          } else if (item.radiuscircle == "175") {
+            let donutArc = $(element).find('#donutArcOuterMost' + i)[0];
+            let pathEl = d3.select(donutArc).node();
+            let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
+            return 'translate(' + (midpoint.x - 20) + ',' + (midpoint.y) + ')';
+          }else {
             let donutArc = $(element).find('#donutArc' + i)[0];
             let pathEl = d3.select(donutArc).node();
             let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
@@ -420,6 +674,9 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         .attr('y', (d) => {
           if (item.radiuscircle == "100") {
             return -25;
+          } else if (item.radiuscircle == "175") {
+            let degree = d.endAngle * (180 / Math.PI);
+            return (degree >= 0) ? -20 : (degree >= 90) ? 10 : (degree >= 180) ? 20 : (degree >= 270) ? 50 : -20;
           } else {
             let degree = d.endAngle * (180 / Math.PI);
             return (degree >= 0) ? -20 : (degree >= 90) ? 10 : (degree >= 180) ? 20 : (degree >= 270) ? 50 : -20;
@@ -429,6 +686,11 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         .attr('x', function (d) {
           if (item.radiuscircle == "100") {
             return -25;
+          } else if (item.radiuscircle == "175") {
+            // return 25;
+            return 0;
+            // let degree = d.endAngle * (180 / Math.PI);
+            // return (degree >= 0) ? -30 : (degree >= 90) ? 10 : (degree >= 180) ? 20 : (degree >= 270) ? 50 : -20;
           } else {
             return 0;
           }
@@ -445,6 +707,9 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         .attr('y', (d) => {
           if (item.radiuscircle == "100") {
             return 30;
+          } else if (item.radiuscircle == "175") {
+            let degree = d.startAngle * (180 / Math.PI);
+            return (degree <= 90) ? 35 : (degree >= 180) ? 35 : 40
           } else {
             let degree = d.startAngle * (180 / Math.PI);
             return (degree <= 90) ? 35 : (degree >= 180) ? 35 : 40
@@ -454,6 +719,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         .attr('x', function (d) {
           if (item.radiuscircle == "100") {
             return -25;
+          } else if (item.radiuscircle == "175") {
+            return -5;
           } else {
             return -5;
           }
@@ -477,6 +744,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
           // return 20;
           if (item.radiuscircle == "100") {
             return -5;
+          } else if (item.radiuscircle == "175") {
+            return 20;
           } else {
             return 20;
           }
@@ -485,6 +754,8 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
           // return 20;
           if (item.radiuscircle == "100") {
             return -5;
+          } else if (item.radiuscircle == "175") {
+            return 2;
           } else {
             return 2;
           }

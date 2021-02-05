@@ -19,10 +19,10 @@ export class CreateTaskPageComponent implements OnInit {
   plan: string;
   zone: string;
   r4gStates: string;
-  circle: string;
-  jioState: string;
-  city: string;
   jioCenters: string;
+  city: string;
+  jioState: string;
+  circle: string;
   status?: string;
   public columnDefs: any[];
   public columnDefs2: any[];

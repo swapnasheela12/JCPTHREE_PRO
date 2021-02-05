@@ -397,7 +397,7 @@ export class FivegAdjacentSpiderViewComponent implements AfterViewInit {
       d3.select(this).select('circle').transition().attr('stroke', '#FFFFFF').attr('stroke-width', 1);
     })
     .on('click', (d) => {
-        this.mainRef.openSpiderPopups(d, this.mainLayerReference);
+        this.mainRef.openAdjSpider(d, this.mainLayerReference);
     });
 
   svgGroup.on('click', function () {

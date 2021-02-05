@@ -10,6 +10,7 @@ import { FivegAdjacentSpiderViewComponent } from '../../../fiveg-adjacent-spider
 import { FibreTableViewPopupModel, RouteTableViewComponent } from '../fibre/route/route-table-view/route-table-view.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FivegCircularSpiderViewComponent } from '../../../fiveg-circular-spider-view/fiveg-circular-spider-view.component';
+import { FivegSpiderViewComponent } from '../../../fiveg-spider-view/fiveg-spider-view.component';
 
 @Component({
   selector: 'app-logical-connectivity',
@@ -56,6 +57,26 @@ export class LogicalConnectivityComponent implements AfterViewInit {
   targetLatLng: L.LatLng;
   targetLinksDot: any;
   targetLinksCenterPoint: { x: number; y: number; };
+  structureDataLogical: any = [
+    {
+      name: 'Structure',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I164'
+    },
+    {
+      name: 'Logical Connectivity',
+      value: 5,
+      color: '#03A9F4',
+      font: 'Material-Design-Iconic-Font',
+      fontvalue: '\uf207',
+      eventname: 'sites-tree-candidates-nominals',
+      sapid: 'I-MU-MUMB_ENB_I174'
+    }
+  ];
   structureData: any = [
     {
       name: 'OLT',
@@ -560,7 +581,7 @@ export class LogicalConnectivityComponent implements AfterViewInit {
       outerthis.map.closePopup();
     });
     this.structureImage.on('click', function (event) {
-      outerthis.routeClicked();
+      outerthis.openSpider(event,outerthis.mainLayerRef)
     });
 
     if (structureEachData.length == 7)  {
@@ -579,6 +600,37 @@ export class LogicalConnectivityComponent implements AfterViewInit {
     // this.logicalConnectivityContainer.addChild(this.lineConnectionContainer, this.structureContainerEach);
   }
 
+  openSpider(e,ref) {
+    let fivegSpiderComponent = ref.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
+    ref.componentRef = ref.target.createComponent(fivegSpiderComponent);
+    let colocatedData = [
+      { tileName: e.target.data[3],
+        fontValue: '\uf207',
+        fontFamily: 'Material-Design-Iconic-Font',
+        color: '#03a9f4',
+        radiusDeviceCircle: '56'}
+    ];
+    ref.componentRef.instance.colocatedCircleData = colocatedData;
+    ref.componentRef.instance.data = this.structureDataLogical;
+    ref.componentRef.instance.mainRef = this;
+    ref.componentRef.instance.mainLayerReference = this.mainLayerRef;
+  }
+  openAdjSpider(d,ref) {
+    console.log(d);
+    let fivegSpiderComponent = ref.componentFactoryResolver.resolveComponentFactory(FivegSpiderViewComponent);
+    ref.componentRef = ref.target.createComponent(fivegSpiderComponent);
+    let colocatedData = [
+      {  tileName: d.data.name,
+        fontValue: d.data.fontvalue,
+        fontFamily: d.data.font,
+        color: d.data.color,
+        radiusDeviceCircle: '56' }
+    ];
+    ref.componentRef.instance.colocatedCircleData = colocatedData;
+    ref.componentRef.instance.data = this.structureDataLogical;
+    ref.componentRef.instance.mainRef = this;
+    ref.componentRef.instance.mainLayerReference = this.mainLayerRef;
+  }
   routeClicked() {
     const componName = "Structure";
     const dialogData = new FibreTableViewPopupModel(componName);
@@ -690,6 +742,7 @@ export class LogicalConnectivityComponent implements AfterViewInit {
   }
 
   openSpiderPopups(d, ref) {
+    if (d.data.name == 'Structure'){
       const componName = "Route";
       const dialogData = new FibreTableViewPopupModel(componName);
       const dialogRef = this.dialog.open(RouteTableViewComponent, {
@@ -704,6 +757,14 @@ export class LogicalConnectivityComponent implements AfterViewInit {
         disableClose: false,
         panelClass: "material-dialog-container",
       });
+    } else if (d.data.name == 'Logical Connectivity') {
+      let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
+      this.dataShare.setExtraLayer(extraLayer);
+      this.dataShare.countLogicalMessage();
+      this.removeLayer();
+      let logicalComponent = ref.componentFactoryResolver.resolveComponentFactory(LogicalConnectivityComponent);
+      ref.componentRef = ref.target.createComponent(logicalComponent);
+    }
   }
 
   drawCircleGraphics(color, matrix) {
