@@ -18,6 +18,12 @@ export class RejectTaskComponent {
   message;
   showActionBtn: boolean = true;
   showMyTasks: boolean = true;
+
+  reject = [
+    "SAP ID", "SAP ID"
+  ];
+  remark = [ "Lorem Ipsum is simply dummy text of the printing and typesetting",
+"Lorem Ipsum is simply dummy text of the printing and typesetting"];
   constructor(public dialogRef: MatDialogRef<RejectTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));

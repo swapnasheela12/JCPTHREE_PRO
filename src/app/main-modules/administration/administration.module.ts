@@ -69,16 +69,22 @@ import { DropdownOwnerRendererComponent } from './site-sla-configuration/dropdow
 import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ThreeDotP2BRenderer } from './renderer/threedot-p2b-renderer.component';
+import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent],
+  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent, DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent]),
+    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent,
+       conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent,
+       createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent,
+        DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent, inputRendererComponent,
+        ThreeDotP2BRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

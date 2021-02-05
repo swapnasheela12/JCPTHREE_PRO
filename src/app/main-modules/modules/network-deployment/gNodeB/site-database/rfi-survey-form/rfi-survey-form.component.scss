@@ -1,25 +1,18 @@
+
 .rfi-container {
-    .rfi-header {
-        background: #1278D7;
-        color: white;
-        height: 10vh;
-    }
-    .rfi-container {
-        height: 77vh;
-        overflow-x: auto;
-        .cards {
-            margin: 20px;
-            padding: 0 !important;
-            .card-header {
-                background: #E6E6E6;
-                .mat-card-header-text {
-                    margin: 0px !important;
-                }
+    height: 77vh;
+    overflow-x: auto;
+    .cards {
+        margin: 20px;
+        padding: 0 !important;
+        .card-header {
+            background: #E6E6E6;
+            .mat-card-header-text {
+                margin: 0px !important;
             }
         }
     }
 }
-
 .wo-form-field-read {
     line-height: 2;
     .wo-form-input-title {

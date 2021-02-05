@@ -296,3 +296,72 @@ $color-white: #ffffff;
 .progressBar .inprogress:after {
     background-color: #FEC12D !important;
 }
+
+.rfi-container {
+    .rfi-header {
+        background: #1278D7;
+        color: white;
+        height: 10vh;
+    }
+    .rfi-container {
+        height: 77vh;
+        overflow-x: auto;
+        .cards {
+            margin: 20px;
+            padding: 0 !important;
+            .card-header {
+                background: #E6E6E6;
+                .mat-card-header-text {
+                    margin: 0px !important;
+                }
+            }
+        }
+    }
+}
+
+.cards {
+    margin: 20px 0;
+    padding: 0 !important;
+    .card-header {
+        background: #E6E6E6;
+        .mat-card-header-text {
+            margin: 0px !important;
+        }
+    }
+}
+
+.wo-form-field-read {
+    line-height: 2;
+    .wo-form-input-title {
+        font-family: lato Regular;
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 0.6;
+    }
+    .wo-form-input-value {
+        font-family: lato medium;
+        font-size: 14px;
+        color: #000000;
+    }
+}
+
+.sector-header {
+    margin: 20px 0px 0 17px;
+    font-family: lato bold;
+    font-size: 14px;
+}
+
+.sector-divider {
+    width: 96%;
+    margin: 0 17px;
+}
+
+.title {
+    font-family: lato Regular;
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.6;
+    margin-left: 15px;
+}

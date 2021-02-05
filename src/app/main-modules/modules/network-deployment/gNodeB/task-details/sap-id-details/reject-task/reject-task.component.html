@@ -12,12 +12,25 @@
 
     <div mat-dialog-content>
         <div class="px-4 mat-con">
-            <div class="emp-label"> Select Employee Type</div>
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button style="width: 50%" value="1">Ril Employee</mat-radio-button>
-                <mat-radio-button value="2">Others</mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field class="w-100">
+                <mat-select [(ngModel)]="reject[0]">
+                    <mat-option *ngFor="let rej of reject" [value]="rej">
+                        {{rej}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+
+        <div class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-select panelClass="ag-grid-pagination" [(ngModel)]="remark[0]">
+                    <mat-option *ngFor="let rem of remark" [value]="rem">
+                        {{rem}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
         <div class="px-4 mat-con">
             <mat-form-field class="w-100">
                 <mat-label>Remarks</mat-label>

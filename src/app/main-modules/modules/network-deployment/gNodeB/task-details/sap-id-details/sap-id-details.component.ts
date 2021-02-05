@@ -12,6 +12,7 @@ import { AssignTaskComponent } from './assign-task/assign-task.component';
 import { RejectTaskComponent } from './reject-task/reject-task.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { ILabelValue } from 'src/app/main-modules/work-orders/rf-oc-workorders/Irf-oc';
+import { CreateReportComponent } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 
 @Component({
   selector: 'app-sap-id-details',
@@ -101,6 +102,49 @@ export class SapIdDetailsComponent implements OnDestroy {
   nearByFiveSites = ["Lorem Ipsum 1, Lorem Ipsum 2, Lorem Ipsum 3, Lorem Ipsum 4, Lorem Ipsum 5", "Lorem Ipsum 1, Lorem Ipsum 2, Lorem Ipsum 3, Lorem Ipsum 4, Lorem Ipsum 5"];
   mountRequired = ["Lorem Ipsum is simply dummy text", "Lorem Ipsum is simply dummy text"]
 
+  woHeaderForm: Array<any> = [
+    {
+      "label": "Circle Name",
+      "value": "Mumbai"
+    },
+    {
+      "label": "Site Name",
+      "value": "I-MU-MUMB-ENB-4505"
+    },
+    {
+      "label": "Site ID",
+      "value": "MU-NVMB-JC24-0024"
+    },
+    {
+      "label": "Priority",
+      "value": "P1"
+    },
+    {
+      "label": "Date of Survey",
+      "value": "10 Oct 2020"
+    },
+    {
+      "label": "Any Obstruction",
+      "value": "Yes"
+    },
+    {
+      "label": "Coordinates (Longitude)",
+      "value": "78.852402"
+    },
+    {
+      "label": "Coordinates (Latitude)",
+      "value": "21.269661"
+    }
+  ];
+
+  siteIds = [
+    "I-MU-MUMB-ENB-4505",
+    "I-MU-MUMB-ENB-4505",
+    "I-MU-MUMB-ENB-4505",
+    "I-MU-MUMB-ENB-4505",
+    "I-MU-MUMB-ENB-4505"
+  ];
+  approveTask= false;
 
   constructor(public dialog: MatDialog, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
@@ -147,6 +191,7 @@ export class SapIdDetailsComponent implements OnDestroy {
     this.dialog.open(SuccessfulModalComponent, {
       data: message,
     });
+    this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details']);
   }
 
   previous() {
@@ -174,6 +219,41 @@ export class SapIdDetailsComponent implements OnDestroy {
 
   goBack() {
     this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details'])
+  }
+
+  onNoClick(): void {
+   // this.dialog.close();
+  }
+
+  clickGoMyReport(): void {
+    //this.dialog.close();
+    this.router.navigate(['/JCP/Reports-and-Dashboard/My-Reports']);
+  }
+
+  animal: string;
+  name: string;
+  clickCreateNewReport(): void {
+    //this.dialogRef.close();
+    const dialogRef = this.dialog.open(CreateReportComponent, {
+      width: "700px",
+      panelClass: "material-dialog-container",
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.animal = result;
+    });
+  }
+
+  reject() {
+    const dialogRef = this.dialog.open(RejectTaskComponent, {
+      height: "378px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  closeDialog() {
+   // this.dialogRef.close();
   }
 
   ngOnDestroy() {

@@ -3111,7 +3111,7 @@ const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Status Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/gNodeB/Status-Templates",
+        link: "JCP/Administration/Plan-To-Build/gNodeB/Status-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
