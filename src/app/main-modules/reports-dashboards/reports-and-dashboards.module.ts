@@ -68,6 +68,7 @@ import { SlaConformanceComponent } from './custom-dashboard/sla-conformance/sla-
 import { SlaConformanceNodewiseComponent } from './custom-dashboard/sla-conformance-nodewise/sla-conformance-nodewise.component';
 import { TwampInterCircleComponent } from './custom-dashboard/twamp-inter-circle/twamp-inter-circle.component';
 import { TwampNidMeasurementComponent } from './custom-dashboard/twamp-nid-measurement/twamp-nid-measurement.component';
+import { InterCircleChartComponent } from './custom-dashboard/twamp-inter-circle/inter-circle-chart/inter-circle-chart.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { TwampNidMeasurementComponent } from './custom-dashboard/twamp-nid-measu
     SlaConformanceNodewiseComponent,
     TwampInterCircleComponent,
     TwampNidMeasurementComponent,
-    TwampMgwBgwIntercircleComponent
+    TwampMgwBgwIntercircleComponent,
+    InterCircleChartComponent
   ],
   imports: [
     CommonModule,

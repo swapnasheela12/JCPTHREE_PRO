@@ -415,6 +415,30 @@ export const GEOGRAPHY = [
   { geography_name: 'Orissa' },
 ];
 
+export const SELECT_REPORT = [
+  { report: "EPC-EPC"},
+  { report: "EPC-ILD"},
+  { report: "IGW-ILD"},
+  { report: "IGW-IBR"},
+  { report: "IBR-IBR"},
+  { report: "EPC-IBR"}
+]
+
+export const METRIC = [
+  { metric_name: 'Round-Trip Time' },
+  { metric_name: 'Lost Packet Percentage' },
+
+];
+
+export const SELECT_TIME_SPAN = [
+  {time: "Past 5 Minutes"},
+  {time: "Past 1 Hour"},
+  {time: "Past 24 Hour"},
+  {time: "Past 7 Days"},
+  {time: "Past 30 Days"},
+  {time: "Customize"}
+]
+
 export const TWAMP_MGW_INTER_CIRCLE = [
   {
     headerName: "Circle",
