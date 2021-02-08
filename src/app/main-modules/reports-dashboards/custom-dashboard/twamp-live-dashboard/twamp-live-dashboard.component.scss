@@ -1,17 +1,17 @@
-.twamp-live-dashboard-top-card {
-    height: 148px;
-
-    .twamp-field-container {
-        .mat-form-field-infix {
-            width: auto !important;
+.twamp-live {
+    .twamp-live-dashboard-top-card {
+        height: 148px;
+        .twamp-field-container {
+            .mat-form-field-infix {
+                width: auto !important;
+            }
         }
     }
 }
 
-.twamp-ag-grid {
-    height: calc(100% - 180px);
-    overflow: scroll;
 
+.twamp-ag-grid {
+    height: calc(100% - 179px);
     .text-align-group-header .ag-header-group-cell-label {
         justify-content: center;
     }
@@ -195,6 +195,6 @@ div.cover:hover~div.graytooltip {
     display: block;
 }
 
-:host ::ng-deep .mat-card.twamp-ag-grid {
-    overflow: scroll;
+:host ::ng-deep #chartID {
+    overflow-x: auto;
 }
