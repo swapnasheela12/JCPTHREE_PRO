@@ -643,6 +643,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
     mainLayerReference.componentRef.instance.mainRef = this;
     mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+    mainLayerReference.componentRef.instance.type = 'equipment';
   }
 
   ngOnDestroy() {

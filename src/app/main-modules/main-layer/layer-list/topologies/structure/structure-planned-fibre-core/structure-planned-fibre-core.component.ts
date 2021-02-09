@@ -610,7 +610,7 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     // this.labelCount.textAlign = 'center';
     // this.labelCount.textBaseLine = 'middle';
 
-    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All.svg');
+    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All-01.svg');
     this.labelCount.regX = 35;
     this.labelCount.regY = 30;
     this.labelCount.scaleX = 0.4;
@@ -644,6 +644,7 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
     mainLayerReference.componentRef.instance.mainRef = this;
     mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+    mainLayerReference.componentRef.instance.type = 'structure';
   }
 
   ngOnDestroy() {

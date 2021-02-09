@@ -18,6 +18,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
   leafSVG;
   mainRef;
   mainLayerReference;
+  type;
   constructor() { }
 
   ngAfterViewInit() {
@@ -332,7 +333,12 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
       cellSite.append('foreignObject')
         .attr({ 'width': 30, 'height': 30 });
 
-      let imageURL = 'assets/images/Layers/topologies/structure/all-blue.svg';
+      let imageURL = '';
+      if (this.type == 'structure') {
+        imageURL = 'assets/images/Layers/topologies/structure/All-structure.svg';
+      } else if (this.type == 'equipment') {
+        imageURL = 'assets/images/Layers/topologies/structure/all-blue.svg';
+      }
       cellSite.style('opacity', '1');
       let cellGroupImage = cellSite.append("svg:image")
         .attr('width', 30)
