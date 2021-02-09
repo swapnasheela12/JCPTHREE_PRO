@@ -197,10 +197,10 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
             value: 5,
           },
           {
-            device: "AG1",
+            device: "Others",
             color: "#03A9F4",
                font: 'icomoon',
-            fontvalue: '\uec6a',
+            fontvalue: '\uec85',
             value: 5,
           }
         ],

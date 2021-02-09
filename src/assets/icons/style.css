@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?nrbzd4');
-  src:  url('fonts/icomoon.eot?nrbzd4#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?nrbzd4') format('truetype'),
-    url('fonts/icomoon.woff?nrbzd4') format('woff'),
-    url('fonts/icomoon.svg?nrbzd4#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?gsa7r3');
+  src:  url('fonts/icomoon.eot?gsa7r3#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?gsa7r3') format('truetype'),
+    url('fonts/icomoon.woff?gsa7r3') format('woff'),
+    url('fonts/icomoon.svg?gsa7r3#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-Others-011:before {
+  content: "\ec85";
+  color: #fff;
+}
 .ic-equipments:before {
   content: "\ec81";
   color: #fff;
