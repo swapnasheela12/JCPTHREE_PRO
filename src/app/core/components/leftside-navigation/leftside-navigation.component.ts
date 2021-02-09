@@ -520,6 +520,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
       );
     }
+    else if (node.component == 'SmartbenchSettingsComponent') {
+      
+    }
   }
 
   layerComponent;

@@ -38,3 +38,21 @@
     }
 
 }
+.topstrip{
+    height: 48px;
+    top: 56px;
+    z-index: 999;
+    left: 50%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+    transform: translateX(-50%);
+    display: none;
+    .smartwidget-icon{
+        padding: 10px;
+        border-radius: 50%;
+        color:#666666;
+        &.smartmenuToggle{
+            background: #0070db;
+            color: #fff;
+        }
+    }   
+}

@@ -59,6 +59,12 @@ export class DataSharingService {
   private countLogicalSource = new BehaviorSubject(this.counter);
   countLogical = this.countLogicalSource.asObservable();
 
+  private layerchosen = new BehaviorSubject({});
+  layerchosenobject$ = this.layerchosen.asObservable();
+
+  private saveButton = new BehaviorSubject({});
+  saveButtonobject$ = this.saveButton.asObservable();
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -134,5 +140,14 @@ export class DataSharingService {
 
   countLogicalMessage() {
     this.countLogicalSource.next(++this.counter);
+  }
+
+  extractLayerChosen(layer){
+    this.layerchosen.next(layer);
+  }
+
+  submitSmartBdata(data){
+    console.log('data',data);
+    this.saveButton.next(data);
   }
 }

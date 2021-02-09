@@ -2572,7 +2572,23 @@ const LOCATION_BOUNDRIES_LIST = [
         children: LOCATION_BOUNDRIES_POI_LIST
     }
 ];
-
+const SMART_BENCHMARKING = [
+    {
+        name: "Smart Benchmarking",
+        link: "JCP/Layers/network/quality",
+        eventName: 'sites-quality-experience',
+        component: "SmartbenchSettingsComponent"
+    }
+]
+const QUALITY_AND_EXPERIENCE = [
+    {
+        name: "Quality & Experience",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Layers/network/quality",
+        eventName: 'sites-quality-experience',
+        children: SMART_BENCHMARKING
+    }
+]
 const BASE_MAPS_LIST = [
     {
         name: "Terrain",
@@ -3339,6 +3355,15 @@ const LAYERS_LIST = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: LOCATION_BOUNDRIES_LIST,
+        classId: 'locations-border'
+    },
+    {
+        name: "Network",
+        icon: "fas fa-users fa-3",
+        link: "Network",
+        eventName: 'sites-network',
+        show:true,
+        children: QUALITY_AND_EXPERIENCE,
         classId: 'locations-border'
     },
     {

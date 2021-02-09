@@ -14,7 +14,7 @@ import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
@@ -33,7 +33,10 @@ import { SideNavService } from 'src/app/_services/side-nav.service';
 import { NodesAndBoundariesManagerService } from './layer-list/sites/outdoor/macro/nodes-and-boundaries-manager.service';
 import 'leaflet-contextmenu';
 import { MatSidenav } from '@angular/material/sidenav';
-declare var $: any;
+import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
+import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
+import { SmartSplitmapService } from './network/quality-and-experience/smart-splitmap-servicce/smart-splitmap.service';
+
 
 @Component({
   selector: 'app-main-layer',
@@ -73,21 +76,37 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public circle;
   public poly;
   public polyline;
+  public layerName;
+  public layerDetailsArray: any = [];
+  public layerNamesArray: any = [];
+  public smartbenchlayerenabled: boolean = false;
+  public smartbenchmenuRef: any;
+  public splitmapcomponentRef: any;
+  public componentsReferences: any = [];
+  public ref: any;
+  public stripDataEnabled: boolean = false;
   // fileNameDialogRef: MatDialogRef<RedirectLayersPopupComponent>;
   // search = new GeoSearchControl({
   //   provider: new OpenStreetMapProvider(),
   // });
-
+  clickEventSub: Subscription;
   public optionsSacle;
   public dataShareSub: Subscription = new Subscription();
+
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+  @ViewChild('smartbenchComponent', { read: ViewContainerRef }) smartbenchComponentRef: ViewContainerRef;
+  @ViewChild('splitmapComponent', { read: ViewContainerRef }) splitmapComponentRef: ViewContainerRef;
+
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private logicaltopologyService: LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService,
+    private smartSplitmapService: SmartSplitmapService
+  ) {
 
 
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
+      console.log('routes', this.routPathVal);
     });
     this.macroNominalService.getReference(this);
     this.smallCellPlanned4gService.getReference(this);
@@ -115,6 +134,102 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initMap();
     // this.markerService.makeCapitalMarkers(this.map);
     this.nodesAndboundariesCall();
+    this.setStripMenubar()
+    this.recieveAndLoadSplitmapCompoent();
+  }
+
+  //SET STRIP MENU WITH LAYER NAME
+  setStripMenubar() {
+    this.datashare.currentMessage.subscribe(val => {
+      let layerCheckedData:any = val
+      try {
+        if (layerCheckedData.length == 0) {
+          this.layerName = '';
+          document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle");
+          (<HTMLInputElement>document.getElementById("topstrip")).style.display = "none";
+        }
+        this.layerNamesArray = [];
+        if (layerCheckedData.length> 0) {
+          this.layerDetailsArray = val;
+          for (var i = 0; i < this.layerDetailsArray.length; i++) {
+            let layername = this.layerDetailsArray[i].name;
+            this.layerNamesArray.push(layername);
+          }
+          //CREATE DOM STYLE
+          if (typeof this.layerNamesArray !== 'undefined' && this.layerNamesArray.length > 0) {
+            let latestLayerChosen = this.layerNamesArray[this.layerDetailsArray.length - 1];
+            let stripWidth = (<HTMLInputElement>document.getElementById("angular-app-root")).clientWidth - 100;
+            (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
+            (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
+            this.stripDataEnabled = true;
+            this.layerName = latestLayerChosen;
+            if (this.layerName == "Smart Benchmarking") {
+              this.smartbenchlayerenabled = true;
+            }
+            else {
+              this.smartbenchlayerenabled = false;
+            }
+          }          
+        }
+        else{
+          if(this.smartbenchmenuRef || this.splitmapcomponentRef){
+            this.smartbenchmenuRef.destroy();
+            this.splitmapcomponentRef.destroy();
+            this.layerName = '';
+            (<HTMLInputElement>document.getElementById("topstrip")).style.display = "none";
+            
+          }
+        }
+      }
+      catch (error) { 
+      }
+    });
+  }
+
+  //LOAD SMARTBENCH MENU WIDGET
+  loadSmartbenchMenu(element) {
+    element.classList.add("smartmenuToggle");
+    this.smartbenchComponentRef.clear();
+    let aComponentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      SmartbenchMenubarComponent
+    );
+    this.smartbenchmenuRef = this.smartbenchComponentRef.createComponent(aComponentFactory);
+    this.smartbenchmenuRef.instance.smartbenchmenuref = this.smartbenchmenuRef;
+  }
+
+  //RECIEVE DATA AND TRIGGER SPLITMAP
+  recieveAndLoadSplitmapCompoent() {
+    this.clickEventSub = this.smartSplitmapService.recieveTriggeredData().subscribe((val) => {
+      let payloadDataObject:any = val;
+      if(payloadDataObject !== undefined && payloadDataObject.length > 0){
+        this.loadSplitMapComponent(payloadDataObject);
+      }
+    });
+  }
+
+  //LOAD SPLITMAP COMPONENT
+  loadSplitMapComponent(payloadDataObject) {
+    if (this.componentsReferences.length == 0) {
+      this.loadsplimapConfig(payloadDataObject);
+    }
+    else {
+      this.ref.destroy();
+      setTimeout(() => {
+        this.loadsplimapConfig(payloadDataObject);
+      }, 100);
+    }
+  }
+
+  loadsplimapConfig(payloadDataObject) {
+    this.splitmapComponentRef.clear();
+    let aComponentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      SplitmapComponent
+    );
+    this.splitmapcomponentRef = this.splitmapComponentRef.createComponent(aComponentFactory);
+    this.splitmapcomponentRef.instance.splitmapPayload = payloadDataObject;
+    this.ref = this.splitmapcomponentRef;
+    this.componentsReferences.push(this.splitmapcomponentRef);
+    document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle")
   }
 
   private initMap(): void {
@@ -281,7 +396,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       let lat = e.marker._latlng.lat;
       let lng = e.marker._latlng.lng;
       let latlng = new google.maps.LatLng(lat, lng);
-      
+
       googleCoder.geocode({
         'location': latlng
       }, (results, status) => {
@@ -296,7 +411,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
       e.layer.on('pm:edit', ({ layer }) => {
         // layer has been edited
-        console.log(layer.toGeoJSON(),"....>>");
+        console.log(layer.toGeoJSON(), "....>>");
       });
 
     });

@@ -1,0 +1,167 @@
+[
+  {
+    "data": [
+      {
+        "label": "Analytics Type",
+        "dataStreams": [
+          {
+            "name": "MyJio",
+            "selected": false
+          },
+          {},
+          {
+            "name": "LSR-MyJio",
+            "selected": false
+          },
+          {}
+        ]
+      }
+    ],
+    "operators": [
+      {
+        "label": "Operator",
+        "operatorsList": [
+          {
+            "name": "Jio",
+            "selected": false,
+            "color": "#ccc"
+          },
+          {
+            "name": "Airtel",
+            "selected": false,
+            "color": "#ccc"
+          },
+          {
+            "name": "Vodafone Idea",
+            "selected": false,
+            "color": "#ccc"
+          }
+        ]
+      }
+    ],
+    "criterias": [
+      {
+        "name": "Coverage",
+        "selected": false,
+        "disabled": true,
+        "accordionState": true,
+        "expanded": false,
+        "options": [
+          {
+            "name": "RSRP >= -105dBm",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "RSRP =< -110dBm",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "RSRP >= -110 to <-105 dBm",
+            "selected": false,
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "Quality SINR",
+        "selected": false,
+        "disabled": true,
+        "accordionState": true,
+        "expanded": false,
+        "lsr": false,
+        "options": [
+          {
+            "name": "% of SINR <-5",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "SINR >= -5 to < 0",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "SINR >=0",
+            "selected": false,
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "Quality RSRQ",
+        "selected": false,
+        "disabled": true,
+        "accordionState": true,
+        "expanded": false,
+        "options": [
+          {
+            "name": "% of RSRQ <-5",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "RSRQ >= -5 to < 0",
+            "selected": false,
+            "disabled": true
+          },
+          {
+            "name": "RSRQ >=0",
+            "selected": false,
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "Grid",
+        "selected": false,
+        "disabled": true,
+        "accordionState": true,
+        "expanded": false,
+        "tablabels": [
+          {
+            "name": "No Operator Coverage",
+            "disabled":true,
+            "tabData": [
+              {
+                "name": "RSRP",
+                "description": "1 lorem ipsum",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              },
+              {
+                "name": "RSRP 1",
+                "description": "2 lorem ipsum",
+                "disabled": true,
+                "selected": true,
+                "tag": "Grid"
+              }
+            ]
+          },
+          {
+            "name": "Operator Lagging",
+            "disabled":true,
+            "tabData": [
+              {
+                "name": "SINR",
+                "description": "1 lorem ipsum",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              },
+              {
+                "name": "SINR 2",
+                "description": "2 lorem ipsum",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

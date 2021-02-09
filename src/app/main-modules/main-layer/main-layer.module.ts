@@ -101,6 +101,10 @@ import { StructureComponent } from './layer-list/topologies/fibre/logicaltopolog
 import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
 import { LogicalConnectivitySettingComponent } from './layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
+import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
+import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
+
+
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -148,7 +152,9 @@ import { PolygonEditorComponent } from './polygon-editor/polygon-editor.componen
     EquipmentComponent,
     AnchorRendererComponent,
     LogicalConnectivitySettingComponent,
-    PolygonEditorComponent
+    PolygonEditorComponent,
+    SmartbenchMenubarComponent,
+    SplitmapComponent
   ],
   imports: [
     DragDropModule,
