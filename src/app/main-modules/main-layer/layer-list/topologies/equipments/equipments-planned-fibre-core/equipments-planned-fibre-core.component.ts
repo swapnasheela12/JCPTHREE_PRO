@@ -155,6 +155,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
            font: 'icomoon',
           fontvalue: '\uec80',
           value: 5,
+        },
+        {
+          device: "ISC",
+          color: "#03A9F4",
+           font: 'icomoon',
+          fontvalue: '\uec87',
+          value: 5,
         }
         ],
     },
@@ -195,6 +202,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
             color: "#03A9F4",
                font: 'icomoon',
             fontvalue: '\uec6a',
+            value: 5,
+          },
+          {
+            device: "IBS",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec86',
             value: 5,
           }
         ],

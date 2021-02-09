@@ -154,6 +154,13 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
            font: 'icomoon',
           fontvalue: '\uec74',
           value: 5,
+        },
+        {
+          device: "ISC",
+          color: "#03A9F4",
+           font: 'icomoon',
+          fontvalue: '\uec87',
+          value: 5,
         }
         ],
     },
@@ -201,6 +208,13 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
             color: "#03A9F4",
                font: 'icomoon',
             fontvalue: '\uec85',
+            value: 5,
+          },
+          {
+            device: "IBS",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec86',
             value: 5,
           }
         ],
@@ -610,8 +624,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     // this.labelCount.textAlign = 'center';
     // this.labelCount.textBaseLine = 'middle';
 
-    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All-01.svg');
-    this.labelCount.regX = 35;
+    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All-white.svg');
+    this.labelCount.regX = 30;
     this.labelCount.regY = 30;
     this.labelCount.scaleX = 0.4;
     this.labelCount.scaleY = 0.4;
