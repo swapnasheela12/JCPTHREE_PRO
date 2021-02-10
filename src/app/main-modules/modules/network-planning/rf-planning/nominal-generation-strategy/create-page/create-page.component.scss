@@ -25,10 +25,11 @@ $color-grayBlue: #464d69;
                     color: $color-grayBlue;
                 }
                 .header {
-                    font-size: 16px;
+                    font-size: 15px;
                     color: $color-grayBlue;
                     font-weight: 400;
-                    font-family: 'LATO MEDIUM';
+                    font-family: 'Lato Medium';
+                    line-height: 2.5;
                 }
                 .Sub-header {
                     font-weight: 400;
@@ -37,11 +38,12 @@ $color-grayBlue: #464d69;
                 .title {
                     font-size: 12px;
                     font-family: 'Lato Regular';
+                    line-height: 1.75;
                 }
                 .sub-title {
                     font-size: 14px;
                     font-family: 'Lato Medium';
-                    line-height: 1;
+                    line-height: 1.5;
                 }
             }
         }
@@ -251,6 +253,25 @@ $color-grayBlue: #464d69;
                 }
             }
         }
+        .link-budget-container {
+            height: calc(100% - 58px);
+            .link-budget-form {
+                height: 290px;
+                overflow: auto;
+                .link-budget-form-container {
+                    .link-budget-header {
+                        font-size: 14px;
+                        font-family: Lato Bold;
+                        padding: 15px 0px;
+                    }
+                    .link-budget-title {
+                        font-size: 13px;
+                        font-family: Lato Regular;
+                        color: #717171;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -341,7 +362,7 @@ input[type="file"] {
 }
 
 #map2 {
-    height: 335px;
+    height: 325px;
 }
 
 .tab-container-layersMap2 .icon-styleMap2 {
@@ -379,7 +400,19 @@ input[type="file"] {
 
 .content-nominal-cust {
     overflow: auto;
-    height: 155px;
+    height: 280px;
+    .ag-theme-material {
+        .ag-root-wrapper {
+            .ag-root-wrapper-body {
+                .ag-root {
+                    .ag-header {
+                        background: #e9ecec;
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
     .content-nominal-cust-row {
         .mat-checkbox-layout {
             margin-bottom: -0.5rem;
@@ -400,4 +433,9 @@ input[type="file"] {
 .mat-icon-button:hover .mat-button-focus-overlay {
     opacity: 0.1 !important;
     background-color: #0078D7;
+}
+
+.iconType {
+    margin-bottom: 8px;
+    color: #717171;
 }

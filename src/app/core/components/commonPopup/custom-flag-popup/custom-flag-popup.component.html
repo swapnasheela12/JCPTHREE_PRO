@@ -1,5 +1,5 @@
 <div class="customFlag-dialog-container">
-    <mat-toolbar class="dialog-header">
+    <mat-toolbar class="dialog-header" style="height: 55px;font-size: 18px;font-family: Lato Bold;">
         <mat-toolbar-row>
             <div fxFlex="grow">
                 <div>Flag : I-MUMB-GNB-0121</div>
@@ -21,7 +21,7 @@
         <div class="px-3">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div>
-                    <mat-form-field>
+                    <mat-form-field style="font-size: 14px;font-family: Lato Regular;margin-top: 8px;">
                         <mat-select [(value)]="mark" placeholder="Select Flag">
                             <mat-select-trigger *ngIf="mark" class="mark-flag">
                                 <mat-icon [ngStyle]="{'color': mark.color}">flag</mat-icon>
@@ -39,7 +39,7 @@
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
+                    <mat-form-field style="font-size: 14px;font-family: Lato Regular;margin-top: 8px;">
                         <input matInput type="text" [(ngModel)]="customFlagName" placeholder="Flag Name">
                     </mat-form-field>
                 </div>

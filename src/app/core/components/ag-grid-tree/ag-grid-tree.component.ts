@@ -2,6 +2,14 @@ import { viewHistoryRendererComponent } from 'src/app/core/components/ag-grid-re
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { GridOptions } from '@ag-grid-community/all-modules';
 
+import { AnchorRendererComponent } from '../ag-grid-renders/anchor-renderer.component';
+import { inputRendererComponent } from '../ag-grid-renders/input-renderer.component';
+import { DropdownOwnerRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-owner-renderer.component';
+import { DropdownResponsibleRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-responsible-renderer.component';
+import { DropdownPositionRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-position-renderer.component';
+import { ToggleButtonRendererComponent } from '../ag-grid-renders/toggle-button-renderer.component';
+
+
 export class GroupLevel {
   level = 0;
   field = '';
@@ -19,7 +27,13 @@ export class AgGridTreeComponent {
   public gridOptions: GridOptions;
 
   public frameworkComponentsList = {
-    viewHistroyRenderer: viewHistoryRendererComponent
+    viewHistroyRenderer: viewHistoryRendererComponent,
+    anchorRenderer: AnchorRendererComponent,
+    inputRenderer: inputRendererComponent,
+    dropdownOwner: DropdownOwnerRendererComponent,
+    dropdownResponsible: DropdownResponsibleRendererComponent,
+    dropdownPosition: DropdownPositionRendererComponent,
+    toggleButton: ToggleButtonRendererComponent
   };
   dataSource = [];
   allData = [];

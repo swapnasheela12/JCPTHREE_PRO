@@ -1,3 +1,6 @@
+import { dropDownList3DotRendererComponent } from './../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
+import { dropdownPriorityRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-priority-renderer.component';
+import { dropdownQueryRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
 import { statusflagiconRenderComponent } from './../../../core/components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
 import { AdDirective } from './../../../_directive/dynamicComponent/ad.directive';
@@ -67,9 +70,10 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { StatergeMapNominalComponent } from './rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
 import { CandidatesACPComponent } from './rf-planning/nominal-generation-strategy/create-page/candidates-acp/candidates-acp.component';
+import { DefineDataSourceComponent } from './rf-planning/nominal-generation-strategy/create-page/define-data-source/define-data-source.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent],
+  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent, DefineDataSourceComponent],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,
@@ -77,7 +81,7 @@ import { CandidatesACPComponent } from './rf-planning/nominal-generation-strateg
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip ,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

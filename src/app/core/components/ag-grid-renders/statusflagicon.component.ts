@@ -67,7 +67,7 @@ export class statusflagiconRenderComponent {
     switch (mycolor) {
       case 'Not completed': return '#D80000';
       case 'completed': return '#11D800';
-      case 'In Process': return '#002AD8'
+      case 'In Process': return '#FFD700'
     }
   }
 

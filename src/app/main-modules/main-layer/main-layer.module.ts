@@ -105,6 +105,11 @@ import { SmartbenchMenubarComponent } from './network/quality-and-experience/sma
 import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
 
 
+
+import { DropdownOwnerRendererComponent } from '../administration/site-sla-configuration/dropdown-owner-renderer.component';
+import { DropdownResponsibleRendererComponent } from '../administration/site-sla-configuration/dropdown-responsible-renderer.component';
+import { DropdownPositionRendererComponent } from '../administration/site-sla-configuration/dropdown-position-renderer.component';
+import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -154,7 +159,11 @@ import { SplitmapComponent } from './network/quality-and-experience/splitmap/spl
     LogicalConnectivitySettingComponent,
     PolygonEditorComponent,
     SmartbenchMenubarComponent,
-    SplitmapComponent
+    SplitmapComponent,
+    DropdownOwnerRendererComponent,
+    DropdownResponsibleRendererComponent,
+    DropdownPositionRendererComponent,
+    ToggleButtonRendererComponent
   ],
   imports: [
     DragDropModule,
@@ -163,7 +172,10 @@ import { SplitmapComponent } from './network/quality-and-experience/splitmap/spl
     CoreModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent]),
+    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent,     DropdownOwnerRendererComponent,
+      DropdownResponsibleRendererComponent,
+      DropdownPositionRendererComponent,
+    ToggleButtonRendererComponent]),
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,

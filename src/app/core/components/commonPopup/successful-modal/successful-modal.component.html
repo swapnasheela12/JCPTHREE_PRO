@@ -19,4 +19,11 @@
                 style=" margin-left: 3px;">Go To My Reports</button>
         </div>
     </div>
+    <div mat-dialog-actions *ngIf="showMyTasks" class="successful-text-action-container" fxLayout="row wrap"
+        fxLayoutAlign="center center">
+        <div class="mr-1 successful-text-button">
+            <button class=" success-butt" (click)="clickYes()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Go To My Tasks</button>
+        </div>
+    </div>
 </div>

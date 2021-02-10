@@ -73,8 +73,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       name: 'Structure',
       value: 5,
       color: '#03A9F4',
-      font: 'Material-Design-Iconic-Font',
-      fontvalue: '\uf207',
+      font: 'icomoon',
+      fontvalue: '\uec84',
       eventname: 'sites-tree-candidates-nominals',
       sapid: 'I-MU-MUMB_ENB_I164'
     },
@@ -82,8 +82,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       name: 'Logical Connectivity',
       value: 5,
       color: '#03A9F4',
-      font: 'Material-Design-Iconic-Font',
-      fontvalue: '\uf207',
+      font: 'icomoon',
+      fontvalue: '\uec82',
       eventname: 'sites-tree-candidates-nominals',
       sapid: 'I-MU-MUMB_ENB_I174'
     }
@@ -93,66 +93,73 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       name: 'Properties',
       value: 5,
       color: '#8CC63F',
-      font: 'Material-Design-Iconic-Font',
-      fontvalue: '\uf112',
+       font: 'icomoon',
+      fontvalue: '\uec6b',
       frequency: 0.01492,
       eventname: 'sites-tree-properties',
       radiuscircle: 200,
       deviceType: [
         {
-        device: "css router",
+        device: "AG3",
         color: "#94C65A",
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf112',
+         font: 'icomoon',
+        fontvalue: '\uec6c',
         value: 5,
         },
         {
-          device: "L2 Switch",
+          device: "AG2+ONT",
           color: "#94C65A",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec6d',
           value: 5,
         },
         {
-          device: "AG1 Router",
+          device: "eNodeB",
           color: "#94C65A",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec6f',
           value: 5,
         },
         {
-          device: "OLT",
+          device: "Fiber-Pop",
           color: "#94C65A",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec70',
           value: 5,
         },
         {
-          device: "Splitter 2",
+          device: "ILA",
           color: "#03A9F4",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec71',
           value: 5,
         },
         {
-          device: "OTB",
+          device: "Manhole",
           color: "#03A9F4",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec72',
           value: 5,
         },
         {
-          device: "L2 Switch",
+          device: "OSC",
           color: "#94C65A",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec73',
           value: 5,
         },
         {
-          device: "AG1 Router",
+          device: "Pole",
           color: "#94C65A",
-          font: 'Material-Design-Iconic-Font',
-          fontvalue: '\uf112',
+           font: 'icomoon',
+          fontvalue: '\uec74',
+          value: 5,
+        },
+        {
+          device: "ISC",
+          color: "#03A9F4",
+           font: 'icomoon',
+          fontvalue: '\uec87',
           value: 5,
         }
         ],
@@ -161,46 +168,53 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
         name: 'Create Workorder',
         value: 5,
         color: '#8dc63f',
-        font: 'Material-Design-Iconic-Font',
-        fontvalue: '\uf222',
+        font: 'icomoon',
+        fontvalue: '\uec6a',
         disabled: true,
         frequency: 0.02782,
         radiuscircle: 100,
         eventname: 'sites-tree-createworkorder',
         deviceType: [
           {
-            device: "L2 Switch",
+            device: "AG1",
             color: "#94C65A",
-            font: 'Material-Design-Iconic-Font',
-            fontvalue: '\uf222',
+               font: 'icomoon',
+            fontvalue: '\uec6a',
             value: 5,
           },
           {
-            device: "AG1 Router",
+            device: "SAG2",
             color: "#94C65A",
-            font: 'Material-Design-Iconic-Font',
-            fontvalue: '\uf222',
+            font: 'icomoon',
+            fontvalue: '\uec75',
             value: 5,
           },
           // {
           //   device: "OLT",
           //   color: "#94C65A",
-          //   font: 'Material-Design-Iconic-Font',
-          //   fontvalue: '\uf222',
+          //      font: 'icomoon',
+          //   fontvalue: '\uec6a',
           //   value: 5,
           // },
           {
-            device: "Splitter 2",
-            color: "#03A9F4",
-            font: 'Material-Design-Iconic-Font',
-            fontvalue: '\uf222',
+            device: "Pole",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec74',
             value: 5,
           },
           {
-            device: "OTB",
+            device: "Others",
             color: "#03A9F4",
-            font: 'Material-Design-Iconic-Font',
-            fontvalue: '\uf222',
+               font: 'icomoon',
+            fontvalue: '\uec85',
+            value: 5,
+          },
+          {
+            device: "IBS",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec86',
             value: 5,
           }
         ],
@@ -610,8 +624,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     // this.labelCount.textAlign = 'center';
     // this.labelCount.textBaseLine = 'middle';
 
-    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All.svg');
-    this.labelCount.regX = 35;
+    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All-white.svg');
+    this.labelCount.regX = 30;
     this.labelCount.regY = 30;
     this.labelCount.scaleX = 0.4;
     this.labelCount.scaleY = 0.4;
@@ -644,6 +658,7 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
     mainLayerReference.componentRef.instance.mainRef = this;
     mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+    mainLayerReference.componentRef.instance.type = 'structure';
   }
 
   ngOnDestroy() {

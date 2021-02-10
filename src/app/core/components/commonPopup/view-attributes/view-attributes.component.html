@@ -1,0 +1,28 @@
+<div class="customFlag-dialog-container">
+    <mat-toolbar class="dialog-header" style="height: 55px;font-size: 18px;font-family: Lato Bold;">
+        <mat-toolbar-row style="height: 55px;">
+            <div fxFlex="grow">
+                <div>View Attributes</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="main-content">
+        <div *ngFor="let item of viewAttributList">
+            <div class="row-view-content">{{item}}</div>
+        </div>
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+    <!-- <div mat-dialog-actions>
+        
+        <div class="mx-3">
+            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="col"></div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth">Flag It</button>
+        </div>
+    </div> -->
+</div>

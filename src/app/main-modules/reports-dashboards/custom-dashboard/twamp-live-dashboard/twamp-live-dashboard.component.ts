@@ -96,6 +96,7 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
   liveViolationReport ="eNodeB";
   twampLiveViolationReportGridOptions: GridOptions;
   rowDataViolationReport: any;
+  chart;
 
   @ViewChild('typeMultiCtrlSelect') typeMultiCtrlSelect: MatSelect;
   protected typeMultiListData = TYPE_LIST;
@@ -207,6 +208,49 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
       'typeMultiCtrl': this.typeListValue,
       'directionList': this.directionListValue
     });
+
+    this.violationData();
+    this.options = {
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
+      },
+      series: [{
+        name: 'Random data',
+        data: (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+  
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: Math.floor(Math.random() * 10) + 0
+                });
+            }
+            return data;
+        }())
+      }]
+    };
+    this.showLiveChart();
+  }
+
+  violationData() { 
+      this.jsonUrlLiveViolationReport = "assets/data/report/reports-and-dashboard/twamp-live-violation-report.json";
+      // /this.showLiveDashboard = "live-chart";
+      this.httpService
+        .get(this.jsonUrlLiveViolationReport)
+        .subscribe((data: any[]) => {
+          this.rowDataViolationReport = JSON.parse(JSON.stringify(data));
+      });
+
+      setTimeout(() => {
+        this.dataShare.currentMessage.subscribe((message) => {
+          this.sidenavBarStatus = message;
+          this.fitViolationReportColumns();
+        });
+      }, 0);
   }
 
   ngAfterViewInit() {
@@ -218,15 +262,17 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
   }
 
   previousPage(currentPage) {
-    if (currentPage == 'live-chart') {
+    if (currentPage == 'live-dashboard') {
       this.twampLiveViolationReportGridOptions.api.showLoadingOverlay();
-      this.showLiveDashboard = 'live-chart';
-      this.httpService
-        .get(this.jsonUrl)
-        .subscribe((data: any[]) => {
-          this.rowData = JSON.parse(JSON.stringify(data));
-          this.getGroups(data, this.groupList[0], null, 'root');
-      });
+      this.showLiveDashboard = 'live-dashboard';
+      // this.httpService
+      //   .get(this.jsonUrl)
+      //   .subscribe((data: any[]) => {
+      //     this.rowData = JSON.parse(JSON.stringify(data));
+      //     this.getGroups(data, this.groupList[0], null, 'root');
+      // });
+    } else if(currentPage == 'live-violation-report') {
+      this.showLiveDashboard = 'live-violation-report';
     }
   }
   createData(total, provision, live, delta) {
@@ -298,60 +344,24 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
   onReady(event) {
     this.fitColumns();
   }
-  onCellClicked(event: any) {
-    console.log(event.data)
+  onRowClicked(event: any) {
     this.jsonUrlLiveViolationReport = "bye";
-    if ('node' === this.groupList[0].field && event.colDef.field == 'direction') {
-      if (event.data.expand === false) {
-        this.onGroupClick(event.data, event.rowIndex, 'expand');
-      } else if (event.data.expand === true) {
-        this.onGroupClick(event.data, event.rowIndex, 'collapse');
+    if(event.data.provision) {
+      if (this.groupList[0].field === 'node') {
+        if (event.data.expand === false) {
+          this.onGroupClick(event.data, event.rowIndex, 'expand');
+        } else if (event.data.expand === true) {
+          this.onGroupClick(event.data, event.rowIndex, 'collapse');
+        } else {
+           this.liveViolationReport = event.data.node;
+          this.showLiveDashboard = "live-violation-report";
+        }
+       
       }
-    } else if (event.data.sapid) {
-      console.log(this.recursiveListTmpl)
+    }else if (event.data.sapid && event.data.r4gstate) {
       this.showLiveDashboard = "graph-violation";
       this.displaySapIDName = event.data.sapid;
-      this.options = {
-        xAxis: {
-          type: 'datetime',
-          tickPixelInterval: 150
-        },
-        series: [{
-          name: 'Random data',
-          data: (function () {
-              // generate an array of random data
-              var data = [],
-                  time = (new Date()).getTime(),
-                  i;
-    
-              for (i = -19; i <= 0; i += 1) {
-                  data.push({
-                      x: time + i * 1000,
-                      y: Math.floor(Math.random() * 10) + 0
-                  });
-              }
-              return data;
-          }())
-        }]
-      };
-    } else {
-      this.liveViolationReport = event.data.node;
-      this.jsonUrlLiveViolationReport = "assets/data/report/reports-and-dashboard/twamp-live-violation-report.json";
-      this.showLiveDashboard = "live-chart";
-      this.httpService
-        .get(this.jsonUrlLiveViolationReport)
-        .subscribe((data: any[]) => {
-          this.rowDataViolationReport = JSON.parse(JSON.stringify(data));
-      });
-
-      setTimeout(() => {
-        this.dataShare.currentMessage.subscribe((message) => {
-          this.sidenavBarStatus = message;
-          this.fitViolationReportColumns();
-        });
-      }, 0);
-  }
-    console.log(this.rowDataViolationReport)
+    }
   }
 
   setFirstHeaders(columnDefs: any) {
@@ -442,12 +452,12 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
       this.rowData = JSON.parse(JSON.stringify(tempArray));
       this.rowData1 = JSON.parse(JSON.stringify(tempArray));
     }
-    console.log(this.rowData)
   }
 
   addToInput(event) {
     event.stopPropagation();
   }
+
   onGroupClick(
     row: { children: any; level: number; expand: boolean },
     index: number,
@@ -506,102 +516,155 @@ export class TwampLiveDashboardComponent implements OnInit, AfterViewInit {
       rowData: this.rowData
     }
   }
-  public packetLossChart:DataObject = new Chart({
-    chart: {
-      type: 'line',
-      zoomType: "xy",
-      backgroundColor: "transparent",
-      spacingTop: 30,
-      marginLeft: 100,
-      marginRight: 30,
-      marginBottom: 60,
-    },
-    title: {
-      text: ''
-  },
 
-  subtitle: {
-      text: ''
-  },
+  showLiveChart() {
+    this.chart = new Chart({
+          chart: {
+              type: 'line',
+              marginTop: 80,
+              height: 400,
+              zoomType: 'xy',
+              resetZoomButton: {
+                  theme: {
+                      fill: 'white',
+                      stroke: 'silver',
+                      r: 0,
+                      states: {
+                          hover: {
+                              fill: '#5fc75a',
+                              style: {
+                                  color: 'white'
+                              }
+                          }
+                      }
+                  },
 
-  yAxis: {
-      title: {
-          text: 'Packet Loss in (%)',
-          y: 60
-      }
-  },
+                  position: {
+                      x: 0,
+                      y: -65
+                  }
+              },
+              panKey: 'shift',
+              backgroundColor: 'transparent'
 
-  xAxis: {
-    title: {
-      text: 'Hours',
-      y: 15
-    },
-      accessibility: {
-          rangeDescription: 'Range: 0 to 16'
-      },
-      min:0,
-      max: 16,
-      tickInterval: 1,
-  },
-
-  legend: {
-      // layout: 'vertical',
-      // align: 'right',
-      // verticalAlign: 'middle'
-  },
-
-  plotOptions: {
-      series: {
-          label: {
-              connectorAllowed: false
           },
-          pointStart: 0,
-          
-      }
-  },
+          title: {
+              text: '',
+              align: 'center',
+              verticalAlign: 'middle',
+              style: {
+                  fontSize: '',
+                  color: '#000000',
 
-  series: [{
-      name: 'Latency',
-      type: 'line',
-      data: [0.2, 0.4, 0.6, 0.8, 1, 0.33, 1.2]
-  }, {
-      name: 'Packet Loss',
-      type: 'line',
-      data: [0.3, 0.4, 0.5, 0.7, 0.9, 1, 0.66]
-  }, {
-      name: 'Best Effort Outage simulation',
-      type: 'line',
-      data: [0.5, 0.88, 0.95, 1, 1.09, 1.2, 0.55]
-  }, {
-      name: 'Jitter',
-      type: 'line',
-      data: [0.33, 0.78, 0.4, 1.08, 1.09, 1.2, 0.48]
-  }, {
-      name: 'VOLTE Outage Simulation',
-      type: 'line',
-      data: [0.09, 0.68, 0.93, 1, 1.2, 0.76, 0.44]
-  },
-  {
-    name: 'MOS',
-    type: 'line',
-    data: [0, 0.5, 0.7, 1.2, 0.65, 0.33, 0.66]
-}],
+              }
 
-  responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 500
           },
-          chartOptions: {
-              // legend: {
-              //     layout: 'horizontal',
-              //     align: 'center',
-              //     verticalAlign: 'bottom'
-              // }
+          credits: {
+              enabled: false
+          },
+          tooltip: {
+
+              formatter: function() {
+                  var seriesName = this.series.name;
+                  var unit = '';
+                  if (seriesName == 'PacketLoss') {
+                      unit = '%'
+                  } else {
+                      unit = ' ms '
+                  }
+                  return '<span>\u25CF</span>' + ' ' + seriesName + ':' + this.point.y + unit + '<b></b> <span style="color:' + this.point.color + '">\u25CF</span> Time: <b>' + this.point.x + 'Hours' + '</b>'
+              }
+          },
+          exporting: {
+              enabled: false
+          },
+      xAxis: [{
+          title: {
+              text: 'Hours',
+          },
+          lineWidth: 0,
+
+      }],
+
+
+      yAxis: [{
+              min: 0,
+              max: 100,
+              title: {
+                  text: 'PacketLoss (%)',
+              },
+
+          },
+
+          {
+              min: 0,
+              max: 10,
+              title: {
+                  text: 'MOS',
+
+              },
+
+              opposite: true
+
+          }, {
+              min: 0,
+              max: 150,
+              title: {
+                  text: 'Value (ms)',
+              },
+
+              opposite: true
           }
-      }]
+      ],
+      series: [{
+        type: 'line',
+              showInLegend: true,
+              color: '#3bba35',
+              name: 'PacketLoss',
+              visible: true,
+              data: [3, 2, 1, 5, 4]
+          },
+
+          { type: 'line',
+              showInLegend: true,
+              color: '#3eb3f3',
+              name: 'MOS',
+              yAxis: 1,
+              visible: false,
+              data: [3, 2, 3, 1, 5]
+
+          },
+          { type: 'line',
+              showInLegend: true,
+              color: '#f4c26e',
+              name: 'Jitter',
+              yAxis: 2,
+              visible: false,
+              data: [40, 50, 10, 20, 60]
+
+          },
+
+          { type: 'line',
+              showInLegend: true,
+              color: '#adff2f',
+              visible: false,
+              name: 'Best Effort Data Outage Simulation',
+              data: [2, 1, 1, 3, 4]
+
+
+
+          },
+          { type: 'line',
+              showInLegend: true,
+              visible: false,
+              color: '#ff0000',
+              name: 'Latency',
+              data: [6, 4, 1, 5, 4]
+          }
+      ]
+
+  })
   }
-  });
 }
 
 function getValue(params: any) {

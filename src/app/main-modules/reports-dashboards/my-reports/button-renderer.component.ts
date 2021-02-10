@@ -10,6 +10,10 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
   <button mat-menu-item>
     <div class="pr-3 fas fa-trash-alt"></div>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item>
+    <div class="pr-3 fas fa-trash-alt"></div>
     <span>Delete</span>
   </button>
   <button mat-menu-item disabled>

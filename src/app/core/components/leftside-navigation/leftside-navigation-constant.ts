@@ -2629,12 +2629,8 @@ const BASE_MAPS_LIST = [
 ];
 const CREATE_PINS = [
     {
-        name: 'CREATE PIN',
-        link: 'CREATE-PIN',
-        eventName: 'sites-outdoor-esc',
-        show:true,
-        children: [],
-        component: 'TacNetworkDialogComponent'
+        name: 'No data available',
+        link: "No data available.",
     },
 ]
 
@@ -3099,6 +3095,64 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
     }
 ];
 
+const ADMIN_GNODEB_CHILDRENS = [
+    {
+        name: "Site SLA Configuration",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Reason Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/gNodeB/Reason-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Config Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/gNodeB/Config-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Status Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/gNodeB/Status-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    }
+]
+
+const ADMIN_GNODEB = [
+    {
+        name: "gNodeB",
+        icon: "fas fa-user fa-3",
+        link: "gNodeB",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: ADMIN_GNODEB_CHILDRENS
+    }
+]
+
+
+const ADMIN_PLAN_TO_BUILD = [
+    {
+        name: "Plan To Build",
+        icon: "fas fa-user fa-3",
+        link: "plan-to-build",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: ADMIN_GNODEB
+    }
+]
+
 const MODULE_ADMINISTRATION_LIST = [
     {
         name: "Performance Management",
@@ -3147,6 +3201,14 @@ const MODULE_ADMINISTRATION_LIST = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: ADMIN_NETVELOCITY_LIST
+    },
+    {
+        name: "Network Deployment",
+        icon: "fas fa-user fa-3",
+        link: "network-deployment",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: ADMIN_PLAN_TO_BUILD
     }
 ];
 
@@ -3239,6 +3301,45 @@ const PLATFORM_LAYER_LIST = [
     }
 ];
 
+const GNODEB = [
+    {
+        name: 'Task Details',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    },
+    {
+        name: 'Site Database',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    }
+]
+
+const PLAN_TO_BUILD = [
+    {
+        name: 'gNodeB',
+        link: 'gNodeB',
+        eventName: 'sites-outdoor-esc',
+        children: GNODEB
+    },
+    {
+        name: 'ODSC',
+        link: 'odsc',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    }
+];
+
+const NETWORK_AND_DEPLOYMENT = [
+    {
+        name: 'Plan to Build',
+        link: 'plan-to-build',
+        eventName: 'sites-outdoor-esc',
+        children: PLAN_TO_BUILD
+    }
+]
+
 const MODULES_LIST = [
     {
         name: 'Configuration Management',
@@ -3281,6 +3382,13 @@ const MODULES_LIST = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: MODULE_LIST_PLANNING_DEPLOYMENT
+    },
+    {
+        name: 'Network Deployment',
+        link: 'Network-Deployment',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: NETWORK_AND_DEPLOYMENT
     }
 ];
 
@@ -3476,7 +3584,7 @@ const WORKORDERS_CMWORKORDERS_LIST = [
         name: 'RET Change',
         link: 'JCP/Work-Orders/Cm-Workorders/RET-Change',
         eventName: 'ret-change',
-        show:false,
+        show:true,
         children: []
     }
 ]
@@ -3538,7 +3646,7 @@ const ADMINISTRATION_LIST = [
         name: 'Module Management',
         link: 'module-management',
         eventName: 'sites-outdoor-esc',
-        show:false,
+        show:true,
         children: MODULE_ADMINISTRATION_LIST
     },
     {

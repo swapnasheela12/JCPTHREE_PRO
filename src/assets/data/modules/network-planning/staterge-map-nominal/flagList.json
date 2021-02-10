@@ -1,25 +1,29 @@
 [{
-        "flagname": "Flag Name 1",
+        "flagname": "Approved",
         "flag": "completed",
         "flagid": 5,
-        "enableButton": false
+        "enableButton": false,
+        "radioSelect": true
     },
     {
-        "flagname": "Flag Name 2",
+        "flagname": "Rejected",
         "flag": "Not completed",
         "flagid": 9,
-        "enableButton": false
+        "enableButton": false,
+        "radioSelect": false
     },
     {
-        "flagname": "Flag Name 3",
+        "flagname": "Rejected",
         "flag": "Not completed",
         "flagid": 9,
-        "enableButton": true
+        "enableButton": true,
+        "radioSelect": false
     },
     {
-        "flagname": "Flag Name 4",
+        "flagname": "On Hold",
         "flag": "In Process",
         "flagid": 8,
-        "enableButton": true
+        "enableButton": true,
+        "radioSelect": false
     }
 ]

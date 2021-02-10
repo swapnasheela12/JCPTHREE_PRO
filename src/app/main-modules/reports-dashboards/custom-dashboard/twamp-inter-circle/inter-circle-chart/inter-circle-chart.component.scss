@@ -1,0 +1,35 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.inter-circle-container {
+    svg {
+        display: inline-block !important;
+        right: 0 !important;
+        position: absolute;
+        top: 17px;
+        z-index: 100;
+    }
+    height: calc(100% - 7px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 7px);
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    .flex-container {
+        .header {
+            background-color: rgb(25, 118, 210);
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .properties-header {
+        background-color: #f9f9f9;
+        display: flex;
+        .prop-container {
+            height: 100%;
+        }
+    }
+}
+
+:host ::ng-deep .inter-circle-container svg {
+    right: 0px !important;
+}

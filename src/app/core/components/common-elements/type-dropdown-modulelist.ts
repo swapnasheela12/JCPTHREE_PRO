@@ -17,6 +17,28 @@ export const City: dropdown[] = [
     {name: 'MU-MUMB'}
 ];
 
+export const dataSourceOutdoor: dropdown[] = [
+    {name: 'Landmark'},
+    {name: 'Major institutes/corporates'},
+    {name: 'Building information'},
+    {name: 'Rail and Road vectors'},
+    {name: 'Traffic junctions'}
+];
+export const dataSourceIndoor: dropdown[] = [
+    {name: 'Landmark'},
+    {name: 'Major institutes/corporates'},
+    {name: 'Building information'},
+    {name: 'Rail and Road vectors'},
+    {name: 'Traffic junctions'}
+];
+export const dataSourceMacro: dropdown[] = [
+    {name: 'Landmark'},
+    {name: 'Major institutes/corporates'},
+    {name: 'Building information'},
+    {name: 'Rail and Road vectors'},
+    {name: 'Traffic junctions'}
+];
+
 export const JC: dropdown[] = [
     {name: 'Mumbai'},
     {name: 'Pune'},
@@ -48,3 +70,8 @@ export const executionStatus : executionStatusDropdown[] = [
     { value: 'Cancelled'},
     { value: 'Expired'}
   ];
+
+export interface executionStatusDropdown {
+    value: string;
+  }
+

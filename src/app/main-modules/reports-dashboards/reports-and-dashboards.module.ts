@@ -62,6 +62,14 @@ import { InfoRendererComponent } from './custom-dashboard/renderer/info-renderer
 import { AllExpandRendererComponent } from './custom-dashboard/renderer/all-expand-renderer.component';
 import { SideNavService } from 'src/app/_services/side-nav.service';
 import { ZoomDataComponent } from './zoom-data/zoom-data.component';
+
+import { TwampMgwBgwIntercircleComponent } from './custom-dashboard/twamp-mgw-bgw-intercircle/twamp-mgw-bgw-intercircle.component';
+import { SlaConformanceComponent } from './custom-dashboard/sla-conformance/sla-conformance.component';
+import { SlaConformanceNodewiseComponent } from './custom-dashboard/sla-conformance-nodewise/sla-conformance-nodewise.component';
+import { TwampInterCircleComponent } from './custom-dashboard/twamp-inter-circle/twamp-inter-circle.component';
+import { TwampNidMeasurementComponent } from './custom-dashboard/twamp-nid-measurement/twamp-nid-measurement.component';
+import { InterCircleChartComponent } from './custom-dashboard/twamp-inter-circle/inter-circle-chart/inter-circle-chart.component';
+
 @NgModule({
   declarations: [
     MyReportsComponent,
@@ -71,7 +79,13 @@ import { ZoomDataComponent } from './zoom-data/zoom-data.component';
     CustomDashboardComponent,
     TwampLiveDashboardComponent,
     InfoRendererComponent,
-    ZoomDataComponent
+    ZoomDataComponent,
+    SlaConformanceComponent,
+    SlaConformanceNodewiseComponent,
+    TwampInterCircleComponent,
+    TwampNidMeasurementComponent,
+    TwampMgwBgwIntercircleComponent,
+    InterCircleChartComponent
   ],
   imports: [
     CommonModule,

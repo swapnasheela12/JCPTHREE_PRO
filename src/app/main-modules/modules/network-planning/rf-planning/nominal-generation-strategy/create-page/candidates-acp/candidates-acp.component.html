@@ -45,8 +45,12 @@
     <mat-divider></mat-divider>
     <div mat-dialog-actions class="candidates-acp-footer p-0" fxLayout="row">
         <div class="px-3 my-flex-item">
-            <i style="color: #0070DB;" class="ic ic-upload4"></i>
-            <button mat-button color="primary" class="buttonCustomeLegends">Upload</button>
+            <button class="next-button p-0" mat-button color="primary" (click)="onClick()">
+                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                </i>
+                <span>Upload</span>
+            </button>
+            <input type="file" #fileUploadSAP id="fileUploadSAP" name="fileUploadSAP" accept="" style="display: none;" />
         </div>
         <div fxFlex></div>
         <div class="px-3 my-flex-item">

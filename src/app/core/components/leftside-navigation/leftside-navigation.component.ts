@@ -54,6 +54,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
+  menuChildrenLength: number;
   get data(): SideNavNode[] { return this.dataChange.value; }
 
   dialog: NavigationSettingsService;
@@ -144,11 +145,12 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     return node.children;
   };
 
+  i = 0
   ngOnInit() {
     // $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
+    console.log(this.i)
     this.datashare.currentMessage.subscribe((data: any) => {
-      console.log(data,"data");
-      
+      this.i++
       if (Object.keys(data).length !== 0) {
         const addPin: any = {
           name: data.pinName,
@@ -166,6 +168,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         };
         if (data.pinName) {
           let dataChange = this.dataSource.data;
+          if (this.i == 3) {
+            dataChange[9].children[1].children = [];
+          }
           dataChange[9].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
@@ -229,11 +234,13 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   }
 
   activenode(node, horizontalLine) {
+    this.menuChildrenLength = 0;
     this.nodeType = node.name;
     const levelNode = this.treeControl.getLevel(node);
     const currentIndexNode = this.treeControl.dataNodes.indexOf(node);
     let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length + currentIndexNode + 1];
-
+    this.menuChildrenLength = this.treeControl.getDescendants(node).length
+    console.log(this.menuChildrenLength)
     if (this.treeControl.isExpanded(node) == true) {
       if (typeof test != 'undefined') {
         if (test.name == 'Prediction Layers') {

@@ -26,20 +26,22 @@ const routes: Routes = [
       { path: "Layers_Cust", component: LayersCustComponent },
       { path: "Layers", loadChildren: () => import("../../app/main-modules/main-layer/main-layer.module").then(m => m.MainLayerModule) },
       { path: "Reports-and-Dashboards", loadChildren: () => import("../../app/main-modules/reports-dashboards/reports-and-dashboards.module").then(m => m.ReportsAndDashboardsModule) },
-      { path: "My-JCP", loadChildren: () => import("../../app/main-modules/my-jcp/my-jcp.module").then(m => m.MyJcpModule) },
+      { path: "Administration", loadChildren: () => import("../../app/main-modules/administration/administration.module").then(m => m.AdministrationModule) },
+     { path: "My-JCP", loadChildren: () => import("../../app/main-modules/my-jcp/my-jcp.module").then(m => m.MyJcpModule) },
       {
         path: "Modules", children: [
           { path: "Performance-Management", loadChildren: () => import("../../app/main-modules/modules/performance-management/performance-management.module").then(m => m.PerformanceManagementModule) },
           { path: 'Planning-Deployment', loadChildren: () => import('../../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule) },
-          { path: 'Configuration-Management',loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule)},
-          { path: 'Fault-Management',loadChildren: () => import('../../app/main-modules/modules/fault-management/fault-management.module').then(m => m.FaultManagementModule)},
-          { path: 'Network-Planning',loadChildren: () => import('../../app/main-modules/modules/network-planning/network-planning.module').then(m => m.NetworkPlanningModule)},
+          { path: 'Configuration-Management', loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule) },
+          { path: 'Fault-Management', loadChildren: () => import('../../app/main-modules/modules/fault-management/fault-management.module').then(m => m.FaultManagementModule) },
+          { path: 'Network-Planning', loadChildren: () => import('../../app/main-modules/modules/network-planning/network-planning.module').then(m => m.NetworkPlanningModule) },
+          { path: 'Network-Deployment', loadChildren: () => import('../../app/main-modules/modules/network-deployment/network-deployment.module').then(m => m.NetworkDeploymentModule) },
         ]
       },
       {
         path: "Work-Orders", children: [
           { path: 'Rf-Oc-Workorders', loadChildren: () => import('../../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule) },
-          { path: 'Cm-Workorders',loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule)}
+          { path: 'Cm-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule) }
         ]
       }
     ],

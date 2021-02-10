@@ -106,7 +106,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.router.events.subscribe((event: any) => {
       this.routPathVal = event.url;
-      console.log('routes', this.routPathVal);
     });
     this.macroNominalService.getReference(this);
     this.smallCellPlanned4gService.getReference(this);
@@ -867,6 +866,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
       }
     });
+
+    console.log(this.datashare,"datashare?????");
+    
 
   }
 
