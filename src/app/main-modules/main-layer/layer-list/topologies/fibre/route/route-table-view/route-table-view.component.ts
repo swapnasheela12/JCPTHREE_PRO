@@ -28,15 +28,14 @@ export class RouteTableViewComponent implements OnInit {
   public cssJsonUrl: string = "assets/data/modules/performance_management/my-performance-report/chart-active-alarms.json";
   newSaveTempFormControl: FormGroup;
   public icons = [
-    { icon: 'close', color: '#6EAFCC', name: "CSS" },
-    { icon: 'print', color: '#C7BE8B', name: "Fibre" },
-    { icon: 'expand', color: '#7E85A8', name: "Route" },
-    { icon: 'alarm_on', color: '#CB9A75', name: "AG1" },
-    { icon: 'alarm_add', color: '#B791C6', name: "AG2" },
-    { icon: 'autorenew', color: '#8CAD8D', name: "AG3" }
+    { icon: 'Path-28', color: '#0000001A', name: "Structure" },
+    { icon: 'Equipment', color: '#0000001A', name: "Equipments" },
+    { icon: 'Logical-1', color: '#0000001A', name: "Logical Connectivity" },
+    { icon: 'Port-Details', color: '#0000001A', name: "Port Details" },
+    { icon: 'Other', color: '#0000001A', name: "Others" }
   ];
 
-  selectedItem = 'close';
+  selectedItem = 'structure';
   labelInfo = [
     {
       label: "Site Name: ",

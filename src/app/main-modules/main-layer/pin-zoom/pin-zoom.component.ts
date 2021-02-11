@@ -18,8 +18,17 @@ export class PinZoomComponent implements OnInit {
     comment: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'],
     newGroup: [false],
     existingGroup: [true],
-    groupName: ['ConvertCSV']
+    groupName: ['ConvertCSV'],
+    TargetSites: [true],
+    sitesCoverage: [false],
+    selectSiteTemplate: ['ODSC Template1']
   });
+
+  siteTemplateList = [
+    {name: 'ODSC Template1'},
+    {name: 'ODSC Template2'}
+  ];
+  public layerRepresent = '';
   public location;
   @Output() public pinZoomClosed = new EventEmitter();
   constructor(private dataShare: DataSharingService, private dialogRef: MatDialogRef<PinZoomComponent>,
@@ -34,7 +43,15 @@ export class PinZoomComponent implements OnInit {
     });
     this.dialogRef.afterOpened().subscribe(() => {
       this.inited = true;
-    })
+    });
+    this.dataShare.pinObject.subscribe(
+      (pin)=> {
+        if (Object.keys(pin).length !== 0) {
+          this.layerRepresent = pin['name'];
+          console.log(pin['name'])
+        }
+      }
+    )
   }
 
   onCloseClick(): void {

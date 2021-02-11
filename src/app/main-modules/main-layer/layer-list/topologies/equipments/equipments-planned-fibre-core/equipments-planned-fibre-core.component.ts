@@ -550,13 +550,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
         width: "1200px",
         height: "500px",
         position: {
-          left: "18.5rem",
+          left: "20.5rem",
           top: "4rem"
         },
         data: dialogData,
         hasBackdrop: false,
         disableClose: false,
-        panelClass: "material-dialog-container",
+        panelClass: "route-table"
       });
     } else if (d.data.name == 'Logical Connectivity') {
       let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Equipment-Planned'};
@@ -575,13 +575,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
       width: "1200px",
       height: "500px",
       position: {
-        left: "18.5rem",
+        left: "20.5rem",
         top: "4rem"
       },
       data: dialogData,
       hasBackdrop: false,
       disableClose: false,
-      panelClass: "material-dialog-container",
+      panelClass: "route-table"
     });
   }
 

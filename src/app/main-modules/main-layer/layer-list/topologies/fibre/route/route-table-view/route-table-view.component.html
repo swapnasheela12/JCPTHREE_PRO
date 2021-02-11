@@ -2,15 +2,15 @@
     <mat-toolbar class="dialog-header">
         <mat-toolbar-row>
             <button mat-icon-button class="dialog-close-button leftIconHighlight">
-                <mat-icon>{{selectedItem}}</mat-icon>
+                <span class="ic ic-{{selectedItem}}"  style="font-size: 21px"></span>
             </button>
             <div fxFlex="grow">
                 <div style="color: black" class="pl-3">{{title}}</div>
             </div>
             <button *ngFor="let icon of icons" (click)="onClick(icon)" [matTooltip]="icon.name"
-                [ngStyle]="{'background':icon.color}" mat-icon-button class="dialog-close-button mx-2"
+                [ngStyle]="{'background':icon.color}" style="color: '#0000008A'" mat-icon-button class="dialog-close-button mx-2"
                 [ngClass]="{ 'hidden': icon.icon == selectedItem }">
-                <mat-icon>{{icon.icon}}</mat-icon>
+                <span class="ic ic-{{icon.icon}}" style="font-size: 21px"></span>
             </button>
             <button (click)="closeDialog()" color="primary" mat-icon-button class="dialog-close-button">
                 <mat-icon>close</mat-icon>

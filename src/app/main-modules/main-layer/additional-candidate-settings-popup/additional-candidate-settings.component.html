@@ -1,0 +1,11 @@
+<div class="h-100">
+  <mat-toolbar class="dialog-header">
+    <mat-icon>text_snippet</mat-icon>
+    <span class="title">{{ data.headerText }}</span>
+    <span class="header-spacer"></span>
+    <button mat-icon-button (click)="onCloseClick()">
+      <mat-icon (click)="onCloseClick()">close</mat-icon>
+    </button>
+ </mat-toolbar>
+  <ng-container [ngTemplateOutlet]="data.template" [ngTemplateOutletContext]="data.context"></ng-container>
+</div>

@@ -54,20 +54,20 @@ export class FivegSpiderViewComponent implements AfterViewInit {
     };
 
     let width = Math.min(screenWidth, 500) - margin.left - margin.right;
-    let canvas = svgGroup
+    let spiderWrapper = svgGroup
       .append("g")
       .attr('class', 'wrapper')
       .attr('transform', 'translate('+translateX+','+translateY+')')
 
-    let circle = canvas
-          .append("circle")
-          .attr("r", 275)
-          .style("opacity", 0.7)
-          .attr('class', 'circle-main')
-          .style("fill", "white");
-    let spiderWrapper = canvas.append('g')
-      .attr('class', 'spider-wrapper')
-      .attr('transform', 'translate(-64,0)');
+    // let circle = canvas
+    //       .append("circle")
+    //       .attr("r", 275)
+    //       .style("opacity", 0.7)
+    //       .attr('class', 'circle-main')
+    //       .style("fill", "white");
+    // let spiderWrapper = canvas.append('g')
+    //   .attr('class', 'spider-wrapper')
+    //   .attr('transform', 'translate(-64,0)');
 
     this.arc = this.createArc(width);
     this.pie = this.rotatePieChart();
@@ -314,7 +314,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
     this.bandsArcsGroup.append("text")
       .attr('x', (d, i) => {
         if (d.fontValue){
-          return pointSource.y - 27;
+          return pointSource.y - 20;
         } else {
           return pointSource.y - 38;
         }
@@ -322,9 +322,10 @@ export class FivegSpiderViewComponent implements AfterViewInit {
       .style('fill', () => {
         color: '#000000'
       })
-      .style('font-size', '12px')
+      .style('font-size', '17px')
+      .style('font-family', 'Lato Bold')
       .attr('y', (d, i) => {
-        return pointSource.x - 55;
+        return pointSource.x - 35;
       })
       .text(function (d) {
         return d.tileName;
@@ -333,11 +334,11 @@ export class FivegSpiderViewComponent implements AfterViewInit {
     this.bandsArcsGroup.append("text")
       .style('text-anchor', 'start')
       .style('dominant-baseline', 'middle')
-      .style('font-family', '"Lato Medium", sans-serif')
+      .style('font-family', 'Lato Medium')
       .style('fill', () => {
         return 'black';
       })
-      .style('font-size', '14px')
+      .style('font-size', '15px')
       .attr('class', 'donutText')
       .attr('x', (d, i) => {
         if (i == 0) {
@@ -350,14 +351,14 @@ export class FivegSpiderViewComponent implements AfterViewInit {
         if (i == 0) {
           return screenHeight / 10;
         } else {
-          return -pointSource.x / 12;
+          return 0;
         }
       })
-      .style('font-weight', function (d) {
-        // if (d.data.font) {
-        return "bold";
-        // }
-      })
+      // .style('font-weight', function (d) {
+      //   // if (d.data.font) {
+      //   return "Lato Bold";
+      //   // }
+      // })
       .text((d) => {
         if (d.sapId){
           return d.sapId;
@@ -541,37 +542,58 @@ export class FivegSpiderViewComponent implements AfterViewInit {
         console.log("d", d)
         let degree = d.endAngle * (180 / Math.PI);
         console.log("degreesdsdsd", (degree <= 90) ? -10 : (degree >= 180) ? 10 : 0)
-        return (degree <= 90) ? -10 : (degree >= 180) ? 10 : 0;
+        return (degree <= 90) ? -2 : (degree >= 180) ? 2 : 0;
       });
   }
 
+  wrap(text, width) {
+    text.each(function() {
+    let text = d3.select(this),
+      words = text.text().split(/\s+/).reverse(),
+      word,
+      line = [],
+      lineNumber = 0,
+      lineHeight = 1.1, // ems
+      y = text.attr("y"),
+      dy = parseFloat(text.attr("y")),
+      tspan = text.text(null).append("tspan").attr("x", 55).attr("y", y).attr("dy", dy + "em")
+      while (word = words.pop()) {
+        line.push(word)
+        tspan.text(line.join(" "))
+        if (tspan.node().getComputedTextLength() > width) {
+          line.pop()
+          tspan.text(line.join(" "))
+          line = [word]
+          tspan = text.append("tspan").attr("x", 55).attr("y", -75).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+        }
+      }
+    })
+  }
   appendLabelsInsideCircle() {
     return this.circleGroup.append('text')
       .style('text-anchor', 'start')
       .style('fill', '#000000')
       .style('font-size', '15px')
       .style('font-family', function (d) {
-        if (!d.data.font) {
           return "Lato bold";
-        }
-        return d.data.font;
       })
       .attr('class', 'donutText')
       .attr('x', (d) => {
         return 50;
       })
-      .style('font-weight', function (d) {
-        if (d.data.font) {
-          return "bold";
-        }
-      })
+      // .style('font-weight', function (d) {
+      //   if (d.data.font) {
+      //     return "bold";
+      //   }
+      // })
       .attr('y', (d) => {
-        let degree = d.endAngle * (180 / Math.PI);
-        return (degree <= 90) ? -10 : (degree >= 180) ? 20 : 5
+        return 4;
+        // let degree = d.endAngle * (180 / Math.PI);
+        // return (degree <= 90) ? -72 : (degree >= 180) ? -65 : 5
       })
       .text((d) => {
         return d.data.name;
-      });
+      }).call(this.wrap, 20);
   }
 
   appendLabelOutside() {
@@ -590,7 +612,7 @@ export class FivegSpiderViewComponent implements AfterViewInit {
       })
       .attr('y', (d) => {
         let degree = d.endAngle * (180 / Math.PI);
-        return (degree <= 90) ? -7.5 : (degree < 180) ? 2.5 : (degree >= 180) ? 15 : 0;
+        return (degree <= 90) ? -0.5 : (degree < 180) ? 2.5 : (degree >= 180) ? 7 : 0;
       })
       .attr('class', 'iconText')
       .text((d) => {

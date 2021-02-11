@@ -1,0 +1,41 @@
+<div class="map-header-view-wrapper">
+    <div class="mapheaderoverlay">
+        <mat-card class="p-0 mb-3 map-header-card">
+            <mat-card-content class="map-header-card-content">
+                <div class="map-header-div" fxLayout="row wrap" fxLayoutAlign="start center">
+                    <mat-icon class="layer-icon-button-arrow" (click)="backTo()">
+                        <span class="zmdi zmdi-chevron-left"></span>
+                    </mat-icon>
+                    <div class="layer-label pl-4 align-items-center font-weight-bold">{{headerData.title}}</div>
+                    <div class="text-layer-sap">&nbsp;&nbsp;-&nbsp;&nbsp;{{headerData.headerSapid}}</div>
+                    <div class="col"></div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'create')">
+                        <button mat-icon-button class="text-dark button-mat1">
+                            <i class="ic ic-layers-01" data-title="Layers"></i>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat button-mat1" (click)="openPopup()">
+                            <mat-icon>person_outline</mat-icon>
+                        </button>
+                    </div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'undefined')">
+                        <button mat-icon-button class="text-dark button-mat1">
+                            <i class="ic ic-layers-01" data-title="Layers"></i>
+                        </button> 
+                    </div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'display')">
+                        <button mat-icon-button class="text-dark button-mat1" (click)="openSummary()">
+                            <i class="ic ic-table-01" data-title="Table"></i>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat1">
+                            <i class="ic ic-KPI-01" data-title="KPI"></i>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat" (click)="openSettingPopup()" >
+                            <i class="ic ic-filter-01" data-title="Settings"></i>
+                        </button>
+                    </div>
+                    <button type="button" class="btn save-button" style="margin-right:10px" (click)="saveNominalPloy()">Save</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </div>

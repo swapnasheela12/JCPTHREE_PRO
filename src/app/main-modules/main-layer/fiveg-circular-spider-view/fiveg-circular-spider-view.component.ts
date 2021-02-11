@@ -39,15 +39,15 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
       .attr('class', 'wrapper')
       .attr('transform', 'translate(' + ((screenWidth / 2) + 20) + ',' + ((screenHeight / 2)) + ')');
 
-    let bandGroup = wrapgroup.append('g')
-      .attr('transform', 'translate(0,0)');
+    // let bandGroup = wrapgroup.append('g')
+    //   .attr('transform', 'translate(0,0)');
 
-    //background circle
-    bandGroup.append('circle')
-      .attr('r', 275)
-      .attr('filter', "blur(10px)")
-      .attr('fill', "rgba(229,234,236,70%)")
-      .style('cursor', 'pointer');
+    // //background circle
+    // bandGroup.append('circle')
+    //   .attr('r', 275)
+    //   .attr('filter', "blur(10px)")
+    //   .attr('fill', "rgba(229,234,236,70%)")
+    //   .style('cursor', 'pointer');
 
       this.data.forEach(item => {
 
@@ -303,7 +303,7 @@ export class FivegCircularSpiderViewComponent implements AfterViewInit {
         .attr('y', function (d) {
           // return 20;
           if (item.radiuscircle == "100") {
-            return -3;
+            return -2;
           } else {
             return 3;
           }

@@ -110,6 +110,11 @@ import { DropdownOwnerRendererComponent } from '../administration/site-sla-confi
 import { DropdownResponsibleRendererComponent } from '../administration/site-sla-configuration/dropdown-responsible-renderer.component';
 import { DropdownPositionRendererComponent } from '../administration/site-sla-configuration/dropdown-position-renderer.component';
 import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
+import { AdditionalCandidatesPopupComponent, nominalGenerationRenderComponent, flagRenderComponent } from './additional-candidates-popup/additional-candidates-popup.component';
+import { AdditionalCandidateSettingsPopupComponent } from './additional-candidate-settings-popup/additional-candidate-settings.component';
+import { LayerPatchSettingsPopupComponent } from './layer-patch-settings-popup/layer-patch-settings.component';
+import { LayerPatchPopupComponent } from './layer-patch-popup/layer-patch-popup.component';
+
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -163,7 +168,13 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     DropdownOwnerRendererComponent,
     DropdownResponsibleRendererComponent,
     DropdownPositionRendererComponent,
-    ToggleButtonRendererComponent
+    ToggleButtonRendererComponent,
+    AdditionalCandidatesPopupComponent,
+    AdditionalCandidateSettingsPopupComponent,
+    nominalGenerationRenderComponent,
+    flagRenderComponent,
+    LayerPatchSettingsPopupComponent,
+    LayerPatchPopupComponent
   ],
   imports: [
     DragDropModule,
@@ -172,10 +183,17 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     CoreModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent,     DropdownOwnerRendererComponent,
+    AgGridModule.withComponents([
+      colorDropdownRendererComponent,
+      inputRendererComponent,
+      AnchorRendererComponent,
+      DropdownOwnerRendererComponent,
       DropdownResponsibleRendererComponent,
       DropdownPositionRendererComponent,
-    ToggleButtonRendererComponent]),
+      ToggleButtonRendererComponent,
+      nominalGenerationRenderComponent,
+      flagRenderComponent
+    ]),
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,
@@ -225,7 +243,6 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     HighchartsChartModule,
     NgxMatSelectSearchModule,
     FlexLayoutModule
-
   ],
   providers: [
     MarkerService
@@ -236,10 +253,13 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     TableViewControlComponent,
     colorDropdownRendererComponent,
     inputRendererComponent,
-    AnchorRendererComponent
+    AnchorRendererComponent,
+    nominalGenerationRenderComponent,
+    flagRenderComponent
   ], entryComponents: [
     TableViewControlComponent,
-    SpiderComponent
+    SpiderComponent,
+    StructurePlannedSettingsPopupComponent
   ]
 })
 

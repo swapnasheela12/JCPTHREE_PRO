@@ -3027,6 +3027,26 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
     }
 ];
 
+const NOMINAL_GENERATION_LIST = [
+    {
+        name: "Nominal Capacity",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: []
+    },
+    {
+        name: "Nominal Generation",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Generation",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: []
+    }
+];
+
+
 const MODULE_LIST_PLANNING_DEPLOYMENT = [
     {
         name: "Dashboards",
@@ -3086,12 +3106,12 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         children: []
     },
     {
-        name: "Nominal Capacity",
+        name: "Nominal Generation",
         icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        link: "Nominal-Generation",
         eventName: 'sites-outdoor-esc',
         show:true,
-        children: []
+        children: NOMINAL_GENERATION_LIST
     }
 ];
 

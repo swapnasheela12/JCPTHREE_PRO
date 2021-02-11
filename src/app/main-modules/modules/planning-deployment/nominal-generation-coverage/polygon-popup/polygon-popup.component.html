@@ -1,0 +1,77 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>{{data.title}}</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content>
+        <form fxLayout="column" class="" style="height: 100%; overflow: auto;">
+            <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" class="mt20 mx15">
+                <mat-form-field fxFlex="30" class="p15">
+                    <mat-select placeholder="Target Polygon" disableOptionCentering
+                        disableOptionCentering ngDefaultControl [(value)]="polygonDefault">
+                        <mat-option *ngFor="let polygon of polygonList" [value]="polygon.name">
+                            {{polygon.name}}
+                        </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="30" class="p15">
+                    <mat-select placeholder="Planned Type" disableOptionCentering
+                        disableOptionCentering ngDefaultControl [(value)]="typeDefault">
+                        <mat-option *ngFor="let type of plannedTypeList" [value]="type.name">
+                            {{type.name}}
+                        </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="30" class="p15">
+                    <mat-select placeholder="Environment" disableOptionCentering
+                    disableOptionCentering ngDefaultControl  [(value)]="environmentDefault">
+                        <mat-option *ngFor="let environment of environmentList" [value]="environment.name">
+                            {{environment.name}}
+                        </mat-option>
+              </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" class="optimization-target" fxLayoutAlign="space-evenly center">
+                <div fxLayout="column" fxFlex="100">
+                    <div fxFlex="100" class="target-title"> 
+                        Optimization Target
+                    </div>
+                    <div fxFlex="100" fxLayoutAlign="space-evenly" class="mt20 mx15" style="overflow-x:hidden">
+                        <div *ngFor="let item of checkboxList" fxFlex="50">
+                            <mat-checkbox [disableRipple]="true">
+                                <mat-form-field class="form-field-container mr20" fxFlex="18">
+                                    <input type="number" matInput placeholder="{{item.name}}" 
+                                        [value]="item.nameValue" 
+                                        required>
+                                    <span matSuffix fxFlex="10">dbm</span>
+                                  </mat-form-field>
+                                  <mat-form-field class="form-field-container mr20" fxFlex="18">
+                                    <input type="number" matInput placeholder="{{item.option}}" 
+                                        [value]="item.optionValue" 
+                                        required>
+                                    <span matSuffix fxFlex="10">%</span>
+                                  </mat-form-field>
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,6 @@ import { dropdownPriorityRendererComponent } from './../../../core/components/ag
 import { dropdownQueryRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
 import { statusflagiconRenderComponent } from './../../../core/components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
-import { AdDirective } from './../../../_directive/dynamicComponent/ad.directive';
 import { DeleteCreatedKpiRendererComponent } from './../performance-management/kpi-editor/renderer/delete-renderer.component';
 import { createKpiDropdownRendererComponent } from './../performance-management/kpi-editor/renderer/dropdown-renderer.component';
 import { dropdownRendererComponent } from './../performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
@@ -76,7 +75,7 @@ import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strate
 import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent, DefineDataSourceComponent, ExclusionZonesComponent, StrategicSitesComponent],
+  declarations: [CreatePageComponent, StatergeMapNominalComponent, CandidatesACPComponent, DefineDataSourceComponent, ExclusionZonesComponent, StrategicSitesComponent],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,

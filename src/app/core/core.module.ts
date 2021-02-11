@@ -80,6 +80,8 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { ViewAttributesComponent } from './components/commonPopup/view-attributes/view-attributes.component';
 import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
+import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
+import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +117,9 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     CustomFlagPopupComponent,
     ViewAttributesComponent,
     CustomFlagPopupComponent,
-    SharePopupComponent
+    SharePopupComponent,
+    AdDirective,
+    SiteProposedConfigurationComponent
   ],
   imports: [
     CommonModule,
@@ -172,7 +176,8 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
   providers: [
     SideNavService,
     MmenuDirective,
-    isEllipsisActiveDirective
+    isEllipsisActiveDirective,
+    AdDirective
   ],
   exports: [
     HeaderComponent,
@@ -194,7 +199,8 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     AgGridTreeComponent,
     DeleteRendererComponent,
     DeleteButtonRenderComponent,
-    PaginationComponent
+    PaginationComponent,
+    AdDirective
   ], entryComponents: [
     SuccessfulComponent,
     SuccessfulModalComponent
