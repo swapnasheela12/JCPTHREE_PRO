@@ -46,10 +46,13 @@ app-splitmap{
             .closechip{
                 position: absolute;
                 right: 8px;
-                top: 8px;
+                top: 10px;
                 font-size: 15px;
                 color: #707070;
                 cursor: pointer;
+                .material-icons{
+                    font-size: 18px;
+                }
             }
         }
         

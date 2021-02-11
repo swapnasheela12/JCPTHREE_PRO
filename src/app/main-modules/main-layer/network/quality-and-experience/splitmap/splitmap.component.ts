@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, Input, OnDestroy, ViewChild, ViewContainerRef, ViewEncapsulation } from "@angular/core";
 import * as L from "leaflet";
+import { SyncmapsService } from '../sync-maps/syncmaps.service';
+
 
 @Component({
   selector: 'app-splitmap',
@@ -80,6 +82,10 @@ export class SplitmapComponent implements AfterViewInit {
   ]
   public aComponentRef: any;
 
+  constructor(private syncmapsService:SyncmapsService){
+    //SYNC MAPS SERVICE
+    this.syncmapsService.syncMaps();
+  }
   ngAfterViewInit() {
     this.init();
   }
@@ -89,15 +95,21 @@ export class SplitmapComponent implements AfterViewInit {
     this.closechip();
   }
 
-  
   setMapDecisionParams() {
     let dataR = this.splitmapPayload[0];
     let operatorsLength: number;
     let criteriaDataArrayLength: number;
+    // DATA HANDLING
+
+    //OPERATORS
     this.operatorNames = dataR.operators ? dataR.operators : [];
     operatorsLength = this.operatorNames.length;
+
+    //CRITERIAS
     this.criteriaDataArray = dataR.criteriaPayload ? dataR.criteriaPayload : [];
     criteriaDataArrayLength = this.criteriaDataArray.length;
+
+    //GRID
     this.gridDataArray = dataR.gridData ? dataR.gridData : [];
     this.aComponentRef = dataR.splitComponentRef;
 
@@ -125,11 +137,13 @@ export class SplitmapComponent implements AfterViewInit {
   }
 
   setMapLayer(splitmapCount: any) {
+    //SPLIT SCREEN
     let screenWidth = window.innerWidth;
     let slotWidth = screenWidth / splitmapCount;
     for (let i: any = 0; i <= splitmapCount - 1; i++) {
+
+      //CREATE A SLOT FOR EACH MAP
       let element = document.createElement("article");
-      let ii = Math.floor((Math.random() * 10) + 1);
       this.object = {
         "mapId": "map" + i,
         "titleLayerUrl": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -147,18 +161,20 @@ export class SplitmapComponent implements AfterViewInit {
       element.setAttribute("class", "mapcss")
       element.style.width = slotWidth + "px";
 
+      //MAIN WRAPPER
       var parent = document.getElementsByClassName("maps-wrapper")[0]
       parent.appendChild(element);
       let mapObject: any = undefined;
 
+      //CREATE DOM ELEMENET FOR MAP TO INJECT
       mapObject = L.map(element, {
         zoomControl: this.object.properties.zoomControl
       }).setView(this.object.properties.center, this.object.properties.zoom);
 
-
+      //SETTIN UP THE TILES ON EACH MAP
       L.tileLayer(this.object.titleLayerUrl).addTo(mapObject);
-      let p: any = [];
-
+      
+      //REFRESH THE MAP
       setTimeout(() => {
         mapObject.invalidateSize();
       }, 0);
@@ -171,7 +187,7 @@ export class SplitmapComponent implements AfterViewInit {
 
 
 
-      //SINGLE OPERATOR HANDLING
+      // OPERATOR HANDLING
       if (this.operatorNames.length == 1) {
         var opName = this.operatorNames[0];
         createChip.insertAdjacentHTML("afterbegin", opName);
@@ -184,11 +200,12 @@ export class SplitmapComponent implements AfterViewInit {
       let criteriaTag = document.createElement("span");
       criteriaTag.setAttribute("class", "ml-2");
 
+      //CHIP ELEMENT
       let closeChip = document.createElement("span");
       closeChip.setAttribute("class", "closechip");
-      closeChip.insertAdjacentHTML("afterbegin", "<i class='fa fa-times'></i>");
+      closeChip.insertAdjacentHTML("afterbegin", "<i class='material-icons'>close</i>");
 
-      //SINGLE CRITERIA HANDLING
+      // CRITERIA HANDLING
       if (this.criteriaDataArray.length == 1) {
         let criteriaText: string = this.criteriaDataArray[0].name
         var criteriaName: Text = document.createTextNode(criteriaText);
@@ -219,7 +236,6 @@ export class SplitmapComponent implements AfterViewInit {
     const allchips: any = document.querySelectorAll(".closechip");
     [...allchips].forEach(chip => {
       chip.addEventListener("click", (event: any) => {
-        console.log(event.target.parentNode.parentNode);
         event.target.parentNode.parentNode.remove();
       });
     });
@@ -244,6 +260,7 @@ export class SplitmapComponent implements AfterViewInit {
   plotData(canvasLayer: any, slotWidth: any, opName: any) {
     let ref = this;
     canvasLayer.on("layer-render", function (this: any) {
+      //SET THE CANVAS DYNAMIC WIDTH AND HEIGHT
       this.getContainer().style.width = slotWidth + "px";
       this.getContainer().style.height = window.innerHeight + "px";
       var { ctx } = this.setFullLayerBounds();
