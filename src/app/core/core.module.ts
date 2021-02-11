@@ -1,3 +1,4 @@
+import { layersIconRenderComponent } from './components/ag-grid-renders/layersicon.component';
 import { dropDownList3DotRendererComponent } from './components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { dropdownPriorityRendererComponent } from './components/ag-grid-renders/dropdown-priority-renderer.component';
 import { dropdownQueryRendererComponent } from './components/ag-grid-renders/dropdown-query-renderer.component';
@@ -107,6 +108,7 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     SavePolygonPopupComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    layersIconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
     dropDownList3DotRendererComponent,
@@ -120,7 +122,7 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -182,6 +184,7 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     dropDownThreeDotRendererComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    layersIconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
     dropDownList3DotRendererComponent,

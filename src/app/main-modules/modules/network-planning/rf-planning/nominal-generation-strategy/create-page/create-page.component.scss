@@ -28,12 +28,19 @@ $color-grayBlue: #464d69;
                     font-size: 15px;
                     color: $color-grayBlue;
                     font-weight: 400;
-                    font-family: 'Lato Medium';
+                    font-family: 'Lato Bold';
                     line-height: 2.5;
                 }
                 .Sub-header {
                     font-weight: 400;
                     color: $color-grayBlue;
+                }
+                .Sub-header-title {
+                    font-weight: 400;
+                    color: #464d69b3;
+                    font-size: 12px;
+                    font-family: "Lato Medium";
+                    line-height: 3.1;
                 }
                 .title {
                     font-size: 12px;

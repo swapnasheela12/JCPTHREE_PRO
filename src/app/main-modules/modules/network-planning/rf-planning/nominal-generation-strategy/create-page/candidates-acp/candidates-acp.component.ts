@@ -40,7 +40,7 @@ export interface DialogData {
   selector: 'app-candidates-acp',
   templateUrl: './candidates-acp.component.html',
   styleUrls: ['./candidates-acp.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class CandidatesACPComponent implements OnInit {
 
@@ -109,10 +109,13 @@ export class CandidatesACPComponent implements OnInit {
   private createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "",
+        headerName: "Sites",
         field: "acpcandidate",
-        width: 190,
+        width: 230,
         checkboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+         headerCheckboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
         headerClass: 'hide-header',
@@ -121,7 +124,7 @@ export class CandidatesACPComponent implements OnInit {
         // field: "flag",
         cellClass: function (params) { return (params.value === 'completed' ? 'red' : 'green'); },
         cellRenderer: 'statusFlagRenderer',
-        width: 60,
+        width: 40,
       }, {
         headerName: "",
         suppressMenu: true,

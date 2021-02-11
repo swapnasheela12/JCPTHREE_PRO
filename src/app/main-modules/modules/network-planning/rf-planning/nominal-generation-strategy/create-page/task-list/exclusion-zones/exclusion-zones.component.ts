@@ -1,6 +1,7 @@
-import { layersIconRenderComponent } from './../../../../../../../core/components/ag-grid-renders/layersicon.component';
+// import { Component, OnInit } from '@angular/core';
+import { layersIconRenderComponent } from '../../../../../../../../core/components/ag-grid-renders/layersicon.component';
 // import { dropDownList3DotRendererComponent } from './../../../../../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
-import { dropDownList3DotRendererComponent } from '../../../../../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
+import { dropDownList3DotRendererComponent } from '../../../../../../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { fileUploadPopupModel, FileUploadPopupComponent } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
@@ -9,7 +10,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { catchError } from 'rxjs/operators/catchError';
 import { of } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { dropdownRendererComponent } from './../../../../../performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
+import { dropdownRendererComponent } from '../../../../../../performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -19,12 +20,16 @@ import { GridOptions, GridCore, SelectionChangedEvent } from 'ag-grid-community'
 import { Subscription, Subject, ReplaySubject } from 'rxjs';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 
+
+
+
 @Component({
-  selector: 'app-define-data-source',
-  templateUrl: './define-data-source.component.html',
-  styleUrls: ['./define-data-source.component.scss']
+  selector: 'app-exclusion-zones',
+  templateUrl: './exclusion-zones.component.html',
+  styleUrls: ['./exclusion-zones.component.scss']
 })
-export class DefineDataSourceComponent implements OnInit {
+export class ExclusionZonesComponent implements OnInit {
+
   public showMyContainer: boolean;
 
   public gridApi;
@@ -222,17 +227,7 @@ export class DefineDataSourceComponent implements OnInit {
     this.selectedBoundaries = this.listBoundaries[0];
   }
 
-  @Input() name: string;
-  @Output() defineToggleButtonFun = new EventEmitter();
-
-  showSelected: boolean;
-  defineToggleButton() {
-    this.showSelected = false;
-    this.datashare.currentMessageDialog.subscribe((message: any) => {
-      this.datashare.changeMessage(message.selectedIndex)
-    });
-    this.defineToggleButtonFun.emit(this.showSelected);
-  }
+  
 
 
   selectedBoundaries: string;
@@ -262,17 +257,6 @@ export class DefineDataSourceComponent implements OnInit {
       }
     })
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

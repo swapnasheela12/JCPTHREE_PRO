@@ -1,5 +1,8 @@
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { MatDialog } from '@angular/material/dialog';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 @Component({
   selector: 'app-button-renderer',
@@ -12,7 +15,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
     <!-- <div class="pr-3 fas fa-trash-alt"></div> -->
     <span>Edit</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="openWarningDialog()">
     <!-- <div class="pr-3 fas fa-trash-alt"></div> -->
     <span>Delete</span>
   </button>
@@ -48,4 +51,27 @@ export class dropDownList3DotRendererComponent implements ICellRendererAngularCo
 
     }
   }
+
+  constructor(public dialog: MatDialog, public datashare: DataSharingService) { }
+
+
+  openWarningDialog(){
+    const message = `Are you Sure you want to perform this action?`;
+    const image = 'warning';
+    const snackbarMode = 'success';
+    const snackbarText = 'Action Performed Successfully';
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
+    this.dialog.open(CommonPopupComponent, {
+      data: dialogData
+    });
+  }
+
+  deleteRow(evt) {
+    let deletedRow = this.params.node.data;
+    this.params.api.updateRowData({ remove: [deletedRow] });
+  }
+
+
+
+
 }

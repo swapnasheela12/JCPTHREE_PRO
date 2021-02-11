@@ -3,14 +3,32 @@
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
             <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="padding: 0 10px;">
                 <div class="pl-0" fxFlex="70" fxLayout="row wrap">
-                    <div class="px-1" style="line-height: 2.2;">
-                        <button mat-icon-button (click)="backPageRout()">
+                    <div class="px-1" style="line-height: 2;">
+                        <button mat-icon-button *ngIf="showSelected" (click)="stepFunc()">
+                            <mat-icon class="iconType" style="font-size: 25px;">
+                                <div class="zmdi zmdi-chevron-left"></div>
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button *ngIf="!showSelected" (click)="backPageRout()">
                             <mat-icon class="iconType" style="font-size: 25px;">
                                 <div class="zmdi zmdi-chevron-left"></div>
                             </mat-icon>
                         </button>
                     </div>
-                    <div class="header">Nominal Staterge</div>
+
+                    <div class="header">Nominal Strategy</div>
+                    <div *ngIf="showSelected && !showStrategicSites && !showExclusionZones" style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && !showStrategicSites && !showExclusionZones" class="Sub-header-title">Define Data Source</div>
+                    <div *ngIf="showSelected && showStrategicSites && !showExclusionZones" style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && showStrategicSites && !showExclusionZones" class="Sub-header-title">Strategic Sites</div>
+                    <div *ngIf="showSelected && !showStrategicSites && showExclusionZones" style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && !showStrategicSites && showExclusionZones" class="Sub-header-title">Exclusion Zones</div>
                 </div>
                 <div class="pl-0" fxFlex *ngIf="!typeGenerate">
                     <div class="title">Project Name</div>
@@ -20,7 +38,7 @@
         </mat-toolbar>
         <mat-divider></mat-divider>
         <mat-card-content class="cia-card-content">
-            <mat-horizontal-stepper *ngIf="Workorder == false" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+            <mat-horizontal-stepper [selectedIndex]="currentStep" *ngIf="Workorder == false && !showSelected" #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
                 <mat-step label="Basic Details">
                     <div class="" style="height: calc(100% - 58px);overflow: auto;">
 
@@ -476,12 +494,12 @@
                 <mat-step label="Data Source">
                     <div fxLayout="column wrap" fxFlex="100" style="height: calc(100% - 58px);">
                         <div fxFlex="100" style="overflow: auto;">
-                            <div *ngIf="!showMyContainer" class="cust-nominal-container m-0" style="height: 350px;">
+                            <div class="cust-nominal-container m-0" style="height: 350px;">
                                 <div fxLayout="row wrap" class="header-nominal-cust px-3">
                                     <div fxFlex="30" class="title">Select Data Sources</div>
                                     <div fxFlex></div>
                                     <div class="icon-container">
-                                        <button mat-raised-button (click)="showMyContainer=!showMyContainer" color="primary">Define Data Source</button>
+                                        <button mat-raised-button (click)="ToggleButton()" color="primary">Define Data Source</button>
                                     </div>
                                 </div>
                                 <div class="content-nominal-cust px-2" style="height: 300px;">
@@ -595,27 +613,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div *ngIf="showMyContainer">
-                                <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
-                                    <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="padding: 0 10px;">
-                                        <div class="pl-0" fxFlex="70" fxLayout="row wrap">
-                                            <div class="px-1" style="line-height: 2.2;">
-                                                <button mat-icon-button (click)="showMyContainer = false">
-                                                    <mat-icon class="iconType" style="font-size: 25px;">
-                                                        <div class="zmdi zmdi-chevron-left"></div>
-                                                    </mat-icon>
-                                                </button>
-                                            </div>
-                                            <div class="header">Nominal Staterge</div>
-                                        </div>
-                                        <!-- <div class="pl-0" fxFlex *ngIf="!typeGenerate">
-                                            <div class="title">Project Name</div>
-                                            <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
-                                        </div> -->
-                                    </mat-toolbar-row>
-                                </mat-toolbar>
-                                <mat-divider></mat-divider>
-                            </div>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
@@ -637,6 +634,17 @@
                 </mat-step>
 
             </mat-horizontal-stepper>
+
+            <ng-container *ngIf="showSelected && !showStrategicSites && !showExclusionZones">
+                <app-define-data-source (defineToggleButtonFun)="getselecteddefine($event)"></app-define-data-source>
+            </ng-container>
+            <ng-container *ngIf="showExclusionZones && !showStrategicSites && showSelected">
+                <app-exclusion-zones></app-exclusion-zones>
+            </ng-container>
+            <ng-container *ngIf="showStrategicSites && !showExclusionZones && showSelected">
+                <app-strategic-sites></app-strategic-sites>
+            </ng-container>
+
         </mat-card-content>
     </mat-card>
 </div>

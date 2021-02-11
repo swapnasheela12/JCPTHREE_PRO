@@ -25,7 +25,7 @@ import { GridOptions, GridCore, SelectionChangedEvent, RowNode, Column } from 'a
 import { MatSidenav } from '@angular/material/sidenav';
 import { dropdown, R4GState, JC, City, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../../../core/components/common-elements/type-dropdown-modulelist';
 import { MatSelect } from '@angular/material/select';
-import { ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { ViewChild, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import { ReplaySubject, Subject, of } from 'rxjs';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ElementRef, ViewEncapsulation, Type, ɵNG_COMP_DEF } from '@angular/core';
@@ -35,6 +35,7 @@ import { } from 'google-maps';
 declare let $: any;
 declare const L: any; // --> Works
 import 'leaflet-draw';
+import { MatStepper } from '@angular/material/stepper';
 
 interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
@@ -454,7 +455,7 @@ export class CreatePageComponent implements OnInit {
 
 
   }
-
+  currentStep;
   ngAfterViewInit(): void {
     this.initMap();
   }
@@ -735,10 +736,6 @@ export class CreatePageComponent implements OnInit {
     });
   }
 
-  backPageRout() {
-    this.location.back(); // <-- go back to previous location on cancel
-  }
-
   public itemsProjectName = [
     {
       'checked': false,
@@ -853,7 +850,7 @@ export class CreatePageComponent implements OnInit {
     {
       headerName: "",
       cellRenderer: 'dropDownThreeDotRenderer',
-      width: 90,
+      width: 110,
       pinned: 'right',
     }
     ];
@@ -870,8 +867,11 @@ export class CreatePageComponent implements OnInit {
     this.calculateRowCount();
   }
 
+  public showExclusionZones: boolean = false;
+  public showStrategicSites: boolean = false;
   onCellClicked(item) {
     console.log(item, "item");
+    console.log(item.value,"item.value");
     if (item.value == "View Attributes") {
       const dialogRef = this.dialog.open(ViewAttributesComponent, {
         width: "600px",
@@ -879,16 +879,88 @@ export class CreatePageComponent implements OnInit {
         panelClass: "material-dialog-container",
         // data: { transferDataPoly: this.dataPolygon, headerNominal: true }
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         // this.gotomyreport = result;
       });
-    }
+    } else if(item.value == "Upload File") {
+     
+      if (item.data.datasourcename == "Exclusion Zones") {
+        console.log("Exclusion Zones");
+        this.showExclusionZones = true;
+        this.showStrategicSites = false;
+        this.showSelected = true;
+      }else if(item.data.datasourcename == "Strategic Sites"){
+        console.log("Strategic Sites");
+        this.showStrategicSites = true;
+        this.showExclusionZones = false;
+        this.showSelected = true;
+      }
 
-    
+    } else if(item.value == "Select Table") {
+      
+      if (item.data.datasourcename == "Exclusion Zones") {
+        console.log("Exclusion Zones");
+        this.showExclusionZones = true;
+        this.showStrategicSites = false;
+        this.showSelected = true;
+      }else if(item.data.datasourcename == "Strategic Sites"){
+        console.log("Strategic Sites");
+        this.showStrategicSites = true;
+        this.showExclusionZones = false;
+        this.showSelected = true;
+      }
+
+    } 
+
+
 
   }
 
+  defineDataSourceFun() {
+    this.showMyContainer = !this.showMyContainer;
+  }
+
+
+  showSelected: boolean = false;
+  @ViewChild('nodeCounterStepper') stepper: MatStepper;
+  // @Input() steperInput: number;
+  ToggleButton() {
+    this.showSelected = !this.showSelected;
+    // console.log(this.steperInput,"this.steperInput");
+    console.log(this.stepper, "stepper");
+    this.datashare.changeMessageDialog(this.stepper)
+
+    // this.steperInput = this.stepper.selectedIndex;
+  }
+
+  backPageRout() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+  // getselecteddefine(val) {
+  getselecteddefine(val) {
+    console.log(val, "val");
+    this.showSelected = val;
+
+    // setTimeout(() => {
+    //   this.initMap();
+    // }, 500);
+    this.stepFunc();
+  }
+
+  stepFunc() {
+    this.showSelected = false;
+    setTimeout(() => {
+      this.stepper.selectedIndex = 1;
+      this.currentStep = 2;
+    }, 500);
+
+    setTimeout(() => {
+      this.initMap();
+    }, 500);
+
+  }
 
 
 
