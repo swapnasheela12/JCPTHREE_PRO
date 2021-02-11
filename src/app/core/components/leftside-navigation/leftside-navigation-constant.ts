@@ -1516,8 +1516,8 @@ const MODULE_LIST_CONFIG = [
         children: []
     },
     {
-        name: 'Nominal Staterge',
-        link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Staterge',
+        name: 'Nominal Strategic',
+        link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic',
         eventName: 'sites-nominal-staterge',
         children: []
     }

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [{
   path: "RF-Planning", children: [
-    { path: "Nominal-Strategy", component: CreatePageComponent }
+    { path: "Nominal-Strategic", component: CreatePageComponent }
   ]
 },];
 

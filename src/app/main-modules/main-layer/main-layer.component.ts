@@ -357,7 +357,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
       drawMarker: true,  // adds button to draw markers
       drawPolygon: true,  // adds button to draw a polygon
-      drawPolyline: false,  // adds button to draw a polyline
+      drawPolyline: true,  // adds button to draw a polyline
       drawCircle: true,  // adds button to draw a cricle
       drawCircleMarker: false,//add button with circle radius
       editPolygon: true,  // adds button to toggle global edit mode
