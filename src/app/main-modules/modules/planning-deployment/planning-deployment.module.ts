@@ -59,14 +59,15 @@ import { NominalCapacityComponent } from './nominal-capacity/nominal-capacity.co
 import { CreateTaskPageComponent } from './nominal-capacity/create-task-page/create-task-page.component';
 import { cnctDropdownRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-renderer.component';
 import { ncCtTooltipComponent } from './nominal-capacity/create-task-page/renderer/nc-ct-tooltip.component';
+import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-header-delete-renderer.component';
 @NgModule({
-  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent, ncCtTooltipComponent],
+  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent, ncCtTooltipComponent, NcDeleteHeaderRendererComponent],
   imports: [
     CommonModule,
     PlanningDeploymentRoutingModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([cnctDropdownRendererComponent, ncCtTooltipComponent]),
+    AgGridModule.withComponents([cnctDropdownRendererComponent, ncCtTooltipComponent, NcDeleteHeaderRendererComponent]),
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
@@ -114,7 +115,7 @@ import { ncCtTooltipComponent } from './nominal-capacity/create-task-page/render
     NgxMatSelectSearchModule
   ],
   providers: [],
-  exports: [EnbscComponent, cnctDropdownRendererComponent],
+  exports: [EnbscComponent, cnctDropdownRendererComponent, NcDeleteHeaderRendererComponent],
   entryComponents : [
     NewAndSaveTemplatePopupComponent
   ],
