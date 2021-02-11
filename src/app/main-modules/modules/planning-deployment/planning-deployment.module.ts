@@ -67,6 +67,8 @@ import { NominalGenerationSummaryComponent } from './nominal-generation-coverage
 import { CoreModule } from 'src/app/core/core.module';
 import { NominalSiteDistributionSummaryComponent, nominalSiteVerticalDotComponent, flagRenderComponent } from './nominal-generation-coverage/nominal-site-distribution-summary/nominal-site-distribution-summary.component';
 import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header-view/map-header-view.component';
+import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-header-delete-renderer.component';
+
 @NgModule({
   declarations: [
     EnbscComponent,
@@ -98,7 +100,8 @@ import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header
     NominalSiteDistributionSummaryComponent,
     nominalSiteVerticalDotComponent,
     flagRenderComponent,
-    MapHeaderViewComponent
+    MapHeaderViewComponent,
+    NcDeleteHeaderRendererComponent
   ],
   imports: [
     CommonModule,
@@ -109,6 +112,7 @@ import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header
     AgGridModule.withComponents([
       cnctDropdownRendererComponent,
       ncCtTooltipComponent,
+      NcDeleteHeaderRendererComponent,
       nominalSiteVerticalDotComponent,
       flagRenderComponent]),
     FormsModule,
@@ -161,9 +165,9 @@ import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header
   exports: [
     EnbscComponent,
     cnctDropdownRendererComponent,
+    NcDeleteHeaderRendererComponent,
     nominalSiteVerticalDotComponent,
-    flagRenderComponent
-  ],
+    flagRenderComponent],
   entryComponents : [
     NewAndSaveTemplatePopupComponent,
     NominalGenerationLandingLayerComponent
