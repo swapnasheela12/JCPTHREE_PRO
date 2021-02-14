@@ -24,6 +24,9 @@ ul {
 }
 .mat-accordion{
   display: block;
+  .tooltip-info{
+    color: #5C5C5C;
+  }
 }
 .mat-button-toggle-checked.mat-button-toggle-appearance-standard.mat-button-toggle-checked{
   background-color:#0070DB;

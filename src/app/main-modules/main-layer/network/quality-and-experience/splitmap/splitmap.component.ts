@@ -82,7 +82,7 @@ export class SplitmapComponent implements AfterViewInit {
   ]
   public aComponentRef: any;
 
-  constructor(private syncmapsService:SyncmapsService){
+  constructor(private syncmapsService: SyncmapsService) {
     //SYNC MAPS SERVICE
     this.syncmapsService.syncMaps();
   }
@@ -171,9 +171,10 @@ export class SplitmapComponent implements AfterViewInit {
         zoomControl: this.object.properties.zoomControl
       }).setView(this.object.properties.center, this.object.properties.zoom);
 
+      
       //SETTIN UP THE TILES ON EACH MAP
       L.tileLayer(this.object.titleLayerUrl).addTo(mapObject);
-      
+
       //REFRESH THE MAP
       setTimeout(() => {
         mapObject.invalidateSize();
@@ -185,11 +186,13 @@ export class SplitmapComponent implements AfterViewInit {
       createChip.setAttribute("id", "chip" + i);
       createChip.setAttribute("class", "chip-template");
 
+      var imageTag = document.createElement("img");
 
 
       // OPERATOR HANDLING
       if (this.operatorNames.length == 1) {
         var opName = this.operatorNames[0];
+
         createChip.insertAdjacentHTML("afterbegin", opName);
       }
       else if ((this.operatorNames.length > 1 && this.gridDataArray.length == 0)) {
@@ -223,10 +226,10 @@ export class SplitmapComponent implements AfterViewInit {
       //INTIALISE CANVAS
       var canvasLayer = leaflayer().customLayer({
         container: document.createElement("canvas")
-      }).addTo(mapObject);
+      });
 
       //SETTING UP DATA
-      //this.plotData(canvasLayer, slotWidth, criteriaName, opName);
+      this.plotData(canvasLayer, slotWidth, opName,mapObject);
     }
     this.syncMaps();
   }
@@ -257,9 +260,10 @@ export class SplitmapComponent implements AfterViewInit {
   }
 
   //PLOT DATA
-  plotData(canvasLayer: any, slotWidth: any, opName: any) {
+  plotData(canvasLayer: any, slotWidth: any, opName: any,map) {
     let ref = this;
     canvasLayer.on("layer-render", function (this: any) {
+      
       //SET THE CANVAS DYNAMIC WIDTH AND HEIGHT
       this.getContainer().style.width = slotWidth + "px";
       this.getContainer().style.height = window.innerHeight + "px";
@@ -275,6 +279,7 @@ export class SplitmapComponent implements AfterViewInit {
         });
       });
     });
+    canvasLayer.addTo(map);
   }
 }
 

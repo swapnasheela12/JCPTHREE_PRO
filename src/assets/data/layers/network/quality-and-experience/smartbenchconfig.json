@@ -97,17 +97,17 @@
         "expanded": false,
         "options": [
           {
-            "name": "% of RSRQ <-5",
+            "name": "RSRQ < -18",
             "selected": false,
             "disabled": true
           },
           {
-            "name": "RSRQ >= -5 to < 0",
+            "name": "RSRQ >= -18 to < -15",
             "selected": false,
             "disabled": true
           },
           {
-            "name": "RSRQ >=0",
+            "name": "RSRQ >= -15",
             "selected": false,
             "disabled": true
           }
@@ -126,16 +126,9 @@
             "tabData": [
               {
                 "name": "RSRP",
-                "description": "1 lorem ipsum",
+                "description": "RSRP <-120dBm",
                 "disabled": true,
                 "selected": false,
-                "tag": "Grid"
-              },
-              {
-                "name": "RSRP 1",
-                "description": "2 lorem ipsum",
-                "disabled": true,
-                "selected": true,
                 "tag": "Grid"
               }
             ]
@@ -145,15 +138,36 @@
             "disabled":true,
             "tabData": [
               {
-                "name": "SINR",
-                "description": "1 lorem ipsum",
+                "name": "RSRP",
+                "description": "Operator :RSRP< -105 dBm Competition : >-100 dBm",
                 "disabled": true,
                 "selected": false,
                 "tag": "Grid"
               },
               {
-                "name": "SINR 2",
-                "description": "2 lorem ipsum",
+                "name": "RSRQ",
+                "description": "Operator :RSRQ <-18 dB Competition >=-15 dB",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              },
+              {
+                "name": "SINR",
+                "description": "Operator : SINR <-5 dB  Competition >0 dB",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              },
+              {
+                "name": "RSRP & RSRQ",
+                "description": "Operator:RSRP <-110 dBm & RSRQ <-18 dB  Competition:RSRP >-105 dBm & RSRQ>=-15 dB",
+                "disabled": true,
+                "selected": false,
+                "tag": "Grid"
+              },
+              {
+                "name": "RSRP & SINR",
+                "description": "Operator:RSRP <-110 dBm & SINR <-5 dB  Competition:RSRP >-110 dBm & SINR >=5 dB",
                 "disabled": true,
                 "selected": false,
                 "tag": "Grid"

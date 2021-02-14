@@ -16,15 +16,15 @@
 								</mat-panel-title>
 							</mat-expansion-panel-header>
 							<div class="content pt-4">
-								<div class="stream">
+								<div class="stream d-flex align-items-center">
 									<span class="pr-2" *ngFor="let stream of option.data[0].dataStreams;index as i">
 										{{stream.name}}
 										<mat-slide-toggle [(ngModel)]="toggleIsChecked" name="toggle" *ngIf="i==1"
 											(change)="datastreamSlideToggle($event)">
 										</mat-slide-toggle>
-										<span *ngIf="i == 3" matTooltip="Info about the action" class="font17">
-											<i class="fa fa-info-circle"></i>
-										</span>
+										<span class="material-icons tooltip-info" *ngIf="i == 3" #tooltip="matTooltip" matTooltip="MyJio : Comparison of &quot;MyJio - Jio Samples/ Grids&quot; Vs. &quot;MyJio - Airtel/Vodafone Samples/ Grids &quot; &#13; ....  LSR : Comparison of  LSR-Jio Samples/Grids&quot; Vs. &quot;MyJio - Airtel/Vodafone Samples/ Grids&quot;)"  matTooltipClass="allow-cr">
+											info
+											</span>
 									</span>
 		
 								</div>
@@ -81,7 +81,7 @@
 													{{data.name}}
 												</mat-radio-button>
 											</mat-radio-group>
-											<div class="tabgrid">{{data.description}}</div>
+											<div class="tabgrid" style="width: 200px;">{{data.description}}</div>
 										</li>
 									</ul>
 								</mat-tab>
