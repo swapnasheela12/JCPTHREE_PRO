@@ -137,23 +137,25 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.recieveAndLoadSplitmapCompoent();
   }
 
-  //SET STRIP MENU WITH LAYER NAME
+  //SET UP STRIP MENU BAR WITH LAYER SELECTED
   setStripMenubar() {
     this.datashare.currentMessage.subscribe(val => {
-      let layerCheckedData:any = val
+      let layerCheckedData: any = val;
+      this.layerNamesArray = [];
       try {
         if (layerCheckedData.length == 0) {
-          this.layerName = '';
-          document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle");
           (<HTMLInputElement>document.getElementById("topstrip")).style.display = "none";
-        }
-        this.layerNamesArray = [];
-        if (layerCheckedData.length> 0) {
+          document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle");
+          this.destroySplitWidgetComponents();
+         }
+        else if (layerCheckedData.length > 0) {
           this.layerDetailsArray = val;
+
           for (var i = 0; i < this.layerDetailsArray.length; i++) {
             let layername = this.layerDetailsArray[i].name;
             this.layerNamesArray.push(layername);
           }
+          
           //CREATE DOM STYLE
           if (typeof this.layerNamesArray !== 'undefined' && this.layerNamesArray.length > 0) {
             let latestLayerChosen = this.layerNamesArray[this.layerDetailsArray.length - 1];
@@ -162,27 +164,28 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
             this.stripDataEnabled = true;
             this.layerName = latestLayerChosen;
+            console.log(this.layerNamesArray);
             if (this.layerName == "Smart Benchmarking") {
               this.smartbenchlayerenabled = true;
             }
             else {
               this.smartbenchlayerenabled = false;
+              this.destroySplitWidgetComponents();
             }
-          }          
-        }
-        else{
-          if(this.smartbenchmenuRef || this.splitmapcomponentRef){
-            this.smartbenchmenuRef.destroy();
-            this.splitmapcomponentRef.destroy();
-            this.layerName = '';
-            (<HTMLInputElement>document.getElementById("topstrip")).style.display = "none";
-            
           }
         }
       }
-      catch (error) { 
+      catch (error) {
       }
     });
+  }
+
+  // DESTROY THE SPLIT & WIDGET COMPONENTS
+  destroySplitWidgetComponents() {
+    if (this.smartbenchmenuRef || this.splitmapcomponentRef) {
+      this.smartbenchmenuRef.destroy();
+      this.splitmapcomponentRef.destroy();
+    }
   }
 
   //LOAD SMARTBENCH MENU WIDGET
@@ -199,8 +202,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   //RECIEVE DATA AND TRIGGER SPLITMAP
   recieveAndLoadSplitmapCompoent() {
     this.clickEventSub = this.smartSplitmapService.recieveTriggeredData().subscribe((val) => {
-      let payloadDataObject:any = val;
-      if(payloadDataObject !== undefined && payloadDataObject.length > 0){
+      let payloadDataObject: any = val;
+      if (payloadDataObject !== undefined && payloadDataObject.length > 0) {
         this.loadSplitMapComponent(payloadDataObject);
       }
     });
@@ -867,8 +870,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    console.log(this.datashare,"datashare?????");
-    
+    console.log(this.datashare, "datashare?????");
+
 
   }
 
