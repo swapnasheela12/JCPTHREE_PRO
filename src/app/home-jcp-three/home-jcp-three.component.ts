@@ -111,6 +111,9 @@ export class HomeJcpThreeComponent implements OnInit {
 
   toggleSidenav() {
     this.toggleActive = !this.toggleActive;
+    if(this.toggleActive == false){
+      window.dispatchEvent(new Event('resize'));
+    }
     this.datashare.changeMessage(this.toggleActive)
   }
 

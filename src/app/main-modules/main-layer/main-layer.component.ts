@@ -164,7 +164,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
             this.stripDataEnabled = true;
             this.layerName = latestLayerChosen;
-            console.log(this.layerNamesArray);
             if (this.layerName == "Smart Benchmarking") {
               this.smartbenchlayerenabled = true;
             }
