@@ -23,7 +23,8 @@ export interface Card {
 }
 const PATHS = [
   { layersPage: "/JCP/Layers" },
-  { createPage: "/JCP/Modules/Planning-Deployment/Nominal-Capacity/Create-Nominal-Task" }
+  { createPage: "/JCP/Modules/Planning-Deployment/Nominal-Capacity/Create-Nominal-Task" },
+  { createPageStrategy: "/JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic" }
 ];
 const DATA: Card[] = [
   {
@@ -135,6 +136,7 @@ export class NominalCapacityComponent implements OnInit {
   searchGrid = '';
   public layerRoute: String;
   public createRoute: String;
+  public createRouteStrategy: String;
   zone = "";
   circle = "";
   jioState = "-";
@@ -154,6 +156,7 @@ export class NominalCapacityComponent implements OnInit {
   ngOnInit(): void {
     this.layerRoute = PATHS[0].layersPage;
     this.createRoute = PATHS[1].createPage;
+    this.createRouteStrategy = PATHS[2].createPageStrategy;
     this.paginator._intl.itemsPerPageLabel="Rows Per Page:";
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;

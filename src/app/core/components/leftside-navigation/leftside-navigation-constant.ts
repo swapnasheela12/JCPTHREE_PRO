@@ -1514,12 +1514,6 @@ const MODULE_LIST_CONFIG = [
         link: 'JCP/Modules/Configuration-Management/Config-Change/RET-Change',
         eventName: 'sites-configchange-retchange',
         children: []
-    },
-    {
-        name: 'Nominal Strategic',
-        link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic',
-        eventName: 'sites-nominal-staterge',
-        children: []
     }
 ];
 
@@ -3042,6 +3036,13 @@ const NOMINAL_GENERATION_LIST = [
         link: "JCP/Modules/Planning-Deployment/Nominal-Generation",
         eventName: 'sites-outdoor-esc',
         show:true,
+        children: []
+    },
+    {
+        name: 'Nominal Strategic',
+        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        // link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic',
+        eventName: 'sites-nominal-staterge',
         children: []
     }
 ];
