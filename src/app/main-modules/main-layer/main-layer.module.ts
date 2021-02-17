@@ -103,7 +103,7 @@ import { LogicalConnectivitySettingComponent } from './layer-list/topologies/fib
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
 import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
 import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
-
+import { SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
 
 
 import { DropdownOwnerRendererComponent } from '../administration/site-sla-configuration/dropdown-owner-renderer.component';
@@ -165,6 +165,7 @@ import { LayerPatchPopupComponent } from './layer-patch-popup/layer-patch-popup.
     PolygonEditorComponent,
     SmartbenchMenubarComponent,
     SplitmapComponent,
+    SmartbenchDialogComponent,
     DropdownOwnerRendererComponent,
     DropdownResponsibleRendererComponent,
     DropdownPositionRendererComponent,

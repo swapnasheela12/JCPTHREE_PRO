@@ -1,0 +1,15 @@
+<div class="sbm-warning-popup text-center position-relative pt-5">
+  <p class="sbm-status-icon position-absolute d-flex justify-content-center align-items-center rounded-circle"><img src="assets/data/layers/network/quality-and-experience/icons/alert.svg" alt="alert" width="55"></p>
+  <h1 mat-dialog-title class="mb-2 text-danger mb-4">
+    {{title}}
+  </h1>
+
+  <div mat-dialog-content>
+    <p>{{message}}</p>
+  </div>
+
+  <div mat-dialog-actions class="justify-content-center">
+    <button mat-button class="cancel-btn border" (click)="enterOnDismiss()">Cancel</button>
+    <button mat-raised-button color="primary" class="save-btn" (click)="enterOnConfirm()">Apply</button>
+  </div>
+</div>
