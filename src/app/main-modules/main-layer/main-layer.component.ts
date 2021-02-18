@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
 import { AdDirective } from './../../_directive/dynamicComponent/ad.directive';
 import { RedirectLayersPopupComponent } from './../../core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
@@ -37,6 +38,7 @@ import { SplitmapComponent } from './network/quality-and-experience/splitmap/spl
 import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
 import { SmartSplitmapService } from './network/quality-and-experience/smart-splitmap-servicce/smart-splitmap.service';
 import { smartBenchmarkDialogModel, SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
+import { LeafletTileLayerDefinition } from '@asymmetrik/ngx-leaflet';
 
 
 @Component({
@@ -96,7 +98,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dialogCurrentState: boolean;
   public smartbenchmarkDialogEnabled: boolean = false;
   public smartDialogText: boolean = false;
-  public dismissedArray:[];
+  public stripToggleBtn:boolean = false;
+  public arrowDirectionIcon:boolean = false;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild('smartbenchComponent', { read: ViewContainerRef }) smartbenchComponentRef: ViewContainerRef;
@@ -149,7 +152,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       this.layerNamesArray = [];
       try {
         if (layerCheckedData.length == 0) {
-          this.hideStripBarMenu(layerCheckedData)
+          this.hideStripBarMenu(layerCheckedData);
+          this.arrowDirectionIcon = false;
+          this.stripToggleBtn = false;
           this.destroySplitWidgetComponents();
         }
         else if (layerCheckedData.length > 0) {
@@ -163,24 +168,24 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   //TOP STRIP MENU BAR
-  setUpStripContent(layerCheckedData,dialogdiscard?){
-    if(dialogdiscard){
+  setUpStripContent(layerCheckedData, dialogdiscard?) {
+    if (dialogdiscard) {
       this.layerNamesArray = [];
     }
     for (var i = 0; i < this.layerDetailsArray.length; i++) {
       let layername = this.layerDetailsArray[i].name;
       this.layerNamesArray.push(layername);
     }
-    
+
     //CREATE DOM STYLE
     if (typeof this.layerNamesArray !== 'undefined' && this.layerNamesArray.length > 0) {
       let latestLayerChosen = this.layerNamesArray[this.layerDetailsArray.length - 1];
       this.stripDataEnabled = true;
-      
+
       //CHECK FOR SMART BENCHMARKING LAYER
       let index = this.layerNamesArray.indexOf(latestLayerChosen);
       if (latestLayerChosen == "Smart Benchmarking" && layerCheckedData[index].selected) {
-        this.smartBenchmarkDialog(index, layerCheckedData,latestLayerChosen);
+        this.smartBenchmarkDialog(index, layerCheckedData, latestLayerChosen);
       }
       else {
         this.showStripHTMLContent();
@@ -188,28 +193,46 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.smartbenchlayerenabled = false;
         this.removeSmartBenchmarkingMenuIcon();
         this.destroySplitWidgetComponents();
-      } 
+      }
     }
   }
 
   //HTML CONTENT FOR STRIP
-  showStripHTMLContent(){
-    let stripWidth = (<HTMLInputElement>document.getElementById("angular-app-root")).clientWidth - 100;
-      (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
-      (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
+  showStripHTMLContent() {
+    let stripWidth = (<HTMLInputElement>document.getElementById("angular-app-root")).clientWidth - 30;
+    (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
+    (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
+    this.stripToggleBtn = true;
+  }
+
+  //TOGGLE STRIP BAR
+  slideToggleStripbarMenu() {
+    let $slider = (<HTMLInputElement>document.getElementById("topstrip"));
+    let isOpen = $slider.classList.contains('slide-in');
+    if(isOpen){
+      $slider.classList.remove('slide-in');
+      $slider.classList.add('slide-out');
+      this.arrowDirectionIcon = false;
+    }
+    else{
+      $slider.classList.remove('slide-out');
+      $slider.classList.add('slide-in');
+      this.arrowDirectionIcon = true;
+     }
   }
   
   // SMART BENCHMARK PROMPT
-  smartBenchmarkDialog(index, layerstatus,layername) {
+  smartBenchmarkDialog(index, layerstatus, layername) {
     var message = "This feature is currently in Beta. Turning this layer on will cause other layers to close.";
     var dialogData = new smartBenchmarkDialogModel("Warning!", message, true);
     (<HTMLInputElement>document.getElementById("angular-app-root")).style.zIndex = "auto";
-    
+
     const dialogRef = this.dialog.open(SmartbenchDialogComponent, {
       maxWidth: "428px",
       data: dialogData,
       disableClose: true,
-      panelClass: "material-dialog-container"
+      panelClass: "material-dialog-container",
+      autoFocus: false 
     });
     Array.from(document.getElementsByClassName('mat-dialog-container') as HTMLCollectionOf<HTMLElement>)[0].style.overflow = "inherit";
     dialogRef.afterClosed().subscribe(dialogResult => {
@@ -222,9 +245,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       else {
         this.smartbenchlayerenabled = false;
         this.layerDetailsArray[index].selected = false;
-        this.layerDetailsArray.splice(index,1);
-        this.layerNamesArray.splice(index,1);
-        this.setUpStripContent(this.layerDetailsArray,true);
+        this.layerDetailsArray.splice(index, 1);
+        this.layerNamesArray.splice(index, 1);
+        this.setUpStripContent(this.layerDetailsArray, true);
         this.hideStripBarMenu(this.layerNamesArray);
       }
     });
@@ -239,7 +262,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   //REMOVE THE MENU ICON FOR SMART BENCHMARKING WIDGET
-  removeSmartBenchmarkingMenuIcon(){
+  removeSmartBenchmarkingMenuIcon() {
     if (document.getElementsByClassName("fa-sliders-h")[0]) {
       document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle");
     }

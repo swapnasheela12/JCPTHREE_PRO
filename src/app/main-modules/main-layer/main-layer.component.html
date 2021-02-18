@@ -3,14 +3,24 @@
         <div #spiderView></div>
     </div>
     <ng-container #headerView></ng-container>
-    <div id ="topstrip"  class="topstrip position-absolute bg-white rounded  justify-content-between align-items-center"
-        >
-        <div class="layer-label pl-4 align-items-center text-dark font-weight-bold" *ngIf="stripDataEnabled">{{layerName}}</div>
-        <div class="right-content tab-container-layers d-flex align-items-center pr-4"> 
-            <span *ngIf="smartbenchlayerenabled">
+    <div id="topstrip" class="topstrip position-absolute bg-white justify-content-between rounded align-items-center">
+        <div class="layer-label pl-4 align-items-center text-dark font-weight-bold" *ngIf="stripDataEnabled">
+            {{layerName}}</div>
+        <div class="right-content tab-container-layers d-flex align-items-center">
+            <div class="smartwidget-icon-wrapper" *ngIf="smartbenchlayerenabled">
                 <i class="fa fa-sliders-h  smartwidget-icon" (click)="loadSmartbenchMenu($event.target)"></i>
+            </div>
+        </div>
+    </div>
+    <div #striptoggle id="striptoggle" *ngIf="stripToggleBtn"
+        class="striptoggle-btn d-flex align-items-center justify-content-center m-0 cursor-pointer position-absolute"
+        (click)="slideToggleStripbarMenu()">
+        <mat-icon>
+            <span class="material-icons">
+                {{arrowDirectionIcon  ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}
             </span>
-        </div> 
+        </mat-icon>
+
     </div>
 </div>
 <ng-template ad-host></ng-template>
