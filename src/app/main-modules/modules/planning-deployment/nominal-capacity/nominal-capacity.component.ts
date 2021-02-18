@@ -24,7 +24,8 @@ export interface Card {
 const PATHS = [
   { layersPage: "/JCP/Layers" },
   { createPage: "/JCP/Modules/Planning-Deployment/Nominal-Capacity/Create-Nominal-Task" },
-  { createPageStrategy: "/JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic" }
+  { createPageStrategy: "/JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic" },
+  { summaryPage: "/JCP/Modules/Planning-Deployment/Nominal-Generation/Summary" }
 ];
 const DATA: Card[] = [
   {
@@ -149,6 +150,7 @@ export class NominalCapacityComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource: MatTableDataSource<Card> = new MatTableDataSource<Card>(DATA);
+  summaryRoute: string;
 
   constructor(private changeDetectorRef: ChangeDetectorRef, 
     private router: Router, public dialog: MatDialog,) { }
@@ -157,6 +159,7 @@ export class NominalCapacityComponent implements OnInit {
     this.layerRoute = PATHS[0].layersPage;
     this.createRoute = PATHS[1].createPage;
     this.createRouteStrategy = PATHS[2].createPageStrategy;
+    this.summaryRoute = PATHS[2].summaryPage;
     this.paginator._intl.itemsPerPageLabel="Rows Per Page:";
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;

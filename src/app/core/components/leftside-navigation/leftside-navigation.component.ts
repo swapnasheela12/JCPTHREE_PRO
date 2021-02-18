@@ -190,15 +190,16 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         };
         if (data.pinName) {
           let dataChange = this.dataSource.data;
+          console.log(dataChange.length)
           if (this.i == 3) {
-            dataChange[9].children[1].children = [];
+            dataChange[dataChange.length - 1].children[1].children = [];
           }
-          dataChange[9].children[1].children.push(addPin);
+          dataChange[dataChange.length - 1].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         } else if(data.sideNav) {
           let dataChange = this.dataSource.data;
-          dataChange[9].children[2].children.push(addPinPoly);
+          dataChange[dataChange.length - 1].children[2].children.push(addPinPoly);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         }else{ 
