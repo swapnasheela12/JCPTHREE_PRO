@@ -14,6 +14,7 @@ export interface NominalGenerationKPI {
   srno: number;
   rfkpi: string;
   level: number;
+  display: string;
 }
 
 export interface NominalGenerationValidation {
@@ -80,12 +81,12 @@ siteTemplate: NominalGenerationSiteTemplate[] = [
 ];
 
 kpiSummary: NominalGenerationKPI[] = [
-  {"srno":1,"rfkpi":"RSRP @50th Percentile (dbm)", "level": -35},
-  {"srno":2,"rfkpi":"Average SINR (db)", "level": 8},
-  {"srno":3,"rfkpi":"Average PDSCH Data Rate (mbps)", "level": 20},
-  {"srno":4,"rfkpi":"Average Spectral Effeciency (bits/hz)", "level": 1.1},
-  {"srno":5,"rfkpi":"Intersite Distance (km)", "level": 38},
-  {"srno":6,"rfkpi":"Intersite Distance 1 (km)", "level": -89},
+  {"srno":1,"rfkpi":"RSRP @50th Percentile (dbm)", "level": -35, "display":"RSRP"},
+  {"srno":2,"rfkpi":"Average SINR (db)", "level": 8, "display":"SINR"},
+  {"srno":3,"rfkpi":"Average PDSCH Data Rate (mbps)", "level": 20, "display":"PDSCH"},
+  {"srno":4,"rfkpi":"Average Spectral Effeciency (bits/hz)", "level": 1.1, "display":"Spectral Effeciency"},
+  {"srno":5,"rfkpi":"Intersite Distance (km)", "level": 38, "display":"Intersite Distance"},
+  {"srno":6,"rfkpi":"Intersite Distance 1 (km)", "level": -89, "display":"Intersite Distance 1"},
 ];
 
 validationSummary:NominalGenerationValidation[] = [
@@ -166,5 +167,9 @@ headerText: string;
 
   async openDistributionSummary(){
     this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Site-Distribution-Summary']);
+  }
+
+  async openPerformanceSummary(row) {
+    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Performance-Summary'], {state: {data: {row: row}}});
   }
 }

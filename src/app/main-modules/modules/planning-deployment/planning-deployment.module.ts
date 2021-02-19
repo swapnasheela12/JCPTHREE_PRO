@@ -68,6 +68,9 @@ import { CoreModule } from 'src/app/core/core.module';
 import { NominalSiteDistributionSummaryComponent, nominalSiteVerticalDotComponent, flagRenderComponent } from './nominal-generation-coverage/nominal-site-distribution-summary/nominal-site-distribution-summary.component';
 import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header-view/map-header-view.component';
 import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-header-delete-renderer.component';
+import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -101,13 +104,16 @@ import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-
     nominalSiteVerticalDotComponent,
     flagRenderComponent,
     MapHeaderViewComponent,
-    NcDeleteHeaderRendererComponent
+    NcDeleteHeaderRendererComponent,
+    NominalGenerationPerformanceSummaryComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
     PlanningDeploymentRoutingModule,
     FlexLayoutModule,
+    ChartModule,
+    HighchartsChartModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([
       cnctDropdownRendererComponent,

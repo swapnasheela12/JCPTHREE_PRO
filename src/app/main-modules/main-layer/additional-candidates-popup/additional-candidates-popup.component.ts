@@ -7,6 +7,8 @@ import { GridOptions } from '@ag-grid-community/all-modules';
 import { VerticaldotRendererComponent } from '../../modules/performance-management/kpi-editor/renderer/verticaldot-renderer.component';
 import { HttpClient } from '@angular/common/http';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { MatDialog } from '@angular/material/dialog';
+import { CustomFlagPopupComponent } from 'src/app/core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 
 const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
   {
@@ -138,7 +140,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
             <button mat-menu-item>
                 <span>View</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openFlagConf()">
                 <span>Flag</span>
             </button>
         </mat-menu>
@@ -157,6 +159,7 @@ export class nominalGenerationRenderComponent implements ICellRendererAngularCom
   params;
 
   constructor(
+    private matDialog: MatDialog
   ) {
   }
 
@@ -166,6 +169,14 @@ export class nominalGenerationRenderComponent implements ICellRendererAngularCom
 
   refresh(params?: any): boolean {
     return true;
+  }
+
+  openFlagConf() {
+    const dialogRef = this.matDialog.open(CustomFlagPopupComponent, {
+      width: "535px",
+      height:'475px',
+      panelClass: "material-dialog-container"
+    });
   }
   
 }

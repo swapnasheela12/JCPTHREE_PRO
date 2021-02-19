@@ -450,18 +450,18 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     //
   }
   onChecked(selected, node, activeCheckbox, eventChecked) {
-    // this.routePlannedLayerHeader.headerSapid = node.name;
-    // this.datashare.headerObject.subscribe(
-    //   (headerView) => {
-    //     this.showHeader = headerView;
-    //     const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+    this.routePlannedLayerHeader.headerSapid = node.name;
+    this.datashare.headerObject.subscribe(
+      (headerView) => {
+        this.showHeader = headerView;
+        const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
 
-    //     const newComponentRef = this.showHeader.createComponent(factory);
-    //     newComponentRef.instance.headerData = this.routePlannedLayerHeader;
-    //     newComponentRef.instance.showHeader = 'show';
-    //     const newComponentVcRef = newComponentRef.instance.vcRef; 
-    //   }
-    // )
+        const newComponentRef = this.showHeader.createComponent(factory);
+        newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+        newComponentRef.instance.showHeader = 'show';
+        const newComponentVcRef = newComponentRef.instance.vcRef;
+      }
+    )
 
     event.preventDefault();
     if (eventChecked != 'no') {

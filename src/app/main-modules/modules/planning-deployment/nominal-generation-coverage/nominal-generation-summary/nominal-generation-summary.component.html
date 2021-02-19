@@ -158,11 +158,11 @@
                                     </ng-container>
                                     <ng-container matColumnDef="rsrp">
                                         <th mat-header-cell *matHeaderCellDef>RSRP</th>
-                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.rsrp}} </td>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.rsrp}} dBm</td>
                                     </ng-container>
                                     <ng-container matColumnDef="sinr">
                                         <th mat-header-cell *matHeaderCellDef>SINR </th>
-                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.sinr}} </td>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.sinr}} dBm</td>
                                     </ng-container>
                                     
                                     <ng-container matColumnDef="coveragearea">
@@ -178,7 +178,7 @@
                             </div>
                         </div>
                     </div>
-                    <div fxFlex="50" class="kpi-div"  (click)="openDistributionSummary()"  style="cursor: pointer;">
+                    <div fxFlex="50" class="kpi-div" style="cursor: pointer;">
                         <div class="summary-table kpi-summary">
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">KPI Summary</span>
@@ -196,7 +196,7 @@
                                     <td mat-cell *matCellDef="let element"> {{element.level}} </td>
                                     </ng-container>
                                     <tr mat-header-row *matHeaderRowDef="displayedColumnsKpi; sticky: true"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsKpi;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsKpi;" (click)="openPerformanceSummary(row)"></tr>
                                 </table>
                             </div>
                         </div>

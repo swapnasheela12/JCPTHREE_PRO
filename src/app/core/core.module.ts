@@ -82,6 +82,7 @@ import { ViewAttributesComponent } from './components/commonPopup/view-attribute
 import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
 import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
 import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
+import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { SiteProposedConfigurationComponent } from './components/commonPopup/sit
     CustomFlagPopupComponent,
     SharePopupComponent,
     AdDirective,
-    SiteProposedConfigurationComponent
+    SiteProposedConfigurationComponent,
+    numberFormatPipe
   ],
   imports: [
     CommonModule,
@@ -177,7 +179,8 @@ import { SiteProposedConfigurationComponent } from './components/commonPopup/sit
     SideNavService,
     MmenuDirective,
     isEllipsisActiveDirective,
-    AdDirective
+    AdDirective,
+    numberFormatPipe
   ],
   exports: [
     HeaderComponent,
@@ -200,7 +203,8 @@ import { SiteProposedConfigurationComponent } from './components/commonPopup/sit
     DeleteRendererComponent,
     DeleteButtonRenderComponent,
     PaginationComponent,
-    AdDirective
+    AdDirective,
+    numberFormatPipe
   ], entryComponents: [
     SuccessfulComponent,
     SuccessfulModalComponent

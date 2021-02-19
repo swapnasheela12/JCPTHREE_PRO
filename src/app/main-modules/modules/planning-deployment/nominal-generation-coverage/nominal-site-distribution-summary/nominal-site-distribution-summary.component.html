@@ -41,7 +41,7 @@
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">table_chart</mat-icon>
+                        <span class="ic ic-table-011"></span>
                     </ng-template>
                     <div class="nominal-site">
                         <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
@@ -58,7 +58,7 @@
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
-                        <mat-icon class="example-tab-icon">table_view</mat-icon>
+                        <span class="ic ic-table1-01"></span>
                     </ng-template>
                     <div fxLayout="column">
                         <div class="summary-table">
@@ -66,33 +66,33 @@
                                 <div class="table-header">Overlay Type Vs 5G Solution type</div>
                                 <table mat-table [dataSource]="dataSourceOverlay | keyvalue:orderByKey">
                                     <ng-container matColumnDef="key">
-                                      <th mat-header-cell *matHeaderCellDef> Overlay Type </th>
+                                      <th mat-header-cell *matHeaderCellDef width ="20%"> Overlay Type </th>
                                       <td mat-cell *matCellDef="let element"> {{element.key}} </td>
                                       <td mat-footer-cell *matFooterCellDef> Total </td>
                                     </ng-container>
                                     <ng-container matColumnDef="total">
-                                      <th mat-header-cell *matHeaderCellDef > Total </th>
+                                      <th mat-header-cell *matHeaderCellDef width ="16%"> Total </th>
                                       <td mat-cell *matCellDef="let element"> {{element.value.total}} </td>
                                       <td mat-footer-cell *matFooterCellDef> {{ calculateTotal() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="gNB">
-                                        <th mat-header-cell *matHeaderCellDef > gNB </th>
+                                        <th mat-header-cell *matHeaderCellDef width ="16%"> gNB </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.gNB}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateGNB() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="odsc1">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC1 </th>
+                                        <th mat-header-cell *matHeaderCellDef width ="16%"> ODSC1 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc1}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC1() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="odsc2">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC2 </th>
+                                        <th mat-header-cell *matHeaderCellDef width ="16%"> ODSC2 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc2}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC2() }}</td>
 
                                     </ng-container>
                                     <ng-container matColumnDef="odsc3">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC3 </th>
+                                        <th mat-header-cell *matHeaderCellDef width ="16%"> ODSC3 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc3}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC3() }}</td>
                                     </ng-container>
@@ -108,32 +108,32 @@
                                 <div class="table-header">Infra Type Vs 5G Solution type</div>
                                 <table mat-table [dataSource]="dataSourceInfra | keyvalue:orderByKey">
                                     <ng-container matColumnDef="key">
-                                      <th mat-header-cell *matHeaderCellDef> Overlay Type </th>
+                                      <th mat-header-cell *matHeaderCellDef  width ="20%"> Overlay Type </th>
                                       <td mat-cell *matCellDef="let element"> {{element.key}} </td>
                                       <td mat-footer-cell *matFooterCellDef> Total </td>
                                     </ng-container>
                                     <ng-container matColumnDef="total">
-                                      <th mat-header-cell *matHeaderCellDef > Total </th>
+                                      <th mat-header-cell *matHeaderCellDef  width ="16%"> Total </th>
                                       <td mat-cell *matCellDef="let element"> {{element.value.total}} </td>
                                       <td mat-footer-cell *matFooterCellDef> {{ calculateTotal() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="gNB">
-                                        <th mat-header-cell *matHeaderCellDef > gNB </th>
+                                        <th mat-header-cell *matHeaderCellDef  width ="16%"> gNB </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.gNB}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateGNB() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="odsc1">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC1 </th>
+                                        <th mat-header-cell *matHeaderCellDef  width ="16%"> ODSC1 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc1}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC1() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="odsc2">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC2 </th>
+                                        <th mat-header-cell *matHeaderCellDef  width ="16%"> ODSC2 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc2}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC2() }}</td>
                                     </ng-container>
                                     <ng-container matColumnDef="odsc3">
-                                        <th mat-header-cell *matHeaderCellDef > ODSC3 </th>
+                                        <th mat-header-cell *matHeaderCellDef  width ="16%"> ODSC3 </th>
                                         <td mat-cell *matCellDef="let element"> {{element.value.odsc3}} </td>
                                         <td mat-footer-cell *matFooterCellDef> {{ calculateODSC3() }}</td>
                                     </ng-container>

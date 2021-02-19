@@ -9,6 +9,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatTableDataSource } from '@angular/material/table';
 import { SiteProposedConfigurationComponent } from 'src/app/core/components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomFlagPopupComponent } from 'src/app/core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 
 
 const HEADER_PERFORMANCE_REPORTS = [
@@ -80,7 +81,7 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
   dataOverlay = {
     "overlayVS5gSolution": [
       {
-          "onExistingEnb":
+          "on Existing Enb":
             {
                 "total":1020,
                 "gNB": 768,
@@ -88,7 +89,7 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
                 "odsc2": 622,
                 "odsc3": 402
             },
-          "OnExistingODSC": 
+          "On Existing ODSC": 
             {
                 "total":5011,
                 "gNB": 6510,
@@ -96,7 +97,7 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
                 "odsc2": 5101,
                 "odsc3": 6020
             },
-          "OnBuilding":
+          "On Building":
             {
                 "total":822,
                 "gNB": 822,
@@ -302,7 +303,7 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
             <button mat-menu-item>
                 <span>Download</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openFlagConf()">
               <span>Unflag</span>
           </button>
         </mat-menu>
@@ -337,13 +338,21 @@ export class nominalSiteVerticalDotComponent implements ICellRendererAngularComp
     const dialogRef = this.matDialog.open(SiteProposedConfigurationComponent, {
       width: "1023px",
       height:'474px',
-      panelClass: "material-dialog-container",
+      panelClass: "site-proposed-table",
       data: {
         'sapId': this.params.data.sapId,
         'latitude': this.params.data.latitude,
         'longitude': this.params.data.longitude,
         'sector':this.params.data.sector
       }
+    });
+  }
+
+  openFlagConf() {
+    const dialogRef = this.matDialog.open(CustomFlagPopupComponent, {
+      width: "535px",
+      height:'475px',
+      panelClass: "material-dialog-container"
     });
   }
 }

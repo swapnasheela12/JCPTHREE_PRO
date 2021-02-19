@@ -340,12 +340,12 @@
                               <div fxLayout="column">
                                 <div class="cell-key">Dense Urban</div>
                                 <div class="cell-value">
-                                  <editCell fxFlex="40" (update)="updateDesignField(0, 'value')">
-                                    <ng-template appViewMode>{{designList[0].value}}m</ng-template>
+                                  <editCell fxFlex="77" (update)="updateDesignField(0, 'value')">
+                                    <ng-template appViewMode>{{designList[0].value| numberFormat}} m</ng-template>
                                     <ng-template appEditMode>
                                         <input  fxFlex="80" class="input-field"
                                             [formControl]="getDesignControl(0, 'value')"
-                                            appFocusable appEditOnEnter>m
+                                            appFocusable appEditOnEnter> m
                                     </ng-template>
                                   </editCell>
                               </div>
@@ -368,12 +368,12 @@
                                 <div fxLayout="column">
                                   <div class="cell-key">Urban</div>
                                   <div class="cell-value">
-                                    <editCell fxFlex="40" (update)="updateDesignField(0, 'value1')">
-                                      <ng-template appViewMode>{{designList[0].value1}}m</ng-template>
+                                    <editCell fxFlex="77" (update)="updateDesignField(0, 'value1')">
+                                      <ng-template appViewMode>{{designList[0].value1 | numberFormat}} m</ng-template>
                                       <ng-template appEditMode>
                                           <input  fxFlex="80" class="input-field"
                                               [formControl]="getDesignControl(0, 'value1')"
-                                              appFocusable appEditOnEnter>m
+                                              appFocusable appEditOnEnter> m
                                       </ng-template>
                                     </editCell>
                                 </div>
@@ -400,12 +400,12 @@
                               <div fxLayout="column">
                                 <div class="cell-key">Sub Urban</div>
                                 <div class="cell-value">
-                                  <editCell fxFlex="40" (update)="updateDesignField(0, 'value2')">
-                                    <ng-template appViewMode>{{designList[0].value2}}m</ng-template>
+                                  <editCell fxFlex="77" (update)="updateDesignField(0, 'value2')">
+                                    <ng-template appViewMode>{{designList[0].value2 | numberFormat}} m</ng-template>
                                     <ng-template appEditMode>
                                         <input  fxFlex="80" class="input-field"
                                             [formControl]="getDesignControl(0, 'value2')"
-                                            appFocusable appEditOnEnter>m
+                                            appFocusable appEditOnEnter> m
                                     </ng-template>
                                   </editCell>
                               </div>
@@ -428,12 +428,12 @@
                                 <div fxLayout="column">
                                   <div class="cell-key">Rural</div>
                                   <div class="cell-value" fxLayout="row">
-                                    <editCell fxFlex="40" (update)="updateDesignField(0, 'value3')">
-                                      <ng-template appViewMode>{{designList[0].value3}}m</ng-template>
+                                    <editCell fxFlex="77" (update)="updateDesignField(0, 'value3')">
+                                      <ng-template appViewMode>{{designList[0].value3 | numberFormat}} m</ng-template>
                                       <ng-template appEditMode>
                                           <input  fxFlex="80" class="input-field"
                                               [formControl]="getDesignControl(0, 'value3')"
-                                              appFocusable appEditOnEnter>m
+                                              appFocusable appEditOnEnter> m
                                       </ng-template>
                                     </editCell>
                                 </div>
@@ -463,7 +463,16 @@
                             <div fxFlex="20">
                               <div fxLayout="column">
                                 <div class="cell-key">Dense Urban</div>
-                                <div class="cell-value">0.3 Km</div>
+                                <div class="cell-value">
+                                  <editCell fxFlex="77" (update)="updateDesignField(0, 'value')">
+                                    <ng-template appViewMode>{{designList[0].value| numberFormat}} m</ng-template>
+                                    <ng-template appEditMode>
+                                        <input  fxFlex="80" class="input-field"
+                                            [formControl]="getDesignControl(0, 'value')"
+                                            appFocusable appEditOnEnter> m
+                                    </ng-template>
+                                  </editCell>
+                              </div>
                               </div>
                             </div>
                             <div>
@@ -482,7 +491,16 @@
                               <div fxFlex="20">
                                 <div fxLayout="column">
                                   <div class="cell-key">Urban</div>
-                                  <div class="cell-value">0.5 Km</div>
+                                  <div class="cell-value">
+                                    <editCell fxFlex="77" (update)="updateDesignField(0, 'value1')">
+                                      <ng-template appViewMode>{{designList[0].value1 | numberFormat}} m</ng-template>
+                                      <ng-template appEditMode>
+                                          <input  fxFlex="80" class="input-field"
+                                              [formControl]="getDesignControl(0, 'value1')"
+                                              appFocusable appEditOnEnter> m
+                                      </ng-template>
+                                    </editCell>
+                                </div>
                                 </div>
                               </div>
                               <div>
@@ -504,8 +522,17 @@
                           <div fxLayout="row" class="row-cell">
                             <div fxFlex="20">
                               <div fxLayout="column">
-                                <div class="cell-key">Sub Urban</div>
-                                <div class="cell-value">0.8 Km</div>
+                                <div class="cell-key">Rural</div>
+                                <div class="cell-value">
+                                  <editCell fxFlex="77" (update)="updateDesignField(0, 'value2')">
+                                    <ng-template appViewMode>{{designList[0].value2 | numberFormat}} m</ng-template>
+                                    <ng-template appEditMode>
+                                        <input  fxFlex="80" class="input-field"
+                                            [formControl]="getDesignControl(0, 'value2')"
+                                            appFocusable appEditOnEnter> m
+                                    </ng-template>
+                                  </editCell>
+                              </div>
                               </div>
                             </div>
                             <div>
@@ -525,12 +552,12 @@
                                 <div fxLayout="column">
                                   <div class="cell-key">Rural</div>
                                   <div class="cell-value">
-                                    <editCell fxFlex="40" (update)="updateDesignField(0, 'value')">
-                                      <ng-template appViewMode>{{designList[0].value}}m</ng-template>
+                                    <editCell fxFlex="77" (update)="updateDesignField(0, 'value')">
+                                      <ng-template appViewMode>{{designList[0].value}} m</ng-template>
                                       <ng-template appEditMode>
                                           <input  fxFlex="80" class="input-field"
                                               [formControl]="getDesignControl(0, 'value')"
-                                              appFocusable appEditOnEnter>m
+                                              appFocusable appEditOnEnter> m
                                       </ng-template>
                                     </editCell>
                                 </div>

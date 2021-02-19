@@ -87,10 +87,6 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
     private resolver: ComponentFactoryResolver,
     private router: Router
   ) {
-   
-  }
-
-  ngOnInit(): void {
     this.router.navigate(['/JCP/Layers']);
     this.dataShare.mainLayerMessage.subscribe(
       (test) => {
@@ -99,6 +95,10 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
     );
    
    
+  }
+
+  ngOnInit(): void {
+    
   }
 
   getRouteData() {

@@ -133,6 +133,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   @ViewChild(AdDirective) adHost: AdDirective;
+  @ViewChild('headerView', { read: ViewContainerRef }) headerView: ViewContainerRef;
 
   public components = [PolygonEditorComponent];
   public currentComponent = null;
@@ -143,6 +144,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.nodesAndboundariesCall();
     this.setStripMenubar()
     this.recieveAndLoadSplitmapCompoent();
+    this.datashare.addSpecificHeader(this.headerView);
   }
 
   //SET UP STRIP MENU BAR WITH LAYER SELECTED
@@ -891,59 +893,61 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        this.dataPolyList = dataPoly;
-        for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
-          const ele = this.dataPolyList.transferDataPoly[index];
-          console.log(ele, "ele");
-          // this.map.pm.toggleEdit(options);
-          // enable drawing mode for shape - e.g. Poly, Line, etc
-          // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
-          // this.map.pm.enableDraw('Rectangle', options);
-          // this.map.pm.enableDraw('Line', options);
-          // this.map.pm.enableDraw('Marker', options);
-          // this.map.pm.enableDraw('Circle', options);
+        if (!dataPoly) {
+          this.dataPolyList = dataPoly;
+          for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
+            const ele = this.dataPolyList.transferDataPoly[index];
+            console.log(ele, "ele");
+            // this.map.pm.toggleEdit(options);
+            // enable drawing mode for shape - e.g. Poly, Line, etc
+            // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
+            // this.map.pm.enableDraw('Rectangle', options);
+            // this.map.pm.enableDraw('Line', options);
+            // this.map.pm.enableDraw('Marker', options);
+            // this.map.pm.enableDraw('Circle', options);
 
-          if (ele.polydata.properties.shape == 'Circle') {
-            this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
-              color: 'red',
-              fillColor: '#f03',
-              fillOpacity: 0.5
-            }).addTo(this.map);
-            this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
-          } else if (ele.polydata.properties.shape == 'Polygon') {
-            this.poly = L.polygon([
-              [19.060009, 72.876063],
-              [19.013112, 72.907984],
-              [19.065525, 72.916565],
-              [19.060009, 72.876063]
-            ]).addTo(this.map);
-            this.map.setZoom(14);
-          } else if (ele.polydata.properties.shape == 'Rectangle') {
-            this.polyRectangle = L.rectangle([
-              [19.045527, 72.902422],
-              [19.045527, 72.905597],
-              [19.049482, 72.905597],
-              [19.049482, 72.902422],
-              [19.045527, 72.902422]
-            ], { color: "#ff7800", weight: 1 }).addTo(this.map);
-            this.map.setZoom(14);
+            if (ele.polydata.properties.shape == 'Circle') {
+              this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+              }).addTo(this.map);
+              this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
+            } else if (ele.polydata.properties.shape == 'Polygon') {
+              this.poly = L.polygon([
+                [19.060009, 72.876063],
+                [19.013112, 72.907984],
+                [19.065525, 72.916565],
+                [19.060009, 72.876063]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
+            } else if (ele.polydata.properties.shape == 'Rectangle') {
+              this.polyRectangle = L.rectangle([
+                [19.045527, 72.902422],
+                [19.045527, 72.905597],
+                [19.049482, 72.905597],
+                [19.049482, 72.902422],
+                [19.045527, 72.902422]
+              ], { color: "#ff7800", weight: 1 }).addTo(this.map);
+              this.map.setZoom(14);
 
-          } else {
-            this.polyline = L.polyline([
-              [19.045568, 72.894765],
-              [19.046055, 72.898672],
-              [19.045933, 72.901742]
-            ]).addTo(this.map);
-            this.map.setZoom(14);
+            } else {
+              this.polyline = L.polyline([
+                [19.045568, 72.894765],
+                [19.046055, 72.898672],
+                [19.045933, 72.901742]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
+            }
+
+
+
+
+
+
+
+
           }
-
-
-
-
-
-
-
-
         }
 
 

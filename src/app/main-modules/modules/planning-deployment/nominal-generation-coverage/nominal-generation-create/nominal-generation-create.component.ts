@@ -18,6 +18,7 @@ import { StatergeMapNominalComponent } from '../../../network-planning/rf-planni
 import { AdDirective } from 'src/app/_directive/dynamicComponent/ad.directive';
 import { RedirectLayersPopupComponent } from 'src/app/core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
+import { MatStepper } from '@angular/material/stepper';
 
 interface existing4GSites {
   name: string;
@@ -91,6 +92,7 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   generateDisabled: boolean = true;
   mainLayerRef: {};
   designControls: FormArray;
+  @ViewChild('nodeCounterStepper', {static: true}) nodeCounterStepper: MatStepper;
   linkBudgetList = [
     { name :'Link Budget 1'},
     { name: 'Link Budget 2'}
@@ -418,6 +420,7 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log(this.nodeCounterStepper)
     console.log(this.designList);
     const designGroups = this.designList.map(entity => {
       return new FormGroup({

@@ -2,371 +2,245 @@
     {
         "sapId": "I-DL-DLHI-GNB-0001-3",
         "flagStatus":"warning",
-        "latitude": "19.0424486",
-        "longitude": "72.9057105",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"120",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "green"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"230",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "orange"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"120",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"250",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"260",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"270",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"300",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            }
-        ]
-    },
-    {
-        "sapId": "I-DL-DLHI-GNB-0001-0",
-        "flagStatus": "warning",
-        "latitude": "18.233",
-        "longitude": "92.3434",
-        "type": "gNB",
-        "overlay": "Over Existing ENB",
-        "sector":[
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            }
-        ]
-    },
-    {
-        "sapId": "I-DL-DLHI-GNB-0001-1",
-        "flagStatus": "alert",
-        "latitude": "19.233",
-        "longitude": "12.3434",
-        "type": "gNB",
-        "overlay": "Over Existing ENB",
-        "sector":[
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "sapId":"I-DL-DLHI-GNB-0001-2",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
         "sapId": "I-DL-DLHI-GNB-0001-2",
-        "flagStatus": "warning",
-        "latitude": "17.233",
-        "longitude": "32.3434",
+        "flagStatus":"warning",
+        "latitude": 19.1469397,
+        "longitude": 72.8138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":80,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                 "horizontalBeamWidth": 65.0,
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":180,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                 "horizontalBeamWidth": 65.0,
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":200,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":340,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-233",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "type": "gNB",
+        "overlay": "Over Existing ENB",
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-23",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "type": "gNB",
+        "overlay": "Over Existing ENB",
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-123",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "type": "gNB",
+        "overlay": "Over Existing ENB",
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
         "sapId": "I-DL-DLHI-GNB-0001-3",
-        "flagStatus": "",
-        "latitude": "19.233",
-        "longitude": "89.3434",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-4",
-        "flagStatus": "",
-        "latitude": "26.233",
-        "longitude": "12.4434",
-        "type": "gNB",
-        "overlay": "Over Existing ENB",
-        "sector":[
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            }
-        ]
-    },
-    {
-        "sapId": "I-DL-DLHI-GNB-0001-5",
+        "sapId": "I-DL-DLHI-GNB-0001-25",
         "flagStatus": "",
         "latitude": "46.233",
         "longitude": "2.3434",
@@ -375,269 +249,305 @@
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-6",
-        "flagStatus": "",
-        "latitude": "14.233",
-        "longitude": "34.3434",
+        "sapId": "I-DL-DLHI-GNB-0001-23",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "blue"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-7",
-        "flagStatus": "",
-        "latitude": "10.133",
-        "longitude": "92.2434",
+        "sapId": "I-DL-DLHI-GNB-0001-13",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-8",
-        "flagStatus": "",
-        "latitude": "13.233",
-        "longitude": "78.3434",
+        "sapId": "I-DL-DLHI-GNB-0001-12",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
-            },
-            {
-                "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-9",
-        "flagStatus": "",
-        "latitude": "67.233",
-        "longitude": "32.5634",
+        "sapId": "I-DL-DLHI-GNB-0001-13",
+        "flagStatus":"warning",
+        "latitude": 19.2469397,
+        "longitude": 72.7138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":80,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                 "horizontalBeamWidth": 65.0,
+                 "color": "blue"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             }
         ]
     },
     {
-        "sapId": "I-DL-DLHI-GNB-0001-10",
-        "flagStatus": "",
-        "latitude": "5.233",
-        "longitude": "83.4534",
+        "sapId": "I-DL-DLHI-GNB-0001-13",
+        "flagStatus":"warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
         "type": "gNB",
         "overlay": "Over Existing ENB",
         "sector":[
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
                "horizontalBeamWidth": 65.0,
-            "color": "red"
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":80,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                 "horizontalBeamWidth": 65.0,
+                 "color": "red"
             },
             {
                 "sapId":"I-DL-DLHI-GNB-0001-0",
-                "azimuth":"0",
-                "height":"22",
-                "power":"43",
-               "tilt":"22", 
-               "horizontalBeamWidth": 65.0,
-            "color": "red"
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
             }
         ]
     }
