@@ -4,6 +4,10 @@ const MODULE_LIST_CONFIG_VENDOR = [
         link: 'Node',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -14,6 +18,10 @@ const MODULE_LIST_RAN_DL = [
         link: 'DiscrepancyLibrary',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -21,6 +29,10 @@ const MODULE_LIST_RAN_DL = [
         link: 'querybuilder',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -28,6 +40,10 @@ const MODULE_LIST_RAN_DL = [
         link: 'selective-parameter-live',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -39,6 +55,10 @@ const MODULE_LIST_CONFIG_LSMR_DOMAIN = [
         link: 'Vendor',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_VENDOR
     }
 ];
@@ -49,6 +69,10 @@ const ADMIN_CONFIGURATION_SM_RAN_LIST = [
         link: 'package-details',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -59,6 +83,10 @@ const ADMIN_CONFIGURATION_RET_RAN_LIST = [
         link: 'ret',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -69,6 +97,10 @@ const ADMIN_CONFIGURATION_GOLDEN_RAN_LIST = [
         link: 'golden-parameters',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -79,6 +111,10 @@ const ADMIN_CONFIGURATION_CMRECIPE_RAN_LIST = [
         link: 'cm-recipe',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -89,6 +125,10 @@ const ADMIN_CONFIGURATION_NODE_PARAMETER_RAN_LIST = [
         link: 'new-node-parameter',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -99,6 +139,10 @@ const ADMIN_CONFIGURATION_TEC_RAN_LIST = [
         link: 'traceport-tce',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -109,6 +153,10 @@ const NETWORK_EMS_SAMSUNG_LIST = [
         link: 'LSMR',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -119,6 +167,10 @@ const NETWORK_EMS_AIRSPAN_LIST = [
         link: 'Netspan',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -129,6 +181,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST = [
         link: 'config-template',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -136,6 +192,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST = [
         link: 'odsc-sla-config',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -143,6 +203,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST = [
         link: 'remarks-template',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -153,6 +217,10 @@ const ADMIN_ANALYTICS_NW_AL_ANALYTICS = [
         link: 'algorithm-selection',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -163,6 +231,10 @@ const MODULE_LIST_RAN = [
         link: 'Query',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_RAN_DL
     },
     {
@@ -170,6 +242,10 @@ const MODULE_LIST_RAN = [
         link: 'Compare',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -179,6 +255,10 @@ const MODULE_LIST_CORE = [
         link: 'Compare',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -186,6 +266,10 @@ const MODULE_LIST_CORE = [
         link: 'Discrepancy',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -193,6 +277,10 @@ const MODULE_LIST_CORE = [
         link: 'Query',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -203,6 +291,10 @@ const MODULE_LIST_CONFIG_LSMR = [
         link: 'Domain',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR_DOMAIN
     }
 ];
@@ -222,6 +314,10 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -229,6 +325,10 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -236,6 +336,10 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         link: 'DLThroughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -243,6 +347,10 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         link: 'Best Server Plot',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -253,6 +361,10 @@ const ANALYTICS_NETWORK_QUALITY = [
         link: 'Infill-Planning',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -263,6 +375,10 @@ const ANALYTICS_NETWORK_ANOMALIES = [
         link: 'Mis-aligned-Sectors',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -270,6 +386,10 @@ const ANALYTICS_NETWORK_ANOMALIES = [
         link: 'Overshooting-Cells',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -280,6 +400,10 @@ const ANALYTICS_NETWORK_COVERAGE = [
         link: 'Coverage-Holes',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -287,6 +411,10 @@ const ANALYTICS_NETWORK_COVERAGE = [
         link: 'Indoor-Coverage-Holes',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -297,6 +425,10 @@ const ANALYTICS_NETWORK_POI = [
         link: 'Building',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -307,6 +439,10 @@ const PREDICTION_LAYERS_ONAIR_LIST = [
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -314,6 +450,10 @@ const PREDICTION_LAYERS_ONAIR_LIST = [
         link: 'Best Server Plot',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -324,6 +464,10 @@ const MEASURED_LAYERS_BAND_KPI_LIST = [
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -334,6 +478,10 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -341,6 +489,10 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -348,6 +500,10 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         link: 'latency',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -355,6 +511,10 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         link: 'ul-throughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -362,6 +522,10 @@ const MEASURED_LAYERS_MB_NETVELOCITY_LIST = [
         link: 'dl-throughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -372,6 +536,10 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         link: 'VoLTE-Drops',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -379,6 +547,10 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         link: 'DL-Throughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -386,6 +558,10 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         link: 'Sessions',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -393,6 +569,10 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         link: 'RSRP',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -400,6 +580,10 @@ const MEASURED_LAYERS_BAND_LSR_LIST = [
         link: 'CQI',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -410,6 +594,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'RSRP',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -417,6 +605,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'SINR',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -424,6 +616,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'DL-Throughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -431,6 +627,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'UL-Throughput',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -438,6 +638,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'RSRQ',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -445,6 +649,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'CQI',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -452,6 +660,10 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'DL RB Utilization',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -459,12 +671,20 @@ const MEASURED_LAYERS_BAND_KPI_ADT_LIST = [
         link: 'UL RB Utilization',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }, {
         name: 'Rank Indicator',
         link: 'Rank Indicator',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -475,6 +695,10 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -482,6 +706,10 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -489,6 +717,10 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         link: 'Call-Muting',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -496,6 +728,10 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         link: 'Call-Drop',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -503,6 +739,10 @@ const MEASURED_LAYERS_BAND_KPI_JP_LIST = [
         link: 'Coverage-Experience',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -513,6 +753,10 @@ const HYBRID_LAYERS_BAND_KPI_LIST = [
         link: 'kpis',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -523,6 +767,10 @@ const HYBRID_LAYERS_BAND_SNG_LIST = [
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -530,6 +778,10 @@ const HYBRID_LAYERS_BAND_SNG_LIST = [
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -540,6 +792,10 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         link: 'rsrp',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -548,6 +804,10 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         link: 'sinr',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -556,6 +816,10 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         link: 'Unique-Users',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: "CmcSettingsPopupComponent"
     },
@@ -564,6 +828,10 @@ const HYBRID_LAYERS_BAND_CMC_LIST = [
         link: 'Data-Volume',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: "CmcSettingsPopupComponent"
     }
@@ -575,6 +843,10 @@ const PERFORMANCE_KPI = [
         link: 'software-versions',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -582,6 +854,10 @@ const PERFORMANCE_KPI = [
         link: 'counter-categories',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -592,6 +868,10 @@ const PLATFORM_WORKORDERS_ANALYTICS_LIST = [
         link: 'RF OC Workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -602,6 +882,10 @@ const PLATFORM_POI_JIP_LIST = [
         link: 'ne-data',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -612,6 +896,10 @@ const ADMIN_CONFIGURATION_SM_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_SM_RAN_LIST
     }
 ];
@@ -622,6 +910,10 @@ const ADMIN_CONFIGURATION_RET_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_RET_RAN_LIST
     }
 ];
@@ -632,6 +924,10 @@ const ADMIN_CONFIGURATION_GOLDEN_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_GOLDEN_RAN_LIST
     }
 ];
@@ -642,6 +938,10 @@ const ADMIN_CONFIGURATION_CMRECIPE_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_CMRECIPE_RAN_LIST
     }
 ];
@@ -652,6 +952,10 @@ const ADMIN_CONFIGURATION_NODE_PARAMETER_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_NODE_PARAMETER_RAN_LIST
     }
 ];
@@ -662,6 +966,10 @@ const ADMIN_CONFIGURATION_TCE_LIST = [
         link: 'ran',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_TEC_RAN_LIST
     }
 ];
@@ -672,6 +980,10 @@ const PERFORMANCE_IMPACT = [
         link: 'kpi-settings',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -679,6 +991,10 @@ const PERFORMANCE_IMPACT = [
         link: 'algorithm settings',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -689,6 +1005,10 @@ const MODULE_LIST_VENDOR = [
         link: 'Vendor',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -699,6 +1019,10 @@ const LOCATION_BOUNDRIES_NETWORK_EMS_LIST = [
         link: 'Samsung',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: NETWORK_EMS_SAMSUNG_LIST
     },
     {
@@ -706,6 +1030,10 @@ const LOCATION_BOUNDRIES_NETWORK_EMS_LIST = [
         link: 'Airspan',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: NETWORK_EMS_AIRSPAN_LIST
     }
 ];
@@ -716,6 +1044,10 @@ const LOCATION_BOUNDRIES_POI_LIST_JIO = [
         link: 'JIP',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -723,6 +1055,10 @@ const LOCATION_BOUNDRIES_POI_LIST_JIO = [
         link: 'JIEM',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -733,6 +1069,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_LIST = [
         link: 'site-sla-configuration',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -740,6 +1080,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_LIST = [
         link: 'p2b-admin',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -747,6 +1091,10 @@ const ADMIN_PLANNING_SITE_DEPLOYMENT_LIST = [
         link: 'odsc',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_PLANNING_SITE_DEPLOYMENT_ODSC_LIST
     }
 ];
@@ -757,6 +1105,10 @@ const ADMIN_PLANNING_TAC_MODULE_LIST = [
         link: 'mme-module-architecture',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -764,6 +1116,10 @@ const ADMIN_PLANNING_TAC_MODULE_LIST = [
         link: 'tac-module-admin-panel',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -774,6 +1130,10 @@ const ADMIN_ANALYTICS_SUBSCRIBER_ANALYTICS = [
         link: 'cena',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -781,6 +1141,10 @@ const ADMIN_ANALYTICS_SUBSCRIBER_ANALYTICS = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -791,6 +1155,10 @@ const ADMIN_ANALYTICS_NETWORK_ANALYTICS = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -801,6 +1169,10 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         link: 'Self-Correlation',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
@@ -808,6 +1180,10 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         link: 'Alarm-Block',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
@@ -815,6 +1191,10 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         link: 'Impact-Settings',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
@@ -822,6 +1202,10 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         link: 'Dampening-Time',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     },
     {
@@ -829,6 +1213,10 @@ const ADMIN_FAULT_CORRELATION_LIST = [
         link: 'Count-Based-Mask',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NW_AL_ANALYTICS
     }
 ];
@@ -839,6 +1227,10 @@ const MODULE_LIST_AUDIT = [
         link: 'RAN',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_RAN
     },
     {
@@ -846,6 +1238,10 @@ const MODULE_LIST_AUDIT = [
         link: 'Core',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CORE
     }
 ];
@@ -856,6 +1252,10 @@ const MODULE_LIST_CHANGE_IMPACT = [
         link: 'RAN',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_VENDOR
     }
 ];
@@ -1053,6 +1453,10 @@ const ANALYTICS_SUBSCRIBER_LIST = [
         link: 'Anomalies',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1060,6 +1464,10 @@ const ANALYTICS_SUBSCRIBER_LIST = [
         link: 'Coverage',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1067,6 +1475,10 @@ const ANALYTICS_SUBSCRIBER_LIST = [
         link: 'Quality-Experience',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1078,6 +1490,10 @@ const
             link: 'Zones',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: [],
             component: 'ZonesJioDialogComponent'
         },
@@ -1086,6 +1502,10 @@ const
             link: 'Circles',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1093,6 +1513,10 @@ const
             link: 'Focus-Town',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1100,6 +1524,10 @@ const
             link: 'Jio-Centers',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1107,6 +1535,10 @@ const
             link: 'Jio-Points',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1114,6 +1546,10 @@ const
             link: 'Zones',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1121,6 +1557,10 @@ const
             link: 'Clusters',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1128,6 +1568,10 @@ const
             link: 'Maintenance-Points',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         },
         {
@@ -1135,6 +1579,10 @@ const
             link: 'R4G-States',
             eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
             children: []
         }
     ];
@@ -1151,6 +1599,10 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
         link: 'TAL',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'TacNetworkDialogComponent'
     },
@@ -1159,6 +1611,10 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
         link: 'TCA',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1166,6 +1622,10 @@ const LOCATION_BOUNDRIES_NETWORK_LIST = [
         link: 'EMI',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1176,6 +1636,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'Towns',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'TownBoundaryDialogComponent'
     },
@@ -1184,6 +1648,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'Villages',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1191,6 +1659,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'Panchayat',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1198,6 +1670,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'DHQ',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1205,6 +1681,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'Settlement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1212,6 +1692,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'State',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1219,6 +1703,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'District',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1226,6 +1714,10 @@ const LOCATION_BOUNDRIES_CENSUS_LIST = [
         link: 'Cities',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1236,6 +1728,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Dense-Urban',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'DenseUrbanDialogComponent'
     },
@@ -1244,6 +1740,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Urban',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1251,6 +1751,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Sub-Urban',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1258,6 +1762,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Industrial',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1265,6 +1773,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Rural',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1272,6 +1784,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Water-Body',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1279,6 +1795,10 @@ const LOCATION_BOUNDRIES_MORPHOLOGY_LIST = [
         link: 'Dense-Vegetation',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1289,6 +1809,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Railway-Stations',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1296,6 +1820,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Malls',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1303,6 +1831,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Airports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1310,6 +1842,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Roads',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1317,6 +1853,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Railway-Tracks',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1324,6 +1864,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Buildings',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1331,6 +1875,10 @@ const LOCATION_BOUNDRIES_POI_LIST = [
         link: 'Dense-Urban',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_POI_LIST_JIO
     }
 ];
@@ -1341,6 +1889,10 @@ const ANALYTICS_NETWORK_LIST = [
         link: 'Quality-Experience',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_NETWORK_QUALITY
     },
     {
@@ -1348,6 +1900,10 @@ const ANALYTICS_NETWORK_LIST = [
         link: 'Anomalies',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_NETWORK_ANOMALIES
     },
     {
@@ -1355,6 +1911,10 @@ const ANALYTICS_NETWORK_LIST = [
         link: 'Coverage',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_NETWORK_COVERAGE
     },
     {
@@ -1362,6 +1922,10 @@ const ANALYTICS_NETWORK_LIST = [
         link: 'Point-of-Interest',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_NETWORK_POI
     }
 ];
@@ -1372,6 +1936,10 @@ const SITES_INDOOR_lIST = [
         link: 'Small-Cell',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1379,6 +1947,10 @@ const SITES_INDOOR_lIST = [
         link: 'Wi-Fi',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1389,6 +1961,10 @@ const SITES_NOMINAL_lIST = [
         link: 'Macro',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'NominalMacroDialogComponent'
     },
@@ -1400,6 +1976,10 @@ const PREDICTION_LAYERS_BAND_LIST = [
         link: 'planned',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_PLANNED_LIST
     },
     {
@@ -1407,6 +1987,10 @@ const PREDICTION_LAYERS_BAND_LIST = [
         link: 'on-air',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_ONAIR_LIST
     }
 ];
@@ -1417,6 +2001,10 @@ const MEASURED_LAYERS_BAND_LIST = [
         link: 'Netvelocity',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_MB_NETVELOCITY_LIST
     },
     {
@@ -1424,6 +2012,10 @@ const MEASURED_LAYERS_BAND_LIST = [
         link: 'Jio-Phone',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_KPI_JP_LIST
     },
     {
@@ -1431,6 +2023,10 @@ const MEASURED_LAYERS_BAND_LIST = [
         link: 'LSR',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_LSR_LIST
     },
     {
@@ -1438,6 +2034,10 @@ const MEASURED_LAYERS_BAND_LIST = [
         link: 'Accuver-Drive-test',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_KPI_ADT_LIST
     }
 ];
@@ -1448,6 +2048,10 @@ const HYBRID_LAYERS_BAND_LIST = [
         link: 'Accuver-Drive-test',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_SNG_LIST
     },
     {
@@ -1455,6 +2059,10 @@ const HYBRID_LAYERS_BAND_LIST = [
         link: 'Customer-Measured-Coverage',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_CMC_LIST
     }
 ];
@@ -1465,6 +2073,10 @@ const MODULE_LIST_CONFIG = [
         link: 'LSMRRehoming',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1472,6 +2084,10 @@ const MODULE_LIST_CONFIG = [
         link: 'TrialManagement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1479,6 +2095,10 @@ const MODULE_LIST_CONFIG = [
         link: 'softwareManagement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1486,6 +2106,10 @@ const MODULE_LIST_CONFIG = [
         link: 'parameterchange',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1493,6 +2117,10 @@ const MODULE_LIST_CONFIG = [
         link: 'rqascheduling',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_RQA
     },
     {
@@ -1500,6 +2128,10 @@ const MODULE_LIST_CONFIG = [
         link: 'traceport',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1507,6 +2139,10 @@ const MODULE_LIST_CONFIG = [
         link: 'newnetworkelement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG_LSMR
     },
     {
@@ -1523,6 +2159,10 @@ const MODULE_LIST_ANALYTICS_SA = [
         link: 'user-experience-analytics',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1530,6 +2170,10 @@ const MODULE_LIST_ANALYTICS_SA = [
         link: 'reports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1537,6 +2181,10 @@ const MODULE_LIST_ANALYTICS_SA = [
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1544,6 +2192,10 @@ const MODULE_LIST_ANALYTICS_SA = [
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1554,6 +2206,10 @@ const MODULE_LIST_ANALYTICS_NA = [
         link: 'distance-bearing-calculator',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1561,6 +2217,10 @@ const MODULE_LIST_ANALYTICS_NA = [
         link: 'reports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1568,6 +2228,10 @@ const MODULE_LIST_ANALYTICS_NA = [
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1575,6 +2239,10 @@ const MODULE_LIST_ANALYTICS_NA = [
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1582,6 +2250,10 @@ const MODULE_LIST_ANALYTICS_NA = [
         link: 'workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1592,6 +2264,10 @@ const MODULE_LIST_NV_DEVICES = [
         link: 'devices manager',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1599,6 +2275,10 @@ const MODULE_LIST_NV_DEVICES = [
         link: 'group manager',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1609,6 +2289,10 @@ const ADMIN_PERFORMANCE_LIST = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1616,6 +2300,10 @@ const ADMIN_PERFORMANCE_LIST = [
         link: 'kpi-editor',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PERFORMANCE_KPI
     },
     {
@@ -1623,6 +2311,10 @@ const ADMIN_PERFORMANCE_LIST = [
         link: 'impact-module',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PERFORMANCE_IMPACT
     }
 ];
@@ -1633,6 +2325,10 @@ const PLATFORM_DASHBOARD_LIST = [
         link: 'Dashboard-Administrator',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1643,6 +2339,10 @@ const PLATFORM_DATA_INTEGRITY_LIST = [
         link: 'Audit',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1650,6 +2350,10 @@ const PLATFORM_DATA_INTEGRITY_LIST = [
         link: 'Workorder',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1660,6 +2364,10 @@ const PLATFORM_WORKORDERS_LIST = [
         link: 'Analytics',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_WORKORDERS_ANALYTICS_LIST
     },
     {
@@ -1674,6 +2382,10 @@ const PLATFORM_WORKORDERS_LIST = [
         link: 'Configuration-Management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         disabled: true
     },
@@ -1682,6 +2394,10 @@ const PLATFORM_WORKORDERS_LIST = [
         link: 'Fault-Management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1689,6 +2405,10 @@ const PLATFORM_WORKORDERS_LIST = [
         link: 'Planning-and-Deployment',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1696,6 +2416,10 @@ const PLATFORM_WORKORDERS_LIST = [
         link: 'Netvelocity',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1706,6 +2430,10 @@ const PLATFORM_POI_LIST = [
         link: 'JIP',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_POI_JIP_LIST
     }
 ];
@@ -1716,6 +2444,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'software-mangement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_SM_LIST
     },
     {
@@ -1723,6 +2455,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'ret',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_RET_LIST
     },
     {
@@ -1730,6 +2466,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'golden parameter',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_GOLDEN_LIST
     },
     {
@@ -1737,6 +2477,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'cm-recipe',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_CMRECIPE_LIST
     },
     {
@@ -1744,6 +2488,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'node-parameter',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_NODE_PARAMETER_LIST
     },
     {
@@ -1751,6 +2499,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'traceport',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_TCE_LIST
     },
     {
@@ -1758,6 +2510,10 @@ const ADMIN_CONFIGURATION_LIST = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1768,6 +2524,10 @@ const ADMIN_PLANNING_DEPLOYMENT_LIST = [
         link: 'site-deployment',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_PLANNING_SITE_DEPLOYMENT_LIST
     },
     {
@@ -1775,6 +2535,10 @@ const ADMIN_PLANNING_DEPLOYMENT_LIST = [
         link: 'tac-module',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_PLANNING_TAC_MODULE_LIST
     }
 ];
@@ -1785,6 +2549,10 @@ const ADMIN_ANALYTICS_LIST = [
         link: 'subscriber-analytics',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_SUBSCRIBER_ANALYTICS
     },
     {
@@ -1792,6 +2560,10 @@ const ADMIN_ANALYTICS_LIST = [
         link: 'network-analytics',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_NETWORK_ANALYTICS
     }
 ];
@@ -1802,6 +2574,10 @@ const ADMIN_FAULT_LIST = [
         link: 'correlation-module',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_FAULT_CORRELATION_LIST
     },
     {
@@ -1809,6 +2585,10 @@ const ADMIN_FAULT_LIST = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1819,6 +2599,10 @@ const ADMIN_NETVELOCITY_LIST = [
         link: 'Profile',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1826,6 +2610,10 @@ const ADMIN_NETVELOCITY_LIST = [
         link: 'VoLTE-Upload-History',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1833,6 +2621,10 @@ const ADMIN_NETVELOCITY_LIST = [
         link: 'algorithms',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1843,6 +2635,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'PlannedEventCalendar',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1850,6 +2646,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'ConfigChange',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIG
     },
     {
@@ -1857,6 +2657,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'AuditandQuery',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_AUDIT
     },
     {
@@ -1864,6 +2668,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'Workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1871,6 +2679,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'cmchangeimpact',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CHANGE_IMPACT
     },
     {
@@ -1878,6 +2690,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'jobs',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1885,6 +2701,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1892,6 +2712,10 @@ const MODULE_LIST_CONFIGURATION = [
         link: 'reports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1927,6 +2751,10 @@ const ALARMS_LIST = [
         link: "Macro",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1935,6 +2763,10 @@ const ALARMS_LIST = [
         link: "Wi-Fi",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -1943,6 +2775,10 @@ const ALARMS_LIST = [
         link: "Small-Cells",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -1954,6 +2790,10 @@ const ANALYTICS_LIST = [
         link: "Subscriber",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_SUBSCRIBER_LIST
     },
     {
@@ -1962,6 +2802,10 @@ const ANALYTICS_LIST = [
         link: "Network",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_NETWORK_LIST
     },
     {
@@ -1970,6 +2814,10 @@ const ANALYTICS_LIST = [
         link: "Others",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -2447,6 +3295,10 @@ const TOPOLOGIES_LIST = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: FIBRE_LIST
     },
     {
@@ -2455,6 +3307,10 @@ const TOPOLOGIES_LIST = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: IPO_LIST
     },
     {
@@ -2463,6 +3319,10 @@ const TOPOLOGIES_LIST = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MICROWAVE_LIST
     }
 ];
@@ -2475,6 +3335,10 @@ const TOPOLOGIES_LIST_OLD = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: FIBRE_ROUTE_LIST
     },
     {
@@ -2483,6 +3347,10 @@ const TOPOLOGIES_LIST_OLD = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: STRUCTURE_ROUTE_LIST
     },
     {
@@ -2491,6 +3359,10 @@ const TOPOLOGIES_LIST_OLD = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: EQUIPMENT_ROUTE_LIST
     },
     {
@@ -2499,6 +3371,10 @@ const TOPOLOGIES_LIST_OLD = [
         link: "IP",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOGICAL_ROUTE_LIST
     }
     // {
@@ -2531,6 +3407,10 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Administrative-Boundaries",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_ADMINISTRATIVE_LIST
     },
     {
@@ -2539,6 +3419,10 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Morphology",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_MORPHOLOGY_LIST
     },
     {
@@ -2547,6 +3431,10 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Census-Boundaries",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_CENSUS_LIST
     },
     {
@@ -2555,6 +3443,10 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Network-Boundaries",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_NETWORK_LIST
     },
     {
@@ -2563,6 +3455,10 @@ const LOCATION_BOUNDRIES_LIST = [
         link: "Point-of-Interest",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_POI_LIST
     }
 ];
@@ -2634,6 +3530,10 @@ const CREATE_KML = [
         link: 'CREATE-PIN',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'TacNetworkDialogComponent'
     },
@@ -2645,6 +3545,10 @@ const CREATE_POLYGONS = [
         link: 'CREATE-PIN',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         // componentLayer: 'PolygonEditorComponent',
         component: 'PolygonEditorComponent'
@@ -2657,6 +3561,10 @@ const CREATE_SAVED_LAYERS = [
         link: 'CREATE-PIN',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: [],
         component: 'TacNetworkDialogComponent'
     },
@@ -2669,6 +3577,10 @@ const MY_LAYERS_LIST = [
         link: "KML",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: CREATE_KML
     },
     {
@@ -2677,6 +3589,10 @@ const MY_LAYERS_LIST = [
         link: "Pins",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: CREATE_PINS
     },
     {
@@ -2685,6 +3601,10 @@ const MY_LAYERS_LIST = [
         link: "Polygons",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: CREATE_POLYGONS
     },
     {
@@ -2693,6 +3613,10 @@ const MY_LAYERS_LIST = [
         link: "Saved-Layers",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: CREATE_SAVED_LAYERS
     }
 ]
@@ -2705,6 +3629,10 @@ const PREDICTION_LAYERS_LIST = [
         link: "combined",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2713,6 +3641,10 @@ const PREDICTION_LAYERS_LIST = [
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2721,6 +3653,10 @@ const PREDICTION_LAYERS_LIST = [
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_BAND_LIST
     },
     {
@@ -2729,6 +3665,10 @@ const PREDICTION_LAYERS_LIST = [
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_BAND_LIST
     }
 ];
@@ -2740,6 +3680,10 @@ const MEASURED_LAYERS_LIST = [
         link: "combined",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2748,6 +3692,10 @@ const MEASURED_LAYERS_LIST = [
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2756,6 +3704,10 @@ const MEASURED_LAYERS_LIST = [
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_LIST
     },
     {
@@ -2764,6 +3716,10 @@ const MEASURED_LAYERS_LIST = [
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_BAND_LIST
     }
 ];
@@ -2775,6 +3731,10 @@ const HYBRID_LAYERS_LIST = [
         link: "combined",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2783,6 +3743,10 @@ const HYBRID_LAYERS_LIST = [
         link: "2300MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2791,6 +3755,10 @@ const HYBRID_LAYERS_LIST = [
         link: "1800MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_LIST
     },
     {
@@ -2799,6 +3767,10 @@ const HYBRID_LAYERS_LIST = [
         link: "850MHz",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_BAND_LIST
     }
 ];
@@ -2811,6 +3783,10 @@ const MODULE_LIST_ANALYTICS = [
         link: "subsciber-analysis",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_ANALYTICS_SA
     },
     {
@@ -2820,6 +3796,10 @@ const MODULE_LIST_ANALYTICS = [
         link: "network-analysis",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_ANALYTICS_NA
     }
 ];
@@ -2830,6 +3810,10 @@ const MODULE_LIST_FAULT = [
         link: "incident-manager-module",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2839,6 +3823,10 @@ const MODULE_LIST_FAULT = [
         link: "Reports",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2848,6 +3836,10 @@ const MODULE_LIST_FAULT = [
         link: "work-orders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2857,6 +3849,10 @@ const MODULE_LIST_FAULT = [
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
 
         children: []
     },
@@ -2888,6 +3884,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "devices",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_NV_DEVICES
     },
     {
@@ -2897,6 +3897,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "recipe",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2906,6 +3910,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "reports",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2915,6 +3923,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2924,6 +3936,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "workorders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2933,6 +3949,10 @@ const MODULE_LIST_NET_VELOCITY = [
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -2944,6 +3964,10 @@ const CIA_MODULE_LIST = [
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Module",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2952,6 +3976,10 @@ const CIA_MODULE_LIST = [
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-KPI-Settings",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2960,6 +3988,10 @@ const CIA_MODULE_LIST = [
         link: "JCP/Modules/Performance-Management/Change-Impact-Analysis/CIA-Admin-Settings",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -2972,6 +4004,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "JCP/Modules/Performance-Management/Report-Builder",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2981,6 +4017,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "JCP/Modules/Performance-Management/My-Performance-Reports",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2990,6 +4030,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "JCP/Modules/Performance-Management/KPI-Editor",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -2999,6 +4043,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "JCP/Modules/Performance-Management/MSISDN-To-Wi-Fi-MAC-Converter",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3008,6 +4056,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "change-impact-analysis",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: CIA_MODULE_LIST
     },
     {
@@ -3017,6 +4069,10 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         link: "workorders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -3028,6 +4084,10 @@ const NOMINAL_GENERATION_LIST = [
         link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3036,6 +4096,10 @@ const NOMINAL_GENERATION_LIST = [
         link: "JCP/Modules/Planning-Deployment/Nominal-Generation",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3055,6 +4119,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "dashboards",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3063,6 +4131,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "reports",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3071,6 +4143,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "workorders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3080,6 +4156,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "tac-tal-da",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3088,6 +4168,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "JCP/Modules/Planning-Deployment/enbsc",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3096,6 +4180,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "workorders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3104,6 +4192,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "JCP/Modules/Planning-Deployment/5G-Link-Budget",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3112,6 +4204,10 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         link: "Nominal-Generation",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: NOMINAL_GENERATION_LIST
     }
 ];
@@ -3181,6 +4277,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "performance-management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_PERFORMANCE_LIST
     },
     {
@@ -3189,6 +4289,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "configuration-management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_CONFIGURATION_LIST
     },
     {
@@ -3197,6 +4301,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "planning-deployment",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_PLANNING_DEPLOYMENT_LIST
     },
     {
@@ -3205,6 +4313,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "analytics",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_ANALYTICS_LIST
     },
     {
@@ -3213,6 +4325,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "fault-mangement",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_FAULT_LIST
     },
     {
@@ -3221,6 +4337,10 @@ const MODULE_ADMINISTRATION_LIST = [
         link: "net-velocity",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ADMIN_NETVELOCITY_LIST
     },
     {
@@ -3240,6 +4360,10 @@ const USER_ADMINISTRATION_LIST = [
         link: "Access-Management",
         eventName: 'sites-outdoor-esc',
         show:false,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3248,6 +4372,10 @@ const USER_ADMINISTRATION_LIST = [
         link: "Role-Management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3256,6 +4384,10 @@ const USER_ADMINISTRATION_LIST = [
         link: "Team-Management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3264,6 +4396,10 @@ const USER_ADMINISTRATION_LIST = [
         link: "User-Management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3272,6 +4408,10 @@ const USER_ADMINISTRATION_LIST = [
         link: "Work-Group-Management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -3283,6 +4423,10 @@ const PLATFORM_ADMINISTRATION_LIST = [
         link: "Dashboard",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_DASHBOARD_LIST
     },
     {
@@ -3291,6 +4435,10 @@ const PLATFORM_ADMINISTRATION_LIST = [
         link: "Data-Integrity-Management",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_DATA_INTEGRITY_LIST
     },
     {
@@ -3299,6 +4447,10 @@ const PLATFORM_ADMINISTRATION_LIST = [
         link: "Workorders",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_WORKORDERS_LIST
     },
     {
@@ -3307,6 +4459,10 @@ const PLATFORM_ADMINISTRATION_LIST = [
         link: "Usage-Analytics",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -3318,6 +4474,10 @@ const PLATFORM_LAYER_LIST = [
         link: "Point-of-Interest",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_POI_LIST
     }
 ];
@@ -3367,6 +4527,10 @@ const MODULES_LIST = [
         link: 'ConfigurationManagement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_CONFIGURATION
     },
     {
@@ -3374,6 +4538,10 @@ const MODULES_LIST = [
         link: 'analytics',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_ANALYTICS
     },
     {
@@ -3381,6 +4549,10 @@ const MODULES_LIST = [
         link: 'faultmanagement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_FAULT
     },
     {
@@ -3388,6 +4560,10 @@ const MODULES_LIST = [
         link: 'net-velocity',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_NET_VELOCITY
     },
     {
@@ -3395,6 +4571,10 @@ const MODULES_LIST = [
         link: 'performance-management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_PERFORMANCE_MANAGEMENT
     },
     {
@@ -3402,6 +4582,10 @@ const MODULES_LIST = [
         link: 'planning-deployment',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_LIST_PLANNING_DEPLOYMENT
     },
     {
@@ -3420,6 +4604,10 @@ const LAYERS_LIST = [
         link: "Sites",
         eventName: 'sites-outdoor-esc',
         show:false,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: SITES_LIST
     },
     {
@@ -3428,6 +4616,10 @@ const LAYERS_LIST = [
         link: "Prediction-Layers",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PREDICTION_LAYERS_LIST,
         classId: 'prediction-layer-border'
     },
@@ -3437,6 +4629,10 @@ const LAYERS_LIST = [
         link: "Measured-Layers",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MEASURED_LAYERS_LIST,
         classId: 'measured-layer-border'
     },
@@ -3446,6 +4642,10 @@ const LAYERS_LIST = [
         link: "Hybrid-Layers",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: HYBRID_LAYERS_LIST,
         classId: 'hybrid-layer-border'
     },
@@ -3455,6 +4655,10 @@ const LAYERS_LIST = [
         link: "Alarms",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ALARMS_LIST,
         classId: 'alarms-border'
 
@@ -3465,6 +4669,10 @@ const LAYERS_LIST = [
         link: "Analytics",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: ANALYTICS_LIST,
         classId: 'analytics-layer-border'
     },
@@ -3474,6 +4682,10 @@ const LAYERS_LIST = [
         link: "Topologies",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: TOPOLOGIES_LIST_OLD,
         classId: 'topologies-border'
     },
@@ -3483,6 +4695,10 @@ const LAYERS_LIST = [
         link: "Locations-and-Boundaries",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: LOCATION_BOUNDRIES_LIST,
         classId: 'locations-border'
     },
@@ -3492,6 +4708,10 @@ const LAYERS_LIST = [
         link: "Network",
         eventName: 'sites-network',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: QUALITY_AND_EXPERIENCE,
         classId: 'locations-border'
     },
@@ -3501,6 +4721,10 @@ const LAYERS_LIST = [
         link: "Base-Maps",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: BASE_MAPS_LIST,
         classId: 'base-map-border'
     },
@@ -3510,6 +4734,10 @@ const LAYERS_LIST = [
         link: "My-Layers",
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MY_LAYERS_LIST,
         classId: 'my-layers-border'
     }
@@ -3536,6 +4764,10 @@ const REPORTS_LIST = [
         link: 'JCP/Reports-and-Dashboards/Report-Wizard',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3543,6 +4775,10 @@ const REPORTS_LIST = [
         link: 'JCP/Reports-and-Dashboards/My-Reports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3550,6 +4786,10 @@ const REPORTS_LIST = [
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: DASHBOARD_LIST
     },
     {
@@ -3557,6 +4797,10 @@ const REPORTS_LIST = [
         link: 'my-subscriptions',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ];
@@ -3567,6 +4811,10 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3574,6 +4822,10 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Overshooting-Cell',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3581,6 +4833,10 @@ const WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST = [
         link: 'JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Cell-Decongestion',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ]
@@ -3591,6 +4847,10 @@ const WORKORDERS_RFOCWORKORDERS_LIST = [
         link: '',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: WORKORDERS_RFOCWORKORDERS_CATEGORYWISEWOLISTING_LIST
     }
 ]
@@ -3606,6 +4866,10 @@ const WORKORDERS_CMWORKORDERS_LIST = [
         link: 'JCP/Work-Orders/Cm-Workorders/RET-Change',
         eventName: 'ret-change',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     }
 ]
@@ -3616,6 +4880,10 @@ const WORKORDERS_LIST = [
         link: 'my-workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3623,6 +4891,10 @@ const WORKORDERS_LIST = [
         link: 'all-workorders',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3630,6 +4902,10 @@ const WORKORDERS_LIST = [
         link: 'reports',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3637,6 +4913,10 @@ const WORKORDERS_LIST = [
         link: 'dashboards',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3644,6 +4924,10 @@ const WORKORDERS_LIST = [
         link: 'my-approvals',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: []
     },
     {
@@ -3651,6 +4935,10 @@ const WORKORDERS_LIST = [
         link: '',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: WORKORDERS_RFOCWORKORDERS_LIST
     },
     {
@@ -3658,6 +4946,10 @@ const WORKORDERS_LIST = [
         link: '',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: WORKORDERS_CMWORKORDERS_LIST
     }
 ];
@@ -3668,6 +4960,10 @@ const ADMINISTRATION_LIST = [
         link: 'module-management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: MODULE_ADMINISTRATION_LIST
     },
     {
@@ -3675,6 +4971,10 @@ const ADMINISTRATION_LIST = [
         link: 'user-management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: USER_ADMINISTRATION_LIST
     },
     {
@@ -3682,6 +4982,10 @@ const ADMINISTRATION_LIST = [
         link: 'platform-management',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_ADMINISTRATION_LIST
     },
     {
@@ -3689,6 +4993,10 @@ const ADMINISTRATION_LIST = [
         link: 'layer-mangement',
         eventName: 'sites-outdoor-esc',
         show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
         children: PLATFORM_LAYER_LIST
     }
 ];

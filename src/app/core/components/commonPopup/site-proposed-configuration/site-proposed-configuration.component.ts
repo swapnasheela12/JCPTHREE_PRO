@@ -33,6 +33,7 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
   pieOverlayGraphics: any;
   latitude;
   longitude;
+  mode;
   constructor(
     public dialogRef: MatDialogRef<SiteProposedConfigurationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

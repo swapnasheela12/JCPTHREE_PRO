@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ declare var $: any;
   templateUrl: './nominal-generation-landing-layer.component.html',
   styleUrls: ['./nominal-generation-landing-layer.component.scss']
 })
-export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy, AfterViewInit {
+export class NominalGenerationLandingLayerComponent implements AfterViewInit {
   routeFibreCoreLayer: any;
   routeFibreCoreLayerContainer: any;
   map: any;
@@ -97,61 +97,7 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
    
   }
 
-  ngOnInit(): void {
-    
-  }
-
-  getRouteData() {
-    return this.http.get("assets/data/layers/topologies/Fibre/Route/planned.json");
-  }
-
-  resizeContainer() {
-    this.canvasCore = this.routeFibreCoreLayer.getContainer();
-    let m = L.Browser.retina ? 2 : 1;
-    let size = this.routeFibreCoreLayer._bounds.getSize();
-    this.canvasCore.width = m * size.x;
-    this.canvasCore.height = m * size.y;
-    this.canvasCore.style.width = size.x + "px";
-    this.canvasCore.style.height = size.y + "px";
-    return this.canvasCore;
-  }
-
-  createLayer = function (container, zoomLevel, routePlannedData, layerContainer) {
-    // let nominalViewComponent = this.mainLayerRef.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
-    // this.mainLayerRef.componentRef = this.mainLayerRef.target.createComponent(nominalViewComponent);
-    // this.mainLayerRef.componentRef.instance.headerData = this.routePlannedLayerHeader;
-    // this.mainLayerRef.componentRef.instance.showHeader = 'show';
-  }
   ngAfterViewInit(){
-    
-    this.pixelRatio = window.devicePixelRatio || 1;
-    this.map = this.shapeService.mapServiceData;
-    this.routeFibreCoreLayer = new CustomLayer({
-      container: document.createElement("canvas")
-    });
-    // this.map.setView(new L.LatLng( 15.60816, 73.75113), 10);
-
-    // this.map.setView([26.6966, 77.8908]);
-    this.map.setZoom(5);
-    let outerThis = this;
-
-    this.routeFibreCoreLayer = new CustomLayer({
-      container: document.createElement("canvas")
-    });
-    this.routeFibreCoreLayer.on("layer-render", function () {
-      let that = this;
-      const componentRef = this.componentRef = this;
-      outerThis.getRouteData().subscribe((data) => {
-        this.routePlannedData = data;
-        that.routeFibreCoreLayerContainer = outerThis.resizeContainer();
-        outerThis.createLayer(that.routeFibreCoreLayerContainer, that._zoom, this.routePlannedData, componentRef);
-      });
-    //   let nominalViewComponent = this.mainLayerRef.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
-    // this.mainLayerRef.componentRef = this.mainLayerRef.target.createComponent(nominalViewComponent);
-    // this.mainLayerRef.componentRef.instance.headerData = this.routePlannedLayerHeader;
-    });
-
-    this.routeFibreCoreLayer.addTo(this.map);
     $('#Layers').parent()[0].click();
     this.http.get("assets/data/layers/nominal-generation/nominal-generation.json")
     .subscribe(data => {
@@ -162,7 +108,11 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
             eventName: 'nominal-generation',
             show:true,
             link: 'nominal-generation',
-            children: []
+            showSettings: false,
+            children: [],
+            showHeader: true,
+            checked: false,
+            headerText: 'Nominal Geneartion'
           }
         )
       }
@@ -172,7 +122,9 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
           eventName: 'nominal-generation',
           show:true,
           link: 'nominal-generation',
-          children: this.nominalArray
+          children: this.nominalArray,
+          checked: false,
+          headerText: ''
         }
       ]
       this.nominalGeneartionArray = [{
@@ -180,16 +132,14 @@ export class NominalGenerationLandingLayerComponent implements OnInit, OnDestroy
         eventName: 'my-projects',
         show:true,
         link: 'my-projects',
-        children: MY_PROJECTS_ARRAY
+        children: MY_PROJECTS_ARRAY,
+        checked: false,
+        headerText: ''
       }]
       this.dataShare.addExtraLayerDynamic(this.nominalGeneartionArray);
     });
 
     
     this.dataShare.layerNameFunc([{name: 'Back To Nominal Geneartion', source: 'display'}]);
-  }
-
-  ngOnDestroy(){
-    // alert("hello")
   }
 }

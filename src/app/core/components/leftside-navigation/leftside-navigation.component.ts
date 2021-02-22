@@ -27,6 +27,9 @@ export class SideNavNode {
   disabled?: Boolean;
   show?: Boolean;
   show0?: Boolean;
+  showSettings?: Boolean;
+  checked?: Boolean;
+  showHeader?: Boolean
 }
 
 class ExampleFlatNode {
@@ -100,7 +103,10 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       componentLayer: node.componentLayer,
       disabled: node.disabled,
       show: node.show,
-      show0: node.show0
+      show0: node.show0,
+      showSettings: node.showSettings,
+      checked: node.checked,
+      showHeader: node.showHeader
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -117,20 +123,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
-    this.datashare.extraLayerObject.subscribe((data: any) => {
-      if (Object.keys(data).length !== 0) {
-        let dataChange = this.dataSource.data;
-        if (dataChange[0].name != 'My Projects') {
-          let removedItems = dataChange.splice(0,0,data[0]);
-          this.dataSource.data = [];
-          this.dataSource.data = dataChange;
-        }
-        this.treeControl.expand(this.treeControl.dataNodes[0]);
-        this.treeControl.expand(this.treeControl.dataNodes[1]);
-        $('#'+data[0].children[0].children[0].name+'-input').click();
-      }
-    });
-
+   
     // this.datashare.currentMessage.subscribe((data: any) => {
     //   console.log(data)
     //   let addPin: any = {
@@ -206,6 +199,23 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
          
         }
       }
+
+      this.datashare.extraLayerObject.subscribe((data: any) => {
+        if (Object.keys(data).length !== 0) {
+          let dataChange = this.dataSource.data;
+          if (dataChange[0].name != 'My Projects') {
+            let removedItems = dataChange.splice(0,0,data[0]);
+            dataChange[0].children[0].children[0].checked = true;
+            console.log(dataChange)
+            this.dataSource.data = [];
+            this.dataSource.data = dataChange;
+            this.treeControl.expand(this.treeControl.dataNodes[0]);
+            this.treeControl.expand(this.treeControl.dataNodes[1]);
+            this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
+          }
+        }
+      });
+  
     });
   }
 
@@ -449,20 +459,45 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   onSelectionChange(event) {
     //
   }
-  onChecked(selected, node, activeCheckbox, eventChecked) {
+
+  newComponentRef;
+  showHeaderDisplay(node, type) {
     this.routePlannedLayerHeader.headerSapid = node.name;
-    this.datashare.headerObject.subscribe(
-      (headerView) => {
-        this.showHeader = headerView;
-        const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
-
-        const newComponentRef = this.showHeader.createComponent(factory);
-        newComponentRef.instance.headerData = this.routePlannedLayerHeader;
-        newComponentRef.instance.showHeader = 'show';
-        const newComponentVcRef = newComponentRef.instance.vcRef;
+    this.datashare.layerNameFunc([{name: 'Back To '+node.headerText, source: 'display'}]);
+    if (type == 'manual') {
+      if (node.selected == true && node.showHeader == true) {
+        this.datashare.headerObject.subscribe(
+          (headerView) => {
+            this.showHeader = headerView;
+            const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+            this.newComponentRef = this.showHeader.createComponent(factory);
+            this.newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+            this.newComponentRef.instance.showHeader = 'show';
+            const newComponentVcRef = this.newComponentRef.instance.vcRef;
+          }
+        )
+      } else if (node.selected == false) {
+        alert(node.selected)
+        this.showHeader.clear();
+        this.newComponentRef.destroy();
       }
-    )
+    }
 
+    else if (type == 'auto' && node.showHeader == true) {
+      this.datashare.headerObject.subscribe(
+        (headerView) => {
+          this.showHeader = headerView;
+          const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+          this.newComponentRef = this.showHeader.createComponent(factory);
+          this.newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+          this.newComponentRef.instance.showHeader = 'show';
+          const newComponentVcRef = this.newComponentRef.instance.vcRef;
+        }
+      )
+    }
+  }
+
+  onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -470,6 +505,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       node.selected = !selected;
     }
 
+    this.showHeaderDisplay(node, 'manual');
     if (node.selected == true) {
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);

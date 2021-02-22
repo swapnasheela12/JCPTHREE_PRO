@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomFlagPopupComponent } from 'src/app/core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { SiteProposedConfigurationComponent } from 'src/app/core/components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 
 const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
   {
@@ -85,7 +86,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   }
 
   getAdditionalCandidate() {
-    this.http.get("assets/data/layers/nominal-generation/nominal-generation.json")
+    this.http.get("assets/data/layers/nominal-generation/nominal-site-distribution.json")
     .subscribe(data => {
       this.additionalCandidateData = data;
       this.fitColumns();
@@ -134,10 +135,10 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="editDetailsConf()">
                 <span>Edit</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="viewDetailsConf()">
                 <span>View</span>
             </button>
             <button mat-menu-item (click)="openFlagConf()">
@@ -171,6 +172,38 @@ export class nominalGenerationRenderComponent implements ICellRendererAngularCom
     return true;
   }
 
+  editDetailsConf() {
+    const dialogRef = this.matDialog.open(SiteProposedConfigurationComponent, {
+      width: "1023px",
+      height:'474px',
+      panelClass: "site-proposed-table-edit",
+      data: {
+        'sapId': this.params.data.sapId,
+        'latitude': this.params.data.latitude,
+        'longitude': this.params.data.longitude,
+        'sector':this.params.data.sector
+      }
+    });
+    dialogRef.componentInstance.mode = 'edit';
+  }
+  
+  viewDetailsConf() {
+
+    const dialogRef = this.matDialog.open(SiteProposedConfigurationComponent, {
+      width: "1023px",
+      height:'474px',
+      panelClass: "site-proposed-table-view",
+      data: {
+        'sapId': this.params.data.sapId,
+        'latitude': this.params.data.latitude,
+        'longitude': this.params.data.longitude,
+        'sector':this.params.data.sector
+      }
+    });
+    dialogRef.componentInstance.mode = 'view';
+
+  }
+  
   openFlagConf() {
     const dialogRef = this.matDialog.open(CustomFlagPopupComponent, {
       width: "535px",
