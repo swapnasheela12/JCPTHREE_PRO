@@ -346,6 +346,7 @@ export class nominalSiteVerticalDotComponent implements ICellRendererAngularComp
         'sector':this.params.data.sector
       }
     });
+    dialogRef.componentInstance.mode = 'edit';
   }
 
   openFlagConf() {
