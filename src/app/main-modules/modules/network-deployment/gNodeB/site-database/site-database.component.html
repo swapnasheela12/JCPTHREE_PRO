@@ -5,6 +5,19 @@
                 <div class="col pl-0 wo-header">
                     <div class="header" fxFlex="90">R4G States</div>
                 </div>
+                <div class="col-4 sector-flex-item" fxFlex>
+                    <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show"
+                      style="margin-top: 6px;">
+                      <span class="zmdi zmdi-search"></span>
+                    </mat-icon>
+            
+                    <mat-form-field *ngIf="show">
+                      <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                      <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                      </mat-icon>
+                    </mat-form-field>
+                  </div>
             </mat-toolbar-row>
         </mat-toolbar>
         <mat-divider></mat-divider>
@@ -30,16 +43,16 @@
             </div>
         </div>
 
-
-        <mat-divider></mat-divider>
-
-        <div class="wo-grid" style="margin-top: 10px;height: 52%;">
+        <div class="wo-grid" style="height: 63%;">
             <!-- <app-ag-grid-tree [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)"
                 [columnDefs]="columnDefs" [rowData]="rowData">
             </app-ag-grid-tree> -->
 
-            <app-ag-grid-tree (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData">
-            </app-ag-grid-tree>
+            <!-- <app-ag-grid-tree (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData">
+            </app-ag-grid-tree> -->
+            <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+            </app-table-ag-grid>
+        
 
         </div>
     </mat-card>

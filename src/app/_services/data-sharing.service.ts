@@ -59,6 +59,11 @@ export class DataSharingService {
   private countLogicalSource = new BehaviorSubject(this.counter);
   countLogical = this.countLogicalSource.asObservable();
 
+  public addCommentSource = new BehaviorSubject({});
+  addComment = this.addCommentSource.asObservable();
+
+  public toggleEditModeSource = new BehaviorSubject({});
+  toggleEditMode = this.toggleEditModeSource.asObservable();
   private layerchosen = new BehaviorSubject({});
   layerchosenobject$ = this.layerchosen.asObservable();
 
@@ -84,6 +89,14 @@ export class DataSharingService {
 
   changeMessage(messages: Object) {
     this.messageSource.next(messages);
+  }
+
+  addedComment(messages: Object) {
+    this.addCommentSource.next(messages);
+  }
+
+  toggle(messages: Object) {
+    this.toggleEditModeSource.next(messages);
   }
 
   changeMessageDialog(messagesDialog: Object) {

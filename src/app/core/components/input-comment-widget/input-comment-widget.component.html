@@ -1,0 +1,64 @@
+<button *ngIf="showSelection && editMode" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu" class="comment" (click)="threeDotSelection()">
+    <mat-icon style="line-height: 0;color:#1278D7 !important;"><span class="ic ic-dots"></span></mat-icon>
+</button>
+
+<mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
+<button *ngIf="addNewComment" mat-menu-item (click)="addComment()">
+    <span>Add Comment</span>
+</button>
+<button *ngIf="editAddedComment" mat-menu-item (click)="editComment()">
+    <span>Edit Comment</span>
+</button>
+<button mat-menu-item (click)="removeSelection($event)">
+    <span>Remove Selection</span>
+</button>
+</mat-menu>
+
+<div class="added-comment" *ngIf="showTooltip && (comment != '')" #tooltip>{{comment}}</div>
+
+<div class="wo-form-field-read form-wrapper" (click)="addSelection()" (mouseover)="onHover()" (mouseout)="mouseOut()" #field [id]="id">
+    <div class="wo-form-input-title">{{label}}</div>
+    <div *ngIf="type === 'input'" class="wo-form-input-value">{{value}}</div>
+
+    <img  *ngIf="type === 'image'" src="assets/images/layer-settings/Small.png" alt="profile picture">
+</div>
+
+
+<div #myModal class="modal">
+   
+    <div class="modal-content">
+        <mat-toolbar class="dialog-header">
+            <mat-toolbar-row>
+                <div fxFlex="grow">
+                    <div class="header">Add Comment</div>
+                </div>
+                <button (click)="closeModal()" mat-icon-button class="dialog-close-button">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+      <div class="px-4 mat-con">
+        <mat-form-field class="w-100">
+            <mat-label>Add Comment</mat-label>
+           
+            <input matInput  id="name" type="text" [(ngModel)]="message"/>
+        </mat-form-field>
+
+        <!-- <button (click)="addCommentToTooltip()">add</button> -->
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="mr-1 assign-text-button">
+            <button class=" assign-butt" (click)="clickNo()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Cancel</button>
+        </div>
+        <div class="ml-1 assign-text-button">
+            <button class=" assign-butt" (click)="addCommentToTooltip()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Add</button>
+        </div>
+    </div>
+</div>
+  
+</div>

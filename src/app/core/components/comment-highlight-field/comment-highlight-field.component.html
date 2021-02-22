@@ -1,0 +1,14 @@
+<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu" class="comment">
+        <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-dots"></span></mat-icon>
+</button>
+
+<mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
+    <button mat-menu-item (click)="addComment()">
+        <span>Add Comment</span>
+    </button>
+    <button mat-menu-item (click)="removeSelection()">
+        <span>Remove Selection</span>
+    </button>
+</mat-menu>
+
+<!-- <div *ngIf="showCommentField"> {{addedComment}}</div> -->

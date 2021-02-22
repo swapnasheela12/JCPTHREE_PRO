@@ -71,6 +71,10 @@ import { SiteIdDetailComponent } from './gNodeB/site-database/site-id-detail/sit
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RfiSurveyFormComponent } from './gNodeB/site-database/rfi-survey-form/rfi-survey-form.component';
+import { CommentHighlightFieldDirective } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.directive';
+import { CommentHighlightFieldComponent } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.component';
+import { AddCommentComponent } from 'src/app/core/components/comment-highlight-field/add-comment/add-comment.component';
+import { InputCommentWidgetComponent } from 'src/app/core/components/input-comment-widget/input-comment-widget.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,11 @@ import { RfiSurveyFormComponent } from './gNodeB/site-database/rfi-survey-form/r
     AssignTaskComponent,
     RejectTaskComponent,
     SiteIdDetailComponent,
-    RfiSurveyFormComponent],
+    RfiSurveyFormComponent, 
+    CommentHighlightFieldDirective,
+    CommentHighlightFieldComponent,
+    AddCommentComponent,
+  InputCommentWidgetComponent],
   imports: [
     CommonModule,
     NetworkDeploymentRoutingModule,

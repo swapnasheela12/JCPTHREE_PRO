@@ -22,14 +22,12 @@
         </div>
 
         <div class="px-4 mat-con">
-            <mat-form-field class="w-100">
-                <mat-select panelClass="ag-grid-pagination" [(ngModel)]="remark[0]">
-                    <mat-option *ngFor="let rem of remark" [value]="rem">
-                        {{rem}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div class="w-100">
+                <div>Highlight</div>
+                <a (click)="makeFormEditable()">Click here for Highlights Field</a>
+            </div>
         </div>
+        
 
         <div class="px-4 mat-con">
             <mat-form-field class="w-100">

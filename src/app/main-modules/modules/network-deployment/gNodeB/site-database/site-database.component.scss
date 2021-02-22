@@ -16,7 +16,7 @@ $color-grayBlue: #464d69;
         min-height: 54px;
         &.mat-toolbar {
             background: white;
-            height: 54px;
+            height: 60px;
             padding: 0px;
             min-height: 54px;
             color: $color-grayBlue;
@@ -65,8 +65,8 @@ $color-grayBlue: #464d69;
 
 
 .td-flex-container {
-    height: 115px;
-    margin-top: 20px;
+    height: 112px;
+    margin-top: 15px;
     .td-flex-item {
         font-size: 14px;
         .td-title {

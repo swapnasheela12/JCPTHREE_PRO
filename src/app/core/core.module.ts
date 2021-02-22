@@ -80,6 +80,10 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { ViewAttributesComponent } from './components/commonPopup/view-attributes/view-attributes.component';
 import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
+import { CommentHighlightFieldComponent } from './components/comment-highlight-field/comment-highlight-field.component';
+import { AddCommentComponent } from './components/comment-highlight-field/add-comment/add-comment.component';
+import { InputCommentWidgetComponent } from './components/input-comment-widget/input-comment-widget.component';
+//import { CommentHighlightFieldDirective } from './components/comment-highlight-field/comment-highlight-field.directive';
 import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
 import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
@@ -119,6 +123,7 @@ import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
     ViewAttributesComponent,
     CustomFlagPopupComponent,
     SharePopupComponent,
+   // AddCommentComponent,
     AdDirective,
     SiteProposedConfigurationComponent,
     numberFormatPipe

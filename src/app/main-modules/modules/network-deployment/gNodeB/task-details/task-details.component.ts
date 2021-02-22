@@ -32,7 +32,10 @@ export class TaskDetailsComponent implements OnInit {
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
-  public gridOptions: GridOptions;
+  public gridOptionsMyTask: GridOptions;
+  public gridOptionsTeamTask: GridOptions;
+  public gridOptionsExceptional: GridOptions;
+  public gridOptionsSLABreach: GridOptions;
   public rowData: any;
   public rowDataTeams: any;
   public rowDataSLABreach: any;
@@ -87,7 +90,10 @@ export class TaskDetailsComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
 
-    this.gridOptions = <GridOptions>{};
+    this.gridOptionsMyTask = <GridOptions>{};
+    this.gridOptionsTeamTask = <GridOptions>{};
+    this.gridOptionsExceptional = <GridOptions>{};
+    this.gridOptionsSLABreach = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     this.createTeamDetailsColDefs();
@@ -104,11 +110,11 @@ export class TaskDetailsComponent implements OnInit {
     this.httpClient.get('assets/data/modules/network_deployment/gNodeB/task-details.json')
       .subscribe(data => {
         this.rowData = data;
-        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-        this.datatable.gridPinnedServices = this.gridPinned;
-        this.datatable.rowDataServices = this.rowData;
-        this.datatable.gridOptionsServices = this.gridOptions;
-        this.datatable.defaultColDefServices = this.defaultColDef;
+        // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        // this.datatable.gridPinnedServices = this.gridPinned;
+        // this.datatable.rowDataServices = this.rowData;
+        // this.datatable.gridOptionsServices = this.gridOptions;
+        // this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
 
@@ -181,11 +187,6 @@ export class TaskDetailsComponent implements OnInit {
         headerName: "SLA Status",
         field: "slaStatus",
         width: 130,
-      },
-      {
-        headerName: "SLA Breach Status",
-        field: "slaBreach",
-        width: 180
       },
       {
         headerName: "Proposed Completion Date",
@@ -280,11 +281,6 @@ export class TaskDetailsComponent implements OnInit {
         width: 130,
       },
       {
-        headerName: "SLA Breach Status",
-        field: "slaBreach",
-        width: 180
-      },
-      {
         headerName: "Proposed Completion Date",
         field: "proposedCompletionDate",
         cellRenderer: this.dateFunc,
@@ -374,11 +370,6 @@ export class TaskDetailsComponent implements OnInit {
         headerName: "SLA Status",
         field: "slaStatus",
         width: 130,
-      },
-      {
-        headerName: "SLA Breach Status",
-        field: "slaBreach",
-        width: 180
       },
       {
         headerName: "Proposed Completion Date",
@@ -479,11 +470,6 @@ export class TaskDetailsComponent implements OnInit {
         width: 130,
       },
       {
-        headerName: "SLA Breach Status",
-        field: "slaBreach",
-        width: 180
-      },
-      {
         headerName: "Proposed Completion Date",
         field: "proposedCompletionDate",
         width: 180
@@ -548,15 +534,19 @@ export class TaskDetailsComponent implements OnInit {
 
 
   public eventsSubject: Subject<any> = new Subject();
-  onFilterChanged(value) {
-    console.log("value", value)
-    this.gridOptions.api.setQuickFilter(value);
+  onFilterChanged(evt) {
+    this.gridFilterValueServices["filter"] = evt.target.value;
+    this.eventsSubject.next(this.gridFilterValueServices);
+    this.eventsSubject.subscribe((data) => {
+      this.gridOptionsMyTask.api.setQuickFilter(data.filter);
+      this.gridOptionsTeamTask.api.setQuickFilter(data.filter);
+      this.gridOptionsSLABreach.api.setQuickFilter(data.filter);
+      this.gridOptionsExceptional.api.setQuickFilter(data.filter);
+    });
   };
-
-
-  showInputField: boolean;
+  show: any;
   toggleSearch() {
-    this.showInputField = !this.showInputField;
+    this.show = !this.show;
   };
 
   applyFilter(event: Event) {
@@ -598,12 +588,12 @@ export class TaskDetailsComponent implements OnInit {
       this.httpClient.get('assets/data/modules/network_deployment/gNodeB/team-task.json')
         .subscribe(data => {
           this.rowDataTeams = data;
-          this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-          this.datatable.gridPinnedServices = this.gridPinned;
-          this.datatable.rowDataServices = this.rowData;
-          this.datatable.gridOptionsServices = this.gridOptions;
-          this.datatable.defaultColDefServices = this.defaultColDef;
-          this.datatable.columnDefsServices = this.columnDefsTeams;
+          // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+          // this.datatable.gridPinnedServices = this.gridPinned;
+          // this.datatable.rowDataServices = this.rowData;
+          // this.datatable.gridOptionsServices = this.gridOptions;
+          // this.datatable.defaultColDefServices = this.defaultColDef;
+          // this.datatable.columnDefsServices = this.columnDefsTeams;
         });
     } else {
       this.getMyTaskDetails();

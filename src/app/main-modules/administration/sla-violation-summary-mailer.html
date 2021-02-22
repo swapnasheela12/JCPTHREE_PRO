@@ -1,0 +1,649 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SLA Violation Summary</title>
+    <style type="text/css">
+        #outlook a {
+            padding: 0;
+        }
+
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, Arial, Helvetica, sans-serif;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+            background-color: #fff;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            width: 194px;
+            height: 65px;
+            display: inline-block;
+            margin-left: 82px;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: black !important;
+        }
+
+        h1 a,
+        h2 a,
+        h3 a,
+        h4 a,
+        h5 a,
+        h6 a {
+            color: blue !important;
+        }
+
+        h1 a:active,
+        h2 a:active,
+        h3 a:active,
+        h4 a:active,
+        h5 a:active,
+        h6 a:active {
+            color: red !important;
+        }
+
+        h1 a:visited,
+        h2 a:visited,
+        h3 a:visited,
+        h4 a:visited,
+        h5 a:visited,
+        h6 a:visited {
+            color: purple !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        a {
+            color: #1D67BD;
+        }
+
+        .linear {
+            width: 85px;
+            height: 67px;
+            display: inline-block;
+            background: transparent linear-gradient(180deg, #0070DB 0%, #0C5CB4 100%) 0% 0% no-repeat padding-box;
+            border-radius: 10px;
+            opacity: 1;
+        }
+
+        .linear-name {
+            position: relative;
+            top: 14px;
+            text-align: center !important;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-12)/15px var(--unnamed-font-family-lato);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            text-align: left;
+            font: normal normal medium 12px/15px Lato;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            opacity: 1;
+        }
+
+        .linear-value {
+            position: relative;
+            top: 19px;
+            text-align: center !important;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 18px/22px var(--unnamed-font-family-lato);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            text-align: left;
+            font: normal normal bold 18px/22px Lato;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            opacity: 1;
+        }
+
+        .floating-dialog {
+            width: 518px;
+            margin-left: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            position: absolute;
+            top: 123px;
+        }
+
+       .comment {
+        text-align: left;
+        font: normal normal medium 14px/17px Lato;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+        width: 66%;
+        font-size: 14px;
+        padding: 10px 0px 0px 41px;
+       }
+        
+        .task {
+            width: 300px;
+            float: right;
+            height: 55px;
+            margin-right: 23px;
+        }
+       .task-assignment {
+        font-size: 23px;
+        color: white;
+       }
+
+       .date {
+        font-size: 12px;
+        color:#F5F5F5;
+       }
+
+        @media only screen and (max-device-width: 480px) {
+
+            a[href^="tel"],
+            a[href^="sms"] {
+                text-decoration: none;
+                color: #1D67BD;
+                /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"],
+            .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #1D67BD !important;
+                /* or whatever your want */
+                pointer-events: auto;
+                cursor: default;
+            }
+        }
+
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+            a[href^="tel"],
+            a[href^="sms"] {
+                text-decoration: none;
+                color: #1D67BD;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"],
+            .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #1D67BD !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+        }
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            /* Put your iPhone 4g styles in here */
+        }
+
+        @media only screen and (-webkit-device-pixel-ratio:.75) {
+            /* Put CSS for low density (ldpi) Android layouts in here */
+        }
+
+        @media only screen and (-webkit-device-pixel-ratio:1) {
+            /* Put CSS for medium density (mdpi) Android layouts in here */
+        }
+
+        @media only screen and (-webkit-device-pixel-ratio:1.5) {
+            /* Put CSS for high density (hdpi) Android layouts in here */
+        }
+    </style>
+    <!--[if IEMobile 7]>
+	<style type="text/css">
+		/* Targeting Windows Mobile */
+	</style>
+	<![endif]-->
+    <!--[if gte mso 9]>
+	<style>
+		/* Target Outlook 2007 and 2010 */
+	</style>
+	<![endif]-->
+</head>
+
+<body
+    style="background:#E5EAED; min-height:500px; color:#000; font-family:Roboto, Arial, Helvetica, sans-serif; font-size:12px;"
+    alink="#1D67BD" link="#1D67BD" bgcolor="#E5EAED" text="#FFFFFF">
+    
+    <div style="max-width: 1540px;border: 0; height: 100%; position: absolute;
+    transform: translateX(60%)">
+        <div style=" width: 640px;
+        height: 265px;
+        background: transparent linear-gradient(180deg, #0070DB 0%, #004486 100%) 0% 0% no-repeat padding-box;
+        opacity: 1;">
+            <div>
+                <img class="image_fix" src="http://10.157.250.232:81/Mailer%20Logo.svg" alt="Foresight" title="Foresight" width="170"
+                                    height="56" />
+            </div>
+
+            <div class="task">
+                <div class="task-assignment">SLA Violation Summary</div>
+                <span class="date">01 June 2022</span>
+            </div>
+            </div>
+
+            <div class="floating-dialog">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td>
+                                <div style="width: 518px;">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    
+                                    <div>
+                                        <div>
+                                            <p style="color:#0078D7; font-size:14px; line-height: 18px; font-style: italic;
+                                                    font-weight: bold;">Dear
+                                                        Team,
+                                            </p>
+                                        </div>
+                                       <div>
+                                        <p style="color: black; font-size:12px; line-height: 16px;">Please
+                                            find the task(s) assigned to you. Request immediate action. For
+                                            details kindly check attachment or&nbsp;<span
+                                                style="color:#1D67BD;font-size: 14px;line-height: 18px;font-style: italic;
+                                                font-weight: bold;">View Insight. </span>
+                                                </br>
+                                                &nbsp;&nbsp;
+                                            <p style="color: black; font-size:12px; line-height: 16px;">The
+                                                number of task(s) assigned at each stage are provided in the
+                                                parentheses.</p>
+                                                </p>
+                                           </div>
+                                    </div>
+                                    <div style="margin-top: 14px;">
+                                        <div class="linear">
+                                            <div class="linear-name">Nominal</div>
+                                            <div class="linear-value">05</div>
+                                        </div>
+    
+                                        <div class="linear">
+                                            <div class="linear-name">RFA</div>
+                                            <div class="linear-value">05</div>
+                                        </div>
+    
+                                        <div class="linear">
+                                            <div class="linear-name">RFC</div>
+                                            <div class="linear-value">05</div>
+                                        </div>
+                                    </div>
+    
+                                    <tr>
+                                        <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                        <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                        <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                        <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                        <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="1" bgcolor="#dfdbdb"
+                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">&nbsp;</td>
+                                        <td height="1" bgcolor="#dfdbdb"
+                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">&nbsp;</td>
+                                        <td height="1" bgcolor="#dfdbdb"
+                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">&nbsp;</td>
+                                        <td height="1" bgcolor="#dfdbdb"
+                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">&nbsp;</td>
+                                        <td height="1" bgcolor="#dfdbdb"
+                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="500" height="56" valign="top" colspan="5">
+                                            <div style="width: 100%;max-width: 518px;overflow: hidden;overflow-x: auto;">
+                                                <table cellpadding="0" height="56" cellspacing="0" border="0"
+                                                    style="max-width: 1540px;min-width: 1540px;">
+                                                    <tr style="background: #F2F2F5; ">
+                                                        <td height="30"
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 200px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                SAP ID</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 120px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Sector ID</p>
+                                                        </td>
+                                                        <td height="30"
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 200px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                R4G State</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Maintenance Point</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Jio Center</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                CNUM</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Assigned Task</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Task Start Date</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                SLA Days</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Target Completion Date</p>
+                                                        </td>
+                                                        <td height="30" 
+                                                            style="border-top:1px solid #dfdbdb;border-bottom:1px solid #dfdbdb;padding: 5px;width: 150px;">
+                                                            <p style="color: #000100; font-size:14px; line-height: 16px;">
+                                                                Last Completed Task</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px;padding-left: 5px;">
+                                                            MP-VDSH-JC01-0541</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Alpha</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Madhya Pradesh</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Bhopal</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">MP-VDSH-JC01-0541
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">5
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Release for Construction</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">04
+                                                            Jun, 2020</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">1
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">05
+                                                            Jun, 2020</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Agreement Signed</td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                        <td height="1" bgcolor="#dfdbdb"
+                                                            style="background-color: #dfdbdb;font-size: 1px;line-height: 1px;">
+                                                            &nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px;padding-left: 5px;">
+                                                            MP-VDSH-JC01-0542</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            2</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Madhya Pradesh</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Bhopal</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">MP-VDSH-JC01-0542
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">2
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Release for Construction</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">04
+                                                            Jun, 2020</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">1
+                                                        </td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">05
+                                                            Jun, 2020</td>
+                                                        <td height="15"
+                                                            style="color: #909090; font-size:12px; line-height: 16px; padding-left: 5px;">
+                                                            Agreement Signed</td>
+    
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                        <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                
+                                </table>
+                            </div>
+                            </td>
+                        </tr>
+
+                    </table>
+            </div>
+
+
+            <div style="width: 640px;
+            height: 179px;
+            background: #F2F2F5;
+            opacity: 1;"></div>
+
+            <div style="width: 640px;
+            height: 121px;
+            background: transparent linear-gradient(180deg, #0070DB 0%, #0C5CB4 100%) 0% 0% no-repeat padding-box;
+            opacity: 1;">
+            </br>
+            </br>
+            </br>
+            </br>
+            <div class="comment">Send all your comments or questions to our feedback section in JCP or Reach out to us at jio.jcpsupport@ril.com</div>
+        </div>
+
+        <div style="width: 640px;
+        height: 29px; background: #F2F2F5;">
+        <div style="color:#313131; font-size: 12px; padding: 12px 0 12px 20px; font-style: italic;"> 
+            <span>Note</span> <span>|</span> <span>Please don’t reply as this is a system generated email notification.</span></div>
+            
+        </div>
+        </div>
+       
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+[
+    {
+        "label": "Azimuth and height Details",
+        "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "id": 1,
+        "tooltip": "",
+        "isCommentAdded": "",
+        "comment": ""
+    },
+    {
+        "label": "Restricted area like Hospital, Airport, School(with in 100m)",
+        "value": "No",
+        "id": 2,
+        "tooltip": "",
+        "isCommentAdded": "",
+        "comment": ""
+    },
+    {
+        "label": "Site Address",
+        "value": "TC-23 RELIANCE CORPORATE PARK PHASE IV A- WING GATE NO A GHANSOLI 400701",
+        "id": 3,
+        "tooltip": "",
+        "isCommentAdded": "",
+        "comment": ""
+    },
+    {
+        "label": "Any Structure/Rooftop/Ground/Flyover within 20m distance",
+        "value": "Yes",
+        "id": 4,
+        "tooltip": "",
+        "isCommentAdded": "",
+        "comment": ""
+    }
+]

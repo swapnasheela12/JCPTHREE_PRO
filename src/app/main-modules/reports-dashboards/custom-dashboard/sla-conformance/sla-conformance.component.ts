@@ -114,6 +114,23 @@ export class SlaConformanceComponent implements OnInit {
   options;
   @ViewChild('graphViolationChart', { static: true }) graphViolationChart: ElementRef;
   private _chart: any;
+
+  onReadyModeUpdate(params) {
+   // this.calculateRowCount();
+  }
+
+  // public onReady(params) {
+  //   this.gridApi = params.api;
+  //   this.calculateRowCount();
+  // }
+  // public calculateRowCount() {
+  //   if (this.gridOptions.api && this.rowData) {
+  //     setTimeout(() => {
+  //       this.gridOptions.api.sizeColumnsToFit();
+  //     }, 1000);
+  //   }
+  // }
+  
   constructor(
     private httpService: HttpClient,
     private dataShare: DataSharingService,
@@ -237,21 +254,25 @@ export class SlaConformanceComponent implements OnInit {
       headerName: "Zone",
       field: "zone",
       width: 100,
+      pinned: "left"
     }, {
       headerName: "R4GState",
       field: "r4gState",
       width: 150,
+      pinned: "left"
     },
 
     {
       headerName: "eNB-SAP-ID",
       field: "sapId",
       width: 180,
+      pinned: "left"
     },
     {
       headerName: "Direction",
       field: "direction",
-      width: 150
+      width: 150,
+      pinned: "left"
     },
     {
       headerName: "Type",
@@ -439,8 +460,8 @@ export class SlaConformanceComponent implements OnInit {
     this.fitColumns();
   }
 
-  onCellClicked(event: any) {
-    if (event.colDef.field === "r4g_state") {
+  onRowClicked(event: any) {
+    if (event.data.r4g_state === "r4g_state") {
       this.showSLAConformance = "sla-voilation";
     } else {
       this.showSLAConformance = 'sla-chart';
