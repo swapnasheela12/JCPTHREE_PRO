@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import * as createjs from 'createjs-module';
 // declare const L: any;
@@ -7,6 +7,7 @@ import * as L from 'leaflet';
 import { CustomLayer } from 'leaflet-customlayer';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { Router } from '@angular/router';
+import { RedirectLayersPopupComponent } from '../redirect-layers-popup/redirect-layers-popup.component';
 
 @Component({
   selector: 'app-site-proposed-configuration',
@@ -34,11 +35,13 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
   latitude;
   longitude;
   mode;
+  map;
   constructor(
     public dialogRef: MatDialogRef<SiteProposedConfigurationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private shapeService: ShapeService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
   }
 
@@ -68,11 +71,28 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
       position: 'bottomright'
     })
     .addTo(this.mapSitePrposed);
+    let outer = this;
+    this.siteProposedConfigurationLayer = new CustomLayer({
+      container: document.createElement("canvas")
+    });
+    
+    this.siteProposedConfigurationLayer.on("layer-render", function () {
+      let that = this;
+      const componentRef = this.componentRef = this;
+      that.routeFibreCoreLayerContainer = outerThis.resizeContainer();
+      outerThis.createLayer(
+          that.routeFibreCoreLayerContainer,
+          that._zoom,
+          this.routePlannedData,
+          componentRef,
+          that._assetQueue
+        );
+    });
+
     this.customControlSitePrposed = L.Control.extend({
       options: {
         position: 'bottomright',
       },
-
 
       onAdd: function (mapSitePrposed) {
         let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
@@ -81,8 +101,24 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
         container.style.backgroundSize = "38px 38px";
         container.style.width = '38px';
         container.style.height = '38px';
-
-        container.onclick = function () { }
+        let contThis = this;
+        container.onclick = function () {
+          outer.dialogRef.close(true);
+          const dialogRef1 = outer.dialog.open(RedirectLayersPopupComponent, {
+            width: "470px",
+            panelClass: "material-dialog-container",
+            data: { transferDataPoly: '', headerNominal: true }
+          });
+          dialogRef1.afterClosed().subscribe(result => {
+            alert("hello")
+            outer.shapeService.mapServiceData = outer.mapSitePrposed;
+            outer.router.navigate(['/JCP/Layers']);
+            console.log( outer.shapeService)
+          });
+          contThis._container = container;
+          contThis._update();
+          return contThis._container;
+        }
         this._container = container;
         this._update();
         return this._container;
@@ -100,27 +136,11 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
     this.mapSitePrposed.setView(new L.LatLng(this.latitude, this.longitude), 14);
     // this.shapeService.mapServiceData = this.mapSitePrposed;
     this.pixelRatio = window.devicePixelRatio || 1;
-    this.siteProposedConfigurationLayer = new CustomLayer({
-      container: document.createElement("canvas")
-    });
+    
    
     let outerThis = this;
 
-    this.siteProposedConfigurationLayer.on("layer-render", function () {
-      let that = this;
-      const componentRef = this.componentRef = this;
-      that.routeFibreCoreLayerContainer = outerThis.resizeContainer();
-      outerThis.createLayer(
-          that.routeFibreCoreLayerContainer,
-          that._zoom,
-          this.routePlannedData,
-          componentRef,
-          that._assetQueue
-        );
-    });
-
     this.siteProposedConfigurationLayer.addTo(this.mapSitePrposed);
-    this.shapeService.mapServiceData = this.mapSitePrposed;
   }
 
   resizeContainer() {

@@ -24,20 +24,20 @@
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">Planning Targets</span>
                                 <div fxLayout="row" class="summary-content">
-                                    <div fxFlex="60" class="target-data">
+                                    <div fxFlex="55" class="target-data">
                                         <div *ngFor="let target of planningTarget1">
                                             <div isEllipsisActive="planningTarget" attr.data-title1="{{target.key}}: {{target.value}}"
-                                            id="{{target.key}}: {{target.value}}">
-                                                <span class="planning-target-key">{{target.key}}</span>:
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
                                                 <span class="planning-target-value">{{target.value}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div fxFlex="40" class="target-data">
+                                    <div fxFlex="45" class="target-data">
                                         <div *ngFor="let target of planningTarget2">
                                             <div isEllipsisActive="planningTarget2" attr.data-title1="{{target.key}}: {{target.value}}"
-                                            id="{{target.key}}: {{target.value}}">
-                                                <span class="planning-target-key">{{target.key}}</span>:
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
                                                 <span class="planning-target-value">{{target.value}}</span>
                                             </div>
                                         </div>
@@ -54,8 +54,8 @@
                                     <div class="target-data">
                                         <div *ngFor="let target of existingArea">
                                             <div isEllipsisActive="existingArea" attr.data-title1="{{target.key}}: {{target.value}}"
-                                            id="{{target.key}}: {{target.value}}">
-                                                <span class="planning-target-key">{{target.key}}</span>:
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
                                                 <span class="planning-target-value">{{target.value}}</span>
                                             </div>
                                         </div>

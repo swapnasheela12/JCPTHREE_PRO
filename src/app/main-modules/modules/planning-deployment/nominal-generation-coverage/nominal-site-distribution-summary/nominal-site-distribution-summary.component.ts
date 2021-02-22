@@ -18,12 +18,14 @@ const HEADER_PERFORMANCE_REPORTS = [
     width: 30,
     checkboxSelection: function(params) {
       return params.columnApi.getRowGroupColumns().length === 0;
-    }
+    },
+    pinned: 'left' 
   },
   {
     headerName: "SAP ID",
     field: "sapId",
-    width: 190
+    width: 190,
+    pinned: 'left' 
   },
   {
     headerName: "",

@@ -38,21 +38,21 @@ export class isEllipsisActiveDirective implements AfterViewInit {
           element.style.textOverflow = 'ellipsis';
         }
       } else if (this.name == 'planningTarget') {
-        if (length > 30) {
+        if (length > 35) {
           element.id = 'customUser';
-          element.style.width = "180px";
+          element.style.width = "100%";
           element.style.textOverflow = 'ellipsis';
         }
       } else if (this.name == 'planningTarget2') {
-        if (length > 30) {
+        if (length > 25) {
           element.id = 'customUser';
-          element.style.width = "180px";
+          element.style.width = "100%";
           element.style.textOverflow = 'ellipsis';
         }
       } else if (this.name == 'existingArea') {
         if (length > 40) {
           element.id = 'customUser';
-          element.style.width = "180px";
+          element.style.width = "100%";
           element.style.textOverflow = 'ellipsis';
         }
       }
