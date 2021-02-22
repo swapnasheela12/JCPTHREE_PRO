@@ -101,11 +101,20 @@ import { StructureComponent } from './layer-list/topologies/fibre/logicaltopolog
 import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
 import { LogicalConnectivitySettingComponent } from './layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
+import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
+import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
+import { SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
+
 
 import { DropdownOwnerRendererComponent } from '../administration/site-sla-configuration/dropdown-owner-renderer.component';
 import { DropdownResponsibleRendererComponent } from '../administration/site-sla-configuration/dropdown-responsible-renderer.component';
 import { DropdownPositionRendererComponent } from '../administration/site-sla-configuration/dropdown-position-renderer.component';
 import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
+import { AdditionalCandidatesPopupComponent, nominalGenerationRenderComponent, flagRenderComponent } from './additional-candidates-popup/additional-candidates-popup.component';
+import { AdditionalCandidateSettingsPopupComponent } from './additional-candidate-settings-popup/additional-candidate-settings.component';
+import { LayerPatchSettingsPopupComponent } from './layer-patch-settings-popup/layer-patch-settings.component';
+import { LayerPatchPopupComponent } from './layer-patch-popup/layer-patch-popup.component';
+
 @NgModule({
   declarations: [
     MainLayerComponent,
@@ -154,10 +163,19 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     AnchorRendererComponent,
     LogicalConnectivitySettingComponent,
     PolygonEditorComponent,
+    SmartbenchMenubarComponent,
+    SplitmapComponent,
+    SmartbenchDialogComponent,
     DropdownOwnerRendererComponent,
     DropdownResponsibleRendererComponent,
     DropdownPositionRendererComponent,
-    ToggleButtonRendererComponent
+    ToggleButtonRendererComponent,
+    AdditionalCandidatesPopupComponent,
+    AdditionalCandidateSettingsPopupComponent,
+    nominalGenerationRenderComponent,
+    flagRenderComponent,
+    LayerPatchSettingsPopupComponent,
+    LayerPatchPopupComponent
   ],
   imports: [
     DragDropModule,
@@ -166,10 +184,17 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     CoreModule,
     Ng5SliderModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([colorDropdownRendererComponent, inputRendererComponent, AnchorRendererComponent,     DropdownOwnerRendererComponent,
+    AgGridModule.withComponents([
+      colorDropdownRendererComponent,
+      inputRendererComponent,
+      AnchorRendererComponent,
+      DropdownOwnerRendererComponent,
       DropdownResponsibleRendererComponent,
       DropdownPositionRendererComponent,
-    ToggleButtonRendererComponent]),
+      ToggleButtonRendererComponent,
+      nominalGenerationRenderComponent,
+      flagRenderComponent
+    ]),
     ColorPickerModule,
     FormsModule,
     ReactiveFormsModule,
@@ -219,7 +244,6 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     HighchartsChartModule,
     NgxMatSelectSearchModule,
     FlexLayoutModule
-
   ],
   providers: [
     MarkerService
@@ -230,10 +254,13 @@ import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-r
     TableViewControlComponent,
     colorDropdownRendererComponent,
     inputRendererComponent,
-    AnchorRendererComponent
+    AnchorRendererComponent,
+    nominalGenerationRenderComponent,
+    flagRenderComponent
   ], entryComponents: [
     TableViewControlComponent,
-    SpiderComponent
+    SpiderComponent,
+    StructurePlannedSettingsPopupComponent
   ]
 })
 

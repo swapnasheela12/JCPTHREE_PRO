@@ -155,6 +155,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
            font: 'icomoon',
           fontvalue: '\uec80',
           value: 5,
+        },
+        {
+          device: "ISC",
+          color: "#03A9F4",
+           font: 'icomoon',
+          fontvalue: '\uec87',
+          value: 5,
         }
         ],
     },
@@ -195,6 +202,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
             color: "#03A9F4",
                font: 'icomoon',
             fontvalue: '\uec6a',
+            value: 5,
+          },
+          {
+            device: "IBS",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec86',
             value: 5,
           }
         ],
@@ -536,13 +550,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
         width: "1200px",
         height: "500px",
         position: {
-          left: "18.5rem",
+          left: "20.5rem",
           top: "4rem"
         },
         data: dialogData,
         hasBackdrop: false,
         disableClose: false,
-        panelClass: "material-dialog-container",
+        panelClass: "route-table"
       });
     } else if (d.data.name == 'Logical Connectivity') {
       let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Equipment-Planned'};
@@ -561,13 +575,13 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
       width: "1200px",
       height: "500px",
       position: {
-        left: "18.5rem",
+        left: "20.5rem",
         top: "4rem"
       },
       data: dialogData,
       hasBackdrop: false,
       disableClose: false,
-      panelClass: "material-dialog-container",
+      panelClass: "route-table"
     });
   }
 
@@ -643,6 +657,7 @@ export class EquipmentsPlannedFibreCoreComponent implements AfterViewInit, OnDes
     mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
     mainLayerReference.componentRef.instance.mainRef = this;
     mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+    mainLayerReference.componentRef.instance.type = 'equipment';
   }
 
   ngOnDestroy() {

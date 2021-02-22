@@ -9,16 +9,14 @@
                     <span class="zmdi zmdi-search"></span>
                 </mat-icon>
                 <mat-form-field *ngIf="show" class="col-4">
-                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
-                        autocomplete="off" placeholder="">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
                     <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button create-button" color="primary"
-                    [matMenuTriggerFor]="createMenuList">Create</button>
+                <button mat-raised-button class="submit-button create-button" color="primary" [matMenuTriggerFor]="createMenuList">Create</button>
                 <mat-menu #createMenuList="matMenu" class="nominal-capacity-menu-render" xPosition="before">
-                    <button mat-menu-item>
+                    <button routerLink="/{{createRouteStrategy}}" mat-menu-item>
                         <span>Strategy</span>
                     </button>
                     <button routerLink="/{{createRoute}}" mat-menu-item>
@@ -73,8 +71,7 @@
         <div class="holder-div overflow-auto">
             <mat-card class="p-0 mb-2" *ngFor="let item of obs | async">
                 <mat-card-content fxLayout="row">
-                    <span
-                        [ngClass]="{'in-progress': item.status =='In Progress', 'completed': item.status =='Completed', 'draft': item.status =='Draft'}">
+                    <span [ngClass]="{'in-progress': item.status =='In Progress', 'completed': item.status =='Completed', 'draft': item.status =='Draft'}">
                         &nbsp;
                     </span>
                     <div fxFlex="100" class="mx-2">
@@ -82,8 +79,7 @@
                             <div class="leftsSide" fxLayout="column">
                                 <div fxLayout="row">
                                     <span class="area">{{item.area}} : &nbsp;</span>
-                                    <span class="place"
-                                        [ngClass]="{'label-yellow': item.status =='In Progress', 'label-green': item.status =='Completed', 'label-orange': item.status =='Draft'}">{{item.place}}</span>
+                                    <span class="place" [ngClass]="{'label-yellow': item.status =='In Progress', 'label-green': item.status =='Completed', 'label-orange': item.status =='Draft'}">{{item.place}}</span>
                                 </div>
                                 <div class="category">
                                     {{item.category}}
@@ -93,8 +89,7 @@
                                 <span class="id pr-3">
                                     {{item.id}}
                                 </span>
-                                <button mat-flat-button class="status-button"
-                                    [ngClass]="{'button-yellow': item.status =='In Progress', 'button-green': item.status =='Completed', 'button-orange': item.status =='Draft'}">
+                                <button mat-flat-button class="status-button" [ngClass]="{'button-yellow': item.status =='In Progress', 'button-green': item.status =='Completed', 'button-orange': item.status =='Draft'}">
                                     {{item.status}}</button>
                             </div>
                         </div>
@@ -107,7 +102,7 @@
                                 <div fxLayout="column" class="pd-r-37">
                                     <div fxLayout="row">
                                         <span class="info-lable">Created By: &nbsp; </span>
-                                        <span isEllipsisActive attr.data-title1="{{item.createdUser}}"  class="info name-node">{{item.createdUser}} | {{item.createdDate}} |
+                                        <span isEllipsisActive attr.data-title1="{{item.createdUser}}" class="info name-node">{{item.createdUser}} | {{item.createdDate}} |
                                             {{item.createdTime}}</span>
                                     </div>
                                     <div fxLayout="row">
@@ -121,12 +116,12 @@
                                         <i routerLink="/{{layerRoute}}" style="color:#989898"
                                             class="ic ic-layers-01"></i>
                                     </button>
-                                    <button  [matMenuTriggerFor]="cardMenu" mat-icon-button>
+                                    <button [matMenuTriggerFor]="cardMenu" mat-icon-button>
                                         <mat-icon style="color:#989898">more_vert</mat-icon>
                                     </button>
                                     <mat-menu #cardMenu="matMenu" class="nominal-capacity-menu-render" xPosition="before">
                                         <div *ngIf="item.status =='Draft'">
-                                            <button  routerLink="/{{createRoute}}" mat-menu-item>
+                                            <button routerLink="/{{createRoute}}" mat-menu-item>
                                                 <span>Edit</span>
                                             </button>
                                             <button (click)="openUpdateDialog()" mat-menu-item>
@@ -143,7 +138,7 @@
                                             <button mat-menu-item>
                                                 <span>Clone</span>
                                             </button>
-                                            <button  mat-menu-item>
+                                            <button mat-menu-item>
                                                 <span>Abort</span>
                                             </button>
                                             <button mat-menu-item>
@@ -154,7 +149,7 @@
                                             <button mat-menu-item>
                                                 <span>Clone</span>
                                             </button>
-                                            <button  mat-menu-item>
+                                            <button mat-menu-item>
                                                 <span>Delete</span>
                                             </button>
                                             <button mat-menu-item>
@@ -177,6 +172,9 @@
         </div>
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <!-- <div  fxLayout="column" style="height: 80%;" fxLayoutAlign="center center" >
+        No data available.
+    </div> -->
 </mat-card>
 <!-- *ngIf="item.status =='In Progress'"  -->
 <!-- *ngIf="item.status =='Draft'" -->

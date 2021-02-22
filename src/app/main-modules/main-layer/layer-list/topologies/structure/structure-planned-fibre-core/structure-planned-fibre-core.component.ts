@@ -154,6 +154,13 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
            font: 'icomoon',
           fontvalue: '\uec74',
           value: 5,
+        },
+        {
+          device: "ISC",
+          color: "#03A9F4",
+           font: 'icomoon',
+          fontvalue: '\uec87',
+          value: 5,
         }
         ],
     },
@@ -197,10 +204,17 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
             value: 5,
           },
           {
-            device: "AG1",
+            device: "Others",
             color: "#03A9F4",
                font: 'icomoon',
-            fontvalue: '\uec6a',
+            fontvalue: '\uec85',
+            value: 5,
+          },
+          {
+            device: "IBS",
+            color: "#94C65A",
+             font: 'icomoon',
+            fontvalue: '\uec86',
             value: 5,
           }
         ],
@@ -537,13 +551,13 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
         width: "1200px",
         height: "500px",
         position: {
-          left: "18.5rem",
+          left: "20.5rem",
           top: "4rem"
         },
         data: dialogData,
         hasBackdrop: false,
         disableClose: false,
-        panelClass: "material-dialog-container",
+        panelClass: "route-table",
       });
     } else if (d.data.name == 'Logical Connectivity') {
       let extraLayer = {'parentToChild': 'Logical-Connectivity', 'child': 'Topologies-Structure-Planned'};
@@ -562,13 +576,13 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
       width: "1200px",
       height: "500px",
       position: {
-        left: "18.5rem",
+        left: "20.5rem",
         top: "4rem"
       },
       data: dialogData,
       hasBackdrop: false,
       disableClose: false,
-      panelClass: "material-dialog-container",
+      panelClass: "route-table"
     });
   }
 
@@ -610,8 +624,8 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     // this.labelCount.textAlign = 'center';
     // this.labelCount.textBaseLine = 'middle';
 
-    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All.svg');
-    this.labelCount.regX = 35;
+    this.labelCount = new createjs.Bitmap('assets/images/Layers/topologies/structure/All-white.svg');
+    this.labelCount.regX = 30;
     this.labelCount.regY = 30;
     this.labelCount.scaleX = 0.4;
     this.labelCount.scaleY = 0.4;
@@ -644,6 +658,7 @@ export class StructurePlannedFibreCoreComponent implements AfterViewInit, OnDest
     mainLayerReference.componentRef.instance.colocatedCircularCircleData = colocatedData;
     mainLayerReference.componentRef.instance.mainRef = this;
     mainLayerReference.componentRef.instance.mainLayerReference = mainLayerReference;
+    mainLayerReference.componentRef.instance.type = 'structure';
   }
 
   ngOnDestroy() {

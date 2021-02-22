@@ -1,3 +1,4 @@
+import { layersIconRenderComponent } from './components/ag-grid-renders/layersicon.component';
 import { dropDownList3DotRendererComponent } from './components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { dropdownPriorityRendererComponent } from './components/ag-grid-renders/dropdown-priority-renderer.component';
 import { dropdownQueryRendererComponent } from './components/ag-grid-renders/dropdown-query-renderer.component';
@@ -83,6 +84,9 @@ import { CommentHighlightFieldComponent } from './components/comment-highlight-f
 import { AddCommentComponent } from './components/comment-highlight-field/add-comment/add-comment.component';
 import { InputCommentWidgetComponent } from './components/input-comment-widget/input-comment-widget.component';
 //import { CommentHighlightFieldDirective } from './components/comment-highlight-field/comment-highlight-field.directive';
+import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
+import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
+import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
 
 @NgModule({
   declarations: [
@@ -111,6 +115,7 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
     SavePolygonPopupComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    layersIconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
     dropDownList3DotRendererComponent,
@@ -119,13 +124,16 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
     CustomFlagPopupComponent,
     SharePopupComponent,
    // AddCommentComponent,
+    AdDirective,
+    SiteProposedConfigurationComponent,
+    numberFormatPipe
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
@@ -175,7 +183,9 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
   providers: [
     SideNavService,
     MmenuDirective,
-    isEllipsisActiveDirective
+    isEllipsisActiveDirective,
+    AdDirective,
+    numberFormatPipe
   ],
   exports: [
     HeaderComponent,
@@ -187,6 +197,7 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
     dropDownThreeDotRendererComponent,
     layerlayerDropDownDotRendererComponent,
     statusflagiconRenderComponent,
+    layersIconRenderComponent,
     dropdownQueryRendererComponent,
     dropdownPriorityRendererComponent,
     dropDownList3DotRendererComponent,
@@ -196,7 +207,9 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
     AgGridTreeComponent,
     DeleteRendererComponent,
     DeleteButtonRenderComponent,
-    PaginationComponent
+    PaginationComponent,
+    AdDirective,
+    numberFormatPipe
   ], entryComponents: [
     SuccessfulComponent,
     SuccessfulModalComponent

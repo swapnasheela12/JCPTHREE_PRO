@@ -1,4 +1,20 @@
 [{
+        "datasourcename": "Strategic Sites",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
+        "datasourcename": "Exclusion Zones",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 2",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
         "datasourcename": "Landmark",
         "attributes": "View Attributes",
         "querydata": "Pune - Query 1",

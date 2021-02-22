@@ -4,7 +4,7 @@ import { QuestionPopupComponent } from '../../../modules/components/capacity/que
 
 @Component({
   selector: 'app-genhelpicon',
-  template: `<div class="icon-help icon-button" id="helpicon-render" (click)="openDialoghelp()">
+  template: `<div class="" id="helpicon-render" (click)="openDialoghelp()">
   <!-- <div [ngStyle]="{'color': flagStatus=='completed'? '#11D800' : '#D80000'}" class="zmdi zmdi-flag"></div> -->
   <div [style.color]="getColor(flagStatus)" class="zmdi zmdi-flag"></div>
   <!-- <div ng-class="{red: flagStatus == 'Not completed', green: flagStatus == 'completed'}" class="zmdi zmdi-flag"></div> -->

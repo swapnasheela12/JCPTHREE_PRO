@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
 import { AdDirective } from './../../_directive/dynamicComponent/ad.directive';
 import { RedirectLayersPopupComponent } from './../../core/components/commonPopup/redirect-layers-popup/redirect-layers-popup.component';
@@ -14,7 +15,7 @@ import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
@@ -33,7 +34,12 @@ import { SideNavService } from 'src/app/_services/side-nav.service';
 import { NodesAndBoundariesManagerService } from './layer-list/sites/outdoor/macro/nodes-and-boundaries-manager.service';
 import 'leaflet-contextmenu';
 import { MatSidenav } from '@angular/material/sidenav';
-declare var $: any;
+import { SplitmapComponent } from './network/quality-and-experience/splitmap/splitmap.component';
+import { SmartbenchMenubarComponent } from './network/quality-and-experience/smartbench-menubar/smartbench-menubar.component';
+import { SmartSplitmapService } from './network/quality-and-experience/smart-splitmap-servicce/smart-splitmap.service';
+import { smartBenchmarkDialogModel, SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
+import { LeafletTileLayerDefinition } from '@asymmetrik/ngx-leaflet';
+
 
 @Component({
   selector: 'app-main-layer',
@@ -73,17 +79,37 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public circle;
   public poly;
   public polyline;
+  public layerName;
+  public layerDetailsArray: any = [];
+  public layerNamesArray: any = [];
+  public smartbenchlayerenabled: boolean = false;
+  public smartbenchmenuRef: any;
+  public splitmapcomponentRef: any;
+  public componentsReferences: any = [];
+  public ref: any;
+  public stripDataEnabled: boolean = false;
   // fileNameDialogRef: MatDialogRef<RedirectLayersPopupComponent>;
   // search = new GeoSearchControl({
   //   provider: new OpenStreetMapProvider(),
   // });
-
+  clickEventSub: Subscription;
   public optionsSacle;
   public dataShareSub: Subscription = new Subscription();
+  public dialogCurrentState: boolean;
+  public smartbenchmarkDialogEnabled: boolean = false;
+  public smartDialogText: boolean = false;
+  public stripToggleBtn:boolean = false;
+  public arrowDirectionIcon:boolean = false;
+
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
+  @ViewChild('smartbenchComponent', { read: ViewContainerRef }) smartbenchComponentRef: ViewContainerRef;
+  @ViewChild('splitmapComponent', { read: ViewContainerRef }) splitmapComponentRef: ViewContainerRef;
+
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private logicaltopologyService: LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
-    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService) {
+    private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService,
+    private smartSplitmapService: SmartSplitmapService
+  ) {
 
 
     this.router.events.subscribe((event: any) => {
@@ -107,6 +133,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   @ViewChild(AdDirective) adHost: AdDirective;
+  @ViewChild('headerView', { read: ViewContainerRef }) headerView: ViewContainerRef;
 
   public components = [PolygonEditorComponent];
   public currentComponent = null;
@@ -115,6 +142,186 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initMap();
     // this.markerService.makeCapitalMarkers(this.map);
     this.nodesAndboundariesCall();
+    this.setStripMenubar()
+    this.recieveAndLoadSplitmapCompoent();
+    this.datashare.addSpecificHeader(this.headerView);
+  }
+
+  //SET UP STRIP MENU BAR WITH LAYER SELECTED
+  setStripMenubar() {
+    this.datashare.currentMessage.subscribe(val => {
+      let layerCheckedData: any = val;
+      this.layerNamesArray = [];
+      try {
+        if (layerCheckedData.length == 0) {
+          this.hideStripBarMenu(layerCheckedData);
+          this.arrowDirectionIcon = false;
+          this.stripToggleBtn = false;
+          this.destroySplitWidgetComponents();
+        }
+        else if (layerCheckedData.length > 0) {
+          this.layerDetailsArray = val;
+          this.setUpStripContent(layerCheckedData);
+        }
+      }
+      catch (error) {
+      }
+    });
+  }
+
+  //TOP STRIP MENU BAR
+  setUpStripContent(layerCheckedData, dialogdiscard?) {
+    if (dialogdiscard) {
+      this.layerNamesArray = [];
+    }
+    for (var i = 0; i < this.layerDetailsArray.length; i++) {
+      let layername = this.layerDetailsArray[i].name;
+      this.layerNamesArray.push(layername);
+    }
+
+    //CREATE DOM STYLE
+    if (typeof this.layerNamesArray !== 'undefined' && this.layerNamesArray.length > 0) {
+      let latestLayerChosen = this.layerNamesArray[this.layerDetailsArray.length - 1];
+      this.stripDataEnabled = true;
+
+      //CHECK FOR SMART BENCHMARKING LAYER
+      let index = this.layerNamesArray.indexOf(latestLayerChosen);
+      if (latestLayerChosen == "Smart Benchmarking" && layerCheckedData[index].selected) {
+        this.smartBenchmarkDialog(index, layerCheckedData, latestLayerChosen);
+      }
+      else {
+        this.showStripHTMLContent();
+        this.layerName = latestLayerChosen;
+        this.smartbenchlayerenabled = false;
+        this.removeSmartBenchmarkingMenuIcon();
+        this.destroySplitWidgetComponents();
+      }
+    }
+  }
+
+  //HTML CONTENT FOR STRIP
+  showStripHTMLContent() {
+    let stripWidth = (<HTMLInputElement>document.getElementById("angular-app-root")).clientWidth - 30;
+    (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
+    (<HTMLInputElement>document.getElementById("topstrip")).style.display = "flex";
+    this.stripToggleBtn = true;
+  }
+
+  //TOGGLE STRIP BAR
+  slideToggleStripbarMenu() {
+    let $slider = (<HTMLInputElement>document.getElementById("topstrip"));
+    let isOpen = $slider.classList.contains('slide-in');
+    if(isOpen){
+      $slider.classList.remove('slide-in');
+      $slider.classList.add('slide-out');
+      this.arrowDirectionIcon = false;
+    }
+    else{
+      $slider.classList.remove('slide-out');
+      $slider.classList.add('slide-in');
+      this.arrowDirectionIcon = true;
+     }
+  }
+  
+  // SMART BENCHMARK PROMPT
+  smartBenchmarkDialog(index, layerstatus, layername) {
+    var message = "This feature is currently in Beta. Turning this layer on will cause other layers to close.";
+    var dialogData = new smartBenchmarkDialogModel("Warning!", message, true);
+    (<HTMLInputElement>document.getElementById("angular-app-root")).style.zIndex = "auto";
+
+    const dialogRef = this.dialog.open(SmartbenchDialogComponent, {
+      maxWidth: "428px",
+      data: dialogData,
+      disableClose: true,
+      panelClass: "material-dialog-container",
+      autoFocus: false 
+    });
+    Array.from(document.getElementsByClassName('mat-dialog-container') as HTMLCollectionOf<HTMLElement>)[0].style.overflow = "inherit";
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.dialogCurrentState = dialogResult || false;
+      if (this.dialogCurrentState) {
+        this.showStripHTMLContent();
+        this.layerName = layername;
+        this.smartbenchlayerenabled = true;
+      }
+      else {
+        this.smartbenchlayerenabled = false;
+        this.layerDetailsArray[index].selected = false;
+        this.layerDetailsArray.splice(index, 1);
+        this.layerNamesArray.splice(index, 1);
+        this.setUpStripContent(this.layerDetailsArray, true);
+        this.hideStripBarMenu(this.layerNamesArray);
+      }
+    });
+  }
+
+  //HIDE STRIP BAR WHEN ARRAY IS EMPTY
+  hideStripBarMenu(layerNamesArray) {
+    if (layerNamesArray.length == 0) {
+      (<HTMLInputElement>document.getElementById("topstrip")).style.display = "none";
+      this.removeSmartBenchmarkingMenuIcon();
+    }
+  }
+
+  //REMOVE THE MENU ICON FOR SMART BENCHMARKING WIDGET
+  removeSmartBenchmarkingMenuIcon() {
+    if (document.getElementsByClassName("fa-sliders-h")[0]) {
+      document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle");
+    }
+  }
+
+  // DESTROY THE SPLIT & WIDGET COMPONENTS
+  destroySplitWidgetComponents() {
+    if (this.smartbenchmenuRef || this.splitmapcomponentRef) {
+      this.smartbenchmenuRef.destroy();
+      this.splitmapcomponentRef.destroy();
+    }
+  }
+
+  //LOAD SMARTBENCH MENU WIDGET
+  loadSmartbenchMenu(element) {
+    element.classList.add("smartmenuToggle");
+    this.smartbenchComponentRef.clear();
+    let aComponentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      SmartbenchMenubarComponent
+    );
+    this.smartbenchmenuRef = this.smartbenchComponentRef.createComponent(aComponentFactory);
+    this.smartbenchmenuRef.instance.smartbenchmenuref = this.smartbenchmenuRef;
+  }
+
+  //RECIEVE DATA AND TRIGGER SPLITMAP
+  recieveAndLoadSplitmapCompoent() {
+    this.clickEventSub = this.smartSplitmapService.recieveTriggeredData().subscribe((val) => {
+      let payloadDataObject: any = val;
+      if (payloadDataObject !== undefined && payloadDataObject.length > 0) {
+        this.loadSplitMapComponent(payloadDataObject);
+      }
+    });
+  }
+
+  //LOAD SPLITMAP COMPONENT
+  loadSplitMapComponent(payloadDataObject) {
+    if (this.componentsReferences.length == 0) {
+      this.loadsplimapConfig(payloadDataObject);
+    }
+    else {
+      this.ref.destroy();
+      setTimeout(() => {
+        this.loadsplimapConfig(payloadDataObject);
+      }, 100);
+    }
+  }
+
+  loadsplimapConfig(payloadDataObject) {
+    this.splitmapComponentRef.clear();
+    let aComponentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      SplitmapComponent
+    );
+    this.splitmapcomponentRef = this.splitmapComponentRef.createComponent(aComponentFactory);
+    this.splitmapcomponentRef.instance.splitmapPayload = payloadDataObject;
+    this.ref = this.splitmapcomponentRef;
+    this.componentsReferences.push(this.splitmapcomponentRef);
+    document.getElementsByClassName("fa-sliders-h")[0].classList.remove("smartmenuToggle")
   }
 
   private initMap(): void {
@@ -243,7 +450,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       position: 'bottomright', // toolbar position, options are 'topleft', 'topright', 'bottomleft', 'bottomright'
       drawMarker: true,  // adds button to draw markers
       drawPolygon: true,  // adds button to draw a polygon
-      drawPolyline: false,  // adds button to draw a polyline
+      drawPolyline: true,  // adds button to draw a polyline
       drawCircle: true,  // adds button to draw a cricle
       drawCircleMarker: false,//add button with circle radius
       editPolygon: true,  // adds button to toggle global edit mode
@@ -281,7 +488,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       let lat = e.marker._latlng.lat;
       let lng = e.marker._latlng.lng;
       let latlng = new google.maps.LatLng(lat, lng);
-      
+
       googleCoder.geocode({
         'location': latlng
       }, (results, status) => {
@@ -296,7 +503,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
       e.layer.on('pm:edit', ({ layer }) => {
         // layer has been edited
-        console.log(layer.toGeoJSON(),"....>>");
+        console.log(layer.toGeoJSON(), "....>>");
       });
 
     });
@@ -686,59 +893,61 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        this.dataPolyList = dataPoly;
-        for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
-          const ele = this.dataPolyList.transferDataPoly[index];
-          console.log(ele, "ele");
-          // this.map.pm.toggleEdit(options);
-          // enable drawing mode for shape - e.g. Poly, Line, etc
-          // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
-          // this.map.pm.enableDraw('Rectangle', options);
-          // this.map.pm.enableDraw('Line', options);
-          // this.map.pm.enableDraw('Marker', options);
-          // this.map.pm.enableDraw('Circle', options);
+        if (!dataPoly) {
+          this.dataPolyList = dataPoly;
+          for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
+            const ele = this.dataPolyList.transferDataPoly[index];
+            console.log(ele, "ele");
+            // this.map.pm.toggleEdit(options);
+            // enable drawing mode for shape - e.g. Poly, Line, etc
+            // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
+            // this.map.pm.enableDraw('Rectangle', options);
+            // this.map.pm.enableDraw('Line', options);
+            // this.map.pm.enableDraw('Marker', options);
+            // this.map.pm.enableDraw('Circle', options);
 
-          if (ele.polydata.properties.shape == 'Circle') {
-            this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
-              color: 'red',
-              fillColor: '#f03',
-              fillOpacity: 0.5
-            }).addTo(this.map);
-            this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
-          } else if (ele.polydata.properties.shape == 'Polygon') {
-            this.poly = L.polygon([
-              [19.060009, 72.876063],
-              [19.013112, 72.907984],
-              [19.065525, 72.916565],
-              [19.060009, 72.876063]
-            ]).addTo(this.map);
-            this.map.setZoom(14);
-          } else if (ele.polydata.properties.shape == 'Rectangle') {
-            this.polyRectangle = L.rectangle([
-              [19.045527, 72.902422],
-              [19.045527, 72.905597],
-              [19.049482, 72.905597],
-              [19.049482, 72.902422],
-              [19.045527, 72.902422]
-            ], { color: "#ff7800", weight: 1 }).addTo(this.map);
-            this.map.setZoom(14);
+            if (ele.polydata.properties.shape == 'Circle') {
+              this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+              }).addTo(this.map);
+              this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
+            } else if (ele.polydata.properties.shape == 'Polygon') {
+              this.poly = L.polygon([
+                [19.060009, 72.876063],
+                [19.013112, 72.907984],
+                [19.065525, 72.916565],
+                [19.060009, 72.876063]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
+            } else if (ele.polydata.properties.shape == 'Rectangle') {
+              this.polyRectangle = L.rectangle([
+                [19.045527, 72.902422],
+                [19.045527, 72.905597],
+                [19.049482, 72.905597],
+                [19.049482, 72.902422],
+                [19.045527, 72.902422]
+              ], { color: "#ff7800", weight: 1 }).addTo(this.map);
+              this.map.setZoom(14);
 
-          } else {
-            this.polyline = L.polyline([
-              [19.045568, 72.894765],
-              [19.046055, 72.898672],
-              [19.045933, 72.901742]
-            ]).addTo(this.map);
-            this.map.setZoom(14);
+            } else {
+              this.polyline = L.polyline([
+                [19.045568, 72.894765],
+                [19.046055, 72.898672],
+                [19.045933, 72.901742]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
+            }
+
+
+
+
+
+
+
+
           }
-
-
-
-
-
-
-
-
         }
 
 
@@ -753,8 +962,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    console.log(this.datashare,"datashare?????");
-    
+    console.log(this.datashare, "datashare?????");
+
 
   }
 

@@ -1514,12 +1514,6 @@ const MODULE_LIST_CONFIG = [
         link: 'JCP/Modules/Configuration-Management/Config-Change/RET-Change',
         eventName: 'sites-configchange-retchange',
         children: []
-    },
-    {
-        name: 'Nominal Staterge',
-        link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Staterge',
-        eventName: 'sites-nominal-staterge',
-        children: []
     }
 ];
 
@@ -2572,7 +2566,23 @@ const LOCATION_BOUNDRIES_LIST = [
         children: LOCATION_BOUNDRIES_POI_LIST
     }
 ];
-
+const SMART_BENCHMARKING = [
+    {
+        name: "Smart Benchmarking",
+        link: "JCP/Layers/network/quality",
+        eventName: 'sites-quality-experience',
+        component: "SmartbenchSettingsComponent"
+    }
+]
+const QUALITY_AND_EXPERIENCE = [
+    {
+        name: "Quality & Experience",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Layers/network/quality",
+        eventName: 'sites-quality-experience',
+        children: SMART_BENCHMARKING
+    }
+]
 const BASE_MAPS_LIST = [
     {
         name: "Terrain",
@@ -3011,6 +3021,33 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
     }
 ];
 
+const NOMINAL_GENERATION_LIST = [
+    {
+        name: "Nominal Capacity",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: []
+    },
+    {
+        name: "Nominal Generation",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Generation",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        children: []
+    },
+    {
+        name: 'Nominal Strategic',
+        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        // link: 'JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic',
+        eventName: 'sites-nominal-staterge',
+        children: []
+    }
+];
+
+
 const MODULE_LIST_PLANNING_DEPLOYMENT = [
     {
         name: "Dashboards",
@@ -3070,12 +3107,12 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         children: []
     },
     {
-        name: "Nominal Capacity",
+        name: "Nominal Generation",
         icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Planning-Deployment/Nominal-Capacity",
+        link: "Nominal-Generation",
         eventName: 'sites-outdoor-esc',
         show:true,
-        children: []
+        children: NOMINAL_GENERATION_LIST
     }
 ];
 
@@ -3447,6 +3484,15 @@ const LAYERS_LIST = [
         eventName: 'sites-outdoor-esc',
         show:true,
         children: LOCATION_BOUNDRIES_LIST,
+        classId: 'locations-border'
+    },
+    {
+        name: "Network",
+        icon: "fas fa-users fa-3",
+        link: "Network",
+        eventName: 'sites-network',
+        show:true,
+        children: QUALITY_AND_EXPERIENCE,
         classId: 'locations-border'
     },
     {

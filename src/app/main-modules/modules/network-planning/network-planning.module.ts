@@ -1,9 +1,9 @@
+import { layersIconRenderComponent } from './../../../core/components/ag-grid-renders/layersicon.component';
 import { dropDownList3DotRendererComponent } from './../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { dropdownPriorityRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-priority-renderer.component';
 import { dropdownQueryRendererComponent } from './../../../core/components/ag-grid-renders/dropdown-query-renderer.component';
 import { statusflagiconRenderComponent } from './../../../core/components/ag-grid-renders/statusflagicon.component';
 import { layerlayerDropDownDotRendererComponent } from './../../../core/components/ag-grid-renders/layerDropDownThreeDot-renderer.component';
-import { AdDirective } from './../../../_directive/dynamicComponent/ad.directive';
 import { DeleteCreatedKpiRendererComponent } from './../performance-management/kpi-editor/renderer/delete-renderer.component';
 import { createKpiDropdownRendererComponent } from './../performance-management/kpi-editor/renderer/dropdown-renderer.component';
 import { dropdownRendererComponent } from './../performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
@@ -71,9 +71,11 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { StatergeMapNominalComponent } from './rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
 import { CandidatesACPComponent } from './rf-planning/nominal-generation-strategy/create-page/candidates-acp/candidates-acp.component';
 import { DefineDataSourceComponent } from './rf-planning/nominal-generation-strategy/create-page/define-data-source/define-data-source.component';
+import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/exclusion-zones/exclusion-zones.component';
+import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent,AdDirective, CandidatesACPComponent, DefineDataSourceComponent],
+  declarations: [CreatePageComponent, StatergeMapNominalComponent, CandidatesACPComponent, DefineDataSourceComponent, ExclusionZonesComponent, StrategicSitesComponent],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,
@@ -81,7 +83,7 @@ import { DefineDataSourceComponent } from './rf-planning/nominal-generation-stra
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

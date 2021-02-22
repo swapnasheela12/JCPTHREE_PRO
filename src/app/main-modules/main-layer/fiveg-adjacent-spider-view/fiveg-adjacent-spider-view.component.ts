@@ -57,17 +57,17 @@ export class FivegAdjacentSpiderViewComponent implements AfterViewInit {
     };
 
     let width = Math.min(screenWidth, 500) - margin.left - margin.right;
-    let canvas = svgGroup.append('g')
+    let spiderWrapper = svgGroup.append('g')
       .attr('class', 'wrapper')
       .attr('transform', 'translate(' + translateX + ',' + translateY + ')')
-    let circle = canvas
-      .append("circle")
-      .attr("r", 275)
-      .style("opacity", 0.7)
-      .attr('class', 'circle-main')
-      .style("fill", "white");
-    let spiderWrapper = canvas.append('g')
-      .attr('class', 'spider-wrapper');
+    // let circle = canvas
+    //   .append("circle")
+    //   .attr("r", 275)
+    //   .style("opacity", 0.7)
+    //   .attr('class', 'circle-main')
+    //   .style("fill", "white");
+    // let spiderWrapper = canvas.append('g')
+    //   .attr('class', 'spider-wrapper');
   //Create an arc function
   this.arc = this.createArc(width);
 

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?nrbzd4');
-  src:  url('fonts/icomoon.eot?nrbzd4#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?nrbzd4') format('truetype'),
-    url('fonts/icomoon.woff?nrbzd4') format('woff'),
-    url('fonts/icomoon.svg?nrbzd4#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?kksejt');
+  src:  url('fonts/icomoon.eot?kksejt#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?kksejt') format('truetype'),
+    url('fonts/icomoon.woff?kksejt') format('woff'),
+    url('fonts/icomoon.svg?kksejt#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-graph-01:before {
+  content: "\ec88";
+}
+.ic-table1-01:before {
+  content: "\ec89";
+}
+.ic-table-011:before {
+  content: "\ec8a";
+}
+.ic-ibs-01:before {
+  content: "\ec86";
+  color: #fff;
+}
+.ic-isc-01:before {
+  content: "\ec87";
+  color: #fff;
+}
+.ic-Others-011:before {
+  content: "\ec85";
+  color: #fff;
+}
 .ic-equipments:before {
   content: "\ec81";
   color: #fff;

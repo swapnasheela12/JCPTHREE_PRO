@@ -1,0 +1,13 @@
+<div class="h-100" class="layer-patch">
+  <mat-toolbar class="dialog-header">
+    <button mat-icon-button>
+     <mat-icon class="ic ic-filter-01 filter-icon"></mat-icon>
+   </button>
+   <span>{{ data.headerText }}</span>
+   <span class="header-spacer"></span>
+   <button mat-icon-button (click)="onCloseClick()">
+     <mat-icon>close</mat-icon>
+   </button>
+ </mat-toolbar>
+  <ng-container [ngTemplateOutlet]="data.template" [ngTemplateOutletContext]="data.context"></ng-container>
+</div>

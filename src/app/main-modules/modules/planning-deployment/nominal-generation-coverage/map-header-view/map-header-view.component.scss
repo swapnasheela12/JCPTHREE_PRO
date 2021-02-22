@@ -1,0 +1,95 @@
+$blueColor: #0078D7;
+$white: #ffffff;
+.map-header-view-wrapper{
+    width: 100%;
+    // height: 100%;
+    position: absolute;
+    z-index: 10000;
+    // background-color:red;
+    top:56px;
+    overflow:auto
+}
+
+.mapheaderoverlay,.mapheaderoverlay svg{
+    width: 100%;
+    position: relative;
+    overflow:auto
+}
+
+.mapheaderoverlay svg g{
+    display: inline-block;
+}
+.wrapper{
+    display: inline-block;
+}
+
+.map-header-card {
+    height: 58px;
+    border-radius: 4px;
+    margin-left: 2.5%;
+    margin-right: 1%;
+    box-shadow: none;
+    
+    .map-header-card-content {
+        height: 58px;
+        .map-header-div {
+            height: 58px;
+            .text-layer {
+                font-family: Lato Bold;
+                font-size: 18px;
+            }
+            .text-layer-sap {
+                font-family: Lato Bold;
+                font-size: 14px;
+            }
+            .button-mat1 {
+                margin-left: 2px;
+            }
+            .button-mat {
+                margin-left: 2px;
+            }
+            .save-button{
+                width: 100px;
+                height: 36px;
+                background-color: $blueColor;
+                color: white !important;
+                margin-left: 2px;
+            }
+            
+            .active-button {
+                background-color: $blueColor;
+                i {
+                    color: white !important;
+                }
+                .mat-icon {
+                    color: white !important;
+                }
+            }
+        }
+    }
+}
+
+.layer-icon-button-arrow {
+    float: right;
+    padding: 4px 4px;
+    margin: 0 25px;
+    text-align: center;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 20px;
+    background: RGBA(0, 112, 219, 0.13);
+}
+.layer-icon-button {
+    float: right;
+    padding: 8px 4px;
+    margin: 0 6px;
+    text-align: center;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.layer-icon-button:hover {
+    background: RGBA(0, 112, 219, 0.13);
+}

@@ -1,0 +1,208 @@
+<mat-card class="p-0 nominal-summary" style="height: calc(100% - 5px);">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title mb-0">
+        <div fxLayout="column">
+            <div class="title-summary">
+                {{nominalGenerationSummaryData.type}} : 
+                <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                {{nominalGenerationSummaryData.name}}
+            </div>
+            <div class="title-subline">Coverage</div>
+        </div>
+        </mat-card-title>
+        <div class="col"></div>
+        <button class="ic ic-layers-01 link-icon-button"
+        style="font-size: 18px;color:#464D69" mat-icon-button
+        (click)="displayNominalGenerationLayers()"></button>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" class="card-content">
+        <div fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto">
+                <mat-tab label="Input Summary" fxLayout="column">
+                    <div fxLayout="row">
+                        <div fxFlex="70" fxLayout="row" class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Planning Targets</span>
+                                <div fxLayout="row" class="summary-content">
+                                    <div fxFlex="60" class="target-data">
+                                        <div *ngFor="let target of planningTarget1">
+                                            <div isEllipsisActive="planningTarget" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}}: {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}}</span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="40" class="target-data">
+                                        <div *ngFor="let target of planningTarget2">
+                                            <div isEllipsisActive="planningTarget2" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}}: {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}}</span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <div fxFlex="40" class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">
+                                    Existing Sites in Target Area
+                                </span>
+                                <div fxLayout="row" class="summary-content">
+                                    <div class="target-data">
+                                        <div *ngFor="let target of existingArea">
+                                            <div isEllipsisActive="existingArea" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}}: {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}}</span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div fxFlex="100" class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Site Template</span>
+                                <table mat-table [dataSource]="dataSource">
+                                    <ng-container matColumnDef="parameters">
+                                      <th mat-header-cell *matHeaderCellDef>Parameters</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.parameters}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="gNb">
+                                      <th mat-header-cell *matHeaderCellDef> gNb </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.gNb}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc1">
+                                      <th mat-header-cell *matHeaderCellDef> ODSC (Sector 1) </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.odsc1}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc2">
+                                      <th mat-header-cell *matHeaderCellDef> ODSC (Sector 2) </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.odsc2}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc3">
+                                        <th mat-header-cell *matHeaderCellDef> ODSC (Sector 3) </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.odsc3}} </td>
+                                      </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Output Summary" fxLayout="column">
+                    <div  (click)="openDistributionSummary()" style="cursor: pointer;">
+                        <div class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Validation Summary</span>
+                                <table mat-table [dataSource]="dataSourceValidation">
+                                    <ng-container matColumnDef="5gnodes">
+                                    <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> 5G Nodes </th>
+                                    <td mat-cell class="vertical-line" *matCellDef="let element"> {{element.nodes}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="5G Nodes">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef [attr.rowspan]="2">5G Nodes</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="total">
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Total </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Total">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="macro">
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Macro </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.macro}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Macro">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Macro</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc1">
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> ODSC 1 </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.odsc1}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ODSC 1">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ODSC 1</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc2">
+                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> ODSC 2 </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.odsc2}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ODSC 2">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ODSC 2</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc3">
+                                        <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> ODSC 3 </th>
+                                        <td mat-cell class="vertical-line" *matCellDef="let element"> {{element.odsc3}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ODSC 3">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef [attr.rowspan]="2">ODSC 3</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="totalarea">
+                                        <th mat-header-cell *matHeaderCellDef >Total Area </th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}">
+                                            {{element.totalarea}}<br/>({{element.totalpercentage}}%)
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="coveredarea">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef>Covered Area </th>
+                                        <td mat-cell class="vertical-line" *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}">
+                                            {{element.coveredarea}}<br/>({{element.coveredareapercentage}}%)
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rsrp">
+                                        <th mat-header-cell *matHeaderCellDef>RSRP</th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.rsrp}} dBm</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sinr">
+                                        <th mat-header-cell *matHeaderCellDef>SINR </th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.sinr}} dBm</td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="coveragearea">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="2">Covered Area (Sq Km)</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="kpi">
+                                        <th mat-header-cell *matHeaderCellDef colspan="2">KPI’s</th>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="['5G Nodes', 'Total','Macro', 'ODSC 1', 'ODSC 2', 'ODSC 3','coveragearea','kpi']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsValidation" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsValidation;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex="50" class="kpi-div" style="cursor: pointer;">
+                        <div class="summary-table kpi-summary">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">KPI Summary</span>
+                                <table mat-table [dataSource]="dataSourceKPI">
+                                    <ng-container matColumnDef="srno">
+                                    <th mat-header-cell *matHeaderCellDef>Sr No</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rfkpi">
+                                    <th mat-header-cell *matHeaderCellDef> RF KPI </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.rfkpi}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="level">
+                                    <th mat-header-cell *matHeaderCellDef> Level </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsKpi; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsKpi;" (click)="openPerformanceSummary(row)"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </mat-card-content>
+</mat-card>

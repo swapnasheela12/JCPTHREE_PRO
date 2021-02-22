@@ -11,7 +11,7 @@
             [ngClass]="{'One': (item.children.length > 0),  'hide-menu-item-nav-children': (item.show == false), 'hide-parent-menu-item-nav': (item.show0 == false), 'disabled-menu-item-nav':(item.disabled == true) }"
             >
             <i class="{{item.icon}}" *ngIf="item.level == 0" attr.data-title="{{item.name}}"></i>
-            <span attr.data-title="{{item.name.length > 23 ? item.name : null}}" 
+            <span attr.data-title="{{item.name.length > 23 ? item.name : null}}" id="{{item.name}}"
                 [ngClass]="{'One': (item.children.length > 0), 'hide-menu-item-nav-children': (item.show == false), 'hide-parent-menu-item-nav': (item.show0 == false), 'disabled-menu-item-nav':(item.disabled == true) }">
                 {{item.name}}
             </span>
@@ -46,14 +46,14 @@
                         <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
                         <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon icon-h-arw icon-ledger"></div>
                         <div class="name-node" style="margin-top: 9px;">
-                            <mat-checkbox class="checklist-leaf-node" *ngIf="nodeType !== 'Base Maps' && node.name != 'No data available'" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected" #activeCheckbox>
-                                <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
+                            <mat-checkbox id="{{node.name}}" class="checklist-leaf-node" *ngIf="nodeType !== 'Base Maps' && node.name != 'No data available'" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected" #activeCheckbox>
+                                <div isEllipsisActive="leftside-navigation" attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
                                 </div>
                             </mat-checkbox>
                             <mat-radio-button style="font-family: lato medium; width: 225px" *ngIf="nodeType === 'Base Maps'  && node.name != 'No data available'" [value]="node.name" #activeCheckbox>
                                 {{node.name}}
                             </mat-radio-button>
-                            <div *ngIf="node.name == 'No data available'" class="mb-3">
+                            <div *ngIf="node.name == 'No data available'" class="mb-2">
                                 No data available
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                        <div class="name-node" isEllipsisActive="leftside-navigation" attr.data-title1="{{node.name}}">{{node.name}}</div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelOne; " matTreeNodePadding matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0"
                         [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0 layer-1': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']">
@@ -79,7 +79,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                        <div class="name-node" isEllipsisActive="leftside-navigation" attr.data-title1="{{node.name}}">{{node.name}}</div>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelGreterThanOne; " matTreeNodePadding matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0"
                         [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 ': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']" class="dashed-border">
@@ -95,7 +95,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                        <div class="name-node" isEllipsisActive="leftside-navigation" attr.data-title1="{{node.name}}">{{node.name}}</div>
                     </mat-tree-node>
                 </mat-tree>
             </mat-radio-group>

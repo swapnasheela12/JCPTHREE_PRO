@@ -1,0 +1,64 @@
+<ng-template #layerPatchSettingsPopup>
+    <div style="height: calc(100% - 101px); margin: 20px;" id="nav-menu-custom">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle matTreeNodePaddingIndent="0" (click)="onChangeTree(node.selected, node, activeCheckbox, 'no')" (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"
+                        [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0': '']" class="dashed-border">
+                        <span class="node-arrow-nox d-flex">
+                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1"
+                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}"></li>
+                    </span>
+                        <button mat-icon-button disabled></button>
+                        <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
+                        <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon icon-h-arw icon-ledger"></div>
+                        <div class="name-node" style="margin-top: 9px;">
+                            <mat-checkbox class="checklist-leaf-node" *ngIf="nodeType !== 'Base Maps'" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected" #activeCheckbox>
+                                <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
+                                </div>
+                            </mat-checkbox>
+                            <mat-radio-button style="font-family: lato medium; width: 225px" *ngIf="nodeType === 'Base Maps'" [value]="node.name" #activeCheckbox>
+                                {{node.name}}
+                            </mat-radio-button>
+                        </div>
+                        <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay (click)="openSettingsDialog(node, $event)">
+                        </mat-icon>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)" (mouseleave)="layersLevelHoverLeave(node, iconlayersZero)"
+                        matTreeNodePaddingIndent="0" [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0': '', treeControl.isExpanded(node) ? 'active-layer': '']" id="{{node.classId}}">
+                        <div class="icon-horizontal-line" #horizontalLine></div>
+                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)" [disableRipple]="true">
+                        <mat-icon class="mat-icon-rtl-mirror" [ngStyle]="{'margin-left': '-'+(node.level)*24+'px'}"
+                            #iconlayersZero>
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelOne; " matTreeNodePadding matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0"
+                        [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0 layer-1': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']">
+
+                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" [disableRipple]="true">
+                        <mat-icon class="mat-icon-rtl-mirror" [ngStyle]="{'margin-left': '0px'}" #iconlayers>
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node;when: isLevelGreterThanOne; " matTreeNodePadding matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0"
+                        [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 ': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']" class="dashed-border">
+                        <span class="node-arrow-nox d-flex">
+                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2] | slice:1"
+                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}"></li>
+                    </span>
+                        <div class="node-icon" [ngClass]="[treeControl.isExpanded(node) ? 'icon-h-arw-active': '']"></div>
+                        <div class="node-icon icon-h-arw"></div>
+
+                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name" (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" [disableRipple]="true">
+                        <mat-icon class="mat-icon-rtl-mirror" #iconlayers>
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                        <div class="name-node" isEllipsisActive attr.data-title1="{{node.name}}">{{node.name}}</div>
+                    </mat-tree-node>
+        </mat-tree>
+    </div>
+</ng-template>

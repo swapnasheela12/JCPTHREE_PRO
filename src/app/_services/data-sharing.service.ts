@@ -64,6 +64,26 @@ export class DataSharingService {
 
   public toggleEditModeSource = new BehaviorSubject({});
   toggleEditMode = this.toggleEditModeSource.asObservable();
+  private layerchosen = new BehaviorSubject({});
+  layerchosenobject$ = this.layerchosen.asObservable();
+
+  private saveButton = new BehaviorSubject({});
+  saveButtonobject$ = this.saveButton.asObservable();
+
+  private layername = new BehaviorSubject({});
+  layernameObject = this.layername.asObservable();
+
+  private pinLayer = new BehaviorSubject({});
+  pinObject = this.pinLayer.asObservable();
+
+  private addExtraLayer = new BehaviorSubject({});
+  extraLayerObject = this.addExtraLayer.asObservable();
+
+  private patchLayerList = new BehaviorSubject({});
+  patchLayerObject = this.patchLayerList.asObservable();
+
+  private headerDetails =  new BehaviorSubject({});
+  headerObject = this.headerDetails.asObservable();
 
   constructor() { }
 
@@ -148,5 +168,34 @@ export class DataSharingService {
 
   countLogicalMessage() {
     this.countLogicalSource.next(++this.counter);
+  }
+
+  extractLayerChosen(layer){
+    this.layerchosen.next(layer);
+  }
+
+  submitSmartBdata(data){
+    console.log('data',data);
+    this.saveButton.next(data);
+  }
+
+  layerNameFunc(message){
+    this.layername.next(message);
+  }
+
+  pinLayerCheck(message) {
+    this.pinLayer.next(message)
+  }
+
+  addExtraLayerDynamic(layerList) {
+    this.addExtraLayer.next(layerList);
+  }
+
+  patchSettingData(layerList) {
+    this.patchLayerList.next(layerList);
+  }
+
+  addSpecificHeader(header) {
+    this.headerDetails.next(header)
   }
 }

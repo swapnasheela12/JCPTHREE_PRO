@@ -74,6 +74,7 @@ $color-white: #ffffff;
     }
     .body-sidenav-container {
         background-color: #f0f3f5 !important;
+        overflow: hidden;
         .jcp-toolbar {
             height: 100%;
             .jcp-toolbar-main-container {
@@ -183,7 +184,7 @@ $color-white: #ffffff;
         }
     }
     .active-body-sidenav {
-        margin-left: 260px !important;
+        margin-left: 280px !important;
     }
     .activeNot-body-sidenav {
         margin-left: 0px !important;

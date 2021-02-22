@@ -111,6 +111,7 @@ export class HomeJcpThreeComponent implements OnInit {
 
   toggleSidenav() {
     this.toggleActive = !this.toggleActive;
+    this.styleStripBarMenu();
     this.datashare.changeMessage(this.toggleActive)
   }
 
@@ -127,6 +128,26 @@ export class HomeJcpThreeComponent implements OnInit {
 
   changeIcon() {
     this.isHamburguer = !this.isHamburguer;
+  }
+
+  styleStripBarMenu(){
+    if(this.toggleActive == false){
+      this.refreshMap();
+      if((<HTMLInputElement>document.getElementById("topstrip"))){
+        let stripWidth = window.innerWidth - 30;
+        (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
+      }
+    }
+    else{
+      setTimeout(() => {
+      let stripWidth =  (<HTMLInputElement>document.getElementById("angular-app-root")).clientWidth - 30;
+      (<HTMLInputElement>document.getElementById("topstrip")).style.width = stripWidth + 'px';
+      }, 400);
+     }
+  }
+
+  refreshMap(){
+    window.dispatchEvent(new Event('resize'));
   }
 }
 

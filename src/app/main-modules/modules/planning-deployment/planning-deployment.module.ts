@@ -59,14 +59,68 @@ import { NominalCapacityComponent } from './nominal-capacity/nominal-capacity.co
 import { CreateTaskPageComponent } from './nominal-capacity/create-task-page/create-task-page.component';
 import { cnctDropdownRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-renderer.component';
 import { ncCtTooltipComponent } from './nominal-capacity/create-task-page/renderer/nc-ct-tooltip.component';
+import { NominalGenerationCoverageComponent } from './nominal-generation-coverage/nominal-generation-coverage.component';
+import { NominalGenerationCreateComponent } from './nominal-generation-coverage/nominal-generation-create/nominal-generation-create.component';
+import { PolygonPopupComponent } from './nominal-generation-coverage/polygon-popup/polygon-popup.component';
+import { NominalGenerationLandingLayerComponent } from './nominal-generation-coverage/nominal-generation-landing-layer/nominal-generation-landing-layer.component';
+import { NominalGenerationSummaryComponent } from './nominal-generation-coverage/nominal-generation-summary/nominal-generation-summary.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { NominalSiteDistributionSummaryComponent, nominalSiteVerticalDotComponent, flagRenderComponent } from './nominal-generation-coverage/nominal-site-distribution-summary/nominal-site-distribution-summary.component';
+import { MapHeaderViewComponent } from './nominal-generation-coverage/map-header-view/map-header-view.component';
+import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-page/renderer/cnct-header-delete-renderer.component';
+import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartModule } from 'angular-highcharts';
+
 @NgModule({
-  declarations: [EnbscComponent, cnctDropdownRendererComponent, LinkBudgetComponent, EditCellComponent, ViewModeDirective, FocusableDirective, EditModeDirective, EditOnEnterDirective, NewAndSaveTemplatePopupComponent, NominalCapacityComponent, CreateTaskPageComponent, ncCtTooltipComponent],
+  declarations: [
+    EnbscComponent,
+    cnctDropdownRendererComponent,
+    LinkBudgetComponent,
+    EditCellComponent,
+    ViewModeDirective,
+    FocusableDirective,
+    EditModeDirective,
+    EditOnEnterDirective,
+    NewAndSaveTemplatePopupComponent,
+    NominalCapacityComponent,
+    CreateTaskPageComponent,
+    ncCtTooltipComponent,
+    NominalGenerationCoverageComponent,
+    NominalGenerationCreateComponent,
+    PolygonPopupComponent,
+    NominalGenerationLandingLayerComponent,
+    NominalGenerationSummaryComponent,
+    NominalSiteDistributionSummaryComponent,
+    nominalSiteVerticalDotComponent,
+    flagRenderComponent,
+    MapHeaderViewComponent,
+    NominalGenerationCoverageComponent,
+    NominalGenerationCreateComponent,
+    PolygonPopupComponent,
+    NominalGenerationLandingLayerComponent,
+    NominalGenerationSummaryComponent,
+    NominalSiteDistributionSummaryComponent,
+    nominalSiteVerticalDotComponent,
+    flagRenderComponent,
+    MapHeaderViewComponent,
+    NcDeleteHeaderRendererComponent,
+    NominalGenerationPerformanceSummaryComponent
+  ],
   imports: [
     CommonModule,
+    CoreModule,
     PlanningDeploymentRoutingModule,
     FlexLayoutModule,
+    ChartModule,
+    HighchartsChartModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([cnctDropdownRendererComponent, ncCtTooltipComponent]),
+    AgGridModule.withComponents([
+      cnctDropdownRendererComponent,
+      ncCtTooltipComponent,
+      NcDeleteHeaderRendererComponent,
+      nominalSiteVerticalDotComponent,
+      flagRenderComponent]),
     FormsModule,
     ReactiveFormsModule,
     A11yModule,
@@ -114,9 +168,15 @@ import { ncCtTooltipComponent } from './nominal-capacity/create-task-page/render
     NgxMatSelectSearchModule
   ],
   providers: [],
-  exports: [EnbscComponent, cnctDropdownRendererComponent],
+  exports: [
+    EnbscComponent,
+    cnctDropdownRendererComponent,
+    NcDeleteHeaderRendererComponent,
+    nominalSiteVerticalDotComponent,
+    flagRenderComponent],
   entryComponents : [
-    NewAndSaveTemplatePopupComponent
+    NewAndSaveTemplatePopupComponent,
+    NominalGenerationLandingLayerComponent
   ],
 })
 export class PlanningDeploymentModule { }

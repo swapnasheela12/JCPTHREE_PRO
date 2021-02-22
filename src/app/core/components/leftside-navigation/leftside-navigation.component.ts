@@ -9,6 +9,7 @@ import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree'
 import { BehaviorSubject, Subject } from 'rxjs';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 import { MatRadioButton } from '@angular/material/radio';
+import { MapHeaderViewComponent } from 'src/app/main-modules/modules/planning-deployment/nominal-generation-coverage/map-header-view/map-header-view.component';
 
 declare var $: any;
 
@@ -56,6 +57,14 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   treeData: ExampleFlatNode[];
   menuChildrenLength: number;
   get data(): SideNavNode[] { return this.dataChange.value; }
+  layerName = '';
+  source='';
+  layerComponent;
+  showHeader;
+  routePlannedLayerHeader = {
+    "title": "Back To Nominal Generation",
+    "headerSapid": "Maharashtra-NP-CV-121020_v1"
+  };
 
   dialog: NavigationSettingsService;
   /**Layers navigation functionality */
@@ -108,6 +117,19 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
+    this.datashare.extraLayerObject.subscribe((data: any) => {
+      if (Object.keys(data).length !== 0) {
+        let dataChange = this.dataSource.data;
+        if (dataChange[0].name != 'My Projects') {
+          let removedItems = dataChange.splice(0,0,data[0]);
+          this.dataSource.data = [];
+          this.dataSource.data = dataChange;
+        }
+        this.treeControl.expand(this.treeControl.dataNodes[0]);
+        this.treeControl.expand(this.treeControl.dataNodes[1]);
+        $('#'+data[0].children[0].children[0].name+'-input').click();
+      }
+    });
 
     // this.datashare.currentMessage.subscribe((data: any) => {
     //   console.log(data)
@@ -168,15 +190,16 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         };
         if (data.pinName) {
           let dataChange = this.dataSource.data;
+          console.log(dataChange.length)
           if (this.i == 3) {
-            dataChange[9].children[1].children = [];
+            dataChange[dataChange.length - 1].children[1].children = [];
           }
-          dataChange[9].children[1].children.push(addPin);
+          dataChange[dataChange.length - 1].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         } else if(data.sideNav) {
           let dataChange = this.dataSource.data;
-          dataChange[9].children[2].children.push(addPinPoly);
+          dataChange[dataChange.length - 1].children[2].children.push(addPinPoly);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         }else{ 
@@ -427,6 +450,19 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     //
   }
   onChecked(selected, node, activeCheckbox, eventChecked) {
+    this.routePlannedLayerHeader.headerSapid = node.name;
+    this.datashare.headerObject.subscribe(
+      (headerView) => {
+        this.showHeader = headerView;
+        const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+
+        const newComponentRef = this.showHeader.createComponent(factory);
+        newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+        newComponentRef.instance.showHeader = 'show';
+        const newComponentVcRef = newComponentRef.instance.vcRef;
+      }
+    )
+
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -438,6 +474,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
+      this.datashare.layerNameFunc(this.selectedLayerArr);
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       if ('' !== node.componentLayer) {
         this.renderLayerComponent(node.componentLayer);
@@ -527,9 +564,11 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
       );
     }
+    else if (node.component == 'SmartbenchSettingsComponent') {
+      
+    }
   }
 
-  layerComponent;
   async renderLayerComponent(layersToShow) {
     this.viewContainerRef.clear();
     if (layersToShow == 'RoutePlannedFibreCoreComponent') {
