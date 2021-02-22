@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EnbscComponent } from './enbsc/enbsc.component';
 import { LinkBudgetComponent } from './link-budget/link-budget.component';
 import { CreateTaskPageComponent } from './nominal-capacity/create-task-page/create-task-page.component';
+// import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 import { NominalCapacityComponent } from './nominal-capacity/nominal-capacity.component';
 import { NominalGenerationCoverageComponent } from './nominal-generation-coverage/nominal-generation-coverage.component';
 import { NominalGenerationCreateComponent } from './nominal-generation-coverage/nominal-generation-create/nominal-generation-create.component';
@@ -20,6 +21,12 @@ const routes: Routes = [
       { path: "Create-Nominal-Task", component: CreateTaskPageComponent },
     ]
   },
+  // { path: 'Query-Administration',
+  //   children: [
+  //     // { path: "", component: NcQueryAdministrationComponent },
+  //     { path: "Create-Query-Task", component: CreateTaskPageComponent },
+  //   ]
+  // },
   { path: 'Nominal-Generation', children: [
     { path:'', component: NominalGenerationCoverageComponent },
     { path: 'Create', component: NominalGenerationCreateComponent },

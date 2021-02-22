@@ -71,9 +71,11 @@ import { CoreModule } from 'src/app/core/core.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ThreeDotP2BRenderer } from './renderer/threedot-p2b-renderer.component';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
+import { NpQueryAdministrationComponent } from './module-management/nominal-planning/np-query-administration/np-query-administration.component';
+import { CreateQueryPageComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/create-query-page.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer],
+  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,

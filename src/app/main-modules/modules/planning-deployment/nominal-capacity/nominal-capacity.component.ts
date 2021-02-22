@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SharePopupComponent, SharePopupDialogModel } from 'src/app/core/components/commonPopup/share-popup/share-popup.component';
+import { NpCreatePopupComponent, NpCreatePopupDialogModel } from './np-create-popup/np-create-popup.component';
 export interface Card {
   area: string;
   place: string;
@@ -186,6 +187,16 @@ export class NominalCapacityComponent implements OnInit {
       width: '900px',
       height: '500px',
       panelClass: 'share-popup-dialog'
+    });
+  }
+
+  createPopup(): void {
+    const dialogData = new NpCreatePopupDialogModel();
+    const dialogRef = this.dialog.open(NpCreatePopupComponent, {
+      data: dialogData,  
+      width: '500px',
+      height: '200px',
+      panelClass: 'np-create-popup-dialog'
     });
   }
 

@@ -71,6 +71,9 @@ import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-
 import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule } from 'angular-highcharts';
+import { NpCreatePopupComponent } from './nominal-capacity/np-create-popup/np-create-popup.component';
+// import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
+// import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,10 @@ import { ChartModule } from 'angular-highcharts';
     flagRenderComponent,
     MapHeaderViewComponent,
     NcDeleteHeaderRendererComponent,
-    NominalGenerationPerformanceSummaryComponent
+    NominalGenerationPerformanceSummaryComponent,
+    NpCreatePopupComponent,
+    // NcQueryAdministrationComponent,
+    // CreateQueryPageComponent
   ],
   imports: [
     CommonModule,

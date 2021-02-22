@@ -4270,6 +4270,17 @@ const ADMIN_PLAN_TO_BUILD = [
     }
 ]
 
+const ADMIN_NOMINAL_PLANNING = [
+    {
+        name: "Query Administration",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Module-Management/Nominal-Planning/Query-Administration",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    }
+]
+
 const MODULE_ADMINISTRATION_LIST = [
     {
         name: "Performance Management",
@@ -4350,7 +4361,15 @@ const MODULE_ADMINISTRATION_LIST = [
         eventName: 'sites-outdoor-esc',
         show: true,
         children: ADMIN_PLAN_TO_BUILD
-    }
+    },
+    {
+        name: "Nominal Planning",
+        icon: "fas fa-user fa-3",
+        link: "network-deployment",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: ADMIN_NOMINAL_PLANNING
+    },
 ];
 
 const USER_ADMINISTRATION_LIST = [

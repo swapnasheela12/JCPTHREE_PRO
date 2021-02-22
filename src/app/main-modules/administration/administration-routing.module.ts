@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfigTemplateComponent } from './config-template/config-template.component';
+import { CreateQueryPageComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/create-query-page.component';
+import { NpQueryAdministrationComponent } from './module-management/nominal-planning/np-query-administration/np-query-administration.component';
 import { ReasonTemplatesComponent } from './reason-templates/reason-templates.component';
 import { CreateSlaConfigurationComponent } from './site-sla-configuration/create-sla-configuration/create-sla-configuration.component';
 import { SiteSlaConfigurationComponent } from './site-sla-configuration/site-sla-configuration.component';
@@ -58,6 +60,20 @@ const routes: Routes = [
               }
             ]
           }
+        ]
+      },
+      {
+        path: 'Module-Management', children: [
+          {
+            path: 'Nominal-Planning', children: [
+              {
+                path: 'Query-Administration', children: [
+                  { path: '', component: NpQueryAdministrationComponent },
+                  { path: 'Create-Query', component: CreateQueryPageComponent },
+                ]
+              },
+            ]
+          },
         ]
       }
     ]
