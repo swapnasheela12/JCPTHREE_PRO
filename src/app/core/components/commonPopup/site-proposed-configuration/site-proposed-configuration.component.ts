@@ -110,7 +110,6 @@ export class SiteProposedConfigurationComponent implements OnInit, AfterViewInit
             data: { transferDataPoly: '', headerNominal: true }
           });
           dialogRef1.afterClosed().subscribe(result => {
-            alert("hello")
             outer.shapeService.mapServiceData = outer.mapSitePrposed;
             outer.router.navigate(['/JCP/Layers']);
             console.log( outer.shapeService)
