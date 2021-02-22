@@ -561,15 +561,6 @@
                 </div>
             </div>
 
-            <div class="d-flex">
-                <div class="p-2">
-                    <button mat-stroked-button color="primary" class="buttonWidth" (click)="previous()">Previous</button>
-                </div>
-                <div class="p-2">
-                    <button mat-raised-button color="primary" class="buttonWidth button"
-                        (click)="openSuccessPopup()">Next</button>
-                </div>
-            </div>
         </mat-card>
 
         <div class="rfi-container" *ngIf="assignTaskStatus">
@@ -580,57 +571,60 @@
                 <mat-card-content class="wo-container">
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
     
-                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" *ngFor="let wo of woHeaderForm;">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">{{wo.label}}</div>
-                                <div class="wo-form-input-value">{{wo.value}}</div>
-                            </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[0].label" [value]="sapIdMapping[0].value" [type]="sapIdMapping[0].type" [id]="1">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[1].label" [value]="sapIdMapping[1].value" [type]="sapIdMapping[1].type" [id]="2">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[2].label" [value]="sapIdMapping[2].value" [type]="sapIdMapping[2].type" [id]="3">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[3].label" [value]="sapIdMapping[3].value" [type]="sapIdMapping[3].type" [id]="4">  </app-input-comment-widget>
+                        </div>
+                    </div>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">    
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[4].label" [value]="sapIdMapping[4].value" [type]="sapIdMapping[4].type" [id]="5">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[5].label" [value]="sapIdMapping[5].value" [type]="sapIdMapping[5].type" [id]="6">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[6].label" [value]="sapIdMapping[6].value" [type]="sapIdMapping[6].type" [id]="7">  </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" >
+                            <app-input-comment-widget [label]="sapIdMapping[7].label" [value]="sapIdMapping[7].value" [type]="sapIdMapping[7].type" [id]="8">  </app-input-comment-widget>
+                        </div>
+                    </div>
+    
+                    <!-- <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    
+                    </div> -->
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[8].label" [value]="sapIdMapping[8].value" [type]="sapIdMapping[8].type" [id]="9">  </app-input-comment-widget>
+                        </div>
+    
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[9].label" [value]="sapIdMapping[9].value" [type]="sapIdMapping[9].type" [id]="10">  </app-input-comment-widget>
                         </div>
                     </div>
     
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Azimuth and height Details</div>
-                                <div class="wo-form-input-value">Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry.</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[10].label" [value]="sapIdMapping[10].value" [type]="sapIdMapping[10].type" [id]="11">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Restricted area like Hospital, Airport, School(with in
-                                    100m)
-                                </div>
-                                <div class="wo-form-input-value">No</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[11].label" [value]="sapIdMapping[11].value" [type]="sapIdMapping[11].type" [id]="12">  </app-input-comment-widget>
                         </div>
                     </div>
-    
-                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
-                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Site Address</div>
-                                <div class="wo-form-input-value">TC-23 RELIANCE CORPORATE PARK PHASE IV A- WING GATE NO A
-                                    GHANSOLI 400701</div>
-                            </div>
-                        </div>
-    
-                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Any Structure/Rooftop/Ground/Flyover within 20m distance
-                                </div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
-                        </div>
-                    </div>
-    
-    
-    
-    
                 </mat-card-content>
             </mat-card>
-    
+
             <mat-card class="cards">
                 <div class="card-header w-100">
                     Operator Details
@@ -639,76 +633,52 @@
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">No. of Operators</div>
-                                <div class="wo-form-input-value">2</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[12].label" [value]="sapIdMapping[12].value" [type]="sapIdMapping[12].type" [id]="13">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">No. of Operators</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[13].label" [value]="sapIdMapping[13].value" [type]="sapIdMapping[13].type" [id]="14">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">No. Of Floors</div>
-                                <div class="wo-form-input-value">4</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[14].label" [value]="sapIdMapping[14].value" [type]="sapIdMapping[14].type" [id]="15">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Tower/Pole Height (In Meters)</div>
-                                <div class="wo-form-input-value">60</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[15].label" [value]="sapIdMapping[15].value" [type]="sapIdMapping[15].type" [id]="16">  </app-input-comment-widget>
                         </div>
                     </div>
     
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Candidate Suitable for Coverage, Height, Obstacles,
-                                    Location &
-                                    Other POV</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[16].label" [value]="sapIdMapping[16].value" [type]="sapIdMapping[16].type" [id]="17">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">AMSL (Meters)
-                                </div>
-                                <div class="wo-form-input-value">60</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[17].label" [value]="sapIdMapping[17].value" [type]="sapIdMapping[17].type" [id]="18">  </app-input-comment-widget>
                         </div>
                     </div>
     
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
+                            <!-- <div class="wo-form-field-read">
                                 <div class="wo-form-input-title">GPS Picture</div>
                                 <img src="assets/images/layer-settings/Small.png" alt="profile picture">
-                            </div>
+                            </div> -->
+                            <app-input-comment-widget [label]="sapIdMapping[18].label" [value]="sapIdMapping[18].value" [type]="sapIdMapping[18].type" [id]="19">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
-                            <div class="wo-form-field-read">
+                            <!-- <div class="wo-form-field-read">
                                 <div class="wo-form-input-title">GPS Picture</div>
                                 <img src="assets/images/layer-settings/Small.png" alt="profile picture">
-                            </div>
+                            </div> -->
+                            <app-input-comment-widget [label]="sapIdMapping[19].label" [value]="sapIdMapping[19].value" [type]="sapIdMapping[19].type" [id]="20">  </app-input-comment-widget>
                         </div>
                     </div>
-    
-    
-    
-    
-                </mat-card-content>
+                 </mat-card-content>
             </mat-card>
-    
-    
+
             <mat-card class="cards">
                 <div class="card-header w-100">
                     Sector Details
@@ -717,31 +687,19 @@
                     <label class="sector-header">Alpha</label>
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Proposed Azimuth</div>
-                                <div class="wo-form-input-value">360</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[20].label" [value]="sapIdMapping[20].value" [type]="sapIdMapping[20].type" [id]="21">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">DG Space Availability Status</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[21].label" [value]="sapIdMapping[21].value" [type]="sapIdMapping[21].type" [id]="22">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">OD/ID Space Status</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[22].label" [value]="sapIdMapping[22].value" [type]="sapIdMapping[22].type" [id]="23">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Battery Bank Space Available</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[23].label" [value]="sapIdMapping[23].value" [type]="sapIdMapping[23].type" [id]="24">  </app-input-comment-widget>
                         </div>
                     </div>
     
@@ -750,33 +708,19 @@
                     <label class="sector-header">Beta</label>
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">RF Agreed AGL (In Meters)</div>
-                                <div class="wo-form-input-value">2</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[24].label" [value]="sapIdMapping[24].value" [type]="sapIdMapping[24].type" [id]="25">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Proposed Height (Meter)
-                                </div>
-                                <div class="wo-form-input-value">60</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[25].label" [value]="sapIdMapping[25].value" [type]="sapIdMapping[25].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Antenna Type</div>
-                                <div class="wo-form-input-value">Lorem Ipsum is simply dummy text</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[26].label" [value]="sapIdMapping[26].value" [type]="sapIdMapping[26].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Antenna Tilt
-                                </div>
-                                <div class="wo-form-input-value">10</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[27].label" [value]="sapIdMapping[27].value" [type]="sapIdMapping[27].type" [id]="">  </app-input-comment-widget>
                         </div>
                     </div>
     
@@ -785,33 +729,20 @@
                     <label class="sector-header">Gamma</label>
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">RF Agreed AGL (In Meters)</div>
-                                <div class="wo-form-input-value">2</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[28].label" [value]="sapIdMapping[28].value" [type]="sapIdMapping[28].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Proposed Height (Meter)
-                                </div>
-                                <div class="wo-form-input-value">60</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[29].label" [value]="sapIdMapping[29].value" [type]="sapIdMapping[29].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Antenna Type</div>
-                                <div class="wo-form-input-value">Lorem Ipsum is simply dummy text</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[30].label" [value]="sapIdMapping[30].value" [type]="sapIdMapping[30].type" [id]="">  </app-input-comment-widget>
+
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Antenna Tilt
-                                </div>
-                                <div class="wo-form-input-value">10</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[31].label" [value]="sapIdMapping[31].value" [type]="sapIdMapping[31].type" [id]="">  </app-input-comment-widget>
                         </div>
                     </div>
     
@@ -826,62 +757,37 @@
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Panoramic Photos (Degree)</div>
-                                <div class="wo-form-input-value">360</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[32].label" [value]="sapIdMapping[32].value" [type]="sapIdMapping[32].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">DG Space Availability Status</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[33].label" [value]="sapIdMapping[33].value" [type]="sapIdMapping[33].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">OD/ID Space Status</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[34].label" [value]="sapIdMapping[34].value" [type]="sapIdMapping[34].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Battery Bank Space Available</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[35].label" [value]="sapIdMapping[35].value" [type]="sapIdMapping[35].type" [id]="">  </app-input-comment-widget>
                         </div>
                     </div>
     
                     <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">RF Agreed AGL (In Meters)</div>
-                                <div class="wo-form-input-value">30</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[36].label" [value]="sapIdMapping[36].value" [type]="sapIdMapping[36].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">Mount Required
-                                </div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[37].label" [value]="sapIdMapping[37].value" [type]="sapIdMapping[37].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">No. of Mounts req (If applicable)</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[38].label" [value]="sapIdMapping[38].value" [type]="sapIdMapping[38].type" [id]="">  </app-input-comment-widget>
                         </div>
     
                         <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
-                            <div class="wo-form-field-read">
-                                <div class="wo-form-input-title">MW Antenna Height Given by Infra Check</div>
-                                <div class="wo-form-input-value">Yes</div>
-                            </div>
+                            <app-input-comment-widget [label]="sapIdMapping[39].label" [value]="sapIdMapping[39].value" [type]="sapIdMapping[39].type" [id]="">  </app-input-comment-widget>
                         </div>
                     </div>
                     <div class="title">Nearby 5 Sites ID</div>
@@ -896,15 +802,6 @@
                 </mat-card-content>
             </mat-card>
 
-            <div class="d-flex">
-                <div class="p-2">
-                    <button mat-stroked-button color="primary" class="buttonWidth" (click)="previous()">Previous</button>
-                </div>
-                <div class="p-2">
-                    <button mat-raised-button color="primary" class="buttonWidth button"
-                        (click)="openSuccessPopup()">Next</button>
-                </div>
-            </div>
         </div>
     </div>
 

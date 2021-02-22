@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DataSharingService } from 'src/app/_services/data-sharing.service';
 export interface DialogDataSuccessful {
   gotomyreportInterface: string;
   newreportInterface: string;
@@ -20,12 +21,13 @@ export class RejectTaskComponent {
   showMyTasks: boolean = true;
 
   reject = [
-    "SAP ID", "SAP ID"
+    "Digital Form", "SAP ID"
   ];
   remark = [ "Lorem Ipsum is simply dummy text of the printing and typesetting",
 "Lorem Ipsum is simply dummy text of the printing and typesetting"];
   constructor(public dialogRef: MatDialogRef<RejectTaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
+    @Inject(MAT_DIALOG_DATA) public data: any,private datashare: DataSharingService
+    , private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
 
     // if (!data.showActionBtn) {
@@ -37,6 +39,11 @@ export class RejectTaskComponent {
     // this.message = data.message;
 
   }
+
+  makeFormEditable() {
+    this.datashare.toggle("Make Editable");
+  }
+  
 
   closeDialog(): void {
     this.dialogRef.close(true);

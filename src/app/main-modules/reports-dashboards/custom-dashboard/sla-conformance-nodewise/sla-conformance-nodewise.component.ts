@@ -396,13 +396,21 @@ export class SlaConformanceNodewiseComponent implements OnInit {
     this.fitColumns();
   }
 
-  onCellClicked(event: any) {
-    if (event.colDef.field === "r4g_state") {
-      this.showSLAConformance = "mgw-voilation";
-    } else {
-      this.showSLAConformance = 'sla-chart';
-    }
+  // onCellClicked(event: any) {
+  //   if (event.colDef.field === "r4g_state") {
+  //     this.showSLAConformance = "mgw-voilation";
+  //   } else {
+  //     this.showSLAConformance = 'sla-chart';
+  //   }
 
+  // }
+
+  onRowClicked(event: any) {
+    if (event.data.r4g_state) {
+          this.showSLAConformance = "mgw-voilation";
+        } else {
+          this.showSLAConformance = 'sla-chart';
+        }
   }
 
   protected filterData(listData, filterCtrl, filterSubject) {

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
@@ -13,6 +13,8 @@ import { RejectTaskComponent } from './reject-task/reject-task.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { ILabelValue } from 'src/app/main-modules/work-orders/rf-oc-workorders/Irf-oc';
 import { CreateReportComponent } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
+import { CommentHighlightFieldDirective } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.directive';
+import { CommentHighlightFieldComponent } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.component';
 
 @Component({
   selector: 'app-sap-id-details',
@@ -79,20 +81,183 @@ export class SapIdDetailsComponent implements OnDestroy {
     { value: 'cycling', viewValue: 'Cycling' }
   ];
 
-  siteDetails: Array<ILabelValue> = [
+  sapIdMapping = [
     {
-      "label": "Circle Name *",
-      "value": "I-AS-PTRK-ENB-H004"
-    },
+      "label": "Circle",
+      "value": "Mumbai"
+    ,"type": "input" },
     {
-      "label": "Site ID *",
-      "value": "1"
-    },
+      "label": "Site Name",
+      "value": "I-MU-MUMB-ENB-4505"
+    ,"type": "input" },
     {
-      "label": "Site Name *",
-      "value": "2300"
-    }
-  ];
+      "label": "Site ID",
+      "value": "MU-NVMB-JC24-0024"
+    ,"type": "input" },
+    {
+      "label": "Priority",
+      "value": "P1"
+    ,"type": "input" },
+    {
+      "label": "Date of Survey",
+      "value": "10 Oct 2020"
+    ,"type": "input" },
+    {
+      "label": "Any Obstruction",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "Coordinates (Longitude)",
+      "value": "78.852402"
+    ,"type": "input" },
+    {
+      "label": "Coordinates (Latitude)",
+      "value": "21.269661"
+    ,"type": "input" },
+    {
+      "label": "Azimuth and height Details",
+      "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
+    ,"type": "input" },
+    {
+      "label": "Restricted area like Hospital, Airport, School(with in 100m)",
+      "value": "No"
+    ,"type": "input" },
+    {
+      "label": "Site Address",
+      "value": "TC-23 RELIANCE CORPORATE PARK PHASE IV A- WING GATE NO A GHANSOLI 400701"
+    ,"type": "input" },
+    {
+      "label": "Any Structure/Rooftop/Ground/Flyover within 20m distance",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "No. of Operators",
+      "value": "2"
+    ,"type": "input" },
+    {
+      "label": "Any other operator on same building",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "No. Of Floors",
+      "value": "15"
+    ,"type": "input" },
+    {
+      "label": "Tower/Pole Height (In Meters)",
+      "value": "60"
+    ,"type": "input" },
+    {
+      "label": "GPS Picture",
+      "value": "assets/images/layer-settings/Small.png"
+    ,"type": "image" },
+    {
+      "label": "Site Location Picture",
+      "value": "assets/images/layer-settings/Small.png"
+    ,"type": "image" },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+    ,"type": "input" },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+    ,"type": "input" },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+    ,"type": "input" },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+    ,"type": "input" },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+    ,"type": "input" },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+    ,"type": "input" },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+    ,"type": "input" },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+    ,"type": "input" },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+    ,"type": "input" },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+    ,"type": "input" },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+    ,"type": "input" },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+    ,"type": "input" },
+    {
+      "label": "Panoramic Photos (Degree)",
+      "value": "360"
+    ,"type": "input" },
+    {
+      "label": "DG Space Availability Status",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "OD/ID Space Status",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "Battery Bank Space Available",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "RF Agreed AGL (In Meters)",
+      "value": "360"
+    ,"type": "input" },
+    {
+      "label": "Mount Required",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "No. of Mounts req (If applicable)",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "MW Antenna Height Given by Infra Check",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "RF Agreed AGL (In Meters)",
+      "value": "30"
+    ,"type": "input" },
+    {
+      "label": "Mount Required",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "No. of Mounts req (If applicable)",
+      "value": "Yes"
+    ,"type": "input" },
+    {
+      "label": "MW Antenna Height Given by Infra Check",
+      "value": "Yes"
+      ,"type": "input" },
+    {
+      "label": "Nearby 5 Sites ID",
+      "value": "I-MU-MUMB-ENB-4505"
+      ,"type": "input" }
+  ]
+
+
+
   priority = ["P1", "P2"]
   dateOfSurvey = ["10 Oct 2020", "10 Oct 2020"]
   option = ["Yes", "No"]
@@ -145,11 +310,17 @@ export class SapIdDetailsComponent implements OnDestroy {
     "I-MU-MUMB-ENB-4505"
   ];
   approveTask= false;
-
-  constructor(public dialog: MatDialog, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
+  details;
+  @ViewChild('compRef', {  read: ViewContainerRef, static: true}) compRef: ViewContainerRef;
+   constructor(public dialog: MatDialog, private datashare: DataSharingService,
+     private router: Router, private httpClient: HttpClient, private cfr: ComponentFactoryResolver,
+     private vcr: ViewContainerRef) {
     router.events.subscribe();
     this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
       this.sidenavBarStatus = message;
+    });
+    this.httpClient.get("assets/data/modules/network_deployment/gNodeB/registry.json").subscribe((data) => {
+      this.details = data;
     });
   }
 
@@ -250,6 +421,13 @@ export class SapIdDetailsComponent implements OnDestroy {
       height: "378px",
       panelClass: "material-dialog-container",
     });
+  }
+
+  highlightMe() {
+    console.log(" vcr",  this.vcr);
+    console.log("highlight", this.compRef)
+    let nominalViewComponent = this.cfr.resolveComponentFactory(CommentHighlightFieldComponent);
+    this.vcr.createComponent(nominalViewComponent);
   }
 
   closeDialog() {

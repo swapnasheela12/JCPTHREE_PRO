@@ -79,6 +79,10 @@ import { SavePolygonPopupComponent } from './components/commonPopup/save-polygon
 import { CustomFlagPopupComponent } from './components/commonPopup/custom-flag-popup/custom-flag-popup.component';
 import { ViewAttributesComponent } from './components/commonPopup/view-attributes/view-attributes.component';
 import { SharePopupComponent } from './components/commonPopup/share-popup/share-popup.component';
+import { CommentHighlightFieldComponent } from './components/comment-highlight-field/comment-highlight-field.component';
+import { AddCommentComponent } from './components/comment-highlight-field/add-comment/add-comment.component';
+import { InputCommentWidgetComponent } from './components/input-comment-widget/input-comment-widget.component';
+//import { CommentHighlightFieldDirective } from './components/comment-highlight-field/comment-highlight-field.directive';
 
 @NgModule({
   declarations: [
@@ -113,7 +117,8 @@ import { SharePopupComponent } from './components/commonPopup/share-popup/share-
     CustomFlagPopupComponent,
     ViewAttributesComponent,
     CustomFlagPopupComponent,
-    SharePopupComponent
+    SharePopupComponent,
+   // AddCommentComponent,
   ],
   imports: [
     CommonModule,

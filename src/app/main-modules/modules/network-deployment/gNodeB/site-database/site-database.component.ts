@@ -45,7 +45,7 @@ export class SiteDatabaseComponent {
     }
   ]
 
-  url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
+  url: string = "assets/data/modules/network_deployment/gNodeB/site-database/site-database.json"
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
   public gridApi;
@@ -55,6 +55,7 @@ export class SiteDatabaseComponent {
   public sidenavBarStatus;
   public rowData: any;
   public columnDefs: any[];
+  public defaultColDef = { resizable: true };
   public frameworkComponentsWOSectorComponent = {
     statusFlagRenderer: StatusRendererComponent,
   };
@@ -89,20 +90,74 @@ export class SiteDatabaseComponent {
   ];
   showFullScreen: boolean = false;
 
-  constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
+  constructor(private datatable: TableAgGridService,private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
     this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
+    this.createColumnDefs();
 
     //API call to get WO Service details
     this.httpClient.get(this.url)
       .subscribe(data => {
         this.rowData = data;
-        this.columnDefs = COLUMN_DEFS;
+        this.datatable.rowDataURLServices = this.url;
+        this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
+        this.datatable.rowDataServices = this.rowData;
+        this.datatable.gridOptionsServices = this.gridOptions;
+        this.datatable.defaultColDefServices = this.defaultColDef;
       });
 
+
   }
+
+  createColumnDefs() {
+    this.columnDefs = [
+      {
+        headerName: 'SAP ID',
+        field: 'sapid',
+        width: 220,
+        pinned: "left"
+    },
+    {
+        headerName: 'Site Status',
+        field: 'siteStatus',
+        width: 160
+    },
+    {
+      headerName: 'Site Category',
+      field: 'siteCategory',
+      width: 160
+    },
+    {
+        headerName: 'Site Type',
+        field: 'siteType',
+        width: 150
+    },
+    {
+        headerName: 'Backhaul',
+        field: 'backhaul',
+        width: 150
+    },
+    {
+      headerName: 'Current Milestone',
+      field: 'currentMilestone',
+      width: 180
+    },
+    {
+        headerName: 'Current Task',
+        field: 'currentTask',
+        width: 180
+    },
+    {
+      headerName: 'Current Task Status',
+      field: 'currentTaskStatus',
+      width: 250
+    },
+    ]
+    this.datatable.columnDefsServices = this.columnDefs;
+  }
+  
 
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {
@@ -113,6 +168,7 @@ export class SiteDatabaseComponent {
   toggleSearch() {
     this.show = !this.show;
   };
+
 
   cellClickedDetails(evt) {
     console.log("proposedIndoorColDef", evt)

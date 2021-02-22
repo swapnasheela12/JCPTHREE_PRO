@@ -147,8 +147,8 @@
         <mat-divider style="position: relative;"></mat-divider>
         <ag-grid-angular style="width: 100%; height: calc(100% - 70px)"
             class="twamp-grid-live ag-theme-material ag-jcp3" [rowData]="rowData" [columnDefs]="columnDefs"
-            (cellClicked)='onCellClicked($event)' [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"
-            [gridOptions]="twampGridOptions" [suppressHorizontalScroll]="true" (gridReady)="onReady($event)">
+            (rowClicked)='onRowClicked($event)' [groupHeaderHeight]="28" [headerHeight]="28" [icons]="icons"
+            [gridOptions]="twampGridOptions" [suppressHorizontalScroll]="false"  [suppressRowClickSelection]="false" (gridReady)="onReady($event)">
         </ag-grid-angular>
     </mat-card>
 </ng-template>
@@ -219,7 +219,7 @@
         <ag-grid-angular style="width: 100%; height: calc(100% - 70px)"
             class="twamp-grid-live ag-theme-material ag-jcp3" [rowData]="rowDataMGWVoilation"
             [columnDefs]="columnDefMGWVoilation" [groupHeaderHeight]="28" [headerHeight]="28"
-            (cellClicked)='onCellClicked($event)' [gridOptions]="slaMGWGridOptions" [suppressHorizontalScroll]="true"
+            (rowClicked)='onRowClicked($event)' [gridOptions]="slaMGWGridOptions" [suppressHorizontalScroll]="true"
             (gridReady)="onReady($event)">
         </ag-grid-angular>
     </mat-card>
