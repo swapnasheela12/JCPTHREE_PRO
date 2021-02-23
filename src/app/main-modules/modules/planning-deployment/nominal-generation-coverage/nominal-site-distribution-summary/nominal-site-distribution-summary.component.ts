@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SiteProposedConfigurationComponent } from 'src/app/core/components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomFlagPopupComponent } from 'src/app/core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { SharePopupDialogModel, SharePopupComponent } from 'src/app/core/components/commonPopup/share-popup/share-popup.component';
 
 
 const HEADER_PERFORMANCE_REPORTS = [
@@ -175,7 +176,8 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private datashare: DataSharingService,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog
   ) {
     this.gridMyPerformanceGridOptions = <GridOptions>{};
     this.frameworkComponentsReportBuilder = {
@@ -296,7 +298,7 @@ export class NominalSiteDistributionSummaryComponent implements OnInit, OnDestro
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openSharePopup()">
                 <span>Share</span>
             </button>
             <button mat-menu-item (click)="openSiteProposedConf()">
@@ -334,6 +336,16 @@ export class nominalSiteVerticalDotComponent implements ICellRendererAngularComp
 
   refresh(params?: any): boolean {
     return true;
+  }
+
+  openSharePopup() {
+    const dialogData = new SharePopupDialogModel();
+    const dialogRef = this.matDialog.open(SharePopupComponent, {
+      data: dialogData,  
+      width: '900px',
+      height: '500px',
+      panelClass: 'site-proposed-table'
+    });
   }
   
   openSiteProposedConf() {

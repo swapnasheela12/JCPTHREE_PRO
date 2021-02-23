@@ -12,6 +12,7 @@ import { } from 'google-maps';
 declare let $: any;
 declare const L: any; // --> Works
 import 'leaflet-draw';
+import { Location } from '@angular/common';
 import { MatSelect } from '@angular/material/select';
 import { dropdown, R4GState, JC, City} from './../../../../../core/components/common-elements/type-dropdown-modulelist';
 import { StatergeMapNominalComponent } from '../../../network-planning/rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
@@ -92,6 +93,7 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   generateDisabled: boolean = true;
   mainLayerRef: {};
   designControls: FormArray;
+  showSelected: Boolean = false;
   @ViewChild('nodeCounterStepper', {static: true}) nodeCounterStepper: MatStepper;
   linkBudgetList = [
     { name :'Link Budget 1'},
@@ -367,6 +369,7 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   disabledChecked =  true;
   disableCheckedInfill = true;
 
+  public zoneType: FormControl = new FormControl();
   // R4G Circle Dropdown 
   @ViewChild('cityControlSelect') cityControlSelect: MatSelect;
   protected circleData = R4GState;
@@ -404,8 +407,29 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   listBoundaries: string[] = ['Business Boundaries', 'Custom Boundaries'];
   showDiv: boolean = false;
   valueSearch = "";
-  zoneType = "West";
+  currentStep;
   designList = [{value:'300', value1: '500', value2: '800', value3: '1500'}];
+  public typeGenerate: boolean = true;
+
+  zoneListArr = [
+    {
+      name: 'West',
+      latlong: [22.978624, 87.747803]
+    },
+    {
+      name: 'East',
+      latlong: [19.076090, 72.877426]
+    },
+    {
+      name: 'North',
+      latlong: [29.238478, 76.431885]
+    },
+    {
+      name: 'South',
+      latlong: [12.972442, 77.580643]
+    }
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -415,13 +439,13 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
     private str: StructurePlannedFibreCoreComponent,
     private cdr: ChangeDetectorRef,
     private dataShare: DataSharingService,
-    private shapeService: ShapeService
+    private shapeService: ShapeService,
+    private location: Location
   ) {
   }
 
   ngOnInit(): void {
-    console.log(this.nodeCounterStepper)
-    console.log(this.designList);
+    this.zoneType.setValue("West");
     const designGroups = this.designList.map(entity => {
       return new FormGroup({
         value: new FormControl(entity.value, Validators.required),
@@ -705,9 +729,9 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
   public poly;
   public polyline;
   public dataPolygon = [];
-  public render(): void {
-    // alert("layer renderer")
-    console.log(this.adHost)
+  public render(val): void {
+    this.mapFour.setView([19.0522, 72.9005], 13);
+    this.typeGenerate = false;
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
     let viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
@@ -898,6 +922,23 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
     });
   }
 
+  backPageRout() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+  stepFunc() {
+    this.showSelected = false;
+    setTimeout(() => {
+      this.nodeCounterStepper.selectedIndex = 1;
+      this.currentStep = 2;
+    }, 500);
+
+    setTimeout(() => {
+      this.initMap();
+    }, 500);
+
+  }
+
   async additionalCandidateLayer() {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
@@ -913,5 +954,10 @@ export class NominalGenerationCreateComponent implements OnInit, AfterViewInit {
 
   allowRenderinginfill() {
     this.disableCheckedInfill = !this.disableCheckedInfill;
+  }
+
+  zoneChangeFunc(val) {
+    this.mapFour.setView(val.value.latlong, 6);
+    this.typeGenerate = false;
   }
 }

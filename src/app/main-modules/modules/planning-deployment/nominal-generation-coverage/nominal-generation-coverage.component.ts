@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { NpCreatePopupDialogModel, NpCreatePopupComponent } from '../nominal-capacity/np-create-popup/np-create-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface Card {
   area: string;
@@ -153,7 +155,8 @@ export class NominalGenerationCoverageComponent implements OnInit, OnDestroy {
     private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
     private http: HttpClient,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {
     
   }
@@ -184,6 +187,16 @@ export class NominalGenerationCoverageComponent implements OnInit, OnDestroy {
     );
     nominalGenerationLandingPage.changeDetectorRef.detectChanges();
     // this.changeDetectorRef.detectChanges();
+  }
+
+  createPopup(): void {
+    const dialogData = new NpCreatePopupDialogModel();
+    const dialogRef = this.dialog.open(NpCreatePopupComponent, {
+      data: dialogData,  
+      width: '500px',
+      height: '200px',
+      panelClass: 'np-create-popup-dialog'
+    });
   }
 
   ngOnDestroy() {

@@ -26,6 +26,9 @@ $md-primary: #0070DB;
         .mat-form-field{
             font-size: 14px;
         }
+        tr.mat-row {
+            height: 10px !important;
+        }
         .title {
             font-family: Lato Regular;
             font-size: 12px;
@@ -40,17 +43,9 @@ $md-primary: #0070DB;
             padding-top: 3%;
         }
 
-        .site-proposed-configuration {
-            height: 365px;
-        }
-
         .site-proposed-configuration-data {
-            height: 100%;
+            height: calc(100% - 109px);
             overflow: auto;
-        }
-
-        .site-proposed-configuration-table {
-            height: 100%;
         }
 
         .lat-long-data {
