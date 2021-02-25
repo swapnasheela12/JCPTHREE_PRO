@@ -465,6 +465,10 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     this.routePlannedLayerHeader.headerSapid = node.name;
     this.datashare.layerNameFunc([{name: 'Back To '+node.headerText, source: 'display'}]);
     if (type == 'manual') {
+      if(undefined != this.showHeader){
+          this.showHeader.clear();
+          this.newComponentRef.destroy();
+      }
       if (node.selected == true && node.showHeader == true) {
         this.datashare.headerObject.subscribe(
           (headerView) => {
@@ -476,8 +480,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             const newComponentVcRef = this.newComponentRef.instance.vcRef;
           }
         )
-      } else if (node.selected == false) {
-        alert(node.selected)
+      } else if (node.selected == false  && node.showHeader == true) {
         this.showHeader.clear();
         this.newComponentRef.destroy();
       }
@@ -504,7 +507,6 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     } else {
       node.selected = !selected;
     }
-
     this.showHeaderDisplay(node, 'manual');
     if (node.selected == true) {
       this.selectedLayerArr.push(node);
