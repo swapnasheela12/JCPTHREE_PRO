@@ -6,6 +6,9 @@
 		height: calc(100% - 95px);
 		.mat-stepper-horizontal{
 			height: 100%;
+			.mat-horizontal-stepper-header-container {
+				width: 75%;
+			}
             .mat-horizontal-content-container{
 				height: calc(100% - 30px);
 				padding-left: 20px;

@@ -22,12 +22,14 @@ const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
     headerName: "flag",
     field: "flagStatus",
     cellRenderer:'flagRenderComponent',
+    headerClass: 'notShowHeader',
     minWidth: 30
   },
   {
     headerName: "",
     cellRenderer:'nominalGenerationRenderComponent',
     minWidth: 30,
+    headerClass: 'notShowHeader',
     pinned: 'right',
     cellClass: 'vertical-dot-align'
   }
