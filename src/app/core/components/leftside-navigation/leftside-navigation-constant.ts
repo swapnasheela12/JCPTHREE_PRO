@@ -3862,7 +3862,13 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Fault-Management/Active-Alarm",
         eventName: 'sites-outdoor-esc',
-
+        children: []
+    },
+    {
+        name: "Alarm Summary",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Fault-Management/Alarm-Summary",
+        eventName: 'Modules-Fault-Management-Alarm-Summary',
         children: []
     },
     {
@@ -3871,7 +3877,6 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Fault-Management/Active-Library",
         eventName: 'sites-outdoor-esc',
-
         children: []
     }
 ];

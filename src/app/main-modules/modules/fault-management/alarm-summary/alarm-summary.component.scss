@@ -1,0 +1,77 @@
+$border-color: #e0e0e0;
+$blueactive-color: #0078D7;
+$blueactive-color: #E5F0FC;
+$border-color: #d3d5d7;
+$md-primary: #0070DB;
+$color-white: #ffffff;
+$color-grayBlue: #464d69;
+.active-alarm {
+    .create-report-toolbar {
+        min-height: 54px;
+        &.mat-toolbar {
+            background: $color-white;
+            height: 54px;
+            padding: 0px;
+            min-height: 54px;
+            color: $color-grayBlue;
+            .mat-toolbar-row {
+                color: $color-grayBlue;
+                font-size: 18px;
+                font-weight: 500;
+                mat-icon {
+                    font-size: 18px;
+                    color: $color-grayBlue;
+                }
+                .header {
+                    font-size: 15px;
+                    color: $color-grayBlue;
+                    font-weight: 400;
+                    font-family: 'Lato Bold';
+                    line-height: 2.5;
+                }
+                .header-date-picker-type {
+                    .no-padding {
+                        .mat-form-field-wrapper {
+                            .mat-form-field-flex {
+                                .mat-form-field-infix {
+                                    padding: 0 0 !important;
+                                    border-top: 0.84375em solid transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+                .Sub-header {
+                    font-weight: 400;
+                    color: $color-grayBlue;
+                }
+                .Sub-header-title {
+                    font-weight: 400;
+                    color: #464d69b3;
+                    font-size: 12px;
+                    font-family: "Lato Medium";
+                    line-height: 3.1;
+                }
+                .title {
+                    font-size: 12px;
+                    font-family: 'Lato Regular';
+                    line-height: 1.75;
+                }
+                .sub-title {
+                    font-size: 14px;
+                    font-family: 'Lato Medium';
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+    .filter-group-row {
+        .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+            // padding-bottom: 0 !important;
+        }
+    }
+}
+
+// ::ng-deep .no-padding.mat-form-field-appearance-outline .mat-form-field-wrapper {
+//     margin: 0;
+// }

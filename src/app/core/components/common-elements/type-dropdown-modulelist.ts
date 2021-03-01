@@ -3,6 +3,18 @@ export interface dropdown {
     name: string;
 }
 
+export const GraphType: dropdown[] = [
+    {name: 'Pan India'},
+    {name: 'Sites with > 24 Hr Outage (Till 8 AM) '},
+    {name: 'Circlewise Alarms VS Outage Minutes'},
+    {name: 'Active Alarm Ageing'}
+];
+
+export const Node: dropdown[] = [
+    {name: 'Macro'},
+    {name: 'Small Cell'}
+];
+
 export const R4GState: dropdown[] = [
     {name: 'Delhi'},
     {name: 'Rajasthan'},

@@ -1,0 +1,100 @@
+<div class="h-100">
+    <mat-card class="active-alarm p-0">
+        <mat-toolbar class="create-report-toolbar">
+            <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="height: inherit;">
+                <div class="px-3" fxFlex="100" style="height: inherit;">
+                    <div class="header" style="line-height: 3.5;">Nominal Strategy</div>
+                    <div fxFlex></div>
+                    <div style="line-height: 2.5;">
+                        <button mat-icon-button>
+                            <mat-icon class="iconType" style="font-size: 18px;">
+                                <div class="ic ic-table1-01" style="line-height: 1.5;"></div>
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon class="iconType" style="font-size: 25px;">
+                                <div class="zmdi zmdi-time-restore"></div>
+                            </mat-icon>
+                        </button>
+                    </div>
+                    <div fxFlex="15" class="header-date-picker-type">
+                        <div class="title">Last Updated</div>
+                        <div class="sub-title">25 Oct, 2016, 2:30 PM</div>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <div class="px-3">
+            <div fxLayout="row wrap" class="filter-group-row" style="    line-height: 4;">
+                <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
+                    <mat-form-field fxFlex="100">
+                        <mat-select disableOptionCentering placeholder="Circle" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Circle" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                {{selectJc.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
+                    <mat-form-field fxFlex="100">
+                        <mat-select (selectionChange)="render(cityControl)" disableOptionCentering placeholder="Jio Center" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                {{city.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
+                    <mat-form-field fxFlex="100">
+                        <mat-select disableOptionCentering placeholder="Node" [formControl]="NodeTypeControl" ngDefaultControl #NodeTypeControlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Node" [formControl]="NodeTypeFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let NodeType of NodeTypeFilter | async" [value]="NodeType">
+                                {{NodeType.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
+                    <mat-form-field fxFlex="100">
+                        <mat-select disableOptionCentering placeholder="Vendor" [(value)]="vendor">
+                            <mat-option value="Airspan" selected>Airspan</mat-option>
+                            <mat-option value="Samsung">Samsung</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
+                    <button mat-stroked-button color="primary" class="buttonWidth">Apply</button>
+                </div>
+                <mat-divider [vertical]="true"></mat-divider>
+                <div class="p-3" fxFlex="23" style="padding-right:0 !important;padding-bottom: 0px;">
+                    <mat-form-field fxFlex="100">
+                        <mat-select [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect>
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Select Graph" [formControl]="selectGraphFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let selectGraph of selectGraphFilter | async" [value]="selectGraph">
+                                {{selectGraph.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <div style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
+        <app-alarm-summary-chart></app-alarm-summary-chart>
+    </div>
+</div>

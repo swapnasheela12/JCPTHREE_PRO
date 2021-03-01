@@ -20,7 +20,8 @@ import { forEach } from 'lodash';
   template: `
     <div class="spidermain-wrapper-logical-topology">
     <div class="spideroverlay">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>
+    <svg class="spiderview spider-fiveg-circular" #spiderView></svg>
+        <!-- <svg class="spider-fiveg-circular" xmlns="http://www.w3.org/2000/svg" version="1.1"></svg> -->
     </div>
     <div></div>
     </div>
@@ -49,6 +50,15 @@ import { forEach } from 'lodash';
       }
       .wrapper{
           display: inline-block;
+      }
+      .spider-fiveg-circular {
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+          border-radius: 5px;
+          position: relative !important;
+          z-index: 1;
+          backdrop-filter: blur(15px);
+          padding: 0;
+          background-color:rgba(255, 255, 255, 0.4);
       }
       `
   ]
@@ -139,7 +149,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         font: 'icomoon',
         fontvalue: '\uec2c',
         value: 5,
-      },{
+      }, {
         device: "css router",
         color: "#94C65A",
         font: 'icomoon',
@@ -194,7 +204,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
         font: 'icomoon',
         fontvalue: '\uec2c',
         value: 5,
-      },{
+      }, {
         device: "css router",
         color: "#94C65A",
         font: 'icomoon',
@@ -417,22 +427,22 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
     //   .attr('fill', "rgba(229,234,236,70%)")
     //   .style('cursor', 'pointer');
 
-    bandGroup.append('circle')
-    .attr('r', 300)
-    .attr('filter', "blur(10px)")
-    .attr('fill', "rgba(229,234,236,70%)")
-    .style('cursor', 'pointer');
+    // bandGroup.append('circle')
+    //   .attr('r', 300)
+    //   .attr('filter', "blur(10px)")
+    //   .attr('fill', "rgba(229,234,236,70%)")
+    //   .style('cursor', 'pointer');
 
     this.smallCellData.forEach(item => {
 
       // if (item.radiuscircle == "100") {
-        // bandGroup.append('circle')
-        //   .attr('r', 175)
-        //   .attr('filter', "blur(10px)")
-        //   .attr('fill', "rgba(229,234,236,70%)")
-        //   .style('cursor', 'pointer');
+      // bandGroup.append('circle')
+      //   .attr('r', 175)
+      //   .attr('filter', "blur(10px)")
+      //   .attr('fill', "rgba(229,234,236,70%)")
+      //   .style('cursor', 'pointer');
       // } else {
-      
+
       // }
 
       let margin = {
@@ -541,51 +551,51 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
             return 'donutArcsInner';
           });
 
-      } 
+      }
       else if (item.radiuscircle == "175") {
         donutArcsGroup.append('path')
-        .attr('d', arcOuterMost)
-        .style('fill', 'none')
-        .attr('class', function (d, i) {
-          //Search pattern for everything between the start and the first capital L
-          let firstArcSection = /(^.+?)L/;
+          .attr('d', arcOuterMost)
+          .style('fill', 'none')
+          .attr('class', function (d, i) {
+            //Search pattern for everything between the start and the first capital L
+            let firstArcSection = /(^.+?)L/;
 
-          //Grab everything up to the first Line statement
-          let newArc = firstArcSection.exec(d3.select(this).attr('d'))[1];
-          //Replace all the comma's so that IE can handle it
-          newArc = newArc.replace(/,/g, ' ');
+            //Grab everything up to the first Line statement
+            let newArc = firstArcSection.exec(d3.select(this).attr('d'))[1];
+            //Replace all the comma's so that IE can handle it
+            newArc = newArc.replace(/,/g, ' ');
 
-          //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2)
-          //flip the end and start position
-          if (d.endAngle > 90 * Math.PI / 270) {
-            let startLoc = /M(.*?)A/, //Everything between the first capital M and first capital A
-              middleLoc = /A(.*?)0 0 1/, //Everything between the first capital A and 0 0 1
-              endLoc = /0 0 1 (.*?)$/; //Everything between the first 0 0 1 and the end of the string (denoted by $)
-            //Flip the direction of the arc by switching the start en end point (and sweep flag)
-            //of those elements that are below the horizontal line
-            let newStart = endLoc.exec(newArc)[1];
-            let newEnd = startLoc.exec(newArc)[1];
-            let middleSec = middleLoc.exec(newArc)[1];
+            //If the end angle lies beyond a quarter of a circle (90 degrees or pi/2)
+            //flip the end and start position
+            if (d.endAngle > 90 * Math.PI / 270) {
+              let startLoc = /M(.*?)A/, //Everything between the first capital M and first capital A
+                middleLoc = /A(.*?)0 0 1/, //Everything between the first capital A and 0 0 1
+                endLoc = /0 0 1 (.*?)$/; //Everything between the first 0 0 1 and the end of the string (denoted by $)
+              //Flip the direction of the arc by switching the start en end point (and sweep flag)
+              //of those elements that are below the horizontal line
+              let newStart = endLoc.exec(newArc)[1];
+              let newEnd = startLoc.exec(newArc)[1];
+              let middleSec = middleLoc.exec(newArc)[1];
 
-            //Build up the new arc notation, set the sweep-flag to 0
+              //Build up the new arc notation, set the sweep-flag to 0
 
-            newArc = 'M' + newStart + 'A' + middleSec + '0 0 0 ' + newEnd;
-          } //if
+              newArc = 'M' + newStart + 'A' + middleSec + '0 0 0 ' + newEnd;
+            } //if
 
-          // console.log(this.parentNode, "this.parentNode");
+            // console.log(this.parentNode, "this.parentNode");
 
-          //Create a new invisible arc that the text can flow along
-          // d3.select(this.parentNode).append('path')
-          d3.select(this.parentNode).append('path')
-            .attr('class', 'hiddenDonutArcs')
-            .attr('id', 'donutArcOuterMost' + i)
-            .attr('d', newArc)
-            .style('fill', 'none');
+            //Create a new invisible arc that the text can flow along
+            // d3.select(this.parentNode).append('path')
+            d3.select(this.parentNode).append('path')
+              .attr('class', 'hiddenDonutArcs')
+              .attr('id', 'donutArcOuterMost' + i)
+              .attr('d', newArc)
+              .style('fill', 'none');
 
-          return 'donutArcs';
-        });
+            return 'donutArcs';
+          });
 
-      } 
+      }
       else {
         donutArcsGroup.append('path')
           .attr('d', arc)
@@ -651,7 +661,7 @@ export class LogicaltopologyMultiSpiderViewComponent implements OnInit {
             let pathEl = d3.select(donutArc).node();
             let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);
             return 'translate(' + (midpoint.x - 20) + ',' + (midpoint.y) + ')';
-          }else {
+          } else {
             let donutArc = $(element).find('#donutArc' + i)[0];
             let pathEl = d3.select(donutArc).node();
             let midpoint = pathEl.getPointAtLength(pathEl.getTotalLength() / 2);

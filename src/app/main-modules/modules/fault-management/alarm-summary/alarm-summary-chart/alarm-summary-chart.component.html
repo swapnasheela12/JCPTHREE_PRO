@@ -1,0 +1,19 @@
+<mat-grid-list cols="6" row="2" rowHeight="400px" [gutterSize]="'10px'">
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
+        <mat-card class="w-100 h-100">
+            <!-- {{tile.text}} -->
+            <div *ngIf="tile.text == 'One'" class="jcp-landing-card-chart-container">
+                <div [chart]="chart1" style="display: block;"></div>
+            </div>
+            <div *ngIf="tile.text == 'Two'" class="jcp-landing-card-chart-container">
+                <div id="activeAlarmAgingID" [chart]="activeAlarmAging"></div>
+            </div>
+            <div *ngIf="tile.text == 'Three'" class="jcp-landing-card-chart-container">
+                <div id="kpiDetailsChartID" [chart]="kpiDetailsChart"></div>
+            </div>
+            <div *ngIf="tile.text == 'Four'" class="jcp-landing-card-chart-container" id="dailyTrafficChartIdDiv">
+                <div id="dailyTrafficChartID" [chart]="dailyTrafficChart"></div>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

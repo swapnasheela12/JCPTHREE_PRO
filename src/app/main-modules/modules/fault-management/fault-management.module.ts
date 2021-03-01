@@ -65,13 +65,21 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ActiveLibraryComponent } from './active-library/active-library.component';
 import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
+import { AlarmSummaryChartComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart.component';
+import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-table/alarm-summary-table.component';
 //import { ActiveAlarmMenuComponent } from './active-alarm-renderer/active-alarm-menu.component';
 @NgModule({
-  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent],
+  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent],
   imports: [
+    CoreModule,
+    FlexLayoutModule,
+    NgxDaterangepickerMd.forRoot(),
+    // AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
     CommonModule,
     FaultManagementRoutingModule,
     A11yModule,
+    ChartModule,
    
     CdkStepperModule,
     CdkTableModule,
@@ -113,9 +121,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AgGridModule,
     MatFormFieldModule, 
     MatInputModule,
-    CoreModule
-
-    
+    CoreModule,
+    NgxMatSelectSearchModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   exports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, 
     MatNativeDateModule  ]
