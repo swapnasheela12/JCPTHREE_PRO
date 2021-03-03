@@ -488,11 +488,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           this.showHeader.clear();
           this.newComponentRef.destroy();
       }
-      alert("hello1")
       if (node.selected == true && node.showHeader == true) {
         this.datashare.headerObject.subscribe(
           (headerView) => {
-            alert("hello")
             this.showHeader.clear();
             this.newComponentRef.destroy();
             this.showHeader = headerView;
