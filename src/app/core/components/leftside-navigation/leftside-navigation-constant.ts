@@ -4214,6 +4214,18 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
         showHeader: false,
         headerText: '',
         children: NOMINAL_GENERATION_LIST
+    },
+    {
+        name: "Nominal Validation",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Planning-Deployment/Nominal-Validation",
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
     }
 ];
 

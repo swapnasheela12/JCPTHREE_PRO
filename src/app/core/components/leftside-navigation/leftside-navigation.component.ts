@@ -66,7 +66,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   showHeader;
   routePlannedLayerHeader = {
     "title": "Back To Nominal Generation",
-    "headerSapid": "Maharashtra-NP-CV-121020_v1"
+    "headerSapid": "Maharashtra-NP-CV-121020_v1",
+    "name":"nominal-generation"
   };
 
   dialog: NavigationSettingsService;
@@ -205,14 +206,30 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           let dataChange = this.dataSource.data;
           if (dataChange[0].name != 'My Projects') {
             let removedItems = dataChange.splice(0,0,data[0]);
-            dataChange[0].children[0].children[0].checked = true;
-            console.log(dataChange)
             this.dataSource.data = [];
             this.dataSource.data = dataChange;
-            this.treeControl.expand(this.treeControl.dataNodes[0]);
-            this.treeControl.expand(this.treeControl.dataNodes[1]);
-            this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
+            if(dataChange[0].children[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'){
+              console.log('NC'+dataChange[0].children[0].children[0].children[0])
+              dataChange[0].children[0].children[0].children[0].checked = true;
+              this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
+            } else if(dataChange[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].eventName == 'nominal-generation') {
+              console.log('NG'+dataChange[0].children[0].children[0])
+              dataChange[0].children[0].children[0].checked = true;
+              this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
+            }
+            this.dataSource.data = dataChange;
+            if(dataChange[0].children[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'){
+              console.log('NC1'+dataChange[0].children[0].children[0].children[0])
+              this.treeControl.expand(this.treeControl.dataNodes[0]);
+              this.treeControl.expand(this.treeControl.dataNodes[1]);
+              this.treeControl.expand(this.treeControl.dataNodes[2]);
+            } else if(dataChange[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].eventName == 'nominal-generation') {
+              console.log('NG1'+dataChange[0].children[0].children[0])
+              this.treeControl.expand(this.treeControl.dataNodes[0]);
+              this.treeControl.expand(this.treeControl.dataNodes[1]);
+            }
           }
+        
         }
       });
   
@@ -463,21 +480,28 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   newComponentRef;
   showHeaderDisplay(node, type) {
     this.routePlannedLayerHeader.headerSapid = node.name;
-    this.datashare.layerNameFunc([{name: 'Back To '+node.headerText, source: 'display'}]);
+    this.routePlannedLayerHeader.title = node.headerText;
+    this.routePlannedLayerHeader.name = node.eventName;
+    this.datashare.layerNameFunc([{name: node.headerText, source: 'display'}]);
     if (type == 'manual') {
       if(undefined != this.showHeader){
           this.showHeader.clear();
           this.newComponentRef.destroy();
       }
+      alert("hello1")
       if (node.selected == true && node.showHeader == true) {
         this.datashare.headerObject.subscribe(
           (headerView) => {
+            alert("hello")
+            this.showHeader.clear();
+            this.newComponentRef.destroy();
             this.showHeader = headerView;
             const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
             this.newComponentRef = this.showHeader.createComponent(factory);
             this.newComponentRef.instance.headerData = this.routePlannedLayerHeader;
             this.newComponentRef.instance.showHeader = 'show';
             const newComponentVcRef = this.newComponentRef.instance.vcRef;
+            this.newComponentRef.changeDetectorRef.detectChanges();
           }
         )
       } else if (node.selected == false  && node.showHeader == true) {
@@ -519,7 +543,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.renderLayerComponent(node.componentLayer);
       }
     } else {
-      node.checked = false
+      node.checked = false;
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);

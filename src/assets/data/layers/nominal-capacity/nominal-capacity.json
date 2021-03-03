@@ -1,0 +1,50 @@
+[
+    {
+        "capacityId": "Test-Bihar 1",
+        "flagStatus":""
+    },
+    {
+        "capacityId": "Test-Bihar 2",
+        "flagStatus": "warning"
+    },
+    {
+        "capacityId": "Test-Bihar 3",
+        "flagStatus": "alert"
+    },
+    {
+        "capacityId": "Test-Bihar 4",
+        "flagStatus": "warning"
+    },
+    {
+        "capacityId": "Test-Bihar 5",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 6",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 7",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 8",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 9",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 10",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 10",
+        "flagStatus": ""
+    },
+    {
+        "capacityId": "Test-Bihar 11",
+        "flagStatus": ""
+    }
+]

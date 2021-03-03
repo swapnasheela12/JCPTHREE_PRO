@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, AfterViewInit, OnDestroy } from '@angular/core';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ declare var $: any;
   templateUrl: './nominal-generation-landing-layer.component.html',
   styleUrls: ['./nominal-generation-landing-layer.component.scss']
 })
-export class NominalGenerationLandingLayerComponent implements AfterViewInit {
+export class NominalGenerationLandingLayerComponent implements AfterViewInit, OnDestroy {
   routeFibreCoreLayer: any;
   routeFibreCoreLayerContainer: any;
   map: any;
@@ -75,6 +75,7 @@ export class NominalGenerationLandingLayerComponent implements AfterViewInit {
   nominalArray = [];
   nominalGeneartionArray: any = [];
   showHeader:any;
+  sub: Subscription;
   // mainLayerRef: any;
   // routePlannedLayerHeader = {
   //   "title": "Route Planned Fibre Core",
@@ -99,7 +100,7 @@ export class NominalGenerationLandingLayerComponent implements AfterViewInit {
 
   ngAfterViewInit(){
     $('#Layers').parent()[0].click();
-    this.http.get("assets/data/layers/nominal-generation/nominal-generation.json")
+    this.sub = this.http.get("assets/data/layers/nominal-generation/nominal-generation.json")
     .subscribe(data => {
       for (let i=0; i<data['length']; i++) {
         this.nominalArray.push(
@@ -112,7 +113,7 @@ export class NominalGenerationLandingLayerComponent implements AfterViewInit {
             children: [],
             showHeader: true,
             checked: false,
-            headerText: 'Nominal Geneartion'
+            headerText: 'Back to Nominal Geneartion'
           }
         )
       }
@@ -141,5 +142,9 @@ export class NominalGenerationLandingLayerComponent implements AfterViewInit {
 
     
     this.dataShare.layerNameFunc([{name: 'Back To Nominal Geneartion', source: 'display'}]);
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }

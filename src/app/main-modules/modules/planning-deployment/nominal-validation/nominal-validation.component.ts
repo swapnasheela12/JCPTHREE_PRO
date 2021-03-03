@@ -1,13 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, ViewChild, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { GridCore, GridOptions } from 'ag-grid-community';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { NpCreatePopupDialogModel, NpCreatePopupComponent } from '../nominal-capacity/np-create-popup/np-create-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SharePopupComponent, SharePopupDialogModel } from 'src/app/core/components/commonPopup/share-popup/share-popup.component';
-import { NpCreatePopupComponent, NpCreatePopupDialogModel } from './np-create-popup/np-create-popup.component';
+
 export interface Card {
   area: string;
   place: string;
@@ -21,18 +20,13 @@ export interface Card {
   modifiedUser: string;
   modifiedDate: string;
   modifiedTime: string;
-}
-const PATHS = [
-  { layersPage: "/JCP/Layers" },
-  { createPage: "/JCP/Modules/Planning-Deployment/Nominal-Capacity/Create-Nominal-Task" },
-  { createPageStrategy: "/JCP/Modules/Network-Planning/RF-Planning/Nominal-Strategic" },
-  { summaryPage: "/JCP/Modules/Planning-Deployment/Nominal-Generation/Summary" }
-];
+};
+
 const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'In Progress',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -46,21 +40,21 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Draft',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
-    createdUser: ' Arun',
+    createdUser: ' Arun Nath Arun Nath',
     createdDate: ' 12th Oct 2020',
     createdTime: ' 9:30 IST',
-    modifiedUser: ' Karan',
+    modifiedUser: ' Karan Dubey',
     modifiedDate: ' 6 Jan 2021',
     modifiedTime: ' 10:00 IST',
   },
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -74,7 +68,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'In Progress',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -88,7 +82,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -102,7 +96,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -116,7 +110,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Validation',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -129,70 +123,70 @@ const DATA: Card[] = [
   },
 ];
 
+const PATHS = [
+  { createNominalGeneration: "JCP/Modules/Planning-Deployment/Nominal-Validation/Create" }
+]
+
 @Component({
-  selector: 'app-nominal-capacity',
-  templateUrl: './nominal-capacity.component.html',
-  styleUrls: ['./nominal-capacity.component.scss']
+  selector: 'app-nominal-validation',
+  templateUrl: './nominal-validation.component.html',
+  styleUrls: ['./nominal-validation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class NominalCapacityComponent implements OnInit {
+export class NominalValidationComponent implements OnInit {
   searchGrid = '';
+  showInputField: boolean;
+  paths;
   public layerRoute: String;
   public createRoute: String;
-  public createRouteStrategy: String;
-  zone = "";
-  circle = "";
-  jioState = "-";
-  jioCenter = "-";
+  show: any;
+  status = "Completed";
+  plan = "Coverage";
+  zone = "North";
   r4gStates = "-";
+  jioCenter = "-";
   city = "-";
-  plan = "-";
-  status = "-";
-  show;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   obs: Observable<any>;
   dataSource: MatTableDataSource<Card> = new MatTableDataSource<Card>(DATA);
-  summaryRoute: string;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef, 
-    private router: Router, 
-    public dialog: MatDialog,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+    private http: HttpClient,
+    private changeDetectorRef: ChangeDetectorRef,
+    private dialog: MatDialog
+  ) {
+    
+  }
 
   ngOnInit(): void {
-    this.layerRoute = PATHS[0].layersPage;
-    this.createRoute = PATHS[1].createPage;
-    this.createRouteStrategy = PATHS[2].createPageStrategy;
-    this.summaryRoute = PATHS[2].summaryPage;
+    this.paths = PATHS;
     this.paginator._intl.itemsPerPageLabel="Rows Per Page:";
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
   }
+
   onFilterChanged(value) {
   };
 
-  openUpdateDialog(): void {
-    const message = `Are you sure you want to perform this action?`;
-    const image = 'warning';
-    const snackbarMode = 'success';
-    const snackbarText = 'Admin Settings Updated Successfully.';
-    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
-    const dialogRef = this.dialog.open(CommonPopupComponent, {
-      data: dialogData
-    });
-  }
+  toggleSearch() {
+    this.showInputField = !this.showInputField;
+  };
+
   
-  sharePopup(): void {
-    const dialogData = new SharePopupDialogModel();
-    const dialogRef = this.dialog.open(SharePopupComponent, {
-      data: dialogData,  
-      width: '900px',
-      height: '500px',
-      panelClass: 'share-popup-dialog'
-    });
+
+  async redirectToLayer() {
+    this.router.navigate(['/JCP/Layers']);
+    this.viewContainerRef.clear();
+    const { NominalGenerationLandingLayerComponent } = await import('./../nominal-generation-coverage/nominal-generation-landing-layer/nominal-generation-landing-layer.component');
+    let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
+      this.componentFactoryResolver.resolveComponentFactory(NominalGenerationLandingLayerComponent)
+    );
+    nominalGenerationLandingPage.changeDetectorRef.detectChanges();
+    // this.changeDetectorRef.detectChanges();
   }
 
   createPopup(): void {
@@ -205,28 +199,14 @@ export class NominalCapacityComponent implements OnInit {
     });
   }
 
-  asdasd(value) {
-    console.log("jhghj")
-    this.router.navigate(['/JCP/Layers']);
-    console.log(this.router)
-    
-  };
   ngOnDestroy() {
     if (this.dataSource) {
       this.dataSource.disconnect();
     }
   }
-  toggleSearch() {
-    this.show = !this.show;
-  };
 
-  async redirectToNominalCapacityLayer() {
-    this.router.navigate([this.layerRoute]);
-    this.viewContainerRef.clear();
-    const { NominalCapacityLayerComponent } = await import('./../nominal-capacity/nominal-capacity-layer/nominal-capacity-layer.component');
-    let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
-      this.componentFactoryResolver.resolveComponentFactory(NominalCapacityLayerComponent)
-    );
-    nominalGenerationLandingPage.changeDetectorRef.detectChanges();
+  redirectToValidate() {
+    this.router.navigate([this.paths[0].createNominalGeneration], { state: { validate: 'true' } });
   }
+
 }
