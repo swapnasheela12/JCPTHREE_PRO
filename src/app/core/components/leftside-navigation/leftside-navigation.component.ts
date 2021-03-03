@@ -509,6 +509,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     }
     this.showHeaderDisplay(node, 'manual');
     if (node.selected == true) {
+      node.checked = true
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
@@ -518,6 +519,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.renderLayerComponent(node.componentLayer);
       }
     } else {
+      node.checked = false
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
