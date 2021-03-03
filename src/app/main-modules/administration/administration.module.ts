@@ -73,11 +73,11 @@ import { ThreeDotP2BRenderer } from './renderer/threedot-p2b-renderer.component'
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { NpQueryAdministrationComponent } from './module-management/nominal-planning/np-query-administration/np-query-administration.component';
 import { CreateQueryPageComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/create-query-page.component';
-import { QueryAdministrationPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/query-administration-popup.component';
+// import { QueryAdministrationPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/query-administration-popup.component';
 import { NpQueryThreeDotRendererComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/np-query-three-dot-renderer/np-query-three-dot-renderer.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent],
+  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, NpQueryThreeDotRendererComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
