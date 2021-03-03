@@ -79,6 +79,7 @@ import { CompleteListPopupComponent } from './nominal-validation/complete-list-p
 import { CoveredAreaLayerComponent } from './nominal-capacity/layer/covered-area-layer/covered-area-layer.component';
 import { MacroLayerComponent } from './nominal-capacity/layer/macro-layer/macro-layer.component';
 import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-layer.component';
+// import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
 // import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 // import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
 
@@ -124,6 +125,7 @@ import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-lay
     CoveredAreaLayerComponent,
     MacroLayerComponent,
     OdscLayerComponent,
+    // QueryAdministrationPopupComponent,
     // NcQueryAdministrationComponent,
     // CreateQueryPageComponent
   ],
