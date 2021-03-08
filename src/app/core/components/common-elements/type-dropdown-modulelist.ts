@@ -4,10 +4,11 @@ export interface dropdown {
 }
 
 export const GraphType: dropdown[] = [
-    {name: 'Pan India'},
-    {name: 'Sites with > 24 Hr Outage (Till 8 AM) '},
-    {name: 'Circlewise Alarms VS Outage Minutes'},
-    {name: 'Active Alarm Ageing'}
+    {name: 'Active Alarm Classification Pie-chart'},
+    {name: 'Active Alarm Ageing'},
+    {name: 'Circles wise SA Active Alarms with Ageing distribution'},
+    {name: 'Alarms vs Outage Minutes'},
+    {name: 'Sites with > 24Hr Outage'}
 ];
 
 export const Node: dropdown[] = [

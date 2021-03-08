@@ -1,7 +1,7 @@
 <mat-grid-list class="jcp-landing-grid-list" cols="6" row="2" rowHeight="400px" [gutterSize]="'10px'">
     <mat-grid-tile class="jcp-landing-grid-tile-one" *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
         <mat-card class="jcp-landing-card p-0 w-100 h-100">
-            <!-- {{tile.text}} -->
+
             <div *ngIf="tile.text == 'One'">
                 <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
                     <div class="jcp-landing-title" (ngModel)="table1Title" fxFlex="60">Active Alarm Classification</div>
@@ -18,7 +18,6 @@
                             <button mat-icon-button (click)="expandViewWidget('Active Alarm Classification Pie-chart')">
                                 <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                     <div class="ic ic-enlarge2" style="padding: 5px;"></div>
-                                    <!-- <div class="ic ic-shrink2"></div> -->
                                 </mat-icon>
                             </button>
                         </div>
@@ -38,8 +37,8 @@
                 <mat-divider></mat-divider>
                 <div class="jcp-landing-card-content">
                     <div [chart]="panindiachart" *ngIf="!tableViewShow" style="display: block;"></div>
-                    <app-alarm-summary-table *ngIf="tableViewShow" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table>
-                    <!-- <app-alarm-summary-table *ngIf="tableViewShowAll" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table> -->
+                    <app-alarm-summary-table *ngIf="tableViewShow" [dataTable]="dataTransferTableToChild">
+                    </app-alarm-summary-table>
 
                 </div>
             </div>
@@ -80,13 +79,14 @@
                 <mat-divider></mat-divider>
                 <div class="jcp-landing-card-content">
                     <div id="activeAlarmAgingID" *ngIf="!tableViewShow2" [chart]="activeAlarmAgingChart"></div>
-                    <app-alarm-summary-table *ngIf="tableViewShow2" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table>
-                    <!-- <app-alarm-summary-table *ngIf="tableViewShowAll" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table> -->
+                    <app-alarm-summary-table *ngIf="tableViewShow2" [dataTable]="dataTransferTableToChild">
+                    </app-alarm-summary-table>
                 </div>
             </div>
             <div *ngIf="tile.text == 'Three'">
                 <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
-                    <div class="jcp-landing-title" (ngModel)="table3Title">Circles wise SA Active Alarms with Ageing distribution</div>
+                    <div class="jcp-landing-title" (ngModel)="table3Title">Circles wise SA Active Alarms with Ageing distribution
+                    </div>
                     <div fxFlex></div>
                     <div class="jcp-landing-right-container" fxLayout="row wrap">
                         <div>
@@ -121,8 +121,8 @@
                 <mat-divider></mat-divider>
                 <div class="jcp-landing-card-content">
                     <div id="kpiDetailsChartID" *ngIf="!tableViewShow3" [chart]="circleWiseAlarmsChart"></div>
-                    <app-alarm-summary-table *ngIf="tableViewShow3" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table>
-                    <!-- <app-alarm-summary-table *ngIf="tableViewShowAll" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table> -->
+                    <app-alarm-summary-table *ngIf="tableViewShow3" [dataTable]="dataTransferTableToChild">
+                    </app-alarm-summary-table>
                 </div>
             </div>
             <div *ngIf="tile.text == 'Four'">
@@ -141,8 +141,7 @@
                             <button mat-icon-button (click)="expandViewWidget('Alarms vs Outage Minutes')">
                                 <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                     <div class="ic ic-enlarge2" style="padding: 5px;"></div>
-                                    <!-- <div class="ic ic-shrink2"></div> -->
-                                </mat-icon>
+                                    </mat-icon>
                             </button>
                         </div>
                         <div>
@@ -162,8 +161,8 @@
                 <mat-divider></mat-divider>
                 <div class="jcp-landing-card-content">
                     <div id="kpiDetailsChartID" *ngIf="!tableViewShow4" [chart]="alarmsOutageMinutesChart"></div>
-                    <app-alarm-summary-table *ngIf="tableViewShow4" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table>
-                    <!-- <app-alarm-summary-table *ngIf="tableViewShowAll" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table> -->
+                    <app-alarm-summary-table *ngIf="tableViewShow4" [dataTable]="dataTransferTableToChild">
+                    </app-alarm-summary-table>
                 </div>
             </div>
             <div *ngIf="tile.text == 'Five'" id="dailyTrafficChartIdDiv">
@@ -182,8 +181,7 @@
                             <button mat-icon-button (click)="expandViewWidget('Sites with > 24Hr Outage')">
                                 <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                     <div class="ic ic-enlarge2" style="padding: 5px;"></div>
-                                    <!-- <div class="ic ic-shrink2"></div> -->
-                                </mat-icon>
+                                   </mat-icon>
                             </button>
                         </div>
                         <div>
@@ -203,8 +201,8 @@
                 <mat-divider></mat-divider>
                 <div class="jcp-landing-card-content">
                     <div id="dailyTrafficChartID" *ngIf="!tableViewShow5" [chart]="sitesWithChart"></div>
-                    <app-alarm-summary-table *ngIf="tableViewShow5" [dataTable]="dataTransferTableToChild"></app-alarm-summary-table>
-                    <!-- <app-alarm-summary-table *ngIf="tableViewShowAll" [dataTableAllTable]="dataTransferTableToChildAllTable"></app-alarm-summary-table> -->
+                    <app-alarm-summary-table *ngIf="tableViewShow5" [dataTable]="dataTransferTableToChild">
+                    </app-alarm-summary-table>
                 </div>
             </div>
         </mat-card>
