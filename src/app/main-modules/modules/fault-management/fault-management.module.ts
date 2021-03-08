@@ -67,10 +67,12 @@ import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
 import { AlarmSummaryChartComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart.component';
-import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-table/alarm-summary-table.component';
+import { AlarmSummaryChartExpandComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
 //import { ActiveAlarmMenuComponent } from './active-alarm-renderer/active-alarm-menu.component';
+import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table/alarm-summary-table.component';
+import { AlarmSummaryTableAllComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table-all/alarm-summary-table-all.component';
 @NgModule({
-  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent],
+  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableAllComponent],
   imports: [
     CoreModule,
     FlexLayoutModule,
@@ -80,6 +82,7 @@ import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-table/
     FaultManagementRoutingModule,
     A11yModule,
     ChartModule,
+    HighchartsChartModule,
    
     CdkStepperModule,
     CdkTableModule,

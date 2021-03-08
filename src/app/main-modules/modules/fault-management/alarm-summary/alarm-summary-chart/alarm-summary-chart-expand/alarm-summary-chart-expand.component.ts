@@ -1,167 +1,32 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { forEach } from 'lodash';
-import { AlarmSummaryChartExpandComponent } from './alarm-summary-chart-expand/alarm-summary-chart-expand.component';
-import { MatDialog } from '@angular/material/dialog';
-import { GraphType } from './../../../../../core/components/common-elements/type-dropdown-modulelist';
-import { Input } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from "angular-highcharts";
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { Inject } from '@angular/core';
 
 interface DataObject {
   [key: string]: any;
 }
 
 @Component({
-  selector: 'app-alarm-summary-chart',
-  templateUrl: './alarm-summary-chart.component.html',
-  styleUrls: ['./alarm-summary-chart.component.scss']
+  selector: 'app-alarm-summary-chart-expand',
+  templateUrl: './alarm-summary-chart-expand.component.html',
+  styleUrls: ['./alarm-summary-chart-expand.component.scss']
 })
-export class AlarmSummaryChartComponent implements OnInit {
-  public parentDataGet;
-  @Input('data')
-  set data(data: any) {
-    console.log(data, "child");
-    this.parentDataGet = data;
-    //do whatever you want with your data here, this data will be passed from parent component
-  }
-  public parentDataGetAll;
-  @Input('dataTransferToChildAllTable')
-  set dataTransferToChildAllTable(dataTransferToChildAllTable: any) {
-    console.log(dataTransferToChildAllTable, "dataTransferToChildAllTable");
-    this.parentDataGetAll = dataTransferToChildAllTable;
-    this.tableViewWidget(this.parentDataGetAll)
-    //do whatever you want with your data here, this data will be passed from parent component
-  }
-  constructor(public matDialog: MatDialog, private _formBuilder: FormBuilder,) { }
+export class AlarmSummaryChartExpandComponent implements OnInit {
+
+  constructor(public dialogRef: MatDialogRef<AlarmSummaryChartExpandComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    // this.table1Title.setValue('Active Alarm Classification Pie-chart');
-    // this.table2Title.setValue('Active Alarm Ageing');
+    console.log(this.data)
   }
 
-  tiles: Tile[] = [
-    { text: 'One', cols: 2, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 4, rows: 1, color: 'lightgreen' },
-    { text: 'Three', cols: 3, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 3, rows: 1, color: '#DDBDF1' },
-    { text: 'Five', cols: 3, rows: 1, color: '#DDBDF1' },
-  ];
-  public eachGraphSelected = "";
-  expandViewWidget(graphType) {
-    console.log(graphType, "graphType");
-
-    // graphType.forEach(res => {
-    //   // this.eachGraphSelected += res.name + ", ";
-    //   this.eachGraphSelected = res.name;
-    //   console.log(this.eachGraphSelected,"this.eachGraphSelected");
-    //   return this.eachGraphSelected;
-    // })
-    this.openFlagConf(graphType)
+  closeDialog(): void {
+    this.dialogRef.close(true);
   }
-  public dataTransferTableToChild;
-  public tableViewShow: boolean = false;
-  public tableViewShow2: boolean = false;
-  public tableViewShow3: boolean = false;
-  public tableViewShow4: boolean = false;
-  public tableViewShow5: boolean = false;
-  public tableViewShowAll: boolean = false;
-  public table1Title ='Active Alarm Classification Pie-chart';
-  // public table1Title : FormControl = new FormControl();
-  public table2Title ='Active Alarm Ageing';
-  public table3Title ='Circles wise SA Active Alarms with Ageing distribution';
-  public table4Title ='Alarms vs Outage Minutes';
-  public table5Title ='Sites with > 24Hr Outage';
-  // public table2Title : FormControl = new FormControl();
-  // stateForm: FormGroup = this._formBuilder.group({
-  //   table1Title: 'Active Alarm Classification Pie-chart',
-  //   table2Title: 'Active Alarm Ageing',
-  // });
-
-  tableViewWidget(tableView) {
-    console.log(tableView, "tableView");
-
-    if (tableView == 'Active Alarm Classification Pie-chart') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild :)");
-        this.tableViewShow = !this.tableViewShow;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-     
-    }else if (tableView == 'Active Alarm Ageing') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow2 = !this.tableViewShow2;
-        this.tableViewShow = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Circles wise SA Active Alarms with Ageing distribution') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow3 = !this.tableViewShow3;
-        this.tableViewShow2 = false;
-        this.tableViewShow = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Alarms vs Outage Minutes') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow4 = !this.tableViewShow4;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Sites with > 24Hr Outage') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow5 = !this.tableViewShow5;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow = false;
-      }, 500);
-    }else {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShowAll = !this.tableViewShowAll;
-        this.tableViewShow5 = true;
-        this.tableViewShow2 = true;
-        this.tableViewShow3 = true;
-        this.tableViewShow4 = true;
-        this.tableViewShow = true;
-      }, 500);
-    }
-
+  onApply(): void {
+    this.dialogRef.close(false);
   }
- 
-  openFlagConf(selectedGraph) {
-    const dialogRef = this.matDialog.open(AlarmSummaryChartExpandComponent, {
-      width: "700px",
-      height: '500px',
-      data: selectedGraph,
-      panelClass: "material-dialog-container"
-    });
-  }
+
 
   public panindiachart: DataObject = new Chart({
     chart: {
@@ -169,9 +34,11 @@ export class AlarmSummaryChartComponent implements OnInit {
       plotBorderWidth: 0,
       plotShadow: false,
       backgroundColor: "transparent",
-      // spacingTop: 30,
-      width: 300,
-      height: 350
+      spacingTop: 20,
+      spacingBottom: 20,
+      spacingRight: 20,
+      spacingLeft: 20,
+      height: 400
     },
     title: {
       text: null
@@ -254,7 +121,6 @@ export class AlarmSummaryChartComponent implements OnInit {
     ]
   });
 
-  // chart1: Chart;
   public activeAlarmAgingChart = new Chart({
     credits: {
       enabled: false
@@ -268,20 +134,23 @@ export class AlarmSummaryChartComponent implements OnInit {
       plotBorderWidth: 0,
       plotShadow: false,
       backgroundColor: "transparent",
+      spacingTop: 20,
+      spacingBottom: 20,
       spacingRight: 20,
       spacingLeft: 20,
-      width:675,
-      height: 350
+      height: 400
     },
     title: {
       text: null
     },
     xAxis: {
+      gridLineColor: '#e6e6e6',
       categories: ['>24 Hrs', '12-24 Hrs', '8-12 Hrs', '4-8 Hrs', '0-4 Hrs']
     },
     yAxis: {
       min: 0,
       max: 700,
+      gridLineColor: '#e6e6e6',
       title: {
         text: null
       }
@@ -304,7 +173,6 @@ export class AlarmSummaryChartComponent implements OnInit {
     plotOptions: {
       column: {
         borderRadius: 6,
-        pointWidth: 12,
         dataLabels: {
           enabled: false
         }
@@ -347,103 +215,6 @@ export class AlarmSummaryChartComponent implements OnInit {
     ]
   });
 
-  public circleWiseAlarmsChart: DataObject = new Chart(
-    {
-      credits: {
-        enabled: false
-      },
-      exporting: {
-        enabled: false
-      },
-      chart: {
-        type: 'bar',
-        plotBackgroundColor: null,
-        plotBorderWidth: 0,
-        plotShadow: false,
-        backgroundColor: "transparent",
-        spacingRight: 20,
-        spacingLeft: 20,
-        height: 350,
-        width: 500
-      },
-      title: {
-        text: null
-      },
-      xAxis: {
-        categories: ['RAJ', 'HP', 'KER', 'MP', 'MAH', 'AP', 'TN', 'KAR', 'MUM']
-      },
-      yAxis: {
-        min: 0,
-        max: 250,
-        tickInterval: 50,
-        title: {
-          text: 'No. of Alarms'
-        },
-      },
-      legend: {
-        floating: false,
-        itemStyle: {
-          color: "rgba(0, 0, 0, 0.87)",
-          fontFamily: "Roboto",
-          fontWeight: "normal",
-          fontSize: "14px"
-        },
-        symbolHeight: 14,
-        symbolWidth: 14,
-        symbolRadius: 0,
-        align: 'center',
-        verticalAlign: 'bottom',
-        shadow: false
-      },
-      plotOptions: {
-        column: {
-          borderRadius: 6,
-          pointWidth: 12,
-          dataLabels: {
-            enabled: false
-          }
-        },
-        series: {
-          stacking: 'normal',
-        }
-      },
-      series: [
-        {
-          type: 'bar',
-          name: '0-4 Hrs',
-          color: "#4471c3",
-          pointWidth: 12,
-          data: [50, 30, 140, 70, 20, 50, 30, 140, 70]
-        }, {
-          type: 'bar',
-          name: '4-8 Hrs',
-          color: "#ed7c30",
-          pointWidth: 12,
-          data: [20, 60, 30, 20, 35, 20, 60, 30, 20]
-        }, {
-          type: 'bar',
-          name: '8-12 Hrs',
-          color: "#a4a4a5",
-          pointWidth: 12,
-          data: [30, 40, 25, 70, 50, 30, 40, 25, 70]
-        }, {
-          type: 'bar',
-          name: '12-24 Hrs',
-          color: "#ffbf00",
-          pointWidth: 12,
-          data: [70, 50, 10, 10, 57, 70, 50, 10, 10]
-        }, {
-          type: 'bar',
-          name: '>24 Hrs',
-          color: "#5a9ad5",
-          pointWidth: 12,
-          data: [47, 15, 20, 30, 57, 47, 15, 20, 30]
-        }
-      ]
-
-    });
-
-  // secondYaxis = ['>24 Hrs', '12-24 Hrs', '8-12 Hrs', '4-8 Hrs', '0-4 Hrs']
   public alarmsOutageMinutesChart: DataObject = new Chart(
     {
       credits: {
@@ -456,12 +227,12 @@ export class AlarmSummaryChartComponent implements OnInit {
         type: 'column',
         zoomType: "xy",
         backgroundColor: "transparent",
-        spacingRight: 20,
-        spacingLeft: 20,
         spacingTop: 20,
         spacingBottom: 20,
-        height: 350,
-        width: 500
+        spacingRight: 20,
+        spacingLeft: 20,
+        height: 400,
+
       },
       title: {
         text: null
@@ -571,14 +342,12 @@ export class AlarmSummaryChartComponent implements OnInit {
       type: 'column',
       zoomType: "xy",
       backgroundColor: "transparent",
+      spacingTop: 20,
+      spacingBottom: 20,
       spacingRight: 20,
       spacingLeft: 20,
-      width: 500,
-      height: 300
-      // spacingTop: 30,
-      // marginLeft: 60,
-      // marginRight: 130,
-      // marginBottom: 180,
+      height: 400
+
     },
     title: {
       text: null
@@ -711,15 +480,100 @@ export class AlarmSummaryChartComponent implements OnInit {
 
   });
 
-
-
-
-
-
-
-
-
-
-
+  public circleWiseAlarmsChart: DataObject = new Chart(
+    {
+      credits: {
+        enabled: false
+      },
+      exporting: {
+        enabled: false
+      },
+      chart: {
+        type: 'bar',
+        plotBackgroundColor: null,
+        plotBorderWidth: 0,
+        plotShadow: false,
+        backgroundColor: "transparent",
+        spacingTop: 20,
+        spacingBottom: 20,
+        spacingRight: 20,
+        spacingLeft: 20,
+        height: 400
+      },
+      title: {
+        text: null
+      },
+      xAxis: {
+        categories: ['circle_9', 'circle_8', 'circle_7', 'circle_6', 'circle_5', 'circle_4', 'circle_3', 'circle_2', 'circle_1']
+      },
+      yAxis: {
+        min: 0,
+        max: 250,
+        tickInterval: 50,
+        title: {
+          text: null
+        }
+      },
+      legend: {
+        floating: false,
+        itemStyle: {
+          color: "rgba(0, 0, 0, 0.87)",
+          fontFamily: "Roboto",
+          fontWeight: "normal",
+          fontSize: "14px"
+        },
+        symbolHeight: 14,
+        symbolWidth: 14,
+        symbolRadius: 0,
+        align: 'center',
+        verticalAlign: 'bottom',
+        shadow: false
+      },
+      plotOptions: {
+        column: {
+          borderRadius: 6,
+          pointWidth: 12,
+          dataLabels: {
+            enabled: false
+          }
+        },
+        series: {
+          stacking: 'normal',
+        }
+      },
+      series: [
+        {
+          type: 'bar',
+          name: '0-4 Hrs',
+          color: "#4471c3",
+          pointWidth: 12,
+          data: [50, 30, 140, 70, 20,50, 30, 140, 70]
+        }, {
+          type: 'bar',
+          name: '4-8 Hrs',
+          color: "#ed7c30",
+          pointWidth: 12,
+          data: [20, 60, 30, 20, 35,20, 60, 30, 20]
+        }, {
+          type: 'bar',
+          name: '8-12 Hrs',
+          color: "#a4a4a5",
+          pointWidth: 12,
+          data: [30, 40, 25, 70, 50,30, 40, 25, 70]
+        }, {
+          type: 'bar',
+          name: '12-24 Hrs',
+          color: "#ffbf00",
+          pointWidth: 12,
+          data: [70, 50, 10, 10, 57,70, 50, 10, 10]
+        }, {
+          type: 'bar',
+          name: '>24 Hrs',
+          color: "#5a9ad5",
+          pointWidth: 12,
+          data: [47, 15, 20, 30, 57,47, 15, 20, 30]
+        }
+      ]
+    });
 
 }

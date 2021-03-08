@@ -1,0 +1,32 @@
+<div class="customFlag-dialog-container">
+    <mat-toolbar class="dialog-header" style="height: 55px;font-size: 18px;font-family: Lato Bold;">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>{{data}}</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="main-content">
+        <div style="height:440px">
+            <div *ngIf="data == 'Active Alarm Classification Pie-chart'" id="panindiachartID" [chart]="panindiachart" style="display: block;"></div>
+            <div *ngIf="data == 'Active Alarm Ageing'" id="activeAlarmAgingChartID" [chart]="activeAlarmAgingChart"></div>
+            <div *ngIf="data == 'Circles wise SA Active Alarms with Ageing distribution'" id="circleWiseAlarmsChartID" [chart]="circleWiseAlarmsChart"></div>
+            <div *ngIf="data == 'Sites with > 24Hr Outage'" id="sitesWithChartID" [chart]="sitesWithChart"></div>
+            <div *ngIf="data == 'Alarms vs Outage Minutes'" id="alarmsOutageMinutesChartID" [chart]="alarmsOutageMinutesChart"></div>
+        </div>
+    </div>
+
+    <!-- <div mat-dialog-actions>
+       
+        <div class="mx-3">
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="onCancel()">Cancel</button>
+        </div>
+        <div class="col"></div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="onApply()">Flag It</button>
+        </div>
+    </div> -->
+</div>

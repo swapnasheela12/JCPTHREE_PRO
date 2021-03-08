@@ -1,6 +1,6 @@
 // import { ViewEncapsulation } from '@angular/core';
 // import { NodeAggregation } from './../../performance-management/report-builder/create-report/create-report-dropdown';
-import { dropdown, R4GState, JC, City, Node,GraphType,dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../core/components/common-elements/type-dropdown-modulelist';
+import { dropdown, R4GState, JC, City, Node, GraphType, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../core/components/common-elements/type-dropdown-modulelist';
 import { StatergeMapNominalComponent } from './../../network-planning/rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
 // import { HttpClient } from '@angular/common/http';
 // import { GridOptions, GridCore, SelectionChangedEvent, GridApi } from 'ag-grid-community';
@@ -21,7 +21,7 @@ import { ShapeService } from './../../../main-layer/layers-services/shape.servic
 import { AdDirective } from '../../../../_directive/dynamicComponent/ad.directive';
 // import { StatergeMapNominalComponent } from './staterge-map-nominal/staterge-map-nominal.component';
 import { catchError } from 'rxjs/operators/catchError';
-import { take,takeUntil, map } from 'rxjs/operators';
+import { take, takeUntil, map } from 'rxjs/operators';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
@@ -446,7 +446,7 @@ export class AlarmSummaryComponent implements OnInit {
     // Node Aggregation Dropdown 
 
     // selectGraph Dropdown 
-    this.selectGraphControl.setValue([this.selectGraphData[0],this.selectGraphData[1]]);
+    this.selectGraphControl.setValue([this.selectGraphData[0], this.selectGraphData[1]]);
     this.selectGraphFilter.next(this.selectGraphData.slice());
     this.selectGraphFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
@@ -510,13 +510,13 @@ export class AlarmSummaryComponent implements OnInit {
   }
   currentStep;
   ngAfterViewInit(): void {
-   
+
   }
 
   public address;
   public tempArr = [];
 
- 
+
 
   public typeGenerate: boolean = true;
   zoneChangeFunc(val) {
@@ -822,7 +822,7 @@ export class AlarmSummaryComponent implements OnInit {
   public showStrategicSites: boolean = false;
   onCellClicked(item) {
     console.log(item, "item");
-    console.log(item.value,"item.value");
+    console.log(item.value, "item.value");
     if (item.value == "View Attributes") {
       const dialogRef = this.dialog.open(ViewAttributesComponent, {
         width: "600px",
@@ -834,35 +834,35 @@ export class AlarmSummaryComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         // this.gotomyreport = result;
       });
-    } else if(item.value == "Upload File") {
-     
+    } else if (item.value == "Upload File") {
+
       if (item.data.datasourcename == "Exclusion Zones") {
         console.log("Exclusion Zones");
         this.showExclusionZones = true;
         this.showStrategicSites = false;
         this.showSelected = true;
-      }else if(item.data.datasourcename == "Strategic Sites"){
+      } else if (item.data.datasourcename == "Strategic Sites") {
         console.log("Strategic Sites");
         this.showStrategicSites = true;
         this.showExclusionZones = false;
         this.showSelected = true;
       }
 
-    } else if(item.value == "Select Table") {
-      
+    } else if (item.value == "Select Table") {
+
       if (item.data.datasourcename == "Exclusion Zones") {
         console.log("Exclusion Zones");
         this.showExclusionZones = true;
         this.showStrategicSites = false;
         this.showSelected = true;
-      }else if(item.data.datasourcename == "Strategic Sites"){
+      } else if (item.data.datasourcename == "Strategic Sites") {
         console.log("Strategic Sites");
         this.showStrategicSites = true;
         this.showExclusionZones = false;
         this.showSelected = true;
       }
 
-    } 
+    }
 
 
 
@@ -889,9 +889,37 @@ export class AlarmSummaryComponent implements OnInit {
     this.location.back(); // <-- go back to previous location on cancel
   }
 
-  
+  public toggleVersion;
+  onChangeToggleVersion(item) {
 
- 
+  }
+
+  public dataTransferToChild;
+  getToolTipDEata(item) {
+    let data = item.value;
+    this.dataTransferToChild = data;
+    if (data && data.length) {
+      let msg = "";
+      data.forEach(res => {
+        msg += res.name + ", ";
+      })
+      return msg;
+    } else {
+      return "please select graph";
+    }
+  }
+
+  isShown: boolean = false; // hidden by default
+  dataTransferToChildAllTable = "AllTableShow"; // hidden by default
+  toggleShow() {
+    this.isShown = !this.isShown;
+    if (this.isShown) {
+      this.dataTransferToChildAllTable = "AllTableShow";
+    } else {
+      this.dataTransferToChildAllTable = "AllTableNotShow";
+    }
+   
+  }
 
 
 }

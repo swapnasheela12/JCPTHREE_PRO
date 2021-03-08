@@ -3,21 +3,40 @@
         <mat-toolbar class="create-report-toolbar">
             <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="height: inherit;">
                 <div class="px-3" fxFlex="100" style="height: inherit;">
-                    <div class="header" style="line-height: 3.5;">Nominal Strategy</div>
+                    <div class="header" style="line-height: 3.5;">RAN</div>
                     <div fxFlex></div>
-                    <div style="line-height: 2.5;">
+                    <div class="py-2">
                         <button mat-icon-button>
-                            <mat-icon class="iconType" style="font-size: 18px;">
-                                <div class="ic ic-table1-01" style="line-height: 1.5;"></div>
+                            <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                <div class="zmdi zmdi-search"></div>
                             </mat-icon>
                         </button>
-                        <button mat-icon-button>
-                            <mat-icon class="iconType" style="font-size: 25px;">
+                    </div>
+                    <div class="toggleHeader px-3" fxLayout="row" fxLayoutAlign="space-around center">
+                        <div>4G</div>
+                        <div style=" padding-left: 10px;">
+                            <button style="line-height: 1px;" mat-button class="mx-2 icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                                <mat-slide-toggle color="primary" [(ngModel)]="toggleVersion" (change)="onChangeToggleVersion(toggleVersion)">
+                                </mat-slide-toggle>
+                            </button>
+                        </div>
+                        <div>5G</div>
+                    </div>
+                    <mat-divider class=" my-2" [vertical]="true"></mat-divider>
+                    <div class=" px-2" style="line-height: 2.5;">
+                        <button mat-icon-button class=" px-2" (click)="toggleShow()">
+                            <mat-icon class="iconType" style="font-size: 18px;">
+                                <div *ngIf="!isShown" class="ic ic-table1-01" style="line-height: 1.5;"></div>
+                                <div *ngIf="isShown" class="ic ic-graph-01" style="line-height: 1.5;"></div>
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button class=" px-2">
+                            <mat-icon class="iconType" style="font-size: 25px;line-height: 0px;">
                                 <div class="zmdi zmdi-time-restore"></div>
                             </mat-icon>
                         </button>
                     </div>
-                    <div fxFlex="15" class="header-date-picker-type">
+                    <div fxFlex="15" class="my-2 header-date-picker-type">
                         <div class="title">Last Updated</div>
                         <div class="sub-title">25 Oct, 2016, 2:30 PM</div>
                     </div>
@@ -80,7 +99,7 @@
                 <mat-divider [vertical]="true"></mat-divider>
                 <div class="p-3" fxFlex="23" style="padding-right:0 !important;padding-bottom: 0px;">
                     <mat-form-field fxFlex="100">
-                        <mat-select [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect>
+                        <mat-select [matTooltip]="getToolTipDEata(selectGraphControl)" [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect>
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Select Graph" [formControl]="selectGraphFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                 </ngx-mat-select-search>
@@ -95,6 +114,7 @@
         </div>
     </mat-card>
     <div style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
-        <app-alarm-summary-chart></app-alarm-summary-chart>
+        <app-alarm-summary-chart *ngIf="!isShown" [data]="dataTransferToChild"></app-alarm-summary-chart>
+        <app-alarm-summary-table-all *ngIf="isShown"></app-alarm-summary-table-all>
     </div>
 </div>
