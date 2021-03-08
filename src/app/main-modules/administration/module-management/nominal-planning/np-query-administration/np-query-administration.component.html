@@ -14,54 +14,64 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button create-button" routerLink="/{{createQueryRoute}}" color="primary">Create Query</button>
+                <button mat-raised-button class="submit-button create-button" routerLink="/{{createQueryRoute}}"
+                    color="primary">Create Query</button>
             </div>
         </div>
     </div>
     <mat-divider style="position: relative;"></mat-divider>
     <div class="cover-div">
-        <mat-tab-group (selectedTabChange)="onTabChanged($event);" mat-align-tabs="center" class="nc-query-admin-mat-tab" dynamicHeight fxFlex="100">
-            <mat-tab label="KPI" fxFlex="25">
-                <ag-grid-angular style="width: 100%; height: calc(100% - 64px);" class="ag-theme-material ag-jcp3"
-                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
-                    [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
-                    [groupSelectsChildren]="true" [debug]="true" (gridReady)="onReady($event)">
-                </ag-grid-angular>
+        <mat-tab-group (selectedTabChange)="onTabChanged($event);" mat-align-tabs="center"
+            class="nc-query-admin-mat-tab" dynamicHeight fxFlex="100">
+            <mat-tab label="5G Grid Selection" fxFlex="25">
+                <div style="height: 100%;">
+                    <ag-grid-angular style="width: 100%; height: calc(100% - 44px);" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+                        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+                        [groupSelectsChildren]="true" [debug]="true" (gridReady)="onReady($event)">
+                    </ag-grid-angular>
+                </div>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
                     [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
                     [paginationArray]="[10, 20, 30, 40]"></app-pagination>
             </mat-tab>
-            <mat-tab label="15 Mins. KPI" fxFlex="25">
-                <ag-grid-angular style="width: 100%; height: calc(100% - 64px);" class="ag-theme-material ag-jcp3"
-                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptions2" [columnDefs]="columnDefs"
-                    [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
-                    [groupSelectsChildren]="true" [debug]="true" (gridReady)="onReady($event)"> </ag-grid-angular>
+            <mat-tab label="5G gNB Selection" fxFlex="25">
+                <div style="height: 100%;">
+                    <ag-grid-angular style="width: 100%; height: calc(100% - 44px);" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptions2" [columnDefs]="columnDefs2"
+                        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+                        [groupSelectsChildren]="true" [debug]="true"> </ag-grid-angular>
+                </div>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
                     [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
                     [paginationArray]="[10, 20, 30, 40]"></app-pagination>
             </mat-tab>
-            <mat-tab label="15 Mins. KPI" fxFlex="25">
-                <ag-grid-angular style="width: 100%; height: calc(100% - 64px);" class="ag-theme-material ag-jcp3"
-                rowHeight="48" headerHeight="48" [gridOptions]="gridOptions3" [columnDefs]="columnDefs"
-                [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
-                [groupSelectsChildren]="true" [debug]="true" (gridReady)="onReady($event)"> </ag-grid-angular>
-            <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
-                [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
-                [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+            <mat-tab label="5G ODSC Selection" fxFlex="25">
+                <div style="height: 100%;">
+                    <ag-grid-angular style="width: 100%; height: calc(100% - 44px);" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptions3" [columnDefs]="columnDefs3"
+                        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+                        [groupSelectsChildren]="true" [debug]="true"> </ag-grid-angular>
+                </div>
+                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+                    [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+                    [paginationArray]="[10, 20, 30, 40]"></app-pagination>
             </mat-tab>
-            <mat-tab label="15 Mins. KPI" fxFlex="25">
-                <ag-grid-angular style="width: 100%; height: calc(100% - 64px);" class="ag-theme-material ag-jcp3"
-                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptions4" [columnDefs]="columnDefs"
-                    [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
-                    [groupSelectsChildren]="true" [debug]="true" (gridReady)="onReady($event)"> </ag-grid-angular>
+            <mat-tab label="5G Strategy Selection" fxFlex="25">
+                <div style="height: 100%;">
+                    <ag-grid-angular style="width: 100%; height: calc(100% - 44px);" class="ag-theme-material ag-jcp3"
+                        rowHeight="48" headerHeight="48" [gridOptions]="gridOptions4" [columnDefs]="columnDefs4"
+                        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                        rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+                        [groupSelectsChildren]="true" [debug]="true"> </ag-grid-angular>
+                </div>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
                     [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
                     [paginationArray]="[10, 20, 30, 40]"></app-pagination>

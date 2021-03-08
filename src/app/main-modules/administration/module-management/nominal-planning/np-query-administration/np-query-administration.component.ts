@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi, GridCore, GridOptions } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
+import { NpQueryThreeDotRendererComponent } from './create-query-page/np-query-three-dot-renderer/np-query-three-dot-renderer.component';
 
 const PATHS = [
   { createQueryPage: "/JCP/Administration/Module-Management/Nominal-Planning/Query-Administration/Create-Query" }
@@ -15,6 +16,9 @@ const PATHS = [
 export class NpQueryAdministrationComponent implements OnInit {
   show: boolean;
   public columnDefs: any[];
+  public columnDefs2: any[];
+  public columnDefs3: any[];
+  public columnDefs4: any[];
   public rowData: object;
   public gridOptions: GridOptions;
   public gridOptions2: GridOptions;
@@ -56,27 +60,60 @@ export class NpQueryAdministrationComponent implements OnInit {
       width: 150,
       field: "modifiedBy",
     },
+    {
+      suppressMenu: true,
+      width: 70,
+      pinned: 'right',
+      cellRenderer: 'deleteFlagRenderer'
+    }
   ];
   gridApi: any;
   gridColumnApi: any;
   gridApi2: any;
   gridColumnApi2: any;
   createQueryRoute: string;
+  public frameworkComponents5gGridSelection;
+  frameworkComponents5gGngSelection: any;
+  frameworkComponents5gOdscSelection: any;
+  frameworkComponents5gStrategySelection: any;
 
   constructor(
     private http: HttpClient
   ) {
-    this.gridOptions = <GridOptions>{};
     this.gridOptions2 = <GridOptions>{};
     this.gridOptions3 = <GridOptions>{};
     this.gridOptions4 = <GridOptions>{};
     this.paginationPageSize = 10;
+    this.frameworkComponents5gGridSelection = {
+      'deleteFlagRenderer': NpQueryThreeDotRendererComponent,
+    };
+    this.frameworkComponents5gGngSelection = {
+      'deleteFlagRenderer': NpQueryThreeDotRendererComponent,
+    };
+    this.frameworkComponents5gOdscSelection = {
+      'deleteFlagRenderer': NpQueryThreeDotRendererComponent,
+    };
+    this.frameworkComponents5gStrategySelection = {
+      'deleteFlagRenderer': NpQueryThreeDotRendererComponent,
+    };
   }
 
   ngOnInit(): void {
     this.createQueryRoute = PATHS[0].createQueryPage;
     this.createColumnDefs();
     this.getData();
+    this.gridOptions = <GridOptions>{
+      frameworkComponents: this.frameworkComponents5gGridSelection,
+    };
+    this.gridOptions2 = <GridOptions>{
+      frameworkComponents: this.frameworkComponents5gGngSelection,
+    };
+    this.gridOptions3 = <GridOptions>{
+      frameworkComponents: this.frameworkComponents5gOdscSelection,
+    };
+    this.gridOptions4 = <GridOptions>{
+      frameworkComponents: this.frameworkComponents5gStrategySelection,
+    };
   }
   
   public fitColumns() {
@@ -130,6 +167,9 @@ export class NpQueryAdministrationComponent implements OnInit {
   }
   private createColumnDefs() {
     this.columnDefs = this.header_iterations;
+    this.columnDefs2 = this.header_iterations;
+    this.columnDefs3 = this.header_iterations;
+    this.columnDefs4 = this.header_iterations;
   }
 
   toggleSearch() {

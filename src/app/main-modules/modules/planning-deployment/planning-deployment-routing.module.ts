@@ -10,6 +10,8 @@ import { NominalGenerationCreateComponent } from './nominal-generation-coverage/
 import { NominalGenerationSummaryComponent } from './nominal-generation-coverage/nominal-generation-summary/nominal-generation-summary.component';
 import { NominalSiteDistributionSummaryComponent } from './nominal-generation-coverage/nominal-site-distribution-summary/nominal-site-distribution-summary.component';
 import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
+import { NominalValidationComponent } from './nominal-validation/nominal-validation.component';
+import { NominalValidationCreateComponent } from './nominal-validation/nominal-validation-create/nominal-validation-create.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,10 @@ const routes: Routes = [
     { path: 'Summary', component: NominalGenerationSummaryComponent },
     { path: 'Site-Distribution-Summary', component: NominalSiteDistributionSummaryComponent },
     { path: 'Performance-Summary', component: NominalGenerationPerformanceSummaryComponent}
+  ]},
+  { path: 'Nominal-Validation', children: [
+    { path:'', component: NominalValidationComponent },
+    { path: 'Create', component: NominalValidationCreateComponent },
   ]}
 ];
 

@@ -130,7 +130,7 @@ const COVERAGE_PLANNING= [
   encapsulation: ViewEncapsulation.None
 })
 
-export class LayerPatchPopupComponent implements OnInit {
+export class LayerPatchPopupComponent implements OnInit, AfterViewInit {
   dialog: LayerSettingsSettingsService;
   @ViewChild('layerPatchSettingsPopup', { static: true }) layerPatchSettingsPopup: TemplateRef<any>;
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
@@ -141,6 +141,7 @@ export class LayerPatchPopupComponent implements OnInit {
   hoverLayer0: String = '';
   dataChange = new BehaviorSubject<SideNavNode[]>([]);
   treeData: ExampleFlatNode[];
+  settingData;
   get data(): SideNavNode[] { return this.dataChange.value; }
 
   private transformer = (node: SideNavNode, level: number) => {
@@ -175,11 +176,11 @@ export class LayerPatchPopupComponent implements OnInit {
     private cfr: ComponentFactoryResolver,
     private dataShare: DataSharingService
   ) {
-    this.dataSource.data = COVERAGE_PLANNING;
-    this.treeControl.expand(this.treeControl.dataNodes[0]);
-    let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
-    console.log(firstNodeDescendentLength)
-    this.treeControl.expand(this.treeControl.dataNodes[firstNodeDescendentLength+1]);
+    // console.log(this.settingData)
+    // this.dataSource.data = this.settingData;
+    // this.treeControl.expand(this.treeControl.dataNodes[0]);
+    // let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
+    // this.treeControl.expand(this.treeControl.dataNodes[firstNodeDescendentLength+1]);
     // this.dataShare.patchLayerObject.subscribe((settingData: any) => {
     //   if (Object.keys(settingData).length !== 0) {
     //     this.dataSource.data = settingData;
@@ -199,6 +200,14 @@ export class LayerPatchPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.dispatchDialog();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.data = this.settingData;
+    this.treeControl.expandAll()
+    // this.treeControl.expand(this.treeControl.dataNodes[0]);
+    // let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
+    // this.treeControl.expand(this.treeControl.dataNodes[firstNodeDescendentLength+1]);
   }
 
   dispatchDialog() {
@@ -487,94 +496,27 @@ export class LayerPatchPopupComponent implements OnInit {
   layerComponent;
   async renderLayerComponent(layersToShow) {
     this.viewContainerRef.clear();
-    if (layersToShow == 'RoutePlannedFibreCoreComponent') {
-      const { RoutePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-planned-fibre-core/route-planned-fibre-core.component');
-      this.layerComponent = this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(RoutePlannedFibreCoreComponent)
+    if (layersToShow == 'CoveredAreaLayerComponent') {
+      const { CoveredAreaLayerComponent } = await import('./../../../main-modules/modules/planning-deployment/nominal-capacity/layer/covered-area-layer/covered-area-layer.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(CoveredAreaLayerComponent)
       );
-    } else if(layersToShow == 'RouteReadyFibreCoreComponent') {
-      const { RouteReadyFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/route-ready-fibre-core/route-ready-fibre-core.component');
-      this.layerComponent = this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(RouteReadyFibreCoreComponent)
+    } else if (layersToShow == 'MacroLayerComponent') {
+      const { MacroLayerComponent } = await import('./../../../main-modules/modules/planning-deployment/nominal-capacity/layer/macro-layer/macro-layer.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(MacroLayerComponent)
       );
-    } else if(layersToShow == 'StructurePlannedFibreCoreComponent') {
-      const { StructurePlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-fibre-core.component');
-      this.layerComponent = this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(StructurePlannedFibreCoreComponent)
-      );
-    } else if(layersToShow == 'EquipmentsPlannedFibreCoreComponent') {
-      const { EquipmentsPlannedFibreCoreComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/equipments/equipments-planned-fibre-core/equipments-planned-fibre-core.component');
-      this.layerComponent = this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(EquipmentsPlannedFibreCoreComponent)
+    } else if (layersToShow == 'OdscLayerComponent') {
+      const { OdscLayerComponent } = await import('./../../../main-modules/modules/planning-deployment/nominal-capacity/layer/odsc-layer/odsc-layer.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(OdscLayerComponent)
       );
     }
   }
 
   async openSettingsDialog(node, event) {
     event.stopPropagation();
-    console.log(node.component)
     this.viewContainerRef.clear();
-    if (node.component == 'TownBoundaryDialogComponent') {
-      const { TownBoundaryDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/CensusData/TownBoundary/town-boundary-dialog/town-boundary-dialog.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(TownBoundaryDialogComponent)
-      );
-    } else if (node.component == 'ZonesJioDialogComponent') {
-      const { ZonesJioDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Jio/Zones/zones-dialog/zones-dialog.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(ZonesJioDialogComponent)
-      );
-    } else if (node.component == 'DenseUrbanDialogComponent') {
-      const { DenseUrbanDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Morphology/DenseUrban/dense-urban-dialog/dense-urban-dialog.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(DenseUrbanDialogComponent)
-      );
-    } else if (node.component == 'TacNetworkDialogComponent') {
-      const { TacNetworkDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/location-and-boundaries/Network/TAL/tal-dialog/tal-dialog.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(TacNetworkDialogComponent)
-      );
-    } else if (node.component == 'NominalMacroDialogComponent') {
-      const { NominalMacroDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/sites/nominal/macro-dialog/macro-dialog.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(NominalMacroDialogComponent)
-      );
-    }
-    else if (node.component == 'PinGroupSettingComponent') {
-      const { PinGroupSettingComponent } = await import('./../../../main-modules/main-layer/pin-group-setting/pin-group-setting.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(PinGroupSettingComponent)
-      );
-    }
-    else if (node.component == 'CmcSettingsPopupComponent') {
-      const { CmcSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/hybrid-layers/cmc-settings-popup/cmc-settings-popup.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(CmcSettingsPopupComponent)
-      );
-    }
-    else if (node.component == 'FibreRouteSettingsPopupComponent') {
-      const { FibreRouteSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/route/settings-popup/settings-popup.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(FibreRouteSettingsPopupComponent)
-      );
-    } else if (node.component == 'StructurePlannedSettingsPopupComponent') {
-      const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
-      );
-    }
-    else if (node.component == 'LogicalConnectivitySettingComponent') {
-      const { LogicalConnectivitySettingComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(LogicalConnectivitySettingComponent)
-      );
-    }
-    else if (node.component == 'EquipmentSettingsPopupComponent') {
-      const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
-      this.viewContainerRef.createComponent(
-        this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
-      );
-    }
   }
 
   removeLayerComponent(layerToRemove) {

@@ -113,8 +113,8 @@
                                     </div>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                                    <button mat-icon-button>
-                                        <i routerLink="/{{layerRoute}}" style="color:#989898"
+                                    <button mat-icon-button (click)="redirectToNominalCapacityLayer()">
+                                        <i style="color:#989898"
                                             class="ic ic-layers-01"></i>
                                     </button>
                                     <button [matMenuTriggerFor]="cardMenu" mat-icon-button>

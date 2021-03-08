@@ -23,13 +23,13 @@
                         </button> 
                     </div>
                     <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'display')">
-                        <button mat-icon-button class="text-dark button-mat1" (click)="openSummary()">
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showSummary == true" (click)="openSummary()">
                             <span class="ic ic-table-011"></span>
                         </button>
-                        <button mat-icon-button class="text-dark button-mat1">
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showChart == true">
                             <span class="ic ic-graph-01"></span>
                         </button>
-                        <button mat-icon-button class="text-dark button-mat" (click)="openSettingPopup()" >
+                        <button mat-icon-button class="text-dark button-mat" *ngIf="showSetting == true" (click)="openSettingPopup(headerData.name)" >
                             <i class="ic ic-filter-01" data-title="Settings"></i>
                         </button>
                     </div>

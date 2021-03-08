@@ -72,6 +72,14 @@ import { NominalGenerationPerformanceSummaryComponent } from './nominal-generati
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule } from 'angular-highcharts';
 import { NpCreatePopupComponent } from './nominal-capacity/np-create-popup/np-create-popup.component';
+import { NominalValidationComponent } from './nominal-validation/nominal-validation.component';
+import { NominalValidationCreateComponent } from './nominal-validation/nominal-validation-create/nominal-validation-create.component';
+import { NominalCapacityLayerComponent } from './nominal-capacity/nominal-capacity-layer/nominal-capacity-layer.component';
+import { CompleteListPopupComponent } from './nominal-validation/complete-list-popup/complete-list-popup.component';
+import { CoveredAreaLayerComponent } from './nominal-capacity/layer/covered-area-layer/covered-area-layer.component';
+import { MacroLayerComponent } from './nominal-capacity/layer/macro-layer/macro-layer.component';
+import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-layer.component';
+// import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
 // import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 // import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
 
@@ -110,6 +118,14 @@ import { NpCreatePopupComponent } from './nominal-capacity/np-create-popup/np-cr
     NcDeleteHeaderRendererComponent,
     NominalGenerationPerformanceSummaryComponent,
     NpCreatePopupComponent,
+    NominalValidationComponent,
+    NominalValidationCreateComponent,
+    NominalCapacityLayerComponent,
+    CompleteListPopupComponent,
+    CoveredAreaLayerComponent,
+    MacroLayerComponent,
+    OdscLayerComponent,
+    // QueryAdministrationPopupComponent,
     // NcQueryAdministrationComponent,
     // CreateQueryPageComponent
   ],
