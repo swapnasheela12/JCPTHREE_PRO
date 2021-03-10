@@ -1,3 +1,4 @@
+import { FmDataSharingService } from './../../../../../../_services/fm-data-sharing.service';
 import { AlarmSummaryChartExpandComponent } from './../alarm-summary-chart-expand/alarm-summary-chart-expand.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -29,139 +30,17 @@ export class AlarmSummaryChartComponent implements OnInit {
   public parentDataGet;
   @Input('data')
   set data(data: any) {
-    console.log(data, "child");
     this.parentDataGet = data;
-    //do whatever you want with your data here, this data will be passed from parent component
   }
-  public parentDataGetAll;
-  @Input('dataTransferToChildAllTable')
-  set dataTransferToChildAllTable(dataTransferToChildAllTable: any) {
-    console.log(dataTransferToChildAllTable, "dataTransferToChildAllTable");
-    this.parentDataGetAll = dataTransferToChildAllTable;
-    this.tableViewWidget(this.parentDataGetAll)
-    //do whatever you want with your data here, this data will be passed from parent component
+  @Input('dataChart')
+  set dataChart(dataChart: any) {
+    this.parentDataGet = dataChart;
   }
-  constructor(public matDialog: MatDialog, private _formBuilder: FormBuilder,) { }
+
+  constructor(public dataShareFM: FmDataSharingService, public matDialog: MatDialog, private _formBuilder: FormBuilder,) {
+  }
 
   ngOnInit(): void {
-    // this.table1Title.setValue('Active Alarm Classification Pie-chart');
-    // this.table2Title.setValue('Active Alarm Ageing');
-  }
-
-  tiles: Tile[] = [
-    { text: 'One', cols: 2, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 4, rows: 1, color: 'lightgreen' },
-    { text: 'Three', cols: 3, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 3, rows: 1, color: '#DDBDF1' },
-    { text: 'Five', cols: 3, rows: 1, color: '#DDBDF1' },
-  ];
-  public eachGraphSelected = "";
-  expandViewWidget(graphType) {
-    console.log(graphType, "graphType");
-
-    // graphType.forEach(res => {
-    //   // this.eachGraphSelected += res.name + ", ";
-    //   this.eachGraphSelected = res.name;
-    //   console.log(this.eachGraphSelected,"this.eachGraphSelected");
-    //   return this.eachGraphSelected;
-    // })
-    this.openFlagConf(graphType)
-  }
-  public dataTransferTableToChild;
-  public tableViewShow: boolean = false;
-  public tableViewShow2: boolean = false;
-  public tableViewShow3: boolean = false;
-  public tableViewShow4: boolean = false;
-  public tableViewShow5: boolean = false;
-  public tableViewShowAll: boolean = false;
-  public table1Title ='Active Alarm Classification Pie-chart';
-  // public table1Title : FormControl = new FormControl();
-  public table2Title ='Active Alarm Ageing';
-  public table3Title ='Circles wise SA Active Alarms with Ageing distribution';
-  public table4Title ='Alarms vs Outage Minutes';
-  public table5Title ='Sites with > 24Hr Outage';
-  // public table2Title : FormControl = new FormControl();
-  // stateForm: FormGroup = this._formBuilder.group({
-  //   table1Title: 'Active Alarm Classification Pie-chart',
-  //   table2Title: 'Active Alarm Ageing',
-  // });
-
-  tableViewWidget(tableView) {
-    console.log(tableView, "tableView");
-
-    if (tableView == 'Active Alarm Classification Pie-chart') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild :)");
-        this.tableViewShow = !this.tableViewShow;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-     
-    }else if (tableView == 'Active Alarm Ageing') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow2 = !this.tableViewShow2;
-        this.tableViewShow = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Circles wise SA Active Alarms with Ageing distribution') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow3 = !this.tableViewShow3;
-        this.tableViewShow2 = false;
-        this.tableViewShow = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Alarms vs Outage Minutes') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow4 = !this.tableViewShow4;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow = false;
-        this.tableViewShow5 = false;
-      }, 500);
-    }else if (tableView == 'Sites with > 24Hr Outage') {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShow5 = !this.tableViewShow5;
-        this.tableViewShow2 = false;
-        this.tableViewShow3 = false;
-        this.tableViewShow4 = false;
-        this.tableViewShow = false;
-      }, 500);
-    }else {
-      setTimeout(() => {
-        this.dataTransferTableToChild = tableView;
-        console.log(this.dataTransferTableToChild, "this.dataTransferTableToChild 2 :)");
-        this.tableViewShowAll = !this.tableViewShowAll;
-        this.tableViewShow5 = true;
-        this.tableViewShow2 = true;
-        this.tableViewShow3 = true;
-        this.tableViewShow4 = true;
-        this.tableViewShow = true;
-      }, 500);
-    }
-
-  }
- 
-  openFlagConf(selectedGraph) {
-    const dialogRef = this.matDialog.open(AlarmSummaryChartExpandComponent, {
-      width: "700px",
-      height: '500px',
-      data: selectedGraph,
-      panelClass: "material-dialog-container"
-    });
   }
 
   public panindiachart: DataObject = new Chart({
@@ -255,7 +134,6 @@ export class AlarmSummaryChartComponent implements OnInit {
     ]
   });
 
-  // chart1: Chart;
   public activeAlarmAgingChart = new Chart({
     credits: {
       enabled: false
@@ -271,7 +149,7 @@ export class AlarmSummaryChartComponent implements OnInit {
       backgroundColor: "transparent",
       spacingRight: 20,
       spacingLeft: 20,
-      width:675,
+      width: 675,
       height: 350
     },
     title: {
@@ -442,9 +320,8 @@ export class AlarmSummaryChartComponent implements OnInit {
         }
       ]
 
-    });
+  });
 
-  // secondYaxis = ['>24 Hrs', '12-24 Hrs', '8-12 Hrs', '4-8 Hrs', '0-4 Hrs']
   public alarmsOutageMinutesChart: DataObject = new Chart(
     {
       credits: {
@@ -475,14 +352,14 @@ export class AlarmSummaryChartComponent implements OnInit {
         max: 500,
         tickInterval: 100,
         title: {
-          text:'Outage Minutes'
+          text: 'Outage Minutes'
         },
         labels: {
           // format: '{value}',
           formatter: function (param) {
             // // console.log(param,"param");
             // console.log(this.value,"this.value");
-            var secondYaxis = {100:'30',200:'60', 300:'90', 400:'120', 500:'>120'}
+            var secondYaxis = { 100: '30', 200: '60', 300: '90', 400: '120', 500: '>120' }
             var value = secondYaxis[this.value];
             return value;
           },
@@ -493,14 +370,14 @@ export class AlarmSummaryChartComponent implements OnInit {
             fontSize: '12px'
           },
         }
-        
+
       }, { // Secondary yAxis
         min: 100,
         max: 500,
         tickInterval: 100,
         // categories: ['>24 Hrs', '12-24 Hrs', '8-12 Hrs', '4-8 Hrs', '0-4 Hrs'],
         title: {
-          text:'No. of Alarms'
+          text: 'No. of Alarms'
         },
         labels: {
           format: '{value}',
@@ -512,7 +389,7 @@ export class AlarmSummaryChartComponent implements OnInit {
           },
         },
         opposite: true
-        
+
       }],
       legend: {
         floating: false,
@@ -565,7 +442,7 @@ export class AlarmSummaryChartComponent implements OnInit {
         data: [400, 430, 470, 450, 410, 430, 470, 460, 425]
       }]
 
-    });
+  });
 
   public sitesWithChart: DataObject = new Chart({
     chart: {
@@ -670,7 +547,7 @@ export class AlarmSummaryChartComponent implements OnInit {
       type: 'column',
       name: 'Sites with > 24 Hr Outage (Till 8 AM)',
       color: "#FC5F5F",
-      data: [50, 20, 30, 18, 70, 22, 15, 80, 20,35,50, 20, 30, 18, 70, 22, 15, 80]
+      data: [50, 20, 30, 18, 70, 22, 15, 80, 20, 35, 50, 20, 30, 18, 70, 22, 15, 80]
     }],
     responsive: {
       rules: [{
@@ -711,16 +588,5 @@ export class AlarmSummaryChartComponent implements OnInit {
     }
 
   });
-
-
-
-
-
-
-
-
-
-
-
 
 }

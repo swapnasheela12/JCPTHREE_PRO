@@ -11,7 +11,7 @@
     </mat-toolbar>
     <div class="main-content">
         <div style="height:440px">
-            <div *ngIf="data == 'Active Alarm Classification Pie-chart'" id="panindiachartID" [chart]="panindiachart" style="display: block;"></div>
+            <div *ngIf="data == 'Active Alarm Classification'" id="panindiachartID" [chart]="panindiachart" style="display: block;"></div>
             <div *ngIf="data == 'Active Alarm Ageing'" id="activeAlarmAgingChartID" [chart]="activeAlarmAgingChart"></div>
             <div *ngIf="data == 'Circles wise SA Active Alarms with Ageing distribution'" id="circleWiseAlarmsChartID" [chart]="circleWiseAlarmsChart"></div>
             <div *ngIf="data == 'Sites with > 24Hr Outage'" id="sitesWithChartID" [chart]="sitesWithChart"></div>

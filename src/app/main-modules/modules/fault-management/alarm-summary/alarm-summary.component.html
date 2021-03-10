@@ -16,7 +16,8 @@
                         <div>4G</div>
                         <div style=" padding-left: 10px;">
                             <button style="line-height: 1px;" mat-button class="mx-2 icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
-                                <mat-slide-toggle color="primary" [(ngModel)]="toggleVersion" (change)="onChangeToggleVersion(toggleVersion)">
+                                <mat-slide-toggle color="primary" [(ngModel)]="toggleVersion"
+                                    (change)="onChangeToggleVersion(toggleVersion)">
                                 </mat-slide-toggle>
                             </button>
                         </div>
@@ -26,8 +27,9 @@
                     <div class=" px-2" style="line-height: 2.5;">
                         <button mat-icon-button class=" px-2" (click)="toggleShow()">
                             <mat-icon class="iconType" style="font-size: 18px;">
-                                <div *ngIf="!isShown" class="ic ic-table1-01" style="line-height: 1.5;"></div>
-                                <div *ngIf="isShown" class="ic ic-graph-01" style="line-height: 1.5;"></div>
+                                <div *ngIf="!isShownChartOrTable" class="ic ic-table1-01" style="line-height: 1.5;">
+                                </div>
+                                <div *ngIf="isShownChartOrTable" class="ic ic-graph-01" style="line-height: 1.5;"></div>
                             </mat-icon>
                         </button>
                         <button mat-icon-button class=" px-2">
@@ -61,7 +63,7 @@
                 </div>
                 <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
                     <mat-form-field fxFlex="100">
-                        <mat-select (selectionChange)="render(cityControl)" disableOptionCentering placeholder="Jio Center" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                        <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                 </ngx-mat-select-search>
@@ -99,6 +101,7 @@
                 <mat-divider [vertical]="true"></mat-divider>
                 <div class="p-3" fxFlex="23" style="padding-right:0 !important;padding-bottom: 0px;">
                     <mat-form-field fxFlex="100">
+                        <!-- <mat-select [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect> -->
                         <mat-select [matTooltip]="getToolTipDEata(selectGraphControl)" [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect>
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Select Graph" [formControl]="selectGraphFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
@@ -113,8 +116,226 @@
             </div>
         </div>
     </mat-card>
-    <div style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
-        <app-alarm-summary-chart *ngIf="!isShown" [data]="dataTransferToChild"></app-alarm-summary-chart>
-        <app-alarm-summary-table-all *ngIf="isShown"></app-alarm-summary-table-all>
+    <div class="active-alarm-main-content" style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
+
+        <mat-grid-list class="jcp-landing-grid-list" cols="6" row="2" rowHeight="400px" [gutterSize]="'10px'">
+            <mat-grid-tile class="jcp-landing-grid-tile-one" *ngFor="let tile of tiles; let i=index" [colspan]="tile.cols" [rowspan]="tile.rows">
+                <mat-card class="jcp-landing-card p-0 w-100 h-100">
+
+                    <div *ngIf="tile.text == 'Active Alarm Classification'">
+                        <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                            <div class="jcp-landing-title">{{tile.text}}</div>
+                            <div fxFlex></div>
+                            <div class="jcp-landing-right-container" fxLayout="row wrap">
+                                <div>
+                                    <button mat-icon-button (click)="tableViewWidget('Active Alarm Classification',tableWidget,isShownChartOrTable)">
+                                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                            <div class="ic ic-table-011" style="padding: 3px 0;"></div>
+                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Classification')">
+                                        <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
+                                            <div class="ic ic-enlarge2" style="padding: 5px;"></div>
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon style="font-size: 18px;line-height: 18px;"><span
+                                                class="zmdi zmdi-more-vert"></span></mat-icon>
+                                    </button>
+                                    <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
+                                        <button mat-menu-item>
+                                            <span>Download</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="jcp-landing-card-content">
+                            <app-alarm-summary-chart *ngIf="!isShownChartOrTable" [data]="'Active Alarm Classification'">
+                            </app-alarm-summary-chart>
+                            <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Active Alarm Classification'">
+                            </app-alarm-summary-table>
+                            <!-- <app-alarm-summary-table *ngIf="isShownTableEach" [dataTable]="singleTableName">
+                            </app-alarm-summary-table> -->
+                        </div>
+                    </div>
+                    <div *ngIf="tile.text == 'Active Alarm Ageing'">
+                        <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                            <div class="jcp-landing-title">{{tile.text}}</div>
+                            <div fxFlex></div>
+                            <div class="jcp-landing-right-container" fxLayout="row wrap">
+                                <div>
+                                    <button mat-icon-button (click)="tableViewWidget('Active Alarm Ageing',tableWidget,isShownChartOrTable)">
+                                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                            <div class="ic ic-table-011" style="padding: 3px 0;"></div>
+                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Ageing')">
+                                        <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
+                                            <div class="ic ic-enlarge2" style="padding: 5px;"></div>
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon style="font-size: 18px;line-height: 18px;"><span
+                                                class="zmdi zmdi-more-vert"></span></mat-icon>
+                                    </button>
+                                    <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
+                                        <button mat-menu-item>
+                                            <span>Download</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="jcp-landing-card-content">
+                            <app-alarm-summary-chart *ngIf="!isShownChartOrTable" [data]="'Active Alarm Ageing'">
+                            </app-alarm-summary-chart>
+                            <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Active Alarm Ageing'">
+                            </app-alarm-summary-table>
+                        </div>
+                    </div>
+                    <div *ngIf="tile.text == 'Circles wise SA Active Alarms with Ageing distribution'">
+                        <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                            <div class="jcp-landing-title">{{tile.text}}</div>
+                            <div fxFlex></div>
+                            <div class="jcp-landing-right-container" fxLayout="row wrap">
+                                <div>
+                                    <button mat-icon-button (click)="tableViewWidget('Circles wise SA Active Alarms with Ageing distribution',tableWidget,isShownChartOrTable)">
+                                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                            <div class="ic ic-table-011" style="padding: 3px 0;"></div>
+                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button (click)="expandViewWidget('Circles wise SA Active Alarms with Ageing distribution')">
+                                        <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
+                                            <div class="ic ic-enlarge2" style="padding: 5px;"></div>
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon style="font-size: 18px;line-height: 18px;"><span
+                                                class="zmdi zmdi-more-vert"></span></mat-icon>
+                                    </button>
+                                    <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
+                                        <button mat-menu-item>
+                                            <span>Download</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="jcp-landing-card-content">
+                            <app-alarm-summary-chart *ngIf="!isShownChartOrTable" [data]="'Circles wise SA Active Alarms with Ageing distribution'">
+                            </app-alarm-summary-chart>
+                            <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Circles wise SA Active Alarms with Ageing distribution'">
+                            </app-alarm-summary-table>
+                        </div>
+                    </div>
+                    <div *ngIf="tile.text == 'Alarms vs Outage Minutes'">
+                        <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                            <div class="jcp-landing-title">{{tile.text}}</div>
+                            <div fxFlex></div>
+                            <div class="jcp-landing-right-container" fxLayout="row wrap">
+                                <div>
+                                    <button mat-icon-button (click)="tableViewWidget('Alarms vs Outage Minutes',tableWidget,isShownChartOrTable)">
+                                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                            <div class="ic ic-table-011" style="padding: 3px 0;"></div>
+                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button (click)="expandViewWidget('Alarms vs Outage Minutes')">
+                                        <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
+                                            <div class="ic ic-enlarge2" style="padding: 5px;"></div>
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon style="font-size: 18px;line-height: 18px;"><span
+                                                class="zmdi zmdi-more-vert"></span></mat-icon>
+                                    </button>
+                                    <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
+                                        <button mat-menu-item>
+                                            <span>Download</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="jcp-landing-card-content">
+                            <app-alarm-summary-chart *ngIf="!isShownChartOrTable" [data]="'Alarms vs Outage Minutes'">
+                            </app-alarm-summary-chart>
+                            <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Alarms vs Outage Minutes'">
+                            </app-alarm-summary-table>
+                        </div>
+                    </div>
+                    <div *ngIf="tile.text == 'Sites with > 24Hr Outage'">
+                        <div class="jcp-landing-card-header pl-3" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                            <div class="jcp-landing-title">{{tile.text}}</div>
+                            <div fxFlex></div>
+                            <div class="jcp-landing-right-container" fxLayout="row wrap">
+                                <div>
+                                    <button mat-icon-button (click)="tableViewWidget('Sites with > 24Hr Outage',tableWidget,isShownChartOrTable)">
+                                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
+                                            <div class="ic ic-table-011" style="padding: 3px 0;"></div>
+                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button (click)="expandViewWidget('Sites with > 24Hr Outage')">
+                                        <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
+                                            <div class="ic ic-enlarge2" style="padding: 5px;"></div>
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-icon-button [matMenuTriggerFor]="aggridMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon style="font-size: 18px;line-height: 18px;"><span
+                                                class="zmdi zmdi-more-vert"></span></mat-icon>
+                                    </button>
+                                    <mat-menu #aggridMenu="matMenu" class="aggridMenuPanelRender">
+                                        <button mat-menu-item>
+                                            <span>Download</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="jcp-landing-card-content">
+                            <app-alarm-summary-chart *ngIf="!isShownChartOrTable" [data]="'Sites with > 24Hr Outage'">
+                            </app-alarm-summary-chart>
+                            <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Sites with > 24Hr Outage'">
+                            </app-alarm-summary-table>
+                        </div>
+                    </div>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>

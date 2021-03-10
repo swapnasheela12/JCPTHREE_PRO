@@ -1,3 +1,4 @@
+import { FmDataSharingService } from './../../../../../../_services/fm-data-sharing.service';
 import { layersIconRenderComponent } from '../../../../../../core/components/ag-grid-renders/layersicon.component';
 import { dropDownList3DotRendererComponent } from '../../../../../../core/components/ag-grid-renders/dropDownList3DotRenderer.component';
 import { Subscription } from 'rxjs';
@@ -15,7 +16,7 @@ import rounded from 'highcharts-rounded-corners';
 // import { AlarmSummaryChartExpandComponent } from './alarm-summary-chart-expand/alarm-summary-chart-expand.component';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Input } from '@angular/core';
+import { Input, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from "angular-highcharts";
 export interface Tile {
@@ -27,48 +28,74 @@ export interface Tile {
 @Component({
   selector: 'app-alarm-summary-table',
   templateUrl: './alarm-summary-table.component.html',
-  styleUrls: ['./alarm-summary-table.component.scss']
+  styleUrls: ['./alarm-summary-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlarmSummaryTableComponent implements OnInit {
   public suppressHorizontalScroll = false;
-  public parentDataGet;
-  @Input('data')
-  set data(data: any) {
-    console.log(data, "child");
-    this.parentDataGet = data;
-    //do whatever you want with your data here, this data will be passed from parent component
-  }
 
   public parentDataGetTable;
   @Input('dataTable')
   set dataTable(dataTable: any) {
-    console.log(dataTable, "child>>>>>");
-    setTimeout(() => {
-      this.parentDataGetTable = dataTable;
-    }, 600);
-
-    //do whatever you want with your data here, this data will be passed from parent component
+    this.parentDataGetTable = dataTable;
   }
-  // public parentDataGetTable2;
-  // @Input('dataTable2')
-  // set dataTable2(dataTable: any) {
-  //   console.log(dataTable, "child>>>>>");
-  //   this.parentDataGetTable2 = dataTable;
-  //   //do whatever you want with your data here, this data will be passed from parent component
-  // }
+
   constructor(public datashare: DataSharingService,
     public http: HttpClient,
     public dialog: MatDialog,
+    public dataShareFM: FmDataSharingService,
     private fileUploadService: FileUploadService,
     private datatable: TableAgGridService,
     private router: Router, public matDialog: MatDialog) {
 
-    // this.gridOptions = <GridOptions>{
-    //   suppressHorizontalScroll: false,
-    // };
-    // this.httpClientRowData();
-    // this.createColumnDefs();
-    
+    this.dataShareFM.currentMessageTitle.subscribe((val: any) => {
+
+      if (val.tableName == 'Active Alarm Classification' && val.statusSingleView == true && val.chartOrTable == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable2').addClass("activeHide");
+          $('#alarmTable3').addClass("activeHide");
+          $('#alarmTable4').addClass("activeHide");
+          $('#alarmTable5').addClass("activeHide");
+        }, 1000);
+      } else if (val.tableName == 'Active Alarm Ageing' && val.statusSingleView == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable1').addClass("activeHide");
+          $('#alarmTable3').addClass("activeHide");
+          $('#alarmTable4').addClass("activeHide");
+          $('#alarmTable5').addClass("activeHide");
+        }, 500);
+      }
+      else if (val.tableName == 'Circles wise SA Active Alarms with Ageing distribution' && val.statusSingleView == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable1').addClass("activeHide");
+          $('#alarmTable2').addClass("activeHide");
+          $('#alarmTable4').addClass("activeHide");
+          $('#alarmTable5').addClass("activeHide");
+        }, 500);
+      }
+      else if (val.tableName == 'Alarms vs Outage Minutes' && val.statusSingleView == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable1').addClass("activeHide");
+          $('#alarmTable2').addClass("activeHide");
+          $('#alarmTable3').addClass("activeHide");
+          $('#alarmTable5').addClass("activeHide");
+        }, 500);
+      }
+      else if (val.tableName == 'Sites with > 24Hr Outage' && val.statusSingleView == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable1').addClass("activeHide");
+          $('#alarmTable2').addClass("activeHide");
+          $('#alarmTable3').addClass("activeHide");
+          $('#alarmTable4').addClass("activeHide");
+        }, 500);
+      }
+
+    });
 
     this.gridOptionsTable1 = <GridOptions>{
       suppressHorizontalScroll: false,
@@ -98,144 +125,14 @@ export class AlarmSummaryTableComponent implements OnInit {
     this.createColumnDefsTable4();
 
 
-
     this.gridOptionsTable5 = <GridOptions>{
       suppressHorizontalScroll: false,
     };
     this.httpClientRowDataTable5();
     this.createColumnDefsTable5();
-
-
-
-
-
-
-
-
-
-
-
   }
 
-  ngOnInit(): void {
-
-  }
-
-  tiles: Tile[] = [
-    { text: 'One', cols: 2, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 4, rows: 1, color: 'lightgreen' },
-    { text: 'Three', cols: 3, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 3, rows: 1, color: '#DDBDF1' },
-    { text: 'Five', cols: 3, rows: 1, color: '#DDBDF1' },
-  ];
-  public eachGraphSelected = "";
-  expandViewWidget(graphType) {
-    console.log(graphType, "graphType");
-
-    // graphType.forEach(res => {
-    //   // this.eachGraphSelected += res.name + ", ";
-    //   this.eachGraphSelected = res.name;
-    //   console.log(this.eachGraphSelected,"this.eachGraphSelected");
-    //   return this.eachGraphSelected;
-    // })
-    this.openFlagConf(graphType)
-  }
-
-  openFlagConf(selectedGraph) {
-    // const dialogRef = this.matDialog.open(AlarmSummaryChartExpandComponent, {
-    //   width: "700px",
-    //   height: '500px',
-    //   data: selectedGraph,
-    //   panelClass: "material-dialog-container"
-    // });
-  }
-
-
-  // public gridApi;
-  // public gridPinned = false;
-  // public gridCore: GridCore;
-  // public gridOptions: GridOptions;
-  // public rowData: any;
-  // public columnDefs: any[];
-  // public rowCount: string;
-  // public defaultColDef = { resizable: true };
-  // public frameworkComponentsMyReport = {
-  //   dropDownThreeDotRenderer: dropDownList3DotRendererComponent,
-  // };
-
-
-  // public onReady(params) {
-  //   console.log(params, "onReady");
-  //   this.gridApi = params.api;
-  //   // params.api.sizeColumnsToFit();
-  // }
-
-  // public httpClientRowData() {
-  //   this.http
-  //     .get("assets/data/modules/fault-management/active-alarm/table1.json")
-  //     .subscribe(data => {
-  //       this.rowData = data;
-  //       this.datatable.typeOfAgGridTable = "Default-Ag-Grid-without-Pagination";
-  //       this.datatable.rowDataServices = this.rowData;
-  //       this.datatable.gridPinnedServices = this.gridPinned;
-  //       this.datatable.gridOptionsServices = this.gridOptions;
-  //       this.datatable.gridOptionSuppressHorizontalScroll = this.suppressHorizontalScroll;
-  //       this.datatable.defaultColDefServices = this.defaultColDef;
-  //     });
-  // }
-
-  // public createColumnDefs() {
-  //   this.columnDefs = [
-  //     {
-  //       headerName: "Sr No",
-  //       field: "SrNo",
-  //       width: 150,
-  //       pinned: 'left',
-  //     },
-  //     {
-  //       headerName: "Circle",
-  //       field: "Circle",
-  //       width: 145,
-  //     },
-  //     {
-  //       headerName: "SA",
-  //       field: "SA",
-  //       width: 115,
-  //     },
-  //     {
-  //       headerName: "NSA ",
-  //       field: "NSA",
-  //       width: 130,
-  //     },
-  //     {
-  //       headerName: "Performance Degrading",
-  //       field: "PerformanceDegrading",
-  //       width: 130,
-  //     }
-  //     // ,
-  //     // {
-  //     //   headerName: "",
-  //     //   cellRenderer: 'dropDownThreeDotRenderer',
-  //     //   width: 110,
-  //     //   pinned: 'right',
-  //     // }
-  //   ];
-
-  //   this.datatable.columnDefsServices = this.columnDefs;
-  // }
-
-  // onFilterChanged(value) {
-  //   console.log(value, "value");
-  //   console.log(this.gridOptions.api.setQuickFilter(value), "valthis.gridOptions.api.setQuickFilter(value)ue");
-  //   this.datatable.gridFilterValueServices = value;
-  // };
-
-  show: any;
-  toggleSearch() {
-    this.show = !this.show;
-  };
-
-
+  ngOnInit(): void { }
 
 
   public gridApiTable1;
@@ -255,7 +152,7 @@ export class AlarmSummaryTableComponent implements OnInit {
     // params.api.sizeColumnsToFit();
   }
 
- 
+
   public httpClientRowDataTable1() {
     this.http
       .get("assets/data/modules/fault-management/active-alarm/table1.json")
@@ -371,7 +268,7 @@ export class AlarmSummaryTableComponent implements OnInit {
         field: "OutageAlarmMinutes",
         width: 250,
       },
-     
+
     ];
 
     this.datatable.columnDefsServices = this.columnDefsPloy;
@@ -403,7 +300,7 @@ export class AlarmSummaryTableComponent implements OnInit {
     // params.api.sizeColumnsToFit();
   }
 
- 
+
   public httpClientRowDataTable3() {
     this.http
       .get("assets/data/modules/fault-management/active-alarm/table3.json")
@@ -466,24 +363,7 @@ export class AlarmSummaryTableComponent implements OnInit {
         field: "Hrs>24",
         width: 150,
       },
-      // {
-      //   headerName: "",
-      //   field: "creationdate",
-      //   cellRenderer: 'layersIconRender',
-      //   headerComponentParams: { template: '<div style="width: 100%;font-size:20px;display:flex;justify-content:center;align-items:center;color:#707070;" class="zmdi zmdi-edit"></div>' },
-      //   cellStyle: {
-      //     'display': 'flex ',
-      //     'justify-content': 'center',
-      //     'align-items': 'center ',
-      //   },
-      //   width: 150,
-      // },
-      // {
-      //   headerName: "",
-      //   cellRenderer: 'dropDownThreeDotRenderer',
-      //   width: 110,
-      //   pinned: 'right',
-      // }
+
     ];
 
     this.datatable.columnDefsServices = this.columnDefsTable3;
@@ -568,10 +448,6 @@ export class AlarmSummaryTableComponent implements OnInit {
   };
 
 
-
-
-
-
   public gridApiTable5;
   public gridPinnedTable5 = false;
   public gridOptionsTable5: GridOptions;
@@ -604,7 +480,7 @@ export class AlarmSummaryTableComponent implements OnInit {
 
   public createColumnDefsTable5() {
     this.columnDefsTable5 = [
-      
+
       {
         headerName: "Circle",
         field: "Circle",
@@ -641,20 +517,6 @@ export class AlarmSummaryTableComponent implements OnInit {
     console.log(this.gridOptionsTable5.api.setQuickFilter(value), "valthis.gridOptions.api.setQuickFilter(value)ue");
     this.datatable.gridFilterValueServices = value;
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
