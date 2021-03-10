@@ -1,3 +1,4 @@
+import { AlarmSummaryTableExpandComponent } from './table-view/alarm-summary-table-expand/alarm-summary-table-expand.component';
 import { AlarmSummaryChartExpandComponent } from './chart-view/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
 import { FmDataSharingService } from './../../../../_services/fm-data-sharing.service';
 import { dropdown, R4GState, JC, City, Node, GraphType, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../core/components/common-elements/type-dropdown-modulelist';
@@ -29,6 +30,57 @@ export interface Tile {
   encapsulation: ViewEncapsulation.None
 })
 export class AlarmSummaryComponent implements OnInit {
+
+  selectDaily = ["Daily", "Weekly", "Monthly"];
+  range = new FormGroup({
+    start: new FormControl(Validators.required),
+    end: new FormControl(Validators.required)
+  });
+  thirdFormGroup: FormGroup;
+
+  ///////datepicker//////////
+  opens = 'center';
+  drops = 'up';
+  public todaysDay = new Date();
+  selectedDateTime: any;
+  selectedDateTimeValue: boolean = false;
+  invalidDates: moment.Moment[] = [];
+  tooltips = [
+    { date: moment(), text: 'Today is just unselectable' },
+    { date: moment().add(2, 'days'), text: 'Yeeeees!!!' },
+  ];
+  ranges = {
+    Today: [moment(), moment()],
+    Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    'This Month': [moment().startOf('month'), moment().endOf('month')],
+    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+    'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+  };
+
+  isInvalidDate = (m: moment.Moment) => {
+    return this.invalidDates.some((d) => d.isSame(m, 'day'));
+  };
+
+  isTooltipDate = (m: moment.Moment) => {
+    const tooltip = this.tooltips.find((tt) => tt.date.isSame(m, 'day'));
+    if (tooltip) {
+      return tooltip.text;
+    } else {
+      return false;
+    }
+  };
+
+  rangeClicked(range): void {
+    this.selectedDateTimeValue = true;
+  }
+
+  datesUpdated(range): void {
+    this.selectedDateTimeValue = true;
+  }
+
+
   tiles: Tile[] = [];
   public vendor = 'Samsung';
   public zoneType: FormControl = new FormControl();
@@ -91,6 +143,17 @@ export class AlarmSummaryComponent implements OnInit {
     private overlayContainer: OverlayContainer,
   ) {
     // router.events.subscribe((url: any) => console.log(url));
+    this.thirdFormGroup = this._formBuilder.group({
+      selectedDateTime: [{
+        startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+      },Validators.required],
+      alwaysShowCalendars: true,
+      keepCalendarOpeningWithRange: true,
+      showRangeLabelOnInput: true,
+    });
   }
 
 
@@ -260,18 +323,28 @@ export class AlarmSummaryComponent implements OnInit {
 
   }
 
-  expandViewWidget(graphType) {
+  expandViewWidget(graphType , viewType) {
     console.log(graphType, "graphType");
-    this.openFlagConf(graphType)
+    this.openFlagConf(graphType,viewType)
   }
 
-  openFlagConf(selectedGraph) {
-    const dialogRef = this.dialog.open(AlarmSummaryChartExpandComponent, {
-      width: "700px",
-      height: '500px',
-      data: selectedGraph,
-      panelClass: "material-dialog-container"
-    });
+  openFlagConf(selectedGraph,viewType) {
+    if (viewType == false) {
+      const dialogRef = this.dialog.open(AlarmSummaryChartExpandComponent, {
+        width: "700px",
+        height: '500px',
+        data: selectedGraph,
+        panelClass: "material-dialog-container"
+      });
+    } else {
+      const dialogRef = this.dialog.open(AlarmSummaryTableExpandComponent, {
+        width: "750px",
+        height: '500px',
+        data: selectedGraph,
+        panelClass: "material-dialog-container"
+      });
+    }
+
   }
 
   public tableWidget: boolean = true;

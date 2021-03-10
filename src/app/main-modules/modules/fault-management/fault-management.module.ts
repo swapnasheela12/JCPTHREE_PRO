@@ -70,6 +70,7 @@ import { ActiveLibraryComponent } from './active-library/active-library.componen
 import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
+import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/alarm-summary-table-expand/alarm-summary-table-expand.component';
 // import { HeaderOfWidgetsComponent } from './alarm-summary/header-of-widgets/header-of-widgets.component';
 // import { AlarmSummaryChartComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart.component';
 // import { AlarmSummaryChartExpandComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
@@ -77,7 +78,7 @@ import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
 // import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table/alarm-summary-table.component';
 // import { AlarmSummaryTableAllComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table-all/alarm-summary-table-all.component';
 @NgModule({
-  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableAllComponent],
+  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableAllComponent, AlarmSummaryTableExpandComponent],
   imports: [
     CoreModule,
     FlexLayoutModule,

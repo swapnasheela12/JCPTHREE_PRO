@@ -39,8 +39,22 @@
                         </button>
                     </div>
                     <div fxFlex="15" class="my-2 header-date-picker-type">
-                        <div class="title">Last Updated</div>
-                        <div class="sub-title">25 Oct, 2016, 2:30 PM</div>
+                        <!-- <div class="title">Last Updated</div>
+                        <div class="sub-title">25 Oct, 2016, 2:30 PM</div> -->
+                        <form [formGroup]="thirdFormGroup">
+                            <mat-form-field class="custom-field-container" fxFlex="90" style="font-size: 14px;">
+                                <div class="daterange-container" style="top: 205px;
+                            left: 74px;">
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false" formControlName="selectedDateTime" [showCustomRangeLabel]="true" [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                        [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false" [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                        [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value" [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value" (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                        autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                    <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                    <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
+                                </div>
+                            </mat-form-field>
+                        </form>
+
                     </div>
                 </div>
             </mat-toolbar-row>
@@ -136,7 +150,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Classification')">
+                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Classification',isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                             <div class="ic ic-enlarge2" style="padding: 5px;"></div>
                                         </mat-icon>
@@ -180,7 +194,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Ageing')">
+                                    <button mat-icon-button (click)="expandViewWidget('Active Alarm Ageing',isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                             <div class="ic ic-enlarge2" style="padding: 5px;"></div>
                                         </mat-icon>
@@ -222,7 +236,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button mat-icon-button (click)="expandViewWidget('Circles wise SA Active Alarms with Ageing distribution')">
+                                    <button mat-icon-button (click)="expandViewWidget('Circles wise SA Active Alarms with Ageing distribution',isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                             <div class="ic ic-enlarge2" style="padding: 5px;"></div>
                                         </mat-icon>
@@ -264,7 +278,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button mat-icon-button (click)="expandViewWidget('Alarms vs Outage Minutes')">
+                                    <button mat-icon-button (click)="expandViewWidget('Alarms vs Outage Minutes',isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                             <div class="ic ic-enlarge2" style="padding: 5px;"></div>
                                         </mat-icon>
@@ -306,7 +320,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button mat-icon-button (click)="expandViewWidget('Sites with > 24Hr Outage')">
+                                    <button mat-icon-button (click)="expandViewWidget('Sites with > 24Hr Outage',isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 14px;line-height: 18px;">
                                             <div class="ic ic-enlarge2" style="padding: 5px;"></div>
                                         </mat-icon>
