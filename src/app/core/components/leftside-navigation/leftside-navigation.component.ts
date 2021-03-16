@@ -27,6 +27,10 @@ export class SideNavNode {
   disabled?: Boolean;
   show?: Boolean;
   show0?: Boolean;
+  showSettings?: Boolean;
+  checked?: Boolean;
+  showHeader?: Boolean;
+  headerText?: string;
 }
 
 class ExampleFlatNode {
@@ -63,7 +67,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   showHeader;
   routePlannedLayerHeader = {
     "title": "Back To Nominal Generation",
-    "headerSapid": "Maharashtra-NP-CV-121020_v1"
+    "headerSapid": "Maharashtra-NP-CV-121020_v1",
+    "name":"nominal-generation"
   };
 
   dialog: NavigationSettingsService;
@@ -100,7 +105,11 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       componentLayer: node.componentLayer,
       disabled: node.disabled,
       show: node.show,
-      show0: node.show0
+      show0: node.show0,
+      showSettings: node.showSettings,
+      checked: node.checked,
+      showHeader: node.showHeader,
+      headerText: node.headerText
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -117,20 +126,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
-    this.datashare.extraLayerObject.subscribe((data: any) => {
-      if (Object.keys(data).length !== 0) {
-        let dataChange = this.dataSource.data;
-        if (dataChange[0].name != 'My Projects') {
-          let removedItems = dataChange.splice(0,0,data[0]);
-          this.dataSource.data = [];
-          this.dataSource.data = dataChange;
-        }
-        this.treeControl.expand(this.treeControl.dataNodes[0]);
-        this.treeControl.expand(this.treeControl.dataNodes[1]);
-        $('#'+data[0].children[0].children[0].name+'-input').click();
-      }
-    });
-
+   
     // this.datashare.currentMessage.subscribe((data: any) => {
     //   console.log(data)
     //   let addPin: any = {
@@ -206,6 +202,47 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
          
         }
       }
+
+      this.datashare.extraLayerObject.subscribe((data: any) => {
+        if (Object.keys(data).length !== 0) {
+          let dataChange = this.dataSource.data;
+          if (dataChange[0].name != 'My Projects') {
+            let removedItems = dataChange.splice(0,0,data[0]);
+            this.dataSource.data = [];
+            this.dataSource.data = dataChange;
+            if(dataChange[0].children[0].children[0].children[0] != undefined && 
+              (
+                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+              )){
+              dataChange[0].children[0].children[0].children[0].checked = true;
+              this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
+            } else if(
+              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')) {
+              dataChange[0].children[0].children[0].checked = true;
+              this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
+            }
+            this.dataSource.data = dataChange;
+            if(
+              dataChange[0].children[0].children[0].children[0] != undefined && 
+              (
+                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+              )){
+              this.treeControl.expand(this.treeControl.dataNodes[0]);
+              this.treeControl.expand(this.treeControl.dataNodes[1]);
+              this.treeControl.expand(this.treeControl.dataNodes[2]);
+            } else if(
+              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')
+              ) {
+              this.treeControl.expand(this.treeControl.dataNodes[0]);
+              this.treeControl.expand(this.treeControl.dataNodes[1]);
+            }
+          }
+        
+        }
+      });
+  
     });
   }
 
@@ -449,28 +486,63 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   onSelectionChange(event) {
     //
   }
-  onChecked(selected, node, activeCheckbox, eventChecked) {
+
+  newComponentRef;
+  showHeaderDisplay(node, type) {
+    console.log(node);
     this.routePlannedLayerHeader.headerSapid = node.name;
-    this.datashare.headerObject.subscribe(
-      (headerView) => {
-        this.showHeader = headerView;
-        const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
-
-        const newComponentRef = this.showHeader.createComponent(factory);
-        newComponentRef.instance.headerData = this.routePlannedLayerHeader;
-        newComponentRef.instance.showHeader = 'show';
-        const newComponentVcRef = newComponentRef.instance.vcRef;
+    this.routePlannedLayerHeader.title = node.headerText;
+    this.routePlannedLayerHeader.name = node.eventName;
+    this.datashare.layerNameFunc([{name: node.headerText, source: 'display'}]);
+    if (type == 'manual') {
+      if(undefined != this.showHeader){
+          this.showHeader.clear();
+          this.newComponentRef.destroy();
       }
-    )
+      if (node.selected == true && node.showHeader == true) {
+        this.datashare.headerObject.subscribe(
+          (headerView) => {
+            this.showHeader.clear();
+            this.newComponentRef.destroy();
+            this.showHeader = headerView;
+            const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+            this.newComponentRef = this.showHeader.createComponent(factory);
+            this.newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+            this.newComponentRef.instance.showHeader = 'show';
+            const newComponentVcRef = this.newComponentRef.instance.vcRef;
+            this.newComponentRef.changeDetectorRef.detectChanges();
+          }
+        )
+      } else if (node.selected == false  && node.showHeader == true) {
+        this.showHeader.clear();
+        this.newComponentRef.destroy();
+      }
+    }
 
+    else if (type == 'auto' && node.showHeader == true) {
+      this.datashare.headerObject.subscribe(
+        (headerView) => {
+          this.showHeader = headerView;
+          const factory = this.cfr.resolveComponentFactory(MapHeaderViewComponent);
+          this.newComponentRef = this.showHeader.createComponent(factory);
+          this.newComponentRef.instance.headerData = this.routePlannedLayerHeader;
+          this.newComponentRef.instance.showHeader = 'show';
+          const newComponentVcRef = this.newComponentRef.instance.vcRef;
+        }
+      )
+    }
+  }
+
+  onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
     } else {
       node.selected = !selected;
     }
-
+    this.showHeaderDisplay(node, 'manual');
     if (node.selected == true) {
+      node.checked = true
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
@@ -480,6 +552,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.renderLayerComponent(node.componentLayer);
       }
     } else {
+      node.checked = false;
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);

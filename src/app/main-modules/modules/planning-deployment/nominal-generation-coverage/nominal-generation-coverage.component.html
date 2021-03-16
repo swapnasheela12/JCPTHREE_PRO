@@ -1,3 +1,4 @@
+
 <mat-card class="nominal-generation-card p-0" style="height: 100%; min-height: 100%;">
     <div class="nominal-generation-card-flex-container">
         <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
@@ -15,7 +16,8 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button create-button" color="primary"
+                <button mat-raised-button class="submit-button create-button" (click)="createPopup()" color="primary">Create</button>
+                <!-- <button mat-raised-button class="submit-button create-button" color="primary"
                     [matMenuTriggerFor]="createMenuList" routerLink="/{{paths[0].createNominalGeneration}}">Create</button>
                 <mat-menu #createMenuList="matMenu" class="nominal-generation-card-menu-render" xPosition="before">
                     <button mat-menu-item>
@@ -27,7 +29,7 @@
                     <button mat-menu-item>
                         <span>Coverage</span>
                     </button>
-                </mat-menu>
+                </mat-menu> -->
             </div>
         </div>
     </div>

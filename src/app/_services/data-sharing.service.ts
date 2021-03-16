@@ -85,6 +85,9 @@ export class DataSharingService {
   private headerDetails =  new BehaviorSubject({});
   headerObject = this.headerDetails.asObservable();
 
+  private projectList = new BehaviorSubject({});
+  projectObject = this.projectList.asObservable();
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -197,5 +200,9 @@ export class DataSharingService {
 
   addSpecificHeader(header) {
     this.headerDetails.next(header)
+  }
+
+  addProjectList(projectList) {
+    this.projectList.next(projectList);
   }
 }

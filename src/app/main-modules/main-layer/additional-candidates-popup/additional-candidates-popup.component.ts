@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomFlagPopupComponent } from 'src/app/core/components/commonPopup/custom-flag-popup/custom-flag-popup.component';
+import { SiteProposedConfigurationComponent } from 'src/app/core/components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 
 const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
   {
@@ -21,12 +22,14 @@ const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
     headerName: "flag",
     field: "flagStatus",
     cellRenderer:'flagRenderComponent',
+    headerClass: 'notShowHeader',
     minWidth: 30
   },
   {
     headerName: "",
     cellRenderer:'nominalGenerationRenderComponent',
     minWidth: 30,
+    headerClass: 'notShowHeader',
     pinned: 'right',
     cellClass: 'vertical-dot-align'
   }
@@ -42,7 +45,9 @@ const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
 export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit {
   dialog: AdditionalCandidateSettingsService;
   @ViewChild('fibreStructureLayerSettingsPopup', { static: true }) fibreStructureLayerSettingsPopup: TemplateRef<any>;show: boolean;
-;
+  name;
+  title = 'Additional Candidates';
+  target = 'Target Sites'
   public gridAdditionalCandidateOptions: GridOptions;
   public additionalCandidateColumnDefs : any[];
   public additionalCandidateData;
@@ -50,6 +55,10 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   searchGrid = '';
 
   ngOnInit(): void {
+    if (this.name == 'nominal-validation') {
+      this.title = 'Candidates For ACP';
+      this.target = 'ACP Target';
+    }
     this.dispatchDialog();
   }
 
@@ -57,6 +66,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
     private additionalFactoryService: AdditionalSettingsFactoryService,
     private http: HttpClient
   ) {
+    console.log(this.name);
     this.gridAdditionalCandidateOptions = <GridOptions>{};
     this.frameworkComponentsAdditionalCandidate = {
       'nominalGenerationRenderComponent': nominalGenerationRenderComponent,
@@ -74,6 +84,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   }
 
   ngAfterViewInit() {
+    console.log(name);
     setTimeout(() => {
       this.createColumnDefs();
       this.getAdditionalCandidate();
@@ -85,7 +96,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   }
 
   getAdditionalCandidate() {
-    this.http.get("assets/data/layers/nominal-generation/nominal-generation.json")
+    this.http.get("assets/data/layers/nominal-generation/nominal-site-distribution.json")
     .subscribe(data => {
       this.additionalCandidateData = data;
       this.fitColumns();
@@ -104,7 +115,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
 
   dispatchDialog() {
     this.openDialog({
-      headerText: 'Additional Candidates',
+      headerText: this.title,
       template: this.fibreStructureLayerSettingsPopup
     }, {
       width: 385,
@@ -134,10 +145,10 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #kpiEditorMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="editDetailsConf()">
                 <span>Edit</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="viewDetailsConf()">
                 <span>View</span>
             </button>
             <button mat-menu-item (click)="openFlagConf()">
@@ -171,6 +182,38 @@ export class nominalGenerationRenderComponent implements ICellRendererAngularCom
     return true;
   }
 
+  editDetailsConf() {
+    const dialogRef = this.matDialog.open(SiteProposedConfigurationComponent, {
+      width: "1023px",
+      height:'474px',
+      panelClass: "site-proposed-table-edit",
+      data: {
+        'sapId': this.params.data.sapId,
+        'latitude': this.params.data.latitude,
+        'longitude': this.params.data.longitude,
+        'sector':this.params.data.sector
+      }
+    });
+    dialogRef.componentInstance.mode = 'edit';
+  }
+  
+  viewDetailsConf() {
+
+    const dialogRef = this.matDialog.open(SiteProposedConfigurationComponent, {
+      width: "1023px",
+      height:'474px',
+      panelClass: "site-proposed-table-view",
+      data: {
+        'sapId': this.params.data.sapId,
+        'latitude': this.params.data.latitude,
+        'longitude': this.params.data.longitude,
+        'sector':this.params.data.sector
+      }
+    });
+    dialogRef.componentInstance.mode = 'view';
+
+  }
+  
   openFlagConf() {
     const dialogRef = this.matDialog.open(CustomFlagPopupComponent, {
       width: "535px",

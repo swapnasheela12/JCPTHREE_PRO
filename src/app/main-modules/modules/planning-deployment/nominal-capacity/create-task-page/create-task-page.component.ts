@@ -20,6 +20,10 @@ import { AdDirective } from 'src/app/_directive/dynamicComponent/ad.directive';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { NcDeleteHeaderRendererComponent } from './renderer/cnct-header-delete-renderer.component';
 declare const L: any;
+const PATHS = [
+  { createPage: "/JCP/Layers" },
+  { createQuery: "/JCP/Administration/Module-Management/Nominal-Planning/Query-Administration/Create-Query" }
+];
 @Component({
   selector: 'app-create-task-page',
   templateUrl: './create-task-page.component.html',
@@ -304,6 +308,7 @@ export class CreateTaskPageComponent implements OnInit {
   projectName: string;
   selectedLinkBudget: string;
   customControl: any;
+  createQueryRoute: string;
   constructor(
     private http: HttpClient,
     public datashare: DataSharingService,
@@ -357,7 +362,7 @@ export class CreateTaskPageComponent implements OnInit {
     Name: "Custom Boundaries"
   }]
   ngOnInit() {
-    // console.log(this.sugGrid)
+    this.createQueryRoute = PATHS[1].createQuery;
     this.createColumnDefs();
     this.getData();
 

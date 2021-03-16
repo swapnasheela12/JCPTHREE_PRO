@@ -1,0 +1,237 @@
+$blueColor: #0070DB;
+$white: #ffffff;
+.nominal-validation-performance-summary{
+    .card-header{
+        padding:10px;
+        background-color: #ffffff;
+        .card-title{
+            font-family: lato medium;;
+            color: black;
+            .title-summary {
+                font-family: Lato Bold;
+                font-size:16px;
+                .state{
+                    color: #F8C93A;
+                }
+            }
+            .title-subline {
+                font-family: Lato Regular;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .nominal-validation-performance-summary{
+        height: calc(100% - 69px);
+        .mat-checked {
+            .mat-slide-toggle-label {
+                .mat-slide-toggle-bar {
+                    background-color: $blueColor !important;
+                }
+            }
+        }
+        .mat-slide-toggle-thumb-container{
+            .mat-slide-toggle-ripple{
+                display: none;
+            }
+            
+            .mat-slide-toggle-thumb {
+                background-color: $white;
+                border: 1px solid $blueColor;
+            }
+        }
+        #panel-summary{
+            > .mat-tab-header:first-child{
+                height: 42px;
+                #mat-tab-label-1-2 {
+                    pointer-events: none;
+                    border-right: none;
+                }
+                .mat-tab-label-active {
+                    color: white !important;
+                    background-color: #0078D7 !important;
+                }
+                .mat-tab-list {
+                    height: 1px;
+                }
+                .mat-tab-label:first-child {
+                    background-color: #0070DB1A !important;
+                    .mat-icon {
+                        color: #7E7E7E;
+                    }
+                }
+            }
+        }
+        .nominal-site {
+            height: 388px;
+        }
+        .mat-ink-bar {
+            background-color: white !important;
+        }
+
+        .performance-summary-table {
+            .green-increase {
+                color: #30D436;
+                span {
+                    width: 13px;
+                    height: 13px;
+                }
+            }
+            .red-decrease {
+                color: #F32323;
+                span {
+                    width: 13px;
+                    height: 13px;
+                }
+            }
+            tr.group-header-row {
+                height: 24px;
+            }
+            tr.other-header-row {
+                height: 24px;
+            }
+
+            th.mat-header-cell {
+                text-align: center;
+            }
+            td.mat-cell {
+                text-align: center;
+            }
+            .table-display {
+                border: 1px solid #0000001A;
+                margin: 10px;
+                border-radius: 4px;
+                overflow-y: auto;
+                max-height: 386px;
+                overflow-x: hidden;
+            }
+            .mat-column-percentArea {
+                position: relative;
+                border-bottom-style: none !important;
+            }
+
+            th.mat-column-percentArea:before {
+                content: "";
+                position: absolute;
+                left: 20px;
+                bottom: 0;
+                height: 1px;
+                width: 58%;
+                border-bottom: 1px solid #0000001A !important;
+            }
+
+            .mat-column-squareArea {
+                position: relative;
+                border-bottom-style: none !important;
+            }
+
+            th.mat-column-squareArea:before {
+                content: "";
+                position: absolute;
+                left: 30px;
+                bottom: 0;
+                height: 1px;
+                width: 66%;
+                border-bottom: 1px solid #0000001A !important;
+            }
+
+            .mat-column-dbmTitle {
+                position: relative;
+                border-bottom-style: none !important;
+            }
+
+            th.mat-column-dbmTitle:before {
+                content: "";
+                position: absolute;
+                left: 30px;
+                bottom: 0;
+                height: 1px;
+                width: 66%;
+                border-bottom: 1px solid #0000001A !important;
+            }
+        }
+        .performance-summary {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 400px;
+
+            .pdf-chart-title {
+                height: 10%;
+                border-right: 2px solid #e9ecec;
+                border-bottom: 2px solid #e9ecec;
+                padding: 10px;
+                font-family: Lato Bold;
+                font-size: 16px;
+            }
+            .cdf-chart-title {
+                height: 10%;
+                border-bottom: 2px solid #e9ecec;
+                padding: 10px;
+                font-family: Lato Bold;
+                font-size: 16px;
+            }
+            .cdf-chart {
+                height: 90%;
+                border-left: 2px solid #e9ecec;
+            }
+            .pdf-chart {
+                height: 90%;
+                // border-left: 2px solid #e9ecec;
+            }
+        }
+
+        .box {
+            width: 50%;
+            float: left;
+        }
+        .box:last-child::after {
+            display: table;
+            content: '';
+            clear: both;
+        }
+        #panel-summary {
+            > .mat-tab-header:first-child{
+                .mat-tab-label:nth-last-child(3) {
+                    width: 18%;
+                    font-family: Lato Bold;
+                    font-size: 15px;
+                    margin: 0 10px 0 auto;
+                    background-color: white !important;
+                    border-right: 1px solid #e9ecec;
+                    border-radius: 0px !important;
+                    height: 43px !important;
+                }
+                .mat-tab-label:nth-last-child(4) {
+                    width: 26%;
+                    pointer-events: none;
+                    font-family: Lato Bold;
+                    font-size: 15px;
+                    margin-left: 0;
+                    padding-left: 0;
+                }
+                .mat-tab-label-active:nth-last-child(4) {
+                    background-color:white !important;
+                }
+                .mat-tab-label {
+                    width: 10px;
+                    height: 10px;
+                    padding: 16px;
+                    border-radius: 44px;
+                    min-width: 10px;
+                    margin: 5px 13px;
+                }
+            }
+        }
+
+        #acp-tabs {
+            .mat-tab-label-active {
+                background-color: #E5F0FC !important;
+            }
+
+            .mat-ink-bar{
+                background-color: #2196f3 !important;
+            }
+        }
+    }
+}

@@ -446,3 +446,12 @@ input[type="file"] {
     margin-bottom: 8px;
     color: #717171;
 }
+
+.mat-stepper-horizontal-line {
+    border-top-width: 1px;
+    border-top-style: solid;
+    flex: none !important;
+    height: 0;
+    margin: 0 -16px;
+    min-width: 32px;
+}

@@ -13,25 +13,28 @@
     <div mat-dialog-content class="main-content">
         <!-- <div class=""> -->
         <div fxLayoutAlign="center" fxLayout="column">
-            <mat-form-field class="example-chip-list">
-                <mat-label>Enter Email / Group ID</mat-label>
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                    <mat-chip *ngFor="let person of shareWith" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(person)">
-                        {{person}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="New person..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
-                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                    <mat-option *ngFor="let person of filteredFruits | async" [value]="person">
-                        {{person}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <div style="height: 300px; overflow: auto;">
+            <div fxLayoutAlign="start center" fxLayout="row">
+                <mat-form-field class="mx-3" fxFlex="85" style="height:68px">
+                    <mat-label>Enter Email / Group ID</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip *ngFor="let person of shareWith" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(person)">
+                            {{person}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="New person..." #fruitInput [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let person of filteredFruits | async" [value]="person">
+                            {{person}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <button mat-raised-button class="submit-button create-button"  color="primary">Add</button>
+            </div>
+            <div style="height: 315px; overflow: auto;">
                 <table>
                     <thead>
                         <tr style="height: 48px; background: #f2f2f2;">
@@ -63,7 +66,7 @@
                                 <mat-checkbox> </mat-checkbox>
                             </td>
                             <td (click)="deleteRow(item)">
-                                Delete
+                                <mat-icon class="zmdi zmdi-close"></mat-icon>
                             </td>
                         </tr>
                     </tbody>
@@ -71,6 +74,7 @@
             </div>
         </div>
         <!-- </div> -->
+
     </div>
     <mat-divider></mat-divider>
     <div mat-dialog-actions>
@@ -81,7 +85,7 @@
             <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
         </div>
         <div class="mx-3">
-            <button mat-raised-button color="primary" class="buttonWidth">Upload</button>
+            <button mat-raised-button color="primary" class="buttonWidth">Save</button>
         </div>
     </div>
 </div>

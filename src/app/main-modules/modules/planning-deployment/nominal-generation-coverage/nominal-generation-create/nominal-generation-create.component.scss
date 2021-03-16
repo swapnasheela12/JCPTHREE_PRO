@@ -3,16 +3,18 @@
 	height: calc(100% - 50px);
 	padding: 0 !important;
 	.card-content{
-		height: calc(100% - 91px);
+		height: calc(100% - 95px);
 		.mat-stepper-horizontal{
 			height: 100%;
-			overflow: auto;
+			.mat-horizontal-stepper-header-container {
+				width: 75%;
+			}
             .mat-horizontal-content-container{
+				height: calc(100% - 30px);
+				padding-left: 20px;
                 .mat-horizontal-stepper-content[aria-expanded="true"]{
                     height:100%;
                     .content-holder{
-                        height: calc(100% - 24px);
-						overflow: auto;
 						.link-budget {
 							.mat-radio-outer-circle {
 								border-color: #0078d7 !important;
@@ -60,6 +62,16 @@
 		}
 		.nominal-generation-flex-item {
 			padding-bottom: 1rem;
+			.title-project {
+				font-size: 12px;
+				font-family: 'Lato Regular';
+				line-height: 1.75;
+			}
+			.sub-title {
+				font-size: 14px;
+				font-family: 'Lato Medium';
+				line-height: 1.5;
+			}
 			.nominal-generation-title {
 				font-size: 15px;
 				font-family: Lato Bold;

@@ -1,0 +1,53 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>{{data.title}}</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content>
+        <mat-form-field class="search-input full-width" appearance="none">
+            <input matInput [formControl]="search">
+            <i class="search-icon zmdi zmdi-search"></i>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <div fxLayout="column" class="" style="height: 100%; overflow: auto;">
+            <div fxLayout="column wrap" fxLayoutAlign="space-evenly" class="mt20 mx15">
+                <mat-selection-list #completeProjectList (selectionChange)="onSelectionChange()" >
+                    <mat-list-option *ngFor="let shoe of searchInList|async" [value]="shoe"
+                    checkboxPosition="before">
+                        <div class="polygon-data" fxLayout="column">
+                            <div class="name-type" fxFlex="100" fxLayout="row">
+                                <div fxFlex="65">
+                                    <span class="location">{{shoe.location}}</span> : 
+                                    <span class="sapId">{{shoe.sapId}}</span>
+                                </div>
+                                <div class="name">
+                                    {{shoe.name}}
+                                </div>
+                            </div>
+                            <div class="outdoor-profile" fxFlex="100">
+                                Validation
+                            </div>
+                        <mat-divider></mat-divider>
+                        </div>
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="addToSourceProject()">Submit</button>
+        </div>
+    </div>
+</div>

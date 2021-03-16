@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GridCore, GridOptions } from 'ag-grid-community';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SharePopupComponent, SharePopupDialogModel } from 'src/app/core/components/commonPopup/share-popup/share-popup.component';
+import { NpCreatePopupComponent, NpCreatePopupDialogModel } from './np-create-popup/np-create-popup.component';
 export interface Card {
   area: string;
   place: string;
@@ -152,8 +153,13 @@ export class NominalCapacityComponent implements OnInit {
   dataSource: MatTableDataSource<Card> = new MatTableDataSource<Card>(DATA);
   summaryRoute: string;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, 
-    private router: Router, public dialog: MatDialog,) { }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef, 
+    private router: Router, 
+    public dialog: MatDialog,
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) { }
 
   ngOnInit(): void {
     this.layerRoute = PATHS[0].layersPage;
@@ -189,6 +195,16 @@ export class NominalCapacityComponent implements OnInit {
     });
   }
 
+  createPopup(): void {
+    const dialogData = new NpCreatePopupDialogModel();
+    const dialogRef = this.dialog.open(NpCreatePopupComponent, {
+      data: dialogData,  
+      width: '500px',
+      height: '200px',
+      panelClass: 'np-create-popup-dialog'
+    });
+  }
+
   asdasd(value) {
     console.log("jhghj")
     this.router.navigate(['/JCP/Layers']);
@@ -203,4 +219,14 @@ export class NominalCapacityComponent implements OnInit {
   toggleSearch() {
     this.show = !this.show;
   };
+
+  async redirectToNominalCapacityLayer() {
+    this.router.navigate([this.layerRoute]);
+    this.viewContainerRef.clear();
+    const { NominalCapacityLayerComponent } = await import('./../nominal-capacity/nominal-capacity-layer/nominal-capacity-layer.component');
+    let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
+      this.componentFactoryResolver.resolveComponentFactory(NominalCapacityLayerComponent)
+    );
+    nominalGenerationLandingPage.changeDetectorRef.detectChanges();
+  }
 }

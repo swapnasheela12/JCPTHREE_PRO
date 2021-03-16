@@ -46,7 +46,7 @@
                         <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
                         <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon icon-h-arw icon-ledger"></div>
                         <div class="name-node" style="margin-top: 9px;">
-                            <mat-checkbox id="{{node.name}}" class="checklist-leaf-node" *ngIf="nodeType !== 'Base Maps' && node.name != 'No data available'" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected" #activeCheckbox>
+                            <mat-checkbox id="{{node.name}}" [(ngModel)]="node.checked" class="checklist-leaf-node" *ngIf="nodeType !== 'Base Maps' && node.name != 'No data available'" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected" #activeCheckbox>
                                 <div isEllipsisActive="leftside-navigation" attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
                                 </div>
                             </mat-checkbox>
@@ -57,7 +57,7 @@
                                 No data available
                             </div>
                         </div>
-                        <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay (click)="openSettingsDialog(node, $event)">
+                        <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true && node.showSettings != false" #iconDisplay (click)="openSettingsDialog(node, $event)">
                         </mat-icon>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)" (mouseleave)="layersLevelHoverLeave(node, iconlayersZero)"

@@ -71,6 +71,22 @@ import { NcDeleteHeaderRendererComponent } from './nominal-capacity/create-task-
 import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule } from 'angular-highcharts';
+import { NpCreatePopupComponent } from './nominal-capacity/np-create-popup/np-create-popup.component';
+import { NominalValidationComponent } from './nominal-validation/nominal-validation.component';
+import { NominalValidationCreateComponent } from './nominal-validation/nominal-validation-create/nominal-validation-create.component';
+import { NominalCapacityLayerComponent } from './nominal-capacity/nominal-capacity-layer/nominal-capacity-layer.component';
+import { CompleteListPopupComponent } from './nominal-validation/complete-list-popup/complete-list-popup.component';
+import { CoveredAreaLayerComponent } from './nominal-capacity/layer/covered-area-layer/covered-area-layer.component';
+import { MacroLayerComponent } from './nominal-capacity/layer/macro-layer/macro-layer.component';
+import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-layer.component';
+import { NominalValidationAdditionallayerComponent } from './nominal-validation/nominal-validation-additionallayer/nominal-validation-additionallayer.component';
+import { NominalValidationSummaryComponent } from './nominal-validation/nominal-validation-summary/nominal-validation-summary.component';
+import { NominalValidationPerformanceSummaryComponent } from './nominal-validation/nominal-validation-performance-summary/nominal-validation-performance-summary.component';
+import { NominalValidationSiteDistributionSummaryComponent } from './nominal-validation/nominal-validation-site-distribution-summary/nominal-validation-site-distribution-summary.component';
+import { NominalValidationOptimizationSummaryComponent } from './nominal-validation/nominal-validation-optimization-summary/nominal-validation-optimization-summary.component';
+// import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
+// import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
+// import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +121,23 @@ import { ChartModule } from 'angular-highcharts';
     flagRenderComponent,
     MapHeaderViewComponent,
     NcDeleteHeaderRendererComponent,
-    NominalGenerationPerformanceSummaryComponent
+    NominalGenerationPerformanceSummaryComponent,
+    NpCreatePopupComponent,
+    NominalValidationComponent,
+    NominalValidationCreateComponent,
+    NominalCapacityLayerComponent,
+    CompleteListPopupComponent,
+    CoveredAreaLayerComponent,
+    MacroLayerComponent,
+    OdscLayerComponent,
+    NominalValidationAdditionallayerComponent,
+    NominalValidationSummaryComponent,
+    NominalValidationPerformanceSummaryComponent,
+    NominalValidationSiteDistributionSummaryComponent,
+    NominalValidationOptimizationSummaryComponent,
+    // QueryAdministrationPopupComponent,
+    // NcQueryAdministrationComponent,
+    // CreateQueryPageComponent
   ],
   imports: [
     CommonModule,
@@ -176,7 +208,8 @@ import { ChartModule } from 'angular-highcharts';
     flagRenderComponent],
   entryComponents : [
     NewAndSaveTemplatePopupComponent,
-    NominalGenerationLandingLayerComponent
+    NominalGenerationLandingLayerComponent,
+    NominalValidationAdditionallayerComponent
   ],
 })
 export class PlanningDeploymentModule { }

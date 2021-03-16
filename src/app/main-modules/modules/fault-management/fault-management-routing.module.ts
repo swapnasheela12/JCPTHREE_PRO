@@ -1,3 +1,4 @@
+import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActiveAlarmComponent } from './active-alarm/active-alarm.component';
@@ -8,10 +9,12 @@ import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 
 const routes: Routes = [
 
-     { path: "Active-Alarm", component: ActiveAlarmComponent},
-     { path: "Active-Library", component: ActiveLibraryComponent},
-    { path: "Add-Alarm", component: AddAlarmComponent}
+  { path: "Active-Alarm", component: ActiveAlarmComponent },
+  { path: "Active-Library", component: ActiveLibraryComponent },
+  { path: "Alarm-Summary", component: AlarmSummaryComponent },
+  { path: "Add-Alarm", component: AddAlarmComponent },
   
+
 ];
 
 @NgModule({

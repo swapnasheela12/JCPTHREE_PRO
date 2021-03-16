@@ -14,7 +14,8 @@
                         <span class="zmdi zmdi-close"></span>
                     </mat-icon>
                 </mat-form-field>
-                <button mat-raised-button class="submit-button create-button" color="primary" [matMenuTriggerFor]="createMenuList">Create</button>
+                 <button mat-raised-button class="submit-button create-button" (click)="createPopup()" color="primary">Create</button>
+                <!-- <button mat-raised-button class="submit-button create-button" color="primary" [matMenuTriggerFor]="createMenuList">Create</button>
                 <mat-menu #createMenuList="matMenu" class="nominal-capacity-menu-render" xPosition="before">
                     <button routerLink="/{{createRouteStrategy}}" mat-menu-item>
                         <span>Strategy</span>
@@ -25,7 +26,7 @@
                     <button mat-menu-item>
                         <span>Coverage</span>
                     </button>
-                </mat-menu>
+                </mat-menu> -->
             </div>
         </div>
     </div>
@@ -112,8 +113,8 @@
                                     </div>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                                    <button mat-icon-button>
-                                        <i routerLink="/{{layerRoute}}" style="color:#989898"
+                                    <button mat-icon-button (click)="redirectToNominalCapacityLayer()">
+                                        <i style="color:#989898"
                                             class="ic ic-layers-01"></i>
                                     </button>
                                     <button [matMenuTriggerFor]="cardMenu" mat-icon-button>
@@ -128,10 +129,13 @@
                                                 <span>Delete</span>
                                             </button>
                                             <button (click)="sharePopup()" mat-menu-item>
-                                                <span>Share</span>
+                                                <span>Share</span> 
                                             </button>
                                             <button mat-menu-item>
                                                 <span>Submit</span>
+                                            </button>
+                                            <button routerLink="/{{summaryRoute}}" mat-menu-item>
+                                                <span>Summary</span>
                                             </button>
                                         </div>
                                         <div *ngIf="item.status =='In Progress'">
@@ -141,7 +145,7 @@
                                             <button mat-menu-item>
                                                 <span>Abort</span>
                                             </button>
-                                            <button mat-menu-item>
+                                            <button (click)="sharePopup()" mat-menu-item>
                                                 <span>Share</span>
                                             </button>
                                         </div>
@@ -152,7 +156,7 @@
                                             <button mat-menu-item>
                                                 <span>Delete</span>
                                             </button>
-                                            <button mat-menu-item>
+                                            <button (click)="sharePopup()" mat-menu-item>
                                                 <span>Share</span>
                                             </button>
                                             <button mat-menu-item>

@@ -2,16 +2,32 @@
     <mat-card class="nominal-generation-create-mat-card mat-card">
         <mat-card-content class="card-content">
             <div class="d-flex mx-2 flex-row justify-content-between">
+              <div class="px-1" style="line-height: 5.7;">
+                <button mat-icon-button *ngIf="showSelected" (click)="stepFunc()">
+                    <mat-icon class="iconType" style="font-size: 25px;">
+                        <div class="zmdi zmdi-chevron-left"></div>
+                    </mat-icon>
+                </button>
+                <button mat-icon-button *ngIf="!showSelected" (click)="backPageRout()">
+                    <mat-icon class="iconType" style="font-size: 25px;">
+                        <div class="zmdi zmdi-chevron-left"></div>
+                    </mat-icon>
+                </button>
+            </div>
                 <div class="px-3 pt-3 col-7 nominal-generation-flex-item" fxFlex>
                     <div class="py-3 nominal-generation-title">Create Coverage Planning</div>
                 </div>
                 <div class="px-1 pt-3 col-5 nominal-generation-flex-item">
-                        <mat-form-field class="form-field-container">
+                  <div class="pl-0" fxFlex *ngIf="!typeGenerate">
+                    <div class="title-project">Project Name</div>
+                    <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
+                  </div>
+                        <!-- <mat-form-field class="form-field-container">
                             <input matInput placeholder="Project Name" 
                                 [formControl]="projectDescriptionCtrl"
                                 [value]="projectDescriptionCtrl.value" 
                                 required>
-                          </mat-form-field>
+                          </mat-form-field> -->
                 </div>
             </div>
             <mat-divider style="position: relative;"></mat-divider>
@@ -21,153 +37,188 @@
                 (selectionChange)="selectNodeStepper($event)">
             <mat-step [stepControl]="selectBasicDetails">
                 <ng-template matStepLabel>Basic Details</ng-template>
-                  <div class="" style="overflow: auto;">
-                    <div style="padding-right: 15px;" fxFlex="50">
-                        <div fxLayout="row wrap">
-                            <ng-template ad-host></ng-template>
-                        </div>
-                        <div fxLayout="row wrap">
-                            <div class="p-2" fxFlex="100">
-                                <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedBoundaries">
-                                    <mat-radio-button fxFlex="50" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
-                                        {{ eachBoundaries }}
-                                    </mat-radio-button>
-                                </mat-radio-group>
-                            </div>
-                        </div>
-                        <form [formGroup]="selectJcCircleLevelFormControl">
-                            <div style="height: 330px;overflow: auto;">
-                                <div *ngIf="!showDiv" fxLayout="row wrap">
-                                    <div class="px-2" fxFlex="100">
-                                        <mat-form-field fxFlex="100" class="form-field-container">
-                                            <input matInput type="text">
-                                            <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                                                <mat-icon>search</mat-icon>
-                                            </button>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="px-2" fxFlex="50">
-                                        <mat-form-field fxFlex="100" class="form-field-container">
-                                            <mat-select disableOptionCentering placeholder="Zone" [(value)]="zoneType" required>
-                                                <mat-option value="West" selected>West</mat-option>
-                                                <mat-option value="South">South</mat-option>
-                                                <mat-option value="East">East</mat-option>
-                                                <mat-option value="North">North</mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="px-2" fxFlex="50">
-                                        <mat-form-field fxFlex="100">
-                                            <mat-select disableOptionCentering placeholder="Circle" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
-                                                <mat-option>
-                                                    <ngx-mat-select-search placeholderLabel="Circle" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                                    </ngx-mat-select-search>
-                                                </mat-option>
-                                                <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
-                                                    {{selectJc.name}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                <div class="" style="height: calc(100% - 58px);overflow: auto;">
 
-                                    <div class="px-2" fxFlex="50">
-                                        <mat-form-field fxFlex="100">
-                                            <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
-                                                <mat-option>
-                                                    <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                                    </ngx-mat-select-search>
-                                                </mat-option>
-                                                <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
-                                                    {{selectJc.name}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                  <div style="padding-right: 15px;" fxFlex="50">
+                      <div fxLayout="row wrap">
+                          <ng-template ad-host></ng-template>
+                      </div>
+                      <div fxLayout="row wrap">
+                          <div class="p-2" fxFlex="100">
+                              <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedBoundaries">
+                                  <mat-radio-button fxFlex="50" color="primary" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
+                                      {{ eachBoundaries }}
+                                  </mat-radio-button>
+                              </mat-radio-group>
+                          </div>
+                      </div>
+                      <form [formGroup]="selectJcCircleLevelFormControl">
+                          <div style="height: 290px;overflow: auto;">
+                              <div *ngIf="!showDiv" fxLayout="row wrap">
+                                  <div class="px-2" fxFlex="100">
+                                      <mat-form-field fxFlex="100" class="form-field-container">
+                                          <input matInput type="text">
+                                          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                                              <mat-icon>search</mat-icon>
+                                          </button>
+                                      </mat-form-field>
+                                  </div>
 
-                                    <div class="px-2" fxFlex="50">
-                                        <mat-form-field fxFlex="100">
-                                            <mat-select disableOptionCentering placeholder="Jio State" [formControl]="r4gCircleControl" ngDefaultControl #cityControlSelect>
-                                                <mat-option>
-                                                    <ngx-mat-select-search placeholderLabel="Jio State" [formControl]="r4gFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                                    </ngx-mat-select-search>
-                                                </mat-option>
-                                                <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
-                                                    {{r4gCircle.name}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                                  <div class="px-2" fxFlex="50">
+                                      <mat-form-field fxFlex="100" class="form-field-container">
+                                          <mat-select disableOptionCentering placeholder="Zone" (selectionChange)="zoneChangeFunc(zoneType)" [formControl]="zoneType" required>
+                                              <mat-option *ngFor="let item of zoneListArr" [value]="item" selected>{{item.name}}</mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                  </div>
 
-                                    <div class="px-2" fxFlex="50">
-                                        <mat-form-field fxFlex="100">
-                                            <mat-select (selectionChange)="render()" disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
-                                                <mat-option>
-                                                    <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
-                                                    </ngx-mat-select-search>
-                                                </mat-option>
-                                                <mat-option *ngFor="let city of cityFilter | async" [value]="city">
-                                                    {{city.name}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
+                                  <div class="px-2" fxFlex="50">
+                                      <mat-form-field fxFlex="100">
+                                          <mat-select disableOptionCentering placeholder="Circle" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                              <mat-option>
+                                                  <ngx-mat-select-search placeholderLabel="Circle" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                  </ngx-mat-select-search>
+                                              </mat-option>
+                                              <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                  {{selectJc.name}}
+                                              </mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                  </div>
 
-                                <div *ngIf="showDiv" fxLayout="row wrap">
-                                    <div class="cust-nominal-container">
-                                        <div fxLayout="row wrap" class="header-nominal-cust px-3">
-                                            <div fxFlex="30" class="title">Polygon Name</div>
-                                            <div fxFlex></div>
-                                            <div class="icon-container">
-                                                <button mat-icon-button (click)="openDialogSuccessful()">
-                                                    <mat-icon class="iconType">
-                                                        <div class="zmdi zmdi-edit"></div>
-                                                    </mat-icon>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="content-nominal-cust px-2">
-                                            <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsListPoly">
-                                                <mat-checkbox color="primary" [checked]="item.checked" (change)="polySelectedChange(item);" style="margin-bottom:0">
-                                                </mat-checkbox>
-                                                <div class="title-poly">{{item.name}}</div>
-                                                <div class="sub-title-poly">{{item.date}}</div>
-                                            </div>
-                                        </div>
+                                  <div class="px-2" fxFlex="50">
+                                      <mat-form-field fxFlex="100">
+                                          <mat-select disableOptionCentering placeholder="Jio State" [formControl]="r4gCircleControl" ngDefaultControl #cityControlSelect>
+                                              <mat-option>
+                                                  <ngx-mat-select-search placeholderLabel="Jio State" [formControl]="r4gFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                  </ngx-mat-select-search>
+                                              </mat-option>
+                                              <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
+                                                  {{r4gCircle.name}}
+                                              </mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                  </div>
 
-                                    </div>
-                                </div>
+                                  <div class="px-2" fxFlex="50">
+                                      <mat-form-field fxFlex="100">
+                                          <mat-select (selectionChange)="render(cityControl)" disableOptionCentering placeholder="Jio Center" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                              <mat-option>
+                                                  <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                  </ngx-mat-select-search>
+                                              </mat-option>
+                                              <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                                  {{city.name}}
+                                              </mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                  </div>
 
-                                <div fxLayout="row wrap">
-                                    <div class="px-2" fxFlex="100">
-                                        <mat-form-field class="p-0" fxFlex="100">
-                                            <mat-label>Project Description</mat-label>
-                                            <input 
-                                            [formControl]="projectDescriptionCtrl"
-                                             matInput placeholder="Description" 
-                                             [value]="projectDescriptionCtrl.value" 
-                                             required style="line-height: 7px !important">
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div fxFlex="50">
-                        <div id="map4"></div>
-                    </div>
-                </div>
-                <div class="d-flex">
-                  <div class="p-2">
-                    <button class="next-button button"  mat-raised-button color="primary"
-                      matStepperNext>Next</button>
+                                  <div class="px-2" fxFlex="50">
+                                      <mat-form-field fxFlex="100">
+                                          <mat-select disableOptionCentering placeholder="City" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                              <mat-option>
+                                                  <ngx-mat-select-search placeholderLabel="City" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                  </ngx-mat-select-search>
+                                              </mat-option>
+                                              <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                  {{selectJc.name}}
+                                              </mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                  </div>
+
+
+                              </div>
+
+                              <div *ngIf="showDiv" fxLayout="row wrap">
+                                  <div class="cust-nominal-container">
+                                      <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                          <div fxFlex="30" class="title">Polygon Name</div>
+                                          <div fxFlex></div>
+                                          <div class="icon-container">
+                                              <button mat-icon-button (click)="openDialogSuccessful()">
+                                                  <mat-icon class="iconType">
+                                                      <div class="zmdi zmdi-edit"></div>
+                                                  </mat-icon>
+                                              </button>
+                                          </div>
+                                      </div>
+                                      <div class="content-nominal-cust px-2" style="height: 155px;">
+                                          <div class="content-nominal-cust-row" fxLayout="row wrap" *ngFor="let item of itemsListPoly">
+                                              <mat-checkbox color="primary" [checked]="item.checked" (change)="polySelectedChange(item);" style="margin-bottom:0">
+                                              </mat-checkbox>
+                                              <div class="title-poly">{{item.name}}</div>
+                                              <div class="sub-title-poly">{{item.date}}</div>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                              <div fxLayout="row wrap">
+                                  <div class="px-2" fxFlex="100">
+                                      <mat-form-field class="p-0" fxFlex="100">
+                                          <mat-label>Project Description</mat-label>
+                                          <input [formControl]="projectDescriptionCtrl" matInput placeholder="Description" required style="line-height: 7px !important">
+                                      </mat-form-field>
+                                  </div>
+                                  <!-- <div class="px-2" fxFlex="25">
+                                      <button class="next-button button" matStepperNext mat-raised-button color="primary">Next</button>
+                                  </div> -->
+                              </div>
+
+
+                          </div>
+                          <!-- <div fxLayout="row wrap" *ngIf="showDiv">
+                              <div fxLayout="row wrap" style="height:200px">
+                                  <div class="header-nominal-cust">
+                                      <div class="title">Polygon Name</div>
+                                  </div>
+
+                              </div>
+                          </div> -->
+                          <!-- <div fxLayout="row wrap">
+                              <div class="px-2" fxFlex="100">
+                                  <mat-form-field class="p-0" fxFlex="100">
+                                      <mat-label>Project Description</mat-label>
+                                      <input [formControl]="projectDescriptionCtrl" matInput placeholder="Description" required style="line-height: 7px !important">
+                                  </mat-form-field>
+                              </div>
+                              <div class="px-2" fxFlex="25">
+                                  <button class="next-button button" mat-raised-button color="primary">Next</button>
+                              </div>
+                          </div> -->
+
+                      </form>
                   </div>
-                  <div class="col"></div>
-                </div>
+                  <div fxFlex="50">
+                      <div id="map4"></div>
+                  </div>
+
+              </div>
+              <mat-divider></mat-divider>
+              <div fxLayout="row" fxLayoutAlign="space-around center">
+                  <div class="p-2">
+                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Back</button>
+                  </div>
+                  <div fxFlex></div>
+                  <div class="p-2">
+                      <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+                  </div>
+                  <div class="p-2">
+                      <button class="next-button button" matStepperNext mat-raised-button color="primary">Next</button>
+                      <!-- <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Save?</button> -->
+                  </div>
+                  <!-- <div class="p-2">
+                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext [disabled]="typeGenerate">Generate</button>
+                  </div> -->
+
+              </div>
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Site Selection</ng-template>
-                <div>
+                <div style="height: calc(100% - 63px);overflow: auto;">
                   <div style="padding-right: 15px;" fxFlex="70">
                       <div fxLayout="row wrap">
                           <ng-template ad-host></ng-template>
@@ -313,7 +364,7 @@
             </mat-step>
             <mat-step [stepControl]="selectCellRadius">
                 <ng-template matStepLabel>Cell Radius</ng-template>
-                <div class="content-holder">
+                <div class="content-holder" style="height: calc(100% - 63px);overflow: auto;">
                   <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(ngModel)]="selectedRadioCell">
                     <mat-radio-button *ngFor="let type of radioListCell;trackBy:trackByRadioButtonType" class="mr-4 {{type.class}}" [value]="type.name"
                       [disableRipple]="true">

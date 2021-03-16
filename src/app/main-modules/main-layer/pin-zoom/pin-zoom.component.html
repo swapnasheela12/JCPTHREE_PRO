@@ -65,6 +65,23 @@
                     </mat-select>
                   </mat-form-field>
             </div>
+            <div style="margin-top: 10px;" *ngIf = "layerRepresent == 'nominal-validation-layer'">
+                <label style="margin-left: 15px;">Add To</label>
+                <div class="check-selection" style="margin-left: 5px;">
+                    <mat-checkbox class="example-margin" formControlName="TargetSites">Target Sites for ACP</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="sitesCoverage">Sites To be Considered for ACP</mat-checkbox>
+                </div>
+
+                <mat-form-field class="example-full-width col-12">
+                    <mat-label>Select Site Template</mat-label>
+                    <mat-select placeholder="Select Site Template" formControlName="selectSiteTemplate" disableOptionCentering
+                      disableOptionCentering ngDefaultControl>
+                      <mat-option *ngFor="let siteTemplate of siteTemplateList" [value]="siteTemplate.name">
+                        {{siteTemplate.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
 
         </div>
 

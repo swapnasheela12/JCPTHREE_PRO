@@ -1,0 +1,78 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "PAN India",
+        "JCID": "JC01",
+        "Type": "SA",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "13"
+    },
+    {
+        "CreatedDate": "15 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC02",
+        "Type": "NSA",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "0"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Bihar",
+        "JCID": "JC03",
+        "Type": "Performance D",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "7"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Assam",
+        "JCID": "JC04",
+        "Type": "Overall",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "10"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Andhra Pradesh",
+        "JCID": "JC05",
+        "Type": "SA",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "0"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Delhi",
+        "JCID": "JC06",
+        "Type": "NSA",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "7"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Goa",
+        "JCID": "JC08",
+        "Type": "Overall",
+        "Hrs4-8": "22",
+        "Hrs8-12": "22",
+        "Hrs12-24": "22",
+        "Hrs>24": "22",
+        "Hrs0-4": "7"
+    }
+]

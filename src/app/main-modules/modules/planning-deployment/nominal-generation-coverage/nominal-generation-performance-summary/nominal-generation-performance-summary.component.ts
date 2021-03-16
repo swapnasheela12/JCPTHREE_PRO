@@ -38,6 +38,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
     "state": 'Maharashtra'
   };
   summaryOf = 'RSRP';
+  type = 'generation'
   selectedIndex = 3;
   pdfChartSpline: Highcharts.Chart;
   cdfChartSpline: Highcharts.Chart;
@@ -257,6 +258,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
     this.data = history.state.data;
     if ('undefined' != this.data['row']) {
       this.summaryOf = this.data['row'].display;
+      this.type = this.data['type'];
     }
     this.processPerformanceLevel();
     this.processPerformancePercentile();
@@ -815,7 +817,11 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
 
 
   async backToSummary() {
-    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Summary']);
+    if (this.type == 'validation') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    } else {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Summary']);
+    }
   }
 
   async displayNominalGenerationLayers() {

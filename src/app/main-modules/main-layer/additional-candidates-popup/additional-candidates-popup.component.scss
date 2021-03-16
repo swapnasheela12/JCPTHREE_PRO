@@ -37,10 +37,18 @@ $white: #ffffff;
         border-radius: 0;
         height: calc(100% - 226px);
         padding: 0px 0px 16px 0px !important;
+        // margin-left: 286px;
         .vertical-dot-align {
             display:flex;
             justify-content:center;
             align-items:center;
+            border: none !important;
+        }
+        .notShowHeader {
+            display: none;
+        }
+
+        .ag-pinned-right-header {
             border: none !important;
         }
         .input-search {
@@ -58,4 +66,11 @@ $white: #ffffff;
             top:15%;
         }
     }
+}
+
+.site-proposed-table-edit {
+    margin-left: 286px;
+}
+.site-proposed-table-view {
+    margin-left: 286px;
 }

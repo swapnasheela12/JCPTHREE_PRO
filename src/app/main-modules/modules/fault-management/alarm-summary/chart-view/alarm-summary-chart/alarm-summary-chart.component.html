@@ -1,0 +1,15 @@
+<div *ngIf="parentDataGet =='Active Alarm Classification'">
+    <div id="panindiachartID" [chart]="panindiachart"></div>
+</div>
+<div *ngIf="parentDataGet =='Active Alarm Ageing'">
+    <div id="activeAlarmAgingID" [chart]="activeAlarmAgingChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Circles wise SA Active Alarms with Ageing distribution'">
+    <div id="kpiDetailsChartID" [chart]="circleWiseAlarmsChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Alarms vs Outage Minutes'">
+    <div id="kpiDetailsChartID" [chart]="alarmsOutageMinutesChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Sites with > 24Hr Outage'">
+    <div id="dailyTrafficChartID" [chart]="sitesWithChart"></div>
+</div>

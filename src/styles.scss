@@ -96,11 +96,10 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 // * {
 //   font-family: 'Lato Regular', 'Lato Bold' !important;
 // }
-.ss{
+.ss {
     height: 100%;
     width: 100%;
 }
-
 
 html,
 body {
@@ -127,7 +126,6 @@ $color-white: #ffffff;
 //     position: static;
 //     height: 90% !important;
 // }
-
 .mat-menu-panel.notifications-dropdown {
     // background-color: red;
     max-width: none;
@@ -1611,9 +1609,9 @@ table {
                 .ag-root-wrapper-body {
                     .ag-root {
                         .ag-header {
-                            > div {
+                            >div {
                                 .ag-header-row {
-                                    > .ag-header-cell {
+                                    >.ag-header-cell {
                                         .ag-cell-label-container {
                                             .ag-header-cell-label {
                                                 .ag-header-cell-text {
@@ -1654,6 +1652,7 @@ table {
     vertical-align: middle;
     margin-top: 0px;
 }
+
 ///////////////////@extend.
 .status-bar {
     display: inline-block;
@@ -1701,8 +1700,6 @@ svg {
 // .ag-theme-material .ag-header{
 //     background-color: #EAECEC;
 // }
-
-
 .redFont {
     color: red!important;
 }
@@ -1711,13 +1708,12 @@ svg {
     color: green!important;
 }
 
+.material-dialog-container .mat-dialog-container {
+    overflow: hidden;
+}
 
-.material-dialog-container .mat-dialog-container{
-       overflow: hidden;
-   }
-
-.overview-wrapper{
-    carousel{
+.overview-wrapper {
+    carousel {
         .carousel-inner {
             height: 57vh !important;
         }
@@ -1726,18 +1722,18 @@ svg {
         .carousel-multi-item {
             .controls-top {
                 height: 0px;
-                > a:first-child {
-                    color: rgba(0,0,0,.46);
+                >a:first-child {
+                    color: rgba(0, 0, 0, .46);
                     position: relative;
                     top: 29px;
                     left: 16px;
                     font-size: 20px;
                     padding: 24px 2px;
-                    border: 1px solid rgba(0,0,0,.1);
+                    border: 1px solid rgba(0, 0, 0, .1);
                     z-index: 1;
                     background-color: #f2f2f2;
                 }
-                > a:last-child {
+                >a:last-child {
                     right: 12px;
                     bottom: 11px;
                     color: rgba(0, 0, 0, 0.46);
@@ -1758,31 +1754,31 @@ svg {
                 width: 85%;
                 height: 100%;
                 left: 43px;
-                > mdb-carousel-item {
+                >mdb-carousel-item {
                     .col-md-4 {
                         mdb-card {
                             mdb-card-body {
                                 padding: 5px 15px;
-                                > div {
+                                >div {
                                     width: 100%;
                                     text-overflow: ellipsis;
                                     overflow: hidden;
                                     white-space: nowrap;
                                 }
-                               
                             }
                         }
                     }
                 }
             }
         }
-     }
-    carousel{
+    }
+    carousel {
         .carousel {
             height: 100% !important;
             .carousel-inner {
                 > slide {
                     height: 100% !important;
+                >slide {
                     .active {
                         width: 100%;
                     }
@@ -1791,10 +1787,10 @@ svg {
         }
     }
 }
+
 // svg {
 //     display: none !important;
 // }
-
 .properties-container {
     svg {
         display: inline-block !important;
@@ -1805,18 +1801,17 @@ svg {
         text {
             font-size: 11px;
         }
-        > g:first-child {
+        >g:first-child {
             text {
                 transform: rotate(-54deg);
-                transform-origin: 42% -23%; 
+                transform-origin: 42% -23%;
             }
         }
-        > g:last-child {
+        >g:last-child {
             text {
                 transform: rotate(62deg);
                 transform-origin: -37% -19%;
             }
-            
         }
     }
 }
@@ -1842,7 +1837,7 @@ ag-grid-angular {
                         .mat-tab-labels {
                             .mat-tab-label {
                                 .mat-tab-label-content {
-                                    color: rgba(0,0,0,0.54);
+                                    color: rgba(0, 0, 0, 0.54);
                                 }
                             }
                         }
@@ -1881,18 +1876,15 @@ ag-grid-angular {
 //                                         .ag-cell-label-container {
 //                                             .ag-header-cell-label {
 // }
-
-
 //// change icon of tree grid
 :host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
     content: "\f13a"!important;
     font-family: "Font Awesome 5 Free";
-
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;
-    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
-
+    z-index: -1;
+    /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 }
 
 :host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
@@ -1901,16 +1893,16 @@ ag-grid-angular {
     color: #0078d7;
     font-size: 15px;
     font-weight: 900;
-    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+    z-index: -1;
+    /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
 }
-
 
 :host ::ng-deep .mat-card.twamp-ag-grid {
     height: 400px;
     overflow: scroll!important;
 }
 
-ag-grid-angular{
+ag-grid-angular {
     .ag-root-wrapper {
         .ag-root-wrapper-body {
             .ag-root {
@@ -1951,6 +1943,7 @@ carousel{
 .cursor-pointer{
     cursor: pointer;
 }
+
 #chartID {
     overflow-y: hidden !important;
     overflow: auto !important;
@@ -1967,4 +1960,4 @@ carousel{
     line-height: 2;
     border-radius: 5px;
 }
-    
+}

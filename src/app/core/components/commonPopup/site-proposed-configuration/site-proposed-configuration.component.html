@@ -32,33 +32,37 @@
                     <ng-container matColumnDef="azimuth">
                         <th mat-header-cell *matHeaderCellDef > Azimuth </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-form-field floatLabel="never" class="mat-form-datasite">
-                                <input matInput [value]="element.azimuth">
+                            <mat-form-field *ngIf="mode =='edit'" floatLabel="never" class="mat-form-datasite">
+                                <input matInput [value]="element.azimuth"/>
                             </mat-form-field>
+                            <span *ngIf="mode == 'view'">{{element.azimuth}}</span>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="height">
                         <th mat-header-cell *matHeaderCellDef > Height </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-form-field floatLabel="never" class="mat-form-datasite">
-                                <input matInput [value]="element.height">
+                            <mat-form-field  *ngIf="mode =='edit'" floatLabel="never" class="mat-form-datasite">
+                                <input matInput [value]="element.height"/>
                             </mat-form-field>
+                            <span *ngIf="mode == 'view'">{{element.height}}</span>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="power">
                         <th mat-header-cell *matHeaderCellDef > Power </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-form-field floatLabel="never" class="mat-form-datasite">
-                                <input matInput  [value]="element.power">
+                            <mat-form-field *ngIf="mode =='edit'" floatLabel="never" class="mat-form-datasite">
+                                <input matInput [value]="element.power"/>
                             </mat-form-field>
+                            <span *ngIf="mode == 'view'">{{element.power}}</span>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="tilt">
                         <th mat-header-cell *matHeaderCellDef > Tilt </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-form-field floatLabel="never" class="mat-form-datasite">
-                                <input matInput [value]="element.tilt">
+                            <mat-form-field  *ngIf="mode =='edit'" floatLabel="never" class="mat-form-datasite">
+                                <input matInput [value]="element.tilt"/>
                             </mat-form-field>
+                            <span *ngIf="mode == 'view'">{{element.tilt}}</span>
                         </td>
                     </ng-container>
                     

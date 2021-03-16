@@ -71,9 +71,13 @@ import { CoreModule } from 'src/app/core/core.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ThreeDotP2BRenderer } from './renderer/threedot-p2b-renderer.component';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
+import { NpQueryAdministrationComponent } from './module-management/nominal-planning/np-query-administration/np-query-administration.component';
+import { CreateQueryPageComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/create-query-page.component';
+// import { QueryAdministrationPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/query-administration-popup.component';
+import { NpQueryThreeDotRendererComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/np-query-three-dot-renderer/np-query-three-dot-renderer.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer],
+  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, NpQueryThreeDotRendererComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -84,7 +88,7 @@ import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/
        conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent,
        createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent,
         DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent, inputRendererComponent,
-        ThreeDotP2BRenderer]),
+        ThreeDotP2BRenderer, NpQueryThreeDotRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
@@ -134,7 +138,10 @@ import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/
     PortalModule,
     ScrollingModule,
     NgxMatSelectSearchModule
-  ]
+  ],
+  exports: [
+    NpQueryThreeDotRendererComponent
+  ],
 })
 export class AdministrationModule { }
 

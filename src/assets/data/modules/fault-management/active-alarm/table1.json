@@ -1,0 +1,50 @@
+[{
+        "SrNo": "1",
+        "Circle": "PAN India",
+        "SA": "8052",
+        "PerformanceDegrading": "18798",
+        "NSA": "18798"
+    },
+    {
+        "SrNo": "2",
+        "Circle": "Mumbai",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    },
+    {
+        "SrNo": "3",
+        "Circle": "Bihar",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "SrNo": "4",
+        "Circle": "Assam",
+        "SA": "8052",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    },
+    {
+        "SrNo": "5",
+        "Circle": "Andhra Pradesh",
+        "SA": "9867",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "SrNo": "6",
+        "Circle": "Delhi",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "SrNo": "7",
+        "Circle": "Goa",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    }
+]
