@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, OnDestroy, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSidenav } from '@angular/material/sidenav';
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
@@ -8,13 +8,18 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { AssignTaskComponent } from './assign-task/assign-task.component';
-import { RejectTaskComponent } from './reject-task/reject-task.component';
+import { AssignTaskComponent } from '../assign-task/assign-task.component';
+import { RejectTaskComponent } from '../reject-task/reject-task.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { ILabelValue } from 'src/app/main-modules/work-orders/rf-oc-workorders/Irf-oc';
 import { CreateReportComponent } from 'src/app/main-modules/reports-dashboards/reports-wizard/create-report/create-report.component';
 import { CommentHighlightFieldDirective } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.directive';
 import { CommentHighlightFieldComponent } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.component';
+import { UploadedFileViewerComponent } from '../uploaded-file-viewer/uploaded-file-viewer.component';
+import { RejectFormComponent } from '../reject-form/reject-form.component';
+import { TaskAssignmentComponent } from '../task-assignment/task-assignment.component';
+import { HoldSiteComponent } from '../hold-site/hold-site.component';
+import { HoldDuringConstructionComponent } from '../hold-during-construction/hold-during-construction.component';
 
 @Component({
   selector: 'app-sap-id-details',
@@ -39,7 +44,7 @@ export class SapIdDetailsComponent implements OnDestroy {
   public formControlPageCount = new FormControl();
   public gridFilterValueServices = {};
   public showGlobalOperation: boolean = true;
-  assignTaskStatus: boolean = false;
+  assignTaskStatus: boolean = true;
   hideAction: boolean = true;
   woHeader: Array<any> = [
     {
@@ -85,178 +90,608 @@ export class SapIdDetailsComponent implements OnDestroy {
     {
       "label": "Circle",
       "value": "Mumbai"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 1,
+    },
     {
       "label": "Site Name",
       "value": "I-MU-MUMB-ENB-4505"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 2,
+    },
     {
       "label": "Site ID",
       "value": "MU-NVMB-JC24-0024"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 3,
+    },
     {
       "label": "Priority",
       "value": "P1"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 4,
+    },
     {
       "label": "Date of Survey",
       "value": "10 Oct 2020"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 5,
+    },
     {
       "label": "Any Obstruction",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 6,
+    },
     {
       "label": "Coordinates (Longitude)",
       "value": "78.852402"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 7,
+    },
     {
       "label": "Coordinates (Latitude)",
       "value": "21.269661"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 8,
+    },
     {
       "label": "Azimuth and height Details",
       "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
-    ,"type": "input" },
+      , "type": "input",
+      "id": 9,
+    },
     {
       "label": "Restricted area like Hospital, Airport, School(with in 100m)",
       "value": "No"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 10,
+    },
     {
       "label": "Site Address",
       "value": "TC-23 RELIANCE CORPORATE PARK PHASE IV A- WING GATE NO A GHANSOLI 400701"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 11,
+    },
     {
       "label": "Any Structure/Rooftop/Ground/Flyover within 20m distance",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 12,
+    },
     {
       "label": "No. of Operators",
       "value": "2"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 13,
+    },
     {
       "label": "Any other operator on same building",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 14,
+    },
     {
       "label": "No. Of Floors",
       "value": "15"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 15,
+    },
     {
       "label": "Tower/Pole Height (In Meters)",
       "value": "60"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 16,
+    },
     {
       "label": "GPS Picture",
       "value": "assets/images/layer-settings/Small.png"
-    ,"type": "image" },
+      , "type": "image",
+      "id": 17
+    },
     {
       "label": "Site Location Picture",
       "value": "assets/images/layer-settings/Small.png"
-    ,"type": "image" },
+      , "type": "image",
+      "id": 18
+    },
     {
       "label": "Proposed Azimuth",
       "value": "2"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 19,
+    },
     {
       "label": "Proposed Height (Meter)",
       "value": "60"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 20,
+    },
     {
       "label": "Antenna Type",
       "value": "Lorem Ipsum is simply dummy text"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 21,
+    },
     {
       "label": "Antenna Tilt",
       "value": "10"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 22,
+    },
     {
       "label": "Proposed Azimuth",
       "value": "2"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 23,
+    },
     {
       "label": "Proposed Height (Meter)",
       "value": "60"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 24,
+    },
     {
       "label": "Antenna Type",
       "value": "Lorem Ipsum is simply dummy text"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 25,
+    },
     {
       "label": "Antenna Tilt",
       "value": "10"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 26,
+    },
     {
       "label": "Proposed Azimuth",
       "value": "2"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 27,
+    },
     {
       "label": "Proposed Height (Meter)",
       "value": "60"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 28,
+    },
     {
       "label": "Antenna Type",
       "value": "Lorem Ipsum is simply dummy text"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 29,
+    },
     {
       "label": "Antenna Tilt",
       "value": "10"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 30,
+    },
     {
       "label": "Panoramic Photos (Degree)",
       "value": "360"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 31,
+    },
     {
       "label": "DG Space Availability Status",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 32,
+    },
     {
       "label": "OD/ID Space Status",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 33,
+    },
     {
       "label": "Battery Bank Space Available",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 34,
+    },
     {
       "label": "RF Agreed AGL (In Meters)",
       "value": "360"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 35,
+    },
     {
       "label": "Mount Required",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 36,
+    },
     {
       "label": "No. of Mounts req (If applicable)",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 37,
+    },
     {
       "label": "MW Antenna Height Given by Infra Check",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 38,
+    },
     {
       "label": "RF Agreed AGL (In Meters)",
       "value": "30"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 39,
+    },
     {
       "label": "Mount Required",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 40,
+    },
     {
       "label": "No. of Mounts req (If applicable)",
       "value": "Yes"
-    ,"type": "input" },
+      , "type": "input",
+      "id": 41,
+    },
     {
       "label": "MW Antenna Height Given by Infra Check",
       "value": "Yes"
-      ,"type": "input" },
+      , "type": "input",
+      "id": 42,
+    },
     {
       "label": "Nearby 5 Sites ID",
       "value": "I-MU-MUMB-ENB-4505"
-      ,"type": "input" }
+      , "type": "input",
+      "id": 43,
+    }
   ]
+  rejectedForm = [
+    {
+      "label": "Circle",
+      "value": "Mumbai"
+      , "type": "input",
+      "id": 1,
+      "addedComment": "qwee",
+      "editable": true
+    },
+    {
+      "label": "Site Name",
+      "value": "I-MU-MUMB-ENB-4505"
+      , "type": "input",
+      "id": 2,
+      "addedComment": "12345",
+      "editable": true
+    },
+    {
+      "label": "Site ID",
+      "value": "MU-NVMB-JC24-0024"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 3,
+    },
+    {
+      "label": "Priority",
+      "value": "P1"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 4,
+    },
+    {
+      "label": "Date of Survey",
+      "value": "10 Oct 2020"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 5,
+    },
+    {
+      "label": "Any Obstruction",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 6,
+    },
+    {
+      "label": "Coordinates (Longitude)",
+      "value": "78.852402"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 7,
+    },
+    {
+      "label": "Coordinates (Latitude)",
+      "value": "21.269661"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 8,
+    },
+    {
+      "label": "Azimuth and height Details",
+      "value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  "
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 9,
+    },
+    {
+      "label": "Restricted area like Hospital, Airport, School(with in 100m)",
+      "value": "No"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 10,
+    },
+    {
+      "label": "Site Address",
+      "value": "TC-23 RELIANCE CORPORATE PARK PHASE IV A- WING GATE NO A GHANSOLI 400701"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 11,
+    },
+    {
+      "label": "Any Structure/Rooftop/Ground/Flyover within 20m distance",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 12,
+    },
+    {
+      "label": "No. of Operators",
+      "value": "2"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 13,
+    },
+    {
+      "label": "Any other operator on same building",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 14,
+    },
+    {
+      "label": "No. Of Floors",
+      "value": "15"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 15,
+    },
+    {
+      "label": "Tower/Pole Height (In Meters)",
+      "value": "60"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 16,
+    },
+    {
+      "label": "GPS Picture",
+      "value": "assets/images/layer-settings/Small.png"
+      , "type": "image",
+      "addedComment": "",
+      "editable": false,
+      "id": 17
+    },
+    {
+      "label": "Site Location Picture",
+      "value": "assets/images/layer-settings/Small.png"
+      , "type": "image",
+      "addedComment": "",
+      "editable": false,
+      "id": 18
+    },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 19,
+    },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 20,
+    },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 21,
+    },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 22,
+    },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 23,
+    },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+      , "type": "input",
+      "id": 24,
+    },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+      , "type": "input",
+      "id": 25,
+    },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 26,
+    },
+    {
+      "label": "Proposed Azimuth",
+      "value": "2"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 27,
+    },
+    {
+      "label": "Proposed Height (Meter)",
+      "value": "60"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 28,
+    },
+    {
+      "label": "Antenna Type",
+      "value": "Lorem Ipsum is simply dummy text"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 29,
+    },
+    {
+      "label": "Antenna Tilt",
+      "value": "10"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 30,
+    },
+    {
+      "label": "Panoramic Photos (Degree)",
+      "value": "360"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 31,
+    },
+    {
+      "label": "DG Space Availability Status",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 32,
+    },
+    {
+      "label": "OD/ID Space Status",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 33,
+    },
+    {
+      "label": "Battery Bank Space Available",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 34,
+    },
+    {
+      "label": "RF Agreed AGL (In Meters)",
+      "value": "360"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 35,
+    },
+    {
+      "label": "Mount Required",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 36,
+    },
+    {
+      "label": "No. of Mounts req (If applicable)",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 37,
+    },
+    {
+      "label": "MW Antenna Height Given by Infra Check",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 38,
+    },
+    {
+      "label": "RF Agreed AGL (In Meters)",
+      "value": "30"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 39,
+    },
+    {
+      "label": "Mount Required",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 40,
+    },
+    {
+      "label": "No. of Mounts req (If applicable)",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 41,
+    },
+    {
+      "label": "MW Antenna Height Given by Infra Check",
+      "value": "Yes"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 42,
+    },
+    {
+      "label": "Nearby 5 Sites ID",
+      "value": "I-MU-MUMB-ENB-4505"
+      , "type": "input",
+      "addedComment": "",
+      "editable": false,
+      "id": 43,
+    }
+  ]
+  //rejectedForm = []
+  showRejectedForm: boolean = false;
 
-
+  editableData;
 
   priority = ["P1", "P2"]
   dateOfSurvey = ["10 Oct 2020", "10 Oct 2020"]
@@ -309,18 +744,166 @@ export class SapIdDetailsComponent implements OnDestroy {
     "I-MU-MUMB-ENB-4505",
     "I-MU-MUMB-ENB-4505"
   ];
-  approveTask= false;
+  approveTask = false;
   details;
-  @ViewChild('compRef', {  read: ViewContainerRef, static: true}) compRef: ViewContainerRef;
-   constructor(public dialog: MatDialog, private datashare: DataSharingService,
-     private router: Router, private httpClient: HttpClient, private cfr: ComponentFactoryResolver,
-     private vcr: ViewContainerRef) {
+  showFileUploadwidget: boolean = false;
+  uploadedImg = [];
+  showDownloadAndDeleteBtn: boolean = false;
+  taskInfo;
+  showAssignedTask: boolean = false;
+  showTaskToBeAccepted: boolean = false;
+  showTaskToBeAcceptedBtn: boolean = false;
+  showReassignTask: boolean = false;
+  showReassignFooterBtn: boolean = false;
+  showApproveRejectTask: boolean = false;
+  rejectCandidateForm: boolean = false;
+  showTaskCompletedAssign: boolean = false;
+  showApproveRejectUploadDownload: boolean = false;
+  showTaskCompletedUploadDownload: boolean = false;
+  showScenerioGTaskCompleted: boolean = false;
+  showScenerioHAll: boolean = false;
+  showScenerioIHold: boolean = false;
+
+  @ViewChild('compRef', { read: ViewContainerRef, static: true }) compRef: ViewContainerRef;
+
+
+  constructor(public dialog: MatDialog, private datashare: DataSharingService,
+    private router: Router, private httpClient: HttpClient, private cfr: ComponentFactoryResolver,
+    private vcr: ViewContainerRef) {
     router.events.subscribe();
-    this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
-      this.sidenavBarStatus = message;
-    });
+    // this.destroySubscription = this.datashare.currentMessage.subscribe((message: boolean) => {
+    //   this.sidenavBarStatus = message;
+    // });
+    this.datashare.currentMessage.subscribe((data: any) => {
+      console.log(data);
+      if (data === "RejectForm") {
+        this.showReassignTask = true;
+        this.assignTaskStatus = false;
+        console.log("rejectedForm", this.rejectedForm)
+      }
+      if (data.status) {
+        this.taskInfo = data;
+      }
+
+      this.showTaskScenerios();
+      if (data.id != "") {
+        this.editableData = data;
+        this.updateEditedField();
+      }
+
+      // if (data === "RejectForm") {
+      //   this.showRejectedForm = true;
+      //   
+      // }
+    })
     this.httpClient.get("assets/data/modules/network_deployment/gNodeB/registry.json").subscribe((data) => {
       this.details = data;
+    });
+
+    if (this.uploadedImg.length === 0) {
+      console.log("this.uploadedImg", this.uploadedImg)
+      this.showDownloadAndDeleteBtn = false;
+    } else {
+      console.log("this.uploadedImg", this.uploadedImg)
+      this.showDownloadAndDeleteBtn = true;
+    }
+
+  }
+
+  updateEditedField() {
+    // this.rejectedForm = this.sapIdMapping;
+    // if (this.editableData.id) {
+    //   this.rejectedForm[this.editableData.id - 1]["editable"] = this.editableData.isEditable;
+    //   this.rejectedForm[this.editableData.id - 1]["addedComment"] = this.editableData.addedComment;
+    // }
+    // console.log("sapMapping", this.rejectedForm)
+  }
+
+  showTaskScenerios() {
+    if (this.taskInfo.status === "New") {
+      console.log("elee", this.taskInfo);
+      this.showAssignedTask = true;
+      this.showTaskToBeAccepted = false;
+      this.showReassignTask = false;
+      this.showApproveRejectTask = false;
+    } else if (this.taskInfo.status === "Re-Assigned") {
+      this.showTaskToBeAccepted = true;
+      this.showAssignedTask = false;
+      this.showReassignTask = false;
+      this.showApproveRejectTask = false;
+    } else if (this.taskInfo.status === "In Progress") {
+      this.showReassignTask = true;
+      this.showTaskToBeAccepted = false;
+      this.showAssignedTask = false;
+      this.showApproveRejectTask = false;
+    } else if (this.taskInfo.status === "Completed") {
+      this.showApproveRejectTask = true;
+      this.showReassignTask = false;
+      this.showTaskToBeAccepted = false;
+      this.showAssignedTask = false;
+    } else if (this.taskInfo.status === "RFA to RFC") {
+      this.showTaskCompletedAssign = true;
+      this.showApproveRejectTask = false;
+      this.showReassignTask = false;
+      this.showTaskToBeAccepted = false;
+      this.showAssignedTask = false;
+    } else if (this.taskInfo.status === "Scenerio E") {
+      this.showApproveRejectUploadDownload = true;
+    } else if (this.taskInfo.status === "Scenerio F") {
+      this.showTaskCompletedUploadDownload = true;
+    } else if (this.taskInfo.status === "RFC TO RFI") {
+      this.showScenerioGTaskCompleted = true;
+    } else if (this.taskInfo.status === "RFC TO RFI Scenerio H") {
+      this.showScenerioHAll = true;
+    } else if (this.taskInfo.status === "Scenerio I") {
+      this.showScenerioIHold = true;
+    }
+  }
+
+
+  @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
+  @ViewChild("uploadedImage", { static: false }) uploadedImage;
+  fileName;
+  uploadFile(file) {
+    this.fileName = file.name;
+    const formData = new FormData();
+    formData.append('file', file);
+    let obj;
+    if (file) {
+      this.showFileUploadwidget = true;
+      let url = `../../../../../../assets/images/logo/${this.fileName}`
+      obj = {
+        src: url,
+        name: this.fileName
+      }
+      this.uploadedImg.push(obj);
+    }
+  }
+
+  deleteFile(evt) {
+    evt.target.parentElement.parentElement.parentElement.remove();
+  }
+
+  onClick() {
+    const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
+      const file = fileUpload.files[0];
+      this.files = file;
+      this.uploadFiles();
+    };
+    fileUpload.click();
+  }
+
+  private uploadFiles() {
+    this.fileUpload.nativeElement.value = '';
+    this.uploadFile(this.files);
+  }
+
+  openImagesSlider() {
+    this.dialog.open(UploadedFileViewerComponent, {
+      width: "700px",
+      height: "450px",
+      panelClass: "material-dialog-container",
+      data: this.uploadedImg
     });
   }
 
@@ -335,38 +918,54 @@ export class SapIdDetailsComponent implements OnDestroy {
     this.show = !this.show;
   };
 
-  assignTask() {
-    this.assignTaskStatus =  true;
-    this.hideAction = false;
-    // this.dialog.open(RejectTaskComponent, {
-    //   width: "470px",
-    //   height: "305px",
-    //   panelClass: "material-dialog-container"
-    // });
+  acceptTask() {
+    if (this.taskInfo.status === "New") {
+      this.showAssignedTask = true;
+      this.hideAction = false;
+    } else if (this.taskInfo.status === "Re-Assigned") {
+      this.showTaskToBeAccepted = true;
+      this.showTaskToBeAcceptedBtn = true;
+      this.showAssignedTask = false;
+      this.hideAction = false;
+    }
   }
 
-  acceptTask() {
+  assignTask() {
     const message = {
       message: `Task Completed successfully.`,
-      showMyTasks: true
+      showMyTasks: true,
+      task: "AssignTask"
     }
     this.dialog.open(AssignTaskComponent, {
+      width: "470px",
+      height: "395px",
+      panelClass: "material-dialog-container",
       data: message,
     });
   }
-  openSuccessPopup() { 
+
+  openSuccessPopup(type) {
+    let showMessage = "";
+    if (type === "submit") {
+      showMessage = "Task Submitted Successfully."
+    } else if (type === "approved") {
+      showMessage = "Task has been approved Successfully."
+    } else {
+      showMessage = "Task Completed Successfully";
+    }
     const message = {
-      message: `Task Completed successfully.`,
+      message: showMessage,
+      goToTask: 'ShowMyTask',
       showMyTasks: true
     }
     this.dialog.open(SuccessfulModalComponent, {
       data: message,
     });
-    this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details']);
+    // this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details']);
   }
 
   previous() {
-    this.assignTaskStatus =  false;
+    //this.assignTaskStatus = false;
     this.hideAction = true;
   }
 
@@ -378,7 +977,7 @@ export class SapIdDetailsComponent implements OnDestroy {
     this.dialog.open(SuccessfulModalComponent, {
       data: message,
     });
-    this.assignTaskStatus =  false;
+    //this.assignTaskStatus = false;
     this.hideAction = true;
   }
 
@@ -393,7 +992,7 @@ export class SapIdDetailsComponent implements OnDestroy {
   }
 
   onNoClick(): void {
-   // this.dialog.close();
+    // this.dialog.close();
   }
 
   clickGoMyReport(): void {
@@ -416,22 +1015,113 @@ export class SapIdDetailsComponent implements OnDestroy {
     });
   }
 
+  getElementState(evt) {
+    console.log(evt);
+  }
+
+  approvingTask() {
+    const message = {
+      message: `Task (Digital Form) has been re-assigned to the same user successfully.`,
+      goToTask: 'ShowMyTask',
+      showMyTasks: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
+  }
+
   reject() {
     const dialogRef = this.dialog.open(RejectTaskComponent, {
-      height: "378px",
+      height: "405px",
+      width: "550px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  rejectCandidate() {
+    this.hideAction = false;
+    this.rejectCandidateForm = true;
+  }
+
+  rejectDigitalForm() {
+    const dialogRef = this.dialog.open(RejectFormComponent, {
+      height: "280px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  reAssign() {
+    console.log("this.reassihgn", this.rejectedForm)
+    this.showReassignFooterBtn = true;
+  }
+
+  reAssignTask() {
+    const message = {
+      message: `Task (Digital Form) has been re-assigned to the same user successfully.`,
+      goToTask: 'ShowMyTask',
+      showMyTasks: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
+  }
+
+  holdSite() {
+    this.dialog.open(HoldSiteComponent, {
+      height: "287px",
+      width: "760px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  holdSiteDuringConstruction() {
+    this.dialog.open(HoldDuringConstructionComponent, {
+      height: "310px",
+      width: "500px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  assignExternalUser() {
+    const message = {
+      message: `Task Assigned successfully.`,
+      showMyTasks: true,
+      task: "AssignTaskExternal"
+    }
+    const dialogRef = this.dialog.open(AssignTaskComponent, {
+      height: "300px",
+      width: "500px",
+      panelClass: "material-dialog-container",
+      data: message,
+    });
+  }
+
+  openTaskCompletedPop() {
+    const dialogRef = this.dialog.open(TaskAssignmentComponent, {
+      height: "280px",
+      width: "500px",
       panelClass: "material-dialog-container",
     });
   }
 
   highlightMe() {
-    console.log(" vcr",  this.vcr);
+    console.log(" vcr", this.vcr);
     console.log("highlight", this.compRef)
     let nominalViewComponent = this.cfr.resolveComponentFactory(CommentHighlightFieldComponent);
     this.vcr.createComponent(nominalViewComponent);
   }
 
+  // onClick() {
+  //   const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
+  //     const file = fileUpload.files[0];
+  //     this.files.push({ data: file });
+  //     this.uploadFiles();
+  //   };
+  //   fileUpload.click();
+  // }
+
   closeDialog() {
-   // this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
   ngOnDestroy() {

@@ -126,7 +126,7 @@
         "maintenancePoint": "Jamnagar"
     },
     {
-        "status": "New",
+        "status": "RFA to RFC",
         "taskOwner": "rita@ril.com",
         "sapId": "I-G-J-PLPR-OSC-0004",
         "milestone": "ATP11A",
@@ -144,7 +144,7 @@
         "maintenancePoint": "Jamnagar"
     },
     {
-        "status": "New",
+        "status": "Scenerio E",
         "taskOwner": "rita@ril.com",
         "sapId": "I-G-J-PLPR-OSC-0004",
         "milestone": "ATP11A",
@@ -162,7 +162,7 @@
         "maintenancePoint": "Jamnagar"
     },
     {
-        "status": "New",
+        "status": "Scenerio F",
         "taskOwner": "rita@ril.com",
         "sapId": "I-G-J-PLPR-OSC-0004",
         "milestone": "ATP11A",
@@ -180,7 +180,7 @@
         "maintenancePoint": "Jamnagar"
     },
     {
-        "status": "New",
+        "status": "RFC TO RFI",
         "taskOwner": "rita@ril.com",
         "sapId": "I-G-J-PLPR-OSC-0004",
         "milestone": "ATP11A",
@@ -198,7 +198,43 @@
         "maintenancePoint": "Jamnagar"
     },
     {
-        "status": "New",
+        "status": "RFC TO RFI Scenerio H",
+        "taskOwner": "rita@ril.com",
+        "sapId": "I-G-J-PLPR-OSC-0004",
+        "milestone": "ATP11A",
+        "taskName": "Execute SCFT",
+        "taskDate": "14 Jan 2021",
+        "slaDays": "3",
+        "targetCompleteDate": "14 Jan 2021",
+        "actualCompleteDate": "14 Jan 2021",
+        "slaStatus": "Lorem Ipsum",
+        "slaBreach": "Lorem Ipsum",
+        "proposedCompletionDate": "2013-01-08",
+        "reason": "Lorem Ipsum is simply",
+        "remark": "Lorem Ipsum is simply",
+        "jioCenter": "GJ-JMGR-JC01-0299",
+        "maintenancePoint": "Jamnagar"
+    },
+    {
+        "status": "Scenerio I",
+        "taskOwner": "rita@ril.com",
+        "sapId": "I-G-J-PLPR-OSC-0004",
+        "milestone": "ATP11A",
+        "taskName": "Execute SCFT",
+        "taskDate": "14 Jan 2021",
+        "slaDays": "3",
+        "targetCompleteDate": "14 Jan 2021",
+        "actualCompleteDate": "14 Jan 2021",
+        "slaStatus": "Lorem Ipsum",
+        "slaBreach": "Lorem Ipsum",
+        "proposedCompletionDate": "2013-01-08",
+        "reason": "Lorem Ipsum is simply",
+        "remark": "Lorem Ipsum is simply",
+        "jioCenter": "GJ-JMGR-JC01-0299",
+        "maintenancePoint": "Jamnagar"
+    },
+    {
+        "status": "RFC TO RFI Scenerio H",
         "taskOwner": "rita@ril.com",
         "sapId": "I-G-J-PLPR-OSC-0004",
         "milestone": "ATP11A",

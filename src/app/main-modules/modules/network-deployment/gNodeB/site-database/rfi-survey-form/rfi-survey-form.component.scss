@@ -1,7 +1,6 @@
 
 .rfi-container {
-    height: 77vh;
-    overflow-x: auto;
+    height: 100%;
     .cards {
         margin: 20px;
         padding: 0 !important;
@@ -13,6 +12,16 @@
         }
     }
 }
+.rfi-form-type {
+    color: #1278D7;
+    font: normal normal medium 16px/19px Lato;
+    margin: 10px 0 0 20px;
+}
+.rfi-container-dialog {
+    height: 90%;
+    overflow-x: auto;
+}
+
 .wo-form-field-read {
     line-height: 2;
     .wo-form-input-title {

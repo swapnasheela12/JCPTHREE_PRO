@@ -1,0 +1,32 @@
+[
+    {
+        "taskName": "Commercial Request & Approval",
+        "taskOwner": "Rita.bobde@ril.com",
+        "reason": ""
+    },
+    {
+        "taskName": "LOI & DOCs by Legal Team",
+        "taskOwner": "Abhijeet.yadav@ril.com",
+        "reason": ""
+    },
+    {
+        "taskName": "Structural Survey Report & Approval",
+        "taskOwner": "Mandar.r.patil@ril.com",
+        "reason": ""
+    },
+    {
+        "taskName": "Legal Clearance Done",
+        "taskOwner": "Mandar.r.patil@ril.com",
+        "reason": ""
+    },
+    {
+        "taskName": "Local Body NOC Clearance",
+        "taskOwner": "Parul.shrivastav.com",
+        "reason": ""
+    },
+    {
+        "taskName": "Local Body NOC Clearance",
+        "taskOwner": "Aditi.kamath@ril.com",
+        "reason": ""
+    }
+]

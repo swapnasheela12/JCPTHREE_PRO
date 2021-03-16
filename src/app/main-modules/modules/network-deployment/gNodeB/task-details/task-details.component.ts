@@ -18,6 +18,7 @@ import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/
 import { DropDownRendererComponent } from './dropDown-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
+import { AssignTaskComponent } from './assign-task/assign-task.component';
 declare var $: any;
 
 @Component({
@@ -145,18 +146,18 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Task Owner",
         field: "taskOwner",
-        width: 200,
+        width: 170,
         pinned: "left"
       },
       {
         headerName: "SAP ID",
         field: "sapId",
-        width: 140,
+        width: 200,
       },
       {
         headerName: "Milestone",
         field: "milestone",
-        width: 140,
+        width: 180,
       },
       {
         headerName: "Task Name",
@@ -166,27 +167,27 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Task Assignment Date",
         field: "taskDate",
-        width: 140,
+        width: 180,
       },
       {
         headerName: "SLA Days",
         field: "slaDays",
-        width: 120,
+        width: 140,
       },
       {
         headerName: "Target Complete Date",
         field: "targetCompleteDate",
-        width: 130,
+        width: 240,
       },
       {
         headerName: "Actual Complete Date",
         field: "actualCompleteDate",
-        width: 160,
+        width: 240,
       },
       {
         headerName: "SLA Status",
         field: "slaStatus",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Proposed Completion Date",
@@ -204,19 +205,29 @@ export class TaskDetailsComponent implements OnInit {
         headerName: "Remark",
         field: "remark",
         cellRenderer: 'inputRenderer',
-        width: 180
+        width: 250
       },
       {
         headerName: "Jio Center",
         field: "jioCenter",
         width: 180
       },
+
       {
         headerName: "Maintenance Point",
         field: "maintenancePoint",
         width: 180,
         pinned: "right"
-      }
+      },
+      // {
+      //   headerName: "",
+      //   width: 130,
+      //   cellRenderer: params => {
+      //     console.log(params, "params");
+      //     return `<button mat-raised-button color="primary" class="save-btn">Save</button>`
+      //   },
+
+      // }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
   }
@@ -243,7 +254,7 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "SAP ID",
         field: "sapId",
-        width: 140,
+        width: 200,
       },
       {
         headerName: "Milestone",
@@ -258,7 +269,7 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Task Assignment Date",
         field: "taskDate",
-        width: 140,
+        width: 180,
       },
       {
         headerName: "SLA Days",
@@ -268,17 +279,17 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Target Complete Date",
         field: "targetCompleteDate",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Actual Complete Date",
         field: "actualCompleteDate",
-        width: 160,
+        width: 180,
       },
       {
         headerName: "SLA Status",
         field: "slaStatus",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Proposed Completion Date",
@@ -334,7 +345,7 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "SAP ID",
         field: "sapId",
-        width: 140,
+        width: 200,
       },
       {
         headerName: "Milestone",
@@ -349,27 +360,27 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Task Assignment Date",
         field: "taskDate",
-        width: 140,
+        width: 180,
       },
       {
         headerName: "SLA Days",
         field: "slaDays",
-        width: 120,
+        width: 140,
       },
       {
         headerName: "Target Complete Date",
         field: "targetCompleteDate",
-        width: 130,
+        width: 190,
       },
       {
         headerName: "Actual Complete Date",
         field: "actualCompleteDate",
-        width: 160,
+        width: 190,
       },
       {
         headerName: "SLA Status",
         field: "slaStatus",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Proposed Completion Date",
@@ -432,7 +443,7 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "SAP ID",
         field: "sapId",
-        width: 140,
+        width: 200,
       },
       {
         headerName: "Milestone",
@@ -457,17 +468,17 @@ export class TaskDetailsComponent implements OnInit {
       {
         headerName: "Target Complete Date",
         field: "targetCompleteDate",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Actual Complete Date",
         field: "actualCompleteDate",
-        width: 160,
+        width: 180,
       },
       {
         headerName: "SLA Status",
         field: "slaStatus",
-        width: 130,
+        width: 180,
       },
       {
         headerName: "Proposed Completion Date",
@@ -604,25 +615,31 @@ export class TaskDetailsComponent implements OnInit {
   onCellClicked(event: any) {
     console.log('cell', event);
     if (event.value) {
+      this.datashare.changeMessage({ status: event.data.status })
       this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
     }
   }
 
 
-  cellClickedDetails(evt) {
-    if (evt.value) {
-      this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
-    }
-  }
+  // cellClickedDetails(evt) {
+  //   if (evt.value) {
+  //     this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
+  //   }
+  // }
 
-  autoAssign() {
+  assign() {
     const message = {
       message: `Task Completed successfully.`,
-      showMyTasks: true
+      showMyTasks: true,
+      task: "AssignTask"
     }
-    this.dialog.open(SuccessfulModalComponent, {
+    this.dialog.open(AssignTaskComponent, {
+      width: "470px",
+      height: "395px",
+      panelClass: "material-dialog-container",
       data: message,
     });
+    //this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
   }
 
   ngOnDestroy() {

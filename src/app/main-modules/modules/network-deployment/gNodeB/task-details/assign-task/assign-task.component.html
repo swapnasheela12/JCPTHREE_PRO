@@ -1,0 +1,79 @@
+<div class="assign-task-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div *ngIf="data.task === 'AssignTask'" class="header">Assign Task</div>
+                <div *ngIf="data.task === 'AssignTaskExternal'" class="header">Assign Task ( External users only )</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content *ngIf="data.task === 'AssignTask'" style="height: 42vh;">
+        <div class="px-4 mat-con">
+            <div class="emp-label"> Select Employee Type</div>
+            <mat-radio-group aria-label="Select an option">
+                <!-- <mat-radio-button style="width: 50%" value="1" (change)="radioChange($event)">Ril Employee</mat-radio-button>
+                <mat-radio-button value="2" (change)="radioChange($event)">Others</mat-radio-button>
+             -->
+                <mat-radio-group name="opList" aria-label="Select an option">
+                    <mat-radio-button *ngFor="let op of listOfOptions" style="width: 50%" [checked]="op.checked"
+                        [value]="op.ID" name="opList" (change)="radioChange($event)">{{ op.name}}</mat-radio-button>
+                </mat-radio-group>
+            </mat-radio-group>
+        </div>
+        <div *ngIf="showEmp" class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Ril ID</mat-label>
+                <input matInput placeholder="" value="rita.bobde@ril.com">
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="showOther" class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="" value="9702123456">
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="showOther" class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Other ID</mat-label>
+                <input matInput placeholder="" value="rita.bobde@ril.com">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-content *ngIf="data.task === 'AssignTaskExternal'">
+        <div class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="" value="9702123456">
+            </mat-form-field>
+        </div>
+
+        <div class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Other ID</mat-label>
+                <input matInput placeholder="" value="rita.bobde@gmail.com">
+            </mat-form-field>
+        </div>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="mr-1 assign-text-button">
+            <button class=" assign-butt" (click)="clickYes()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Cancel</button>
+        </div>
+        <div class="ml-1 assign-text-button">
+            <button class=" assign-butt" (click)="assign()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Assign</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="assign-task-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div class="header">Task Assignment</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content>
+        <ag-grid-angular style="width: 100%; height: 160px;" class="ag-theme-material ag-jcp3" rowHeight="48"
+            headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+            enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+            toolPanelSuppressValues rowSelection="multiple" (gridReady)="onReady($event)"
+            [defaultColDef]="defaultColDef" (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)"
+            [frameworkComponents]="frameworkComponentsStatus">
+        </ag-grid-angular>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="mr-1 assign-text-button">
+            <button class=" assign-butt" (click)="cancel()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Cancel</button>
+        </div>
+        <div class="ml-1 assign-text-button">
+            <button class=" assign-butt" (click)="assignTask()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Submit</button>
+        </div>
+    </div>
+
+</div>
