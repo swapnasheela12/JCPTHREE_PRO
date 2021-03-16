@@ -16,7 +16,7 @@
                 <span class="zmdi zmdi-search"></span>
             </mat-icon>
             <mat-form-field *ngIf="showSearchInput" class="col-4">
-                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <!-- <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder=""> -->
                 <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                     <span class="zmdi zmdi-close"></span>
                 </mat-icon>

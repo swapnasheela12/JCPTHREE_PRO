@@ -79,6 +79,11 @@ import { CompleteListPopupComponent } from './nominal-validation/complete-list-p
 import { CoveredAreaLayerComponent } from './nominal-capacity/layer/covered-area-layer/covered-area-layer.component';
 import { MacroLayerComponent } from './nominal-capacity/layer/macro-layer/macro-layer.component';
 import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-layer.component';
+import { NominalValidationAdditionallayerComponent } from './nominal-validation/nominal-validation-additionallayer/nominal-validation-additionallayer.component';
+import { NominalValidationSummaryComponent } from './nominal-validation/nominal-validation-summary/nominal-validation-summary.component';
+import { NominalValidationPerformanceSummaryComponent } from './nominal-validation/nominal-validation-performance-summary/nominal-validation-performance-summary.component';
+import { NominalValidationSiteDistributionSummaryComponent } from './nominal-validation/nominal-validation-site-distribution-summary/nominal-validation-site-distribution-summary.component';
+import { NominalValidationOptimizationSummaryComponent } from './nominal-validation/nominal-validation-optimization-summary/nominal-validation-optimization-summary.component';
 // import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
 // import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 // import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
@@ -125,6 +130,11 @@ import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-lay
     CoveredAreaLayerComponent,
     MacroLayerComponent,
     OdscLayerComponent,
+    NominalValidationAdditionallayerComponent,
+    NominalValidationSummaryComponent,
+    NominalValidationPerformanceSummaryComponent,
+    NominalValidationSiteDistributionSummaryComponent,
+    NominalValidationOptimizationSummaryComponent,
     // QueryAdministrationPopupComponent,
     // NcQueryAdministrationComponent,
     // CreateQueryPageComponent
@@ -198,7 +208,8 @@ import { OdscLayerComponent } from './nominal-capacity/layer/odsc-layer/odsc-lay
     flagRenderComponent],
   entryComponents : [
     NewAndSaveTemplatePopupComponent,
-    NominalGenerationLandingLayerComponent
+    NominalGenerationLandingLayerComponent,
+    NominalValidationAdditionallayerComponent
   ],
 })
 export class PlanningDeploymentModule { }

@@ -12,6 +12,10 @@ import { NominalSiteDistributionSummaryComponent } from './nominal-generation-co
 import { NominalGenerationPerformanceSummaryComponent } from './nominal-generation-coverage/nominal-generation-performance-summary/nominal-generation-performance-summary.component';
 import { NominalValidationComponent } from './nominal-validation/nominal-validation.component';
 import { NominalValidationCreateComponent } from './nominal-validation/nominal-validation-create/nominal-validation-create.component';
+import { NominalValidationSummaryComponent } from './nominal-validation/nominal-validation-summary/nominal-validation-summary.component';
+import { NominalValidationPerformanceSummaryComponent } from './nominal-validation/nominal-validation-performance-summary/nominal-validation-performance-summary.component';
+import { NominalValidationOptimizationSummaryComponent } from './nominal-validation/nominal-validation-optimization-summary/nominal-validation-optimization-summary.component';
+import { NominalValidationSiteDistributionSummaryComponent } from './nominal-validation/nominal-validation-site-distribution-summary/nominal-validation-site-distribution-summary.component';
 
 
 const routes: Routes = [
@@ -39,6 +43,10 @@ const routes: Routes = [
   { path: 'Nominal-Validation', children: [
     { path:'', component: NominalValidationComponent },
     { path: 'Create', component: NominalValidationCreateComponent },
+    { path: 'Site-Distribution-Summary', component: NominalValidationSiteDistributionSummaryComponent },
+    { path: 'Performance-Summary', component: NominalValidationPerformanceSummaryComponent},
+    { path: 'Optimization-Summary', component: NominalValidationOptimizationSummaryComponent},
+    { path: 'Summary', component: NominalValidationSummaryComponent}
   ]}
 ];
 

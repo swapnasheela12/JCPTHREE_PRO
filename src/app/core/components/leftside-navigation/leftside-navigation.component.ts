@@ -29,7 +29,8 @@ export class SideNavNode {
   show0?: Boolean;
   showSettings?: Boolean;
   checked?: Boolean;
-  showHeader?: Boolean
+  showHeader?: Boolean;
+  headerText?: string;
 }
 
 class ExampleFlatNode {
@@ -107,7 +108,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       show0: node.show0,
       showSettings: node.showSettings,
       checked: node.checked,
-      showHeader: node.showHeader
+      showHeader: node.showHeader,
+      headerText: node.headerText
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -208,23 +210,31 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             let removedItems = dataChange.splice(0,0,data[0]);
             this.dataSource.data = [];
             this.dataSource.data = dataChange;
-            if(dataChange[0].children[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'){
-              console.log('NC'+dataChange[0].children[0].children[0].children[0])
+            if(dataChange[0].children[0].children[0].children[0] != undefined && 
+              (
+                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+              )){
               dataChange[0].children[0].children[0].children[0].checked = true;
               this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
-            } else if(dataChange[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].eventName == 'nominal-generation') {
-              console.log('NG'+dataChange[0].children[0].children[0])
+            } else if(
+              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')) {
               dataChange[0].children[0].children[0].checked = true;
               this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
             }
             this.dataSource.data = dataChange;
-            if(dataChange[0].children[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'){
-              console.log('NC1'+dataChange[0].children[0].children[0].children[0])
+            if(
+              dataChange[0].children[0].children[0].children[0] != undefined && 
+              (
+                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+              )){
               this.treeControl.expand(this.treeControl.dataNodes[0]);
               this.treeControl.expand(this.treeControl.dataNodes[1]);
               this.treeControl.expand(this.treeControl.dataNodes[2]);
-            } else if(dataChange[0].children[0].children[0] != undefined && dataChange[0].children[0].children[0].eventName == 'nominal-generation') {
-              console.log('NG1'+dataChange[0].children[0].children[0])
+            } else if(
+              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')
+              ) {
               this.treeControl.expand(this.treeControl.dataNodes[0]);
               this.treeControl.expand(this.treeControl.dataNodes[1]);
             }
@@ -479,6 +489,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
 
   newComponentRef;
   showHeaderDisplay(node, type) {
+    console.log(node);
     this.routePlannedLayerHeader.headerSapid = node.name;
     this.routePlannedLayerHeader.title = node.headerText;
     this.routePlannedLayerHeader.name = node.eventName;

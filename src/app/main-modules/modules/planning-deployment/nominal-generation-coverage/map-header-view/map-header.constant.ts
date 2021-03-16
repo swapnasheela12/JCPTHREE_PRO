@@ -33,6 +33,101 @@ const SITES_SITES_LIST_COVERAGE =[
     }
   ];
   
+  const SITES_SITES_LIST_VALIDATION = [
+    {
+      name: "Nominals",
+      icon: "fas fa-users fa-3",
+      link: "p1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    },
+    {
+      name: "Additional Candidates",
+      icon: "fas fa-users fa-3",
+      link: "rp1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    }
+  ];
+
+  const OPTIMIZATION_ONLY = [
+    {
+      name: "RSRP",
+      icon: "fas fa-users fa-3",
+      link: "p1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    },
+    {
+      name: "SINR",
+      icon: "fas fa-users fa-3",
+      link: "rp1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    }
+  ];
+
+  const SELECTION_MODE = [
+    {
+      name: "Nominals",
+      icon: "fas fa-users fa-3",
+      link: "p1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    },
+    {
+      name: "Additional Candidates",
+      icon: "fas fa-users fa-3",
+      link: "rp1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    }
+  ];
+
+  const OPTIMIZATION_SELECTION_MODE = [
+    {
+      name: "Nominals",
+      icon: "fas fa-users fa-3",
+      link: "p1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    },
+    {
+      name: "Additional Candidates",
+      icon: "fas fa-users fa-3",
+      link: "rp1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    }
+  ];
+
+  const SITES_PREDICTION_LAYERS_LIST_VALIDATION = [
+    {
+      name: "Nominals",
+      icon: "fas fa-users fa-3",
+      link: "p1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    },
+    {
+      name: "Additional Candidates",
+      icon: "fas fa-users fa-3",
+      link: "rp1",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: []
+    }
+  ];
+
   const SITES_PREDICTION_LAYERS_LIST_COVERAGE = [
     {
       name: "RSRP",
@@ -159,3 +254,49 @@ const SITES_SITES_LIST_COVERAGE =[
         classId: 'prediction-layer-border'
     }
   ];
+
+  export const VALIDATION_PLANNING = [
+    {
+      name: "Sites",
+      icon: "fas fa-users fa-3",
+      link: "Sites",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: SITES_SITES_LIST_VALIDATION
+    },
+    {
+      name: "Prediction Layers",
+      icon: "fas fa-users fa-3",
+      link: "Prediction-Layers",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: SITES_PREDICTION_LAYERS_LIST_VALIDATION,
+      classId: 'prediction-layer-border'
+    },
+    {
+      name: "Optimization Only",
+      icon: "fas fa-users fa-3",
+      link: "Sites",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: OPTIMIZATION_ONLY
+    },
+    {
+      name: "Selection Mode",
+      icon: "fas fa-users fa-3",
+      link: "Prediction-Layers",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: SELECTION_MODE,
+      classId: 'prediction-layer-border'
+    },
+    {
+      name: "Optimization + Selection",
+      icon: "fas fa-users fa-3",
+      link: "Prediction-Layers",
+      eventName: 'sites-outdoor-esc',
+      show:true,
+      children: OPTIMIZATION_SELECTION_MODE,
+      classId: 'prediction-layer-border'
+    }
+  ]

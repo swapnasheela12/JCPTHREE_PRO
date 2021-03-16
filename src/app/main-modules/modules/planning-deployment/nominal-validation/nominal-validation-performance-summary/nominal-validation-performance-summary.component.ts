@@ -26,12 +26,12 @@ export interface NominalGenerationPerformancePercentile {
 }
 
 @Component({
-  selector: 'app-nominal-generation-performance-summary',
-  templateUrl: './nominal-generation-performance-summary.component.html',
-  styleUrls: ['./nominal-generation-performance-summary.component.scss'],
+  selector: 'app-nominal-validation-performance-summary',
+  templateUrl: './nominal-validation-performance-summary.component.html',
+  styleUrls: ['./nominal-validation-performance-summary.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NominalGenerationPerformanceSummaryComponent implements OnInit {
+export class NominalValidationPerformanceSummaryComponent implements OnInit {
   nominalGenerationSummaryData = {
     "name": 'Maharashtra-NP-CV-121020_V1',
     "type": 'R4G',
@@ -249,6 +249,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
   displayedColumns: string[] = ['level', 'preArea', 'postArea', 'preSquareArea', 'postSquareArea'];
   displayedColumnsPercentile: string[] = ['percentileTitle', 'predbmTitle', 'postdbmTitle'];
   showSearchInput: boolean;
+  tab: any;
 
   constructor(
     private router: Router,
@@ -259,6 +260,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
     if ('undefined' != this.data['row']) {
       this.summaryOf = this.data['row'].display;
       this.type = this.data['type'];
+      this.tab = this.data['tab'];
     }
     this.processPerformanceLevel();
     this.processPerformancePercentile();
