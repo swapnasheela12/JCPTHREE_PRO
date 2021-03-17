@@ -204,7 +204,7 @@ export class LayerPatchPopupComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.data = this.settingData;
-    this.treeControl.expandAll()
+    // this.treeControl.expandAll()
     // this.treeControl.expand(this.treeControl.dataNodes[0]);
     // let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
     // this.treeControl.expand(this.treeControl.dataNodes[firstNodeDescendentLength+1]);
@@ -216,9 +216,9 @@ export class LayerPatchPopupComponent implements OnInit, AfterViewInit {
       template: this.layerPatchSettingsPopup
     }, {
       width: 287,
-      height: 500,
+      height: 405,
       backdropClass: '',
-      position: {'bottom': '2px','right':'0px'},
+      position: {'right':'10px'},
       disableClose: false,
       hasBackdrop: false,
       panelClass: "table-view-layers-dialog-container",

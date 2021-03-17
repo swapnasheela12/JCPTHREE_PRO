@@ -222,6 +222,7 @@ export class NominalCapacityComponent implements OnInit {
 
   async redirectToNominalCapacityLayer() {
     this.router.navigate([this.layerRoute]);
+    this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
     const { NominalCapacityLayerComponent } = await import('./../nominal-capacity/nominal-capacity-layer/nominal-capacity-layer.component');
     let nominalGenerationLandingPage = this.viewContainerRef.createComponent(

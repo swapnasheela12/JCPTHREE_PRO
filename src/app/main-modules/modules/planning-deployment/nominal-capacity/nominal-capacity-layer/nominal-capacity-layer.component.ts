@@ -75,64 +75,12 @@ export class NominalCapacityLayerComponent implements AfterViewInit, OnDestroy {
         headerText: ''
       }]
       this.dataShare.addExtraLayerDynamic(this.nominalGeneartionArray);
-    });
+    }).add(
+      ()=>{}
+    );
   }
 
   ngAfterViewInit() {
-    // $('#Layers').parent()[0].click();
-    // this.sub = this.http.get("assets/data/layers/nominal-capacity/nominal-capacity.json")
-    // .subscribe(data => {
-    //   for (let i=0; i<data['length']; i++) {
-    //     this.nominalArray.push(
-    //       {
-    //         name: data[i].capacityId,
-    //         eventName: 'nominal-capacity',
-    //         show:true,
-    //         link: 'nominal-capacity',
-    //         showSettings: false,
-    //         children: [],
-    //         showHeader: true,
-    //         checked: false,
-    //         headerText: 'Nominal Generation - Capacity Based 5G Planning'
-    //       }
-    //     )
-    //   }
-
-    //   const MY_PROJECTS_ARRAY_5G = [
-    //     {
-    //       name: "Capacity Based 5G planning",
-    //       eventName: 'nominal-capacity',
-    //       show:true,
-    //       link: 'nominal-capacity',
-    //       children: this.nominalArray,
-    //       checked: false,
-    //       headerText: ''
-    //     }
-    //   ]
-    //   const MY_PROJECTS_ARRAY = [
-    //     {
-    //       name: "Nominal Generation",
-    //       eventName: 'nominal-capacity',
-    //       show:true,
-    //       link: 'nominal-capacity',
-    //       children: MY_PROJECTS_ARRAY_5G,
-    //       checked: false,
-    //       headerText: ''
-    //     }
-    //   ]
-    //   this.nominalGeneartionArray = [{
-    //     name: "My Projects",
-    //     eventName: 'my-projects',
-    //     show:true,
-    //     link: 'my-projects',
-    //     children: MY_PROJECTS_ARRAY,
-    //     checked: false,
-    //     headerText: ''
-    //   }]
-    //   this.dataShare.addExtraLayerDynamic(this.nominalGeneartionArray);
-    // });
-
-    
     this.dataShare.layerNameFunc([{name: 'Back To Nominal Geneartion', source: 'display'}]);
   }
 

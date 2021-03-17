@@ -138,7 +138,9 @@ export class NominalGenerationLandingLayerComponent implements AfterViewInit, On
         headerText: ''
       }]
       this.dataShare.addExtraLayerDynamic(this.nominalGeneartionArray);
-    });
+    }).add(
+      ()=>{}
+    );;
 
     
     this.dataShare.layerNameFunc([{name: 'Back To Nominal Geneartion', source: 'display'}]);

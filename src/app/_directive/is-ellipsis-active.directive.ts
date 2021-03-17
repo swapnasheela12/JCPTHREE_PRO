@@ -68,7 +68,7 @@ export class isEllipsisActiveDirective implements AfterViewInit {
       if (this.name == 'trafficMap') {
         if (length > 40) {
           element.id = 'trafficMap';
-          element.style.width = "60%";
+          element.style.width = "100%";
           element.style.textOverflow = 'ellipsis';
         }
       }

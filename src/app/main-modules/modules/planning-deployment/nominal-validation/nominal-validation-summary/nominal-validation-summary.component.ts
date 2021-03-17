@@ -396,7 +396,7 @@ export class NominalValidationSummaryComponent implements OnInit {
     }
   
     openDistributionSummary(){
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary']);
+      // this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary']);
     }
   
     async openPerformanceSummary(row, type, tab) {

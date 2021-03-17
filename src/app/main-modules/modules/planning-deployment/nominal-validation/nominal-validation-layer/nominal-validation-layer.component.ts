@@ -63,7 +63,9 @@ export class NominalValidationLayerComponent implements AfterViewInit {
         headerText: ''
       }]
       this.dataShare.addExtraLayerDynamic(this.nominalValidationArray);
-    });
+    }).add(
+      ()=>{}
+    );
   }
 
 }
