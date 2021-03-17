@@ -38,12 +38,14 @@ export class FileUploadPopupComponent {
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
+      console.log("file", file)
       this.uploadFile(file);
     });
   }
   onClick() {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
+      console.log("file", file)
       this.files.push({ data: file });
       this.uploadFiles();
     };

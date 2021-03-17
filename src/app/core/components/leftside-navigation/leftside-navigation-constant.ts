@@ -2726,6 +2726,7 @@ const SITES_LIST = [
         icon: "fas fa-user fa-3",
         link: "onAir",
         eventName: 'sites-OnAir-esc',
+        headerText: '',
         children: SITES_OnAir_lIST
     },
     {
@@ -2733,6 +2734,7 @@ const SITES_LIST = [
         icon: "fas fa-user fa-3",
         link: "planned",
         eventName: 'sites-planned-esc',
+        headerText: '',
         children: SITES_Planned_lIST
     },
     {
@@ -2740,6 +2742,7 @@ const SITES_LIST = [
         icon: "fas fa-user fa-3",
         link: "nominal",
         eventName: 'sites-nominal-esc',
+        headerText: '',
         children: SITES_Nominal_lIST
     }
 ];
@@ -3853,7 +3856,6 @@ const MODULE_LIST_FAULT = [
         checked: false,
         showHeader: false,
         headerText: '',
-
         children: []
     },
     {
@@ -3862,14 +3864,16 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Fault-Management/Active-Alarm",
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: [],
+        headerText: '',
     },
     {
         name: "Alarm Summary",
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Fault-Management/Alarm-Summary",
         eventName: 'Modules-Fault-Management-Alarm-Summary',
-        children: []
+        children: [],
+        headerText: ''
     },
     {
 
@@ -3877,6 +3881,7 @@ const MODULE_LIST_FAULT = [
         icon: "fas fa-user fa-3",
         link: "JCP/Modules/Fault-Management/Active-Library",
         eventName: 'sites-outdoor-esc',
+        headerText: '',
         children: []
     }
 ];

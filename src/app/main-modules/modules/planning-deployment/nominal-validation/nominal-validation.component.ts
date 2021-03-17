@@ -181,12 +181,11 @@ export class NominalValidationComponent implements OnInit {
   async redirectToLayer() {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
-    const { NominalGenerationLandingLayerComponent } = await import('./../nominal-generation-coverage/nominal-generation-landing-layer/nominal-generation-landing-layer.component');
+    const { NominalValidationLayerComponent } = await import('./../nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
     let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
-      this.componentFactoryResolver.resolveComponentFactory(NominalGenerationLandingLayerComponent)
+      this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
     );
     nominalGenerationLandingPage.changeDetectorRef.detectChanges();
-    // this.changeDetectorRef.detectChanges();
   }
 
   createPopup(): void {

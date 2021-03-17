@@ -90,7 +90,7 @@ export class SiteDatabaseComponent {
   ];
   showFullScreen: boolean = false;
 
-  constructor(private datatable: TableAgGridService,private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
+  constructor(private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
     this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -118,46 +118,41 @@ export class SiteDatabaseComponent {
         field: 'sapid',
         width: 220,
         pinned: "left"
-    },
-    {
+      },
+      {
         headerName: 'Site Status',
         field: 'siteStatus',
         width: 160
-    },
-    {
-      headerName: 'Site Category',
-      field: 'siteCategory',
-      width: 160
-    },
-    {
+      },
+      {
+        headerName: 'Site Category',
+        field: 'siteCategory',
+        width: 160
+      },
+      {
         headerName: 'Site Type',
         field: 'siteType',
         width: 150
-    },
-    {
+      },
+      {
         headerName: 'Backhaul',
         field: 'backhaul',
         width: 150
-    },
-    {
-      headerName: 'Current Milestone',
-      field: 'currentMilestone',
-      width: 180
-    },
-    {
+      },
+      {
+        headerName: 'Current Milestone',
+        field: 'currentMilestone',
+        width: 180
+      },
+      {
         headerName: 'Current Task',
         field: 'currentTask',
         width: 180
-    },
-    {
-      headerName: 'Current Task Status',
-      field: 'currentTaskStatus',
-      width: 250
-    },
+      }
     ]
     this.datatable.columnDefsServices = this.columnDefs;
   }
-  
+
 
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {

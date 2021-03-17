@@ -14,7 +14,7 @@
                             <i class="ic ic-layers-01" data-title="Layers"></i>
                         </button>
                         <button mat-icon-button class="text-dark button-mat button-mat1" (click)="openPopup()">
-                            <mat-icon>person_outline</mat-icon>
+                            <mat-icon>text_snippet</mat-icon>
                         </button>
                     </div>
                     <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'undefined')">
@@ -23,7 +23,7 @@
                         </button> 
                     </div>
                     <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'display')">
-                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showSummary == true" (click)="openSummary()">
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showSummary == true" (click)="openSummary(headerData.name)">
                             <span class="ic ic-table-011"></span>
                         </button>
                         <button mat-icon-button class="text-dark button-mat1" *ngIf="showChart == true">

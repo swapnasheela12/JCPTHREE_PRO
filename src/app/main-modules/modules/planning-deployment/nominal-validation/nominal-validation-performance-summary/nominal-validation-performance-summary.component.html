@@ -1,0 +1,321 @@
+<mat-card class="p-0 nominal-validation-performance-summary" style="height: calc(100% - 5px);">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <!-- <div id="Chart" class="pr-2" [chart]="ciaChart"></div> -->
+        <mat-card-title class="card-title mb-0">
+        <div fxLayout="column">
+            <div class="title-summary">
+                {{nominalGenerationSummaryData.type}} : 
+                <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                {{nominalGenerationSummaryData.name}}
+            </div>
+            <div class="title-subline">Validation</div>
+        </div>
+        </mat-card-title>
+        <div class="col"></div>
+        <div class="my-performance-reports-flex-item d-flex justify-content-end align-items-center">
+            <button class="ic ic-layers-01 link-icon-button"
+            style="font-size: 18px;color:#464D69" mat-icon-button
+            (click)="displayNominalGenerationLayers()"></button>
+        </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" class="site-card-content nominal-validation-performance-summary">
+        <div fxFlex="auto">
+            <mat-tab-group id="panel-summary" dynamicHeight fxFlex="auto" mat-align-tabs="start" [(selectedIndex)]="selectedIndex" (selectedTabChange)="onLinkClick($event)">
+                <!-- <div id="panel-summary" > -->
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon (click)="backToSummary()">arrow_back</mat-icon>
+                        </ng-template>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Performance Summary<span *ngIf="tab == 'ACP'"> - {{tab}}</span>  - {{summaryOf}}
+                        </ng-template>
+                    </mat-tab>
+                    <mat-tab id="toggle">
+                        <ng-template mat-tab-label>
+                            <span [hidden]="showToggle != true">
+                            Bar Chart 
+                                <mat-slide-toggle
+                                style="pointer-events: visible;"
+                                class="mat-slider-target"
+                                [disableRipple]="true"
+                                (change)="changeChart($event)"></mat-slide-toggle>
+                            </span>
+                        </ng-template>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <span class="ic ic-table-011"></span>
+                        </ng-template>
+                        <div *ngIf="tab == 'ACP'">
+                            <mat-tab-group id="acp-tabs">
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    Optimization Only
+                                </ng-template>
+                                <div fxLayout="row"  class="performance-summary-table">
+                                    <div fxFlex="60" class="table-display">
+                                        <table mat-table [dataSource]="dataSourcePerformanceLevel">
+                                            <ng-container matColumnDef="level">
+                                                <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> {{summaryOf}} level </th>
+                                                <td mat-cell *matCellDef="let element"> <span *ngIf="element.operator == '>'">&ge; </span> {{element.level}} dBm </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="LEVEL NAME">
+                                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> {{summaryOf}} level</th>
+                                            </ng-container>
+            
+                                             <ng-container matColumnDef="preArea">
+                                                    <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.prePercentArea}} %
+                                                    </td>
+                                            </ng-container>
+                                            
+                                            <ng-container matColumnDef="postArea">
+                                                <th mat-header-cell *matHeaderCellDef>Post</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span [ngClass]="{'green-increase': (element.postPercentAreaStatus == 'increase'), 'red-decrease': (element.postPercentAreaStatus == 'decrease')}">
+                                                        <span *ngIf="element.postPercentAreaStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                        <span *ngIf="element.postPercentAreaStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                        {{element.postPercentArea}} %
+                                                    </span>
+                                                </td>
+                                            </ng-container>
+                                            
+                                            <ng-container matColumnDef="preSquareArea">
+                                                <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    {{element.preSquareKilo}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="postSquareArea">
+                                                <th mat-header-cell *matHeaderCellDef>Post</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span [ngClass]="{'green-increase': (element.postSquareKiloStatus == 'increase'), 'red-decrease': (element.postSquareKiloStatus == 'decrease')}">
+                                                        <span *ngIf="element.postSquareKiloStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                        <span *ngIf="element.postSquareKiloStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                        {{element.postSquareKilo}}
+                                                    </span>
+                                                </td>
+                                            </ng-container>
+            
+                                            <ng-container matColumnDef="percentArea">
+                                                <th mat-header-cell  *matHeaderCellDef colspan="2">% Area</th>
+                                            </ng-container>
+                                            <ng-container matColumnDef="squareArea">
+                                                <th mat-header-cell *matHeaderCellDef colspan="2">Area (Sq Km)</th>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="['LEVEL NAME','percentArea','squareArea']" class="group-header-row">
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="other-header-row"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+                                    </div>
+                                    <div fxFlex="40" class="table-display">
+                                        <table mat-table [dataSource]="dataSourcePerformancePercentile">
+                                            <ng-container matColumnDef="percentileTitle">
+                                                <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> Percentile </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.percentile}} <sup>th</sup></td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="PERCENTILE TITLE">
+                                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Percentile</th>
+                                            </ng-container>
+                                             <ng-container matColumnDef="predbmTitle">
+                                                    <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.predbm}}
+                                                    </td>
+                                            </ng-container>
+                                            
+                                            <ng-container matColumnDef="postdbmTitle">
+                                                <th mat-header-cell *matHeaderCellDef>Post</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <span [ngClass]="{'green-increase': (element.postdmStatus == 'increase'), 'red-decrease': (element.postdmStatus == 'decrease')}">
+                                                        <span *ngIf="element.postdmStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                        <span *ngIf="element.postdmStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                        {{element.postdbm}}
+                                                    </span>
+                                                </td>
+                                            </ng-container>
+            
+                                            <ng-container matColumnDef="dbmTitle">
+                                                <th mat-header-cell  *matHeaderCellDef colspan="2"> {{summaryOf}} (dbm)</th>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="['PERCENTILE TITLE','dbmTitle']" class="group-header-row">
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumnsPercentile" class="other-header-row"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumnsPercentile;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    Site Selection
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    Optimization & Selection
+                                </ng-template>
+                            </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                      
+                        <div fxLayout="row"  *ngIf="tab != 'ACP'" class="performance-summary-table">
+                            <div fxFlex="60" class="table-display">
+                                <table mat-table [dataSource]="dataSourcePerformanceLevel">
+                                    <ng-container matColumnDef="level">
+                                        <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> {{summaryOf}} level </th>
+                                        <td mat-cell *matCellDef="let element"> <span *ngIf="element.operator == '>'">&ge; </span> {{element.level}} dBm </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="LEVEL NAME">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> {{summaryOf}} level</th>
+                                    </ng-container>
+    
+                                     <ng-container matColumnDef="preArea">
+                                            <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element.prePercentArea}} %
+                                            </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="postArea">
+                                        <th mat-header-cell *matHeaderCellDef>Post</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postPercentAreaStatus == 'increase'), 'red-decrease': (element.postPercentAreaStatus == 'decrease')}">
+                                                <span *ngIf="element.postPercentAreaStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postPercentAreaStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postPercentArea}} %
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="preSquareArea">
+                                        <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preSquareKilo}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSquareArea">
+                                        <th mat-header-cell *matHeaderCellDef>Post</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSquareKiloStatus == 'increase'), 'red-decrease': (element.postSquareKiloStatus == 'decrease')}">
+                                                <span *ngIf="element.postSquareKiloStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSquareKiloStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSquareKilo}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+    
+                                    <ng-container matColumnDef="percentArea">
+                                        <th mat-header-cell  *matHeaderCellDef colspan="2">% Area</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="squareArea">
+                                        <th mat-header-cell *matHeaderCellDef colspan="2">Area (Sq Km)</th>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="['LEVEL NAME','percentArea','squareArea']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                            <div fxFlex="40" class="table-display">
+                                <table mat-table [dataSource]="dataSourcePerformancePercentile">
+                                    <ng-container matColumnDef="percentileTitle">
+                                        <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> Percentile </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.percentile}} <sup>th</sup></td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="PERCENTILE TITLE">
+                                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Percentile</th>
+                                    </ng-container>
+                                     <ng-container matColumnDef="predbmTitle">
+                                            <th mat-header-cell *matHeaderCellDef>Pre</th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element.predbm}}
+                                            </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="postdbmTitle">
+                                        <th mat-header-cell *matHeaderCellDef>Post</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postdmStatus == 'increase'), 'red-decrease': (element.postdmStatus == 'decrease')}">
+                                                <span *ngIf="element.postdmStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postdmStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postdbm}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+    
+                                    <ng-container matColumnDef="dbmTitle">
+                                        <th mat-header-cell  *matHeaderCellDef colspan="2"> {{summaryOf}} (dbm)</th>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="['PERCENTILE TITLE','dbmTitle']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPercentile" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPercentile;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <span class="ic ic-graph-01"></span>
+                        </ng-template>
+                       
+                        <ng-template matTabContent>
+                            <div  class="performance-summary" *ngIf="tab == 'ACP'">
+                                <mat-tab-group id="acp-tabs">
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        Optimization Only
+                                    </ng-template>
+                                    <div class="performance-summary">
+                                        <div class="pdf-chart-title box">
+                                            PDF
+                                        </div>
+                                        <div class="cdf-chart-title box">
+                                            CDF
+                                        </div>
+                                        <div class="pdf-chart box">
+                                            <div id="pdfChartSplineId" [hidden]="showBar == true" class="pr-2" [chart]="pdfChartSpline"></div>
+                                            <div id="pdfChartBarId"  [hidden]="showBar == false" class="pr-2" [chart]="pdfChartBar"></div>
+                                        </div> 
+                                        <div class="cdf-chart box">
+                                            <div id="cdfChartSplineId" [hidden]="showBar == true" class="pr-2" [chart]="cdfChartSpline"></div>
+                                            <div id="cdfChartBarId"  [hidden]="showBar == false" class="pr-2" [chart]="cdfChartBar"></div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        Site Selection
+                                    </ng-template>
+                                </mat-tab>
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        Optimization & Selection
+                                    </ng-template>
+                                </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                            <div *ngIf="tab != 'ACP'" class="performance-summary">
+                                <div class="pdf-chart-title box">
+                                    PDF
+                                </div>
+                                <div class="cdf-chart-title box">
+                                    CDF
+                                </div>
+                                <div class="pdf-chart box">
+                                    <div id="pdfChartSplineId" [hidden]="showBar == true" class="pr-2" [chart]="pdfChartSpline"></div>
+                                    <div id="pdfChartBarId"  [hidden]="showBar == false" class="pr-2" [chart]="pdfChartBar"></div>
+                                </div> 
+                                <div class="cdf-chart box">
+                                    <div id="cdfChartSplineId" [hidden]="showBar == true" class="pr-2" [chart]="cdfChartSpline"></div>
+                                    <div id="cdfChartBarId"  [hidden]="showBar == false" class="pr-2" [chart]="cdfChartBar"></div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </mat-tab>
+                <!-- </div> -->
+            </mat-tab-group>
+        </div>
+    </mat-card-content>
+</mat-card>

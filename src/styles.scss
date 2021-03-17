@@ -1774,7 +1774,10 @@ svg {
     }
     carousel {
         .carousel {
+            height: 100% !important;
             .carousel-inner {
+                > slide {
+                    height: 100% !important;
                 >slide {
                     .active {
                         width: 100%;
@@ -1922,11 +1925,39 @@ ag-grid-angular {
     }
 }
 
-.cursor-pointer {
+carousel{
+    .carousel {
+        height: 100% !important;
+        .carousel-inner {
+            height: 100% !important;
+            > slide {
+                height: 100% !important;
+                .active {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.cursor-pointer{
     cursor: pointer;
 }
 
 #chartID {
     overflow-y: hidden !important;
     overflow: auto !important;
+}
+
+.save-btn {
+    width: 50px;
+    background-color: #0078C9;
+    color: white;
+    text-align: center;
+    border: none;
+    height: 37px;
+    margin-top: 5px;
+    line-height: 2;
+    border-radius: 5px;
+}
 }

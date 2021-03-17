@@ -1,0 +1,20 @@
+<div class="uploaded-file-container">
+    <button style="position: absolute; right: 35px; z-index: 99; color: black" class="browse-button" mat-icon-button
+        color="primary">
+        <span class="ic ic-download pr-2"></span>
+    </button>
+    <button style="position: absolute; right: 0px; z-index: 99" (click)="closeDialog()" mat-icon-button
+        class="dialog-close-button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div style="height: 100%;">
+        <div class="images" style="height: 450px;" fxFlex="100">
+            <carousel class="left-carousel">
+                <slide class="slide" *ngFor="let product of sitesimages">
+                    <img [src]="product.imageurl" alt="first slide" style="display: block; width: 100%;">
+                </slide>
+            </carousel>
+        </div>
+    </div>
+
+</div>

@@ -242,21 +242,26 @@
                                                 </button>
                                             </div>
                                             <div class="overflow-auto menu-content">
-                                              <div *ngFor="let item of existing4GSitesFilter | async ; let i=index; trackBy:trackByCheckbox"
-                                              formArrayName="existing4GSitesArray">
-                                                <mat-checkbox [formControlName]="i" [disableRipple]="true"
-                                                [checked]="item.checked" (change)="polySelectedChangeSite(item);"
-                                                  id="existing-4g-sites-{{i}}">
-                                                  <div class="polygon-data" fxLayout="column">
-                                                    <div class="name-type" fxFlex="100">
-                                                        {{item.name}}
+                                                <div formArrayName="existing4GSitesArray">
+                                                    <div *ngFor="let item of filtersFormArray.controls; let i=index;" >
+                                                        <div [formGroupName]="i" class="container">
+                                                            <mat-checkbox
+                                                            [disableRipple]="true"
+                                                            [value]="item.get('checked').value"
+                                                            (change)="polySelectedChangeSite(item.value);"
+                                                            id="existing-4g-sites-{{i}}">
+                                                            <div class="polygon-data" fxLayout="column">
+                                                                <div class="name-type" fxFlex="100">
+                                                                    {{item.value.name}}
+                                                                </div>
+                                                                <div class="outdoor-profile" fxFlex="100">
+                                                                Validation
+                                                                </div>
+                                                            </div>
+                                                            </mat-checkbox>
+                                                        </div>
                                                     </div>
-                                                    <div class="outdoor-profile" fxFlex="100">
-                                                     Coverage
-                                                    </div>
-                                                  </div>
-                                                </mat-checkbox>
-                                              </div>
+                                                </div>
                                             </div>
                                           </form>
                                     </div>
@@ -268,7 +273,7 @@
                                             </div>
                                             <div class="overflow-auto menu-content-polygon">
                                               <mat-list class="list-polygon" formControlName="polygonControl" name="polygon-control" ngDefaultControl>
-                                                <mat-list-item *ngFor="let item of polygonNameFilter | async ; let i=index; trackBy:trackByCheckbox"
+                                                <mat-list-item *ngFor="let item of polygonNameFilter | async ; let i=index;"
                                                   [disableRipple]="true"
                                                   (click)="polygonNamePopup(item.name)"
                                                   id="polygon-name-{{i}}">
@@ -314,10 +319,190 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Traffic Map</ng-template>
-
+                <div class="traffic-map" style="height: calc(100% - 63px);overflow: auto;">
+                    <div style="padding-right: 15px;" fxFlex="100" fxLayout="row">
+                        <div fxFlex="35" fxLayout="column">
+                            <div class="name-traffic">
+                                1. Crowd Source Data
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input
+                                    matInput
+                                    ngxDaterangepickerMd
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Choose date"
+                                    [showDropdowns]="true"
+                                    [lockStartDate]="false"
+                                    [showClearButton]="true"
+                                    [keepCalendarOpeningWithRange]="selectedDateTime1"
+                                     [(ngModel)]="selectedDateTime1"
+                                    [customRangeDirection]="false"
+                                    [showCancel]="true"
+                                    [linkedCalendars]="false"
+                                    [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}"
+                                    opens="center"
+                                  />
+                                  <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                </mat-form-field>
+                            </div>
+                            <div *ngFor="let item of crowdSourceData" style="height: 40px;">
+                                <mat-checkbox  style="margin-bottom:0" [checked]="item.checked" [disableRipple]="true">
+                                    {{item.name}}
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div fxFlex="30">
+                            <div class="name-traffic">
+                                2. Network Data
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input
+                                    matInput
+                                    ngxDaterangepickerMd
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Choose date"
+                                    [showDropdowns]="true"
+                                    [lockStartDate]="false"
+                                    [showClearButton]="true"
+                                    [keepCalendarOpeningWithRange]="selectedDateTime"
+                                    [customRangeDirection]="false"
+                                    [showCancel]="true"
+                                    [linkedCalendars]="false"
+                                    [(ngModel)]="selectedDateTime"
+                                    [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}"
+                                    opens="center"
+                                  />
+                                  <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                </mat-form-field>
+                            </div>
+                            <div *ngFor="let item of networkData">
+                                <mat-checkbox  style="margin-bottom:0" [checked]="item.checked" [disableRipple]="true">
+                                    {{item.name}}
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div fxFlex="45">
+                            <div class="name-traffic">
+                                3. Clutter Class Weightages
+                            </div>
+                            <div style="padding-top: 14px;">
+                                <mat-checkbox
+                                [disableRipple]="true"
+                                [checked]="true">
+                                </mat-checkbox>
+                                <mat-form-field>
+                                    <input matInput value="Assign Weightage"
+                                    style="font-family: Lato Medium;
+                                            font-size: 14px;
+                                            color: black;
+                                            padding-bottom: 2px;
+                                            opacity:0.87"
+                                    type="text"class="example-right-align" disabled="true"/>
+                                </mat-form-field>
+                            </div>
+                            <div *ngFor="let item of clutterClass">
+                                <div fxLayout="row" style="height: 40px;">
+                                    <div fxFlex="40" style="padding-top: 14px">
+                                        {{item.name}}
+                                    </div>
+                                    <div fxFlex="20">
+                                        <mat-form-field floatLabel="never" style="width:100%">
+                                            <input matInput
+                                            [value]="item.value"
+                                            type="text" class="example-right-align">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="py-2">
+                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                    </div>
+                    <div class="p-2">
+                      <button class="next-button button"  mat-raised-button color="primary"
+                        matStepperNext>Next</button>
+                    </div>
+                    <div class="col"></div>
+                  </div>
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>ACP Selection</ng-template>
+                <div style="height: calc(100% - 63px);overflow: auto;" fxLayout="column">
+                    <div style="padding-right: 15px;">
+                        <table mat-table [dataSource]="dataSourceACP" style="border: 1px solid #00000029; border-radius: 4px">
+                            <ng-container matColumnDef="srno">
+                              <th mat-header-cell *matHeaderCellDef width="10%">Sr No</th>
+                              <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="acpscenario">
+                              <th mat-header-cell *matHeaderCellDef width="30%"> ACP Scenario </th>
+                              <td mat-cell *matCellDef="let element"> {{element.acpscenario}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="acpmode">
+                                <th mat-header-cell *matHeaderCellDef width="30%"> ACP Mode </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <mat-checkbox [checked]="element.acpmode" style="margin-bottom:0">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="predictions">
+                                <th mat-header-cell *matHeaderCellDef width="30%"> Prediction & Statistics </th>
+                                <td mat-cell *matCellDef="let element"> 
+                                    <mat-checkbox [checked]="element.predictions" style="margin-bottom:0">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <div style="padding-right: 15px; padding-top: 20px;" fxLayout="row">
+                        <div fxFlex="50" fxLayout="row">
+                            <div fxFlex="10">
+                                <mat-checkbox
+                                    [disableRipple]="true">
+                                </mat-checkbox>
+                            </div>
+                            <div fxFlex="90">
+                                <mat-form-field fxLayout="row">
+                                    <input matInput placeholder="Maximum number of selected site"
+                                    type="text"class="example-right-align" value="100">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="50" fxLayout="row">
+                            <div fxFlex="10">
+                                <mat-checkbox
+                                    [disableRipple]="true">
+                                </mat-checkbox>
+                            </div>
+                            <div fxFlex="90">
+                                <mat-form-field fxLayout="row">
+                                    <input matInput placeholder="Minimum inter-site distance"
+                                    value="0.25"
+                                    type="text"class="example-right-align">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="py-2">
+                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                    </div>
+                    <div class="p-2">
+                      <button class="next-button button"  mat-raised-button color="primary"
+                        matStepperNext>Next</button>
+                    </div>
+                    <div class="col"></div>
+                  </div>
             </mat-step>
            
             </mat-horizontal-stepper>
@@ -331,7 +516,7 @@
         <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
       </div>
       <div class="p-2">
-        <button mat-raised-button color="primary" [disabled]="generateDisabled"
+        <button mat-raised-button color="primary" [disabled]="generateDisabled" (click)="redirectToLandingPage()"
           class="buttonWidth button">Generate</button>
       </div>
     </div>

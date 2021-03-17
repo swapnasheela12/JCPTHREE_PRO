@@ -26,23 +26,24 @@
 
 
         <div class="p-2 task-search" style="margin-top: -15px;">
-            <button mat-raised-button color="primary" class="auto-assign-btn" (click)="autoAssign()">
+            <button mat-raised-button color="primary" class="auto-assign-btn" (click)="assign()">
                 Assign
             </button>
             <div fxFlex="60">
                 <mat-icon class="icon-button" style="position: relative;right: 100px; bottom: 5px;
                 right: 14px; color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show"
-                style="margin-top: 6px;">
-                <span class="zmdi zmdi-search"></span>
-              </mat-icon>
-      
-              <mat-form-field *ngIf="show" style="position: relative;right: 100px; bottom: 5px;
-              right: 14px;">
-                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
-                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                  <span class="zmdi zmdi-close"></span>
+                    style="margin-top: 6px;">
+                    <span class="zmdi zmdi-search"></span>
                 </mat-icon>
-              </mat-form-field>
+
+                <mat-form-field *ngIf="show" style="position: relative;right: 100px; bottom: 5px;
+              right: 14px;">
+                    <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
 
 
                 <!-- <mat-icon class="icon-button" style="position: relative;right: 100px; bottom: 5px;

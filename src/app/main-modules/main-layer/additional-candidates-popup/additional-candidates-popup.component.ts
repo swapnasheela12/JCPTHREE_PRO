@@ -45,7 +45,9 @@ const ADDITIONAL_CANDIDATE_COLUMNDEFS = [
 export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit {
   dialog: AdditionalCandidateSettingsService;
   @ViewChild('fibreStructureLayerSettingsPopup', { static: true }) fibreStructureLayerSettingsPopup: TemplateRef<any>;show: boolean;
-;
+  name;
+  title = 'Additional Candidates';
+  target = 'Target Sites'
   public gridAdditionalCandidateOptions: GridOptions;
   public additionalCandidateColumnDefs : any[];
   public additionalCandidateData;
@@ -53,6 +55,10 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   searchGrid = '';
 
   ngOnInit(): void {
+    if (this.name == 'nominal-validation') {
+      this.title = 'Candidates For ACP';
+      this.target = 'ACP Target';
+    }
     this.dispatchDialog();
   }
 
@@ -60,6 +66,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
     private additionalFactoryService: AdditionalSettingsFactoryService,
     private http: HttpClient
   ) {
+    console.log(this.name);
     this.gridAdditionalCandidateOptions = <GridOptions>{};
     this.frameworkComponentsAdditionalCandidate = {
       'nominalGenerationRenderComponent': nominalGenerationRenderComponent,
@@ -77,6 +84,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
   }
 
   ngAfterViewInit() {
+    console.log(name);
     setTimeout(() => {
       this.createColumnDefs();
       this.getAdditionalCandidate();
@@ -107,7 +115,7 @@ export class AdditionalCandidatesPopupComponent implements OnInit, AfterViewInit
 
   dispatchDialog() {
     this.openDialog({
-      headerText: 'Additional Candidates',
+      headerText: this.title,
       template: this.fibreStructureLayerSettingsPopup
     }, {
       width: 385,

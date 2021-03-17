@@ -19,11 +19,19 @@ import { Router } from '@angular/router';
 import { PolygonPopupComponent } from '../../nominal-generation-coverage/polygon-popup/polygon-popup.component';
 import { CompleteListPopupComponent } from '../complete-list-popup/complete-list-popup.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
 
 interface existing4GSites {
   name: string;
 }
 
+interface ACPList {
+  srno: string;
+  acpscenario: string; 
+  acpmode: boolean;
+  predictions: boolean;
+}
 interface polygonName {
   name: string;
   type: string;
@@ -40,6 +48,10 @@ const POLYGON_NAME: polygonName[] = [
   { name: 'Polygon_Mum_6', type: 'CombineG', outdoor: 'Outdoor1', profile:'Profile1' }
 ];
 
+const PATHS = [
+  { nominalGeneration: "JCP/Modules/Planning-Deployment/Nominal-Validation" }
+]
+
 interface projectList {
   name: string;
   type: string;
@@ -53,11 +65,11 @@ interface projectList {
 
 const COMPLETED_LIST: projectList[] = [
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v10',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0012',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -79,11 +91,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v11',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0013',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -105,11 +117,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v12',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0014',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -131,11 +143,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v18',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0102',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -157,11 +169,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v15',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0120',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -183,11 +195,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v18',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0912',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -209,11 +221,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v20',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0782',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -235,11 +247,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v26',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0502',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -261,11 +273,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v27',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0022',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -287,11 +299,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v28',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0092',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -313,11 +325,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v29',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-0987',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -339,11 +351,11 @@ const COMPLETED_LIST: projectList[] = [
       }
   },
   {
+    checked: false,
     name: 'Mumbai-Np-Cv-121020_v80',
     type: 'Validation',
     sapId: 'MU-MUMB-JC01-7654',
     location:'Jio Center',
-    checked: false,
     date: '20 th Nov 2020',
     polydata: {
       properties: {
@@ -422,6 +434,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   public selectJcControl: FormControl = new FormControl();
   public selectJcFilterControl: FormControl = new FormControl();
   public selectJcFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+  paths: { nominalGeneration: string; }[];
 
   trackByCheckbox(index: number, item: any): string {
     return item.name;
@@ -587,6 +600,39 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   public dataPolygon = [];
   disableBasicDetails=false;
   validateParam;
+  selected;
+  crowdSourceData = [
+    {
+      name: 'Netvelocity Data', checked: true
+    },
+    {
+      name: 'LSR Data', checked: true
+    },
+    {
+      name: 'Social Media', checked: true
+    }
+  ];
+
+  networkData = [
+    {
+      name: 'Performance Kpi', checked: true
+    }
+  ];
+
+  clutterClass = [
+    {
+      name: 'Dense Urban', value:'10', checked: true
+    },
+    {
+      name: 'Urban', value: '6', checked: true
+    },
+    {
+      name: 'Sub Urban', value:'1', checked: true
+    },
+    {
+      name: 'Rural', value: '1', checked: true
+    }
+  ]
   isEditable = true;
   itemsListPolySite = [
     {
@@ -719,13 +765,28 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       }
     }
   ];
+  selectedDateTime = {
+    startDate: moment().subtract(1, 'days'),
+    endDate: moment().subtract(1, 'days'),
+  }
+  selectedDateTime1 = {
+    startDate: moment().subtract(1, 'days'),
+    endDate: moment().subtract(1, 'days'),
+  }
   completeProjectList = COMPLETED_LIST;
+  sourceACP : ACPList[] = [
+    {"srno":"1", "acpscenario":"Optimization", "acpmode": true, "predictions":true},
+    {"srno":"2", "acpscenario":"Site Selection", "acpmode":true, "predictions":true},
+    {"srno":"3", "acpscenario":"Optimization + Site Selection", "acpmode": true, "predictions":false},
+  ];
 
   existing4GSitesData = this.itemsListPolySite;
   existing4GSitesFilter: Observable<any[]>;
   existing4GSitesSearch = new FormControl();
   polygonNameFilter: Observable<any[]>;
   polygonNameData = POLYGON_NAME;
+  dataSourceACP = new MatTableDataSource(this.sourceACP);
+  displayedColumns: string[] = ['srno', 'acpscenario', 'acpmode', 'predictions'];
 
   constructor(
     private shapeService: ShapeService,
@@ -742,29 +803,55 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
     this.validateParam = this.router.getCurrentNavigation().extras.state;
   }
 
+  get filtersFormArray() {
+    return (<FormArray>this.selectExisting4GSites.get('existing4GSitesArray'));
+  }
+
+  createFilterGroup() {
+    return this.formBuilder.group({
+      checked: new FormControl(false),
+      name: new FormControl(''),
+      date: new FormControl(''),
+      polydata: {
+        type: new FormControl(''),
+        properties: {
+          shape:new FormControl(''),
+          radius: new FormControl(''),
+          name:new FormControl(''),
+          category: new FormControl('')
+        },
+        geometry: {
+          type: new FormControl(''),
+          coordinates: new FormControl('')
+        },
+        id: new FormControl('')
+      }
+    });
+  }
   ngOnInit() {
+    this.paths = PATHS;
     this.dataShare.projectObject.subscribe((data)=> {
       for (let d=0; d< data['length']; d++) {
-        this.existing4GSitesData.push(data[d])
+        const formGroup = this.createFilterGroup();
+        formGroup.patchValue(data[d]);
+        this.filtersFormArray.push(formGroup);
       }
-      this.selectExisting4GSites = this.formBuilder.group({
-        existing4GSitesArray: this.formBuilder.array(this.existing4GSitesData.map(x => false))
-      }
-      );
-      this.existing4GSitesFilter = this.existing4GSitesSearch.valueChanges.pipe(
-        startWith(""),
-        map(state => (state ? this.templateFilter(state) : this.existing4GSitesData.slice()))
-      );
     })
     this.zoneType.setValue("West");
     this.selectedBoundaries = this.listBoundaries[0];
     this.selectJcCircleLevelFormControl = this.formBuilder.group({
     });
-    
+
     this.selectExisting4GSites = this.formBuilder.group({
-      existing4GSitesArray: this.formBuilder.array(this.existing4GSitesData.map(x => false))
-    }
-    );
+      existing4GSitesArray: this.formBuilder.array([])
+    });
+    
+    this.existing4GSitesData.forEach(seedDatum => {
+      const formGroup = this.createFilterGroup();
+      formGroup.patchValue(seedDatum);
+      this.filtersFormArray.push(formGroup);
+    });
+    
     this.existing4GSitesFilter = this.existing4GSitesSearch.valueChanges.pipe(
       startWith(""),
       map(state => (state ? this.templateFilter(state) : this.existing4GSitesData.slice()))
@@ -839,8 +926,11 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
 
   
   polySelectedChangeSite(item) {
+    console.log(item.polydata.geometry.coordinates[1]);
+    console.log(item.checked)
     console.log(item, "item");
     this.dataPolygon.push(item);
+   
     item.checked = !item.checked;
 
     if (item.checked == true) {
@@ -849,14 +939,14 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5
-        }).addTo(this.mapFive);
+        }).addTo(this.mapSix);
       } else if (item.polydata.properties.shape == 'Polygon') {
         this.poly = L.polygon([
           [19.060009, 72.876063],
           [19.013112, 72.907984],
           [19.065525, 72.916565],
           [19.060009, 72.876063]
-        ]).addTo(this.mapFive);
+        ]).addTo(this.mapSix);
       } else if (item.polydata.properties.shape == 'Rectangle') {
         this.polyRectangle = L.rectangle([
           [19.045527, 72.902422],
@@ -865,13 +955,13 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           [19.049482, 72.902422],
           [19.045527, 72.902422]
         ], { color: "#ff7800", weight: 1 })
-        .addTo(this.mapFive)
+        .addTo(this.mapSix)
       } else {
         this.polyline = L.polyline([
           [19.045568, 72.894765],
           [19.046055, 72.898672],
           [19.045933, 72.901742]
-        ]).addTo(this.mapFive);
+        ]).addTo(this.mapSix);
       }
 
     } else {
@@ -1024,7 +1114,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   }
 
   radioButtonChanged(item) {
-    if (item.value) {
+    if (item) {
       this.showDiv = !this.showDiv;
     }
   }
@@ -1032,39 +1122,29 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   backPageRout() {
     this.location.back(); // <-- go back to previous location on cancel
   }
-  get demoArray() {
-    return this.selectExisting4GSites.get('existing4GSitesArray') as FormArray;
- }
 
   deleteProject(){
-    let data = this.selectExisting4GSites.get('existing4GSitesArray') as FormArray;
-    console.log(data);
-    data.controls.filter((eachControl)=> {
-      console.log(eachControl)
-      if (eachControl.value == true) {
-        let index = data.controls.indexOf(eachControl);
-        console.log(index);
-        console.log(this.existing4GSitesData);
-        this.existing4GSitesData.splice(index,1);
-        console.log(this.existing4GSitesData);
-        this.demoArray.removeAt(index);
-        this.appRef.tick();
-        // data.removeAt(index)
+    let indexArray = [];
+    this.filtersFormArray.controls.forEach((eachControl)=> {
+      if (eachControl.value.checked == true){
+        let index = this.filtersFormArray.controls.indexOf(eachControl);
+        indexArray.push(index);
+        if (eachControl.value.polydata.properties.shape == 'Rectangle') {
+          this.polyRectangle.remove();
+        } else if (eachControl.value.polydata.properties.shape == 'Polygon') {
+          this.poly.remove();
+        } else if (eachControl.value.polydata.properties.shape == 'Circle') {
+          this.circle.remove();
+        } else {
+          this.polyline.remove();
+        }
       }
     })
-    console.log(data);
-    // data.controls.forEach(
-    //   control => {
-    //     console.log(control.value)
-    //     if (control.value == true) {
-    //       let index = data.controls.indexOf(control);
-    //       console.log(data.controls.indexOf(control));
-    //       data.removeAt(index);
-    //     }
-    //   }
-    //  );
-    //  this.changeDetectorRef.detectChanges();
-     
+    let k = 0;
+    for(let i =0; i<indexArray.length; i++) {      
+      this.filtersFormArray.removeAt(indexArray[i]-k);
+      k++;
+    }
   }
 
   stepFunc() {
@@ -1082,7 +1162,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
 
   selectNodeStepper(event) {
     // this.initMapSite();
-    if (event.selectedIndex == 2) {
+    if (event.selectedIndex == 3) {
       this.generateDisabled = false;
     } else {
       this.generateDisabled = true;
@@ -1183,9 +1263,9 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   async additionalCandidateLayer() {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
-    const { NominalGenerationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-generation-coverage/nominal-generation-layer/nominal-generation-layer.component');
+    const { NominalValidationAdditionallayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-additionallayer/nominal-validation-additionallayer.component');
     this.viewContainerRef.createComponent(
-      this.componentFactoryResolver.resolveComponentFactory(NominalGenerationLayerComponent)
+      this.componentFactoryResolver.resolveComponentFactory(NominalValidationAdditionallayerComponent)
     );
   }
 
@@ -1213,5 +1293,9 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       panelClass: 'completed-project-list',
       data: {'title': 'Completed Project List', 'list':this.completeProjectList}
     });
+  }
+
+  async redirectToLandingPage() {
+    this.router.navigate([this.paths[0].nominalGeneration]);
   }
 }

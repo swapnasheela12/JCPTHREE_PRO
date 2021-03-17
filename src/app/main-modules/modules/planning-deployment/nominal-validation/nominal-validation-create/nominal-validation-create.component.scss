@@ -12,6 +12,7 @@
             .mat-horizontal-content-container{
 				height: calc(100% - 30px);
 				padding-left: 20px;
+				padding-top: 20px;
                 .mat-horizontal-stepper-content[aria-expanded="true"]{
                     height:100%;
                     .content-holder{
@@ -45,6 +46,9 @@
 								padding-top: 10px;
 							}
 						}
+					}
+					.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+						background-image: linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.42) 100%, transparent 0%) !important;
 					}
 					editCell{
 						.input-field{
@@ -243,6 +247,13 @@ mat-select-panel {
             font-size: 12px;
         }
     }
+}
+
+.traffic-map {
+	.name-traffic {
+		font-family: Lato Bold;
+		font-size: 16px;
+	}
 }
 
 .mat-icon-button:hover .mat-button-focus-overlay {

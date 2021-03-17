@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 export interface DialogDataSuccessful {
   gotomyreportInterface: string;
@@ -11,11 +12,11 @@ export interface DialogData {
   name: string;
 }
 @Component({
-  selector: 'app-reject-task',
-  templateUrl: './reject-task.component.html',
-  styleUrls: ['./reject-task.component.scss']
+  selector: 'app-reject-form',
+  templateUrl: './reject-form.component.html',
+  styleUrls: ['./reject-form.component.scss']
 })
-export class RejectTaskComponent {
+export class RejectFormComponent {
   message;
   showActionBtn: boolean = true;
   showMyTasks: boolean = true;
@@ -23,13 +24,12 @@ export class RejectTaskComponent {
   reject = [
     "Digital Form", "SAP ID"
   ];
-  remark = [ "Lorem Ipsum is simply dummy text of the printing and typesetting",
-"Lorem Ipsum is simply dummy text of the printing and typesetting"];
-  constructor(public dialogRef: MatDialogRef<RejectTaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private datashare: DataSharingService
+  remark = ["Lorem Ipsum is simply dummy text of the printing and typesetting",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting"];
+  constructor(public dialogRef: MatDialogRef<RejectFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private datashare: DataSharingService
     , private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-
     // if (!data.showActionBtn) {
     //   this.showActionBtn = false;
     //   this.message = data.message;
@@ -37,13 +37,12 @@ export class RejectTaskComponent {
     //   this.showMyTasks = false;
     // }
     // this.message = data.message;
-
   }
 
   makeFormEditable() {
+    this.dialogRef.close(true);
     this.datashare.toggle("Make Editable");
   }
-  
 
   closeDialog(): void {
     this.dialogRef.close(true);
@@ -53,13 +52,23 @@ export class RejectTaskComponent {
     this.dialogRef.close();
   }
 
-  clickYes(): void {
+  rejectForm() {
     this.dialogRef.close();
+    this.datashare.changeMessage("RejectForm");
+    const message = {
+      message: `Digital form has been rejected successfully !`,
+      goToTask: 'ShowMyTask',
+      showMyTasks: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
   }
 
-  clickNo(): void {
+  cancel(): void {
     this.dialogRef.close();
   }
 }
+
 
 

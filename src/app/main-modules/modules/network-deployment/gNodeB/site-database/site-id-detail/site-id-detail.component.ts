@@ -10,7 +10,10 @@ import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/su
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { RejectTaskComponent } from '../../task-details/sap-id-details/reject-task/reject-task.component';
+import { RejectTaskComponent } from '../../task-details/reject-task/reject-task.component';
+import { DocumentRendererComponent } from '../renderer/document-renderer.component';
+import { ImageViewerRendererComponent } from '../renderer/image-viewer-renderer.component';
+import { RfiSurveyFormRendererComponent } from '../renderer/rfi-survey-form-renderer.component';
 import { RfiSurveyFormComponent } from '../rfi-survey-form/rfi-survey-form.component';
 
 @Component({
@@ -31,6 +34,9 @@ export class SiteIdDetailComponent implements OnDestroy {
   public digitalFormColDefs: any[];
   public frameworkComponentsTaskDetails = {
     statusFlagRenderer: StatusRendererComponent,
+    imageRenderer: ImageViewerRendererComponent,
+    documentRenderer: DocumentRendererComponent,
+    digitalFormRenderer: RfiSurveyFormRendererComponent
   };
   public searchGrid = '';
   public paginationValues: number[] = [10, 20, 30, 40];
@@ -208,7 +214,30 @@ export class SiteIdDetailComponent implements OnDestroy {
         headerName: "Completion Date",
         field: "completionDate",
         width: 170,
-      }
+      },
+      {
+        headerName: 'Photos',
+        field: 'photos',
+        width: 250,
+        cellRenderer: 'imageRenderer'
+      },
+      {
+        headerName: 'Documents',
+        field: 'documents',
+        width: 250,
+        cellRenderer: 'documentRenderer'
+      },
+      {
+        headerName: 'Digital Forms',
+        field: 'digitalForms',
+        width: 250,
+        cellRenderer: 'digitalFormRenderer'
+      },
+      {
+        headerName: 'Task Owner',
+        field: 'taskOwner',
+        width: 250
+      },
     ];
     this.datatable.columnDefsServices = this.columnDefs;
   }
@@ -353,9 +382,14 @@ export class SiteIdDetailComponent implements OnDestroy {
   }
 
   onCellClicked(evt) {
-    if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
-    }
+    console.log(evt)
+    // if (evt.value) {
+    //   this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+    // }
+  }
+
+  navigateToSiteHistory() {
+    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details/Site-History-Details"])
   }
 
   ngOnDestroy() {

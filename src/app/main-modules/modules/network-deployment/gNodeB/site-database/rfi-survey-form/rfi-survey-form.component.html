@@ -1,20 +1,39 @@
 <div class="rfi-container w-100">
-    <div class="flex-container rfi-header">
+    <div class="flex-container rfi-header" style="background: #0070DB; color: white">
         <div class="d-flex flex-row justify-content-between header">
-            <div class="col-6 sector-flex-item" fxFlex>
+            <div class="col-12 sector-flex-item" fxFlex>
 
                 <div class="py-3 sector-title">RFI Survey Form</div>
             </div>
 
-            <div class="col-1 sector-flex-item" fxFlex>
-                <mat-icon class="close-icon" style="line-height: 2;position: relative; left: 43px; color: white;"
-                    (click)="closeDialog()" aria-label="search">
+            <div class="sector-flex-item">
+                <button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
+                    style="line-height: 2;margin:7px 7px 0 0; color: white;"
+                    aria-label="Example icon-button with a menu">
+                    <mat-icon style="line-height: 0;color:white !important;"><span class="zmdi zmdi-more-vert"></span>
+                    </mat-icon>
+                </button>
+                <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render"
+                    xPosition="before">
+                    <button mat-menu-item>
+                        <span>Download this File</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Download All</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <div class="sector-flex-item">
+                <mat-icon class="close-icon" style="line-height: 2; color: white;" (click)="closeDialog()"
+                    aria-label="search">
                     <span class="zmdi zmdi-close"></span>
                 </mat-icon>
             </div>
         </div>
     </div>
-    <div class="rfi-container">
+    <div class="rfi-container-dialog">
+
+        <div class="rfi-form-type"> RFE1 - RFE2 - GNodeB Integration Completed</div>
         <mat-card class="cards">
             <div class="card-header w-100" style="margin: 0;">
                 Site Details

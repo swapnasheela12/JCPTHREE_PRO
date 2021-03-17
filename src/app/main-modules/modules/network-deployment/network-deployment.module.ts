@@ -65,8 +65,7 @@ import { SiteDatabaseComponent } from './gNodeB/site-database/site-database.comp
 import { IconRendererComponent } from '../../work-orders/cm-workorders/ret-change/icon-renderer.component';
 import { DropDownRendererComponent } from './gNodeB/task-details/dropDown-renderer.component';
 import { SapIdDetailsComponent } from './gNodeB/task-details/sap-id-details/sap-id-details.component';
-import { AssignTaskComponent } from './gNodeB/task-details/sap-id-details/assign-task/assign-task.component';
-import { RejectTaskComponent } from './gNodeB/task-details/sap-id-details/reject-task/reject-task.component';
+import { AssignTaskComponent } from './gNodeB/task-details/assign-task/assign-task.component';
 import { SiteIdDetailComponent } from './gNodeB/site-database/site-id-detail/site-id-detail.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -75,6 +74,19 @@ import { CommentHighlightFieldDirective } from 'src/app/core/components/comment-
 import { CommentHighlightFieldComponent } from 'src/app/core/components/comment-highlight-field/comment-highlight-field.component';
 import { AddCommentComponent } from 'src/app/core/components/comment-highlight-field/add-comment/add-comment.component';
 import { InputCommentWidgetComponent } from 'src/app/core/components/input-comment-widget/input-comment-widget.component';
+import { HoldSiteComponent } from './gNodeB/task-details/hold-site/hold-site.component';
+import { TaskAssignmentComponent } from './gNodeB/task-details/task-assignment/task-assignment.component';
+import { HoldDuringConstructionComponent } from './gNodeB/task-details/hold-during-construction/hold-during-construction.component';
+import { RejectTaskComponent } from './gNodeB/task-details/reject-task/reject-task.component';
+import { UploadedFileViewerComponent } from './gNodeB/task-details/uploaded-file-viewer/uploaded-file-viewer.component';
+import { RejectFormComponent } from './gNodeB/task-details/reject-form/reject-form.component';
+import { AssignExternalUsersComponent } from './gNodeB/task-details/assign-external-users/assign-external-users.component';
+import { SavedRejectionWidgetComponent } from 'src/app/core/components/saved-rejection-widget/saved-rejection-widget.component';
+import { SiteHistoryDetailsComponent } from './gNodeB/site-database/site-id-detail/site-history-details/site-history-details.component';
+import { ImageViewerRendererComponent } from './gNodeB/site-database/renderer/image-viewer-renderer.component';
+import { DocumentRendererComponent } from './gNodeB/site-database/renderer/document-renderer.component';
+import { DocumentViewerComponent } from './gNodeB/task-details/document-viewer/document-viewer.component';
+import { RfiSurveyFormRendererComponent } from './gNodeB/site-database/renderer/rfi-survey-form-renderer.component';
 
 @NgModule({
   declarations: [
@@ -85,11 +97,25 @@ import { InputCommentWidgetComponent } from 'src/app/core/components/input-comme
     AssignTaskComponent,
     RejectTaskComponent,
     SiteIdDetailComponent,
-    RfiSurveyFormComponent, 
+    RfiSurveyFormComponent,
     CommentHighlightFieldDirective,
     CommentHighlightFieldComponent,
     AddCommentComponent,
-  InputCommentWidgetComponent],
+    InputCommentWidgetComponent,
+    HoldSiteComponent,
+    TaskAssignmentComponent,
+    HoldDuringConstructionComponent,
+    UploadedFileViewerComponent,
+    RejectFormComponent,
+    AssignExternalUsersComponent,
+    SavedRejectionWidgetComponent,
+    SiteHistoryDetailsComponent,
+    ImageViewerRendererComponent,
+    DocumentRendererComponent,
+    DocumentViewerComponent,
+    RfiSurveyFormRendererComponent,
+    RfiSurveyFormComponent
+  ],
   imports: [
     CommonModule,
     NetworkDeploymentRoutingModule,
@@ -98,7 +124,8 @@ import { InputCommentWidgetComponent } from 'src/app/core/components/input-comme
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent,
       conditionalDropdownRendererComponent, DeleteRendererComponent, createKpiDropdownRendererComponent,
-      DeleteCreatedKpiRendererComponent, IconRendererComponent, DropDownRendererComponent]),
+      DeleteCreatedKpiRendererComponent, IconRendererComponent, DropDownRendererComponent,
+      ImageViewerRendererComponent, RfiSurveyFormRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

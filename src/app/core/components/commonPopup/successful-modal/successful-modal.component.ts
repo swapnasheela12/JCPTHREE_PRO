@@ -37,6 +37,9 @@ export class SuccessfulModalComponent {
   }
 
   clickYes(): void {
+    if (this.data.goToTask === "ShowMyTask") {
+      this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details']);
+    }
     this.dialogRef.close();
   }
 
