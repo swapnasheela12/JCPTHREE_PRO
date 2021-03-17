@@ -1,6 +1,6 @@
 <div class="h-100">
-    <mat-card class="cia-module-card card-content">
-        <div class="ret-change-tab-container prop-wifi-tabs p-0">
+    <mat-card class="cia-module-card card-content" style="height:calc(100% - 5px)">
+        <!-- <div class="ret-change-tab-container prop-wifi-tabs p-0">
             <div class="tabs h-100">
                 <mat-tab-group class="tab-group h-100" (selectedTabChange)="tabChanged($event);">
                     <mat-tab label="WO Assignment">
@@ -225,8 +225,91 @@
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>
                 </div>
             </mat-card-content>
-        </ng-template>
+        </ng-template> -->
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col pl-0" fxFlex>
+                    <div class="header">RET Change</div>
+                </div>
+                <!-- <button class="mat-icon-button d-flex justify-content-center align-items-center">
+                    <mat-icon class="zmdi zmdi-search"></mat-icon>
+                </button> -->
+                <div class="col-4 sector-flex-item">
+                    <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;" *ngIf="!showInputField">
+                        <span class="ic ic-search-01"></span>
+                    </mat-icon>
+                    <mat-form-field *ngIf="showInputField">
+                        <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                            <span class="zmdi zmdi-close"></span>
+                        </mat-icon>
+                    </mat-form-field>
 
+                </div>
+                <!-- <button mat-raised-button color="primary" class="submit-button create-button">
+                    Create WO
+                </button> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-card style="height: 440px;" class="p-0 m-2" fxFlex="33">
+                <div class=" px-3" style="background:#D3D5DC;height: 57px;" fxLayout="row" fxLayoutAlign="space-around center">
+                    <div style="font-size: 15px;font-family: Lato Bold;" fxFlex>WO Assignment</div>
+                    <div>
+                        <button (click)="routeLinkPage('WO Assignment')" class="mat-icon-button d-flex justify-content-center align-items-center">
+                            <mat-icon class="zmdi zmdi-apps"></mat-icon>
+                        </button>
+                        <!-- <i class="zmdi zmdi-apps"></i> -->
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div style="height:calc(100% - 57px); overflow:auto;">
+                    <div class="px-3" style="height:48px;line-height: 3;border-bottom: 1px solid #dfdbdb;" *ngFor="let item of workorders.woassignment">
+                        <div style="font-size: 14px;font-family: Lato Medium;">
+                            {{item.workorder}}{{item.duedate}} - {{item.perval}}</div>
+                        <!-- <mat-divider></mat-divider> -->
+                    </div>
+
+                </div>
+            </mat-card>
+            <mat-card style="height: 440px;" class="p-0 m-2" fxFlex="33">
+                <div class=" px-3" style="background:#D3D5DC;height: 57px;" fxLayout="row" fxLayoutAlign="space-around center">
+                    <div style="font-size: 15px;font-family: Lato Bold;" fxFlex>Pending Reviews</div>
+                    <button (click)="routeLinkPage('Pending Reviews')" class="mat-icon-button d-flex justify-content-center align-items-center">
+                        <mat-icon class="zmdi zmdi-apps"></mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+                <div style="height:calc(100% - 57px); overflow:auto;">
+                    <div class="px-3" style="height:48px;line-height: 3;border-bottom: 1px solid #dfdbdb;" *ngFor="let item of workorders.history">
+                        <div style="font-size: 14px;font-family: Lato Medium;  display: inline-block;width: 285px;white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;">
+                            {{item.workorder}}{{item.duedate}} {{item.emailId}}</div>
+                        <!-- <mat-divider></mat-divider> -->
+                    </div>
+
+                </div>
+            </mat-card>
+            <mat-card style="height: 440px;" class="p-0 m-2" fxFlex="33">
+                <div class=" px-3" style="background:#D3D5DC;height: 57px;" fxLayout="row" fxLayoutAlign="space-around center">
+                    <div style="font-size: 15px;font-family: Lato Bold;" fxFlex>History</div>
+                    <button (click)="routeLinkPage('History')" class="mat-icon-button d-flex justify-content-center align-items-center">
+                        <mat-icon class="zmdi zmdi-apps"></mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+                <div style="height:calc(100% - 57px); overflow:auto;">
+                    <div class="px-3" style="height:48px;line-height: 3;border-bottom: 1px solid #dfdbdb;" *ngFor="let item of workorders.pendingreviews">
+                        <div style="font-size: 14px;font-family: Lato Medium;  display: inline-block;width: 285px;white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;">
+                            {{item.workorder}}{{item.duedate}} {{item.emailId}}</div>
+                        <!-- <mat-divider></mat-divider> -->
+                    </div>
+
+                </div>
+            </mat-card>
+            <!-- <mat-card class="h-100 m-2" fxFlex="33"></mat-card>
+            <mat-card class="h-100 m-2" fxFlex="33"></mat-card> -->
+        </div>
     </mat-card>
 
 </div>

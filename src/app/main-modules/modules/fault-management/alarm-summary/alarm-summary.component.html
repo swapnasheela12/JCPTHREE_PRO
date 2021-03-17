@@ -6,11 +6,16 @@
                     <div class="header" style="line-height: 3.5;">RAN</div>
                     <div fxFlex></div>
                     <div class="py-2">
-                        <button mat-icon-button>
-                            <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
-                                <div class="zmdi zmdi-search"></div>
+                        <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;margin: 10px 0px;" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                            <div class="zmdi zmdi-search"></div>
+                        </mat-icon>
+
+                        <mat-form-field *ngIf="show" style="margin-top: -15px;">
+                            <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                            <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                                <span class="zmdi zmdi-close"></span>
                             </mat-icon>
-                        </button>
+                        </mat-form-field>
                     </div>
                     <div class="toggleHeader px-3" fxLayout="row" fxLayoutAlign="space-around center">
                         <div>4G</div>
@@ -32,15 +37,13 @@
                                 <div *ngIf="isShownChartOrTable" class="ic ic-graph-01" style="line-height: 1.5;"></div>
                             </mat-icon>
                         </button>
-                        <button mat-icon-button class=" px-2">
+                        <button mat-icon-button class=" px-2" (click)="toggleShowHistory()">
                             <mat-icon class="iconType" style="font-size: 25px;line-height: 0px;">
                                 <div class="zmdi zmdi-time-restore"></div>
                             </mat-icon>
                         </button>
                     </div>
                     <div fxFlex="15" class="my-2 header-date-picker-type">
-                        <!-- <div class="title">Last Updated</div>
-                        <div class="sub-title">25 Oct, 2016, 2:30 PM</div> -->
                         <form [formGroup]="thirdFormGroup">
                             <mat-form-field class="custom-field-container" fxFlex="90" style="font-size: 14px;">
                                 <div class="daterange-container" style="top: 205px;
@@ -50,7 +53,6 @@
                                         [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value" [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value" (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
                                         autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
                                     <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
-                                    <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
                                 </div>
                             </mat-form-field>
                         </form>
@@ -115,7 +117,6 @@
                 <mat-divider [vertical]="true"></mat-divider>
                 <div class="p-3" fxFlex="23" style="padding-right:0 !important;padding-bottom: 0px;">
                     <mat-form-field fxFlex="100">
-                        <!-- <mat-select [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect> -->
                         <mat-select [matTooltip]="getToolTipDEata(selectGraphControl)" [multiple]="true" disableOptionCentering placeholder="Select Graph" [formControl]="selectGraphControl" ngDefaultControl #selectGraphControlSelect>
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Select Graph" [formControl]="selectGraphFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
@@ -130,7 +131,7 @@
             </div>
         </div>
     </mat-card>
-    <div class="active-alarm-main-content" style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
+    <div *ngIf="!isShownChartOrTableHistory" class="active-alarm-main-content" style="padding-top: 10px; margin-bottom: 10px; height: calc(100% - 99px);overflow: auto;">
 
         <mat-grid-list class="jcp-landing-grid-list" cols="6" row="2" rowHeight="400px" [gutterSize]="'10px'">
             <mat-grid-tile class="jcp-landing-grid-tile-one" *ngFor="let tile of tiles; let i=index" [colspan]="tile.cols" [rowspan]="tile.rows">
@@ -145,7 +146,6 @@
                                     <button mat-icon-button (click)="tableViewWidget('Active Alarm Classification',tableWidget,isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
                                             <div class="ic ic-table-011" style="padding: 3px 0;"></div>
-                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
                                         </mat-icon>
                                     </button>
                                 </div>
@@ -176,8 +176,6 @@
                             </app-alarm-summary-chart>
                             <app-alarm-summary-table *ngIf="isShownChartOrTable" [dataTable]="'Active Alarm Classification'">
                             </app-alarm-summary-table>
-                            <!-- <app-alarm-summary-table *ngIf="isShownTableEach" [dataTable]="singleTableName">
-                            </app-alarm-summary-table> -->
                         </div>
                     </div>
                     <div *ngIf="tile.text == 'Active Alarm Ageing'">
@@ -189,7 +187,6 @@
                                     <button mat-icon-button (click)="tableViewWidget('Active Alarm Ageing',tableWidget,isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
                                             <div class="ic ic-table-011" style="padding: 3px 0;"></div>
-                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
                                         </mat-icon>
                                     </button>
                                 </div>
@@ -231,7 +228,6 @@
                                     <button mat-icon-button (click)="tableViewWidget('Circles wise SA Active Alarms with Ageing distribution',tableWidget,isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
                                             <div class="ic ic-table-011" style="padding: 3px 0;"></div>
-                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
                                         </mat-icon>
                                     </button>
                                 </div>
@@ -273,7 +269,6 @@
                                     <button mat-icon-button (click)="tableViewWidget('Alarms vs Outage Minutes',tableWidget,isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
                                             <div class="ic ic-table-011" style="padding: 3px 0;"></div>
-                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
                                         </mat-icon>
                                     </button>
                                 </div>
@@ -315,7 +310,6 @@
                                     <button mat-icon-button (click)="tableViewWidget('Sites with > 24Hr Outage',tableWidget,isShownChartOrTable)">
                                         <mat-icon class="iconType" style="font-size: 18px;line-height: 18px;">
                                             <div class="ic ic-table-011" style="padding: 3px 0;"></div>
-                                            <!-- <div *ngIf="isShownChartOrTable" class="ic ic-graph-01"></div> -->
                                         </mat-icon>
                                     </button>
                                 </div>
@@ -352,4 +346,5 @@
             </mat-grid-tile>
         </mat-grid-list>
     </div>
+    <app-history-alarm *ngIf="isShownChartOrTableHistory"></app-history-alarm>
 </div>

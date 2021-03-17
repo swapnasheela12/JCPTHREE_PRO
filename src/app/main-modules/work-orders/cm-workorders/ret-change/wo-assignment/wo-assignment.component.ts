@@ -1,8 +1,9 @@
 import { takeUntil } from 'rxjs/operators';
-import { executionStatus, executionStatusDropdown } from './../../../../core/components/common-elements/type-dropdown-modulelist';
+import { executionStatus, executionStatusDropdown } from '../../../../../core/components/common-elements/type-dropdown-modulelist';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatSelect } from '@angular/material/select';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
@@ -15,17 +16,17 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { GridOptions, GridCore } from 'ag-grid-community';
 import * as _ from 'lodash';
-import { ThreeDotRETRenderer } from './threedot-ret-renderer.component';
+import { ThreeDotRETRenderer } from '../threedot-ret-renderer.component';
 import { DIRECTION_LIST, TYPE_LIST, DSCP_LIST } from 'src/app/main-modules/reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.constant';
-import { Status } from './cell-details/cell-details.column.constant';
+import { Status } from '../cell-details/cell-details.column.constant';
 declare var $: any;
 
 @Component({
-  selector: 'app-ret-change',
-  templateUrl: './ret-change.component.html',
-  styleUrls: ['./ret-change.component.scss']
+  selector: 'app-wo-assignment',
+  templateUrl: './wo-assignment.component.html',
+  styleUrls: ['./wo-assignment.component.scss']
 })
-export class RetChangeComponent implements OnInit {
+export class WoAssignmentComponent implements OnInit {
 
   public workorders:any = {};
 
@@ -119,7 +120,7 @@ export class RetChangeComponent implements OnInit {
   // executionStatus Dropdown
 
 
-  constructor(private _formBuilder: FormBuilder, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+  constructor(private location: Location,private _formBuilder: FormBuilder, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router, private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
     this.router.events.subscribe((val) => {
       console.log(val,"val");
 
@@ -362,11 +363,8 @@ export class RetChangeComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
+  backPageRout() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
 
 }

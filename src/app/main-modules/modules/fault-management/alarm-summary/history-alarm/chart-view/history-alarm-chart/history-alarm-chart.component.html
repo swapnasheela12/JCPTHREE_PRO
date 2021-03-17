@@ -1,0 +1,18 @@
+<div *ngIf="parentDataGet =='Historical Alarm Statistics'">
+    <div id="panindiachartID" [chart]="panindiachart"></div>
+</div>
+<div *ngIf="parentDataGet =='Network Availability Trend'">
+    <div id="activeAlarmAgingID" [chart]="activeAlarmAgingChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Top Recurring Alarms'">
+    <div id="kpiDetailsChartID" [chart]="circleWiseAlarmsChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Top Contributing Alarms based on Outage Mins.'">
+    <div id="kpiDetailsChartID" [chart]="alarmsOutageMinutesChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Clearance Ratio'">
+    <div id="dailyTrafficChartID" [chart]="clearanceRatioChart"></div>
+</div>
+<div *ngIf="parentDataGet =='Alarms per Cell'">
+    <div id="dailyTrafficChartID" [chart]="sitesWithChart"></div>
+</div>

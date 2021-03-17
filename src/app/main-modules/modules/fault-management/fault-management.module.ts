@@ -1,4 +1,4 @@
-import { AlarmSummaryTableAllComponent } from './alarm-summary/table-view/alarm-summary-table-all/alarm-summary-table-all.component';
+// import { AlarmSummaryTableAllComponent } from './alarm-summary/table-view/alarm-summary-table-all/alarm-summary-table-all.component';
 import { AlarmSummaryChartExpandComponent } from './alarm-summary/chart-view/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
 import { AlarmSummaryTableComponent } from './alarm-summary/table-view/alarm-summary-table/alarm-summary-table.component';
 import { AlarmSummaryChartComponent } from './alarm-summary/chart-view/alarm-summary-chart/alarm-summary-chart.component';
@@ -71,6 +71,11 @@ import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlarmSummaryComponent } from './alarm-summary/alarm-summary.component';
 import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/alarm-summary-table-expand/alarm-summary-table-expand.component';
+import { HistoryAlarmChartComponent } from './alarm-summary/history-alarm/chart-view/history-alarm-chart/history-alarm-chart.component';
+import { HistoryAlarmExpandChartComponent } from './alarm-summary/history-alarm/chart-view/history-alarm-expand-chart/history-alarm-expand-chart.component';
+import { HistoryAlarmTableComponent } from './alarm-summary/history-alarm/table-view/history-alarm-table/history-alarm-table.component';
+import { HistoryAlarmExpandTableComponent } from './alarm-summary/history-alarm/table-view/history-alarm-expand-table/history-alarm-expand-table.component';
+import { HistoryAlarmComponent } from './alarm-summary/history-alarm/history-alarm.component';
 // import { HeaderOfWidgetsComponent } from './alarm-summary/header-of-widgets/header-of-widgets.component';
 // import { AlarmSummaryChartComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart.component';
 // import { AlarmSummaryChartExpandComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
@@ -78,7 +83,7 @@ import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/ala
 // import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table/alarm-summary-table.component';
 // import { AlarmSummaryTableAllComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table-all/alarm-summary-table-all.component';
 @NgModule({
-  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableAllComponent, AlarmSummaryTableExpandComponent],
+  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableExpandComponent, HistoryAlarmChartComponent, HistoryAlarmExpandChartComponent, HistoryAlarmTableComponent, HistoryAlarmExpandTableComponent, HistoryAlarmComponent],
   imports: [
     CoreModule,
     FlexLayoutModule,
@@ -89,18 +94,18 @@ import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/ala
     A11yModule,
     ChartModule,
     HighchartsChartModule,
-   
+
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
-  
+
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
-    
+
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -111,7 +116,7 @@ import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/ala
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
-    
+
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
@@ -128,14 +133,14 @@ import { AlarmSummaryTableExpandComponent } from './alarm-summary/table-view/ala
     PortalModule,
     ScrollingModule,
     AgGridModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     CoreModule,
     NgxMatSelectSearchModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, 
+  exports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule  ]
 })
 export class FaultManagementModule { }

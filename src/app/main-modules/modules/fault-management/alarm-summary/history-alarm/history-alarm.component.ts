@@ -1,7 +1,10 @@
-import { AlarmSummaryTableExpandComponent } from './table-view/alarm-summary-table-expand/alarm-summary-table-expand.component';
-import { AlarmSummaryChartExpandComponent } from './chart-view/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
-import { FmDataSharingService } from './../../../../_services/fm-data-sharing.service';
-import { dropdown, R4GState, JC, City, Node, GraphType, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from './../../../../core/components/common-elements/type-dropdown-modulelist';
+import { FmDataSharingService } from './../../../../../_services/fm-data-sharing.service';
+import { HistoryAlarmExpandChartComponent } from './chart-view/history-alarm-expand-chart/history-alarm-expand-chart.component';
+import { HistoryAlarmExpandTableComponent } from './table-view/history-alarm-expand-table/history-alarm-expand-table.component';
+// import { AlarmSummaryTableExpandComponent } from './table-view/alarm-summary-table-expand/alarm-summary-table-expand.component';
+// import { AlarmSummaryChartExpandComponent } from './chart-view/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
+// import { FmDataSharingService } from './../../../../_services/fm-data-sharing.service';
+import { dropdown, R4GState, JC, City, Node, GraphType, dataSourceOutdoor, dataSourceIndoor, dataSourceMacro } from '../../../../../core/components/common-elements/type-dropdown-modulelist';
 
 import { take, takeUntil, map } from 'rxjs/operators';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -23,13 +26,13 @@ export interface Tile {
   rows: number;
   text: string;
 }
+
 @Component({
-  selector: 'app-alarm-summary',
-  templateUrl: './alarm-summary.component.html',
-  styleUrls: ['./alarm-summary.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-history-alarm',
+  templateUrl: './history-alarm.component.html',
+  styleUrls: ['./history-alarm.component.scss']
 })
-export class AlarmSummaryComponent implements OnInit {
+export class HistoryAlarmComponent implements OnInit {
 
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
@@ -149,7 +152,7 @@ export class AlarmSummaryComponent implements OnInit {
         endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
         // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
         // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
-      },Validators.required],
+      }, Validators.required],
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,
       showRangeLabelOnInput: true,
@@ -243,7 +246,14 @@ export class AlarmSummaryComponent implements OnInit {
         );
       });
 
-    let selectgraphArr = this.selectGraphControl.value;
+    let selectgraphArr = [
+      { name: 'Historical Alarm Statistics', cols: 3, rows: 1 },
+      { name: 'Network Availability Trend', cols: 3, rows: 1 },
+      { name: 'Top Recurring Alarms', cols: 3, rows: 1 },
+      { name: 'Top Contributing Alarms based on Outage Mins.', cols: 3, rows: 1 },
+      { name: 'Clearance Ratio', cols: 3, rows: 1 },
+      { name: 'Alarms per Cell', cols: 3, rows: 1 }
+    ];
 
     selectgraphArr.map(item => {
       return { text: item.name, cols: item.cols, rows: item.rows }
@@ -322,44 +332,22 @@ export class AlarmSummaryComponent implements OnInit {
     }
 
   }
-  public isShownChartOrTableHistory: boolean = false; // hidden by default
-  // public dataTransferToChartHistory; // hidden by default
 
-  toggleShowHistory() {
-    this.isShownChartOrTableHistory = !this.isShownChartOrTableHistory;
-    // if (this.isShownChartOrTableHistory == false) {
-    //   let objSendTable = {
-    //     tableName: null,
-    //     statusSingleView: null,
-    //     chartOrTable: this.isShownChartOrTableHistory
-    //   }
-    //   this.dataShareFM.changeMessageTitle(objSendTable);
-    // } else {
-    //   let objSendTable = {
-    //     tableName: null,
-    //     statusSingleView: null,
-    //     chartOrTable: this.isShownChartOrTableHistory
-    //   }
-    //   this.dataShareFM.changeMessageTitle(objSendTable);
-    // }
-
-  }
-
-  expandViewWidget(graphType , viewType) {
+  expandViewWidget(graphType, viewType) {
     console.log(graphType, "graphType");
-    this.openFlagConf(graphType,viewType)
+    this.openFlagConf(graphType, viewType)
   }
 
-  openFlagConf(selectedGraph,viewType) {
+  openFlagConf(selectedGraph, viewType) {
     if (viewType == false) {
-      const dialogRef = this.dialog.open(AlarmSummaryChartExpandComponent, {
+      const dialogRef = this.dialog.open(HistoryAlarmExpandChartComponent, {
         width: "700px",
         height: '500px',
         data: selectedGraph,
         panelClass: "material-dialog-container"
       });
     } else {
-      const dialogRef = this.dialog.open(AlarmSummaryTableExpandComponent, {
+      const dialogRef = this.dialog.open(HistoryAlarmExpandTableComponent, {
         width: "750px",
         height: '500px',
         data: selectedGraph,

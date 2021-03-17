@@ -1,3 +1,4 @@
+import { WoAssignmentComponent } from './ret-change/wo-assignment/wo-assignment.component';
 import { RqaSchedulingWorkorderComponent } from './rqa-scheduling-workorder/rqa-scheduling-workorder.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: '',
         component: RetChangeComponent,
+      },
+      {
+        path: 'Detail-View',
+        component: WoAssignmentComponent,
       },
       {
         path: 'Cell-Details',

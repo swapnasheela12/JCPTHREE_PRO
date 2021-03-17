@@ -68,6 +68,9 @@ import { CellDetailsComponent } from './ret-change/cell-details/cell-details.com
 import { WorkorderDetailsComponent } from './ret-change/workorder-details/workorder-details.component';
 import { IconRendererComponent } from './ret-change/icon-renderer.component';
 import { MmlCommandResultComponent } from './ret-change/cell-details/mml-command-result/mml-command-result.component';
+import { WoAssignmentComponent } from './ret-change/wo-assignment/wo-assignment.component';
+import { ApprovalStatusComponent } from './ret-change/approval-status/approval-status.component';
+import { HistoryComponent } from './ret-change/history/history.component';
 
 
 @NgModule({
@@ -77,7 +80,10 @@ import { MmlCommandResultComponent } from './ret-change/cell-details/mml-command
     CellDetailsComponent,
     WorkorderDetailsComponent,
     IconRendererComponent,
-    MmlCommandResultComponent],
+    MmlCommandResultComponent,
+    WoAssignmentComponent,
+    ApprovalStatusComponent,
+    HistoryComponent],
   imports: [
     CommonModule,
     CmWorkordersRoutingModule,
