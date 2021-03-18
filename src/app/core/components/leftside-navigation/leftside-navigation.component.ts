@@ -1,7 +1,7 @@
 import { LogicalConnectivitySettingComponent } from './../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 //\9
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input, ChangeDetectorRef } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -123,25 +123,52 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     private router: Router,
     private renderer: Renderer2,
     private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
+    private cd: ChangeDetectorRef
   ) {
     this.dataSource.data = LAYERS_DATA;
-   
-    // this.datashare.currentMessage.subscribe((data: any) => {
-    //   console.log(data)
-    //   let addPin: any = {
-    //     name: data.pinName,
-    //     icon: "fas fa-user fa-3",
-    //     link: "Pins",
-    //     eventName: 'new-pin',
-    //     component: 'ImportKmlComponent'
-    //   };
-    //   console.log("data", LAYERS_DATA);
-    //   if (data) {
-    //     this.dataSource.data[9].children[1].children.push(addPin);
-    //     console.log("pins", this.dataSource.data[9].children[1].children);
-    //   }
-    // });
+    this.datashare.extraLayerObject.subscribe((data: any) => {
+      if (Object.keys(data).length !== 0) {
+        let dataChange = this.dataSource.data;
+        if (dataChange[0].name != 'My Projects') {
+          let removedItems = dataChange.splice(0,0,data[0]);
+          this.dataSource.data = [];
+          this.dataSource.data = dataChange;
+        } else {
+          dataChange[0] = data[0];
+          this.dataSource.data = [];
+          this.dataSource.data = dataChange;
+        }
+          if(dataChange[0].children[0].children[0].children[0] != undefined && 
+            (
+              dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+            )){
+            dataChange[0].children[0].children[0].children[0].checked = true;
+            this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
+          } else if(
+            dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+            || dataChange[0].children[0].children[0].eventName == 'nominal-validation')) {
+            dataChange[0].children[0].children[0].checked = true;
+            this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
+          }
+          this.dataSource.data = dataChange;
+          if(
+            dataChange[0].children[0].children[0].children[0] != undefined && 
+            (
+              dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
+            )){
+            this.treeControl.expand(this.treeControl.dataNodes[0]);
+            this.treeControl.expand(this.treeControl.dataNodes[1]);
+            this.treeControl.expand(this.treeControl.dataNodes[2]);
+          } else if(
+            dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+            || dataChange[0].children[0].children[0].eventName == 'nominal-validation')
+            ) {
+            this.treeControl.expand(this.treeControl.dataNodes[0]);
+            this.treeControl.expand(this.treeControl.dataNodes[1]);
+          }
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -202,46 +229,6 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
          
         }
       }
-
-      this.datashare.extraLayerObject.subscribe((data: any) => {
-        if (Object.keys(data).length !== 0) {
-          let dataChange = this.dataSource.data;
-          if (dataChange[0].name != 'My Projects') {
-            let removedItems = dataChange.splice(0,0,data[0]);
-            this.dataSource.data = [];
-            this.dataSource.data = dataChange;
-            if(dataChange[0].children[0].children[0].children[0] != undefined && 
-              (
-                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
-              )){
-              dataChange[0].children[0].children[0].children[0].checked = true;
-              this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
-            } else if(
-              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
-              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')) {
-              dataChange[0].children[0].children[0].checked = true;
-              this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
-            }
-            this.dataSource.data = dataChange;
-            if(
-              dataChange[0].children[0].children[0].children[0] != undefined && 
-              (
-                dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
-              )){
-              this.treeControl.expand(this.treeControl.dataNodes[0]);
-              this.treeControl.expand(this.treeControl.dataNodes[1]);
-              this.treeControl.expand(this.treeControl.dataNodes[2]);
-            } else if(
-              dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
-              || dataChange[0].children[0].children[0].eventName == 'nominal-validation')
-              ) {
-              this.treeControl.expand(this.treeControl.dataNodes[0]);
-              this.treeControl.expand(this.treeControl.dataNodes[1]);
-            }
-          }
-        
-        }
-      });
   
     });
   }

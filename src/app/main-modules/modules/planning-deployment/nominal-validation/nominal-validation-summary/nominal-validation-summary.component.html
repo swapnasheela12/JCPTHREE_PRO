@@ -20,8 +20,8 @@
             <mat-tab-group dynamicHeight fxFlex="auto">
                 <mat-tab label="Input Summary" fxLayout="column">
                     <div fxLayout="row">
-                        <div fxFlex="51" fxLayout="row" class="summary-table">
-                            <div fxLayout="column" fxFlex="100">
+                        <div fxFlex="51" fxLayout="row" class="summary-table overflow-auto width-0">
+                            <div fxLayout="column">
                                 <span class="table-header">Planning Targets</span>
                                 <div fxLayout="row" class="summary-content">
                                     <div fxFlex="55" class="target-data">
@@ -45,13 +45,13 @@
                                 </div>
                             </div>  
                         </div>
-                        <div fxFlex="31" class="summary-table">
-                            <div fxLayout="column" fxFlex="100">
+                        <div fxFlex="31" class="summary-table width-0">
+                            <div fxLayout="column">
                                 <span class="table-header">
                                     Traffic Map
                                 </span>
-                                <div fxLayout="row" class="summary-content">
-                                    <div class="target-data">
+                                <div fxLayout="row" class="summary-content overflow-auto">
+                                    <div class="target-data" fxFlex="100">
                                         <div *ngFor="let target of trafficMap">
                                             <div isEllipsisActive="trafficMap" attr.data-title1="{{target.key}}: {{target.value}}"
                                             id="{{target.key}} : {{target.value}}">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div fxFlex="23" class="summary-table">
+                        <div fxFlex="23" class="summary-table width-0">
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">
                                     Existing Sites in Target Area
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div>
-                        <div fxFlex="100" class="summary-table">
+                        <div fxFlex="100" class="summary-table width-0">
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">Site Template</span>
                                 <table mat-table [dataSource]="dataSource">

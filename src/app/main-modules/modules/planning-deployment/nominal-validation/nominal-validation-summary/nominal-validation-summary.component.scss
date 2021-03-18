@@ -42,7 +42,7 @@
             min-height: 200px;
             .kpi-summary {
                 position: relative;
-                height: 212px;
+                height: 264px;
                 overflow: auto;
                 td.mat-cell {
                     font-family: Lato Regular;
@@ -58,6 +58,9 @@
             border: 1px solid #0000001A;
             margin: 10px;
             border-radius: 4px;
+            &.width-0{
+                width: 0px;
+            }
             .table-header {
                 padding: 6px 16px;;
                 border-bottom :1px solid #0000001A;
@@ -113,6 +116,7 @@
         }
         .mat-tab-group-dynamic-height .mat-tab-body-content{
             overflow-y: auto !important;
+            height: calc(100% - 51px);
         }
     }  
     .button{

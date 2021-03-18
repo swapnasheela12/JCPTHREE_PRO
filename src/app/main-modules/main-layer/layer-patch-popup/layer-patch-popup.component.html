@@ -1,6 +1,6 @@
 <ng-template #layerPatchSettingsPopup>
-    <div style="height: calc(100% - 101px); margin: 20px;" id="nav-menu-custom">
-        <mat-tree style="overflow: auto;" [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+    <div style="margin: 20px;overflow-y: scroll;height: 320px;overflow-x: hidden;" id="nav-menu-custom">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle matTreeNodePaddingIndent="0" (click)="onChangeTree(node.selected, node, activeCheckbox, 'no')" (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"
                         [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0': '']" class="dashed-border">
                         <span class="node-arrow-nox d-flex">

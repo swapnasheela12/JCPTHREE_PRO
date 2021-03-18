@@ -9,13 +9,13 @@
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
-    <div mat-dialog-content>
+    <div mat-dialog-content class="overflow-hidden">
         <mat-form-field class="search-input full-width" appearance="none">
             <input matInput [formControl]="search">
             <i class="search-icon zmdi zmdi-search"></i>
         </mat-form-field>
         <mat-divider></mat-divider>
-        <div fxLayout="column" class="" style="height: 100%; overflow: auto;">
+        <div fxLayout="column" style="height: 371px;" class="overflow-auto">
             <div fxLayout="column wrap" fxLayoutAlign="space-evenly" class="mt20 mx15">
                 <mat-selection-list #completeProjectList (selectionChange)="onSelectionChange()" >
                     <mat-list-option *ngFor="let shoe of searchInList|async" [value]="shoe"
