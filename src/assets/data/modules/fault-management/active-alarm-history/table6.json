@@ -1,50 +1,85 @@
 [{
-        "OutageStart": "25 Oct, 2016",
-        "Circle": "PAN India",
-        "JCID": "JC01",
-        "SapID": "Site_1",
-        "OutageDuration": "13"
-    },
-    {
-        "OutageStart": "15 Oct, 2016",
+        "CreatedDate": "25 Oct, 2016",
         "Circle": "Mumbai",
-        "JCID": "JC02",
-        "SapID": "Site_2",
-        "OutageDuration": "0"
+        "TotalCells": "20501",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "8052",
+        "PerformanceDegrading": "18798",
+        "NSA": "18798"
     },
     {
-        "OutageStart": "27 Oct, 2017",
-        "Circle": "Bihar",
-        "JCID": "JC03",
-        "SapID": "Site_3",
-        "OutageDuration": "7"
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20502",
+        "TotalAlarm": "799",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
     },
     {
-        "OutageStart": "27 Oct, 2017",
-        "Circle": "Assam",
-        "JCID": "JC04",
-        "SapID": "Site_4",
-        "OutageDuration": "10"
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20503",
+        "TotalAlarm": "2052",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
     },
     {
-        "OutageStart": "27 Oct, 2017",
-        "Circle": "Andhra Pradesh",
-        "JCID": "JC05",
-        "SapID": "Site_5",
-        "OutageDuration": "0"
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20504",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "8052",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
     },
     {
-        "OutageStart": "27 Oct, 2017",
-        "Circle": "Delhi",
-        "JCID": "JC06",
-        "SapID": "Site_6",
-        "OutageDuration": "7"
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20505",
+        "TotalAlarm": "799",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
     },
     {
-        "OutageStart": "27 Oct, 2017",
-        "Circle": "Goa",
-        "JCID": "JC08",
-        "SapID": "Site_7",
-        "OutageDuration": "7"
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20506",
+        "TotalAlarm": "2052",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20507",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
     }
 ]

@@ -1,1 +1,32 @@
-<p>history-alarm-expand-chart works!</p>
+<div class="customFlag-dialog-container">
+    <mat-toolbar class="dialog-header" style="height: 55px;font-size: 18px;font-family: Lato Bold;">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>{{data}}</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="main-content">
+        <div *ngIf="data =='Historical Alarm Statistics'">
+            <div id="panindiachartID" [chart]="panindiachart"></div>
+        </div>
+        <div *ngIf="data =='Network Availability Trend'">
+            <div id="activeAlarmAgingID" [chart]="activeAlarmAgingChart"></div>
+        </div>
+        <div *ngIf="data =='Top Recurring Alarms'">
+            <div id="kpiDetailsChartID" [chart]="circleWiseAlarmsChart"></div>
+        </div>
+        <div *ngIf="data =='Top Contributing Alarms based on Outage Mins.'">
+            <div id="kpiDetailsChartID" [chart]="alarmsOutageMinutesChart"></div>
+        </div>
+        <div *ngIf="data =='Clearance Ratio'">
+            <div id="dailyTrafficChartID" [chart]="clearanceRatioChart"></div>
+        </div>
+        <div *ngIf="data =='Alarms per Cell'">
+            <div id="dailyTrafficChartID" [chart]="sitesWithChart"></div>
+        </div>
+    </div>
+</div>

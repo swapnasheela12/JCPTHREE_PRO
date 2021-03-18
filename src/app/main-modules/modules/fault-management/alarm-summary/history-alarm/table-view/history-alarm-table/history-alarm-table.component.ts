@@ -552,7 +552,7 @@ export class HistoryAlarmTableComponent implements OnInit {
 
   public httpClientRowDataTable6() {
     this.http
-      .get("assets/data/modules/fault-management/active-alarm-history/Table6.json")
+      .get("assets/data/modules/fault-management/active-alarm-history/table6.json")
       .subscribe(data => {
         this.rowDataTable6 = data;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid-without-Pagination";
@@ -570,6 +570,7 @@ export class HistoryAlarmTableComponent implements OnInit {
         headerName: "Circle",
         field: "Circle",
         width: 140,
+        pinned: 'left',
       },
       {
         headerName: "Total Cells",
@@ -577,9 +578,9 @@ export class HistoryAlarmTableComponent implements OnInit {
         width: 140,
       },
       {
-        headerName: "Ageing",
-        field: "Ageing",
-        width: 150,
+        headerName: "Total Alarm",
+        field: "TotalAlarm",
+        width: 140,
       },
       {
         headerName: "SA",
@@ -594,21 +595,6 @@ export class HistoryAlarmTableComponent implements OnInit {
       {
         headerName: "Performance Degrading",
         field: "PerformanceDegrading",
-        width: 240,
-      },
-      {
-        headerName: "SA",
-        field: "SA2",
-        width: 115,
-      },
-      {
-        headerName: "NSA ",
-        field: "NSA2",
-        width: 130,
-      },
-      {
-        headerName: "Performance Degrading",
-        field: "PerformanceDegrading2",
         width: 240,
       }
     ];
