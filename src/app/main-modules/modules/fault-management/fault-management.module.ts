@@ -11,6 +11,8 @@ import { ActiveAlarmComponent } from './active-alarm/active-alarm.component';
 
 import { CoreModule } from './../../../core/core.module';
 
+import { threeDotActiveAlarmRendererComponent } from './active-alarm/threedot-active-alarm-renderer.component';
+import { threeDotActiveLibraryRendererComponent } from './active-library/threedot-active-library-renderer.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HighchartsChartModule } from "highcharts-angular";
@@ -83,12 +85,12 @@ import { HistoryAlarmComponent } from './alarm-summary/history-alarm/history-ala
 // import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table/alarm-summary-table.component';
 // import { AlarmSummaryTableAllComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table-all/alarm-summary-table-all.component';
 @NgModule({
-  declarations: [ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableExpandComponent, HistoryAlarmChartComponent, HistoryAlarmExpandChartComponent, HistoryAlarmTableComponent, HistoryAlarmExpandTableComponent, HistoryAlarmComponent],
+  declarations: [threeDotActiveLibraryRendererComponent, threeDotActiveAlarmRendererComponent,ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableExpandComponent, HistoryAlarmChartComponent, HistoryAlarmExpandChartComponent, HistoryAlarmTableComponent, HistoryAlarmExpandTableComponent, HistoryAlarmComponent],
   imports: [
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    // AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([threeDotActiveLibraryRendererComponent, threeDotActiveAlarmRendererComponent]),
     CommonModule,
     FaultManagementRoutingModule,
     A11yModule,

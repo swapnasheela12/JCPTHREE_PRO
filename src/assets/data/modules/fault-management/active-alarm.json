@@ -15,7 +15,7 @@
 {
     "eventtime" : "25th July 2017, 12:30 p.m.",
     "eventtype" : "Communication",
-    "severity" : "Minor",
+    "severity" : "Critical",
     "vendor"    : "Samsung",
     "jiocenter" : "BR-ARRI-J0018-053",
     "circle" : "Bihar",
@@ -29,7 +29,7 @@
 {
     "eventtime" : "25th July 2017, 12:30 p.m.",
     "eventtype" : "Communication",
-    "severity" : "Minor",
+    "severity" : "Major",
     "vendor"    : "Samsung",
     "jiocenter" : "BR-ARRI-J0018-053",
     "circle" : "Bihar",
@@ -43,7 +43,7 @@
 {
     "eventtime" : "25th July 2017, 12:30 p.m.",
     "eventtype" : "Communication",
-    "severity" : "Minor",
+    "severity" : "Critical",
     "vendor"    : "Samsung",
     "jiocenter" : "BR-ARRI-J0018-053",
     "circle" : "Bihar",

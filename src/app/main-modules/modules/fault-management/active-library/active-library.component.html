@@ -76,7 +76,7 @@
             headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
             enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
             toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
-            
+            [frameworkComponents]="frameworkComponentsActiveLibrary"
             (gridReady)="onReady($event)">
         </ag-grid-angular>
         <!-- <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"

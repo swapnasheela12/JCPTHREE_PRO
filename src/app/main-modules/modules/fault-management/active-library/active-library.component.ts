@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import * as moment from 'moment';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { threeDotActiveLibraryRendererComponent } from './threedot-active-library-renderer.component';
 
 
 @Component({
@@ -43,8 +45,7 @@ constructor(
 ) {
   this.gridOptions = <GridOptions>{};
   this.frameworkComponentsActiveLibrary = {
-    // 'statusFlagRenderer': StatusRendererComponent,
-    // 'VerticaldotRenderer': VerticaldotRendererComponent
+    threedotrenderer : threeDotActiveLibraryRendererComponent
   };
   this.datashare.chechboxChangeMessage(this.showGlobalOperation);
   this.paginationPageSize = 10;
@@ -84,6 +85,11 @@ ngOnInit(): void {
       field: "domain",
       width: 110
     }, {
+      headerName: "Technology",
+      field: "technology",
+      width: 140
+    },
+    {
       headerName: "Device Type",
       field: "devicetype",
       width: 120
@@ -99,7 +105,8 @@ ngOnInit(): void {
     {
       headerName: "Severity",
      field: 'severity',
-     width: 160
+     width: 160,
+     cellRenderer: this.statusFunc,
     },
     {
       headerName: "EMS Source",
@@ -116,10 +123,27 @@ ngOnInit(): void {
     { 
       headerName: "",
       field: '',
-      width: 160
-     
+      width: 100,
+     cellRenderer: 'threedotrenderer',
+     pinned: 'right'
     }
   ];
+
+  statusFunc(params) {
+    var status = params.value;
+    var barColor = '';
+    if (status == "Critical") {
+      barColor = 'red';
+    } else if (status == "Major") {
+      barColor = 'orange';
+    } else if (status == "Minor") {
+      barColor = 'yellow';
+    }
+    return '<span class="status-bar" style="width: 7px; border-radius: 0; background-color: ' +
+      barColor +
+      ';">' + '</span>' + '<div style="margin-left: 11px; display: inline-block;vertical-align: super;">' +
+      status + '</div>' ;
+  }
 
   
 

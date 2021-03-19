@@ -10,10 +10,10 @@ import { AddAlarmComponent } from './add-alarm/add-alarm.component';
 const routes: Routes = [
 
   { path: "Active-Alarm", component: ActiveAlarmComponent },
-  { path: "Active-Library", component: ActiveLibraryComponent },
+  { path: "Alarm-Library", component: ActiveLibraryComponent },
   { path: "Alarm-Summary", component: AlarmSummaryComponent },
   { path: "Add-Alarm", component: AddAlarmComponent },
-  
+
 
 ];
 

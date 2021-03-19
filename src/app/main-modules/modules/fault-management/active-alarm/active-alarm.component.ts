@@ -18,6 +18,8 @@ import { MatSelect } from '@angular/material/select';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 import { FormsModule } from '@angular/forms';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { threeDotActiveAlarmRendererComponent } from './threedot-active-alarm-renderer.component';
 
 
 @Component({
@@ -54,6 +56,7 @@ public selected = moment();
   
   public frameworkComponentsActiveAlarms =    {
    // verticaldropdownMenu: ActiveAlarmMenuComponent
+   threedotrenderer : threeDotActiveAlarmRendererComponent
   };
 
   reportType = 'KPI Report';
@@ -88,6 +91,7 @@ public selected = moment();
   selectedDateTime: any;
   selectedDateTimeValue: boolean = false;
   invalidDates: moment.Moment[] = [];
+  pinnedBottomRowData: any;
   tooltips = [
     { date: moment(), text: 'Today is just unselectable' },
     { date: moment().add(2, 'days'), text: 'Yeeeees!!!' },
@@ -199,18 +203,18 @@ public selected = moment();
       headerName: "Event Time",
       field: "eventtime",
       width: 180,
-      
-     
+      pinned: 'left'
+         
     }, {
       headerName: "Event Type",
       field: "eventtype",
-      width: 210,
-      pinned: 'left',
-      cellClass: 'lock-pinned',
+      width: 180,
+      pinned: 'left'
     }, {
       headerName: "Severity",
       field: "severity",
-      width: 110
+      cellRenderer: this.statusFunc,
+      width: 150
     }, {
       headerName: "Vendor",
       field: "vendor",
@@ -261,8 +265,8 @@ public selected = moment();
     },
     {
       headerName: "",
-      cellRenderer:'verticaldropdownMenu',
-      width: 70,
+      cellRenderer:'threedotrenderer',
+      width: 100,
     //  id: "dot-rendered-active-alarm",
       pinned: 'right'
 
@@ -287,6 +291,16 @@ public selected = moment();
     this.getActiveAlarmsData();
   }
 
+  // createData(total, num) {
+  //   var result = [];
+  //   result.push({
+  //     eventtime: "Total: ",
+  //     eventtype:  num,
+  //     severity: ''
+  //   });
+  //   return result;
+  // }
+
   get PaginationPageSize(): number {
     return this.paginationPageSize;
   }
@@ -297,6 +311,22 @@ public selected = moment();
 
   private createColumnDefs() {
     this.columnDefs = this.header_Active_Alarms;
+  }
+
+  statusFunc(params) {
+    var status = params.value;
+    var barColor = '';
+    if (status == "Critical") {
+      barColor = 'red';
+    } else if (status == "Major") {
+      barColor = 'orange';
+    } else if (status == "Minor") {
+      barColor = 'yellow';
+    }
+    return '<span class="status-bar" style="width: 7px; border-radius: 0; background-color: ' +
+      barColor +
+      ';">' + '</span>' + '<div style="margin-left: 11px; display: inline-block;vertical-align: super;">' +
+      status + '</div>' ;
   }
 
   toggleSearch() {
@@ -316,6 +346,13 @@ public selected = moment();
     this.http.get("assets/data/modules/fault-management/active-alarm.json")
       .subscribe(data => {
         this.rowData = data;
+
+
+       // total count row renedering
+        // this.pinnedBottomRowData = this.createData(
+        //   "Total",
+        //   "657131"
+        // );
     });
   }
 

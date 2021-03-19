@@ -110,12 +110,12 @@ export class AddAlarmComponent implements OnInit {
    BulkUpload: boolean;
    Manual: boolean;
   showBulk: boolean = true;
-  // R4G Circle Dropdown 
+  // R4G Circle Dropdown
 
 
 
 
-  // Select JC Dropdown 
+  // Select JC Dropdown
   trackByRadioButtonType(index: number, type: any): string {
     return type.name;
   }
@@ -141,7 +141,7 @@ export class AddAlarmComponent implements OnInit {
   ]; selectedValue: string = "RAN";
   type: any;
   show: boolean = true;
- switchthedivs(ev){ 
+ switchthedivs(ev){
    if (ev.value == 'Bulk Upload') {
      this.showBulk = true
    } else {
@@ -161,7 +161,7 @@ export class AddAlarmComponent implements OnInit {
   techSelectedValue: string = "5G"
   techs: Technology[] = [
     { value: '5G', viewValue: '5G' },
-
+    { value: 'LTE', viewValue: 'LTE'}
 
   ];
   vendor: string = "JIO";
@@ -243,9 +243,9 @@ export class AddAlarmComponent implements OnInit {
     //   this.Manual = true;
     //  this.BulkUpload = false;
     // }
-  
+
    }
 
 
-  
+
 }
