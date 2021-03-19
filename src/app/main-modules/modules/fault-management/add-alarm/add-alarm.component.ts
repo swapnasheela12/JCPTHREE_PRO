@@ -164,6 +164,8 @@ export class AddAlarmComponent implements OnInit {
     { value: 'LTE', viewValue: 'LTE'}
 
   ];
+
+
   vendor: string = "JIO";
   vendors: Vendor[] = [
     { value: 'JIO', viewValue: 'JIO' },
