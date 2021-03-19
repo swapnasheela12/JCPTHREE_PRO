@@ -1,0 +1,38 @@
+.np-save-query-popup-dialog {
+    height:100%;
+    .mat-dialog-container {
+        padding: 0px;
+        overflow: hidden;
+            height: 100%;
+            .dialog-header {
+                height: 54px;
+                max-height: 54px;
+                min-height: 54px;
+                background-color: #0070DB;
+                .mat-toolbar-row {
+                    font-size: 18px;
+                    color: white;
+                    .dialog-close-button {
+                        .mat-button-focus-overlay {
+                            background-color: transparent !important;
+                        }
+                    }
+                }
+            }
+            .mat-dialog-content{
+                height:calc(100% - 106px);
+                margin: 0px;
+                .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+                    background-color: #e5f0fc !important;
+                }
+                .mat-radio-checked {
+                    .mat-radio-outer-circle {
+                        border-color: #0078d7 !important;
+                    }
+                }
+                .mat-radio-inner-circle {
+                    background-color: #0078d7 !important;
+                }
+            }
+        }
+    }

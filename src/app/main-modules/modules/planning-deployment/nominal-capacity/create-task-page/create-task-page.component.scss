@@ -1,10 +1,36 @@
+#ngNcCreateTaskPD {
+    white-space: nowrap;
+    overflow: hidden;
+    // text-overflow: ellipsis;
+}
+
+.cnct-mat-card #ngNcCreateTaskPD:hover:after {
+    content: attr(data-title1);
+    padding: 0 8px;
+    color: white;
+    position: absolute;
+    font-size:12px;
+    top: 44%;
+    left: 40%;
+    z-index: 20;
+    border-radius: 2px;
+    font-family: Lato Regular;
+    background-color: #434962;
+    width: initial;
+    white-space: pre-wrap;
+    height: auto;
+    width: 560px;
+}
+
 .cnct-mat-card{
     .card-header{
         font-size: 15px;
         font-family: lato bold;
         padding-left: 0px;
         .label{
-            font-size: 12px; color: rgb(0 0 0 / 0.54)
+            font-size: 12px; color: rgb(0 0 0 / 0.54);
+            font-family: 'Lato Regular';
+            margin-bottom: 0px;
         }
         .value{
             
@@ -18,7 +44,7 @@
             height: 100%;
             .mat-horizontal-content-container{
                 height: calc(100% - 24px);
-                 padding-left: 10px;
+                 padding-left: 20px;
                 .mat-horizontal-stepper-content[aria-expanded="true"]{
                     height:100%;
                     .content-holder{
@@ -82,6 +108,15 @@
                         }
                     }
                 }
+            }
+            .mat-horizontal-stepper-header-container {
+                width: 75%;
+            }
+            .sdf-label{
+                color: #0000008a;
+            }
+            .sdf-value{
+                font-family: 'Lato Medium';
             }
             }
     }

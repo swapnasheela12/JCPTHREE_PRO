@@ -176,6 +176,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     $('.disabled-menu-item-nav').parent().css({ 'color': 'gray', 'cursor': 'not-allowed', 'pointer-events': 'none' });
   }
   parentIconClick(mmenuDirective, level) {
+    let dataChange = this.dataSource.data;
+    this.dataSource.data = [];
+    this.dataSource.data = dataChange;
     if (level == 0) {
       mmenuDirective.menu.API.closeAllPanels()
     }

@@ -19,6 +19,7 @@ import { StatergeMapNominalComponent } from '../../../network-planning/rf-planni
 import { AdDirective } from 'src/app/_directive/dynamicComponent/ad.directive';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { NcDeleteHeaderRendererComponent } from './renderer/cnct-header-delete-renderer.component';
+import { Router } from '@angular/router';
 declare const L: any;
 const PATHS = [
   { createPage: "/JCP/Layers" },
@@ -31,6 +32,10 @@ const PATHS = [
   encapsulation: ViewEncapsulation.None
 })
 export class CreateTaskPageComponent implements OnInit {
+  designList = [
+    { name: 'Geography', value: '28'},
+    { name: 'Project Description', value: 'DGDKJlhdsjkahDasSsasASs lkashd aoihasdoiashd oiahd oihas doihasoiuh asoidhasoidhaosidhaosidhoias dhoais chaso hd osaudh aiudg audh asiugh'}
+  ]
   plan: string;
   zone: string;
   r4gStates: string;
@@ -316,6 +321,7 @@ export class CreateTaskPageComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private componentFactoryResolver: ComponentFactoryResolver,
     private shapeService: ShapeService,
+    private router: Router,
   ) {
     this.gridOptions = <GridOptions>{};
     this.gridOptions2 = <GridOptions>{};
@@ -491,7 +497,7 @@ export class CreateTaskPageComponent implements OnInit {
   public tempArr = [];
 
   private initMap(): void {
-
+    var outerThis = this;
     this.mapNc = L.map('mapNc2', {
       center: [20.593683, 78.962883],
       zoomControl: false,
@@ -532,7 +538,9 @@ export class CreateTaskPageComponent implements OnInit {
         container.style.width = '38px';
         container.style.height = '38px';
 
-        container.onclick = function () { }
+        container.onclick = function () { 
+          outerThis.router.navigate(['/JCP/Layers']);
+        }
         this._container = container;
         this._update();
         return this._container;
@@ -690,6 +698,10 @@ export class CreateTaskPageComponent implements OnInit {
   private createColumnDefs() {
     this.columnDefs = this.header_iterations;
     this.columnDefs2 = this.header_review;
+  }
+
+  goBackCancel(): void {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Capacity']);
   }
 
   ngOnDestroy() {

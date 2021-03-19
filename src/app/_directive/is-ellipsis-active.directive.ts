@@ -63,6 +63,12 @@ export class isEllipsisActiveDirective implements AfterViewInit {
           element.style.width = "100%";
           element.style.textOverflow = 'ellipsis';
         }
+      } else if (this.name == 'ngNcCreateTaskPD') {
+        if (length > 40) {
+          element.id = 'ngNcCreateTaskPD';
+          element.style.width = "100px";
+          element.style.textOverflow = 'ellipsis';
+        }
       }
       
       if (this.name == 'trafficMap') {

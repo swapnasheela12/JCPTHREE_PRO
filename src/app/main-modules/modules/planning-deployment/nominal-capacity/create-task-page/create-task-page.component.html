@@ -225,7 +225,7 @@
                             matStepperNext>Next</button>
                     </div>
                 </mat-step>
-                <mat-step label="Select KPI">
+                <mat-step label="Iterations">
                     <!-- <div class="clone-btn" style="text-align:right;" (click)="onAddRowsug()">
                         <button style=" position: absolute;
                         right: 33px;
@@ -254,9 +254,19 @@
                         </div>
                     </div>
                 </mat-step>
-                <mat-step label="Select Duration & Frequency">
-                    <div class="content-holder">
-                        <ag-grid-angular style="width: 100%; height: calc(100%);" class="ag-theme-material ag-jcp3"
+                <mat-step label="Review">
+                    <div style=" height: calc(100% - 62px);" class="overflow-hidden">
+                        <div style="height: 56px" fxLayout="row">
+                            <div fxFlex="40" fxLayout="column" fxLayoutAlign="start start"  *ngFor="let dataaaa of designList" >
+                                <div class="sdf-label">{{dataaaa.name}}</div>
+                                <div class="sdf-value" isEllipsisActive="ngNcCreateTaskPD" attr.data-title1="DGDKJlhdsjkahDasSsasASs lkashd aoihasdoiashd oiahd oihas doihasoiuh asoidhasoidhaosidhaosidhoias dhoais chaso hd osaudh aiudg audh asiugh" id="DGDKJlhdsjkahDasSsasASs lkashd aoihasdoiashd oiahd oihas doihasoiuh asoidhasoidhaosidhaosidhoias dhoais chaso hd osaudh aiudg audh asiugh">DGDKJlhdsjkahDasSsasASs lkashd aoihasdoiashd oiahd oihas doihasoiuh asoidhasoidhaosidhaosidhoias dhoais chaso hd osaudh aiudg audh asiugh</div>
+                            </div>
+                            <!-- <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start">
+                                <div class="sdf-label">Project Description</div>
+                                <div class="sdf-value">Generate 5G Nominal Plan cover dense urban area with RSRP >= -95 dBmm/q,sdjqhwdjqhwdkjqwhduqwydouqwydoq wdqwydqwoiudyqwodiywdoi oqiwuyds</div>
+                            </div> -->
+                        </div>
+                        <ag-grid-angular style="width: 100%; height: calc(100% - 64px); border: 1px solid lightgray;" class="ag-theme-material ag-jcp3"
                             rowHeight="48" headerHeight="48" [gridOptions]="gridOptions2" [columnDefs]="columnDefs2"
                             [rowData]="rowData2" enableColResize enableSorting [tooltipShowDelay]="tooltipShowDelay"
                             enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
@@ -277,7 +287,8 @@
                         </div>
                         <div class="col"></div>
                         <div class="m2">
-                            <button mat-stroked-button color="primary" style="border:2px solid #0078D7" routerLink="/{{createQueryRoute}}">Create Query</button>
+                            <button mat-stroked-button color="primary" style="border:2px solid #0078D7"
+                                routerLink="/{{createQueryRoute}}">Create Query</button>
                         </div>
                     </div>
                 </mat-step>
@@ -286,7 +297,7 @@
     </mat-card>
     <div class="d-flex">
         <div class="p-2 mr-auto">
-            <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+            <button mat-stroked-button color="primary" (click)="goBackCancel()" class="buttonWidth">Back</button>
         </div>
         <div class="p-2">
             <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>

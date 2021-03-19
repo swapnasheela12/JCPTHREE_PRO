@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class NpCreatePopupComponent implements OnInit {
-  public selectedRadio: string;
+  public selectedRadio: string = 'Capacity';
   constructor(public dialogRef: MatDialogRef<NpCreatePopupComponent>,
     private router: Router,) { }
 
