@@ -221,6 +221,7 @@ export class CreateReportComponent implements OnInit {
   ];
   rightAgGridFormGroup: FormGroup = new FormGroup({});
   tooltipShowDelay: number;
+  public pageData;
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private http: HttpClient,
     public datashare: DataSharingService) {
     this.paths = PATHS;
@@ -274,6 +275,7 @@ export class CreateReportComponent implements OnInit {
     this.fifteenMinsKpiGridOptions.api.setQuickFilter(value);
   };
   ngOnInit() {
+    //this.createKPItriggered();
     // Geography Dropdown 
     this.geographyControl.setValue([this.geographyData[1]]);
     this.geographyFilter.next(this.geographyData.slice());
@@ -721,5 +723,58 @@ export class CreateReportComponent implements OnInit {
     }
   }
 
+  //POP UP PAGE HAS TRIGGERED
+  createKPItriggered() {
+    let pageId = {
+      id: 702,
+      time: this.setCurrentTimestamp(),
+      type: "other",
+      page: "popup"
+    }
+    this.pageData = pageId;
+    this.datashare.sendTimestampPopupOpenFn(pageId.time);
+  }
+
+  //TERMINATE THE CURRENT TIME OF THE PAGE
+  closeCreateReportPopup(){
+    //this.terminateRunningTime();
+  }
+  
+  setCurrentTimestamp() {
+    const currentdate = Date.now();
+    const timestamp = moment(currentdate);
+    timestamp.format('h:mm:ss');
+    return timestamp;
+  }
+
+
+   // CALCULATE TIME A ND SEND IT TO HOME JCP COMPONENT
+
+  terminateRunningTime() {
+    let currentTime = this.setCurrentTimestamp();
+    let pageTime = this.pageData.time;
+    let timeSpent = this.calculateTimeDifference(currentTime, pageTime);
+    let timeObject = {
+      timeSpent: timeSpent,
+      screenId: 703,
+      userId: 7722778
+    };
+    this.datashare.sendCalcuateTimeToHomeJcpPageFn(timeObject)
+  }
+
+  calculateTimeDifference(endTime, startTime) {
+    let totalHours = endTime.diff(startTime, 'hours');
+    let totalMinutes = endTime.diff(startTime, 'minutes');
+    let totalSeconds = endTime.diff(startTime, 'seconds');
+    let clearMinutes = totalMinutes % 60;
+    let clearSeconds = totalSeconds % 60;
+
+    let hours = `${totalHours}`.length == 1 ? "0" + `${totalHours}` : totalHours
+    let minutes = `${clearMinutes}`.length == 1 ? "0" + `${clearMinutes}` : clearMinutes;
+    let seconds = `${clearSeconds}`.length == 1 ? "0" + `${clearSeconds}` : clearSeconds
+
+    let time = hours + ":" + minutes + ":" + seconds;
+    return time;
+  }
 }
 

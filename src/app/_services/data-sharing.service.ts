@@ -85,6 +85,18 @@ export class DataSharingService {
   private headerDetails =  new BehaviorSubject({});
   headerObject = this.headerDetails.asObservable();
 
+  private sendCheckedLayers =  new BehaviorSubject({});
+  checkedLayersOnly$ = this.sendCheckedLayers.asObservable();
+
+  private sendUncheckedLayers =  new BehaviorSubject({});
+  uncheckedLayersOnly$ = this.sendUncheckedLayers.asObservable();
+
+  private sendTimestampPopupOpen =  new BehaviorSubject({});
+  sendTimestampPopupOpen$ = this.sendTimestampPopupOpen.asObservable();
+
+  private sendCalcuateTimeToHomeJcpPage =  new BehaviorSubject({});
+  sendCalcuateTimeToHomeJcpPage$ = this.sendCalcuateTimeToHomeJcpPage.asObservable();  
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -197,5 +209,21 @@ export class DataSharingService {
 
   addSpecificHeader(header) {
     this.headerDetails.next(header)
+  }
+
+  sendCheckedLayersOnly(layer){
+    this.sendCheckedLayers.next(layer)
+  }
+
+  sendUnCheckedLayersOnly(layer){
+    this.sendUncheckedLayers.next(layer);
+  }
+
+  sendTimestampPopupOpenFn(time){
+    this.sendTimestampPopupOpen.next(time);
+  }
+
+  sendCalcuateTimeToHomeJcpPageFn(time){
+    this.sendCalcuateTimeToHomeJcpPage.next(time);
   }
 }

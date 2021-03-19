@@ -21,8 +21,7 @@ import { CapacityComponent } from '../../../modules/components/capacity/capacity
 import { ConfigurationComponent } from '../../../modules/components/configuration/configuration.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-
-declare var $: any;
+import * as moment from 'moment';
 
 export class searchList {
   constructor(
@@ -469,14 +468,46 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.onLoad();
     this.datashare.currentMessage.subscribe((message) => {
       this.testval = message;
-
     });
+  }
 
+  terminateRunningTime(){
+    this.datashare.sendTimestampPopupOpen$.subscribe((time)=>{
+      let currentTime = this.setCurrentTimestamp();
+      let pageTime = time;
+      let timeSpent = this.calculateTimeDifference(currentTime, pageTime);
+      let timeObject = {
+        timeSpent: timeSpent,
+        screenId: 703,
+        userId:7722778
+      };
+      this.datashare.sendCalcuateTimeToHomeJcpPageFn(timeObject)
+    });
+  }
 
+  setCurrentTimestamp() {
+    const currentdate = Date.now();
+    const timestamp = moment(currentdate);
+    timestamp.format('h:mm:ss');
+    return timestamp;
+  }
+
+  calculateTimeDifference(endTime, startTime) {
+    let totalHours = endTime.diff(startTime, 'hours');
+    let totalMinutes = endTime.diff(startTime, 'minutes');
+    let totalSeconds = endTime.diff(startTime, 'seconds');
+    let clearMinutes = totalMinutes % 60;
+    let clearSeconds = totalSeconds % 60;
+
+    let hours = `${totalHours}`.length == 1 ? "0" + `${totalHours}` : totalHours
+    let minutes = `${clearMinutes}`.length == 1 ? "0" + `${clearMinutes}` : clearMinutes;
+    let seconds = `${clearSeconds}`.length == 1 ? "0" + `${clearSeconds}` : clearSeconds
+
+    let time = hours + ":" + minutes + ":" + seconds;
+    return time;
   }
 
   clickMenu() {
-
     this.sideNavService.toggle();
   }
 

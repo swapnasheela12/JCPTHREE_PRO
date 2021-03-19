@@ -308,7 +308,7 @@ const MODULE_LIST_CONFIG_RQA = [
     }
 ];
 
-const PREDICTION_LAYERS_PLANNED_LIST = [
+const PREDICTION_LAYERS_PLANNED_LIST_COMBINED = [
     {
         name: 'RSRP',
         link: 'rsrp',
@@ -318,7 +318,8 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:201
     },
     {
         name: 'SINR',
@@ -329,7 +330,8 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:202
     },
     {
         name: 'DL Throughput',
@@ -340,7 +342,8 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:203
     },
     {
         name: 'Best Server Plot',
@@ -351,9 +354,164 @@ const PREDICTION_LAYERS_PLANNED_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:204
     }
 ];
+
+const PREDICTION_LAYERS_PLANNED_LIST_2300 = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:201
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:202
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DLThroughput',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:203
+    },
+    {
+        name: 'Best Server Plot',
+        link: 'Best Server Plot',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:204
+    }
+];
+
+const PREDICTION_LAYERS_PLANNED_LIST_1800 = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:201
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:202
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DLThroughput',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:203
+    },
+    {
+        name: 'Best Server Plot',
+        link: 'Best Server Plot',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:204
+    }
+];
+
+const PREDICTION_LAYERS_PLANNED_LIST_850 = [
+    {
+        name: 'RSRP',
+        link: 'rsrp',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:801
+    },
+    {
+        name: 'SINR',
+        link: 'sinr',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:802
+    },
+    {
+        name: 'DL Throughput',
+        link: 'DLThroughput',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:803
+    },
+    {
+        name: 'Best Server Plot',
+        link: 'Best Server Plot',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        id:804
+    }
+];
+
 
 const ANALYTICS_NETWORK_QUALITY = [
     {
@@ -365,7 +523,8 @@ const ANALYTICS_NETWORK_QUALITY = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        
     }
 ];
 
@@ -443,7 +602,8 @@ const PREDICTION_LAYERS_ONAIR_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:205
     },
     {
         name: 'Best Server Plot',
@@ -454,7 +614,8 @@ const PREDICTION_LAYERS_ONAIR_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:206
     }
 ];
 
@@ -1267,7 +1428,8 @@ const SITES_OnAir_4GMacro_lIST = [
         eventName: 'sites-onAir-macro-macro4G',
         children: [],
         parentToChild: 'Sites-OnAir-Macro-Macro4G',
-        component: 'NominalMacroDialogComponent'
+        component: 'NominalMacroDialogComponent',
+        id:101
     }
 ];
 const SITES_OnAir_4GHpodsc_lIST = [
@@ -1277,7 +1439,8 @@ const SITES_OnAir_4GHpodsc_lIST = [
         eventName: 'sites-onAir-hpodsc-hPODSC4g',
         children: [],
         parentToChild: 'Sites-OnAir-Hpodsc-HPODSC4g',
-        component: 'NominalMacroDialogComponent'
+        component: 'NominalMacroDialogComponent',
+        id:102
     }
 ];
 const SITES_OnAir_4GSmallCell_lIST = [
@@ -1286,7 +1449,8 @@ const SITES_OnAir_4GSmallCell_lIST = [
         link: 'JCP/Layers/OnAir/smallCell/smallCell4g',
         eventName: 'sites-OnAir-smallCell-smallCell4g',
         children: [],
-        parentToChild: 'Sites-OnAir-SmallCell-SmallCell4g'
+        parentToChild: 'Sites-OnAir-SmallCell-SmallCell4g',
+        id:103
     }
 ];
 
@@ -1316,7 +1480,8 @@ const SITES_Nominal_4GHpodsc_lIST = [
         link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
         eventName: 'sites-nominal-hpodsc-hPODSC4g',
         children: [],
-        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g'
+        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g',
+        id:106
     }
 ];
 
@@ -1327,7 +1492,8 @@ const SITES_Nominal_4GMacro_lIST = [
         eventName: 'sites-nominal-macro-macro4G',
         parentToChild: 'Sites-Nominal-Macro-Macro4G',
         component: 'NominalMacroDialogComponent',
-        children: []
+        children: [],
+        id:105
     },
 ];
 const SITES_Planned_4GSmallCell_lIST = [
@@ -1346,7 +1512,8 @@ const SITES_Planned_4GMacro_lIST = [
         link: 'JCP/Layers/Planned/Macro/Macro4G',
         eventName: 'sites-planned-macro-macro4G',
         children: [],
-        parentToChild: 'Sites-Planned-Macro-Macro4G'
+        parentToChild: 'Sites-Planned-Macro-Macro4G',
+        id:104
     }
 ];
 const SITES_Planned_lIST = [
@@ -1361,7 +1528,8 @@ const SITES_Planned_lIST = [
         link: 'JCP/Layers/Nominal/Hpodsc/HPODSC4g',
         eventName: 'sites-nominal-hpodsc-hPODSC4g',
         children: [],
-        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g'
+        parentToChild: 'Sites-Nominal-Hpodsc-HPODSC4g',
+        id:104
     }
 ];
 const SITES_Nominal_4GSmallCell_lIST = [
@@ -1970,7 +2138,7 @@ const SITES_NOMINAL_lIST = [
     },
 ]
 
-const PREDICTION_LAYERS_BAND_LIST = [
+const PREDICTION_LAYERS_BAND_LIST_COMBINED = [
     {
         name: 'Planned',
         link: 'planned',
@@ -1980,7 +2148,79 @@ const PREDICTION_LAYERS_BAND_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: PREDICTION_LAYERS_PLANNED_LIST
+        children: PREDICTION_LAYERS_PLANNED_LIST_COMBINED
+    },
+    {
+        name: 'On-Air',
+        link: 'on-air',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_ONAIR_LIST
+    }
+];
+const PREDICTION_LAYERS_BAND_LIST_2300 = [
+    {
+        name: 'Planned',
+        link: 'planned',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_PLANNED_LIST_2300
+    },
+    {
+        name: 'On-Air',
+        link: 'on-air',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_ONAIR_LIST
+    }
+];
+const PREDICTION_LAYERS_BAND_LIST_1800 = [
+    {
+        name: 'Planned',
+        link: 'planned',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_PLANNED_LIST_1800
+    },
+    {
+        name: 'On-Air',
+        link: 'on-air',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_ONAIR_LIST
+    }
+];
+const PREDICTION_LAYERS_BAND_LIST_850 = [
+    {
+        name: 'Planned',
+        link: 'planned',
+        eventName: 'sites-outdoor-esc',
+        show:true,
+        showSettings:true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: PREDICTION_LAYERS_PLANNED_LIST_850
     },
     {
         name: 'On-Air',
@@ -2639,7 +2879,8 @@ const MODULE_LIST_CONFIGURATION = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:401
     },
     {
         name: 'Config Change',
@@ -3485,36 +3726,40 @@ const BASE_MAPS_LIST = [
         icon: "fas fa-user fa-3",
         link: "JCP/Layers/BaseMaps/Terrain",
         eventName: 'sites-basemaps-terrain',
-        children: []
+        children: [],
+        id:301
     },
     {
         name: "Satellite",
         icon: "fas fa-user fa-3",
         link: "Satellite",
         eventName: 'sites-basemaps-satellite',
-        children: []
+        children: [],
+        id:302
     },
     {
         name: "Streets Gray Scale",
         icon: "fas fa-user fa-3",
         link: "Streets-Gray-Scale",
         eventName: 'sites-basemaps-streets-gray-scale',
-        children: []
+        children: [],
+        id:303
     },
     {
         name: "Streets Night",
         icon: "fas fa-user fa-3",
         link: "Streets-Night",
         eventName: 'sites-basemaps-streets-night',
-
-        children: []
+        children: [],
+        id:304
     },
     {
         name: "Streets Colored",
         icon: "fas fa-user fa-3",
         link: "Streets-Colored",
         eventName: 'sites-basemaps-streets-colored',
-        children: []
+        children: [],
+        id:305
     }
 ];
 const CREATE_PINS = [
@@ -3633,7 +3878,7 @@ const PREDICTION_LAYERS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: PREDICTION_LAYERS_BAND_LIST
+        children: PREDICTION_LAYERS_BAND_LIST_COMBINED
     },
     {
         name: "2300 MHz",
@@ -3645,7 +3890,7 @@ const PREDICTION_LAYERS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: PREDICTION_LAYERS_BAND_LIST
+        children: PREDICTION_LAYERS_BAND_LIST_850
     },
     {
         name: "1800 MHz",
@@ -3657,7 +3902,7 @@ const PREDICTION_LAYERS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: PREDICTION_LAYERS_BAND_LIST
+        children: PREDICTION_LAYERS_BAND_LIST_1800
     },
     {
         name: "850 MHz",
@@ -3669,7 +3914,7 @@ const PREDICTION_LAYERS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: PREDICTION_LAYERS_BAND_LIST
+        children: PREDICTION_LAYERS_BAND_LIST_850
     }
 ];
 
@@ -4008,7 +4253,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:701
     },
     {
 
@@ -4021,7 +4267,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:703
     },
     {
 
@@ -4034,7 +4281,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:704
     },
     {
 
@@ -4047,7 +4295,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:706
     },
     {
 
@@ -4060,7 +4309,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: CIA_MODULE_LIST
+        children: CIA_MODULE_LIST,
+        id:707
     },
     {
 
@@ -4073,7 +4323,8 @@ const MODULE_LIST_PERFORMANCE_MANAGEMENT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:708
     }
 ];
 
@@ -4767,13 +5018,15 @@ const DASHBOARD_LIST = [
         name: "Custom Dashboards",
         icon: "fas fa-users fa-3",
         link: 'JCP/Reports-and-Dashboards/Custom-Dashboards',
-        children: []
+        children: [],
+        id:603
     },
     {
         name: "ZoomData Dashboard",
         icon: "fas fa-users fa-3",
         link: 'JCP/Reports-and-Dashboards/ZoomData-Dashboards',
-        children: []
+        children: [],
+        id:604
     }
 ];
 
@@ -4787,7 +5040,8 @@ const REPORTS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:601
     },
     {
         name: 'My Reports',
@@ -4798,7 +5052,8 @@ const REPORTS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:602
     },
     {
         name: 'Dashboards',
@@ -4809,7 +5064,7 @@ const REPORTS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: DASHBOARD_LIST
+        children: DASHBOARD_LIST,
     },
     {
         name: 'My Subscriptions',
@@ -4820,7 +5075,8 @@ const REPORTS_LIST = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: []
+        children: [],
+        id:605
     }
 ];
 

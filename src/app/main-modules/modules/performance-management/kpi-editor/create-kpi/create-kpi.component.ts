@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula} from './create-kpi-constant';
+import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula } from './create-kpi-constant';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
@@ -19,8 +19,10 @@ import { HextodocPopupComponent } from './hextodoc-popup/hextodoc-popup.componen
 import * as _ from "lodash";
 import { CeilingPopupComponent } from './ceiling-popup/ceiling-popup.component';
 import { FloorPopupComponent } from './floor-popup/floor-popup.component';
+import * as moment from 'moment';
+
 const PATHS = [
-  {goBack: "JCP/Modules/Performance-Management/KPI-Editor"}
+  { goBack: "JCP/Modules/Performance-Management/KPI-Editor" }
 ]
 @Component({
   selector: 'app-create-kpi',
@@ -50,8 +52,9 @@ export class CreateKpiComponent implements OnInit {
   public rightColumnDefs;
   public leftColumnFormulaDefs;
   public rightColumnFormulaDefs;
-  formulaSearch="";
-  formula="";
+  formulaSearch = "";
+  formula = "";
+  public pageData;
 
   @ViewChild('nodeAggrControlSelect') nodeAggrControlSelect: MatSelect;
   protected nodeAggrData = NodeAggr;
@@ -128,8 +131,9 @@ export class CreateKpiComponent implements OnInit {
     private http: HttpClient,
     public datashare: DataSharingService,
     public dialog: MatDialog
+
   ) {
-  this.paths = PATHS;
+    this.paths = PATHS;
     this.datashare.chechboxChangeMessage(this.leftGridOptions);
     this.frameworkComponentsCreateKPIEditor = {
       'deleteFlagRenderer': DeleteCreatedKpiRendererComponent,
@@ -138,6 +142,7 @@ export class CreateKpiComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.createKPItriggered();
     this.nodeAggrControl.setValue([this.nodeAggrData[1]]);
     this.nodeAggrFilter.next(this.nodeAggrData.slice());
     this.nodeAggrFilterControl.valueChanges
@@ -198,11 +203,12 @@ export class CreateKpiComponent implements OnInit {
         field: "timeAggr",
         cellRenderer: 'dropDownCellRenderer'
       },
-      {headerName: '',
+      {
+        headerName: '',
         suppressMenu: true,
         maxWidth: 30,
         cellRenderer: 'deleteFlagRenderer',
-        pinned:'right'
+        pinned: 'right'
       }
     ];
 
@@ -410,6 +416,59 @@ export class CreateKpiComponent implements OnInit {
       });
 
   }
+  
+  //POP UP PAGE HAS TRIGGERED
+  createKPItriggered() {
+    let pageId = {
+      id: 703,
+      time: this.setCurrentTimestamp(),
+      type: "other",
+      page: "popup"
+    }
+    this.pageData = pageId;
+    this.datashare.sendTimestampPopupOpenFn(pageId.time);
+  }
+
+  //TERMINATE THE CURRENT TIME OF THE PAGE
+  closeCreateKPIPopup(){
+    //this.terminateRunningTime();
+  }
+  
+  setCurrentTimestamp() {
+    const currentdate = Date.now();
+    const timestamp = moment(currentdate);
+    timestamp.format('h:mm:ss');
+    return timestamp;
+  }
+
+
+  // CALCULATE TIME A ND SEND IT TO HOME JCP COMPONENT
+  terminateRunningTime() {
+    let currentTime = this.setCurrentTimestamp();
+    let pageTime = this.pageData.time;
+    let timeSpent = this.calculateTimeDifference(currentTime, pageTime);
+    let timeObject = {
+      timeSpent: timeSpent,
+      screenId: 703,
+      userId: 7722778
+    };
+    this.datashare.sendCalcuateTimeToHomeJcpPageFn(timeObject)
+  }
+
+  calculateTimeDifference(endTime, startTime) {
+    let totalHours = endTime.diff(startTime, 'hours');
+    let totalMinutes = endTime.diff(startTime, 'minutes');
+    let totalSeconds = endTime.diff(startTime, 'seconds');
+    let clearMinutes = totalMinutes % 60;
+    let clearSeconds = totalSeconds % 60;
+
+    let hours = `${totalHours}`.length == 1 ? "0" + `${totalHours}` : totalHours
+    let minutes = `${clearMinutes}`.length == 1 ? "0" + `${clearMinutes}` : clearMinutes;
+    let seconds = `${clearSeconds}`.length == 1 ? "0" + `${clearSeconds}` : clearSeconds
+
+    let time = hours + ":" + minutes + ":" + seconds;
+    return time;
+  }
 
   kpiFilterChange(value) {
     this.leftGridOptions.api.setQuickFilter(value);
@@ -436,9 +495,9 @@ export class CreateKpiComponent implements OnInit {
 
   validateFormula() {
     this.http.get("assets/data/modules/performance_management/kpi-editor/kpi-status-formula.json")
-    .subscribe(data => {
-      this.status = (data[0].statuskpi == 'success')? 'green':'red';
-    });
+      .subscribe(data => {
+        this.status = (data[0].statuskpi == 'success') ? 'green' : 'red';
+      });
   }
   onChangeFormula(conditionValue) {
     if ('If-Else' == conditionValue) {
@@ -680,7 +739,7 @@ export class CreateKpiComponent implements OnInit {
     const dialogRef = this.dialog.open(ComputationSettingsPoupComponent, {
       width: '550px',
       height: '550px',
-      panelClass:'computation-setting-popup'
+      panelClass: 'computation-setting-popup'
     });
   }
 
@@ -690,27 +749,27 @@ export class CreateKpiComponent implements OnInit {
   ) {
     var removedNode = [];
     var tileContainer = document.querySelector('#textareaFormula'),
-    dropZone = {
-      getContainer: function() {
-        return tileContainer;
-      },
-      onDragStop: function(params) {
-        var tile = params.node.data.Name;
-        tileContainer.append(tile);
-       
-        let node = document.getElementById("textareaFormula");
-        node.focus();
-        node.innerHTML = node.innerHTML.replace(/['"]+/g, '');
-        let textNode = node.firstChild;
-        let range = document.createRange();
-        range.setStart(textNode,node.innerHTML.length);
-        range.setEnd(textNode,node.innerHTML.length);
-        let sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-      },
-    };
-  params.api.addRowDropZone(dropZone);
+      dropZone = {
+        getContainer: function () {
+          return tileContainer;
+        },
+        onDragStop: function (params) {
+          var tile = params.node.data.Name;
+          tileContainer.append(tile);
+
+          let node = document.getElementById("textareaFormula");
+          node.focus();
+          node.innerHTML = node.innerHTML.replace(/['"]+/g, '');
+          let textNode = node.firstChild;
+          let range = document.createRange();
+          range.setStart(textNode, node.innerHTML.length);
+          range.setEnd(textNode, node.innerHTML.length);
+          let sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        },
+      };
+    params.api.addRowDropZone(dropZone);
 
   }
   addGridDropZone(

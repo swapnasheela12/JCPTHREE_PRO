@@ -29,7 +29,8 @@ export class SideNavNode {
   show0?: Boolean;
   showSettings?: Boolean;
   checked?: Boolean;
-  showHeader?: Boolean
+  showHeader?: Boolean;
+  id?: any;
 }
 
 class ExampleFlatNode {
@@ -39,8 +40,7 @@ class ExampleFlatNode {
   show: Boolean;
 }
 
-const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
-
+const LAYERS_DATA: any = LEFTSIDE_MENU_LIST[1].children;
 @Component({
   selector: 'app-leftside-navigation',
   templateUrl: './leftside-navigation.component.html',
@@ -48,7 +48,7 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
   encapsulation: ViewEncapsulation.None
 })
 export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
-  public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
+  public menuListAll: any = LEFTSIDE_MENU_LIST;
   parentNode: ExampleFlatNode;
   nodeType = 'TEST';
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
@@ -61,7 +61,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   menuChildrenLength: number;
   get data(): SideNavNode[] { return this.dataChange.value; }
   layerName = '';
-  source='';
+  source = '';
   layerComponent;
   showHeader;
   routePlannedLayerHeader = {
@@ -106,7 +106,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       show0: node.show0,
       showSettings: node.showSettings,
       checked: node.checked,
-      showHeader: node.showHeader
+      showHeader: node.showHeader,
+      id: node.id
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -123,7 +124,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     private cfr: ComponentFactoryResolver
   ) {
     this.dataSource.data = LAYERS_DATA;
-   
+
     // this.datashare.currentMessage.subscribe((data: any) => {
     //   console.log(data)
     //   let addPin: any = {
@@ -145,10 +146,18 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     $('.hide-parent-menu-item-nav').parent().parent().css({ 'display': 'none' });
     $('.disabled-menu-item-nav').parent().css({ 'color': 'gray', 'cursor': 'not-allowed', 'pointer-events': 'none' });
   }
-  parentIconClick(mmenuDirective, level) {
+  parentIconClick(mmenuDirective, level, id) {
     if (level == 0) {
       mmenuDirective.menu.API.closeAllPanels()
     }
+    //LAYERS PAGE: RESET CHECKED ONES WHEN ROUTE IS CHANGED
+    let dataChange = this.dataSource.data;
+    this.dataSource.data = [];
+    this.dataSource.data = dataChange;
+
+    //SEND HYPERLINK DATA TO TRACK USER TIME 
+    let layerId = { id: id, checkbox: false }
+    this.datashare.sendCheckedLayersOnly(layerId);
   }
   // [ngClass]="{'hide-menu-item-nav': (item.show == false), 'disabled-menu-item-nav':(item.disabled == true) }"
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
@@ -190,13 +199,13 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           dataChange[dataChange.length - 1].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
-        } else if(data.sideNav) {
+        } else if (data.sideNav) {
           let dataChange = this.dataSource.data;
           dataChange[dataChange.length - 1].children[2].children.push(addPinPoly);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
-        }else{ 
-         
+        } else {
+
         }
       }
 
@@ -204,7 +213,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         if (Object.keys(data).length !== 0) {
           let dataChange = this.dataSource.data;
           if (dataChange[0].name != 'My Projects') {
-            let removedItems = dataChange.splice(0,0,data[0]);
+            let removedItems = dataChange.splice(0, 0, data[0]);
             dataChange[0].children[0].children[0].checked = true;
             console.log(dataChange)
             this.dataSource.data = [];
@@ -215,7 +224,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           }
         }
       });
-  
+
     });
   }
 
@@ -383,6 +392,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         }
       }
     } else {
+      console.log("Catch me")
       if (currentIndexNode != 7 && test.name == 'Prediction Layers') {
         $('#prediction-layer-border').css({ 'border-top': 'none' });
       }
@@ -463,11 +473,11 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   newComponentRef;
   showHeaderDisplay(node, type) {
     this.routePlannedLayerHeader.headerSapid = node.name;
-    this.datashare.layerNameFunc([{name: 'Back To '+node.headerText, source: 'display'}]);
+    this.datashare.layerNameFunc([{ name: 'Back To ' + node.headerText, source: 'display' }]);
     if (type == 'manual') {
-      if(undefined != this.showHeader){
-          this.showHeader.clear();
-          this.newComponentRef.destroy();
+      if (undefined != this.showHeader) {
+        this.showHeader.clear();
+        this.newComponentRef.destroy();
       }
       if (node.selected == true && node.showHeader == true) {
         this.datashare.headerObject.subscribe(
@@ -480,7 +490,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             const newComponentVcRef = this.newComponentRef.instance.vcRef;
           }
         )
-      } else if (node.selected == false  && node.showHeader == true) {
+      } else if (node.selected == false && node.showHeader == true) {
         this.showHeader.clear();
         this.newComponentRef.destroy();
       }
@@ -501,23 +511,28 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   }
 
   onChecked(selected, node, activeCheckbox, eventChecked) {
+    console.log('node', node.id);
+    let layerId = { id: node.id, checkbox: true }
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
     } else {
       node.selected = !selected;
     }
-    this.showHeaderDisplay(node, 'manual');
+    //this.showHeaderDisplay(node, 'manual');
     if (node.selected == true) {
+      node.checked = true
       this.selectedLayerArr.push(node);
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
       this.datashare.layerNameFunc(this.selectedLayerArr);
+      this.datashare.sendCheckedLayersOnly(layerId);
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       if ('' !== node.componentLayer) {
         this.renderLayerComponent(node.componentLayer);
       }
     } else {
+      node.checked = false
       for (let item of this.selectedLayerArr) {
         if (item.selected == node.selected) {
           this.selectedLayerArr.splice(this.selectedLayerArr.indexOf(item), 1);
@@ -528,6 +543,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.removeLayerComponent(node.componentLayer);
       }
       this.datashare.changeMessage(this.selectedLayerArr);
+      this.datashare.sendUnCheckedLayersOnly(node.id);
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
   }
@@ -603,7 +619,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       );
     }
     else if (node.component == 'SmartbenchSettingsComponent') {
-      
+
     }
   }
 
