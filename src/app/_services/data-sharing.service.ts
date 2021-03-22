@@ -87,6 +87,17 @@ export class DataSharingService {
 
   private projectList = new BehaviorSubject({});
   projectObject = this.projectList.asObservable();
+  private sendCheckedLayers =  new BehaviorSubject({});
+  checkedLayersOnly$ = this.sendCheckedLayers.asObservable();
+
+  private sendUncheckedLayers =  new BehaviorSubject({});
+  uncheckedLayersOnly$ = this.sendUncheckedLayers.asObservable();
+
+  private sendTimestampPopupOpen =  new BehaviorSubject({});
+  sendTimestampPopupOpen$ = this.sendTimestampPopupOpen.asObservable();
+
+  private sendCalcuateTimeToHomeJcpPage =  new BehaviorSubject({});
+  sendCalcuateTimeToHomeJcpPage$ = this.sendCalcuateTimeToHomeJcpPage.asObservable();  
 
   constructor() { }
 
@@ -204,5 +215,21 @@ export class DataSharingService {
 
   addProjectList(projectList) {
     this.projectList.next(projectList);
+  }
+  
+  sendCheckedLayersOnly(layer){
+    this.sendCheckedLayers.next(layer)
+  }
+
+  sendUnCheckedLayersOnly(layer){
+    this.sendUncheckedLayers.next(layer);
+  }
+
+  sendTimestampPopupOpenFn(time){
+    this.sendTimestampPopupOpen.next(time);
+  }
+
+  sendCalcuateTimeToHomeJcpPageFn(time){
+    this.sendCalcuateTimeToHomeJcpPage.next(time);
   }
 }
