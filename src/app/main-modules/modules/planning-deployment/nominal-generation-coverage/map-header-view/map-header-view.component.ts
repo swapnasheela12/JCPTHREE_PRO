@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SavePolygonPopupComponent } from 'src/app/core/components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { COVERAGE_PLANNING, CAPACITY_PLANNING, VALIDATION_PLANNING } from './map-header.constant';
+import {Location} from '@angular/common';
 
 declare var $: any;
 
@@ -28,7 +29,8 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     private cfr: ComponentFactoryResolver,
     private router: Router,
     public matDialog: MatDialog,
-    private cdref: ChangeDetectorRef
+    private cdref: ChangeDetectorRef,
+    public location: Location
   ) {
     this.datashare.layernameObject.subscribe((layername) => {
       if (!(Object.keys(layername).length === 0) && !(layername.constructor === Object)) {
@@ -48,12 +50,21 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     if (this.headerData.name == 'nominal-capacity') {
       this.showSetting = true;
+      this.showChart = false;
+      this.showSummary = false;
     }
-    if(this.headerData.name == 'nominal-generation' || this.headerData.name == 'nominal-validation'){
+    if(this.headerData.name == 'nominal-generation') {
       this.showSetting = true;
       this.showChart = true;
       this.showSummary = true;
     }
+
+    if(this.headerData.name == 'nominal-validation') {
+      this.showSetting = true;
+      this.showChart = false;
+      this.showSummary = true;
+    }
+    
   }
 
   async openPopup() {
@@ -97,6 +108,14 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  openChart(name) {
+    if (name == 'nominal-generation') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Performance-Summary']);
+    } else if (name == 'nominal-validation') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Performance-Summary'], {state: {data: {row: name, type: 'validation', tab: '', 'selectIndex': 4}}});
+    }
+  }
+
   async openDistributionSummary(){
     this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Site-Distribution-Summary']);
   }
@@ -113,7 +132,11 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     this.cdref.detectChanges();
   }
 
-  backTo() {
-    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation']);
+  backTo(name) {
+    if (name == 'nominal-generation') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation']);
+    } else if (name == 'nominal-validation') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
+    }
   }
 }

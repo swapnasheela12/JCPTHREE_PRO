@@ -601,6 +601,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   disableBasicDetails=false;
   validateParam;
   selected;
+  showOptionsWeightage = true;
   crowdSourceData = [
     {
       name: 'Netvelocity Data', checked: true
@@ -615,7 +616,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
 
   networkData = [
     {
-      name: 'Performance Kpi', checked: true
+      name: 'Performance KPI', checked: true
     }
   ];
 
@@ -634,6 +635,8 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
     }
   ]
   isEditable = true;
+  enableSelectedSite = true;
+  enableInterSite = true;
   itemsListPolySite = [
     {
       'checked': false,
@@ -787,6 +790,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   polygonNameData = POLYGON_NAME;
   dataSourceACP = new MatTableDataSource(this.sourceACP);
   displayedColumns: string[] = ['srno', 'acpscenario', 'acpmode', 'predictions'];
+  mainLayerRef: {};
 
   constructor(
     private shapeService: ShapeService,
@@ -801,6 +805,11 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
     private appRef: ApplicationRef
   ) {
     this.validateParam = this.router.getCurrentNavigation().extras.state;
+    this.dataShare.mainLayerMessage.subscribe(
+      (test) => {
+        this.mainLayerRef = test;
+      }
+    )
   }
 
   get filtersFormArray() {
@@ -939,14 +948,14 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5
-        }).addTo(this.mapSix);
+        }).addTo(this.mapFive);
       } else if (item.polydata.properties.shape == 'Polygon') {
         this.poly = L.polygon([
           [19.060009, 72.876063],
           [19.013112, 72.907984],
           [19.065525, 72.916565],
           [19.060009, 72.876063]
-        ]).addTo(this.mapSix);
+        ]).addTo(this.mapFive);
       } else if (item.polydata.properties.shape == 'Rectangle') {
         this.polyRectangle = L.rectangle([
           [19.045527, 72.902422],
@@ -955,13 +964,13 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           [19.049482, 72.902422],
           [19.045527, 72.902422]
         ], { color: "#ff7800", weight: 1 })
-        .addTo(this.mapSix)
+        .addTo(this.mapFive)
       } else {
         this.polyline = L.polyline([
           [19.045568, 72.894765],
           [19.046055, 72.898672],
           [19.045933, 72.901742]
-        ]).addTo(this.mapSix);
+        ]).addTo(this.mapFive);
       }
 
     } else {
@@ -977,6 +986,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       }
 
     }
+    this.shapeService.mapServiceData = this.mapSix;
   }
 
   templateFilter(name: string) {
@@ -986,7 +996,8 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   }
 
   private initMap(): void {
-
+    let _dialog = this.dialog;
+    let _polygonList = this.dataPolygon
     this.mapFive = L.map('map5', {
       center: [19.0522, 72.9005],
       zoomControl: false,
@@ -1018,7 +1029,16 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
         container.style.width = '38px';
         container.style.height = '38px';
 
-        container.onclick = function () { }
+        container.onclick = function () {
+          const dialogRef = _dialog.open(RedirectLayersPopupComponent, {
+            width: "470px",
+            panelClass: "material-dialog-container",
+            data: { transferDataPoly: _polygonList,headerNominal:false, display:'nominal-validation-basic' }
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+          });
+         }
         this._container = container;
         this._update();
         return this._container;
@@ -1039,7 +1059,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
   }
 
   private initMapSite(): void {
-
+    let _that = this;
     this.mapSix = L.map('map6', {
       center: [19.0522, 72.9005],
       zoomControl: false,
@@ -1056,6 +1076,8 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       position: 'bottomright'
     }).addTo(this.mapSix);
 
+    let _dialog = this.dialog;
+    let _polygonList = this.dataPolygon;
 
     this.customControl = L.Control.extend({
       options: {
@@ -1065,13 +1087,27 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
 
       onAdd: function (map6) {
         let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
-        container.innerHTML = ' <div class="tab-container-layersMap2"><div class="icon-count"><span style="font-size: 9px;font-weight: 500;" id="command"></span></div><div class="icon-styleMap2"><i class="ic ic-layers-01"></i></div></div>';
+        container.innerHTML = `
+        <div class="tab-container-layersMap2">
+          <div class="icon-count">
+            <span style="font-size: 9px;font-weight: 500;" id="command"></span>
+          </div>
+          <div class="icon-styleMap2">
+            <i class="ic ic-layers-01"></i>
+          </div>
+        </div>`;
         container.style.backgroundColor = 'white';
         container.style.backgroundSize = "38px 38px";
         container.style.width = '38px';
         container.style.height = '38px';
 
-        container.onclick = function () { }
+        container.onclick = function () {
+          // _that.router.navigate(['/JCP/Layers']);
+          // let componentFactory = _that.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
+          // let viewContainerRef = _that.adHost.viewContainerRef;
+          // viewContainerRef.clear();
+          // let componentRef = viewContainerRef.createComponent(componentFactory);
+        }
         this._container = container;
         this._update();
         return this._container;
@@ -1179,14 +1215,14 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5
-        }).addTo(this.mapFive);
+        }).addTo(this.mapSix);
       } else if (item.polydata.properties.shape == 'Polygon') {
         this.poly = L.polygon([
           [19.060009, 72.876063],
           [19.013112, 72.907984],
           [19.065525, 72.916565],
           [19.060009, 72.876063]
-        ]).addTo(this.mapFive);
+        ]).addTo(this.mapSix);
       } else if (item.polydata.properties.shape == 'Rectangle') {
         this.polyRectangle = L.rectangle([
           [19.045527, 72.902422],
@@ -1194,13 +1230,13 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
           [19.049482, 72.905597],
           [19.049482, 72.902422],
           [19.045527, 72.902422]
-        ], { color: "#ff7800", weight: 1 }).addTo(this.mapFive)
+        ], { color: "#ff7800", weight: 1 }).addTo(this.mapSix)
       } else {
         this.polyline = L.polyline([
           [19.045568, 72.894765],
           [19.046055, 72.898672],
           [19.045933, 72.901742]
-        ]).addTo(this.mapFive);
+        ]).addTo(this.mapSix);
       }
 
     } else {
@@ -1216,6 +1252,8 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       }
 
     }
+
+    this.shapeService.mapServiceData = this.mapSix;
   }
 
   public render(val): void {
@@ -1248,7 +1286,7 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(RedirectLayersPopupComponent, {
       width: "470px",
       panelClass: "material-dialog-container",
-      data: { transferDataPoly: this.dataPolygon,headerNominal:true }
+      data: { transferDataPoly: this.dataPolygon,headerNominal:false, display:'nominal-validation' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -1293,6 +1331,18 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
       panelClass: 'completed-project-list',
       data: {'title': 'Completed Project List', 'list':this.completeProjectList}
     });
+  }
+
+  showWeightageDiv() {
+    this.showOptionsWeightage  = !this.showOptionsWeightage;
+  }
+
+  enableSelectedSiteCheck() {
+    this.enableSelectedSite = !this.enableSelectedSite;
+  }
+
+  enableInterSiteCheck() {
+    this.enableInterSite = !this.enableInterSite
   }
 
   async redirectToLandingPage() {

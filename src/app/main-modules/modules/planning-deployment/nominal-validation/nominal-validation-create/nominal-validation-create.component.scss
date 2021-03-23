@@ -254,6 +254,11 @@ mat-select-panel {
 		font-family: Lato Bold;
 		font-size: 16px;
 	}
+	.traffic-date {
+		.mat-form-field-infix {
+			padding:0 !important;
+		}
+	}
 }
 
 .mat-icon-button:hover .mat-button-focus-overlay {

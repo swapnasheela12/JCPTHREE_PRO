@@ -39,6 +39,9 @@ import { SmartbenchMenubarComponent } from './network/quality-and-experience/sma
 import { SmartSplitmapService } from './network/quality-and-experience/smart-splitmap-servicce/smart-splitmap.service';
 import { smartBenchmarkDialogModel, SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
 import { LeafletTileLayerDefinition } from '@asymmetrik/ngx-leaflet';
+import { MapHeaderViewComponent } from '../modules/planning-deployment/nominal-generation-coverage/map-header-view/map-header-view.component';
+import { StatergeMapNominalComponent } from '../modules/network-planning/rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
+
 
 
 @Component({
@@ -88,6 +91,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public componentsReferences: any = [];
   public ref: any;
   public stripDataEnabled: boolean = false;
+  headerToShow;
   // fileNameDialogRef: MatDialogRef<RedirectLayersPopupComponent>;
   // search = new GeoSearchControl({
   //   provider: new OpenStreetMapProvider(),
@@ -858,6 +862,34 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
 
     this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+      if(dataPoly.display == 'nominal-validation'){
+        $('#Layers').parent()[0].click();
+        this.datashare.layerNameFunc([{name: 'Back To Nominal Validation', source: 'create'}]);
+        let routePlannedLayerHeader = {
+          "title": "Back To Nominal Validation",
+          "headerSapid": "Maharashtra-NP-CV-121020_v1",
+          "name":"nominal-validation"
+        };
+        let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
+        this.headerToShow = this.target.createComponent(HeaderViewComponent);
+        this.headerToShow.instance.headerData = routePlannedLayerHeader;
+        this.datashare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
+      } else if (dataPoly.display == 'nominal-validation-basic'){
+        let routePlannedLayerHeader = {
+          "title": "Back To Nominal Validation",
+          "headerSapid": "Maharashtra-NP-CV-121020_v1",
+          "name":"nominal-validation"
+        };
+        let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
+        this.headerToShow = this.target.createComponent(HeaderViewComponent);
+        this.headerToShow.instance.headerData = routePlannedLayerHeader;
+        let strategyComponent = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
+        this.target.createComponent(strategyComponent);
+        
+        
+      }
+      // const componentRef = this.componentRef = this;
+    
       if (dataPoly != {}) {
 
         let options = {
@@ -897,7 +929,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        if (!dataPoly) {
+        if ('undefined' !=  this.dataPolyList) {
           this.dataPolyList = dataPoly;
           for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
             const ele = this.dataPolyList.transferDataPoly[index];

@@ -1,13 +1,21 @@
 <mat-card class="p-0 nominal-validation" style="height: calc(100% - 5px);">
     <mat-card-header class="card-header" fxLayoutAlign="start center">
         <mat-card-title class="card-title mb-0">
-        <div fxLayout="column">
-            <div class="title-summary">
-                {{nominalGenerationSummaryData.type}} : 
-                <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
-                {{nominalGenerationSummaryData.name}}
+        <div style="width: 422px;"  fxLayout="column">
+            <div class="title-summary" fxLayout="row">
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="location.back()"> 
+                    <span class="zmdi zmdi-chevron-left"></span>
+                </mat-icon>
+                <div>
+                    {{nominalGenerationSummaryData.type}} : 
+                    <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                    {{nominalGenerationSummaryData.name}}
+                </div>
             </div>
-            <div class="title-subline">Coverage</div>
+            <div class="title-subline" fxLayout="row">
+                <div fxFlex="10"></div>
+                Validation
+            </div>
         </div>
         </mat-card-title>
         <div class="col"></div>
@@ -23,7 +31,7 @@
             </mat-form-field>
             <button class="ic ic-layers-01 link-icon-button"
             style="font-size: 18px;color:#464D69" mat-icon-button
-            (click)="displayNominalGenerationLayers()"></button>
+            (click)="displayValidationLayers()"></button>
         </div>
     </mat-card-header>
     <mat-card-content fxLayout="row" class="site-card-content nominal-validation-site-distribution-summary">
@@ -202,7 +210,7 @@
                                   </table>
                             </div>
                         </div>
-                        <div class="summary-table" style="overflow: auto;height: 259px;">
+                        <div class="summary-table" style="overflow: auto;height: 322px;">
                             <div fxFlex="100">
                                 <div class="table-header">Infra Type Vs 5G Solution type</div>
                                 <table mat-table [dataSource]="dataSourceInfra | keyvalue:orderByKey">

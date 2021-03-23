@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 export interface NominalGenerationSiteTemplate {
   parameters: string;
@@ -360,7 +361,8 @@ export class NominalValidationSummaryComponent implements OnInit {
     constructor(
       private router: Router,
       private viewContainerRef: ViewContainerRef,
-      private componentFactoryResolver: ComponentFactoryResolver
+      private componentFactoryResolver: ComponentFactoryResolver,
+      public location: Location
     ) {
       this.processData();
     }
@@ -385,18 +387,18 @@ export class NominalValidationSummaryComponent implements OnInit {
       this.dataSourceValidation = new MatTableDataSource(this.dataExt);
     }
   
-    async displayNominalGenerationLayers() {
+    async displayValidationLayers() {
       this.router.navigate(['/JCP/Layers']);
       this.viewContainerRef.clear();
-      const { NominalGenerationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-generation-coverage/nominal-generation-layer/nominal-generation-layer.component');
+      const { NominalValidationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
       this.viewContainerRef.createComponent(
-        this.componentFactoryResolver.resolveComponentFactory(NominalGenerationLayerComponent)
+        this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
       );
   
     }
   
     openDistributionSummary(){
-      // this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary']);
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary']);
     }
   
     async openPerformanceSummary(row, type, tab) {
