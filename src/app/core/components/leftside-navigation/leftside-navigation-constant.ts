@@ -4528,6 +4528,14 @@ const ADMIN_GNODEB = [
         eventName: 'sites-outdoor-esc',
         show: true,
         children: ADMIN_GNODEB_CHILDRENS
+    },
+    {
+        name: "ODSC",
+        icon: "fas fa-user fa-3",
+        link: "odsc",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: ADMIN_GNODEB_CHILDRENS
     }
 ]
 

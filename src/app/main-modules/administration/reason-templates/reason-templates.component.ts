@@ -257,15 +257,14 @@ export class ReasonTemplatesComponent implements OnDestroy {
   }
 
   createSLA() {
-  // this.dialog.open(UploadDocumentsComponent, {
-  //   height: '260px',
-  //   width: '50vw'
-  // });
-
-   this.dialog.open(CreateReasonComponent, {
-    height: '450px',
-    width: '70vw'
-  });
+    var message = {
+      type: "REASON"
+    }
+    this.dialog.open(CreateReasonComponent, {
+      height: '310px',
+      width: '65vw',
+      data: message
+    });
 }
 
   ngOnDestroy() {

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?2ltztx');
-  src:  url('fonts/icomoon.eot?2ltztx#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?2ltztx') format('truetype'),
-    url('fonts/icomoon.woff?2ltztx') format('woff'),
-    url('fonts/icomoon.svg?2ltztx#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?vv5o7i');
+  src:  url('fonts/icomoon.eot?vv5o7i#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?vv5o7i') format('truetype'),
+    url('fonts/icomoon.woff?vv5o7i') format('woff'),
+    url('fonts/icomoon.svg?vv5o7i#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,289 +25,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ic-Planned .path1:before {
-  content: "\ec73";
-  color: rgb(212, 116, 248);
-  opacity: 0.1;
-}
-.ic-Planned .path2:before {
-  content: "\ec74";
-  margin-left: -1em;
-  color: rgb(212, 116, 248);
-}
-.ic-Planned .path3:before {
-  content: "\ec75";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Planned .path4:before {
-  content: "\ec76";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Planned .path5:before {
-  content: "\ec77";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-On-Air .path1:before {
-  content: "\ec78";
-  color: rgb(34, 208, 200);
-  opacity: 0.3;
-}
-.ic-On-Air .path2:before {
-  content: "\ec79";
-  margin-left: -1em;
-  color: rgb(34, 208, 200);
-}
-.ic-On-Air .path3:before {
-  content: "\ec7a";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-On-Air .path4:before {
-  content: "\ec7b";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-On-Air .path5:before {
-  content: "\ec7c";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-On-Air .path6:before {
-  content: "\ec7d";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-On-Air .path7:before {
-  content: "\ec7e";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Add-button:before {
-  content: "\ec7f";
-  color: #0078d7;
-}
-.ic-checkbox1:before {
-  content: "\ec80";
-}
-.ic-checkbox-11:before {
-  content: "\ec81";
-  color: #0070db;
-}
-.ic-Completed-Task1 .path1:before {
-  content: "\ec82";
-  color: rgb(96, 221, 92);
-  opacity: 0.3;
-}
-.ic-Completed-Task1 .path2:before {
-  content: "\ec83";
-  margin-left: -1em;
-  color: rgb(96, 221, 92);
-}
-.ic-Completed-Task1 .path3:before {
-  content: "\ec84";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Completed-Task1 .path4:before {
-  content: "\ec85";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Doc:before {
-  content: "\ec86";
-  color: #1278d7;
-}
-.ic-Download-file:before {
-  content: "\ec87";
-  color: #1278d7;
-}
-.ic-In-Progress-Task1 .path1:before {
-  content: "\ec88";
-  color: rgb(254, 193, 45);
-  opacity: 0.3;
-}
-.ic-In-Progress-Task1 .path2:before {
-  content: "\ec89";
-  margin-left: -1em;
-  color: rgb(248, 201, 58);
-}
-.ic-In-Progress-Task1 .path3:before {
-  content: "\ec8a";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path4:before {
-  content: "\ec8b";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path5:before {
-  content: "\ec8c";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path6:before {
-  content: "\ec8d";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path7:before {
-  content: "\ec8e";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path8:before {
-  content: "\ec8f";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path9:before {
-  content: "\ec90";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-In-Progress-Task1 .path10:before {
-  content: "\ec91";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-New-Task1 .path1:before {
-  content: "\ec92";
-  color: rgb(0, 0, 0);
-  opacity: 0.1;
-}
-.ic-New-Task1 .path2:before {
-  content: "\ec93";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-  opacity: 0.4;
-}
-.ic-New-Task1 .path3:before {
-  content: "\ec94";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-New-Task1 .path4:before {
-  content: "\ec95";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-New-Task1 .path5:before {
-  content: "\ec96";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-PDF:before {
-  content: "\ec97";
-  color: #1278d7;
-}
-.ic-Photos:before {
-  content: "\ec98";
-  color: #1278d7;
-}
-.ic-Re-Assigned-Task1 .path1:before {
-  content: "\ec99";
-  color: rgb(93, 151, 230);
-  opacity: 0.3;
-}
-.ic-Re-Assigned-Task1 .path2:before {
-  content: "\ec9a";
-  margin-left: -1em;
-  color: rgb(93, 151, 230);
-}
-.ic-Re-Assigned-Task1 .path3:before {
-  content: "\ec9b";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Re-Assigned-Task1 .path4:before {
-  content: "\ec9c";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Re-Assigned-Task1 .path5:before {
-  content: "\ec9d";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Search-icon1:before {
-  content: "\ec9e";
-  color: #7e7e7e;
-}
-.ic-Tejected-Task1 .path1:before {
-  content: "\ec9f";
-  color: rgb(253, 105, 105);
-  opacity: 0.3;
-}
-.ic-Tejected-Task1 .path2:before {
-  content: "\eca0";
-  margin-left: -1em;
-  color: rgb(253, 105, 105);
-}
-.ic-Tejected-Task1 .path3:before {
-  content: "\eca1";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Tejected-Task1 .path4:before {
-  content: "\eca2";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Tejected-Task1 .path5:before {
-  content: "\eca3";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Total-Task1 .path1:before {
-  content: "\eca4";
-  color: rgb(0, 124, 141);
-  opacity: 0.1;
-}
-.ic-Total-Task1 .path2:before {
-  content: "\eca5";
-  margin-left: -1em;
-  color: rgb(0, 188, 214);
-}
-.ic-Total-Task1 .path3:before {
-  content: "\eca6";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
-}
-.ic-Upload-file:before {
-  content: "\eca7";
-  color: #1278d7;
-}
-.ic-Union-121:before {
-  content: "\ec6a";
-}
-.ic-Equipment2:before {
-  content: "\ec6b";
-}
-.ic-Logical1:before {
-  content: "\ec6c";
-}
-.ic-Path-281:before {
-  content: "\ec6d";
-}
-.ic-Port-Details2:before {
-  content: "\ec6e";
-}
-.ic-Logical-11:before {
-  content: "\ec6f";
-}
-.ic-Splitter:before {
-  content: "\ec70";
-}
-.ic-Group-16522-1:before {
-  content: "\ec71";
-}
-.ic-Splitter-1-1:before {
-  content: "\ec72";
-}
 .ic-checkbox:before {
   content: "\ec47";
 }
@@ -602,7 +319,7 @@
 .ic-AG3:before {
   content: "\ec18";
 }
-.ic-All:before {
+.ic-All1:before {
   content: "\ec19";
 }
 .ic-eNodeB:before {
@@ -804,6 +521,391 @@
 }
 .ic-search-01:before {
   content: "\ebf2";
+}
+.ic-Planned .path1:before {
+  content: "\ec8b";
+  color: rgb(212, 116, 248);
+  opacity: 0.1;
+}
+.ic-Planned .path2:before {
+  content: "\ecaa";
+  margin-left: -1em;
+  color: rgb(212, 116, 248);
+}
+.ic-Planned .path3:before {
+  content: "\ecab";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Planned .path4:before {
+  content: "\ecac";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Planned .path5:before {
+  content: "\ecad";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-On-Air .path1:before {
+  content: "\ec8c";
+  color: rgb(34, 208, 200);
+  opacity: 0.3;
+}
+.ic-On-Air .path2:before {
+  content: "\ecae";
+  margin-left: -1em;
+  color: rgb(34, 208, 200);
+}
+.ic-On-Air .path3:before {
+  content: "\ecaf";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-On-Air .path4:before {
+  content: "\ecb0";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-On-Air .path5:before {
+  content: "\ecb1";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-On-Air .path6:before {
+  content: "\ecb2";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-On-Air .path7:before {
+  content: "\ecb3";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Add-button:before {
+  content: "\ec8d";
+  color: #0078d7;
+}
+.ic-checkbox1:before {
+  content: "\eca8";
+}
+.ic-checkbox-11:before {
+  content: "\eca9";
+  color: #0070db;
+}
+.ic-Completed-Task1 .path1:before {
+  content: "\ec8e";
+  color: rgb(96, 221, 92);
+  opacity: 0.3;
+}
+.ic-Completed-Task1 .path2:before {
+  content: "\ecb4";
+  margin-left: -1em;
+  color: rgb(96, 221, 92);
+}
+.ic-Completed-Task1 .path3:before {
+  content: "\ecb5";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Completed-Task1 .path4:before {
+  content: "\ecb6";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Doc:before {
+  content: "\ec91";
+  color: #1278d7;
+}
+.ic-Download-file:before {
+  content: "\ec8f";
+  color: #1278d7;
+}
+.ic-In-Progress-Task1 .path1:before {
+  content: "\ec90";
+  color: rgb(254, 193, 45);
+  opacity: 0.3;
+}
+.ic-In-Progress-Task1 .path2:before {
+  content: "\ecb7";
+  margin-left: -1em;
+  color: rgb(248, 201, 58);
+}
+.ic-In-Progress-Task1 .path3:before {
+  content: "\ecb8";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path4:before {
+  content: "\ecb9";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path5:before {
+  content: "\ecba";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path6:before {
+  content: "\ecbb";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path7:before {
+  content: "\ecbc";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path8:before {
+  content: "\ecbd";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path9:before {
+  content: "\ecbe";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-In-Progress-Task1 .path10:before {
+  content: "\ecbf";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-New-Task1 .path1:before {
+  content: "\ec92";
+  color: rgb(0, 0, 0);
+  opacity: 0.1;
+}
+.ic-New-Task1 .path2:before {
+  content: "\ec93";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.4;
+}
+.ic-New-Task1 .path3:before {
+  content: "\ec94";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-New-Task1 .path4:before {
+  content: "\ec95";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-New-Task1 .path5:before {
+  content: "\ec96";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-PDF:before {
+  content: "\ec97";
+  color: #1278d7;
+}
+.ic-Photos:before {
+  content: "\ec98";
+  color: #1278d7;
+}
+.ic-Re-Assigned-Task1 .path1:before {
+  content: "\ec99";
+  color: rgb(93, 151, 230);
+  opacity: 0.3;
+}
+.ic-Re-Assigned-Task1 .path2:before {
+  content: "\ec9a";
+  margin-left: -1em;
+  color: rgb(93, 151, 230);
+}
+.ic-Re-Assigned-Task1 .path3:before {
+  content: "\ec9b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Re-Assigned-Task1 .path4:before {
+  content: "\ec9c";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Re-Assigned-Task1 .path5:before {
+  content: "\ec9d";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Search-icon1:before {
+  content: "\ec9e";
+  color: #7e7e7e;
+}
+.ic-Tejected-Task1 .path1:before {
+  content: "\ec9f";
+  color: rgb(253, 105, 105);
+  opacity: 0.3;
+}
+.ic-Tejected-Task1 .path2:before {
+  content: "\eca0";
+  margin-left: -1em;
+  color: rgb(253, 105, 105);
+}
+.ic-Tejected-Task1 .path3:before {
+  content: "\eca1";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Tejected-Task1 .path4:before {
+  content: "\eca2";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Tejected-Task1 .path5:before {
+  content: "\eca3";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Total-Task1 .path1:before {
+  content: "\eca4";
+  color: rgb(0, 124, 141);
+  opacity: 0.1;
+}
+.ic-Total-Task1 .path2:before {
+  content: "\eca5";
+  margin-left: -1em;
+  color: rgb(0, 188, 214);
+}
+.ic-Total-Task1 .path3:before {
+  content: "\eca6";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.ic-Upload-file:before {
+  content: "\eca7";
+  color: #1278d7;
+}
+.ic-graph-01:before {
+  content: "\ec88";
+}
+.ic-table1-01:before {
+  content: "\ec89";
+}
+.ic-table-011:before {
+  content: "\ec8a";
+}
+.ic-ibs-01:before {
+  content: "\ec86";
+  color: #fff;
+}
+.ic-isc-01:before {
+  content: "\ec87";
+  color: #fff;
+}
+.ic-Others-011:before {
+  content: "\ec85";
+  color: #fff;
+}
+.ic-equipments:before {
+  content: "\ec81";
+  color: #fff;
+}
+.ic-logical-connectivity:before {
+  content: "\ec82";
+  color: #fff;
+}
+.ic-port-details:before {
+  content: "\ec83";
+  color: #fff;
+}
+.ic-structure:before {
+  content: "\ec84";
+  color: #fff;
+}
+.ic-AG-3-01:before {
+  content: "\ec6c";
+  color: #fff;
+}
+.ic-AG2--ONT-01:before {
+  content: "\ec6d";
+  color: #fff;
+}
+.ic-All-01:before {
+  content: "\ec6e";
+  color: #fff;
+}
+.ic-eNode-01:before {
+  content: "\ec6f";
+  color: #fff;
+}
+.ic-Fiber-Pop-01:before {
+  content: "\ec70";
+  color: #fff;
+}
+.ic-ILA-01:before {
+  content: "\ec71";
+  color: #fff;
+}
+.ic-Manhole-01:before {
+  content: "\ec72";
+  color: #fff;
+}
+.ic-OSC--01:before {
+  content: "\ec73";
+  color: #fff;
+}
+.ic-Pole-01:before {
+  content: "\ec74";
+  color: #fff;
+}
+.ic-SAG-2-01:before {
+  content: "\ec75";
+  color: #fff;
+}
+.ic-AG-1-Router:before {
+  content: "\ec76";
+  color: #fff;
+}
+.ic-All:before {
+  content: "\ec77";
+  color: #fff;
+}
+.ic-CSS-Router:before {
+  content: "\ec78";
+  color: #fff;
+}
+.ic-Joint-Closure:before {
+  content: "\ec79";
+  color: #fff;
+}
+.ic-L2-Switch-01:before {
+  content: "\ec7a";
+  color: #fff;
+}
+.ic-OLT-01:before {
+  content: "\ec7b";
+  color: #fff;
+}
+.ic-ONT-01:before {
+  content: "\ec7c";
+  color: #fff;
+}
+.ic-OTB-01:before {
+  content: "\ec7d";
+  color: #fff;
+}
+.ic-Others-01:before {
+  content: "\ec7e";
+  color: #fff;
+}
+.ic-Splitter-2-01:before {
+  content: "\ec7f";
+  color: #fff;
+}
+.ic-Splitter-01:before {
+  content: "\ec80";
+  color: #fff;
+}
+.ic-AG-2:before {
+  content: "\ec6b";
+  color: #fff;
+}
+.ic-AG-1:before {
+  content: "\ec6a";
+  color: #fff;
 }
 .ic-list1:before {
   content: "\ec10";

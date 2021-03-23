@@ -1,8 +1,6 @@
 
 $md-primary: #0070DB;
-.mat-dialog-container {
-    padding: -24px !important;
-    margin: -24px;
+.mat-dialog {
     .dialog-header{
         height: 54px;
         max-height: 54px;
@@ -21,9 +19,8 @@ $md-primary: #0070DB;
     .mat-dialog-content{
         padding: 0px;
         margin: 0px;
+        height: 185px;
         width: 100%;
-        min-height: calc(100% - 108px);
-        max-height: calc(100% - 108px);
         .mat-form-field{
             font-size: 14px;
         }

@@ -31,7 +31,7 @@ export class SiteDatabaseComponent {
       "taskAssigned": "Planned"
     },
     {
-      "taskStatusImg": "ic ic-On-Air1",
+      "taskStatusImg": "ic ic-On-Air",
       "taskCount": "24567",
       "taskAssigned": "On-Air"
     }
@@ -139,7 +139,8 @@ export class SiteDatabaseComponent {
       {
         headerName: 'Current Task',
         field: 'currentTask',
-        width: 180
+        width: 180,
+        pinned: 'right'
       }
     ]
     this.datatable.columnDefsServices = this.columnDefs;

@@ -1,8 +1,9 @@
-<div class="mat-dialog-container">
+<div class="mat-dialog">
     <mat-toolbar class="dialog-header">
         <mat-toolbar-row>
             <div fxFlex="grow">
-                <div>Create Reason Template</div>
+                <div *ngIf="showReasonLabel">Create Reason Template</div>
+                <div *ngIf="showStatusLabel">Create Status Template</div>
             </div>
             <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
                 <mat-icon>close</mat-icon>

@@ -272,9 +272,13 @@ import { inputP2BRendererComponent } from './input-p2b-renderer.component';
     }
   
     createSLA() {
+      var message = {
+        type: "STATUS"
+      }
       this.dialog.open(CreateReasonComponent, {
-        height: '400px',
-        width: '65vw'
+        height: '310px',
+        width: '65vw',
+        data: message
       });
       //this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
     }

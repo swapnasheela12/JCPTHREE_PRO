@@ -100,6 +100,7 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
         headerName: "Milestone",
         field: "milestone",
         width: 200,
+        pinned: 'left'
       },
       {
         headerName: "Status",
@@ -154,7 +155,8 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
       {
         headerName: 'Task Owner',
         field: 'taskOwner',
-        width: 250
+        width: 250,
+        pinned:'right'
       },
     ];
     this.datatable.columnDefsServices = this.columnDefs;

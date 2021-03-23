@@ -22,7 +22,6 @@ export class ImageViewerRendererComponent implements ICellRendererAngularComp {
     }
 
     agInit(params): void {
-        console.log("ye me hu.. aur yaha image sliding ho raha hai")
         this.params = params;
         this.label = this.params.label || null;
     }

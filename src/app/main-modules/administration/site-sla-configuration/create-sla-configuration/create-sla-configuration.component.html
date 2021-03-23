@@ -7,11 +7,8 @@
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
-        <mat-divider></mat-divider>
-
-
-
-        <mat-card class="location" style="box-shadow: none;">
+        
+        <mat-card class="location" style="box-shadow: none;padding-top: 0;">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -120,7 +117,7 @@
 
 
 
-        <mat-card style="box-shadow: none;">
+        <mat-card style="box-shadow: none; padding-top: 0;">
 
             <mat-accordion>
                 <mat-expansion-panel>
@@ -129,7 +126,7 @@
                             Define SLAs
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="wo-grid" style="margin-top: 10px;height: 200px">
+                    <div class="wo-grid" style="height: 165px">
                         <app-ag-grid-tree [columnDefs]="columnDefs" [rowData]="rowData">
                         </app-ag-grid-tree>
                     </div>
