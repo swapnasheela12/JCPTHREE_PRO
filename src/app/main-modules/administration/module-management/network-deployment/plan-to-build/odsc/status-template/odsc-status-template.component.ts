@@ -6,22 +6,21 @@
   import { Router } from '@angular/router';
   import { SelectionChangedEvent } from 'ag-grid-community';
   import { Subject, Subscription } from 'rxjs';
-import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
   import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
   import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
   import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
   import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { CreateReasonComponent } from '../reason-templates/create-reason/create-reason.component';
-import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component';
-import {  dropdownMilestoneRendererComponent } from './dropdown-milestone-renderer.component';
-import {  dropdownTaskRendererComponent } from './dropdown-task-renderer.component';
-import { inputP2BRendererComponent } from './input-p2b-renderer.component';
-  @Component({
-    selector: 'app-status-template',
-    templateUrl: './status-template.component.html',
-    styleUrls: ['./status-template.component.scss']
+import { CreateReasonComponent } from '../../gNodeB/reason-templates/create-reason/create-reason.component';
+import { dropdownMilestoneRendererComponent } from '../../gNodeB/status-template/dropdown-milestone-renderer.component';
+import { dropdownTaskRendererComponent } from '../../gNodeB/status-template/dropdown-task-renderer.component';
+import { inputP2BRendererComponent } from '../../gNodeB/status-template/input-p2b-renderer.component';
+import { ThreeDotP2BRenderer } from '../../renderer/threedot-p2b-renderer.component';
+@Component({
+    selector: 'app-odsc-status-template',
+    templateUrl: './odsc-status-template.component.html',
+    styleUrls: ['./odsc-status-template.component.scss']
   })
-  export class StatusTemplateComponent implements OnDestroy {
+  export class OdscStatusTemplateComponent implements OnDestroy {
     url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
     // @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
     /////

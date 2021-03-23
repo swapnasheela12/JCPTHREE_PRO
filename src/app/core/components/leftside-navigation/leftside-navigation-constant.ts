@@ -4485,6 +4485,42 @@ const MODULE_LIST_PLANNING_DEPLOYMENT = [
     }
 ];
 
+
+const ADMIN_ODSC_CHILDRENS = [
+    {
+        name: "Site SLA Configuration",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/odsc/Site-SLA-Configuration",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Reason Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/odsc/Reason-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Config Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/odsc/Config-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    },
+    {
+        name: "Status Template",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Administration/Plan-To-Build/odsc/Status-Template",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        children: []
+    }
+]
+
 const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Site SLA Configuration",
@@ -4535,7 +4571,7 @@ const ADMIN_GNODEB = [
         link: "odsc",
         eventName: 'sites-outdoor-esc',
         show: true,
-        children: ADMIN_GNODEB_CHILDRENS
+        children: ADMIN_ODSC_CHILDRENS
     }
 ]
 

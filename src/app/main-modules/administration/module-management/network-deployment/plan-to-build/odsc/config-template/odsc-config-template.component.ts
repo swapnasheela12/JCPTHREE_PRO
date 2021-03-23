@@ -6,23 +6,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
-import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component';
-import { dropdownMilestoneRendererComponent } from '../status-template/dropdown-milestone-renderer.component';
-import { dropdownTaskRendererComponent } from '../status-template/dropdown-task-renderer.component';
-import { inputP2BRendererComponent } from '../status-template/input-p2b-renderer.component';
-import { CreateReasonComponent } from './create-reason/create-reason.component';
-import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+
+
 @Component({
-  selector: 'app-reason-templates',
-  templateUrl: './reason-templates.component.html',
-  styleUrls: ['./reason-templates.component.scss']
+  selector: 'odsc-app-config-template',
+  templateUrl: './odsc-config-template.component.html',
+  styleUrls: ['./odsc-config-template.component.scss']
 })
-export class ReasonTemplatesComponent implements OnDestroy {
+export class OdscConfigTemplateComponent implements OnDestroy {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   // @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -33,12 +28,8 @@ export class ReasonTemplatesComponent implements OnDestroy {
   public rowData: any;
   public columnDefs: any[];
   public digitalFormColDefs: any[];
-  public frameworkComponentsStatus = {
+  public frameworkComponentsTaskDetails = {
     statusFlagRenderer: StatusRendererComponent,
-    threeDots: ThreeDotP2BRenderer,
-    inputRenderer: inputP2BRendererComponent,
-    dropdownRenderer: dropdownMilestoneRendererComponent,
-    dropdownTaskRenderer: dropdownTaskRendererComponent
   };
   public searchGrid = '';
   public paginationValues: number[] = [10, 20, 30, 40];
@@ -103,7 +94,7 @@ export class ReasonTemplatesComponent implements OnDestroy {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/administration/reason-template/reason-template.json')
+    this.httpClient.get('assets/data/administration/config-template/config-template.json')
       .subscribe(data => {
         this.rowData = data;
         this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
@@ -121,27 +112,24 @@ export class ReasonTemplatesComponent implements OnDestroy {
   public createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "Milestone",
-        field: "milestone",
-        width: 250,
-        pinned: "left",
-        cellRenderer: 'dropdownRenderer',
+        headerName: "Sit Type",
+        field: "sitType",
+        width: 312,
+        pinned: "left"
       },
       {
-        headerName: "Task",
-        field: "task",
-        width: 300,
-        cellRenderer: 'dropdownTaskRenderer',
+        headerName: "Last Modified On",
+        field: "lastModifiedOn",
+        width: 320,
       },
       {
-        headerName: "Reason",
-        field: "reason",
-        width: 402,
-        cellRenderer: 'inputRenderer',
+        headerName: "Last Modified By",
+        field: "lastModifiedBy",
+        width: 320,
       },
       {
         headerName: "",
-        cellRenderer: 'threeDots',
+        cellRenderer: 'dropDownThreeDotRenderer',
         width: 100,
         pinned: 'right'
 
@@ -175,13 +163,6 @@ export class ReasonTemplatesComponent implements OnDestroy {
       ';">' +
       status + '</span>';
   }
-
-
-  // this.gridOptionsImpl.api.addItems([{
-  //   "sector": "",
-  //   "band": "",
-  //   "newAzimuthValue": ""
-  // }]);
 
   taskStatus(params) {
     var status = params.value;
@@ -230,15 +211,12 @@ export class ReasonTemplatesComponent implements OnDestroy {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.calculateRowCount();
     params.api.paginationGoToPage(4);
   }
 
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
-
-  editRow(evt) {}
 
   autoAssign() {
     const message = {
@@ -251,21 +229,15 @@ export class ReasonTemplatesComponent implements OnDestroy {
   }
 
   onCellClicked(evt) {
-    // if (evt.value) {
-    //   this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
-    // }
+    if (evt.value) {
+      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+    }
   }
 
   createSLA() {
-    var message = {
-      type: "REASON"
-    }
-    this.dialog.open(CreateReasonComponent, {
-      height: '310px',
-      width: '65vw',
-      data: message
-    });
-}
+    this.datashare.changeMessage("Config_Template");
+    this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
+  }
 
   ngOnDestroy() {
     this.destroySubscription.unsubscribe();

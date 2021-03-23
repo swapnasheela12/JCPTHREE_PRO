@@ -7,7 +7,7 @@ $color-white: #ffffff;
 $color-grayBlue: #464d69;
 
 .task-details-wrapper {
-    height: 98%;
+    height: 90%;
 }
 
 .cia-module-card {
@@ -165,4 +165,25 @@ $color-grayBlue: #464d69;
             }
         }
     }
+}
+
+
+.task-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border: 1px solid lightgray;
+    height: 52px;
+}
+
+:host ::ng-deep mat-expansion-panel .mat-expansion-panel-content .mat-expansion-panel-body   {
+    height: 100% !important;
+}
+
+:host ::ng-deep .location mat-accordion mat-expansion-panel .mat-expansion-panel-content .mat-expansion-panel-body {
+    padding: 0 !important;
 }

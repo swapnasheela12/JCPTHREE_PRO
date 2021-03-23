@@ -1,3 +1,4 @@
+
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -10,13 +11,14 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { ThreeDotSLARenderer } from '../../../gNodeB/site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
 
 @Component({
-  selector: 'app-edit-sla-configuration',
-  templateUrl: './edit-sla-configuration.component.html',
-  styleUrls: ['./edit-sla-configuration.component.scss']
+  selector: 'app-odsc-create-sla-configuration',
+  templateUrl: './odsc-create-sla-configuration.component.html',
+  styleUrls: ['./odsc-create-sla-configuration.component.scss']
 })
-export class EditSlaConfigurationComponent {
+export class OdscCreateSlaConfigurationComponent implements OnInit {
   url: string = "assets/data/administration/site-sla-configuration/create-sla/create-sla-configuration.json";
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
@@ -29,7 +31,8 @@ export class EditSlaConfigurationComponent {
   public rowData: any;
   public columnDefs: any[];
   public frameworkComponentsDetails = {
-    'anchorRenderer': AnchorRendererComponent
+    'anchorRenderer': AnchorRendererComponent,
+    'threeDotSLARenderer': ThreeDotSLARenderer
   };
   public searchGrid = '';
   public show;
@@ -65,11 +68,23 @@ export class EditSlaConfigurationComponent {
     { value: 'All', viewValue: 'All' },
     { value: 'All', viewValue: 'All' },
   ]
+
+  siteType = [{
+    value: "New Site Planning",
+  },
+  { value: "On Existing Rooftop Pole_Smart Pole" },
+  { value: "On Existing RTT_RTP_GBT_GBM" },
+  {
+    value: "On Street Pole"
+  }
+  ]
   showFullScreen: boolean = false;
   searchGeographyListValue;
   searchMaintentancePointNameValue;
   searchJioCenterValue;
   searchSapIDValue;
+  searchSapTypeValue;
+  hideDefaultBtn: boolean = true;
 
   constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
     router.events.subscribe();
@@ -142,7 +157,7 @@ export class EditSlaConfigurationComponent {
           },
           {
             headerName: "",
-            cellRenderer: 'dropDownThreeDotRenderer',
+            cellRenderer: 'threeDotSLARenderer',
             width: 100,
             pinned: 'right'
           }
@@ -151,12 +166,21 @@ export class EditSlaConfigurationComponent {
       });
 
   }
+  
+  ngOnInit() {
+    this.datashare.currentMessage.subscribe((data) => {
+      if(data === "Config_Template") {
+        this.hideDefaultBtn =  false;
+      }
+    })
+  }
 
   openedChange(sda) {
     this.searchGeographyListValue = '';
     this.searchMaintentancePointNameValue = '';
     this.searchJioCenterValue = '';
     this.searchSapIDValue = '';
+    this.searchSapTypeValue = ';'
   }
 
   public eventsSubject: Subject<any> = new Subject();

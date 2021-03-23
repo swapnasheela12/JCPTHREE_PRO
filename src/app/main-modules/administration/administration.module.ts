@@ -49,10 +49,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { ReasonTemplatesComponent } from './reason-templates/reason-templates.component';
-import { SiteSlaConfigurationComponent } from './site-sla-configuration/site-sla-configuration.component';
-import { ConfigTemplateComponent } from './config-template/config-template.component';
-import { StatusTemplateComponent } from './status-template/status-template.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { CustomTooltip } from '../reports-dashboards/custom-dashboard/renderer/custom-tooltip.component';
 import { StatusRendererComponent } from '../modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -62,14 +58,10 @@ import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders
 import { dropdownRendererComponent } from '../modules/performance-management/report-builder/create-report/renderer/dropdown-renderer.component';
 import { createKpiDropdownRendererComponent } from '../modules/performance-management/kpi-editor/renderer/dropdown-renderer.component';
 import { DeleteCreatedKpiRendererComponent } from '../modules/performance-management/kpi-editor/renderer/delete-renderer.component';
-import { CreateSlaConfigurationComponent } from './site-sla-configuration/create-sla-configuration/create-sla-configuration.component';
-import { EditSlaConfigurationComponent } from './site-sla-configuration/edit-sla-configuration/edit-sla-configuration.component';
-import { DropdownPositionRendererComponent } from './site-sla-configuration/dropdown-position-renderer.component';
-import { DropdownOwnerRendererComponent } from './site-sla-configuration/dropdown-owner-renderer.component';
 import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ThreeDotP2BRenderer } from './renderer/threedot-p2b-renderer.component';
+import { ThreeDotP2BRenderer } from './module-management/network-deployment/plan-to-build/renderer/threedot-p2b-renderer.component';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { NpQueryAdministrationComponent } from './module-management/nominal-planning/np-query-administration/np-query-administration.component';
 import { CreateQueryPageComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/create-query-page.component';
@@ -77,17 +69,37 @@ import { QueryAdministrationPopupComponent } from './module-management/nominal-p
 import { NpQueryThreeDotRendererComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/np-query-three-dot-renderer/np-query-three-dot-renderer.component';
 import { NpQaSaveQueryPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/np-qa-save-query-popup/np-qa-save-query-popup.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { HistoryComponent } from './site-sla-configuration/create-sla-configuration/history/history.component';
-import { ThreeDotSLARenderer } from './site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
-import { CreateReasonComponent } from './reason-templates/create-reason/create-reason.component';
-import { UploadDocumentsComponent } from './reason-templates/upload-documents/upload-documents.component';
-import { dropdownMilestoneRendererComponent } from './status-template/dropdown-milestone-renderer.component';
-import { dropdownTaskRendererComponent } from './status-template/dropdown-task-renderer.component';
-import { inputP2BRendererComponent } from './status-template/input-p2b-renderer.component';
-// import { SaveQueryPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/save-query-popup/save-query-popup.component';
+import { inputP2BRendererComponent } from './module-management/network-deployment/plan-to-build/gNodeB/status-template/input-p2b-renderer.component';
+import { dropdownTaskRendererComponent } from './module-management/network-deployment/plan-to-build/gNodeB/status-template/dropdown-task-renderer.component';
+import { dropdownMilestoneRendererComponent } from './module-management/network-deployment/plan-to-build/gNodeB/status-template/dropdown-milestone-renderer.component';
+import { HistoryComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/create-sla-configuration/history/history.component';
+import { CreateReasonComponent } from './module-management/network-deployment/plan-to-build/gNodeB/reason-templates/create-reason/create-reason.component';
+import { UploadDocumentsComponent } from './module-management/network-deployment/plan-to-build/gNodeB/reason-templates/upload-documents/upload-documents.component';
+import { ReasonTemplatesComponent } from './module-management/network-deployment/plan-to-build/gNodeB/reason-templates/reason-templates.component';
+import { DropdownPositionRendererComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-position-renderer.component';
+import { DropdownOwnerRendererComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-owner-renderer.component';
+import { SiteSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/site-sla-configuration.component';
+import { ConfigTemplateComponent } from './module-management/network-deployment/plan-to-build/gNodeB/config-template/config-template.component';
+import { StatusTemplateComponent } from './module-management/network-deployment/plan-to-build/gNodeB/status-template/status-template.component';
+import { CreateSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/create-sla-configuration/create-sla-configuration.component';
+import { OdscReasonTemplatesComponent } from './module-management/network-deployment/plan-to-build/odsc/reason-templates/odsc-reason-templates.component';
+import { OdscSiteSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/odsc-site-sla-configuration.component';
+import { OdscConfigTemplateComponent } from './module-management/network-deployment/plan-to-build/odsc/config-template/odsc-config-template.component';
+import { OdscStatusTemplateComponent } from './module-management/network-deployment/plan-to-build/odsc/status-template/odsc-status-template.component';
+import { OdscCreateSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/odsc-create-sla-configuration.component';
+import { OdscHistoryComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/history/odsc-history.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent,dropdownMilestoneRendererComponent, dropdownTaskRendererComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent, NpQaSaveQueryPopupComponent, HistoryComponent, CreateReasonComponent, UploadDocumentsComponent, inputP2BRendererComponent],
+  declarations: [dropdownMilestoneRendererComponent,
+    dropdownTaskRendererComponent, ReasonTemplatesComponent, SiteSlaConfigurationComponent,
+    ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent,
+    ThreeDotP2BRenderer, NpQueryAdministrationComponent,
+    CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent,
+    NpQaSaveQueryPopupComponent, HistoryComponent, CreateReasonComponent,
+    UploadDocumentsComponent, inputP2BRendererComponent,
+    OdscReasonTemplatesComponent, OdscSiteSlaConfigurationComponent,
+    OdscConfigTemplateComponent, OdscStatusTemplateComponent, OdscCreateSlaConfigurationComponent
+    ,OdscHistoryComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -98,7 +110,7 @@ import { inputP2BRendererComponent } from './status-template/input-p2b-renderer.
       conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent,
       createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent,
       DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent, inputRendererComponent,
-      ThreeDotP2BRenderer, NpQueryThreeDotRendererComponent, dropDownThreeDotRendererComponent,dropdownTaskRendererComponent, dropdownMilestoneRendererComponent,
+      ThreeDotP2BRenderer, NpQueryThreeDotRendererComponent, dropDownThreeDotRendererComponent, dropdownTaskRendererComponent, dropdownMilestoneRendererComponent,
       inputP2BRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,

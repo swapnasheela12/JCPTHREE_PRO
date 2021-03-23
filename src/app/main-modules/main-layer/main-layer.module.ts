@@ -106,14 +106,14 @@ import { SplitmapComponent } from './network/quality-and-experience/splitmap/spl
 import { SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
 
 
-import { DropdownOwnerRendererComponent } from '../administration/site-sla-configuration/dropdown-owner-renderer.component';
-import { DropdownResponsibleRendererComponent } from '../administration/site-sla-configuration/dropdown-responsible-renderer.component';
-import { DropdownPositionRendererComponent } from '../administration/site-sla-configuration/dropdown-position-renderer.component';
 import { ToggleButtonRendererComponent } from 'src/app/core/components/ag-grid-renders/toggle-button-renderer.component';
 import { AdditionalCandidatesPopupComponent, nominalGenerationRenderComponent, flagRenderComponent } from './additional-candidates-popup/additional-candidates-popup.component';
 import { AdditionalCandidateSettingsPopupComponent } from './additional-candidate-settings-popup/additional-candidate-settings.component';
 import { LayerPatchSettingsPopupComponent } from './layer-patch-settings-popup/layer-patch-settings.component';
 import { LayerPatchPopupComponent } from './layer-patch-popup/layer-patch-popup.component';
+import { DropdownOwnerRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-owner-renderer.component';
+import { DropdownResponsibleRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-responsible-renderer.component';
+import { DropdownPositionRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-position-renderer.component';
 
 @NgModule({
   declarations: [
