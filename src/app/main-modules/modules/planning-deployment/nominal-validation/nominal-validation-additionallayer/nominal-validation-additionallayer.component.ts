@@ -72,7 +72,7 @@ export class NominalValidationAdditionallayerComponent {
     let nominalViewComponent = this.mainLayerRef.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
     this.mainLayerRef.componentRef = this.mainLayerRef.target.createComponent(nominalViewComponent);
     this.mainLayerRef.componentRef.instance.headerData = this.routePlannedLayerHeader;
-    this.dataShare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
+    this.dataShare.addExtraLayerDynamic([{name: 'nominal-validation-create', display: 'create'}]);
   }
 
   resizeContainer() {
