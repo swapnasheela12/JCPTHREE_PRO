@@ -127,6 +127,16 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     this.dataSource.data = LAYERS_DATA;
     this.datashare.extraLayerObject.subscribe((data: any) => {
       if (Object.keys(data).length !== 0) {
+        if (data[0].name == 'nominal-validation' && data[0].display == 'create') {
+          for (let i = 0; i < this.treeControl.dataNodes.length; i++) {
+            if (this.treeControl.dataNodes[i].name == 'My Layers') {
+              this.treeControl.expand(this.treeControl.dataNodes[i])
+            }
+            if (this.treeControl.dataNodes[i].name == 'Polygons') {
+              this.treeControl.expand(this.treeControl.dataNodes[i])
+            }
+          }
+        } else {
         let dataChange = this.dataSource.data;
         if (dataChange[0].name != 'My Projects') {
           let removedItems = dataChange.splice(0,0,data[0]);
@@ -166,6 +176,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             this.treeControl.expand(this.treeControl.dataNodes[1]);
           }
       }
+    }
     });
   }
 

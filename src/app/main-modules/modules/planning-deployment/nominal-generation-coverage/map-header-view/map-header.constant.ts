@@ -40,6 +40,7 @@ const SITES_SITES_LIST_COVERAGE =[
       link: "p1",
       eventName: 'sites-outdoor-esc',
       show:true,
+      componentLayer: 'MacroLayerComponent',
       children: []
     },
     {
@@ -48,6 +49,7 @@ const SITES_SITES_LIST_COVERAGE =[
       link: "rp1",
       eventName: 'sites-outdoor-esc',
       show:true,
+      componentLayer: 'MacroLayerComponent',
       children: []
     }
   ];

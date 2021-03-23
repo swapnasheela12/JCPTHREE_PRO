@@ -3,7 +3,7 @@
         <mat-card class="p-0 mb-3 map-header-card">
             <mat-card-content class="map-header-card-content">
                 <div class="map-header-div" fxLayout="row wrap" fxLayoutAlign="start center">
-                    <mat-icon class="layer-icon-button-arrow" (click)="backTo()">
+                    <mat-icon class="layer-icon-button-arrow" (click)="backTo(headerData.name)">
                         <span class="zmdi zmdi-chevron-left"></span>
                     </mat-icon>
                     <div class="layer-label pl-4 align-items-center font-weight-bold">{{headerData.title}}</div>
@@ -26,7 +26,7 @@
                         <button mat-icon-button class="text-dark button-mat1" *ngIf="showSummary == true" (click)="openSummary(headerData.name)">
                             <span class="ic ic-table-011"></span>
                         </button>
-                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showChart == true">
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showChart == true" (click)="openChart(headerData.name)">
                             <span class="ic ic-graph-01"></span>
                         </button>
                         <button mat-icon-button class="text-dark button-mat" *ngIf="showSetting == true" (click)="openSettingPopup(headerData.name)" >

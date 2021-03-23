@@ -1,9 +1,10 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import {Location} from '@angular/common';
 
 declare var $: any;
 
@@ -31,7 +32,7 @@ export interface NominalGenerationPerformancePercentile {
   styleUrls: ['./nominal-validation-performance-summary.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NominalValidationPerformanceSummaryComponent implements OnInit {
+export class NominalValidationPerformanceSummaryComponent implements AfterViewInit {
   nominalGenerationSummaryData = {
     "name": 'Maharashtra-NP-CV-121020_V1',
     "type": 'R4G',
@@ -254,14 +255,9 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
   constructor(
     private router: Router,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    public location: Location
   ) {
-    this.data = history.state.data;
-    if ('undefined' != this.data['row']) {
-      this.summaryOf = this.data['row'].display;
-      this.type = this.data['type'];
-      this.tab = this.data['tab'];
-    }
     this.processPerformanceLevel();
     this.processPerformancePercentile();
   }
@@ -373,17 +369,10 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
           },
       },
       plotOptions: {
-          spline: {
-              marker: {
-                  radius: 4,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
-          },
-          series: {
-            lineWidth: 1,
-            pointStart: 15
-          }
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       legend: {
         enabled: true,
@@ -410,7 +399,7 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#ea6767'
           },
-          data: [[0.5, 25], [0.7, 50], [1.3, 75], [2.5, 100]]
+          data: [25,50, 75, 100]
         },
         {
           name: 'Post',
@@ -420,7 +409,7 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#52dc72'
           },
-          data: [[1, 25], [1.5, 50], [2.2, 75], [3, 100]]
+          data: [25, 50, 75, 100]
         }
       ],
       exporting: {
@@ -500,17 +489,10 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
           },
       },
       plotOptions: {
-          spline: {
-              marker: {
-                  radius: 4,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
-          },
-          series: {
-            lineWidth: 1,
-            pointStart: 15
-          }
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       legend: {
         enabled: true,
@@ -537,7 +519,7 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#ea6767'
           },
-          data: [[0.5, 25], [0.7, 50], [1.3, 75], [2.5, 100]]
+          data: [25, 50, 75, 100]
         },
         {
           name: 'Post',
@@ -547,7 +529,7 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#52dc72'
           },
-          data: [[1, 25], [1.5, 50], [2.2, 75], [3, 100]]
+          data: [25, 50, 75, 100]
         }
       ],
       exporting: {
@@ -813,7 +795,22 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
       }
   });
   }
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.data = history.state.data;
+    if ('undefined' != this.data['row']) {
+      this.summaryOf = this.data['row'].display;
+      this.type = this.data['type'];
+      this.tab = this.data['tab'];
+      this.selectedIndex = this.data['selectIndex'];
+      if (this.selectedIndex == 4) {
+        this.showToggle = true;
+        this.summaryOf = 'RSRP';
+        this.createChart();
+        this.createBarChart();
+      } else {
+        this.selectedIndex = 3;
+      }
+    }
   }
 
 
@@ -826,14 +823,13 @@ export class NominalValidationPerformanceSummaryComponent implements OnInit {
     }
   }
 
-  async displayNominalGenerationLayers() {
+  async displayValidationLayers() {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
-    const { NominalGenerationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-generation-coverage/nominal-generation-layer/nominal-generation-layer.component');
+    const { NominalValidationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
     this.viewContainerRef.createComponent(
-      this.componentFactoryResolver.resolveComponentFactory(NominalGenerationLayerComponent)
+      this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
     );
-
   }
 
   onLinkClick(event: MatTabChangeEvent) {

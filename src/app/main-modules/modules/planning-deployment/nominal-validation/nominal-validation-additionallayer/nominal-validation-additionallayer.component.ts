@@ -28,6 +28,7 @@ export class NominalValidationAdditionallayerComponent {
     private shapeService: ShapeService,
     private http: HttpClient
   ) {
+    $('#Layers').parent()[0].click();
     this.dataShare.layerNameFunc([{name: 'Back To Nominal Geneartion', source: 'create'}]);
     this.dataShare.pinLayerCheck({name: "nominal-validation-layer"});
     this.dataShare.mainLayerMessage.subscribe(
@@ -71,6 +72,7 @@ export class NominalValidationAdditionallayerComponent {
     let nominalViewComponent = this.mainLayerRef.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
     this.mainLayerRef.componentRef = this.mainLayerRef.target.createComponent(nominalViewComponent);
     this.mainLayerRef.componentRef.instance.headerData = this.routePlannedLayerHeader;
+    this.dataShare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
   }
 
   resizeContainer() {

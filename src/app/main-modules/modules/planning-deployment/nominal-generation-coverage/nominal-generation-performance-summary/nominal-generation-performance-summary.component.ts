@@ -371,17 +371,10 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
           },
       },
       plotOptions: {
-          spline: {
-              marker: {
-                  radius: 4,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
-          },
-          series: {
-            lineWidth: 1,
-            pointStart: 15
-          }
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       legend: {
         enabled: true,
@@ -408,7 +401,8 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#ea6767'
           },
-          data: [[0.5, 25], [0.7, 50], [1.3, 75], [2.5, 100]]
+          
+          data: [25,50,75,100]
         },
         {
           name: 'Post',
@@ -418,7 +412,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#52dc72'
           },
-          data: [[1, 25], [1.5, 50], [2.2, 75], [3, 100]]
+          data: [25,50,75,100]
         }
       ],
       exporting: {
@@ -498,17 +492,10 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
           },
       },
       plotOptions: {
-          spline: {
-              marker: {
-                  radius: 4,
-                  lineColor: '#666666',
-                  lineWidth: 1
-              }
-          },
-          series: {
-            lineWidth: 1,
-            pointStart: 15
-          }
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       legend: {
         enabled: true,
@@ -535,7 +522,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#ea6767'
           },
-          data: [[0.5, 25], [0.7, 50], [1.3, 75], [2.5, 100]]
+          data: [25,50,75,100]
         },
         {
           name: 'Post',
@@ -545,7 +532,7 @@ export class NominalGenerationPerformanceSummaryComponent implements OnInit {
               symbol: 'circle',
               lineColor: '#52dc72'
           },
-          data: [[1, 25], [1.5, 50], [2.2, 75], [3, 100]]
+          data: [25,50,75,100]
         }
       ],
       exporting: {
