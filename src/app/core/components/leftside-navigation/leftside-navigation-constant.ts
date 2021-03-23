@@ -4103,15 +4103,15 @@ const MODULE_LIST_FAULT = [
         headerText: '',
         children: []
     },
-    {
+    // {
 
-        name: "Active Alarm",
-        icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Fault-Management/Active-Alarm",
-        eventName: 'sites-outdoor-esc',
-        children: [],
-        headerText: '',
-    },
+    //     name: "Active Alarm",
+    //     icon: "fas fa-user fa-3",
+    //     link: "JCP/Modules/Fault-Management/Active-Alarm",
+    //     eventName: 'sites-outdoor-esc',
+    //     children: [],
+    //     headerText: '',
+    // },
     {
         name: "Alarm Summary",
         icon: "fas fa-user fa-3",

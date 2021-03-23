@@ -20,6 +20,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { FormsModule } from '@angular/forms';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { threeDotActiveAlarmRendererComponent } from './threedot-active-alarm-renderer.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -277,7 +278,8 @@ public selected = moment();
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
-    public datashare: DataSharingService
+    public datashare: DataSharingService,
+    private router: Router
   ) {
     this.gridOptions = <GridOptions>{};
    
@@ -354,6 +356,23 @@ public selected = moment();
         //   "657131"
         // );
     });
+  }
+
+  public toggleVersion = 1;
+  onChangeToggleVersion(e) {
+
+    if (e.checked == true) {
+      this.toggleVersion = 1;
+    } else {
+    this.toggleVersion = 0;
+    this.router.navigate(["/JCP/Modules/Fault-Management/Alarm-Summary"]);
+    }
+    console.log("item", e);
+    // if(item) {
+    //   this.router.navigate(["/JCP/Modules/Fault-Management/Active-Alarm"]);
+    // } else {
+    //   this.router.navigate(["/JCP/Modules/Fault-Management/Alarm-Summary"]);
+    // }
   }
 
   // openBulkDeleteDialog():void {

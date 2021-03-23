@@ -4,7 +4,17 @@
             <div class="col-4 kpi-editor-flex-item kpi-title">
                 5G Active Alarm </div>
             <div class="col-8 active-alarm-flex-item d-flex justify-content-end align-items-center">
-
+                <div class="toggleHeader px-3" fxLayout="row" fxLayoutAlign="space-around center">
+                    <div>4G</div>
+                    <div style=" padding-left: 10px;">
+                        <button style="line-height: 1px;" mat-button class="mx-2 icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                            <mat-slide-toggle color="primary"[checked]="toggleVersion"
+                                (change)="onChangeToggleVersion($event)">
+                            </mat-slide-toggle>
+                        </button>
+                    </div>
+                    <div>5G</div>
+                </div>
                 <button class="btn-dl md-icon-button md-button" type="button" aria-label="Download">
                     <div class="zmdi zmdi-download">
                     </div>
