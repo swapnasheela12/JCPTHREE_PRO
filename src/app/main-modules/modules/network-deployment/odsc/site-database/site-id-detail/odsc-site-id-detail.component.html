@@ -1,0 +1,67 @@
+<div class="wo-sector-container">
+    <div style="background: transparent;">
+        <mat-card class="wo-sector-card-one p-0">
+            <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
+                <mat-icon class="icon-button mx-2" (click)="navigateToSiteDatabase()" style="color: #7E7E7E;" aria-label="search">
+                    <span class="zmdi zmdi-arrow-left"></span>
+                </mat-icon>
+                <div class="col wo-flex-item" style="padding-left: 0px;">
+                    <div style="color: black">I-MU-MUMB-ENB-4505</div>
+                </div>
+
+                <mat-icon class="icon-button" (click)="navigateToSiteHistory()" aria-label="search">
+                    <span class="ic ic-history"></span>
+                </mat-icon>
+
+                <mat-icon class="icon-button" aria-label="search">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+            </div>
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="wo-container">
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                    <div class="p-2 wo-flex-item mediaContainer" style="width: 33%;"
+                        *ngFor="let wo of woHeader;trackBy: trackHero">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">{{wo.label}}</div>
+                            <div class="wo-form-input-value">{{wo.value}}</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+        
+
+            <div class="wrapper-progressBar" style="height: 75px;">
+                <ul class="progressBar">
+                    <li class="active ic ic-checkmark"><span>Nominal Finalisation</span> </li>
+                    <li class="active"><span>Plan - RFA</span></li>
+                    <li class="active"><span>RFA - RFC</span></li>
+                    <li class="active"><span>RFC - RFI</span></li>
+                    <li class="inprogress"><span>RFI - RFE1</span></li>
+                    <li class="inprogress"><span>RFI - RFE2</span></li>
+                    <li class=""><span>RFE2 - RFR</span></li>
+                    <li class=""><span>ATP 11A & WCC1</span></li>
+                    <li><span>ATP 11B, CVT, WCC2 & HOTO</span></li>
+                </ul>
+            </div>
+
+            <div class="flex-row flex-wrap w-100" style="position: relative; bottom: 9px;"></div>
+
+
+            <div class="jcp-table-container" style="height: 47vh;">
+                <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+                    style="width: 100%; height: 47vh;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
+                    [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter
+                    groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                    rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
+                    [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
+                    [frameworkComponents]="frameworkComponentsTaskDetails">
+                </ag-grid-angular>
+            </div>
+        </div>
+</div>

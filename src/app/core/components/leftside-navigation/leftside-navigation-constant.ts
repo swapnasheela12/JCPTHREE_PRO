@@ -4782,7 +4782,7 @@ const PLATFORM_LAYER_LIST = [
     }
 ];
 
-const GNODEB = [
+const ODSC = [
     {
         name: 'Task Details',
         link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details',
@@ -4792,6 +4792,21 @@ const GNODEB = [
     {
         name: 'Site Database',
         link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    }
+]
+
+const GNODEB = [
+    {
+        name: 'Task Details',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Task-Details',
+        eventName: 'sites-outdoor-esc',
+        children: []
+    },
+    {
+        name: 'Site Database',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Site-Database',
         eventName: 'sites-outdoor-esc',
         children: []
     }
@@ -4808,7 +4823,7 @@ const PLAN_TO_BUILD = [
         name: 'ODSC',
         link: 'odsc',
         eventName: 'sites-outdoor-esc',
-        children: []
+        children: ODSC
     }
 ];
 

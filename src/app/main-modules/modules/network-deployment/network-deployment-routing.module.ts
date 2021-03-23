@@ -6,6 +6,9 @@ import { SiteHistoryDetailsComponent } from './gNodeB/site-database/site-id-deta
 import { SiteIdDetailComponent } from './gNodeB/site-database/site-id-detail/site-id-detail.component';
 import { SapIdDetailsComponent } from './gNodeB/task-details/sap-id-details/sap-id-details.component';
 import { TaskDetailsComponent } from './gNodeB/task-details/task-details.component';
+import { OdscSiteDatabaseComponent } from './odsc/site-database/odsc-site-database.component';
+import { OdscSiteIdDetailComponent } from './odsc/site-database/site-id-detail/odsc-site-id-detail.component';
+import { OdscSiteHistoryDetailsComponent } from './odsc/site-database/site-id-detail/site-history-details/odsc-site-history-details.component';
 
 
 const routes: Routes = [
@@ -59,7 +62,54 @@ const routes: Routes = [
                 ]
               }
             ]
+          },
+          {
+            path: "odsc",
+            children: [
+              {
+                path: "Task-Details",
+                children: [
+                  {
+                    path: '',
+                    component: TaskDetailsComponent,
+                  },
+                  {
+                    path: 'Sap-Id-Details',
+                    children: [
+                      {
+                        path: '',
+                        component: SapIdDetailsComponent,
+                      }
+                    ]
+
+                  }
+                ]
+              },
+              {
+                path: "Site-Database",
+                children: [
+                  {
+                    path: '',
+                    component: OdscSiteDatabaseComponent
+                  },
+                  {
+                    path: 'Site-Id-Details',
+                    children: [
+                      {
+                        path: '',
+                        component: OdscSiteIdDetailComponent
+                      },
+                      {
+                        path: 'Site-History-Details',
+                        component: OdscSiteHistoryDetailsComponent
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
+
         ]
       }
     ]
