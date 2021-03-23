@@ -1,5 +1,4 @@
 import { LogicalConnectivitySettingComponent } from './../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
-//\9
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input, ChangeDetectorRef } from '@angular/core';
 import { LEFTSIDE_MENU_LIST } from './leftside-navigation-constant';
@@ -10,8 +9,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { NavigationSettingsService } from 'src/app/_services/navigation-settings/navigation-settings.service';
 import { MatRadioButton } from '@angular/material/radio';
 import { MapHeaderViewComponent } from 'src/app/main-modules/modules/planning-deployment/nominal-generation-coverage/map-header-view/map-header-view.component';
-
-declare var $: any;
 
 export class SideNavNode {
   name: string;
@@ -31,6 +28,7 @@ export class SideNavNode {
   checked?: Boolean;
   showHeader?: Boolean;
   headerText?: string;
+  id?: any;
 }
 
 class ExampleFlatNode {
@@ -40,8 +38,7 @@ class ExampleFlatNode {
   show: Boolean;
 }
 
-const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
-
+const LAYERS_DATA: any = LEFTSIDE_MENU_LIST[1].children;
 @Component({
   selector: 'app-leftside-navigation',
   templateUrl: './leftside-navigation.component.html',
@@ -49,7 +46,7 @@ const LAYERS_DATA = LEFTSIDE_MENU_LIST[1].children;
   encapsulation: ViewEncapsulation.None
 })
 export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
-  public menuListAll: SideNavNode[] = LEFTSIDE_MENU_LIST;
+  public menuListAll: any = LEFTSIDE_MENU_LIST;
   parentNode: ExampleFlatNode;
   nodeType = 'TEST';
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
@@ -62,7 +59,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   menuChildrenLength: number;
   get data(): SideNavNode[] { return this.dataChange.value; }
   layerName = '';
-  source='';
+  source = '';
   layerComponent;
   showHeader;
   routePlannedLayerHeader = {
@@ -109,7 +106,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       showSettings: node.showSettings,
       checked: node.checked,
       showHeader: node.showHeader,
-      headerText: node.headerText
+      headerText: node.headerText,
+      id: node.id
     };
   }
   treeControl = new FlatTreeControl<ExampleFlatNode>(
@@ -175,13 +173,18 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     $('.hide-parent-menu-item-nav').parent().parent().css({ 'display': 'none' });
     $('.disabled-menu-item-nav').parent().css({ 'color': 'gray', 'cursor': 'not-allowed', 'pointer-events': 'none' });
   }
-  parentIconClick(mmenuDirective, level) {
-    let dataChange = this.dataSource.data;
-    this.dataSource.data = [];
-    this.dataSource.data = dataChange;
+  parentIconClick(mmenuDirective, level, id) {
     if (level == 0) {
       mmenuDirective.menu.API.closeAllPanels()
     }
+    //LAYERS PAGE: RESET CHECKED ONES WHEN ROUTE IS CHANGED
+    let dataChange = this.dataSource.data;
+    this.dataSource.data = [];
+    this.dataSource.data = dataChange;
+
+    //SEND HYPERLINK DATA TO TRACK USER TIME 
+    let layerId = { id: id, checkbox: false }
+    this.datashare.sendCheckedLayersOnly(layerId);
   }
   // [ngClass]="{'hide-menu-item-nav': (item.show == false), 'disabled-menu-item-nav':(item.disabled == true) }"
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
@@ -223,13 +226,13 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           dataChange[dataChange.length - 1].children[1].children.push(addPin);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
-        } else if(data.sideNav) {
+        } else if (data.sideNav) {
           let dataChange = this.dataSource.data;
           dataChange[dataChange.length - 1].children[2].children.push(addPinPoly);
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
-        }else{ 
-         
+        } else {
+
         }
       }
   
@@ -400,6 +403,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         }
       }
     } else {
+      console.log("Catch me")
       if (currentIndexNode != 7 && test.name == 'Prediction Layers') {
         $('#prediction-layer-border').css({ 'border-top': 'none' });
       }
@@ -485,9 +489,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     this.routePlannedLayerHeader.name = node.eventName;
     this.datashare.layerNameFunc([{name: node.headerText, source: 'display'}]);
     if (type == 'manual') {
-      if(undefined != this.showHeader){
-          this.showHeader.clear();
-          this.newComponentRef.destroy();
+      if (undefined != this.showHeader) {
+        this.showHeader.clear();
+        this.newComponentRef.destroy();
       }
       if (node.selected == true && node.showHeader == true) {
         this.datashare.headerObject.subscribe(
@@ -503,7 +507,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             this.newComponentRef.changeDetectorRef.detectChanges();
           }
         )
-      } else if (node.selected == false  && node.showHeader == true) {
+      } else if (node.selected == false && node.showHeader == true) {
         this.showHeader.clear();
         this.newComponentRef.destroy();
       }
@@ -524,6 +528,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   }
 
   onChecked(selected, node, activeCheckbox, eventChecked) {
+    let layerId = { id: node.id, checkbox: true }
     event.preventDefault();
     if (eventChecked != 'no') {
       node.selected = eventChecked;
@@ -537,6 +542,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       this.datashare.changeMessage(this.selectedLayerArr);
       this.datashare.leftSideNavLayerSelection(this.selectedLayerArr);
       this.datashare.layerNameFunc(this.selectedLayerArr);
+      this.datashare.sendCheckedLayersOnly(layerId);
       this.renderer.addClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
       if ('' !== node.componentLayer) {
         this.renderLayerComponent(node.componentLayer);
@@ -553,6 +559,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
         this.removeLayerComponent(node.componentLayer);
       }
       this.datashare.changeMessage(this.selectedLayerArr);
+      this.datashare.sendUnCheckedLayersOnly(node.id);
       this.renderer.removeClass(activeCheckbox._elementRef.nativeElement, 'menu-active-layers');
     }
   }
@@ -628,7 +635,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       );
     }
     else if (node.component == 'SmartbenchSettingsComponent') {
-      
+
     }
   }
 
