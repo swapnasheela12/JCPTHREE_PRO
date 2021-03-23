@@ -427,7 +427,7 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>ACP Selection</ng-template>
-                <div style="height: calc(100% - 63px);overflow: auto;" fxLayout="column">
+                <div style="height: calc(100% - 63px);" fxLayout="column">
                     <div style="padding-right: 15px;">
                         <table mat-table [dataSource]="dataSourceACP" style="border: 1px solid #00000029; border-radius: 4px">
                             <ng-container matColumnDef="srno">
@@ -456,10 +456,11 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div style="padding-right: 15px; padding-top: 4px;" fxLayout="row">
+                    <div style="padding-right: 15px; padding-top: 15px;" fxLayout="row">
                         <div fxFlex="50" fxLayout="row">
                             <div fxFlex="10">
                                 <mat-checkbox
+                                    class="selected-site-check"
                                     (change)="enableSelectedSiteCheck()"
                                     [disableRipple]="true">
                                 </mat-checkbox>
@@ -474,6 +475,7 @@
                         <div fxFlex="50" fxLayout="row">
                             <div fxFlex="10">
                                 <mat-checkbox
+                                    class="inter-site-check"
                                     (change)="enableInterSiteCheck()"
                                     [disableRipple]="true">
                                 </mat-checkbox>

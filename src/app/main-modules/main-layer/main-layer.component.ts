@@ -874,19 +874,6 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.headerToShow = this.target.createComponent(HeaderViewComponent);
         this.headerToShow.instance.headerData = routePlannedLayerHeader;
         this.datashare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
-      } else if (dataPoly.display == 'nominal-validation-basic'){
-        let routePlannedLayerHeader = {
-          "title": "Back To Nominal Validation",
-          "headerSapid": "Maharashtra-NP-CV-121020_v1",
-          "name":"nominal-validation"
-        };
-        let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
-        this.headerToShow = this.target.createComponent(HeaderViewComponent);
-        this.headerToShow.instance.headerData = routePlannedLayerHeader;
-        let strategyComponent = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
-        this.target.createComponent(strategyComponent);
-        
-        
       }
       // const componentRef = this.componentRef = this;
     
