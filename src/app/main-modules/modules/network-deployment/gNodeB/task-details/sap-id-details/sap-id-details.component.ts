@@ -765,6 +765,8 @@ export class SapIdDetailsComponent implements OnDestroy {
   showScenerioHAll: boolean = false;
   showScenerioIHold: boolean = false;
 
+  showAssignedTemplate: boolean = false;
+
   //search dropdown
   searchPriorityValue;
   searchDateOfSurveyValue;
@@ -800,11 +802,6 @@ export class SapIdDetailsComponent implements OnDestroy {
         this.editableData = data;
         this.updateEditedField();
       }
-
-      // if (data === "RejectForm") {
-      //   this.showRejectedForm = true;
-      //   
-      // }
     })
     this.httpClient.get("assets/data/modules/network_deployment/gNodeB/registry.json").subscribe((data) => {
       this.details = data;
@@ -833,30 +830,14 @@ export class SapIdDetailsComponent implements OnDestroy {
     if (this.taskInfo.status === "New") {
       console.log("elee", this.taskInfo);
       this.showAssignedTask = true;
-      this.showTaskToBeAccepted = false;
-      this.showReassignTask = false;
-      this.showApproveRejectTask = false;
     } else if (this.taskInfo.status === "Re-Assigned") {
       this.showTaskToBeAccepted = true;
-      this.showAssignedTask = false;
-      this.showReassignTask = false;
-      this.showApproveRejectTask = false;
     } else if (this.taskInfo.status === "In Progress") {
       this.showReassignTask = true;
-      this.showTaskToBeAccepted = false;
-      this.showAssignedTask = false;
-      this.showApproveRejectTask = false;
     } else if (this.taskInfo.status === "Completed") {
       this.showApproveRejectTask = true;
-      this.showReassignTask = false;
-      this.showTaskToBeAccepted = false;
-      this.showAssignedTask = false;
     } else if (this.taskInfo.status === "RFA to RFC") {
       this.showTaskCompletedAssign = true;
-      this.showApproveRejectTask = false;
-      this.showReassignTask = false;
-      this.showTaskToBeAccepted = false;
-      this.showAssignedTask = false;
     } else if (this.taskInfo.status === "Scenerio E") {
       this.showApproveRejectUploadDownload = true;
     } else if (this.taskInfo.status === "Scenerio F") {
@@ -940,7 +921,7 @@ export class SapIdDetailsComponent implements OnDestroy {
 
   acceptTask() {
     if (this.taskInfo.status === "New") {
-      this.showAssignedTask = true;
+      this.showAssignedTemplate = true;
       this.hideAction = false;
     } else if (this.taskInfo.status === "Re-Assigned") {
       this.showTaskToBeAccepted = true;
@@ -1071,7 +1052,8 @@ export class SapIdDetailsComponent implements OnDestroy {
   }
 
   reAssign() {
-    console.log("this.reassihgn", this.rejectedForm)
+   // console.log("this.reassihgn", this.rejectedForm)
+   this.hideAction = false;
     this.showReassignFooterBtn = true;
   }
 

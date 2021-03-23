@@ -3,10 +3,12 @@ import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs'; import { AnchorRendererComponent } from 'src/app/core/components/ag-grid-renders/anchor-renderer.component';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { COLUMN_DEFS } from 'src/app/main-modules/work-orders/rf-oc-workorders/category-wise-wo-listing/sector-misalignment/wo-sector-misalignment/wo-column-defs.constants';
@@ -86,7 +88,8 @@ export class OdscCreateSlaConfigurationComponent implements OnInit {
   searchSapTypeValue;
   hideDefaultBtn: boolean = true;
 
-  constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient) {
+  constructor(private datashare: DataSharingService, private router: Router, private httpClient: HttpClient,
+    private dialog: MatDialog) {
     router.events.subscribe();
     this.destroySubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -198,6 +201,16 @@ export class OdscCreateSlaConfigurationComponent implements OnInit {
     if (evt.value) {
       this.router.navigate(["JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details"]);
     }
+  }
+
+  setAsDefault() {
+    const message = {
+      message: 'LA Configuration template for "gNodeB-New Site" has been successfully created !',
+      showMyTasks: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
   }
 
   goBack() {

@@ -4821,13 +4821,13 @@ const PLATFORM_LAYER_LIST = [
 const ODSC = [
     {
         name: 'Task Details',
-        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Task-Details',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
         name: 'Site Database',
-        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Site-Database',
         eventName: 'sites-outdoor-esc',
         children: []
     }
