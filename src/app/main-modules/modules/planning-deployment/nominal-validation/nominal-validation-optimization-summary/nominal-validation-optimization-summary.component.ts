@@ -10,6 +10,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { nominalSiteVerticalDotComponent, flagRenderComponent } from '../../nominal-generation-coverage/nominal-site-distribution-summary/nominal-site-distribution-summary.component';
+import {Location} from '@angular/common';
 
 const HEADER_PERFORMANCE_REPORTS = [
   {
@@ -96,6 +97,7 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
     private http: HttpClient,
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
+    public location: Location
   ) {
     this.gridMyPerformanceGridOptions = <GridOptions>{};
     this.frameworkComponentsReportBuilder = {
@@ -149,7 +151,7 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
     this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
   }
 
-  async displayNominalGenerationLayers() {
+  async displayValidationLayers() {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
     const { NominalValidationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
