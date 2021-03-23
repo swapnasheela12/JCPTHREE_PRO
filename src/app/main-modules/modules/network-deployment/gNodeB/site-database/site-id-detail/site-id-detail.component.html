@@ -1,8 +1,8 @@
 <div class="wo-sector-container">
-    <div>
+    <div style="background: transparent;">
         <mat-card class="wo-sector-card-one p-0">
             <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
-                <mat-icon class="icon-button mx-2" style="color: #7E7E7E;" aria-label="search">
+                <mat-icon class="icon-button mx-2" (click)="navigateToSiteDatabase()" style="color: #7E7E7E;" aria-label="search">
                     <span class="zmdi zmdi-arrow-left"></span>
                 </mat-icon>
                 <div class="col wo-flex-item" style="padding-left: 0px;">
@@ -10,7 +10,7 @@
                 </div>
 
                 <mat-icon class="icon-button" (click)="navigateToSiteHistory()" aria-label="search">
-                    <span class="zmdi zmdi-arrow-left"></span>
+                    <span class="ic ic-history"></span>
                 </mat-icon>
 
                 <mat-icon class="icon-button" aria-label="search">
@@ -34,7 +34,7 @@
         </mat-card>
 
 
-        <div class="flex-row flex-wrap w-100" style="position: relative; bottom: 9px;">
+        
 
             <div class="wrapper-progressBar" style="height: 75px;">
                 <ul class="progressBar">
@@ -50,6 +50,8 @@
                 </ul>
             </div>
 
+            <div class="flex-row flex-wrap w-100" style="position: relative; bottom: 9px;"></div>
+
 
             <div class="jcp-table-container" style="height: 47vh;">
                 <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
@@ -62,5 +64,4 @@
                 </ag-grid-angular>
             </div>
         </div>
-    </div>
 </div>

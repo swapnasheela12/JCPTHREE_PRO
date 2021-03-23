@@ -197,11 +197,12 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
   }
 
   onPageSizeChanged(newPageSize) {
+    console.log("newPageSize", newPageSize)
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
-  navigateToSiteHistory() {
-    // this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details/Site-History-Details"])
+  navigateTo() {
+    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details"])
   }
 
   ngOnDestroy() {

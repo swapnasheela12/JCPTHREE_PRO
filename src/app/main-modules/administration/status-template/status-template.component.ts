@@ -11,7 +11,11 @@ import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/
   import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
   import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
   import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { CreateReasonComponent } from '../reason-templates/create-reason/create-reason.component';
 import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component';
+import {  dropdownMilestoneRendererComponent } from './dropdown-milestone-renderer.component';
+import {  dropdownTaskRendererComponent } from './dropdown-task-renderer.component';
+import { inputP2BRendererComponent } from './input-p2b-renderer.component';
   @Component({
     selector: 'app-status-template',
     templateUrl: './status-template.component.html',
@@ -31,7 +35,9 @@ import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component
     public frameworkComponentsStatus = {
       statusFlagRenderer: StatusRendererComponent,
       threeDots: ThreeDotP2BRenderer,
-      inputRenderer: inputRendererComponent
+      inputRenderer: inputP2BRendererComponent,
+      dropdownRenderer: dropdownMilestoneRendererComponent,
+      dropdownTaskRenderer: dropdownTaskRendererComponent
     };
     public searchGrid = '';
     public paginationValues: number[] = [10, 20, 30, 40];
@@ -130,13 +136,13 @@ import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component
           field: "milestone",
           width: 250,
           pinned: "left",
-          cellRenderer: 'inputRenderer',
+          cellRenderer: 'dropdownRenderer',
         },
         {
           headerName: "Task",
           field: "task",
           width: 300,
-          cellRenderer: 'inputRenderer',
+          cellRenderer: 'dropdownTaskRenderer',
         },
         {
           headerName: "Reason",
@@ -260,13 +266,17 @@ import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component
     }
   
     onCellClicked(evt) {
-      if (evt.value) {
-        this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
-      }
+      // if (evt.value) {
+      //   this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+      // }
     }
   
     createSLA() {
-      this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
+      this.dialog.open(CreateReasonComponent, {
+        height: '400px',
+        width: '65vw'
+      });
+      //this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
     }
   
     ngOnDestroy() {

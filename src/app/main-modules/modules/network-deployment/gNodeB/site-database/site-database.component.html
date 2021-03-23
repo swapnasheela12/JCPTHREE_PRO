@@ -22,9 +22,9 @@
         </mat-toolbar>
         <mat-divider></mat-divider>
         <div class="td-flex-container">
-            <div class="d-flex mx-2 flex-row justify-content-between">
-                <div class="col-2 td-flex-item" fxFlex *ngFor="let task of taskDetails">
-                    <div class="task-widget" fxFlex>
+            <div class="d-flex mx-2 flex-row justify-content-between" fxFlex="60">
+                <div class="col-2 td-flex-item" fxFlex="100" *ngFor="let task of taskDetails">
+                    <div class="task-widget" fxFlex (click)="showTaskData($event)">
                         <div class="task-icon" fxFlex="30">
                             <div class="task-inner-circle">
                                 <mat-icon style="font-size: 48px;" aria-label="search">

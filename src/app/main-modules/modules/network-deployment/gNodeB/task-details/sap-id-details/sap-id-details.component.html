@@ -149,13 +149,16 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Priority*</mat-label>
-                        <mat-select disableOptionCentering [(value)]="priority[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option value="option1" class="sector-title" *ngFor="let pr of priority" [value]="pr">
-                                {{pr}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="priority[0]" placeholder="Priority*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchPriorityValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of priority | filter:searchPriorityValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -186,14 +189,16 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Date of Survey*</mat-label>
-                        <mat-select disableOptionCentering [(value)]="dateOfSurvey[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option value="option1" class="sector-title" *ngFor="let dos of dateOfSurvey"
-                                [value]="dos">
-                                {{dos}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="dateOfSurvey[0]" placeholder="Date of Survey*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchDateOfSurveyValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of dateOfSurvey | filter:searchDateOfSurveyValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -210,13 +215,16 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Any Obstruction</mat-label>
-                        <mat-select disableOptionCentering [(value)]="option[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container" fxFlex="auto">
+                        <mat-select [(value)]="option[0]" placeholder="Any Obstruction*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchObstructionValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of option | filter:searchObstructionValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -308,14 +316,16 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Tower/Pole Height (In Meters)
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="poleHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let ph of poleHeight" [value]="ph">
-                                {{ph}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Tower/Pole Height (In Meters)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchPoleValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchPoleValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -434,40 +444,47 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Proposed Height (Meter)
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="poleHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let ph of poleHeight" [value]="ph">
-                                {{ph}}</mat-option>
+
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Proposed Height (Meter)
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="poleHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let ph of poleHeight" [value]="ph">
-                                {{ph}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Proposed Height (Meter)
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="poleHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let ph of poleHeight" [value]="ph">
-                                {{ph}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -477,40 +494,46 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Type
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="mountRequired[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of mountRequired" [value]="opt">
-                                {{opt}}</mat-option>
+                   <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Type
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="mountRequired[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of mountRequired" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Type
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="mountRequired[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of mountRequired" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -518,40 +541,46 @@
 
             <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Tilt
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="proposedHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of proposedHeight" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Tilt
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="proposedHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of proposedHeight" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
                 <div class="sub-content-flex-item p-1rem col-4">
-                    <mat-form-field class="form-field-read-only">
-                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                            Antenna Tilt
-                        </mat-label>
-                        <mat-select disableOptionCentering [(value)]="proposedHeight[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option class="sector-title" *ngFor="let opt of proposedHeight" [value]="opt">
-                                {{opt}}</mat-option>
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

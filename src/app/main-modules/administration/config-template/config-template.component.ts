@@ -235,6 +235,7 @@ export class ConfigTemplateComponent implements OnDestroy {
   }
 
   createSLA() {
+    this.datashare.changeMessage("Config_Template");
     this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
   }
 

@@ -1,0 +1,65 @@
+.assign-task-container {
+    margin: -24px;
+    .dialog-header {
+       background: #0070DB; 
+       .header {
+        color: white;
+        font-size: 18px;
+       }
+       .dialog-close-button {
+           color: white;
+           background: transparent;
+       }
+    }
+    .assign-text-action-container {
+        .assign-text-button {
+            .assign-butt {
+                height: 40px;
+                width: 158px;
+            }
+        }
+    }
+}
+
+
+.wo-container {
+    .wo-flex-container {
+        .mediaContainer {
+            .wo-form-field-read {
+                line-height: 2;
+                .wo-form-input-title {
+                    font-family: lato Regular;
+                    font-size: 12px;
+                    letter-spacing: 0px;
+                    color: #000000;
+                    opacity: 0.6;
+                }
+                .wo-form-input-value {
+                    font-family: lato medium;
+                    font-size: 14px;
+                    color: #000000;
+                }
+            }
+        } 
+    }
+}   
+.emp-label {
+    text-align: left;
+    font-family: Lato Regular;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.9;
+    line-height: 3;
+}
+
+.mat-con {
+    margin: 15px 0px;
+    > mat-radio-group {
+        > mat-radio-button {
+            font-family: Lato Regular;
+            font-size: 14px;
+        }
+    }
+}
+

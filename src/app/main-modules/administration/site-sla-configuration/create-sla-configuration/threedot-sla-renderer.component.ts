@@ -3,18 +3,19 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
+import { HistoryComponent } from './history/history.component';
 
 @Component({
-    selector: 'threeDot-button-renderer',
+    selector: 'threeDot-sla-renderer',
     template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item (click)="editRow($event)">
-                <span>Edit</span>
+            <button mat-menu-item (click)="history($event)">
+                <span>History</span>
             </button>
-            <button mat-menu-item (click)="deleteRow($event)">
-                <span>Delete</span>
+            <button mat-menu-item (click)="reset($event)">
+                <span>Reset</span>
             </button>
         </mat-menu>`,
     styles: [
@@ -32,7 +33,7 @@ import { Router } from '@angular/router';
     encapsulation: ViewEncapsulation.None
 })
 
-export class ThreeDotP2BRenderer implements ICellRendererAngularComp {
+export class ThreeDotSLARenderer implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
@@ -54,12 +55,17 @@ export class ThreeDotP2BRenderer implements ICellRendererAngularComp {
         return true;
     }
 
-    editRow(evt) {
-        this.datashare.changeMessage({ type: "edit"});
+    history(evt) {
+        console.log(this.params);
+        this.dialog.open(HistoryComponent, {
+            width: "75vw",
+            height: "500px",
+          });
+       // this.datashare.changeMessage({"rowIndex": this.params, type: "edit"});
     }
 
-    deleteRow(evt) {
-        this.datashare.changeMessage({"rowIndex": this.params, type: "delete"});
+    reset(evt) {
+       // this.datashare.changeMessage({"rowIndex": this.params, type: "delete"});
     }
 
 }

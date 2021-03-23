@@ -698,7 +698,8 @@ export class SapIdDetailsComponent implements OnDestroy {
   option = ["Yes", "No"]
   poleHeight = ["60", "35"]
   noOfFloor = ["16", "15"];
-  proposedHeight = ["10", "10"]
+  proposedHeight = ["10", "10"];
+  antennaTilt = ["10", "10"];
   nearByFiveSites = ["Lorem Ipsum 1, Lorem Ipsum 2, Lorem Ipsum 3, Lorem Ipsum 4, Lorem Ipsum 5", "Lorem Ipsum 1, Lorem Ipsum 2, Lorem Ipsum 3, Lorem Ipsum 4, Lorem Ipsum 5"];
   mountRequired = ["Lorem Ipsum is simply dummy text", "Lorem Ipsum is simply dummy text"]
 
@@ -763,6 +764,15 @@ export class SapIdDetailsComponent implements OnDestroy {
   showScenerioGTaskCompleted: boolean = false;
   showScenerioHAll: boolean = false;
   showScenerioIHold: boolean = false;
+
+  //search dropdown
+  searchPriorityValue;
+  searchDateOfSurveyValue;
+  searchObstructionValue;
+  searchPoleValue;
+  searchProposedHeightValue;
+  searchMountRequiredValue;
+  searchAntennaTiltValue;
 
   @ViewChild('compRef', { read: ViewContainerRef, static: true }) compRef: ViewContainerRef;
 
@@ -858,6 +868,16 @@ export class SapIdDetailsComponent implements OnDestroy {
     } else if (this.taskInfo.status === "Scenerio I") {
       this.showScenerioIHold = true;
     }
+  }
+
+  openedChange(sda) {
+    this.searchPriorityValue = '';
+    this.searchDateOfSurveyValue = '';
+    this.searchObstructionValue = '';
+    this.searchPoleValue = '';
+    this.searchProposedHeightValue = '';
+    this.searchMountRequiredValue = '';
+    this.searchAntennaTiltValue = '';
   }
 
 

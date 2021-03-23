@@ -1,4 +1,4 @@
-import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
+import { GridApi, GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -39,6 +39,8 @@ export class SiteSlaConfigurationComponent implements OnDestroy {
   public defaultColDef = { resizable: true };
   public tableWidth;
   public gridPinned = false;
+
+  paginationPageSize = 50;
 
   woHeader: Array<any> = [
     {
@@ -264,6 +266,14 @@ export class SiteSlaConfigurationComponent implements OnDestroy {
 
   onPageSizeChanged(newPageSize) {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  }
+
+  get PaginationPageSize(): number {
+    return this.paginationPageSize;
+  }
+
+  get gridAPI(): GridApi {
+    return this.gridApi;
   }
 
   autoAssign() {

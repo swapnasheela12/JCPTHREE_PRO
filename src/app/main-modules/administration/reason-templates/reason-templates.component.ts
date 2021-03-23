@@ -6,10 +6,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
+import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { ThreeDotP2BRenderer } from '../renderer/threedot-p2b-renderer.component';
+import { dropdownMilestoneRendererComponent } from '../status-template/dropdown-milestone-renderer.component';
+import { dropdownTaskRendererComponent } from '../status-template/dropdown-task-renderer.component';
+import { inputP2BRendererComponent } from '../status-template/input-p2b-renderer.component';
+import { CreateReasonComponent } from './create-reason/create-reason.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 @Component({
   selector: 'app-reason-templates',
   templateUrl: './reason-templates.component.html',
@@ -26,8 +33,12 @@ export class ReasonTemplatesComponent implements OnDestroy {
   public rowData: any;
   public columnDefs: any[];
   public digitalFormColDefs: any[];
-  public frameworkComponentsTaskDetails = {
+  public frameworkComponentsStatus = {
     statusFlagRenderer: StatusRendererComponent,
+    threeDots: ThreeDotP2BRenderer,
+    inputRenderer: inputP2BRendererComponent,
+    dropdownRenderer: dropdownMilestoneRendererComponent,
+    dropdownTaskRenderer: dropdownTaskRendererComponent
   };
   public searchGrid = '';
   public paginationValues: number[] = [10, 20, 30, 40];
@@ -113,21 +124,24 @@ export class ReasonTemplatesComponent implements OnDestroy {
         headerName: "Milestone",
         field: "milestone",
         width: 250,
-        pinned: "left"
+        pinned: "left",
+        cellRenderer: 'dropdownRenderer',
       },
       {
         headerName: "Task",
         field: "task",
         width: 300,
+        cellRenderer: 'dropdownTaskRenderer',
       },
       {
         headerName: "Reason",
         field: "reason",
         width: 402,
+        cellRenderer: 'inputRenderer',
       },
       {
         headerName: "",
-        cellRenderer: 'dropDownThreeDotRenderer',
+        cellRenderer: 'threeDots',
         width: 100,
         pinned: 'right'
 
@@ -161,6 +175,13 @@ export class ReasonTemplatesComponent implements OnDestroy {
       ';">' +
       status + '</span>';
   }
+
+
+  // this.gridOptionsImpl.api.addItems([{
+  //   "sector": "",
+  //   "band": "",
+  //   "newAzimuthValue": ""
+  // }]);
 
   taskStatus(params) {
     var status = params.value;
@@ -217,6 +238,8 @@ export class ReasonTemplatesComponent implements OnDestroy {
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
+  editRow(evt) {}
+
   autoAssign() {
     const message = {
       message: `Task Completed successfully.`,
@@ -228,14 +251,22 @@ export class ReasonTemplatesComponent implements OnDestroy {
   }
 
   onCellClicked(evt) {
-    if (evt.value) {
-      this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
-    }
+    // if (evt.value) {
+    //   this.router.navigate(["/JCP/Work-Orders/Rf-Oc-Workorders/Category-Wise-Workorder-Listing/Sector-Misalignment/WO-Sector-Misalignment/Execution-Task"]);
+    // }
   }
 
   createSLA() {
-    this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
-  }
+  // this.dialog.open(UploadDocumentsComponent, {
+  //   height: '260px',
+  //   width: '50vw'
+  // });
+
+   this.dialog.open(CreateReasonComponent, {
+    height: '450px',
+    width: '70vw'
+  });
+}
 
   ngOnDestroy() {
     this.destroySubscription.unsubscribe();

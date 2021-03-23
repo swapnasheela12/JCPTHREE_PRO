@@ -360,3 +360,7 @@ $color-white: #ffffff;
         font-size: 15px;
     }
 }
+
+.mat-dialog-container {
+    overflow: hidden !important;
+}

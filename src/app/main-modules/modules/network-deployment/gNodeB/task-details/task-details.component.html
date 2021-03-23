@@ -3,7 +3,7 @@
         <div class="td-flex-container">
             <div class="d-flex mx-2 flex-row justify-content-between">
                 <div class="col-2 td-flex-item" fxFlex *ngFor="let task of taskDetails">
-                    <div class="task-widget" fxFlex>
+                    <div class="task-widget" fxFlex (click)="showTaskData($event)">
                         <div class="task-icon" fxFlex="30">
                             <div class="task-outer-circle">
                                 <div class="task-inner-circle">

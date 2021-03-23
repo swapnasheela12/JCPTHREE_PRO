@@ -95,6 +95,10 @@
     }
 }
 
+.task-widget:hover {
+    cursor: pointer;
+}
+
 :host ::ng-deep .task-details-wrapper {
     .td-tab-details {
         .td-tabs {

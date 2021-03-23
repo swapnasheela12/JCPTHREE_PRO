@@ -2,17 +2,6 @@
     {
         "grouplist": "Installation",
         "milestone": "Installation",
-        "task": "",
-        "responsible": "",
-        "position": "",
-        "ownerName": "",
-        "slaDays": "",
-        "slaEmailNo": "",
-        "ruleID": ""
-    },
-    {
-        "grouplist": "Installation",
-        "milestone": "",
         "task": "Proposed Nominal",
         "responsible": "State Head",
         "position": "State RE Head",
@@ -23,7 +12,7 @@
     },
     {
         "grouplist": "Installation",
-        "milestone": "",
+        "milestone": "Installation",
         "task": "Candidate Placed",
         "responsible": "State Head",
         "position": "State RE Head3",
@@ -34,7 +23,7 @@
     },
     {
         "grouplist": "Installation",
-        "milestone": "",
+        "milestone": "Installation",
         "task": "Fill Vendor Survey Form",
         "responsible": "State Head",
         "position": "State RE Head3",
@@ -45,7 +34,7 @@
     },
     {
         "grouplist": "Installation",
-        "milestone": "",
+        "milestone": "Installation",
         "task": "Fill Vendor Survey Form",
         "responsible": "State Head",
         "position": "State RE Head3",
@@ -53,17 +42,6 @@
         "slaDays": "2",
         "slaEmailNo": "Enable",
         "ruleID": "Disable"
-    },
-    {
-        "grouplist": "RFS",
-        "milestone": "RFS",
-        "task": "",
-        "responsible": "",
-        "position": "",
-        "ownerName": "",
-        "slaDays": "",
-        "slaEmailNo": "",
-        "ruleID": ""
     },
     {
         "grouplist": "RFS",
@@ -80,6 +58,17 @@
         "grouplist": "RFS",
         "milestone": "RFS",
         "task": "Candidate Placed",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "grouplist": "RFS",
+        "milestone": "RFS",
+        "task": "Fill Vendor Survey Form",
         "responsible": "State Head",
         "position": "State RE Head3",
         "ownerName": "Rita Bobde",

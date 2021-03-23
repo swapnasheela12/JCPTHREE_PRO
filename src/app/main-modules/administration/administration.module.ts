@@ -76,10 +76,18 @@ import { CreateQueryPageComponent } from './module-management/nominal-planning/n
 import { QueryAdministrationPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/query-administration-popup.component';
 import { NpQueryThreeDotRendererComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/np-query-three-dot-renderer/np-query-three-dot-renderer.component';
 import { NpQaSaveQueryPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/np-qa-save-query-popup/np-qa-save-query-popup.component';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { HistoryComponent } from './site-sla-configuration/create-sla-configuration/history/history.component';
+import { ThreeDotSLARenderer } from './site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
+import { CreateReasonComponent } from './reason-templates/create-reason/create-reason.component';
+import { UploadDocumentsComponent } from './reason-templates/upload-documents/upload-documents.component';
+import { dropdownMilestoneRendererComponent } from './status-template/dropdown-milestone-renderer.component';
+import { dropdownTaskRendererComponent } from './status-template/dropdown-task-renderer.component';
+import { inputP2BRendererComponent } from './status-template/input-p2b-renderer.component';
 // import { SaveQueryPopupComponent } from './module-management/nominal-planning/np-query-administration/create-query-page/poups/query-administration-popup/save-query-popup/save-query-popup.component';
 
 @NgModule({
-  declarations: [ReasonTemplatesComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent, NpQaSaveQueryPopupComponent],
+  declarations: [ReasonTemplatesComponent,dropdownMilestoneRendererComponent, dropdownTaskRendererComponent, SiteSlaConfigurationComponent, ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent, EditSlaConfigurationComponent, ThreeDotP2BRenderer, NpQueryAdministrationComponent, CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent, NpQaSaveQueryPopupComponent, HistoryComponent, CreateReasonComponent, UploadDocumentsComponent, inputP2BRendererComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -87,10 +95,11 @@ import { NpQaSaveQueryPopupComponent } from './module-management/nominal-plannin
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
     AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent,
-       conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent,
-       createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent,
-        DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent, inputRendererComponent,
-        ThreeDotP2BRenderer, NpQueryThreeDotRendererComponent]),
+      conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent,
+      createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, DropdownPositionRendererComponent,
+      DropdownPositionRendererComponent, DropdownOwnerRendererComponent, ToggleButtonRendererComponent, inputRendererComponent,
+      ThreeDotP2BRenderer, NpQueryThreeDotRendererComponent, dropDownThreeDotRendererComponent,dropdownTaskRendererComponent, dropdownMilestoneRendererComponent,
+      inputP2BRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

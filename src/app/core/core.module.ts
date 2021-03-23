@@ -87,6 +87,7 @@ import { InputCommentWidgetComponent } from './components/input-comment-widget/i
 import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
 import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
+import { ThreeDotSLARenderer } from '../main-modules/administration/site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
 
 @NgModule({
   declarations: [
@@ -126,14 +127,15 @@ import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
    // AddCommentComponent,
     AdDirective,
     SiteProposedConfigurationComponent,
-    numberFormatPipe
+    numberFormatPipe,
+    ThreeDotSLARenderer
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
 
-    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,dropdownQueryRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,dropDownThreeDotRendererComponent, viewHistoryRendererComponent,DeleteButtonRenderComponent, DeleteRendererComponent, GenhelpiconComponent, ThreeDotSLARenderer]),
     //Angular meterial
     FormsModule,
     ReactiveFormsModule,
