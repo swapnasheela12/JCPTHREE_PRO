@@ -41,7 +41,8 @@ const routes: Routes = [
       {
         path: "Work-Orders", children: [
           { path: 'Rf-Oc-Workorders', loadChildren: () => import('../../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule) },
-          { path: 'Cm-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule) }
+          { path: 'Cm-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule) },
+          { path: 'Nv-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/nv-workorders/nv-workorders.module').then(m => m.NvWorkordersModule) }
         ]
       }
     ],

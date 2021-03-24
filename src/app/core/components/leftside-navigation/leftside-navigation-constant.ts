@@ -5230,6 +5230,15 @@ const WORKORDERS_CMWORKORDERS_LIST = [
     }
 ]
 
+const WORKORDERS_NVWORKORDERS_LIST = [
+    {
+        name: 'Web Performance Test',
+        link: 'JCP/Work-Orders/NV-Workorders/Rqa-Scheduling-Workorder',
+        eventName: 'workorders-cm-rqa-scheduling',
+        children: []
+    }
+]
+
 const WORKORDERS_LIST = [
     {
         name: 'My Workorders',
@@ -5307,6 +5316,17 @@ const WORKORDERS_LIST = [
         showHeader: false,
         headerText: '',
         children: WORKORDERS_CMWORKORDERS_LIST
+    },
+    {
+        name: 'NV Workorders',
+        link: '',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: WORKORDERS_NVWORKORDERS_LIST
     }
 ];
 
