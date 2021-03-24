@@ -44,7 +44,11 @@
                         </button>
                     </div>
                     <div fxFlex="15" class="my-2 header-date-picker-type">
-                        <form [formGroup]="thirdFormGroup">
+                        <div *ngIf="!isShownChartOrTableHistory">
+                            <div class="title">Last Updated</div>
+                            <div class="sub-title">25 Oct, 2016, 2:30 PM</div>
+                        </div>
+                        <form *ngIf="isShownChartOrTableHistory" [formGroup]="thirdFormGroup">
                             <mat-form-field class="custom-field-container" fxFlex="90" style="font-size: 14px;">
                                 <div class="daterange-container" style="top: 205px;
                             left: 74px;">
