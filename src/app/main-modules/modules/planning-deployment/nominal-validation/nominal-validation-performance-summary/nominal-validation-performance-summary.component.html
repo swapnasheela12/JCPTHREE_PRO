@@ -2,20 +2,29 @@
     <mat-card-header class="card-header" fxLayoutAlign="start center">
         <!-- <div id="Chart" class="pr-2" [chart]="ciaChart"></div> -->
         <mat-card-title class="card-title mb-0">
-        <div fxLayout="column">
-            <div class="title-summary">
-                {{nominalGenerationSummaryData.type}} : 
-                <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
-                {{nominalGenerationSummaryData.name}}
+        <div style="width: 422px;" fxLayout="column">
+            <div class="title-summary" fxLayout="row">
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="location.back()"> 
+                    <span class="zmdi zmdi-chevron-left"></span>
+                </mat-icon>
+                <div>
+                    {{nominalGenerationSummaryData.type}} : 
+                    <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                    {{nominalGenerationSummaryData.name}}
+                </div>
             </div>
-            <div class="title-subline">Validation</div>
+
+            <div class="title-subline" fxLayout="row">
+                <div fxFlex="10"></div>
+                Validation
+            </div>
         </div>
         </mat-card-title>
         <div class="col"></div>
         <div class="my-performance-reports-flex-item d-flex justify-content-end align-items-center">
             <button class="ic ic-layers-01 link-icon-button"
             style="font-size: 18px;color:#464D69" mat-icon-button
-            (click)="displayNominalGenerationLayers()"></button>
+            (click)="displayValidationLayers()"></button>
         </div>
     </mat-card-header>
     <mat-card-content fxLayout="row" class="site-card-content nominal-validation-performance-summary">

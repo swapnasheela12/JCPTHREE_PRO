@@ -50,6 +50,16 @@
 					.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
 						background-image: linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.42) 100%, transparent 0%) !important;
 					}
+					.selected-site-check{
+						.mat-checkbox-inner-container {
+							top: 8px;
+						}
+					}
+					.inter-site-check {
+						.mat-checkbox-inner-container {
+							top: 8px;
+						}
+					}
 					editCell{
 						.input-field{
 							border: none;
@@ -253,6 +263,11 @@ mat-select-panel {
 	.name-traffic {
 		font-family: Lato Bold;
 		font-size: 16px;
+	}
+	.traffic-date {
+		.mat-form-field-infix {
+			padding:0 !important;
+		}
 	}
 }
 

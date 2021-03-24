@@ -119,6 +119,7 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     }
   }
   onPageSizeChanged(newPageSize) {
+    console.log("newPageSize", newPageSize)
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 

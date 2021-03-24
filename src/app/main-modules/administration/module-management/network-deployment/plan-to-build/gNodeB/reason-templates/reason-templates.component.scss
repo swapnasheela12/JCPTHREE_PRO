@@ -1,0 +1,366 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.wo-sector-container {
+    height: calc(100% - 10px);
+    .wo-sector-card-one {
+        height: 100%;
+        background-color:rgb(255,255,255);
+        border-radius: 4px 4px 0 0;
+        .wo-header {
+            height: 70px;
+        }
+        .wo-flex-item {
+            text-align: left;
+            font-family: lato bold;
+            font-size: 15px;
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+        }
+        .status-label {
+            text-align: left;
+            font-weight: lato normal;
+            font-size: 12px;
+            color: #666666;
+            opacity: 1;
+        }
+        .wo-sector-container {
+            height: calc(100% - 63px);
+        }
+    }
+    .wo-container {
+        .wo-flex-container {
+            .mediaContainer {
+                .wo-form-field-read {
+                    line-height: 2;
+                    .wo-form-input-title {
+                        font-family: lato Regular;
+                        font-size: 12px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.6;
+                    }
+                    .wo-form-input-value {
+                        font-family: lato medium;
+                        font-size: 14px;
+                        color: #000000;
+                    }
+                }
+            } 
+        }
+    }
+}
+
+.execution-task-container-one {
+    border-radius: 4px;
+    margin-bottom: 15px;
+    .sub-header {
+        height: 46px;
+        background: white;
+        border-radius: 4px;
+        .sub-header-title {
+            text-align: left;
+            font-family: Lato bold;
+            font-size: 15px;
+            letter-spacing: 0.03px;
+            color: #464D69;
+            text-transform: capitalize;
+            opacity: 1;
+            height: 15px;
+            line-height: 1;
+        }
+        > button {
+            width: 71px;
+            height: 28px;
+            background: #0078D7 0% 0% no-repeat padding-box;
+            border: 1px solid #0078D7;
+            border-radius: 4px;
+            opacity: 1;
+            color: #FFFFFF;
+            text-transform: capitalize;
+            opacity: 1;
+            line-height: 1.5;
+        }
+    }
+    .sub-content-container {
+        .sub-content {
+            .sub-content-flex-item {
+                .form-field-read-only {
+                    line-height: 1.9;
+                    .input-title {
+                        text-align: left;
+                        font-family: Lato Regular;
+                        font-size: 12px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.54;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .input-value {
+                        text-align: left;
+                        font-family: Lato Medium;
+                        font-size: 14px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.9;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                }
+            }
+
+        }
+        .content-list{
+            .content-list-container {
+                .form-field-read-only {
+                    line-height: 1.9;
+                    .input-title {
+                        text-align: left;
+                        font-family: Lato Regular;
+                        font-size: 12px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.54;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .input-value {
+                        text-align: left;
+                        font-family: Lato Medium;
+                        font-size: 14px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.9;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+.sub-header {
+    font-family: lato bold;
+    font-size: 15px;
+}
+
+
+.task-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border: 1px solid lightgray;
+    height: 52px;
+}
+
+
+:host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
+    content: "\f13a"!important;
+    font-family: "Font Awesome 5 Free";
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+
+}
+
+:host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
+    content: "\f139"!important;
+    font-family: "Font Awesome 5 Free";
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+}   
+
+  @media  only screen and(min-width: 774px) {
+    .wo-sector-container {
+        .wo-sector-card-one {
+            .wo-container {
+                .wo-flex-container {
+                    .mediaContainer {
+                        width: 25% !important;
+                    }
+                }
+            }
+
+        }
+    }
+  }
+
+  @media  only screen and(min-width: 1200px) {
+    .wo-sector-container {
+        .wo-sector-card-one {
+            .wo-container {
+                .wo-flex-container {
+                    .mediaContainer {
+                        width: 33% !important;
+                    }
+                }
+            }
+
+        }
+    }
+  }
+
+
+.wrapper-progressBar {
+    width: 100%;
+   // background: #D3D5DC;
+}
+
+.progressBar {
+}
+
+.progressBar > li {
+    list-style-type: none;
+    float: left;
+    width: 11%;
+    position: relative;
+    text-align: center;
+    line-height: 1;
+}
+
+.progressBar li:before {
+    content: "";
+    line-height: 15px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ddd;
+    display: block;
+    text-align: center;
+    margin: 9px auto 10px;
+    background-color: white;
+}
+
+.progressBar li:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #ddd;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+
+.progressBar >li >span {
+    color: black;
+    font-family: lato normal;
+    font-size: 13px;
+    line-height: 0;
+}
+
+.progressBar li:first-child:after {
+    content: none;
+}
+
+.progressBar li.active {
+    color: #60DD5C;
+}
+
+.progressBar li.active:before {
+    border-color: #60DD5C;
+    background-color: #60DD5C
+}
+
+.progressBar .active:after {
+    background-color: #60DD5C;
+}
+
+
+.progressBar li.inprogress {
+    color: #FEC12D;
+}
+
+.progressBar li.inprogress:before {
+    border-color: #FEC12D;
+    background-color: #FEC12D;
+}
+
+.progressBar .inprogress:after {
+    background-color: #FEC12D;
+}
+
+.left-pane {
+    .images {
+        .left-carousel {
+            .carousel{
+                .carousel-inner {
+                    height: 40vh !important;
+                    > slide {
+                        height: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+:host ::ng-deep .left-pane .images .left-carousel .carousel .carousel-inner {
+    height: 40vh !important;
+}
+
+.showImage {
+    width: 75px;
+    height: 61px;
+    display: inline-block;
+}
+
+.showImg {
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    margin: 2px;
+
+}
+
+.photo-icon {
+    margin: 6px;
+    font-size: 12px;
+}
+
+.photo-label {
+    font-size: 10px;
+    margin-top: 1px;
+    line-height: 1.1;
+}
+
+.document-list {
+    margin: 5px 20px;
+    padding: 10px;
+    .file-img {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        margin-right: 20px !important;
+        >span {
+            position: relative;
+            bottom: 3px;
+            font-size: 18px;
+        }
+    }
+    .doc-type {
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        margin-right: 20px;
+        font-size: 15px;
+    }
+    .doc-status {
+        font-size: 15px;
+    }
+}
+
+.mat-dialog-container {
+    overflow: hidden !important;
+}

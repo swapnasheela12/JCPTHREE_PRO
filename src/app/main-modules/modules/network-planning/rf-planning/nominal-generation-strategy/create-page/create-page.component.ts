@@ -600,7 +600,7 @@ export class CreatePageComponent implements OnInit {
     // for (let index = 0; index < this.itemsListPoly.length; index++) {
     //   const element = this.itemsListPoly[index];
     //   console.log(element, "element");
-
+    this.mapTwo.setView([19.0522, 72.9005], 13);
 
     if (item.checked == true) {
       if (item.polydata.properties.shape == 'Circle') {

@@ -100,6 +100,7 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
         headerName: "Milestone",
         field: "milestone",
         width: 200,
+        pinned: 'left'
       },
       {
         headerName: "Status",
@@ -154,7 +155,8 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
       {
         headerName: 'Task Owner',
         field: 'taskOwner',
-        width: 250
+        width: 250,
+        pinned:'right'
       },
     ];
     this.datatable.columnDefsServices = this.columnDefs;
@@ -197,11 +199,12 @@ export class SiteHistoryDetailsComponent implements OnDestroy {
   }
 
   onPageSizeChanged(newPageSize) {
+    console.log("newPageSize", newPageSize)
     this.gridApi.paginationSetPageSize(Number(newPageSize.value));
   }
 
-  navigateToSiteHistory() {
-    // this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details/Site-History-Details"])
+  navigateTo() {
+    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details"])
   }
 
   ngOnDestroy() {

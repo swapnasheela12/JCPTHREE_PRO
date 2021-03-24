@@ -4,10 +4,12 @@ import { GridOptions } from '@ag-grid-community/all-modules';
 
 import { AnchorRendererComponent } from '../ag-grid-renders/anchor-renderer.component';
 import { inputRendererComponent } from '../ag-grid-renders/input-renderer.component';
-import { DropdownOwnerRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-owner-renderer.component';
-import { DropdownResponsibleRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-responsible-renderer.component';
-import { DropdownPositionRendererComponent } from 'src/app/main-modules/administration/site-sla-configuration/dropdown-position-renderer.component';
 import { ToggleButtonRendererComponent } from '../ag-grid-renders/toggle-button-renderer.component';
+import { dropDownThreeDotRendererComponent } from '../ag-grid-renders/dropDownThreeDot-renderer.component';
+import { ThreeDotSLARenderer } from 'src/app/main-modules/administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
+import { DropdownPositionRendererComponent } from 'src/app/main-modules/administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-position-renderer.component';
+import { DropdownResponsibleRendererComponent } from 'src/app/main-modules/administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-responsible-renderer.component';
+import { DropdownOwnerRendererComponent } from 'src/app/main-modules/administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-owner-renderer.component';
 
 
 export class GroupLevel {
@@ -33,7 +35,10 @@ export class AgGridTreeComponent {
     dropdownOwner: DropdownOwnerRendererComponent,
     dropdownResponsible: DropdownResponsibleRendererComponent,
     dropdownPosition: DropdownPositionRendererComponent,
-    toggleButton: ToggleButtonRendererComponent
+    toggleButton: ToggleButtonRendererComponent,
+    threeDotSLARenderer: ThreeDotSLARenderer,
+    //dropDownP2BRenderer: threeDotDropdownP2BRendererComponent
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
   dataSource = [];
   allData = [];

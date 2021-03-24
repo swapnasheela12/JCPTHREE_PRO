@@ -15,7 +15,7 @@ import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 import { LegendsAndFilterComponent } from './legends-and-filter/legends-and-filter.component';
 import { PinZoomComponent } from './pin-zoom/pin-zoom.component'
 import { ShapeService } from './layers-services/shape.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, ViewChild, AfterViewInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
@@ -39,6 +39,9 @@ import { SmartbenchMenubarComponent } from './network/quality-and-experience/sma
 import { SmartSplitmapService } from './network/quality-and-experience/smart-splitmap-servicce/smart-splitmap.service';
 import { smartBenchmarkDialogModel, SmartbenchDialogComponent } from './network/quality-and-experience/smartbench-dialog/smartbench-dialog.component';
 import { LeafletTileLayerDefinition } from '@asymmetrik/ngx-leaflet';
+import { MapHeaderViewComponent } from '../modules/planning-deployment/nominal-generation-coverage/map-header-view/map-header-view.component';
+import { StatergeMapNominalComponent } from '../modules/network-planning/rf-planning/nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
+
 
 
 @Component({
@@ -88,6 +91,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public componentsReferences: any = [];
   public ref: any;
   public stripDataEnabled: boolean = false;
+  headerToShow;
   // fileNameDialogRef: MatDialogRef<RedirectLayersPopupComponent>;
   // search = new GeoSearchControl({
   //   provider: new OpenStreetMapProvider(),
@@ -98,8 +102,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   public dialogCurrentState: boolean;
   public smartbenchmarkDialogEnabled: boolean = false;
   public smartDialogText: boolean = false;
-  public stripToggleBtn:boolean = false;
-  public arrowDirectionIcon:boolean = false;
+  public stripToggleBtn: boolean = false;
+  public arrowDirectionIcon: boolean = false;
 
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   @ViewChild('smartbenchComponent', { read: ViewContainerRef }) smartbenchComponentRef: ViewContainerRef;
@@ -108,7 +112,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private shapeService: ShapeService, private datashare: DataSharingService, private markerService: MarkerService, public dialog: MatDialog,
     private http: HttpClient, private logicaltopologyService: LogicaltopologyService, private macroNominalService: MacroNominalService, private smallCellService: SmallCellService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver, private vc: ViewContainerRef,
     private sideNavService: SideNavService, private smallCellPlanned4gService: SmallCellPlanned4gService, private macroPlanned4gService: MacroPlanned4gService, private Hpodsc4gService: Hpodsc4gService, private nodesAndBoundariesManagerService: NodesAndBoundariesManagerService,
-    private smartSplitmapService: SmartSplitmapService
+    private smartSplitmapService: SmartSplitmapService, private cdr: ChangeDetectorRef
   ) {
 
 
@@ -145,6 +149,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setStripMenubar()
     this.recieveAndLoadSplitmapCompoent();
     this.datashare.addSpecificHeader(this.headerView);
+  }
+
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
   }
 
   //SET UP STRIP MENU BAR WITH LAYER SELECTED
@@ -211,18 +219,18 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
   slideToggleStripbarMenu() {
     let $slider = (<HTMLInputElement>document.getElementById("topstrip"));
     let isOpen = $slider.classList.contains('slide-in');
-    if(isOpen){
+    if (isOpen) {
       $slider.classList.remove('slide-in');
       $slider.classList.add('slide-out');
       this.arrowDirectionIcon = false;
     }
-    else{
+    else {
       $slider.classList.remove('slide-out');
       $slider.classList.add('slide-in');
       this.arrowDirectionIcon = true;
-     }
+    }
   }
-  
+
   // SMART BENCHMARK PROMPT
   smartBenchmarkDialog(index, layerstatus, layername) {
     var message = "This feature is currently in Beta. Turning this layer on will cause other layers to close.";
@@ -234,7 +242,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       data: dialogData,
       disableClose: true,
       panelClass: "material-dialog-container",
-      autoFocus: false 
+      autoFocus: false
     });
     Array.from(document.getElementsByClassName('mat-dialog-container') as HTMLCollectionOf<HTMLElement>)[0].style.overflow = "inherit";
     dialogRef.afterClosed().subscribe(dialogResult => {
@@ -854,6 +862,21 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
 
     this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+      if(dataPoly.display == 'nominal-validation'){
+        $('#Layers').parent()[0].click();
+        this.datashare.layerNameFunc([{name: 'Back To Nominal Validation', source: 'create'}]);
+        let routePlannedLayerHeader = {
+          "title": "Back To Nominal Validation",
+          "headerSapid": "Maharashtra-NP-CV-121020_v1",
+          "name":"nominal-validation"
+        };
+        let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
+        this.headerToShow = this.target.createComponent(HeaderViewComponent);
+        this.headerToShow.instance.headerData = routePlannedLayerHeader;
+        this.datashare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
+      }
+      // const componentRef = this.componentRef = this;
+    
       if (dataPoly != {}) {
 
         let options = {
@@ -893,7 +916,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        if (!dataPoly) {
+        if ('undefined' !=  this.dataPolyList) {
           this.dataPolyList = dataPoly;
           for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
             const ele = this.dataPolyList.transferDataPoly[index];

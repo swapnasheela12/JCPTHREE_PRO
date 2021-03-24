@@ -193,27 +193,17 @@
                       </form>
                   </div>
                   <div fxFlex="50">
-                      <div id="map5"></div>
+                      <div id="map6"></div>
                   </div>
 
               </div>
               <mat-divider></mat-divider>
-              <div fxLayout="row" fxLayoutAlign="space-around center">
-                  <div class="p-2">
-                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Back</button>
-                  </div>
-                  <div fxFlex></div>
-                  <div class="p-2">
-                      <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
-                  </div>
-                  <div class="p-2">
-                      <button class="next-button button" matStepperNext mat-raised-button color="primary">Next</button>
-                      <!-- <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext>Save?</button> -->
-                  </div>
-                  <!-- <div class="p-2">
-                      <button mat-stroked-button color="primary" class="buttonWidth" matStepperNext [disabled]="typeGenerate">Generate</button>
-                  </div> -->
-
+              <div class="d-flex">
+                <div class="p-2">
+                  <button class="next-button button"  mat-raised-button color="primary"
+                    matStepperNext>Next</button>
+                </div>
+                <div class="col"></div>
               </div>
             </mat-step>
             <mat-step [stepControl]="projectSelection">
@@ -293,7 +283,7 @@
                                   </div>
                                   <div fxFlex="100" fxLayout="row">
                                     <mat-checkbox [disableRipple]="true" id="additional-candidates" (click)="allowRendering()">
-                                        Additional Candidates 2 <a [ngClass]="[disabledChecked == true ? 'linkBlue disabled-additional-candidate': 'linkBlue']" 
+                                        Additional Candidates<a [ngClass]="[disabledChecked == true ? 'linkBlue disabled-additional-candidate': 'linkBlue']" 
                                         [attr.disabled]="disabledChecked" (click)="additionalCandidateLayer()">(View On Map)</a>
                                     </mat-checkbox>
                                   </div>
@@ -303,7 +293,7 @@
                         </div>
                     </div>
                     <div fxFlex="30">
-                      <div id="map6"></div>
+                      <div id="map5"></div>
                     </div>
                   </div>
                   <div class="d-flex">
@@ -325,7 +315,7 @@
                             <div class="name-traffic">
                                 1. Crowd Source Data
                             </div>
-                            <div>
+                            <div class="traffic-date">
                                 <mat-form-field>
                                     <input
                                     matInput
@@ -357,7 +347,7 @@
                             <div class="name-traffic">
                                 2. Network Data
                             </div>
-                            <div>
+                            <div  class="traffic-date">
                                 <mat-form-field>
                                     <input
                                     matInput
@@ -389,10 +379,11 @@
                             <div class="name-traffic">
                                 3. Clutter Class Weightages
                             </div>
-                            <div style="padding-top: 14px;">
+                            <div style="padding-top: 6px;">
                                 <mat-checkbox
                                 [disableRipple]="true"
-                                [checked]="true">
+                                (change)="showWeightageDiv()"
+                                [checked]="showOptionsWeightage">
                                 </mat-checkbox>
                                 <mat-form-field>
                                     <input matInput value="Assign Weightage"
@@ -404,17 +395,19 @@
                                     type="text"class="example-right-align" disabled="true"/>
                                 </mat-form-field>
                             </div>
-                            <div *ngFor="let item of clutterClass">
-                                <div fxLayout="row" style="height: 40px;">
-                                    <div fxFlex="40" style="padding-top: 14px">
-                                        {{item.name}}
-                                    </div>
-                                    <div fxFlex="20">
-                                        <mat-form-field floatLabel="never" style="width:100%">
-                                            <input matInput
-                                            [value]="item.value"
-                                            type="text" class="example-right-align">
-                                        </mat-form-field>
+                            <div *ngIf="showOptionsWeightage == true">
+                                <div *ngFor="let item of clutterClass">
+                                    <div fxLayout="row" style="height: 40px;">
+                                        <div fxFlex="40" style="padding-top: 14px">
+                                            {{item.name}}
+                                        </div>
+                                        <div fxFlex="20">
+                                            <mat-form-field floatLabel="never" style="width:100%">
+                                                <input matInput
+                                                [value]="item.value"
+                                                type="text" class="example-right-align">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -434,7 +427,7 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>ACP Selection</ng-template>
-                <div style="height: calc(100% - 63px);overflow: auto;" fxLayout="column">
+                <div style="height: calc(100% - 63px);" fxLayout="column">
                     <div style="padding-right: 15px;">
                         <table mat-table [dataSource]="dataSourceACP" style="border: 1px solid #00000029; border-radius: 4px">
                             <ng-container matColumnDef="srno">
@@ -463,23 +456,27 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div style="padding-right: 15px; padding-top: 20px;" fxLayout="row">
+                    <div style="padding-right: 15px; padding-top: 15px;" fxLayout="row">
                         <div fxFlex="50" fxLayout="row">
                             <div fxFlex="10">
                                 <mat-checkbox
+                                    class="selected-site-check"
+                                    (change)="enableSelectedSiteCheck()"
                                     [disableRipple]="true">
                                 </mat-checkbox>
                             </div>
                             <div fxFlex="90">
                                 <mat-form-field fxLayout="row">
                                     <input matInput placeholder="Maximum number of selected site"
-                                    type="text"class="example-right-align" value="100">
+                                    type="text"class="example-right-align" value="100" [disabled]="enableSelectedSite">
                                 </mat-form-field>
                             </div>
                         </div>
                         <div fxFlex="50" fxLayout="row">
                             <div fxFlex="10">
                                 <mat-checkbox
+                                    class="inter-site-check"
+                                    (change)="enableInterSiteCheck()"
                                     [disableRipple]="true">
                                 </mat-checkbox>
                             </div>
@@ -487,7 +484,7 @@
                                 <mat-form-field fxLayout="row">
                                     <input matInput placeholder="Minimum inter-site distance"
                                     value="0.25"
-                                    type="text"class="example-right-align">
+                                    type="text"class="example-right-align"  [disabled]="enableInterSite">
                                 </mat-form-field>
                             </div>
                         </div>

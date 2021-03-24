@@ -88,6 +88,12 @@ import { DocumentRendererComponent } from './gNodeB/site-database/renderer/docum
 import { DocumentViewerComponent } from './gNodeB/task-details/document-viewer/document-viewer.component';
 import { RfiSurveyFormRendererComponent } from './gNodeB/site-database/renderer/rfi-survey-form-renderer.component';
 
+//ODSC Components
+import { OdscRfiSurveyFormComponent } from './odsc/site-database/rfi-survey-form/odsc-rfi-survey-form.component';
+import { OdscSiteDatabaseComponent } from './odsc/site-database/odsc-site-database.component';
+import { OdscSiteHistoryDetailsComponent } from './odsc/site-database/site-id-detail/site-history-details/odsc-site-history-details.component';
+import { OdscSiteIdDetailComponent } from './odsc/site-database/site-id-detail/odsc-site-id-detail.component';
+
 @NgModule({
   declarations: [
     TaskDetailsComponent,
@@ -114,7 +120,11 @@ import { RfiSurveyFormRendererComponent } from './gNodeB/site-database/renderer/
     DocumentRendererComponent,
     DocumentViewerComponent,
     RfiSurveyFormRendererComponent,
-    RfiSurveyFormComponent
+    RfiSurveyFormComponent,
+    OdscRfiSurveyFormComponent,
+    OdscSiteDatabaseComponent,
+    OdscSiteHistoryDetailsComponent,
+    OdscSiteIdDetailComponent
   ],
   imports: [
     CommonModule,

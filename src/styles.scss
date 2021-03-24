@@ -1015,6 +1015,11 @@ $color-white: #ffffff;
     }
 }
 
+.mat-dialog-container {
+    overflow: hidden !important;
+    padding: 0px !important;
+}
+
 .create-report-container {
     .create-report-dialog-content {
         padding: 0px 15px;

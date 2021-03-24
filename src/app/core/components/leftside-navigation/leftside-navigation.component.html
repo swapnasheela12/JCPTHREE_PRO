@@ -17,7 +17,7 @@
             </span>
         </span>
         <a routerLink="/{{item.link}}" *ngIf="item.children.length == 0"
-         (click)="parentIconClick(varWithDirective, item.level)" routerLinkActive="menu-active"
+         (click)="parentIconClick(varWithDirective, item.level,item.id)" routerLinkActive="menu-active"
          [ngClass]="{'Zero': (item.children.length == 0), 'hide-menu-item-nav-children-zero': (item.show == false), 'hide-parent-menu-item-nav': (item.show0 == false), 'disabled-menu-item-nav':(item.disabled == true) }">
             <i class="{{item.icon}} level0Item" *ngIf="item.level == 0" attr.data-title="{{item.name}}"></i>
             <span attr.data-title="{{item.name.length > 23 ? item.name : null}}">

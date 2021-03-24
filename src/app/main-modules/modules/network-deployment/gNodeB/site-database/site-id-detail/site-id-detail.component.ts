@@ -388,8 +388,16 @@ export class SiteIdDetailComponent implements OnDestroy {
     // }
   }
 
+  navigateToSiteDatabase() {
+    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database"]);
+  }
+
   navigateToSiteHistory() {
     this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details/Site-History-Details"])
+  }
+
+  navigateBackScreen() {
+    this.router.navigate([]);
   }
 
   ngOnDestroy() {

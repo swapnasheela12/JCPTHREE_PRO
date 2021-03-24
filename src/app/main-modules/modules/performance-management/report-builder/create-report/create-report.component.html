@@ -259,13 +259,13 @@
     </mat-card>
     <div class="d-flex">
         <div class="p-2 mr-auto">
-            <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth">Back</button>
+            <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth" (click)="closeCreateReportPopup()">Back</button>
         </div>
         <div class="p-2">
-            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeCreateReportPopup()">Cancel</button>
         </div>
         <div class="p-2">
-            <button mat-raised-button color="primary" [disabled]="generateDisabled" class="buttonWidth button">Generate</button>
+            <button mat-raised-button color="primary" [disabled]="generateDisabled" class="buttonWidth button" (click)="closeCreateReportPopup()">Generate</button>
         </div>
     </div>
 </div>

@@ -21,27 +21,19 @@ import { StatusRendererComponent } from '../../../performance-management/kpi-edi
 export class SiteDatabaseComponent {
   public taskDetails = [
     {
-      "taskStatusImg": "ic ic-Total-Task",
+      "taskStatusImg": "ic ic-Tejected-Task1",
       "taskCount": "78203",
-      "taskAssigned": "Total Task"
+      "taskAssigned": "Scope"
     },
     {
-      "taskStatusImg": "ic ic-New-Task",
+      "taskStatusImg": "ic ic-Planned",
       "taskCount": "4356",
-      "taskAssigned": "New Task"
+      "taskAssigned": "Planned"
     },
     {
-      "taskStatusImg": "ic ic-In-Progress-Task",
+      "taskStatusImg": "ic ic-On-Air",
       "taskCount": "24567",
-      "taskAssigned": "In-Progress"
-    }, {
-      "taskStatusImg": "ic ic-Completed-Task",
-      "taskCount": "36678",
-      "taskAssigned": "Completed"
-    }, {
-      "taskStatusImg": "ic ic-Tejected-Task",
-      "taskCount": "12345",
-      "taskAssigned": "Rejected"
+      "taskAssigned": "On-Air"
     }
   ]
 
@@ -147,7 +139,8 @@ export class SiteDatabaseComponent {
       {
         headerName: 'Current Task',
         field: 'currentTask',
-        width: 180
+        width: 180,
+        pinned: 'right'
       }
     ]
     this.datatable.columnDefsServices = this.columnDefs;
@@ -163,6 +156,10 @@ export class SiteDatabaseComponent {
   toggleSearch() {
     this.show = !this.show;
   };
+
+  showTaskData(evt) {
+    console.log(evt)
+  }
 
 
   cellClickedDetails(evt) {

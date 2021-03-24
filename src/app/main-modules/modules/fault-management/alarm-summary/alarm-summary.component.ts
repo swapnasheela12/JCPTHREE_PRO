@@ -284,6 +284,12 @@ export class AlarmSummaryComponent implements OnInit {
 
   public toggleVersion;
   onChangeToggleVersion(item) {
+    console.log("item", item);
+    if(item) {
+      this.router.navigate(["/JCP/Modules/Fault-Management/Active-Alarm"]);
+    } else {
+      this.router.navigate(["/JCP/Modules/Fault-Management/Alarm-Summary"]);
+    }
   }
 
   public dataTransferToChild;

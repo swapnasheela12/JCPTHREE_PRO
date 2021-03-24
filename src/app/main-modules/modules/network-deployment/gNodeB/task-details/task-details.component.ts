@@ -642,6 +642,10 @@ export class TaskDetailsComponent implements OnInit {
     //this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
   }
 
+  showTaskData(evt) {
+
+  }
+
   ngOnDestroy() {
     if (this.messageSubscription) {
       this.messageSubscription.unsubscribe();
