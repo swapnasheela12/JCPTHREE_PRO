@@ -5233,8 +5233,8 @@ const WORKORDERS_CMWORKORDERS_LIST = [
 const WORKORDERS_NVWORKORDERS_LIST = [
     {
         name: 'Web Performance Test',
-        link: 'JCP/Work-Orders/NV-Workorders/Rqa-Scheduling-Workorder',
-        eventName: 'workorders-cm-rqa-scheduling',
+        link: 'JCP/Work-Orders/Nv-Workorders/Web-Performance-Test',
+        eventName: 'workorders-web-performance-test',
         children: []
     }
 ]
