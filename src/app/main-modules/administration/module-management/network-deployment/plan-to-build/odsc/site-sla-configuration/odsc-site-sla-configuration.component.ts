@@ -46,7 +46,7 @@ export class OdscSiteSlaConfigurationComponent implements OnDestroy {
     {
       id: 1,
       "label": "Site Type",
-      "value": "gNodeB"
+      "value": "odsc"
     },
     {
       id: 2,

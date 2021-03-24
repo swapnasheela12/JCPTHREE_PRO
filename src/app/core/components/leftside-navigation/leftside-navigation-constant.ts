@@ -4836,13 +4836,13 @@ const ODSC = [
 const GNODEB = [
     {
         name: 'Task Details',
-        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Task-Details',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details',
         eventName: 'sites-outdoor-esc',
         children: []
     },
     {
         name: 'Site Database',
-        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Site-Database',
+        link: 'JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database',
         eventName: 'sites-outdoor-esc',
         children: []
     }

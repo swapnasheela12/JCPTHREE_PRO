@@ -393,7 +393,7 @@ export class OdscSiteIdDetailComponent implements OnDestroy {
   }
 
   navigateToSiteHistory() {
-    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/odssc/Site-Database/Site-Id-Details/Site-History-Details"])
+    this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/odsc/Site-Database/Site-Id-Details/Site-History-Details"])
   }
 
   navigateBackScreen() {
