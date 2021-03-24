@@ -83,37 +83,37 @@ export class CreatePageComponent implements OnInit {
   protected _onDestroy = new Subject<void>();
   public showMyContainer: boolean = false;
 
-  // R4G Circle Dropdown 
+  // R4G Circle Dropdown
   @ViewChild('cityControlSelect') cityControlSelect: MatSelect;
   protected circleData = R4GState;
   public r4gCircleControl: FormControl = new FormControl();
   public r4gFilterControl: FormControl = new FormControl();
   public r4gFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
-  // R4G Circle Dropdown 
+  // R4G Circle Dropdown
 
-  // City Dropdown 
+  // City Dropdown
   @ViewChild('cityNameControlSelect') cityNameControlSelect: MatSelect;
   protected cityData = City;
   public cityControl: FormControl = new FormControl();
   public cityFilterControl: FormControl = new FormControl();
   public cityFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
-  // City Dropdown 
+  // City Dropdown
 
-  // // dataSourceOutdoor Dropdown 
+  // // dataSourceOutdoor Dropdown
   // @ViewChild('dataSourceOutdoorControlSelect') dataSourceOutdoorControlSelect: MatSelect;
   // protected dataSourceOutdoorData = dataSourceOutdoor;
   // public dataSourceOutdoorControl: FormControl = new FormControl();
   // public dataSourceOutdoorFilterControl: FormControl = new FormControl();
   // public dataSourceOutdoorFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
-  // // dataSourceOutdoor Dropdown 
+  // // dataSourceOutdoor Dropdown
 
-  // Select JC Dropdown 
+  // Select JC Dropdown
   @ViewChild('selectJcControlSelect') selectJcControlSelect: MatSelect;
   protected jcData = JC;
   public selectJcControl: FormControl = new FormControl();
   public selectJcFilterControl: FormControl = new FormControl();
   public selectJcFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
-  // Select JC Dropdown 
+  // Select JC Dropdown
 
   @ViewChild('dataSourceIndoorCtrlSelect') dataSourceIndoorCtrlSelect: MatSelect;
   protected dataSourceIndoorListData = dataSourceIndoor;
@@ -378,7 +378,7 @@ export class CreatePageComponent implements OnInit {
     this.zoneType.setValue("West");
     this.projectDescriptionCtrl.setValue("Generate 5G Nominal Plan Cover Dense Urban Area With Rsrp >= -95 Dbm");
     this.selectedSiteTemplate.setValue("Site Template");
-    // R4G Circle Dropdown 
+    // R4G Circle Dropdown
     this.r4gCircleControl.setValue(this.circleData[1]);
     this.r4gFilter.next(this.circleData.slice());
     this.r4gFilterControl.valueChanges
@@ -392,7 +392,7 @@ export class CreatePageComponent implements OnInit {
       });
     // R4G Circle Dropdown
 
-    // City Dropdown 
+    // City Dropdown
     this.cityControl.setValue(this.cityData[1]);
     this.cityFilter.next(this.cityData.slice());
     this.cityFilterControl.valueChanges
@@ -404,9 +404,9 @@ export class CreatePageComponent implements OnInit {
           this.cityFilter
         );
       });
-    // City Dropdown 
+    // City Dropdown
 
-    // // dataSourceOutdoor Dropdown 
+    // // dataSourceOutdoor Dropdown
     // this.dataSourceOutdoorControl.setValue(this.dataSourceOutdoorData[1]);
     // this.dataSourceOutdoorFilter.next(this.dataSourceOutdoorData.slice());
     // this.dataSourceOutdoorFilterControl.valueChanges
@@ -418,9 +418,9 @@ export class CreatePageComponent implements OnInit {
     //       this.dataSourceOutdoorFilter
     //     );
     //   });
-    // // dataSourceOutdoor Dropdown 
+    // // dataSourceOutdoor Dropdown
 
-    // Select JC Dropdown 
+    // Select JC Dropdown
     this.selectJcControl.setValue(this.jcData[1]);
     this.selectJcFilter.next(this.jcData.slice());
     this.selectJcFilterControl.valueChanges
@@ -432,7 +432,7 @@ export class CreatePageComponent implements OnInit {
           this.selectJcFilter
         );
       });
-    // Select JC Dropdown 
+    // Select JC Dropdown
 
     this.dataSourceIndoorCtrl.setValue([this.dataSourceIndoorListData[0]]);
     this.dataSourceIndoorFilter.next(this.dataSourceIndoorListData.slice());
@@ -884,7 +884,7 @@ export class CreatePageComponent implements OnInit {
         // this.gotomyreport = result;
       });
     } else if(item.value == "Upload File") {
-     
+
       if (item.data.datasourcename == "Exclusion Zones") {
         console.log("Exclusion Zones");
         this.showExclusionZones = true;
@@ -898,7 +898,7 @@ export class CreatePageComponent implements OnInit {
       }
 
     } else if(item.value == "Select Table") {
-      
+
       if (item.data.datasourcename == "Exclusion Zones") {
         console.log("Exclusion Zones");
         this.showExclusionZones = true;
@@ -911,7 +911,7 @@ export class CreatePageComponent implements OnInit {
         this.showSelected = true;
       }
 
-    } 
+    }
 
 
 

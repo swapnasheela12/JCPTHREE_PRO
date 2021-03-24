@@ -30,7 +30,7 @@
                     </div>
                     <mat-divider class=" my-2" [vertical]="true"></mat-divider>
                     <div class=" px-2" style="line-height: 2.5;">
-                        <button mat-icon-button class=" px-2" (click)="toggleShow()">
+                        <button mat-icon-button [disabled]="isShownChartOrTableHistory" [ngClass]="{'disable':isShownChartOrTableHistory == true}" class=" px-2" (click)="toggleShow()">
                             <mat-icon class="iconType" style="font-size: 18px;">
                                 <div *ngIf="!isShownChartOrTable" class="ic ic-table1-01" style="line-height: 1.5;">
                                 </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="p-3" fxFlex="15" style="padding-bottom: 0px !important;">
                     <mat-form-field fxFlex="100">
-                        <mat-select disableOptionCentering placeholder="Node" [formControl]="NodeTypeControl" ngDefaultControl #NodeTypeControlSelect>
+                        <mat-select [multiple]="true" disableOptionCentering placeholder="Node" [formControl]="NodeTypeControl" ngDefaultControl #NodeTypeControlSelect>
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Node" [formControl]="NodeTypeFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
                                 </ngx-mat-select-search>

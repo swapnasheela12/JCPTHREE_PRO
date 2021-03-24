@@ -190,7 +190,7 @@ export class AlarmSummaryComponent implements OnInit {
     // City Dropdown
 
     // Node Aggregation Dropdown
-    this.NodeTypeControl.setValue(this.NodeTypeData[0]);
+    this.NodeTypeControl.setValue([this.NodeTypeData[0]]);
     this.NodeTypeFilter.next(this.NodeTypeData.slice());
     this.NodeTypeFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))

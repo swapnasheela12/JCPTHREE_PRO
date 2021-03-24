@@ -275,6 +275,14 @@ $color-grayBlue: #464d69;
     }
 }
 
+.disable:hover {
+    cursor: not-allowed;
+}
+
+.disable:active {
+    pointer-events: none;
+}
+
 // ::ng-deep .no-padding.mat-form-field-appearance-outline .mat-form-field-wrapper {
 //     margin: 0;
 // }

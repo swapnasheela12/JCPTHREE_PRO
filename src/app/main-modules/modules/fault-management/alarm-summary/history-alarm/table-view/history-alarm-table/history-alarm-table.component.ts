@@ -55,7 +55,7 @@ export class HistoryAlarmTableComponent implements OnInit {
 
     this.dataShareFM.currentMessageTitle.subscribe((val: any) => {
 
-      if (val.tableName == 'Active Alarm Classification' && val.statusSingleView == true && val.chartOrTable == true) {
+      if (val.tableName == 'Historical Alarm Statistics' && val.statusSingleView == true && val.chartOrTable == true) {
         this.parentDataGetTable = val.tableName;
         setTimeout(() => {
           $('#alarmTable2').addClass("activeHide");
@@ -64,7 +64,7 @@ export class HistoryAlarmTableComponent implements OnInit {
           $('#alarmTable5').addClass("activeHide");
           $('#alarmTable6').addClass("activeHide");
         }, 1000);
-      } else if (val.tableName == 'Active Alarm Ageing' && val.statusSingleView == true) {
+      } else if (val.tableName == 'Top Recurring Alarms' && val.statusSingleView == true) {
         this.parentDataGetTable = val.tableName;
         setTimeout(() => {
           $('#alarmTable1').addClass("activeHide");
@@ -74,7 +74,7 @@ export class HistoryAlarmTableComponent implements OnInit {
           $('#alarmTable6').addClass("activeHide");
         }, 500);
       }
-      else if (val.tableName == 'Circles wise SA Active Alarms with Ageing distribution' && val.statusSingleView == true) {
+      else if (val.tableName == 'Network Availability Trend' && val.statusSingleView == true) {
         this.parentDataGetTable = val.tableName;
         setTimeout(() => {
           $('#alarmTable1').addClass("activeHide");
@@ -84,23 +84,34 @@ export class HistoryAlarmTableComponent implements OnInit {
           $('#alarmTable6').addClass("activeHide");
         }, 500);
       }
-      else if (val.tableName == 'Alarms vs Outage Minutes' && val.statusSingleView == true) {
+      else if (val.tableName == 'Top Contributing Alarms based on Outage Mins.' && val.statusSingleView == true) {
         this.parentDataGetTable = val.tableName;
         setTimeout(() => {
           $('#alarmTable1').addClass("activeHide");
           $('#alarmTable2').addClass("activeHide");
           $('#alarmTable3').addClass("activeHide");
           $('#alarmTable5').addClass("activeHide");
-          $('#alarmTable5').addClass("activeHide");
+          $('#alarmTable6').addClass("activeHide");
         }, 500);
       }
-      else if (val.tableName == 'Sites with > 24Hr Outage' && val.statusSingleView == true) {
+      else if (val.tableName == 'Clearance Ratio' && val.statusSingleView == true) {
         this.parentDataGetTable = val.tableName;
         setTimeout(() => {
           $('#alarmTable1').addClass("activeHide");
           $('#alarmTable2').addClass("activeHide");
           $('#alarmTable3').addClass("activeHide");
           $('#alarmTable4').addClass("activeHide");
+          $('#alarmTable6').addClass("activeHide");
+        }, 500);
+      }
+      else if (val.tableName == 'Alarms per Cell' && val.statusSingleView == true) {
+        this.parentDataGetTable = val.tableName;
+        setTimeout(() => {
+          $('#alarmTable1').addClass("activeHide");
+          $('#alarmTable2').addClass("activeHide");
+          $('#alarmTable3').addClass("activeHide");
+          $('#alarmTable4').addClass("activeHide");
+          $('#alarmTable5').addClass("activeHide");
         }, 500);
       }
 
