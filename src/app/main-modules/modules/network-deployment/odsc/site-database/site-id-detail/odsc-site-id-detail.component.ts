@@ -229,7 +229,7 @@ export class OdscSiteIdDetailComponent implements OnDestroy {
       },
       {
         headerName: 'Digital Forms',
-        field: 'digitalForms',
+        field: 'digitalForm',
         width: 250,
         cellRenderer: 'digitalFormRenderer'
       },

@@ -8,7 +8,8 @@ import { UploadedFileViewerComponent } from '../../task-details/uploaded-file-vi
     selector: 'document-renderer',
     template: `
    <button mat-icon-button (click)="openImageSlider()">
-    <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-file-pdf"></span></mat-icon>
+    <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-PDF"></span></mat-icon>
+    <span style="margin-left: 5px">{{params.value.length}}</span>
     </button>
     `
 })
@@ -32,7 +33,6 @@ export class DocumentRendererComponent implements ICellRendererAngularComp {
     }
 
     onClick($event) {
-        console.log("image slider open")
         if (this.params.onClick instanceof Function) {
             const params = {
                 event: $event,
@@ -44,7 +44,6 @@ export class DocumentRendererComponent implements ICellRendererAngularComp {
     }
 
     openImageSlider() {
-        console.log("image slider open")
         this.dialog.open(DocumentViewerComponent, {
             width: "700px",
             height: "450px",

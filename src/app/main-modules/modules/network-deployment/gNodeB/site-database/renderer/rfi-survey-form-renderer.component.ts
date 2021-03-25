@@ -7,8 +7,9 @@ import { RfiSurveyFormComponent } from '../rfi-survey-form/rfi-survey-form.compo
 @Component({
     selector: 'rfi-survey-renderer',
     template: `
-    <button mat-icon-button (click)="openImageSlider()" style="border: 0px;background: transparent; font-size: 24px;">
-    <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-file-pdf"></span></mat-icon>
+    <button mat-icon-button (click)="openImageSlider()">
+    <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Doc"></span></mat-icon>
+    <span style="margin-left: 5px">{{params.value.length}}</span>
     </button>
     `
 })
@@ -23,7 +24,6 @@ export class RfiSurveyFormRendererComponent implements ICellRendererAngularComp 
     }
 
     agInit(params): void {
-        console.log("ye me hu.. aur yaha image sliding ho raha hai")
         this.params = params;
         this.label = this.params.label || null;
     }
@@ -33,7 +33,6 @@ export class RfiSurveyFormRendererComponent implements ICellRendererAngularComp 
     }
 
     onClick($event) {
-        console.log("image slider open")
         if (this.params.onClick instanceof Function) {
             const params = {
                 event: $event,
@@ -45,7 +44,6 @@ export class RfiSurveyFormRendererComponent implements ICellRendererAngularComp 
     }
 
     openImageSlider() {
-        console.log("image slider open")
         this.dialog.open(RfiSurveyFormComponent, {
             //tmax-width: "84vw",
             width: "93vw",

@@ -11,7 +11,7 @@
         </mat-toolbar-row>
     </mat-toolbar>
     <div mat-dialog-content>
-        <form fxLayout="column" class="">          
+        <form fxLayout="column" class="">
             <div class="m20" fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-top:20px">
 
                 <mat-form-field class="form-field-read-only" fxFlex="20">
@@ -37,8 +37,13 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-read-only" fxFlex="20">
-                    <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                    <mat-label *ngIf="showReasonLabel"
+                        style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                         Reason
+                    </mat-label>
+                    <mat-label *ngIf="showStatusLabel"
+                        style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                        Task Status
                     </mat-label>
                     <mat-select disableOptionCentering [(value)]="reason[0]"
                         style="font-family: lato Regular; font-size: 14px;">
@@ -55,43 +60,48 @@
             </div>
 
             <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20"
-            *ngFor="let conditionDiv of conditionArray, let i = index ; trackBy:trackByDiv">
-           
-            <mat-form-field class="form-field-read-only" fxFlex="20">
-                <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                    Milestone
-                </mat-label>
-                <mat-select disableOptionCentering [(value)]="milestone[0]"
-                    style="font-family: lato Regular; font-size: 14px;">
-                    <mat-option class="sector-title" *ngFor="let mile of milestone" [value]="mile">
-                        {{mile}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+                *ngFor="let conditionDiv of conditionArray, let i = index ; trackBy:trackByDiv">
 
-            <mat-form-field class="form-field-read-only" fxFlex="20">
-                <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                    Task
-                </mat-label>
-                <mat-select disableOptionCentering [(value)]="task[0]"
-                    style="font-family: lato Regular; font-size: 14px;">
-                    <mat-option class="sector-title" *ngFor="let t of task" [value]="t">
-                        {{t}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field class="form-field-read-only" fxFlex="20">
+                    <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                        Milestone
+                    </mat-label>
+                    <mat-select disableOptionCentering [(value)]="milestone[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option class="sector-title" *ngFor="let mile of milestone" [value]="mile">
+                            {{mile}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field class="form-field-read-only" fxFlex="20">
-                <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                    Reason
-                </mat-label>
-                <mat-select disableOptionCentering [(value)]="reason[0]"
-                    style="font-family: lato Regular; font-size: 14px;">
-                    <mat-option class="sector-title" *ngFor="let t of reason" [value]="t">
-                        {{t}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field class="form-field-read-only" fxFlex="20">
+                    <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                        Task
+                    </mat-label>
+                    <mat-select disableOptionCentering [(value)]="task[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option class="sector-title" *ngFor="let t of task" [value]="t">
+                            {{t}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <div fxFlex="20"></div>
-        </div>
+                <mat-form-field class="form-field-read-only" fxFlex="20">
+                    <mat-label *ngIf="showReasonLabel"
+                        style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                        Reason
+                    </mat-label>
+                    <mat-label *ngIf="showStatusLabel"
+                        style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                        Task Status
+                    </mat-label>
+                    <mat-select disableOptionCentering [(value)]="reason[0]"
+                        style="font-family: lato Regular; font-size: 14px;">
+                        <mat-option class="sector-title" *ngFor="let t of reason" [value]="t">
+                            {{t}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div fxFlex="20"></div>
+            </div>
             <!-- <div class="m20" fxLayout="row" fxLayoutAlign="start center">
                 <mat-form-field fxFlex="20" class="mx40">
                     <mat-select placeholder="If True">

@@ -26,7 +26,7 @@
 
 
         <div class="p-2 task-search" style="margin-top: -15px;">
-            <button mat-raised-button color="primary" class="auto-assign-btn" (click)="assign()">
+            <button *ngIf="hideAssignBtn" mat-raised-button color="primary" class="auto-assign-btn" (click)="assign()">
                 Assign
             </button>
             <div fxFlex="60">

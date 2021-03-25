@@ -147,7 +147,7 @@ import { inputP2BRendererComponent } from './input-p2b-renderer.component';
           cellRenderer: 'dropdownTaskRenderer',
         },
         {
-          headerName: "Reason",
+          headerName: "Task Status",
           field: "reason",
           width: 402,
           cellRenderer: 'inputRenderer',

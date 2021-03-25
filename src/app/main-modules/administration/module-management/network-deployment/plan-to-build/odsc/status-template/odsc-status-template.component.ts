@@ -146,7 +146,7 @@ import { ThreeDotP2BRenderer } from '../../renderer/threedot-p2b-renderer.compon
           cellRenderer: 'dropdownTaskRenderer',
         },
         {
-          headerName: "Reason",
+          headerName: "Task Status",
           field: "reason",
           width: 402,
           cellRenderer: 'inputRenderer',

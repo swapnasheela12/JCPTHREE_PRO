@@ -52,6 +52,7 @@ export class OdscTaskDetailsComponent implements OnInit {
   public gridPinned = false;
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
+  public hideAssignBtn = true;
   public frameworkComponentsTaskDetails = {
     dropdownRenderer: DropDownRendererComponent,
     inputRenderer: inputRendererComponent,
@@ -320,11 +321,16 @@ export class OdscTaskDetailsComponent implements OnInit {
         width: 180,
       },
       {
-        headerName: "Task Status",
-        field: "taskStatus",
+        headerName: "Maintenance Point",
+        field: "maintenancePoint",
+        width: 180
+      },
+      {
+        headerName: "AssignedTo",
+        field: "assignedTo",
         width: 180,
         pinned: "right"
-      }
+      },
     ];
     this.datatable.columnDefsServices = this.columnDefsSLABreach;
   }
@@ -595,6 +601,7 @@ export class OdscTaskDetailsComponent implements OnInit {
   tabChanged(event) {
     console.log(event);
     if (event.index === 1) {
+      this.hideAssignBtn =  false;
       this.createTeamDetailsColDefs();
       this.httpClient.get('assets/data/modules/network_deployment/gNodeB/team-task.json')
         .subscribe(data => {

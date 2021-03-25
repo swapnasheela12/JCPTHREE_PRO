@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
@@ -28,6 +29,7 @@ export class SiteSlaConfigurationComponent implements OnDestroy {
   public digitalFormColDefs: any[];
   public frameworkComponentsTaskDetails = {
     statusFlagRenderer: StatusRendererComponent,
+    dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
   public searchGrid = '';
   public paginationValues: number[] = [10, 20, 30, 40];
@@ -142,6 +144,11 @@ export class SiteSlaConfigurationComponent implements OnDestroy {
         headerName: "Rule ID",
         field: "ruleID",
         width: 250,
+      },
+      {
+        headerName: "Locked Stage",
+        field: "lockedStage",
+        width: 180,
       },
       {
         headerName: "",

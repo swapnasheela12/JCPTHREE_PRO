@@ -205,7 +205,7 @@ export class OdscCreateSlaConfigurationComponent implements OnInit {
 
   setAsDefault() {
     const message = {
-      message: 'LA Configuration template for "gNodeB-New Site" has been successfully created !',
+      message: 'SLA Configuration template for "gNodeB-New Site" has been successfully created !',
       showMyTasks: true
     }
     this.dialog.open(SuccessfulModalComponent, {

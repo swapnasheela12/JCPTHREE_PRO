@@ -56,6 +56,8 @@ export class TaskDetailsComponent implements OnInit {
     dropdownRenderer: DropDownRendererComponent,
     inputRenderer: inputRendererComponent,
   };
+
+  public hideAssignBtn = true;
   public searchGrid = '';
 
   public taskDetails = [
@@ -212,13 +214,19 @@ export class TaskDetailsComponent implements OnInit {
         field: "jioCenter",
         width: 180
       },
-
       {
         headerName: "Maintenance Point",
         field: "maintenancePoint",
+        width: 180
+      },
+      {
+        headerName: "AssignedTo",
+        field: "assignedTo",
         width: 180,
         pinned: "right"
       },
+
+
       // {
       //   headerName: "",
       //   width: 130,
@@ -595,6 +603,7 @@ export class TaskDetailsComponent implements OnInit {
   tabChanged(event) {
     console.log(event);
     if (event.index === 1) {
+    this.hideAssignBtn = false;
       this.createTeamDetailsColDefs();
       this.httpClient.get('assets/data/modules/network_deployment/gNodeB/team-task.json')
         .subscribe(data => {
@@ -607,6 +616,7 @@ export class TaskDetailsComponent implements OnInit {
           // this.datatable.columnDefsServices = this.columnDefsTeams;
         });
     } else {
+      this.hideAssignBtn = true;
       this.getMyTaskDetails();
     }
 
