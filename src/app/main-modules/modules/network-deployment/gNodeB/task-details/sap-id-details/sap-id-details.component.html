@@ -43,7 +43,7 @@
             </ul>
         </div>
 
-        <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow -->
+        <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow Scenerio A -->
         <mat-card-content class="h-100" *ngIf="hideAction && showAssignedTask">
             <div class="task-scenerios-btn">
                 <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
@@ -53,7 +53,7 @@
             </div>
         </mat-card-content>
 
-        <!-- Flow for Assigning and Accept or rejecting task if form is incorrect -->
+        <!-- Flow for Assigning and Accept or rejecting task if form is incorrect Scenerio B -->
         <mat-card-content class="h-100" *ngIf="hideAction && showTaskToBeAccepted">
             <div class="task-scenerios-btn">
                 <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
@@ -70,11 +70,11 @@
             </div>
         </mat-card-content>
 
-        <!-- Flow for Approving and rejecting sapid or candidate if form is incorrect -->
+        <!-- Flow for Approving and rejecting sapid or candidate if form is incorrect  Scenerio C-->
         <mat-card-content class="h-100" *ngIf="hideAction && showApproveRejectTask">
             <div class="task-scenerios-btn">
                 <button mat-raised-button color="basic" class="mx-3"
-                    (click)="openSuccessPopup('approved')">Approve</button>
+                    (click)="assignTaskScenerioB()">Approve</button>
                 <button mat-raised-button color="primary" class="auto-assign-btn" (click)="rejectCandidate()">
                     Reject
                 </button>
@@ -113,7 +113,7 @@
         <mat-card-content class="h-100" *ngIf="hideAction && showScenerioIHold">
             <div class="task-scenerios-btn">
                 <button mat-raised-button color="basic" class="mx-3" (click)="holdSite()">Hold</button>
-                <button mat-raised-button color="basic" class="mx-3" (click)="openSuccessPopup('')">Approve</button>
+                <button mat-raised-button color="basic" class="mx-3" (click)="openSuccessPopup('approved')">Approve</button>
             </div>
         </mat-card-content>
 
@@ -1321,7 +1321,8 @@
 
                         </div>
                     </div>
-                    <div class="sub-content-flex-item" style="width: 10%; float: right;">
+
+                    <div *ngIf="uploadedImg.length > 0" class="sub-content-flex-item" style="width: 10%; float: right;">
                         <button class="browse-button" mat-icon-button color="primary">
                             <span class="ic ic-download pr-2"></span>
                         </button>
@@ -1336,8 +1337,8 @@
     </div>
 
 
-    <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow -->
-    <div class="d-flex task-footer" *ngIf="showAssignedTask">
+    <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow  Scenerio A-->
+    <div class="d-flex task-footer" *ngIf="showAssignedTemplate">
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth">Save As Draft</button>
@@ -1348,6 +1349,7 @@
         </div>
     </div>
 
+ <!-- Flow for Assigning and Accept or rejecting task if form is incorrect Scenrio B -->
     <div class="d-flex task-footer" *ngIf="showTaskToBeAcceptedBtn">
         <div class="col"></div>
         <div class="p-2">
@@ -1360,13 +1362,27 @@
         </div>
     </div>
 
+     <!-- Flow for Assigning and Accept or rejecting task if form is incorrect -->
+    <!-- <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
+        <div class="col"></div>
+       
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
+        </div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                >Cancel</button>
+        </div>
+    </div> -->
+
 
     <!-- Flow for Scenerio E Approve, Reject, Upload and Download -->
     <div class="d-flex task-footer" *ngIf="showApproveRejectUploadDownload">
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
-                (click)="reject()">Reject</button>
+                (click)="openSuccessPopup('reject')">Reject</button>
         </div>
         <div class="p-2">
             <button mat-raised-button color="primary" class="buttonWidth button"
@@ -1383,8 +1399,7 @@
                 (click)="reject()">Reject</button>
         </div>
         <div class="p-2">
-            <button mat-raised-button color="primary" class="buttonWidth button"
-                (click)="openSuccessPopup('approved')">Approve</button>
+            <button mat-raised-button color="primary" class="buttonWidth button">Cancel</button>
         </div>
     </div>
 
@@ -1393,7 +1408,7 @@
         <div class="col"></div>
         <div class="p-2">
             <button mat-raised-button color="primary" class="buttonWidth button" style="width: 139px;"
-                (click)="openSuccessPopup('submit')">Task
+                (click)="openSuccessPopup('completed')">Task
                 Completed</button>
         </div>
     </div>
@@ -1421,7 +1436,7 @@
     </div> -->
 
     <!-- Hold site during construction -->
-    <div class="d-flex task-footer" *ngIf="!assignTaskStatus">
+    <div class="d-flex task-footer" *ngIf="showHoldSiteDuringConstruction">
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
@@ -1430,7 +1445,7 @@
     </div>
 
     <!-- Reject Digital Form and Assign External User -->
-    <div class="d-flex task-footer" *ngIf="!assignTaskStatus">
+    <!-- <div class="d-flex task-footer" *ngIf="!assignTaskStatus">
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 128px;" mat-stroked-button color="primary" class="buttonWidth"
@@ -1440,7 +1455,7 @@
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
                 (click)="openSuccessPopup('assigned')">Assign</button>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- Scenerio H ALL -->
@@ -1448,10 +1463,10 @@
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 128px;" mat-stroked-button color="primary" class="buttonWidth"
-                (click)="openSuccessPopup('completed')">Task Completed</button>
+                (click)="assignExternalUser()">Task Completed</button>
         </div>
-        <div class="p-2">
+        <!-- <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
                 (click)="assignExternalUser()">Assign</button>
-        </div>
+        </div> -->
     </div>

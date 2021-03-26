@@ -754,6 +754,7 @@ export class SapIdDetailsComponent implements OnDestroy {
   showAssignedTask: boolean = false;
   showTaskToBeAccepted: boolean = false;
   showTaskToBeAcceptedBtn: boolean = false;
+  showTaskToBeAssignBtn: boolean = false;
   showReassignTask: boolean = false;
   showReassignFooterBtn: boolean = false;
   showApproveRejectTask: boolean = false;
@@ -931,6 +932,12 @@ export class SapIdDetailsComponent implements OnDestroy {
     }
   }
 
+  assignTaskScenerioB() {
+    this.hideAction = false;
+    this.showTaskToBeAssignBtn = true;
+    this.showTaskToBeAccepted = true;
+  }
+
   assignTask() {
     const message = {
       message: `Task Completed successfully.`,
@@ -951,6 +958,8 @@ export class SapIdDetailsComponent implements OnDestroy {
       showMessage = "Task Submitted Successfully."
     } else if (type === "approved") {
       showMessage = "Task has been approved Successfully."
+    } else if(type === "reject") {
+      showMessage = "Task Rejected Successfully";
     } else {
       showMessage = "Task Completed Successfully";
     }
@@ -1045,9 +1054,11 @@ export class SapIdDetailsComponent implements OnDestroy {
   }
 
   rejectDigitalForm() {
-    const dialogRef = this.dialog.open(RejectFormComponent, {
+   // let message = "Digital form has been rejected & re-assigned to the same user successfully";
+    this.dialog.open(RejectFormComponent, {
       height: "280px",
       panelClass: "material-dialog-container",
+      //data: message
     });
   }
 

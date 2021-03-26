@@ -56,7 +56,7 @@ export class RejectFormComponent {
     this.dialogRef.close();
     this.datashare.changeMessage("RejectForm");
     const message = {
-      message: `Digital form has been rejected successfully !`,
+      message: `Digital form has been rejected & re-assigned to the same user successfully!`,
       goToTask: 'ShowMyTask',
       showMyTasks: true
     }

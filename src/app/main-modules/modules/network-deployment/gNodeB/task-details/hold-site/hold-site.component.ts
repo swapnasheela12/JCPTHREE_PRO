@@ -94,7 +94,7 @@ export class HoldSiteComponent implements OnInit {
     this.dialogRef.close();
     // this.datashare.changeMessage("RejectForm");
     const message = {
-      message: `Task Submitted Successfully!`,
+      message: `Site Hold during Construction Successfully!`,
       goToTask: 'ShowMyTask',
       showMyTasks: true
     }

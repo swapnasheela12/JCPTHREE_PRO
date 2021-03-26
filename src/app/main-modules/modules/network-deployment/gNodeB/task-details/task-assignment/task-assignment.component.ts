@@ -81,7 +81,7 @@ export class TaskAssignmentComponent implements OnInit {
     this.dialogRef.close();
 
     const message = {
-      message: `Task Submitted successfully.`,
+      message: `Task Assigned successfully.`,
       goToTask: 'ShowMyTask',
       showMyTasks: true
     }
