@@ -2,7 +2,8 @@
     <div style="background: transparent;">
         <mat-card class="wo-sector-card-one p-0">
             <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
-                <mat-icon class="icon-button mx-2" (click)="navigateToSiteDatabase()" style="color: #7E7E7E;" aria-label="search">
+                <mat-icon class="icon-button mx-2" (click)="navigateToSiteDatabase()" style="color: #7E7E7E;"
+                    aria-label="search">
                     <span class="zmdi zmdi-arrow-left"></span>
                 </mat-icon>
                 <div class="col wo-flex-item" style="padding-left: 0px;">
@@ -34,34 +35,193 @@
         </mat-card>
 
 
-        
-
-            <div class="wrapper-progressBar" style="height: 75px;">
-                <ul class="progressBar">
-                    <li class="active ic ic-checkmark"><span>Nominal Finalisation</span> </li>
-                    <li class="active"><span>Plan - RFA</span></li>
-                    <li class="active"><span>RFA - RFC</span></li>
-                    <li class="active"><span>RFC - RFI</span></li>
-                    <li class="inprogress"><span>RFI - RFE1</span></li>
-                    <li class="inprogress"><span>RFI - RFE2</span></li>
-                    <li class=""><span>RFE2 - RFR</span></li>
-                    <li class=""><span>ATP 11A & WCC1</span></li>
-                    <li><span>ATP 11B, CVT, WCC2 & HOTO</span></li>
-                </ul>
-            </div>
-
-            <div class="flex-row flex-wrap w-100" style="position: relative; bottom: 9px;"></div>
 
 
-            <div class="jcp-table-container" style="height: 47vh;">
+        <div class="wrapper-progressBar" style="height: 75px;">
+            <ul class="progressBar">
+                <li class="active ic ic-checkmark"><span>Nominal Finalisation</span> </li>
+                <li class="active"><span>Plan - RFA</span></li>
+                <li class="active"><span>RFA - RFC</span></li>
+                <li class="active"><span>RFC - RFI</span></li>
+                <li class="inprogress"><span>RFI - RFE1</span></li>
+                <li class="inprogress"><span>RFI - RFE2</span></li>
+                <li class=""><span>RFE2 - RFR</span></li>
+                <li class=""><span>ATP 11A & WCC1</span></li>
+                <li><span>ATP 11B, CVT, WCC2 & HOTO</span></li>
+            </ul>
+        </div>
+
+        <div class="flex-row flex-wrap w-100" style="position: relative; bottom: 9px; overflow-y: scroll;">
+            <!-- <div class="jcp-table-container" style="height: 47vh;">
                 <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
                     style="width: 100%; height: 47vh;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
-                    [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter
-                    groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
-                    [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
-                    [frameworkComponents]="frameworkComponentsTaskDetails">
+                    [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="false"
+                    [paginationAutoPageSize]="false" [frameworkComponents]="frameworkComponentsTaskDetails">
                 </ag-grid-angular>
-            </div>
+            </div> -->
+
+            <div class="container" style="height: 47vh;">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Band</th>
+                    <th>Milestone</th>
+                    <th>Status</th>
+                    <th>Task Name</th>
+                    <th>Assign Date</th>
+                    <th>Completion Date</th>
+                    <th>Photos</th>
+                    <th>Documents</th>
+                    <th>Digital Forms</th>
+                    <th>Task Owner</th>
+                </tr>
+            </thead>
+            <tbody style="color: black;">
+                <tr>
+                    <td class="page-header"><button type="button" class="tbtn 1800accordion"><i class="fa fa-plus-circle fa-minus-circle"></i>   1800</button> </td>
+                </tr>
+                <tr *ngFor="let data of rowData" class="toggler toggler1">
+                    <td *ngIf="data.band === '1800'"></td>
+                        <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                        <td *ngIf="data.band === '1800'">{{data.milestone}}</td>
+                        <td *ngIf="data.band === '1800'">
+                            <button class="status-completed"  *ngIf="data.status === 'Completed'">{{data.status}} </button>
+                            <button class="status-started" *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}} </button>
+                            <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}} </button>
+                            <button class="status-re-assign"  *ngIf="data.status === 'Re-Assigned'">{{data.status}} </button>
+                            <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                        </td>
+                        <td *ngIf="data.band === '1800'">{{data.taskName}}</td>
+                        <td *ngIf="data.band === '1800'">{{data.assignDate}}</td>
+                        <td *ngIf="data.band === '1800'">{{data.completionDate}}</td>
+                        <td *ngIf="data.band === '1800'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Photos"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '1800'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-PDF"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '1800'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Doc"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '1800'">{{data.taskOwner}}</td>
+                </tr>
+            </tbody>
+
+
+            <tbody style="color: black;">
+                <tr>
+                    <td class="page-header"><button type="button" class="tbtn"><i class="fa fa-plus-circle fa-minus-circle"></i>   2300</button> </td>
+                </tr>
+                <tr *ngFor="let data of rowData" class="toggler">
+                    <td *ngIf="data.band === '2300'"></td>
+                        <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                        <td *ngIf="data.band === '2300'">{{data.milestone}}</td>
+                        <td *ngIf="data.band === '2300'">
+                            <button class="status-completed"  *ngIf="data.status === 'Completed'">{{data.status}} </button>
+                            <button class="status-started" *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}} </button>
+                            <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}} </button>
+                            <button class="status-re-assign"  *ngIf="data.status === 'Re-Assigned'">{{data.status}} </button>
+                            <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                        </td>
+                        <td *ngIf="data.band === '2300'">{{data.taskName}}</td>
+                        <td *ngIf="data.band === '2300'">{{data.assignDate}}</td>
+                        <td *ngIf="data.band === '2300'">{{data.completionDate}}</td>
+                        <td *ngIf="data.band === '2300'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Photos"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '2300'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-PDF"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '2300'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Doc"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '2300'">{{data.taskOwner}}</td>
+                </tr>
+            </tbody>
+
+            <tbody style="color: black;">
+                <tr>
+                    <td class="page-header"><button type="button" class="tbtn"><i class="fa fa-plus-circle fa-minus-circle"></i>   850</button> </td>
+                </tr>
+                <tr *ngFor="let data of rowData" class="toggler">
+                    <td *ngIf="data.band === '850'"></td>
+                        <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                        <td *ngIf="data.band === '850'">{{data.milestone}}</td>
+                        <td *ngIf="data.band === '850'">
+                            <button class="status-completed"  *ngIf="data.status === 'Completed'">{{data.status}} </button>
+                            <button class="status-started" *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}} </button>
+                            <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}} </button>
+                            <button class="status-re-assign"  *ngIf="data.status === 'Re-Assigned'">{{data.status}} </button>
+                            <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                        </td>
+                        <td *ngIf="data.band === '850'">{{data.taskName}}</td>
+                        <td *ngIf="data.band === '850'">{{data.assignDate}}</td>
+                        <td *ngIf="data.band === '850'">{{data.completionDate}}</td>
+                        <td *ngIf="data.band === '850'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Photos"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '850'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-PDF"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '850'">
+                            <button mat-icon-button (click)="openImageSlider()">
+                                <mat-icon style="line-height: 0;color:black !important;"><span class="ic ic-Doc"></span></mat-icon>
+                                <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                </button>
+                        </td>
+                        <td *ngIf="data.band === '850'">{{data.taskOwner}}</td>
+                </tr>
+            </tbody>
+
+
+        </table>
+</div>
         </div>
+       
+        <!-- <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        1800
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="jcp-table-container" style="height: 47vh;">
+                    <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+                        style="width: 100%; height: 47vh;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
+                        [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+                        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                        [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="false"
+                        [paginationAutoPageSize]="false" [frameworkComponents]="frameworkComponentsTaskDetails">
+                    </ag-grid-angular>
+                </div>
+            </mat-expansion-panel>
+
+        </mat-accordion> -->
+    </div>
 </div>

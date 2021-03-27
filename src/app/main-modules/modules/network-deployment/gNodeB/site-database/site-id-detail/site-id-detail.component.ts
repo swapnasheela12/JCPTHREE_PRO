@@ -1,6 +1,6 @@
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { RfiSurveyFormComponent } from '../rfi-survey-form/rfi-survey-form.compo
   templateUrl: './site-id-detail.component.html',
   styleUrls: ['./site-id-detail.component.scss']
 })
-export class SiteIdDetailComponent implements OnDestroy {
+export class SiteIdDetailComponent implements OnInit, OnDestroy {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   // @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -163,12 +163,31 @@ export class SiteIdDetailComponent implements OnDestroy {
     this.gridOptions = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.createDigitalFormsColumnDefs();
 
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
     });
     this.getMyTaskDetails();
+  }
+
+  ngOnInit() {
+    $(document).ready(function () {
+
+      
+      // $(this).parents(".custom-table").find(".toggler1")({
+      //   toggle: false
+      // });
+      $(this).parents(".custom-table").find(".toggler1").removeClass("toggler1");
+      $(this).parents("tbody").find(".toggler").addClass("toggler1");
+      $(this).parents(".custom-table").find(".fa-minus-circle").removeClass("fa-minus-circle");
+      $(this).parents("tbody").find(".fa-plus-circle").addClass("fa-minus-circle");
+      $(".tbtn").click(function () {
+          $(this).parents(".custom-table").find(".toggler1").removeClass("toggler1");
+          $(this).parents("tbody").find(".toggler").addClass("toggler1");
+          $(this).parents(".custom-table").find(".fa-minus-circle").removeClass("fa-minus-circle");
+          $(this).parents("tbody").find(".fa-plus-circle").addClass("fa-minus-circle");
+      });
+  });
   }
 
   getMyTaskDetails() {
@@ -189,6 +208,10 @@ export class SiteIdDetailComponent implements OnDestroy {
 
   public createColumnDefs() {
     this.columnDefs = [
+      {
+        headerName: "Band",
+        width: 200,
+      },
       {
         headerName: "Milestone",
         field: "milestone",
@@ -236,41 +259,10 @@ export class SiteIdDetailComponent implements OnDestroy {
       {
         headerName: 'Task Owner',
         field: 'taskOwner',
-        width: 250
+        width: 250,
       },
     ];
     this.datatable.columnDefsServices = this.columnDefs;
-  }
-
-  public createDigitalFormsColumnDefs() {
-    this.digitalFormColDefs = [
-      {
-        headerName: "Status",
-        cellRenderer: this.taskStatus,
-        field: "",
-        width: 90
-      },
-      {
-        headerName: "Milestone",
-        field: "mileStone",
-        width: 200,
-      },
-      {
-        headerName: "Task",
-        field: "task",
-        width: 350,
-      },
-      {
-        headerName: "Form Name",
-        field: "formName",
-        width: 200,
-      },
-      {
-        headerName: "Form Owner",
-        field: "formOwner",
-        width: 200,
-      }
-    ]
   }
 
   public eventsSubject: Subject<any> = new Subject();
@@ -278,6 +270,8 @@ export class SiteIdDetailComponent implements OnDestroy {
     console.log("value", value)
     this.gridOptions.api.setQuickFilter(value);
   };
+
+  openImageSlider() {}
 
   statusFunc(params) {
     var status = params.value;
