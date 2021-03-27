@@ -1053,6 +1053,11 @@ export class SapIdDetailsComponent implements OnDestroy {
     this.rejectCandidateForm = true;
   }
 
+  approveCandidate() {
+    this.hideAction = false;
+    this.showTaskToBeAssignBtn = true;
+  }
+
   rejectDigitalForm() {
    // let message = "Digital form has been rejected & re-assigned to the same user successfully";
     this.dialog.open(RejectFormComponent, {

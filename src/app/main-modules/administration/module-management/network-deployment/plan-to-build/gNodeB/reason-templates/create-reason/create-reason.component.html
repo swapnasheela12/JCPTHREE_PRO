@@ -45,11 +45,8 @@
                         style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                         Task Status
                     </mat-label>
-                    <mat-select disableOptionCentering [(value)]="reason[0]"
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option class="sector-title" *ngFor="let t of reason" [value]="t">
-                            {{t}}</mat-option>
-                    </mat-select>
+                    
+                    <input matInput [value]="reason">
                 </mat-form-field>
 
                 <div fxFlex="20" fxLayoutAlign="center center">
@@ -93,11 +90,13 @@
                         style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                         Task Status
                     </mat-label>
-                    <mat-select disableOptionCentering [(value)]="reason[0]"
+                    <!-- <mat-select disableOptionCentering [(value)]="reason[0]"
                         style="font-family: lato Regular; font-size: 14px;">
                         <mat-option class="sector-title" *ngFor="let t of reason" [value]="t">
                             {{t}}</mat-option>
-                    </mat-select>
+                    </mat-select> -->
+
+                    <input matInput [value]="reason">
                 </mat-form-field>
 
                 <div fxFlex="20"></div>

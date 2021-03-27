@@ -25,7 +25,7 @@ export class CreateReasonComponent implements OnInit {
 
   milestone = ["Nominal Finalisation", "Nominal Finalisation"];
   task = ["Assignment of Proposed Nominal", "Assignment of Proposed Nominal"];
-  reason = ["Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet"];
+  reason = "Lorem ipsum dolor sit amet";
   conditionArray = [];
   addCondition() {
     this.conditionArray.push(this.conditionArray.length);

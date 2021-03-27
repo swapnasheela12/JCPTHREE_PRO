@@ -1362,19 +1362,7 @@
         </div>
     </div>
 
-     <!-- Flow for Assigning and Accept or rejecting task if form is incorrect -->
-    <!-- <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
-        <div class="col"></div>
-       
-        <div class="p-2">
-            <button mat-raised-button color="primary" class="buttonWidth button"
-                (click)="openSuccessPopup('approved')">Approve</button>
-        </div>
-        <div class="p-2">
-            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
-                >Cancel</button>
-        </div>
-    </div> -->
+
 
 
     <!-- Flow for Scenerio E Approve, Reject, Upload and Download -->
@@ -1400,6 +1388,20 @@
         </div>
         <div class="p-2">
             <button mat-raised-button color="primary" class="buttonWidth button">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Reject Candidate Form -->
+    <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
+        <div class="col"></div>
+       
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
+        </div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                >Cancel</button>
         </div>
     </div>
 
