@@ -156,7 +156,7 @@
                     </div>
                 </mat-step>
                 <mat-step label="Network Element and Configuration">
-                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto;">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto; padding-top:20px;">
                         <div fxFlex="50" fxLayout="row wrap" style="border-bottom: 1px solid rgb(226 226 226);">
                             <mat-radio-group aria-label="" class="radio-button-group pl-2" [(ngModel)]="selectedRadio">
                                 <mat-radio-button style="margin-right: 5rem !important" *ngFor="let type of radioTypeList;trackBy:trackByRadioButtonType" 
@@ -168,7 +168,7 @@
                                     <i class="ic ic-download pr-2"></i> Download Template
                                 </button>
                             </div>
-                            <div fxLayout="row wrap" fxFlex="100" *ngIf="selectedRadio == 'Bulk Upload'" style="height: 80%;">
+                            <div fxLayout="row wrap" fxFlex="100" *ngIf="selectedRadio == 'Bulk Upload'" style="height: 80%;margin-top: -15px;">
                                 <div fxLayout="column wrap" ffxLayoutAlign="space-between center" fxFlex="90">
                                     <div class="px-2">
                                         <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
@@ -316,7 +316,7 @@
                     </div>
                 </mat-step>
                 <mat-step label="Schedule">
-                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto;">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto; padding-top:20px;">
                         <form class="w-100" [formGroup]="selectSchedule" fxLayout="row wrap">
                             <div fxFlex="40" class="py-2" fxLayout="column">
                                 <mat-form-field style="margin-left: 10px;" class="report-form-field w-100">
@@ -329,19 +329,17 @@
                                         [timePickerIncrement]="15" 
                                         [timePicker24Hour]="false" 
                                         formControlName="scheduleDateTime" 
-                                        [alwaysShowCalendars]="selectSchedule.get('alwaysShowCalendars').value"
                                         [singleDatePicker]="true" 
-                                        [showClearButton]="true" 
-                                        [showCancel]="true" 
+                                        [showOk]="true"
                                         [linkedCalendars]="false" 
                                         [isTooltipDate]="isTooltipDate" 
                                         [isInvalidDate]="isInvalidDate"
                                         [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
-                                        (datesUpdated)="datesUpdated($event)"
                                         autocomplete="off"
                                         [opens]="opens"
                                         [drops]="drops" class="daterange-container-input" />
-                                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                        <div class="iconCal" (click)="openDatepicker()">
+                                            <i class="zmdi zmdi-calendar"></i></div>
                                     </div>
                                 </mat-form-field>
                                 <div fxFlex="30" style="line-height: 4;" class="py-2">

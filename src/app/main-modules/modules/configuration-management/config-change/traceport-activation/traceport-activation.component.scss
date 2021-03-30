@@ -6,10 +6,10 @@
         .mat-stepper-horizontal {
             height: 100%;
             .mat-horizontal-content-container {
-                padding: 30px 20px;
+                // padding: 30px 20px;
                 height: calc(100% - 26px);
                 .mat-horizontal-stepper-content[aria-expanded="true"] {
-                    height: calc(100% - 3px);
+                    height: calc(100% - 10px);
                     .px-space-3 {
                         padding: 0.6rem 0;
                     }

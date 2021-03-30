@@ -12,6 +12,7 @@ import { Subject, ReplaySubject } from 'rxjs';
 import { R4GState, dropdown, City, JC, JioCluster, SapId, TCEIPV6DATA } from 'src/app/core/components/common-elements/type-dropdown-modulelist';
 import { MatSelect } from '@angular/material/select';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
 
 interface dropDownListType {
   value: string;
@@ -183,6 +184,7 @@ export class TraceportActivationComponent implements OnInit {
   public tceipv6Control: FormControl = new FormControl();
   public tceipv6FilterControl: FormControl = new FormControl();
   public tceipv6Filter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+  @ViewChild(DaterangepickerDirective, { static: false }) pickerDirective: DaterangepickerDirective;
 
   constructor(
     private fb: FormBuilder,
@@ -199,12 +201,9 @@ export class TraceportActivationComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectSchedule = this.fb.group({
-      recurEveryControl: '10',
-      scheduleDateTime:  moment(),
-        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),,
-      alwaysShowCalendars: true,
-      // keepCalendarOpeningWithRange: true,
-      // showRangeLabelOnInput: true,
+      scheduleDateTime: {
+        startDate: moment()
+      }
     });
 
     this.httpService.get('assets/data/configuration-management/traceport-activation/traceport-activation.json').subscribe((data: any[]) => {
@@ -463,5 +462,9 @@ export class TraceportActivationComponent implements OnInit {
     } else {
       this.generateDisabled = true;
     }
+  }
+
+  openDatepicker() {
+    this.pickerDirective.open();
   }
 }
