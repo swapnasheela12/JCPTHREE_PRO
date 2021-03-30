@@ -390,4 +390,110 @@ $color-white: #ffffff;
     .doc-status {
         font-size: 15px;
     }
+}			
+				
+.custom-table{border-collapse:collapse;width:100%;border:none;font-size:12px}
+.custom-table th,.custom-table td{text-align:left;padding:8px;border:solid 1px #c0c0c0}
+.custom-table th{color:black}
+.custom-table tbody tr {
+  //  background: white;
+    border-bottom:1px solid #FAFBFF;
+}
+.custom-table>thead>tr{
+    background-color: #D3D5DC!important;
+    color: black;
+}
+.tbtn{border:0;outline:0;background-color:transparent;font-size:13px;cursor:pointer}
+.toggler{display:none; background: white;}
+.toggler1{display:table-row;}
+.custom-table a{color: #0033cc;}
+.custom-table a:hover{color: #f00;}
+.custom-table thead tr th {
+    border: transparent
+}
+.custom-table tbody tr td { border: transparent}
+
+.custom-table tbody .toggler {
+    background: white;
+    border: 1px solid #D3D5DC;
+}
+
+.custom-table tbody tr{
+    border: transparent
+}
+
+
+.status-completed {
+    background: #60DD5C;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    text-align: center;
+    line-height: 0.5;
+    border-radius: 4px;
+    border: none;
+}
+
+.status-started {
+    background: #F8C93A;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    text-align: center;
+    line-height: 0.5;
+    border-radius: 4px;
+    border: none;
+}
+
+.status-rejected {
+    background: #F8C93A;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    text-align: center;
+    line-height: 0.5;
+    border-radius: 4px;
+    border: none;
+}
+
+.status-re-assign {
+    background: #5D97E6;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    text-align: center;
+    line-height: 0.5;
+    border-radius: 4px;
+    border: none;
+}
+
+.status-new {
+    background: #8A8A8A;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    width: 90px;
+    height: 24px;
+    text-align: center;
+    line-height: 0.5;
+    border-radius: 4px;
+    border: none;
 }

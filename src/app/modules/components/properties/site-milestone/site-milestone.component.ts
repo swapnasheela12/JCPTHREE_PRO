@@ -12,7 +12,9 @@ import { DocumentRendererComponent } from 'src/app/main-modules/modules/network-
 import { ImageViewerRendererComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/site-database/renderer/image-viewer-renderer.component';
 import { RfiSurveyFormRendererComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/site-database/renderer/rfi-survey-form-renderer.component';
 import { RfiSurveyFormComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/site-database/rfi-survey-form/rfi-survey-form.component';
+import { DocumentViewerComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/document-viewer/document-viewer.component';
 import { RejectTaskComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/reject-task/reject-task.component';
+import { UploadedFileViewerComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/uploaded-file-viewer/uploaded-file-viewer.component';
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
@@ -405,6 +407,35 @@ export class SiteMilestoneComponent implements OnChanges, OnDestroy {
   navigateToSiteHistory() {
     this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Site-Database/Site-Id-Details/Site-History-Details"])
   }
+
+  
+  openImageSlider() {
+    this.dialog.open(UploadedFileViewerComponent, {
+        width: "700px",
+        height: "450px",
+        panelClass: "material-dialog-container",
+        //data: this.uploadedImg
+    });
+}
+
+  openPDFSlider() {
+    this.dialog.open(DocumentViewerComponent, {
+        width: "700px",
+        height: "450px",
+        panelClass: "material-dialog-container",
+        //data: this.uploadedImg
+    });
+}
+
+openRFIFormSlider() {
+  this.dialog.open(RfiSurveyFormComponent, {
+      //tmax-width: "84vw",
+      width: "93vw",
+      height: "93vh",
+      panelClass: "material-dialog-container",
+      //data: this.uploadedImg
+  });
+}
 
   ngOnDestroy() {
     this.destroySubscription.unsubscribe();

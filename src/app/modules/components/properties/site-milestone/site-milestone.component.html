@@ -22,14 +22,183 @@
 
 
             <div class="jcp-table-container" style="height: 47vh;">
-                <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+                <!-- <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
                     style="width: 100%; height: 47vh;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
                     [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter
                     groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
                     rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
                     [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
                     [frameworkComponents]="frameworkComponentsTaskDetails">
-                </ag-grid-angular>
+                </ag-grid-angular> -->
+
+
+                <div style="height: 47vh;">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Band</th>
+                                <th>Milestone</th>
+                                <th>Status</th>
+                                <th>Task Name</th>
+                                <th>Assign Date</th>
+                                <th>Completion Date</th>
+                                <th>Photos</th>
+                                <th>Documents</th>
+                                <th>Digital Forms</th>
+                                <th>Task Owner</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: black;">
+                            <tr>
+                                <td class="page-header"><button type="button" class="tbtn 1800accordion"><i
+                                            class="fa fa-plus-circle fa-minus-circle"></i>   1800</button> </td>
+                            </tr>
+                            <tr *ngFor="let data of rowData" class="toggler toggler1">
+                                <td *ngIf="data.band === '1800'"></td>
+                                <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                                <td *ngIf="data.band === '1800'">{{data.milestone}}</td>
+                                <td *ngIf="data.band === '1800'">
+                                    <button class="status-completed" *ngIf="data.status === 'Completed'">{{data.status}}
+                                    </button>
+                                    <button class="status-started"
+                                        *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}}
+                                    </button>
+                                    <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}}
+                                    </button>
+                                    <button class="status-re-assign" *ngIf="data.status === 'Re-Assigned'">{{data.status}}
+                                    </button>
+                                    <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                                </td>
+                                <td *ngIf="data.band === '1800'">{{data.taskName}}</td>
+                                <td *ngIf="data.band === '1800'">{{data.assignDate}}</td>
+                                <td *ngIf="data.band === '1800'">{{data.completionDate}}</td>
+                                <td *ngIf="data.band === '1800'">
+                                    <button mat-icon-button (click)="openImageSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Photos"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '1800'">
+                                    <button mat-icon-button (click)="openPDFSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-PDF"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '1800'">
+                                    <button mat-icon-button (click)="openRFIFormSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Doc"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '1800'">{{data.taskOwner}}</td>
+                            </tr>
+                        </tbody>
+    
+    
+                        <tbody style="color: black;">
+                            <tr>
+                                <td class="page-header"><button type="button" class="tbtn"><i
+                                            class="fa fa-plus-circle fa-minus-circle"></i>   2300</button> </td>
+                            </tr>
+                            <tr *ngFor="let data of rowData" class="toggler">
+                                <td *ngIf="data.band === '2300'"></td>
+                                <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                                <td *ngIf="data.band === '2300'">{{data.milestone}}</td>
+                                <td *ngIf="data.band === '2300'">
+                                    <button class="status-completed" *ngIf="data.status === 'Completed'">{{data.status}}
+                                    </button>
+                                    <button class="status-started"
+                                        *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}}
+                                    </button>
+                                    <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}}
+                                    </button>
+                                    <button class="status-re-assign" *ngIf="data.status === 'Re-Assigned'">{{data.status}}
+                                    </button>
+                                    <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                                </td>
+                                <td *ngIf="data.band === '2300'">{{data.taskName}}</td>
+                                <td *ngIf="data.band === '2300'">{{data.assignDate}}</td>
+                                <td *ngIf="data.band === '2300'">{{data.completionDate}}</td>
+                                <td *ngIf="data.band === '2300'">
+                                    <button mat-icon-button (click)="openImageSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Photos"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '2300'">
+                                    <button mat-icon-button (click)="openPDFSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-PDF"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '2300'">
+                                    <button mat-icon-button (click)="openRFIFormSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Doc"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '2300'">{{data.taskOwner}}</td>
+                            </tr>
+                        </tbody>
+    
+                        <tbody style="color: black;">
+                            <tr>
+                                <td class="page-header"><button type="button" class="tbtn"><i
+                                            class="fa fa-plus-circle fa-minus-circle"></i>   850</button> </td>
+                            </tr>
+                            <tr *ngFor="let data of rowData" class="toggler">
+                                <td *ngIf="data.band === '850'"></td>
+                                <!-- <td><a href="#">lighthouse+0_0_0_0_0_0_0_0_0.html</a></td> -->
+                                <td *ngIf="data.band === '850'">{{data.milestone}}</td>
+                                <td *ngIf="data.band === '850'">
+                                    <button class="status-completed" *ngIf="data.status === 'Completed'">{{data.status}}
+                                    </button>
+                                    <button class="status-started"
+                                        *ngIf="data.status === 'In Progress' || data.status === 'Started'">{{data.status}}
+                                    </button>
+                                    <button class="status-rejected" *ngIf="data.status === 'Rejected'">{{data.status}}
+                                    </button>
+                                    <button class="status-re-assign" *ngIf="data.status === 'Re-Assigned'">{{data.status}}
+                                    </button>
+                                    <button class="status-new" *ngIf="data.status === 'New'">{{data.status}} </button>
+                                </td>
+                                <td *ngIf="data.band === '850'">{{data.taskName}}</td>
+                                <td *ngIf="data.band === '850'">{{data.assignDate}}</td>
+                                <td *ngIf="data.band === '850'">{{data.completionDate}}</td>
+                                <td *ngIf="data.band === '850'">
+                                    <button mat-icon-button (click)="openImageSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Photos"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.photos.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '850'">
+                                    <button mat-icon-button (click)="openPDFSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-PDF"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.documents.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '850'">
+                                    <button mat-icon-button (click)="openRFIFormSlider()">
+                                        <mat-icon style="line-height: 0;color:black !important;"><span
+                                                class="ic ic-Doc"></span></mat-icon>
+                                        <span style="margin-left: 5px">{{data.digitalForm.length}}</span>
+                                    </button>
+                                </td>
+                                <td *ngIf="data.band === '850'">{{data.taskOwner}}</td>
+                            </tr>
+                        </tbody>
+    
+    
+                    </table>
+                </div>
             </div>
         </div>
     </mat-card>
