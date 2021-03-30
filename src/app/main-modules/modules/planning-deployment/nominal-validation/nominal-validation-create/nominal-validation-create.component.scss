@@ -10,9 +10,9 @@
 			// 	width: 75%;
 			// }
             .mat-horizontal-content-container{
-				height: calc(100% - 30px);
+				height: 100%;
 				padding-left: 20px;
-				padding-top: 20px;
+				padding-top: 0;
                 .mat-horizontal-stepper-content[aria-expanded="true"]{
                     height:100%;
                     .content-holder{
@@ -133,7 +133,7 @@
 			margin-right: 10px;
 		}
 		.menu-content{
-			max-height: 180px;
+			max-height: 195px;
 			padding-top: 10px;
 			.mat-checkbox {
 				font-weight: 500;
@@ -204,7 +204,7 @@ mat-select-panel {
 }
 
 #map5, #map6  {
-    height: 285px;
+    height: 314px;
 }
 .tab-container-layersMap2 .icon-styleMap2 {
     font-size: 25px;

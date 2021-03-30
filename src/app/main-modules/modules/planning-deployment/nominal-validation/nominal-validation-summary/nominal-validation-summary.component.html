@@ -3,7 +3,7 @@
         <mat-card-title class="card-title mb-0">
         <div style="width: 422px;" fxLayout="column">
             <div class="title-summary"  fxLayout="row">
-                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="location.back()"> 
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="backTo()"> 
                     <span class="zmdi zmdi-chevron-left"></span>
                 </mat-icon>
                 <div>
@@ -25,7 +25,7 @@
     </mat-card-header>
     <mat-card-content fxLayout="row" class="card-content">
         <div fxFlex="auto">
-            <mat-tab-group dynamicHeight fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto" [selectedIndex]="selectedIndex">
                 <mat-tab label="Input Summary" fxLayout="column">
                     <div fxLayout="row">
                         <div fxFlex="51" fxLayout="row" class="summary-table overflow-auto width-0">
@@ -123,7 +123,7 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Output Summary" fxLayout="column">
-                    <div  (click)="openDistributionSummary()" style="cursor: pointer;">
+                    <div  (click)="openDistributionSummary('output')" style="cursor: pointer;">
                         <div class="summary-table">
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">Validation Summary</span>
@@ -292,7 +292,7 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="ACP Details" fxLayout="column">
-                    <div  (click)="openDistributionSummary()" style="cursor: pointer;">
+                    <div  (click)="openDistributionSummary('acp')" style="cursor: pointer;">
                         <div class="summary-table">
                             <div fxLayout="column" fxFlex="100">
                                 <span class="table-header">Validation Summary</span>

@@ -99,6 +99,10 @@ export class DataSharingService {
   private sendCalcuateTimeToHomeJcpPage =  new BehaviorSubject({});
   sendCalcuateTimeToHomeJcpPage$ = this.sendCalcuateTimeToHomeJcpPage.asObservable();  
 
+  private removeLayerInNavigation = new BehaviorSubject({});
+  removeLayerInNavigation$ = this.removeLayerInNavigation.asObservable();
+
+
   constructor() { }
 
   changeMessage(messages: Object) {
@@ -231,5 +235,9 @@ export class DataSharingService {
 
   sendCalcuateTimeToHomeJcpPageFn(time){
     this.sendCalcuateTimeToHomeJcpPage.next(time);
+  }
+
+  removeLayerFromNavigation(itemToRemove) {
+    this.removeLayerInNavigation.next(itemToRemove);
   }
 }

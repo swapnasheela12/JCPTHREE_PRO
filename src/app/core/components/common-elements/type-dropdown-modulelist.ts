@@ -78,6 +78,12 @@ export const SapId: dropdown[] = [
     { name: 'I-DL-GRGN-ENB-6084' }
 ];
 
+export const TCEIPV6DATA: dropdown[] = [
+    { name: '2004:1344:2254:4564:3434:4167:3455:4789' },
+    { name: '2004:1344:2254:4564:3434:4167:3455:4789' },
+    { name: '2004:1344:2254:4564:7487' },
+    { name: '2004:1344:2254:8734:8849' }
+];
 export interface executionStatusDropdown {
     value: string;
 }

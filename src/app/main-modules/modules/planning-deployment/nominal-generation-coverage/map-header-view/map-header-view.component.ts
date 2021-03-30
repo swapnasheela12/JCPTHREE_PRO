@@ -132,11 +132,15 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     this.cdref.detectChanges();
   }
 
-  backTo(name) {
-    if (name == 'nominal-generation') {
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation']);
-    } else if (name == 'nominal-validation') {
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
+  backTo(name, source) {
+    if(source == 'display'){
+      if (name == 'nominal-generation') {
+        this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation']);
+      } else if (name == 'nominal-validation') {
+        this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
+      }
+    } else if (source == 'create') {
+      this.location.back();
     }
   }
 }

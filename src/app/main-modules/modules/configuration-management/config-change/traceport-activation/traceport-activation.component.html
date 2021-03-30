@@ -1,0 +1,379 @@
+<div class="h-100">
+    <mat-card style="height: calc(100% - 49px);" class="traceport-activation-card">
+        <mat-card-content class="traceport-activation-content">
+            <mat-horizontal-stepper #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+                <mat-step label="Basic Details">
+                    <div class="mt-3" style="height: calc(100% - 40px); margin: 0 10px;overflow: auto;">
+                        <form [formGroup]="selectJcCircleLevelFormControl">
+                            <div fxLayout="row wrap" fxLayoutGap="40px" >
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Project Type" panelClass="selectMenuPanel" [(value)]="projectTypeSelected">
+                                            <input matInput [(ngModel)]="searchProject" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let projectType of projectTypeList | filter: searchProject" [value]="projectType.value">
+                                                {{projectType.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="68">
+                                    <mat-form-field class="p-0" fxFlex="100">
+                                        <mat-label>Description <span class="px-1 zmdi zmdi-help-outline"></span>
+                                        </mat-label>
+                                        <textarea matInput placeholder="Description" value="-" required style="line-height: 7px !important;resize: none;"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Network Element Type" panelClass="selectMenuPanel" [(value)]="networkElementTypeSelected">
+                                            <input matInput [(ngModel)]="searchElementType" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let networkElementType of networkElementTypeList | filter:searchElementType" [value]="networkElementType.value">
+                                                {{networkElementType.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Vendor" panelClass="selectMenuPanel" [(value)]="vendorSelected">
+                                            <input matInput [(ngModel)]="searchVendor" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let vendor of vendorList | filter: searchVendor" [value]="vendor.value">
+                                                {{vendor.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Version" panelClass="selectMenuPanel" [(value)]="versionSelected">
+                                            <input matInput [(ngModel)]="searchVersion" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let version of versionList | filter: searchVersion" [value]="version.value">
+                                                {{version.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Impacted" panelClass="selectMenuPanel" [(value)]="impactedSelected">
+                                            <input matInput [(ngModel)]="searchImpactedList" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let impacted of impactedList | filter: searchImpactedList" [value]="impacted.value">
+                                                {{impacted.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Urgency" panelClass="selectMenuPanel" [(value)]="urgencySelected">
+                                            <input matInput [(ngModel)]="searchUrgency" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let urgency of urgencyList | filter: searchUrgency" [value]="urgency.value">
+                                                {{urgency.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Reason for Change" panelClass="selectMenuPanel" [(value)]="reasonForChangeSelected">
+                                            <input matInput [(ngModel)]="searchReasonChange" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let reasonForChange  of reasonForChangeList | filter: searchReasonChange" [value]="reasonForChange.value">
+                                                {{reasonForChange.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <input matInput placeholder="Risk Impact Analysis" value="-" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <input matInput placeholder="Implementation Comments" value="-" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Risk Assessment" panelClass="selectMenuPanel" [(value)]="riskAssessmentSelected">
+                                            <input matInput [(ngModel)]="searchRisk" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let riskAssessment of riskAssessmentList | filter: searchRisk" [value]="riskAssessment.value">
+                                                {{riskAssessment.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering (click)="beforeOpen()" placeholder="Domain" panelClass="selectMenuPanel" [(value)]="domainSelected">
+                                            <input matInput [(ngModel)]="searchDomain" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let domain of domainList | filter: searchDomain" [value]="domain.value">
+                                                {{domain.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering (click)="beforeOpen()" placeholder="Subdomain" panelClass="selectMenuPanel" [(value)]="subdomainSelected">
+                                            <input matInput [(ngModel)]="searchSubDomain" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let subdomain of subdomainList | filter: searchSubDomain" [value]="subdomain.value">
+                                                {{subdomain.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="px-space-3 " fxFlex="20">
+                                    <mat-form-field fxFlex="100">
+                                        <mat-select disableOptionCentering (click)="beforeOpen()" placeholder="Service" panelClass="selectMenuPanel" [(value)]="serviceSelected">
+                                            <input matInput [(ngModel)]="searchService" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+                                            placeholder="Search..." style="height: 48px !important;padding-left:15px">
+                                            <mat-option *ngFor="let service of serviceList | filter: searchService" [value]="service.value">
+                                                {{service.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- <div class="px-2" fxFlex="50" fxLayoutAlign="space-around center">
+                                    <button class="next-button button" mat-raised-button color="primary">Add</button>
+                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex mx-2" style="padding: 10px 0;">
+                        <button class="next-button button footer-margin" mat-raised-button color="primary"
+                            matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Network Element and Configuration">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto;">
+                        <div fxFlex="50" fxLayout="row wrap" style="border-bottom: 1px solid rgb(226 226 226);">
+                            <mat-radio-group aria-label="" class="radio-button-group pl-2" [(ngModel)]="selectedRadio">
+                                <mat-radio-button style="margin-right: 5rem !important" *ngFor="let type of radioTypeList;trackBy:trackByRadioButtonType" 
+                                class="mr-4" [value]="type.name" [disableRipple]="true">
+                                    {{type.name}}</mat-radio-button>
+                            </mat-radio-group>
+                            <div class="px-2" *ngIf="selectedRadio == 'Bulk Upload'" >
+                                <button mat-button  class ="icon-container-button" color="primary" style="float: right;padding: 0">
+                                    <i class="ic ic-download pr-2"></i> Download Template
+                                </button>
+                            </div>
+                            <div fxLayout="row wrap" fxFlex="100" *ngIf="selectedRadio == 'Bulk Upload'" style="height: 80%;">
+                                <div fxLayout="column wrap" ffxLayoutAlign="space-between center" fxFlex="90">
+                                    <div class="px-2">
+                                        <mat-form-field fxFlex="100" class="mt-2 browse-file-form-field">
+                                            <input matInput class="input-field" placeholder="Max 500 SAP ID per WO" [(ngModel)]="fileNameSAP" [readonly]="true" required>
+                                            <button class="browse-button" (click)="onClick()" mat-icon-button color="primary" 
+                                            style="position: absolute;bottom: 0px;top: -2px; top: -10px;right: -10px;"><i
+                                                    class="ic ic-file" style="font-size: 20px;"></i></button>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="px-1">
+                                        <button class="next-button p-0" mat-button color="primary" style="float: right;">
+                                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                            </i>
+                                            <span>Upload</span>
+                                        </button>
+                                    </div>
+                                    <input type="file" #fileUploadSAP id="fileUploadSAP" name="fileUploadSAP" accept="" style="display: none;" />
+                                </div>
+                            </div>
+                            <div fxLayout="row wrap" fxFlex="100" *ngIf="selectedRadio == 'Manual Selection'" style="height: 80%;">
+                                <form [formGroup]="selectJcCircleLevelFormControl">
+                                    <div fxLayout="row wrap">
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Circle" [formControl]="r4gCircleControl" ngDefaultControl #cityControlSelect required>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Circle" [formControl]="r4gFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let r4gCircle of r4gFilter | async" [value]="r4gCircle">
+                                                        {{r4gCircle.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                                        {{city.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio Center" [formControl]="selectJcControl" ngDefaultControl #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="selectJcFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async" [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio Cluster" [formControl]="jioClusterControl" ngDefaultControl #jioClusterControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Cluster" [formControl]="jioClusterFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let jioCluster of jioClusterFilter | async" [value]="jioCluster">
+                                                        {{jioCluster.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="SAP Id" [formControl]="sapIdControl" ngDefaultControl #sapIdControlSelect required>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="SAP Id" [formControl]="sapIdFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let sapId of sapIdFilter | async" [value]="sapId">
+                                                        {{sapId.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="TCE IPv6" [formControl]="tceipv6Control" ngDefaultControl #tceIdControlSelect required>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="TCE IPv6" [formControl]="tceipv6FilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let tceId of tceipv6Filter | async" [value]="tceId">
+                                                        {{tceId.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50" fxLayoutAlign="space-around center">
+                                        </div>
+                                        <div class="px-2 px-space-2" fxFlex="50" fxLayoutAlign="flex-end center">
+                                            <button class="next-button button" mat-raised-button color="primary" (click)="addToGrid()">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div fxFlex="50" *ngIf="selectedRadio == 'Bulk Upload'"  style="border: 1px solid rgb(226 226 226);">
+                            <ag-grid-angular style="width: 100%; height: 100%"
+                            class="traceport-activation ag-theme-material ag-jcp3"
+                            [tooltipShowDelay]="tooltipShowDelay"
+                            [rowData]="rowDataTracePortActivation"
+                            [columnDefs]="columnDefTracePortActivation"
+                            [groupHeaderHeight]="47"
+                            [headerHeight]="47"
+                            [gridOptions]="traceportGridOptions" 
+                            [suppressHorizontalScroll]="true"
+                            (gridReady)="onReady($event)">
+                            </ag-grid-angular>
+                        </div>
+                        <div fxFlex="50" *ngIf="selectedRadio == 'Manual Selection'"  style="border: 1px solid rgb(226 226 226);">
+                            <ag-grid-angular style="width: 100%; height: 100%"
+                            class="traceport-activation ag-theme-material ag-jcp3"
+                            [tooltipShowDelay]="tooltipShowDelay"
+                            [rowData]="rowDataTracePortActivationManual"
+                            [columnDefs]="columnDefTracePortManualActivation"
+                            [groupHeaderHeight]="47"
+                            [headerHeight]="47"
+                            [gridOptions]="traceportManualGridOptions" 
+                            [suppressHorizontalScroll]="true"
+                            (gridReady)="onManualReady($event)">
+                            </ag-grid-angular>
+                        </div>
+                    </div>
+                    <div class="d-flex" style="margin-top: 5px;">
+                        <div class="mx-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="mx-2">
+                            <button mat-raised-button color="primary" class="buttonWidth" matStepperNext>Next</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </mat-step>
+                <mat-step label="Schedule">
+                    <div fxLayout="row wrap" fxFlex="100" style="height: calc(100% - 10px);overflow: auto;">
+                        <form class="w-100" [formGroup]="selectSchedule" fxLayout="row wrap">
+                            <div fxFlex="40" class="py-2" fxLayout="column">
+                                <mat-form-field style="margin-left: 10px;" class="report-form-field w-100">
+                                    <div class="daterange-container w-100">
+                                        <input 
+                                        matInput ngxDaterangepickerMd
+                                        placeholder="Schedule Date & Time" 
+                                        [timePicker]="true" 
+                                        [timePickerSeconds]="true" 
+                                        [timePickerIncrement]="15" 
+                                        [timePicker24Hour]="false" 
+                                        formControlName="scheduleDateTime" 
+                                        [alwaysShowCalendars]="selectSchedule.get('alwaysShowCalendars').value"
+                                        [singleDatePicker]="true" 
+                                        [showClearButton]="true" 
+                                        [showCancel]="true" 
+                                        [linkedCalendars]="false" 
+                                        [isTooltipDate]="isTooltipDate" 
+                                        [isInvalidDate]="isInvalidDate"
+                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                        (datesUpdated)="datesUpdated($event)"
+                                        autocomplete="off"
+                                        [opens]="opens"
+                                        [drops]="drops" class="daterange-container-input" />
+                                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                    </div>
+                                </mat-form-field>
+                                <div fxFlex="30" style="line-height: 4;" class="py-2">
+                                    <mat-checkbox class="example-margin" 
+                                        (ngModelChange)="immediateTypeFunc($event);" 
+                                        [(ngModel)]="immediateType" 
+                                        [ngModelOptions]="{standalone: true}">Immediate
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex" style="margin-top: 5px;">
+                        <div  class="mx-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+          <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+        </div>
+        <div class="p-2">
+          <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="p-2">
+          <button mat-raised-button color="primary" [disabled]="generateDisabled"
+            class="buttonWidth button">Generate</button>
+        </div>
+      </div>
+</div>

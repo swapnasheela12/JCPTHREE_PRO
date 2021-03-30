@@ -1,8 +1,8 @@
 <div class="h-100">
     <mat-card class="nominal-validation-create-mat-card mat-card">
         <mat-card-content class="card-content">
-            <div class="d-flex mx-2 flex-row justify-content-between">
-              <div class="px-1" style="line-height: 5.7;">
+            <div class="d-flex mx-2 flex-row justify-content-between" style="height: 55px;">
+              <div class="px-1" style="line-height: 3.7;">
                 <button mat-icon-button *ngIf="showSelected" (click)="stepFunc()">
                     <mat-icon class="iconType" style="font-size: 25px;">
                         <div class="zmdi zmdi-chevron-left"></div>
@@ -15,7 +15,7 @@
                 </button>
             </div>
                 <div class="px-3 pt-3 col-7 nominal-validation-flex-item" fxFlex>
-                    <div class="py-3 nominal-validation-title">Add Nominal Validation</div>
+                    <div class="py-3 nominal-validation-title" style="padding: 0 !important;">Add Nominal Validation</div>
                 </div>
                 <div class="px-1 pt-3 col-5 nominal-validation-flex-item">
                   <div class="pl-0" fxFlex *ngIf="!typeGenerate">
@@ -44,7 +44,7 @@
                           <ng-template ad-host></ng-template>
                       </div>
                       <div fxLayout="row wrap">
-                          <div class="p-2" fxFlex="100">
+                          <div class="p-2" style="padding: 0 0.5rem !important;" fxFlex="100">
                               <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group" [(ngModel)]="selectedBoundaries">
                                   <mat-radio-button fxFlex="50" color="primary" class="radio-button pr-1" (change)="radioButtonChanged($event);" *ngFor="let eachBoundaries of listBoundaries" [value]="eachBoundaries">
                                       {{ eachBoundaries }}
@@ -209,7 +209,7 @@
             <mat-step [stepControl]="projectSelection">
                 <ng-template matStepLabel>Project Selection</ng-template>
                 <div style="height: calc(100% - 63px);overflow: auto;">
-                    <div style="padding-right: 15px;" fxFlex="70">
+                    <div style="padding-right: 15px;" fxFlex="60">
                         <div fxLayout="row wrap">
                             <ng-template ad-host></ng-template>
                         </div>
@@ -218,7 +218,7 @@
                             <div class="border-box mb10">
                                 <div class="left-holder" fxLayout="column">
                                   <div fxFlex="100" fxLayout="row">
-                                    <div class="existing-sites-holder" fxFlex="50">
+                                    <div class="existing-sites-holder" fxFlex="60">
                                         <form [formGroup]="selectExisting4GSites" class="form-container">
                                             <div fxLayout="row" fxLayoutAlign="start center" class="menu-header">
                                                 <span>Source Project Name</span>
@@ -255,7 +255,7 @@
                                             </div>
                                           </form>
                                     </div>
-                                    <div class="polygon-name" fxFlex="50">
+                                    <div class="polygon-name" fxFlex="40">
                                         <form [formGroup]="selectPolygonName" class="form-container">
                                             <div fxLayout="row" fxLayoutAlign="start center" class="menu-header">
                                               <span>Polygon Name</span>
@@ -292,7 +292,7 @@
                           </div>
                         </div>
                     </div>
-                    <div fxFlex="30">
+                    <div fxFlex="40">
                       <div id="map5"></div>
                     </div>
                   </div>
@@ -309,7 +309,7 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Traffic Map</ng-template>
-                <div class="traffic-map" style="height: calc(100% - 63px);overflow: auto;">
+                <div class="traffic-map" style="height: calc(100% - 63px);overflow: auto;padding-top: 20px">
                     <div style="padding-right: 15px;" fxFlex="100" fxLayout="row">
                         <div fxFlex="35" fxLayout="column">
                             <div class="name-traffic">
@@ -427,7 +427,7 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>ACP Selection</ng-template>
-                <div style="height: calc(100% - 63px);" fxLayout="column">
+                <div style="height: calc(100% - 63px);padding-top: 20px" fxLayout="column">
                     <div style="padding-right: 15px;">
                         <table mat-table [dataSource]="dataSourceACP" style="border: 1px solid #00000029; border-radius: 4px">
                             <ng-container matColumnDef="srno">
@@ -456,7 +456,7 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div style="padding-right: 15px; padding-top: 15px;" fxLayout="row">
+                    <div style="padding-right: 15px; padding-top: 29px;" fxLayout="row">
                         <div fxFlex="50" fxLayout="row">
                             <div fxFlex="10">
                                 <mat-checkbox
@@ -482,8 +482,8 @@
                             </div>
                             <div fxFlex="90">
                                 <mat-form-field fxLayout="row">
-                                    <input matInput placeholder="Minimum inter-site distance"
-                                    value="0.25"
+                                    <input matInput placeholder="Minimum inter-site distance (in mtrs)"
+                                    value="250"
                                     type="text"class="example-right-align"  [disabled]="enableInterSite">
                                 </mat-form-field>
                             </div>
@@ -493,10 +493,6 @@
                   <div class="d-flex">
                     <div class="py-2">
                       <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
-                    </div>
-                    <div class="p-2">
-                      <button class="next-button button"  mat-raised-button color="primary"
-                        matStepperNext>Next</button>
                     </div>
                     <div class="col"></div>
                   </div>

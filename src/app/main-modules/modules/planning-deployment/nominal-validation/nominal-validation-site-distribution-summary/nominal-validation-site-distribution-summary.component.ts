@@ -76,7 +76,8 @@ export class NominalValidationSiteDistributionSummaryComponent implements OnInit
   public gridMyPerformanceRowData: object;
   public gridMyPerformanceGridOptions : GridOptions;
   public frameworkComponentsMyPerformanceReports;
-  showSearchInput: boolean; 
+  showSearchInput: boolean;
+  selectedIndex = 2;
   dataOverlay = {
     "overlayVS5gSolution": [
       {
@@ -287,6 +288,8 @@ export class NominalValidationSiteDistributionSummaryComponent implements OnInit
 
   private gridApi;
   public gridColumnApi;
+  tabSelect:any = 'input';
+  data = [];
   constructor(
     private router: Router,
     private viewContainerRef: ViewContainerRef,
@@ -315,6 +318,12 @@ export class NominalValidationSiteDistributionSummaryComponent implements OnInit
   }
 
   ngOnInit(): void {
+    this.data = history.state.data;
+    if (undefined != this.data) {
+      if (this.data['tab'] == 'acp') {
+        this.tabSelect = 'acp';
+      }
+    }
     this.createColumnDefs();
     this.getMyPerformanceReportsData();
   }
@@ -400,7 +409,13 @@ export class NominalValidationSiteDistributionSummaryComponent implements OnInit
   }
 
   async backToSummary() {
-    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    if (this.tabSelect != 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'output'}}});
+    } else if(this.tabSelect == 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'acp'}}});
+    } else {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    }
   }
   onFilterChanged(value) {
     this.gridMyPerformanceGridOptions.api.setQuickFilter(value);
@@ -413,7 +428,10 @@ export class NominalValidationSiteDistributionSummaryComponent implements OnInit
     this.viewContainerRef.createComponent(
       this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
     );
+  }
 
+  backTo() {
+    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
   }
 
   ngOnDestroy() {

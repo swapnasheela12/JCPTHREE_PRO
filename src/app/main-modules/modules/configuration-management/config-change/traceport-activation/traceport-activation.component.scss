@@ -1,0 +1,49 @@
+.traceport-activation-card {
+    padding: 0px !important;
+    height: calc(100% - 15px);
+    .traceport-activation-content {
+        height: calc(100% - 52px);
+        .mat-stepper-horizontal {
+            height: 100%;
+            .mat-horizontal-content-container {
+                padding: 30px 20px;
+                height: calc(100% - 26px);
+                .mat-horizontal-stepper-content[aria-expanded="true"] {
+                    height: calc(100% - 3px);
+                    .px-space-3 {
+                        padding: 0.6rem 0;
+                    }
+                    .px-space-2 {
+                        padding: 0.5rem 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mat-radio-checked {
+	.mat-radio-outer-circle {
+		border-color: #0078d7 !important;
+	}
+}
+.mat-radio-inner-circle {
+	background-color:#0078d7 !important;
+}
+
+.mat-select-panel .mat-option {
+    line-height: 1.4rem !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+.traceport-activation {
+    .ag-header {
+        background-color: #e2e2e2;
+    }
+}
+
+.no-border.ag-cell:focus{
+    border:none !important;
+    outline: none;
+  }

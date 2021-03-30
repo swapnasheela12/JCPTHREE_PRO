@@ -44,7 +44,7 @@ export class NominalValidationLayerComponent implements AfterViewInit {
 
       const MY_PROJECTS_ARRAY = [
         {
-          name: "Nominal Planning",
+          name: "Nominal Validation",
           eventName: 'nominal-validation',
           show:true,
           link: 'nominal-validatiom',

@@ -2364,15 +2364,16 @@ const MODULE_LIST_CONFIG = [
         children: MODULE_LIST_CONFIG_RQA
     },
     {
-        name: 'Traceport',
-        link: 'traceport',
+        name: 'Traceport Activation',
+        link: 'JCP/Modules/Configuration-Management/Config-Change/Traceport-Activation',
         eventName: 'sites-outdoor-esc',
         show: true,
         showSettings: true,
         checked: false,
         showHeader: false,
         headerText: '',
-        children: MODULE_LIST_CONFIG_LSMR
+        children: []
+        // children: MODULE_LIST_CONFIG_LSMR
     },
     {
         name: 'New Network Element',

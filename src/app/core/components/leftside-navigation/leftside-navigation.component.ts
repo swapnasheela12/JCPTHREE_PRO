@@ -178,6 +178,20 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       }
     }
     });
+
+    this.datashare.removeLayerInNavigation$.subscribe((itemToRemove: any) => {
+      if (Object.keys(itemToRemove).length !== 0) {
+        if (itemToRemove == 'nominal-validation') {
+          let dataChange = this.dataSource.data;
+          if (dataChange[0].name == 'My Projects') {
+            let removedItems = dataChange.splice(0,1);
+            this.dataSource.data = [];
+            this.dataSource.data = dataChange;
+
+          }
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {

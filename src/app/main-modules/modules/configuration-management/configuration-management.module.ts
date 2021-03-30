@@ -65,10 +65,12 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { TraceportActivationComponent } from './config-change/traceport-activation/traceport-activation.component';
 @NgModule({
   declarations: [
     SamsungRqaSchedulingComponent,
-    RetChangeComponent
+    RetChangeComponent,
+    TraceportActivationComponent
   ],
   imports: [
     CommonModule,
