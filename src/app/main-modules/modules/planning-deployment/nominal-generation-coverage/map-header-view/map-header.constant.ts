@@ -215,7 +215,7 @@ const SITES_SITES_LIST_COVERAGE =[
       eventName: 'sites-outdoor-esc',
       show:true,
       children: [],
-      // componentLayer: 'MacroLayerComponent'
+      componentLayer: 'MacroLayerComponent'
   },
   {
       name: "5G ODSC",
@@ -225,7 +225,7 @@ const SITES_SITES_LIST_COVERAGE =[
       show:true,
       children: [],
       classId: 'prediction-layer-border',
-      // componentLayer: 'OdscLayerComponent'
+      componentLayer: 'OdscLayerComponent'
   }
   ];
   export const CAPACITY_PLANNING = [

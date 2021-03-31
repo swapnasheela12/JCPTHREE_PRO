@@ -3,18 +3,18 @@
         <mat-card class="p-0 mb-3 map-header-card">
             <mat-card-content class="map-header-card-content">
                 <div class="map-header-div" fxLayout="row wrap" fxLayoutAlign="start center">
-                    <mat-icon class="layer-icon-button-arrow" (click)="backTo(headerData.name)">
+                    <mat-icon class="layer-icon-button-arrow" (click)="backTo(headerData.name, source)">
                         <span class="zmdi zmdi-chevron-left"></span>
                     </mat-icon>
                     <div class="layer-label pl-4 align-items-center font-weight-bold">{{headerData.title}}</div>
                     <div class="text-layer-sap">&nbsp;&nbsp;-&nbsp;&nbsp;{{headerData.headerSapid}}</div>
                     <div class="col"></div>
                     <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'create')">
-                        <button mat-icon-button class="text-dark button-mat1">
+                        <!-- <button mat-icon-button class="text-dark-1 button-mat1">
                             <i class="ic ic-layers-01" data-title="Layers"></i>
-                        </button>
-                        <button mat-icon-button class="text-dark button-mat button-mat1" (click)="openPopup()">
-                            <mat-icon>text_snippet</mat-icon>
+                        </button> -->
+                        <button mat-icon-button class="text-dark  button-mat1" (click)="openPopup()">
+                            <span class="ic ic-file-01-2"></span>
                         </button>
                     </div>
                     <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'undefined')">

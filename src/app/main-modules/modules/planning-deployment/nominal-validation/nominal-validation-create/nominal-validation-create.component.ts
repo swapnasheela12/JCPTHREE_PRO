@@ -1302,8 +1302,19 @@ export class NominalValidationCreateComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
     const { NominalValidationAdditionallayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-additionallayer/nominal-validation-additionallayer.component');
-    this.viewContainerRef.createComponent(
+    let nominalAdditional = this.viewContainerRef.createComponent(
       this.componentFactoryResolver.resolveComponentFactory(NominalValidationAdditionallayerComponent)
+    );
+    nominalAdditional.changeDetectorRef.detectChanges();
+    this.dataShare.removeLayerFromNavigation('nominal-validation');
+  }
+
+  async displayValidationLayers() {
+    this.router.navigate(['/JCP/Layers']);
+    this.viewContainerRef.clear();
+    const { NominalValidationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
+    this.viewContainerRef.createComponent(
+      this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
     );
   }
 

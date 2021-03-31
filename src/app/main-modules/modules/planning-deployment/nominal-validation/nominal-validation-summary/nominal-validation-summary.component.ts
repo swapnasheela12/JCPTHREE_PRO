@@ -357,6 +357,8 @@ export class NominalValidationSummaryComponent implements OnInit {
   dataSourcePerformanceACP = new MatTableDataSource(this.performanceSummaryACP);
 
   dataExt: any[] = [];
+  data;
+  selectedIndex = 0;
   headerText: string;
     constructor(
       private router: Router,
@@ -368,6 +370,18 @@ export class NominalValidationSummaryComponent implements OnInit {
     }
   
     ngOnInit(): void {
+      this.data = history.state.data;
+      if (undefined != this.data) {
+        if (this.data['tab'] == 'acp') {
+          this.selectedIndex = 2;
+        } else {
+          this.selectedIndex = 1;
+        }
+      }
+    }
+
+    backTo() {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
     }
   
     private processData() {
@@ -390,15 +404,15 @@ export class NominalValidationSummaryComponent implements OnInit {
     async displayValidationLayers() {
       this.router.navigate(['/JCP/Layers']);
       this.viewContainerRef.clear();
-      const { NominalValidationLayerComponent } = await import('./../../../../modules/planning-deployment/nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
-      this.viewContainerRef.createComponent(
+      const { NominalValidationLayerComponent } = await import('./../../nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
+      let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
         this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
       );
-  
+      nominalGenerationLandingPage.changeDetectorRef.detectChanges();
     }
   
-    openDistributionSummary(){
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary']);
+    openDistributionSummary(tab){
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Site-Distribution-Summary'], {state: {data: {tab:tab}}});
     }
   
     async openPerformanceSummary(row, type, tab) {

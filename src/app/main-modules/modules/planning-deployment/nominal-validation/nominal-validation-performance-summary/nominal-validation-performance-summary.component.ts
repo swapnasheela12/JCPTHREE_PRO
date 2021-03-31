@@ -251,6 +251,7 @@ export class NominalValidationPerformanceSummaryComponent implements AfterViewIn
   displayedColumnsPercentile: string[] = ['percentileTitle', 'predbmTitle', 'postdbmTitle'];
   showSearchInput: boolean;
   tab: any;
+  tabSelect:any = 'input';
 
   constructor(
     private router: Router,
@@ -797,6 +798,12 @@ export class NominalValidationPerformanceSummaryComponent implements AfterViewIn
   }
   ngAfterViewInit(): void {
     this.data = history.state.data;
+    this.data = history.state.data;
+    if (undefined != this.data) {
+      if (this.data['tab'] == 'ACP') {
+        this.tabSelect = 'acp';
+      }
+    }
     if ('undefined' != this.data['row']) {
       this.summaryOf = this.data['row'].display;
       this.type = this.data['type'];
@@ -813,13 +820,17 @@ export class NominalValidationPerformanceSummaryComponent implements AfterViewIn
     }
   }
 
-
+  backTo() {
+    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
+  }
 
   async backToSummary() {
-    if (this.type == 'validation') {
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    if (this.tabSelect != 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'output'}}});
+    } else if(this.tabSelect == 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'acp'}}});
     } else {
-      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Summary']);
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
     }
   }
 

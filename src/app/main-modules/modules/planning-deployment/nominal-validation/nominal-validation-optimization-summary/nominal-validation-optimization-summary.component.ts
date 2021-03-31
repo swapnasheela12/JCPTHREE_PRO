@@ -91,6 +91,8 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
   data: any;
   summaryMatSelect: any;
   rowSelected: any;
+  tabSelect:any = 'input';
+
   constructor(
     private router: Router,
     private datashare: DataSharingService,
@@ -108,6 +110,12 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
     if ('undefined' != this.data['optSummary']) {
       this.summaryMatSelect = this.data['optSummary'];
       this.rowSelected = this.data['row'].rfparams;
+    }
+
+    if (undefined != this.data) {
+      if (this.data['tab'] == 'acp') {
+        this.tabSelect = 'acp';
+      }
     }
     console.log(this.rowSelected)
     this.paginationPageSize = 10;
@@ -148,7 +156,13 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
   };
 
   backToSummary() {
-    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    if (this.tabSelect != 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'output'}}});
+    } else if(this.tabSelect == 'acp') {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary'], {state: {data: {tab:'acp'}}});
+    } else {
+      this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation/Summary']);
+    }
   }
 
   async displayValidationLayers() {
@@ -158,6 +172,10 @@ export class NominalValidationOptimizationSummaryComponent implements OnInit, On
     this.viewContainerRef.createComponent(
       this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
     );
+  }
+
+  backTo() {
+    this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
   }
 
   public onReady(params) {
