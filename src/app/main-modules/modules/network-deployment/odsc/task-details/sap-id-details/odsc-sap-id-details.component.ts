@@ -757,7 +757,7 @@ export class SapIdDetailsComponent implements OnDestroy {
   showReassignTask: boolean = false;
   showReassignFooterBtn: boolean = false;
   showApproveRejectTask: boolean = false;
-  rejectCandidateForm: boolean = false;
+  rejectOrApproveCandidateForm: boolean = false;
   showTaskCompletedAssign: boolean = false;
   showApproveRejectUploadDownload: boolean = false;
   showTaskCompletedUploadDownload: boolean = false;
@@ -835,7 +835,7 @@ export class SapIdDetailsComponent implements OnDestroy {
     } else if (this.taskInfo.status === "In Progress") {
       this.showReassignTask = true;
     } else if (this.taskInfo.status === "Completed") {
-      this.showApproveRejectTask = true;
+      this.rejectOrApproveCandidateForm = true;
     } else if (this.taskInfo.status === "RFA to RFC") {
       this.showTaskCompletedAssign = true;
     } else if (this.taskInfo.status === "Scenerio E") {
@@ -931,11 +931,11 @@ export class SapIdDetailsComponent implements OnDestroy {
     }
   }
 
-  assignTaskScenerioB() {
-    this.hideAction = false;
-    this.showTaskToBeAssignBtn = true;
-    this.showTaskToBeAccepted = true;
-  }
+  // assignTaskScenerioB() {
+  //   this.hideAction = false;
+  //   this.showTaskToBeAssignBtn = true;
+  //   this.showTaskToBeAccepted = true;
+  // }
 
   assignTask() {
     const message = {
@@ -1049,7 +1049,7 @@ export class SapIdDetailsComponent implements OnDestroy {
 
   rejectCandidate() {
     this.hideAction = false;
-    this.rejectCandidateForm = true;
+    this.rejectOrApproveCandidateForm = true;
   }
 
   approveCandidate() {

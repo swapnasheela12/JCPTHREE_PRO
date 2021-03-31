@@ -71,7 +71,7 @@
         </mat-card-content>
 
         <!-- Flow for Approving and rejecting sapid or candidate if form is incorrect  Scenerio C-->
-        <mat-card-content class="h-100" *ngIf="hideAction && showApproveRejectTask">
+        <!-- <mat-card-content class="h-100" *ngIf="hideAction && showApproveRejectTask">
             <div class="task-scenerios-btn">
                 <button mat-raised-button color="basic" class="mx-3"
                     (click)="assignTaskScenerioB()">Approve</button>
@@ -79,7 +79,7 @@
                     Reject
                 </button>
             </div>
-        </mat-card-content>
+        </mat-card-content> -->
 
         <!-- Flow for Assigning and Task Completed RFA to RFC -->
         <mat-card-content class="h-100" *ngIf="hideAction && showTaskCompletedAssign">
@@ -700,7 +700,7 @@
 
         </mat-card>
 
-        <div class="rfi-container" *ngIf="showTaskToBeAccepted || rejectCandidateForm">
+        <div class="rfi-container" *ngIf="showTaskToBeAccepted || rejectOrApproveCandidateForm">
             <mat-card class="cards">
                 <div class="card-header w-100" style="margin: 0;">
                     Site Details
@@ -1380,30 +1380,28 @@
 
 
     <!-- Reject Candidate Form -->
-    <div class="d-flex task-footer" *ngIf="rejectCandidateForm">
+    <div class="d-flex task-footer" *ngIf="rejectOrApproveCandidateForm">
         <div class="col"></div>
         <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
                 (click)="reject()">Reject</button>
         </div>
         <div class="p-2">
-            <button mat-raised-button color="primary" class="buttonWidth button">Cancel</button>
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
         </div>
     </div>
 
     <!-- Reject Candidate Form -->
-    <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
+    <!-- <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
         <div class="col"></div>
        
-        <div class="p-2">
-            <button mat-raised-button color="primary" class="buttonWidth button"
-                (click)="openSuccessPopup('approved')">Approve</button>
-        </div>
+        
         <div class="p-2">
             <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
                 >Cancel</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Flow for Scenerio F Task completed + Upload + Download of photos  -->
     <div class="d-flex task-footer" *ngIf="showTaskCompletedUploadDownload">

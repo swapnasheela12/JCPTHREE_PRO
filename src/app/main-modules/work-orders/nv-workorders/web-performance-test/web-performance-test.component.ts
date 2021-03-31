@@ -58,25 +58,33 @@ export class WebPerformanceTestComponent implements OnInit {
     {
       "taskStatusImg": "ic ic-Total-Task",
       "taskCount": "78203",
-      "taskAssigned": "Total Task"
+      "taskType": "All",
+      "taskAssigned": "Total Task",
+      "riskCount": "",
+      "riskStatus": ""
     },
     {
       "taskStatusImg": "ic ic-New-Task",
       "taskCount": "4356",
-      "taskAssigned": "New Task"
+      "taskType": "Not Started",
+      "taskAssigned": "Not At Risk",
+      "riskCount": "1",
+      "riskStatus": "At Risk"
     },
     {
       "taskStatusImg": "ic ic-In-Progress-Task",
       "taskCount": "24567",
-      "taskAssigned": "In-Progress"
+      "taskType": "In Progress",
+      "taskAssigned": "Not At Risk",
+      "riskCount": "3",
+      "riskStatus": "At Risk"
     }, {
       "taskStatusImg": "ic ic-Completed-Task",
       "taskCount": "36678",
-      "taskAssigned": "Completed"
-    }, {
-      "taskStatusImg": "ic ic-Tejected-Task",
-      "taskCount": "12345",
-      "taskAssigned": "Rejected"
+      "taskType": "Completed",
+      "taskAssigned": "11 June - 23 Dec",
+      "riskCount": "",
+      "riskStatus": ""
     }
   ]
 
@@ -565,6 +573,10 @@ export class WebPerformanceTestComponent implements OnInit {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
     }
+  }
+
+  showTaskData(evt) {
+
   }
 
   selectionChanged(event: SelectionChangedEvent) {

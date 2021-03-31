@@ -1,6 +1,6 @@
 import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
   templateUrl: './site-milestone.component.html',
   styleUrls: ['./site-milestone.component.scss']
 })
-export class SiteMilestoneComponent implements OnChanges, OnDestroy {
+export class SiteMilestoneComponent implements OnInit, OnChanges, OnDestroy {
   url: string = "assets/data/report/sector-misalignment/wo-sector-misalignment.json"
   // @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -175,6 +175,17 @@ export class SiteMilestoneComponent implements OnChanges, OnDestroy {
     this.getMyTaskDetails();
   }
 
+  ngOnInit() {
+  //   $(document).ready(function () {
+  //     $(".tbtn").click(function () {
+  //         $(this).parents(".custom-table").find(".toggler1").removeClass("toggler1");
+  //         $(this).parents("tbody").find(".toggler").addClass("toggler1");
+  //         $(this).parents(".custom-table").find(".fa-minus-circle").removeClass("fa-minus-circle");
+  //         $(this).parents("tbody").find(".fa-plus-circle").addClass("fa-minus-circle");
+  //     });
+  // });
+  }
+
     ngOnChanges() {
     if (this.selectedTab === "SITE MILESTONES") {
       this.showTab = true;
@@ -184,6 +195,15 @@ export class SiteMilestoneComponent implements OnChanges, OnDestroy {
       this.datashare.currentMessage.subscribe((message) => {
         this.sidenavBarStatus = message;
       });
+
+      $(document).ready(function () {
+        $(".tbtn").click(function () {
+            $(this).parents(".custom-table").find(".toggler1").removeClass("toggler1");
+            $(this).parents("tbody").find(".toggler").addClass("toggler1");
+            $(this).parents(".custom-table").find(".fa-minus-circle").removeClass("fa-minus-circle");
+            $(this).parents("tbody").find(".fa-plus-circle").addClass("fa-minus-circle");
+        });
+    });
     }
 }
 

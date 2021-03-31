@@ -74,10 +74,14 @@ $color-grayBlue: #464d69;
     }
 }
 
+
+.task-status {
+    font-size: 12px;
+}
 .task-widget {
     top: 125px;
     left: 308px;
-    width: 179px;
+    width: 250px;
     height: 97px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #E6E6E6;
@@ -151,7 +155,7 @@ $color-grayBlue: #464d69;
                     }
                 }
                 mat-tab-header {
-                    width: 70%;
+                    width: 90%;
                 }
             }
         }
