@@ -49,7 +49,7 @@ export class WebPerformanceTestComponent implements OnInit {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    dropdownRenderer: DropDownRendererComponent,
+    dropdownRenderer: dropDownThreeDotRendererComponent,
     inputRenderer: inputRendererComponent,
   };
   public searchGrid = '';
@@ -101,9 +101,9 @@ export class WebPerformanceTestComponent implements OnInit {
     this.gridOptionsSLABreach = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.createTeamDetailsColDefs();
-    this.createExceptionalTaskColDefs();
-    this.createSLABreachColumnDefs();
+    // this.createTeamDetailsColDefs();
+    // this.createExceptionalTaskColDefs();
+    // this.createSLABreachColumnDefs();
 
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -112,7 +112,7 @@ export class WebPerformanceTestComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/modules/network_deployment/gNodeB/task-details.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/nv-wpf.json')
       .subscribe(data => {
         this.rowData = data;
         // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
@@ -130,395 +130,41 @@ export class WebPerformanceTestComponent implements OnInit {
   public createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "",
-        width: 50,
-        checkboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        headerCheckboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        pinned: 'left',
-      },
-      {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140,
-        pinned: "left"
+        width: 140
       },
       {
-        headerName: "Task Owner",
-        field: "taskOwner",
-        width: 170,
-        pinned: "left"
+        headerName: "Workorder",
+        field: "workorder",
+        width: 290
       },
       {
-        headerName: "SAP ID",
-        field: "sapId",
-        width: 200,
+        headerName: "Assigned By",
+        field: "assignedBy",
+        width: 250,
       },
       {
-        headerName: "Milestone",
-        field: "milestone",
-        width: 180,
-      },
-      {
-        headerName: "Task Name",
-        field: "taskName",
+        headerName: "Assigned To",
+        field: "assignedTo",
         width: 150,
       },
       {
-        headerName: "Task Assignment Date",
-        field: "taskDate",
-        width: 180,
+        headerName: "Due Date",
+        field: "dueDate",
+        width: 180
       },
       {
-        headerName: "SLA Days",
-        field: "slaDays",
-        width: 140,
-      },
-      {
-        headerName: "Target Complete Date",
-        field: "targetCompleteDate",
-        width: 240,
-      },
-      {
-        headerName: "Actual Complete Date",
-        field: "actualCompleteDate",
-        width: 240,
-      },
-      {
-        headerName: "SLA Status",
-        field: "slaStatus",
-        width: 180,
-      },
-      {
-        headerName: "Proposed Completion Date",
-        field: "proposedCompletionDate",
-        cellRenderer: this.dateFunc,
-        width: 250
-      },
-      {
-        headerName: "Reason",
-        field: "reason",
+        headerName: "",
         cellRenderer: 'dropdownRenderer',
-        width: 180
-      },
-      {
-        headerName: "Remark",
-        field: "remark",
-        cellRenderer: 'inputRenderer',
-        width: 250
-      },
-      {
-        headerName: "Jio Center",
-        field: "jioCenter",
-        width: 180
-      },
-
-      {
-        headerName: "Maintenance Point",
-        field: "maintenancePoint",
-        width: 180,
-        pinned: "right"
-      },
-      // {
-      //   headerName: "",
-      //   width: 130,
-      //   cellRenderer: params => {
-      //     console.log(params, "params");
-      //     return `<button mat-raised-button color="primary" class="save-btn">Save</button>`
-      //   },
-
-      // }
+        width: 90,
+        pinned: 'right'
+      }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
   }
 
-  public createSLABreachColumnDefs() {
-    this.columnDefsSLABreach = [
-      {
-        headerName: "",
-        width: 50,
-        checkboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        // headerCheckboxSelection: function (params) {
-        //   return params.columnApi.getRowGroupColumns().length === 0;
-        // },
-        pinned: 'left',
-      },
-      {
-        headerName: "Task Owner",
-        field: "taskOwner",
-        width: 200,
-        pinned: "left"
-      },
-      {
-        headerName: "SAP ID",
-        field: "sapId",
-        width: 200,
-      },
-      {
-        headerName: "Milestone",
-        field: "milestone",
-        width: 140,
-      },
-      {
-        headerName: "Task Name",
-        field: "taskName",
-        width: 150,
-      },
-      {
-        headerName: "Task Assignment Date",
-        field: "taskDate",
-        width: 180,
-      },
-      {
-        headerName: "SLA Days",
-        field: "slaDays",
-        width: 120,
-      },
-      {
-        headerName: "Target Complete Date",
-        field: "targetCompleteDate",
-        width: 180,
-      },
-      {
-        headerName: "Actual Complete Date",
-        field: "actualCompleteDate",
-        width: 180,
-      },
-      {
-        headerName: "SLA Status",
-        field: "slaStatus",
-        width: 180,
-      },
-      {
-        headerName: "Proposed Completion Date",
-        field: "proposedCompletionDate",
-        cellRenderer: this.dateFunc,
-        width: 250
-      },
-      {
-        headerName: "Reason",
-        field: "reason",
-        cellRenderer: 'dropdownRenderer',
-        width: 180
-      },
-      {
-        headerName: "Remark",
-        field: "remark",
-        cellRenderer: 'inputRenderer',
-        width: 180
-      },
-      {
-        headerName: "Jio Center",
-        field: "jioCenter",
-        width: 180
-      },
-      {
-        headerName: "Maintenance Point",
-        field: "maintenancePoint",
-        width: 180,
-      },
-      {
-        headerName: "Task Status",
-        field: "taskStatus",
-        width: 180,
-        pinned: "right"
-      }
-    ];
-    this.datatable.columnDefsServices = this.columnDefsSLABreach;
-  }
-
-  public createExceptionalTaskColDefs() {
-    this.columnDefsExpTask = [
-      {
-        headerName: "",
-        width: 50,
-        checkboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        headerCheckboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        pinned: 'left',
-      },
-      {
-        headerName: "SAP ID",
-        field: "sapId",
-        width: 200,
-      },
-      {
-        headerName: "Milestone",
-        field: "milestone",
-        width: 140,
-      },
-      {
-        headerName: "Task Name",
-        field: "taskName",
-        width: 150,
-      },
-      {
-        headerName: "Task Assignment Date",
-        field: "taskDate",
-        width: 180,
-      },
-      {
-        headerName: "SLA Days",
-        field: "slaDays",
-        width: 140,
-      },
-      {
-        headerName: "Target Complete Date",
-        field: "targetCompleteDate",
-        width: 190,
-      },
-      {
-        headerName: "Actual Complete Date",
-        field: "actualCompleteDate",
-        width: 190,
-      },
-      {
-        headerName: "SLA Status",
-        field: "slaStatus",
-        width: 180,
-      },
-      {
-        headerName: "Proposed Completion Date",
-        field: "proposedCompletionDate",
-        cellRenderer: this.dateFunc,
-        width: 250
-      },
-      {
-        headerName: "Reason",
-        field: "reason",
-        cellRenderer: 'dropdownRenderer',
-        width: 180
-      },
-      {
-        headerName: "Remark",
-        field: "remark",
-        cellRenderer: 'inputRenderer',
-        width: 180
-      },
-      {
-        headerName: "Jio Center",
-        field: "jioCenter",
-        width: 180
-      },
-      {
-        headerName: "Maintenance Point",
-        field: "maintenancePoint",
-        width: 180,
-      },
-      {
-        headerName: "Task Status",
-        field: "taskStatus",
-        width: 180,
-        pinned: "right",
-      },
-      {
-        headerName: "Task Owner",
-        field: "taskOwner",
-        width: 200,
-        pinned: "right"
-      },
-    ];
-    this.datatable.columnDefsServices = this.columnDefsExpTask;
-  }
-  public createTeamDetailsColDefs() {
-    this.columnDefsTeams = [
-      {
-        headerName: "Progress",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 140,
-        pinned: "left"
-      },
-      {
-        headerName: "Task Owner",
-        field: "taskOwner",
-        width: 200,
-        pinned: "left"
-      },
-      {
-        headerName: "SAP ID",
-        field: "sapId",
-        width: 200,
-      },
-      {
-        headerName: "Milestone",
-        field: "milestone",
-        width: 140,
-      },
-      {
-        headerName: "Task Name",
-        field: "taskName",
-        width: 150,
-      },
-      {
-        headerName: "Task Assignment Date",
-        field: "taskDate",
-        width: 140,
-      },
-      {
-        headerName: "SLA Days",
-        field: "slaDays",
-        width: 120,
-      },
-      {
-        headerName: "Target Complete Date",
-        field: "targetCompleteDate",
-        width: 180,
-      },
-      {
-        headerName: "Actual Complete Date",
-        field: "actualCompleteDate",
-        width: 180,
-      },
-      {
-        headerName: "SLA Status",
-        field: "slaStatus",
-        width: 180,
-      },
-      {
-        headerName: "Proposed Completion Date",
-        field: "proposedCompletionDate",
-        width: 180
-      },
-      {
-        headerName: "Reason",
-        field: "reason",
-        width: 180
-      },
-      {
-        headerName: "Remark",
-        field: "remark",
-        cellRenderer: 'inputRenderer',
-        width: 180
-      },
-      {
-        headerName: "Jio Center",
-        field: "jioCenter",
-        width: 180
-      },
-      {
-        headerName: "Maintenance Point",
-        field: "maintenancePoint",
-        width: 180
-      },
-      {
-        headerName: "Task Status",
-        field: "maintenancePoint",
-        width: 180,
-        pinned: "right"
-      }
-    ];
-
-  }
 
   statusFunc(params) {
     var status = params.value;
@@ -601,23 +247,7 @@ export class WebPerformanceTestComponent implements OnInit {
 
 
   tabChanged(event) {
-    console.log(event);
-    if (event.index === 1) {
-      this.createTeamDetailsColDefs();
-      this.httpClient.get('assets/data/modules/network_deployment/gNodeB/team-task.json')
-        .subscribe(data => {
-          this.rowDataTeams = data;
-          // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-          // this.datatable.gridPinnedServices = this.gridPinned;
-          // this.datatable.rowDataServices = this.rowData;
-          // this.datatable.gridOptionsServices = this.gridOptions;
-          // this.datatable.defaultColDefServices = this.defaultColDef;
-          // this.datatable.columnDefsServices = this.columnDefsTeams;
-        });
-    } else {
-      this.getMyTaskDetails();
-    }
-
+    //
   }
 
   onCellClicked(event: any) {

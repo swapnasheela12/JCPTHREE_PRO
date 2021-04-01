@@ -278,6 +278,13 @@ export class ReasonTemplatesComponent implements OnDestroy {
     });
 }
 
+  uploadFiles() {
+    this.dialog.open(UploadDocumentsComponent, {
+      height: '255px',
+      width: '45vw'
+    });
+  }
+
   ngOnDestroy() {
     this.destroySubscription.unsubscribe();
   }

@@ -1,0 +1,94 @@
+<div class="task-details-wrapper">
+    <mat-card class="cia-module-card h-100" style="padding: 0px;">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col pl-0 wo-header">
+                    <div class="header" fxFlex="90">Create New Workorder</div>
+                </div>
+                <div class="col-4 sector-flex-item" fxFlex>
+                   <button mat-raised-button color="primary"
+                    routerLink="/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder">Create
+                    WO</button>
+                    </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+
+        <mat-divider></mat-divider>
+
+        <div class="d-flex mx-2 flex-row justify-content-between">
+            <div fxFlex="50">
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-6">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">Template Type*</mat-label>
+                        <mat-select disableOptionCentering [(value)]="templateType[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
+                                [value]="tcr">
+                                {{tcr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                <div class="sub-content-flex-item p-2 col-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Workorder Id*</mat-label>
+                        <input matInput placeholder="" value="">
+                      </mat-form-field>
+                </div>
+                <div class="sub-content-flex-item p-2 col-6">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">Template Type*</mat-label>
+                        <mat-select disableOptionCentering [(value)]="templateType[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
+                                [value]="tcr">
+                                {{tcr}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            </div>
+            <div fxFlex="50">
+                <div class="sub-content d-flex mx-2 flex-row flex-wrap">
+                    <div class="sub-content-flex-item p-2 col-6">
+                        </div>
+                </div>
+                <div class="wo-sector-card-one p-0 col-6" style="display: inline-block; margin: 18px">
+                    <form [formGroup]="thirdFormGroup">
+                        <mat-form-field class="custom-field-container" fxFlex="90">
+                            <div class="daterange-container" style="top: 205px;
+                        left: 74px;">
+                                <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true"
+                                    [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false"
+                                    formControlName="selectedDateTime" [showCustomRangeLabel]="true"
+                                    [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                    [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                                    [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                    [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                    [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                                    [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                                    (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                    autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
+                            </div>
+                        </mat-form-field>
+                    </form>
+    
+                    <!-- <label for="exampleInputEmail1">The range date</label>
+                        <input type="text" name="daterange" ngxDaterangepickerMd [(ngModel)]="selected"
+                            class="form-control" /> -->
+                </div>
+            </div>
+          
+        </div>
+       
+       
+    </mat-card>
+    
+</div>

@@ -63,10 +63,11 @@ import { ThreeDotRETRenderer } from 'src/app/main-modules/work-orders/cm-workord
 
 import { WebPerformanceTestComponent } from './web-performance-test/web-performance-test.component';
 import { NvWorkordersRoutingModule } from './nv-workorders-routing.module';
+import { CreateNewWorkorderComponent } from './web-performance-test/create-new-workorder/create-new-workorder.component';
 
 
 @NgModule({
-  declarations: [WebPerformanceTestComponent],
+  declarations: [WebPerformanceTestComponent, CreateNewWorkorderComponent],
   imports: [
     CommonModule,
     NvWorkordersRoutingModule,

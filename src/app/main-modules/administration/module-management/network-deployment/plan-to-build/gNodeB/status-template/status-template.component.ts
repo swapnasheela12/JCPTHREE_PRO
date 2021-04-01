@@ -13,6 +13,7 @@ import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/
   import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { ThreeDotP2BRenderer } from '../../renderer/threedot-p2b-renderer.component';
 import { CreateReasonComponent } from '../reason-templates/create-reason/create-reason.component';
+import { UploadDocumentsComponent } from '../reason-templates/upload-documents/upload-documents.component';
 import {  dropdownMilestoneRendererComponent } from './dropdown-milestone-renderer.component';
 import {  dropdownTaskRendererComponent } from './dropdown-task-renderer.component';
 import { inputP2BRendererComponent } from './input-p2b-renderer.component';
@@ -293,6 +294,13 @@ import { inputP2BRendererComponent } from './input-p2b-renderer.component';
         data: message
       });
       //this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
+    }
+
+    uploadFiles() {
+      this.dialog.open(UploadDocumentsComponent, {
+        height: '255px',
+        width: '45vw'
+      });
     }
   
     ngOnDestroy() {

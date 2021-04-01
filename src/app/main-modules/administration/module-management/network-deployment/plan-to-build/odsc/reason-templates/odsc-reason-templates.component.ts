@@ -12,6 +12,7 @@ import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-
 import { StatusRendererComponent } from 'src/app/main-modules/modules/performance-management/kpi-editor/renderer/status-renderer.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { CreateReasonComponent } from '../../gNodeB/reason-templates/create-reason/create-reason.component';
+import { UploadDocumentsComponent } from '../../gNodeB/reason-templates/upload-documents/upload-documents.component';
 import { dropdownMilestoneRendererComponent } from '../../gNodeB/status-template/dropdown-milestone-renderer.component';
 import { dropdownTaskRendererComponent } from '../../gNodeB/status-template/dropdown-task-renderer.component';
 import { inputP2BRendererComponent } from '../../gNodeB/status-template/input-p2b-renderer.component';
@@ -249,6 +250,13 @@ export class OdscReasonTemplatesComponent implements OnDestroy {
   }
 
   editRow(evt) {}
+
+  uploadFiles() {
+    this.dialog.open(UploadDocumentsComponent, {
+      height: '255px',
+      width: '45vw'
+    });
+  }
 
   autoAssign() {
     const message = {

@@ -29,8 +29,8 @@
                 </mat-icon>
             </button>
             <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-                <button mat-menu-item>
-                    <span>Upload</span>
+                <button mat-menu-item (click)="uploadFiles()">
+                    <span >Upload</span>
                 </button>
                 <button mat-menu-item>
                     <span>Download</span>
@@ -79,7 +79,3 @@
         </div>
     </mat-card>
 </div>
-
-<!-- <ng-template #myTask>
-    
-</ng-template> -->

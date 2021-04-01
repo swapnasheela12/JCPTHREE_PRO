@@ -29,7 +29,7 @@
                 </mat-icon>
             </button>
             <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-                <button mat-menu-item>
+                <button (click)="uploadFiles()" mat-menu-item>
                     <span>Upload</span>
                 </button>
                 <button mat-menu-item>
