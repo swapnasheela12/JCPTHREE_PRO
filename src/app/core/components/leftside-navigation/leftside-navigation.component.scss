@@ -172,17 +172,34 @@ $w240: 240px;
       bottom: 0;
     }
   }
+  
   .node-arrow-empty {
     position: relative;
-    min-width: 36px;
+    min-width: 32px;
     min-height: 40px;
     &:before {
       content: "";
       position: absolute;
       top: 0;
-      left: 20px;
+      left: 16px;
       bottom: 0;
       border-left: 1px dashed $borderColor;
+    }
+  }
+  .node-arrow-1 {
+    position: relative;
+    min-width: 20px;
+    min-height: 40px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 4px;
+      border-left: 1px dashed $borderColor;
+      bottom: 0;
+    }
+    &:hover {
+      left: -11px;
     }
   }
 }
@@ -253,7 +270,7 @@ $w240: 240px;
 }
 
 .mat-checkbox-inner-container {
-  margin: 12px !important;
+  margin: 12px 6px 12px 3px !important;
 }
 .mat-checkbox-label {
   margin: 7px 0px auto 0;

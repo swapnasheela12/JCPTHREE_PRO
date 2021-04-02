@@ -12,9 +12,9 @@ export class isEllipsisActiveDirective implements AfterViewInit {
       const element = this.elementRef.nativeElement;
       const length = this.elementRef.nativeElement.id.length;
       if (this.name == 'leftside-navigation') {
-        if (length > 12) {
+        if (length > 16) {
           element.id = 'showTitle';
-          element.style.width = length*5+'px';
+          element.style.width = 115+'px';
           element.style.textOverflow = 'ellipsis';
         }
       }
