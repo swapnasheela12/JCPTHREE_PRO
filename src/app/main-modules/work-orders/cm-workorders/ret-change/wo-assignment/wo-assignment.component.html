@@ -1,6 +1,6 @@
 <div class="h-100">
     <mat-card class="cia-module-card card-content h-100" style="padding-top: 8px !important;">
-        <div class="rqa-scheduling-workorder-toolbar" style="    margin: 0px 11px -8px;">
+        <!-- <div class="rqa-scheduling-workorder-toolbar" style="    margin: 0px 11px -8px;">
             <div class="select-duration-border-box" fxLayoutAlign="space-between center" fxLayout="row wrap" fxFlex="100">
                 <div fxFlex="5" style="    margin-bottom: 18px;">
                     <mat-icon (click)="backPageRout()" class="icon-button mx-2" style="color: #7E7E7E;padding: 14px 15px;" aria-label="back page">
@@ -49,7 +49,7 @@
 
             </div>
         </div>
-        <mat-divider></mat-divider>
+        <mat-divider></mat-divider> -->
         <div class="ret-change-tab-container prop-wifi-tabs p-0">
             <div class="tabs h-100">
                 <mat-tab-group class="tab-group h-100" (selectedTabChange)="tabChanged($event);">
@@ -115,7 +115,57 @@
             </div>
             <mat-divider></mat-divider> -->
             <mat-card-content class="cia-card-content">
-                <div class="jcp-table-container" style="height: 100%;">
+                <div class="rqa-scheduling-workorder-toolbar">
+                    <div class="select-duration-border-box" fxLayoutAlign="space-between center" fxLayout="row wrap" fxFlex="100">
+                        <!-- <div fxFlex="5" style="    margin-bottom: 18px;">
+                            <mat-icon (click)="backPageRout()" class="icon-button mx-2" style="color: #7E7E7E;padding: 14px 15px;" aria-label="back page">
+                                <span class="zmdi zmdi-arrow-left"></span>
+                            </mat-icon>
+                        </div> -->
+                        <div fxFlex="25" class="p-2">
+                            <form [formGroup]="selectDurationFrequency" fxLayout="row wrap">
+                                <mat-form-field class="custom-field-container" fxFlex="80">
+                                    <div class="daterange-container w-100">
+                                        <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false" formControlName="selectedDateTime" [showCustomRangeLabel]="true" [alwaysShowCalendars]="selectDurationFrequency.get('alwaysShowCalendars').value"
+                                            [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false" [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                            [keepCalendarOpeningWithRange]="selectDurationFrequency.get('keepCalendarOpeningWithRange').value" [showRangeLabelOnInput]="selectDurationFrequency.get('showRangeLabelOnInput').value" (rangeClicked)="rangeClicked($event)"
+                                            (datesUpdated)="datesUpdated($event)" autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                    </div>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                        <div fxFlex="25" class="p-2 my-report-flex-item">
+                            <mat-form-field class="form-field-container w-100">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Execution Status" [formControl]="statusControl" ngDefaultControl #jioCenterControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Execution Status" [formControl]="statusFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let status of statusFilter | async" [value]="status">
+                                        {{status.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex></div>
+                        <div fxFlex="25" class="p-2 my-report-flex-item" style="margin-top: -8px;">
+                            <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;" *ngIf="!showInputField">
+                                <span class="ic ic-search-01"></span>
+                            </mat-icon>
+                            <mat-form-field class="w-100" *ngIf="showInputField">
+                                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                                    <span class="zmdi zmdi-close"></span>
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="jcp-table-container" style="height: calc(100% - 65px);margin-top: 1px;">
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>
                 </div>
             </mat-card-content>
@@ -169,7 +219,7 @@
             </div>
             <mat-divider></mat-divider> -->
             <mat-card-content class="cia-card-content">
-                <div class="jcp-table-container" style="height: 100%;">
+                <div class="jcp-table-container" style="height: calc(100% - 65px);margin-top: 1px;">
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>
                 </div>
             </mat-card-content>
@@ -223,11 +273,18 @@
             </div>
             <mat-divider></mat-divider> -->
             <mat-card-content class="cia-card-content">
-                <div class="jcp-table-container" style="height: 100%;">
+                <div class="jcp-table-container" style="height: calc(100% - 65px);margin-top: 1px;">
                     <app-table-ag-grid [events]="eventsSubject.asObservable()"></app-table-ag-grid>
                 </div>
             </mat-card-content>
         </ng-template>
+
+        <div style="position: absolute;bottom: 1px;z-index: 999;background-color: #fff;" class="d-flex flex-row report-wizard-action-container">
+            <div (click)="backPageRout()" class="p-2 my-flex-item mr-auto">
+                <button mat-stroked-button color="primary" class="buttonWidth">Back</button>
+            </div>
+
+        </div>
 
     </mat-card>
 
