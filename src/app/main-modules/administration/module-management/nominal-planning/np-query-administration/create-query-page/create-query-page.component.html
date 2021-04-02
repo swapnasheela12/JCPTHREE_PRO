@@ -17,9 +17,9 @@
             <div class="left-content-editable" #contentView id="contenteditable"
                 placeholder="e.g. Unique_Customers_7K_to_10k > 10 AND" contenteditable="true"></div>
             <span id="create-query-custom-tooltip" aria-hidden="true">
-                <div fxLayout="row" fxLayoutAlign="start center">
-                    <div class="mx-1" *ngFor="let mo of molist">
-                        <button mat-stroked-button class="tooltip-button" (click)="pasteHtmlAtCaret(mo)">{{mo}}</button>
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <div class="my-1" *ngFor="let mo of molist">
+                        <button mat-stroked-button class="tooltip-button" fxFlex="100" (click)="pasteHtmlAtCaret(mo)">{{mo}}</button>
                     </div>
                 </div>
             </span>

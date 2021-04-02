@@ -3052,18 +3052,6 @@ const ANALYTICS_LIST = [
         showHeader: false,
         headerText: '',
         children: ANALYTICS_NETWORK_LIST
-    },
-    {
-        name: "Others",
-        icon: "fas fa-user fa-3",
-        link: "Others",
-        eventName: 'sites-outdoor-esc',
-        show: true,
-        showSettings: true,
-        checked: false,
-        showHeader: false,
-        headerText: '',
-        children: []
     }
 ];
 
