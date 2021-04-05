@@ -421,7 +421,7 @@
                                 noEntriesFoundLabel="no matching found" ngDefaultControl>
                               </ngx-mat-select-search>
                             </mat-option>
-                            <mat-option *ngFor="let hierarchical of hierarchicalFilter | async" [value]="hierarchical">
+                            <mat-option #allSelected (click)="tosslePerOne(allSelected.viewValue, domain)" *ngFor="let hierarchical of hierarchicalFilter | async" [value]="hierarchical">
                               {{hierarchical.name}}
                             </mat-option>
                           </mat-select>

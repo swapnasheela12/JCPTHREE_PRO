@@ -20,6 +20,7 @@ import * as _ from "lodash";
 import { CeilingPopupComponent } from './ceiling-popup/ceiling-popup.component';
 import { FloorPopupComponent } from './floor-popup/floor-popup.component';
 import * as moment from 'moment';
+import { MatOption } from '@angular/material/core';
 
 const PATHS = [
   { goBack: "JCP/Modules/Performance-Management/KPI-Editor" }
@@ -116,7 +117,8 @@ export class CreateKpiComponent implements OnInit {
     Formula: new FormControl(null, Validators.required),
     percentageOfNodes: new FormControl(),
     countNodes: new FormControl()
-  })
+  });
+  @ViewChild('allSelected') private allSelected: MatOption;
 
   selectedNodesDetails = [];
   formGroup: FormGroup = new FormGroup({});
@@ -161,6 +163,24 @@ export class CreateKpiComponent implements OnInit {
     } else {
       this.disabledHierachy = false;
     }
+
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
+    if (this.domain !== 'RAN') {
+      // this.disabledHierachy = true;
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
+      this.nodeAggrFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.nodeAggrData,
+          this.nodeAggrFilterControl,
+          this.nodeAggrFilter
+        );
+      });
+    }
+   
     //this.createKPItriggered();
     this.nodeAggrControl.setValue(this.nodeAggrData[1]);
     this.nodeAggrFilter.next(this.nodeAggrData.slice());
@@ -779,10 +799,39 @@ export class CreateKpiComponent implements OnInit {
   }
 
   repostModeValue(domain) {
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
     if (domain.name !== 'RAN') {
-      this.disabledHierachy = true;
+      // this.disabledHierachy = true;
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
     } else {
-      this.disabledHierachy = false;
+      // this.disabledHierachy = false;
+    }
+    this.nodeAggrFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.nodeAggrData,
+          this.nodeAggrFilterControl,
+          this.nodeAggrFilter
+        );
+      });
+
+  }
+
+  tosslePerOne(selected, domain){
+    console.log(this.allSelected.selected)
+    let allSelected = [true, true, true];
+    for(let i = 0;i < this.hierarchicalData.length; i++) {
+        allSelected[i] = (this.allSelected.selected);
+    }
+
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
+    if(!allSelected.includes(true) && this.domain != 'RAN'){
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
     }
   }
 
