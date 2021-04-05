@@ -1,3 +1,4 @@
+import { SavePolygonPopupComponent } from 'src/app/core/components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
 import { AdDirective } from './../../_directive/dynamicComponent/ad.directive';
@@ -407,8 +408,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               position: 'bottomright',
               lengthUnit: {
                 display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
-                decimal: 2,                 // Distance result will be fixed to this value. 
-                factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+                decimal: 2,                 // Distance result will be fixed to this value.
+                factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)
                 label: 'Distance:'
               }
             };
@@ -425,8 +426,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             //   position: 'bottomright',
             //   lengthUnit: {
             //     display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
-            //     decimal: 2,                 // Distance result will be fixed to this value. 
-            //     factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+            //     decimal: 2,                 // Distance result will be fixed to this value.
+            //     factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)
             //     label: 'Distance:'
             //   }
             // };
@@ -437,6 +438,35 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         },
         {
           text: 'Import KML',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'View KPIs',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Save Polygon',
+          callback: (e) => {
+            const dialogRef = this.dialog.open(SavePolygonPopupComponent, {
+              width: "500px",
+              height:'190px',
+              panelClass: "material-dialog-container",
+            });
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Clear Polygon',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Clear All Polygons',
           callback: (e) => {
             $(".leaflet-contextmenu").hide();
           }
@@ -464,10 +494,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       editPolygon: true,  // adds button to toggle global edit mode
       deleteLayer: true,   // adds a button to delete layers
       // removalMode: false,
-      // drawControls: true, 
-      // editControls: true, 
-      // optionsControls: true, 
-      // customControls: true, 
+      // drawControls: true,
+      // editControls: true,
+      // optionsControls: true,
+      // customControls: true,
       // oneBlock: false ,
       cutPolygon: true,
       drawRectangle: false,
@@ -877,7 +907,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.datashare.removeLayerFromNavigation('nominal-validation');
       }
       // const componentRef = this.componentRef = this;
-    
+
       if (dataPoly != {}) {
 
         let options = {
@@ -917,63 +947,60 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        console.log(this.dataPolyList)
-        if (this.dataPolyList){
-          if (this.dataPolyList.transferDataPoly) {
-            this.dataPolyList = dataPoly;
-            for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
-              const ele = this.dataPolyList.transferDataPoly[index];
-              console.log(ele, "ele");
-              // this.map.pm.toggleEdit(options);
-              // enable drawing mode for shape - e.g. Poly, Line, etc
-              // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
-              // this.map.pm.enableDraw('Rectangle', options);
-              // this.map.pm.enableDraw('Line', options);
-              // this.map.pm.enableDraw('Marker', options);
-              // this.map.pm.enableDraw('Circle', options);
+        if ('undefined' !=  this.dataPolyList) {
+          this.dataPolyList = dataPoly;
+          for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
+            const ele = this.dataPolyList.transferDataPoly[index];
+            console.log(ele, "ele");
+            // this.map.pm.toggleEdit(options);
+            // enable drawing mode for shape - e.g. Poly, Line, etc
+            // this.map.pm.enableDraw('ele.polydata.properties.shape', options);
+            // this.map.pm.enableDraw('Rectangle', options);
+            // this.map.pm.enableDraw('Line', options);
+            // this.map.pm.enableDraw('Marker', options);
+            // this.map.pm.enableDraw('Circle', options);
 
-              if (ele.polydata.properties.shape == 'Circle') {
-                this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
-                  color: 'red',
-                  fillColor: '#f03',
-                  fillOpacity: 0.5
-                }).addTo(this.map);
-                this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
-              } else if (ele.polydata.properties.shape == 'Polygon') {
-                this.poly = L.polygon([
-                  [19.060009, 72.876063],
-                  [19.013112, 72.907984],
-                  [19.065525, 72.916565],
-                  [19.060009, 72.876063]
-                ]).addTo(this.map);
-                this.map.setZoom(14);
-              } else if (ele.polydata.properties.shape == 'Rectangle') {
-                this.polyRectangle = L.rectangle([
-                  [19.045527, 72.902422],
-                  [19.045527, 72.905597],
-                  [19.049482, 72.905597],
-                  [19.049482, 72.902422],
-                  [19.045527, 72.902422]
-                ], { color: "#ff7800", weight: 1 }).addTo(this.map);
-                this.map.setZoom(14);
+            if (ele.polydata.properties.shape == 'Circle') {
+              this.circle = L.circle([ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0]], ele.polydata.properties.radius, {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+              }).addTo(this.map);
+              this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
+            } else if (ele.polydata.properties.shape == 'Polygon') {
+              this.poly = L.polygon([
+                [19.060009, 72.876063],
+                [19.013112, 72.907984],
+                [19.065525, 72.916565],
+                [19.060009, 72.876063]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
+            } else if (ele.polydata.properties.shape == 'Rectangle') {
+              this.polyRectangle = L.rectangle([
+                [19.045527, 72.902422],
+                [19.045527, 72.905597],
+                [19.049482, 72.905597],
+                [19.049482, 72.902422],
+                [19.045527, 72.902422]
+              ], { color: "#ff7800", weight: 1 }).addTo(this.map);
+              this.map.setZoom(14);
 
-              } else {
-                this.polyline = L.polyline([
-                  [19.045568, 72.894765],
-                  [19.046055, 72.898672],
-                  [19.045933, 72.901742]
-                ]).addTo(this.map);
-                this.map.setZoom(14);
-              }
-
-
-
-
-
-
-
-
+            } else {
+              this.polyline = L.polyline([
+                [19.045568, 72.894765],
+                [19.046055, 72.898672],
+                [19.045933, 72.901742]
+              ]).addTo(this.map);
+              this.map.setZoom(14);
             }
+
+
+
+
+
+
+
+
           }
         }
 
