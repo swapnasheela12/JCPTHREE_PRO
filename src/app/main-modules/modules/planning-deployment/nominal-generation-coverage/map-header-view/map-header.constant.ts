@@ -193,7 +193,7 @@ const SITES_SITES_LIST_COVERAGE =[
         eventName: 'sites-outdoor-esc',
         show:true,
         children: [],
-        // componentLayer: 'CoveredAreaLayerComponent'
+        componentLayer: 'CoveredAreaLayerComponent'
     },
     {
         name: "5G Covered Area",
@@ -203,7 +203,7 @@ const SITES_SITES_LIST_COVERAGE =[
         show:true,
         children: [],
         classId: 'prediction-layer-border',
-        // componentLayer: 'CoveredAreaLayerComponent'
+        componentLayer: 'CoveredAreaLayerComponent'
     }
   ]
 

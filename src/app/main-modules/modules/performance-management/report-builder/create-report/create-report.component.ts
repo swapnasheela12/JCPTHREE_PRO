@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { dropdown, Geography, City, JioCenter, JioCluster, NodeAggregation, Band } from './create-report-dropdown';
+import { dropdown, Geography, City, JioCenter, JioCluster, NodeAggregation, Band, vendorList } from './create-report-dropdown';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -85,6 +85,14 @@ export class CreateReportComponent implements OnInit {
   public bandFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
   // Band Dropdown 
 
+  // Vendor Dropdown
+  @ViewChild('vendorControlSelect') vendorControlSelect: MatSelect;
+  protected vendorData = vendorList;
+  public vendorControl: FormControl = new FormControl();
+  public vendorFilterControl: FormControl = new FormControl();
+  public vendorFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+  // Vendor Dropdown 
+
   reportType = 'KPI Report';
   mode = 'On Demand';
   domain = "RAN";
@@ -164,8 +172,7 @@ export class CreateReportComponent implements OnInit {
     { 'name': 'Per Month' },
     { 'name': 'Busiest Day' },
     { 'name': 'BBH' },
-    { 'name': 'NBH' },
-    { 'name': 'Per 15 Mins' }
+    { 'name': 'NBH' }
   ];
   particularHourList: any = [
     { 'hour': '00:00' },
@@ -198,6 +205,7 @@ export class CreateReportComponent implements OnInit {
     { 'name': 'Weekly' },
     { 'name': 'Monthly' }
   ];
+
   selectKpiCtrl: FormGroup;
   selectNodeAndAggregationCtrl: FormGroup;
   selectDurationFrequency: FormGroup;
@@ -275,6 +283,13 @@ export class CreateReportComponent implements OnInit {
     this.fifteenMinsKpiGridOptions.api.setQuickFilter(value);
   };
   ngOnInit() {
+
+    if (this.frequencyList.some(frequency => frequency.name === 'Per 15 Mins' )){
+      this.frequencyList.pop();
+    }
+    if(this.mode == 'On Demand' || (this.domain != 'RAN' && this.mode == 'Scheduled')) {
+      this.frequencyList.push({ 'name': 'Per 15 Mins' })
+    }
     //this.createKPItriggered();
     // Geography Dropdown 
     this.geographyControl.setValue([this.geographyData[1]]);
@@ -359,6 +374,20 @@ export class CreateReportComponent implements OnInit {
         );
       });
     // Band Dropdown 
+
+     // Vendor Dropdown 
+     this.vendorControl.setValue([this.vendorData[1]]);
+     this.vendorFilter.next(this.vendorData.slice());
+     this.vendorFilterControl.valueChanges
+       .pipe(takeUntil(this._onDestroy))
+       .subscribe(() => {
+         this.filterData(
+           this.vendorData,
+           this.vendorFilterControl,
+           this.vendorFilter
+         );
+       });
+     // Vendor Dropdown 
 
     this.overlayLoadingTemplate = `
       <span class="ag-overlay-loading-center no-data">
@@ -709,6 +738,17 @@ export class CreateReportComponent implements OnInit {
       this.generateDisabled = true;
     }
   }
+
+  repostModeValue(mode, domain) {
+    if (this.frequencyList.some(frequency => frequency.name === 'Per 15 Mins' ) || (mode == 'Scheduled' &&  domain == 'RAN')){
+      this.frequencyList.pop();
+    }
+    if(mode == 'On Demand' || (domain != 'RAN' && mode == 'Scheduled')) {
+      this.frequencyList.push({ 'name': 'Per 15 Mins' })
+    }
+
+  }
+
   reportTypeSelectValue(value, params) {
     if (value == "Exception Report") {
       this.gridColumnApi = params.columnApi;

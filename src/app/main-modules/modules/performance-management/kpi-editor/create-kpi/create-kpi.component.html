@@ -11,7 +11,7 @@
                   <input matInput placeholder="Key Name" formControlName="keyName" value="KPI_1234" required>
                 </mat-form-field>
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering
                     disableOptionCentering ngDefaultControl #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -39,7 +39,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -67,7 +67,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -95,7 +95,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -123,7 +123,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -151,7 +151,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -179,7 +179,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -207,7 +207,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -235,7 +235,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -263,7 +263,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -291,7 +291,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-field-container">
-                  <mat-select placeholder="Domain" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
                     #domainCtrlSelect>
                     <mat-option>
                       <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
@@ -317,6 +317,24 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
+              </div>
+              <div fxLayout="row wrap" class="mt20 mx15">
+                <div fxFlex="50">
+                    <mat-checkbox
+                      color="primary"
+                      [checked]="true"
+                      style="margin-bottom:0">
+                      Computation Status
+                    </mat-checkbox>  
+
+                </div>
+                <div fxFlex="50">
+                    <mat-checkbox
+                      color="primary"
+                      style="margin-bottom:0">
+                      15 Mins. Computation
+                    </mat-checkbox>  
+                </div>
               </div>
             </div>
           </form>
@@ -373,18 +391,48 @@
                 </mat-tab-group>
               </div>
             </div>
-            <div class="right-holder">
+            <div class="right-holder" fxFlex="70">
               <div class="border-bottom height-49">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="height-50">
-                  <div class="col"></div>
-                  <div class="" fxLayoutAlign="center center">
-                    <form fxLayout="row" class="ml15" [formGroup]="createKPIForm">
-                      <div class="mt15">
+                  <!-- <div class="col"></div> -->
+                  <div fxLayout="row" fxFlex="100" class="" fxLayoutAlign="center center">
+                    <form fxLayout="row" fxFlex="65"  class="ml15" [formGroup]="createKPIForm">
+                      <div class="mt15" fxFlex="25">
                         <mat-form-field class="pr15" fxFlex="90">
-                          <mat-select disableOptionCentering placeholder="Node Aggr" [formControl]="nodeAggrControl"
+                          <mat-select disableOptionCentering placeholder="Sub-Cat Aggr" [formControl]="subcatAggrControl"
+                            ngDefaultControl #subcatAggrControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Sub-Cat Aggr" [formControl]="subcatAggrFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let subcatAggr of subcatAggrFilter | async" [value]="subcatAggr">
+                              {{subcatAggr.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Hierarchical" [disabled]="disabledHierachy" [formControl]="hierarchicalControl" [multiple]="true"
+                            ngDefaultControl #hierarchicalControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Hierarchical" [formControl]="hierarchicalFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let hierarchical of hierarchicalFilter | async" [value]="hierarchical">
+                              {{hierarchical.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Hierarchical Aggr" [formControl]="nodeAggrControl"
                             ngDefaultControl #nodeAggrControlSelect>
                             <mat-option>
-                              <ngx-mat-select-search placeholderLabel="Node Aggr" [formControl]="nodeAggrFilterControl"
+                              <ngx-mat-select-search placeholderLabel="Hierarchical Aggr" [formControl]="nodeAggrFilterControl"
                                 noEntriesFoundLabel="no matching found" ngDefaultControl>
                               </ngx-mat-select-search>
                             </mat-option>
@@ -394,7 +442,7 @@
                           </mat-select>
                         </mat-form-field>
                       </div>
-                      <div class="mt15">
+                      <div class="mt15" fxFlex="25">
                         <mat-form-field class="pr15" fxFlex="90">
                           <mat-select disableOptionCentering placeholder="Time Aggr" [formControl]="nodeAggrControl"
                             ngDefaultControl #nodeAggrControlSelect>
@@ -410,20 +458,22 @@
                         </mat-form-field>
                       </div>
                     </form>
-                    <button mat-raised-button color="primary"
+                    <div fxLayout="row" fxFlex="30">
+                      <button mat-raised-button color="primary"
                       class="buttonWidth button apply-button mr10">Apply</button>
-                    <mat-divider vertical class="mx10" style="height:30px"></mat-divider>
-                    <button mat-icon-button color="" class="global-button mr10" (click)="openComputationSetting()">
-                      <mat-icon class="fa fa-sliders global-icon"></mat-icon>
-                    </button>
-                    <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mr10" style="height:30px">
-                    </mat-divider>
-                    <button mat-mini-fab class="global-button common-delete-button mr10" color=""
-                      *ngIf="showGlobalDeleteOperation"
-                      (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
-                      <mat-icon class="ic ic-custom-delete global-icon">
-                      </mat-icon>
-                    </button>
+                      <mat-divider vertical class="mx10" style="height:30px"></mat-divider>
+                      <button mat-icon-button color="" class="global-button mr10" (click)="openComputationSetting()">
+                        <mat-icon class="fa fa-sliders global-icon"></mat-icon>
+                      </button>
+                      <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mr10" style="height:30px">
+                      </mat-divider>
+                      <button mat-mini-fab class="global-button common-delete-button mr10" color=""
+                        *ngIf="showGlobalDeleteOperation"
+                        (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
+                        <mat-icon class="ic ic-custom-delete global-icon">
+                        </mat-icon>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

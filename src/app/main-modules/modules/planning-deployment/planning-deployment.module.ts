@@ -84,6 +84,7 @@ import { NominalValidationSummaryComponent } from './nominal-validation/nominal-
 import { NominalValidationPerformanceSummaryComponent } from './nominal-validation/nominal-validation-performance-summary/nominal-validation-performance-summary.component';
 import { NominalValidationSiteDistributionSummaryComponent } from './nominal-validation/nominal-validation-site-distribution-summary/nominal-validation-site-distribution-summary.component';
 import { NominalValidationOptimizationSummaryComponent } from './nominal-validation/nominal-validation-optimization-summary/nominal-validation-optimization-summary.component';
+import { HoverComponentComponent } from './nominal-capacity/hover-component/hover-component.component';
 // import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
 // import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 // import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
@@ -135,6 +136,7 @@ import { NominalValidationOptimizationSummaryComponent } from './nominal-validat
     NominalValidationPerformanceSummaryComponent,
     NominalValidationSiteDistributionSummaryComponent,
     NominalValidationOptimizationSummaryComponent,
+    HoverComponentComponent,
     // QueryAdministrationPopupComponent,
     // NcQueryAdministrationComponent,
     // CreateQueryPageComponent

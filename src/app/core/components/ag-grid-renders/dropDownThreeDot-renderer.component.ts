@@ -20,6 +20,12 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
             <button mat-menu-item>
                 <span>Share</span>
             </button>
+            <button mat-menu-item *ngIf="enabled == true" (click)="openWarningDialog()">
+                <span>Enable</span>
+            </button>
+            <button mat-menu-item *ngIf="enabled == false" (click)="openWarningDialog()">
+              <span>Disable</span>
+            </button>
             <button mat-menu-item (click)="openWarningDialog()">
                 <span>Delete</span>
             </button>
@@ -41,7 +47,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
 export class dropDownThreeDotRendererComponent implements ICellRendererAngularComp {
   params;
-  enabled: Boolean;
+  enabled;
   dataTest: any = false;
 
   constructor(
@@ -51,6 +57,11 @@ export class dropDownThreeDotRendererComponent implements ICellRendererAngularCo
 
   agInit(params): void {
     this.params = params;
+    if(this.params.data.status == 'Disabled'){
+      this.enabled = true;
+    } else if (this.params.data.status == 'Enabled') {
+      this.enabled = false;
+    }
     this.datashare.checkboxMessage.subscribe((checkbox) => {
       this.dataTest = checkbox;
     });
