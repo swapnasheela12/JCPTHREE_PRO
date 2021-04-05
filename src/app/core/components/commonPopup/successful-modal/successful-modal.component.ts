@@ -21,7 +21,7 @@ export class SuccessfulModalComponent {
   constructor(public dialogRef: MatDialogRef<SuccessfulModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
-    console.log("data", data);
+    console.log("data .....success", data);
     if (!data.showActionBtn) {
       this.showActionBtn = false;
       this.message = data.message;

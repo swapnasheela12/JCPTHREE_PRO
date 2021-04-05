@@ -524,7 +524,7 @@ const ANALYTICS_NETWORK_QUALITY = [
         showHeader: false,
         headerText: '',
         children: [],
-        
+
     }
 ];
 
@@ -3788,7 +3788,7 @@ const CREATE_POLYGONS = [
         headerText: '',
         children: [],
         // componentLayer: 'PolygonEditorComponent',
-        component: 'PolygonEditorComponent'
+        component: 'PolygonSettingComponent'
     },
 ]
 

@@ -114,6 +114,7 @@ import { LayerPatchPopupComponent } from './layer-patch-popup/layer-patch-popup.
 import { DropdownOwnerRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-owner-renderer.component';
 import { DropdownResponsibleRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-responsible-renderer.component';
 import { DropdownPositionRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-position-renderer.component';
+import { PolygonSettingComponent } from './polygon-setting/polygon-setting.component';
 
 @NgModule({
   declarations: [
@@ -175,7 +176,8 @@ import { DropdownPositionRendererComponent } from '../administration/module-mana
     nominalGenerationRenderComponent,
     flagRenderComponent,
     LayerPatchSettingsPopupComponent,
-    LayerPatchPopupComponent
+    LayerPatchPopupComponent,
+    PolygonSettingComponent
   ],
   imports: [
     DragDropModule,

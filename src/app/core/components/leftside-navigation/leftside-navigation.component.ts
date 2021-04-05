@@ -1,3 +1,4 @@
+import { PolygonSettingComponent } from './../../../main-modules/main-layer/polygon-setting/polygon-setting.component';
 import { LogicalConnectivitySettingComponent } from './../../../main-modules/main-layer/layer-list/topologies/fibre/logicaltopology/logical-connectivity-setting/logical-connectivity-setting.component';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Component, OnInit, ViewChild, HostListener, Renderer2, ViewEncapsulation, TemplateRef, ViewContainerRef, AfterViewInit, ComponentFactoryResolver, Input, ChangeDetectorRef } from '@angular/core';
@@ -147,7 +148,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         }
-          if(dataChange[0].children[0].children[0].children[0] != undefined && 
+          if(dataChange[0].children[0].children[0].children[0] != undefined &&
             (
               dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
             )){
@@ -161,7 +162,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           }
           this.dataSource.data = dataChange;
           if(
-            dataChange[0].children[0].children[0].children[0] != undefined && 
+            dataChange[0].children[0].children[0].children[0] != undefined &&
             (
               dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
             )){
@@ -207,7 +208,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     this.dataSource.data = [];
     this.dataSource.data = dataChange;
 
-    //SEND HYPERLINK DATA TO TRACK USER TIME 
+    //SEND HYPERLINK DATA TO TRACK USER TIME
     let layerId = { id: id, checkbox: false }
     this.datashare.sendCheckedLayersOnly(layerId);
   }
@@ -226,6 +227,8 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     // $('.hide-menu-item-nav').parent().css({ 'display': 'none' });
     console.log(this.i)
     this.datashare.currentMessage.subscribe((data: any) => {
+      console.log(data,"hhhhhdata");
+
       this.i++
       if (Object.keys(data).length !== 0) {
         const addPin: any = {
@@ -240,7 +243,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           link: 'CREATE-PIN',
           eventName: 'sites-outdoor-esc',
           children: [],
-          component: 'PinGroupSettingComponent'
+          component: 'PolygonSettingComponent'
         };
         if (data.pinName) {
           let dataChange = this.dataSource.data;
@@ -252,6 +255,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         } else if (data.sideNav) {
+
           let dataChange = this.dataSource.data;
           dataChange[dataChange.length - 1].children[2].children.push(addPinPoly);
           this.dataSource.data = [];
@@ -260,7 +264,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
 
         }
       }
-  
+
     });
   }
 
@@ -465,7 +469,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Iterate over each node in reverse order and return the first node 
+   * Iterate over each node in reverse order and return the first node
    * that has a lower level than the passed node.
    */
   getParent(node) {
@@ -645,6 +649,12 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       const { StructurePlannedSettingsPopupComponent } = await import('./../../../main-modules/main-layer/layer-list/topologies/structure/structure-planned-fibre-core/structure-planned-settings-popup/structure-planned-settings-popup.component');
       this.viewContainerRef.createComponent(
         this.cfr.resolveComponentFactory(StructurePlannedSettingsPopupComponent)
+      );
+    }
+    else if (node.component == 'PolygonSettingComponent') {
+      const { PolygonSettingComponent } = await import('./../../../main-modules/main-layer/polygon-setting/polygon-setting.component');
+      this.layerComponent = this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(PolygonSettingComponent)
       );
     }
     else if (node.component == 'LogicalConnectivitySettingComponent') {
