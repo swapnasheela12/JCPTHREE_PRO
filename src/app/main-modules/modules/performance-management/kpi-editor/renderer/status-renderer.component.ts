@@ -4,9 +4,9 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 @Component({
   selector: 'status-button-renderer',
   template: `
-  <div class="success-button" *ngIf="enabled">{{status}}</div>
-  <div class="disabled-button" *ngIf="!enabled">{{status}}</div>
-  <div style="padding-left:30px" *ngIf="status == null">-</div>
+  <div class="success-button" *ngIf="enabled == true">{{status}}</div>
+  <div class="disabled-button" *ngIf="enabled == false">{{status}}</div>
+  <div style="padding-left:30px" *ngIf="enabled == null">-</div>
   `,
   styles: [`
       .success-button {
@@ -27,12 +27,18 @@ export class StatusRendererComponent implements ICellRendererAngularComp {
   params;
   status: string;
   enabled: Boolean;
+  generation: any;
 
   agInit(params): void {
     this.params = params;
     this.status = this.params.data.status || null;
-    if(this.status != null){
-      this.enabled = (this.status.toLowerCase() === 'enabled');
+    this.generation = this.params.data.generation || null;
+    if(this.status != null && this.generation == 'System Driven'){
+      if (this.status.toLowerCase() === 'enabled') {
+        this.enabled = true;
+      } else if (this.status.toLowerCase() === 'disabled') {
+        this.enabled = false;
+      }
     }
   }
 
