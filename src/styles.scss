@@ -1966,3 +1966,16 @@ carousel{
     border-radius: 5px;
 }
 }
+
+.mat-menu-panel.mat-menubar{
+    .mat-menu-content {
+        width: 275px;
+        height: 300px;
+    } 
+}
+
+.wo-filter {
+    position: absolute !important;
+    right: 46px;
+    top: 212px;
+}

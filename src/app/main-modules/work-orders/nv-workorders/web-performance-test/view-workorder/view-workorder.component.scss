@@ -206,8 +206,7 @@ $color-grayBlue: #464d69;
 }
 
 .container {
-    overflow: auto;
-    height: calc(100% - 102px);
+    height: 80%;
 }
 
 .select-device {
@@ -252,19 +251,8 @@ $color-grayBlue: #464d69;
 }
 
 .selected-device {
-    height: 150px;
+    height: 170px;
     border: 1px solid #D3D5DC;
     overflow: auto;
     padding-left: 10px;
-}
-
-.download-device { 
-    margin: 0 8px 8px 8px;    
-    height: 50px;
-    border-top: none;
-    border: 1px solid #D3D5DC;
-    > button {
-        float: right;
-        line-height: 3.5;
-    }
 }

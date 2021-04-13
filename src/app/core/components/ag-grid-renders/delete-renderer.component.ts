@@ -4,7 +4,6 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 
-
 @Component({
   selector: 'delete-renderer',
   template: `

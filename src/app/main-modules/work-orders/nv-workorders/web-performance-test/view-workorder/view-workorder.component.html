@@ -3,8 +3,7 @@
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class=" pl-0 wo-header" fxFlex="95">
-                    <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
-                    <div class="header" *ngIf="showCopyToNewWorkorder">Copy To New Workorder</div>
+                    <div class="header">View Workorder</div>
                 </div>
                 <div class="sector-flex-item" fxFlex="5">
                     <mat-icon  style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);">
@@ -23,19 +22,12 @@
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Template Type*</mat-label>
-                            <mat-select *ngIf="showCreateNewWorkorder" disableOptionCentering [(value)]="templateType[0]"
+                            <mat-select disableOptionCentering [(value)]="templateType[0]" disabled
                                 style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
                                     [value]="tcr">
                                     {{tcr}}</mat-option>
                             </mat-select>
-
-                            <mat-select *ngIf="showCopyToNewWorkorder" disableOptionCentering [(value)]="templateType[0]"
-                            style="font-family: lato Regular; font-size: 14px;" disabled>
-                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                [value]="tcr">
-                                {{tcr}}</mat-option>
-                        </mat-select>
                         </mat-form-field>
                     </div>
                 </div>
@@ -44,8 +36,7 @@
                     <div class="sub-content-flex-item p-2 col-6">
                         <mat-form-field class="example-full-width">
                             <mat-label>Workorder Id*</mat-label>
-                            <input *ngIf="showCreateNewWorkorder" matInput placeholder="" value="">
-                            <input *ngIf="showCopyToNewWorkorder" matInput placeholder="" value="" disabled>
+                            <input matInput placeholder="" value="" disabled>
                         </mat-form-field>
                     </div>
 
@@ -53,7 +44,7 @@
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="templateType[0]"
+                            <mat-select disableOptionCentering [(value)]="templateType[0]" disabled
                                 style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
                                     [value]="tcr">
@@ -63,35 +54,12 @@
                     </div>
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-12">
-                        <!-- <div class="w-100 sap-id-label">Upload URLs:*</div> -->
-                        <mat-form-field fxFlex="100" class="browse-file-form-field">
+           
 
-                            <input matInput class="input-field" placeholder="Upload URLs:" [(ngModel)]="fileName"
-                                [readonly]="true" required>
-                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
-                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
-                        </mat-form-field>
-                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
-                            style="display: none;" />
-                    </div>
-
-                    <div class="sub-content-flex-item col-12">
-                        <!-- <div class="px-1" fxFlex="70"></div> -->
-                        <div class="px-1" style="float: right;">
-                            <span class="ic ic-Upload-file"></span>
-                            <button class="upload-btn next-button button" mat-raised-button
-                                color="primary">Upload</button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-12">
-                        <ag-grid-angular (gridReady)="onGridReady($event)"
-                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;"
+                <div class="sub-content d-flex  flex-row flex-wrap" style="height: 60%;border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item p-2 col-12" style="height:98%">
+                        <ag-grid-angular (gridReady)="onGridReady($event)" disabled
+                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 100%;"
                             rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
                             [rowData]="rowData" enableColResize groupHeaders
                             [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
@@ -109,7 +77,7 @@
                             <mat-form-field class="custom-field-container" fxFlex="90">
                                 <div class="daterange-container" style="top: 46px;
                         left: 74px;">
-                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time"
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [readonly]="true"
                                         [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15"
                                         [timePicker24Hour]="false" formControlName="selectedDateTime"
                                         [showCustomRangeLabel]="true"
@@ -122,7 +90,7 @@
                                         [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
                                         (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
                                         autocomplete="off" [opens]="opens" [drops]="drops"
-                                        class="daterange-container-input" />
+                                        class="daterange-container-input" disabled="true" [disabled]="true" />
                                     <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
                                 </div>
                             </mat-form-field>
@@ -134,48 +102,20 @@
                     <div class="sub-content-flex-item p-2 col-6 mar-20">
                         <mat-form-field class="example-full-width">
                             <mat-label>Iterations</mat-label>
-                            <input matInput placeholder="" value="">
+                            <input matInput placeholder="" value="" disabled>
                         </mat-form-field>
                     </div>
 
                     <div class="sub-content-flex-item p-2 col-5">
                         <label style="width: 100%;">Time Duration</label>
 
-                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
+                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" disabled>
                     </div>
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-12">
-                        <div class="label mar-20">Add Devices:</div>
-                        <section class="col checkbox">
-                            <mat-checkbox class="col-6">Add Manually</mat-checkbox>
-                            <mat-checkbox class="col-6">Upload</mat-checkbox>
-                            <mat-checkbox class="col-6">Upload Login Id File</mat-checkbox>
-                            <mat-checkbox class="col-6">Dual Sim WO</mat-checkbox>
-                        </section>
-                    </div>
-
-                </div>
-
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-5 mar-20" >
-                        <mat-form-field class="example-full-width">
-                            <mat-label>IMEI</mat-label>
-                            <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
-                        </mat-form-field>
-                    </div>
-                    <div class="sub-content-flex-item p-2 col-3">
-
-                    </div>
-                    <div class="sub-content-flex-item p-2 col-2">
-                        <button mat-raised-button color="primary" (click)="addToSelectedDevice()">Add</button>
-                    </div>
-                </div>
-
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-left: 1px solid rgb(211, 213, 220);">
-                    <div class="sub-content-flex-item p-2 col" style="padding-bottom: 0px !important;">
+                <div class="sub-content d-flex  flex-row flex-wrap" style="height: 58%;">
+                    <div class="sub-content-flex-item p-2 col h-100">
                         <div class="w-100" style="height: 50px; background: #D3D5DC">
                             <div class="select-device">Select Device</div>
                             <div class="device-count">{{selectDevice.length}} out of 100</div>
@@ -185,10 +125,6 @@
                                 {{devices}}
                             </div>
                         </div>
-                    </div>
-                    <div class="download-device w-100">
-                        <button mat-button class="icon-container-button" color="primary"><i
-                            class="ic ic-download pr-2"></i>Download</button>
                     </div>
                 </div>
             </div>
@@ -206,9 +142,5 @@
     <div class="p-2">
         <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
             (click)="navigateBack()">Back</button>
-    </div>
-    <div class="p-2">
-        <button mat-raised-button color="primary" class="buttonWidth button" (click)="assignWorkorder()"
-            >Assign</button>
     </div>
 </div>

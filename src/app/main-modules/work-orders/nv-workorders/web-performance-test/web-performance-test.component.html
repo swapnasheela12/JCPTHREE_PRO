@@ -1,6 +1,6 @@
 <div class="task-details-wrapper">
     <mat-card class="cia-module-card h-100" style="padding: 0px;">
-        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+        <mat-toolbar color="mat-blue-grey" class="create-repor(t-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class="col pl-0 wo-header">
                     <div class="header" fxFlex="90">Web Performance Test</div>
@@ -8,7 +8,7 @@
                 <div class="col-4 sector-flex-item" fxFlex>
                     <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
                         *ngIf="!show" style="margin-top: 6px;">
-                        <span class="zmdi zmdi-search"></span>
+                        <span class="zmdi zmdi-search" style="line-height: 1.7;"></span>
                     </mat-icon>
 
                     <mat-form-field *ngIf="show">
@@ -20,13 +20,24 @@
                     </mat-form-field>
                 </div>
 
-                <button mat-raised-button color="primary" routerLink="/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder">Create WO</button>
+                <button mat-raised-button color="primary"
+                    routerLink="/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder">
+                    Create WO
+                </button>
             </mat-toolbar-row>
         </mat-toolbar>
 
         <mat-divider></mat-divider>
 
-        <div class="td-tab-details p-0" style="height: calc(100% - 82px);">
+        <button class="workorder-filter" (click)="openWOFilter()">
+            <span class="ic ic-Calendedr"></span>
+        </button>
+
+      
+
+     
+        
+        <div class="td-tab-details p-0" style="height: calc(100% - 61px);">
 
             <div class="td-tabs h-100">
 
@@ -104,14 +115,16 @@
                 </div>
             </div>
 
-            <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
-                style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMyTask"
-                [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                [paginationAutoPageSize]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
-                (cellClicked)='onCellClicked($event)'>
-            </ag-grid-angular>
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 42vh;"
+                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting
+                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
+                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
+                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                </ag-grid-angular>
+            </div>
         </mat-card>
     </div>
 </ng-template>
@@ -167,14 +180,16 @@
                 </div>
             </div>
 
-            <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
-                style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMyTask"
-                [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                [paginationAutoPageSize]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
-                (cellClicked)='onCellClicked($event)'>
-            </ag-grid-angular>
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 42vh;"
+                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptions" [columnDefs]="columnDefsPending" [rowData]="rowData" enableSorting
+                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
+                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
+                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                </ag-grid-angular>
+            </div>
         </mat-card>
     </div>
 </ng-template>
@@ -230,14 +245,16 @@
                 </div>
             </div>
 
-            <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
-                style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMyTask"
-                [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                [paginationAutoPageSize]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
-                (cellClicked)='onCellClicked($event)'>
-            </ag-grid-angular>
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 42vh;"
+                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
+                    [gridOptions]="gridOptions" [columnDefs]="columnDefsHistory" [rowData]="rowData" enableSorting
+                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
+                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
+                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                </ag-grid-angular>
+            </div>
         </mat-card>
     </div>
 </ng-template>

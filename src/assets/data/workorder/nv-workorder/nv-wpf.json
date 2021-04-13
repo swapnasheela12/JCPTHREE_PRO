@@ -3,68 +3,87 @@
         "status": "New",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
         "assignedBy": "I-G-J-PLPR-OSC-0004",
-        "assignedTo": "11",
+        "dueDate": "Dec 23, 2020",
+        "taskCompleted": "0"
+    },
+    {
+        "status": "New",
+        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "assignedBy": "Rahul49.singh@ril.com",
+        "assignedTo": "5",
+        "dueDate": "Dec 23, 2020",
+        "taskCompleted": "80"
+    },
+    {
+        "status": "In Progress",
+        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "assignedBy": "Rahul49.singh@ril.com",
+        "assignedTo": "1",
+        "taskCompleted": "100",
         "dueDate": "Dec 23, 2020"
     },
     {
         "status": "New",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
-        "assignedTo": "5",
+        "assignedBy": "Rahul49.singh@ril.com",
+        "assignedTo": "11",
+        "taskCompleted": "0",
         "dueDate": "Dec 23, 2020"
-    },{
+    },
+    {
+        "status": "Completed",
+        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "assignedBy": "Rahul49.singh@ril.com",
+        "assignedTo": "11",
+        "taskCompleted": "100",
+        "dueDate": "Dec 23, 2020"
+    },
+    {
+        "status": "New",
+        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "assignedBy": "Rahul49.singh@ril.com",
+        "assignedTo": "11",
+        "taskCompleted": "0",
+        "dueDate": "Dec 23, 2020"
+    },
+    {
         "status": "In Progress",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
-        "assignedTo": "1",
-        "dueDate": "Dec 23, 2020"
-    },{
-        "status": "New",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
+        "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
+        "taskCompleted": "0",
         "dueDate": "Dec 23, 2020"
-    },{
+    },
+    {
         "status": "Completed",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
+        "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
+        "taskCompleted": "100",
         "dueDate": "Dec 23, 2020"
-    },{
+    },
+    {
         "status": "New",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
+        "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
+        "taskCompleted": "0",
         "dueDate": "Dec 23, 2020"
-    },{
-        "status": "In Progress",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
-        "assignedTo": "11",
-        "dueDate": "Dec 23, 2020"
-    },{
+    },
+    {
         "status": "Completed",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
+        "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
+        "taskCompleted": "50",
         "dueDate": "Dec 23, 2020"
-    },{
+    },
+    {
         "status": "New",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
+        "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
-        "dueDate": "Dec 23, 2020"
-    },{
-        "status": "Completed",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
-        "assignedTo": "11",
-        "dueDate": "Dec 23, 2020"
-    },{
-        "status": "New",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-       "assignedBy": "Rahul49.singh@ril.com",
-        "assignedTo": "11",
+        "taskCompleted": "20",
         "dueDate": "Dec 23, 2020"
     }
 ]

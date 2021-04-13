@@ -13,11 +13,11 @@ import { WptModalComponent } from '../wpt-modal/wpt-modal.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-new-workorder',
-  templateUrl: './create-new-workorder.component.html',
-  styleUrls: ['./create-new-workorder.component.scss']
+  selector: 'app-view-workorder',
+  templateUrl: './view-workorder.component.html',
+  styleUrls: ['./view-workorder.component.scss']
 })
-export class CreateNewWorkorderComponent implements OnInit {
+export class ViewWorkorderComponent implements OnInit {
   templateType = ["Web Performance Test", "Web Performance Test"];
 
   selectDaily = ["Daily", "Weekly", "Monthly"];
@@ -78,18 +78,8 @@ export class CreateNewWorkorderComponent implements OnInit {
   imeiValue: string = "";
   selectDevice = [];
 
-  //show copy to new
-  showCopyToNewWorkorder: boolean =  false;
-  showCreateNewWorkorder: boolean =  false;
-
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
-       console.log(this.router.url)
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
-      this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
-      this.showCopyToNewWorkorder =  true;
-    }
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     //this.rowSelection = 'multiple';
@@ -110,7 +100,6 @@ export class CreateNewWorkorderComponent implements OnInit {
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,
       showRangeLabelOnInput: true,
-      disabled: true
     });
   }
   ngOnInit(): void {
@@ -121,12 +110,13 @@ export class CreateNewWorkorderComponent implements OnInit {
       {
         headerName: "URL Name",
         field: "urlName",
-        width: 150
+        width: 190,
+        pinned: 'left'
       },
       {
         headerName: "Traceroute",
         field: "traceroute",
-        width: 100
+        width: 130
       },
       {
         headerName: "Ping",
@@ -136,24 +126,13 @@ export class CreateNewWorkorderComponent implements OnInit {
       {
         headerName: "Location",
         field: "location",
+        width: 150,
+      },
+      {
+        headerName: "ll Urls",
         width: 100,
-      },
-      {
-        headerName: "11 Urls",
-        cellRenderer: function(params) {
-          return '<span class="ic ic-pencil">'+'</span>'
-        },
-        width: 70,
         pinned: 'right'
       },
-      {
-        headerName: "",
-        cellRenderer: function(params) {
-          return '<span class="ic ic-custom-delete">'+'</span>'
-        },
-        width: 70,
-        pinned: 'right'
-      }
     ];
   }
 
@@ -240,3 +219,4 @@ export class CreateNewWorkorderComponent implements OnInit {
     this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/"])
   }
 }
+

@@ -64,17 +64,31 @@ import { ThreeDotRETRenderer } from 'src/app/main-modules/work-orders/cm-workord
 import { WebPerformanceTestComponent } from './web-performance-test/web-performance-test.component';
 import { NvWorkordersRoutingModule } from './nv-workorders-routing.module';
 import { CreateNewWorkorderComponent } from './web-performance-test/create-new-workorder/create-new-workorder.component';
+import { ViewTasksComponent } from './web-performance-test/view-tasks/view-tasks.component';
+import { WptModalComponent } from './web-performance-test/wpt-modal/wpt-modal.component';
+import { ThreeDotWPTRenderer } from './web-performance-test/threedot-wpt-renderer.component';
+import { WoFilterComponent } from './web-performance-test/wo-filter/wo-filter.component';
+import { ViewWorkorderComponent } from './web-performance-test/view-workorder/view-workorder.component';
+import { ThreeDotCreateNewRenderer } from './web-performance-test/threedot-create-new-renderer.component';
 
 
 @NgModule({
-  declarations: [WebPerformanceTestComponent, CreateNewWorkorderComponent],
+  declarations: [WebPerformanceTestComponent,
+    CreateNewWorkorderComponent,
+    ViewTasksComponent,
+    WptModalComponent,
+    ThreeDotWPTRenderer,
+    ThreeDotCreateNewRenderer,
+    WoFilterComponent,
+    ViewWorkorderComponent
+  ],
   imports: [
     CommonModule,
     NvWorkordersRoutingModule,
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
+    AgGridModule.withComponents([ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

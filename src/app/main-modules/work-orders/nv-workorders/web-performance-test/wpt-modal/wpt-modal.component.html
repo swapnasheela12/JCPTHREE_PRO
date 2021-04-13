@@ -1,0 +1,30 @@
+<div class="assign-task-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div class="header">Web Performance Test</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content style="margin: 15px; height: 200px;">
+        <div style="font-size: 15px;">Work order Created for following ‘5IMEIs’ out of 5IMEIs uploaded:</div>
+        <div class="listOfIMEIS" *ngFor="let imei of iMEIs">
+            {{imei}}
+        </div>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="mr-1 assign-text-button">
+            <button class=" assign-butt" (click)="clickYes()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Ok</button>
+        </div>
+    </div>
+
+</div>

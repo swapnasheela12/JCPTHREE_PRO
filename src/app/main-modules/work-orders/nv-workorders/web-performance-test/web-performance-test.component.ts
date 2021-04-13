@@ -15,6 +15,9 @@ import * as _ from 'lodash';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DropDownRendererComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/dropDown-renderer.component';
+import { ThreeDotWPTRenderer } from './threedot-wpt-renderer.component';
+import { WoFilterComponent } from './wo-filter/wo-filter.component';
+import { ThreeDotCreateNewRenderer } from './threedot-create-new-renderer.component';
 declare var $: any;
 
 @Component({
@@ -29,10 +32,10 @@ export class WebPerformanceTestComponent implements OnInit {
   public gridApi;
   public gridColumnApi;
   public gridCore: GridCore;
-  public gridOptionsMyTask: GridOptions;
-  public gridOptionsTeamTask: GridOptions;
-  public gridOptionsExceptional: GridOptions;
-  public gridOptionsSLABreach: GridOptions;
+  public gridOptions: GridOptions;
+  // public gridOptionsTeamTask: GridOptions;
+  // public gridOptionsExceptional: GridOptions;
+  // public gridOptionsSLABreach: GridOptions;
   public rowData: any;
   public rowDataTeams: any;
   public rowDataSLABreach: any;
@@ -49,10 +52,13 @@ export class WebPerformanceTestComponent implements OnInit {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    dropdownRenderer: dropDownThreeDotRendererComponent,
+    dropdownRenderer: ThreeDotWPTRenderer,
     inputRenderer: inputRendererComponent,
+    drpRenderer: ThreeDotCreateNewRenderer
   };
   public searchGrid = '';
+
+  templateType = ["Target Area", "Target Area"]
 
   public taskDetails = [
     {
@@ -88,17 +94,49 @@ export class WebPerformanceTestComponent implements OnInit {
     }
   ]
 
+  //daterange
+  selectDaily = ["Daily", "Weekly", "Monthly"];
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
+  thirdFormGroup: FormGroup;
+  selected: {
+    startDate: '2019-12-11T18:30:00.000Z',
+    endDate: '2019-12-12T18:29:59.000Z',
+  }
 
-  public opens = 'right';
-  public drops = 'down';
+   ///////datepicker//////////
+   opens = 'center';
+   drops = 'up';
+   public todaysDay = new Date();
+   selectedDateTime: any;
+   selectedDateTimeValue: boolean = false;
+   invalidDates: moment.Moment[] = [];
+   tooltips = [
+     { date: moment(), text: 'Today is just unselectable' },
+     { date: moment().add(2, 'days'), text: 'Yeeeees!!!' },
+   ];
+   ranges = {
+     Today: [moment(), moment()],
+     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+     'This Month': [moment().startOf('month'), moment().endOf('month')],
+     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+   };
 
-  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
+   columnDefsHistory;
+   columnDefsPending;
+
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
-
-    this.gridOptionsMyTask = <GridOptions>{};
-    this.gridOptionsTeamTask = <GridOptions>{};
-    this.gridOptionsExceptional = <GridOptions>{};
-    this.gridOptionsSLABreach = <GridOptions>{};
+      this.stepperReportW();
+    this.gridOptions = <GridOptions>{};
+    // this.gridOptionsTeamTask = <GridOptions>{};
+    // this.gridOptionsExceptional = <GridOptions>{};
+    // this.gridOptionsSLABreach = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     // this.createTeamDetailsColDefs();
@@ -133,27 +171,34 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140
+        width: 140,
+        pinned: 'left'
       },
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 290
+        width: 260
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 250,
+        width: 230,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 150,
+        width: 160,
       },
       {
         headerName: "Due Date",
         field: "dueDate",
-        width: 180
+        width: 160
+      },
+      {
+        headerName: "Task Completion",
+        field: 'taskCompletion',
+        cellRenderer: this.taskCompletionFunc,
+        width: '150'
       },
       {
         headerName: "",
@@ -162,7 +207,88 @@ export class WebPerformanceTestComponent implements OnInit {
         pinned: 'right'
       }
     ];
-    this.datatable.columnDefsServices = this.columnDefs;
+    this.columnDefsPending = [
+      {
+        headerName: "Status",
+        cellRenderer: this.statusFunc,
+        field: "status",
+        width: 140,
+        pinned: 'left'
+      },
+      {
+        headerName: "Workorder",
+        field: "workorder",
+        width: 260
+      },
+      {
+        headerName: "Assigned By",
+        field: "assignedBy",
+        width: 230,
+      },
+      {
+        headerName: "Assigned To",
+        field: "assignedTo",
+        width: 160,
+      },
+      {
+        headerName: "Due Date",
+        field: "dueDate",
+        width: 160
+      },
+      {
+        headerName: "Task Completion",
+        field: 'taskCompletion',
+        cellRenderer: this.taskCompletionFunc,
+        width: '150'
+      },
+      {
+        headerName: "",
+        cellRenderer: 'drpRenderer',
+        width: 90,
+        pinned: 'right'
+      }
+    ];
+    this.columnDefsHistory = [
+      {
+        headerName: "Status",
+        cellRenderer: this.statusFunc,
+        field: "status",
+        width: 140,
+        pinned: 'left'
+      },
+      {
+        headerName: "Workorder",
+        field: "workorder",
+        width: 260
+      },
+      {
+        headerName: "Assigned By",
+        field: "assignedBy",
+        width: 230,
+      },
+      {
+        headerName: "Assigned To",
+        field: "assignedTo",
+        width: 160,
+      },
+      {
+        headerName: "Due Date",
+        field: "dueDate",
+        width: 160
+      },
+      {
+        headerName: "Task Completion",
+        field: 'taskCompletion',
+        cellRenderer: this.taskCompletionFunc,
+        width: '150'
+      },
+      {
+        headerName: "",
+        cellRenderer: 'drpRenderer',
+        width: 90,
+        pinned: 'right'
+      }
+    ];
   }
 
 
@@ -186,6 +312,31 @@ export class WebPerformanceTestComponent implements OnInit {
       status + '</span>';
   }
 
+  taskCompletionFunc(params) {
+     var status = params.data.taskCompleted;
+     var width = parseInt(status);
+     console.log("width", width)
+    var barColor = '';
+    var barColor = '';
+    if (status == 100) {
+      barColor = '#60DD5C';
+    } else if (status = 0  &&  status <= 49 ) {
+      barColor = '#F8C93A';
+    } else if (status = 50 && status <= 99) {
+      barColor = '#F8C93A';
+    }  else {
+      barColor = '#F8C93A';
+    }
+    return '<div class="jcp-two-lines-progress col-12" style="width: 120px; height: 50%">' +
+                '<div class="values" style="font-family:Lato Regular; font-size: 12px;height: 14px;">' + params.data.taskCompleted  +'</div>' +
+                    '<div class="progress" style="display: inline-flex; width: 109px">' +
+                        '<div class="progress-bar " style=" background-color: ' +
+                        barColor +
+                        '; width:' + width + "%" + ';">'+'</div>'+
+                  '</div>' + 
+                '</div>';
+  }
+
 
   dateFunc(params) {
     var status = params.value;
@@ -193,16 +344,13 @@ export class WebPerformanceTestComponent implements OnInit {
     return '<input type="date" style="border: transparent; border-bottom: 1px solid gray;width: 100%;height: 32px;" value="' + status + '">';
   }
 
-
+  
   public eventsSubject: Subject<any> = new Subject();
   onFilterChanged(evt) {
     this.gridFilterValueServices["filter"] = evt.target.value;
     this.eventsSubject.next(this.gridFilterValueServices);
     this.eventsSubject.subscribe((data) => {
-      this.gridOptionsMyTask.api.setQuickFilter(data.filter);
-      this.gridOptionsTeamTask.api.setQuickFilter(data.filter);
-      this.gridOptionsSLABreach.api.setQuickFilter(data.filter);
-      this.gridOptionsExceptional.api.setQuickFilter(data.filter);
+      this.gridOptions.api.setQuickFilter(data.filter);
     });
   };
   show: any;
@@ -213,7 +361,6 @@ export class WebPerformanceTestComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
   }
-
 
   onSelectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
@@ -258,12 +405,50 @@ export class WebPerformanceTestComponent implements OnInit {
     }
   }
 
+  stepperReportW() {
+    this.thirdFormGroup = this.fb.group({
+      selectedDateTime: {
+        startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
+        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+      },
+      alwaysShowCalendars: true,
+      keepCalendarOpeningWithRange: true,
+      showRangeLabelOnInput: true,
+    });
+  }
 
-  // cellClickedDetails(evt) {
-  //   if (evt.value) {
-  //     this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
-  //   }
-  // }
+
+  isInvalidDate = (m: moment.Moment) => {
+    return this.invalidDates.some((d) => d.isSame(m, 'day'));
+  };
+
+  isTooltipDate = (m: moment.Moment) => {
+    const tooltip = this.tooltips.find((tt) => tt.date.isSame(m, 'day'));
+    if (tooltip) {
+      return tooltip.text;
+    } else {
+      return false;
+    }
+  };
+
+  rangeClicked(range): void {
+    this.selectedDateTimeValue = true;
+  }
+
+  datesUpdated(range): void {
+    this.selectedDateTimeValue = true;
+  }
+
+  openWOFilter() {
+    this.dialog.open(WoFilterComponent,{
+      width: "25vw",
+      height: "40vh",
+      panelClass: 'wo-filter'
+    });
+  }
+
                                       
   ngOnDestroy() {
     if (this.messageSubscription) {
