@@ -38,14 +38,16 @@
             height: 100%;
             .left-content-editable{
                 height: calc(100% - 56px);
-                [contenteditable=true]:empty:before{
-                    content: attr(placeholder);
-                    pointer-events: none;
-                    display: block;
-                    color: #6e6e6e;
-                  }   
             }
+            [contenteditable=true]:empty:before{
+                content: attr(placeholder);
+                pointer-events: none;
+                display: block;
+                color: #6e6e6e;
+              }   
             #create-query-custom-tooltip {
+                max-height: 210px;
+                overflow: auto;
                 position: absolute;
                 width: auto;
                 display: none;

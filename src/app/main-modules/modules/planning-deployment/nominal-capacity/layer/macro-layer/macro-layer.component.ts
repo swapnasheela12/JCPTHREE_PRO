@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/shape.service';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Subscription } from 'rxjs';
+import { HoverComponentComponent } from '../../hover-component/hover-component.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-macro-layer',
@@ -39,7 +41,8 @@ export class MacroLayerComponent implements AfterViewInit {
   constructor(
     private shapeService: ShapeService,
     private http: HttpClient,
-    private dataShare: DataSharingService
+    private dataShare: DataSharingService,
+    private dialog: MatDialog
   ) {
     this.macroLayerSubscription = this.dataShare.removeLayerMessage.subscribe(
       (removeLayer) => {
@@ -159,6 +162,7 @@ export class MacroLayerComponent implements AfterViewInit {
       this.drawMacroImage(
         this.macroImageContainer,
         data[m],
+        this.mainLayerRef
       );
 
     }
@@ -167,7 +171,7 @@ export class MacroLayerComponent implements AfterViewInit {
     this.macroContainer.update();
   }
 
-  drawMacroImage(macroContainer, macroData) {
+  drawMacroImage(macroContainer, macroData, mainlayer) {
     console.log(macroData)
     let imagePath = '';
     imagePath = 'assets/images/Layers/topologies/structure/AG2+OTN.svg';
@@ -212,22 +216,40 @@ export class MacroLayerComponent implements AfterViewInit {
       let target = event['target'];
       let dot = L.point((event['rawX'] / outerthis.pixelRatio), (event['rawY'] / outerthis.pixelRatio));
       target.latlng = outerthis.map.containerPointToLatLng(dot);
-      let template = '';
-      template +=
-        '<div class="layout-row popup-layout-padding">' +
-        '<span class="prefix">Sector:</span>' +
-        '<span class="value">' + target.data[2] + '</span></div>';
-      template +=
-        '<div class="layout-row popup-layout-padding">' +
-        '<span class="prefix">Band:</span>' +
-        '<span class="value">' + target.data[3] + '</span>' +
-        '</div>';
-      template +=
-        '<div class="layout-row popup-layout-padding">' +
-        '<span class="prefix">cNum:</span>' +
-        '<span class="value">' + target.data[4] + '</span>' +
-        '</div>';
-      outerthis.macroPopup.setLatLng(target.latlng).setContent(template).openOn(outerthis.map);
+      const dialogRef = outerthis.dialog.open(HoverComponentComponent, {
+        width: screen.width+'px',
+        height: screen.height+'px',
+        data: {
+          "zoom":outerthis.zoomLevel,
+          "latlng": outerthis.map.getCenter()
+        },
+        hasBackdrop: false,
+        disableClose: true,
+        panelClass: "hover-component"
+      });
+
+      // dialogRef.backdropClick().subscribe(() => {
+      //   // Close the dialog
+      //   dialogRef.close();
+      // })
+      // let hoverComponent = mainlayer.componentFactoryResolver.resolveComponentFactory(HoverComponentComponent);
+      // mainlayer.componentRef = mainlayer.target.createComponent(hoverComponent);
+      // let template = '';
+      // template +=
+      //   '<div class="layout-row popup-layout-padding">' +
+      //   '<span class="prefix">Sector:</span>' +
+      //   '<span class="value">' + target.data[2] + '</span></div>';
+      // template +=
+      //   '<div class="layout-row popup-layout-padding">' +
+      //   '<span class="prefix">Band:</span>' +
+      //   '<span class="value">' + target.data[3] + '</span>' +
+      //   '</div>';
+      // template +=
+      //   '<div class="layout-row popup-layout-padding">' +
+      //   '<span class="prefix">cNum:</span>' +
+      //   '<span class="value">' + target.data[4] + '</span>' +
+      //   '</div>';
+      // outerthis.macroPopup.setLatLng(target.latlng).setContent(template).openOn(outerthis.map);
     });
 
     this.macroImage.on('mouseout', function (event) {

@@ -1,3 +1,4 @@
+import { SavePolygonPopupComponent } from 'src/app/core/components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { PolygonEditorComponent } from './polygon-editor/polygon-editor.component';
 import { AdDirective } from './../../_directive/dynamicComponent/ad.directive';
@@ -407,8 +408,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
               position: 'bottomright',
               lengthUnit: {
                 display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
-                decimal: 2,                 // Distance result will be fixed to this value. 
-                factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+                decimal: 2,                 // Distance result will be fixed to this value.
+                factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)
                 label: 'Distance:'
               }
             };
@@ -425,8 +426,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             //   position: 'bottomright',
             //   lengthUnit: {
             //     display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
-            //     decimal: 2,                 // Distance result will be fixed to this value. 
-            //     factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+            //     decimal: 2,                 // Distance result will be fixed to this value.
+            //     factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)
             //     label: 'Distance:'
             //   }
             // };
@@ -437,6 +438,35 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         },
         {
           text: 'Import KML',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'View KPIs',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Save Polygon',
+          callback: (e) => {
+            const dialogRef = this.dialog.open(SavePolygonPopupComponent, {
+              width: "500px",
+              height:'190px',
+              panelClass: "material-dialog-container",
+            });
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Clear Polygon',
+          callback: (e) => {
+            $(".leaflet-contextmenu").hide();
+          }
+        },
+        {
+          text: 'Clear All Polygons',
           callback: (e) => {
             $(".leaflet-contextmenu").hide();
           }
@@ -464,10 +494,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
       editPolygon: true,  // adds button to toggle global edit mode
       deleteLayer: true,   // adds a button to delete layers
       // removalMode: false,
-      // drawControls: true, 
-      // editControls: true, 
-      // optionsControls: true, 
-      // customControls: true, 
+      // drawControls: true,
+      // editControls: true,
+      // optionsControls: true,
+      // customControls: true,
       // oneBlock: false ,
       cutPolygon: true,
       drawRectangle: false,
@@ -877,7 +907,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.datashare.removeLayerFromNavigation('nominal-validation');
       }
       // const componentRef = this.componentRef = this;
-    
+
       if (dataPoly != {}) {
 
         let options = {

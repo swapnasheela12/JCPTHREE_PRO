@@ -1,0 +1,35 @@
+<ng-template #polygonSettingsPopup>
+    <div style="height: calc(100% - 110px);overflow: auto;">
+        <!-- <form [formGroup]="pinGroupDetails"> -->
+        <div class="py-2" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <div class="px-3" fxFlex="100">
+                <mat-form-field class="form-field-container" fxFlex="100">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" value="" [(ngModel)]="pinName">
+                </mat-form-field>
+            </div>
+            <div class="px-3" fxFlex="100">
+                <mat-form-field class="form-field-container" fxFlex="100">
+                    <mat-label>Comment</mat-label>
+                    <textarea matInput placeholder="Comment..."></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- </form> -->
+
+
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="p-0">
+        <div class="ml-3">
+            <button mat-raised-button color="primary" class="buttonWidth" style="width: 135px;">Export to KML</button>
+        </div>
+        <div class="col"></div>
+        <div>
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="saveNewPin()">Apply</button>
+        </div>
+    </div>
+</ng-template>

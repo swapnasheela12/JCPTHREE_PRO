@@ -54,3 +54,9 @@ export const Band: dropdown[] = [
     {name: '2300_C2'},
     {name: '1800'}
 ];
+
+export const  vendorList: dropdown[] = [
+    { 'name': 'Samsung' },
+    { 'name': 'Airspan' },
+    { 'name': 'NetScout' }
+  ]

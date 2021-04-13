@@ -103,14 +103,14 @@ export class CreateQueryPageComponent implements OnInit {
           `display: inline-block; left: ${x - this.variableDiffX}px; top: ${y - this.variableDiffY}px`
         );
         if (event.key == "s") {
-          this.molist= ['+', '-', '*', '=', '<', '>', '≤', '≥', '/','≠'];
+          this.molist= ['+', '-'];
         } else if (event.key == "a") {
-          this.molist= ['AND', 'OR', 'IF'];
+          this.molist= ['CONTAIN', 'EQUAL', 'DOES NOT EQUAL', 'BEGINS WITH', 'END WITH', 'DOES NOT CONTAIN', 'EQUAL'];
         } else if (event.key == " ") {
           tooltip.setAttribute("aria-hidden", "true");
           tooltip.setAttribute("style", "display: none;");
         } else {
-          this.molist= ['CONTAIN', 'EQUAL'];
+          this.molist= ['CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL', 'CONTAIN', 'EQUAL'];
         }
       } else {
         // if (this.router.url == "/JCP/Administration/Module-Management/Nominal-Planning/Query-Administration/Create-Query") {

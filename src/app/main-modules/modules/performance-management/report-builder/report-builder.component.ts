@@ -47,7 +47,7 @@ export class ReportBuilderComponent implements OnInit, OnDestroy {
   messageSubscription: Subscription;
   
   public frameworkComponentsReportBuilder = {
-    statusFlagRenderer: StatusRendererComponent,
+    statusFlagRendererBar: StatusRendererComponent,
     dropDownThreeDotRenderer: dropDownThreeDotRendererComponent
   };
   public showGlobalOperation: Boolean = false;
@@ -95,7 +95,14 @@ export class ReportBuilderComponent implements OnInit, OnDestroy {
         headerName: "Type",
         field: "reportType",
         width: 150
-      }, {
+      },
+      {
+        headerName: "Status",
+        field: "status",
+        width: 180,
+        cellRenderer: 'statusFlagRendererBar'
+      },
+      {
         headerName: "Generation",
         field: "generation",
         width: 150
@@ -159,7 +166,7 @@ export class ReportBuilderComponent implements OnInit, OnDestroy {
   shareStatus(params) {
     if (!params.data)
       return '';
-    var status = params.data.status;
+    var status = params.data.status1;
     var barColor = '';
     if (status == "Shared") {
       barColor = '#4188de';

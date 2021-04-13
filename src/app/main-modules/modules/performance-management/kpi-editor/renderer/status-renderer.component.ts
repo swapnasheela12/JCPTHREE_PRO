@@ -4,31 +4,20 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 @Component({
   selector: 'status-button-renderer',
   template: `
-  <button class="success-button" *ngIf="enabled">{{status}}</button>
-  <button class="disabled-button" *ngIf="!enabled">{{status}}</button>
+  <div class="success-button" *ngIf="enabled == true">{{status}}</div>
+  <div class="disabled-button" *ngIf="enabled == false">{{status}}</div>
+  <div style="padding-left:30px" *ngIf="enabled == null">-</div>
   `,
   styles: [`
       .success-button {
-          background-color: #60DD5C;
-          width: 72px;
-          height: 24px;
-          margin-top: 10px;
-          border-radius: 4px;
-          border: none;
-          padding: 0px;
-          line-height: 2;
-          color: white;
+        border-left: 4px solid #60DD5C;
+        line-height: 2;
+        padding-left: 10px;
       }
       .disabled-button {
-        background-color: #c4c4c4;
-        width: 72px;
-        height: 24px;
-        margin-top: 10px;
-        border-radius: 4px;
-        border: none;
-        padding: 0px;
+        border-left: 4px solid #c4c4c4;
         line-height: 2;
-        color: white;
+        padding-left: 10px;
       }`
   ]
 })
@@ -38,11 +27,19 @@ export class StatusRendererComponent implements ICellRendererAngularComp {
   params;
   status: string;
   enabled: Boolean;
+  generation: any;
 
   agInit(params): void {
     this.params = params;
     this.status = this.params.data.status || null;
-    this.enabled = (this.status.toLowerCase() === 'enabled');
+    this.generation = this.params.data.generation || null;
+    if(this.status != null && this.generation == 'System Driven'){
+      if (this.status.toLowerCase() === 'enabled') {
+        this.enabled = true;
+      } else if (this.status.toLowerCase() === 'disabled') {
+        this.enabled = false;
+      }
+    }
   }
 
   refresh(params?: any): boolean {

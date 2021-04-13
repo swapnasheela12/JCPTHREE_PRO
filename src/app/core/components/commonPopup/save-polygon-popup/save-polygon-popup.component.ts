@@ -24,13 +24,14 @@ export class SavePolygonPopupComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
-  public transferDataList={
-    subtitle:'Are you sure you want save the changes',
-    buttonOne:"Cancel",
-    buttonTwo:"Save",
-    sideNav:this.polyName
-  };
+  public transferDataList;
   onApply(): void {
+    this.transferDataList={
+      subtitle:'Are you sure you want save the changes',
+      buttonOne:"Cancel",
+      buttonTwo:"Save",
+      sideNav:this.polyName
+    }
     this.dialogRef.close(false);
     const dialogRef = this.dialog.open(SuccessfulComponent, {
       width: "470px",

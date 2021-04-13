@@ -38,9 +38,9 @@
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle matTreeNodePaddingIndent="0" (click)="onChangeTree(node.selected, node, activeCheckbox, 'no')" (mouseover)="layersLevelHover(node, '')" (mouseleave)="layersLevelHoverLeave(node, '')"
                         [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0': '']" class="dashed-border">
-                        <span class="node-arrow-nox d-flex">
-                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1"
-                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}"></li>
+                        <span class="node-arrow-nox  d-flex">
+                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1; let i=index"
+                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r, 'node-arrow-1': i !== 0}"></li>
                     </span>
                         <button mat-icon-button disabled></button>
                         <div *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2]| slice:1" class="node-icon" [ngClass]="[node.selected ? 'icon-h-arw-active': '']"></div>
@@ -84,9 +84,9 @@
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelGreterThanOne; " matTreeNodePadding matTreeNodeToggle (click)="activenode(node, '')" (mouseover)="layersLevelHover(node, iconlayers)" (mouseleave)="layersLevelHoverLeave(node, iconlayers)" matTreeNodePaddingIndent="0"
                         [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 ': '', treeControl.isExpanded(node) ? 'active-nested-layer': '']" class="dashed-border">
                         <span class="node-arrow-nox d-flex">
-                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2] | slice:1"
-                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r}"></li>
-                    </span>
+                        <li *ngFor="let r of recNode(undefined, dataSource.data, -1, treeControl.dataNodes.indexOf(node))[2] | slice:1; let i=index"
+                            [ngClass]="{'node-arrow': r, 'node-arrow-empty': !r, 'node-arrow-1': i !==0}"></li>
+                        </span>
                         <div class="node-icon" [ngClass]="[treeControl.isExpanded(node) ? 'icon-h-arw-active': '']"></div>
                         <div class="node-icon icon-h-arw"></div>
 

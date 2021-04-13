@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula } from './create-kpi-constant';
+import { DOMAIN, NODE, dropdown, NodeAggr, AddFormula, subcatAggr, hierarchical } from './create-kpi-constant';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AllCommunityModules, Module } from '@ag-grid-community/all-modules';
@@ -20,6 +20,7 @@ import * as _ from "lodash";
 import { CeilingPopupComponent } from './ceiling-popup/ceiling-popup.component';
 import { FloorPopupComponent } from './floor-popup/floor-popup.component';
 import * as moment from 'moment';
+import { MatOption } from '@angular/material/core';
 
 const PATHS = [
   { goBack: "JCP/Modules/Performance-Management/KPI-Editor" }
@@ -62,6 +63,18 @@ export class CreateKpiComponent implements OnInit {
   public nodeAggrFilterControl: FormControl = new FormControl();
   public nodeAggrFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
 
+  @ViewChild('subcatAggrControlSelect') subcatAggrControlSelect: MatSelect;
+  protected subcatData = subcatAggr;
+  public subcatAggrControl: FormControl = new FormControl();
+  public subcatAggrFilterControl: FormControl = new FormControl();
+  public subcatAggrFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+
+  @ViewChild('hierarchicalControlSelect') hierarchicalControlSelect: MatSelect;
+  protected hierarchicalData = hierarchical;
+  public hierarchicalControl: FormControl = new FormControl();
+  public hierarchicalFilterControl: FormControl = new FormControl();
+  public hierarchicalFilter: ReplaySubject<dropdown[]> = new ReplaySubject<dropdown[]>(1);
+
   @ViewChild('domainCtrlSelect') domainCtrlSelect: MatSelect;
 
   protected domainListData = DOMAIN;
@@ -94,6 +107,7 @@ export class CreateKpiComponent implements OnInit {
     'SUM'
   ];
 
+  domain = 'RAN';
   createKPIForm = new FormGroup({
     nodeAggr: new FormControl(null, Validators.required),
     timeAggr: new FormControl(null, Validators.required)
@@ -103,7 +117,8 @@ export class CreateKpiComponent implements OnInit {
     Formula: new FormControl(null, Validators.required),
     percentageOfNodes: new FormControl(),
     countNodes: new FormControl()
-  })
+  });
+  @ViewChild('allSelected') private allSelected: MatOption;
 
   selectedNodesDetails = [];
   formGroup: FormGroup = new FormGroup({});
@@ -125,6 +140,7 @@ export class CreateKpiComponent implements OnInit {
   tooltipShowDelay: number;
   status: string;
   disabledGenerate: boolean = true;
+  disabledHierachy: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -142,8 +158,31 @@ export class CreateKpiComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.domain !== 'RAN') {
+      this.disabledHierachy = true;
+    } else {
+      this.disabledHierachy = false;
+    }
+
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
+    if (this.domain !== 'RAN') {
+      // this.disabledHierachy = true;
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
+      this.nodeAggrFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.nodeAggrData,
+          this.nodeAggrFilterControl,
+          this.nodeAggrFilter
+        );
+      });
+    }
+   
     //this.createKPItriggered();
-    this.nodeAggrControl.setValue([this.nodeAggrData[1]]);
+    this.nodeAggrControl.setValue(this.nodeAggrData[1]);
     this.nodeAggrFilter.next(this.nodeAggrData.slice());
     this.nodeAggrFilterControl.valueChanges
       .pipe(takeUntil(this._onDestroy))
@@ -154,6 +193,30 @@ export class CreateKpiComponent implements OnInit {
           this.nodeAggrFilter
         );
       });
+
+      this.subcatAggrControl.setValue(this.subcatData[3]);
+      this.subcatAggrFilter.next(this.subcatData.slice());
+      this.subcatAggrFilterControl.valueChanges
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterData(
+            this.subcatData,
+            this.subcatAggrFilterControl,
+            this.subcatAggrFilter
+          );
+        });
+
+      this.hierarchicalControl.setValue([this.hierarchicalData[0], this.hierarchicalData[1], this.hierarchicalData[2]]);
+      this.hierarchicalFilter.next(this.hierarchicalData.slice());
+      this.hierarchicalFilterControl.valueChanges
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterData(
+            this.hierarchicalData,
+            this.hierarchicalFilterControl,
+            this.hierarchicalFilter
+          );
+        });
     this.tooltipShowDelay = 0;
     this.leftColumnDefs = [
       {
@@ -194,7 +257,7 @@ export class CreateKpiComponent implements OnInit {
         field: "Name"
       },
       {
-        headerName: 'Node Aggr',
+        headerName: 'Hierarchical Aggr',
         field: "nodeAggr",
         cellRenderer: 'dropDownCellRenderer'
       },
@@ -732,6 +795,43 @@ export class CreateKpiComponent implements OnInit {
     } else {
       this.stepperLabelText = 'Select Node & Counter';
       this.disabledGenerate = true;
+    }
+  }
+
+  repostModeValue(domain) {
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
+    if (domain.name !== 'RAN') {
+      // this.disabledHierachy = true;
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
+    } else {
+      // this.disabledHierachy = false;
+    }
+    this.nodeAggrFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.nodeAggrData,
+          this.nodeAggrFilterControl,
+          this.nodeAggrFilter
+        );
+      });
+
+  }
+
+  tosslePerOne(selected, domain){
+    console.log(this.allSelected.selected)
+    let allSelected = [true, true, true];
+    for(let i = 0;i < this.hierarchicalData.length; i++) {
+        allSelected[i] = (this.allSelected.selected);
+    }
+
+    if (this.nodeAggrData.some(hierAggr => hierAggr.name === 'None' )){
+      this.nodeAggrData.pop();
+    }
+    if(!allSelected.includes(true) && this.domain != 'RAN'){
+      this.nodeAggrData.push({name: 'None', abbr:'None'});
     }
   }
 

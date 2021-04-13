@@ -52,7 +52,8 @@ export class TableAgGridComponent implements OnInit, OnChanges {
     iconRenderer: IconRendererComponent,
     linkRenderer: AnchorRendererComponent,
     VerticaldotRenderer: VerticaldotRendererComponent,
-    statusFlagRenderer: statusflagiconRenderComponent
+    statusFlagRenderer: statusflagiconRenderComponent,
+    statusFlagRendererBar: StatusRendererComponent
   };
   public paginationValues: number[] = [10, 20, 30, 40];
   public selected = this.paginationValues[0];

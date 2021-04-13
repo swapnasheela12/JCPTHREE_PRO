@@ -1,5 +1,5 @@
 <div class="h-100">
-    <mat-card class="mat-card">
+    <mat-card class="rb-cr-mat-card">
         <mat-card-content class="card-content">
             <mat-horizontal-stepper #nodeCounterStepper [linear]="false" (selectionChange)="selectNodeStepper($event)">
                 <mat-step [stepControl]="selectKpiCtrl">
@@ -16,21 +16,29 @@
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="form-field-container">
-                                <mat-select disableOptionCentering placeholder="Mode" [(value)]="mode">
+                                <mat-select disableOptionCentering placeholder="Mode" [(value)]="mode"  (selectionChange)="repostModeValue(mode, domain)">
                                     <mat-option value="On Demand" selected>On Demand</mat-option>
                                     <mat-option value="Scheduled">Scheduled</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="form-field-container">
-                                <mat-select disableOptionCentering placeholder="Domain" name="domain" [(value)]="domain">
+                                <mat-select disableOptionCentering placeholder="Domain" name="domain" [(value)]="domain" (selectionChange)="repostModeValue(mode, domain)">
                                     <mat-option *ngFor="let domain of domainList" [value]="domain.domainName">{{domain.domainName}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="form-field-container">
-                                <mat-select disableOptionCentering placeholder="Vendor" [(value)]="vendor">
-                                    <mat-option value="Airspan" selected>Airspan</mat-option>
-                                    <mat-option value="Samsung">Samsung</mat-option>
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Vendor" [formControl]="vendorControl" ngDefaultControl #vendorControlSelect>
+                                     <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Vendor"
+                                        [formControl]="vendorFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let vendor of vendorFilter | async" [value]="vendor">
+                                        {{vendor.name}}
+                                    </mat-option>
+                                    <!-- <mat-option value="Airspan" selected>Airspan</mat-option>
+                                    <mat-option value="Samsung">Samsung</mat-option> -->
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -151,7 +159,7 @@
                                         <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid id="myGrid1" class="ag-theme-material h-100" [headerHeight]="0" [gridOptions]="leftGridOptions" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="15 Mins. KPI">
+                                <mat-tab label="15 Mins. KPI" *ngIf="domain == 'RAN'">
                                     <div class="height-49">
                                         <mat-form-field class="search-input full-width" fxLayout="row">
                                             <input matInput [(ngModel)]="searchFifteenMinsKpi" (ngModelChange)="fifteenMinsKpiSearch($event);" autocomplete="off" placeholder="">
