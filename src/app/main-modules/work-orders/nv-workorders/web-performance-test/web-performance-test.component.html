@@ -1,6 +1,6 @@
 <div class="task-details-wrapper">
     <mat-card class="cia-module-card h-100" style="padding: 0px;">
-        <mat-toolbar color="mat-blue-grey" class="create-repor(t-toolbar wo-details">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class="col pl-0 wo-header">
                     <div class="header" fxFlex="90">Web Performance Test</div>
@@ -13,7 +13,7 @@
 
                     <mat-form-field *ngIf="show">
                         <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
-                            placeholder="">
+                            placeholder=""  style="font-size: 14px">
                         <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
                             <span class="zmdi zmdi-close"></span>
                         </mat-icon>
@@ -33,10 +33,6 @@
             <span class="ic ic-Calendedr"></span>
         </button>
 
-      
-
-     
-        
         <div class="td-tab-details p-0" style="height: calc(100% - 61px);">
 
             <div class="td-tabs h-100">
@@ -45,7 +41,6 @@
                     <mat-tab label="WO Assignment">
                         <ng-container [ngTemplateOutlet]="myTask"></ng-container>
                     </mat-tab>
-
 
                     <mat-tab label="Pending Review">
                         <ng-container [ngTemplateOutlet]="teamTask"></ng-container>
@@ -72,14 +67,14 @@
                     <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
                         <div class="task-widget" fxFlex (click)="showTaskData($event)">
                             <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 
@@ -95,14 +90,14 @@
                             </div>
 
                             <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 
@@ -183,7 +178,7 @@
             <div style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 42vh;"
                     class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptions" [columnDefs]="columnDefsPending" [rowData]="rowData" enableSorting
+                    [gridOptions]="gridOptionsPending" [columnDefs]="columnDefsPending" [rowData]="rowData" enableSorting
                     enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
                     toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
                     [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
@@ -248,7 +243,7 @@
             <div style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 42vh;"
                     class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptions" [columnDefs]="columnDefsHistory" [rowData]="rowData" enableSorting
+                    [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory" [rowData]="rowData" enableSorting
                     enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
                     toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
                     [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"

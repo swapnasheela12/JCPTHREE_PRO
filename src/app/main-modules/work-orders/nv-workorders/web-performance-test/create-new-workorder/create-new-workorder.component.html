@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-12">
+                    <div class="sub-content-flex-item p-2 col-12" style="padding-bottom: 0px !important;"> 
                         <!-- <div class="w-100 sap-id-label">Upload URLs:*</div> -->
                         <mat-form-field fxFlex="100" class="browse-file-form-field">
 
@@ -76,13 +76,14 @@
                         <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
                             style="display: none;" />
                     </div>
+                    <div class="upload-instruction">Upload excel files only</div>
 
                     <div class="sub-content-flex-item col-12">
                         <!-- <div class="px-1" fxFlex="70"></div> -->
-                        <div class="px-1" style="float: right;">
-                            <span class="ic ic-Upload-file"></span>
+                        <div style="float: right;">
+            
                             <button class="upload-btn next-button button" mat-raised-button
-                                color="primary">Upload</button>
+                                color="primary"> <span class="ic ic-upload4"></span> Upload</button>
                         </div>
                     </div>
 
@@ -139,7 +140,7 @@
                     </div>
 
                     <div class="sub-content-flex-item p-2 col-5">
-                        <label style="width: 100%;">Time Duration</label>
+                        <label class="time-duration-label">Time Duration</label>
 
                         <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
                     </div>
@@ -149,11 +150,16 @@
                 <div class="sub-content d-flex  flex-row flex-wrap">
                     <div class="sub-content-flex-item p-2 col-12">
                         <div class="label mar-20">Add Devices:</div>
-                        <section class="col checkbox">
+                        <section class="col checkbox" *ngIf="showCreateNewWorkorder">
                             <mat-checkbox class="col-6">Add Manually</mat-checkbox>
                             <mat-checkbox class="col-6">Upload</mat-checkbox>
                             <mat-checkbox class="col-6">Upload Login Id File</mat-checkbox>
                             <mat-checkbox class="col-6">Dual Sim WO</mat-checkbox>
+                        </section>
+
+                        <section class="col checkbox" *ngIf="showCopyToNewWorkorder">
+                            <mat-checkbox class="col-6">Add Manually</mat-checkbox>
+                            <mat-checkbox class="col-6">Upload</mat-checkbox>
                         </section>
                     </div>
 
@@ -184,9 +190,15 @@
                             <div *ngFor="let devices of selectDevice">
                                 {{devices}}
                             </div>
+                            <div *ngIf="selectDevice.length === 0" class="add-data">
+                                <!-- <div >
+                                    Add Data
+                                </div> -->
+                                Add Data
+                            </div>
                         </div>
                     </div>
-                    <div class="download-device w-100">
+                    <div *ngIf="showCopyToNewWorkorder" class="download-device w-100">
                         <button mat-button class="icon-container-button" color="primary"><i
                             class="ic ic-download pr-2"></i>Download</button>
                     </div>

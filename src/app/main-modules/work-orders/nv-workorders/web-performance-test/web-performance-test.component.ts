@@ -33,17 +33,13 @@ export class WebPerformanceTestComponent implements OnInit {
   public gridColumnApi;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
-  // public gridOptionsTeamTask: GridOptions;
-  // public gridOptionsExceptional: GridOptions;
-  // public gridOptionsSLABreach: GridOptions;
+  public gridOptionsPending: GridOptions;
+  public gridOptionsHistory: GridOptions;
   public rowData: any;
   public rowDataTeams: any;
   public rowDataSLABreach: any;
   public rowDataExpTask: any;
-  public columnDefs: any[];
-  public columnDefsTeams: any[];
-  public columnDefsExpTask: any[];
-  public columnDefsSLABreach: any[];
+  public columnDefs;
   public rowCount: string;
   public defaultColDef = { resizable: true };
   public sidenavBarStatus;
@@ -134,14 +130,11 @@ export class WebPerformanceTestComponent implements OnInit {
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
       this.stepperReportW();
     this.gridOptions = <GridOptions>{};
-    // this.gridOptionsTeamTask = <GridOptions>{};
-    // this.gridOptionsExceptional = <GridOptions>{};
+    this.gridOptionsPending = <GridOptions>{};
+    this.gridOptionsHistory = <GridOptions>{};
     // this.gridOptionsSLABreach = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    // this.createTeamDetailsColDefs();
-    // this.createExceptionalTaskColDefs();
-    // this.createSLABreachColumnDefs();
 
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
       this.sidenavBarStatus = message;
@@ -351,6 +344,8 @@ export class WebPerformanceTestComponent implements OnInit {
     this.eventsSubject.next(this.gridFilterValueServices);
     this.eventsSubject.subscribe((data) => {
       this.gridOptions.api.setQuickFilter(data.filter);
+      this.gridOptionsPending.api.setQuickFilter(data.filter);
+      this.gridOptionsHistory.api.setQuickFilter(data.filter);
     });
   };
   show: any;
@@ -444,7 +439,7 @@ export class WebPerformanceTestComponent implements OnInit {
   openWOFilter() {
     this.dialog.open(WoFilterComponent,{
       width: "25vw",
-      height: "40vh",
+      height: "43vh",
       panelClass: 'wo-filter'
     });
   }

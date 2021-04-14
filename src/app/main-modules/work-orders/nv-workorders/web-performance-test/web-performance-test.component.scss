@@ -21,8 +21,6 @@ $color-grayBlue: #464d69;
             color: $color-grayBlue;
             .mat-toolbar-row {
                 color: $color-grayBlue;
-                font-size: 18px;
-                font-weight: 500;
                 mat-icon {
                     font-size: 18px;
                     color: $color-grayBlue;
@@ -30,10 +28,9 @@ $color-grayBlue: #464d69;
                 .header {
                     font-size: 15px;
                     color: $color-grayBlue;
-                    font-family: lato medium;
+                    font-family: lato bold;
                 }
                 .Sub-header {
-                    font-weight: 400;
                     color: $color-grayBlue;
                 }
             }
@@ -61,6 +58,19 @@ $color-grayBlue: #464d69;
     }
 }
 
+.risk-task-status-icon {
+    padding-left: 6px;
+    height: 50px !important;
+    width: 50px !important;
+}
+
+.task-status-icon {
+    padding-left: 31px;
+    height: 50px !important;
+    width: 50px !important;
+}
+
+
 .task-search{
     position: absolute;
     right: 0;
@@ -76,6 +86,7 @@ $color-grayBlue: #464d69;
 
 .task-status {
     font-size: 12px;
+    text-align: center;
 }
 .task-widget {
     top: 125px;
@@ -112,7 +123,7 @@ $color-grayBlue: #464d69;
 
     .task-information {
         width: 65%;
-        padding: 11px 0 10px 25px;
+        padding: 14px 0 10px 25px;
         line-height: 2;
             > div:first-child {
                 font-size: 24px;
@@ -125,7 +136,7 @@ $color-grayBlue: #464d69;
     }
     .task-info {
         width: 65%;
-        padding: 11px 0 10px 25px;
+        padding: 14px 0 10px 25px;
         line-height: 2;
         // >div:first-child {
         //     width: 67px;
@@ -148,7 +159,7 @@ $color-grayBlue: #464d69;
         // }
 
         .task-status {
-            border-right: 1px solid #464D69;
+            border-right: 1px solid #E6E6E6;
             > div:first-child {
                 font-size: 24px;
                 color: #464D69;

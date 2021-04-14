@@ -2,7 +2,7 @@
     <mat-toolbar class="dialog-header">
         <mat-toolbar-row>
             <div fxFlex="grow">
-                <div class="header"><span class="ic ic-list1"></span>WorkOrder Filter</div>
+                <div class="header"><span style="margin-right: 4px;" class="ic ic-list1"></span>WorkOrder Filter</div>
             </div>
             <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
                 <mat-icon>close</mat-icon>
@@ -18,7 +18,7 @@
                         <mat-form-field class="custom-field-container date-field w-100" fxFlex="0">
                             <div class="daterange-container" style="top: 46px;
                     left: 74px;">
-                                <input matInput ngxDaterangepickerMd placeholder="Select Date & Time"
+                                <input matInput ngxDaterangepickerMd placeholder="Date Range"
                                     [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15"
                                     [timePicker24Hour]="false" formControlName="selectedDateTime"
                                     [showCustomRangeLabel]="true"

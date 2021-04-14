@@ -19,14 +19,14 @@
         <mat-form-field style="position: relative;right: 100px; bottom: 5px;right: 14px;">
           <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
           <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-            <span class="zmdi zmdi-close"></span>
+            <span class="zmdi zmdi-search"></span>
           </mat-icon>
         </mat-form-field>
       </div>
 
-      <button style="background: transparent; border: none;">
-        <span class="ic ic-Download-file"></span>
-        <span style="margin-left: 5px; color: #0078D7;">Download</span>
+      <button style="background: transparent; border: none;color: #0078D7;">
+        <span class="ic ic-download"></span>
+        <span style="margin-left: 5px;">Download</span>
       </button>
     </div>
 
