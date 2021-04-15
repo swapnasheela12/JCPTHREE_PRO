@@ -50,6 +50,7 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   }
 
   deleteRow(evt) {
+    console.log("deelete row")
     let deletedRow = this.params.node.data;
     this.params.api.updateRowData({ remove: [deletedRow] });
   }

@@ -1979,3 +1979,8 @@ carousel{
     right: 46px;
     top: 212px;
 }
+
+//ag grid header color
+.ag-theme-material .ag-header {
+    background: var(--ag-selected-row-background-color, #eee);
+}

@@ -1,4 +1,4 @@
-<div class="task-details-wrapper">
+<div class="wpt-wrapper">
     <mat-card class="cia-module-card h-100" style="padding: 0px;">
         <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
@@ -132,14 +132,14 @@
                     <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
                         <div class="task-widget" fxFlex (click)="showTaskData($event)">
                             <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 
@@ -155,14 +155,14 @@
                             </div>
 
                             <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 
@@ -197,14 +197,14 @@
                     <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
                         <div class="task-widget" fxFlex (click)="showTaskData($event)">
                             <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 
@@ -220,14 +220,14 @@
                             </div>
 
                             <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
                                     <span [class]="task.taskStatusImg"><span class="path1"></span><span
                                             class="path2"></span><span class="path3"></span><span
                                             class="path4"></span></span>
                                 </mat-icon>
 
                                 <div class="task-status">
-                                    {{task.taskAssigned}}
+                                    {{task.taskType}}
                                 </div>
                             </div>
 

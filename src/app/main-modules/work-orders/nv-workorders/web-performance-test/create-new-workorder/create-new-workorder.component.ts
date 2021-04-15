@@ -11,6 +11,8 @@ import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-gr
 import { MatDialog } from '@angular/material/dialog';
 import { WptModalComponent } from '../wpt-modal/wpt-modal.component';
 import { Router } from '@angular/router';
+import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+
 
 @Component({
   selector: 'app-create-new-workorder',
@@ -18,6 +20,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-new-workorder.component.scss']
 })
 export class CreateNewWorkorderComponent implements OnInit {
+  campaignOne: FormGroup;
+  campaignTwo: FormGroup;
+
   templateType = ["Web Performance Test", "Web Performance Test"];
 
   selectDaily = ["Daily", "Weekly", "Monthly"];
@@ -52,6 +57,15 @@ export class CreateNewWorkorderComponent implements OnInit {
     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
   };
 
+  //selectdevices grid
+  public gridApiSelectDevice;
+  public gridColumnApiSelectDevice;
+  public gridCoreSelectDevice: GridCore;
+  public gridOptionsSelectDevice: GridOptions;
+  public rowDataSelectDevice: any;
+  public columnDefsSelectDevice: any[];
+  tooltipShowDelay:number = 0;
+
   //ag-grid
   public gridApi;
   public gridColumnApi;
@@ -68,6 +82,7 @@ export class CreateNewWorkorderComponent implements OnInit {
   public frameworkComponentsTaskDetails = {
     dropdownRenderer: dropDownThreeDotRendererComponent,
     inputRenderer: inputRendererComponent,
+    deleteRenderer: DeleteRendererComponent
   };
 
 
@@ -77,6 +92,8 @@ export class CreateNewWorkorderComponent implements OnInit {
   //imei
   imeiValue: string = "";
   selectDevice = [];
+  showUploadDevices = false;
+  showImei = true;
 
   //show copy to new
   showCopyToNewWorkorder: boolean =  false;
@@ -90,20 +107,37 @@ export class CreateNewWorkorderComponent implements OnInit {
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
     }
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month, 13)),
+      end: new FormControl(new Date(year, month, 16))
+    });
+
+    this.campaignTwo = new FormGroup({
+      start: new FormControl(new Date(year, month, 15)),
+      end: new FormControl(new Date(year, month, 19))
+    });
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
+    this.gridOptionsSelectDevice = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     this.httpClient.get("assets/data/workorder/nv-workorder/create-new-wo.json").subscribe((data) => {
       this.rowData = data;
+    })
+    this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
+      this.rowDataSelectDevice = data;
     })
   }
 
   stepperReportW() {
     this.thirdFormGroup = this.fb.group({
       selectedDateTime: {
-        startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        startDate: moment().subtract(1, 'days'),
+        endDate: moment().subtract(1, 'days'),
         // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
         // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
       },
@@ -126,7 +160,7 @@ export class CreateNewWorkorderComponent implements OnInit {
       {
         headerName: "Traceroute",
         field: "traceroute",
-        width: 100
+        width: 130
       },
       {
         headerName: "Ping",
@@ -136,25 +170,31 @@ export class CreateNewWorkorderComponent implements OnInit {
       {
         headerName: "Location",
         field: "location",
-        width: 100,
-      },
-      {
-        headerName: "11 Urls",
-        cellRenderer: function(params) {
-          return '<span class="ic ic-pencil">'+'</span>'
-        },
-        width: 70,
-        pinned: 'right'
+        width: 130,
       },
       {
         headerName: "",
         cellRenderer: function(params) {
-          return '<span class="ic ic-custom-delete">'+'</span>'
+          return '<span class="ic ic-pencil">'+'</span>'
         },
-        width: 70,
+        width: 60,
         pinned: 'right'
+      },
+      {
+        headerName: "11 Urls",
+        cellRenderer: 'deleteRenderer',
+        width: 90,
+        pinned: 'right',
+        headerClass: 'urls11'
       }
     ];
+    this.columnDefsSelectDevice = [
+      {
+        headerName: "Select Device",
+        field: "imei",
+        width: '500'
+      }
+    ]
   }
 
   onGridReady(params) {
@@ -222,16 +262,46 @@ export class CreateNewWorkorderComponent implements OnInit {
     fileUpload.click();
   }
 
+  fitColumns() {
+    if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
+      setTimeout(() => {
+        this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+      }, 0);
+    } 
+  }
+  onReady(event) {
+    this.fitColumns();
+  }
+
+  onManualReady(event) {
+    this.fitColumns();
+  }
+
   addToSelectedDevice() {
     if(this.imeiValue) {
       this.selectDevice.push(this.imeiValue)
     }
   }
 
+  addToGrid() {
+    this.gridOptionsSelectDevice.api.addItems([{ imei: this.imeiValue}]);
+  }
+
+  showUpload(evt) {
+    if(evt.checked) {
+      this.showUploadDevices = true;
+      this.showImei = false;
+    } else {
+      this.showUploadDevices = false;
+      this.showImei = true;
+    }
+    
+  }
+
   assignWorkorder() {
     this.dialog.open(WptModalComponent, {
-      width: "635px",
-      height: "350px",
+      width: "680px",
+      height: "300px",
       panelClass: "material-dialog-container",
     } );
   }

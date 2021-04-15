@@ -4,12 +4,22 @@
        .header {
         color: white;
         font-size: 18px;
+        margin-left: 10px;
        }
        .dialog-close-button {
            color: white;
            background: transparent;
        }
     }
+    .dialog {
+        margin: 15px;
+        height: 150px;
+        overflow: auto;
+        .assign-dialog-header {
+            margin: 5px 0 5px 10px;
+        }
+    }
+    
     .listOfIMEIS{
         background: #EDEDED;
         display: inline-block;
@@ -17,6 +27,6 @@
         height: 32px;
         margin: 10px;
         border-radius: 24px;
-        padding: 5px 10px;
+        padding: 5px 20px;
     }
 }

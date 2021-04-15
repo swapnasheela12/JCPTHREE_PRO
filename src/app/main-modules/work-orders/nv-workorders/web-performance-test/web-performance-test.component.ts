@@ -321,7 +321,7 @@ export class WebPerformanceTestComponent implements OnInit {
       barColor = '#F8C93A';
     }
     return '<div class="jcp-two-lines-progress col-12" style="width: 120px; height: 50%">' +
-                '<div class="values" style="font-family:Lato Regular; font-size: 12px;height: 14px;">' + params.data.taskCompleted  +'</div>' +
+                '<div class="values" style="font-family:Lato Regular; font-size: 12px;height: 14px;">' + params.data.taskCompleted + "%" +'</div>' +
                     '<div class="progress" style="display: inline-flex; width: 109px">' +
                         '<div class="progress-bar " style=" background-color: ' +
                         barColor +

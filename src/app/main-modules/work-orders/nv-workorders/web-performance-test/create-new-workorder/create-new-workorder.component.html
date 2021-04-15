@@ -1,6 +1,6 @@
-<div class="task-details-wrapper">
-    <mat-card class="cia-module-card h-100" style="padding: 0px;">
-        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+<div class="create-wpt-wrapper">
+    <mat-card class="wpt-module-card" style="padding: 0px;">
+        <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class=" pl-0 wo-header" fxFlex="95">
                     <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
@@ -16,10 +16,10 @@
 
         <mat-divider></mat-divider>
 
-        <div class="d-flex flex-row justify-content-between container">
+        <div class="d-flex flex-row justify-content-between wpt-container">
             <div fxFlex="50" style="border-right: 1px solid #D3D5DC;">
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-6">
+                <div class="sub-content d-flex mar-top flex-row flex-wrap">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Template Type*</mat-label>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-6">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="example-full-width">
                             <mat-label>Workorder Id*</mat-label>
                             <input *ngIf="showCreateNewWorkorder" matInput placeholder="" value="">
@@ -49,7 +49,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="sub-content-flex-item p-2 col-6">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Type*</mat-label>
@@ -63,12 +63,15 @@
                     </div>
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-12" style="padding-bottom: 0px !important;"> 
-                        <!-- <div class="w-100 sap-id-label">Upload URLs:*</div> -->
+                <div class="sub-content d-flex  flex-row flex-wrap mar-top">
+                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
+                        <div class="label"  fxFlex="100">Upload URLs:*</div>
+                    </div>
+                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
+                        <!-- <div class="w-100 sap-id-label"  fxFlex="100">Upload URLs:*</div> -->
                         <mat-form-field fxFlex="100" class="browse-file-form-field">
 
-                            <input matInput class="input-field" placeholder="Upload URLs:" [(ngModel)]="fileName"
+                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
                                 [readonly]="true" required>
                             <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
                                 (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
@@ -76,23 +79,28 @@
                         <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
                             style="display: none;" />
                     </div>
-                    <div class="upload-instruction">Upload excel files only</div>
+                    
 
                     <div class="sub-content-flex-item col-12">
                         <!-- <div class="px-1" fxFlex="70"></div> -->
-                        <div style="float: right;">
+                        <div class="upload-instruction" fxFlex="80">Upload excel files only</div>
+                        <div class="upload-btn" style="float: right;">
             
-                            <button class="upload-btn next-button button" mat-raised-button
-                                color="primary"> <span class="ic ic-upload4"></span> Upload</button>
+                            <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                </i>
+                                <span>Upload</span>
+                              </button>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-12">
+                <div class="d-flex  fle
+                x-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
                         <ag-grid-angular (gridReady)="onGridReady($event)"
-                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;"
+                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;border: 1px solid #eee;"
                             rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
                             [rowData]="rowData" enableColResize groupHeaders
                             [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
@@ -105,20 +113,20 @@
             </div>
             <div fxFlex="50">
                 <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="wo-sector-card-one p-2 col-11 mar-20" style="display: inline-block">
+                    <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
                         <form [formGroup]="thirdFormGroup">
-                            <mat-form-field class="custom-field-container" fxFlex="90">
-                                <div class="daterange-container" style="top: 46px;
+                            <mat-form-field class="custom-field-container" fxFlex>
+                                <div class="daterange-container" style="position: absolue;top: 46px;
                         left: 74px;">
                                     <input matInput ngxDaterangepickerMd placeholder="Select Date & Time"
-                                        [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15"
+                                        [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
                                         [timePicker24Hour]="false" formControlName="selectedDateTime"
                                         [showCustomRangeLabel]="true"
                                         [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
                                         [ranges]="ranges" [showClearButton]="true" [showCancel]="true"
                                         [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
                                         [isInvalidDate]="isInvalidDate"
-                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}"
                                         [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
                                         [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
                                         (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
@@ -129,17 +137,22 @@
                             </mat-form-field>
                         </form>
                     </div>
+
+                    <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
+                        <label class="time-duration-label">Select Time</label>
+                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
+                        </div>
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-6 mar-20">
+                    <div class="sub-content-flex-item  col-6 ">
                         <mat-form-field class="example-full-width">
                             <mat-label>Iterations</mat-label>
                             <input matInput placeholder="" value="">
                         </mat-form-field>
                     </div>
 
-                    <div class="sub-content-flex-item p-2 col-5">
+                    <div class="sub-content-flex-item  col-5">
                         <label class="time-duration-label">Time Duration</label>
 
                         <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
@@ -148,13 +161,13 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-12">
-                        <div class="label mar-20">Add Devices:</div>
-                        <section class="col checkbox" *ngIf="showCreateNewWorkorder">
-                            <mat-checkbox class="col-6">Add Manually</mat-checkbox>
-                            <mat-checkbox class="col-6">Upload</mat-checkbox>
-                            <mat-checkbox class="col-6">Upload Login Id File</mat-checkbox>
-                            <mat-checkbox class="col-6">Dual Sim WO</mat-checkbox>
+                    <div class="mar-top col-12">
+                        <div class="label ">Add Devices:</div>
+                        <section class="checkbox" *ngIf="showCreateNewWorkorder">
+                            <mat-checkbox style="margin-right: 109px">Add Manually</mat-checkbox>
+                            <mat-checkbox>Upload</mat-checkbox>
+                            <mat-checkbox (change)="showUpload($event)">Upload Login Id File</mat-checkbox>
+                            <mat-checkbox>Dual Sim WO</mat-checkbox>
                         </section>
 
                         <section class="col checkbox" *ngIf="showCopyToNewWorkorder">
@@ -165,23 +178,48 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-5 mar-20" >
+                <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap">
+                    <div class="col-5">
                         <mat-form-field class="example-full-width">
                             <mat-label>IMEI</mat-label>
                             <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
                         </mat-form-field>
                     </div>
-                    <div class="sub-content-flex-item p-2 col-3">
+                    <div class="sub-content-flex-item  col-5">
 
                     </div>
-                    <div class="sub-content-flex-item p-2 col-2">
-                        <button mat-raised-button color="primary" (click)="addToSelectedDevice()">Add</button>
+                    <div class="sub-content-flex-item col-2" style="line-height: 3.2;">
+                        <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
                     </div>
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-left: 1px solid rgb(211, 213, 220);">
-                    <div class="sub-content-flex-item p-2 col" style="padding-bottom: 0px !important;">
+                <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap">
+                    <div class="col">
+                        <mat-form-field fxFlex="100" class="browse-file-form-field">
+                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
+                                [readonly]="true" required>
+                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
+                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+                        </mat-form-field>
+                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                            style="display: none;" />
+                    </div>
+                </div>
+                <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
+                    <!-- <div class="px-1" fxFlex="70"></div> -->
+                    <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">Upload excel files only</div>
+                    <div class="upload-btn" style="float: right;">
+        
+                        <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                            </i>
+                            <span>Upload</span>
+                          </button>
+                    </div>
+                </div>
+
+                <div class="d-flex  flex-row flex-wrap">
+                    <!-- <div class="sub-content-flex-item  col" style="padding-bottom: 0px !important;">
                         <div class="w-100" style="height: 50px; background: #D3D5DC">
                             <div class="select-device">Select Device</div>
                             <div class="device-count">{{selectDevice.length}} out of 100</div>
@@ -191,13 +229,26 @@
                                 {{devices}}
                             </div>
                             <div *ngIf="selectDevice.length === 0" class="add-data">
-                                <!-- <div >
-                                    Add Data
-                                </div> -->
+
                                 Add Data
                             </div>
                         </div>
+                    </div> -->
+                    
+                    <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
+                        <ag-grid-angular style="width: 100%; height: 242px"
+                        class="traceport-activation ag-theme-material ag-jcp3"
+                        [tooltipShowDelay]="tooltipShowDelay"
+                        [rowData]="rowDataSelectDevice"
+                        [columnDefs]="columnDefsSelectDevice"
+                        [groupHeaderHeight]="47"
+                        [headerHeight]="47"
+                        [gridOptions]="gridOptionsSelectDevice" 
+                        [suppressHorizontalScroll]="true"
+                        (gridReady)="onManualReady($event)">
+                        </ag-grid-angular>
                     </div>
+
                     <div *ngIf="showCopyToNewWorkorder" class="download-device w-100">
                         <button mat-button class="icon-container-button" color="primary"><i
                             class="ic ic-download pr-2"></i>Download</button>
@@ -209,18 +260,16 @@
 
 
     </mat-card>
-
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+          <button mat-stroked-button color="primary" class="buttonWidth"  (click)="navigateBack()">Back</button>
+        </div>
+       
+        <div class="p-2">
+          <button mat-raised-button color="primary" (click)="assignWorkorder()"
+            class="buttonWidth button">Assign</button>
+        </div>
+      </div>
 </div>
 
 
-<div class="d-flex task-footer">
-    <div class="col"></div>
-    <div class="p-2">
-        <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
-            (click)="navigateBack()">Back</button>
-    </div>
-    <div class="p-2">
-        <button mat-raised-button color="primary" class="buttonWidth button" (click)="assignWorkorder()"
-            >Assign</button>
-    </div>
-</div>
