@@ -1,13 +1,14 @@
-<div class="task-details-wrapper">
-    <mat-card class="cia-module-card h-100" style="padding: 0px;">
-        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+<div class="create-wpt-wrapper">
+    <mat-card class="wpt-module-card" style="padding: 0px; height: 92%;">
+        <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
                 <div class=" pl-0 wo-header" fxFlex="95">
                     <div class="header">View Workorder</div>
                 </div>
                 <div class="sector-flex-item" fxFlex="5">
-                    <mat-icon  style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);">
-                        <span class="ic ic-clustertask"></span></mat-icon>
+                    <mat-icon style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right">
+                        <span class="ic ic-Go-to-Workorder-Icon"></span>
+                    </mat-icon>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -15,10 +16,10 @@
 
         <mat-divider></mat-divider>
 
-        <div class="d-flex flex-row justify-content-between container">
+        <div class="d-flex flex-row justify-content-between  wpt-container">
             <div fxFlex="50" style="border-right: 1px solid #D3D5DC;">
-                <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="sub-content-flex-item p-2 col-6">
+                <div class="sub-content d-flex  flex-row flex-wrap mar-top">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Template Type*</mat-label>
@@ -33,14 +34,14 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-6">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="example-full-width">
                             <mat-label>Workorder Id*</mat-label>
                             <input matInput placeholder="" value="" disabled>
                         </mat-form-field>
                     </div>
 
-                    <div class="sub-content-flex-item p-2 col-6">
+                    <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Type*</mat-label>
@@ -54,15 +55,18 @@
                     </div>
                 </div>
 
-           
 
-                <div class="sub-content d-flex  flex-row flex-wrap" style="height: 60%;border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-12" style="height:98%">
-                        <ag-grid-angular (gridReady)="onGridReady($event)" disabled
-                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 100%;"
-                            rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
-                            [rowData]="rowData" enableColResize groupHeaders
-                            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+
+                <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item col-12 " style="padding: 0px !important;">
+                        <div class="label" style="margin: 10px 0 10px 25px;">11 URLs</div>
+                    </div>
+                    <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
+                        <ag-grid-angular (gridReady)="onGridReady($event)"
+                            class="ag-theme-material table-view-zoom-ag-grid"
+                            style="width: 100%; height: 236px;border: 1px solid #eee;" rowHeight="48" headerHeight="48"
+                            [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+                            groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
                             rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
                             [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
                             [frameworkComponents]="frameworkComponentsTaskDetails">
@@ -72,59 +76,77 @@
             </div>
             <div fxFlex="50">
                 <div class="sub-content d-flex  flex-row flex-wrap">
-                    <div class="wo-sector-card-one p-2 col-11 mar-20" style="display: inline-block">
+                    <div class="wo-sector-card-one mar-top col-6" style="display: inline-block">
                         <form [formGroup]="thirdFormGroup">
-                            <mat-form-field class="custom-field-container" fxFlex="90">
-                                <div class="daterange-container" style="top: 46px;
+                            <mat-form-field class="custom-field-container" fxFlex>
+                                <div class="daterange-container" style="position: absolue;top: 46px;
                         left: 74px;">
-                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [readonly]="true"
-                                        [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15"
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time"
+                                        [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
                                         [timePicker24Hour]="false" formControlName="selectedDateTime"
                                         [showCustomRangeLabel]="true"
                                         [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
                                         [ranges]="ranges" [showClearButton]="true" [showCancel]="true"
                                         [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
                                         [isInvalidDate]="isInvalidDate"
-                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}"
                                         [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
                                         [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
                                         (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
                                         autocomplete="off" [opens]="opens" [drops]="drops"
-                                        class="daterange-container-input" disabled="true" [disabled]="true" />
+                                        class="daterange-container-input" />
                                     <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
                                 </div>
                             </mat-form-field>
                         </form>
                     </div>
+
+                    <div class="wo-sector-card-one  col-5 mar-top" style="display: inline-block;margin-left: 20px;">
+                        <label class="time-duration-label">Select Time</label>
+                        <div>
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="hours[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
+                                    {{h}}</mat-option>
+                            </mat-select>
+                    
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="minutes[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+                    
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="ampm[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
+                                    {{ap}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item p-2 col-6 mar-20">
+                    <div class="sub-content-flex-item  col-6 ">
                         <mat-form-field class="example-full-width">
                             <mat-label>Iterations</mat-label>
-                            <input matInput placeholder="" value="" disabled>
+                            <input matInput placeholder="" value="">
                         </mat-form-field>
                     </div>
 
-                    <div class="sub-content-flex-item p-2 col-5">
-                        <label style="width: 100%;">Time Duration</label>
+                    <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
+                        <label class="time-duration-label" style="margin-bottom: 10px !important;">Time Duration</label>
 
-                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" disabled>
+                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
                     </div>
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" style="height: 58%;">
-                    <div class="sub-content-flex-item p-2 col h-100">
-                        <div class="w-100" style="height: 50px; background: #D3D5DC">
-                            <div class="select-device">Select Device</div>
-                            <div class="device-count">{{selectDevice.length}} out of 100</div>
-                        </div>
-                        <div class="selected-device">
-                            <div *ngFor="let devices of selectDevice">
-                                {{devices}}
-                            </div>
-                        </div>
+                <div class="d-flex  flex-row flex-wrap" style="margin-top: 42px"> 
+
+                    <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
+                        <ag-grid-angular style="width: 100%; height: 235px"
+                            class="traceport-activation ag-theme-material ag-jcp3" [tooltipShowDelay]="tooltipShowDelay"
+                            [rowData]="rowDataSelectDevice" [columnDefs]="columnDefsSelectDevice"
+                            [groupHeaderHeight]="47" [headerHeight]="47" [gridOptions]="gridOptionsSelectDevice"
+                            [suppressHorizontalScroll]="true" (gridReady)="onManualReady($event)">
+                        </ag-grid-angular>
                     </div>
                 </div>
             </div>
@@ -134,13 +156,10 @@
 
     </mat-card>
 
-</div>
-
-
-<div class="d-flex task-footer">
-    <div class="col"></div>
-    <div class="p-2">
-        <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
-            (click)="navigateBack()">Back</button>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="navigateBack()">Back</button>
+        </div>
     </div>
+
 </div>

@@ -13,8 +13,10 @@ $color-grayBlue: #464d69;
         overflow: hidden !important;
     }
 }
-.cia-module-card {
-    .create-report-toolbar {
+.wpt-module-card {
+    box-shadow: none !important;
+    padding: 0  !important;
+    .wpt-toolbar {
         min-height: 54px;
         &.mat-toolbar {
             background: white;
@@ -28,11 +30,23 @@ $color-grayBlue: #464d69;
                     font-size: 18px;
                     color: $color-grayBlue;
                 }
-                .header {
-                    font-size: 15px;
-                    color: $color-grayBlue;
-                    font-family: lato bold;
+                .wo-header {
+                    margin-left: 13px;
+                    .header {
+                        font-size: 15px;
+                        color: $color-grayBlue;
+                        font-family: lato bold;
+                    }
                 }
+                .wpt-flex-item {
+                    height: 50px;
+                    >mat-form-field {
+                        .mat-form-field-wrapper {
+                            padding-bottom: 0px !important;
+                        }
+                    }
+                }
+               
                 .Sub-header {
                     color: $color-grayBlue;
                 }
@@ -42,36 +56,103 @@ $color-grayBlue: #464d69;
 }
 
 .td-flex-container {
-    height: 130px;
-    padding: 15px 0;
-    .td-flex-item {
-        font-size: 14px;
-        .td-title {
-            font-size: 16px;
-            font-family: Lato Bold;
-            line-height: 2;
+    height: 97px;
+    margin: 10px !important;
+    > div {
+        border: 1px solid #E6E6E6;
+    &.wpf-all-task {
+        .wpf-task-status {
+            .task-status {
+                padding: 12px 0;
+                font-size: 12px;
+                text-align: center;
+                > mat-icon {
+                    display: inline-block;
+                    position: relative;
+                    height: 50px;
+                    width: 50px;
+                }
+                >div {
+                    margin-top: 1px;
+                    font-size:  12px;
+                    font-family: lato bold;
+                }
+            }
         }
-        .icon-button {
-            padding: 10px 16px;
+        .wpf-task-count {
+            padding: 18px 0;
+            .task-count {
+                text-align: center;
+                font-family: lato bold;
+                font-size: 32px;
+                letter-spacing: 0px;
+                color: #464D69;
+            }
+            .task-count-status {
+                text-align: center;
+                color: #464D69;
+                font-family: lato medium;
+                font-size: 12px;
+            }
+        }   
+    }
+    &.wpf-not-started {
+        .wpf-task-status {
+            .task-status {
+                margin: 12px 0;
+                font-size: 12px;
+                text-align: center;
+                > mat-icon {
+                    display: inline-block;
+                    position: relative;
+                    height: 50px;
+                    width: 50px;
+                }
+                >div {
+                    margin-top: 1px;
+                    font-size:  12px;
+                    font-family: lato bold;
+                }
+            }
         }
-        .cancel-btn {
-            font-size: 17px;
-            padding-top: 15px;
+        .not-at-risk {
+            margin: 18px 0;
+            border-right:1px solid #E6E6E6;
+            .task-count {
+                text-align: center;
+                font-family: lato bold;
+                font-size: 32px;
+                letter-spacing: 0px;
+                color: #464D69;
+            }
+            .task-count-status {
+                text-align: center;
+                color: #464D69;
+                font-family: lato medium;
+                font-size: 12px;
+            }
+        } 
+        .at-risk {
+            margin: 18px 0;
+            .task-count {
+                text-align: center;
+                font-family: lato bold;
+                font-size: 32px;
+                letter-spacing: 0px;
+                color: #F32323;
+            }
+            .task-count-status {
+                text-align: center;
+                color: #F32323;
+                font-family: lato medium;
+                font-size: 12px;
+            }
         }
+    }  
+
     }
 }
 
-.risk-task-status-icon {
-    padding-left: 6px;
-    height: 50px !important;
-    width: 50px !important;
-}
-
-.task-status-icon {
-    padding-left: 31px;
-    height: 50px !important;
-    width: 50px !important;
-}
 
 
 .task-search{
@@ -87,116 +168,30 @@ $color-grayBlue: #464d69;
 }
 
 
-.task-status {
-    font-size: 12px;
-    text-align: center;
-}
-.task-widget {
-    top: 125px;
-    left: 308px;
-    width: 250px;
-    height: 97px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #E6E6E6;
-    border-radius: 4px;
-    opacity: 1;
-    .task-icon {
-        width:35%;
-        padding: 11px 0 0 6px;
-        .task-outer-circle {
-            //background: #007C8D ;
-            border-radius: 50%;
-            width: 49px;
-            height: 49px;
-            top: 23px;
-            left: 10px;
-            position: relative;
-            opacity: 1;
-            .task-inner-circle {
-                // > img {
-                //     top: 11px;
-                //     left: 7px;
-                //     position: absolute;
-                // }
-            }
-            
-        }
-        
-    }
-
-    .task-information {
-        width: 65%;
-        padding: 14px 0 10px 11px;
-        line-height: 2;
-            > div:first-child {
-                font-size: 24px;
-                color: #464D69;
-                text-align: center;
-            }
-            >div:last-child {
-                font-size: 12px;
-                color: #464D69;
-                text-align: center;
-            }
-    }
-    .task-info {
-        width: 65%;
-        padding: 14px 0 10px 25px;
-        line-height: 2;
-        // >div:first-child {
-        //     width: 67px;
-        //     height: 28px;
-        //     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 23px/28px var(--unnamed-font-family-lato);
-        //     letter-spacing: var(--unnamed-character-spacing-0);
-        //     text-align: left;
-        //     font: normal normal bold 12px Lato;
-        //     letter-spacing: 0px;
-        //     color: #464D69;
-        //     opacity: 1;
-        // }
-        // >div:last-child {
-        //     text-align: left;
-        //     font-size: 12px;
-        //     font-family: Lato medium;
-        //     letter-spacing: 0px;
-        //     color: #464D69;
-        //     opacity: 1;
-        // }
-
-        .task-status {
-            border-right: 1px solid #E6E6E6;
-            > div:first-child {
-                font-size: 24px;
-                color: #464D69;
-            }
-            >div:last-child {
-                font-size: 12px;
-                color: #464D69;
-            }
-
-        }
-        .task-risk-status {
-            padding-left: 10px;
-            >div:first-child {
-                font-size: 24px;
-                color: red;
-                text-align: center;
-            }
-            >div:last-child {
-                font-size: 12px;
-                color: red;
-                text-align: center;
+:host ::ng-deep .wpt-wrapper {
+    .wpt-flex-item {
+        mat-form-field {
+            .mat-form-field-wrapper {
+                padding-bottom: 0 !important;
+                .mat-form-field-flex {
+                    .mat-form-field-infix  {
+                        top: -19px !important;
+                        padding: 0.7000em 0 !important;
+                        >input {
+                            font-family: lato normal;
+                            font-size: 16px;
+                        }
+                        mat-icon {
+                            bottom: -18px !important;
+                        }
+                    }
+                }
             }
         }
-
     }
 }
 
-.task-widget:hover {
-    cursor: pointer;
-}
-
-:host ::ng-deep .task-details-wrapper {
+:host ::ng-deep .wpt-wrapper {
     .td-tab-details {
         .td-tabs {
             .td-tab-group {
@@ -222,6 +217,7 @@ $color-grayBlue: #464d69;
     right: 22px;
     border: none;
     margin-top: 15px;
+    font-size: 20px;
 }
 
 // .progress {

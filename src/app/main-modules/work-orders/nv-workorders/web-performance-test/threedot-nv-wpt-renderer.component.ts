@@ -3,25 +3,18 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 
 @Component({
-    selector: 'threeDot-create-new-button-renderer',
+    selector: 'threeDot-nv-wpt-button-renderer',
     template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item (click)="viewWorkorder($event)">
-                <span>View WorkOrder</span>
+            <button mat-menu-item (click)="editRow($event)">
+                <span>Edit</span>
             </button>
-            <button mat-menu-item (click)="copyWorkorder($event)">
-                <span>Copy to new Workorder</span>
-            </button>
-            <button mat-menu-item (click)="viewTask($event)">
-                <span>View Tasks</span>
-            </button>
-            <button mat-menu-item (click)="downloadReport($event)">
-                <span>Download Report</span>
+            <button mat-menu-item (click)="deleteRow($event)">
+                <span>Delete</span>
             </button>
         </mat-menu>`,
     styles: [
@@ -39,7 +32,7 @@ import { ViewTasksComponent } from './view-tasks/view-tasks.component';
     encapsulation: ViewEncapsulation.None
 })
 
-export class ThreeDotCreateNewRenderer implements ICellRendererAngularComp {
+export class ThreeDotNVWPTRenderer implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
@@ -61,24 +54,12 @@ export class ThreeDotCreateNewRenderer implements ICellRendererAngularComp {
         return true;
     }
 
-    viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
+    editRow(evt) {
+        this.datashare.changeMessage({ type: "edit"});
     }
 
-    copyWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"])
-    }
-
-    viewTask(evt) {
-        this.dialog.open(ViewTasksComponent,{
-            width: "750px",
-            height: "400px",
-            panelClass: "material-dialog-container",
-        });
-    }
-
-    downloadReport(evt) {
-
+    deleteRow(evt) {
+        this.datashare.changeMessage({"rowIndex": this.params, type: "delete"});
     }
 
 }

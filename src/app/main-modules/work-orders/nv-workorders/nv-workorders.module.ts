@@ -70,6 +70,7 @@ import { ThreeDotWPTRenderer } from './web-performance-test/threedot-wpt-rendere
 import { WoFilterComponent } from './web-performance-test/wo-filter/wo-filter.component';
 import { ViewWorkorderComponent } from './web-performance-test/view-workorder/view-workorder.component';
 import { ThreeDotCreateNewRenderer } from './web-performance-test/threedot-create-new-renderer.component';
+import { ThreeDotNVWPTRenderer } from './web-performance-test/threedot-nv-wpt-renderer.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { ThreeDotCreateNewRenderer } from './web-performance-test/threedot-creat
     WptModalComponent,
     ThreeDotWPTRenderer,
     ThreeDotCreateNewRenderer,
+    ThreeDotNVWPTRenderer,
     WoFilterComponent,
     ViewWorkorderComponent
   ],
@@ -88,7 +90,7 @@ import { ThreeDotCreateNewRenderer } from './web-performance-test/threedot-creat
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
+    AgGridModule.withComponents([ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

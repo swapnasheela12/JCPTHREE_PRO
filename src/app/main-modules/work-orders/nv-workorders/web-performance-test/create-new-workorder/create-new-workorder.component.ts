@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WptModalComponent } from '../wpt-modal/wpt-modal.component';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
+import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
 
 
 @Component({
@@ -20,9 +21,6 @@ import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders
   styleUrls: ['./create-new-workorder.component.scss']
 })
 export class CreateNewWorkorderComponent implements OnInit {
-  campaignOne: FormGroup;
-  campaignTwo: FormGroup;
-
   templateType = ["Web Performance Test", "Web Performance Test"];
 
   selectDaily = ["Daily", "Weekly", "Monthly"];
@@ -80,7 +78,7 @@ export class CreateNewWorkorderComponent implements OnInit {
   public gridPinned = false;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    dropdownRenderer: dropDownThreeDotRendererComponent,
+    dropdownRenderer: ThreeDotNVWPTRenderer,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent
   };
@@ -99,6 +97,16 @@ export class CreateNewWorkorderComponent implements OnInit {
   showCopyToNewWorkorder: boolean =  false;
   showCreateNewWorkorder: boolean =  false;
 
+  //time picker
+  minutes:any = [
+    "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
+          "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
+          "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
+          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+  ]
+  hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+  ampm = ["AM", "PM"]
+
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
        console.log(this.router.url)
@@ -107,19 +115,6 @@ export class CreateNewWorkorderComponent implements OnInit {
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
     }
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-
-    this.campaignOne = new FormGroup({
-      start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 16))
-    });
-
-    this.campaignTwo = new FormGroup({
-      start: new FormControl(new Date(year, month, 15)),
-      end: new FormControl(new Date(year, month, 19))
-    });
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
@@ -155,7 +150,7 @@ export class CreateNewWorkorderComponent implements OnInit {
       {
         headerName: "URL Name",
         field: "urlName",
-        width: 150
+        width: 190
       },
       {
         headerName: "Traceroute",
@@ -174,20 +169,12 @@ export class CreateNewWorkorderComponent implements OnInit {
       },
       {
         headerName: "",
-        cellRenderer: function(params) {
-          return '<span class="ic ic-pencil">'+'</span>'
-        },
-        width: 60,
+        cellRenderer: 'dropdownRenderer',
+        width: 90,
         pinned: 'right'
       },
-      {
-        headerName: "11 Urls",
-        cellRenderer: 'deleteRenderer',
-        width: 90,
-        pinned: 'right',
-        headerClass: 'urls11'
-      }
     ];
+
     this.columnDefsSelectDevice = [
       {
         headerName: "Select Device",

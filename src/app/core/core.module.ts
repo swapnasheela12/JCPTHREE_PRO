@@ -88,6 +88,7 @@ import { AdDirective } from '../_directive/dynamicComponent/ad.directive';
 import { SiteProposedConfigurationComponent } from './components/commonPopup/site-proposed-configuration/site-proposed-configuration.component';
 import { numberFormatPipe } from '../_pipes/numberFormat/number.pipe';
 import { ThreeDotSLARenderer } from '../main-modules/administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/create-sla-configuration/threedot-sla-renderer.component';
+import { TimePickerComponent } from './components/time-picker/time-picker.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { ThreeDotSLARenderer } from '../main-modules/administration/module-manag
     AdDirective,
     SiteProposedConfigurationComponent,
     numberFormatPipe,
-    ThreeDotSLARenderer
+    ThreeDotSLARenderer,
+    TimePickerComponent
   ],
   imports: [
     CommonModule,

@@ -7,11 +7,12 @@ $color-white: #ffffff;
 $color-grayBlue: #464d69;
 
 
-.task-details-wrapper {
+.create-wpt-wrapper {
     height: 98%;
 }
-.cia-module-card {
-    .create-report-toolbar {
+.wpt-module-card {
+    height: 92%;
+    .create-wpt-toolbar {
         min-height: 54px;
         &.mat-toolbar {
             background: white;
@@ -40,6 +41,19 @@ $color-grayBlue: #464d69;
             }
         }
     }
+}
+
+.wo-header {
+    margin-left: 10px;
+    max-width: 93%;
+}
+
+.sub-content {
+    padding: 0px 12px;
+}
+
+.mar-top {
+    margin-top: 20px;
 }
 
 .td-flex-container {
@@ -128,26 +142,6 @@ $color-grayBlue: #464d69;
         width: 65%;
         padding: 11px 0 10px 25px;
         line-height: 2;
-        // >div:first-child {
-        //     width: 67px;
-        //     height: 28px;
-        //     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 23px/28px var(--unnamed-font-family-lato);
-        //     letter-spacing: var(--unnamed-character-spacing-0);
-        //     text-align: left;
-        //     font: normal normal bold 12px Lato;
-        //     letter-spacing: 0px;
-        //     color: #464D69;
-        //     opacity: 1;
-        // }
-        // >div:last-child {
-        //     text-align: left;
-        //     font-size: 12px;
-        //     font-family: Lato medium;
-        //     letter-spacing: 0px;
-        //     color: #464D69;
-        //     opacity: 1;
-        // }
-
         .task-status {
             border-right: 1px solid #464D69;
             > div:first-child {
@@ -180,7 +174,8 @@ $color-grayBlue: #464d69;
 }
 
 .label {
-    font: normal normal bold 16px/17px Lato;
+    font-family: Lato bold;
+    font-size: 15px;
     letter-spacing: 0px;
     color: #000000;
     opacity: 0.8;
@@ -190,6 +185,7 @@ $color-grayBlue: #464d69;
     color: #0078D7;
     background: transparent;
     box-shadow: none;
+    margin: -19px 0 33px 28px;
 }
 
 
@@ -205,8 +201,26 @@ $color-grayBlue: #464d69;
     height: 52px;
 }
 
-.container {
-    height: 80%;
+.wpt-container {
+    overflow: auto;
+    height: calc(100% - 70px);
+    padding: 0px !important;
+    width: 100%;
+}
+
+.upload-instruction {
+    text-align: left;
+    font: italic normal normal 10px/22px Lato;
+    letter-spacing: 0px;
+    color: #000000;
+    text-transform: lowercase;
+    opacity: 0.6;
+    margin-top: -18px;
+}
+
+.upload-select-device {
+    margin-left: 13px;
+    margin-right: 20px;
 }
 
 .select-device {
@@ -229,7 +243,7 @@ $color-grayBlue: #464d69;
 .time-selection {
     width: 105px;
     border: transparent;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
     position: relative;
     bottom: 14px;
 }
@@ -237,6 +251,13 @@ $color-grayBlue: #464d69;
 .checkbox {
     font-size: 15px;
     font-family: lato medium;
+    > mat-checkbox {
+        margin-right: 70px;
+    }
+}
+
+.urls11 {
+    margin-left: -24px;
 }
 
 
@@ -246,13 +267,56 @@ $color-grayBlue: #464d69;
     font-family: lato medium;
 }
 
+.time-duration-label {
+    width: 100%;
+    font-size: 12px; 
+    color: #676767;
+    margin-bottom: 0px !important;
+    position: relative;
+    top: -5px;
+    left: -2px;
+}
+.timer-select {
+    width: 27%;
+    font-family: lato Regular;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    margin-right: 10px;
+}
+
+.am-pm {
+    width: 25%
+}
+
 .mar-20 {
     margin-left: 20px;
 }
 
 .selected-device {
-    height: 170px;
+    height: 150px;
     border: 1px solid #D3D5DC;
     overflow: auto;
     padding-left: 10px;
+}
+
+.download-device {   
+    height: 50px;
+    border-top: none;
+    border-top: transparent;
+    border: 1px solid #D3D5DC;
+    > button {
+        float: right;
+        line-height: 3.5;
+    }
+}
+
+.add-data {
+    display: inline-block;
+    border: 1px dashed #676767;;
+    padding: 5px 10px;
+    position: relative;
+    left: 41%;
+    top: 48px;
+    color: #676767;
+    font-size: 14px;
 }

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
 import {DeleteRendererComponent} from "src/app/core/components/ag-grid-renders/delete-renderer.component"
+import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
+import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class ViewTasksComponent {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    deleteRenderer: DeleteRendererComponent,
+    threedotrenderer: ThreeDotNVWPTRenderer,
   };
   public searchGrid = '';
 
@@ -112,7 +114,7 @@ export class ViewTasksComponent {
       },
       {
         headerName: "",
-        cellRenderer: 'deleteRenderer',
+        cellRenderer: 'threedotrenderer',
         width: 90,
         pinned: 'right'
       }

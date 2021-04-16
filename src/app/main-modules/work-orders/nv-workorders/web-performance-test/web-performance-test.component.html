@@ -1,23 +1,23 @@
 <div class="wpt-wrapper">
-    <mat-card class="cia-module-card h-100" style="padding: 0px;">
-        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
-            <mat-toolbar-row class="mat-blue-grey">
+    <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+        <mat-toolbar color="mat-blue-grey" class="wpt-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey wpt-toolbar-row">
                 <div class="col pl-0 wo-header">
                     <div class="header" fxFlex="90">Web Performance Test</div>
                 </div>
-                <div class="col-4 sector-flex-item" fxFlex>
+                <div class="col-4 wpt-flex-item" fxFlex>
                     <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
-                        *ngIf="!show" style="margin-top: 6px;">
-                        <span class="zmdi zmdi-search" style="line-height: 1.7;"></span>
+                        *ngIf="!show">
+                        <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
                     </mat-icon>
 
-                    <mat-form-field *ngIf="show">
-                        <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
-                            placeholder=""  style="font-size: 14px">
+                    <mat-form-field class="h-100" *ngIf="show">
+                        <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
                         <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                            <span class="zmdi zmdi-close"></span>
+                          <span class="zmdi zmdi-close"></span>
                         </mat-icon>
-                    </mat-form-field>
+                      </mat-form-field>
+              
                 </div>
 
                 <button mat-raised-button color="primary"
@@ -30,7 +30,7 @@
         <mat-divider></mat-divider>
 
         <button class="workorder-filter" (click)="openWOFilter()">
-            <span class="ic ic-Calendedr"></span>
+            <span class="ic ic-Date-filter"><span class="path1"></span><span class="path2"></span></span>
         </button>
 
         <div class="td-tab-details p-0" style="height: calc(100% - 61px);">
@@ -61,63 +61,18 @@
 
 <ng-template #myTask>
     <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="cia-module-card h-100" style="padding: 0px;">
-            <div class="td-flex-container">
-                <div class="d-flex mx-2 flex-row justify-content-between">
-                    <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
-                        <div class="task-widget" fxFlex (click)="showTaskData($event)">
-                            <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
+        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
 
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount != ''" class="task-info" fxFlex="70">
-                                <div fxFlex="50" class="task-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                                <div fxFlex="50" class="task-risk-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
-
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-information" fxFlex="50">
-                                <div>{{task.taskCount}}</div>
-                                <div>{{task.taskAssigned}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
 
             <div style="height: 100%">
-                <ag-grid-angular style="width: 100%; height: 42vh;"
-                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableSorting
-                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
-                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
-                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                <ag-grid-angular style="width: 100%; height: 42vh;" class="ag-theme-material ag-jcp3 ret-change"
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+                    [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true"
+                    [enableRangeSelection]="true" [pagination]="true" [paginationAutoPageSize]="true"
+                    [frameworkComponents]="frameworkComponentsTaskDetails">
                 </ag-grid-angular>
             </div>
         </mat-card>
@@ -126,63 +81,18 @@
 
 <ng-template #teamTask>
     <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="cia-module-card h-100" style="padding: 0px;">
-            <div class="td-flex-container">
-                <div class="d-flex mx-2 flex-row justify-content-between">
-                    <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
-                        <div class="task-widget" fxFlex (click)="showTaskData($event)">
-                            <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
-
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount != ''" class="task-info" fxFlex="70">
-                                <div fxFlex="50" class="task-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                                <div fxFlex="50" class="task-risk-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
-
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-information" fxFlex="50">
-                                <div>{{task.taskCount}}</div>
-                                <div>{{task.taskAssigned}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+          
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
 
             <div style="height: 100%">
-                <ag-grid-angular style="width: 100%; height: 42vh;"
-                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptionsPending" [columnDefs]="columnDefsPending" [rowData]="rowData" enableSorting
-                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
-                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
-                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                <ag-grid-angular style="width: 100%; height: 42vh;" class="ag-theme-material ag-jcp3 ret-change"
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsPending" [columnDefs]="columnDefsPending"
+                    [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true"
+                    [enableRangeSelection]="true" [pagination]="true" [paginationAutoPageSize]="true"
+                    [frameworkComponents]="frameworkComponentsTaskDetails">
                 </ag-grid-angular>
             </div>
         </mat-card>
@@ -191,65 +101,103 @@
 
 <ng-template #expTask>
     <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="cia-module-card h-100" style="padding: 0px;">
-            <div class="td-flex-container">
-                <div class="d-flex mx-2 flex-row justify-content-between">
-                    <div class="col-3 td-flex-item" fxFlex *ngFor="let task of taskDetails">
-                        <div class="task-widget" fxFlex (click)="showTaskData($event)">
-                            <div *ngIf="task.riskCount != ''" class="task-icon" fxFlex="30">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="risk-task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
-
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount != ''" class="task-info" fxFlex="70">
-                                <div fxFlex="50" class="task-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                                <div fxFlex="50" class="task-risk-status">
-                                    <div>{{task.riskCount}}</div>
-                                    <div>{{task.riskStatus}}</div>
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-icon" fxFlex="50">
-                                <mat-icon style="font-size: 48px;" aria-label="search" class="task-status-icon">
-                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
-                                            class="path2"></span><span class="path3"></span><span
-                                            class="path4"></span></span>
-                                </mat-icon>
-
-                                <div class="task-status">
-                                    {{task.taskType}}
-                                </div>
-                            </div>
-
-                            <div *ngIf="task.riskCount=== ''" class="task-information" fxFlex="50">
-                                <div>{{task.taskCount}}</div>
-                                <div>{{task.taskAssigned}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+          
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
 
             <div style="height: 100%">
-                <ag-grid-angular style="width: 100%; height: 42vh;"
-                    class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory" [rowData]="rowData" enableSorting
-                    enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups
-                    toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
-                    [suppressHorizontalScroll]="false" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
-                    [paginationAutoPageSize]="true"  [frameworkComponents]="frameworkComponentsTaskDetails">
+                <ag-grid-angular style="width: 100%; height: 42vh;" class="ag-theme-material ag-jcp3 ret-change"
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory"
+                    [rowData]="rowData" enableSorting enableFilter [suppressCellSelection]="true"
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true"
+                    [enableRangeSelection]="true" [pagination]="true" [paginationAutoPageSize]="true"
+                    [frameworkComponents]="frameworkComponentsTaskDetails">
                 </ag-grid-angular>
             </div>
         </mat-card>
+    </div>
+</ng-template>
+
+
+<ng-template #status>
+    <div class="td-flex-container" fxLayoutGap='10px'>
+        <div class="wpf-all-task" fxFlex="20">
+            <div fxFlex="50" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center">
+                        <span class="ic ic-Total-Task"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span
+                                class="path4"></span></span>
+                    </mat-icon>
+                    <div>All</div>
+                </div>
+            </div>
+            <div fxFlex="50" fxLayout="column" class="wpf-task-count">
+                <div class="task-count">12</div>
+                <div class="task-count-status">Total Task</div>
+            </div>
+        </div>
+
+        <div class="wpf-not-started" fxFlex="30">
+            <div fxFlex="33" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center">
+                        <span class="ic ic-New-Task"><span class="path1"></span><span class="path2"></span><span
+                                class="path3"></span><span class="path4"></span><span
+                                class="path5"></span></span>
+                    </mat-icon>
+                    <div>Not Started</div>
+                </div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="not-at-risk">
+                <div class="task-count">2</div>
+                <div class="task-count-status">Not At Risk</div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="at-risk">
+                <div class="task-count">1</div>
+                <div class="task-count-status">At Risk</div>
+            </div>
+        </div>
+
+        <div class="wpf-not-started" fxFlex="30">
+            <div fxFlex="33" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center">
+                        <span class="ic ic-In-Progress-Task"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                                class="path5"></span><span class="path6"></span><span class="path7"></span><span
+                                class="path8"></span><span class="path9"></span><span
+                                class="path10"></span></span>
+                    </mat-icon>
+                    <div>In-Progress</div>
+                </div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="not-at-risk">
+                <div class="task-count">3</div>
+                <div class="task-count-status">Not At Risk</div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="at-risk">
+                <div class="task-count">0</div>
+                <div class="task-count-status">At Risk</div>
+            </div>
+        </div>
+
+        <div class="wpf-all-task" fxFlex="20">
+            <div fxFlex="50" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center">
+                        <span class="ic ic-Completed-Task"><span class="path1"></span><span
+                                class="path2"></span><span class="path3"></span><span
+                                class="path4"></span></span>
+                    </mat-icon>
+                    <div>Completed</div>
+                </div>
+            </div>
+            <div fxFlex="50" fxLayout="column" class="wpf-task-count">
+                <div class="task-count">6</div>
+                <div class="task-count-status">11 Jul - 23 Dec</div>
+            </div>
+        </div>
     </div>
 </ng-template>

@@ -78,6 +78,26 @@ export class ViewWorkorderComponent implements OnInit {
   imeiValue: string = "";
   selectDevice = [];
 
+    //selectdevices grid
+    public gridApiSelectDevice;
+    public gridColumnApiSelectDevice;
+    public gridCoreSelectDevice: GridCore;
+    public gridOptionsSelectDevice: GridOptions;
+    public rowDataSelectDevice: any;
+    public columnDefsSelectDevice: any[];
+    tooltipShowDelay:number = 0;
+
+
+    // 
+    minutes:any = [
+      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
+            "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
+            "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
+            "52", "53", "54", "55", "56", "57", "58", "59", "60"
+    ]
+    hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    ampm = ["AM", "PM"];
+
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
     this.stepperReportW();
@@ -87,13 +107,16 @@ export class ViewWorkorderComponent implements OnInit {
     this.httpClient.get("assets/data/workorder/nv-workorder/create-new-wo.json").subscribe((data) => {
       this.rowData = data;
     })
+    this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
+      this.rowDataSelectDevice = data;
+    })
   }
 
   stepperReportW() {
     this.thirdFormGroup = this.fb.group({
       selectedDateTime: {
-        startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        startDate: moment().subtract(1, 'days'),
+        endDate: moment().subtract(1, 'days'),
         // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
         // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
       },
@@ -129,11 +152,19 @@ export class ViewWorkorderComponent implements OnInit {
         width: 150,
       },
       {
-        headerName: "ll Urls",
+        headerName: "",
         width: 100,
         pinned: 'right'
       },
     ];
+
+    this.columnDefsSelectDevice = [
+      {
+        headerName: "Select Device",
+        field: "imei",
+        width: '500'
+      }
+    ]
   }
 
   onGridReady(params) {
@@ -201,10 +232,29 @@ export class ViewWorkorderComponent implements OnInit {
     fileUpload.click();
   }
 
+  fitColumns() {
+    if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
+      setTimeout(() => {
+        this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+      }, 0);
+    } 
+  }
+  onReady(event) {
+    this.fitColumns();
+  }
+
+  onManualReady(event) {
+    this.fitColumns();
+  }
+
   addToSelectedDevice() {
     if(this.imeiValue) {
       this.selectDevice.push(this.imeiValue)
     }
+  }
+
+  addToGrid() {
+    this.gridOptionsSelectDevice.api.addItems([{ imei: this.imeiValue}]);
   }
 
   assignWorkorder() {

@@ -7,8 +7,8 @@
                     <div class="header" *ngIf="showCopyToNewWorkorder">Copy To New Workorder</div>
                 </div>
                 <div class="sector-flex-item" fxFlex="5">
-                    <mat-icon  style="line-height: 0; font-size: 15px;color: rgba(0,0,0,0.54);">
-                        <span class="ic ic-clustertask"></span></mat-icon>
+                    <mat-icon  style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right;">
+                        <span class="ic ic-Go-to-Workorder-Icon"></span></mat-icon>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -96,8 +96,10 @@
 
                 </div>
 
-                <div class="d-flex  fle
-                x-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item col-12 " style="padding: 0px !important;">
+                        <div class="label" style="margin: 10px 0 10px 25px;">11 URLs</div>
+                    </div>
                     <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
                         <ag-grid-angular (gridReady)="onGridReady($event)"
                             class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;border: 1px solid #eee;"
@@ -138,10 +140,25 @@
                         </form>
                     </div>
 
-                    <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
+                    <div class="wo-sector-card-one  col-5 mar-top" style="display: inline-block;margin-left: 20px;">
                         <label class="time-duration-label">Select Time</label>
-                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
+                        <div>
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="hours[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
+                                    {{h}}</mat-option>
+                            </mat-select>
+                    
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="minutes[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+                    
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="ampm[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
+                                    {{ap}}</mat-option>
+                            </mat-select>
                         </div>
+                    </div>
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
@@ -152,8 +169,8 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="sub-content-flex-item  col-5">
-                        <label class="time-duration-label">Time Duration</label>
+                    <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
+                        <label class="time-duration-label" style="margin-bottom: 10px !important;">Time Duration</label>
 
                         <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
                     </div>
@@ -170,9 +187,9 @@
                             <mat-checkbox>Dual Sim WO</mat-checkbox>
                         </section>
 
-                        <section class="col checkbox" *ngIf="showCopyToNewWorkorder">
-                            <mat-checkbox class="col-6">Add Manually</mat-checkbox>
-                            <mat-checkbox class="col-6">Upload</mat-checkbox>
+                        <section class="checkbox" *ngIf="showCopyToNewWorkorder">
+                            <mat-checkbox style="margin-right: 109px">Add Manually</mat-checkbox>
+                            <mat-checkbox>Upload</mat-checkbox>
                         </section>
                     </div>
 
@@ -185,10 +202,10 @@
                             <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
                         </mat-form-field>
                     </div>
-                    <div class="sub-content-flex-item  col-5">
+                    <div class="sub-content-flex-item  col-1">
 
                     </div>
-                    <div class="sub-content-flex-item col-2" style="line-height: 3.2;">
+                    <div class="sub-content-flex-item" style="line-height: 3.2;margin-left: -6px;">
                         <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
                     </div>
                 </div>
@@ -236,7 +253,7 @@
                     </div> -->
                     
                     <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
-                        <ag-grid-angular style="width: 100%; height: 242px"
+                        <ag-grid-angular style="width: 100%; height: 285px"
                         class="traceport-activation ag-theme-material ag-jcp3"
                         [tooltipShowDelay]="tooltipShowDelay"
                         [rowData]="rowDataSelectDevice"

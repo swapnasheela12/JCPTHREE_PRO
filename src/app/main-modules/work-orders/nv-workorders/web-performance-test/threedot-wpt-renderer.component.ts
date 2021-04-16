@@ -67,7 +67,7 @@ export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
     }
 
     deleteWorkOrder(evt) {
-        const message = `Are you sure you want to Close thIS WorkOrder?`;
+        const message = `Are you sure you want to Close this WorkOrder?`;
         const image = 'warning';
         const snackbarMode = 'success';
         const snackbarText = 'Workorder is Deleted Successfully';
@@ -84,7 +84,7 @@ export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
     viewTask(evt) {
         this.dialog.open(ViewTasksComponent,{
             width: "750px",
-            height: "450px",
+            height: "400px",
             panelClass: "material-dialog-container",
         });
     }
