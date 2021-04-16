@@ -66,11 +66,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { TraceportActivationComponent } from './config-change/traceport-activation/traceport-activation.component';
+import { EpsGoldenConfComponent } from './audit-and-query/core/eps-golden-conf/eps-golden-conf.component';
 @NgModule({
   declarations: [
     SamsungRqaSchedulingComponent,
     RetChangeComponent,
-    TraceportActivationComponent
+    TraceportActivationComponent,
+    EpsGoldenConfComponent
   ],
   imports: [
     CommonModule,

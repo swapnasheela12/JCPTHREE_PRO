@@ -1382,6 +1382,20 @@ const ADMIN_FAULT_CORRELATION_LIST = [
     }
 ];
 
+const MODULE_LIST_CORE_CONF = [
+    {
+        name: 'EPS Golden Configuration',
+        link: 'JCP/Modules/Configuration-Management/Audit-and-Query/Core/EPS-Golden-Configuration',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    }
+];
+
 const MODULE_LIST_AUDIT = [
     {
         name: 'RAN',
@@ -1403,7 +1417,7 @@ const MODULE_LIST_AUDIT = [
         checked: false,
         showHeader: false,
         headerText: '',
-        children: MODULE_LIST_CORE
+        children: MODULE_LIST_CORE_CONF
     }
 ];
 
