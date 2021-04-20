@@ -3,6 +3,7 @@ import { SamsungRqaSchedulingComponent } from './config-change/rqa-scheduling/sa
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TraceportActivationComponent } from './config-change/traceport-activation/traceport-activation.component';
+import { EpsGoldenConfComponent } from './audit-and-query/core/eps-golden-conf/eps-golden-conf.component';
 
 
 const routes: Routes = [
@@ -12,8 +13,16 @@ const routes: Routes = [
       { path: "Rqa-Scheduling/Samsung-Rqa-Scheduling", component: SamsungRqaSchedulingComponent },
       { path: "RET-Change", component: RetChangeComponent },
       { path:'Traceport-Activation', component: TraceportActivationComponent}
-    ]
+    ],
   },
+  {
+    path: "Audit-and-Query", children: [
+      { path: "Core", children: [
+        { path: 'EPS-Golden-Configuration', component: EpsGoldenConfComponent}
+        ]
+      }
+    ]
+  }
 ];
 
 @NgModule({
