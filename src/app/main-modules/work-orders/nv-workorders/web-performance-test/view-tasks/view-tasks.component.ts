@@ -31,7 +31,7 @@ export class ViewTasksComponent {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    threedotrenderer: ThreeDotNVWPTRenderer,
+    threedotrenderer: DeleteRendererComponent,
   };
   public searchGrid = '';
 
@@ -96,7 +96,7 @@ export class ViewTasksComponent {
         width: 180
       },
       {
-        headerName: "Last Updated Date",
+        headerName: "Last Updated",
         field: "lastUpdatedDate",
         width: 180,
         cellRenderer: function(params) {

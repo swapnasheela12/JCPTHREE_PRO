@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { catchError, map } from 'rxjs/operators';
@@ -20,8 +20,10 @@ import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
   templateUrl: './create-new-workorder.component.html',
   styleUrls: ['./create-new-workorder.component.scss']
 })
-export class CreateNewWorkorderComponent implements OnInit {
-  templateType = ["Web Performance Test", "Web Performance Test"];
+export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
+  templateType = ["Page Load Test", "Web Performance Test"];
+
+  simType = ["Single Sim WO", "Dual Sim WO"]
 
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
@@ -33,6 +35,8 @@ export class CreateNewWorkorderComponent implements OnInit {
     startDate: '2019-12-11T18:30:00.000Z',
     endDate: '2019-12-12T18:29:59.000Z',
   }
+
+  selectedDeviceCount = 0;
 
   ///////datepicker//////////
   opens = 'center';
@@ -125,7 +129,7 @@ export class CreateNewWorkorderComponent implements OnInit {
     })
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
-    })
+    });
   }
 
   stepperReportW() {
@@ -143,6 +147,14 @@ export class CreateNewWorkorderComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(){
+    if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
+      this.selectedDeviceCount = 0;
+    } else {
+      this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
+    }
   }
 
   public createColumnDefs() {
@@ -177,7 +189,7 @@ export class CreateNewWorkorderComponent implements OnInit {
 
     this.columnDefsSelectDevice = [
       {
-        headerName: "Select Device",
+        headerName: "Selected Device",
         field: "imei",
         width: '500'
       }
@@ -250,11 +262,11 @@ export class CreateNewWorkorderComponent implements OnInit {
   }
 
   fitColumns() {
-    if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
-      setTimeout(() => {
-        this.gridOptionsSelectDevice.api.sizeColumnsToFit();
-      }, 0);
-    } 
+    // if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
+    //   setTimeout(() => {
+    //     this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+    //   }, 0);
+    // } 
   }
   onReady(event) {
     this.fitColumns();
@@ -272,10 +284,13 @@ export class CreateNewWorkorderComponent implements OnInit {
 
   addToGrid() {
     this.gridOptionsSelectDevice.api.addItems([{ imei: this.imeiValue}]);
+    this.gridOptionsSelectDevice.api.refreshCells({force: true});
+    this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
   }
 
   showUpload(evt) {
-    if(evt.checked) {
+    console.log(evt);
+    if(evt.value === "2" || evt.value === "3") {
       this.showUploadDevices = true;
       this.showImei = false;
     } else {

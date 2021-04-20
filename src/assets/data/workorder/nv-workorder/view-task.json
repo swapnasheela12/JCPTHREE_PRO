@@ -1,6 +1,6 @@
 [
     {
-        "status": "New",
+        "status": "Not Started",
         "taskName": "Task 14251641",
         "taskCreated": "Created 05/03/2021",
         "assignedBy": "I-G-J-PLPR-OSC-0004",
@@ -10,7 +10,7 @@
         "reason": "",
         "dueDate": "Dec 23, 2020"
     },{
-        "status": "In-Progress",
+        "status": "Not Started",
         "taskName": "Task 14251641",
         "taskCreated": "Created 05/03/2021",
         "assignedBy": "I-G-J-PLPR-OSC-0004",

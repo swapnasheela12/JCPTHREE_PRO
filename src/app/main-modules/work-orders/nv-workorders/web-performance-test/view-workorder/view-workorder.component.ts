@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { catchError, map } from 'rxjs/operators';
@@ -17,9 +17,11 @@ import { Router } from '@angular/router';
   templateUrl: './view-workorder.component.html',
   styleUrls: ['./view-workorder.component.scss']
 })
-export class ViewWorkorderComponent implements OnInit {
+export class ViewWorkorderComponent implements OnInit, AfterViewInit {
   templateType = ["Web Performance Test", "Web Performance Test"];
 
+  simType = ["Single Sim WO", "Dual Sim WO"]
+  
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
     start: new FormControl(),
@@ -30,6 +32,8 @@ export class ViewWorkorderComponent implements OnInit {
     startDate: '2019-12-11T18:30:00.000Z',
     endDate: '2019-12-12T18:29:59.000Z',
   }
+
+  selectedDeviceCount = 0;
 
   ///////datepicker//////////
   opens = 'center';
@@ -87,7 +91,6 @@ export class ViewWorkorderComponent implements OnInit {
     public columnDefsSelectDevice: any[];
     tooltipShowDelay:number = 0;
 
-
     // 
     minutes:any = [
       "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
@@ -126,6 +129,15 @@ export class ViewWorkorderComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.thirdFormGroup.controls['selectedDateTime'].disable();
+  }
+
+  ngAfterViewInit() {
+    if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
+      this.selectedDeviceCount = 0;
+    } else {
+      this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
+    }
   }
 
   public createColumnDefs() {

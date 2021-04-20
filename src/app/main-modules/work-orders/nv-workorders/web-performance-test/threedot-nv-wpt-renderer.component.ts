@@ -1,8 +1,9 @@
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
-import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'threeDot-nv-wpt-button-renderer',
@@ -34,32 +35,45 @@ import { Router } from '@angular/router';
 
 export class ThreeDotNVWPTRenderer implements ICellRendererAngularComp {
     params;
+    disableButtons: any;
     enabled: Boolean;
     dataTest: any = false;
 
-    constructor(
-        public dialog: MatDialog,
-        public datashare: DataSharingService,
-        public router: Router
-    ) { }
+    constructor(public dialog: MatDialog, public datashare: DataSharingService,
+        private _snackBar: MatSnackBar) { }
 
     agInit(params): void {
         this.params = params;
-        this.datashare.checkboxMessage.subscribe((checkbox) => {
-            this.dataTest = checkbox;
-        });
     }
 
     refresh(): boolean {
         return true;
     }
 
-    editRow(evt) {
-        this.datashare.changeMessage({ type: "edit"});
+    openWarningDialog(): void {
+        const message = `Are you Sure you want to perform this action?`;
+        const image = 'warning';
+        const snackbarMode = 'success';
+        const snackbarText = 'Action Performed Successfully';
+        const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText);
+        this.dialog.open(CommonPopupComponent, {
+            data: dialogData
+        });
     }
 
     deleteRow(evt) {
-        this.datashare.changeMessage({"rowIndex": this.params, type: "delete"});
+        console.log("deelete row")
+        let deletedRow = this.params.node.data;
+        this.params.api.updateRowData({ remove: [deletedRow] });
+        this._snackBar.open("Success: Deleted Successfully", "", {
+            duration: 2000,
+            panelClass: 'snack_bar'
+          });
+
+
     }
 
+    editRow(evt) {
+        this.datashare.changeMessage({ type: "edit" });
+    }
 }

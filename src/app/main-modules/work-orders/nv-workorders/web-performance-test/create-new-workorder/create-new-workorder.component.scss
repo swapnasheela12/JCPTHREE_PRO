@@ -210,7 +210,9 @@ $color-grayBlue: #464d69;
 
 .upload-instruction {
     text-align: left;
-    font: italic normal normal 10px/22px Lato;
+    font-family: Lato bold;
+    font-size: 12px;
+    font-style: italic;
     letter-spacing: 0px;
     color: #000000;
     text-transform: lowercase;
@@ -234,11 +236,12 @@ $color-grayBlue: #464d69;
 .device-count {
     font-size: 16px;
     font-family: lato bold;
-    line-height: 3;
-    margin-right: 20px;
-    float: right;
-}
+    margin: 12px 20px;
 
+}
+.next-button {
+    height: 55px;
+}
 
 .time-selection {
     width: 105px;
@@ -276,12 +279,13 @@ $color-grayBlue: #464d69;
     top: -5px;
     left: -2px;
 }
+
 .timer-select {
-    width: 27%;
+    width: 20%;
     font-family: lato Regular;
     font-size: 14px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.42);
-    margin-right: 10px;
+    margin-right: 6px;
 }
 
 .am-pm {
@@ -318,5 +322,29 @@ $color-grayBlue: #464d69;
     left: 41%;
     top: 48px;
     color: #676767;
+    font-size: 14px;
+}
+
+.form-read-only {
+    .input-label {
+        margin-bottom: 0px !important;
+        font-size: 12px;
+        color: #000000;
+        opacity: 0.54;
+    }
+    .input-value {
+        font-size: 15px;
+        color: #000000;
+        opacity: 0.87;
+    }
+    .input-value-disabled {
+        color: #000000;
+        opacity: 0.4;
+        margin-bottom: 0px !important;
+    }
+}
+
+.radio-btn {
+    margin-right: 32px;
     font-size: 14px;
 }

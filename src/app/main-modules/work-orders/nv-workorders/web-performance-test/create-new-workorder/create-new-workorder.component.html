@@ -8,7 +8,7 @@
                 </div>
                 <div class="sector-flex-item" fxFlex="5">
                     <mat-icon  style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right;">
-                        <span class="ic ic-Go-to-Workorder-Icon"></span></mat-icon>
+                        <span class="ic ic-Go-to-Workorder-Icon-1"></span></mat-icon>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
@@ -18,35 +18,17 @@
 
         <div class="d-flex flex-row justify-content-between wpt-container">
             <div fxFlex="50" style="border-right: 1px solid #D3D5DC;">
-                <div class="sub-content d-flex mar-top flex-row flex-wrap">
+                <div class="sub-content d-flex mar-top flex-row flex-wrap" style="margin-bottom: 13px;">
                     <div class="sub-content-flex-item  col-6">
-                        <mat-form-field class="form-field-read-only">
-                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                Template Type*</mat-label>
-                            <mat-select *ngIf="showCreateNewWorkorder" disableOptionCentering [(value)]="templateType[0]"
-                                style="font-family: lato Regular; font-size: 14px;">
-                                <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                    [value]="tcr">
-                                    {{tcr}}</mat-option>
-                            </mat-select>
-
-                            <mat-select *ngIf="showCopyToNewWorkorder" disableOptionCentering [(value)]="templateType[0]"
-                            style="font-family: lato Regular; font-size: 14px;" disabled>
-                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                [value]="tcr">
-                                {{tcr}}</mat-option>
-                        </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item  col-6">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Workorder Id*</mat-label>
-                            <input *ngIf="showCreateNewWorkorder" matInput placeholder="" value="">
-                            <input *ngIf="showCopyToNewWorkorder" matInput placeholder="" value="" disabled>
-                        </mat-form-field>
+                        <div class="form-read-only">
+                            <label class="input-label">Template Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                                Web Performance Test
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                Web Performance Test
+                            </div> 
+                        </div>
                     </div>
 
                     <div class="sub-content-flex-item  col-6">
@@ -63,35 +45,64 @@
                     </div>
                 </div>
 
+                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Workorder Id*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               -
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                -
+                            </div> 
+                          </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-6">
+                        <mat-form-field class="form-field-read-only">
+                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                                Type*</mat-label>
+                            <mat-select disableOptionCentering [(value)]="simType[1]"
+                                style="font-family: lato Regular; font-size: 14px;">
+                                <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
+                                    [value]="st">
+                                    {{st}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
                 <div class="sub-content d-flex  flex-row flex-wrap mar-top">
                     <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
                         <div class="label"  fxFlex="100">Upload URLs:*</div>
                     </div>
                     <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
-                        <!-- <div class="w-100 sap-id-label"  fxFlex="100">Upload URLs:*</div> -->
-                        <mat-form-field fxFlex="100" class="browse-file-form-field">
+                        <mat-form-field fxFlex="80" class="browse-file-form-field">
 
                             <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
                                 [readonly]="true" required>
                             <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
-                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file" style="font-size: 20px;"></i></button>
                         </mat-form-field>
                         <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
                             style="display: none;" />
+
+
+                        <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                            </i>
+                            <span>Upload</span>
+                        </button>
                     </div>
                     
 
                     <div class="sub-content-flex-item col-12">
-                        <!-- <div class="px-1" fxFlex="70"></div> -->
-                        <div class="upload-instruction" fxFlex="80">Upload excel files only</div>
-                        <div class="upload-btn" style="float: right;">
+                        <div class="upload-instruction" fxFlex="80">note: upload excel files only</div>
+                        <!-- <div class="upload-btn" style="float: right;">
             
-                            <button fxFlex="20" class="next-button p-0" mat-button color="primary">
-                                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
-                                </i>
-                                <span>Upload</span>
-                              </button>
-                        </div>
+                            
+                        </div> -->
                     </div>
 
                 </div>
@@ -118,17 +129,16 @@
                     <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
                         <form [formGroup]="thirdFormGroup">
                             <mat-form-field class="custom-field-container" fxFlex>
-                                <div class="daterange-container" style="position: absolue;top: 46px;
-                        left: 74px;">
-                                    <input matInput ngxDaterangepickerMd placeholder="Select Date & Time"
+                                <div class="daterange-container">
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Range"
                                         [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
                                         [timePicker24Hour]="false" formControlName="selectedDateTime"
                                         [showCustomRangeLabel]="true"
                                         [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
-                                        [ranges]="ranges" [showClearButton]="true" [showCancel]="true"
+                                        [showClearButton]="true" [showCancel]="true"
                                         [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
                                         [isInvalidDate]="isInvalidDate"
-                                        [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}"
+                                        [locale]="{ applyLabel: 'Ok', format: 'MMM DD, YYYY',clearLabel:'Clear'}"
                                         [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
                                         [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
                                         (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
@@ -141,13 +151,18 @@
                     </div>
 
                     <div class="wo-sector-card-one  col-5 mar-top" style="display: inline-block;margin-left: 20px;">
-                        <label class="time-duration-label">Select Time</label>
+                        <label class="time-duration-label">Start Time</label>
                         <div>
                             <mat-select class="timer-select" disableOptionCentering [(value)]="hours[0]">
                                 <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
                                     {{h}}</mat-option>
                             </mat-select>
                     
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="minutes[0]">
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+
                             <mat-select class="timer-select" disableOptionCentering [(value)]="minutes[0]">
                                 <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
                                     {{m}}</mat-option>
@@ -170,27 +185,27 @@
                     </div>
 
                     <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
-                        <label class="time-duration-label" style="margin-bottom: 10px !important;">Time Duration</label>
+                        <label class="time-duration-label">Test Duration</label>
 
-                        <input class="time-selection" type="time" name="appt" min="09:00" max="18:00" required>
+                        <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                         <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                        
                     </div>
 
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap">
                     <div class="mar-top col-12">
-                        <div class="label ">Add Devices:</div>
-                        <section class="checkbox" *ngIf="showCreateNewWorkorder">
-                            <mat-checkbox style="margin-right: 109px">Add Manually</mat-checkbox>
-                            <mat-checkbox>Upload</mat-checkbox>
-                            <mat-checkbox (change)="showUpload($event)">Upload Login Id File</mat-checkbox>
-                            <mat-checkbox>Dual Sim WO</mat-checkbox>
-                        </section>
-
-                        <section class="checkbox" *ngIf="showCopyToNewWorkorder">
-                            <mat-checkbox style="margin-right: 109px">Add Manually</mat-checkbox>
-                            <mat-checkbox>Upload</mat-checkbox>
-                        </section>
+                        <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
+                        <mat-radio-group (change)="showUpload($event)">
+                            <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
+                            <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
+                            <mat-radio-button *ngIf="!showCopyToNewWorkorder"class="radio-btn" value="3">Upload Login Id File</mat-radio-button>
+                          </mat-radio-group>
                     </div>
 
                 </div>
@@ -210,9 +225,10 @@
                     </div>
                 </div>
 
+
                 <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap">
                     <div class="col">
-                        <mat-form-field fxFlex="100" class="browse-file-form-field">
+                        <mat-form-field fxFlex="80" class="browse-file-form-field">
                             <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
                                 [readonly]="true" required>
                             <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
@@ -220,38 +236,24 @@
                         </mat-form-field>
                         <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
                             style="display: none;" />
+
+                            <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                </i>
+                                <span>Upload</span>
+                            </button>
+
                     </div>
                 </div>
+
                 <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
-                    <!-- <div class="px-1" fxFlex="70"></div> -->
-                    <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">Upload excel files only</div>
-                    <div class="upload-btn" style="float: right;">
-        
-                        <button fxFlex="20" class="next-button p-0" mat-button color="primary">
-                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
-                            </i>
-                            <span>Upload</span>
-                          </button>
-                    </div>
+                    <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv files only</div>
                 </div>
 
                 <div class="d-flex  flex-row flex-wrap">
-                    <!-- <div class="sub-content-flex-item  col" style="padding-bottom: 0px !important;">
-                        <div class="w-100" style="height: 50px; background: #D3D5DC">
-                            <div class="select-device">Select Device</div>
-                            <div class="device-count">{{selectDevice.length}} out of 100</div>
-                        </div>
-                        <div class="selected-device">
-                            <div *ngFor="let devices of selectDevice">
-                                {{devices}}
-                            </div>
-                            <div *ngIf="selectDevice.length === 0" class="add-data">
-
-                                Add Data
-                            </div>
-                        </div>
-                    </div> -->
-                    
+                        <div class="device-count">{{selectedDeviceCount}} out of 100</div>
+                    </div>
+                <div class="d-flex  flex-row flex-wrap">                                      
                     <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
                         <ag-grid-angular style="width: 100%; height: 285px"
                         class="traceport-activation ag-theme-material ag-jcp3"

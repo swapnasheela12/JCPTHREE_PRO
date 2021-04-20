@@ -18,6 +18,7 @@ import { DropDownRendererComponent } from 'src/app/main-modules/modules/network-
 import { ThreeDotWPTRenderer } from './threedot-wpt-renderer.component';
 import { WoFilterComponent } from './wo-filter/wo-filter.component';
 import { ThreeDotCreateNewRenderer } from './threedot-create-new-renderer.component';
+import { GridApi } from '@ag-grid-community/core';
 declare var $: any;
 
 @Component({
@@ -52,6 +53,7 @@ export class WebPerformanceTestComponent implements OnInit {
     inputRenderer: inputRendererComponent,
     drpRenderer: ThreeDotCreateNewRenderer
   };
+  private paginationPageSize = 10;
   public searchGrid = '';
 
   templateType = ["Target Area", "Target Area"]
@@ -126,6 +128,22 @@ export class WebPerformanceTestComponent implements OnInit {
    columnDefsHistory;
    columnDefsPending;
 
+   onReadyModeUpdate(params) {
+    this.calculateRowCount();
+  }
+
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.calculateRowCount();
+  }
+  public calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+      setTimeout(() => {
+        this.gridOptions.api.sizeColumnsToFit();
+      }, 1000);
+    }
+  }
+
   constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
       this.stepperReportW();
@@ -164,7 +182,7 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140,
+        width: 160,
         pinned: 'left'
       },
       {
@@ -175,28 +193,28 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 230,
+        width: 240,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 160,
+        width: 180,
       },
       {
         headerName: "Due Date",
         field: "dueDate",
-        width: 160
+        width: 180
       },
       {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
-        width: '150'
+        width: 200
       },
       {
         headerName: "",
         cellRenderer: 'dropdownRenderer',
-        width: 90,
+        width: 100,
         pinned: 'right'
       }
     ];
@@ -205,7 +223,7 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140,
+        width: 160,
         pinned: 'left'
       },
       {
@@ -216,37 +234,37 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 230,
+        width: 240,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 160,
+        width: 180,
       },
       {
         headerName: "Due Date",
         field: "dueDate",
-        width: 160
+        width: 180
       },
       {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
-        width: '150'
+        width: 200
       },
       {
         headerName: "",
-        cellRenderer: 'drpRenderer',
-        width: 90,
+        cellRenderer: 'dropdownRenderer',
+        width: 100,
         pinned: 'right'
       }
-    ];
+    ]
     this.columnDefsHistory = [
       {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140,
+        width: 160,
         pinned: 'left'
       },
       {
@@ -257,31 +275,31 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 230,
+        width: 240,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 160,
+        width: 180,
       },
       {
         headerName: "Due Date",
         field: "dueDate",
-        width: 160
+        width: 180
       },
       {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
-        width: '150'
+        width: 200
       },
       {
         headerName: "",
-        cellRenderer: 'drpRenderer',
-        width: 90,
+        cellRenderer: 'dropdownRenderer',
+        width: 100,
         pinned: 'right'
       }
-    ];
+    ]
   }
 
 
@@ -371,6 +389,14 @@ export class WebPerformanceTestComponent implements OnInit {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
     if (1 < lengthOfSelectedRow) {
     }
+  }
+
+  get PaginationPageSize(): number {
+    return this.paginationPageSize;
+  }
+
+  get gridAPI(): GridApi {
+    return this.gridApi;
   }
 
   onGridReady(params) {

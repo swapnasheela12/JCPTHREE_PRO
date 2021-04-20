@@ -30,6 +30,7 @@ export class WptModalComponent implements OnInit {
 
   clickYes(): void {
     this.dialogRef.close();
+    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"]);
   }
 
 }
