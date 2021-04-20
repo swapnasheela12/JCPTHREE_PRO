@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-workorder.component.scss']
 })
 export class ViewWorkorderComponent implements OnInit, AfterViewInit {
-  templateType = ["Web Performance Test", "Web Performance Test"];
+  templateType = ["Page Load Test", "Web Performance Test"];
 
   simType = ["Single Sim WO", "Dual Sim WO"]
   
@@ -97,7 +97,13 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
             "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
             "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
             "52", "53", "54", "55", "56", "57", "58", "59", "60"
-    ]
+    ];
+    sec:any = [
+      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
+            "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
+            "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
+            "52", "53", "54", "55", "56", "57", "58", "59", "60"
+    ];
     hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     ampm = ["AM", "PM"];
 

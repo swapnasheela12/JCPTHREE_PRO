@@ -125,6 +125,11 @@
                                 <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
                                     {{m}}</mat-option>
                             </mat-select>
+
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="sec[0]" disabled>
+                                <mat-option value="option1" class="sector-title" *ngFor="let s of sec" [value]="s">
+                                    {{s}}</mat-option>
+                            </mat-select>
                     
                             <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="ampm[0]" disabled>
                                 <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
