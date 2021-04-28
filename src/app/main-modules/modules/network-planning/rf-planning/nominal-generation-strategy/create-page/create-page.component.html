@@ -502,7 +502,7 @@
                                 </div>
                                 <div class="content-nominal-cust px-2" style="height: 300px;">
                                     <!-- <div class="content-nominal-cust-row" fxLayout="row wrap">
-                                        
+
                                     </div> -->
                                     <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection
                                         toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationAutoPageSize]="false" [pagination]="false" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
@@ -620,7 +620,7 @@
                         </div>
                         <div fxFlex></div>
                         <div class="p-2">
-                            <button mat-stroked-button color="primary">Create Query</button>
+                            <button mat-stroked-button color="primary" routerLink="{{createQueryRoute}}">Create Query</button>
                         </div>
                         <div class="p-2">
                             <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
