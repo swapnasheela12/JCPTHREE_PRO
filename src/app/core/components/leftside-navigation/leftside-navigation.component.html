@@ -59,6 +59,7 @@
                         </div>
                         <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true && node.showSettings != false" #iconDisplay (click)="openSettingsDialog(node, $event)">
                         </mat-icon>
+                        <i class="zmdi zmdi-delete delete-icon" *ngIf="node.deleteIconVisible == true" (click)="deleteFromList($event)"></i>
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)" (mouseleave)="layersLevelHoverLeave(node, iconlayersZero)"
                         matTreeNodePaddingIndent="0" [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0': '', treeControl.isExpanded(node) ? 'active-layer': '']" id="{{node.classId}}">

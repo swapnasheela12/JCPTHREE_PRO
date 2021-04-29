@@ -24,6 +24,7 @@ export class SideNavNode {
   componentLayer?: Component;
   disabled?: Boolean;
   show?: Boolean;
+  deleteIconVisible?: Boolean;
   show0?: Boolean;
   showSettings?: Boolean;
   checked?: Boolean;
@@ -103,6 +104,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
       componentLayer: node.componentLayer,
       disabled: node.disabled,
       show: node.show,
+      deleteIconVisible: node.deleteIconVisible,
       show0: node.show0,
       showSettings: node.showSettings,
       checked: node.checked,
@@ -672,6 +674,9 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
     else if (node.component == 'SmartbenchSettingsComponent') {
 
     }
+  }
+  async deleteFromList(event) {
+    event.stopPropagation();
   }
 
   async renderLayerComponent(layersToShow) {

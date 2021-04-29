@@ -85,6 +85,7 @@ import { NominalValidationPerformanceSummaryComponent } from './nominal-validati
 import { NominalValidationSiteDistributionSummaryComponent } from './nominal-validation/nominal-validation-site-distribution-summary/nominal-validation-site-distribution-summary.component';
 import { NominalValidationOptimizationSummaryComponent } from './nominal-validation/nominal-validation-optimization-summary/nominal-validation-optimization-summary.component';
 import { HoverComponentComponent } from './nominal-capacity/hover-component/hover-component.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 // import { QueryAdministrationPopupComponent } from './nominal-capacity/create-task-page/poups/query-administration-popup/query-administration-popup.component';
 // import { NcQueryAdministrationComponent } from './nominal-capacity/nc-query-administration/nc-query-administration.component';
 // import { CreateQueryPageComponent } from './nominal-capacity/nc-query-administration/create-query-page/create-query-page.component';
@@ -161,6 +162,7 @@ import { HoverComponentComponent } from './nominal-capacity/hover-component/hove
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
+    Ng2SearchPipeModule,
     DragDropModule,
     MatAutocompleteModule,
     MatBadgeModule,
