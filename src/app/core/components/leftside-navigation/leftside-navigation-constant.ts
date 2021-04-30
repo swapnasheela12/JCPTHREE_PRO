@@ -3777,16 +3777,56 @@ const CREATE_PINS = [
 
 const CREATE_KML = [
     {
-        name: 'CREATE PIN',
-        link: 'CREATE-PIN',
-        eventName: 'sites-outdoor-esc',
+        name: 'KML1',
+        link: '',
+        eventName: '',
         show: true,
         showSettings: true,
         checked: false,
         showHeader: false,
         headerText: '',
         children: [],
-        component: 'TacNetworkDialogComponent'
+        component: '',
+        deleteIconVisible: true
+    },
+    {
+        name: 'KML2',
+        link: '',
+        eventName: '',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        component: 'TacNetworkDialogComponent',
+        deleteIconVisible: true
+    },
+    {
+        name: 'KML3',
+        link: '',
+        eventName: '',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        component: '',
+        deleteIconVisible: true
+    },
+    {
+        name: 'KML4',
+        link: '',
+        eventName: '',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: [],
+        component: '',
+        deleteIconVisible: true
     },
 ]
 

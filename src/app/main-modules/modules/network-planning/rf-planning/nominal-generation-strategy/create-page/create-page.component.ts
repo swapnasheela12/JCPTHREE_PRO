@@ -37,6 +37,11 @@ declare const L: any; // --> Works
 import 'leaflet-draw';
 import { MatStepper } from '@angular/material/stepper';
 
+const PATHS = [
+  { createPage: "/JCP/Layers" },
+  { createQuery: "/JCP/Administration/Module-Management/Nominal-Planning/Query-Administration/Create-Query" }
+  ];
+
 interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
 }
@@ -69,6 +74,8 @@ export class CreatePageComponent implements OnInit {
   public OutdoorSmallCell = "Landmark";
   public IndoorSmallCell = "Landmark";
   public MacroSmallCell = "Landmark";
+
+  public createQueryRoute: string;
 
   public zoneType: FormControl = new FormControl();
   public projectDescriptionCtrl: FormControl = new FormControl();
@@ -367,6 +374,7 @@ export class CreatePageComponent implements OnInit {
 
   public projectName;
   ngOnInit(): void {
+    this.createQueryRoute = PATHS[1].createQuery;
     this.selectedBoundaries = this.listBoundaries[0];
     this.selectedLinkBudget = "Link Budget";
 
