@@ -3,7 +3,7 @@
         "status": "Not Started",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
         "assignedBy": "I-G-J-PLPR-OSC-0004",
-        "dueDate": "Dec 23, 2020",
+        "dueDate": "Dec 23, 2020", "lastUpdated":  "Dec 23, 2020",
         "taskCompleted": "0"
     },
     {
@@ -11,7 +11,7 @@
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "5",
-        "dueDate": "Dec 23, 2020",
+        "dueDate": "Dec 23, 2020", "lastUpdated":  "Dec 23, 2020",
         "taskCompleted": "80"
     },
     {
@@ -20,7 +20,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "1",
         "taskCompleted": "100",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -28,7 +29,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020", "lastUpdated":  "Dec 23, 2020"
+
     },
     {
         "status": "Completed",
@@ -36,7 +38,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "100",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -44,7 +47,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "In Progress",
@@ -52,7 +56,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Completed",
@@ -60,7 +65,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "100",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -68,7 +74,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Completed",
@@ -76,7 +83,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "50",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -84,6 +92,7 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "20",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020"
     }
 ]

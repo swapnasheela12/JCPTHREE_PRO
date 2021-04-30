@@ -71,6 +71,9 @@ import { WoFilterComponent } from './web-performance-test/wo-filter/wo-filter.co
 import { ViewWorkorderComponent } from './web-performance-test/view-workorder/view-workorder.component';
 import { ThreeDotCreateNewRenderer } from './web-performance-test/threedot-create-new-renderer.component';
 import { ThreeDotNVWPTRenderer } from './web-performance-test/threedot-nv-wpt-renderer.component';
+import { RegulatoryComponent } from './regulatory/regulatory.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { OntComponent } from './ont/ont.component';
 
 
 @NgModule({
@@ -82,7 +85,10 @@ import { ThreeDotNVWPTRenderer } from './web-performance-test/threedot-nv-wpt-re
     ThreeDotCreateNewRenderer,
     ThreeDotNVWPTRenderer,
     WoFilterComponent,
-    ViewWorkorderComponent
+    ViewWorkorderComponent,
+    RegulatoryComponent,
+    RecipeComponent,
+    OntComponent
   ],
   imports: [
     CommonModule,

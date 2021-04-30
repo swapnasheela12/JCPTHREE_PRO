@@ -4,29 +4,24 @@ import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { Subscription, Subject, ReplaySubject } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { ViewChild, Input, TemplateRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { GridOptions, GridCore, SelectionChangedEvent } from 'ag-grid-community';
 import * as _ from 'lodash';
-import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DropDownRendererComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/dropDown-renderer.component';
-import { ThreeDotWPTRenderer } from './threedot-wpt-renderer.component';
-import { WoFilterComponent } from './wo-filter/wo-filter.component';
-import { ThreeDotCreateNewRenderer } from './threedot-create-new-renderer.component';
 import { GridApi } from '@ag-grid-community/core';
+import { WoFilterComponent } from '../web-performance-test/wo-filter/wo-filter.component';
 declare var $: any;
 
 @Component({
-  selector: 'app-web-performance-test',
-  templateUrl: './web-performance-test.component.html',
-  styleUrls: ['./web-performance-test.component.scss']
+  selector: 'app-regulatory',
+  templateUrl: './regulatory.component.html',
+  styleUrls: ['./regulatory.component.scss']
 })
-export class WebPerformanceTestComponent implements OnInit {
+export class RegulatoryComponent implements OnInit {
   @Input() commonTableAggrid: TemplateRef<any>;
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav;
   /////
@@ -48,11 +43,6 @@ export class WebPerformanceTestComponent implements OnInit {
   public gridPinned = false;
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
-  public frameworkComponentsTaskDetails = {
-    dropdownRenderer: ThreeDotWPTRenderer,
-    inputRenderer: inputRendererComponent,
-    drpRenderer: ThreeDotCreateNewRenderer
-  };
   private paginationPageSize = 10;
   public searchGrid = '';
 
@@ -215,12 +205,6 @@ export class WebPerformanceTestComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
-      },
-      {
-        headerName: "",
-        cellRenderer: 'dropdownRenderer',
-        width: 100,
-        pinned: 'right'
       }
     ];
     this.columnDefsPending = [
@@ -261,12 +245,6 @@ export class WebPerformanceTestComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
-      },
-      {
-        headerName: "",
-        cellRenderer: 'dropdownRenderer',
-        width: 100,
-        pinned: 'right'
       }
     ];
     this.columnDefsHistory = [
@@ -307,12 +285,6 @@ export class WebPerformanceTestComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
-      },
-      {
-        headerName: "",
-        cellRenderer: 'dropdownRenderer',
-        width: 100,
-        pinned: 'right'
       }
     ];
   }
@@ -494,4 +466,5 @@ export class WebPerformanceTestComponent implements OnInit {
 
 
 }
+
 

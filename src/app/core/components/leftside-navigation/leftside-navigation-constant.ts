@@ -5239,6 +5239,24 @@ const WORKORDERS_NVWORKORDERS_LIST = [
         link: 'JCP/Work-Orders/Nv-Workorders/Web-Performance-Test',
         eventName: 'workorders-web-performance-test',
         children: []
+    },
+    {
+        name: 'Regulatory Reporting Workorders',
+        link: 'JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting',
+        eventName: 'workorders-regulatory-reporting',
+        children: []
+    },
+    {
+        name: 'Recipe Workorders',
+        link: 'JCP/Work-Orders/Nv-Workorders/Recipe-Workorders',
+        eventName: 'recipe-workorders',
+        children: []
+    },
+    {
+        name: 'ONT Workorders',
+        link: 'JCP/Work-Orders/Nv-Workorders/ONT-Workorders',
+        eventName: 'ont-workorders',
+        children: []
     }
 ]
 
