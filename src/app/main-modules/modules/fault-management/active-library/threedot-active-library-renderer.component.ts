@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { EditComponent } from './edit/edit.component';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="editActiveLibrary()">
                 <span>Edit</span>
             </button>
             <button mat-menu-item (click)="openWarningDialog()">
@@ -48,6 +49,14 @@ export class threeDotActiveLibraryRendererComponent implements ICellRendererAngu
     console.log("p2b",this.params)
     this.datashare.checkboxMessage.subscribe((checkbox) => {
       this.dataTest = checkbox;
+    });
+  }
+
+  editActiveLibrary() {
+    this.dialog.open(EditComponent,{
+      height: "405px",
+      width: "840px",
+      panelClass: "material-dialog-container",
     });
   }
 

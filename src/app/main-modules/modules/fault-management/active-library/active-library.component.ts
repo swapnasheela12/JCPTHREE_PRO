@@ -145,11 +145,16 @@ ngOnInit(): void {
       status + '</div>' ;
   }
 
-  
+  selectionChanged(event: SelectionChangedEvent) {
+    let lengthOfSelectedRow = event.api.getSelectedRows().length;
+    if (1 < lengthOfSelectedRow) {
+    }
+  }
 
   get PaginationPageSize(): number {
     return this.paginationPageSize;
   }
+
 
   get gridAPI(): GridApi {
     return this.gridApi;

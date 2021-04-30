@@ -1,0 +1,262 @@
+<div class="rfi-container w-100">
+    <div class="flex-container rfi-header" style="background: #0070DB; color: white">
+        <div class="d-flex flex-row justify-content-between header">
+            <div class="col-11 sector-flex-item" fxFlex>
+
+                <div class="py-3 sector-title">Information</div>
+            </div>
+
+            <div class="sector-flex-item">
+                <mat-icon class="close-icon" style="line-height: 2; color: white;" (click)="closeDialog()"
+                    aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="rfi-container-dialog">
+
+        <mat-card class="cards">
+            <div class="card-header w-100" style="margin: 0;">
+                ALARMS DETAILS
+            </div>
+            <mat-card-content class="wo-container">
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Alarm Name</div>
+                            <div class="wo-form-input-value">VOLTAGE LOW</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Event Time</div>
+                            <div class="wo-form-input-value" #tooltip="matTooltip"
+                            matTooltip="30 Apr, 2021 3:29:57 PM">30 Apr, 2021 3:29:57 PM</div>
+                        </div>
+                    </div>
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Event Type</div>
+                            <div class="wo-form-input-value">equipmentAlarm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Alarm Description</div>
+                            <div class="wo-form-input-value" #tooltip="matTooltip"  [matTooltipPosition]="['above']"
+                            matTooltip="(2199345)/INHRSHHDXXXXNB0001SA2REM001/I-HR-HISR-ENB-V019.2">(2199345)/INHRSHHDXXXXNB0001SA2REM001/I-HR-HISR-ENB-V019.2</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Severity</div>
+                            <div class="wo-form-input-value">Major</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Probable Cause</div>
+                            <div class="wo-form-input-value" #tooltip="matTooltip" [matTooltipPosition]="['above']"
+                            matTooltip="voltage of system is lower than the threshold">voltage of system is lower than the threshold</div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">JCP Classification</div>
+                            <div class="wo-form-input-value">Service Threatening</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="cards">
+            <div class="card-header w-100">
+               NODE DETAILS
+            </div>
+            <mat-card-content class="wo-container">
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">CI NAME</div>
+                            <div class="wo-form-input-value">SITE LEVEL</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Managed Element</div>
+                            <div class="wo-form-input-value">I-HR-HISR-ENB-V019</div>
+                        </div>
+                    </div>
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Domain</div>
+                            <div class="wo-form-input-value">RAN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Node Type</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Vendor</div>
+                            <div class="wo-form-input-value">Samsung</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">EMS Name</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+        <mat-card class="cards">
+            <div class="card-header w-100">
+                GEOGRAPHY
+            </div>
+            <mat-card-content class="wo-container">
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Zone</div>
+                            <div class="wo-form-input-value">NORTH</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">R4G State/Circle</div>
+                            <div class="wo-form-input-value">Haryana/Haryana</div>
+                        </div>
+                    </div>
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">City</div>
+                            <div class="wo-form-input-value">Tehsil</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Area</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Jio Center</div>
+                            <div class="wo-form-input-value">BARWALA</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Maintenance Point</div>
+                            <div class="wo-form-input-value">Hissar</div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Latitude</div>
+                            <div class="wo-form-input-value">29.47573</div>
+                        </div>
+                    </div>
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Longitude</div>
+                            <div class="wo-form-input-value">75.98477</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="cards">
+            <div class="card-header w-100">
+                CORRELATION DETAILS
+            </div>
+            <mat-card-content class="wo-container">
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Correlation Flag</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Planned Outage Flag</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Parent Work Order ID</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Work Order ID</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">Vendor</div>
+                            <div class="wo-form-input-value">Samsung</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 wo-flex-item mediaContainer" fxFlex="33">
+                        <div class="wo-form-field-read">
+                            <div class="wo-form-input-title">EMS Name</div>
+                            <div class="wo-form-input-value">--</div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+</div>

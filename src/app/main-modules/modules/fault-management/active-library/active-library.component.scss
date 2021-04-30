@@ -53,20 +53,11 @@ div.container {
         height: calc(100% - 56px) !important;
         max-height: calc(100% - 56px) !important;
     }
-    .aa-menu-render .mat-menu-content .mat-menu-item:hover {
-        background-color: #f3f7fc;
-    }
-    .pagination-aggrid {
-        width: calc(100% - 380px);
-        position: absolute;
-        bottom: 0;
-    }
 }
 
 .btn-dl {
     border: none;
     margin-right: 10px;
-
 }
 
 .search-section {

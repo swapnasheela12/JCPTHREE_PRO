@@ -3,6 +3,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { AlarmHistoryComponent } from './alarm-history/alarm-history.component';
+import { InformationComponent } from './information/information.component';
 
 
 @Component({
@@ -11,10 +13,10 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openInformation()">
                 <span>Information</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openAlarmHistory()">
                 <span>Alarm History</span>
             </button>
         </mat-menu>`,
@@ -53,6 +55,23 @@ export class threeDotActiveAlarmRendererComponent implements ICellRendererAngula
 
   refresh(): boolean {
     return true;
+  }
+
+  openInformation() {
+    this.dialog.open(InformationComponent,{
+      height: "600px",
+      width: "840px",
+      panelClass: "material-dialog-container",
+    });
+  }
+
+  openAlarmHistory() {
+    this.dialog.open(AlarmHistoryComponent,{
+      height: "420px",
+      width: "80vw",
+      maxWidth: "80vw",
+      panelClass: "material-dialog-container",
+    });
   }
 
   openWarningDialog(): void {

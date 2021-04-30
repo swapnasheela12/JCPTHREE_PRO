@@ -78,6 +78,9 @@ import { HistoryAlarmExpandChartComponent } from './alarm-summary/history-alarm/
 import { HistoryAlarmTableComponent } from './alarm-summary/history-alarm/table-view/history-alarm-table/history-alarm-table.component';
 import { HistoryAlarmExpandTableComponent } from './alarm-summary/history-alarm/table-view/history-alarm-expand-table/history-alarm-expand-table.component';
 import { HistoryAlarmComponent } from './alarm-summary/history-alarm/history-alarm.component';
+import { EditComponent } from './active-library/edit/edit.component';
+import { AlarmHistoryComponent } from './active-alarm/alarm-history/alarm-history.component';
+import { InformationComponent } from './active-alarm/information/information.component';
 // import { HeaderOfWidgetsComponent } from './alarm-summary/header-of-widgets/header-of-widgets.component';
 // import { AlarmSummaryChartComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart.component';
 // import { AlarmSummaryChartExpandComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-chart-expand/alarm-summary-chart-expand.component';
@@ -85,7 +88,7 @@ import { HistoryAlarmComponent } from './alarm-summary/history-alarm/history-ala
 // import { AlarmSummaryTableComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table/alarm-summary-table.component';
 // import { AlarmSummaryTableAllComponent } from './alarm-summary/alarm-summary-chart/alarm-summary-table-all/alarm-summary-table-all.component';
 @NgModule({
-  declarations: [threeDotActiveLibraryRendererComponent, threeDotActiveAlarmRendererComponent,ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableExpandComponent, HistoryAlarmChartComponent, HistoryAlarmExpandChartComponent, HistoryAlarmTableComponent, HistoryAlarmExpandTableComponent, HistoryAlarmComponent],
+  declarations: [threeDotActiveLibraryRendererComponent, threeDotActiveAlarmRendererComponent,ActiveAlarmComponent, ActiveLibraryComponent, AddAlarmComponent, AlarmSummaryComponent, AlarmSummaryChartComponent, AlarmSummaryTableComponent, AlarmSummaryChartExpandComponent, AlarmSummaryTableExpandComponent, HistoryAlarmChartComponent, HistoryAlarmExpandChartComponent, HistoryAlarmTableComponent, HistoryAlarmExpandTableComponent, HistoryAlarmComponent, EditComponent, AlarmHistoryComponent, InformationComponent],
   imports: [
     CoreModule,
     FlexLayoutModule,
