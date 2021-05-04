@@ -1,7 +1,7 @@
 <div class="successful-container">
     <div class="successful-circle-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="circle-type" fxLayout="row" fxLayoutAlign="space-evenly center">
-            <div [ngClass]="[image == 'warning'? 'ic ic-warning warning-icon': '']"></div>
+            <div [ngClass]="[image == 'warning'? 'ic ic-warning warning-icon': image == 'disable'? 'ic ic-layers-01 warning-icon': '']"></div>
         </div>
     </div>
 

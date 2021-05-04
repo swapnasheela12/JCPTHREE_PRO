@@ -1,0 +1,25 @@
+.create-eps-golden-card {
+    height: 99%;
+    min-height:  99%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .create-eps-golden-card-flex-container {
+        .full-height {
+            height: 64px !important;
+        }
+        .nc-title {
+            font-family: Lato Bold;
+        }
+        .create-eps-golden-card-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+        }
+    }
+    .create-eps {
+        padding: 12px 20px 0 20px;
+    }
+    .eps-golden-table-container {
+        margin-top: -12px;
+    }
+}

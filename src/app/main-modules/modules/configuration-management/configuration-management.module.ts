@@ -67,12 +67,19 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { TraceportActivationComponent } from './config-change/traceport-activation/traceport-activation.component';
 import { EpsGoldenConfComponent } from './audit-and-query/core/eps-golden-conf/eps-golden-conf.component';
+import { CreateEpsGoldenConfComponent, VerticaldotRendererEPSComponent } from './audit-and-query/core/create-eps-golden-conf/create-eps-golden-conf.component';
+import { EditGoldenConfigComponent } from './audit-and-query/core/edit-golden-config/edit-golden-config.component';
+import { AddGoldenParameterComponent } from './audit-and-query/core/add-golden-parameter/add-golden-parameter.component';
 @NgModule({
   declarations: [
     SamsungRqaSchedulingComponent,
     RetChangeComponent,
     TraceportActivationComponent,
-    EpsGoldenConfComponent
+    EpsGoldenConfComponent,
+    CreateEpsGoldenConfComponent,
+    VerticaldotRendererEPSComponent,
+    EditGoldenConfigComponent,
+    AddGoldenParameterComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +87,7 @@ import { EpsGoldenConfComponent } from './audit-and-query/core/eps-golden-conf/e
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, VerticaldotRendererEPSComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

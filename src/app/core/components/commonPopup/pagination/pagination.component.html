@@ -1,23 +1,29 @@
-<div class="page-container d-flex justify-content-end align-items-center">
-    <div class="labels">Rows Per Page :
-        <mat-form-field class="col-3">
-            <mat-select
-                name="rowsPerPage"
-                [(ngModel)]="selectedRowsValue"
-                (selectionChange)="selectedRows()">
-                <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
-                    {{pageNumber}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+
+<div fxLayout="row">
+    <div *ngIf="parameter1 == true" [fxFlex]="parameter1 == true ? 30: 0" style="margin-left: 16px;"  class="d-flex justify-content-start align-items-center">
+        Total Parameters: {{parameterValue}}
     </div>
-    <span>
-        {{firstIndex}} - {{lastIndex}} of {{rowCount}}
-    </span>
-    <span (click)="goToPrevious()" class="previous" [ngClass]="{ 'disabled': currentPage-1 === 0 }">
-        <mat-icon aria-hidden="false" aria-label="Left arrow">chevron_left</mat-icon>
-    </span>
-    <span  (click)="goToNext()" class="next"  [ngClass]="{ 'disabled': currentPage === (noOfPages) }">
-        <mat-icon aria-hidden="false" aria-label="Right arrow">chevron_right</mat-icon>
-    </span>
+    <div [fxFlex]="parameter1 == true ? 70: 100" class="page-container d-flex justify-content-end align-items-center">
+        <div class="labels">Rows Per Page :
+            <mat-form-field class="col-3">
+                <mat-select
+                    name="rowsPerPage"
+                    [(ngModel)]="selectedRowsValue"
+                    (selectionChange)="selectedRows()">
+                    <mat-option *ngFor="let pageNumber of paginationValues" [value]="pageNumber">
+                        {{pageNumber}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <span>
+            {{firstIndex}} - {{lastIndex}} of {{rowCount}}
+        </span>
+        <span (click)="goToPrevious()" class="previous" [ngClass]="{ 'disabled': currentPage-1 === 0 }">
+            <mat-icon aria-hidden="false" aria-label="Left arrow">chevron_left</mat-icon>
+        </span>
+        <span  (click)="goToNext()" class="next"  [ngClass]="{ 'disabled': currentPage === (noOfPages) }">
+            <mat-icon aria-hidden="false" aria-label="Right arrow">chevron_right</mat-icon>
+        </span>
+    </div>
 </div>

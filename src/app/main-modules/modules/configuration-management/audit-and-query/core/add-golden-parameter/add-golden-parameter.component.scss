@@ -1,0 +1,34 @@
+.add-eps-golden-card {
+    height: calc(100% - 50px);
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .add-eps-golden-card-flex-container {
+        .full-height {
+            height: 64px !important;
+        }
+        .nc-title {
+            font-family: Lato Bold;
+        }
+        .add-eps-golden-card-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+        }
+    }
+    .create-eps {
+        padding: 12px 20px 0 20px;
+    }
+    .eps-golden-table-container {
+        margin-top: -12px;
+    }
+
+    .no-data {
+        width: 181px;
+        height: 46px;
+        box-shadow: none !important;
+        color: #676767;
+        padding: 10px;
+        line-height: 2;
+        border:2px dashed #707070;;
+    }
+}
