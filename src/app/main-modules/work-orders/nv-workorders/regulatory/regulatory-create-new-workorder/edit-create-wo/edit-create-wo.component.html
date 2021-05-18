@@ -13,160 +13,64 @@
     <div class="edit-container">
 
         <div fxLayout="row">
-            <div class="" fxFlex="25">
+            <div fxFlex="33">
                 <mat-form-field>
-                    <mat-label>Alarm Id*</mat-label>
-                    <input matInput [(ngModel)]="alarmId">
+                    <mat-label>Zone</mat-label>
+                    <input matInput [(ngModel)]="zone">
                 </mat-form-field>
             </div>
-            <div class="" fxFlex="25">
+            <div fxFlex="33">
                 <mat-form-field>
-                    <mat-label>Alarm Name*</mat-label>
-                    <input matInput [(ngModel)]="alarmName">
+                    <mat-label>Circle</mat-label>
+                    <input matInput [(ngModel)]="circle">
                 </mat-form-field>
             </div>
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Milestone*</mat-label>
-                    <mat-select [(value)]="domain[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let d of domain" [value]="d">
-                            {{d}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Tehnology*</mat-label>
-                    <mat-select [(value)]="technology[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let tech of technology" [value]="tech">
-                            {{tech}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div fxLayout="row">
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Vendor*</mat-label>
-                    <mat-select [(value)]="vendor[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let ven of vendor" [value]="ven">
-                            {{ven}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
+            <div fxFlex="33">
                 <mat-form-field>
-                    <mat-label>SW Version*</mat-label>
-                    <input matInput [(ngModel)]="swVersion">
-                </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Device Type</mat-label>
-                    <mat-select [(value)]="deviceType[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let d of deviceType" [value]="d">
-                            {{d}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>alarm Work Order Type</mat-label>
-                    <mat-select [(value)]="alarmWoType[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let alarmWoT of alarmWoType" [value]="alarmWoT">
-                            {{alarmWoT}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div fxLayout="row">
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Severity</mat-label>
-                    <mat-select [(value)]="severity[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let sev of severity" [value]="sev">
-                            {{sev}}
-                        </mat-option>
-                    </mat-select>
+                    <mat-label>Assigned To</mat-label>
+                    <input matInput [(ngModel)]="assignedTo">
                 </mat-form-field>
             </div>
            
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>EMS Source</mat-label>
-                    <mat-select [(value)]="emsSource[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let es of emsSource" [value]="es">
-                            {{es}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div class="" fxFlex="25">
-                <mat-form-field>
-                    <mat-label>EMS Release</mat-label>
-                    <input matInput [(ngModel)]="emsRelease">
-                </mat-form-field>
-            </div>
-
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Related To</mat-label>
-                    <mat-select [(value)]="relatedTo[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let rt of relatedTo" [value]="rt">
-                            {{rt}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
         </div>
 
+        <div fxLayout="row">
+            <div fxFlex="33">
+                <mat-form-field>
+                    <mat-label>Date From</mat-label>
+                    <input matInput [(ngModel)]="zone">
+                </mat-form-field>
+            </div>
+            <div fxFlex="33">
+                <mat-form-field>
+                    <mat-label>Date To</mat-label>
+                    <input matInput [(ngModel)]="dateTo">
+                </mat-form-field>
+            </div>
+            <div fxFlex="33">
+                <mat-form-field>
+                    <mat-label>Start Time</mat-label>
+                    <input matInput [(ngModel)]="startTime">
+                </mat-form-field>
+            </div>
+           
+        </div>
 
         <div fxLayout="row">
-            <div class="" fxFlex="25">
+            <div fxFlex="33">
                 <mat-form-field>
-                    <mat-label>Event Type</mat-label>
-                    <input matInput [(ngModel)]="eventType">
+                    <mat-label>Iterations</mat-label>
+                    <input matInput [(ngModel)]="iterations">
                 </mat-form-field>
             </div>
-            <div class="" fxFlex="25">
+            <div fxFlex="33">
                 <mat-form-field>
-                    <mat-label>Probable Cause</mat-label>
-                    <input matInput [(ngModel)]="portableCost">
+                    <mat-label>Waiting Periods (s)</mat-label>
+                    <input matInput [(ngModel)]="waitingPeriod">
                 </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
-                <mat-form-field>
-                    <mat-label>Object Identifier</mat-label>
-                    <input matInput [(ngModel)]="objectIdentifier">
-                </mat-form-field>
-            </div>
-            <div class="" fxFlex="25">
-                <mat-form-field class="form-field-read-only">
-                    <mat-label>Final JCP Classification*</mat-label>
-                    <mat-select [(value)]="finalJCPClassification[0]" placeholder=""
-                        style="font-family: lato Regular; font-size: 14px;">
-                        <mat-option *ngFor="let fjc of finalJCPClassification" [value]="fjc">
-                            {{fjc}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+            </div>   
+            <div fxFlex="33">
+            </div>        
         </div>
 
     </div>

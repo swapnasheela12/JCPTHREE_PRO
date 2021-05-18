@@ -13,22 +13,15 @@ import { GridCore, GridOptions } from '@ag-grid-community/all-modules';
     styleUrls: ['./edit-create-wo.component.scss']
   })
   export class EditCreateWoComponent implements OnInit {
-    alarmId: string = "2149442";
-    alarmName: string = "RRH_OPTIC_DELAY_EXCEED";
-    technology = ["LTE"];
-    domain = ["RAN", "RAN"];
-    vendor = ["Samsung", "Samsung"];
-    swVersion: string = "9.0.0";
-    deviceType = ["eNodeB"];
-    alarmWoType = ["Parent Group"];
-    severity = ["Major", "Minor"];
-    emsSource = ["Samsung LSMR"];
-    emsRelease: string = "9.0.0";
-    relatedTo = ["Hardware", "Software"];
-    eventType = "Equipment";
-    portableCost = "";
-    objectIdentifier = "";
-    finalJCPClassification = ["Outage"];
+    zone = 'West';
+    circle = "Mp-Cg";
+    assignedTo = "Yogeshwar.bargal@ril.com";
+    dateFrom = "17-07-2020";
+    dateTo = "17-07-2020";
+    startTime = "05:00";
+    iterations= "10";
+    waitingPeriod = "1";
+
   
     constructor(public dialogRef: MatDialogRef<EditCreateWoComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog, private httpClient: HttpClient, private datatable: TableAgGridService) {

@@ -77,7 +77,7 @@ import { OntComponent } from './ont/ont.component';
 import { RegulatoryCreateNewWorkorderComponent } from './regulatory/regulatory-create-new-workorder/regulatory-create-new-workorder.component';
 import { WorkorderDetailsComponent } from './regulatory/workorder-details/workorder-details.component';
 import { EditCreateWoComponent } from './regulatory/regulatory-create-new-workorder/edit-create-wo/edit-create-wo.component';
-import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regulatory-renderer.component';
+import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regulatory-renderer';
 
 
 @NgModule({

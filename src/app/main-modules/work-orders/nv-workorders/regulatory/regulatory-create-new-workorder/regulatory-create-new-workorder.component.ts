@@ -15,9 +15,8 @@ import { ThreeDotNVWPTRenderer } from '../../web-performance-test/threedot-nv-wp
 import { WptModalComponent } from '../../web-performance-test/wpt-modal/wpt-modal.component';
 import { ɵangular_packages_platform_browser_animations_animations_d } from '@angular/platform-browser/animations';
 import { FileUploadPopupComponent, fileUploadPopupModel } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
-import { EditCreateWoComponent } from './edit-create-wo/edit-create-wo.component';
-import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer.component';
-
+import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer';
+import { ThreeDotRETRenderer } from '../../../cm-workorders/ret-change/threedot-ret-renderer.component';
 
 @Component({
   selector: 'app-regulatory-create-new-workorder',
@@ -92,10 +91,12 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   public gridPinned = false;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    dropdownRenderer: ThreeDotRegulatoryRenderer,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent
   };
+  public frameworkRegulatory = {
+    threedotEditDelete : ThreeDotRegulatoryRenderer
+  }
 
 
   showFileUploadwidget: boolean = false;
@@ -265,8 +266,9 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       },
       {
         headerName: "",
-        field: "dropdownRenderer",
-        width: 70
+        cellRenderer: "threedotEditDelete",
+        width: 90,
+        pinned: 'right'
       }
     ];
   }
