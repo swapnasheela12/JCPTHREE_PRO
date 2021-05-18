@@ -9,22 +9,28 @@ import { GridCore, GridOptions } from '@ag-grid-community/core';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
-import { WptModalComponent } from '../wpt-modal/wpt-modal.component';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
+import { ThreeDotNVWPTRenderer } from '../../web-performance-test/threedot-nv-wpt-renderer.component';
+import { WptModalComponent } from '../../web-performance-test/wpt-modal/wpt-modal.component';
+import { ɵangular_packages_platform_browser_animations_animations_d } from '@angular/platform-browser/animations';
+import { FileUploadPopupComponent, fileUploadPopupModel } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
+import { EditCreateWoComponent } from './edit-create-wo/edit-create-wo.component';
+import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer.component';
 
 
 @Component({
-  selector: 'app-create-new-workorder',
-  templateUrl: './create-new-workorder.component.html',
-  styleUrls: ['./create-new-workorder.component.scss']
+  selector: 'app-regulatory-create-new-workorder',
+  templateUrl: './regulatory-create-new-workorder.component.html',
+  styleUrls: ['./regulatory-create-new-workorder.component.scss']
 })
-export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
+export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   templateType = ["Page Load Test", "Web Performance Test"];
 
-  simType = ["Single Sim WO", "Dual Sim WO"]
-  simTypeValue = "Single Sim WO";
+  type = ["TRAI Data QoS", "TRAI Data QoS"];
+  selectZone = ["West", "East", "North", "South"];
+  selectCircle = ["Mumbai", "Hydrabad", "Pune"];
+
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
     start: new FormControl(),
@@ -35,7 +41,6 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     startDate: '2019-12-11T18:30:00.000Z',
     endDate: '2019-12-12T18:29:59.000Z',
   }
-
   selectedDeviceCount = 0;
 
   ///////datepicker//////////
@@ -58,6 +63,11 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
     'Last 3 Month': [moment().subtract(3, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
   };
+
+  //Bulk Order
+  public rowDataBulkOrder;
+  public gridOptionsBulkOrder;
+  public columnDefsBulkOrder;
 
   //selectdevices grid
   public gridApiSelectDevice;
@@ -82,7 +92,7 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   public gridPinned = false;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    dropdownRenderer: ThreeDotNVWPTRenderer,
+    dropdownRenderer: ThreeDotRegulatoryRenderer,
     inputRenderer: inputRendererComponent,
     deleteRenderer: DeleteRendererComponent
   };
@@ -119,11 +129,13 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
           "52", "53", "54", "55", "56", "57", "58", "59", "60"
   ]
   hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-  ampm = ["AM", "PM"]
+  ampm = ["AM", "PM"];
+  rowClassRules;
+  createNewWorkorder = "CREATENEWWO";
 
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
-       console.log(this.router.url)
+       console.log(this.router.url);
     if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
@@ -132,14 +144,19 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
+    this.gridOptionsBulkOrder = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.httpClient.get("assets/data/workorder/nv-workorder/create-new-wo.json").subscribe((data) => {
+    this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/create-new-wo.json").subscribe((data) => {
       this.rowData = data;
-    })
+    });
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
     });
+
+    this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/bulk-order.json").subscribe((data) => {
+      this.rowDataBulkOrder = data;
+    })
   }
 
   stepperReportW() {
@@ -170,46 +187,97 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   public createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "URL Name",
-        field: "urlName",
-        width: 190
+        headerName: "",
+        width: 40,
+        checkboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        headerCheckboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        pinned: 'left',
       },
       {
-        headerName: "Traceroute",
-        field: "traceroute",
-        width: 130
+        headerName: "Circle",
+        field: "circle",
+        width: 70
       },
       {
-        headerName: "Ping",
-        field: "ping",
-        width: 100,
+        headerName: "Jio Center",
+        field: "jioCenter",
+        width: 120,
       },
       {
-        headerName: "Location",
-        field: "location",
+        headerName: "Assigned To",
+        field: "assignedTo",
         width: 110,
-      },
-      {
-        headerName: "11 URLs",
-        cellRenderer: 'dropdownRenderer',
-        width: 110,
-        pinned: 'right'
-      },
+      }
     ];
 
     this.columnDefsSelectDevice = [
       {
-        headerName: "Selected Device",
-        field: "imei",
-        width: '500'
+        headerName: "Selection",
+        field: "jioCenter",
+        width: 210,
       }
     ]
+
+    this.columnDefsBulkOrder = [
+      {
+        headerName: "Zone",
+        field: "zone",
+        width: 150
+      },
+      {
+        headerName: "Circle",
+        field: "circle",
+        width: 150
+      },
+      {
+        headerName: "Assigned To",
+        field: "assignedTo",
+        width: 180
+      },
+      {
+        headerName: "Date From",
+        field: "dateFrom",
+        width: 150
+      },
+      {
+        headerName: "Date to",
+        field: "dateTo",
+        width: 140
+      },
+      {
+        headerName: "Start Time",
+        field: "startTime",
+        width: 150
+      },
+      {
+        headerName: "Iterations",
+        field: "iterations",
+        width: 150
+      },
+      {
+        headerName: "Waiting Period (s)",
+        field: "waitingPeriod",
+        width: 150
+      },
+      {
+        headerName: "",
+        field: "dropdownRenderer",
+        width: 70
+      }
+    ];
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
+  selectionChanged(evt) {
+    this.rowDataSelectDevice = [];
+    this.gridOptions.api.getSelectedRows().forEach((selectedRows) => {
+    selectedRows.jioCenter = selectedRows.jioCenter + " " + selectedRows.assignedTo;
+    this.rowDataSelectDevice = this.gridOptions.api.getSelectedRows();
+    this.selectedDeviceCount = this.rowDataSelectDevice.length;
+    });  
   }
 
   isInvalidDate = (m: moment.Moment) => {
@@ -271,46 +339,6 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     fileUpload.click();
   }
 
-
-
-  //devices upload
-  fileNameDevices: string;
-  uploadFileDevices(file) {
-    this.fileNameDevices = file.data.name;
-    const formData = new FormData();
-    formData.append('file', file.data);
-    this.fileUploadService.upload(formData).pipe(
-      map(event => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            return event;
-        }
-      }),
-      catchError(() => {
-        return of(`${file.data.name} upload failed.`);
-      })).subscribe((event: any) => {
-        if (typeof (event) === 'object') {
-        }
-      });
-  }
-  private uploadFilesDevices() {
-    this.fileUpload.nativeElement.value = '';
-    this.filesUploaded.forEach(file => {
-      this.uploadFileDevices(file);
-    });
-  }
-
-  @ViewChild("fileUpload", { static: false }) fileUploadDevices: ElementRef; filesUploaded = [];
-  onClickDevices() {
-    const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
-      const file = fileUpload.files[0];
-      console.log("file", file)
-      this.filesUploaded.push({ data: file });
-      this.uploadFilesDevices();
-    };
-    fileUpload.click();
-  }
-
   fitColumns() {
     // if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
     //   setTimeout(() => {
@@ -350,10 +378,68 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     
   }
 
+  onGridSizeChanged(params) {
+    if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
+      this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+    }
+    if (this.gridOptions.api && this.rowData) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
+    if (this.gridOptionsBulkOrder.api && this.rowDataBulkOrder) {
+      this.gridOptionsBulkOrder.api.sizeColumnsToFit();
+    }
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.paginationGoToPage(4);
+   if (this.gridOptionsSelectDevice.api) {
+    this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+  }
+  if (this.gridOptions.api) {
+    this.gridOptions.api.sizeColumnsToFit();
+  }
+  if (this.gridOptionsBulkOrder.api) {
+    this.gridOptionsBulkOrder.api.sizeColumnsToFit();
+  }
+  
+  }
+
   someMethod(evt) {
     console.log(evt);
     console.log(this.hours);
-    
+  }
+
+  uploadBulk() {
+    this.rowData = [];
+    this.rowDataSelectDevice = [];
+    this.createNewWorkorder = "BULKUPLOAD";
+  }
+
+  nbhWo() {
+  }
+
+
+  bulkUpload(): void {
+    const title = `Upload Files`;
+    var showExample = true;
+    const dialogData = new fileUploadPopupModel(title, showExample);
+    const dialogRef = this.dialog.open(FileUploadPopupComponent, {
+      width: '700px',
+      height: '290px',
+      data: dialogData,
+      panelClass: 'file-upload-dialog'
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == 'uploadClicked') {
+      //  this.dialog.open(EditCreateWoComponent, {
+      //   width: '700px',
+      //   height: '290px',
+      //  });
+      this.createNewWorkorder = "BULKUPLOAD";
+      }
+    })
   }
 
   assignWorkorder() {
@@ -364,7 +450,11 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     } );
   }
 
+  navigateBackToCreateWO() {
+    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/Create-New-Workorder"])
+  }
+
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/"])
+    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting"])
   }
 }

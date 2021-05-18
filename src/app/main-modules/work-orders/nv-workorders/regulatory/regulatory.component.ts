@@ -368,6 +368,11 @@ export class RegulatoryComponent implements OnInit {
     }
   }
 
+  onRowClicked(event) {
+    this.router.navigate(['/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/Workorder-Details'])
+  }
+
+
   showTaskData(evt) {
 
   }

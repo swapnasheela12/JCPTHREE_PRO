@@ -35,8 +35,7 @@
                         <mat-form-field class="form-field-read-only">
                             <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
                                 Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="templateType[0]"
-                                style="font-family: lato Regular; font-size: 14px;">
+                            <mat-select disableOptionCentering [(value)]="templateType[0]" style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
                                     [value]="tcr">
                                     {{tcr}}</mat-option>
@@ -60,9 +59,7 @@
 
                     <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
-                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="simType[1]"
+                            <mat-select disableOptionCentering [(value)]="simTypeValue"
                                 style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
                                     [value]="st">
@@ -73,7 +70,7 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap mar-top">
+                <div class="sub-content d-flex  flex-row flex-wrap" style="margin: 20px 0;">
                     <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
                         <div class="label"  fxFlex="100">Upload URLs:*</div>
                     </div>
@@ -108,9 +105,6 @@
                 </div>
 
                 <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item col-12 " style="padding: 0px !important;">
-                        <div class="label" style="margin: 10px 0 10px 25px;">11 URLs</div>
-                    </div>
                     <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
                         <ag-grid-angular (gridReady)="onGridReady($event)"
                             class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;border: 1px solid #eee;"
@@ -125,6 +119,7 @@
                 </div>
             </div>
             <div fxFlex="50">
+                <label class="label mar-top mar-left">Date & Time Range</label>
                 <div class="sub-content d-flex  flex-row flex-wrap">
                     <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
                         <form [formGroup]="thirdFormGroup">
@@ -150,38 +145,41 @@
                         </form>
                     </div>
 
-                    <div class="wo-sector-card-one  col-5 mar-top" style="display: inline-block;margin-left: 20px;">
+                    <div class="sub-content-flex-item  col-5">
+                        <mat-form-field class="w-100" style="margin: 20px 0 0 20px;">
+                            <mat-label>Iterations</mat-label>
+                            <input matInput placeholder="" value="">
+                        </mat-form-field>
+                    </div>
+
+                  
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC; padding: 20px 12px;">
+                    <div class="wo-sector-card-one  col-6" style="display: inline-block;">
                         <label class="time-duration-label">Start Time</label>
                         <div>
-                            <mat-select class="timer-select" disableOptionCentering [(value)]="hours[0]">
+    
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour">
                                 <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
                                     {{h}}</mat-option>
                             </mat-select>
-                    
-                            <mat-select class="timer-select" disableOptionCentering [(value)]="minutes[0]">
+                      
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedMin">
                                 <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
                                     {{m}}</mat-option>
                             </mat-select>
 
-                            <mat-select class="timer-select" disableOptionCentering [(value)]="sec[0]">
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedSec">
                                 <mat-option value="option1" class="sector-title" *ngFor="let s of sec" [value]="s">
                                     {{s}}</mat-option>
                             </mat-select>
-                    
-                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="ampm[0]">
+
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="hoursSeletedAMPM">
                                 <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
                                     {{ap}}</mat-option>
                             </mat-select>
                         </div>
-                    </div>
-                </div>
-
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item  col-6 ">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Iterations</mat-label>
-                            <input matInput placeholder="" value="">
-                        </mat-form-field>
                     </div>
 
                     <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
@@ -210,7 +208,7 @@
 
                 </div>
 
-                <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap">
+                <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
                     <div class="col-5">
                         <mat-form-field class="example-full-width">
                             <mat-label>IMEI</mat-label>
@@ -226,15 +224,15 @@
                 </div>
 
 
-                <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap">
+                <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
                     <div class="col">
                         <mat-form-field fxFlex="80" class="browse-file-form-field">
-                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
+                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileNameDevices"
                                 [readonly]="true" required>
                             <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
-                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+                                (click)="onClickDevices()" mat-icon-button color="primary"><i class="ic ic-file"  style="font-size: 20px;"></i></button>
                         </mat-form-field>
-                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                        <input type="file" #fileUpload id="fileUploadDevices" name="fileUploadDevices" accept=""
                             style="display: none;" />
 
                             <button fxFlex="20" class="next-button p-0" mat-button color="primary">
@@ -250,10 +248,9 @@
                     <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv files only</div>
                 </div>
 
-                <div class="d-flex  flex-row flex-wrap">
-                        <div class="device-count">{{selectedDeviceCount}} out of 100</div>
-                    </div>
-                <div class="d-flex  flex-row flex-wrap">                                      
+                <div class="device-count">{{selectedDeviceCount}} out of 100</div>
+
+                <div class="d-flex  flex-row flex-wrap w-100">                                      
                     <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
                         <ag-grid-angular style="width: 100%; height: 285px"
                         class="traceport-activation ag-theme-material ag-jcp3"

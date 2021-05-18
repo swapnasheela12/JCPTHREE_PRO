@@ -21,7 +21,7 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
   templateType = ["Page Load Test", "Web Performance Test"];
 
   simType = ["Single Sim WO", "Dual Sim WO"]
-  
+  simTypeValue = "Single Sim WO";
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
     start: new FormControl(),
@@ -170,8 +170,8 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
         width: 150,
       },
       {
-        headerName: "",
-        width: 100,
+        headerName: "11 URLs",
+        width: 140,
         pinned: 'right'
       },
     ];

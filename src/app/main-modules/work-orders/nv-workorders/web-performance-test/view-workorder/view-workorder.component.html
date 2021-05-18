@@ -54,9 +54,7 @@
 
                     <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
-                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="simType[1]" disabled
+                            <mat-select disableOptionCentering [(value)]="simTypeValue" disabled
                                 style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
                                     [value]="st">
@@ -70,9 +68,6 @@
 
 
                 <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item col-12 " style="padding: 0px !important;">
-                        <div class="label" style="margin: 13px 0 13px 25px;">11 URLs</div>
-                    </div>
                     <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
                         <ag-grid-angular (gridReady)="onGridReady($event)"
                             class="ag-theme-material table-view-zoom-ag-grid"

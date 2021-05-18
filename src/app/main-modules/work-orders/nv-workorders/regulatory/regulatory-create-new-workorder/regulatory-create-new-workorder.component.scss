@@ -8,10 +8,10 @@ $color-grayBlue: #464d69;
 
 
 .create-wpt-wrapper {
-    height: 98%;
+    height: 90%;
 }
 .wpt-module-card {
-    height: 92%;
+    height: 100%;
     .create-wpt-toolbar {
         min-height: 54px;
         &.mat-toolbar {
@@ -55,8 +55,16 @@ $color-grayBlue: #464d69;
 .mar-top {
     margin-top: 20px;
 }
-.mar-left {
-    margin-left: 20px;
+
+.wo-inline {
+     display: inline-block;
+}
+
+.label-header {
+    font-family: Lato bold;
+    font-size: 14px;
+    color: #231F20;
+    margin: 18px 15px;
 }
 
 .td-flex-container {
@@ -237,7 +245,6 @@ $color-grayBlue: #464d69;
 }
 
 .device-count {
-    float: right;
     font-size: 16px;
     font-family: lato bold;
     margin: 12px 20px;
