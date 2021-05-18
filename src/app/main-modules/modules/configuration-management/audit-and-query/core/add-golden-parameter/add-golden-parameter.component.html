@@ -1,0 +1,162 @@
+<div class="h-100">
+    <mat-card class="add-eps-golden-card p-0">
+        <div class="add-eps-golden-card-flex-container">
+            <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
+                <div class="col-4 add-eps-golden-card-flex-item nc-title">
+                    Add Golden Parameter
+                </div>
+            </div>
+        </div>
+        <mat-divider style="position: relative;"></mat-divider>
+        <div fxLayout="row wrap" style="height: 88%;overflow: auto;">
+            <div fxFlex="49" style="padding:20px" fxLayout="column wrap">
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Type"  [(value)]="selectedType">
+                                <mat-option *ngFor="let item of TypeList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Circle"  [(value)]="selectedCircle">
+                                <mat-option *ngFor="let item of CircleList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Town"  [(value)]="selectedTown">
+                                <mat-option *ngFor="let item of townList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Network Element"  [(value)]="selectedNetworkElement">
+                                <mat-option *ngFor="let item of NetworkList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Vendor"  [(value)]="selectedVendor">
+                                <mat-option *ngFor="let item of vendorList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="SW Versiom"  [(value)]="selectedSWVersion">
+                                <mat-option *ngFor="let item of swVersionList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Band"  [(value)]="selectedBand">
+                                <mat-option *ngFor="let item of bandList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="PLD Name"  [(value)]="selectedPldName">
+                                <mat-option *ngFor="let item of pldNameList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Category Name"  [(value)]="selectedCategory">
+                                <mat-option *ngFor="let item of categoryList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Parameter Name"  [(value)]="selectedParameter">
+                                <mat-option *ngFor="let item of parameterList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap"  fxLayoutGap="60px">
+                    <div fxFlex="40">
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <mat-select disableOptionCentering placeholder="Jio Settings"  [(value)]="selectedJioSettings">
+                                <mat-option *ngFor="let item of jioSettingsList" [value]="item.name" selected>{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <mat-divider [vertical]="true"></mat-divider>
+            <div fxFlex="50" fxLayout="column wrap">
+                <div fxLayout="row wrap" style="padding:10px 10px 0 10px;">
+                    <div fxFlex="35" style="font-family: Lato Bold;font-size: 16px;padding-top: 10px;">
+                        RAN Identifier
+                    </div>
+                    <div fxFlex="40"></div>
+                    <div fxFlex="25">
+                        <button style="width: 136px;height: 40px;border: 1px solid #0078D7 !important;font-size: 16px;
+                        font-family: Lato Medium;" 
+                        mat-stroked-button color="primary" >Add Identifier</button>
+                    </div>
+                </div>
+                <div style="width: 100%;height: 232px;border-bottom: 1px solid #e0e0e0;">
+                    <ag-grid-angular [headerHeight]="50" [tooltipShowDelay]="tooltipShowDelay" #agGrid
+                        style="width: 100%; height: 100%;" id="addGolden" class="ag-theme-material" 
+                        [gridOptions]="addGoldenGridOptions" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                        (gridReady)="onGridGoldenParamReady($event)"></ag-grid-angular>
+                </div>
+                <div fxLayout="column wrap" style="padding:10px 10px 0 10px;">
+                    <div fxLayout="row wrap"  fxLayoutGap="40px">
+                        <div fxFlex="45">
+                            <mat-form-field fxFlex="100" class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Restart Required"  [(value)]="selectedRestart">
+                                    <mat-option *ngFor="let item of restartList" [value]="item.name" selected>{{item.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="45">
+                            <mat-form-field fxFlex="100" class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Service Impacting"  [(value)]="selectedService">
+                                    <mat-option *ngFor="let item of serviceList" [value]="item.name" selected>{{item.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <input matInput placeholder="Parameter Description" [(ngModel)]="parameterDescription">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field fxFlex="100" class="form-field-container">
+                            <input matInput placeholder="Comments">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+        <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth">Back</button>
+        </div>
+        <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Submit</button>
+        </div>
+    </div>
+</div>

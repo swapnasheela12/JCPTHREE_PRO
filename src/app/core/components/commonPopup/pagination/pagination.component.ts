@@ -14,14 +14,19 @@ export class PaginationComponent implements OnChanges, OnInit {
   @Input() noOfPages = 0;
   @Input() rowCount = 0;
   @Input() paginationArray = [];
+  @Input() showParameter;
+  @Input() showParameterValue;
   private paginationPages = {};
   private pagiunationPageSize;
   selectedRowsValue: number = 10;
   disabled: Boolean;
   lastIndex: number = this.selectedRowsValue;
   firstIndex: number = 1;
+  parameter;
+  parameter1;
 
   paginationValues = [10, 20, 30, 40];
+  parameterValue: any;
 
   get currentPage(): number {
     return this.gridApi ? this.gridApi.paginationGetCurrentPage() + 1 : 1;
@@ -32,6 +37,8 @@ export class PaginationComponent implements OnChanges, OnInit {
   ngOnInit() {
     this.paginationValues = this.paginationArray;
     this.selectedRowsValue = this.paginationValues[0];
+    this.parameter = this.showParameter;
+    this.parameterValue = this.showParameterValue;
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -1396,18 +1396,35 @@ const MODULE_LIST_CORE_CONF = [
     }
 ];
 
-const MODULE_LIST_AUDIT = [
+const ADMIN_MODULE_LIST_CORE_CONF = [
     {
-        name: 'RAN',
-        link: 'RAN',
+        name: 'EPS Golden Configuration',
+        link: 'JCP/Modules/Configuration-Management/Audit-and-Query/Core/EPS-Golden-Configuration/Create',
         eventName: 'sites-outdoor-esc',
         show: true,
         showSettings: true,
         checked: false,
         showHeader: false,
         headerText: '',
-        children: MODULE_LIST_RAN
-    },
+        children: []
+    }
+];
+
+const ADMIN_MODULE_LIST_AUDIT = [
+    {
+        name: 'Core',
+        link: 'Core',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: ADMIN_MODULE_LIST_CORE_CONF
+    }
+];
+
+const MODULE_LIST_AUDIT = [
     {
         name: 'Core',
         link: 'Core',
@@ -2770,6 +2787,17 @@ const ADMIN_CONFIGURATION_LIST = [
         showHeader: false,
         headerText: '',
         children: []
+    },
+    {
+        name: 'Audit and Query',
+        link: 'AuditandQuery',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: ADMIN_MODULE_LIST_AUDIT
     }
 ];
 

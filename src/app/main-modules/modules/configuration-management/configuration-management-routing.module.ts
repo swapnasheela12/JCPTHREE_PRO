@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TraceportActivationComponent } from './config-change/traceport-activation/traceport-activation.component';
 import { EpsGoldenConfComponent } from './audit-and-query/core/eps-golden-conf/eps-golden-conf.component';
+import { CreateEpsGoldenConfComponent } from './audit-and-query/core/create-eps-golden-conf/create-eps-golden-conf.component';
+import { AddGoldenParameterComponent } from './audit-and-query/core/add-golden-parameter/add-golden-parameter.component';
 
 
 const routes: Routes = [
@@ -18,7 +20,12 @@ const routes: Routes = [
   {
     path: "Audit-and-Query", children: [
       { path: "Core", children: [
-        { path: 'EPS-Golden-Configuration', component: EpsGoldenConfComponent}
+        { path: 'EPS-Golden-Configuration', children:[
+            {path: '',component: EpsGoldenConfComponent},
+            { path: 'Create', component: CreateEpsGoldenConfComponent},
+            { path: 'AddGoldenParameter', component:AddGoldenParameterComponent }
+          ]
+        }
         ]
       }
     ]

@@ -1,0 +1,107 @@
+<mat-card class="create-eps-golden-card p-0">
+    <div class="create-eps-golden-card-flex-container">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
+            <div class="col-4 create-eps-golden-card-flex-item nc-title">
+                EPC Golden Configuration
+            </div>
+            <div class="col-8 create-eps-golden-card-flex-item d-flex justify-content-end align-items-center">
+                <mat-icon class="icon-button search-icon" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+                <mat-form-field *ngIf="show" class="col-4">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                        autocomplete="off" placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+                <mat-icon class="icon-button" style="margin-right: 14px;">
+                    <i class="zmdi zmdi-time-restore" aria-hidden="true"></i>
+                </mat-icon>
+                <button style="width: 99px;height: 34px;" 
+                mat-raised-button class="submit-button kpi-create" color="primary" 
+                routerLink="/{{paths[0].AddGoldenParameter}}" >Create</button>
+                <button mat-icon-button style="margin-left: 12px;" [disableRipple]="true" [matMenuTriggerFor]="BulkMenu" aria-label="Example icon-button with a menu" [style.display]="showGlobalOperation ? 'block' : 'none'">
+                    <mat-icon class="icon-button vertical-kpi" style="color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
+                </button>
+                <mat-menu #BulkMenu="matMenu" class="kpi-editor-menu-render" xPosition="before">
+                    <button mat-menu-item (click)="openDisableDialog()">
+                        <span>Disable</span>
+                    </button>
+                    <button mat-menu-item (click)="openDeleteDialog()">
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div fxLayout="row">
+        <div class="create-eps" fxLayout="row" fxLayoutGap="20px" fxFlex="60">
+            <div fxFlex="33">
+                <mat-form-field fxFlex="100" class="form-field-container">
+                    <mat-select disableOptionCentering placeholder="NW Type"  [(value)]="selectedNWType">
+                        <mat-option *ngFor="let item of NWType" [value]="item.name" selected>{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="33"> 
+                <mat-form-field fxFlex="100" class="form-field-container">
+                    <mat-select disableOptionCentering placeholder="Circle"  [(value)]="selectedCircle">
+                        <mat-option *ngFor="let item of Circle" [value]="item.name" selected>{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="33">
+                <mat-form-field fxFlex="100" class="form-field-container">
+                    <mat-select disableOptionCentering placeholder="Town"  [(value)]="selectedTown">
+                        <mat-option *ngFor="let item of Town" [value]="item.name" selected>{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxFlex="64" class="d-flex justify-content-end align-items-center" style="padding-right: 16px;">
+            Total Parameters: {{parameterValue}}
+        </div>
+    </div>
+    <div class="eps-golden-table-container">
+        <ag-grid-angular
+            style="width: 100%; height: 350px;"
+            class="ag-theme-material ag-jcp3" 
+            rowHeight="48"
+            headerHeight="48" 
+            [gridOptions]="gridOptions" 
+            [columnDefs]="columnDefs" 
+            [rowData]="rowData" 
+            enableColResize
+            enableSorting 
+            enableFilter 
+            groupHeaders
+            [suppressCellSelection]="true"
+            [tooltipShowDelay]="tooltipShowDelay"
+            toolPanelSuppressGroups
+            toolPanelSuppressValues
+            rowSelection="multiple"
+            [enableRangeSelection]="true"
+            [paginationPageSize]="PaginationPageSize"
+            [pagination]="true"
+            [suppressPaginationPanel]="true"
+            [suppressRowClickSelection]="true"
+            [defaultColDef]="defaultColDef" 
+            [frameworkComponents]="frameworkComponentsEpsGolden" 
+            [groupSelectsChildren]="true"
+            [debug]="true"
+            (gridReady)="onReady($event)"
+            (selectionChanged)="selectionChanged($event)">
+        </ag-grid-angular>
+        <app-pagination 
+            [pageSize]="PaginationPageSize"
+            [gridApi]="gridAPI"
+            [showParameter]="true"
+            [showParameterValue]="670"
+            [noOfPages]="gridAPI?.paginationGetTotalPages()"
+            [rowCount]="gridAPI?.getDisplayedRowCount()"
+            [paginationArray] = "[10, 20, 30, 40]"
+        ></app-pagination>
+    </div>
+</mat-card>
