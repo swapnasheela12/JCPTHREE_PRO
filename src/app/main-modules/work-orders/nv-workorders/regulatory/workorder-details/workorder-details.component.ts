@@ -19,6 +19,7 @@ import * as _ from 'lodash';
 import { DIRECTION_LIST, TYPE_LIST, DSCP_LIST } from 'src/app/main-modules/reports-dashboards/custom-dashboard/twamp-live-dashboard/twamp-live-dashboard.constant';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { GridApi } from '@ag-grid-community/core';
+import { ThreeDotDeleteRegulatoryRenderer } from '../renderer/threedot-delete-regulatory-renderer';
 
 declare var $: any;
 
@@ -45,7 +46,7 @@ export class WorkorderDetailsComponent implements OnInit {
   public gridFilterValueServices = {};
   public defaultColDef = { resizable: true };
   public frameworkComponentsWO = {
-    deleteRenderer: DeleteRendererComponent
+    deleteRenderer: ThreeDotDeleteRegulatoryRenderer
   };
   public rowSelection;
   paginationPageSize = 10;
@@ -61,7 +62,7 @@ export class WorkorderDetailsComponent implements OnInit {
       this.sidenavBarStatus = message;
     });
 
-    this.httpClient.get('assets/data/workorder/nv-workorder/regulatory/wo-regulatory.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/regulatory/wo-details-regulatory.json')
       .subscribe(data => {
         this.rowData = data;
       });
@@ -78,7 +79,8 @@ export class WorkorderDetailsComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 140
+        width: 200,
+        pinned: 'left'
       },
       {
         headerName: "Task",
@@ -94,6 +96,15 @@ export class WorkorderDetailsComponent implements OnInit {
         headerName: "Assigned To",
         field: "assignedTo",
         width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.assignedTo+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.assignedToDate+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Due Date",
@@ -114,7 +125,8 @@ export class WorkorderDetailsComponent implements OnInit {
       {
         headerName: "",
         cellRenderer: 'deleteRenderer',
-        width: 70,
+        width: 100,
+        pinned: 'right'
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;

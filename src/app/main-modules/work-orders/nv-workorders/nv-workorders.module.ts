@@ -78,6 +78,7 @@ import { RegulatoryCreateNewWorkorderComponent } from './regulatory/regulatory-c
 import { WorkorderDetailsComponent } from './regulatory/workorder-details/workorder-details.component';
 import { EditCreateWoComponent } from './regulatory/regulatory-create-new-workorder/edit-create-wo/edit-create-wo.component';
 import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regulatory-renderer';
+import { ThreeDotDeleteRegulatoryRenderer } from './regulatory/renderer/threedot-delete-regulatory-renderer';
 
 
 @NgModule({
@@ -96,7 +97,8 @@ import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regul
     RegulatoryCreateNewWorkorderComponent,
     WorkorderDetailsComponent,
     EditCreateWoComponent,
-    ThreeDotRegulatoryRenderer
+    ThreeDotRegulatoryRenderer,
+    ThreeDotDeleteRegulatoryRenderer
   ],
   imports: [
     CommonModule,
@@ -104,7 +106,7 @@ import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regul
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
+    AgGridModule.withComponents([ThreeDotDeleteRegulatoryRenderer,ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

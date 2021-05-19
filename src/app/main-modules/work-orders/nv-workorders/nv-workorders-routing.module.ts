@@ -53,7 +53,7 @@ const routes: Routes = [
         component: RegulatoryComponent
       },
       {
-        path: 'Workorder-Details',
+        path: 'WO-Regulatory',
         children: [
           {
             path: '',

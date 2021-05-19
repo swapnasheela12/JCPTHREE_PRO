@@ -4,17 +4,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { EditCreateWoComponent } from '../regulatory-create-new-workorder/edit-create-wo/edit-create-wo.component';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 
 @Component({
-    selector: 'threedot-regulatory-renderer',
-    template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
+    selector: 'threedot-delete-regulatory-renderer',
+    template: `<button [disabled]="showDisabled" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
+     aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item (click)="editRow($event)">
-                <span>Edit</span>
-            </button>
             <button mat-menu-item (click)="deleteRow($event)">
                 <span>Delete</span>
             </button>
@@ -34,10 +31,11 @@ import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components
     encapsulation: ViewEncapsulation.None
 })
 
-export class ThreeDotRegulatoryRenderer implements ICellRendererAngularComp {
+export class ThreeDotDeleteRegulatoryRenderer implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
+    showDisabled: boolean =  false;
 
     constructor(
         public dialog: MatDialog,
@@ -46,6 +44,10 @@ export class ThreeDotRegulatoryRenderer implements ICellRendererAngularComp {
     ) { }
 
     agInit(params): void {
+        console.log(params);
+        if(params.data.status != 'In Progress') {
+            this.showDisabled =  true
+        }
         this.params = params;
         this.datashare.checkboxMessage.subscribe((checkbox) => {
             this.dataTest = checkbox;
@@ -56,26 +58,9 @@ export class ThreeDotRegulatoryRenderer implements ICellRendererAngularComp {
         return true;
     }
 
-    editRow(evt) {
-        this.dialog.open(EditCreateWoComponent,{
-            height: '55vh',
-            width: '50vw'
-        });
-    }
-
-
     deleteRow(evt) {
-        const message = `1. Yogeshwar.bargal@ril.com`;
-        const image = 'warning';
-        const snackbarMode = 'success';
-        const snackbarText = 'Action Performed Successfully';
-        const showContentForCSV = true;
-        let deletedRow = this.params;
-        const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText, showContentForCSV, deletedRow);
-        this.dialog.open(CommonPopupComponent, {
-        data: dialogData
-        });
-        
+        let deletedRow = this.params.node.data;
+        this.params.api.updateRowData({ remove: [deletedRow] })
       }
 
 }

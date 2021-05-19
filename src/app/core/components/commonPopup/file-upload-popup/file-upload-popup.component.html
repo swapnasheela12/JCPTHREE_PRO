@@ -24,11 +24,14 @@
                 <span>Example: </span> <span class="example-value"> I-MH-ABVL-ENB-0004_c3</span> <br> <span
                     class="example-value indent">I-MH-AMBT-OSC-0001-SMC001_c0</span>
             </div>
+            <div *ngIf="showCSVText" class="example-content">
+                <span>Note: </span> <span class="example-value"> Upload CSV files only</span>
+            </div>
         </div>
     </div>
     <mat-divider></mat-divider>
     <div mat-dialog-actions>
-        <button mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
+        <button *ngIf="showFileDownload" mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
         </button>
         <div class="col"></div>
         <div class="mx-1">

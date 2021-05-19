@@ -17,6 +17,8 @@ import { ɵangular_packages_platform_browser_animations_animations_d } from '@an
 import { FileUploadPopupComponent, fileUploadPopupModel } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
 import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer';
 import { ThreeDotRETRenderer } from '../../../cm-workorders/ret-change/threedot-ret-renderer.component';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 
 @Component({
   selector: 'app-regulatory-create-new-workorder',
@@ -41,6 +43,9 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     endDate: '2019-12-12T18:29:59.000Z',
   }
   selectedDeviceCount = 0;
+
+  //checkbox
+  checked: boolean = true;
 
   ///////datepicker//////////
   opens = 'center';
@@ -137,24 +142,13 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
        console.log(this.router.url);
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
-      this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
-      this.showCopyToNewWorkorder =  true;
-    }
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
     this.gridOptionsBulkOrder = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/create-new-wo.json").subscribe((data) => {
-      this.rowData = data;
-    });
-    this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
-      this.rowDataSelectDevice = data;
-    });
-
+    this.nbhWo();
     this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/bulk-order.json").subscribe((data) => {
       this.rowDataBulkOrder = data;
     })
@@ -178,7 +172,8 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   }
 
   ngAfterViewInit(){
-    if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
+    console.log()
+    if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) === undefined) {
       this.selectedDeviceCount = 0;
     } else {
       this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
@@ -189,45 +184,52 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     this.columnDefs = [
       {
         headerName: "",
-        width: 40,
+        width: 10,
+        pinned: 'left',
         checkboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
         headerCheckboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
-        pinned: 'left',
       },
       {
         headerName: "Circle",
         field: "circle",
-        width: 70
+        width: 110
       },
       {
         headerName: "Jio Center",
         field: "jioCenter",
-        width: 120,
+        width: 140,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 110,
+        width: 180,
       }
-    ];
+    ];  
 
     this.columnDefsSelectDevice = [
       {
         headerName: "Selection",
         field: "jioCenter",
-        width: 210,
-      }
+        width: 300,
+      },
+      {
+        headerName: "",
+        cellRenderer: "deleteRenderer",
+        width: 100,
+      },
+
     ]
 
     this.columnDefsBulkOrder = [
       {
         headerName: "Zone",
         field: "zone",
-        width: 150
+        width: 150,
+        pinned: 'left'
       },
       {
         headerName: "Circle",
@@ -237,37 +239,37 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180
+        width: 200
       },
       {
         headerName: "Date From",
         field: "dateFrom",
-        width: 150
+        width: 200
       },
       {
         headerName: "Date to",
         field: "dateTo",
-        width: 140
+        width: 200
       },
       {
         headerName: "Start Time",
         field: "startTime",
-        width: 150
+        width: 180
       },
       {
         headerName: "Iterations",
         field: "iterations",
-        width: 150
+        width: 180
       },
       {
         headerName: "Waiting Period (s)",
         field: "waitingPeriod",
-        width: 150
+        width: 200
       },
       {
         headerName: "",
         cellRenderer: "threedotEditDelete",
-        width: 90,
+        width: 150,
         pinned: 'right'
       }
     ];
@@ -414,19 +416,34 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   }
 
   uploadBulk() {
+    this.checked= false;
     this.rowData = [];
     this.rowDataSelectDevice = [];
     this.createNewWorkorder = "BULKUPLOAD";
   }
 
   nbhWo() {
+    if(this.checked) {
+      this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/create-new-wo.json").subscribe((data) => {
+        this.rowData = data;
+      });
+      this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
+        this.rowDataSelectDevice = data;
+      });
+    }
+    else {
+      this.rowData = [];
+      this.rowDataSelectDevice = []
+    }
   }
 
 
   bulkUpload(): void {
     const title = `Upload Files`;
-    var showExample = true;
-    const dialogData = new fileUploadPopupModel(title, showExample);
+    let showExample = false;
+    let showFileDownload = false;
+    let showCSVText = true;
+    const dialogData = new fileUploadPopupModel("BULK Upload", showExample, showFileDownload, showCSVText);
     const dialogRef = this.dialog.open(FileUploadPopupComponent, {
       width: '700px',
       height: '290px',
@@ -435,25 +452,25 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data == 'uploadClicked') {
-      //  this.dialog.open(EditCreateWoComponent, {
-      //   width: '700px',
-      //   height: '290px',
-      //  });
       this.createNewWorkorder = "BULKUPLOAD";
       }
     })
   }
 
-  assignWorkorder() {
-    this.dialog.open(WptModalComponent, {
-      width: "680px",
-      height: "300px",
-      panelClass: "material-dialog-container",
-    } );
+
+  assignWorkorder(): void {
+    // this.dialog.close(true);
+      const message = {
+        message: `Workorder assigned Successfully.`,
+        showDefaultActionBar: true
+      }
+      this.dialog.open(SuccessfulModalComponent, {
+        data: message,
+      });
   }
 
   navigateBackToCreateWO() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/Create-New-Workorder"])
+    this.createNewWorkorder = "CREATENEWWO";
   }
 
   navigateBack() {

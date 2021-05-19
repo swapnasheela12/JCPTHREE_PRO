@@ -31,15 +31,11 @@
 
                 <mat-tab-group class="td-tab-group h-100" (selectedTabChange)="tabChanged($event);">
                     <mat-tab label="WO Assignment">
-                        <ng-container [ngTemplateOutlet]="myTask"></ng-container>
+                        <ng-container [ngTemplateOutlet]="woAssignment"></ng-container>
                     </mat-tab>
 
                     <mat-tab label="Pending Review">
-                        <ng-container [ngTemplateOutlet]="teamTask"></ng-container>
-                    </mat-tab>
-
-                    <mat-tab label="History">
-                        <ng-container [ngTemplateOutlet]="expTask"></ng-container>
+                        <ng-container [ngTemplateOutlet]="pending"></ng-container>
                     </mat-tab>
 
                 </mat-tab-group>
@@ -51,7 +47,7 @@
 
 </div>
 
-<ng-template #myTask>
+<ng-template #woAssignment>
     <div class="jcp-table-container" style="height: 100%;">
         <mat-card class="wpt-module-card h-100" style="padding: 0px;">
 
@@ -75,7 +71,7 @@
     </div>
 </ng-template>
 
-<ng-template #teamTask>
+<ng-template #pending>
     <div class="jcp-table-container" style="height: 100%;">
         <mat-card class="wpt-module-card h-100" style="padding: 0px;">
 
@@ -84,30 +80,6 @@
             <div style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
                     headerHeight="48" [gridOptions]="gridOptionsPending" [columnDefs]="columnDefsPending"
-                    [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
-                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                    rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"
-                    [pagination]="true" [suppressPaginationPanel]="true" [suppressRowClickSelection]="true"
-                    [groupSelectsChildren]="true" [debug]="true" (rowClicked)='onRowClicked($event)'
-                    (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
-                </ag-grid-angular>
-                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
-                    [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
-                    [paginationArray]="[10, 20, 30, 40]"></app-pagination>
-            </div>
-        </mat-card>
-    </div>
-</ng-template>
-
-<ng-template #expTask>
-    <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
-
-            <ng-template [ngTemplateOutlet]="status"></ng-template>
-
-            <div style="height: 100%">
-                <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
-                    headerHeight="48" [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory"
                     [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
                     [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
                     rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"

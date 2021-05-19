@@ -30,7 +30,6 @@ export class RegulatoryComponent implements OnInit {
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public gridOptionsPending: GridOptions;
-  public gridOptionsHistory: GridOptions;
   public rowData: any;
   public rowDataTeams: any;
   public rowDataSLABreach: any;
@@ -139,7 +138,6 @@ export class RegulatoryComponent implements OnInit {
       this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsPending = <GridOptions>{};
-    this.gridOptionsHistory = <GridOptions>{};
     // this.gridOptionsSLABreach = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
@@ -151,14 +149,9 @@ export class RegulatoryComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/workorder/nv-workorder/nv-wpf.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/regulatory/wo-regulatory.json')
       .subscribe(data => {
         this.rowData = data;
-        // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-        // this.datatable.gridPinnedServices = this.gridPinned;
-        // this.datatable.rowDataServices = this.rowData;
-        // this.datatable.gridOptionsServices = this.gridOptions;
-        // this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
 
@@ -198,13 +191,23 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
-        width: 200
+        width: 200,
+        pinned: "right"
       }
     ];
     this.columnDefsPending = [
@@ -238,53 +241,23 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
-        width: 200
-      }
-    ];
-    this.columnDefsHistory = [
-      {
-        headerName: "Status",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 160,
-        pinned: 'left'
-      },
-      {
-        headerName: "Workorder",
-        field: "workorder",
-        width: 260
-      },
-      {
-        headerName: "Assigned By",
-        field: "assignedBy",
-        width: 240,
-      },
-      {
-        headerName: "Assigned To",
-        field: "assignedTo",
-        width: 180,
-      },
-      {
-        headerName: "Due Date",
-        field: "dueDate",
-        width: 180
-      },
-      {
-        headerName: "Last Updated",
-        field: "lastUpdated",
-        width: 180
-      },
-      {
-        headerName: "Task Completion",
-        field: 'taskCompletion',
-        cellRenderer: this.taskCompletionFunc,
-        width: 200
+        width: 200,
+        pinned: "right"
       }
     ];
   }
@@ -350,7 +323,6 @@ export class RegulatoryComponent implements OnInit {
     this.eventsSubject.subscribe((data) => {
       this.gridOptions.api.setQuickFilter(data.filter);
       this.gridOptionsPending.api.setQuickFilter(data.filter);
-      this.gridOptionsHistory.api.setQuickFilter(data.filter);
     });
   };
   show: any;
@@ -369,7 +341,7 @@ export class RegulatoryComponent implements OnInit {
   }
 
   onRowClicked(event) {
-    this.router.navigate(['/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/Workorder-Details'])
+    this.router.navigate(['/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/WO-Regulatory'])
   }
 
 

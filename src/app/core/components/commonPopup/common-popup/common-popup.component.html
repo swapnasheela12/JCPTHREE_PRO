@@ -5,9 +5,15 @@
         </div>
     </div>
 
-    <div class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
+    <div *ngIf="showDefaultContent" class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
         <div class="p-3 successful-text-header warning">{{title}}</div>
         <div class="p-4 successful-text-subheader" style="height:1000px;">{{message}}</div>
+    </div>
+
+    <div *ngIf="showContentForCSV" class="successful-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
+        <div class="p-1 successful-text-subheader">No Call Plan available on the given dates for following user/s:</div>
+        <div class="p-1 successful-text-subheader">{{message}}</div>
+        <div class="p-1 successful-text-subheader" >Please load new call plan for above user/s after assigning the work-order</div>
     </div>
 
     <div mat-dialog-actions class="successful-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">

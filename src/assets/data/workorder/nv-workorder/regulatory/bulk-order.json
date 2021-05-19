@@ -1,6 +1,6 @@
 [
     {
-        "zone": "West",
+        "zone": "East",
         "circle": "Mp-cg",
         "assignedTo": "Mahendra4.kuma@…",
         "dateFrom": "17-07-2021",
@@ -10,7 +10,7 @@
         "waitingPeriod": "1"
     },
     {
-        "zone": "West",
+        "zone": "North",
         "circle": "Mp-cg",
         "assignedTo": "Mahendra4.kuma@…",
         "dateFrom": "17-07-2021",

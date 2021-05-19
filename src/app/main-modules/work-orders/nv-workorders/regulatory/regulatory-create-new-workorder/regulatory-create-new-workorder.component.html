@@ -1,4 +1,4 @@
-<div class="create-wpt-wrapper">
+<div class="create-regulatory-wrapper">
     <mat-card class="wpt-module-card" style="padding: 0px;">
         <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
                         <div class="sub-content-flex-item col-12">
-                            <div class="col-6 wo-inline">
+                            <div class="col-6 wo-inline" style="padding-left: 0px !important;">
                                 <button class="next-button p-0" mat-button color="primary" (click)="bulkUpload()">
                                     <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
                                     </i>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-6 wo-inline">
                                 <section>
-                                    <mat-checkbox class="example-margin" (click)="nbhWo()">NBH WO</mat-checkbox>
+                                    <mat-checkbox checked="checked"  (click)="nbhWo()">NBH WO</mat-checkbox>
                                 </section>
                             </div>
 
@@ -79,11 +79,11 @@
 
                     <div class="sub-content d-flex  flex-row flex-wrap">
                         <div class="label-header w-100">Date & Time Range</div>
-                        <div class="wo-sector-card-one  col-6" style="display: inline-block">
+                        <div class="wo-sector-card-one  col-5" style="display: inline-block;margin-right: 40px;">
                             <form [formGroup]="thirdFormGroup">
                                 <mat-form-field class="custom-field-container" fxFlex>
                                     <div class="daterange-container">
-                                        <input matInput ngxDaterangepickerMd placeholder="Select Range"
+                                        <input matInput ngxDaterangepickerMd placeholder="Select Date"
                                             [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
                                             [timePicker24Hour]="false" formControlName="selectedDateTime"
                                             [showCustomRangeLabel]="true"
@@ -242,11 +242,11 @@
                     <div class="d-flex  flex-row flex-wrap">
                         <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
                             <ag-grid-angular style="width: 100%; height: 285px"
-                                class="traceport-activation ag-theme-material ag-jcp3"
+                                class="ag-theme-material ag-jcp3"
                                 [tooltipShowDelay]="tooltipShowDelay" [rowData]="rowDataSelectDevice"
                                 [columnDefs]="columnDefsSelectDevice" [groupHeaderHeight]="47" [headerHeight]="47"
                                 [gridOptions]="gridOptionsSelectDevice" [suppressHorizontalScroll]="true"
-                                (gridReady)="onGridReady($event)">
+                                (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsTaskDetails">
                             </ag-grid-angular>
                         </div>
 
@@ -302,14 +302,27 @@
             </div>
 
             <div class="d-flex flex-row" style="height: calc(100% - 150px);">
-                <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+                <!-- <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
                     style="width: 100%; height: 100%" rowHeight="48" headerHeight="48"
                     [gridOptions]="gridOptionsBulkOrder" [columnDefs]="columnDefsBulkOrder" [rowData]="rowDataBulkOrder"
                     enableColResize groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
                     toolPanelSuppressValues rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
                     [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
                     [frameworkComponents]="frameworkRegulatory">
-                </ag-grid-angular>
+                </ag-grid-angular> -->
+
+                <ag-grid-angular (gridReady)="onGridReady($event)"
+                class="ag-theme-material"
+                style="width: 100%; height: 100%;border: 1px solid #eee;" rowHeight="48"
+                headerHeight="48" [gridOptions]="gridOptionsBulkOrder" [columnDefs]="columnDefsBulkOrder"
+                [rowData]="rowDataBulkOrder" enableColResize groupHeaders
+                (selectionChanged)="selectionChanged($event)" [suppressCellSelection]="true"
+                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true"
+                [pagination]="false" [paginationAutoPageSize]="false"
+                [frameworkComponents]="frameworkRegulatory"
+                (gridReady)="onGridReady($event)">
+            </ag-grid-angular>
             </div>
         </ng-template>
     </mat-card>

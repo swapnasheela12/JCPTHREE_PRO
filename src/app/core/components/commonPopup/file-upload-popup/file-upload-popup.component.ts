@@ -17,6 +17,8 @@ export class FileUploadPopupComponent {
   title: string;
   showExample: boolean;
   fileName: string;
+  showFileDownload = true;
+  showCSVText = false;
   uploadFile(file) {
     this.fileName = file.data.name;
     const formData = new FormData();
@@ -58,6 +60,8 @@ export class FileUploadPopupComponent {
   ) {
     this.title = data.title;
     this.showExample = data.showExample;
+    this.showFileDownload = data.showFileDownload;
+    this.showCSVText = data.showCSVText;
   }
 
   closeDialog(): void {
@@ -72,7 +76,9 @@ export class FileUploadPopupComponent {
 export class fileUploadPopupModel {
   constructor(
     public title: string,
-    public showExample: boolean
+    public showExample: boolean,
+    public showFileDownload?: boolean,
+    public showCSVText?: boolean
   ) {
   }
 }
