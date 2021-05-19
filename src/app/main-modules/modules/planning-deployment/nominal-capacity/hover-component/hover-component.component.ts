@@ -7,6 +7,7 @@ import { ShapeService } from 'src/app/main-modules/main-layer/layers-services/sh
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { NpCreatePopupDialogModel, NpCreatePopupComponent } from '../np-create-popup/np-create-popup.component';
 
 @Component({
   selector: 'app-hover-component',
@@ -416,6 +417,15 @@ export class HoverComponentComponent implements AfterViewInit {
       outerthis.structurePopup.setLatLng(latlng).setContent(template).openOn(outerthis.mapSix);
       outerthis.stageRouteContainer.update();
     }
+    this.structureImage.on('click', function (event) {
+      const dialogData = new NpCreatePopupDialogModel();
+      const dialogRef = outerthis.dialog.open(NpCreatePopupComponent, {
+        data: dialogData, 
+        width: '500px',
+        height: '200px',
+        panelClass: 'np-create-popup-dialog'
+      });
+  });
 
     this.structureImageText = new createjs.Text(structureData.sapid, "15px Lato Bold", "#000000");
     this.structureImageText.textAlign = 'center';
