@@ -37,7 +37,8 @@
                             toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                             [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                             [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
-                            [debug]="true"  (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsWO">
+                            [debug]="true"  (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsWO"
+                            (gridSizeChanged)="onGridSizeChanged($event)">
                         </ag-grid-angular>
                         <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
                             [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"

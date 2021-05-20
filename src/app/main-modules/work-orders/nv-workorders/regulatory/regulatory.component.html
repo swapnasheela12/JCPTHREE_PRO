@@ -60,7 +60,7 @@
                     toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                     [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                     [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
-                    [debug]="true"  (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'
+                    [debug]="true"  (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)' (gridSizeChanged)="onGridSizeChanged($event)"
                     (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
@@ -84,7 +84,7 @@
                     [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
                     rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"
                     [pagination]="true" [suppressPaginationPanel]="true" [suppressRowClickSelection]="true"
-                    [groupSelectsChildren]="true" [debug]="true" (rowClicked)='onRowClicked($event)'
+                    [groupSelectsChildren]="true" [debug]="true" (rowClicked)='onRowClicked($event)' (gridSizeChanged)="onGridSizeChanged($event)"
                     (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"

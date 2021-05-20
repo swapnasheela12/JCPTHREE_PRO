@@ -79,7 +79,7 @@ export class WorkorderDetailsComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 200,
+        width: 250,
         pinned: 'left'
       },
       {
