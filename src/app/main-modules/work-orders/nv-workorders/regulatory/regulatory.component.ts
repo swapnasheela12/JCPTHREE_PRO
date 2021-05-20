@@ -31,9 +31,7 @@ export class RegulatoryComponent implements OnInit {
   public gridOptions: GridOptions;
   public gridOptionsPending: GridOptions;
   public rowData: any;
-  public rowDataTeams: any;
-  public rowDataSLABreach: any;
-  public rowDataExpTask: any;
+  public rowDataPending: any;
   public columnDefs;
   public rowCount: string;
   public defaultColDef = { resizable: true };
@@ -117,22 +115,6 @@ export class RegulatoryComponent implements OnInit {
    columnDefsHistory;
    columnDefsPending;
 
-   onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
-
-  public onReady(params) {
-    this.gridApi = params.api;
-    this.calculateRowCount();
-  }
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
-
   constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
       this.stepperReportW();
@@ -152,6 +134,7 @@ export class RegulatoryComponent implements OnInit {
     this.httpClient.get('assets/data/workorder/nv-workorder/regulatory/wo-regulatory.json')
       .subscribe(data => {
         this.rowData = data;
+        this.rowDataPending = data;
       });
   }
 
@@ -340,6 +323,15 @@ export class RegulatoryComponent implements OnInit {
     }
   }
 
+  onGridSizeChanged(event) {
+    if (this.gridOptions.api && this.rowData) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
+    if (this.gridOptionsPending.api && this.rowDataPending) {
+      this.gridOptionsPending.api.sizeColumnsToFit();
+    }
+  }
+
   onRowClicked(event) {
     this.router.navigate(['/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/WO-Regulatory'])
   }
@@ -367,6 +359,13 @@ export class RegulatoryComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4);
+    if (this.gridOptions.api) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
+    if (this.gridOptionsPending.api) {
+      this.gridOptionsPending.api.sizeColumnsToFit();
+    }
+    
   }
 
   onPageSizeChanged(newPageSize) {
