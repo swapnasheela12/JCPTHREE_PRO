@@ -514,10 +514,6 @@ export class LayerPatchPopupComponent implements OnInit, AfterViewInit {
     }
   }
 
-  async openSettingsDialog(node, event) {
-    event.stopPropagation();
-    this.viewContainerRef.clear();
-  }
 
   removeLayerComponent(layerToRemove) {
     if ('' !== layerToRemove) {

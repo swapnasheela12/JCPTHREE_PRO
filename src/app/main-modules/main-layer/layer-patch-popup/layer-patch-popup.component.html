@@ -19,8 +19,8 @@
                                 {{node.name}}
                             </mat-radio-button>
                         </div>
-                        <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay (click)="openSettingsDialog(node, $event)">
-                        </mat-icon>
+                        <!-- <mat-icon class="ic ic-filter-01 filter-icon" *ngIf="node.selected == true" #iconDisplay >
+                        </mat-icon> -->
                     </mat-tree-node>
                     <mat-tree-node *matTreeNodeDef="let node;when: isLevelZero;" matTreeNodePadding matTreeNodeToggle (click)="activenode(node, horizontalLine)" (mouseover)="layersLevelHover(node, iconlayersZero)" (mouseleave)="layersLevelHoverLeave(node, iconlayersZero)"
                         matTreeNodePaddingIndent="0" [ngStyle]="{'cursor':'pointer'}" [ngClass]="[hoverLayer0? 'layers-menu-0 layer-0': '', treeControl.isExpanded(node) ? 'active-layer': '']" id="{{node.classId}}">

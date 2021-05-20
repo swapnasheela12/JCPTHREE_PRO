@@ -1,4 +1,4 @@
-import { Component, Inject, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, TemplateRef, ViewEncapsulation, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 declare var $: any;
@@ -18,6 +18,8 @@ export class LayerPatchSettingsPopupComponent<T> {
    */
   constructor(
     public dialogRef: MatDialogRef<LayerPatchSettingsPopupComponent<T>>,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver,
     @Inject(MAT_DIALOG_DATA)
     public data: {
       headerText: string
@@ -30,6 +32,12 @@ export class LayerPatchSettingsPopupComponent<T> {
     });
   }
   
+  async openSettingsDialog() {
+      const { NcLayerSettingsDialogComponent } = await import('./../../../main-modules/main-layer/layer-list/nominal-capacity/nc-layer-settings-dialog/nc-layer-settings-dialog.component');
+      this.viewContainerRef.createComponent(
+        this.cfr.resolveComponentFactory(NcLayerSettingsDialogComponent)
+      );
+  }
 
   onCloseClick() {
     $('.active-button').removeClass(['active-button']);

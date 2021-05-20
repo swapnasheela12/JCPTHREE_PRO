@@ -1,0 +1,30 @@
+$md-primary: #0070DB;
+.nc-site-details-popup-dialog {
+    background: white;
+    height: 100%;
+        .dialog-header{
+            background-color: white;
+        }
+        .containerDiv{
+        margin: 10px 20px;
+        height: 165px;
+            .latLongLabel{
+                font-size: 14px;
+            }
+            .latLongValue{
+                font-size: 14px;
+                color: #020202;
+                opacity: 54%;
+            }
+            .label{
+                font-size: 12px;
+                color: #000000;
+                opacity: 54%;
+            }
+            .value{
+                font-size: 14px;
+                color: #000000;
+                opacity: 82%;
+            }
+        }
+    }
