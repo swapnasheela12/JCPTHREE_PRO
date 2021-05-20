@@ -60,7 +60,7 @@
                     toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                     [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                     [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
-                    [debug]="true"  (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)' (gridSizeChanged)="onGridSizeChanged($event)"
+                    [debug]="true"  (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'
                     (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
