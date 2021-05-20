@@ -1,10 +1,13 @@
 <div class="h-100" class="layer-patch">
   <mat-toolbar class="dialog-header">
-    <button mat-icon-button>
-     <mat-icon class="ic ic-filter-01 filter-icon"></mat-icon>
-   </button>
+    <!-- <button mat-icon-button (click)="openSettingsDialog()"> -->
+   <!-- </button> -->
+   <span><mat-icon style="font-size: 16px;margin-top: 11px;" class="ic ic-layers-01"></mat-icon></span>
    <span>{{ data.headerText }}</span>
    <span class="header-spacer"></span>
+    <button mat-icon-button (click)="openSettingsDialog()">
+      <mat-icon>settings</mat-icon>
+      </button>
    <button mat-icon-button (click)="onCloseClick()">
      <mat-icon>close</mat-icon>
    </button>

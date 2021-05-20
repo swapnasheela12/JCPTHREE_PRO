@@ -174,7 +174,7 @@ export class MacroLayerComponent implements AfterViewInit {
   drawMacroImage(macroContainer, macroData, mainlayer) {
     console.log(macroData)
     let imagePath = '';
-    imagePath = 'assets/images/Layers/topologies/structure/AG2+OTN.svg';
+    imagePath = 'assets/images/Layers/topologies/structure/FiberPop.svg';
     let odscEachData = macroData[0].split(',').map(String);
 
     this.positionLatLng = L.latLng(

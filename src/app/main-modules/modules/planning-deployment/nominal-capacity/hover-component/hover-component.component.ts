@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { NpCreatePopupDialogModel, NpCreatePopupComponent } from '../np-create-popup/np-create-popup.component';
+import { NcSiteDetailsDialogComponent, NcSiteDetailsDialogModel } from './nc-site-details-page/nc-site-details-dialog/nc-site-details-dialog.component';
 
 @Component({
   selector: 'app-hover-component',
@@ -418,12 +419,12 @@ export class HoverComponentComponent implements AfterViewInit {
       outerthis.stageRouteContainer.update();
     }
     this.structureImage.on('click', function (event) {
-      const dialogData = new NpCreatePopupDialogModel();
-      const dialogRef = outerthis.dialog.open(NpCreatePopupComponent, {
+      const dialogData = new NcSiteDetailsDialogModel();
+      const dialogRef = this.dialog.open(NcSiteDetailsDialogComponent, {
         data: dialogData, 
-        width: '500px',
-        height: '200px',
-        panelClass: 'np-create-popup-dialog'
+        width: '1000px',
+        height: '250px',
+        panelClass: 'nc-site-details-popup-dialog'
       });
   });
 

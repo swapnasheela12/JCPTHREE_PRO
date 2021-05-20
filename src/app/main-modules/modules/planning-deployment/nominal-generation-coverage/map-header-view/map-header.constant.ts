@@ -245,16 +245,7 @@ const SITES_SITES_LIST_COVERAGE =[
           show:true,
           children: Nominals,
           classId: 'prediction-layer-border'
-      },
-      {
-        name: "Candidates",
-        icon: "fas fa-users fa-3",
-        link: "Prediction-Layers",
-        eventName: 'sites-outdoor-esc',
-        show:true,
-        children: CANDIDATE_LIST,
-        classId: 'prediction-layer-border'
-    }
+      }
   ];
 
   export const VALIDATION_PLANNING = [

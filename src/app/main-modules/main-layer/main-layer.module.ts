@@ -115,6 +115,7 @@ import { DropdownOwnerRendererComponent } from '../administration/module-managem
 import { DropdownResponsibleRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-responsible-renderer.component';
 import { DropdownPositionRendererComponent } from '../administration/module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/dropdown-position-renderer.component';
 import { PolygonSettingComponent } from './polygon-setting/polygon-setting.component';
+import { NcLayerSettingsDialogComponent } from './layer-list/nominal-capacity/nc-layer-settings-dialog/nc-layer-settings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -177,7 +178,8 @@ import { PolygonSettingComponent } from './polygon-setting/polygon-setting.compo
     flagRenderComponent,
     LayerPatchSettingsPopupComponent,
     LayerPatchPopupComponent,
-    PolygonSettingComponent
+    PolygonSettingComponent,
+    NcLayerSettingsDialogComponent
   ],
   imports: [
     DragDropModule,
