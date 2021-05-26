@@ -5,25 +5,18 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { ViewTasksComponent } from '../web-performance-test/view-tasks/view-tasks.component';
-import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.component';
 
 @Component({
-    selector: 'threeDot-recipe-button-renderer',
+    selector: 'recipe-view-wo-renderer',
     template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item (click)="viewWorkorder($event)">
-                <span>View WorkOrder</span>
+            <button mat-menu-item (click)="deleteWorkorder($event)">
+                <span>Delete</span>
             </button>
-            <button mat-menu-item (click)="deleteWorkOrder($event)">
-                <span>Delete WorkOrder</span>
-            </button>
-            <button mat-menu-item (click)="copyToNewWorkorder($event)">
-                <span>Copy to new Workorder</span>
-            </button>
-            <button mat-menu-item (click)="viewTask($event)">
-                <span>View Tasks</span>
+            <button mat-menu-item (click)="downloadWorkorder($event)">
+                <span>Download</span>
             </button>
         </mat-menu>`,
     styles: [
@@ -41,7 +34,7 @@ import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.
     encapsulation: ViewEncapsulation.None
 })
 
-export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
+export class RecipeViewWORendererComponent implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
@@ -67,7 +60,7 @@ export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
         this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
     }
 
-    deleteWorkOrder(evt) {
+    deleteWorkorder(evt) {
         const message = `Are you sure you want to Close this WorkOrder?`;
         const image = 'warning';
         const snackbarMode = 'success';
@@ -78,12 +71,12 @@ export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
         });
     }
 
-    copyToNewWorkorder(evt) {
+    downloadWorkorder(evt) {
         this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"])
     }
 
     viewTask(evt) {
-        this.dialog.open(RecipeViewTasksComponent,{
+        this.dialog.open(ViewTasksComponent,{
             width: "750px",
             height: "400px",
             panelClass: "material-dialog-container",

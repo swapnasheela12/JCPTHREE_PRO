@@ -83,6 +83,8 @@ import { RecipeCreateNewWorkorderComponent } from './recipe/recipe-create-new-wo
 import { ThreeDotRecipeRenderer } from './recipe/threedot-recipe-renderer.component';
 import { EditComponent } from './recipe/edit/edit.component';
 import { EditRendererComponent } from './recipe/edit-renderer-component';
+import { RecipeViewWORendererComponent } from './recipe/recipe-view-wo-renderer.component';
+import { RecipeViewTasksComponent } from './recipe/recipe-view-tasks/recipe-view-tasks.component';
 
 
 @NgModule({
@@ -106,7 +108,9 @@ import { EditRendererComponent } from './recipe/edit-renderer-component';
     RecipeCreateNewWorkorderComponent,
     ThreeDotRecipeRenderer,
     EditComponent,
-    EditRendererComponent
+    EditRendererComponent,
+    RecipeViewWORendererComponent,
+    RecipeViewTasksComponent
   ],
   imports: [
     CommonModule,
@@ -114,7 +118,7 @@ import { EditRendererComponent } from './recipe/edit-renderer-component';
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([EditRendererComponent, ThreeDotRecipeRenderer, ThreeDotDeleteRegulatoryRenderer,ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
+    AgGridModule.withComponents([RecipeViewWORendererComponent, EditRendererComponent, ThreeDotRecipeRenderer, ThreeDotDeleteRegulatoryRenderer,ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

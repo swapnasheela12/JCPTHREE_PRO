@@ -42,7 +42,8 @@ export class EditRendererComponent implements ICellRendererAngularComp {
 
   editRow(): void {
     this.dialog.open(EditComponent, {
-      //data: dialogData
+      width: '32vw',
+      height: '33vh'
     });
   }
 }

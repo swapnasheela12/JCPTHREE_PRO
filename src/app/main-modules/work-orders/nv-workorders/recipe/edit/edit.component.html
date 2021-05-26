@@ -1,1 +1,34 @@
-<p>edit works!</p>
+<div class="edit-alarm-library-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div class="header">Edit</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="edit-container">
+
+        <div fxLayout="row">
+            <div fxFlex="100">
+                <mat-form-field class="w-100">
+                    <mat-label>Selected Devices</mat-label>
+                    <input matInput [(ngModel)]="selectedDevice">
+                </mat-form-field>
+            </div>          
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="ml-1 assign-text-button">
+            <button class=" assign-butt" (click)="saveRow()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Save</button>
+        </div>
+    </div>
+
+</div>
