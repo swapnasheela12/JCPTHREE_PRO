@@ -23,24 +23,24 @@
                         <div class="form-read-only">
                             <label class="input-label">Template Type*</label>
                             <div class="input-value" *ngIf="showCreateNewWorkorder">
-                                Web Performance Test
+                               Recipe Workorder
                             </div> 
                             <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
-                                Web Performance Test
+                                Recipe Workorder
                             </div> 
                         </div>
                     </div>
 
                     <div class="sub-content-flex-item  col-6">
-                        <mat-form-field class="form-field-read-only">
-                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="templateTypeSelected" style="font-family: lato Regular; font-size: 14px;">
-                                <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                    [value]="tcr">
-                                    {{tcr}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <div class="form-read-only">
+                            <label class="input-label">Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               Recipe
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                Recipe
+                            </div> 
+                        </div>
                     </div>
                 </div>
 
@@ -71,53 +71,46 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap" style="margin: 20px 0;">
-                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
-                        <div class="label"  fxFlex="100">Upload URLs:*</div>
+                    <div class="sub-content-flex-item col-6" style="padding-bottom: 0px !important;"> 
+                        <form [formGroup]="liveViolationReportForm" class="form-violation" *ngIf="showCreateNewWorkorder">
+                            <mat-form-field class="twamp-field-container" fxFlex="auto">
+                                <mat-select placeholder="Select Recipe" [formControl]="typeMultiCtrl" disableOptionCentering
+                                    [multiple]="true" ngDefaultControl #typeMultiCtrlSelect
+                                    ngModel (ngModelChange)="filterMyOptions($event)"   >
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Search..." [formControl]="typeMultiFilterCtrl"
+                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let type of typeMultiFilter | async" [value]="type">
+                                        {{type.select_recipe}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </form>
                     </div>
-                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
-                        <mat-form-field fxFlex="80" class="browse-file-form-field">
-
-                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
-                                [readonly]="true" required>
-                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
-                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file" style="font-size: 20px;"></i></button>
-                        </mat-form-field>
-                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
-                            style="display: none;" />
-
-
-                        <button fxFlex="20" class="next-button p-0" mat-button color="primary">
-                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
-                            </i>
-                            <span>Upload</span>
-                        </button>
-                    </div>
-                    
-
-                    <div class="sub-content-flex-item col-12">
-                        <div class="upload-instruction" fxFlex="80">note: upload excel files only</div>
-                        <!-- <div class="upload-btn" style="float: right;">
-            
-                            
-                        </div> -->
-                    </div>
-
                 </div>
 
-                <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                <div class="device-count" *ngIf="showCreateNewWorkorder">{{selectedRecipeCount}} out of 100</div>
+
+                <div class="d-flex  flex-row flex-wrap w-100" *ngIf="showCreateNewWorkorder">
                     <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
-                        <ag-grid-angular (gridReady)="onGridReady($event)"
-                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;border: 1px solid #eee;"
-                            rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
-                            [rowData]="rowData" enableColResize groupHeaders
-                            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
-                            rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
-                            [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
-                            [frameworkComponents]="frameworkComponentsTaskDetails">
+                        <ag-grid-angular style="width: 100%; height: 285px"
+                        class="traceport-activation ag-theme-material ag-jcp3"
+                        [tooltipShowDelay]="tooltipShowDelay"
+                        [rowData]="rowData"
+                        [columnDefs]="columnDefs"
+                        [groupHeaderHeight]="47"
+                        [headerHeight]="47"
+                        [gridOptions]="gridOptions" 
+                        [suppressHorizontalScroll]="true"
+                        (gridReady)="onManualReady($event)">
                         </ag-grid-angular>
                     </div>
                 </div>
             </div>
+
+
             <div fxFlex="50">
                 <label class="label mar-top mar-left">Date & Time Range</label>
                 <div class="sub-content d-flex  flex-row flex-wrap">
@@ -196,56 +189,61 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap">
+                <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="showCreateNewWorkorder" style="border-bottom: 1px solid #D3D5DC;">
                     <div class="mar-top col-12">
                         <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
                         <mat-radio-group (change)="showUpload($event)">
                             <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
                             <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
-                            <mat-radio-button *ngIf="!showCopyToNewWorkorder"class="radio-btn" value="3">Upload Login Id File</mat-radio-button>
-                          </mat-radio-group>
+                            <mat-radio-button *ngIf="!showCopyToNewWorkorder" class="radio-btn" value="3">Upload Login Id File
+                            </mat-radio-button>
+                        </mat-radio-group>
                     </div>
-
-                </div>
-
-                <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="col-5">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>IMEI</mat-label>
-                            <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
-                        </mat-form-field>
+                
+                
+                
+                    <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap">
+                        <div class="col-5">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>IMEI</mat-label>
+                                <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
+                            </mat-form-field>
+                        </div>
+                        <div class="sub-content-flex-item  col-1">
+                
+                        </div>
+                        <div class="sub-content-flex-item" style="line-height: 3.2;margin-left: -6px;">
+                            <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
+                        </div>
                     </div>
-                    <div class="sub-content-flex-item  col-1">
-
-                    </div>
-                    <div class="sub-content-flex-item" style="line-height: 3.2;margin-left: -6px;">
-                        <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
-                    </div>
-                </div>
-
-
-                <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="col">
-                        <mat-form-field fxFlex="80" class="browse-file-form-field">
-                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileNameDevices"
-                                [readonly]="true" required>
-                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
-                                (click)="onClickDevices()" mat-icon-button color="primary"><i class="ic ic-file"  style="font-size: 20px;"></i></button>
-                        </mat-form-field>
-                        <input type="file" #fileUpload id="fileUploadDevices" name="fileUploadDevices" accept=""
-                            style="display: none;" />
-
+                
+                
+                    <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap">
+                        <div class="col">
+                            <mat-form-field fxFlex="80" class="browse-file-form-field">
+                                <input matInput class="input-field" placeholder="" [(ngModel)]="fileNameDevices" [readonly]="true"
+                                    required>
+                                <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
+                                    (click)="onClickDevices()" mat-icon-button color="primary"><i class="ic ic-file"
+                                        style="font-size: 20px;"></i></button>
+                            </mat-form-field>
+                            <input type="file" #fileUpload id="fileUploadDevices" name="fileUploadDevices" accept=""
+                                style="display: none;" />
+                
                             <button fxFlex="20" class="next-button p-0" mat-button color="primary">
                                 <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
                                 </i>
                                 <span>Upload</span>
                             </button>
-
+                
+                        </div>
                     </div>
-                </div>
-
-                <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
-                    <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv files only</div>
+                
+                    <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
+                        <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv
+                            files only
+                        </div>
+                    </div>
                 </div>
 
                 <div class="device-count">{{selectedDeviceCount}} out of 100</div>
@@ -261,13 +259,9 @@
                         [headerHeight]="47"
                         [gridOptions]="gridOptionsSelectDevice" 
                         [suppressHorizontalScroll]="true"
-                        (gridReady)="onManualReady($event)">
+                        (gridReady)="onManualReady($event)"
+                        [frameworkComponents]="frameworkComponentsTaskDetails">
                         </ag-grid-angular>
-                    </div>
-
-                    <div *ngIf="showCopyToNewWorkorder" class="download-device w-100">
-                        <button mat-button class="icon-container-button" color="primary"><i
-                            class="ic ic-download pr-2"></i>Download</button>
                     </div>
                 </div>
             </div>

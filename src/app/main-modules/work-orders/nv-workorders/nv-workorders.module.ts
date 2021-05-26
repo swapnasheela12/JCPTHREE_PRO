@@ -79,6 +79,10 @@ import { WorkorderDetailsComponent } from './regulatory/workorder-details/workor
 import { EditCreateWoComponent } from './regulatory/regulatory-create-new-workorder/edit-create-wo/edit-create-wo.component';
 import { ThreeDotRegulatoryRenderer } from './regulatory/renderer/threedot-regulatory-renderer';
 import { ThreeDotDeleteRegulatoryRenderer } from './regulatory/renderer/threedot-delete-regulatory-renderer';
+import { RecipeCreateNewWorkorderComponent } from './recipe/recipe-create-new-workorder/recipe-create-new-workorder.component';
+import { ThreeDotRecipeRenderer } from './recipe/threedot-recipe-renderer.component';
+import { EditComponent } from './recipe/edit/edit.component';
+import { EditRendererComponent } from './recipe/edit-renderer-component';
 
 
 @NgModule({
@@ -98,7 +102,11 @@ import { ThreeDotDeleteRegulatoryRenderer } from './regulatory/renderer/threedot
     WorkorderDetailsComponent,
     EditCreateWoComponent,
     ThreeDotRegulatoryRenderer,
-    ThreeDotDeleteRegulatoryRenderer
+    ThreeDotDeleteRegulatoryRenderer,
+    RecipeCreateNewWorkorderComponent,
+    ThreeDotRecipeRenderer,
+    EditComponent,
+    EditRendererComponent
   ],
   imports: [
     CommonModule,
@@ -106,7 +114,7 @@ import { ThreeDotDeleteRegulatoryRenderer } from './regulatory/renderer/threedot
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([ThreeDotDeleteRegulatoryRenderer,ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
+    AgGridModule.withComponents([EditRendererComponent, ThreeDotRecipeRenderer, ThreeDotDeleteRegulatoryRenderer,ThreeDotRegulatoryRenderer,ThreeDotNVWPTRenderer,ThreeDotWPTRenderer,ThreeDotCreateNewRenderer, CustomTooltip, StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent, ThreeDotRETRenderer]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,

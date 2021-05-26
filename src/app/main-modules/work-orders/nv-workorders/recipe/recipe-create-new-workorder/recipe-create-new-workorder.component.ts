@@ -1,29 +1,34 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, takeUntil } from 'rxjs/operators';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of, ReplaySubject, Subject } from 'rxjs';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { GridCore, GridOptions } from '@ag-grid-community/core';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
-import { WptModalComponent } from '../wpt-modal/wpt-modal.component';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
-import { template } from 'lodash';
+import { ThreeDotNVWPTRenderer } from '../../web-performance-test/threedot-nv-wpt-renderer.component';
+import { WptModalComponent } from '../../web-performance-test/wpt-modal/wpt-modal.component';
+import { MatSelect } from '@angular/material/select';
+import { EditRendererComponent } from '../edit-renderer-component';
 
+export const SELECT_RECIPE_LIST = [
+  { select_recipe: 'Recipe New 5' },
+  { select_recipe: 'Recipe New 1' },
+  { select_recipe: 'Recipe New 3' }
+];
 
 @Component({
-  selector: 'app-create-new-workorder',
-  templateUrl: './create-new-workorder.component.html',
-  styleUrls: ['./create-new-workorder.component.scss']
+  selector: 'app-recipe-create-new-workorder',
+  templateUrl: './recipe-create-new-workorder.component.html',
+  styleUrls: ['./recipe-create-new-workorder.component.scss']
 })
-export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
+export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   templateType = ["Page Load Test", "Web Performance Test"];
-  templateTypeSelected =  "Web Performance Test";
 
   simType = ["Single Sim WO", "Dual Sim WO"]
   simTypeValue = "Single Sim WO";
@@ -39,6 +44,18 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   selectedDeviceCount = 0;
+  selectedRecipeCount = 0;
+
+  // checkbox select
+  liveViolationReportForm: FormGroup;
+  protected _onDestroy = new Subject<void>();
+  typeListValue = SELECT_RECIPE_LIST[0].select_recipe;
+  searchTypeListValue;
+  @ViewChild('typeMultiCtrlSelect') typeMultiCtrlSelect: MatSelect;
+  protected typeMultiListData = SELECT_RECIPE_LIST;
+  public typeMultiCtrl: FormControl = new FormControl();
+  public typeMultiFilterCtrl: FormControl = new FormControl();
+  public typeMultiFilter: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
 
   ///////datepicker//////////
   opens = 'center';
@@ -86,10 +103,10 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   public frameworkComponentsTaskDetails = {
     dropdownRenderer: ThreeDotNVWPTRenderer,
     inputRenderer: inputRendererComponent,
-    deleteRenderer: DeleteRendererComponent
+    deleteRenderer: DeleteRendererComponent,
+    editRenderer: EditRendererComponent
   };
-
-
+  
   showFileUploadwidget: boolean = false;
   uploadedImg = [];
 
@@ -125,32 +142,74 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
-       console.log(this.router.url)
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
+    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
+      this.showCopyToNewWorkorder = false;
+    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
+      this.showCreateNewWorkorder =  false;
     }
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    this.httpClient.get("assets/data/workorder/nv-workorder/create-new-wo.json").subscribe((data) => {
-      this.rowData = data;
-    })
+    //set default value of select recipe
+    this.rowData = [];
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
     });
+
+    this.liveViolationReportForm = new FormGroup({
+      'typeMultiCtrl': new FormControl('')
+    });
+    this.liveViolationReportForm.setValue({
+      'typeMultiCtrl': this.typeListValue
+    });
+
+    this.typeMultiFilter.next(this.typeMultiListData.slice());
+    this.typeMultiFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterData(
+          this.typeMultiListData,
+          this.typeMultiFilterCtrl,
+          this.typeMultiFilter
+        );
+      });
+  }
+
+  protected filterData(listData, filterCtrl, filterSubject) {
+    if (!listData) {
+      return;
+    }
+
+    let search = filterCtrl.value;
+    if (!search) {
+      filterSubject.next(
+        listData.slice()
+      );
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    filterSubject.next(
+      listData.filter(
+        data => data.type_name.toLowerCase().indexOf(search) > -1
+      )
+    );
+  }
+
+  filterMyOptions(item) {
+    this.rowData = item;
   }
 
   stepperReportW() {
     this.thirdFormGroup = this.fb.group({
       selectedDateTime: {
         startDate: moment().subtract(1, 'days'),
-        endDate: moment().subtract(1, 'days'),
-        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        endDate: moment().subtract(1, 'days')
       },
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,
@@ -167,44 +226,39 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     } else {
       this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
     }
+    if(typeof(this.gridOptions.api.getDisplayedRowCount()) == undefined) {
+      this.selectedRecipeCount = 0;
+    } else {
+      this.selectedRecipeCount = this.gridOptions.api.getDisplayedRowCount();
+    }
   }
 
   public createColumnDefs() {
     this.columnDefs = [
       {
-        headerName: "URL Name",
-        field: "urlName",
-        width: 190
-      },
-      {
-        headerName: "Traceroute",
-        field: "traceroute",
-        width: 130
-      },
-      {
-        headerName: "Ping",
-        field: "ping",
-        width: 100,
-      },
-      {
-        headerName: "Location",
-        field: "location",
-        width: 110,
-      },
-      {
-        headerName: "11 URLs",
-        cellRenderer: 'dropdownRenderer',
-        width: 110,
-        pinned: 'right'
-      },
+        headerName: "Selected Recipe’s",
+        field: "select_recipe",
+        width: '500'
+      }
     ];
 
     this.columnDefsSelectDevice = [
       {
         headerName: "Selected Device",
         field: "imei",
-        width: '500'
+        width: '300'
+      },
+      {
+        headerName: "",
+        cellRenderer: "editRenderer",
+        width: '90'
+      },
+      {
+        headerName: "",
+        cellRenderer: "deleteRenderer",
+        width: '90'
       }
+
     ]
   }
 
@@ -364,7 +418,7 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
       height: "300px",
       panelClass: "material-dialog-container",
     } );
-  }
+  }                                                                                                                                                                                                                                                                                                  
 
   navigateBack() {
     this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/"])

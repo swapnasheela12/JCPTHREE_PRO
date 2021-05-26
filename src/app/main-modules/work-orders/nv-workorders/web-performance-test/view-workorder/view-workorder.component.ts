@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class ViewWorkorderComponent implements OnInit, AfterViewInit {
   templateType = ["Page Load Test", "Web Performance Test"];
-
+  templateTypeSelected =  "Web Performance Test";
   simType = ["Single Sim WO", "Dual Sim WO"]
   simTypeValue = "Single Sim WO";
   selectDaily = ["Daily", "Weekly", "Monthly"];
