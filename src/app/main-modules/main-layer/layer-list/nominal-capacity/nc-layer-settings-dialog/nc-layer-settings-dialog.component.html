@@ -1,47 +1,66 @@
-
 <ng-template #NcLayerSettingsDialog>
-    <form  [formGroup]="macroDialogForm" class="layers-settings-popup-content px-3">
-        <div fxLayout="column">
-          <mat-form-field class="py-2">
-            <mat-select [(value)]="sitePriorityValue" placeholder="Candidate Site Priority" disableOptionCentering
-              (openedChange)="openedChange($event)" formControlName="sitePriority">
-              <mat-option value="aa">
-               aa
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="py-2">
-            <mat-select [(value)]="gnbCandidatesValue" placeholder="gNB Candidate Types" disableOptionCentering
-              (openedChange)="openedChange($event)" formControlName="gnbCandidates">
-              <mat-option value="vv">
+  <div class="nc-popup-content">
+    <form [formGroup]="DialogFormMacro" class="px-3">
+      <p class="mb-0 mt-2"><b>5G Macro</b></p>
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+        <mat-form-field class="pl-1 pr-3 py-2" fxFlex="50">
+          <mat-select [(value)]="sitePriorityValue" placeholder="Candidate Site Priority" disableOptionCentering
+            (openedChange)="openedChange($event)" formControlName="sitePriority">
+            <mat-option value="aa">
+              aa
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="pl-1 pr-3 py-2" fxFlex="50">
+          <mat-select [(value)]="gnbCandidatesValue" placeholder="gNB Candidate Types" disableOptionCentering
+            (openedChange)="openedChange($event)" formControlName="gnbCandidates">
+            <mat-option value="vv">
               vv
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="py-2">
-            <mat-select [(value)]="odscCandidatesValue" placeholder="ODSC Candidates Types" disableOptionCentering
-              (openedChange)="openedChange($event)" formControlName="odscCandidates">
-              <mat-option value="4G Fiberized Macro">
-                4G Fiberized Macro
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-checkbox fxFlex="50" formControlName="candidates" [disableRipple]="true" id="outdoor">
-            Candidate Cells
-          </mat-checkbox>
-        </div>
-      </form>
-      <mat-divider></mat-divider>
-      <div mat-dialog-actions class="">
-        <div class="mx-3">
-          <button mat-stroked-button class="buttonWidth w-100">Reset To Defaults</button>
-        </div>
-        <div class="col"></div>
-        <div class="mx-3">
-          <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
-        </div>
-        <div class="mr-3">
-          <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
-        </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox fxFlex="50" formControlName="candidates" [disableRipple]="true" id="outdoor">
+          Candidate Cells
+        </mat-checkbox>
       </div>
+    </form>
+    <mat-divider></mat-divider>
+    <form [formGroup]="DialogFormOdsc" class="px-3">
+      <p class="mb-0 mt-2"><b>5G ODSC</b></p>
+      <div fxLayout="row wrap">
+        <mat-form-field class="pl-1 pr-3 py-2" fxFlex="50">
+          <mat-select [(value)]="sitePriorityValue" placeholder="Candidate Site Priority" disableOptionCentering
+            (openedChange)="openedChange($event)" formControlName="sitePriority">
+            <mat-option value="aa">
+              aa
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="pl-1 pr-3 py-2" fxFlex="50">
+          <mat-select [(value)]="odscCandidatesValue" placeholder="ODSC Candidates Types" disableOptionCentering
+            (openedChange)="openedChange($event)" formControlName="odscCandidates">
+            <mat-option value="4G Fiberized Macro">
+              4G Fiberized Macro
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox fxFlex="50" formControlName="candidates" [disableRipple]="true" id="outdoor">
+          Candidate Cells
+        </mat-checkbox>
+      </div>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="">
+    <div class="mx-3">
+      <button mat-stroked-button class="buttonWidth w-100">Reset To Defaults</button>
+    </div>
+    <div class="col"></div>
+    <div class="mx-3">
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+    </div>
+    <div class="mr-3">
+      <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+    </div>
+  </div>
 </ng-template>
