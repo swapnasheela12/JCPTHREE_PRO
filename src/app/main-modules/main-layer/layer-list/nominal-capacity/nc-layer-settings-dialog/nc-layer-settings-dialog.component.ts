@@ -6,7 +6,6 @@ import { NavigationSettingsService } from 'src/app/_services/navigation-settings
 import { Options } from 'ng5-slider/options';
 import { LABEL_LIST } from 'src/app/core/components/leftside-settings-popup/leftside-settings-popup.constant';
 import { Subscription } from 'rxjs';
-import { ColorPickerService, Cmyk } from 'ngx-color-picker'
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,7 +13,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './nc-layer-settings-dialog.component.html',
   styleUrls: ['./nc-layer-settings-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [ColorPickerService]
 })
 export class NcLayerSettingsDialogComponent implements OnInit {
   clickEventsubscription:Subscription;
@@ -39,14 +37,21 @@ export class NcLayerSettingsDialogComponent implements OnInit {
   someValue;
   @Input() colorOutline: string;
   @Input() colorFill: string;
-  macroDialogForm:FormGroup;
+  DialogFormMacro:FormGroup;
+  DialogFormOdsc:FormGroup;
   title = 'dialog-example';
   dialog: NavigationSettingsService;
   @ViewChild('NcLayerSettingsDialog', { static: true }) NcLayerSettingsDialog: TemplateRef<any>;
   constructor(
     private navigationFactoryService: NavigationSettingsFactoryService,
   ) { 
-    this.macroDialogForm = new FormGroup({
+    this.DialogFormMacro = new FormGroup({
+      'sitePriority':new FormControl(''),
+      'gnbCandidates':new FormControl(''),
+      'odscCandidates':new FormControl(''),
+      'candidates':new FormControl(true),
+    });
+    this.DialogFormOdsc = new FormGroup({
       'sitePriority':new FormControl(''),
       'gnbCandidates':new FormControl(''),
       'odscCandidates':new FormControl(''),
@@ -63,7 +68,7 @@ export class NcLayerSettingsDialogComponent implements OnInit {
       template: this.NcLayerSettingsDialog
     }, {
       width: 536,
-      height:415,
+      height:450,
       backdropClass: 'light-white-backdrop',
       disableClose: false
     });
