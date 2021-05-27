@@ -8,17 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./wpt-modal.component.scss']
 })
 export class WptModalComponent implements OnInit {
-  iMEIs = [ "Rahul49.singh@ril.com", "yogeshwar.bargal@ril.com", "Priyanshi.asawara@ril.com",
-"prempraksh.b@ril.com", "Rohit.malviya@ril.com"];
-  ngOnInit(): void {
-  }
+  iMEIs = [
+    "Rahul49.singh@ril.com",
+    "yogeshwar.bargal@ril.com",
+    "Priyanshi.asawara@ril.com",
+    "prempraksh.b@ril.com",
+    "Rohit.malviya@ril.com"
+  ];
+  showWPTWO: boolean = false;
+  showRecipeWO: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<WptModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
   }
 
-
+  ngOnInit(): void {
+    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
+      this.showRecipeWO = true;
+    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
+      this.showWPTWO = true;
+    }
+  }
 
   closeDialog(): void {
     this.dialogRef.close(true);
@@ -30,7 +41,11 @@ export class WptModalComponent implements OnInit {
 
   clickYes(): void {
     this.dialogRef.close();
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"]);
+    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
+      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"]);
+    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
+      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"]);
+    }
   }
 
 }

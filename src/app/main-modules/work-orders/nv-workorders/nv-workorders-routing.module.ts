@@ -105,11 +105,11 @@ const routes: Routes = [
             ],
       },{
         path: 'View-Workorder',
-        
+  
         children: [
           {
             path: '',
-            component: ViewWorkorderComponent,
+            component: RecipeCreateNewWorkorderComponent,
           }]
       },
       {

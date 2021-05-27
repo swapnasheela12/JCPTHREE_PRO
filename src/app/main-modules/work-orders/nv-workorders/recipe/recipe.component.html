@@ -1,7 +1,7 @@
 <div class="wpt-wrapper">
     <mat-card class="wpt-module-card h-100" style="padding: 0px;">
         <div class="header-right col">
-            <div class="col-8 wpf-search" >
+            <div class="col-7 wpf-search" >
             <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show">
                 <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
             </mat-icon>
@@ -15,9 +15,9 @@
             </mat-form-field>
         </div>
     
-            <button class="col-2 create-wo" mat-raised-button color="primary"
+            <button class="col-3 create-wo" mat-raised-button color="primary"
                 routerLink="/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder">
-                Create WO
+                Recipe Builder
             </button>
             <button class="workorder-filter col-1" (click)="openWOFilter()">
                 <span class="ic ic-Date-filter-1"><span class="path1"></span><span class="path2"></span></span>

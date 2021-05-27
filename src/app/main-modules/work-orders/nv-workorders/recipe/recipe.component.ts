@@ -163,14 +163,9 @@ export class RecipeComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/workorder/nv-workorder/nv-wpf.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/nv-recipe.json')
       .subscribe(data => {
         this.rowData = data;
-        // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-        // this.datatable.gridPinnedServices = this.gridPinned;
-        // this.datatable.rowDataServices = this.rowData;
-        // this.datatable.gridOptionsServices = this.gridOptions;
-        // this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
 
@@ -210,7 +205,16 @@ export class RecipeComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Task Completion",
@@ -256,7 +260,16 @@ export class RecipeComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Task Completion",
@@ -302,7 +315,16 @@ export class RecipeComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Task Completion",

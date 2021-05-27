@@ -16,14 +16,21 @@ import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.
             <button mat-menu-item (click)="viewWorkorder($event)">
                 <span>View WorkOrder</span>
             </button>
-            <button mat-menu-item (click)="deleteWorkOrder($event)">
-                <span>Delete WorkOrder</span>
-            </button>
+
             <button mat-menu-item (click)="copyToNewWorkorder($event)">
                 <span>Copy to new Workorder</span>
             </button>
+
+            <button mat-menu-item>
+            <span>Download Summary Report</span>
+            </button>
+            
             <button mat-menu-item (click)="viewTask($event)">
                 <span>View Tasks</span>
+            </button>
+           
+            <button mat-menu-item>
+                <span>Download Report</span>
             </button>
         </mat-menu>`,
     styles: [
@@ -64,7 +71,7 @@ export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"])
     }
 
     deleteWorkOrder(evt) {

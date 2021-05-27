@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 
 @Component({
   selector: 'app-edit',
@@ -17,6 +18,13 @@ export class EditComponent implements OnInit {
 
   saveRow() {
     this.dialogRef.close();
+    const message = {
+      message: `Workorder assigned Successfully.`,
+      showDefaultActionBar: true
+    }
+    this.dialog.open(SuccessfulModalComponent, {
+      data: message,
+    });
   }
 
   closeDialog() {

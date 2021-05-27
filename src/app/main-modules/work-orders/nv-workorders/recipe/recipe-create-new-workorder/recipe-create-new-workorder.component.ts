@@ -119,6 +119,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
   //show copy to new
   showCopyToNewWorkorder: boolean =  false;
   showCreateNewWorkorder: boolean =  false;
+  showViewWorkorder: boolean =  false;
 
   //time picker
   timeSeletedHour = "00";
@@ -142,20 +143,15 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
 
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
-      this.showCreateNewWorkorder = true;
-      this.showCopyToNewWorkorder = false;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
-      this.showCopyToNewWorkorder =  true;
-      this.showCreateNewWorkorder =  false;
-    }
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     //set default value of select recipe
-    this.rowData = [];
+    this.httpClient.get("assets/data/workorder/nv-workorder/select-recipe.json").subscribe((data) => {
+      this.rowData = data;
+    })
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
     });
@@ -218,6 +214,15 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     });
   }
   ngOnInit(): void {
+    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
+      this.showCreateNewWorkorder = true;
+    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
+      this.thirdFormGroup.controls['selectedDateTime'].disable();
+      this.showCopyToNewWorkorder =  true;
+    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"){
+      this.thirdFormGroup.controls['selectedDateTime'].disable();
+      this.showViewWorkorder =  true;
+    }
   }
 
   ngAfterViewInit(){
@@ -238,7 +243,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
       {
         headerName: "Selected Recipe’s",
         field: "select_recipe",
-        width: '500'
+        width: '520'
       }
     ];
 
@@ -246,17 +251,17 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
       {
         headerName: "Selected Device",
         field: "imei",
-        width: '300'
+        width: '380'
       },
       {
         headerName: "",
         cellRenderer: "editRenderer",
-        width: '90'
+        width: '70'
       },
       {
         headerName: "",
         cellRenderer: "deleteRenderer",
-        width: '90'
+        width: '70'
       }
 
     ]
@@ -394,8 +399,11 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
   }
 
+  sampleFile() {
+
+  }
+
   showUpload(evt) {
-    console.log(evt);
     if(evt.value === "2" || evt.value === "3") {
       this.showUploadDevices = true;
       this.showImei = false;
@@ -421,6 +429,6 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
   }                                                                                                                                                                                                                                                                                                  
 
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/"])
+    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/"])
   }
 }
