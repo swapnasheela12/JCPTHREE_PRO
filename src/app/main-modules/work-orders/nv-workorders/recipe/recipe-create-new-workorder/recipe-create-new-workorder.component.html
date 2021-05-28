@@ -2,12 +2,16 @@
     <mat-card class="wpt-module-card" style="padding: 0px;">
         <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
-                <div class=" pl-0 wo-header" fxFlex="95">
-                    <div class="header">Create New Workorder</div>
-                    <!-- <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
+                <div class=" pl-0 wo-header" fxFlex="85">
+                    <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
                     <div class="header" *ngIf="showCopyToNewWorkorder">Copy To New Workorder</div>
-                    <div class="header" *ngIf="showViewWorkorder">View Workorder</div> -->
+                    <div class="header" *ngIf="showViewWorkorder">View Workorder</div>
                 </div>
+                <div class="sector-flex-item" fxFlex="10"  *ngIf="showCreateNewWorkorder">
+                    <button class="create-wo" mat-raised-button color="primary">
+                    Recipe Builder</button>
+                </div>
+                
                 <div class="sector-flex-item" fxFlex="5">
                     <mat-icon  style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right;">
                         <span class="ic ic-Go-to-Workorder-Icon-1"></span></mat-icon>
@@ -36,10 +40,10 @@
                     <div class="sub-content-flex-item  col-6">
                         <div class="form-read-only">
                             <label class="input-label">Type*</label>
-                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            <div class="input-value" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
                                Recipe
                             </div> 
-                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                            <div class="input-value-disabled" *ngIf="showViewWorkorder">
                                 Recipe
                             </div> 
                         </div>
@@ -61,14 +65,14 @@
 
                     <div class="sub-content-flex-item  col-6">
                         <mat-form-field class="form-field-read-only">
-                            <mat-select disableOptionCentering [(value)]="simTypeValue" *ngIf="showCreateNewWorkorder"
+                            <mat-select disableOptionCentering [(value)]="simTypeValue" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder"
                                 style="font-family: lato Regular; font-size: 14px;">
                                 <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
                                     [value]="st">
                                     {{st}}</mat-option>
                             </mat-select>
 
-                            <mat-select disableOptionCentering [(value)]="simTypeValue" *ngIf="showCopyToNewWorkorder || showViewWorkorder"
+                            <mat-select disableOptionCentering [(value)]="simTypeValue" *ngIf="showViewWorkorder"
                             style="font-family: lato Regular; font-size: 14px;" disabled>
                             <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
                                 [value]="st">
@@ -79,7 +83,7 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap select-recipe"  *ngIf="showCreateNewWorkorder">
+                <div class="sub-content d-flex  flex-row flex-wrap select-recipe"  *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
                     <div class="sub-content-flex-item col-6" style="padding-bottom: 0px !important;"> 
                         <form [formGroup]="liveViolationReportForm" class="form-violation">
                             <mat-form-field class="twamp-field-container" fxFlex="auto">
@@ -100,9 +104,9 @@
                     </div>
                 </div>
 
-                <div class="device-count" *ngIf="showCreateNewWorkorder">{{selectedRecipeCount}} out of 100</div>
+                <div class="device-count" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">{{selectedRecipeCount}} out of 100</div>
 
-                <div class="d-flex  flex-row flex-wrap w-100" *ngIf="showCreateNewWorkorder">
+                <div class="d-flex  flex-row flex-wrap w-100" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
                     <div class="sub-content-flex-item col-12" style="padding: 0px !important; border: 1px solid rgb(226 226 226);">
                         <ag-grid-angular style="width: 100%; height: 285px"
                         class="traceport-activation ag-theme-material ag-jcp3"
@@ -150,8 +154,8 @@
                     <div class="sub-content-flex-item  col-5">
                         <mat-form-field class="w-100" style="margin: 20px 0 0 20px;">
                             <mat-label>Iterations</mat-label>
-                            <input matInput placeholder="" value="" *ngIf="showCreateNewWorkorder">
-                            <input matInput placeholder="" value="" disabled *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                            <input matInput placeholder="" value="" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
+                            <input matInput placeholder="" value="" disabled *ngIf="showViewWorkorder">
                         </mat-form-field>
                     </div>
 
@@ -161,7 +165,7 @@
                 <div class="sub-content d-flex  flex-row flex-wrap " style="border-bottom: 1px solid #D3D5DC; padding: 20px 12px;">
                     <div class="wo-sector-card-one  col-6" style="display: inline-block;">
                         <label class="time-duration-label">Start Time</label>
-                        <div *ngIf="showCreateNewWorkorder">
+                        <div *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
                             <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour">
                                 <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
                                     {{h}}</mat-option>
@@ -183,7 +187,7 @@
                             </mat-select>
                         </div>
 
-                        <div *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                        <div *ngIf="showViewWorkorder">
                             <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour" disabled>
                                 <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
                                     {{h}}</mat-option>
@@ -207,7 +211,8 @@
                     </div>
 
                     <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
-                        <label class="time-duration-label">Test Duration</label>
+                        <label class="time-duration-label" *ngIf="showCreateNewWorkorder">Test Duration</label>
+                        <label class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">Test Duration</label>
 
                         <div class="input-value" *ngIf="showCreateNewWorkorder">
                             00:00:00 Hrs
@@ -220,13 +225,13 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="showCreateNewWorkorder" style="border-bottom: 1px solid #D3D5DC;">
+                <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="showCreateNewWorkorder ||  showCopyToNewWorkorder" style="border-bottom: 1px solid #D3D5DC;">
                     <div class="mar-top col-12">
                         <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
                         <mat-radio-group (change)="showUpload($event)">
                             <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
                             <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
-                            <mat-radio-button *ngIf="!showCopyToNewWorkorder" class="radio-btn" value="3">Upload Login Id File
+                            <mat-radio-button class="radio-btn" value="3">Upload Login Id File
                             </mat-radio-button>
                         </mat-radio-group>
                     </div>

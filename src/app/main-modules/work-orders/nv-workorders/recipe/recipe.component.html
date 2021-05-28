@@ -1,29 +1,30 @@
 <div class="wpt-wrapper">
     <mat-card class="wpt-module-card h-100" style="padding: 0px;">
         <div class="header-right col">
-            <div class="col-7 wpf-search" >
-            <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show">
-                <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
-            </mat-icon>
-    
-            <mat-form-field class="h-100" style="top: 7px;" *ngIf="show">
-                <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
-                    placeholder="">
-                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
-                    <span class="zmdi zmdi-close"></span>
+            <div class="col-8 wpf-search">
+                <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
+                    *ngIf="!show">
+                    <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
                 </mat-icon>
-            </mat-form-field>
-        </div>
-    
-            <button class="col-3 create-wo" mat-raised-button color="primary"
+
+                <mat-form-field class="h-100" style="top: 7px;" *ngIf="show">
+                    <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+
+
+            <button class="col-2 create-wo" mat-raised-button color="primary"
                 routerLink="/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder">
-                Recipe Builder
+                Create WO
             </button>
             <button class="workorder-filter col-1" (click)="openWOFilter()">
                 <span class="ic ic-Date-filter-1"><span class="path1"></span><span class="path2"></span></span>
             </button>
         </div>
-        
 
         <div class="td-tab-details p-0" style="height: calc(100% - 2px);">
 
@@ -48,7 +49,6 @@
 
         <mat-divider></mat-divider>
     </mat-card>
-
 </div>
 
 <ng-template #myTask>

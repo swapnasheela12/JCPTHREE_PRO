@@ -17,6 +17,10 @@ import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.
                 <span>View WorkOrder</span>
             </button>
 
+            <button mat-menu-item (click)="deleteWorkOrder($event)">
+                <span>Delete WorkOrder</span>
+            </button>
+
             <button mat-menu-item (click)="copyToNewWorkorder($event)">
                 <span>Copy to new Workorder</span>
             </button>
@@ -27,10 +31,6 @@ import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.
             
             <button mat-menu-item (click)="viewTask($event)">
                 <span>View Tasks</span>
-            </button>
-           
-            <button mat-menu-item>
-                <span>Download Report</span>
             </button>
         </mat-menu>`,
     styles: [

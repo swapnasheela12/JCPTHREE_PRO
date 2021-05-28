@@ -217,7 +217,6 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
-      this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showCopyToNewWorkorder =  true;
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
@@ -251,17 +250,17 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
       {
         headerName: "Selected Device",
         field: "imei",
-        width: '380'
+        width: '360'
       },
       {
         headerName: "",
         cellRenderer: "editRenderer",
-        width: '70'
+        width: '80'
       },
       {
         headerName: "",
         cellRenderer: "deleteRenderer",
-        width: '70'
+        width: '80'
       }
 
     ]
