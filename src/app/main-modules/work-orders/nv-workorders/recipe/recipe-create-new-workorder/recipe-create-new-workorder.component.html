@@ -2,10 +2,14 @@
     <mat-card class="wpt-module-card" style="padding: 0px;">
         <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
             <mat-toolbar-row class="mat-blue-grey">
-                <div class=" pl-0 wo-header" fxFlex="85">
-                    <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
-                    <div class="header" *ngIf="showCopyToNewWorkorder">Copy To New Workorder</div>
-                    <div class="header" *ngIf="showViewWorkorder">View Workorder</div>
+                <div class=" pl-0 wo-header" fxFlex="85"  *ngIf="showCreateNewWorkorder">
+                    <div class="header">Create New Workorder</div>
+                </div>
+                <div class=" pl-0 wo-header" fxFlex="95" *ngIf="showCopyToNewWorkorder">
+                    <div class="header">Create New Workorder</div>
+                </div>
+                <div class=" pl-0 wo-header" fxFlex="95" *ngIf="showViewWorkorder">
+                    <div class="header">View Workorder</div>
                 </div>
                 <div class="sector-flex-item" fxFlex="10"  *ngIf="showCreateNewWorkorder">
                     <button class="create-wo" mat-raised-button color="primary">
