@@ -462,7 +462,8 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     // this.dialog.close(true);
       const message = {
         message: `Workorder assigned Successfully.`,
-        showDefaultActionBar: true
+        showDefaultActionBar: true,
+        regulatory: "Regulatory"
       }
       this.dialog.open(SuccessfulModalComponent, {
         data: message,

@@ -1,8 +1,9 @@
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent, snackBarToastComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'delete-renderer',
@@ -28,7 +29,8 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   enabled: Boolean;
   dataTest: any = false;
 
-  constructor(public dialog: MatDialog, public datashare: DataSharingService) { }
+  constructor(public dialog: MatDialog, public datashare: DataSharingService,
+    private _snackBar: MatSnackBar) { }
 
   agInit(params): void {
     this.params = params;
@@ -50,9 +52,18 @@ export class DeleteRendererComponent implements ICellRendererAngularComp {
   }
 
   deleteRow(evt) {
-    console.log("deelete row")
+    const snackbarMode = 'success';
+    const snackbarText = 'Action Performed Successfully';
     let deletedRow = this.params.node.data;
     this.params.api.updateRowData({ remove: [deletedRow] });
+    this._snackBar.openFromComponent(snackBarToastComponent, {
+      duration: 4000,
+      data: {
+        snackbarMode: snackbarMode,
+        snackbarText: snackbarText,
+      },
+      panelClass: [snackbarMode]
+    });
   }
 
   // onSelectionChanged(event: any){

@@ -44,14 +44,23 @@ export class SuccessfulModalComponent {
 
   clickYes(): void {
     if (this.data.goToTask === "ShowMyTask") {
+      this.dialogRef.close();
       this.router.navigate(['JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details']);
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
+    
   }
 
   clickOk() {
-    this.dialogRef.close();
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting"])
+   
+    if(this.data.regulatory === "Regulatory") {
+      this.dialogRef.close();
+      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting"]);
+    } else {
+      this.dialogRef.close();
+    }
+   
   }
 
   clickNo(): void {
