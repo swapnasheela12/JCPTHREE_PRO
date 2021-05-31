@@ -4,6 +4,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { EditUrlComponent } from './create-new-workorder/edit-url/edit-url.component';
 
 @Component({
     selector: 'threeDot-nv-wpt-button-renderer',
@@ -74,6 +75,10 @@ export class ThreeDotNVWPTRenderer implements ICellRendererAngularComp {
     }
 
     editRow(evt) {
-        this.datashare.changeMessage({ type: "edit" });
+        this.dialog.open(EditUrlComponent, {
+            height: '44vh',
+            width: '55vw'
+        })
+       // this.datashare.changeMessage({ type: "edit" });
     }
 }

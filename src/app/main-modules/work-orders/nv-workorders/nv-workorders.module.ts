@@ -85,6 +85,7 @@ import { EditComponent } from './recipe/edit/edit.component';
 import { EditRendererComponent } from './recipe/edit-renderer-component';
 import { RecipeViewWORendererComponent } from './recipe/recipe-view-wo-renderer.component';
 import { RecipeViewTasksComponent } from './recipe/recipe-view-tasks/recipe-view-tasks.component';
+import { EditUrlComponent } from './web-performance-test/create-new-workorder/edit-url/edit-url.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { RecipeViewTasksComponent } from './recipe/recipe-view-tasks/recipe-view
     EditComponent,
     EditRendererComponent,
     RecipeViewWORendererComponent,
-    RecipeViewTasksComponent
+    RecipeViewTasksComponent,
+    EditUrlComponent
   ],
   imports: [
     CommonModule,

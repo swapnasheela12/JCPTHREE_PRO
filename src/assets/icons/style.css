@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?a1zov7');
-  src:  url('fonts/icomoon.eot?a1zov7#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?a1zov7') format('truetype'),
-    url('fonts/icomoon.woff?a1zov7') format('woff'),
-    url('fonts/icomoon.svg?a1zov7#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?rkj7rb');
+  src:  url('fonts/icomoon.eot?rkj7rb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?rkj7rb') format('truetype'),
+    url('fonts/icomoon.woff?rkj7rb') format('woff'),
+    url('fonts/icomoon.svg?rkj7rb#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-icon-38:before {
+  content: "\ecc7";
+}
 .ic-Date-filter-1 .path1:before {
   content: "\ecc4";
   color: rgb(245, 245, 245);

@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
 import { template } from 'lodash';
+import { EditRendererComponent } from '../../recipe/edit-renderer-component';
 
 
 @Component({
@@ -86,7 +87,8 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   public frameworkComponentsTaskDetails = {
     dropdownRenderer: ThreeDotNVWPTRenderer,
     inputRenderer: inputRendererComponent,
-    deleteRenderer: DeleteRendererComponent
+    deleteRenderer: DeleteRendererComponent,
+    editRenderer: EditRendererComponent
   };
 
 
@@ -201,9 +203,19 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
 
     this.columnDefsSelectDevice = [
       {
-        headerName: "Selected Device",
+        headerName: "Select Devices",
         field: "imei",
-        width: '500'
+        width: '360'
+      },
+      {
+        headerName: "",
+        cellRenderer: "editRenderer",
+        width: '80'
+      },
+      {
+        headerName: "",
+        cellRenderer: "deleteRenderer",
+        width: '80'
       }
     ]
   }

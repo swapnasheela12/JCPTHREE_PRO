@@ -32,15 +32,15 @@
                     </div>
 
                     <div class="sub-content-flex-item  col-6">
-                        <mat-form-field class="form-field-read-only">
-                            <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                Type*</mat-label>
-                            <mat-select disableOptionCentering [(value)]="templateTypeSelected" style="font-family: lato Regular; font-size: 14px;">
-                                <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                    [value]="tcr">
-                                    {{tcr}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <div class="form-read-only">
+                            <label class="input-label">Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               Page Load Test
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                Page Load Test
+                            </div> 
+                          </div>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                             <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
                                 -
                             </div> 
-                          </div>
+                        </div>
                     </div>
 
                     <div class="sub-content-flex-item  col-6">
@@ -202,7 +202,7 @@
                         <mat-radio-group (change)="showUpload($event)">
                             <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
                             <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
-                            <mat-radio-button *ngIf="!showCopyToNewWorkorder"class="radio-btn" value="3">Upload Login Id File</mat-radio-button>
+                            <mat-radio-button class="radio-btn" value="3">Upload Login Id File</mat-radio-button>
                           </mat-radio-group>
                     </div>
 
@@ -261,6 +261,7 @@
                         [headerHeight]="47"
                         [gridOptions]="gridOptionsSelectDevice" 
                         [suppressHorizontalScroll]="true"
+                        [frameworkComponents]="frameworkComponentsTaskDetails"
                         (gridReady)="onManualReady($event)">
                         </ag-grid-angular>
                     </div>

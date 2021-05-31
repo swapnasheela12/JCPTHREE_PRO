@@ -2,7 +2,7 @@
     <mat-toolbar class="dialog-header">
         <mat-toolbar-row>
             <div fxFlex="grow">
-                <div class="header"><span style="margin-right: 4px;" class="ic ic-list1"></span>WorkOrder Filter</div>
+                <div class="header"><span style="margin-right: 5px;"class="ic ic-icon-38"></span>WorkOrder Filter</div>
             </div>
             <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
                 <mat-icon>close</mat-icon>
@@ -16,35 +16,39 @@
                 <div>
                     <form [formGroup]="thirdFormGroup">
                         <mat-form-field class="custom-field-container date-field w-100" fxFlex="0">
-                            <div class="daterange-container" style="top: 46px;
-                    left: 74px;">
-                                <input matInput ngxDaterangepickerMd placeholder="Date Range"
-                                    [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15"
-                                    [timePicker24Hour]="false" formControlName="selectedDateTime"
-                                    [showCustomRangeLabel]="true"
-                                    [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
-                                    [ranges]="ranges" [showClearButton]="true" [showCancel]="true"
-                                    [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
-                                    [isInvalidDate]="isInvalidDate"
-                                    [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
-                                    [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
-                                    [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
-                                    (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
-                                    autocomplete="off" [opens]="opens" [drops]="drops"
-                                    class="daterange-container-input" />
-                                <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
-                            </div>
+                                <div class="daterange-container" style="top: 46px;
+                                left: 74px;">
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Date"
+                                        [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
+                                        [timePicker24Hour]="false" formControlName="selectedDateTime"
+                                        [showCustomRangeLabel]="true"
+                                        [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                        [showClearButton]="true" [showCancel]="true"
+                                        [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
+                                        [isInvalidDate]="isInvalidDate"
+                                        [locale]="{ applyLabel: 'Ok', format: 'MMM DD, YYYY',clearLabel:'Clear'}"
+                                        [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                                        [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                                        (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                        autocomplete="off" [opens]="opens" [drops]="drops"
+                                        class="daterange-container-input" />
+                                    <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                </div>
                         </mat-form-field>
                     </form>
                 </div>
 
                 <div>
-                    <mat-form-field class="form-field-read-only w-100" style="padding: 0 20px;">
-                        <mat-select disableOptionCentering [(value)]="templateType[0]"
-                            style="font-family: lato Regular; font-size: 14px;">
-                            <mat-option value="option1" class="sector-title" *ngFor="let tcr of templateType"
-                                [value]="tcr">
-                                {{tcr}}</mat-option>
+                    <mat-form-field style="width: 86%;margin: 0px 20px;">
+                        <mat-select placeholder="Target Area" [formControl]="panIndiaCtrl" ngDefaultControl #panIndiaSelect>
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Select PAN India" [formControl]="panIndiaFilterCtrl"
+                                    noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let panIndia of panIndiaFilter | async" [value]="panIndia">
+                                {{panIndia.name}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

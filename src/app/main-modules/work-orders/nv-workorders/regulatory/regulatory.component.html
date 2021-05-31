@@ -20,7 +20,7 @@
                 Create WO
             </button>
             <button class="workorder-filter col-1" (click)="openWOFilter()">
-                <span class="ic ic-Date-filter-1"><span class="path1"></span><span class="path2"></span></span>
+                <span class="ic ic-icon-38"></span>
             </button>
         </div>
         
@@ -53,14 +53,14 @@
 
             <ng-template [ngTemplateOutlet]="status"></ng-template>
 
-            <div style="height: 100%">
+            <div class="w-100" style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
                     headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData"
                     enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true"
-                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" (gridSizeChanged)="onGridSizeChanged($event)"
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                     [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                     [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
-                    [debug]="true"  (gridReady)="onGridReady($event)" (rowClicked)='onRowClicked($event)'
+                    [debug]="true" (gridReady)="onReady($event)"
                     (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"

@@ -28,7 +28,7 @@ import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components
     styles: [
         `
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item {
-            width: 160px !important;
+            width: 190px !important;
             height: 48px !important;
             line-height: 1 !important;
         }
