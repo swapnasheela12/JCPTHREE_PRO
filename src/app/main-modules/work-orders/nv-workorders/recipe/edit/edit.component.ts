@@ -18,13 +18,13 @@ export class EditComponent implements OnInit {
 
   saveRow() {
     this.dialogRef.close();
-    const message = {
-      message: `Workorder assigned Successfully.`,
-      showDefaultActionBar: true
-    }
-    this.dialog.open(SuccessfulModalComponent, {
-      data: message,
-    });
+    // const message = {
+    //   message: `Workorder assigned Successfully.`,
+    //   showDefaultActionBar: true
+    // }
+    // this.dialog.open(SuccessfulModalComponent, {
+    //   data: message,
+    // });
   }
 
   closeDialog() {

@@ -31,10 +31,6 @@ export class WptModalComponent implements OnInit {
     }
   }
 
-  closeDialog(): void {
-    this.dialogRef.close(true);
-  }
-
   onNoClick(): void {
     this.dialogRef.close();
   }

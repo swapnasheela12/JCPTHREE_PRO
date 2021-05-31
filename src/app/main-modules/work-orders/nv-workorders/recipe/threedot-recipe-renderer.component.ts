@@ -36,7 +36,7 @@ import { RecipeViewTasksComponent } from './recipe-view-tasks/recipe-view-tasks.
     styles: [
         `
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item {
-            width: 160px !important;
+            width: 220px !important;
             height: 48px !important;
             line-height: 1 !important;
         }

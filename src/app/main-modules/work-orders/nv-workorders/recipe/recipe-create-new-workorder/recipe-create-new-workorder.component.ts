@@ -19,6 +19,11 @@ import { EditRendererComponent } from '../edit-renderer-component';
 export const SELECT_RECIPE_LIST = [
   { select_recipe: 'Recipe New 5' },
   { select_recipe: 'Recipe New 1' },
+  { select_recipe: 'Recipe New 3' },
+  { select_recipe: 'Recipe New 3' },
+  { select_recipe: 'Recipe New 3' },
+  { select_recipe: 'Recipe New 3' },
+  { select_recipe: 'Recipe New 3' },
   { select_recipe: 'Recipe New 3' }
 ];
 
@@ -213,18 +218,36 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
       disabled: true
     });
   }
+
   ngOnInit(): void {
     if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
+      this.selectedRecipeCopyAndViewWO();
+      this.selectedDeviceCopyAndViewWO();
+      this.getSelectDeviceAndRecipeCount();
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
+      this.columnDefsSelectDevice = [
+        {
+          headerName: "Selected Devices",
+          field: "imei",
+          width: '510'
+        }  
+      ];
+      this.selectedRecipeCopyAndViewWO();
+      this.selectedDeviceCopyAndViewWO();
+      this.selectedDeviceCount = this.rowDataSelectDevice.length;
     }
   }
 
   ngAfterViewInit(){
+    this.getSelectDeviceAndRecipeCount();
+  }
+
+  getSelectDeviceAndRecipeCount () {
     if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
       this.selectedDeviceCount = 0;
     } else {
@@ -235,6 +258,18 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     } else {
       this.selectedRecipeCount = this.gridOptions.api.getDisplayedRowCount();
     }
+  }
+
+  selectedRecipeCopyAndViewWO() {
+    this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-recipe.json").subscribe((data) => {
+      this.rowData = data;
+    })
+  }  
+
+  selectedDeviceCopyAndViewWO() {
+    this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-device.json").subscribe((data) => {
+      this.rowDataSelectDevice = data;
+    })
   }
 
   public createColumnDefs() {
@@ -248,7 +283,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
 
     this.columnDefsSelectDevice = [
       {
-        headerName: "Selected Device",
+        headerName: "Selected Devices",
         field: "imei",
         width: '360'
       },
@@ -404,6 +439,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
 
   showUpload(evt) {
     if(evt.value === "2" || evt.value === "3") {
+      this.imeiValue = "";
       this.showUploadDevices = true;
       this.showImei = false;
     } else {
