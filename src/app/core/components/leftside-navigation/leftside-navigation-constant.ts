@@ -4280,6 +4280,19 @@ const MODULE_LIST_NET_VELOCITY = [
         showHeader: false,
         headerText: '',
         children: []
+    },
+    {
+
+        name: "TRAI QoS Call Plan",
+        icon: "fas fa-user fa-3",
+        link: "JCP/Modules/Net-Velocity/Trai-Qos-Call-Plan",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
     }
 ];
 

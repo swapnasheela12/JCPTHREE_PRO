@@ -36,6 +36,7 @@ const routes: Routes = [
           { path: 'Fault-Management', loadChildren: () => import('../../app/main-modules/modules/fault-management/fault-management.module').then(m => m.FaultManagementModule) },
           { path: 'Network-Planning', loadChildren: () => import('../../app/main-modules/modules/network-planning/network-planning.module').then(m => m.NetworkPlanningModule) },
           { path: 'Network-Deployment', loadChildren: () => import('../../app/main-modules/modules/network-deployment/network-deployment.module').then(m => m.NetworkDeploymentModule) },
+          { path: 'Net-Velocity', loadChildren: () => import('../../app/main-modules/modules/net-velocity/net-velocity.module').then(m => m.NetVelocityModule) }
         ]
       },
       {

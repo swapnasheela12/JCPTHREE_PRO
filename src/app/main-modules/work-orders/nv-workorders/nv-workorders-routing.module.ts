@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ONTCreateNewWorkorderComponent } from './ont/ont-create-new-workorder/ont-create-new-workorder.component';
 import { OntComponent } from './ont/ont.component';
 import { RecipeCreateNewWorkorderComponent } from './recipe/recipe-create-new-workorder/recipe-create-new-workorder.component';
 import { RecipeComponent } from './recipe/recipe.component';
@@ -123,11 +124,36 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'ONT-Reporting',
+    path: 'ONT-Workorders',
     children: [
       {
         path: '',
         component: OntComponent,
+      },
+      {
+        path: 'Create-New-Workorder',
+            children: [
+              {
+                path: '',
+                component: ONTCreateNewWorkorderComponent,
+              }
+            ],
+      },{
+        path: 'View-Workorder',
+  
+        children: [
+          {
+            path: '',
+            component: ONTCreateNewWorkorderComponent,
+          }]
+      },
+      {
+        path: 'Copy-To-New-Workorder',
+        children: [
+          {
+            path: '',
+            component: ONTCreateNewWorkorderComponent,
+          }]
       }
     ]
   }

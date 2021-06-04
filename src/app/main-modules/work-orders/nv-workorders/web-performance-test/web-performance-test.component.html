@@ -65,7 +65,7 @@
                     [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                     [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
                     [debug]="true" [frameworkComponents]="frameworkComponentsTaskDetails" (gridReady)="onReady($event)"
-                    (selectionChanged)="selectionChanged($event)">
+                    (selectionChanged)="selectionChanged($event)" (rowClicked)='onRowClicked($event)'>
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
                     [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"

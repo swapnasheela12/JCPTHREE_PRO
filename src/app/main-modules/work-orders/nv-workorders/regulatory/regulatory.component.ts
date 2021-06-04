@@ -148,23 +148,23 @@ export class RegulatoryComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 160,
+        width: 170,
         pinned: 'left'
       },
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 230
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 240,
+        width: 190,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180,
+        width: 160,
       },
       {
         headerName: "Due Date",
@@ -174,15 +174,13 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 250,
+        width: 220,
         cellRenderer: function (params) {
-          console.log(params,"params");
           let template = '<div>'+
           '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
           '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
           '</div>';
           return template;
-          // return moment(params.data.creationTime).format('DD MMM, YYYY');
         }
       },
       {
@@ -198,23 +196,23 @@ export class RegulatoryComponent implements OnInit {
         headerName: "Status",
         cellRenderer: this.statusFunc,
         field: "status",
-        width: 160,
+        width: 170,
         pinned: 'left'
       },
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 230
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 240,
+        width: 190,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180,
+        width: 160,
       },
       {
         headerName: "Due Date",
@@ -224,15 +222,13 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 250,
+        width: 220,
         cellRenderer: function (params) {
-          console.log(params,"params");
           let template = '<div>'+
           '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
           '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
           '</div>';
           return template;
-          // return moment(params.data.creationTime).format('DD MMM, YYYY');
         }
       },
       {
@@ -337,9 +333,7 @@ export class RegulatoryComponent implements OnInit {
   }
 
 
-  showTaskData(evt) {
-
-  }
+  showTaskData(evt) {}
 
   selectionChanged(event: SelectionChangedEvent) {
     let lengthOfSelectedRow = event.api.getSelectedRows().length;
@@ -355,21 +349,14 @@ export class RegulatoryComponent implements OnInit {
     return this.gridApi;
   }
 
+  onPageSizeChanged(newPageSize) {
+    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+  }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
-    if (this.gridOptions.api) {
-      this.gridOptions.api.sizeColumnsToFit();
-    }
-    if (this.gridOptionsPending.api) {
-      this.gridOptionsPending.api.sizeColumnsToFit();
-    }
-    
-  }
-
-  onPageSizeChanged(newPageSize) {
-    this.gridApi.paginationSetPageSize(Number(newPageSize.value));
+    params.api.paginationGoToPage(4);    
   }
 
 

@@ -135,7 +135,7 @@ export class CoveredAreaLayerComponent implements AfterViewInit, OnDestroy {
     let g = new createjs.Graphics();
     g.setStrokeStyle(2);
     g.beginStroke(stroke);
-    g.drawPolygon(0, 0, data);
+    //g.drawPolygon(0, 0, data);
     return g;
   };
 

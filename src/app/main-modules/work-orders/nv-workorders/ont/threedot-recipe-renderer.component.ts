@@ -3,32 +3,33 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
-import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { ViewTasksComponent } from '../web-performance-test/view-tasks/view-tasks.component';
+import { RecipeViewTasksComponent } from '../recipe/recipe-view-tasks/recipe-view-tasks.component';
 
 @Component({
-    selector: 'threeDot-wpt-button-renderer',
-    template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu" (click)="threedots()">
+    selector: 'threeDot-ont-button-renderer',
+    template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
             <button mat-menu-item (click)="viewWorkorder($event)">
                 <span>View WorkOrder</span>
             </button>
-            <button mat-menu-item (click)="deleteWorkOrder($event)">
-                <span>Delete WorkOrder</span>
-            </button>
+
             <button mat-menu-item (click)="copyToNewWorkorder($event)">
                 <span>Copy to new Workorder</span>
             </button>
-            <button mat-menu-item (click)="viewTask($event)">
-                <span>View Tasks</span>
+
+            <button mat-menu-item>
+            <span>Download Report</span>
             </button>
+            
         </mat-menu>`,
     styles: [
         `
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item {
-            width: 190px !important;
+            width: 220px !important;
             height: 48px !important;
             line-height: 1 !important;
         }
@@ -40,7 +41,7 @@ import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components
     encapsulation: ViewEncapsulation.None
 })
 
-export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
+export class ThreeDotONTRenderer implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
@@ -52,7 +53,6 @@ export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
     ) { }
 
     agInit(params): void {
-        console.log(params);
         this.params = params;
         this.datashare.checkboxMessage.subscribe((checkbox) => {
             this.dataTest = checkbox;
@@ -64,11 +64,7 @@ export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
-    }
-
-    threedots() {
-        console.log(this.params)
+        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/View-Workorder"])
     }
 
     deleteWorkOrder(evt) {
@@ -83,15 +79,7 @@ export class ThreeDotWPTRenderer implements ICellRendererAngularComp {
     }
 
     copyToNewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"])
-    }
-
-    viewTask(evt) {
-        this.dialog.open(ViewTasksComponent,{
-            width: "750px",
-            height: "400px",
-            panelClass: "material-dialog-container",
-        });
+        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/Copy-To-New-Workorder"])
     }
 
     downloadReport(evt) {

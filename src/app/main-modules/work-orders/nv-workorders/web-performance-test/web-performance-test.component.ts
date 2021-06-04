@@ -485,6 +485,10 @@ export class WebPerformanceTestComponent implements OnInit {
     });
   }
 
+  onRowClicked(evt) {
+    console.log(evt);
+  }
+
                                       
   ngOnDestroy() {
     if (this.messageSubscription) {

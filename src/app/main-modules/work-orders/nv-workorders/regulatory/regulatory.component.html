@@ -1,5 +1,5 @@
-<div class="wpt-wrapper">
-    <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+<div class="regulatory-wrapper">
+    <mat-card class="regulatory-module-card h-100" style="padding: 0px;">
         <div class="header-right col">
             <div class="col-8 wpf-search" >
             <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show">
@@ -49,18 +49,18 @@
 
 <ng-template #woAssignment>
     <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+        <mat-card class="regulatory-module-card h-100" style="padding: 0px;">
 
             <ng-template [ngTemplateOutlet]="status"></ng-template>
 
-            <div class="w-100" style="height: 100%">
+            <div style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
                     headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData"
                     enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true"
                     toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                     [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
                     [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
-                    [debug]="true" (gridReady)="onReady($event)"
+                    [debug]="true" (gridReady)="onGridReady($event)"  (rowClicked)='onRowClicked($event)'
                     (selectionChanged)="selectionChanged($event)">
                 </ag-grid-angular>
                 <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
@@ -73,7 +73,7 @@
 
 <ng-template #pending>
     <div class="jcp-table-container" style="height: 100%;">
-        <mat-card class="wpt-module-card h-100" style="padding: 0px;">
+        <mat-card class="regulatory-module-card h-100" style="padding: 0px;">
 
             <ng-template [ngTemplateOutlet]="status"></ng-template>
 

@@ -36,6 +36,8 @@ export class WorkorderDetailsComponent implements OnInit {
   public sidenavBarStatus;
   public tableWidth;
   public gridApi;
+
+  public gridColumnApi;
   public gridPinned = false;
   public gridCore: GridCore;
   public gridOptions: GridOptions;
@@ -222,11 +224,8 @@ export class WorkorderDetailsComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
-    // this.gridColumnApi = params.columnApi;
-
-    if (this.gridOptions.api) {
-      this.gridOptions.api.sizeColumnsToFit();
-    }
+    this.gridColumnApi = params.columnApi;
+    params.api.paginationGoToPage(4);  
   }
 
 

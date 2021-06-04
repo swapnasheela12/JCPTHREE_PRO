@@ -1,36 +1,53 @@
-$border-color: #e0e0e0;
-$blueactive-color: #0078D7;
-$blueactive-color: #E5F0FC;
-$border-color: #d3d5d7;
-$md-primary: #0070DB;
-$color-white: #ffffff;
-$color-grayBlue: #464d69;
 
-
-.regulatory-wrapper {
-    height: 99%;
-    .mat-tab-body-content {
-        overflow: hidden !important;
+    $border-color: #e0e0e0;
+    $blueactive-color: #0078D7;
+    $blueactive-color: #E5F0FC;
+    $border-color: #d3d5d7;
+    $md-primary: #0070DB;
+    $color-white: #ffffff;
+    $color-grayBlue: #464d69;
+    
+    
+    .trai-call-plan-container {
+        height: 99%;
+        .mat-tab-body-content {
+            overflow: hidden !important;
+        }
+        .header-right {
+            width: 50%;
+            position: absolute;
+            right: 0;
+        }
+        .create-wo {
+            position: absolute;
+            top: 12px;
+            padding: 0 10px;
+        }
+        .wpf-search {
+            display: inline-block; 
+            position:relative; 
+            top: 5px;
+        }
+        .call-plan {
+            height: 50px;
+            top: 12px;
+        }
+        .trai-label {
+            font-family: Lato bold;
+            font-size: 15px;
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+            padding: 20px;
+        }
     }
-    .header-right {
-        width: 50%;
-        position: absolute;
-        right: 0;
+    .space-around {
+        padding: 20px;
     }
-    .create-wo {
-        position: absolute;
-        top: 12px;
-        padding: 0 10px;
-    }
-    .wpf-search {
-        display: inline-block; 
-        position:relative; 
-        top: 5px;
-    }
-    .regulatory-module-card {
+    .trai-module-card {
         box-shadow: none !important;
         padding: 0  !important;
-        .regulatory-toolbar {
+        .wpt-toolbar {
             min-height: 54px;
             &.mat-toolbar {
                 background: white;
@@ -52,7 +69,7 @@ $color-grayBlue: #464d69;
                             font-family: lato bold;
                         }
                     }
-                    .regulatory-flex-item {
+                    .wpt-flex-item {
                         height: 50px;
                         >mat-form-field {
                             .mat-form-field-wrapper {
@@ -172,7 +189,52 @@ $color-grayBlue: #464d69;
             top: 19px;
         }
     }
-        
+    
+    :host ::ng-deep .wpt-wrapper {
+        .wpt-module-card {
+            .header-right {
+                mat-form-field {
+                    .mat-form-field-wrapper {
+                        padding-bottom: 0 !important;
+                        .mat-form-field-flex {
+                            .mat-form-field-infix  {
+                                top: -19px !important;
+                                padding: 0.7000em 0 !important;
+                                >input {
+                                    font-family: lato normal;
+                                    font-size: 16px;
+                                }
+                                mat-icon {
+                                    bottom: -18px !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    :host ::ng-deep .wpt-wrapper {
+        .td-tab-details {
+            .td-tabs {
+                .td-tab-group {
+                    .mat-tab-body-wrapper {
+                        > mat-tab-body {
+                            overflow-y: hidden;
+                            >div {
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                    mat-tab-header {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+    }
+    
     .workorder-filter {
         background: transparent;
         position: absolute;
@@ -182,7 +244,7 @@ $color-grayBlue: #464d69;
         font-size: 18px;
         color: #7E7E7E;
     }
-
+    
     .mat-icon-not-started  {
         background: #000000;
         opacity: 40%;
@@ -201,7 +263,7 @@ $color-grayBlue: #464d69;
             color: white;
         }
     }
-
+    
     .mat-icon-all  {
         background: #00BCD6;
         font-size: 48px;
@@ -219,7 +281,7 @@ $color-grayBlue: #464d69;
             color: white;
         }
     }
-
+    
     .mat-icon-in-progress {
         background: #F8C93A;
         font-size: 48px;
@@ -237,7 +299,7 @@ $color-grayBlue: #464d69;
             color: white;
         }
     }
-
+    
     .mat-icon-completed  {
         background: #60DD5C;
         font-size: 48px;
@@ -255,50 +317,3 @@ $color-grayBlue: #464d69;
             color: white;
         }
     }
-}
-
-
-:host ::ng-deep .regulatory-wrapper {
-    .regulatory-module-card {
-        .header-right {
-            mat-form-field {
-                .mat-form-field-wrapper {
-                    padding-bottom: 0 !important;
-                    .mat-form-field-flex {
-                        .mat-form-field-infix  {
-                            top: -19px !important;
-                            padding: 0.7000em 0 !important;
-                            >input {
-                                font-family: lato normal;
-                                font-size: 16px;
-                            }
-                            mat-icon {
-                                bottom: -18px !important;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-:host ::ng-deep .regulatory-wrapper {
-    .td-tab-details {
-        .td-tabs {
-            .td-tab-group {
-                .mat-tab-body-wrapper {
-                    > mat-tab-body {
-                        overflow-y: hidden;
-                        >div {
-                            overflow: hidden;
-                        }
-                    }
-                }
-                mat-tab-header {
-                    width: 50%;
-                }
-            }
-        }
-    }
-}

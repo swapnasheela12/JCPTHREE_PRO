@@ -1,0 +1,57 @@
+<div class="trai-call-plan-container">
+  <mat-card class="trai-module-card h-100" style="padding: 0px;">
+    <div fxLayout="row wrap" fxLayoutGap="10px" >
+      <div class="trai-label" fxFlex="15">
+        Call Plan(s)
+      </div>
+      <div fxFlex="45">
+        <mat-form-field fxFlex="50" class="call-plan">
+          <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Reason for Change" 
+              panelClass="selectMenuPanel" [(value)]="callPlanSelected">
+              <input matInput [(ngModel)]="searchCallPlan" autocomplete="off" [ngModelOptions]="{standalone: true}" 
+              placeholder="Search..." style="height: 48px !important;padding-left:15px">
+              <mat-option *ngFor="let callPlan of callPlanList" [value]="callPlan.value">
+                  {{callPlan.viewValue}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      </div>
+      <div class="wpf-search" fxFlex="30">
+        <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show">
+          <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
+        </mat-icon>
+
+        <mat-form-field class="w-100"  style="height: 55px;" *ngIf="show">
+          <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+          <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+            <span class="zmdi zmdi-close"></span>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+      <button class="workorder-filter" fxFlex="10" (click)="openFileUpload()">
+        <span class="ic ic-icon-38"></span>
+      </button>
+    </div>
+
+
+    <div class="td-tab-details p-0" style="height: calc(100% - 70px);">
+
+      <div class="td-tabs h-100">
+          <ag-grid-angular style="width: 100%; height: 87%;" class="ag-theme-material ag-jcp3" rowHeight="48"
+            headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+            enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
+            toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true"
+            [paginationPageSize]="PaginationPageSize" [pagination]="true" [suppressPaginationPanel]="true"
+            [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
+             (gridReady)="onReady($event)">
+          </ag-grid-angular>
+          <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+            [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+            [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+  </mat-card>
+
+</div>
