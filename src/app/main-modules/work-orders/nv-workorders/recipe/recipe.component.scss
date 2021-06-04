@@ -7,7 +7,7 @@ $color-white: #ffffff;
 $color-grayBlue: #464d69;
 
 
-.wpt-wrapper {
+.recipe-wrapper {
     height: 99%;
     .mat-tab-body-content {
         overflow: hidden !important;
@@ -27,155 +27,156 @@ $color-grayBlue: #464d69;
         position:relative; 
         top: 5px;
     }
-}
-.wpt-module-card {
-    box-shadow: none !important;
-    padding: 0  !important;
-    .wpt-toolbar {
-        min-height: 54px;
-        &.mat-toolbar {
-            background: white;
-            height: 60px;
-            padding: 0px;
+    
+    .recipe-module-card {
+        box-shadow: none !important;
+        padding: 0  !important;
+        .recipe-toolbar {
             min-height: 54px;
-            color: $color-grayBlue;
-            .mat-toolbar-row {
+            &.mat-toolbar {
+                background: white;
+                height: 60px;
+                padding: 0px;
+                min-height: 54px;
                 color: $color-grayBlue;
-                mat-icon {
-                    font-size: 18px;
+                .mat-toolbar-row {
                     color: $color-grayBlue;
-                }
-                .wo-header {
-                    margin-left: 13px;
-                    .header {
-                        font-size: 15px;
+                    mat-icon {
+                        font-size: 18px;
                         color: $color-grayBlue;
+                    }
+                    .wo-header {
+                        margin-left: 13px;
+                        .header {
+                            font-size: 15px;
+                            color: $color-grayBlue;
+                            font-family: lato bold;
+                        }
+                    }
+                    .recipe-flex-item {
+                        height: 50px;
+                        >mat-form-field {
+                            .mat-form-field-wrapper {
+                                padding-bottom: 0px !important;
+                            }
+                        }
+                    }
+                
+                    .Sub-header {
+                        color: $color-grayBlue;
+                    }
+                }
+            }
+        }
+    }
+
+    .td-flex-container {
+        height: 85px;
+        margin: 10px !important;
+        > div {
+            border: 1px solid #E6E6E6;
+        &.wpf-all-task {
+            .wpf-task-status {
+                .task-status {
+                    font-size: 12px;
+                    text-align: center;
+                    > mat-icon {
+                        display: inline-block;
+                        position: relative;
+                    }
+                    >div {
+                        margin-top: -6px;
+                        font-size:  12px;
                         font-family: lato bold;
                     }
                 }
-                .wpt-flex-item {
-                    height: 50px;
-                    >mat-form-field {
-                        .mat-form-field-wrapper {
-                            padding-bottom: 0px !important;
-                        }
+            }
+            .wpf-task-count {
+                margin: 11px 0;
+                .task-count {
+                    text-align: center;
+                    font-family: lato bold;
+                    font-size: 32px;
+                    letter-spacing: 0px;
+                    color: #464D69;
+                }
+                .task-count-status {
+                    text-align: center;
+                    color: #464D69;
+                    font-family: lato medium;
+                    font-size: 12px;
+                }
+            }   
+        }
+        &.wpf-not-started {
+            .wpf-task-status {
+                .task-status {
+                    font-size: 12px;
+                    text-align: center;
+                    > mat-icon {
+                        display: inline-block;
+                        position: relative;
+                    }
+                    >div {
+                        margin-top: -6px;
+                        font-size:  12px;
+                        font-family: lato bold;
                     }
                 }
-               
-                .Sub-header {
-                    color: $color-grayBlue;
-                }
             }
-        }
-    }
-}
-
-.td-flex-container {
-    height: 85px;
-    margin: 10px !important;
-    > div {
-        border: 1px solid #E6E6E6;
-    &.wpf-all-task {
-        .wpf-task-status {
-            .task-status {
-                font-size: 12px;
-                text-align: center;
-                > mat-icon {
-                    display: inline-block;
-                    position: relative;
-                }
-                >div {
-                    margin-top: -6px;
-                    font-size:  12px;
+            .not-at-risk {
+                margin: 11px 0;
+                border-right:1px solid #E6E6E6;
+                .task-count {
+                    text-align: center;
                     font-family: lato bold;
+                    font-size: 32px;
+                    letter-spacing: 0px;
+                    color: #464D69;
                 }
-            }
-        }
-        .wpf-task-count {
-            margin: 11px 0;
-            .task-count {
-                text-align: center;
-                font-family: lato bold;
-                font-size: 32px;
-                letter-spacing: 0px;
-                color: #464D69;
-            }
-            .task-count-status {
-                text-align: center;
-                color: #464D69;
-                font-family: lato medium;
-                font-size: 12px;
-            }
-        }   
-    }
-    &.wpf-not-started {
-        .wpf-task-status {
-            .task-status {
-                font-size: 12px;
-                text-align: center;
-                > mat-icon {
-                    display: inline-block;
-                    position: relative;
+                .task-count-status {
+                    text-align: center;
+                    color: #464D69;
+                    font-family: lato medium;
+                    font-size: 12px;
                 }
-                >div {
-                    margin-top: -6px;
-                    font-size:  12px;
+            } 
+            .at-risk {
+                margin: 11px 0;
+                .task-count {
+                    text-align: center;
                     font-family: lato bold;
+                    font-size: 32px;
+                    letter-spacing: 0px;
+                    color: #F32323;
+                }
+                .task-count-status {
+                    text-align: center;
+                    color: #F32323;
+                    font-family: lato medium;
+                    font-size: 12px;
                 }
             }
-        }
-        .not-at-risk {
-            margin: 11px 0;
-            border-right:1px solid #E6E6E6;
-            .task-count {
-                text-align: center;
-                font-family: lato bold;
-                font-size: 32px;
-                letter-spacing: 0px;
-                color: #464D69;
-            }
-            .task-count-status {
-                text-align: center;
-                color: #464D69;
-                font-family: lato medium;
-                font-size: 12px;
-            }
-        } 
-        .at-risk {
-            margin: 11px 0;
-            .task-count {
-                text-align: center;
-                font-family: lato bold;
-                font-size: 32px;
-                letter-spacing: 0px;
-                color: #F32323;
-            }
-            .task-count-status {
-                text-align: center;
-                color: #F32323;
-                font-family: lato medium;
-                font-size: 12px;
-            }
-        }
-    }  
+        }  
 
+        }
     }
-}
 
-.task-search{
-    position: absolute;
-    right: 0;
-    width: 30%;
-    display: inline-block;
-    .auto-assign-btn {
+    .task-search{
         position: absolute;
-        right: 23px;
-        top: 19px;
+        right: 0;
+        width: 30%;
+        display: inline-block;
+        .auto-assign-btn {
+            position: absolute;
+            right: 23px;
+            top: 19px;
+        }
     }
 }
 
-:host ::ng-deep .wpt-wrapper {
-    .wpt-module-card {
+:host ::ng-deep .recipe-wrapper {
+    .recipe-module-card {
         .header-right {
             mat-form-field {
                 .mat-form-field-wrapper {
@@ -197,9 +198,92 @@ $color-grayBlue: #464d69;
             }
         }
     }
+
+    .workorder-filter {
+        background: transparent;
+        position: absolute;
+        right: 22px;
+        border: none;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #7E7E7E;
+    }
+    
+    .mat-icon-not-started  {
+        background: #000000;
+        opacity: 40%;
+        font-size: 48px;
+        border-radius: 39px;
+        height: 38px;
+        width: 38px;
+        box-shadow: 0px 0px 0px 4px #888888;
+        margin-top: 12px;
+        > span {
+            font-size: 16px;
+            vertical-align: top;
+            line-height: 2.5;
+        }
+        >span:before {
+            color: white;
+        }
+    }
+    
+    .mat-icon-all  {
+        background: #00BCD6;
+        font-size: 48px;
+        border-radius: 39px;
+        height: 38px;
+        width: 38px;
+        box-shadow: 0px 0px 0px 4px #CCDADB;
+        margin-top: 12px;
+        > span {
+            font-size: 16px;
+            vertical-align: top;
+            line-height: 2.5;
+        }
+        >span:before {
+            color: white;
+        }
+    }
+    
+    .mat-icon-in-progress {
+        background: #F8C93A;
+        font-size: 48px;
+        border-radius: 39px;
+        height: 38px;
+        width: 38px;
+        box-shadow: 0px 0px 0px 4px #EADDAE;
+        margin-top: 12px;
+        > span {
+            font-size: 16px;
+            vertical-align: top;
+            line-height: 2.5;
+        }
+        >span:before {
+            color: white;
+        }
+    }
+    
+    .mat-icon-completed  {
+        background: #60DD5C;
+        font-size: 48px;
+        border-radius: 39px;
+        height: 38px;
+        width: 38px;
+        box-shadow: 0px 0px 0px 4px #BAE3BA;
+        margin-top: 12px;
+        > span {
+            font-size: 16px;
+            vertical-align: top;
+            line-height: 2.5;
+        }
+        >span:before {
+            color: white;
+        }
+    }
 }
 
-:host ::ng-deep .wpt-wrapper {
+:host ::ng-deep .recipe-wrapper {
     .td-tab-details {
         .td-tabs {
             .td-tab-group {
@@ -216,88 +300,5 @@ $color-grayBlue: #464d69;
                 }
             }
         }
-    }
-}
-
-.workorder-filter {
-    background: transparent;
-    position: absolute;
-    right: 22px;
-    border: none;
-    margin-top: 20px;
-    font-size: 18px;
-    color: #7E7E7E;
-}
-
-.mat-icon-not-started  {
-    background: #000000;
-    opacity: 40%;
-    font-size: 48px;
-    border-radius: 39px;
-    height: 38px;
-    width: 38px;
-    box-shadow: 0px 0px 0px 4px #888888;
-    margin-top: 12px;
-    > span {
-        font-size: 16px;
-        vertical-align: top;
-        line-height: 2.5;
-    }
-    >span:before {
-        color: white;
-    }
-}
-
-.mat-icon-all  {
-    background: #00BCD6;
-    font-size: 48px;
-    border-radius: 39px;
-    height: 38px;
-    width: 38px;
-    box-shadow: 0px 0px 0px 4px #CCDADB;
-    margin-top: 12px;
-    > span {
-        font-size: 16px;
-        vertical-align: top;
-        line-height: 2.5;
-    }
-    >span:before {
-        color: white;
-    }
-}
-
-.mat-icon-in-progress {
-    background: #F8C93A;
-    font-size: 48px;
-    border-radius: 39px;
-    height: 38px;
-    width: 38px;
-    box-shadow: 0px 0px 0px 4px #EADDAE;
-    margin-top: 12px;
-    > span {
-        font-size: 16px;
-        vertical-align: top;
-        line-height: 2.5;
-    }
-    >span:before {
-        color: white;
-    }
-}
-
-.mat-icon-completed  {
-    background: #60DD5C;
-    font-size: 48px;
-    border-radius: 39px;
-    height: 38px;
-    width: 38px;
-    box-shadow: 0px 0px 0px 4px #BAE3BA;
-    margin-top: 12px;
-    > span {
-        font-size: 16px;
-        vertical-align: top;
-        line-height: 2.5;
-    }
-    >span:before {
-        color: white;
     }
 }
