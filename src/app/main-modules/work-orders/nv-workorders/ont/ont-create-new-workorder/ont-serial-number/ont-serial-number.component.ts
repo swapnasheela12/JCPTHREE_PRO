@@ -13,7 +13,9 @@ export class OntSerialNumberComponent implements OnInit {
     "yogeshwar.bargal@ril.com",
     "Priyanshi.asawara@ril.com",
     "prempraksh.b@ril.com",
-    "Rohit.malviya@ril.com"
+    "Rohit.malviya@ril.com",
+    "Rohit.malviya@ril.com",
+    "Rohit.malviya@ril.com",
   ];
   showWPTWO: boolean = false;
   showRecipeWO: boolean = false;

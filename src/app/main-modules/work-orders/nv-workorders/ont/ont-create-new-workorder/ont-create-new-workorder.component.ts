@@ -202,6 +202,9 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
 
   filterMyOptions(item) {
     this.rowData = item;
+    this.selectedRecipeCount = this.typeMultiCtrl.value.length;
+    console.log("typeMultiCtrl", this.typeMultiCtrl.value.length);
+    //this.getSelectDeviceAndRecipeCount();
   }
 
   stepperReportW() {
