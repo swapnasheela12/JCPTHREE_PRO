@@ -87,6 +87,9 @@ $color-grayBlue: #464d69;
                         margin-top: -6px;
                         font-size:  12px;
                         font-family: lato bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
@@ -104,6 +107,9 @@ $color-grayBlue: #464d69;
                     color: #464D69;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }   
         }
@@ -120,6 +126,9 @@ $color-grayBlue: #464d69;
                         margin-top: -6px;
                         font-size:  12px;
                         font-family: lato bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
@@ -138,6 +147,9 @@ $color-grayBlue: #464d69;
                     color: #464D69;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             } 
             .at-risk {
@@ -154,6 +166,9 @@ $color-grayBlue: #464d69;
                     color: #F32323;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }  

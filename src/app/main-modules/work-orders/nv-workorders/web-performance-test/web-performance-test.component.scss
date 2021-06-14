@@ -21,6 +21,9 @@ $color-grayBlue: #464d69;
         position: absolute;
         top: 12px;
         padding: 0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .wpf-search {
         display: inline-block; 
@@ -87,6 +90,9 @@ $color-grayBlue: #464d69;
                         margin-top: -6px;
                         font-size:  12px;
                         font-family: lato bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
@@ -104,6 +110,9 @@ $color-grayBlue: #464d69;
                     color: #464D69;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }   
         }
@@ -120,6 +129,9 @@ $color-grayBlue: #464d69;
                         margin-top: -6px;
                         font-size:  12px;
                         font-family: lato bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }
@@ -138,6 +150,9 @@ $color-grayBlue: #464d69;
                     color: #464D69;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             } 
             .at-risk {
@@ -154,6 +169,9 @@ $color-grayBlue: #464d69;
                     color: #F32323;
                     font-family: lato medium;
                     font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }  
@@ -170,51 +188,6 @@ $color-grayBlue: #464d69;
             position: absolute;
             right: 23px;
             top: 19px;
-        }
-    }
-    
-    :host ::ng-deep .wpt-wrapper {
-        .wpt-module-card {
-            .header-right {
-                mat-form-field {
-                    .mat-form-field-wrapper {
-                        padding-bottom: 0 !important;
-                        .mat-form-field-flex {
-                            .mat-form-field-infix  {
-                                top: -19px !important;
-                                padding: 0.7000em 0 !important;
-                                >input {
-                                    font-family: lato normal;
-                                    font-size: 16px;
-                                }
-                                mat-icon {
-                                    bottom: -18px !important;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    :host ::ng-deep .wpt-wrapper {
-        .td-tab-details {
-            .td-tabs {
-                .td-tab-group {
-                    .mat-tab-body-wrapper {
-                        > mat-tab-body {
-                            overflow-y: hidden;
-                            >div {
-                                overflow: hidden;
-                            }
-                        }
-                    }
-                    mat-tab-header {
-                        width: 50%;
-                    }
-                }
-            }
         }
     }
     
@@ -298,6 +271,51 @@ $color-grayBlue: #464d69;
         }
         >span:before {
             color: white;
+        }
+    }
+}
+
+:host ::ng-deep .wpt-wrapper {
+    .wpt-module-card {
+        .header-right {
+            mat-form-field {
+                .mat-form-field-wrapper {
+                    padding-bottom: 0 !important;
+                    .mat-form-field-flex {
+                        .mat-form-field-infix  {
+                            top: -19px !important;
+                            padding: 0.7000em 0 !important;
+                            >input {
+                                font-family: lato normal;
+                                font-size: 16px;
+                            }
+                            mat-icon {
+                                bottom: -18px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:host ::ng-deep .wpt-wrapper {
+    .td-tab-details {
+        .td-tabs {
+            .td-tab-group {
+                .mat-tab-body-wrapper {
+                    > mat-tab-body {
+                        overflow-y: hidden;
+                        >div {
+                            overflow: hidden;
+                        }
+                    }
+                }
+                mat-tab-header {
+                    width: 50%;
+                }
+            }
         }
     }
 }
