@@ -265,7 +265,6 @@ export class RegulatoryComponent implements OnInit {
   taskCompletionFunc(params) {
      var status = params.data.taskCompleted;
      var width = parseInt(status);
-     console.log("width", width)
     var barColor = '';
     var barColor = '';
     if (status == 100) {
@@ -290,7 +289,6 @@ export class RegulatoryComponent implements OnInit {
 
   dateFunc(params) {
     var status = params.value;
-    console.log("status", status);
     return '<input type="date" style="border: transparent; border-bottom: 1px solid gray;width: 100%;height: 32px;" value="' + status + '">';
   }
 
@@ -369,7 +367,6 @@ export class RegulatoryComponent implements OnInit {
   }
 
   onCellClicked(event: any) {
-    console.log('cell', event);
     if (event.value) {
       this.datashare.changeMessage({ status: event.data.status })
       this.router.navigate(["/JCP/Modules/Network-Deployment/Plan-To-Build/gNodeB/Task-Details/Sap-Id-Details"]);
@@ -381,8 +378,6 @@ export class RegulatoryComponent implements OnInit {
       selectedDateTime: {
         startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
         endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
-        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
       },
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,

@@ -161,11 +161,6 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void {
-    console.log(this.thirdFormGroup.get('selectedDateTime').value);
-    this.thirdFormGroup.setValue({'selectedDateTime': {
-      startDate: moment().subtract(2, 'days'),
-        endDate: moment().subtract(2, 'days'),
-    }})
   }
 
   ngAfterViewInit(){
