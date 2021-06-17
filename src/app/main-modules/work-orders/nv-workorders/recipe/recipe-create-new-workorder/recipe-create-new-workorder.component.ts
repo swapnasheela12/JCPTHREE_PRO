@@ -225,8 +225,10 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
       this.selectedRecipeCopyAndViewWO();
-      this.selectedDeviceCopyAndViewWO();
       this.getSelectDeviceAndRecipeCount();
+      //to set device grid to empty during copy to new wo
+      this.rowDataSelectDevice = [];
+      this.selectedDeviceCopyAndViewWO();
     } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
