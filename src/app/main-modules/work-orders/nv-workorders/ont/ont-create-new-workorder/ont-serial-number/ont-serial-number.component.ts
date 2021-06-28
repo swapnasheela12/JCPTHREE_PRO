@@ -33,7 +33,7 @@ export class OntSerialNumberComponent implements OnInit {
 
   clickYes(): void {
     this.dialogRef.close();
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/View-Workorder"]);
+    this.router.navigate(["/JCP/Work-Orders/NV-Workorders/ONT-Workorders/View-Workorder"]);
   }
 
 }

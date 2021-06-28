@@ -8,7 +8,7 @@ import { ViewTasksComponent } from '../web-performance-test/view-tasks/view-task
 import { RecipeViewTasksComponent } from '../recipe/recipe-view-tasks/recipe-view-tasks.component';
 
 @Component({
-    selector: 'threeDot-ont-button-renderer',
+    selector: 'threeDot-ont-renderer',
     template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
@@ -64,7 +64,7 @@ export class ThreeDotONTRenderer implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/View-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/ONT-Workorders/View-Workorder"])
     }
 
     deleteWorkOrder(evt) {
@@ -79,7 +79,7 @@ export class ThreeDotONTRenderer implements ICellRendererAngularComp {
     }
 
     copyToNewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/Copy-To-New-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/ONT-Workorders/Copy-To-New-Workorder"])
     }
 
     downloadReport(evt) {

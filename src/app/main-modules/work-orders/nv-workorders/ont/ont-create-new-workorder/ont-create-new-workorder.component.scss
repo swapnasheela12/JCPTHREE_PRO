@@ -358,7 +358,16 @@ $color-grayBlue: #464d69;
         font-size: 14px;
     }
     .select-recipe {
-        padding: 20px 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #D3D5DC;
+        > .recipe {
+            padding:0 0 0px 25px!important;
+        }
+    }
+    .workorder-id {
+        margin: 15px 0;
+    }
+    .border-bottom {
         border-bottom: 1px solid #D3D5DC;
     }
 }

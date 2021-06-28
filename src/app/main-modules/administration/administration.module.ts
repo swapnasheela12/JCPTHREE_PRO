@@ -88,18 +88,35 @@ import { OdscConfigTemplateComponent } from './module-management/network-deploym
 import { OdscStatusTemplateComponent } from './module-management/network-deployment/plan-to-build/odsc/status-template/odsc-status-template.component';
 import { OdscCreateSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/odsc-create-sla-configuration.component';
 import { OdscHistoryComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/history/odsc-history.component';
+import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-qos-call-plan/trai-qos-call-plan.component';
 
 @NgModule({
-  declarations: [dropdownMilestoneRendererComponent,
-    dropdownTaskRendererComponent, ReasonTemplatesComponent, SiteSlaConfigurationComponent,
-    ConfigTemplateComponent, StatusTemplateComponent, CreateSlaConfigurationComponent,
-    ThreeDotP2BRenderer, NpQueryAdministrationComponent,
-    CreateQueryPageComponent, QueryAdministrationPopupComponent, NpQueryThreeDotRendererComponent,
-    NpQaSaveQueryPopupComponent, HistoryComponent, CreateReasonComponent,
-    UploadDocumentsComponent, inputP2BRendererComponent,
-    OdscReasonTemplatesComponent, OdscSiteSlaConfigurationComponent,
-    OdscConfigTemplateComponent, OdscStatusTemplateComponent, OdscCreateSlaConfigurationComponent
-    ,OdscHistoryComponent],
+  declarations: [
+    dropdownMilestoneRendererComponent,
+    dropdownTaskRendererComponent,
+    ReasonTemplatesComponent,
+    SiteSlaConfigurationComponent,
+    ConfigTemplateComponent,
+    StatusTemplateComponent,
+    CreateSlaConfigurationComponent,
+    ThreeDotP2BRenderer,
+    NpQueryAdministrationComponent,
+    CreateQueryPageComponent,
+    QueryAdministrationPopupComponent,
+    NpQueryThreeDotRendererComponent,
+    NpQaSaveQueryPopupComponent,
+    HistoryComponent,
+    CreateReasonComponent,
+    UploadDocumentsComponent,
+    inputP2BRendererComponent,
+    OdscReasonTemplatesComponent,
+    OdscSiteSlaConfigurationComponent,
+    OdscConfigTemplateComponent,
+    OdscStatusTemplateComponent,
+    OdscCreateSlaConfigurationComponent,
+    OdscHistoryComponent,
+    TraiQosCallPlanComponent
+  ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,

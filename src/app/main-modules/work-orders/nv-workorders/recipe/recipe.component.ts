@@ -163,7 +163,7 @@ export class RecipeComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/workorder/nv-workorder/nv-recipe.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/recipe/nv-recipe.json')
       .subscribe(data => {
         this.rowData = data;
       });

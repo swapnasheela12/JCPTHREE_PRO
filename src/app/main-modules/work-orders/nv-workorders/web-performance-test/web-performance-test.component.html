@@ -16,7 +16,7 @@
         </div>
     
             <button class="col-2 create-wo" mat-raised-button color="primary"
-                routerLink="/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder">
+                routerLink="/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Create-New-Workorder">
                 Create WO
             </button>
             <button class="workorder-filter col-1" (click)="openWOFilter()">
@@ -30,11 +30,11 @@
             <div class="td-tabs h-100">
 
                 <mat-tab-group class="td-tab-group h-100" (selectedTabChange)="tabChanged($event);">
-                    <mat-tab label="WO Assignment">
+                    <mat-tab label="WO Assignments">
                         <ng-container [ngTemplateOutlet]="myTask"></ng-container>
                     </mat-tab>
 
-                    <mat-tab label="Pending Review">
+                    <mat-tab label="Pending Reviews">
                         <ng-container [ngTemplateOutlet]="teamTask"></ng-container>
                     </mat-tab>
 

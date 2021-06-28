@@ -17,8 +17,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridApi } from '@ag-grid-community/core';
 import { ThreeDotCreateNewRenderer } from '../web-performance-test/threedot-create-new-renderer.component';
 import { WoFilterComponent } from '../web-performance-test/wo-filter/wo-filter.component';
-import { ThreeDotRecipeRenderer } from '../recipe/threedot-recipe-renderer.component';
-import { ThreeDotONTRenderer } from './threedot-recipe-renderer.component';
+import { ThreeDotONTRenderer } from './threedot-ont-renderer.component';
+import { ThreeDotAssignmentONTRenderer } from './threedot-assignment-ont-renderer.component';
+
 declare var $: any;
 
 @Component({
@@ -49,6 +50,7 @@ export class OntComponent implements OnInit {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
+    dropdownAssignmentRenderer: ThreeDotAssignmentONTRenderer,
     dropdownRenderer: ThreeDotONTRenderer,
     inputRenderer: inputRendererComponent,
     drpRenderer: ThreeDotCreateNewRenderer
@@ -161,7 +163,7 @@ export class OntComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/workorder/nv-workorder/nv-recipe.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/ont/ont.json')
       .subscribe(data => {
         this.rowData = data;
       });
@@ -221,8 +223,13 @@ export class OntComponent implements OnInit {
         width: 200
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "",
-        cellRenderer: 'dropdownRenderer',
+        cellRenderer: 'dropdownAssignmentRenderer',
         width: 100,
         pinned: 'right'
       }
@@ -274,6 +281,11 @@ export class OntComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "",
@@ -329,6 +341,11 @@ export class OntComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "",

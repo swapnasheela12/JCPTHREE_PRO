@@ -32,7 +32,7 @@ export const SELECT_RECIPE_LIST = [
   templateUrl: './recipe-create-new-workorder.component.html',
   styleUrls: ['./recipe-create-new-workorder.component.scss']
 })
-export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit {
+export class RecipeCreateNewWorkorderComponent implements OnInit {
   templateType = ["Page Load Test", "Web Performance Test"];
 
   simType = ["Single Sim WO", "Dual Sim WO"]
@@ -111,6 +111,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     deleteRenderer: DeleteRendererComponent,
     editRenderer: EditRendererComponent
   };
+  rowClassRules;
   
   showFileUploadwidget: boolean = false;
   uploadedImg = [];
@@ -135,13 +136,13 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   sec:any = [
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
   ampm = ["AM", "PM"]
@@ -151,15 +152,7 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
-    //this.rowSelection = 'multiple';
     this.createColumnDefs();
-    //set default value of select recipe
-    this.httpClient.get("assets/data/workorder/nv-workorder/select-recipe.json").subscribe((data) => {
-      this.rowData = data;
-    })
-    this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
-      this.rowDataSelectDevice = data;
-    });
 
     this.liveViolationReportForm = new FormGroup({
       'typeMultiCtrl': new FormControl('')
@@ -203,7 +196,9 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
   }
 
   filterMyOptions(item) {
+    console.log(item);
     this.rowData = item;
+    this.selectedRecipeCount = this.rowData.length;
   }
 
   stepperReportW() {
@@ -220,16 +215,27 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
   }
 
   ngOnInit(): void {
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
+    if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
+      this.rowDataSelectDevice = [];
+      this.selectedRecipeCopyAndViewWO();
+      // this.gridOptionsSelectDevice.getRowStyle = () => {
+      //   if (this.showCreateNewWorkorder) {
+      //     return { color: 'black' }
+      //   }
+      // }
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
       this.selectedRecipeCopyAndViewWO();
-      this.getSelectDeviceAndRecipeCount();
       //to set device grid to empty during copy to new wo
       this.rowDataSelectDevice = [];
+      this.gridOptionsSelectDevice.getRowStyle = () => {
+        if (this.showCopyToNewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
       this.selectedDeviceCopyAndViewWO();
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"){
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
       this.columnDefsSelectDevice = [
@@ -241,38 +247,32 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
       ];
       this.selectedRecipeCopyAndViewWO();
       this.selectedDeviceCopyAndViewWO();
-      this.selectedDeviceCount = this.rowDataSelectDevice.length;
+      this.gridOptionsSelectDevice.getRowStyle = () => {
+        if (this.showViewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
+      
     }
+   // this.displayGridRow();
   }
 
-  ngAfterViewInit(){
-    this.getSelectDeviceAndRecipeCount();
-  }
 
-  getSelectDeviceAndRecipeCount () {
-    if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
-      this.selectedDeviceCount = 0;
-    } else {
-      this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
-    }
-    if(typeof(this.gridOptions.api.getDisplayedRowCount()) == undefined) {
-      this.selectedRecipeCount = 0;
-    } else {
-      this.selectedRecipeCount = this.gridOptions.api.getDisplayedRowCount();
-    }
-  }
 
   selectedRecipeCopyAndViewWO() {
     this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-recipe.json").subscribe((data) => {
       this.rowData = data;
+      this.selectedRecipeCount = this.rowData.length;
     })
   }  
 
   selectedDeviceCopyAndViewWO() {
     this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-device.json").subscribe((data) => {
-      this.rowDataSelectDevice = data;
+      this.rowDataSelectDevice= data;
+      this.selectedDeviceCount = this.rowDataSelectDevice.length;
     })
   }
+
 
   public createColumnDefs() {
     this.columnDefs = [
@@ -466,6 +466,6 @@ export class RecipeCreateNewWorkorderComponent implements OnInit, AfterViewInit 
   }                                                                                                                                                                                                                                                                                                  
 
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/"])
+    this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/"])
   }
 }

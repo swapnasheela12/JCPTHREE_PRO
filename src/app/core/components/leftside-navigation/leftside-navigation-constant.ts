@@ -2630,6 +2630,34 @@ const PLATFORM_DATA_INTEGRITY_LIST = [
     }
 ];
 
+const COVERAGE_PREDICTION_5G = [
+    {
+        name: '5G Coverage Prediction',
+        link: 'JCP/Modules/Network-Planning/RF-Planning/5G-Coverage-Prediction',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    },
+]
+
+const RF_PLANNING_LIST = [
+    {
+        name: 'RF Planning',
+        link: 'RF-Planning',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: COVERAGE_PREDICTION_5G
+    },
+]
+
 const PLATFORM_WORKORDERS_LIST = [
     {
         name: 'Analytics',
@@ -2902,6 +2930,30 @@ const ADMIN_NETVELOCITY_LIST = [
     {
         name: 'Algoritms',
         link: 'algorithms',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    },
+    {
+        name: 'Algoritms',
+        link: 'algorithms',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    },
+    {
+
+        name: "TRAI QoS Call Plan",
+        icon: "fas fa-user fa-3",
+        link: "/JCP/Administration/Module-Management/Net-Velocity/Trai-Qos-Call-Plan",
         eventName: 'sites-outdoor-esc',
         show: true,
         showSettings: true,
@@ -4280,19 +4332,6 @@ const MODULE_LIST_NET_VELOCITY = [
         showHeader: false,
         headerText: '',
         children: []
-    },
-    {
-
-        name: "TRAI QoS Call Plan",
-        icon: "fas fa-user fa-3",
-        link: "JCP/Modules/Net-Velocity/Trai-Qos-Call-Plan",
-        eventName: 'sites-outdoor-esc',
-        show: true,
-        showSettings: true,
-        checked: false,
-        showHeader: false,
-        headerText: '',
-        children: []
     }
 ];
 
@@ -5029,6 +5068,17 @@ const MODULES_LIST = [
         eventName: 'sites-outdoor-esc',
         show: true,
         children: NETWORK_AND_DEPLOYMENT
+    },
+    {
+        name: 'Network Planning',
+        link: 'Network-Planning',
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: RF_PLANNING_LIST
     }
 ];
 
@@ -5317,25 +5367,25 @@ const WORKORDERS_CMWORKORDERS_LIST = [
 const WORKORDERS_NVWORKORDERS_LIST = [
     {
         name: 'Web Performance Test',
-        link: 'JCP/Work-Orders/Nv-Workorders/Web-Performance-Test',
+        link: 'JCP/Work-Orders/NV-Workorders/Web-Performance-Test',
         eventName: 'workorders-web-performance-test',
         children: []
     },
     {
-        name: 'Regulatory Reporting Workorders',
-        link: 'JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting',
+        name: 'Regulatory Reporting',
+        link: 'JCP/Work-Orders/NV-Workorders/Regulatory-Reporting',
         eventName: 'workorders-regulatory-reporting',
         children: []
     },
     {
         name: 'Recipe Workorders',
-        link: 'JCP/Work-Orders/Nv-Workorders/Recipe-Workorders',
+        link: 'JCP/Work-Orders/NV-Workorders/Recipe-Workorders',
         eventName: 'recipe-workorders',
         children: []
     },
     {
         name: 'ONT Workorders',
-        link: 'JCP/Work-Orders/Nv-Workorders/ONT-Workorders',
+        link: 'JCP/Work-Orders/NV-Workorders/ONT-Workorders',
         eventName: 'ont-workorders',
         children: []
     }

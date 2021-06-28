@@ -22,11 +22,11 @@ export class WptModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, public dialog: MatDialog) {
     router.events.subscribe((url: any) => console.log(url));
   }
-
+  
   ngOnInit(): void {
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
+    if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Create-New-Workorder") {
       this.showRecipeWO = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Create-New-Workorder") {
       this.showWPTWO = true;
     }
   }
@@ -37,10 +37,10 @@ export class WptModalComponent implements OnInit {
 
   clickYes(): void {
     this.dialogRef.close();
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Create-New-Workorder") {
-      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"]);
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
-      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"]);
+    if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Create-New-Workorder") {
+      this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/View-Workorder"]);
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Create-New-Workorder") {
+      this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/View-Workorder"]);
     }
   }
 

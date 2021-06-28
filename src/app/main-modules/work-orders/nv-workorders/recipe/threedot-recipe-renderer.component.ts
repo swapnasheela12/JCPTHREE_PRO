@@ -71,7 +71,7 @@ export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/View-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/View-Workorder"])
     }
 
     deleteWorkOrder(evt) {
@@ -86,7 +86,7 @@ export class ThreeDotRecipeRenderer implements ICellRendererAngularComp {
     }
 
     copyToNewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Copy-To-New-Workorder"])
     }
 
     viewTask(evt) {

@@ -129,8 +129,18 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
   ) {
     this.dataSource.data = LAYERS_DATA;
     this.datashare.extraLayerObject.subscribe((data: any) => {
+      console.log(data);
       if (Object.keys(data).length !== 0) {
         if (data[0].name == 'nominal-validation' && data[0].display == 'create') {
+          for (let i = 0; i < this.treeControl.dataNodes.length; i++) {
+            if (this.treeControl.dataNodes[i].name == 'My Layers') {
+              this.treeControl.expand(this.treeControl.dataNodes[i])
+            }
+            if (this.treeControl.dataNodes[i].name == 'Polygons') {
+              this.treeControl.expand(this.treeControl.dataNodes[i])
+            }
+          }
+        } else if (data[0].name == 'coverage-prediction' && data[0].display == 'create') {
           for (let i = 0; i < this.treeControl.dataNodes.length; i++) {
             if (this.treeControl.dataNodes[i].name == 'My Layers') {
               this.treeControl.expand(this.treeControl.dataNodes[i])
@@ -150,6 +160,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
           this.dataSource.data = [];
           this.dataSource.data = dataChange;
         }
+
           if(dataChange[0].children[0].children[0].children[0] != undefined &&
             (
               dataChange[0].children[0].children[0].children[0].eventName == 'nominal-capacity'
@@ -162,6 +173,22 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             dataChange[0].children[0].children[0].checked = true;
             this.showHeaderDisplay(dataChange[0].children[0].children[0], 'auto');
           }
+          else if(dataChange[0].children[0].children[0].children[0] != undefined &&
+            (
+              dataChange[0].children[0].children[0].children[0].eventName == 'coverage-prediction'
+            )){
+            dataChange[0].children[0].children[0].children[0].checked = true;
+            this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
+          }
+
+          // if(dataChange[0].children[0].children[0].children[0] != undefined &&
+          //   (
+          //     dataChange[0].children[0].children[0].children[0].eventName == 'coverage-prediction'
+          //   )){
+          //   dataChange[0].children[0].children[0].children[0].checked = true;
+          //   this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
+          // }
+
           this.dataSource.data = dataChange;
           if(
             dataChange[0].children[0].children[0].children[0] != undefined &&
@@ -177,6 +204,13 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             ) {
             this.treeControl.expand(this.treeControl.dataNodes[0]);
             this.treeControl.expand(this.treeControl.dataNodes[1]);
+          } else if(
+            dataChange[0].children[0].children[0] != undefined && (dataChange[0].children[0].children[0].eventName == 'nominal-generation'
+            || dataChange[0].children[0].children[0].eventName == 'coverage-prediction')
+            ) {
+            this.treeControl.expand(this.treeControl.dataNodes[0]);
+            this.treeControl.expand(this.treeControl.dataNodes[1]);
+            this.treeControl.expand(this.treeControl.dataNodes[2]);
           }
       }
     }
@@ -514,7 +548,7 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
 
   newComponentRef;
   showHeaderDisplay(node, type) {
-    console.log(node);
+    console.log("node", node);
     this.routePlannedLayerHeader.headerSapid = node.name;
     this.routePlannedLayerHeader.title = node.headerText;
     this.routePlannedLayerHeader.name = node.eventName;

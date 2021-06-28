@@ -30,8 +30,10 @@ export class RegulatoryComponent implements OnInit {
   public gridCore: GridCore;
   public gridOptions: GridOptions;
   public gridOptionsPending: GridOptions;
+  public gridOptionsHistory: GridOptions;
   public rowData: any;
   public rowDataPending: any;
+  public rowDataHistory: any;
   public columnDefs;
   public rowCount: string;
   public defaultColDef = { resizable: true };
@@ -120,8 +122,7 @@ export class RegulatoryComponent implements OnInit {
       this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsPending = <GridOptions>{};
-    // this.gridOptionsSLABreach = <GridOptions>{};
-    //this.rowSelection = 'multiple';
+    this.gridOptionsHistory = <GridOptions>{};
     this.createColumnDefs();
 
     this.messageSubscription = this.datashare.currentMessage.subscribe((message) => {
@@ -135,6 +136,7 @@ export class RegulatoryComponent implements OnInit {
       .subscribe(data => {
         this.rowData = data;
         this.rowDataPending = data;
+        this.rowDataHistory = data;
       });
   }
 
@@ -192,6 +194,54 @@ export class RegulatoryComponent implements OnInit {
       }
     ];
     this.columnDefsPending = [
+      {
+        headerName: "Status",
+        cellRenderer: this.statusFunc,
+        field: "status",
+        width: 170,
+        pinned: 'left'
+      },
+      {
+        headerName: "Workorder",
+        field: "workorder",
+        width: 230
+      },
+      {
+        headerName: "Assigned By",
+        field: "assignedBy",
+        width: 190,
+      },
+      {
+        headerName: "Assigned To",
+        field: "assignedTo",
+        width: 160,
+      },
+      {
+        headerName: "Due Date",
+        field: "dueDate",
+        width: 180
+      },
+      {
+        headerName: "Last Updated",
+        field: "lastUpdated",
+        width: 220,
+        cellRenderer: function (params) {
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+        }
+      },
+      {
+        headerName: "Task Completion",
+        field: 'taskCompletion',
+        cellRenderer: this.taskCompletionFunc,
+        width: 200,
+        pinned: "right"
+      }
+    ];
+    this.columnDefsHistory = [
       {
         headerName: "Status",
         cellRenderer: this.statusFunc,
@@ -300,6 +350,7 @@ export class RegulatoryComponent implements OnInit {
     this.eventsSubject.subscribe((data) => {
       this.gridOptions.api.setQuickFilter(data.filter);
       this.gridOptionsPending.api.setQuickFilter(data.filter);
+      this.gridOptionsHistory.api.setQuickFilter(data.filter);
     });
   };
   show: any;
@@ -317,17 +368,20 @@ export class RegulatoryComponent implements OnInit {
     }
   }
 
-  onGridSizeChanged(event) {
-    if (this.gridOptions.api && this.rowData) {
-      this.gridOptions.api.sizeColumnsToFit();
-    }
-    if (this.gridOptionsPending.api && this.rowDataPending) {
-      this.gridOptionsPending.api.sizeColumnsToFit();
-    }
-  }
+  // onGridSizeChanged(event) {
+  //   if (this.gridOptions.api && this.rowData) {
+  //     this.gridOptions.api.sizeColumnsToFit();
+  //   }
+  //   if (this.gridOptionsPending.api && this.rowDataPending) {
+  //     this.gridOptionsPending.api.sizeColumnsToFit();
+  //   }
+  //   if (this.gridOptionsHistory.api && this.rowDataHistory) {
+  //     this.gridOptionsHistory.api.sizeColumnsToFit();
+  //   }
+  // }
 
   onRowClicked(event) {
-    this.router.navigate(['/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting/WO-Regulatory'])
+    this.router.navigate(['/JCP/Work-Orders/NV-Workorders/Regulatory-Reporting/WO-Regulatory'])
   }
 
 
@@ -356,7 +410,6 @@ export class RegulatoryComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4);    
   }
-
 
   ngOnInit(): void {
   }

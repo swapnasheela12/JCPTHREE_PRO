@@ -6,7 +6,7 @@
       </div>
       <div fxFlex="45">
         <mat-form-field fxFlex="50" class="call-plan">
-          <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Reason for Change" 
+          <mat-select disableOptionCentering required (click)="beforeOpen()" placeholder="Call Plan" 
               panelClass="selectMenuPanel" [(value)]="callPlanSelected">
               <input matInput [(ngModel)]="searchCallPlan" autocomplete="off" [ngModelOptions]="{standalone: true}" 
               placeholder="Search..." style="height: 48px !important;padding-left:15px">
@@ -28,9 +28,9 @@
           </mat-icon>
         </mat-form-field>
       </div>
-      <button class="workorder-filter" fxFlex="10" (click)="openFileUpload()">
-        <span class="ic ic-icon-38"></span>
-      </button>
+      <mat-icon class="workorder-filter icon-button" (click)="openFileUpload()" aria-label="search">
+        <span class="ic ic-upload4"></span>
+      </mat-icon>
     </div>
 
 

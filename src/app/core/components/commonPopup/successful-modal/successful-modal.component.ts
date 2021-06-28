@@ -54,9 +54,12 @@ export class SuccessfulModalComponent {
 
   clickOk() {
    
-    if(this.data.regulatory === "Regulatory") {
+    if(this.data.navigation === "REGULATORY") {
       this.dialogRef.close();
-      this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting"]);
+      this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Regulatory-Reporting"]);
+    } else if(this.data.navigation === "CALL_PLAN") {
+      this.dialogRef.close();
+      this.router.navigate(["/JCP/Administration/Module-Management/Net-Velocity/Trai-Qos-Call-Plan"]);
     } else {
       this.dialogRef.close();
     }

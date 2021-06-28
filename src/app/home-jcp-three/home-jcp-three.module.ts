@@ -33,6 +33,8 @@ import { TreeRenderingComponent } from '../modules/components/tree-rendering/tre
 import { ColumnRenderingComponent } from '../modules/components/column-rendering/column-rendering.component';
 import { RowRenderingComponent, ModalTemplateComponent } from '../modules/components/row-rendering/row-rendering.component';
 import { AgGridRowRenderingComponent } from '../modules/components/ag-grid-row-rendering/ag-grid-row-rendering.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     HomeJcpThreeComponent,
@@ -70,6 +72,8 @@ import { AgGridRowRenderingComponent } from '../modules/components/ag-grid-row-r
     MatToolbarModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     NgbModule,
     ], providers: [
     SideNavService,

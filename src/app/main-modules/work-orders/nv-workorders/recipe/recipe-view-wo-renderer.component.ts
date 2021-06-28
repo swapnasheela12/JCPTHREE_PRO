@@ -57,7 +57,7 @@ export class RecipeViewWORendererComponent implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/View-Workorder"])
     }
 
     deleteWorkorder(evt) {
@@ -72,7 +72,7 @@ export class RecipeViewWORendererComponent implements ICellRendererAngularComp {
     }
 
     downloadWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Recipe-Workorders/Copy-To-New-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Recipe-Workorders/Copy-To-New-Workorder"])
     }
 
     viewTask(evt) {

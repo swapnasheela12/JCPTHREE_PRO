@@ -2,18 +2,10 @@
     {
         "status": "Not Started",
         "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
-        "assignedBy": "I-G-J-PLPR-OSC-0004",
-        "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "taskCompleted": "0",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
-    },
-    {
-        "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "5",
-        "dueDate": "Dec 23, 2020", "lastUpdated":  "Dec 23, 2020",
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020",
         "taskCompleted": "80",
         "lastCompletedTime": "4 days 12 hrs 59 min ago"
     },
@@ -33,7 +25,8 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
-        "dueDate": "Dec 23, 2020", "lastUpdated":  "Dec 23, 2020",
+        "dueDate": "Dec 23, 2020",
+        "lastUpdated":  "Dec 23, 2020",
         "lastCompletedTime": "4 days 12 hrs 59 min ago"
 
     },

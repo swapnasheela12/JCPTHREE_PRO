@@ -35,15 +35,13 @@ const routes: Routes = [
           { path: 'Configuration-Management', loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule) },
           { path: 'Fault-Management', loadChildren: () => import('../../app/main-modules/modules/fault-management/fault-management.module').then(m => m.FaultManagementModule) },
           { path: 'Network-Planning', loadChildren: () => import('../../app/main-modules/modules/network-planning/network-planning.module').then(m => m.NetworkPlanningModule) },
-          { path: 'Network-Deployment', loadChildren: () => import('../../app/main-modules/modules/network-deployment/network-deployment.module').then(m => m.NetworkDeploymentModule) },
-          { path: 'Net-Velocity', loadChildren: () => import('../../app/main-modules/modules/net-velocity/net-velocity.module').then(m => m.NetVelocityModule) }
-        ]
+          { path: 'Network-Deployment', loadChildren: () => import('../../app/main-modules/modules/network-deployment/network-deployment.module').then(m => m.NetworkDeploymentModule) }]
       },
       {
         path: "Work-Orders", children: [
           { path: 'Rf-Oc-Workorders', loadChildren: () => import('../../app/main-modules/work-orders/rf-oc-workorders/rf-oc-workorders.module').then(m => m.RfOcWorkordersModule) },
           { path: 'Cm-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/cm-workorders/cm-workorders.module').then(m => m.CmWorkordersModule) },
-          { path: 'Nv-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/nv-workorders/nv-workorders.module').then(m => m.NvWorkordersModule) }
+          { path: 'NV-Workorders', loadChildren: () => import('./../../app/main-modules/work-orders/nv-workorders/nv-workorders.module').then(m => m.NvWorkordersModule) }
         ]
       }
     ],

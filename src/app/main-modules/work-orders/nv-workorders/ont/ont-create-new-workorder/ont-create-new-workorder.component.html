@@ -50,8 +50,8 @@
                     </div>
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
-                    <div class="sub-content-flex-item  col-6">
+                <div class="sub-content d-flex flex-row flex-wrap border-bottom">
+                    <div class="sub-content-flex-item col-6 workorder-id">
                         <div class="form-read-only">
                             <label class="input-label">Workorder Id*</label>
                             <div class="input-value" *ngIf="showCreateNewWorkorder">
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="sub-content d-flex  flex-row flex-wrap select-recipe"  *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
-                    <div class="sub-content-flex-item col-6" style="padding:0 0 0px 25px!important;"> 
+                    <div class="sub-content-flex-item col-6 recipe"> 
                         <form [formGroup]="liveViolationReportForm" class="form-violation">
                             <mat-form-field class="twamp-field-container" fxFlex="auto">
                                 <mat-select placeholder="Select Recipe" [formControl]="typeMultiCtrl" disableOptionCentering
@@ -133,18 +133,33 @@
                         </form>
                     </div>
 
-                    <div class="sub-content-flex-item  col-5">
-                        <mat-form-field class="w-100" style="margin: 20px 0 0 20px;">
-                            <mat-label>Iterations</mat-label>
-                            <input matInput placeholder="" value="" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
-                            <input matInput placeholder="" value="" disabled *ngIf="showViewWorkorder">
-                        </mat-form-field>
+                    <div class="sub-content-flex-item  col-5" style="margin: 20px 0 0 20px;">
+                        <label class="time-duration-label" *ngIf="showCreateNewWorkorder">Iterations</label>
+                        <label class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">Iterations</label>
+
+                        <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            -
+                         </div> 
+                         <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                            -
+                         </div> 
+
+                         <!-- <mat-form-field appearance="fill">
+                            <mat-label>Enter a date range</mat-label>
+                            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                              <input matStartDate formControlName="start" placeholder="Start date">
+                              <input matEndDate formControlName="end" placeholder="End date">
+                            mod</mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                          
+                          </mat-form-field> -->
                     </div>
 
                   
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap " style="border-bottom: 1px solid #D3D5DC; padding: 20px 12px;">
+                <div class="sub-content d-flex  flex-row flex-wrap border-bottom" style="padding: 20px 12px;">
                     <div class="wo-sector-card-one  col-6" style="display: inline-block;">
                         <label class="time-duration-label">Start Time</label>
                         <div *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
@@ -207,7 +222,7 @@
 
                 </div>
 
-                <div class="sub-content d-flex  flex-row flex-wrap" *ngIf="showCreateNewWorkorder ||  showCopyToNewWorkorder" style="border-bottom: 1px solid #D3D5DC;">
+                <div class="sub-content d-flex  flex-row flex-wrap border-bottom" *ngIf="showCreateNewWorkorder ||  showCopyToNewWorkorder">
                     <div class="mar-top col-12">
                         <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
                         <mat-radio-group (change)="showUpload($event)">
@@ -228,9 +243,6 @@
 
                         <div class="col-2" style="line-height: 3.2;">
                             <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
-                        </div>
-                        <div class="col-2" style="line-height: 3.2;">
-                            <button mat-raised-button color="primary" (click)="sampleFile()">Sample File</button>
                         </div>
                     </div>
                 
