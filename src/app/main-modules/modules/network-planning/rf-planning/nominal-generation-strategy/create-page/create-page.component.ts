@@ -918,11 +918,7 @@ export class CreatePageComponent implements OnInit {
         this.showExclusionZones = false;
         this.showSelected = true;
       }
-
     }
-
-
-
   }
 
   defineDataSourceFun() {
