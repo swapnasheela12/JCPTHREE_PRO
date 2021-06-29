@@ -5,7 +5,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription, Subject } from 'rxjs';
-import { ViewChild, Input, TemplateRef } from '@angular/core';
+import { ViewChild, Input, TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -147,7 +147,9 @@ export class OntComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
-    private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+    private overlayContainer: OverlayContainer, private httpClient: HttpClient,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver) {
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsPending = <GridOptions>{};

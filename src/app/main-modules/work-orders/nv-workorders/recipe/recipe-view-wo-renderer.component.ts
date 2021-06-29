@@ -8,7 +8,7 @@ import { ViewTasksComponent } from '../web-performance-test/view-tasks/view-task
 
 @Component({
     selector: 'recipe-view-wo-renderer',
-    template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
+    template: `<button  [ngClass]="!showDisabled ? 'hideButton' : 'showButton'" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu" aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
@@ -29,6 +29,12 @@ import { ViewTasksComponent } from '../web-performance-test/view-tasks/view-task
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item:hover {
             background-color: #f3f7fc;
         }
+        .hideButton {
+            display: none;
+        }
+        .showButton {
+            display: block;
+        }
     `
     ],
     encapsulation: ViewEncapsulation.None
@@ -38,6 +44,7 @@ export class RecipeViewWORendererComponent implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
+    showDisabled: boolean =  false;
 
     constructor(
         public dialog: MatDialog,
@@ -46,6 +53,11 @@ export class RecipeViewWORendererComponent implements ICellRendererAngularComp {
     ) { }
 
     agInit(params): void {
+        if(params.data.status != 'In Progress') {
+            this.showDisabled =  true;
+        } else {
+            this.showDisabled = false;
+        }
         this.params = params;
         this.datashare.checkboxMessage.subscribe((checkbox) => {
             this.dataTest = checkbox;

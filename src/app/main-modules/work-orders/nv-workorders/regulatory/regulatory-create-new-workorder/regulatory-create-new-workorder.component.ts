@@ -205,7 +205,12 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Selection",
         field: "jioCenter",
-        width: 400,
+        width: 150,
+      },
+      {
+        headerName: "",
+        field: "assignedTo",
+        width: 250,
       },
       {
         headerName: "",
@@ -267,14 +272,11 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   }
 
   selectionChanged(evt) {
-    console.log("evt", evt);
-    evt.api.getSelectedRows().forEach((selectedRows) => {
-    console.log("selectedRows", selectedRows)
-    selectedRows.jioCenter = selectedRows.jioCenter + " " + selectedRows.assignedTo;
-    this.rowDataSelectDevice = evt.api.getSelectedRows();
+    let selectedNodes = evt.api.getSelectedNodes();
+    let selectedData = selectedNodes.map(node => node.data);
+    this.rowDataSelectDevice = selectedData;
     this.selectedDeviceCount = this.rowDataSelectDevice.length;
-    });
-  }
+    }
 
   isInvalidDate = (m: moment.Moment) => {
     return this.invalidDates.some((d) => d.isSame(m, 'day'));
@@ -371,6 +373,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApiSelectDevice = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4); 
     if (this.gridOptionsSelectDevice.api ) {
