@@ -2591,6 +2591,31 @@ const ADMIN_PERFORMANCE_LIST = [
     }
 ];
 
+const Coverage_Predictions_LIST = [
+    {
+        name: 'Prediction Scheduling',
+        link: 'JCP/Modules/Administration/Platform-Administration/Coverage-Predictions/Prediction-Scheduling',
+        eventName: 'prediction-scheduling',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    },
+    {
+        name: 'Prediction Status',
+        link: 'Prediction-Status',
+        eventName: 'prediction-status',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: []
+    }
+];
+
 const PLATFORM_DASHBOARD_LIST = [
     {
         name: 'Dashboard Administrator',
@@ -4884,7 +4909,18 @@ const PLATFORM_ADMINISTRATION_LIST = [
         showHeader: false,
         headerText: '',
         children: []
-    }
+    }, {
+        name: "Coverage Predictions",
+        icon: "fas fa-user fa-3",
+        link: "Coverage-Predictions",
+        eventName: 'sites-outdoor-esc',
+        show: true,
+        showSettings: true,
+        checked: false,
+        showHeader: false,
+        headerText: '',
+        children: Coverage_Predictions_LIST
+    },
 ];
 
 const PLATFORM_LAYER_LIST = [
@@ -5466,6 +5502,17 @@ const ADMINISTRATION_LIST = [
         headerText: '',
         children: PLATFORM_ADMINISTRATION_LIST
     },
+    // {
+    //     name: 'Platform Administration',
+    //     link: 'Platform-Administration',
+    //     eventName: 'sites-outdoor-esc',
+    //     show: true,
+    //     showSettings: true,
+    //     checked: false,
+    //     showHeader: false,
+    //     headerText: '',
+    //     children: Platform-Administration
+    // },
     {
         name: 'Layer Management',
         link: 'layer-mangement',
