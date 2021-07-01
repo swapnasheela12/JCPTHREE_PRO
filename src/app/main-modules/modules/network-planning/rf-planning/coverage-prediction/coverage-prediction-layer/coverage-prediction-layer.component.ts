@@ -38,7 +38,7 @@ export class CoveragePredictionLayerComponent implements AfterViewInit, OnDestro
               children: [],
               showHeader: true,
               checked: false,
-              headerText: '5G Coverage Prediction - '
+              headerText: '5G Coverage Prediction'
             }
           )
         }

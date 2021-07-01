@@ -3,7 +3,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { SavePolygonPopupComponent } from 'src/app/core/components/commonPopup/save-polygon-popup/save-polygon-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { COVERAGE_PLANNING, CAPACITY_PLANNING, VALIDATION_PLANNING } from './map-header.constant';
+import { COVERAGE_PLANNING, CAPACITY_PLANNING, VALIDATION_PLANNING, COVERAGE_PREDICTION } from './map-header.constant';
 import {Location} from '@angular/common';
 
 declare var $: any;
@@ -21,6 +21,7 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
   showSetting:Boolean = false;
   showChart:Boolean = false;
   showSummary:Boolean = false;
+  showLayer:Boolean = false;
   headerSettingData;
   mainLayerRef: {};
   constructor(
@@ -52,23 +53,27 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
       this.showSetting = true;
       this.showChart = false;
       this.showSummary = false;
+      this.showLayer = false;
     }
     if(this.headerData.name == 'nominal-generation') {
       this.showSetting = true;
       this.showChart = true;
       this.showSummary = true;
+      this.showLayer = true;
     }
 
     if(this.headerData.name == 'nominal-validation') {
       this.showSetting = true;
       this.showChart = false;
       this.showSummary = true;
+      this.showLayer = true;
     }
 
     if(this.headerData.name == 'coverage-prediction') {
       this.showSetting = true;
       this.showChart = false;
       this.showSummary = false;
+      this.showLayer = true;
     }
     
   }
@@ -95,7 +100,7 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     } else if(name == 'nominal-validation') {
       this.headerSettingData = VALIDATION_PLANNING;
     } else if(name == 'coverage-prediction') {
-      this.headerSettingData = VALIDATION_PLANNING;
+      this.headerSettingData = COVERAGE_PREDICTION;
     } else {
       this.headerSettingData = COVERAGE_PLANNING;
     }

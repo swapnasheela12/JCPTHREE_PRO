@@ -32,6 +32,9 @@
                         <button mat-icon-button class="text-dark button-mat" *ngIf="showSetting == true" (click)="openSettingPopup(headerData.name)" >
                             <i class="ic ic-filter-01" data-title="Settings"></i>
                         </button>
+                        <button mat-icon-button class="text-dark button-mat" *ngIf="showLayer == true" (click)="openLayerPopup(headerData.name)" >
+                            <span class="ic ic-Layers-01"></span>
+                        </button>
                     </div>
                     <button type="button" class="btn save-button" style="margin-right:10px" (click)="saveNominalPloy()">Save</button>
                 </div>

@@ -34,96 +34,6 @@ class ExampleFlatNode {
   show: Boolean;
 }
 
-const SITES_SITES_LIST_COVERAGE =[
-  {
-    name: "P1",
-    icon: "fas fa-users fa-3",
-    link: "p1",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "RP1",
-    icon: "fas fa-users fa-3",
-    link: "rp1",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "IP Colo",
-    icon: "fas fa-users fa-3",
-    link: "ipcolo",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "Additional Candidates",
-    icon: "fas fa-users fa-3",
-    link: "p1",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  }
-];
-
-const SITES_PREDICTION_LAYERS_LIST_COVERAGE = [
-  {
-    name: "RSRP",
-    icon: "fas fa-users fa-3",
-    link: "rsrp",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "SINR",
-    icon: "fas fa-users fa-3",
-    link: "sinr",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "DL Throughput",
-    icon: "fas fa-users fa-3",
-    link: "dl-throughput",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  },
-  {
-    name: "Spectral Efficiency",
-    icon: "fas fa-users fa-3",
-    link: "Spectral-Efficiency",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: []
-  }
-];
-
-const COVERAGE_PLANNING= [
-  {
-    name: "Sites",
-    icon: "fas fa-users fa-3",
-    link: "Sites",
-    eventName: 'sites-outdoor-esc',
-    show:true,
-    children: SITES_SITES_LIST_COVERAGE
-  },
-  {
-      name: "Prediction Layers",
-      icon: "fas fa-users fa-3",
-      link: "Prediction-Layers",
-      eventName: 'sites-outdoor-esc',
-      show:true,
-      children: SITES_PREDICTION_LAYERS_LIST_COVERAGE,
-      classId: 'prediction-layer-border'
-  }
-];
-
 export const FLY_PREDICTION = [
   { fly_prediction: 'Maharashtra-NP-CV-121020_V1' },
   { fly_prediction: 'Maharashtra-NP-CV-121020_V3' },
@@ -131,6 +41,76 @@ export const FLY_PREDICTION = [
   { fly_prediction: 'Maharashtra-NP-CV-121020_V2' },
   { fly_prediction: 'Maharashtra-NP-CV-121020_V1' }
 ];
+
+export const COVERAGE_PREDICTION_SETTINGS =  {
+    "Band": [
+      {
+        name: "3500 MHz",
+        selected: false,
+        type: "radio"
+      },
+      {
+        name: "Combined",
+        selected: false,
+        type: "radio"
+      },
+      {
+        name: "28 Ghz",
+        selected: true,
+        type: "radio"
+      }
+    ],
+    "Site Status" : [
+      {
+        name: "Proposed Nominal",
+        selected: false,
+        type: "radio"
+      },
+      {
+        name: "Planned",
+        selected: true,
+        type: "radio"
+      },
+      {
+        name: "Approved Nominal",
+        selected: false,
+        type: "radio"
+      },
+      {
+        name: "On - Air",
+        selected: true,
+        type: "radio"
+      }
+    ],
+    "Prediction Type" : [
+      {
+        name: "RSRP",
+        selected: false,
+        type: "checkbox"
+      },
+      {
+        name: "Spectral Efficiency",
+        selected: false,
+        type: "checkbox"
+      },
+      {
+        name: "SINR",
+        selected: true,
+        type: "checkbox"
+      },
+      {
+        name: "Best Server Plot",
+        selected: false,
+        type: "checkbox"
+      },
+      {
+        name: "DL Throughput",
+        selected: false,
+        type: "checkbox"
+      }
+    ]
+  };
+
 
 @Component({
   selector: 'app-prediction-setting-popup',
@@ -140,7 +120,9 @@ export const FLY_PREDICTION = [
 })
 export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
   dialog: LayerSettingsSettingsService;
-  @ViewChild('layerPatchSettingsPopup', { static: true }) layerPatchSettingsPopup: TemplateRef<any>;
+  settingsDetails= COVERAGE_PREDICTION_SETTINGS;
+  settingsSelection;
+  @ViewChild('layerPredictionSettingsPopup', { static: true }) layerPredictionSettingsPopup: TemplateRef<any>;
   @ViewChild('activeCheckbox', { static: false }) activeCheckbox;
   show: boolean;
   selectedLayerArr: any = [];
@@ -172,13 +154,7 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
       show0: node.show0
     };
   }
-  
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
-  treeFlattener = new MatTreeFlattener(
-    this.transformer, node => node.level, node => node.expandable, node => node.children);
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-  
+
 
   constructor(
     private layerPatchFactoryService: LayerSettingsFactoryService,
@@ -187,34 +163,19 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
     private cfr: ComponentFactoryResolver,
     private dataShare: DataSharingService
   ) {
-    // console.log(this.settingData)
-    // this.dataSource.data = this.settingData;
-    // this.treeControl.expand(this.treeControl.dataNodes[0]);
-    // let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
-    // this.treeControl.expand(this.treeControl.dataNodes[firstNodeDescendentLength+1]);
-    // this.dataShare.patchLayerObject.subscribe((settingData: any) => {
-    //   if (Object.keys(settingData).length !== 0) {
-    //     this.dataSource.data = settingData;
-    //   }
-    // });
-
+    // this.settingsDetails.forEach((settings) => {
+    //   console.log(settings);
+    //   this.settingsSelection = settings;
+    //   Object.keys(settings).map((key) => console.log(settings[key]));
+    // })
   }
-
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-  isLevelZero = (_: number, node: ExampleFlatNode) => node.level === 0 && node.expandable;
-  isLevelOne = (_: number, node: ExampleFlatNode) => node.level === 1 && node.expandable && node.show != false;
-  isLevelGreterThanOne = (_: number, node: ExampleFlatNode) => node.level > 1 && node.expandable;
-  hasNoContent = (_: number, node: ExampleFlatNode) => !node.expandable;
-  getChildren = (node: SideNavNode) => {
-    return node.children;
-  };
 
   ngOnInit(): void {
     this.dispatchDialog();
+
   }
 
   ngAfterViewInit() {
-    this.dataSource.data = this.settingData;
     // this.treeControl.expandAll()
     // this.treeControl.expand(this.treeControl.dataNodes[0]);
     // let firstNodeDescendentLength = this.treeControl.getDescendants(this.treeControl.dataNodes[0]).length;
@@ -224,16 +185,22 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
   dispatchDialog() {
     this.openDialog({
       headerText: 'Coverage Prediction Setting',
-      template: this.layerPatchSettingsPopup
+      template: this.layerPredictionSettingsPopup
     }, {
-      width: 287,
-      height: 405,
+      width: 391,
+      height: 450,
       backdropClass: '',
       position: {'right':'10px'},
       disableClose: false,
       hasBackdrop: false,
       panelClass: "table-view-layers-dialog-container",
     });
+
+    // this.settingsDetails.forEach((data) => {
+    //   console.log(data);
+    //   this.settingsSelection = data;
+    //   Object.keys(data).map((key) => console.log(data[key]));
+    // })
   }
 
   closeDialog() {
@@ -248,13 +215,6 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
     this.dialog = this.layerPatchFactoryService.open(dialogData, options);
   }
 
-  onChangeTree(selected, node, activeCheckbox, eventChecked) {
-    if (activeCheckbox._elementRef.nativeElement.tagName === 'MAT-RADIO-BUTTON') {
-      this.onRadioChecked(selected, node, activeCheckbox, eventChecked);
-    } else {
-      this.onChecked(selected, node, activeCheckbox, eventChecked);
-    }
-  }
 
   onRadioChecked(selected, node, activeCheckbox, eventChecked) {
     this.selectedLayerArr.push(node);
@@ -301,14 +261,12 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
   layersLevelHover(node, iconlayers) {
     this.hoverLayer0 = '';
     this.hoverLayer0 = 'layers-menu-0';
-    const levelNode = this.treeControl.getLevel(node);
     if (iconlayers != '') {
       iconlayers._elementRef.nativeElement.style.marginLeft = '20px';
     }
   }
 
   layersLevelHoverLeave(node, iconlayers) {
-    const levelNode = this.treeControl.getLevel(node);
     if (iconlayers != '') {
       const treeNode = iconlayers._elementRef.nativeElement.parentNode.parentNode.parentNode.classList;
       if (treeNode.contains('layer-0')) {
@@ -318,189 +276,6 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
       } else {
         iconlayers._elementRef.nativeElement.style.marginLeft = '0px';
       }
-    }
-  }
-
-  /**
-   * Iterate over each node in reverse order and return the first node 
-   * that has a lower level than the passed node.
-   */
-  getParent(node) {
-    const { treeControl } = this;
-    const currentLevel = treeControl.getLevel(node);
-    if (currentLevel < 1) {
-      return null;
-    }
-
-    const startIndex = treeControl.dataNodes.indexOf(node) - 1;
-    for (let i = startIndex; i >= 0; i--) {
-      const currentNode = treeControl.dataNodes[i];
-      if (treeControl.getLevel(currentNode) < currentLevel) {
-        return currentNode;
-      }
-    }
-  }
-
-  recNode(arr: any[], data: any[], index: number, maxIndex: number): any[] {
-    if (arr === undefined)
-      arr = [];
-    if (data.length != 0){
-    for (let i = 0; i < data.length; i++) {
-      index++
-      if (index === maxIndex) {
-        return ([true, index, arr]);
-      }
-      if (data[i].children != undefined){
-        if (data[i].children.length || data[i]) {
-          let res = this.recNode(arr, data[i].children, index, maxIndex);
-          index = res[1];
-          if (res[0] === true) {
-            arr.splice(0, 0, (i !== (data.length - 1)));
-            return ([true, index, arr]);
-          }
-        }
-      }
-    }
-  }
-    return ([false, index, arr]);
-  }
-
-  activenode(node, horizontalLine) {
-    this.nodeType = node.name;
-    const levelNode = this.treeControl.getLevel(node);
-    const currentIndexNode = this.treeControl.dataNodes.indexOf(node);
-    let test = this.treeControl.dataNodes[this.treeControl.getDescendants(node).length + currentIndexNode + 1];
-
-    if (this.treeControl.isExpanded(node) == true) {
-      if (typeof test != 'undefined') {
-        if (test.name == 'Prediction Layers') {
-          $('#prediction-layer-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Measured Layers') {
-          $('#measured-layer-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Hybrid Layers') {
-          $('#hybrid-layer-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Alarms') {
-          $('#alarms-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Analytics') {
-          $('#analytics-layer-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Topologies') {
-          $('#topologies-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Locations and Boundaries') {
-          $('#locations-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#base-map-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        } else if (test.name == 'Base Maps') {
-          $('#base-map-border').css({ 'border-top': '1px solid #eaecec' });
-          $('#prediction-layer-border').css({ 'border-top': 'none' });
-          $('#measured-layer-border').css({ 'border-top': 'none' });
-          $('#hybrid-layer-border').css({ 'border-top': 'none' });
-          $('#alarms-border').css({ 'border-top': 'none' });
-          $('#analytics-layer-border').css({ 'border-top': 'none' });
-          $('#topologies-border').css({ 'border-top': 'none' });
-          $('#locations-border').css({ 'border-top': 'none' });
-          $('#my-layers-border').css({ 'border-top': 'none' });
-        }
-      }
-      else if (currentIndexNode == 277) {
-        $('#my-layers-border').css({ 'border-top': '1px solid #eaecec' });
-        $('#prediction-layer-border').css({ 'border-top': 'none' });
-        $('#measured-layer-border').css({ 'border-top': 'none' });
-        $('#hybrid-layer-border').css({ 'border-top': 'none' });
-        $('#alarms-border').css({ 'border-top': 'none' });
-        $('#analytics-layer-border').css({ 'border-top': 'none' });
-        $('#topologies-border').css({ 'border-top': 'none' });
-        $('#locations-border').css({ 'border-top': 'none' });
-        $('#base-map-border').css({ 'border-top': 'none' });
-      }
-
-      this.parentNode = node;
-      this.treeControl.collapseAll();
-      if (levelNode == 0) {
-        this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(node)]);
-      } else {
-        for (let i = 0; i <= levelNode; i++) {
-          if (this.parentNode != null) {
-            this.treeControl.expand(this.treeControl.dataNodes[this.treeControl.dataNodes.indexOf(this.parentNode)]);
-            this.parentNode = this.getParent(this.parentNode);
-          }
-        }
-      }
-    } else {
-      if (currentIndexNode != 7 && test.name == 'Prediction Layers') {
-        $('#prediction-layer-border').css({ 'border-top': 'none' });
-      }
-      else if (currentIndexNode != 38 && test.name == 'Measured Layers') {
-        $('#measured-layer-border').css({ 'border-top': 'none' });
-      } else if (currentIndexNode != 135 && test.name == 'Hybrid Layers') {
-        $('#hybrid-layer-border').css({ 'border-top': 'none' });
-      } else if (currentIndexNode != 192 && test.name == 'Alarms') {
-        $('#alarms-border').css({ 'border-top': 'none' });
-      } else if (test.name == 'Analytics') {
-        $('#analytics-layer-border').css({ 'border-top': 'none' });
-      } else if (test.name == 'Topologies') {
-        $('#topologies-border').css({ 'border-top': 'none' });
-      } else if (currentIndexNode != 261 && test.name == 'Locations and Boundaries') {
-        $('#locations-border').css({ 'border-top': 'none' });
-      } else if (test.name == 'Base Maps') {
-        $('#base-map-border').css({ 'border-top': 'none' });
-      } else if (test.name == 'My Layers') {
-        $('#my-layers-border').css({ 'border-top': 'none' });
-      }
-
     }
   }
 
