@@ -64,6 +64,12 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
       this.showChart = false;
       this.showSummary = true;
     }
+
+    if(this.headerData.name == 'coverage-prediction') {
+      this.showSetting = true;
+      this.showChart = false;
+      this.showSummary = false;
+    }
     
   }
 
@@ -81,23 +87,37 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
   }
 
   async openSettingPopup(name) {
+    console.log("name", name);
     if (name == 'nominal-generation') {
       this.headerSettingData = COVERAGE_PLANNING;
     } else if(name == 'nominal-capacity') {
       this.headerSettingData = CAPACITY_PLANNING;
     } else if(name == 'nominal-validation') {
       this.headerSettingData = VALIDATION_PLANNING;
+    } else if(name == 'coverage-prediction') {
+      this.headerSettingData = VALIDATION_PLANNING;
     } else {
       this.headerSettingData = COVERAGE_PLANNING;
     }
     console.log(this.headerSettingData);
-    const { LayerPatchPopupComponent } = await import('./../../../../main-layer/layer-patch-popup/layer-patch-popup.component');
+    if(name == 'coverage-prediction') {
+      const { PredictionSettingPopupComponent } = await import('./../../../../main-layer/prediction-setting-popup/prediction-setting-popup.component');
+    let layerPatch = this.viewContainerRef.createComponent(
+      this.cfr.resolveComponentFactory(PredictionSettingPopupComponent)
+    );
+    
+    layerPatch.instance.settingData = this.headerSettingData;
+    $('.button-mat').addClass('active-button');
+    } else {
+      const { LayerPatchPopupComponent } = await import('./../../../../main-layer/layer-patch-popup/layer-patch-popup.component');
     let layerPatch = this.viewContainerRef.createComponent(
       this.cfr.resolveComponentFactory(LayerPatchPopupComponent)
     );
     
     layerPatch.instance.settingData = this.headerSettingData;
     $('.button-mat').addClass('active-button');
+    }
+    
   }
 
   async openSummary(name) {

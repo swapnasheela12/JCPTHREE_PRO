@@ -5,10 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
-import {DeleteRendererComponent} from "src/app/core/components/ag-grid-renders/delete-renderer.component"
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
-
+import { ThreeDotDeleteRenderer } from '../../renderer/threedot-delete-renderer';
 
 @Component({
   selector: 'app-view-tasks',
@@ -31,7 +28,7 @@ export class ViewTasksComponent {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    threedotrenderer: DeleteRendererComponent,
+    threedotrenderer: ThreeDotDeleteRenderer,
   };
   public searchGrid = '';
 
@@ -69,7 +66,7 @@ export class ViewTasksComponent {
         pinned: 'left'
       },
       {
-        headerName: "Task",
+        headerName: "Task Id",
         field: "workorder",
         width: 200,
         cellRenderer: function(params) {

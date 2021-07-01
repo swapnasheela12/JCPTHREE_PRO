@@ -20,10 +20,12 @@
                     <button class="browse-button" (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
                 </mat-form-field>
             </div>
+            
             <div *ngIf="showExample" class="example-content">
                 <span>Example: </span> <span class="example-value"> I-MH-ABVL-ENB-0004_c3</span> <br> <span
                     class="example-value indent">I-MH-AMBT-OSC-0001-SMC001_c0</span>
             </div>
+            
             <div *ngIf="showCSVText" class="example-content">
                 <span>Note: </span> <span class="example-value"> Upload CSV files only</span>
             </div>

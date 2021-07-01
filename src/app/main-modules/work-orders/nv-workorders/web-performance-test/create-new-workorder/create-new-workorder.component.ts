@@ -16,7 +16,6 @@ import { ThreeDotNVWPTRenderer } from '../threedot-nv-wpt-renderer.component';
 import { template } from 'lodash';
 import { EditRendererComponent } from '../../recipe/edit-renderer-component';
 
-
 @Component({
   selector: 'app-create-new-workorder',
   templateUrl: './create-new-workorder.component.html',
@@ -114,13 +113,13 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   sec:any = [
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
   ampm = ["AM", "PM"]
@@ -128,9 +127,9 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
        console.log(this.router.url)
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Create-New-Workorder") {
+    if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
     }
     this.stepperReportW();
@@ -143,7 +142,10 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     })
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
+      this.selectedDeviceCount = this.rowDataSelectDevice.length;
     });
+    
+   
   }
 
   stepperReportW() {
@@ -285,8 +287,6 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
     fileUpload.click();
   }
 
-
-
   //devices upload
   fileNameDevices: string;
   uploadFileDevices(file) {
@@ -347,8 +347,10 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   addToGrid() {
+   
     this.gridOptionsSelectDevice.api.addItems([{ imei: this.imeiValue}]);
     this.gridOptionsSelectDevice.api.refreshCells({force: true});
+    console.log(this.rowDataSelectDevice)
     this.selectedDeviceCount = this.gridOptionsSelectDevice.api.getDisplayedRowCount();
   }
 
@@ -379,6 +381,6 @@ export class CreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/"])
+    this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/"])
   }
 }

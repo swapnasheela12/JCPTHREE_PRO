@@ -1,10 +1,11 @@
 import { Component, Inject, ViewChild, ViewEncapsulation, ElementRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { catchError, map } from 'rxjs/operators';
 import { HttpEventType } from '@angular/common/http';
 import { of } from 'rxjs';
+import { SuccessfulModalComponent } from '../successful-modal/successful-modal.component';
 @Component({
   selector: 'app-file-upload-popup',
   templateUrl: './file-upload-popup.component.html',
@@ -40,7 +41,6 @@ export class FileUploadPopupComponent {
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
-      console.log("file", file)
       this.uploadFile(file);
     });
   }
@@ -56,8 +56,10 @@ export class FileUploadPopupComponent {
   constructor(
     private fileUploadService: FileUploadService,
     public dialogRef: MatDialogRef<FileUploadPopupComponent>,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: fileUploadPopupModel
   ) {
+    console.log(data);
     this.title = data.title;
     this.showExample = data.showExample;
     this.showFileDownload = data.showFileDownload;
@@ -69,7 +71,19 @@ export class FileUploadPopupComponent {
   }
 
   uploadAndClose(): void {
-    this.dialogRef.close('uploadClicked');
+    if(this.data.title === "Upload Call Plan(s)") {
+      const message = {
+        message: `Call Plan Uploaded Successfully`,
+        showDefaultActionBar: true,
+        navigation: "CALL_PLAN"
+      }
+      this.dialog.open(SuccessfulModalComponent, {
+        data: message,
+      });
+      this.dialogRef.close(true);
+    } else {
+      this.dialogRef.close('uploadClicked');
+    }
   }
 
 }

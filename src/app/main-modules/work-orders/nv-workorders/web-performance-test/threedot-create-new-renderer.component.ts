@@ -62,11 +62,11 @@ export class ThreeDotCreateNewRenderer implements ICellRendererAngularComp {
     }
 
     viewWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/View-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/View-Workorder"])
     }
 
     copyWorkorder(evt) {
-        this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Web-Performance-Test/Copy-To-New-Workorder"])
+        this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Web-Performance-Test/Copy-To-New-Workorder"])
     }
 
     viewTask(evt) {

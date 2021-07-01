@@ -45,32 +45,29 @@
                         </div>
 
                         <div class="sub-content-flex-item  col-6">
-                            <mat-form-field class="form-field-read-only">
-                                <mat-label
-                                    style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
-                                    Type*</mat-label>
-                                <mat-select disableOptionCentering [(value)]="type[1]"
-                                    style="font-family: lato Regular; font-size: 14px;">
-                                    <mat-option value="option1" class="sector-title" *ngFor="let st of type"
-                                        [value]="st">
-                                        {{st}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                            <div class="sub-content-flex-item">
+                                <div class="form-read-only">
+                                    <label class="input-label">Type*</label>
+                                    <div class="input-value">
+                                        TRAI Data QoS
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
-                    <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content d-flex  flex-row flex-wrap mar-10" style="border-bottom: 1px solid #D3D5DC;">
                         <div class="sub-content-flex-item col-12">
                             <div class="col-6 wo-inline" style="padding-left: 0px !important;">
-                                <button class="next-button p-0" mat-button color="primary" (click)="bulkUpload()">
+                                <button class="p-0 upload-bulk-wo" mat-button color="primary" (click)="bulkUpload()">
                                     <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
                                     </i>
-                                    <span>Bulk Upload</span>
+                                    <span>Upload Bulk Workorder</span>
                                 </button>
                             </div>
                             <div class="col-6 wo-inline">
                                 <section>
-                                    <mat-checkbox checked="checked"  (click)="nbhWo()">NBH WO</mat-checkbox>
+                                    <mat-checkbox class="bulk-wo-checkbox" checked="checked"  (click)="nbhWo()">NBH WO</mat-checkbox>
                                 </section>
                             </div>
 
@@ -136,21 +133,17 @@
                     <div class="sub-content d-flex flex-row flex-wrap"
                         style="padding-bottom: 13px; border-bottom: 1px solid #D3D5DC;">
                         <div class="sub-content-flex-item  col-6">
-                            <div class="form-read-only">
-                                <label class="input-label">Iterations</label>
-                                <div class="input-value">
-                                    10
-                                </div>
-                            </div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Iterations</mat-label>
+                                <input matInput value="10">
+                              </mat-form-field>
                         </div>
 
                         <div class="sub-content-flex-item  col-6">
-                            <div class="form-read-only">
-                                <label class="input-label">Waiting Period</label>
-                                <div class="input-value">
-                                    In Seconds|
-                                </div>
-                            </div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Waiting Period</mat-label>
+                                <input matInput value="In Seconds">
+                              </mat-form-field>
                         </div>
                     </div>
 
@@ -203,7 +196,7 @@
                                 style="width: 100%; height: 344px;border: 1px solid #eee;" rowHeight="48"
                                 headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
                                 [rowData]="rowData" enableColResize groupHeaders
-                                (selectionChanged)="selectionChanged($event)" [suppressCellSelection]="true"
+                                (selectionChanged)="selectionChanged($event)" (gridSizeChanged)="onGridSizeChanged($event)"
                                 toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                                 [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true"
                                 [pagination]="false" [paginationAutoPageSize]="false"
@@ -245,7 +238,7 @@
                                 class="ag-theme-material ag-jcp3"
                                 [tooltipShowDelay]="tooltipShowDelay" [rowData]="rowDataSelectDevice"
                                 [columnDefs]="columnDefsSelectDevice" [groupHeaderHeight]="47" [headerHeight]="47"
-                                [gridOptions]="gridOptionsSelectDevice" [suppressHorizontalScroll]="true"
+                                [gridOptions]="gridOptionsSelectDevice" [suppressHorizontalScroll]="true" (gridSizeChanged)="onGridSizeChanged($event)"
                                 (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsTaskDetails">
                             </ag-grid-angular>
                         </div>
@@ -302,24 +295,13 @@
             </div>
 
             <div class="d-flex flex-row" style="height: calc(100% - 150px);">
-                <!-- <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
-                    style="width: 100%; height: 100%" rowHeight="48" headerHeight="48"
-                    [gridOptions]="gridOptionsBulkOrder" [columnDefs]="columnDefsBulkOrder" [rowData]="rowDataBulkOrder"
-                    enableColResize groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
-                    toolPanelSuppressValues rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
-                    [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
-                    [frameworkComponents]="frameworkRegulatory">
-                </ag-grid-angular> -->
-
                 <ag-grid-angular (gridReady)="onGridReady($event)"
-                class="ag-theme-material"
-                style="width: 100%; height: 100%;border: 1px solid #eee;" rowHeight="48"
+                class="ag-theme-material table-view-zoom-ag-grid w-100"
+                style="height: 100%;border: 1px solid #eee;" rowHeight="48"
                 headerHeight="48" [gridOptions]="gridOptionsBulkOrder" [columnDefs]="columnDefsBulkOrder"
                 [rowData]="rowDataBulkOrder" enableColResize groupHeaders
-                (selectionChanged)="selectionChanged($event)" [suppressCellSelection]="true"
-                toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
-                [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true"
-                [pagination]="false" [paginationAutoPageSize]="false"
+                (selectionChanged)="selectionChanged($event)" [suppressRowClickSelection]="true"
+                [pagination]="false" [paginationAutoPageSize]="false" (gridSizeChanged)="onGridSizeChanged($event)"
                 [frameworkComponents]="frameworkRegulatory"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>

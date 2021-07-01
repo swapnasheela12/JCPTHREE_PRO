@@ -6,18 +6,18 @@
     },
     {
         "circle": "MUMBAI",
-        "jioCenter" : "MU-ULHS-JC31-0",
+        "jioCenter" : "BH-ULHS-JC31-0",
         "assignedTo" : "Vishwadip.singh@ril.com"
     },
     {
         "circle": "DELHI",
-        "jioCenter" : "MU-ULHS-JC31-0",
+        "jioCenter" : "RJ-ULHS-JC31-0",
         "assignedTo" : "Mahendra4.kuma@ril.com"
     },
     {
         "circle": "MUMBAI",
         "jioCenter" : "MU-ULHS-JC31-0",
-        "assignedTo" : "Mahendra4.kuma@ril.com"
+        "assignedTo" : "Mahendra3.kuma@ril.com"
     },
     {
         "circle": "UP",

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-qos-call-plan/trai-qos-call-plan.component';
 import { ConfigTemplateComponent } from './module-management/network-deployment/plan-to-build/gNodeB/config-template/config-template.component';
 import { ReasonTemplatesComponent } from './module-management/network-deployment/plan-to-build/gNodeB/reason-templates/reason-templates.component';
 import { CreateSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/gNodeB/site-sla-configuration/create-sla-configuration/create-sla-configuration.component';
@@ -124,6 +125,13 @@ const routes: Routes = [
               },
             ]
           },
+          {
+            path: 'Net-Velocity',
+            children: [
+              { path: "Trai-Qos-Call-Plan", component: TraiQosCallPlanComponent }
+            ]
+          }
+          
         ]
       }
     ]

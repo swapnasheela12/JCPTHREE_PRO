@@ -5,7 +5,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription, Subject } from 'rxjs';
-import { ViewChild, Input, TemplateRef } from '@angular/core';
+import { ViewChild, Input, TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -17,8 +17,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridApi } from '@ag-grid-community/core';
 import { ThreeDotCreateNewRenderer } from '../web-performance-test/threedot-create-new-renderer.component';
 import { WoFilterComponent } from '../web-performance-test/wo-filter/wo-filter.component';
-import { ThreeDotRecipeRenderer } from '../recipe/threedot-recipe-renderer.component';
-import { ThreeDotONTRenderer } from './threedot-recipe-renderer.component';
+import { ThreeDotONTRenderer } from './threedot-ont-renderer.component';
+import { ThreeDotAssignmentONTRenderer } from './threedot-assignment-ont-renderer.component';
+
 declare var $: any;
 
 @Component({
@@ -49,6 +50,7 @@ export class OntComponent implements OnInit {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
+    dropdownAssignmentRenderer: ThreeDotAssignmentONTRenderer,
     dropdownRenderer: ThreeDotONTRenderer,
     inputRenderer: inputRendererComponent,
     drpRenderer: ThreeDotCreateNewRenderer
@@ -145,7 +147,9 @@ export class OntComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
-    private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
+    private overlayContainer: OverlayContainer, private httpClient: HttpClient,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver) {
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsPending = <GridOptions>{};
@@ -161,7 +165,7 @@ export class OntComponent implements OnInit {
   }
 
   getMyTaskDetails() {
-    this.httpClient.get('assets/data/workorder/nv-workorder/nv-recipe.json')
+    this.httpClient.get('assets/data/workorder/nv-workorder/ont/ont.json')
       .subscribe(data => {
         this.rowData = data;
       });
@@ -221,8 +225,13 @@ export class OntComponent implements OnInit {
         width: 200
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "",
-        cellRenderer: 'dropdownRenderer',
+        cellRenderer: 'dropdownAssignmentRenderer',
         width: 100,
         pinned: 'right'
       }
@@ -274,6 +283,11 @@ export class OntComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "",
@@ -329,6 +343,11 @@ export class OntComponent implements OnInit {
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
         width: 200
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "",

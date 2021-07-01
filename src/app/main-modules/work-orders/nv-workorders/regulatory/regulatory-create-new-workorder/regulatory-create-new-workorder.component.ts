@@ -7,18 +7,13 @@ import { of } from 'rxjs';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { GridCore, GridOptions } from '@ag-grid-community/core';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
-import { ThreeDotNVWPTRenderer } from '../../web-performance-test/threedot-nv-wpt-renderer.component';
-import { WptModalComponent } from '../../web-performance-test/wpt-modal/wpt-modal.component';
-import { ɵangular_packages_platform_browser_animations_animations_d } from '@angular/platform-browser/animations';
 import { FileUploadPopupComponent, fileUploadPopupModel } from 'src/app/core/components/commonPopup/file-upload-popup/file-upload-popup.component';
 import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer';
-import { ThreeDotRETRenderer } from '../../../cm-workorders/ret-change/threedot-ret-renderer.component';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
+import { EventDispatcher } from 'createjs-module';
 
 @Component({
   selector: 'app-regulatory-create-new-workorder',
@@ -126,13 +121,13 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   sec:any = [
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
   ampm = ["AM", "PM"];
@@ -141,12 +136,10 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
 
   constructor(private fb: FormBuilder, private fileUploadService: FileUploadService,
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
-       console.log(this.router.url);
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
     this.gridOptionsSelectDevice = <GridOptions>{};
     this.gridOptionsBulkOrder = <GridOptions>{};
-    //this.rowSelection = 'multiple';
     this.createColumnDefs();
     this.nbhWo();
     this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/bulk-order.json").subscribe((data) => {
@@ -158,9 +151,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     this.thirdFormGroup = this.fb.group({
       selectedDateTime: {
         startDate: moment().subtract(1, 'days'),
-        endDate: moment().subtract(1, 'days'),
-        // startDate: moment().subtract(1, 'days').set({ hours: 0, minutes: 0 }),
-        // endDate: moment().subtract(1, 'days').set({ hours: 23, minutes: 59 }),
+        endDate: moment().subtract(1, 'days')
       },
       alwaysShowCalendars: true,
       keepCalendarOpeningWithRange: true,
@@ -168,11 +159,10 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       disabled: true
     });
   }
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(){
-    console.log()
     if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) === undefined) {
       this.selectedDeviceCount = 0;
     } else {
@@ -196,17 +186,18 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Circle",
         field: "circle",
-        width: 110
+        width: 130
       },
       {
         headerName: "Jio Center",
         field: "jioCenter",
-        width: 140,
+        width: 200,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180,
+        width: 230,
+        pinned: 'right'
       }
     ];  
 
@@ -214,7 +205,12 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Selection",
         field: "jioCenter",
-        width: 300,
+        width: 150,
+      },
+      {
+        headerName: "",
+        field: "assignedTo",
+        width: 250,
       },
       {
         headerName: "",
@@ -228,18 +224,18 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Zone",
         field: "zone",
-        width: 150,
+        width: 140,
         pinned: 'left'
       },
       {
         headerName: "Circle",
         field: "circle",
-        width: 150
+        width: 130
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 200
+        width: 240
       },
       {
         headerName: "Date From",
@@ -269,20 +265,18 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "",
         cellRenderer: "threedotEditDelete",
-        width: 150,
+        width: 90,
         pinned: 'right'
       }
     ];
   }
 
   selectionChanged(evt) {
-    this.rowDataSelectDevice = [];
-    this.gridOptions.api.getSelectedRows().forEach((selectedRows) => {
-    selectedRows.jioCenter = selectedRows.jioCenter + " " + selectedRows.assignedTo;
-    this.rowDataSelectDevice = this.gridOptions.api.getSelectedRows();
+    let selectedNodes = evt.api.getSelectedNodes();
+    let selectedData = selectedNodes.map(node => node.data);
+    this.rowDataSelectDevice = selectedData;
     this.selectedDeviceCount = this.rowDataSelectDevice.length;
-    });  
-  }
+    }
 
   isInvalidDate = (m: moment.Moment) => {
     return this.invalidDates.some((d) => d.isSame(m, 'day'));
@@ -324,10 +318,10 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
         }
       });
   }
+  
   private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
-      console.log("file", file)
       this.uploadFile(file);
     });
   }
@@ -336,26 +330,10 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   onClick() {
     const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
       const file = fileUpload.files[0];
-      console.log("file", file)
       this.files.push({ data: file });
       this.uploadFiles();
     };
     fileUpload.click();
-  }
-
-  fitColumns() {
-    // if (this.gridOptionsSelectDevice.api && this.rowDataSelectDevice) {
-    //   setTimeout(() => {
-    //     this.gridOptionsSelectDevice.api.sizeColumnsToFit();
-    //   }, 0);
-    // } 
-  }
-  onReady(event) {
-    this.fitColumns();
-  }
-
-  onManualReady(event) {
-    this.fitColumns();
   }
 
   addToSelectedDevice() {
@@ -371,7 +349,6 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   }
 
   showUpload(evt) {
-    console.log(evt);
     if(evt.value === "2" || evt.value === "3") {
       this.showUploadDevices = true;
       this.showImei = false;
@@ -396,23 +373,18 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApiSelectDevice = params.api;
     this.gridColumnApi = params.columnApi;
-    params.api.paginationGoToPage(4);
-   if (this.gridOptionsSelectDevice.api) {
-    this.gridOptionsSelectDevice.api.sizeColumnsToFit();
-  }
-  if (this.gridOptions.api) {
-    this.gridOptions.api.sizeColumnsToFit();
-  }
-  if (this.gridOptionsBulkOrder.api) {
-    this.gridOptionsBulkOrder.api.sizeColumnsToFit();
-  }
-  
-  }
-
-  someMethod(evt) {
-    console.log(evt);
-    console.log(this.hours);
+    params.api.paginationGoToPage(4); 
+    if (this.gridOptionsSelectDevice.api ) {
+      this.gridOptionsSelectDevice.api.sizeColumnsToFit();
+    }
+    if (this.gridOptions.api) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
+    if (this.gridOptionsBulkOrder.api) {
+      this.gridOptionsBulkOrder.api.sizeColumnsToFit();
+    } 
   }
 
   uploadBulk() {
@@ -427,7 +399,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/create-new-wo.json").subscribe((data) => {
         this.rowData = data;
       });
-      this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
+      this.httpClient.get("assets/data/workorder/nv-workorder/regulatory/create-select-add-device.json").subscribe((data) => {
         this.rowDataSelectDevice = data;
       });
     }
@@ -463,7 +435,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       const message = {
         message: `Workorder assigned Successfully.`,
         showDefaultActionBar: true,
-        regulatory: "Regulatory"
+        navigation: "REGULATORY"
       }
       this.dialog.open(SuccessfulModalComponent, {
         data: message,
@@ -475,6 +447,6 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
   }
 
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/Regulatory-Reporting"])
+    this.router.navigate(["/JCP/Work-Orders/NV-Workorders/Regulatory-Reporting"])
   }
 }

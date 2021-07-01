@@ -7,12 +7,10 @@ import { of, ReplaySubject, Subject } from 'rxjs';
 import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { GridCore, GridOptions } from '@ag-grid-community/core';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteRendererComponent } from 'src/app/core/components/ag-grid-renders/delete-renderer.component';
 import { ThreeDotNVWPTRenderer } from '../../web-performance-test/threedot-nv-wpt-renderer.component';
-import { WptModalComponent } from '../../web-performance-test/wpt-modal/wpt-modal.component';
 import { MatSelect } from '@angular/material/select';
 import { EditRendererComponent } from '../../recipe/edit-renderer-component';
 import { OntSerialNumberComponent } from './ont-serial-number/ont-serial-number.component';
@@ -34,7 +32,6 @@ export const SELECT_RECIPE_LIST = [
   styleUrls: ['./ont-create-new-workorder.component.scss']
 })
 export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
-
   selectDaily = ["Daily", "Weekly", "Monthly"];
   range = new FormGroup({
     start: new FormControl(),
@@ -133,13 +130,13 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   sec:any = [
     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
           "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
           "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-          "52", "53", "54", "55", "56", "57", "58", "59", "60"
+          "52", "53", "54", "55", "56", "57", "58", "59"
   ]
   hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
   ampm = ["AM", "PM"]
@@ -152,10 +149,10 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     //set default value of select recipe
-    this.httpClient.get("assets/data/workorder/nv-workorder/select-recipe.json").subscribe((data) => {
+    this.httpClient.get("assets/data/workorder/nv-workorder/ont/select-recipe.json").subscribe((data) => {
       this.rowData = data;
     })
-    this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
+    this.httpClient.get("assets/data/workorder/nv-workorder/ont/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
     });
 
@@ -221,14 +218,14 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/Create-New-Workorder") {
+    if(this.router.url === "/JCP/Work-Orders/NV-Workorders/ONT-Workorders/Create-New-Workorder") {
       this.showCreateNewWorkorder = true;
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/Copy-To-New-Workorder"){
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/ONT-Workorders/Copy-To-New-Workorder"){
       this.showCopyToNewWorkorder =  true;
       this.selectedRecipeCopyAndViewWO();
       this.selectedDeviceCopyAndViewWO();
       this.getSelectDeviceAndRecipeCount();
-    } else if(this.router.url === "/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/View-Workorder"){
+    } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/ONT-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
       this.columnDefsSelectDevice = [
@@ -262,13 +259,13 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   selectedRecipeCopyAndViewWO() {
-    this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-recipe.json").subscribe((data) => {
+    this.httpClient.get("assets/data/workorder/nv-workorder/ont/selected-recipe.json").subscribe((data) => {
       this.rowData = data;
     })
   }  
 
   selectedDeviceCopyAndViewWO() {
-    this.httpClient.get("assets/data/workorder/nv-workorder/recipe/selected-device.json").subscribe((data) => {
+    this.httpClient.get("assets/data/workorder/nv-workorder/ont/selected-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
     })
   }
@@ -465,6 +462,6 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }                                                                                                                                                                                                                                                                                                  
 
   navigateBack() {
-    this.router.navigate(["/JCP/Work-Orders/Nv-Workorders/ONT-Workorders/"])
+    this.router.navigate(["/JCP/Work-Orders/NV-Workorders/ONT-Workorders/"])
   }
 }

@@ -73,9 +73,20 @@ import { CandidatesACPComponent } from './rf-planning/nominal-generation-strateg
 import { DefineDataSourceComponent } from './rf-planning/nominal-generation-strategy/create-page/define-data-source/define-data-source.component';
 import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/exclusion-zones/exclusion-zones.component';
 import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
+import { CoveragePredictionComponent } from './rf-planning/coverage-prediction/coverage-prediction.component';
+import { CoveragePredictionLayerComponent } from './rf-planning/coverage-prediction/coverage-prediction-layer/coverage-prediction-layer.component';
 
 @NgModule({
-  declarations: [CreatePageComponent, StatergeMapNominalComponent, CandidatesACPComponent, DefineDataSourceComponent, ExclusionZonesComponent, StrategicSitesComponent],
+  declarations: [
+    CreatePageComponent,
+    StatergeMapNominalComponent,
+    CandidatesACPComponent,
+    DefineDataSourceComponent,
+    ExclusionZonesComponent,
+    StrategicSitesComponent,
+    CoveragePredictionComponent,
+    CoveragePredictionLayerComponent
+  ],
   imports: [
     CommonModule,
     NetworkPlanningRoutingModule,

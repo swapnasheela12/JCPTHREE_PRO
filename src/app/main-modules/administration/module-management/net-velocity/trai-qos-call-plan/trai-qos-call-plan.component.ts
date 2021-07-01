@@ -67,11 +67,11 @@ export class TraiQosCallPlanComponent implements OnDestroy {
   }
 
   constructor(private datatable: TableAgGridService,
-     private datashare: DataSharingService,
-     private router: Router,
-     private httpClient: HttpClient,
-     private overlayContainer: OverlayContainer,
-     private dialog: MatDialog) {
+    private datashare: DataSharingService,
+    private router: Router,
+    private httpClient: HttpClient,
+    private overlayContainer: OverlayContainer,
+    private dialog: MatDialog) {
     router.events.subscribe();
     this.gridOptions = <GridOptions>{};
     this.createColumnDefs();
@@ -100,44 +100,51 @@ export class TraiQosCallPlanComponent implements OnDestroy {
       {
         headerName: "Sr No.",
         field: "srno",
-        width: 140,
-        pinned: "left"
+        width: 90,
+        pinned: "left",
+        suppressFilter: true
       },
       {
         headerName: "LSA",
         field: "lsa",
-        width: 200
+        width: 170,
+        suppressFilter: true
       },
       {
         headerName: "User Name",
         field: "username",
-        width: 100,
+        width: 210,
+        suppressFilter: true
       },
       {
         headerName: "Call Plan Number",
         field: "callPlanNo",
-        width: 120,
+        width: 180,
+        suppressFilter: true
       },
       {
         headerName: "Call Plan Description",
         field: "callPlanDescription",
-        width: 260,
+        width: 190,
+        suppressFilter: true
       },
       {
         headerName: "Published Min DL Speed(Kpbs)",
         field: "publishedMinDLSpeed",
-        width: 140,
+        width: 240,
+        suppressFilter: true
       },
       {
-        headerName: "From Eff. Date (DD-MM-YY)",
+        headerName: "From Eff. Date(DD-MM-YY)",
         field: "fromEffectiveDate",
-        width: 140,
+        width: 230,
+        suppressFilter: true
       },
       {
-        headerName: "From Eff. Date (DD-MM-YY)",
+        headerName: "To Eff. Date(DD-MM-YY)",
         field: "toEffectiveDate",
-        width: 150,
-        pinned: "right"
+        width: 210,
+        suppressFilter: true
       }
     ];
     this.datatable.columnDefsServices = this.columnDefs;
@@ -194,7 +201,7 @@ export class TraiQosCallPlanComponent implements OnDestroy {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data == 'uploadClicked') {
-      
+
       }
     })
   }
