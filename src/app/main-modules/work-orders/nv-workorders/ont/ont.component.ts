@@ -182,7 +182,8 @@ export class OntComponent implements OnInit {
         cellRenderer: this.statusFunc,
         field: "status",
         width: 160,
-        pinned: 'left'
+        pinned: 'left',
+        
       },
       {
         headerName: "Workorder",
@@ -517,7 +518,6 @@ export class OntComponent implements OnInit {
   datesUpdated(range): void {
     this.selectedDateTimeValue = true;
   }
-
   openWOFilter() {
     this.dialog.open(WoFilterComponent, {
       width: "25vw",

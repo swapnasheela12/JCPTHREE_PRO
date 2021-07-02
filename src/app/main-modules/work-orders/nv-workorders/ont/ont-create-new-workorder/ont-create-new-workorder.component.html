@@ -71,7 +71,7 @@
                             <mat-form-field class="twamp-field-container" fxFlex="auto">
                                 <mat-select placeholder="Select Recipe" [formControl]="typeMultiCtrl" disableOptionCentering
                                     [multiple]="true" ngDefaultControl #typeMultiCtrlSelect
-                                    ngModel (ngModelChange)="filterMyOptions($event)"   >
+                                    ngModel (ngModelChange)="filterMyOptions($event)" disabled>
                                     <mat-option>
                                         <ngx-mat-select-search placeholderLabel="Search..." [formControl]="typeMultiFilterCtrl"
                                             noEntriesFoundLabel="no matching found" ngDefaultControl>
@@ -110,14 +110,13 @@
                 <label class="label mar-top mar-left">Date & Time Range</label>
                 <div class="sub-content d-flex  flex-row flex-wrap">
                     <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
-                        <form [formGroup]="thirdFormGroup">
+                        <form>
                             <mat-form-field class="custom-field-container" fxFlex>
                                 <div class="daterange-container">
                                     <input matInput ngxDaterangepickerMd placeholder="Select Date"
                                         [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
                                         [timePicker24Hour]="false" formControlName="selectedDateTime"
-                                        [showCustomRangeLabel]="true"
-                                        [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                        [showCustomRangeLabel]="true" [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
                                         [showClearButton]="true" [showCancel]="true"
                                         [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
                                         [isInvalidDate]="isInvalidDate"
@@ -143,17 +142,6 @@
                          <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
                             -
                          </div> 
-
-                         <!-- <mat-form-field appearance="fill">
-                            <mat-label>Enter a date range</mat-label>
-                            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                              <input matStartDate formControlName="start" placeholder="Start date">
-                              <input matEndDate formControlName="end" placeholder="End date">
-                            mod</mat-date-range-input>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-date-range-picker #picker></mat-date-range-picker>
-                          
-                          </mat-form-field> -->
                     </div>
 
                   
@@ -234,9 +222,9 @@
                 
                 
                     <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap">
-                        <div class="col-7">
+                        <div class="col-9">
                             <mat-form-field class="w-100">
-                                <mat-label>ONT Serial Number</mat-label>
+                                <mat-label>Enter ONT Serial Number</mat-label>
                                 <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
                             </mat-form-field>
                         </div>

@@ -188,7 +188,7 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 280
       },
       {
         headerName: "Assigned By",
@@ -209,6 +209,11 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Last Updated",
         field: "lastUpdated",
         width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "Task Completion",
@@ -234,7 +239,7 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 280
       },
       {
         headerName: "Assigned By",
@@ -255,6 +260,11 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Last Updated",
         field: "lastUpdated",
         width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "Task Completion",
@@ -280,7 +290,7 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 280
       },
       {
         headerName: "Assigned By",
@@ -301,6 +311,11 @@ export class WebPerformanceTestComponent implements OnInit {
         headerName: "Last Updated",
         field: "lastUpdated",
         width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "Task Completion",
@@ -388,12 +403,6 @@ export class WebPerformanceTestComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-  }
-
-  onSelectionChanged(event: SelectionChangedEvent) {
-    let lengthOfSelectedRow = event.api.getSelectedRows().length;
-    if (1 < lengthOfSelectedRow) {
-    }
   }
 
   showTaskData(evt) {

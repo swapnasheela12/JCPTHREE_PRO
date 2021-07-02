@@ -186,6 +186,11 @@ export class RegulatoryComponent implements OnInit {
         }
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
@@ -234,6 +239,11 @@ export class RegulatoryComponent implements OnInit {
         }
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,
@@ -280,6 +290,11 @@ export class RegulatoryComponent implements OnInit {
           '</div>';
           return template;
         }
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "Task Completion",

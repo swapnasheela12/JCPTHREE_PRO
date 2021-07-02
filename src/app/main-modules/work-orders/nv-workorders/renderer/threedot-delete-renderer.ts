@@ -6,13 +6,16 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'threedot-delete-renderer',
-    template: `<button [ngClass]="!showDisabled ? 'hideButton' : 'showButton'" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
+    template: `<button mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
      aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
         <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render" xPosition="before">
-            <button mat-menu-item (click)="deleteRow($event)">
+            <button *ngIf="showDelete" mat-menu-item (click)="deleteRow($event)">
                 <span>Delete</span>
+            </button>
+            <button *ngIf="showDownload" mat-menu-item>
+                <span>Download</span>
             </button>
         </mat-menu>`,
     styles: [
@@ -25,12 +28,6 @@ import { Router } from '@angular/router';
         .reportbuilder-editor-menu-render .mat-menu-content .mat-menu-item:hover {
             background-color: #f3f7fc;
         }
-        .hideButton {
-            display: none;
-        }
-        .showButton {
-            display: block;
-        }
     `
     ],
     encapsulation: ViewEncapsulation.None
@@ -40,7 +37,8 @@ export class ThreeDotDeleteRenderer implements ICellRendererAngularComp {
     params;
     enabled: Boolean;
     dataTest: any = false;
-    showDisabled: boolean =  false;
+    showDelete: boolean =  false;
+    showDownload: boolean =  false;
 
     constructor(
         public dialog: MatDialog,
@@ -50,10 +48,12 @@ export class ThreeDotDeleteRenderer implements ICellRendererAngularComp {
 
     agInit(params): void {
         console.log(params);
-        if(params.data.status != 'In Progress') {
-            this.showDisabled =  true;
+        if(params.data.status === 'Not Started') {
+            this.showDelete =  true;
+            this.showDownload = false;
         } else {
-            this.showDisabled = false;
+            this.showDownload = true;
+            this.showDelete =  false;
         }
         this.params = params;
         this.datashare.checkboxMessage.subscribe((checkbox) => {

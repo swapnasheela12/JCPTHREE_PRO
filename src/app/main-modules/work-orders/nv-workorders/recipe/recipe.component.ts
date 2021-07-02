@@ -223,6 +223,11 @@ export class RecipeComponent implements OnInit {
         width: 200
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "",
         cellRenderer: 'dropdownRenderer',
         width: 100,
@@ -278,6 +283,11 @@ export class RecipeComponent implements OnInit {
         width: 200
       },
       {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "",
         cellRenderer: 'dropdownRenderer',
         width: 100,
@@ -311,6 +321,11 @@ export class RecipeComponent implements OnInit {
         headerName: "Due Date",
         field: "dueDate",
         width: 180
+      },
+      {
+        headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
       },
       {
         headerName: "Last Updated",

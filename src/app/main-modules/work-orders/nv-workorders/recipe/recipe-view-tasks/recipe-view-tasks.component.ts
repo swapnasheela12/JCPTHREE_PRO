@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { Subject, Subscription } from 'rxjs';
 import {DeleteRendererComponent} from "src/app/core/components/ag-grid-renders/delete-renderer.component"
+import { ThreeDotDeleteRenderer } from '../../renderer/threedot-delete-renderer';
 import { RecipeViewWORendererComponent } from '../recipe-view-wo-renderer.component';
 
 @Component({
@@ -29,7 +30,7 @@ export class RecipeViewTasksComponent {
   public messageSubscription: Subscription;
   public gridFilterValueServices = {};
   public frameworkComponentsTaskDetails = {
-    threedotrenderer: RecipeViewWORendererComponent,
+    threedotrenderer: ThreeDotDeleteRenderer,
   };
   public searchGrid = '';
 

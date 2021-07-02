@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class OntSerialNumberComponent implements OnInit {
   iMEIs = [
-    "Rahul49.singh@ril.com",
-    "yogeshwar.bargal@ril.com",
-    "Priyanshi.asawara@ril.com",
-    "prempraksh.b@ril.com",
-    "Rohit.malviya@ril.com",
-    "Rohit.malviya@ril.com",
-    "Rohit.malviya@ril.com",
+    "RAROTAF00067271",
+    "RAROTAF00067271",
+    "RAROTAF00067271",
+    "RAROTAF00067271",
+    "RAROTAF00067271",
+    "RAROTAF00067271",
+    "RAROTAF00067271"
   ];
   showWPTWO: boolean = false;
   showRecipeWO: boolean = false;

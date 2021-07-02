@@ -5,9 +5,10 @@
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "5",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
+        "lastUpdated": "Dec 23, 2020",
         "taskCompleted": "80",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "In Progress",
@@ -16,8 +17,9 @@
         "assignedTo": "1",
         "taskCompleted": "100",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -26,9 +28,9 @@
         "assignedTo": "11",
         "taskCompleted": "0",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
-
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Completed",
@@ -37,8 +39,9 @@
         "assignedTo": "11",
         "taskCompleted": "100",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -47,8 +50,9 @@
         "assignedTo": "11",
         "taskCompleted": "0",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "In Progress",
@@ -57,8 +61,9 @@
         "assignedTo": "11",
         "taskCompleted": "0",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Completed",
@@ -67,8 +72,9 @@
         "assignedTo": "11",
         "taskCompleted": "100",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -77,8 +83,9 @@
         "assignedTo": "11",
         "taskCompleted": "0",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Completed",
@@ -87,8 +94,9 @@
         "assignedTo": "11",
         "taskCompleted": "50",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     },
     {
         "status": "Not Started",
@@ -97,7 +105,8 @@
         "assignedTo": "11",
         "taskCompleted": "20",
         "dueDate": "Dec 23, 2020",
-        "lastUpdated":  "Dec 23, 2020",
-        "lastCompletedTime": "4 days 12 hrs 59 min ago"
+        "lastUpdated": "Dec 23, 2020",
+        "lastCompletedTime": "4 days 12 hrs 59 min ago",
+        "createdDate": "Dec 23, 2020"
     }
 ]
