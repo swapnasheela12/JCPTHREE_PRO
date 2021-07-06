@@ -342,6 +342,11 @@ export class RecipeComponent implements OnInit {
         }
       },
       {
+        headerName: "Date of Closure",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,

@@ -208,7 +208,16 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Created Date",
@@ -259,8 +268,17 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
-      },
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
+      },  
       {
         headerName: "Created Date",
         field: 'createdDate',
@@ -310,10 +328,24 @@ export class WebPerformanceTestComponent implements OnInit {
       {
         headerName: "Last Updated",
         field: "lastUpdated",
-        width: 180
+        width: 250,
+        cellRenderer: function (params) {
+          console.log(params,"params");
+          let template = '<div>'+
+          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
+          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
+          '</div>';
+          return template;
+          // return moment(params.data.creationTime).format('DD MMM, YYYY');
+        }
       },
       {
         headerName: "Created Date",
+        field: 'createdDate',
+        width: 150
+      },
+      {
+        headerName: "Date of Closure",
         field: 'createdDate',
         width: 150
       },

@@ -8,7 +8,8 @@
         "lastUpdatedDate": "Feb 19, 2021",
         "lastUpdatedTime": "3 hrs 42 min ago",
         "reason": "",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "createdDate": "Dec 23, 2020"
     },{
         "status": "Not Started",
         "taskName": "Task 14251641",
@@ -18,7 +19,8 @@
         "lastUpdatedDate": "Feb 19, 2021",
         "lastUpdatedTime": "3 hrs 42 min ago",
         "reason": "",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "createdDate": "Dec 23, 2020"
     },{
         "status": "In Progress",
         "taskName": "Task 14251641",
@@ -28,5 +30,6 @@
         "lastUpdatedDate": "Feb 19, 2021",
         "lastUpdatedTime": "3 hrs 42 min ago",
         "reason": "",
-        "dueDate": "Dec 23, 2020"
+        "dueDate": "Dec 23, 2020",
+        "createdDate": "Dec 23, 2020"
     }]

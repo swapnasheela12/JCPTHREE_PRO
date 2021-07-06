@@ -93,6 +93,11 @@ export class ViewTasksComponent {
         width: 180
       },
       {
+        headerName: "Created By",
+        field: "createdBy",
+        width: 160
+      },
+      {
         headerName: "Last Updated",
         field: "lastUpdatedDate",
         width: 180,

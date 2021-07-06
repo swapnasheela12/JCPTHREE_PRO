@@ -291,6 +291,11 @@ export class OntComponent implements OnInit {
         width: 150
       },
       {
+        headerName: "Date of Closure",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "",
         cellRenderer: 'dropdownRenderer',
         width: 100,

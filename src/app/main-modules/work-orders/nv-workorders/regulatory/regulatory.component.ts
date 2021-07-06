@@ -297,6 +297,11 @@ export class RegulatoryComponent implements OnInit {
         width: 150
       },
       {
+        headerName: "Date of Closure",
+        field: 'createdDate',
+        width: 150
+      },
+      {
         headerName: "Task Completion",
         field: 'taskCompletion',
         cellRenderer: this.taskCompletionFunc,

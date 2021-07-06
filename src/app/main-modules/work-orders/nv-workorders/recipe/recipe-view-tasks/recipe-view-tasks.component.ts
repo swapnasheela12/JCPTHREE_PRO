@@ -112,6 +112,11 @@ export class RecipeViewTasksComponent {
         width: 180
       },
       {
+        headerName: "Created By",
+        field: "createdBy",
+        width: 160
+      },
+      {
         headerName: "",
         cellRenderer: 'threedotrenderer',
         width: 90,
