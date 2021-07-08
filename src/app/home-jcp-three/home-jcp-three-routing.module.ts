@@ -30,6 +30,7 @@ const routes: Routes = [
      { path: "My-JCP", loadChildren: () => import("../../app/main-modules/my-jcp/my-jcp.module").then(m => m.MyJcpModule) },
       {
         path: "Modules", children: [
+          { path: "Administration/Platform-Administration", loadChildren: () => import("../../app/main-modules/modules/administration/administration.module").then(m => m.AdministrationModule) },
           { path: "Performance-Management", loadChildren: () => import("../../app/main-modules/modules/performance-management/performance-management.module").then(m => m.PerformanceManagementModule) },
           { path: 'Planning-Deployment', loadChildren: () => import('../../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule) },
           { path: 'Configuration-Management', loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule) },

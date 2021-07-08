@@ -40,6 +40,7 @@
                             "./node_modules/font-awesome/css/font-awesome.css",
                             "src/styles.scss",
                             "./node_modules/mmenu-js/dist/mmenu.css",
+                            "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                             {
                                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
                             }
@@ -58,7 +59,8 @@
                             "./node_modules/lodash/lodash.js",
                             "./node_modules/mmenu-js/dist/mmenu.js",
                             "./node_modules/jquery/dist/jquery.min.js",
-                            "./src/js/canvasLayerForLeaflet.js"
+                            "./src/js/canvasLayerForLeaflet.js",
+                            "./node_modules/@fortawesome/fontawesome-free/js/all.min.js"
                         ]
                     },
                     "configurations": {
