@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { Router } from '@angular/router';
 import { EditCreateWoComponent } from '../regulatory-create-new-workorder/edit-create-wo/edit-create-wo.component';
-import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { CommonDialogModel, CommonPopupComponent, snackBarToastComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'threedot-regulatory-renderer',
@@ -42,7 +43,8 @@ export class ThreeDotRegulatoryRenderer implements ICellRendererAngularComp {
     constructor(
         public dialog: MatDialog,
         public datashare: DataSharingService,
-        public router: Router
+        public router: Router,
+        public _snackBar: MatSnackBar
     ) { }
 
     agInit(params): void {
@@ -65,17 +67,18 @@ export class ThreeDotRegulatoryRenderer implements ICellRendererAngularComp {
 
 
     deleteRow(evt) {
-        const message = `1. Yogeshwar.bargal@ril.com`;
-        const image = 'warning';
+        let deletedRow = this.params.node.data;
+        this.params.api.updateRowData({ remove: [deletedRow] });
         const snackbarMode = 'success';
-        const snackbarText = 'Action Performed Successfully';
-        const showContentForCSV = true;
-        let deletedRow = this.params;
-        const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText, showContentForCSV, deletedRow);
-        this.dialog.open(CommonPopupComponent, {
-        data: dialogData
+        const snackbarText = 'Parameter value changed successfully';
+        this._snackBar.openFromComponent(snackBarToastComponent, {
+        duration: 4000,
+        data: {
+            snackbarMode: snackbarMode,
+            snackbarText: snackbarText,
+        },
+        panelClass: [snackbarMode]
         });
-        
       }
 
 }

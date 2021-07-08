@@ -5,7 +5,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription, Subject } from 'rxjs';
-import { ViewChild, Input, TemplateRef } from '@angular/core';
+import { ViewChild, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -19,7 +19,8 @@ declare var $: any;
 @Component({
   selector: 'app-regulatory',
   templateUrl: './regulatory.component.html',
-  styleUrls: ['./regulatory.component.scss']
+  styleUrls: ['./regulatory.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegulatoryComponent implements OnInit {
   @Input() commonTableAggrid: TemplateRef<any>;
@@ -156,7 +157,7 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 230
+        width: 250
       },
       {
         headerName: "Assigned By",
@@ -209,7 +210,7 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 230
+        width: 250
       },
       {
         headerName: "Assigned By",
@@ -253,60 +254,30 @@ export class RegulatoryComponent implements OnInit {
     ];
     this.columnDefsHistory = [
       {
-        headerName: "Status",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 170,
-        pinned: 'left'
-      },
-      {
         headerName: "Workorder",
         field: "workorder",
-        width: 230
+        width: 290
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 190,
+        width: 270,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 160,
-      },
-      {
-        headerName: "Due Date",
-        field: "dueDate",
-        width: 180
-      },
-      {
-        headerName: "Last Updated",
-        field: "lastUpdated",
-        width: 220,
-        cellRenderer: function (params) {
-          let template = '<div>'+
-          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
-          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
-          '</div>';
-          return template;
-        }
-      },
-      {
-        headerName: "Created Date",
-        field: 'createdDate',
-        width: 150
+        width: 200,
       },
       {
         headerName: "Date of Closure",
         field: 'createdDate',
-        width: 150
+        width: 170
       },
       {
-        headerName: "Task Completion",
-        field: 'taskCompletion',
-        cellRenderer: this.taskCompletionFunc,
-        width: 200,
-        pinned: "right"
+        headerName: "",
+        cellRenderer: 'dropdownRenderer',
+        width: 100,
+        pinned: 'right'
       }
     ];
   }
@@ -388,17 +359,11 @@ export class RegulatoryComponent implements OnInit {
     }
   }
 
-  // onGridSizeChanged(event) {
-  //   if (this.gridOptions.api && this.rowData) {
-  //     this.gridOptions.api.sizeColumnsToFit();
-  //   }
-  //   if (this.gridOptionsPending.api && this.rowDataPending) {
-  //     this.gridOptionsPending.api.sizeColumnsToFit();
-  //   }
-  //   if (this.gridOptionsHistory.api && this.rowDataHistory) {
-  //     this.gridOptionsHistory.api.sizeColumnsToFit();
-  //   }
-  // }
+  onGridSizeChanged(params) {
+    if (this.gridOptionsHistory.api && this.rowData) {
+      this.gridOptionsHistory.api.sizeColumnsToFit();
+    }
+  }
 
   onRowClicked(event) {
     this.router.navigate(['/JCP/Work-Orders/NV-Workorders/Regulatory-Reporting/WO-Regulatory'])

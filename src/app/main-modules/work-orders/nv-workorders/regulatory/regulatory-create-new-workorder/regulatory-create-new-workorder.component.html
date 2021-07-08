@@ -141,8 +141,8 @@
 
                         <div class="sub-content-flex-item  col-6">
                             <mat-form-field class="example-full-width">
-                                <mat-label>Waiting Period</mat-label>
-                                <input matInput value="In Seconds">
+                                <mat-label>Waiting Period (s)</mat-label>
+                                <input matInput placeholder="In Second">
                               </mat-form-field>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
                                 (selectionChanged)="selectionChanged($event)" (gridSizeChanged)="onGridSizeChanged($event)"
                                 toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
                                 [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true"
-                                [pagination]="false" [paginationAutoPageSize]="false"
+                                [pagination]="false" [paginationAutoPageSize]="false" 
                                 [frameworkComponents]="frameworkComponentsTaskDetails"
                                 (gridReady)="onGridReady($event)">
                             </ag-grid-angular>
@@ -236,7 +236,7 @@
                         <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
                             <ag-grid-angular style="width: 100%; height: 285px"
                                 class="ag-theme-material ag-jcp3"
-                                [tooltipShowDelay]="tooltipShowDelay" [rowData]="rowDataSelectDevice"
+                                [tooltipShowDelay]="tooltipShowDelay" [rowData]="rowDataSelectDevice" 
                                 [columnDefs]="columnDefsSelectDevice" [groupHeaderHeight]="47" [headerHeight]="47"
                                 [gridOptions]="gridOptionsSelectDevice" [suppressHorizontalScroll]="true" (gridSizeChanged)="onGridSizeChanged($event)"
                                 (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsTaskDetails">
@@ -295,9 +295,8 @@
             </div>
 
             <div class="d-flex flex-row" style="height: calc(100% - 150px);">
-                <ag-grid-angular (gridReady)="onGridReady($event)"
-                class="ag-theme-material table-view-zoom-ag-grid w-100"
-                style="height: 100%;border: 1px solid #eee;" rowHeight="48"
+                <ag-grid-angular class="ag-theme-material table-view-zoom-ag-grid w-100"
+                style="height: 100%;border: 1px solid #eee;" rowHeight="48" 
                 headerHeight="48" [gridOptions]="gridOptionsBulkOrder" [columnDefs]="columnDefsBulkOrder"
                 [rowData]="rowDataBulkOrder" enableColResize groupHeaders
                 (selectionChanged)="selectionChanged($event)" [suppressRowClickSelection]="true"

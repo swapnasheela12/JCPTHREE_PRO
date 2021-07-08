@@ -225,6 +225,16 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
       this.selectedRecipeCopyAndViewWO();
       this.selectedDeviceCopyAndViewWO();
       this.getSelectDeviceAndRecipeCount();
+      this.gridOptionsSelectDevice.getRowStyle = () => {
+        if (this.showCopyToNewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
+      this.gridOptions.getRowStyle = () => {
+        if (this.showCopyToNewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
     } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/ONT-Workorders/View-Workorder"){
       this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
@@ -237,7 +247,17 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
       ];
       this.selectedRecipeCopyAndViewWO();
       this.selectedDeviceCopyAndViewWO();
-      this.selectedDeviceCount = this.rowDataSelectDevice.length;
+      //this.selectedDeviceCount = this.rowDataSelectDevice.length;
+      this.gridOptionsSelectDevice.getRowStyle = () => {
+        if (this.showViewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
+      this.gridOptions.getRowStyle = () => {
+        if (this.showViewWorkorder) {
+          return { color: 'black', opacity: 0.4 }
+        }
+      }
     }
   }
 

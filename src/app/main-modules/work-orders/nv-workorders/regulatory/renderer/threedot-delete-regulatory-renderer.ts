@@ -7,7 +7,7 @@ import { EditCreateWoComponent } from '../regulatory-create-new-workorder/edit-c
 
 @Component({
     selector: 'threedot-delete-regulatory-renderer',
-    template: `<button [disabled]="showDisabled" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
+    template: `<button *ngIf="showDisabled" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
      aria-label="Example icon-button with a menu">
             <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
         </button>
@@ -44,7 +44,6 @@ export class ThreeDotDeleteRegulatoryRenderer implements ICellRendererAngularCom
     ) { }
 
     agInit(params): void {
-        console.log(params);
         if(params.data.status != 'In Progress') {
             this.showDisabled =  true
         }

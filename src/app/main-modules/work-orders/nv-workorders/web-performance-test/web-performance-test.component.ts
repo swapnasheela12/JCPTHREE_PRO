@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { dropDownThreeDotRendererComponent } from 'src/app/core/components/ag-grid-renders/dropDownThreeDot-renderer.component';
-import { Subscription, Subject, ReplaySubject } from 'rxjs';
-import { ViewChild, Input, TemplateRef } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
+import { ViewChild, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -14,7 +13,6 @@ import { GridOptions, GridCore, SelectionChangedEvent } from 'ag-grid-community'
 import * as _ from 'lodash';
 import { inputRendererComponent } from 'src/app/core/components/ag-grid-renders/input-renderer.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DropDownRendererComponent } from 'src/app/main-modules/modules/network-deployment/gNodeB/task-details/dropDown-renderer.component';
 import { ThreeDotWPTRenderer } from './threedot-wpt-renderer.component';
 import { WoFilterComponent } from './wo-filter/wo-filter.component';
 import { ThreeDotCreateNewRenderer } from './threedot-create-new-renderer.component';
@@ -24,7 +22,8 @@ declare var $: any;
 @Component({
   selector: 'app-web-performance-test',
   templateUrl: './web-performance-test.component.html',
-  styleUrls: ['./web-performance-test.component.scss']
+  styleUrls: ['./web-performance-test.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WebPerformanceTestComponent implements OnInit {
   @Input() commonTableAggrid: TemplateRef<any>;
@@ -128,21 +127,10 @@ export class WebPerformanceTestComponent implements OnInit {
    columnDefsHistory;
    columnDefsPending;
 
-   onReadyModeUpdate(params) {
-    this.calculateRowCount();
-  }
-
   public onReady(params) {
     this.gridApi = params.api;
-    this.calculateRowCount();
   }
-  public calculateRowCount() {
-    if (this.gridOptions.api && this.rowData) {
-      setTimeout(() => {
-        this.gridOptions.api.sizeColumnsToFit();
-      }, 1000);
-    }
-  }
+
 
   constructor(private fb: FormBuilder, public dialog: MatDialog, private datatable: TableAgGridService, private datashare: DataSharingService, private router: Router,
     private overlayContainer: OverlayContainer, private httpClient: HttpClient) {
@@ -164,11 +152,6 @@ export class WebPerformanceTestComponent implements OnInit {
     this.httpClient.get('assets/data/workorder/nv-workorder/nv-wpf.json')
       .subscribe(data => {
         this.rowData = data;
-        // this.datatable.typeOfAgGridTable = "Default-Ag-Grid";
-        // this.datatable.gridPinnedServices = this.gridPinned;
-        // this.datatable.rowDataServices = this.rowData;
-        // this.datatable.gridOptionsServices = this.gridOptions;
-        // this.datatable.defaultColDefServices = this.defaultColDef;
       });
   }
 
@@ -299,61 +282,24 @@ export class WebPerformanceTestComponent implements OnInit {
     ];
     this.columnDefsHistory = [
       {
-        headerName: "Status",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 160,
-        pinned: 'left'
-      },
-      {
         headerName: "Workorder",
         field: "workorder",
-        width: 280
+        width: 290
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 240,
+        width: 270,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180,
-      },
-      {
-        headerName: "Due Date",
-        field: "dueDate",
-        width: 180
-      },
-      {
-        headerName: "Last Updated",
-        field: "lastUpdated",
-        width: 250,
-        cellRenderer: function (params) {
-          console.log(params,"params");
-          let template = '<div>'+
-          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
-          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
-          '</div>';
-          return template;
-          // return moment(params.data.creationTime).format('DD MMM, YYYY');
-        }
-      },
-      {
-        headerName: "Created Date",
-        field: 'createdDate',
-        width: 150
+        width: 200,
       },
       {
         headerName: "Date of Closure",
         field: 'createdDate',
-        width: 150
-      },
-      {
-        headerName: "Task Completion",
-        field: 'taskCompletion',
-        cellRenderer: this.taskCompletionFunc,
-        width: 200
+        width: 170
       },
       {
         headerName: "",
@@ -368,13 +314,13 @@ export class WebPerformanceTestComponent implements OnInit {
   statusFunc(params) {
     var status = params.value;
     var barColor = '';
-    if (status == "Completed") {
+    if (status === "Completed") {
       barColor = '#60DD5C';
-    } else if (status == "In Progress" || status == "Started") {
+    } else if (status === "In Progress" || status === "Started") {
       barColor = '#F8C93A';
-    } else if (status == "Rejected") {
+    } else if (status === "Rejected") {
       barColor = '#F8C93A';
-    } else if (status == "Re-Assigned") {
+    } else if (status === "Re-Assigned") {
       barColor = '#5D97E6';
     } else {
       barColor = '#8A8A8A';
@@ -408,6 +354,15 @@ export class WebPerformanceTestComponent implements OnInit {
                         '; width:' + width + "%" + ';">'+'</div>'+
                   '</div>' + 
                 '</div>';
+  }
+
+  onGridSizeChanged(params) {
+    if (this.gridOptionsHistory.api && this.rowData) {
+      this.gridOptionsHistory.api.sizeColumnsToFit();
+    }
+    if (this.gridOptions.api && this.rowData) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
   }
 
 

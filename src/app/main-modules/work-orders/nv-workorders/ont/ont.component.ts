@@ -5,7 +5,7 @@ import { DataSharingService } from 'src/app/_services/data-sharing.service';
 import { TableAgGridService } from 'src/app/core/components/table-ag-grid/table-ag-grid.service';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription, Subject } from 'rxjs';
-import { ViewChild, Input, TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { ViewChild, Input, TemplateRef, ViewContainerRef, ComponentFactoryResolver, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
@@ -25,7 +25,8 @@ declare var $: any;
 @Component({
   selector: 'app-ont',
   templateUrl: './ont.component.html',
-  styleUrls: ['./ont.component.scss']
+  styleUrls: ['./ont.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OntComponent implements OnInit {
   @Input() commonTableAggrid: TemplateRef<any>;
@@ -304,56 +305,24 @@ export class OntComponent implements OnInit {
     ];
     this.columnDefsHistory = [
       {
-        headerName: "Status",
-        cellRenderer: this.statusFunc,
-        field: "status",
-        width: 160,
-        pinned: 'left'
-      },
-      {
         headerName: "Workorder",
         field: "workorder",
-        width: 260
+        width: 290
       },
       {
         headerName: "Assigned By",
         field: "assignedBy",
-        width: 240,
+        width: 270,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 180,
+        width: 200,
       },
       {
-        headerName: "Due Date",
-        field: "dueDate",
-        width: 180
-      },
-      {
-        headerName: "Last Updated",
-        field: "lastUpdated",
-        width: 250,
-        cellRenderer: function (params) {
-          console.log(params,"params");
-          let template = '<div>'+
-          '<div style="line-height: 30px">'+params.data.lastUpdated+'</div>'+
-          '<div style="line-height: 2px;">'+params.data.lastCompletedTime+'</div>'+
-          '</div>';
-          return template;
-          // return moment(params.data.creationTime).format('DD MMM, YYYY');
-        }
-      },
-      {
-        headerName: "Task Completion",
-        field: 'taskCompletion',
-        cellRenderer: this.taskCompletionFunc,
-        width: 200
-      },
-      {
-        headerName: "Created Date",
+        headerName: "Date of Closure",
         field: 'createdDate',
-        width: 150
+        width: 170
       },
       {
         headerName: "",
@@ -410,6 +379,11 @@ export class OntComponent implements OnInit {
       '</div>';
   }
 
+  onGridSizeChanged(params) {
+    if (this.gridOptionsHistory.api && this.rowData) {
+      this.gridOptionsHistory.api.sizeColumnsToFit();
+    }
+  }
 
   dateFunc(params) {
     var status = params.value;

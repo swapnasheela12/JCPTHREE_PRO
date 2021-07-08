@@ -36,21 +36,34 @@ export class CommonPopupComponent {
   };
 
   onConfirm(): void {
-    if(this.data.showContentForCSV) {
+    if(this.data.module === "REGULATORY") {
       this.dialogRef.close(true);
-      // let deletedRow = this.params.node.data;
-      //   this.params.api.updateRowData({ remove: [deletedRow] })
-      this.data.deletedRow.api.updateRowData({ remove: [this.data.deletedRow.node.data] })
-    } else {
+      this.renderModule();
+      } else {
       this.dialogRef.close(true);
-    this._snackBar.openFromComponent(snackBarToastComponent, {
-      duration: 4000,
-      data: {
-        snackbarMode: this.snackbarMode,
-        snackbarText: this.snackbarText,
-      },
-      panelClass: [this.snackbarMode]
-    });
+      this._snackBar.openFromComponent(snackBarToastComponent, {
+        duration: 4000,
+        data: {
+          snackbarMode: this.snackbarMode,
+          snackbarText: this.snackbarText,
+        },
+        panelClass: [this.snackbarMode]
+      });
+    }
+    
+  }
+
+  renderModule() {
+    if(this.data.module === "REGULATORY") {
+      this.dialogRef.close(true);
+      const message = {
+          message: `Workorder assigned Successfully.`,
+          showDefaultActionBar: true,
+          navigation: "REGULATORY"
+        }
+        this.dialog.open(SuccessfulModalComponent, {
+          data: message,
+        });
     }
   }
 }
@@ -63,7 +76,7 @@ export class CommonDialogModel {
     public snackbarMode: string,
     public snackbarText: string,
     public showContentForCSV?: boolean,
-    public deletedRow?
+    public module?
   ) {
   }
 }

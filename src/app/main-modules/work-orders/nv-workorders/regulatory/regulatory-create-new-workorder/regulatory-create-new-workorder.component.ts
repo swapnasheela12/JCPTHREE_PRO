@@ -14,6 +14,7 @@ import { FileUploadPopupComponent, fileUploadPopupModel } from 'src/app/core/com
 import { ThreeDotRegulatoryRenderer } from '../renderer/threedot-regulatory-renderer';
 import { SuccessfulModalComponent } from 'src/app/core/components/commonPopup/successful-modal/successful-modal.component';
 import { EventDispatcher } from 'createjs-module';
+import { CommonDialogModel, CommonPopupComponent } from 'src/app/core/components/commonPopup/common-popup/common-popup.component';
 
 @Component({
   selector: 'app-regulatory-create-new-workorder',
@@ -174,7 +175,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     this.columnDefs = [
       {
         headerName: "",
-        width: 10,
+        width: 50,
         pinned: 'left',
         checkboxSelection: function (params) {
           return params.columnApi.getRowGroupColumns().length === 0;
@@ -186,18 +187,17 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Circle",
         field: "circle",
-        width: 130
+        width: 110
       },
       {
         headerName: "Jio Center",
         field: "jioCenter",
-        width: 200,
+        width: 150,
       },
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 230,
-        pinned: 'right'
+        width: 200
       }
     ];  
 
@@ -235,27 +235,27 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 240
+        width: 230
       },
       {
         headerName: "Date From",
         field: "dateFrom",
-        width: 200
+        width: 150
       },
       {
         headerName: "Date to",
         field: "dateTo",
-        width: 200
+        width: 150
       },
       {
         headerName: "Start Time",
         field: "startTime",
-        width: 180
+        width: 150
       },
       {
         headerName: "Iterations",
         field: "iterations",
-        width: 180
+        width: 150
       },
       {
         headerName: "Waiting Period (s)",
@@ -367,7 +367,9 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       this.gridOptions.api.sizeColumnsToFit();
     }
     if (this.gridOptionsBulkOrder.api && this.rowDataBulkOrder) {
+      setTimeout(() => {
       this.gridOptionsBulkOrder.api.sizeColumnsToFit();
+      }, 1000);
     }
   }
 
@@ -376,15 +378,6 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     this.gridApiSelectDevice = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.paginationGoToPage(4); 
-    if (this.gridOptionsSelectDevice.api ) {
-      this.gridOptionsSelectDevice.api.sizeColumnsToFit();
-    }
-    if (this.gridOptions.api) {
-      this.gridOptions.api.sizeColumnsToFit();
-    }
-    if (this.gridOptionsBulkOrder.api) {
-      this.gridOptionsBulkOrder.api.sizeColumnsToFit();
-    } 
   }
 
   uploadBulk() {
@@ -431,15 +424,16 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
 
 
   assignWorkorder(): void {
-    // this.dialog.close(true);
-      const message = {
-        message: `Workorder assigned Successfully.`,
-        showDefaultActionBar: true,
-        navigation: "REGULATORY"
-      }
-      this.dialog.open(SuccessfulModalComponent, {
-        data: message,
-      });
+    const message = `1. Yogeshwar.bargal@ril.com`;
+    const image = 'warning';
+    const snackbarMode = 'success';
+    const snackbarText = 'Action Performed Successfully';
+    const showContentForCSV = true;
+    const module = "REGULATORY";
+    const dialogData = new CommonDialogModel("Warning!", message, image, snackbarMode, snackbarText, showContentForCSV, module);
+    this.dialog.open(CommonPopupComponent, {
+    data: dialogData
+    });
   }
 
   navigateBackToCreateWO() {

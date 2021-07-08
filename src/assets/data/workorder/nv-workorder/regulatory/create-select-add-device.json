@@ -1,8 +1,7 @@
 [
     {
-        "jioCenter": "MU-ULHS-JC31-0 Mahendra4.kuma@ril.com"
-    },
-    {
-        "jioCenter": "MU-ULHS-JC31-0 Mahendra4.kuma@ril.com"
+        "circle": "MUMBAI",
+        "jioCenter" : "MU-ULHS-JC31-0",
+        "assignedTo" : "Mahendra4.kumar@ril.com"
     }
 ]

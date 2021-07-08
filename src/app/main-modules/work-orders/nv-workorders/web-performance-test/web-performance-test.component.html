@@ -108,7 +108,7 @@
             <div style="height: 100%">
                 <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
                     headerHeight="48" [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory"
-                    [rowData]="rowData" enableColResize  groupHeaders
+                    [rowData]="rowData" enableColResize  groupHeaders (gridSizeChanged)="onGridSizeChanged($event)"
                     [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
                     rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"
                     [pagination]="true" [suppressPaginationPanel]="true" [suppressRowClickSelection]="true"

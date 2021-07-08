@@ -190,7 +190,7 @@ $color-grayBlue: #464d69;
     }
 }
 
-:host ::ng-deep .recipe-wrapper {
+.recipe-wrapper {
     .recipe-module-card {
         .header-right {
             mat-form-field {
@@ -298,7 +298,7 @@ $color-grayBlue: #464d69;
     }
 }
 
-:host ::ng-deep .recipe-wrapper {
+.recipe-wrapper {
     .td-tab-details {
         .td-tabs {
             .td-tab-group {

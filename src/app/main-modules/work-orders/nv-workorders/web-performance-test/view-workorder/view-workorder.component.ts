@@ -111,6 +111,7 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
      private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
     this.stepperReportW();
     this.gridOptions = <GridOptions>{};
+    this.gridOptionsSelectDevice = <GridOptions>{};
     //this.rowSelection = 'multiple';
     this.createColumnDefs();
     this.httpClient.get("assets/data/workorder/nv-workorder/create-new-wo.json").subscribe((data) => {
@@ -118,7 +119,7 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
     })
     this.httpClient.get("assets/data/workorder/nv-workorder/create-select-add-device.json").subscribe((data) => {
       this.rowDataSelectDevice = data;
-    })
+    });
   }
 
   stepperReportW() {
@@ -139,6 +140,12 @@ export class ViewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.gridOptions.getRowStyle = () => {
+      return { color: 'black', opacity: 0.4 }
+    }
+    this.gridOptionsSelectDevice.getRowStyle = () => {
+        return { color: 'black', opacity: 0.4 }
+    }
     if(typeof(this.gridOptionsSelectDevice.api.getDisplayedRowCount()) == undefined) {
       this.selectedDeviceCount = 0;
     } else {
