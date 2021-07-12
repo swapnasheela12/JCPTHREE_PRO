@@ -157,7 +157,7 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 250
+        width: 270
       },
       {
         headerName: "Assigned By",
@@ -210,7 +210,7 @@ export class RegulatoryComponent implements OnInit {
       {
         headerName: "Workorder",
         field: "workorder",
-        width: 250
+        width: 270
       },
       {
         headerName: "Assigned By",

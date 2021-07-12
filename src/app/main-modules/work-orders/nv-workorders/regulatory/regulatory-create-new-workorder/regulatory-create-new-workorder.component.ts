@@ -224,7 +224,7 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Zone",
         field: "zone",
-        width: 140,
+        width: 150,
         pinned: 'left'
       },
       {
@@ -235,32 +235,32 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
       {
         headerName: "Assigned To",
         field: "assignedTo",
-        width: 230
+        width: 250
       },
       {
         headerName: "Date From",
         field: "dateFrom",
-        width: 150
+        width: 170
       },
       {
         headerName: "Date to",
         field: "dateTo",
-        width: 150
+        width: 160
       },
       {
         headerName: "Start Time",
         field: "startTime",
-        width: 150
+        width: 170
       },
       {
         headerName: "Iterations",
         field: "iterations",
-        width: 150
+        width: 160
       },
       {
         headerName: "Waiting Period (s)",
         field: "waitingPeriod",
-        width: 200
+        width: 230
       },
       {
         headerName: "",
@@ -365,11 +365,6 @@ export class RegulatoryCreateNewWorkorderComponent implements OnInit, AfterViewI
     }
     if (this.gridOptions.api && this.rowData) {
       this.gridOptions.api.sizeColumnsToFit();
-    }
-    if (this.gridOptionsBulkOrder.api && this.rowDataBulkOrder) {
-      setTimeout(() => {
-      this.gridOptionsBulkOrder.api.sizeColumnsToFit();
-      }, 1000);
     }
   }
 
