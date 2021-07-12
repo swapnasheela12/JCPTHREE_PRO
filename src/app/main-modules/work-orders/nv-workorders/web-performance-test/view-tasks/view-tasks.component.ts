@@ -92,11 +92,11 @@ export class ViewTasksComponent {
         field: "dueDate",
         width: 180
       },
-      {
-        headerName: "Created By",
-        field: "createdBy",
-        width: 160
-      },
+      // {
+      //   headerName: "Created By",
+      //   field: "createdBy",
+      //   width: 160
+      // },
       {
         headerName: "Last Updated",
         field: "lastUpdatedDate",
