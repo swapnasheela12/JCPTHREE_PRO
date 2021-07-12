@@ -228,6 +228,7 @@ export class PredictionSettingPopupComponent implements OnInit, AfterViewInit {
 
   onChecked(selected, node, activeCheckbox, eventChecked) {
     event.preventDefault();
+    console.log()
     if (eventChecked != 'no') {
       node.selected = eventChecked;
     } else {
