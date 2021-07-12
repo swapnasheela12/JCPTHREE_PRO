@@ -49,7 +49,7 @@
             <mat-divider></mat-divider> 
             <div class="setting-selection">
                 <div class="selection ps-checkbox" *ngFor="let node of settingsDetails['Prediction Type']">
-                    <mat-checkbox class="ps-radio" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked))" [checked]="node.selected"
+                    <mat-checkbox class="ps-radio" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected"
                         #activeCheckbox>
                         <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
                         </div>
