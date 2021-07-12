@@ -163,13 +163,7 @@ export class CoveragePredictionComponent implements OnInit {
   }
 
   createPopup(): void {
-    const dialogData = new NpCreatePopupDialogModel();
-    const dialogRef = this.dialog.open(NpCreatePopupComponent, {
-      data: dialogData,
-      width: '500px',
-      height: '200px',
-      panelClass: 'np-create-popup-dialog'
-    });
+    this.router.navigate(['/JCP/Modules/Network-Planning/RF-Planning/Create']);
   }
 
   asdasd(value) {

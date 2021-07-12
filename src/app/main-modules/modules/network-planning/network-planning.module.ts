@@ -75,6 +75,7 @@ import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strate
 import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
 import { CoveragePredictionComponent } from './rf-planning/coverage-prediction/coverage-prediction.component';
 import { CoveragePredictionLayerComponent } from './rf-planning/coverage-prediction/coverage-prediction-layer/coverage-prediction-layer.component';
+import { CreateTaskPageComponent } from './rf-planning/coverage-prediction/create-task-page/create-task-page.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { CoveragePredictionLayerComponent } from './rf-planning/coverage-predict
     ExclusionZonesComponent,
     StrategicSitesComponent,
     CoveragePredictionComponent,
-    CoveragePredictionLayerComponent
+    CoveragePredictionLayerComponent,
+    CreateTaskPageComponent
   ],
   imports: [
     CommonModule,

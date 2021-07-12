@@ -948,6 +948,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           },
         };
         if ('undefined' !=  this.dataPolyList) {
+          //data from redirect layer
           this.dataPolyList = dataPoly;
           for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
             const ele = this.dataPolyList.transferDataPoly[index];
@@ -967,7 +968,9 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
                 fillOpacity: 0.5
               }).addTo(this.map);
               this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
-            } else if (ele.polydata.properties.shape == 'Polygon') {
+            } 
+            // draw polygon ----- 
+            else if (ele.polydata.properties.shape == 'Polygon') {
               this.poly = L.polygon([
                 [19.060009, 72.876063],
                 [19.013112, 72.907984],
