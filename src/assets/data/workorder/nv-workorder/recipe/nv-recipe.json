@@ -1,7 +1,7 @@
 [
     {
         "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "5",
         "dueDate": "Dec 23, 2020",
@@ -12,7 +12,7 @@
     },
     {
         "status": "In Progress",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "1",
         "taskCompleted": "100",
@@ -23,7 +23,7 @@
     },
     {
         "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
@@ -34,7 +34,7 @@
     },
     {
         "status": "Completed",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "100",
@@ -45,7 +45,7 @@
     },
     {
         "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
@@ -56,7 +56,7 @@
     },
     {
         "status": "In Progress",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
@@ -67,7 +67,7 @@
     },
     {
         "status": "Completed",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "100",
@@ -78,7 +78,7 @@
     },
     {
         "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "0",
@@ -89,7 +89,7 @@
     },
     {
         "status": "Completed",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "50",
@@ -100,7 +100,7 @@
     },
     {
         "status": "Not Started",
-        "workorder": "WO-WPT-16MAR-31MAR-15:01:48",
+        "workorder": "WO-REC-16MAR-31MAR-15:01:48",
         "assignedBy": "Rahul49.singh@ril.com",
         "assignedTo": "11",
         "taskCompleted": "20",
