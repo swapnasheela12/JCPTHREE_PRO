@@ -537,7 +537,7 @@ export class CreateTaskPageComponent  implements OnInit {
   public polyline;
   public dataPolygon = [];
   polySelectedChange(item) {
-    console.log(item, "item");
+    console.log(item, "item poly selected");
     this.dataPolygon.push(item);
     item.checked = !item.checked;
     // for (let index = 0; index < this.itemsListPoly.length; index++) {
@@ -667,10 +667,12 @@ export class CreateTaskPageComponent  implements OnInit {
   }
 
   openDialogSuccessful(): void {
+    console.log("this.dataPolygon", this.dataPolygon);
+    
     const dialogRef = this.dialog.open(RedirectLayersPopupComponent, {
       width: "470px",
       panelClass: "material-dialog-container",
-      data: { transferDataPoly: this.dataPolygon, headerNominal: true }
+      data: { transferDataPoly: this.dataPolygon, headerNominal: false, display:'coverage-prediction' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -842,7 +844,7 @@ export class CreateTaskPageComponent  implements OnInit {
   ToggleButton() {
     this.showSelected = !this.showSelected;
     // console.log(this.steperInput,"this.steperInput");
-    console.log(this.stepper, "stepper");
+    console.log(this.stepper, "checkwhatisgoing");
     this.datashare.changeMessageDialog(this.stepper)
 
     // this.steperInput = this.stepper.selectedIndex;
@@ -879,5 +881,6 @@ export class CreateTaskPageComponent  implements OnInit {
     setTimeout(() => {
       this.initMap();
     }, 500);
+
   }
 }

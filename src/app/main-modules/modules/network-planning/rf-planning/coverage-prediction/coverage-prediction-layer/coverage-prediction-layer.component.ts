@@ -81,7 +81,7 @@ export class CoveragePredictionLayerComponent implements AfterViewInit, OnDestro
   }
 
   ngAfterViewInit() {
-    this.dataShare.layerNameFunc([{ name: 'Back To Nominal Geneartion', source: 'display' }]);
+    this.dataShare.layerNameFunc([{ name: 'Back To Coverage Prediction', source: 'display' }]);
   }
 
   ngOnDestroy() {

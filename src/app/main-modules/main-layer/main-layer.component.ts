@@ -892,6 +892,20 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
 
     this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
+      if(dataPoly.display == 'coverage-prediction'){
+        $('#Layers').parent()[0].click();
+        this.datashare.layerNameFunc([{name: 'Back To Coverage Prediction', source: 'create'}]);
+        let routePlannedLayerHeader = {
+          "title": "Back To Coverage Prediction",
+          "headerSapid": "Maharashtra-NP-CV-121020_v1",
+          "name":"coverage-prediction"
+        };
+        let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
+        this.headerToShow = this.target.createComponent(HeaderViewComponent);
+        this.headerToShow.instance.headerData = routePlannedLayerHeader;
+        this.datashare.addExtraLayerDynamic([{name: 'coverage-prediction', display: 'create'}]);
+        this.datashare.removeLayerFromNavigation('overage-prediction');
+      }
       if(dataPoly.display == 'nominal-validation'){
         $('#Layers').parent()[0].click();
         this.datashare.layerNameFunc([{name: 'Back To Nominal Validation', source: 'create'}]);

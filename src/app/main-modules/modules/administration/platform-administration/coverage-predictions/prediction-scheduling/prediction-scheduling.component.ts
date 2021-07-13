@@ -180,8 +180,8 @@ export class PredictionSchedulingComponent implements OnInit {
 
 
   async redirectToLayer() {
-    // this.router.navigate(['/JCP/Layers']);
-    // this.viewContainerRef.clear();
+    this.router.navigate(['/JCP/Layers']);
+    this.viewContainerRef.clear();
     // const { NominalValidationLayerComponent } = await import('./../nominal-validation/nominal-validation-layer/nominal-validation-layer.component');
     // let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
     //   this.componentFactoryResolver.resolveComponentFactory(NominalValidationLayerComponent)
