@@ -185,8 +185,7 @@ export class CoveragePredictionComponent implements OnInit {
     this.router.navigate([this.layerRoute]);
     this.router.navigate(['/JCP/Layers']);
     this.viewContainerRef.clear();
-    // const { CoveragePredictionLayerC
-    const { CoveragePredictionLayerComponent } = await import('./coverage-prediction-layer/coverage-prediction-layer.component');
+    const { CoveragePredictionLayerComponent } = await import('./layer/coverage-prediction-layer/coverage-prediction-layer.component');
     let nominalGenerationLandingPage = this.viewContainerRef.createComponent(
       this.componentFactoryResolver.resolveComponentFactory(CoveragePredictionLayerComponent)
     );

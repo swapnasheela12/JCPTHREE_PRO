@@ -74,8 +74,10 @@ import { DefineDataSourceComponent } from './rf-planning/nominal-generation-stra
 import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/exclusion-zones/exclusion-zones.component';
 import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
 import { CoveragePredictionComponent } from './rf-planning/coverage-prediction/coverage-prediction.component';
-import { CoveragePredictionLayerComponent } from './rf-planning/coverage-prediction/coverage-prediction-layer/coverage-prediction-layer.component';
+import { CoveragePredictionLayerComponent } from './rf-planning/coverage-prediction/layer/coverage-prediction-layer/coverage-prediction-layer.component';
 import { CreateTaskPageComponent } from './rf-planning/coverage-prediction/create-task-page/create-task-page.component';
+import { SiteSelectionLayerComponent } from './rf-planning/coverage-prediction/layer/site-selection-layer/site-selection-layer.component';
+import { CoveragePredictionRendererComponent } from './rf-planning/coverage-prediction/create-task-page/renderer/coverage-prediction-renderer.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { CreateTaskPageComponent } from './rf-planning/coverage-prediction/creat
     StrategicSitesComponent,
     CoveragePredictionComponent,
     CoveragePredictionLayerComponent,
-    CreateTaskPageComponent
+    CreateTaskPageComponent,
+    SiteSelectionLayerComponent,
+    CoveragePredictionRendererComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +100,8 @@ import { CreateTaskPageComponent } from './rf-planning/coverage-prediction/creat
     CoreModule,
     FlexLayoutModule,
     NgxDaterangepickerMd.forRoot(),
-    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent]),
+    AgGridModule.withComponents([dropDownList3DotRendererComponent,dropdownPriorityRendererComponent,CustomTooltip ,dropdownQueryRendererComponent,dropdownRendererComponent,statusflagiconRenderComponent,layersIconRenderComponent,layerlayerDropDownDotRendererComponent,StatusRendererComponent, VerticaldotRendererComponent, conditionalDropdownRendererComponent, DeleteRendererComponent, dropdownRendererComponent, createKpiDropdownRendererComponent, DeleteCreatedKpiRendererComponent,
+    CoveragePredictionRendererComponent]),
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
