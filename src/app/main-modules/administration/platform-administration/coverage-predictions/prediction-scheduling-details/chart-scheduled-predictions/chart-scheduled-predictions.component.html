@@ -1,0 +1,93 @@
+<div class="h-100">
+    <mat-card class="chart-scheduled-card p-0">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+            <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="padding: 0 10px;">
+                <div class="pl-0" >
+                    <div fxLayout="row wrap">
+                        <!-- <div class="px-1" style="line-height: 2;">
+                            <button mat-icon-button (click)="backPageRout()">
+                                <mat-icon class="iconType" style="font-size: 25px;">
+                                    <div class="zmdi zmdi-chevron-left"></div>
+                                </mat-icon>
+                            </button>
+                        </div> -->
+                        <div class="header px-1">Scheduled Predictions</div>
+                    </div>
+                </div>
+                <div fxFlex></div>
+                <div class="dateContant pl-0" fxFlex="15">
+                    <form [formGroup]="dataSourceFormGroup" fxLayout="row wrap" fxLayoutAlign="space-around center"
+                        class="report-filter-form">
+                        <mat-form-field  fxFlex="70" class="custom-field-container">
+                            <div class="daterange-container">
+                                <!-- 'Daily', 'Weekly', 'Monthly' -->
+                                <input *ngIf="showChartType =='Daily'" matInput ngxDaterangepickerMd placeholder="" formControlName="selectedDateTime"
+                                    [alwaysShowCalendars]="dataSourceFormGroup.get('alwaysShowCalendars').value"
+                                    [singleDatePicker]="true" [showClearButton]="true" [showCancel]="true"
+                                    [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
+                                    [isInvalidDate]="isInvalidDate"
+                                    [locale]="{ applyLabel: 'Ok', format: 'DD-MMM-YY',clearLabel:'Clear'}"
+                                    [keepCalendarOpeningWithRange]="dataSourceFormGroup.get('keepCalendarOpeningWithRange').value"
+                                    [showRangeLabelOnInput]="dataSourceFormGroup.get('showRangeLabelOnInput').value"
+                                    (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                    autocomplete="off" [opens]="opens" [drops]="drops"
+                                    class="daterange-container-input" />
+                                <input *ngIf="showChartType == 'Weekly' ||showChartType == 'Monthly'" matInput ngxDaterangepickerMd placeholder="Select Date & Time"
+                                    formControlName="selectedDateTime" [showCustomRangeLabel]="true"
+                                    [alwaysShowCalendars]="dataSourceFormGroup.get('alwaysShowCalendars').value" [ranges]="ranges"
+                                    [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                                    [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                    [locale]="{ applyLabel: 'Ok', format: 'DD-MMM-YY',clearLabel:'Clear'}"
+                                    [keepCalendarOpeningWithRange]="dataSourceFormGroup.get('keepCalendarOpeningWithRange').value"
+                                    [showRangeLabelOnInput]="dataSourceFormGroup.get('showRangeLabelOnInput').value"
+                                    (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                    autocomplete="off"  [opens]="opens"
+                                    [drops]="drops" class="daterange-container-input"/>
+                            </div>
+                        </mat-form-field>
+                        <div class="calendar-icon" style="font-size: 18px;color: #858585;margin: auto 10px !important;">
+                            <i class="zmdi zmdi-calendar"></i>
+                        </div>
+                    </form>
+                </div>
+                <div style="line-height: 1.6;">
+                    <button mat-button color="primary">
+                        <i class="ic ic-download pr-2"></i>
+                        <span style="font-size:14px;font-family: Lato Bold;">Download</span>
+                    </button>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <mat-card-content class="px-2 pt-1 cia-card-content">
+            <div>
+                <div fxFlex="100" class="jcp-landing-card-chart-container">
+                    <!-- <div id="kpiDetailsChartID" [chart]="kpiDetailsChart"></div> -->
+                    <!-- 'Daily', 'Weekly', 'Monthly' -->
+                    <highcharts-chart *ngIf="showChartType =='Daily'" #xRangeChart [Highcharts]="highcharts" [options]="chartOptions"
+                        style="width: 100%; height: 435px; display: block;">
+                    </highcharts-chart>
+                    <highcharts-chart *ngIf="showChartType =='Weekly'" #xRangeChartWeekly [Highcharts]="highchartsweekly" [options]="chartOptionsWeekly"
+                        style="width: 100%; height: 435px; display: block;">
+                    </highcharts-chart>
+                    <highcharts-chart *ngIf="showChartType =='Monthly'" #xRangeChartWeekly [Highcharts]="highchartsweekly" [options]="chartOptionsYearly"
+                        style="width: 100%; height: 435px; display: block;">
+                    </highcharts-chart>
+                </div>
+            </div>
+            <div fxLayoutAlign="end center" style="margin-top: -50px;">
+                <div class="px-5 slider-date" fxFlex="25">
+                    <ng5-slider [options]="options" (valueChange)="valueChange($event)">
+                    </ng5-slider>
+                </div>
+            </div>
+        </mat-card-content>
+        <!-- <div class="px-3" fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxFlex></div>
+            <div class="px-5 slider-date" fxFlex="25">
+                <ng5-slider [options]="options" >
+                </ng5-slider>
+            </div>
+        </div> -->
+    </mat-card>
+</div>

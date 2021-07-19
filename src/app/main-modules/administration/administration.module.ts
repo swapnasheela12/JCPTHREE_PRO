@@ -1,3 +1,4 @@
+import { PredictionSchedulingComponent } from './platform-administration/coverage-predictions/prediction-scheduling/prediction-scheduling.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -89,9 +90,18 @@ import { OdscStatusTemplateComponent } from './module-management/network-deploym
 import { OdscCreateSlaConfigurationComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/odsc-create-sla-configuration.component';
 import { OdscHistoryComponent } from './module-management/network-deployment/plan-to-build/odsc/site-sla-configuration/create-sla-configuration/history/odsc-history.component';
 import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-qos-call-plan/trai-qos-call-plan.component';
-
+import { EditPredictionSchedulingComponent } from './platform-administration/coverage-predictions/prediction-scheduling/edit-prediction-scheduling/edit-prediction-scheduling.component';
+import { PredictionSchedulingDetailsComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/prediction-scheduling-details.component';
+import { PredictionTypeComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/prediction-type/prediction-type.component';
+import { SiteSelectionComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/site-selection/site-selection.component';
+import { ScheduleComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/schedule/schedule.component';
+import { ChartScheduledPredictionsComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/chart-scheduled-predictions/chart-scheduled-predictions.component';
+import { Ng5SliderModule } from 'ng5-slider';
+// import { NgxSliderModule } from "@angular-slider/ngx-slider";
 @NgModule({
   declarations: [
+    EditPredictionSchedulingComponent,
+    PredictionSchedulingComponent,
     dropdownMilestoneRendererComponent,
     dropdownTaskRendererComponent,
     ReasonTemplatesComponent,
@@ -115,10 +125,17 @@ import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-
     OdscStatusTemplateComponent,
     OdscCreateSlaConfigurationComponent,
     OdscHistoryComponent,
-    TraiQosCallPlanComponent
+    TraiQosCallPlanComponent,
+    EditPredictionSchedulingComponent,
+    PredictionSchedulingDetailsComponent,
+    PredictionTypeComponent,
+    SiteSelectionComponent,
+    ScheduleComponent,
+    ChartScheduledPredictionsComponent
   ],
   imports: [
     CommonModule,
+    Ng5SliderModule,
     AdministrationRoutingModule,
     CoreModule,
     FlexLayoutModule,
@@ -182,6 +199,7 @@ import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-
   exports: [
     NpQueryThreeDotRendererComponent
   ],
+
 })
 export class AdministrationModule { }
 

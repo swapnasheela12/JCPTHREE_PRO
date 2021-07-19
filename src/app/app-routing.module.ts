@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: "JCP", loadChildren:  () => import("../app/home-jcp-three/home-jcp-three.module").then(m => m.HomeJcpThreeModule)
   },
-  { path: 'administration', loadChildren: () => import('./main-modules/modules/administration/administration.module').then(m => m.AdministrationModule) },
   { path: "**", redirectTo: "/JCP/Home", pathMatch: "full" }
 ];
 

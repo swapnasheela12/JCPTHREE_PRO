@@ -2594,7 +2594,7 @@ const ADMIN_PERFORMANCE_LIST = [
 const Coverage_Predictions_LIST = [
     {
         name: 'Prediction Scheduling',
-        link: 'JCP/Modules/Administration/Platform-Administration/Coverage-Predictions/Prediction-Scheduling',
+        link: 'JCP/Administration/Platform-Administration/Coverage-Predictions/Prediction-Scheduling',
         eventName: 'prediction-scheduling',
         show: true,
         showSettings: true,
