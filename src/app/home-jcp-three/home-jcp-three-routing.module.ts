@@ -26,11 +26,16 @@ const routes: Routes = [
       { path: "Layers_Cust", component: LayersCustComponent },
       { path: "Layers", loadChildren: () => import("../../app/main-modules/main-layer/main-layer.module").then(m => m.MainLayerModule) },
       { path: "Reports-and-Dashboards", loadChildren: () => import("../../app/main-modules/reports-dashboards/reports-and-dashboards.module").then(m => m.ReportsAndDashboardsModule) },
-      { path: "Administration", loadChildren: () => import("../../app/main-modules/administration/administration.module").then(m => m.AdministrationModule) },
-     { path: "My-JCP", loadChildren: () => import("../../app/main-modules/my-jcp/my-jcp.module").then(m => m.MyJcpModule) },
+      // { path: "Administration", loadChildren: () => import("../../app/main-modules/administration/administration.module").then(m => m.AdministrationModule) },
+      {
+        path: "Administration", children: [
+          { path: "Platform-Administration", loadChildren: () => import("../../app/main-modules/administration/administration.module").then(m => m.AdministrationModule) },
+        ]
+      },
+      { path: "My-JCP", loadChildren: () => import("../../app/main-modules/my-jcp/my-jcp.module").then(m => m.MyJcpModule) },
       {
         path: "Modules", children: [
-          { path: "Administration/Platform-Administration", loadChildren: () => import("../../app/main-modules/modules/administration/administration.module").then(m => m.AdministrationModule) },
+
           { path: "Performance-Management", loadChildren: () => import("../../app/main-modules/modules/performance-management/performance-management.module").then(m => m.PerformanceManagementModule) },
           { path: 'Planning-Deployment', loadChildren: () => import('../../app/main-modules/modules/planning-deployment/planning-deployment.module').then(m => m.PlanningDeploymentModule) },
           { path: 'Configuration-Management', loadChildren: () => import('../../app/main-modules/modules/configuration-management/configuration-management.module').then(m => m.ConfigurationManagementModule) },

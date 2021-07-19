@@ -4,20 +4,20 @@
     font-family: Lato Medium;
 }
 
-.prediction-scheduling-card {
+.prediction-scheduling {
     height: 90%;
     min-height:  90%;
     min-width: 100%;
     width: 100%;
     position: relative;
-    .prediction-scheduling-card-flex-container {
+    .prediction-scheduling-flex-container {
         .full-height {
             height: 64px !important;
         }
         .nc-title {
             font-weight: 600;
         }
-        .prediction-scheduling-card-flex-item {
+        .prediction-scheduling-flex-item {
             font-size: 15px;
             padding-right: 0px !important;
             .vertical-kpi {
@@ -27,7 +27,7 @@
         .create-button {
             margin-right: 10px;
         }
-        .prediction-scheduling-card-card-toolbar-icon {
+        .prediction-scheduling-card-toolbar-icon {
             display: inline-block;
             margin-left: 13px;
             font-size: 24px;
@@ -36,7 +36,7 @@
             margin-right: 10px;
         }
     }
-    .prediction-scheduling-card-menu-render .mat-menu-content .mat-menu-item:hover {
+    .prediction-scheduling-menu-render .mat-menu-content .mat-menu-item:hover {
         background-color: #f3f7fc;
     }
     .cover-div {
@@ -91,6 +91,7 @@
                     .status-button{
                         min-width:103px;
                         max-width: 103px;
+                        color: white;
                         &.button-yellow{
                             background: #F8C93A;
                         }
@@ -121,72 +122,10 @@
     }
 }
 
-.mat-menu-panel.prediction-scheduling-card-menu-render {
+.mat-menu-panel.prediction-scheduling-menu-render {
     .mat-menu-item {
         width: 125px !important;
         height: 48px !important;
         line-height: 1 !important;
     }
-}
-
-.mat-menu-content .mat-menu-item:hover {
-    background-color: #f3f7fc;
-}
-
-
-#showTitle, #customUser {
-    white-space: nowrap;
-    overflow: hidden;
-    // text-overflow: ellipsis;
-}
-
-.prediction-scheduling-card #showTitle:hover:after {
-    content: attr(data-title1);
-    padding: 0 8px;
-    color: white;
-    position: absolute;
-    font-size:12px;
-    top: 80%;
-    left: 2%;
-    z-index: 20;
-    border-radius: 2px;
-    font-family: Lato Regular;
-    background-color: #434962;
-    width: initial;
-    white-space: pre-wrap;
-    height: auto;
-    width: 560px;
-}
-
-.prediction-scheduling-card #customUser:hover:after {
-    content: attr(data-title1);
-    padding: 0 8px;
-    color: white;
-    position: absolute;
-    font-size:12px;
-    top: 30%;
-    left: 66%;
-    z-index: 20;
-    border-radius: 2px;
-    font-family: Lato Regular;
-    background-color: #434962;
-    width: initial;
-    white-space: pre-wrap;
-    height: auto;
-}
-.prediction-scheduling-card [data-title]:hover:after {
-    content: attr(data-title);
-    padding: 0 8px;
-    color: white;
-    position: absolute;
-    font-size:12px;
-    top: 80%;
-    left: 2%;
-    z-index: 20;
-    border-radius: 2px;
-    font-family: Lato Regular;
-    background-color: #434962;
-    width: initial;
-    white-space: pre-wrap;
-    height: auto;
 }

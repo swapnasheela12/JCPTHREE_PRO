@@ -1,0 +1,61 @@
+<div class="edit-popup-dialog">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Edite Prediction Scheduler</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content class="main-content py-2">
+        <form class="w-100" [formGroup]="selectDurationFrequency">
+            <div class="px-3" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <mat-form-field fxFlex="100" class="w-100">
+                    <mat-label>Scheduler name</mat-label>
+                    <input matInput placeholder="" value="Mumbai_OnAir">
+                </mat-form-field>
+            </div>
+            <div class="px-3" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <div fxFlex="50" fxLayout="row wrap">
+                    <mat-form-field class="custom-field-container">
+                        <div class="daterange-container">
+                            <input matInput ngxDaterangepickerMd placeholder="Trigger Time" [timePicker]="true"
+                                [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false"
+                                formControlName="selectedDateTime"
+                                [alwaysShowCalendars]="selectDurationFrequency.get('alwaysShowCalendars').value"
+                                [singleDatePicker]="true" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                                [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                [keepCalendarOpeningWithRange]="selectDurationFrequency.get('keepCalendarOpeningWithRange').value"
+                                [showRangeLabelOnInput]="selectDurationFrequency.get('showRangeLabelOnInput').value"
+                                (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                        </div>
+                    </mat-form-field>
+                    <div class="calendar-icon" style="margin: auto 10px !important;"><i class="zmdi zmdi-calendar"></i></div>
+                </div>
+                <div fxFlex="50">
+                    <mat-form-field class="w-100">
+                        <mat-label>Frequency</mat-label>
+                        <input matInput placeholder="" value="Weekly">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <!-- <button mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
+        </button> -->
+        <div class="col"></div>
+        <div class="mx-1">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" (click)="routeAction()" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>

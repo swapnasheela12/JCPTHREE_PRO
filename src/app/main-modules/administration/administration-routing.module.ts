@@ -1,3 +1,6 @@
+import { ChartScheduledPredictionsComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/chart-scheduled-predictions/chart-scheduled-predictions.component';
+import { PredictionSchedulingDetailsComponent } from './platform-administration/coverage-predictions/prediction-scheduling-details/prediction-scheduling-details.component';
+import { PredictionSchedulingComponent } from './platform-administration/coverage-predictions/prediction-scheduling/prediction-scheduling.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TraiQosCallPlanComponent } from './module-management/net-velocity/trai-qos-call-plan/trai-qos-call-plan.component';
@@ -131,10 +134,18 @@ const routes: Routes = [
               { path: "Trai-Qos-Call-Plan", component: TraiQosCallPlanComponent }
             ]
           }
-          
+
         ]
       }
     ]
+  },
+  {
+    path: "Coverage-Predictions", children: [
+      { path: "Scheduled-Predictions", component: PredictionSchedulingComponent },
+      { path: "Create-Prediction-Scheduling", component: PredictionSchedulingDetailsComponent },
+      { path: "Prediction-Status", component: ChartScheduledPredictionsComponent },
+    ]
+
   }
 ];
 

@@ -1,0 +1,590 @@
+<div class="h-100">
+    <mat-card class="cia-module-card p-0">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar">
+            <mat-toolbar-row fxLayout="row wrap" class="mat-blue-grey" style="padding: 0 10px;">
+                <div class="pl-0" fxFlex="80" fxLayout="row wrap">
+                    <div class="px-1" style="line-height: 2;">
+                        <button mat-icon-button *ngIf="showSelected" (click)="stepFunc()">
+                            <mat-icon class="iconType" style="font-size: 25px;">
+                                <div class="zmdi zmdi-chevron-left"></div>
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button *ngIf="!showSelected" (click)="backPageRout()">
+                            <mat-icon class="iconType" style="font-size: 25px;">
+                                <div class="zmdi zmdi-chevron-left"></div>
+                            </mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="header">Scheduled Predictions</div>
+                    <div *ngIf="showSelected && !showStrategicSites && !showExclusionZones"
+                        style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && !showStrategicSites && !showExclusionZones" class="Sub-header-title">
+                        Define Data Source</div>
+                    <div *ngIf="showSelected && showStrategicSites && !showExclusionZones"
+                        style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && showStrategicSites && !showExclusionZones" class="Sub-header-title">
+                        Strategic Sites</div>
+                    <div *ngIf="showSelected && !showStrategicSites && showExclusionZones"
+                        style="font-size: 25px;line-height: 1.6;">
+                        <div class="zmdi zmdi-chevron-right px-2"></div>
+                    </div>
+                    <div *ngIf="showSelected && !showStrategicSites && showExclusionZones" class="Sub-header-title">
+                        Exclusion Zones</div>
+                </div>
+                <div class="pl-0" fxFlex *ngIf="!typeGenerate">
+                    <div class="title">Project Name</div>
+                    <div class="sub-title">Mumbai_3500_RSRP_On Air</div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <mat-card-content class="cia-card-content">
+            <mat-horizontal-stepper [selectedIndex]="currentStep" *ngIf="Workorder == false && !showSelected"
+                #nodeCounterStepper [linear]="true" (selectionChange)="stepperChanged($event)">
+                <mat-step label="Basic Details">
+                    <div class="" style="height: calc(100% - 58px);overflow: auto;">
+
+                        <div style="padding-right: 15px;" fxFlex="50">
+                            <div fxLayout="row wrap">
+                                <ng-template ad-host></ng-template>
+                            </div>
+                            <form [formGroup]="selectJcCircleLevelFormControl">
+                                <div style="height: 335px;overflow: auto;">
+                                    <div *ngIf="!showDiv" fxLayout="row wrap">
+                                        <div class="px-2" fxFlex="100">
+                                            <mat-form-field fxFlex="100" class="form-field-container">
+                                                <input [formControl]="searchType" matInput type="text">
+                                                <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                                                    <mat-icon>search</mat-icon>
+                                                </button>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100" class="form-field-container">
+                                                <mat-select disableOptionCentering placeholder="Zone"
+                                                    (selectionChange)="zoneChangeFunc(zoneType)"
+                                                    [formControl]="zoneType" required>
+                                                    <mat-option *ngFor="let item of zoneListArr" [value]="item"
+                                                        selected>{{item.name}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Circle"
+                                                    [formControl]="selectJcControl" ngDefaultControl
+                                                    #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Circle"
+                                                            [formControl]="selectJcFilterControl"
+                                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async"
+                                                        [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="Jio State"
+                                                    [formControl]="r4gCircleControl" ngDefaultControl
+                                                    #cityControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio State"
+                                                            [formControl]="r4gFilterControl"
+                                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let r4gCircle of r4gFilter | async"
+                                                        [value]="r4gCircle">
+                                                        {{r4gCircle.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select (selectionChange)="render(cityControl)"
+                                                    disableOptionCentering placeholder="Jio Center"
+                                                    [formControl]="cityControl" ngDefaultControl #cityNameControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="Jio Center"
+                                                            [formControl]="cityFilterControl"
+                                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                                        {{city.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="px-2" fxFlex="50">
+                                            <mat-form-field fxFlex="100">
+                                                <mat-select disableOptionCentering placeholder="City"
+                                                    [formControl]="selectJcControl" ngDefaultControl
+                                                    #selectJcControlSelect>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search placeholderLabel="City"
+                                                            [formControl]="selectJcFilterControl"
+                                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                                        </ngx-mat-select-search>
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let selectJc of selectJcFilter | async"
+                                                        [value]="selectJc">
+                                                        {{selectJc.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div *ngIf="showDiv" fxLayout="row wrap">
+                                        <div class="cust-nominal-container">
+                                            <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                                <div fxFlex="30" class="title">Polygon Name</div>
+                                                <div fxFlex></div>
+                                                <div class="icon-container">
+                                                    <button mat-icon-button (click)="openDialogSuccessful()">
+                                                        <mat-icon class="iconType">
+                                                            <div class="zmdi zmdi-edit"></div>
+                                                        </mat-icon>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="content-nominal-cust px-2" style="height: 155px;">
+                                                <div class="content-nominal-cust-row" fxLayout="row wrap"
+                                                    *ngFor="let item of itemsListPoly">
+                                                    <mat-checkbox color="primary" [checked]="item.checked"
+                                                        (change)="polySelectedChange(item);" style="margin-bottom:0">
+                                                    </mat-checkbox>
+                                                    <div class="title-poly">{{item.name}}</div>
+                                                    <div class="sub-title-poly">{{item.date}}</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row wrap">
+                                        <div class="p-2" fxFlex="100">
+                                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                                                class="radio-group" [formControl]="selectedBoundaries">
+                                                <mat-radio-button fxFlex="50" color="primary" class="radio-button pr-1"
+                                                    (change)="radioButtonChanged($event);"
+                                                    *ngFor="let eachBoundaries of listBoundaries"
+                                                    [value]="eachBoundaries">
+                                                    {{ eachBoundaries }}
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+
+                                    <div fxLayout="row wrap">
+                                        <div class="px-2" fxFlex="100">
+                                            <mat-form-field class="p-0" fxFlex="100">
+                                                <mat-label>Project Description</mat-label>
+                                                <input [formControl]="projectDescriptionCtrl" matInput
+                                                    placeholder="Description" required
+                                                    style="line-height: 7px !important">
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div fxFlex="50">
+                            <div id="map2"></div>
+                        </div>
+
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Back</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+                        </div>
+                        <div class="p-2">
+                            <button class="next-button button" matStepperNext mat-raised-button
+                                color="primary">Next</button>
+
+                        </div>
+
+
+                    </div>
+                </mat-step>
+                <mat-step label="Prediction Type">
+                    <div class="link-budget-container" fxLayout="column wrap" fxFlex="100">
+
+                        <div style="padding-right: 15px;" fxFlex="100">
+                            <form [formGroup]="selectJcCircleLevelFormControl">
+                                <div class="p-2" fxFlex="33">
+                                    <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <label class="example-margin">Technology</label>
+                                    </div>
+                                    <mat-radio-group fxLayout="column" fxLayoutAlign="space-around start"
+                                        aria-labelledby="example-radio-group-label" class="radio-group"
+                                        [formControl]="selectedTechnology">
+                                        <mat-radio-button color="primary" class="radio-button pr-1"
+                                            (change)="radioButtonTechnologyChanged($event);"
+                                            *ngFor="let technology of technologyArr" [value]="technology">
+                                            {{ technology }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="p-2" fxFlex="33">
+                                    <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <label class="example-margin">Band</label>
+                                    </div>
+                                    <mat-radio-group fxLayout="column" fxLayoutAlign="space-around start"
+                                        aria-labelledby="example-radio-group-label" class="radio-group"
+                                        [formControl]="selectedBand">
+                                        <mat-radio-button color="primary" class="radio-button pr-1"
+                                            (change)="radioButtonBandChanged($event);" *ngFor="let band of bandArr"
+                                            [value]="band">
+                                            {{ band }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="p-2" fxFlex="33">
+                                    <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <label class="example-margin">Prediction Type</label>
+                                    </div>
+                                    <section fxLayout="column" fxLayoutAlign="space-around start"
+                                        aria-labelledby="example-radio-group-label" class="radio-group">
+                                        <mat-checkbox [formControl]="selectedPredictionType" color="primary"
+                                            class="radio-button pr-1" [checked]=""
+                                            (change)="radioButtonPredictionTypeChanged($event);"
+                                            *ngFor="let predictionType of predictionTypeArr;trackBy:trackByCheckbox;let i = index;"
+                                            [value]="predictionType">
+                                            {{ predictionType }}
+                                        </mat-checkbox>
+                                    </section>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+                        </div>
+                        <div class="p-2">
+                            <button class="next-button button" mat-raised-button color="primary"
+                                matStepperNext>Next</button>
+                        </div>
+                    </div>
+                </mat-step>
+
+                <mat-step label="Site Selection">
+                    <div class="link-budget-container" fxLayout="column wrap" fxFlex="100">
+
+                        <div style="padding-right: 15px;" fxFlex="100">
+                            <form [formGroup]="selectedSiteSelection">
+                                <div class="p-2" fxFlex="33">
+                                    <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <mat-checkbox [checked]='true' color="primary" class="radio-button pr-1"
+                                            value="Site Status">
+                                            <label class="example-margin">Site Status</label>
+                                        </mat-checkbox>
+                                    </div>
+                                    <mat-radio-group fxLayout="column" fxLayoutAlign="space-around start"
+                                        aria-labelledby="example-radio-group-label" class="radio-group"
+                                        [formControl]="selectedSiteStatus">
+                                        <mat-radio-button color="primary" class="radio-button pr-1"
+                                            (change)="radioButtonSiteStatusChanged($event);"
+                                            *ngFor="let siteStatus of siteStatusArr" [value]="siteStatus">
+                                            {{ siteStatus }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+
+                                <div class="p-2" fxFlex="33">
+                                    <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <label class="example-margin">Site Type</label>
+                                    </div>
+                                    <section fxLayout="column" fxLayoutAlign="space-around start"
+                                        aria-labelledby="example-radio-group-label" class="radio-group">
+                                        <mat-checkbox [formControl]="selectedSiteType" color="primary"
+                                            class="radio-button pr-1" (change)="radioButtonSiteTypeChanged($event);"
+                                            *ngFor="let siteType of siteTypeArr;trackBy:trackByCheckbox; let i = index "
+                                            [value]="siteType">
+                                            {{ siteType }}
+                                        </mat-checkbox>
+                                    </section>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
+                        </div>
+                        <div fxFlex></div>
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+                        </div>
+                        <div class="p-2">
+                            <button class="next-button button" mat-raised-button color="primary"
+                                matStepperNext>Next</button>
+                        </div>
+                    </div>
+                </mat-step>
+                <mat-step label="Data Source">
+                    <div style="height: calc(100% - 58px);">
+                        <div fxFlex="100" style="overflow: auto;">
+                            <form [formGroup]="dataSourceFormGroup" fxLayout="column wrap" class="report-filter-form">
+                                <div class="px-2 pb-2" fxFlex="80">
+                                    <label style="color: #808080;
+                                font-size: 13px;
+                                font-family: 'Lato Medium';" class="radio-group-label">Frequency</label>
+                                    <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center"
+                                        aria-labelledby="example-radio-group-label" class="radio-group"
+                                        [formControl]="selectedFrequency">
+                                        <mat-radio-button color="primary" class="radio-button pr-1"
+                                            (change)="radioButtonFrequencyChanged($event);"
+                                            *ngFor="let frequency of frequencyArr" [value]="frequency">
+                                            {{ frequency }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+
+                                <div class="p-2" fxFlex="100">
+                                    <mat-form-field class="custom-field-container">
+                                        <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                                            <div class="daterange-container">
+                                                <input matInput ngxDaterangepickerMd
+                                                    placeholder="Select Start Date & Time" [timePicker]="true"
+                                                    [timePickerSeconds]="true" [timePickerIncrement]="15"
+                                                    [timePicker24Hour]="false" formControlName="selectedDateTime"
+                                                    [alwaysShowCalendars]="dataSourceFormGroup.get('alwaysShowCalendars').value"
+                                                    [singleDatePicker]="true" [showClearButton]="true"
+                                                    [showCancel]="true" [linkedCalendars]="false"
+                                                    [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                                    [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                                    [keepCalendarOpeningWithRange]="dataSourceFormGroup.get('keepCalendarOpeningWithRange').value"
+                                                    [showRangeLabelOnInput]="dataSourceFormGroup.get('showRangeLabelOnInput').value"
+                                                    (rangeClicked)="rangeClicked($event)"
+                                                    (datesUpdated)="datesUpdated($event)" autocomplete="off"
+                                                    [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                            </div>
+                                            <div class="calendar-icon" style="margin: auto 10px !important;">
+                                                <i class="zmdi zmdi-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </mat-form-field>
+                                </div>
+
+                                <div *ngIf="selectedFrequency.value == 'Daily' || selectedFrequency.value == 'Monthly'"
+                                    class="p-2" fxLayout="row wrap">
+                                    <mat-form-field fxFlex="10" class="recur-every-input p-0">
+                                        <input matInput [formControl]="recurEveryControl" placeholder="Recur every">
+                                    </mat-form-field>
+                                    <div style="margin: auto 0;">Day</div>
+                                </div>
+
+                                <div *ngIf="selectedFrequency.value == 'Weekly'" class="p-2" style="width: 50%;">
+                                    <div fxLayout="column wrap">
+                                        <div style="font-size: 14px;font-family: Lato Bold;">
+                                            <label class="example-margin">Select</label>
+                                        </div>
+                                        <section aria-labelledby="example-radio-group-label" class="radio-group">
+                                            <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+
+                                                <mat-checkbox fxFlex="30" [formControl]="selectedSelectType"
+                                                    color="primary" class="radio-button pr-1"
+                                                    (change)="radioButtonSelectTypeChanged($event);"
+                                                    *ngFor="let selectType of selectTypeArr;trackBy:trackByCheckbox; let i = index "
+                                                    [value]="selectType">
+                                                    {{ selectType }}
+                                                </mat-checkbox>
+
+
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <!-- <div class="cust-nominal-container m-0" style="height: 350px;">
+                                <div fxLayout="row wrap" class="header-nominal-cust px-3">
+                                    <div fxFlex="30" class="title">Select Data Sources</div>
+                                    <div fxFlex></div>
+                                    <div class="icon-container">
+                                        <button mat-raised-button (click)="ToggleButton()" color="primary">Define Data
+                                            Source</button>
+                                    </div>
+                                </div>
+                                <div class="content-nominal-cust px-2" style="height: 300px;">
+                                    <ag-grid-angular style="width: 100%; height: 100%;"
+                                        class="ag-theme-material ag-jcp3" rowHeight="48" headerHeight="48"
+                                        [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData"
+                                        enableColResize enableSorting enableFilter groupHeaders
+                                        suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+                                        rowSelection="multiple" [enableRangeSelection]="true"
+                                        [paginationAutoPageSize]="false" [pagination]="false"
+                                        [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
+                                        (cellClicked)='onCellClicked($event)'
+                                        [frameworkComponents]="frameworkComponentsMyReport"
+                                        (gridReady)="onReady($event)">
+                                    </ag-grid-angular>
+                                </div>
+                                <div class="py-3" fxLayout="row" fxLayoutAlign="space-around center">
+                                    <div fxFlex="40">
+                                        <div fxFlex="50">
+                                            <div style="font-size: 14px;font-family: Lato Bold;">
+                                                <label class="example-margin">Existing Sites</label>
+                                            </div>
+                                            <section class="example-section" fxLayout="column wrap">
+                                                <mat-checkbox class="example-margin">On-Air Sites</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Plant Sites</mat-checkbox>
+                                            </section>
+                                        </div>
+                                        <div fxFlex="50">
+                                            <div style="font-size: 14px;font-family: Lato Bold;">
+                                                <label class="example-margin">Nominal Type</label>
+                                            </div>
+                                            <section class="example-section" fxLayout="column wrap">
+                                                <mat-checkbox class="example-margin">Macro</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Outdoor Small Cells</mat-checkbox>
+                                                <mat-checkbox class="example-margin">Indoor Small Cells</mat-checkbox>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="60">
+                                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                                            <div fxFlex="50">
+                                                <mat-form-field class="form-field-container">
+                                                    <mat-select placeholder="Data Source for Outdoor Small Cell"
+                                                        [formControl]="dataSourceIndoorCtrl" disableOptionCentering
+                                                        [multiple]="true" ngDefaultControl #dataSourceIndoorCtrlSelect>
+                                                        <mat-option>
+                                                            <ngx-mat-select-search
+                                                                placeholderLabel="Select Data Source for Outdoor Small Cell"
+                                                                [formControl]="dataSourceIndoorFilterCtrl"
+                                                                noEntriesFoundLabel="no matching found"
+                                                                ngDefaultControl>
+                                                            </ngx-mat-select-search>
+                                                        </mat-option>
+                                                        <mat-option *ngFor="let node of dataSourceIndoorFilter | async"
+                                                            [value]="node">
+                                                            {{node.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="50">
+                                                <mat-form-field class="form-field-container">
+                                                    <mat-select placeholder="Data Source for Indoor Small Cell"
+                                                        [formControl]="dataSourceIndoorCtrl" disableOptionCentering
+                                                        [multiple]="true" ngDefaultControl #dataSourceIndoorCtrlSelect>
+                                                        <mat-option>
+                                                            <ngx-mat-select-search
+                                                                placeholderLabel="Select Data Source for Indoor Small Cell"
+                                                                [formControl]="dataSourceIndoorFilterCtrl"
+                                                                noEntriesFoundLabel="no matching found"
+                                                                ngDefaultControl>
+                                                            </ngx-mat-select-search>
+                                                        </mat-option>
+                                                        <mat-option *ngFor="let node of dataSourceIndoorFilter | async"
+                                                            [value]="node">
+                                                            {{node.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="50">
+                                                <mat-form-field class="form-field-container">
+                                                    <mat-select placeholder="Data Source for Macro Small Cell"
+                                                        [formControl]="dataSourceIndoorCtrl" disableOptionCentering
+                                                        [multiple]="true" ngDefaultControl #dataSourceIndoorCtrlSelect>
+                                                        <mat-option>
+                                                            <ngx-mat-select-search
+                                                                placeholderLabel="Select Data Source for Macro Small Cell"
+                                                                [formControl]="dataSourceIndoorFilterCtrl"
+                                                                noEntriesFoundLabel="no matching found"
+                                                                ngDefaultControl>
+                                                            </ngx-mat-select-search>
+                                                        </mat-option>
+                                                        <mat-option *ngFor="let node of dataSourceIndoorFilter | async"
+                                                            [value]="node">
+                                                            {{node.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div class="py-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth"
+                                matStepperPrevious>Previous</button>
+                        </div>
+                        <div fxFlex></div>
+                        <!-- <div class="p-2">
+                            <button mat-stroked-button color="primary" routerLink="{{createQueryRoute}}">Create
+                                Query</button>
+                        </div> -->
+                        <div class="p-2">
+                            <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
+                        </div>
+                        <div class="p-2">
+                            <button mat-raised-button color="primary" class="buttonWidth" matStepperNext
+                                [disabled]="typeGenerate" (click)="chartGenerate()">Generate</button>
+                        </div>
+                    </div>
+                </mat-step>
+
+            </mat-horizontal-stepper>
+
+            <ng-container *ngIf="showSelected && !showStrategicSites && !showExclusionZones">
+                <!-- <app-define-data-source (defineToggleButtonFun)="getselecteddefine($event)"></app-define-data-source> -->
+            </ng-container>
+            <ng-container *ngIf="showExclusionZones && !showStrategicSites && showSelected">
+                <!-- <app-exclusion-zones></app-exclusion-zones> -->
+            </ng-container>
+            <ng-container *ngIf="showStrategicSites && !showExclusionZones && showSelected">
+                <!-- <app-strategic-sites></app-strategic-sites> -->
+            </ng-container>
+
+        </mat-card-content>
+    </mat-card>
+</div>
