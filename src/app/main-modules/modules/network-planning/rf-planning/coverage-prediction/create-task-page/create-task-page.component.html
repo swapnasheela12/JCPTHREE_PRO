@@ -36,7 +36,7 @@
                     <div *ngIf="showSelected && !showStrategicSites && showExclusionZones" class="Sub-header-title">
                         Exclusion Zones</div>
                 </div>
-                <div class="pl-0" fxFlex *ngIf="!typeGenerate">
+                <div class="pl-0" fxFlex>
                     <div class="title">Project Name</div>
                     <div class="sub-title">Zone_Jio State_Jio Center_NP_CV_121020_V1</div>
                 </div>
@@ -338,6 +338,10 @@
                                         <mat-radio-button value="5" class="example-margin">On - Air (Excl. Off -Air)
                                         </mat-radio-button>
                                     </mat-radio-group>
+
+                                    <section class="prediction-checkbox" fxLayout="column wrap" style="margin-top: 25px">
+                                        <mat-checkbox value="1">Additional Sites</mat-checkbox>
+                                    </section>
                                 </div>
 
                                 <div fxFlex="50">
@@ -398,10 +402,6 @@
                                 matStepperPrevious>Previous</button>
                         </div>
                         <div fxFlex></div>
-                        <div class="p-2">
-                            <button mat-stroked-button color="primary" routerLink="{{createQueryRoute}}">Create
-                                Query</button>
-                        </div>
                         <div class="p-2">
                             <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
                         </div>

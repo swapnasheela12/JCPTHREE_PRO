@@ -73,11 +73,11 @@ import { CandidatesACPComponent } from './rf-planning/nominal-generation-strateg
 import { DefineDataSourceComponent } from './rf-planning/nominal-generation-strategy/create-page/define-data-source/define-data-source.component';
 import { ExclusionZonesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/exclusion-zones/exclusion-zones.component';
 import { StrategicSitesComponent } from './rf-planning/nominal-generation-strategy/create-page/task-list/strategic-sites/strategic-sites.component';
-import { CoveragePredictionComponent } from './rf-planning/coverage-prediction/coverage-prediction.component';
 import { CoveragePredictionLayerComponent } from './rf-planning/coverage-prediction/layer/coverage-prediction-layer/coverage-prediction-layer.component';
 import { CreateTaskPageComponent } from './rf-planning/coverage-prediction/create-task-page/create-task-page.component';
 import { SiteSelectionLayerComponent } from './rf-planning/coverage-prediction/layer/site-selection-layer/site-selection-layer.component';
 import { CoveragePredictionRendererComponent } from './rf-planning/coverage-prediction/create-task-page/renderer/coverage-prediction-renderer.component';
+import { CoveragePredictionComponent } from './rf-planning/coverage-prediction/coverage-prediction.component';
 
 @NgModule({
   declarations: [
