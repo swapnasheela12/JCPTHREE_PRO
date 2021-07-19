@@ -141,7 +141,7 @@ const routes: Routes = [
   },
   {
     path: "Coverage-Predictions", children: [
-      { path: "Prediction-Scheduling", component: PredictionSchedulingComponent },
+      { path: "Scheduled-Predictions", component: PredictionSchedulingComponent },
       { path: "Create-Prediction-Scheduling", component: PredictionSchedulingDetailsComponent },
       { path: "Prediction-Status", component: ChartScheduledPredictionsComponent },
     ]
