@@ -236,7 +236,7 @@ export class OdscConfigTemplateComponent implements OnDestroy {
 
   createSLA() {
     this.datashare.changeMessage("Config_Template");
-    this.router.navigate(["/JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
+    this.router.navigate(["/JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
   }
 
   ngOnDestroy() {

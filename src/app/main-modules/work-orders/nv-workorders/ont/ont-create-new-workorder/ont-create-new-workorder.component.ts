@@ -38,10 +38,10 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
     end: new FormControl()
   });
   thirdFormGroup: FormGroup;
-  selected: {
-    startDate: '2019-12-11T18:30:00.000Z',
-    endDate: '2019-12-12T18:29:59.000Z',
-  }
+  // selected: {
+  //   startDate: '2019-12-11T18:30:00.000Z',
+  //   endDate: '2019-12-12T18:29:59.000Z',
+  // }
 
   selectedDeviceCount = 0;
   selectedRecipeCount = 0;
@@ -58,6 +58,8 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   public typeMultiFilter: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
 
   ///////datepicker//////////
+  calender : any;
+    
   opens = 'center';
   drops = 'up';
   public todaysDay = new Date();
@@ -205,16 +207,46 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
   }
 
   stepperReportW() {
-    this.thirdFormGroup = this.fb.group({
-      selectedDateTime: {
-        startDate: moment().subtract(1, 'days'),
-        endDate: moment().subtract(1, 'days')
-      },
-      alwaysShowCalendars: true,
-      keepCalendarOpeningWithRange: true,
-      showRangeLabelOnInput: true,
-      disabled: true
-    });
+      // let weekDate2 = moment().subtract(1, "week");
+      // this.calender = {
+      //   maxDate: moment().subtract(1, "week").day(6),
+      //   minDate: moment().subtract(1, "week").subtract(30, "days").day(0),
+      //   selectedDate: { startDate: weekDate2.day(3), endDate: weekDate2.day(6) },
+      //   displayFormat: "DD-MM-YYYY:DD-MM-YYYY",
+      //   selectionType: "WEEK"
+      // }
+
+      this.calender = {
+        maxDate: moment().subtract(1, "days"),
+        minDate: moment().subtract(30, "days"),
+        selectedDate: { startDate: moment().subtract(1, "days"), endDate: moment().subtract(1, "days") },
+        displayFormat: "DD-MM-YYYY",
+        selectionType: "DAY"
+      }
+
+    // this.thirdFormGroup = this.fb.group({
+    //   selectedDateTime: {
+    //     startDate: moment().subtract(1, 'days'),
+    //     endDate: moment().subtract(1, 'days')
+    //   },
+    //   alwaysShowCalendars: true,
+    //   keepCalendarOpeningWithRange: true,
+    //   showRangeLabelOnInput: true,
+    //   disabled: true
+    // });
+  }
+
+  changeEvent(ev, isChangedFromCalender) {
+   
+    let startDateNew = moment().subtract(1, 'days');
+    let endDateNew = moment().subtract(1, 'days');
+      this.calender.selectedDate.startDate = startDateNew;
+      this.calender.selectedDate.endDate = endDateNew;
+  }
+
+  onKeyDownEvent(event) {
+    event.returnValue = false;
+    event.preventDefault();
   }
 
   ngOnInit(): void {
@@ -236,7 +268,7 @@ export class ONTCreateNewWorkorderComponent implements OnInit, AfterViewInit {
         }
       }
     } else if(this.router.url === "/JCP/Work-Orders/NV-Workorders/ONT-Workorders/View-Workorder"){
-      this.thirdFormGroup.controls['selectedDateTime'].disable();
+     // this.thirdFormGroup.controls['selectedDateTime'].disable();
       this.showViewWorkorder =  true;
       this.columnDefsSelectDevice = [
         {

@@ -113,21 +113,13 @@
                         <form [formGroup]="thirdFormGroup">
                             <mat-form-field class="custom-field-container" fxFlex>
                                 <div class="daterange-container">
-                                    <input matInput ngxDaterangepickerMd placeholder="Select Date"
-                                        [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
-                                        [timePicker24Hour]="false" formControlName="selectedDateTime"
-                                        [showCustomRangeLabel]="true"
-                                        [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
-                                        [showClearButton]="true" [showCancel]="true"
-                                        [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
-                                        [isInvalidDate]="isInvalidDate"
-                                        [locale]="{ applyLabel: 'Ok', format: 'MMM DD, YYYY',clearLabel:'Clear'}"
-                                        [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
-                                        [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
-                                        (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
-                                        autocomplete="off" [opens]="opens" [drops]="drops"
-                                        class="daterange-container-input" disabled/>
-                                    <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                    <input matInput id="datpickerForCoverage" ngxDaterangepickerMd placeholder="Select date"
+                                    [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}" [(ngModel)]="calender.selectedDate"
+                                    [maxDate]="calender.maxDate" [minDate]="calender.minDate"
+                                    (change)="changeEvent($event, 'CHANGE_FROM_CALENDER')" [ngModelOptions]="{standalone: true}"
+                                    [singleDatePicker]="true" [autoApply]="true" (focusout)="changeEvent($event , 'FOCUSOUT')"
+                                    (keydown)="onKeyDownEvent($event)" />
+                                <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
                                 </div>
                             </mat-form-field>
                         </form>
