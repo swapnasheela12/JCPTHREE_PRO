@@ -918,7 +918,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.headerToShow = this.target.createComponent(HeaderViewComponent);
         this.headerToShow.instance.headerData = routePlannedLayerHeader;
         this.datashare.addExtraLayerDynamic([{name: 'coverage-prediction', display: 'create'}]);
-        this.datashare.removeLayerFromNavigation('overage-prediction');
+        this.datashare.removeLayerFromNavigation('coverage-prediction');
       }
       if(dataPoly.display == 'nominal-validation'){
         $('#Layers').parent()[0].click();

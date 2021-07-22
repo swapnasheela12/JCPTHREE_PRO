@@ -19,8 +19,8 @@ import { NpQueryAdministrationComponent } from './module-management/nominal-plan
 
 
 const routes: Routes = [
-  {
-    path: "", children: [
+  // {
+  //   path: "", children: [
       {
         path: "Plan-To-Build",
         children: [
@@ -113,7 +113,7 @@ const routes: Routes = [
                 ]
               }
             ]
-          }
+          },
         ]
       },
       {
@@ -136,9 +136,9 @@ const routes: Routes = [
           }
 
         ]
-      }
-    ]
-  },
+      },
+  //   ]
+  // },
   {
     path: "Coverage-Predictions", children: [
       { path: "Scheduled-Predictions", component: PredictionSchedulingComponent },

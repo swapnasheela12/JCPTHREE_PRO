@@ -134,9 +134,8 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
   }
 
   openLayerPopup(name) {
-    //
-  }
 
+  }
   openChart(name) {
     if (name == 'nominal-generation') {
       this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Performance-Summary']);
@@ -167,6 +166,8 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
         this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation']);
       } else if (name == 'nominal-validation') {
         this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Validation']);
+      } else if (name == 'coverage-prediction') {
+        this.router.navigate(['/JCP/Modules/Network-Planning/RF-Planning/5G-Coverage-Prediction']);
       }
     } else if (source == 'create') {
       this.location.back();

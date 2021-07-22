@@ -4638,7 +4638,7 @@ const ADMIN_ODSC_CHILDRENS = [
     {
         name: "Site SLA Configuration",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/odsc/Site-SLA-Configuration",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/odsc/Site-SLA-Configuration",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4646,7 +4646,7 @@ const ADMIN_ODSC_CHILDRENS = [
     {
         name: "Reason Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/odsc/Reason-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/odsc/Reason-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4654,7 +4654,7 @@ const ADMIN_ODSC_CHILDRENS = [
     {
         name: "Config Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/odsc/Config-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/odsc/Config-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4662,7 +4662,7 @@ const ADMIN_ODSC_CHILDRENS = [
     {
         name: "Status Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/odsc/Status-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/odsc/Status-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4673,7 +4673,7 @@ const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Site SLA Configuration",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4681,7 +4681,7 @@ const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Reason Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/gNodeB/Reason-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Reason-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4689,7 +4689,7 @@ const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Config Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/gNodeB/Config-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Config-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []
@@ -4697,7 +4697,7 @@ const ADMIN_GNODEB_CHILDRENS = [
     {
         name: "Status Template",
         icon: "fas fa-user fa-3",
-        link: "JCP/Administration/Plan-To-Build/gNodeB/Status-Template",
+        link: "JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Status-Template",
         eventName: 'sites-outdoor-esc',
         show: true,
         children: []

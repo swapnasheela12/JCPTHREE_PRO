@@ -32,6 +32,7 @@ declare const L: any; // --> Works
 import 'leaflet-draw';
 import { MatStepper } from '@angular/material/stepper';
 import { StatergeMapNominalComponent } from '../../nominal-generation-strategy/create-page/staterge-map-nominal/staterge-map-nominal.component';
+import { CoveragePredictionRendererComponent } from './renderer/coverage-prediction-renderer.component';
 
 const PATHS = [
   { createPage: "/JCP/Layers" },
@@ -62,7 +63,9 @@ export class CreateTaskPageComponent  implements OnInit {
 
   @ViewChild('spiderView', { read: ViewContainerRef }) target: ViewContainerRef;
   public customControl;
+  public customControlSite;
   private mapTwo;
+  private mapThree;
   public contextMenuLib;
   public optionMap;
   public googleMutant;
@@ -268,11 +271,8 @@ export class CreateTaskPageComponent  implements OnInit {
   public rowData: any;
   public columnDefs: any[];
   public rowCount: string;
-  public frameworkComponentsMyReport = {
-    dropDownThreeDotRenderer: dropDownList3DotRendererComponent,
-    dropdownQueryRenderer: dropdownQueryRendererComponent,
-    dropdownPriorityRenderer: dropdownPriorityRendererComponent,
-    statusFlagRenderer: statusflagiconRenderComponent,
+  public frameworkComponentsCP = {
+    dropDownThreeDotRenderer: CoveragePredictionRendererComponent
   };
 
   @ViewChild('agGridFlag', { static: true }) agGridFlag: GridOptions;
@@ -468,15 +468,6 @@ export class CreateTaskPageComponent  implements OnInit {
     });
     tiles.addTo(this.mapTwo);
 
-    // console.log(this.selectedZoneType.value,"this.selectedZoneType");
-    // if (this.selectedZoneType != '') {
-    //   // this.mapTwo.setView(this.selectedZoneType.latlong, 7);
-    // } else {
-    //   // this.mapTwo.setView([lat, lng], zoom);
-    // }
-    // console.log(this.selectedZoneType, "this.selectedZoneType");
-    // this.zoneChangeFunc($event:any,this.mapTwo);
-
     L.control.zoom({
       position: 'bottomright'
     }).addTo(this.mapTwo);
@@ -507,18 +498,61 @@ export class CreateTaskPageComponent  implements OnInit {
     });
     this.mapTwo.addControl(new this.customControl());
 
-    this.shapeService.mapServiceData = this.mapTwo;
+    this.mapThree = L.map('map3', {
+      center: [20.593683, 78.962883],
+      zoomControl: false,
+      zoom: 4
+    });
+
+    const tilesSites = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    tilesSites.addTo(this.mapThree);
+
+    L.control.zoom({
+      position: 'bottomright'
+    }).addTo(this.mapThree);
+
+    this.customControlSite = L.Control.extend({
+      options: {
+        position: 'bottomright',
+      },
+      onAdd: function (map3) {
+        let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom-count-layers');
+        container.innerHTML = ' <div class="tab-container-layersMap3"><div class="icon-count"><span style="font-size: 9px;font-weight: 500;" id="command"></span></div><div class="icon-styleMap3"><i class="ic ic-layers-01"></i></div></div>';
+        container.style.backgroundColor = 'white';
+        container.style.backgroundSize = "38px 38px";
+        container.style.width = '38px';
+        container.style.height = '38px';
+        container.onclick = function () { }
+        this._container = container;
+        this._update();
+        return this._container;
+      },
+      onRemove: function (map) {},
+      _update: function () {
+        if (!this._map) {
+          return;
+        }
+      }
+    });
+    this.mapThree.addControl(new this.customControlSite());
+
+    this.shapeService.mapServiceData = this.mapThree;
    }
 
   public typeGenerate: boolean = true;
   zoneChangeFunc(val) {
     // this.selectedZoneType = val;
     this.mapTwo.setView(val.value.latlong, 6);
+    this.mapThree.setView(val.value.latlong, 6);
     this.typeGenerate = false;
   }
 
   public render(val): void {
     this.mapTwo.setView([19.0522, 72.9005], 13);
+    this.mapThree.setView([19.0522, 72.9005], 13);
     this.typeGenerate = false;
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(StatergeMapNominalComponent);
     let viewContainerRef = this.adHost.viewContainerRef;
@@ -544,8 +578,9 @@ export class CreateTaskPageComponent  implements OnInit {
     //   const element = this.itemsListPoly[index];
     //   console.log(element, "element");
     this.mapTwo.setView([19.0522, 72.9005], 13);
+    this.mapThree.setView([19.0522, 72.9005], 13);
 
-    if (item.checked == true) {
+    if (item.checked == true && this.mapTwo) {
       if (item.polydata.properties.shape == 'Circle') {
         this.circle = L.circle([item.polydata.geometry.coordinates[1], item.polydata.geometry.coordinates[0]], item.polydata.properties.radius, {
           color: 'red',
@@ -573,6 +608,36 @@ export class CreateTaskPageComponent  implements OnInit {
           [19.046055, 72.898672],
           [19.045933, 72.901742]
         ]).addTo(this.mapTwo);
+      }
+
+    } if (item.checked == true && this.mapThree) {
+      if (item.polydata.properties.shape == 'Circle') {
+        this.circle = L.circle([item.polydata.geometry.coordinates[1], item.polydata.geometry.coordinates[0]], item.polydata.properties.radius, {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5
+        }).addTo(this.mapThree);
+      } else if (item.polydata.properties.shape == 'Polygon') {
+        this.poly = L.polygon([
+          [19.060009, 72.876063],
+          [19.013112, 72.907984],
+          [19.065525, 72.916565],
+          [19.060009, 72.876063]
+        ]).addTo(this.mapThree);
+      } else if (item.polydata.properties.shape == 'Rectangle') {
+        this.polyRectangle = L.rectangle([
+          [19.045527, 72.902422],
+          [19.045527, 72.905597],
+          [19.049482, 72.905597],
+          [19.049482, 72.902422],
+          [19.045527, 72.902422]
+        ], { color: "#ff7800", weight: 1 }).addTo(this.mapThree);
+      } else {
+        this.polyline = L.polyline([
+          [19.045568, 72.894765],
+          [19.046055, 72.898672],
+          [19.045933, 72.901742]
+        ]).addTo(this.mapThree);
       }
 
     } else {

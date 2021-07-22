@@ -376,6 +376,9 @@ input[type="file"] {
 #map2 {
     height: 325px;
 }
+#map3 {
+    height: 325px;
+}
 
 .tab-container-layersMap2 .icon-styleMap2 {
     font-size: 25px;
@@ -458,4 +461,14 @@ input[type="file"] {
     height: 0;
     margin: 0 -16px;
     min-width: 32px;
+}
+
+.tab-container-layersMap3 .icon-styleMap3 {
+    font-size: 25px;
+    padding: 3px 7px;
+    line-height: 1.5;
+    width: 38px;
+    height: 38px;
+    border-radius: 25px;
+    color: #707070;
 }

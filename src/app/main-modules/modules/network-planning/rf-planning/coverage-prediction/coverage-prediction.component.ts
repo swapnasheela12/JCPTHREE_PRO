@@ -193,4 +193,3 @@ export class CoveragePredictionComponent implements OnInit {
     nominalGenerationLandingPage.changeDetectorRef.detectChanges();
   }
 }
-

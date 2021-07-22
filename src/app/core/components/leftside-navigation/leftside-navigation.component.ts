@@ -181,14 +181,6 @@ export class LeftsideNavigationComponent implements OnInit, AfterViewInit {
             this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
           }
 
-          // if(dataChange[0].children[0].children[0].children[0] != undefined &&
-          //   (
-          //     dataChange[0].children[0].children[0].children[0].eventName == 'coverage-prediction'
-          //   )){
-          //   dataChange[0].children[0].children[0].children[0].checked = true;
-          //   this.showHeaderDisplay(dataChange[0].children[0].children[0].children[0], 'auto');
-          // }
-
           this.dataSource.data = dataChange;
           if(
             dataChange[0].children[0].children[0].children[0] != undefined &&
