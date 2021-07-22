@@ -133,6 +133,9 @@ export class MapHeaderViewComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  openLayerPopup(name) {
+
+  }
   openChart(name) {
     if (name == 'nominal-generation') {
       this.router.navigate(['/JCP/Modules/Planning-Deployment/Nominal-Generation/Performance-Summary']);
