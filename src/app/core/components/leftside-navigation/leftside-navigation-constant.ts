@@ -2605,7 +2605,7 @@ const Coverage_Predictions_LIST = [
     },
     {
         name: 'Prediction Status',
-        link: 'Prediction-Status',
+        link: 'JCP/Administration/Platform-Administration/Coverage-Predictions/Prediction-Status',
         eventName: 'prediction-status',
         show: true,
         showSettings: true,

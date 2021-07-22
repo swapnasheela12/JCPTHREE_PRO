@@ -310,11 +310,14 @@
                             <form [formGroup]="selectedSiteSelection">
                                 <div class="p-2" fxFlex="33">
                                     <div style="font-size: 14px;font-family: Lato Bold;">
+                                        <label class="example-margin">Site Status</label>
+                                    </div>
+                                    <!-- <div style="font-size: 14px;font-family: Lato Bold;">
                                         <mat-checkbox [checked]='true' color="primary" class="radio-button pr-1"
                                             value="Site Status">
                                             <label class="example-margin">Site Status</label>
                                         </mat-checkbox>
-                                    </div>
+                                    </div> -->
                                     <mat-radio-group fxLayout="column" fxLayoutAlign="space-around start"
                                         aria-labelledby="example-radio-group-label" class="radio-group"
                                         [formControl]="selectedSiteStatus">
@@ -360,7 +363,7 @@
                         </div>
                     </div>
                 </mat-step>
-                <mat-step label="Data Source">
+                <mat-step label="Schedule">
                     <div style="height: calc(100% - 58px);">
                         <div fxFlex="100" style="overflow: auto;">
                             <form [formGroup]="dataSourceFormGroup" fxLayout="column wrap" class="report-filter-form">
@@ -405,7 +408,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div *ngIf="selectedFrequency.value == 'Daily' || selectedFrequency.value == 'Monthly'"
+                                <div *ngIf="selectedFrequency.value == 'Daily' || selectedFrequency.value == 'Weekly' || selectedFrequency.value == 'Monthly'"
                                     class="p-2" fxLayout="row wrap">
                                     <mat-form-field fxFlex="10" class="recur-every-input p-0">
                                         <input matInput [formControl]="recurEveryControl" placeholder="Recur every">

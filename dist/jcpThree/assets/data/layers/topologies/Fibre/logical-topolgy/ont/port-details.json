@@ -1,0 +1,26 @@
+[
+    {
+        "SITE_CIRCLE": "ANDHRA PRADESH",
+        "SITE_STATE": "Andhra Pradesh",
+        "JIO_CENTER": "Anantapur",
+        "SITE_CITY": "Anantapur",
+        "Building_Id": "APRRBD0012282",
+        "ONT_NAME": "ONT_SCOMA15BA4C9",
+        "GPON_ID": "SCOMA15BA4C9",
+        "MAC_Address": "A83F.A15B.A4C9",
+        "ACS_Serial_Number": "RSTOTJF00019507",
+        "ONT_Description": "INAPAPRRKMLNNB0005ENBOLT001.LT1.PON4.ONT10",
+        "SPLITTER2_NAME": "INAPAPRRRMCDPL0606FTXSP2001",
+        "A_SP2_PORT": "INAPAPRRRMCDPL0606FTXSP2001 / 1:8-SPLTR-CHS/CHASSIS/OUT-6",
+        "SPLITTER1_NAME": "INAPAPRRRMCDCM0065FTXSP1001",
+        "A_SP1_PORT": "INAPAPRRRMCDCM0065FTXSP1001 / APRR0101S15201/CHASSIS/OUT-6",
+        "OLT_NAME": "INAPAPRRKMLNNB0005ENBOLT001",
+        "OLT_PORT": "INAPAPRRKMLNNB0005ENBOLT001/AL-7360-FX4-CHS/LT-1/SLOT-04/SFPPON-4",
+        "EAST_Side_OLT_port": "NT-A:XFP:1",
+        "WEST_Side_OLT_port": "NT-A:XFP:2",
+        "EAST_Side_Neighbor_NE_DeviceID": "INAPAPRRVDYNNB0001OA2AAR001",
+        "EAST_Side_Neighbor_NE_port": "TenGigE0/1/0/17",
+        "WEST_Side_Neighbor_NE_DeviceID": "INAPAPRRVNSCNB0001MA2AAR001",
+        "WEST_Side_Neighbor_NE_port": "TenGigE0/1/0/23"
+    }
+]

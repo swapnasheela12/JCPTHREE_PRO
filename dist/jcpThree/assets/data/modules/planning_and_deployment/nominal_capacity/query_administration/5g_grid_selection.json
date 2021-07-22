@@ -1,0 +1,52 @@
+[{
+    "name": "2540-Test",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Dharmesh",
+    "createdOn": "17 Feb, 2021",
+    "modifiedBy": "Karan"
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Dharmesh",
+    "createdOn": "10 Feb, 2021" ,
+    "modifiedBy": "Aditya"
+  }, {
+    "name": "2536 - count of total throughput samples>=3Mbps &  samples<5Mbps",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Dharmesh",
+    "createdOn": "11 Feb, 2021",
+    "modifiedBy": "Aditya"
+  }, {
+    "name": "1786-karan kpi",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Arun",
+    "createdOn": "17 Feb, 2021" ,
+    "modifiedBy": "Aditya"
+  }, {
+    "name": "2536 - count of total throughput samples>=3Mbps &  samples<5Mbps",
+    "description": "CELL",
+    "createdBy": "Dharmesh",
+    "createdOn": "8 Feb, 2021",
+    "modifiedBy": "Tarun"
+  }, {
+    "name": "1786-karan kpi",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Arun",
+    "createdOn": "17 Feb, 2021",
+    "modifiedBy": "Karan"
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Dharmesh",
+    "createdOn": "11 Feb, 2021",
+    "modifiedBy": "Aditya"
+  }, {
+    "name": "2536 - count of total throughput samples>=500kbps",
+    "description": "5G gNB Traffic per grid > 400 GB , Premium Users …",
+    "createdBy": "Arun",
+    "createdOn": "17 Feb, 2021" ,
+    "modifiedBy": "Karan"
+  }
+
+]
+  

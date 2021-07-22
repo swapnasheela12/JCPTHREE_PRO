@@ -1,0 +1,22 @@
+[
+  {
+    "nodeId": "SiteA  PTNAMHVRESR001",
+    "antennaHeight": "40",
+    "antennaSize": "0.6",
+    "azimuth": "55",
+    "frequency": "23432",
+    "tx": "20",
+    "atp": "-70",
+    "mw": "2405:200:101:2600:3:2:103:34a"
+  },
+  {
+    "nodeId": "SiteB  PTNAMHVRESR004",
+    "antennaHeight": "38",
+    "antennaSize": "0.6",
+    "azimuth": "310",
+    "frequency": "23562",
+    "tx": "22",
+    "atp": "-80",
+    "mw": "2405:200:101:2600:3:2:101:34a"
+  }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "pdegradation"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "pdegradation"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      },
+      {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "cellid": 982563,
+        "band": 1800,
+        "alarmid": "SGW COMMUNICATION FAIL",
+        "severity": "major",
+        "startdate": "21 feb 2017",
+        "starttime": "06:49:36 pm",
+        "jcpclassification": "outage"
+      }
+]

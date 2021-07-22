@@ -1,0 +1,50 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "SapId": "Site_1",
+        "AlarmName": "UMP CPU TEMPERATURE HIGH",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "15 Oct, 2016",
+        "Circle": "Mumbai",
+        "SapId": "Site_2",
+        "AlarmName": "RRH LNA FAIL",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "SapId": "Site_3",
+        "AlarmName": "RRH CLOCK FAIL",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "SapId": "Site_4",
+        "AlarmName": "UMP CPU TEMPERATURE HIGH",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "SapId": "Site_5",
+        "AlarmName": "UMP DISK FULL",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "SapId": "Site_6",
+        "AlarmName": "ECP POWER FAIL",
+        "OccurancesPerDay": "22"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "SapId": "Site_8",
+        "AlarmName": "UMP CPU TEMPERATURE HIGH",
+        "OccurancesPerDay": "22"
+    }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "source-entity": "INAPAPRRRMCDCM0065FTXSP1001",
+        "source-port": "",
+        "destination-entity": "INAPAPRRKMLNNB0005ENBOLT001",
+        "destination-port": "INAPAPRRKMLNNB0005ENBOLT001/AL-7360-FX4-CHS/LT-1/SLOT-04/SFPPON-4"
+    }
+]

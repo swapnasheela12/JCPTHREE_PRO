@@ -1,0 +1,100 @@
+[
+    {
+        "Parameter": "Sector ID",
+        "Alpha": "1",
+        "Beta": "2",
+        "Gamma": "3",
+        "AlphaAdditional": "1"
+    },
+    {
+        "Parameter": "Antenna Type",
+        "Alpha": "2300+1800 multiband antenna",
+        "Beta": "2300+1800 multiband antenna",
+        "Gamma": "2300+1800 multiband antenna",
+        "AlphaAdditional": "2300+1800 multiband antenna"
+    },
+    {
+        "Parameter": "Antenna Model Name",
+        "Alpha": "XXDW-17-65i-VT - TYPE1",
+        "Beta": "XXDW-17-65i-VT - TYPE1",
+        "Gamma": "XXDW-17-65i-VT - TYPE1",
+        "AlphaAdditional": "XXDW-17-65i-VT - TYPE1"
+    },
+    {
+        "Parameter": "Antenna Vendor",
+        "Alpha": "ACE",
+        "Beta": "Rosenberger",
+        "Gamma": "ACE",
+        "AlphaAdditional": "ACE"
+    },
+    {
+        "Parameter": "Azimuth",
+        "Alpha": "20",
+        "Beta": "240",
+        "Gamma": "110",
+        "AlphaAdditional": "110"
+    },
+    {
+        "Parameter": "Antenna Height",
+        "Alpha": "25.6",
+        "Beta": "25.6",
+        "Gamma": "23.6",
+        "AlphaAdditional": "23.6"
+    },
+    {
+        "Parameter": "Electrical Tilt",
+        "Alpha": "6.0",
+        "Beta": "4.0",
+        "Gamma": "2.0",
+        "AlphaAdditional": "2.0"
+    },
+    {
+        "Parameter": "Mechanical tilt",
+        "Alpha": "0.0",
+        "Beta": "0.0",
+        "Gamma": "0.0",
+        "AlphaAdditional": "0.0"
+    },
+    {
+        "Parameter": "Total Tilt",
+        "Alpha": "6.0",
+        "Beta": "4.0",
+        "Gamma": "2.0",
+        "AlphaAdditional": "2.0"
+    },
+    {
+        "Parameter": "Antenna Gain",
+        "Alpha": "16.5",
+        "Beta": "16.5",
+        "Gamma": "16.5",
+        "AlphaAdditional": "16.5"
+    },
+    {
+        "Parameter": "Horizontal Beamwidth",
+        "Alpha": "65.0",
+        "Beta": "65.0",
+        "Gamma": "65.0",
+        "AlphaAdditional": "65.0"
+    },
+    {
+        "Parameter": "Vertical Beamwidth",
+        "Alpha": "7.0",
+        "Beta": "7.0",
+        "Gamma": "7.0",
+        "AlphaAdditional": "7.0"
+    },
+    {
+        "Parameter": "Feeder Cable Length",
+        "Alpha": "2.0",
+        "Beta": "2.0",
+        "Gamma": "2.0",
+        "AlphaAdditional": "2.0"
+    },
+    {
+        "Parameter": "Optic Cable Length",
+        "Alpha": "50.0",
+        "Beta": "50.0",
+        "Gamma": "50.0",
+        "AlphaAdditional": "50.0"
+    }
+]

@@ -1,0 +1,80 @@
+[
+    {
+        "sapid": "I-MUM-MUMB-ENB-2123",
+        "cellid": "37575",
+        "cnum": "1",
+        "sectorid": "0",
+        "parameter": "Tilt",
+        "band": "2300",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    },
+    {
+        "sapid": "I-MUM-MUMB-ENB-2145",
+        "cellid": "22575",
+        "cnum": "2",
+        "sectorid": "1",
+        "parameter": "Tilt",
+        "band": "1800",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    },
+    {
+        "sapid": "I-MUM-MUMB-ENB-2163",
+        "cellid": "53575",
+        "cnum": "3",
+        "sectorid": "2",
+        "parameter": "Tilt",
+        "band": "850",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    },
+    {
+        "sapid": "I-MUM-MUMB-ENB-1123",
+        "cellid": "73575",
+        "cnum": "4",
+        "sectorid": "0",
+        "parameter": "Tilt",
+        "band": "2300",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    },
+    {
+        "sapid": "I-MUM-MUMB-ENB-4123",
+        "cellid": "1800",
+        "cnum": "5",
+        "sectorid": "1",
+        "parameter": "Tilt",
+        "band": "2300",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    },
+    {
+        "sapid": "I-MUM-MUMB-ENB-2163",
+        "cellid": "93275",
+        "cnum": "5",
+        "sectorid": "2",
+        "parameter": "Tilt",
+        "band": "850",
+        "clotret": "7",
+        "approvedrefret": "7",
+        "currentret": "9",
+        "Mtilt": "2",
+        "refret": "10"
+    }
+]

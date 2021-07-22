@@ -366,7 +366,7 @@ export class PredictionSchedulingDetailsComponent implements OnInit {
   listBoundaries: string[] = ['Business Boundaries'];
   siteStatusArr: string[] = ['Proposed Nominal', 'Approved Nominal','Planned','On-Air'];
   frequencyArr: string[] = ['One time','Daily','Weekly','Monthly'];
-  technologyArr: string[] = ['4G (LTE)', '5G (NR)'];
+  technologyArr: string[] = [ '5G (NR)','4G (LTE)'];
   predictionTypeArr: any[] = ['RSRP', 'SINR','DL Throughput','Spectral Efficiency','Best Server Plot'];
   siteTypeArr: string[] = ['Macro Sites', 'Outdoor Small Cells'];
   bandArr: string[] = ['3500 MHz', '28 GHz', 'Combined'];
@@ -1250,9 +1250,9 @@ export class PredictionSchedulingDetailsComponent implements OnInit {
 
   chartGenerate(){
 
-    this.createQueryRoute = PATHS[1].createQuery;
+    // this.createQueryRoute = PATHS[1].createQuery;
 
-    this.router.navigate(['JCP/Administration/Platform-Administration/Coverage-Predictions/Prediction-Status']);
+    // this.router.navigate(['JCP/Administration/Platform-Administration/Coverage-Predictions/Prediction-Status']);
 
   }
 

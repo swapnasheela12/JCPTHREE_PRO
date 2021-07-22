@@ -1,0 +1,155 @@
+[
+    {
+        "Parameter": "Clutter Category",
+        "Alpha": "MU",
+        "Beta": "MU",
+        "Gamma": "MU",
+        "AlphaAdditional": "MU",
+        "BetaAdditional": "MU",
+        "GammaAdditional": "MU"
+    },
+    {
+        "Parameter": "Propagation Model",
+        "Alpha": "5 SPM_MU LR_6",
+        "Beta": "7 SPM_Slum_4",
+        "Gamma": "5 SPM_MU LR_6",
+        "AlphaAdditional": "5 SPM_MU LR_6",
+        "BetaAdditional": "5 SPM_MU LR_6",
+        "GammaAdditional": "5 SPM_MU LR_6"
+    },
+    {
+        "Parameter": "Tx Power",
+        "Alpha": "46",
+        "Beta": "46",
+        "Gamma": "46",
+        "AlphaAdditional": "46",
+        "BetaAdditional": "46",
+        "GammaAdditional": "46"
+    },
+    {
+        "Parameter": "EIRP",
+        "Alpha": "61.9",
+        "Beta": "61.9",
+        "Gamma": "61.9",
+        "AlphaAdditional": "61.9",
+        "BetaAdditional": "61.9",
+        "GammaAdditional": "61.9"
+    },
+    {
+        "Parameter": "Pilot Channel Tx Power",
+        "Alpha": "12.2",
+        "Beta": "12.2",
+        "Gamma": "12.2",
+        "AlphaAdditional": "12.2",
+        "BetaAdditional": "12.2",
+        "GammaAdditional": "12.2"
+    },
+    {
+        "Parameter": "Radius Threshold",
+        "Alpha": "330",
+        "Beta": "330",
+        "Gamma": "330",
+        "AlphaAdditional": "330",
+        "BetaAdditional": "330",
+        "GammaAdditional": "330"
+    },
+    {
+        "Parameter": "RSRP Threshold",
+        "Alpha": "-95.3",
+        "Beta": "-95.3",
+        "Gamma": "-95.3",
+        "AlphaAdditional": "-95.3",
+        "BetaAdditional": "-95.3",
+        "GammaAdditional": "-95.3"
+    },
+    {
+        "Parameter": "Base Channel Freq",
+        "Alpha": "2337.5",
+        "Beta": "2337.5",
+        "Gamma": "2337.5",
+        "AlphaAdditional": "2337.5",
+        "BetaAdditional": "2337.5",
+        "GammaAdditional": "2337.5"
+    },
+    {
+        "Parameter": "Carrier",
+        "Alpha": "1",
+        "Beta": "1",
+        "Gamma": "1",
+        "AlphaAdditional": "1",
+        "BetaAdditional": "1",
+        "GammaAdditional": "1"
+    },
+    {
+        "Parameter": "DTX Factor",
+        "Alpha": "1",
+        "Beta": "1",
+        "Gamma": "1",
+        "AlphaAdditional": "1",
+        "BetaAdditional": "1",
+        "GammaAdditional": "1"
+    },
+    {
+        "Parameter": "ATPC Factor",
+        "Alpha": "1",
+        "Beta": "1",
+        "Gamma": "1",
+        "AlphaAdditional": "1",
+        "BetaAdditional": "1",
+        "GammaAdditional": "1"
+    },
+    {
+        "Parameter": "Unit Loss",
+        "Alpha": "18.2",
+        "Beta": "18.2",
+        "Gamma": "18.2",
+        "AlphaAdditional": "18.2",
+        "BetaAdditional": "18.2",
+        "GammaAdditional": "18.2"
+    },
+    {
+        "Parameter": "EIRP Base Channel",
+        "Alpha": "1547.39",
+        "Beta": "1547.39",
+        "Gamma": "1547.39",
+        "AlphaAdditional": "1547.39",
+        "BetaAdditional": "1547.39",
+        "GammaAdditional": "1547.39"
+    },
+    {
+        "Parameter": "EIRP DTX ATPC",
+        "Alpha": "0.0",
+        "Beta": "0.0",
+        "Gamma": "0.0",
+        "AlphaAdditional": "0.0",
+        "BetaAdditional": "0.0",
+        "GammaAdditional": "0.0"
+    },
+    {
+        "Parameter": "EIRP Total",
+        "Alpha": "1547.39",
+        "Beta": "1547.39",
+        "Gamma": "1547.39",
+        "AlphaAdditional": "1547.39",
+        "BetaAdditional": "1547.39",
+        "GammaAdditional": "1547.39"
+    },
+    {
+        "Parameter": "RRH Type",
+        "Alpha": "V1_With_Window",
+        "Beta": "V1_With_Window",
+        "Gamma": "V1_With_Window",
+        "AlphaAdditional": "V1_With_Window",
+        "BetaAdditional": "V1_With_Window",
+        "GammaAdditional": "V1_With_Window"
+    },
+    {
+        "Parameter": "VSWR",
+        "Alpha": "1.17043",
+        "Beta": "1.17043",
+        "Gamma": "1.17043",
+        "AlphaAdditional": "1.17043",
+        "BetaAdditional": "1.17043",
+        "GammaAdditional": "1.17043"
+    }
+]
