@@ -300,7 +300,7 @@ export class SiteSlaConfigurationComponent implements OnDestroy {
   }
 
   createSLA() {
-    this.router.navigate(["/JCP/Administration/Plan-To-Build/Platform-Administration/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
+    this.router.navigate(["/JCP/Administration/Platform-Administration/Plan-To-Build/gNodeB/Site-SLA-Configuration/Create-Site-Sla-Configuration"]);
   }
 
   ngOnDestroy() {
