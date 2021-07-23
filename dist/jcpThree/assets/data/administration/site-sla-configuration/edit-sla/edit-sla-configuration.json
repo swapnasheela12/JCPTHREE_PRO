@@ -1,0 +1,82 @@
+[
+    {
+        "milestone": "Installation",
+        "task": "",
+        "responsible": "",
+        "position": "",
+        "ownerName": "",
+        "slaDays": "",
+        "slaEmailNo": "",
+        "ruleID": ""
+    },
+    {
+        "milestone": "",
+        "task": "Proposed Nominal",
+        "responsible": "State Head",
+        "position": "State RE Head",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "milestone": "",
+        "task": "Candidate Placed",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "milestone": "",
+        "task": "Fill Vendor Survey Form",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "milestone": "RFS",
+        "task": "",
+        "responsible": "",
+        "position": "",
+        "ownerName": "",
+        "slaDays": "",
+        "slaEmailNo": "",
+        "ruleID": ""
+    },
+    {
+        "milestone": "",
+        "task": "Proposed Nominal",
+        "responsible": "State Head",
+        "position": "State RE Head",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "milestone": "",
+        "task": "Candidate Placed",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    },
+    {
+        "milestone": "",
+        "task": "Fill Vendor Survey Form",
+        "responsible": "State Head",
+        "position": "State RE Head3",
+        "ownerName": "Rita Bobde",
+        "slaDays": "2 Days",
+        "slaEmailNo": "Enable",
+        "ruleID": "Disable"
+    }
+]

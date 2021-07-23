@@ -1,0 +1,31 @@
+[{
+    "siteparameter": "Azimuth(deg)",
+    "currentvalue": 180
+
+},
+{
+    "siteparameter": "Antenna Height(meters)",
+    "currentvalue": 10
+
+},
+{
+    "siteparameter": "M-Tilt(deg)",
+    "currentvalue": 3
+
+},
+{
+    "siteparameter": "E-Tilt(deg)",
+    "currentvalue": 2
+
+},
+{
+    "siteparameter": "Tx-Attenuation-Port-1(db)",
+    "currentvalue": 40
+
+},
+{
+    "siteparameter": "Tx-Attenuation-Port-2(db)",
+    "currentvalue": 20
+
+}
+]

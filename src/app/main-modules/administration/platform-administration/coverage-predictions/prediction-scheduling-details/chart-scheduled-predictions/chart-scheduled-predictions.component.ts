@@ -27,6 +27,7 @@ export class ChartScheduledPredictionsComponent implements OnInit {
   public chartOptionsWeekly;
   public chartOptionsYearly;
   public chartOptions;
+  public planetProject = 'All';
   public dataSourceFormGroup: FormGroup;
   @ViewChild("xRangeChart", { static: true }) xRangeChart: any;
   constructor(private location: Location, private _formBuilder: FormBuilder,) {

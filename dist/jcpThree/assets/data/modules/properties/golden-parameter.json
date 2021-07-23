@@ -1,0 +1,35 @@
+[
+    {
+        "Enbid": "14611",
+        "CellID": "-",
+        "Categories": "TimerinfoPhysical",
+        "ParameterFamily": "TimerinfoPhysical",
+        "Parameter": "RRC_CONNECTION_RECONFIG",
+        "Current": "5000 ms",
+        "JioSetting": "2000ms",
+        "Impact": "NSA",
+        "Date": "--"
+    },
+    {
+        "Enbid": "-",
+        "CellID": "3449360",
+        "Categories": "RLCinfoFuncCell",
+        "ParameterFamily": "RLCinfoFuncCell(Cnum=2qci=1)",
+        "Parameter": "ENB_TIMER_POLL_RETRANSMIT",
+        "Current": "300ms",
+        "JioSetting": "70ms",
+        "Impact": "NSA",
+        "Date": "--"
+    },
+    {
+        "Enbid": "14611",
+        "CellID": "3449360",
+        "Categories": "CellConfiguration",
+        "ParameterFamily": "EutranCellFDDConfidle",
+        "Parameter": "PHY_CELL_ID",
+        "Current": "371",
+        "JioSetting": "263",
+        "Impact": "SA",
+        "Date": "--"
+    }
+]

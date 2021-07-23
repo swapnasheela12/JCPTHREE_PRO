@@ -1,0 +1,118 @@
+{
+    "alpha": [
+        {
+            "antennaType": "2300+1800 Multiband Antenna",
+            "antennaVendor": "Rosenberger",
+            "antennaName": "S-Wave 18/18/23/23-65-18DV10CI-F (MULTIBAND)",
+            "activityPlanned": "WO-I-AP-AAHA-ENG-I001"
+        },
+        {
+            "antennaType": "850 MHz Standalone Antenna",
+            "antennaVendor": "Ace",
+            "antennaName": "XDGWL-C-17-65i-VT(850 TYPE-1)",
+            "activityPlanned": "RFA"
+        }
+    ],
+    "beta": [
+        {
+            "antennaType": "Pentaband Antenna",
+            "antennaVendor": "Rosenberger",
+            "antennaName": "XQWLH-15 17-65i-VT(PB)",
+            "activityPlanned": "WO-I-AP-AAHA-ENG-I001"
+        },
+        {
+            "antennaType": "2300 Bi-Sector Antenna",
+            "antennaVendor": "Ace",
+            "antennaName": "XXDW-18-33I-IVT-DB-8P(Bi-Sector)",
+            "activityPlanned": "-"
+        }
+    ],
+    "gamma": [
+        {
+            "antennaType": "2300 MHz Standalone Antenna",
+            "antennaVendor": "Rosenberger",
+            "antennaName": "S-Wave 23-23-65-18DV10-F_SE_R-TYPE-1",
+            "activityPlanned": "WO-I-AP-AAHA-ENG-I001"
+        },
+        {
+            "antennaType": "1800 MHz Standalone Antenna",
+            "antennaVendor": "Ace",
+            "antennaName": "S-WAVE 18/18-65-19DV8-F - TYPE4 (1800)",
+            "activityPlanned": "-"
+        },
+        {
+            "antennaType": "850 MHz Standalone Antenna",
+            "antennaVendor": "Ace",
+            "antennaName": "S-Wave 0609-65-15DV2/14C-F(850 TYPE-5)",
+            "activityPlanned": "-"
+        }
+    ],
+    "bbu": [
+        {
+            "channelCard": "0",
+            "harwareName": "L9CA-B4F",
+            "band": "1300 Mhz",
+            "specification": "TDD 20 Mhz"
+        },
+        {
+            "channelCard": "1",
+            "harwareName": "L9CA-B4R",
+            "band": "1800 Mhz",
+            "specification": "FDD 10 Mhz"
+        },
+        {
+            "channelCard": "2",
+            "harwareName": "LCB3",
+            "band": "850 Mhz",
+            "specification": "FDD 5 Mhz"
+        }
+    ],
+    "rrh": [
+        {
+            "model": "L8HU-F4S",
+            "type": "LTE RRH-Single Carrier",
+            "band": "2300 Mhz",
+            "rrhWatts": "40",
+            "rrhKgs": "12",
+            "quantity": "3"
+        },
+        {
+            "model": "RF41-03B",
+            "type": "FDD-LTE-RRU-4T4R 80W)-1800",
+            "band": "1800 Mhz",
+            "rrhWatts": "80",
+            "rrhKgs": "13",
+            "quantity": "3"
+        },
+        {
+            "model": "RF90-05C",
+            "type": "2T2R 80W LTE RRU",
+            "band": "850 Mhz",
+            "rrhWatts": "80",
+            "rrhKgs": "15",
+            "quantity": "3"
+        }
+    ],
+    "microwave": [
+        {
+            "antennaMade": "Ceragon",
+            "antennaSize": "0.6",
+            "odu": "Ceragon",
+            "omt": "Ceragon",
+            "mwLink": "INAPMDMIMDMITW6001ENBNMW001-INAPSKONXXXXTW6002ENBNMW007"
+        },
+        {
+            "antennaMade": "NEC",
+            "antennaSize": "2.4",
+            "odu": "Ceragon",
+            "omt": "Ceragon",
+            "mwLink": "INAPMDMIMDMITW6001ENBNMW001-INAPSKONXXXXTW6002ENBNMW007"
+        }
+    ],
+    "isp": [
+        {
+            "routerMake": "CISCO",
+            "routerModel": "CS-920-10SZ-PD-ESR"
+        }
+    ]
+}

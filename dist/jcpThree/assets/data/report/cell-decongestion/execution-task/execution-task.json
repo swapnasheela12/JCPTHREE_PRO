@@ -1,0 +1,174 @@
+{
+    "taskExec": [
+        {
+            "date": "23 Apr, 2019",
+            "reasonForReassign": "Cell Decongestion Validation Failure",
+            "remarks": ""
+        }
+    ],
+    "siteRowdata": [
+        {
+            "siteParameter": "Antenna Azimuth(deg)",
+            "currentValue": "67"
+        },
+        {
+            "siteParameter": "Antenna M-Tilt(deg)",
+            "currentValue": "7.5"
+        },
+        {
+            "siteParameter": "Antenna Height(m)",
+            "currentValue": "30"
+        },
+        {
+            "siteParameter": "E-Tilt(deg)",
+            "currentValue": "4"
+        }
+    ],
+    "implRowdata": [
+        {
+            "siteParameter": "",
+            "newAzimuthValue": ""
+        },
+        {
+            "siteParameter": "",
+            "newAzimuthValue": ""
+        }
+    ],
+    "implRowdataIAN": [
+        {
+            "sector": "Alpha",
+            "band": "2300",
+            "newAzimuthValue": "1600"
+        }
+    ],
+    "implRowDataBandAddition": [
+        {
+            "band": "2300",
+            "status": "Completed"
+        },
+        {
+            "band": "1800",
+            "status": "Completed"
+        },
+        {
+            "band": "850",
+            "status": "Completed"
+        }
+    ],
+    "implRowDataBiSector": [
+        {
+            "band": "2300",
+            "requirement": "Yes",
+            "status": "Completed"
+        },
+        {
+            "band": "850",
+            "requirement": "Yes",
+            "status": "Completed"
+        }
+    ],
+    "rowDataIdsc": [
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "priority": "-",
+            "areacovered": "-",
+            "dlvolume": "-",
+            "ulvolume": "-",
+            "totalvolume": "-",
+            "expecteddata": "-"
+        },
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "priority": "-",
+            "areacovered": "-",
+            "dlvolume": "-",
+            "ulvolume": "-",
+            "totalvolume": "-",
+            "expecteddata": "-"
+        }
+    ],
+    "proposedoutdoordata": [
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "avgunique": "-",
+            "expecteddata": "-"
+        },
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "avgunique": "-",
+            "expecteddata": "-"
+        }
+    ],
+    "proposedindoordata": [
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "avgunique": "-",
+            "dlvolume": "-",
+            "ulvolume": "-",
+            "totalvolume": "-",
+            "expecteddata": "-"
+        },
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "avgunique": "-",
+            "dlvolume": "-",
+            "ulvolume": "-",
+            "totalvolume": "-",
+            "expecteddata": "-"
+        }
+    ],
+    "proposedmacrositedata": [
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "rolloutstatus": "-",
+            "emslivestatus": "-",
+            "expecteddata": "-"
+        },
+        {
+            "srno": "-",
+            "bldgrjid": "-",
+            "bldgrjname": "-",
+            "lat": "-",
+            "long": "-",
+            "distance": "-",
+            "rolloutstatus": "-",
+            "emslivestatus": "-",
+            "expecteddata": "-"
+        }
+    ]
+}

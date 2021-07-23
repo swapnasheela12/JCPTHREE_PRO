@@ -1,0 +1,24 @@
+[
+  {
+    "siteid": "I-MU-MUMB-ENB-A431",
+    "cellid": "54322"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A123",
+    "cellid": "22311"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A675",
+    "cellid": "2233"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A455",
+    "cellid": "1122"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A345",
+    "cellid": "3221"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A899",
+    "cellid": "334322"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A990",
+    "cellid": "11223"
+  }
+]

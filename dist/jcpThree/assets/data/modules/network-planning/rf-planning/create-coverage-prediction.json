@@ -1,0 +1,30 @@
+[
+    {
+        "srno" : "1",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "On Air",
+        "noOfSectors": "1"
+    },
+    {
+        "srno" : "2",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "OSC",
+        "siteStatus": "Proposed Nominal",
+        "noOfSectors": "2"
+    },
+    {
+        "srno" : "3",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "ESC",
+        "siteStatus": "Approved Nominal",
+        "noOfSectors": "3"
+    },
+    {
+        "srno" : "4",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "Approved Nominal",
+        "noOfSectors": "3"
+    }
+]

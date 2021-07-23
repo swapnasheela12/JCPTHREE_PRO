@@ -32,17 +32,17 @@
     </div>
     <mat-divider style="position: relative;"></mat-divider>
     <div class="prediction-scheduling-flex-container" style="background:#f2f2f2">
-        <div class="d-flex mx-2 flex-row pt-2 justify-content-between align-items-center full-height">
-            <mat-form-field class="form-field-container px-2" fxFlex="15">
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="px-2 full-height">
+            <!-- <mat-form-field class="form-field-container px-2" fxFlex="15">
                 <mat-select disableOptionCentering placeholder="Status" [(value)]="status">
                     <mat-option value="Completed" selected>Completed</mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field class="form-field-container px-2" fxFlex="15">
+            </mat-form-field> -->
+            <!-- <mat-form-field class="form-field-container px-2" fxFlex="15">
                 <mat-select disableOptionCentering placeholder="Plan" [(value)]="plan">
                     <mat-option value="Coverage" selected>Coverage</mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-form-field class="form-field-container px-2" fxFlex="15">
                 <mat-select disableOptionCentering placeholder="Zone" [(value)]="zone">
                     <mat-option value="North" selected>North</mat-option>
@@ -59,11 +59,12 @@
                     <mat-option value="-" selected>-</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field-container px-2" fxFlex="15">
+            <!-- <mat-form-field class="form-field-container px-2" fxFlex="15">
                 <mat-select disableOptionCentering placeholder="City" [(value)]="city">
                     <mat-option value="-" selected>-</mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
+            <div fxFlex></div>
             <button mat-stroked-button class="submit-button create-button" color="primary">Apply</button>
         </div>
     </div>

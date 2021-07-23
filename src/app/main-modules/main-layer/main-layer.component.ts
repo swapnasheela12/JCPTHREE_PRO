@@ -662,6 +662,10 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             map.setZoom(5);
           }
 
+          let targetElement = (<HTMLInputElement>event.target);
+          L.DomUtil.removeClass(container, 'tab-container-layers');
+          targetElement.classList.add("control_layer_active");
+
         }
 
         return container;
@@ -845,6 +849,11 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             disableClose: true,
             hasBackdrop: true
           }
+
+          let targetElement = (<HTMLInputElement>event.target);
+          L.DomUtil.removeClass(middle, 'horizontal_icon_kpi');
+          targetElement.classList.add("control_layer_active");
+
           const dialogRef = _dialog.open(KpiDetailsComponent, kpiDetailsListDialogRef);
 
           dialogRef.backdropClick().subscribe(_ => {
@@ -863,6 +872,11 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             disableClose: true,
             hasBackdrop: true
           }
+
+          let targetElement = (<HTMLInputElement>event.target);
+          L.DomUtil.removeClass(legendsAndFilterControlButton, 'horizontal_icon_legends');
+          targetElement.classList.add("control_layer_active");
+
           const dialogRef = _dialog.open(LegendsAndFilterComponent, LegendsAndFilterListDialogRef);
           dialogRef.backdropClick().subscribe(_ => {
             dialogRef.close();
@@ -982,8 +996,8 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
                 fillOpacity: 0.5
               }).addTo(this.map);
               this.map.setZoom(ele.polydata.geometry.coordinates[1], ele.polydata.geometry.coordinates[0], 14);
-            } 
-            // draw polygon ----- 
+            }
+            // draw polygon -----
             else if (ele.polydata.properties.shape == 'Polygon') {
               this.poly = L.polygon([
                 [19.060009, 72.876063],

@@ -36,7 +36,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'In Progress',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -50,7 +50,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Draft',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -64,7 +64,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -78,7 +78,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'In Progress',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -92,7 +92,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -106,7 +106,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',
@@ -120,7 +120,7 @@ const DATA: Card[] = [
   {
     area: 'R4G',
     place: 'Maharashtra',
-    category: 'Coverage / Capacity / Strategic',
+    category: 'Coverage / Capacity / Strategic / Weekly -Mon -00:35 Hrs',
     id: ' Maharashtra-NP-CV-121-20_V1',
     status: 'Completed',
     text: ' Generate 5G Nominal Plan to cover dense urban area with RSRP >=95dBm. This is a dummy  copy pease do not read this. This is a dummy copy pease do not read this',

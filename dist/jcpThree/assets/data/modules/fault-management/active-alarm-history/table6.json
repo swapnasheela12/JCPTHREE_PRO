@@ -1,0 +1,85 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20501",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "8052",
+        "PerformanceDegrading": "18798",
+        "NSA": "18798"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20502",
+        "TotalAlarm": "799",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20503",
+        "TotalAlarm": "2052",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20504",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "8052",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20505",
+        "TotalAlarm": "799",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20506",
+        "TotalAlarm": "2052",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "7887",
+        "PerformanceDegrading": "2087",
+        "NSA": "2087"
+    },
+    {
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "TotalCells": "20507",
+        "TotalAlarm": "1374",
+        "SA2": "27%",
+        "PerformanceDegrading2": "15%",
+        "NSA2": "24%",
+        "SA": "9867",
+        "PerformanceDegrading": "10886",
+        "NSA": "10886"
+    }
+]

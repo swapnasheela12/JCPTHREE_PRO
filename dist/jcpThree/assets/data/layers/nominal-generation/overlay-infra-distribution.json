@@ -1,0 +1,84 @@
+[
+    {
+        "overlayVS5gSolution": [
+            {
+                "onExistingEnb":[
+                    {
+                        "total":"1020",
+                        "gNB": "768",
+                        "odsc1": "122",
+                        "odsc2": "622",
+                        "odsc3": "402"
+                    }
+                ],
+                "OnExistingODSC": [
+                    {
+                        "total":"5011",
+                        "gNB": "6510",
+                        "odsc1": "6000",
+                        "odsc2": "5101",
+                        "odsc3": "6020"
+                    }
+                ],
+                "OnBuilding": [
+                    {
+                        "total":"822",
+                        "gNB": "822",
+                        "odsc1": "822",
+                        "odsc2": "822",
+                        "odsc3": "822"
+                    }
+                ],
+                "Additional Candidates": [
+                    {
+                        "total":"1452",
+                        "gNB": "403",
+                        "odsc1": "1252",
+                        "odsc2": "1252",
+                        "odsc3": "1252"
+                    }
+                ]
+            }
+        ],
+        "infraVS5gSolution": [
+            {
+                "p1":[
+                    {
+                        "total":"1020",
+                        "gNB": "768",
+                        "odsc1": "122",
+                        "odsc2": "622",
+                        "odsc3": "402"
+                    }
+                ],
+                "ipcode": [
+                    {
+                        "total":"5011",
+                        "gNB": "6510",
+                        "odsc1": "6000",
+                        "odsc2": "5101",
+                        "odsc3": "6020"
+                    }
+                ],
+                "rp1": [
+                    {
+                        "total":"822",
+                        "gNB": "822",
+                        "odsc1": "822",
+                        "odsc2": "822",
+                        "odsc3": "822"
+                    }
+                ],
+                "additionalCandidate": [
+                    {
+                        "total":"1452",
+                        "gNB": "403",
+                        "odsc1": "1252",
+                        "odsc2": "1252",
+                        "odsc3": "1252"
+                    }
+                ]
+            }
+        ]
+    }
+]

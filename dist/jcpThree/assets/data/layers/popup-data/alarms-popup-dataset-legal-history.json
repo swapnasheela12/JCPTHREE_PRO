@@ -1,0 +1,85 @@
+[
+    {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "vendorname": "Samsung",
+      "plannedincidental": "Incidental",
+      "classification": "Outage",
+      "agingoutagemints": 20.11,
+      "startdate": "03 March 2017", 
+      "starttime": "06:49:36 pm",
+      "enddate": "06 March 2017",
+      "endtime": "06 March 2017",
+      "eta": "2 Hours",
+      "impactedservicetype": "_"
+
+    },
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "vendorname": "Samsung",
+        "plannedincidental": "Planned",
+        "classification": "Outage",
+        "agingoutagemints": 20.11,
+        "startdate": "03 March 2017", 
+        "starttime": "06:49:36 pm",
+        "enddate": "06 March 2017",
+        "endtime": "06 March 2017",
+        "eta": "2 Hours",
+        "impactedservicetype": "_"
+
+    },
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "vendorname": "Samsung",
+        "plannedincidental": "Planned",
+        "classification": "Outage",
+        "agingoutagemints": 20.11,
+        "startdate": "03 March 2017", 
+        "starttime": "06:49:36 pm",
+        "enddate": "06 March 2017",
+        "endtime": "06 March 2017",
+        "eta": "2 Hours",
+        "impactedservicetype": "_"
+    },
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "vendorname": "Samsung",
+        "plannedincidental": "Incidental",
+        "classification": "Outage",
+        "agingoutagemints": 20.11,
+        "startdate": "03 March 2017", 
+        "starttime": "06:49:36 pm",
+        "enddate": "06 March 2017",
+        "endtime": "06 March 2017",
+        "eta": "2 Hours",
+        "impactedservicetype": "_"
+
+    },
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "vendorname": "Samsung",
+        "plannedincidental": "Incidental",
+        "classification": "Outage",
+        "agingoutagemints": 20.11,
+        "startdate": "03 March 2017", 
+        "starttime": "06:49:36 pm",
+        "enddate": "06 March 2017",
+        "endtime": "06 March 2017",
+        "eta": "2 Hours",
+        "impactedservicetype": "_"
+
+    },
+    {
+        "siteid": "I-MU-MUMB-ENB-A173",
+        "vendorname": "Samsung",
+        "plannedincidental": "Incidental",
+        "classification": "Outage",
+        "agingoutagemints": 20.11,
+        "startdate": "03 March 2017", 
+        "starttime": "06:49:36 pm",
+        "enddate": "06 March 2017",
+        "endtime": "06 March 2017",
+        "eta": "2 Hours",
+        "impactedservicetype": "_"
+
+    }
+  ]

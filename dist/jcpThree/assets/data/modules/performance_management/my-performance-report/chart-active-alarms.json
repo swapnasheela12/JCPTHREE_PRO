@@ -1,0 +1,75 @@
+[
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"OUTAGE"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  },{
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "alarmid":"SGW COMMUNICATION FAIL",
+    "severity": "major",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "jcpclassification":"Performance Degrading"
+  }
+]
