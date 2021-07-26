@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <div fxFlex></div>
-                <div fxFlex="15">
-                    <mat-form-field style="font-size: 14px;line-height: 1.5;" class="form-field-container px-2">
+                <div fxFlex="15" class=" px-2">
+                    <mat-form-field fxFlex="85" style="font-size: 14px;line-height: 1.5;" class="form-field-container px-2">
                         <mat-select disableOptionCentering placeholder="Planet Project" [(value)]="planetProject">
                             <mat-option value="All" selected>All</mat-option>
                             <mat-option value="Delhi" >Delhi</mat-option>
@@ -24,7 +24,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="dateContant pl-0" fxFlex="15">
+                <div class="dateContant" fxFlex="15">
                     <form [formGroup]="dataSourceFormGroup" fxLayout="row wrap" fxLayoutAlign="space-around center"
                         class="report-filter-form">
                         <mat-form-field  fxFlex="70" class="custom-field-container" style="line-height: 1.5;">
