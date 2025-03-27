@@ -1,0 +1,38 @@
+<div class="np-create-popup-dialog">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Select Generation Type</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <!-- <div mat-dialog-content class="main-content"> -->
+        <!-- <div class=""> -->
+        <mat-radio-group style="height: 94px;" fxLayoutAlign="space-around center" [(ngModel)]="selectedRadio"  fxLayout="row" class="radio-button-group">
+            <mat-radio-button  value="Capacity">
+                Capacity</mat-radio-button>
+            <mat-radio-button  value="Coverage">
+                Coverage</mat-radio-button>
+            <mat-radio-button value="Strategy">
+                Strategy</mat-radio-button>
+        </mat-radio-group>
+        <!-- </div> -->
+
+    <!-- </div> -->
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <!-- <button mat-button color="primary"><i class="ic ic-download pr-2"></i> Download Template
+        </button> -->
+        <div class="col"></div>
+        <div class="mx-1">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" (click)="routeAction()" class="buttonWidth">Ok</button>
+        </div>
+    </div>
+</div>

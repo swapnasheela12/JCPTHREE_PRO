@@ -1,0 +1,143 @@
+<div class="overview-wrapper" fxFlex="100">
+    <style></style>
+    <div class="overview-container" fxLayout="row">
+
+        <div class="left-pane" fxFlex="50">
+            <div class="images" style="position: relative;">
+                <carousel class="left-carousel">
+                    <slide class="slide" *ngFor="let product of sitesimages">
+                        <img [src]="product.imageurl" alt="first slide" style="display: block; width: 100%;">
+                    </slide>
+                </carousel>
+            </div>
+
+            <div class="site-address" style="position: relative;">
+                <mat-icon class="site-icon">
+                    <div class="zmdi zmdi-map"></div>
+                </mat-icon>
+
+                <div class="site-address-text">
+                    <div class="site-label">Site Address</div>
+                    <div class="site-value">SH RAJESH KUMAR WARD
+                        NO
+                        8 NEAR POLICE STATION BESIDE SAHU DHARAMSHALA
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////////////// -->
+        <div class="right-pane" fxFlex="50">
+            <div class="header-on-air">
+                <label>On-Air Date</label>
+                <label>Bandwidth</label>
+            </div>
+
+            <div class="comp-courasal" style="height: 120px;">
+                <div class="indi-slider">
+                    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
+                        [type]="'carousel-multi-item'" [animation]="'slide'">
+                        <mdb-carousel-item *ngFor="let item of slides; let i = index" class="carousal-item">
+                            <div class="col-md-4 carousel-repeat" *ngFor="let card of item; let cardIndex = index">
+                                <mdb-card class="my-1 carousel-card">
+                                    <mdb-card-body>
+                                        <div class="signal-type">{{card.type}}</div>
+                                        <div class="signal-date">{{card.date}}</div>
+                                        <div class="signal-strength">{{card.signalStrength}}</div>
+
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+                        </mdb-carousel-item>
+                    </mdb-carousel>
+                </div>
+            </div>
+
+
+            <div class="longitude-mapping">
+                <div class="graphs">
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false">
+                            <div class="ic ic-compass"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">Latitude</div>
+                            <div class="overview-value">20.775833</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false">
+                            <div class="ic ic-compass-we"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">Longitude</div>
+                            <div class="overview-value">80.742778</div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false"
+                            aria-label="Example heart icon">
+                            <div class="zmdi zmdi-portable-wifi"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">Site Type</div>
+                            <div class="overview-value">IP COLO</div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false"
+                            aria-label="Example heart icon">
+                            <div class="ic ic-tower"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">Tower Type</div>
+                            <div class="overview-value">GBT</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false"
+                            aria-label="Example heart icon">
+                            <div class="zmdi zmdi-router"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">IP Name</div>
+                            <div class="overview-value">Bharti Infratel</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false"
+                            aria-label="Example heart icon">
+                            <div class="ic ic-fttx"></div>
+                        </mat-icon>
+                        <div>
+                            <div class="overview-label">Backhaul Media</div>
+                            <div class="overview-value">OFC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////// -->
+    <div class="status-wrapper overview-lower-container" style="height: 54vh;">
+        <div class="status-table p-2" style="padding-right: 20px !important;">
+            <div *ngFor="let status of statusDetails1" class="status">
+                <div>{{status.key}}</div>
+                <div>{{status.value}}</div>
+            </div>
+        </div>
+        <div class="status-table">
+            <div *ngFor="let status of statusDetails2" class="status">
+                <div>{{status.key}}</div>
+                <div>{{status.value}}</div>
+            </div>
+        </div>
+    </div>
+</div>

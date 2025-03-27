@@ -1,0 +1,255 @@
+<div class="add-alarm-library" style="height: 100% !important; overflow: auto;">
+
+
+    <header class="header">
+        <div class="go-back">
+
+        </div>
+        <span style="margin-right: 20px;" class="zmdi zmdi-arrow-left left-arrow mr-1"
+            routerLink="/JCP/Modules/Fault-Management/Active-Library"></span>
+        <span>Add Alarm
+            Library</span>
+    </header>
+
+    <div class="library row">
+        <mat-form-field appearance="fill">
+            <mat-label>Domain</mat-label>
+            <mat-select [(value)]="selectedValue">
+                <mat-option *ngFor="let domain of domains" [value]="domain.value">
+                    {{domain.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Technology</mat-label>
+            <mat-select [(value)]="techSelectedValue">
+                <mat-option *ngFor="let tech of techs" [value]="tech.value">
+                    {{tech.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Vendor</mat-label>
+            <mat-select [(value)]="vendor">
+                <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                    {{vendor.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>SW - Version</mat-label>
+            <mat-select [(value)]="softwareversion">
+                <mat-option *ngFor="let software of softwares" [value]="software.value">
+                    {{software.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="upload-section">
+        <div class="upload-type row">
+            <div class="pt-3 pb-4">
+                <mat-radio-group fxLayout="row wrap" aria-label="" class="radio-button-group" [(value)]="selectedRadio" (change)="switchthedivs($event)">
+                  <mat-radio-button *ngFor="let type of radioTypeList;trackBy:trackByRadioButtonType" class="mr-4" [value]="type.name"
+                    [disableRipple]="true">
+                    {{type.name}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+          
+              <!-- <mat-radio-group aria-label="Select an option">
+                <mat-radio-button style="margin-right: 1rem;" name = "rdopt" (change)="changediv('BulkUpload')" [value]="BulkUpload" [checked]="BulkUpload" >Bulk Upload</mat-radio-button>
+                <mat-radio-button name="rdopt" (change)="changediv('Manual')" [value]="Manual">Manual</mat-radio-button>
+              </mat-radio-group>
+            -->
+
+              <!-- <mat-radio-group name="radioOpt1" [(value)]="selectedRadio"
+             >
+             <mat-radio-button *ngFor="let selectbtn of selectbtns" [value]="selectbtn">
+                {{selectbtn.name}}
+             </mat-radio-button> 
+           </mat-radio-group>-->
+        </div>
+       
+
+
+
+        <div *ngIf="showBulk" class="bulk-upload-section row">
+
+            <div class="upload-template">
+                               <div class="pt-3">
+                    <button class="next-button p-0" mat-button color="primary" (click)="openFileUploadPopup()">
+                      <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                      </i>
+                      <span>Select file to upload</span>
+                    </button>
+                  </div>
+            </div>
+       
+        </div>
+
+
+        
+        <div *ngIf="!showBulk" class="manual-upload-section row">
+            <div class="upload-fields">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Alarm ID</mat-label>
+                    <input matInput placeholder="AMF Communication Fail" value="Alarm ID">
+                </mat-form-field>
+            </div>
+
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Alarm Name</mat-label>
+
+                    <input matInput placeholder="UMP PROCESS DOWN" value="Alarm Name">
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Device Type</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Alarm Work Order Type</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+          
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Severity</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>EMS Source</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>EMS Release</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Event Type</mat-label>
+                    <input matInput placeholder="" value="Equipment Alarm">
+
+                    
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Probable Cause</mat-label>
+                    <input matInput placeholder="" value="Probable Cause">
+
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Object Identifier</mat-label>
+                    <input matInput placeholder="" value="Object Identifier">
+
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Impact Classification</mat-label>
+                    <input matInput placeholder="" value="Impact Classification">
+
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Outage Contribution Category</mat-label>
+                    <input matInput placeholder="" value="Others">
+
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Work Order Type</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Auto Acknowledge</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Unit Type</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+                            {{vendor.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="upload-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Remarks</mat-label>
+                    <input matInput placeholder="" value="Remarks">
+
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <!-- <footer class="add-alarm-footer row">
+
+        <button class="btn-cancel" type="button">CANCEL</button>
+        <button class="btn-create" type="button">CREATE</button>
+    </footer> -->
+
+    <div class="add-alarm-footer">
+        <div class="p-2 mr-auto">
+          <button mat-stroked-button color="primary" class="buttonWidth">CANCEL</button>
+        </div>
+        <div class="p-2">
+          <button mat-stroked-button color="primary" class="buttonWidth">CREATE</button>
+        </div>
+       
+      </div>
+      
+</div>

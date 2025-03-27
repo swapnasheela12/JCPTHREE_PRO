@@ -1,0 +1,36 @@
+.customFlag-dialog-container {
+    .dialog-header {
+        height: 55px;
+        background-color: #0070DB;
+        color: #ffffff;
+        font-family: Lato Bold;
+        font-size: 18px;
+    }
+    .main-content {
+        height: 360px;
+        .row-view-content {
+            height: 40px;
+            line-height: 3;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 14px;
+            font-family: Lato Regular;
+            padding: 0 15px;
+        }
+    }
+}
+
+.mat-toolbar-multiple-rows {
+    min-height: 55px !important;
+}
+
+:host {
+    .mark-flag {
+        mat-icon {
+            position: absolute;
+            bottom: -3px;
+        }
+        span {
+            margin-left: 28px;
+        }
+    }
+}

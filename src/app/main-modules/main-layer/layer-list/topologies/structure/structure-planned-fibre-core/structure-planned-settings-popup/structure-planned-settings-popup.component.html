@@ -1,0 +1,127 @@
+<ng-template #fibreStructureLayerSettingsPopup>
+    <div style="height: calc(100% - 111px);overflow: auto;">
+        <section class="w-100 px-3 my-2">
+            <!-- <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Properties</label> -->
+            <div style="background: #f5f5f5; box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);" class="px-3 pt-3">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="50">
+                        <mat-form-field class="form-field-container" fxFlex="80">
+                            <mat-select disableOptionCentering placeholder="Display Label" [(value)]="labelValue">
+                                <mat-option value="Site ID" selected>Site ID</mat-option>
+                                <mat-option value="Site Name">Site Name</mat-option>
+                                <mat-option value="None">None</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="50">
+                        <mat-form-field class="form-field-container" fxFlex="90">
+                            <mat-select disableOptionCentering placeholder="Structure Category"
+                                [(value)]="towerIpValue">
+                                <mat-option value="AG1">AG1</mat-option>
+                                <mat-option value="AG2">AG2</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="15">Opacity : </div>
+                    <mat-slider fxFlex="75" class="example-margin mr-2" color="primary" max="100" min="0" #gridsize
+                        [value]="gridsize" thumbLabel="false">
+                    </mat-slider>
+                    <div fxFlex="10">{{gridsize.value}} %</div>
+                </div>
+            </div>
+        </section>
+        <mat-divider class="w-100" style="position: relative;"></mat-divider>
+        <section class="w-100 px-3 py-2">
+            <div style="box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);">
+                <div style="height:50%; background: #F0F0F0;" class="p-3">
+                    <span> Display Sites</span>
+                    <div class="pt-2" fxLayout="row" fxLayoutAlign="start center">
+                        <span style="height:16px; width:16px; border-radius: 8px; background-color: blue;">
+                        </span>
+                        <span class="pl-2">All</span>
+                    </div>
+                </div>
+                <div style="height:50%;">
+                    <img src="assets/images/layer-settings/Small.png" alt="profile picture" style="width: 70px;" />
+                </div>
+            </div>
+        </section>
+        <section class="w-100 px-3 py-2">
+            <div style="box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);">
+                <div class="section-header pl-2"
+                    style="font-weight: bold; background-color: #f2f2f2; padding: 10px 0px;">Thematic</div>
+                <form [formGroup]="thirdFormGroup" class="report-filter-form">
+                    <mat-form-field class="p-3" fxFlex="80">
+                        <!-- <div class="daterange-container"> -->
+                        <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true"
+                            [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false"
+                            formControlName="selectedDateTime" [showCustomRangeLabel]="true"
+                            [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value" [ranges]="ranges"
+                            [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                            [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                            [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                            [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                            [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                            (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                            autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                        <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
+                        <!-- </div> -->
+                    </mat-form-field>
+                </form>
+                <div class="px-3 pb-3">
+                    <label style="color: #808080;
+                    font-size: 13px;
+                    font-family: 'Lato Medium';" class="radio-group-label">Frequency</label>
+                    <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group"
+                        [(value)]="frequencyGroup">
+                        <mat-radio-button value="Daily" fxFlex="40">
+                            Daily</mat-radio-button>
+                        <mat-radio-button value="Weekly" fxFlex="40">
+                            Weekly</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <!-- <div>
+                    <span>Data Type: </span>
+                    <mat-form-field class="form-field-container" fxFlex="80">
+                        <mat-select disableOptionCentering placeholder="" [(value)]="dataTypeValue">
+                            <mat-option value="Default" selected>Default</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+            </div>
+        </section>
+        <!-- <mat-divider class="w-100" style="position: relative;"></mat-divider>
+        <section class="w-100 px-4">
+          <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Sites
+            Category</label>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <mat-checkbox fxFlex="35">Scope Sites</mat-checkbox>
+            <mat-checkbox fxFlex="35">Non-Scope Sites</mat-checkbox>
+          </div>
+        </section>
+        <mat-divider class="w-100" style="position: relative;"></mat-divider>
+        <section class="w-100 px-4">
+          <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Sites Status</label>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <mat-checkbox fxFlex="35">De-commissioned</mat-checkbox>
+            <mat-checkbox fxFlex="35">Commissioned</mat-checkbox>
+          </div>
+        </section> -->
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="ml-3">
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Reset</button>
+        </div>
+        <div class="col"></div>
+        <div>
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+        </div>
+    </div>
+</ng-template>

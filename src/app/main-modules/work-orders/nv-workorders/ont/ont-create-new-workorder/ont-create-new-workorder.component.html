@@ -1,0 +1,300 @@
+<div class="create-ont-wrapper">
+    <mat-card class="ont-module-card" style="padding: 0px;">
+        <mat-toolbar color="mat-blue-grey" class="create-ont-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class=" pl-0 wo-header" fxFlex="95"  *ngIf="showCreateNewWorkorder">
+                    <div class="header">Create New Workorder</div>
+                </div>
+                <div class=" pl-0 wo-header" fxFlex="95" *ngIf="showCopyToNewWorkorder">
+                    <div class="header">Copy To New Workorder</div>
+                </div>
+                <div class=" pl-0 wo-header" fxFlex="95" *ngIf="showViewWorkorder">
+                    <div class="header">View Workorder</div>
+                </div>
+                
+                <div class="sector-flex-item" fxFlex="5">
+                    <mat-icon  style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right;">
+                        <span class="ic ic-Go-to-Workorder-Icon-1"></span></mat-icon>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+
+        <mat-divider></mat-divider>
+
+        <div class="d-flex flex-row justify-content-between ont-container">
+            <div fxFlex="50" style="border-right: 1px solid #D3D5DC;">
+                <div class="sub-content d-flex mar-top flex-row flex-wrap" style="margin-bottom: 13px;">
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Template Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               ONT Workorder
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                                ONT Workorder
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
+                               ONT
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showViewWorkorder">
+                                ONT
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-content d-flex flex-row flex-wrap border-bottom">
+                    <div class="sub-content-flex-item col-6 workorder-id">
+                        <div class="form-read-only">
+                            <label class="input-label">Workorder Id*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               -
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                                -
+                            </div> 
+                          </div>
+                    </div>
+
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap select-recipe"  *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
+                    <div class="sub-content-flex-item col-6 recipe"> 
+                        <form [formGroup]="liveViolationReportForm" class="form-violation">
+                            <mat-form-field class="twamp-field-container" fxFlex="auto">
+                                <mat-select placeholder="Select Recipe" [formControl]="typeMultiCtrl" disableOptionCentering
+                                    [multiple]="true" ngDefaultControl #typeMultiCtrlSelect
+                                    ngModel (ngModelChange)="filterMyOptions($event)" disabled>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Search..." [formControl]="typeMultiFilterCtrl"
+                                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let type of typeMultiFilter | async" [value]="type">
+                                        {{type.select_recipe}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="device-count" >{{selectedRecipeCount}} out of 10</div>
+
+                <div class="d-flex  flex-row flex-wrap w-100" >
+                    <div class="sub-content-flex-item col-12" style="padding: 0px !important; border: 1px solid rgb(226 226 226);">
+                        <ag-grid-angular style="width: 100%; height: 285px"
+                        class="traceport-activation ag-theme-material ag-jcp3"
+                        [tooltipShowDelay]="tooltipShowDelay"
+                        [rowData]="rowData"
+                        [columnDefs]="columnDefs"
+                        [groupHeaderHeight]="47"
+                        [headerHeight]="47"
+                        [gridOptions]="gridOptions" 
+                        [suppressHorizontalScroll]="true"
+                        (gridReady)="onManualReady($event)">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+
+
+            <div fxFlex="50">
+                <label class="label mar-top mar-left">Date & Time Range</label>
+                <div class="sub-content d-flex  flex-row flex-wrap">
+                    <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
+                        <form [formGroup]="thirdFormGroup">
+                            <mat-form-field class="custom-field-container" fxFlex>
+                                <div class="daterange-container">
+                                    <input matInput id="datpickerForCoverage" ngxDaterangepickerMd placeholder="Select date"
+                                    [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}" [(ngModel)]="calender.selectedDate"
+                                    [maxDate]="calender.maxDate" [minDate]="calender.minDate"
+                                    (change)="changeEvent($event, 'CHANGE_FROM_CALENDER')" [ngModelOptions]="{standalone: true}"
+                                    [singleDatePicker]="true" [autoApply]="true" (focusout)="changeEvent($event , 'FOCUSOUT')"
+                                    (keydown)="onKeyDownEvent($event)" />
+                                <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                </div>
+                            </mat-form-field>
+                        </form>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-5" style="margin: 20px 0 0 20px;">
+                        <label class="time-duration-label" *ngIf="showCreateNewWorkorder">Iterations</label>
+                        <label class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">Iterations</label>
+
+                        <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            -
+                         </div> 
+                         <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                            -
+                         </div> 
+                    </div>
+
+                  
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap border-bottom" style="padding: 20px 12px;">
+                    <div class="wo-sector-card-one  col-6" style="display: inline-block;">
+                        <label class="time-duration-label">Start Time</label>
+                        <div *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder">
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour">
+                                <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
+                                    {{h}}</mat-option>
+                            </mat-select>
+                      
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedMin">
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedSec">
+                                <mat-option value="option1" class="sector-title" *ngFor="let s of sec" [value]="s">
+                                    {{s}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="hoursSeletedAMPM">
+                                <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
+                                    {{ap}}</mat-option>
+                            </mat-select>
+                        </div>
+
+                        <div *ngIf="showViewWorkorder">
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour" disabled>
+                                <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
+                                    {{h}}</mat-option>
+                            </mat-select>
+                      
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedMin" disabled>
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedSec"disabled>
+                                <mat-option value="option1" class="sector-title" *ngFor="let s of sec" [value]="s">
+                                    {{s}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="hoursSeletedAMPM" disabled>
+                                <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
+                                    {{ap}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
+                        <label class="time-duration-label" *ngIf="showCreateNewWorkorder">Test Duration</label>
+                        <label class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">Test Duration</label>
+
+                        <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                         <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder || showViewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                        
+                    </div>
+
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap border-bottom" *ngIf="showCreateNewWorkorder ||  showCopyToNewWorkorder">
+                    <div class="mar-top col-12">
+                        <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
+                        <mat-radio-group (change)="showUpload($event)">
+                            <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
+                            <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                
+                
+                
+                    <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap">
+                        <div class="col-9">
+                            <mat-form-field class="w-100">
+                                <mat-label>Enter ONT Serial Number</mat-label>
+                                <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-2" style="line-height: 3.2;">
+                            <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
+                        </div>
+                    </div>
+                
+                
+                    <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap w-100">
+                        <div class="col w-100">
+                            <mat-form-field fxFlex="80" class="browse-file-form-field">
+                                <input matInput class="input-field" placeholder="" [(ngModel)]="fileNameDevices" [readonly]="true"
+                                    required>
+                                <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
+                                    (click)="onClickDevices()" mat-icon-button color="primary"><i class="ic ic-file"
+                                        style="font-size: 20px;"></i></button>
+                            </mat-form-field>
+                            <input type="file" #fileUpload id="fileUploadDevices" name="fileUploadDevices" accept=""
+                                style="display: none;" />
+                
+                            <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                </i>
+                                <span>Upload</span>
+                            </button>
+                
+                        </div>
+                    </div>
+                
+                    <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
+                        <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv
+                            files only
+                        </div>
+                    </div>
+                </div>
+
+                <div class="device-count">{{selectedDeviceCount}} out of 100</div>
+
+                <div class="d-flex  flex-row flex-wrap w-100">                                      
+                    <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
+                        <ag-grid-angular style="width: 100%; height: 285px"
+                        class="traceport-activation ag-theme-material ag-jcp3"
+                        [tooltipShowDelay]="tooltipShowDelay"
+                        [rowData]="rowDataSelectDevice"
+                        [columnDefs]="columnDefsSelectDevice"
+                        [groupHeaderHeight]="47"
+                        [headerHeight]="47"
+                        [gridOptions]="gridOptionsSelectDevice" 
+                        [suppressHorizontalScroll]="true"
+                        (gridReady)="onManualReady($event)"
+                        [frameworkComponents]="frameworkComponentsTaskDetails">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+          <button mat-stroked-button color="primary" class="buttonWidth"  (click)="navigateBack()">Back</button>
+        </div>
+       
+        <div class="p-2 w-230">
+            <button mat-raised-button color="primary" *ngIf="showCreateNewWorkorder"
+            class="buttonWidth button w-100">Assign Bulk ONT Workorders</button>
+        </div>
+
+        <div class="p-2">
+          <button mat-raised-button color="primary" (click)="assignWorkorder()" *ngIf="showCreateNewWorkorder || showCopyToNewWorkorder"
+            class="buttonWidth button">Assign</button>
+        </div>
+      </div>
+</div>
+
+

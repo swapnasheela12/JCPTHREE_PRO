@@ -1,0 +1,19 @@
+<div class="help-container" style="height: 500px;">
+    <div class="help-topbar px-2">
+        <div class="help-title p-3">Average RRC Connected Users</div>
+        <button class="close-popup mat-icon-button" (click)="close()">
+            <span class="material-icons">
+                close
+            </span>
+        </button>
+    </div>
+
+    <div class="help-dialog-content" style="height: 100%;">
+        <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48"
+            headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+            enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+            toolPanelSuppressValues rowSelection="multiple" [defaultColDef]="defaultColDef"
+            (modelUpdated)="onReadyModeUpdate($event)" (gridReady)="onReady($event)">
+        </ag-grid-angular>
+    </div>
+</div>

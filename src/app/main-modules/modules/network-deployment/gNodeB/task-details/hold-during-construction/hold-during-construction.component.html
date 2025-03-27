@@ -1,0 +1,49 @@
+<div class="assign-task-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div class="header">Reject Task</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content style="height: 185px;">
+        <div class="px-4 mat-con">
+            <div class="emp-label"> Do you want to hold this site?</div>
+            <mat-radio-group aria-label="Select an option">
+                <!-- <mat-radio-button style="width: 50%" value="1" (change)="radioChange($event)">Ril Employee</mat-radio-button>
+                <mat-radio-button value="2" (change)="radioChange($event)">Others</mat-radio-button>
+             -->
+                <mat-radio-group name="opList" aria-label="Select an option">
+                    <mat-radio-button *ngFor="let op of listOfOptions" style="width: 50%" [checked]="op.checked"
+                        [value]="op.ID" name="opList" (change)="radioChange($event)">{{ op.name}}</mat-radio-button>
+                </mat-radio-group>
+            </mat-radio-group>
+        </div>
+
+        <div *ngIf="showEmp" class="px-4 mat-con">
+            <mat-form-field class="w-100">
+                <mat-label>Ril ID</mat-label>
+                <input matInput placeholder="" value="rita.bobde@ril.com">
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions class="assign-text-action-container px-2" fxLayout="row wrap" fxLayoutAlign="end end">
+        <div class="mr-1 assign-text-button">
+            <button class=" assign-butt" (click)="clickYes()" mat-stroked-button color="primary"
+                style=" margin-left: 8px;">Cancel</button>
+        </div>
+        <div class="ml-1 assign-text-button">
+            <button class=" assign-butt" (click)="clickNo()" mat-raised-button color="primary"
+                style=" margin-left: 3px;">Reject</button>
+        </div>
+    </div>
+
+</div>

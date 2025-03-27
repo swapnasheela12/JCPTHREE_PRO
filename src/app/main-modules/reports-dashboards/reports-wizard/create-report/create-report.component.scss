@@ -1,0 +1,124 @@
+$md-primary: #0070DB;
+$color-white: #ffffff;
+
+.create-report-container {
+    .create-report-toolbar {
+        min-height: 54px;
+
+        &.mat-toolbar {
+            background: $md-primary;
+            height: 54px;
+            padding: 0px;
+            min-height: 54px;
+            color: #0070DB;
+
+            .mat-toolbar-row {
+                color: $color-white;
+                font-size: 18px;
+                font-weight: 500;
+
+                mat-icon {
+                    font-size: 18px;
+                    color: $color-white;
+                }
+
+                .header {
+                    font-size: 16px;
+                    color: $color-white;
+                    font-weight: 400;
+                }
+
+                .Sub-header {
+                    font-weight: 400;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    .create-report-dialog-content {
+        .report-engin-container {
+            .create-report-header {
+                font-family: Lato Medium;
+                font-size: 15px;
+                // color: #464D69;
+                color: #0070db;
+            }
+
+            .create-tab-group {
+                width: 100%;
+
+                .mat-tab-header {
+                    border-radius: 25px;
+                    border: 1px solid #0070db;
+
+                    // background: red;
+                    .mat-tab-label-container {
+                        .mat-tab-list {
+                            .mat-tab-labels {}
+
+                            .mat-tab-label-active {
+                                color: #fff !important;
+                                background: #0070db !important;
+                                border-radius: 25px;
+                            }
+
+                            .mat-ink-bar {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // .mat-toolbar {
+    //     height: 48px;
+    //     border-bottom: 1px solid fade-out(#000, 0.87);
+    //     .header {
+    //         font-size: 16px;
+    //         font-weight: 400;
+    //         color: fade-out(#000, 0.13);
+    //     }
+    //     .mat-icon {
+    //         color: fade-out(#000, 0.44);
+    //     }
+    // }
+    // .mat-dialog-content {
+    //     padding: 0px 15px;
+    //     margin: 0px;
+
+    //     .report-engin-container {
+
+    //         // .mat-standard-chip {
+    //         //     // background-color: #ffffff;
+    //         //     // color: rgba(0, 0, 0, 0.87);
+    //         //     // border-radius: 0;
+    //         // }
+    //         .create-tab-group {
+    //             .mat-tab-header {
+    //                 border-radius: 25px;
+    //                 background: red;
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    .mat-dialog-actions {
+        height: 48px;
+        max-height: 48px;
+        min-height: 48px;
+        padding: 0px 15px;
+        margin: 0px;
+
+        .mat-button {
+            text-transform: uppercase;
+
+            &.mat-cancel {
+                color: fade-out(#000, 0.44);
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "sapId": "Maharashtra-NP-CV-121-20_V1",
+        "flagStatus":""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-0",
+        "flagStatus": "warning"
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-1",
+        "flagStatus": "alert"
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-2",
+        "flagStatus": "warning"
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-3",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-4",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-5",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-6",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-7",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-8",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-9",
+        "flagStatus": ""
+    },
+    {
+        "sapId": "I-DL-DLHI-GNB-0001-10",
+        "flagStatus": ""
+    }
+]

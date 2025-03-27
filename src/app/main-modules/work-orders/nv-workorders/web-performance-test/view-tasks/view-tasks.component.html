@@ -1,0 +1,42 @@
+<div class="view-task-container">
+  <mat-toolbar class="dialog-header">
+    <mat-toolbar-row>
+      <div fxFlex="grow">
+        <div class="header">View Tasks</div>
+      </div>
+      <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div style="height: 340px;">
+
+    <div class="sub-content d-flex  flex-row flex-wrap">
+      <div style="font-size: 15px; line-height: 4; margin: 0 20px;">Search IMEI</div>
+
+      <div class="col-4 sector-flex-item" fxFlex>
+        <mat-form-field style="position: relative;right: 100px; bottom: 5px;right: 14px;">
+          <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+          <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+            <span class="zmdi zmdi-search"></span>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+
+      <button style="background: transparent; border: none;color: #0078D7;  ">
+        <span class="ic ic-download"></span>
+        <span style="margin-left: 5px;">Download</span>
+      </button>
+    </div>
+
+    <div class="sub-content d-flex  flex-row flex-wrap">
+      <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+        style="width: 100%; height: 260px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
+        [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+        [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="false"
+        [paginationAutoPageSize]="true" [frameworkComponents]="frameworkComponentsTaskDetails">
+      </ag-grid-angular>
+    </div>
+  </div>

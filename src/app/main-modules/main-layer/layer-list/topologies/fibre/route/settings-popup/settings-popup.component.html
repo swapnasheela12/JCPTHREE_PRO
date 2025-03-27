@@ -1,0 +1,48 @@
+<ng-template #nominalMacroLayerSettings>
+    <div class="layers-settings-popup-content">
+      <section class="w-100 px-4">
+        <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Properties</label>
+        <div fxLayout="row" fxLayoutAlign="start center" class="pb-2">
+          <div fxFlex="15">Opacity : </div>
+          <mat-slider fxFlex="75" class="example-margin mr-2" color="primary" max="100" min="0" #gridsize
+            [value]="gridsize" thumbLabel="false">
+          </mat-slider>
+          <div fxFlex="10">{{gridsize.value}} %</div>
+        </div>
+      </section>
+  
+      <mat-divider class="w-100" style="position: relative;"></mat-divider>
+      <section class="w-100 px-4">
+        <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Select Date:</label>
+        <mat-form-field color="primary" appearance="fill">
+          <!-- <mat-label>Custom calendar color</mat-label> -->
+          <input readonly matInput [matDatepicker]="datePicker" [formControl]="selectedDate">
+          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker color="primary"></mat-datepicker>
+        </mat-form-field>
+      </section>
+      <mat-divider class="w-100" style="position: relative;"></mat-divider>
+      <section class="w-100 px-4">
+        <label class="section-header" style="font-size: 16px; font-weight: bold; margin-top: 10px;">Color Selector</label>
+        <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
+          <input type="hidden" [value]="colorFill" />
+          <div [style.background]="colorFill" class="color-coding"></div>
+          <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="colorFill" style="text-align: center;"
+            [cpPosition]="'auto'" [cpAlphaChannel]="'disabled'" [cpDisableInput]="'true'"></mat-icon>
+        </div>
+      </section>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+      <div class="ml-3">
+        <button mat-stroked-button class="buttonWidth" (click)="closeDialog()">Reset</button>
+      </div>
+      <div class="col"></div>
+      <div>
+        <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+      </div>
+      <div class="mx-3">
+        <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+      </div>
+    </div>
+  </ng-template>

@@ -1,0 +1,47 @@
+.jcp-table-control-layers-container {
+    .kpi-details-container {
+        // height: 100%;
+        // padding: 15px 10px;
+        margin: 10px;
+        .kpi-details-card {
+            width: 175px;
+            height: 70px;
+            margin: 10px;
+            // margin: 15px 5px;
+            border-radius: 5px;
+            padding: 0;
+            background-color: #fff;
+            display: inline-flex;
+            .kpi-details-card-container {
+                border-radius: 4px;
+                .value-container {
+                    width: 165px;
+                    height: -webkit-fill-available;
+                    margin: 8px;
+                    overflow-wrap: break-word;
+                    .kpi-details-card-title {
+                        font-size: 13px;
+                        font-family: Lato Regular;
+                        // line-height: 16px;
+                        // opacity: .54;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                    }
+                    .kpi-details-card-value {
+                        font-size: 14px;
+                        font-family: Lato Medium;
+                        // font-weight: 500;
+                        // line-height: 20px;
+                        // padding-top: 5px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC01",
+        "AlarmName": "Protocol Status Alarm ( Communication Fail : PING )",
+        "OutageMinutesHRS": "10:30:33"
+    },
+    {
+        "CreatedDate": "15 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC02",
+        "AlarmName": "ECP CPRI FAIL",
+        "OutageMinutesHRS": "5:45:23"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC03",
+        "AlarmName": "MCE COMMUNICATION FAIL",
+        "OutageMinutesHRS": "5:45:23"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC04",
+        "AlarmName": "RRH TEMPERATURE HIGH",
+        "OutageMinutesHRS": "10:30:33"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC05",
+        "AlarmName": "Protocol Status Alarm ( Communication Fail : SNMP )",
+        "OutageMinutesHRS": "10:30:33"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC06",
+        "AlarmName": "Protocol Status Alarm ( Communication Fail : PING )",
+        "OutageMinutesHRS": "5:45:23"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC08",
+        "AlarmName": "Protocol Status Alarm ( Communication Fail : PING )",
+        "OutageMinutesHRS": "10:30:33"
+    }
+]

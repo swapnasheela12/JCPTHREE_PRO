@@ -1,0 +1,511 @@
+<mat-card class="p-0 nominal-validation-summary" style="height: calc(100% - 5px);">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title mb-0">
+        <div style="width: 422px;" fxLayout="column">
+            <div class="title-summary"  fxLayout="row">
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="backTo()"> 
+                    <span class="zmdi zmdi-chevron-left"></span>
+                </mat-icon>
+                <div>
+                    {{nominalGenerationSummaryData.type}} : 
+                    <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                    {{nominalGenerationSummaryData.name}}
+                </div>
+            </div>
+            <div class="title-subline" fxLayout="row">
+                <div fxFlex="10"></div>
+                Validation
+            </div>
+        </div>
+        </mat-card-title>
+        <div class="col"></div>
+        <button class="ic ic-layers-01 link-icon-button"
+        style="font-size: 18px;color:#464D69" mat-icon-button
+        (click)="displayValidationLayers()"></button>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" class="card-content">
+        <div fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto" [selectedIndex]="selectedIndex">
+                <mat-tab label="Input Summary" fxLayout="column">
+                    <div fxLayout="row">
+                        <div fxFlex="51" fxLayout="row" class="summary-table overflow-auto width-0">
+                            <div fxLayout="column">
+                                <span class="table-header">Planning Targets</span>
+                                <div fxLayout="row" class="summary-content">
+                                    <div fxFlex="55" class="target-data">
+                                        <div *ngFor="let target of planningTarget1">
+                                            <div isEllipsisActive="planningTarget" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="45" class="target-data">
+                                        <div *ngFor="let target of planningTarget2">
+                                            <div isEllipsisActive="planningTarget2" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <div fxFlex="31" class="summary-table width-0">
+                            <div fxLayout="column">
+                                <span class="table-header">
+                                    Traffic Map
+                                </span>
+                                <div fxLayout="row" class="summary-content overflow-auto">
+                                    <div class="target-data" fxFlex="100">
+                                        <div *ngFor="let target of trafficMap">
+                                            <div isEllipsisActive="trafficMap" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxFlex="23" class="summary-table width-0">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">
+                                    Existing Sites in Target Area
+                                </span>
+                                <div fxLayout="row" class="summary-content">
+                                    <div class="target-data">
+                                        <div *ngFor="let target of existingArea">
+                                            <div isEllipsisActive="existingArea" attr.data-title1="{{target.key}}: {{target.value}}"
+                                            id="{{target.key}} : {{target.value}}">
+                                                <span class="planning-target-key">{{target.key}} </span>:
+                                                <span class="planning-target-value">{{target.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div fxFlex="100" class="summary-table width-0">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Site Template</span>
+                                <table mat-table [dataSource]="dataSource">
+                                    <ng-container matColumnDef="parameters">
+                                      <th mat-header-cell *matHeaderCellDef>Parameters</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.parameters}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="gNb">
+                                      <th mat-header-cell *matHeaderCellDef> gNb </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.gNb}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc1">
+                                      <th mat-header-cell *matHeaderCellDef> ODSC (Sector 1) </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.odsc1}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc2">
+                                      <th mat-header-cell *matHeaderCellDef> ODSC (Sector 2) </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.odsc2}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc3">
+                                        <th mat-header-cell *matHeaderCellDef> ODSC (Sector 3) </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.odsc3}} </td>
+                                      </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Output Summary" fxLayout="column">
+                    <div  (click)="openDistributionSummary('output')" style="cursor: pointer;">
+                        <div class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Validation Summary</span>
+                                <table mat-table [dataSource]="dataSourceValidation">
+                                    <ng-container matColumnDef="5gnodes">
+                                    <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> 5G Nodes </th>
+                                    <td mat-cell class="vertical-line" *matCellDef="let element"> {{element.nodes}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="5G Nodes">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef [attr.rowspan]="2">5G Nodes</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Pre</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preTotal}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Post</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postTotalStatus == 'increase'), 'red-decrease': (element.postTotalStatus == 'decrease')}">
+                                                <span *ngIf="element.postTotalStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postTotalStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preMacroTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Pre</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preMacroTotal}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postMacroTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Post</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postMacroStatus == 'increase'), 'red-decrease': (element.postMacroStatus == 'decrease')}">
+                                                <span *ngIf="element.postMacroStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postMacroStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postMacroTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preODSCTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Pre</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preODSCTotal}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postODSCTotal">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef >Post</th>
+                                        <td mat-cell class="vertical-line" *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postODSCStatus == 'increase'), 'red-decrease': (element.postODSCStatus == 'decrease')}">
+                                                <span *ngIf="element.postODSCStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postODSCStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postODSCTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="totalarea">
+                                        <th mat-header-cell *matHeaderCellDef >Total </th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}">
+                                            {{element.totalarea}}<br/>({{element.totalpercentage}}%)
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="prearea">
+                                        <th mat-header-cell *matHeaderCellDef>Pre </th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}">
+                                            {{element.predarea}}<br/>({{element.preareapercentage}}%)
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postarea">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef>Post </th>
+                                        <td mat-cell class="vertical-line" *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}">
+                                            {{element.postarea}}<br/>({{element.postareapercentage}}%)
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rsrp">
+                                        <th mat-header-cell *matHeaderCellDef>RSRP</th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.rsrp}} dBm</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sinr">
+                                        <th mat-header-cell *matHeaderCellDef>SINR </th>
+                                        <td mat-cell *matCellDef="let element" [attr.rowspan]="element.stateSpan" [ngClass]="{'notDisplay': (element.stateSpan == 0)}"> {{element.sinr}} dBm</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Total">
+                                        <th mat-header-cell  *matHeaderCellDef colspan="2">Total</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Macro">
+                                        <th mat-header-cell  *matHeaderCellDef colspan="2">Macro</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ODSC">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef colspan="2">ODSC</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="coveredarea">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="3">Covered Area (Sq Km)</th>
+                                    </ng-container>
+                                   
+                                    <ng-container matColumnDef="kpi">
+                                        <th mat-header-cell *matHeaderCellDef colspan="2">KPI’s</th>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="['5G Nodes', 'Total','Macro', 'ODSC','coveredarea','kpi']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsValidation" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsValidation;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row" class="kpi-div" style="cursor: pointer;">
+                        <div class="summary-table kpi-summary" fxFlex="50">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Performance Summary</span>
+                                <table mat-table [dataSource]="dataSourcePerformance">
+                                    <ng-container matColumnDef="srno">
+                                        <th mat-header-cell *matHeaderCellDef>Sr No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rfkpi">
+                                        <th mat-header-cell *matHeaderCellDef> RF KPI </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.rfkpi}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="pre">
+                                        <th mat-header-cell *matHeaderCellDef> Pre </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.pre}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="post">
+                                        <th mat-header-cell *matHeaderCellDef> Post </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postStatus == 'increase'), 'red-decrease': (element.postStatus == 'decrease')}">
+                                                <span *ngIf="element.postStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.post}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPerformance; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPerformance;" (click)="openPerformanceSummary(row, 'validation', '')"></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="summary-table kpi-summary" fxFlex="50">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Optimisation Summary</span>
+                                <table mat-table [dataSource]="dataSourceOptimisation">
+                                    <ng-container matColumnDef="srno">
+                                        <th mat-header-cell *matHeaderCellDef>Sr No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rfparams">
+                                        <th mat-header-cell *matHeaderCellDef> RF Parameters </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.rfparams}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sites">
+                                        <th mat-header-cell *matHeaderCellDef> Sites </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.sites}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="cells">
+                                        <th mat-header-cell *matHeaderCellDef> Cells </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.cells}} </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsOptimisation; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsOptimisation;" (click)="openOptimizationSummary(row)"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="ACP Details" fxLayout="column">
+                    <div  (click)="openDistributionSummary('acp')" style="cursor: pointer;">
+                        <div class="summary-table">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Validation Summary</span>
+                                <table mat-table [dataSource]="dataSourceValidationACP">
+                                    <ng-container matColumnDef="5gnodes">
+                                    <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> 5G Nodes </th>
+                                    <td mat-cell class="vertical-line" *matCellDef="let element"> {{element.nodes}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="5G Nodes">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef [attr.rowspan]="2">5G Nodes</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Total</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preTotal}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preMacro">
+                                        <th mat-header-cell *matHeaderCellDef >Macro</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.preMacro}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="preODSC">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef >ODSC</th>
+                                        <td mat-cell class="vertical-line" *matCellDef="let element">
+                                            {{element.preODSC}}
+                                        </td>
+                                    </ng-container>
+                                    
+                                    <ng-container matColumnDef="postTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Total</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postTotalStatus == 'increase'), 'red-decrease': (element.postTotalStatus == 'decrease')}">
+                                                <span *ngIf="element.postTotalStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postTotalStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postMacro">
+                                        <th mat-header-cell *matHeaderCellDef >Macro</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postMacroStatus == 'increase'), 'red-decrease': (element.postMacroStatus == 'decrease')}">
+                                                <span *ngIf="element.postMacroStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postMacroStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postMacro}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postODSC">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef >ODSC</th>
+                                        <td mat-cell class="vertical-line"  *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postODSCStatus == 'increase'), 'red-decrease': (element.postODSCStatus == 'decrease')}">
+                                                <span *ngIf="element.postODSCStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postODSCStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postODSC}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="postSiteTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Total</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteTotalStatus == 'increase'), 'red-decrease': (element.postSiteTotalStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteTotalStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteTotalStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSiteMacro">
+                                        <th mat-header-cell *matHeaderCellDef >Macro</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteMacroStatus == 'increase'), 'red-decrease': (element.postSiteMacroStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteMacroStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteMacroStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteMacro}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSiteODSC">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef >ODSC</th>
+                                        <td mat-cell class="vertical-line"  *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteODSCStatus == 'increase'), 'red-decrease': (element.postSiteODSCStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteODSCStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteODSCStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteODSC}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="postSiteOptTotal">
+                                        <th mat-header-cell *matHeaderCellDef >Total</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteOptStatus == 'increase'), 'red-decrease': (element.postSiteOptStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteOptStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteOptStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteOptTotal}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSiteOptMacro">
+                                        <th mat-header-cell *matHeaderCellDef >Macro</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteOptMacroStatus == 'increase'), 'red-decrease': (element.postSiteOptMacroStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteOptMacroStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteOptMacroStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteOptMacro}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSiteOptODSC">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef >ODSC</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteOptODSCStatus == 'increase'), 'red-decrease': (element.postSiteOptODSCStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteOptODSCStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteOptODSCStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSiteOptODSC}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <ng-container matColumnDef="pre">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="3">Pre</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="post">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef colspan="3">Post (Optimisation)</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSite">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef colspan="3">Post (Site Selection)</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSiteOpt">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="3">Post (Selection & Opt)</th>
+                                    </ng-container>
+                                
+                                    <tr mat-header-row *matHeaderRowDef="['5G Nodes', 'pre','post', 'postSite','postSiteOpt']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsValidationACP" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsValidationACP;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row" class="kpi-div" style="cursor: pointer;">
+                        <div class="summary-table kpi-summary" fxFlex="100">
+                            <div fxLayout="column" fxFlex="100">
+                                <span class="table-header">Performance Summary</span>
+                                <table mat-table [dataSource]="dataSourcePerformanceACP">
+                                    <ng-container matColumnDef="srno">
+                                        <th mat-header-cell [ngStyle]="{'display': 'none'}"  *matHeaderCellDef>Sr No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.srno}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Sr No">
+                                        <th mat-header-cell  *matHeaderCellDef [attr.rowspan]="2">Sr No</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="rfkpi">
+                                        <th mat-header-cell [ngStyle]="{'display': 'none'}" *matHeaderCellDef> RF KPI </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.rfkpi}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="RF KPI">
+                                        <th mat-header-cell  *matHeaderCellDef [attr.rowspan]="2"> RF KPI </th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="pre">
+                                        <th mat-header-cell  [ngStyle]="{'display': 'none'}" *matHeaderCellDef> Pre </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.pre}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="PRE">
+                                        <th mat-header-cell  *matHeaderCellDef [attr.rowspan]="2"> Pre </th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postOpt">
+                                        <th mat-header-cell *matHeaderCellDef> Optimisation </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postOptStatus == 'increase'), 'red-decrease': (element.postOptStatus == 'decrease')}">
+                                                <span *ngIf="element.postOptStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postOptStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postOpt}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSite">
+                                        <th mat-header-cell *matHeaderCellDef> Site Selection </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSiteStatus == 'increase'), 'red-decrease': (element.postSiteStatus == 'decrease')}">
+                                                <span *ngIf="element.postSiteStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSiteStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSite}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="postSelOpt">
+                                        <th mat-header-cell *matHeaderCellDef> Selection & Optimisation </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.postSelOptStatus == 'increase'), 'red-decrease': (element.postSelOptStatus == 'decrease')}">
+                                                <span *ngIf="element.postSelOptStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.postSelOptStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.postSelOpt}}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="post">
+                                        <th mat-header-cell *matHeaderCellDef colspan="3">Post</th>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="['Sr No', 'RF KPI','PRE', 'post']" class="group-header-row"></tr>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPerformanceACP"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPerformanceACP;" (click)="openPerformanceSummary(row, 'validation', 'ACP')"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </mat-card-content>
+</mat-card>

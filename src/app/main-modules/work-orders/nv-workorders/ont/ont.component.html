@@ -1,0 +1,197 @@
+<div class="ont-wrapper">
+    <mat-card class="ont-module-card h-100" style="padding: 0px;">
+        <div class="header-right col">
+            <div class="col-8 wpf-search">
+                <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
+                    *ngIf="!show">
+                    <span class="zmdi zmdi-search" style="line-height: 1.6; font-size: 23px;"></span>
+                </mat-icon>
+
+                <mat-form-field class="h-100" style="top: 7px;" *ngIf="show">
+                    <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+
+
+            <button class="col-2 create-wo" mat-raised-button color="primary"
+                routerLink="/JCP/Work-Orders/NV-Workorders/ONT-Workorders/Create-New-Workorder">
+                Create WO
+            </button>
+            <button class="workorder-filter col-1" (click)="openWOFilter()">
+                <span class="ic ic-icon-38"></span>
+            </button>
+        </div>
+
+        <div class="td-tab-details p-0" style="height: calc(100% - 2px);">
+
+            <div class="td-tabs h-100">
+
+                <mat-tab-group class="td-tab-group h-100" (selectedTabChange)="tabChanged($event);">
+                    <mat-tab label="WO Assignments">
+                        <ng-container [ngTemplateOutlet]="myTask"></ng-container>
+                    </mat-tab>
+
+                    <mat-tab label="Pending Reviews">
+                        <ng-container [ngTemplateOutlet]="teamTask"></ng-container>
+                    </mat-tab>
+
+                    <mat-tab label="History">
+                        <ng-container [ngTemplateOutlet]="expTask"></ng-container>
+                    </mat-tab>
+
+                </mat-tab-group>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+    </mat-card>
+</div>
+
+<ng-template #myTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <div class="wpt-module-card h-100" style="padding: 0px;">
+
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
+
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData"
+                    enableColResize  groupHeaders [suppressCellSelection]="true"
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                    [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
+                    [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                    [debug]="true" [frameworkComponents]="frameworkComponentsTaskDetails" (gridReady)="onReady($event)"
+                    (selectionChanged)="selectionChanged($event)">
+                </ag-grid-angular>
+                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+                    [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+                    [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #teamTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <div class="wpt-module-card h-100" style="padding: 0px;">
+
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
+
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptionsPending" [columnDefs]="columnDefsPending"
+                    [rowData]="rowData" enableColResize  groupHeaders
+                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                    rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"
+                    [pagination]="true" [suppressPaginationPanel]="true" [suppressRowClickSelection]="true"
+                    [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
+                    (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
+                </ag-grid-angular>
+                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+                    [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+                    [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #expTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <div class="wpt-module-card h-100" style="padding: 0px;">
+
+            <ng-template [ngTemplateOutlet]="status"></ng-template>
+
+            <div style="height: 100%">
+                <ag-grid-angular style="width: 100%; height: 47vh;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                    headerHeight="48" [gridOptions]="gridOptionsHistory" [columnDefs]="columnDefsHistory"
+                    [rowData]="rowData" enableColResize groupHeaders (gridSizeChanged)="onGridSizeChanged($event)"
+                    [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                    rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize"
+                    [pagination]="true" [suppressPaginationPanel]="true" [suppressRowClickSelection]="true"
+                    [groupSelectsChildren]="true" [debug]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
+                    (gridReady)="onReady($event)" (selectionChanged)="selectionChanged($event)">
+                </ag-grid-angular>
+                <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+                    [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+                    [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #status>
+    <div class="td-flex-container" fxLayoutGap='10px'>
+        <div class="wpf-all-task" fxFlex="20">
+            <div fxFlex="50" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center mat-icon-all">
+                        <span class="ic ic-icon-34"></span>
+                    </mat-icon>
+                    <div>All</div>
+                </div>
+            </div>
+            <div fxFlex="50" fxLayout="column" class="wpf-task-count">
+                <div class="task-count">12</div>
+                <div class="task-count-status">Total Task</div>
+            </div>
+        </div>
+
+        <div class="wpf-not-started" fxFlex="30">
+            <div fxFlex="33" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center mat-icon-not-started">
+                        <span class="ic ic-icon-35"></span>
+                    </mat-icon>
+                    <div>Not Started</div>
+                </div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="not-at-risk">
+                <div class="task-count">2</div>
+                <div class="task-count-status">Not At Risk</div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="at-risk">
+                <div class="task-count">1</div>
+                <div class="task-count-status">At Risk</div>
+            </div>
+        </div>
+
+        <div class="wpf-not-started" fxFlex="30">
+            <div fxFlex="33" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center mat-icon-in-progress">
+                        <span class="ic ic-icon-36"></span>
+                    </mat-icon>
+                    <div>In-Progress</div>
+                </div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="not-at-risk">
+                <div class="task-count">3</div>
+                <div class="task-count-status">Not At Risk</div>
+            </div>
+            <div fxFlex="33" fxLayout="column" class="at-risk">
+                <div class="task-count">0</div>
+                <div class="task-count-status">At Risk</div>
+            </div>
+        </div>
+
+        <div class="wpf-all-task" fxFlex="20">
+            <div fxFlex="50" fxLayout="column" class="wpf-task-status">
+                <div fxFlex class="task-status">
+                    <mat-icon style="font-size: 48px;" aria-label="search" class="center mat-icon-completed">
+                        <span class="ic ic-icon-37"></span>
+                    </mat-icon>
+                    <div>Completed</div>
+                </div>
+            </div>
+            <div fxFlex="50" fxLayout="column" class="wpf-task-count">
+                <div class="task-count">6</div>
+                <div class="task-count-status">11 Jul - 23 Dec</div>
+            </div>
+        </div>
+    </div>
+</ng-template>

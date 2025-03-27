@@ -1,0 +1,37 @@
+<div class="uploaded-file-container">
+    <button style="position: absolute; right: 35px; z-index: 99; color: black" class="browse-button" mat-icon-button
+        color="primary">
+        <span class="ic ic-download pr-2"></span>
+    </button>
+
+   
+        <!-- <button style="position: absolute; right: 15px; z-index: 99" mat-icon-button [matMenuTriggerFor]="reportbuilderEditorMenu"
+            style="line-height: 2;margin:7px 7px 0 0; color: white;"
+            aria-label="Example icon-button with a menu">
+            <mat-icon style="line-height: 0;color:white !important;"><span class="zmdi zmdi-more-vert"></span>
+            </mat-icon>
+        </button>
+        <mat-menu #reportbuilderEditorMenu="matMenu" class="reportbuilder-editor-menu-render"
+            xPosition="before">
+            <button mat-menu-item>
+                <span>Download this File</span>
+            </button>
+            <button mat-menu-item>
+                <span>Download All</span>
+            </button>
+        </mat-menu> -->
+    <button style="position: absolute; right: 0px; z-index: 99" (click)="closeDialog()" mat-icon-button
+        class="dialog-close-button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div style="height: 100%;">
+        <div class="images" style="height: 450px;" fxFlex="100">
+            <carousel class="left-carousel">
+                <slide class="slide" *ngFor="let product of sitesimages">
+                    <img [src]="product.imageurl" alt="first slide" style="display: block; width: 100%;">
+                </slide>
+            </carousel>
+        </div>
+    </div>
+
+</div>

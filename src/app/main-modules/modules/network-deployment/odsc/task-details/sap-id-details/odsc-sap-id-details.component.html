@@ -1,0 +1,1472 @@
+<div class="wo-sector-container">
+    <mat-card class="wo-sector-card-one p-0">
+        <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
+            <mat-icon class="icon-button mx-2" style="color: #7E7E7E;" aria-label="search" (click)="goBack()">
+                <span class="zmdi zmdi-arrow-left"></span>
+            </mat-icon>
+            <div class="col wo-flex-item" style="padding-left: 0px;">
+                <div style="color: black">I-MU-MUMB-ENB-4505</div>
+            </div>
+
+        </div>
+        <mat-divider></mat-divider>
+
+        <mat-card-content class="wo-container">
+            <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                <div class="p-2 wo-flex-item mediaContainer" style="width: 33%;"
+                    *ngFor="let wo of woHeader;trackBy: trackHero">
+                    <div class="wo-form-field-read">
+                        <div class="wo-form-input-title">{{wo.label}}</div>
+                        <div class="wo-form-input-value">{{wo.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+    </mat-card>
+
+    <div class="flex-row flex-wrap w-100" style="position: relative; height: calc(100% - 169px);
+    overflow-y: auto; overflow-x: hidden;">
+
+        <div class="wrapper-progressBar" style="height: 75px;">
+            <ul class="progressBar">
+                <li class="active ic ic-checkmark"><span>Nominal Finalisation</span> </li>
+                <li class="active"><span>Plan - RFA</span></li>
+                <li class="active"><span>RFA - RFC</span></li>
+                <li class="active"><span>RFC - RFI</span></li>
+                <li class="inprogress"><span>RFI - RFE1</span></li>
+                <li class="inprogress"><span>RFI - RFE2</span></li>
+                <li class=""><span>RFE2 - RFR</span></li>
+                <li class=""><span>ATP 11A & WCC1</span></li>
+                <li><span>ATP 11B, CVT, WCC2 & HOTO</span></li>
+            </ul>
+        </div>
+
+        <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow Scenerio A -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showAssignedTask">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="acceptTask()">
+                    Accept
+                </button>
+            </div>
+        </mat-card-content>
+
+        <!-- Flow for Assigning and Accept or rejecting task if form is incorrect Scenerio B -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showTaskToBeAccepted">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="assignTask()">Assign</button>
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="acceptTask()">
+                    Accept
+                </button>
+            </div>
+        </mat-card-content>
+
+        <!-- Reassigning task -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showReassignTask">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="reAssign()">Reassign</button>
+            </div>
+        </mat-card-content>
+
+        <!-- Flow for Approving and rejecting sapid or candidate if form is incorrect  Scenerio C-->
+        <!-- <mat-card-content class="h-100" *ngIf="hideAction && showApproveRejectTask">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3"
+                    (click)="assignTaskScenerioB()">Approve</button>
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="rejectCandidate()">
+                    Reject
+                </button>
+            </div>
+        </mat-card-content> -->
+
+        <!-- Flow for Assigning and Task Completed RFA to RFC -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showTaskCompletedAssign">
+            <div class="task-scenerios-btn">
+                <!-- <button mat-raised-button color="basic" class="mx-3" (click)="approvingTask()">Assign</button> -->
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="openTaskCompletedPop()">
+                    Task Completed
+                </button>
+            </div>
+        </mat-card-content>
+
+        <!-- Flow for Approving and rejecting sapid or candidate if form is incorrect -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showTaskCompletedAssign">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="approvingTask()">Approve</button>
+                <button mat-raised-button color="primary" class="auto-assign-btn" (click)="rejectCandidate()">
+                    Reject
+                </button>
+            </div>
+        </mat-card-content>
+
+        <!-- RFC TO RFI Scenario-G (Task Completed) -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showScenerioGTaskCompleted">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="openSuccessPopup('no')">Task
+                    Completed</button>
+            </div>
+        </mat-card-content>
+
+        <!-- RFC TO RFI Scenario-I (Hold Approve) -->
+        <mat-card-content class="h-100" *ngIf="hideAction && showScenerioIHold">
+            <div class="task-scenerios-btn">
+                <button mat-raised-button color="basic" class="mx-3" (click)="holdSite()">Hold</button>
+                <button mat-raised-button color="basic" class="mx-3" (click)="openSuccessPopup('approved')">Approve</button>
+            </div>
+        </mat-card-content>
+
+
+        <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow -->
+        <mat-card *ngIf="showAssignedTemplate" class="execution-task-container-one p-0">
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Site Details</div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class=" sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Circle Name*</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Site ID*</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Site Name*</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="priority[0]" placeholder="Priority*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchPriorityValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of priority | filter:searchPriorityValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Coordinates (Latitude)</mat-label>
+                        <input matInput placeholder="" value="21.269661">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Coordinates (Longitude)</mat-label>
+                        <input matInput placeholder="" value="78.852402">
+                    </mat-form-field>
+                </div>
+
+                <!-- <div class="sub-content-flex-item p-1rem col-8">
+                <mat-form-field class="p-2 col-6">
+                    <mat-label>Site Address</mat-label>
+                    <input matInput placeholder=""
+                        value="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+                </mat-form-field>
+            </div> -->
+            </div>
+
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="dateOfSurvey[0]" placeholder="Date of Survey*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchDateOfSurveyValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of dateOfSurvey | filter:searchDateOfSurveyValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-8">
+                    <mat-form-field>
+                        <mat-label>Site Address</mat-label>
+                        <input matInput placeholder=""
+                            value="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container" fxFlex="auto">
+                        <mat-select [(value)]="option[0]" placeholder="Any Obstruction*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchObstructionValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of option | filter:searchObstructionValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label> Azimuth and height Details</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum is simply dummy text">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Any Obstruction</mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label> Azimuth and height Details</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum is simply dummy text">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Any Structure/Rooftop/Ground/Flyover within 20m distance
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Restricted area like Hospital, Airport, School(with in 100m)
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Operator Details</div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label> No. of Operators</mat-label>
+                        <input matInput placeholder="" value="2">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label> Any other operator on same building</mat-label>
+                        <input matInput placeholder="" value="Yes">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>AMSL (Metres)</mat-label>
+                        <input matInput placeholder="" value="Lorem Ipsum is simply dummy text">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Tower/Pole Height (In Meters)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchPoleValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchPoleValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Candidate Suitable for Coverage, Height, Obstacles, Location & Other POV</mat-label>
+                        <input matInput placeholder="" value="Yes">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            No. Of Floors
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <!-- <mat-form-field>
+                        <input matInput placeholder="" value="Yes">
+                    </mat-form-field> -->
+                    <!-- <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                        style="display: none;" /> -->
+
+                    <div class="w-100 sap-id-label">GPS Picture</div>
+                    <mat-form-field style="display: none;">
+                        <input matInput class="input-field"
+                            style="display: none;position: inherit; opacity: 0.6;font-size: 14px;"
+                            placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+                    </mat-form-field>
+                    <button class="browse-button" style="font-size: 14px; width: 92px;" (click)="onClick()"
+                        mat-icon-button color="primary"><i class="ic ic-upload4" style="margin-right: 6px;"></i>Upload
+                        File</button>
+
+                    <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                        style="display: none;" />
+
+                    <div class=" sub-content-flex-item  tribe-post-controls-uploader-mini-wrapper"
+                        style="display: inline; width: 80%;" *ngIf="showFileUploadwidget">
+                        <div class="uploaded-files" *ngFor="let img of uploadedImg">
+                            <div class="w-100">{{img.name}} <button class="mx-2" mat-icon-button color="primary">
+                                    <span class="ic ic-custom-delete" (click)="deleteFile($event)"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <div class="w-100 sap-id-label">Site Location Picture</div>
+                    <mat-form-field style="display: none;">
+                        <input matInput class="input-field"
+                            style="display: none;position: inherit; opacity: 0.6;font-size: 14px;"
+                            placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+                    </mat-form-field>
+                    <button class="browse-button" style="font-size: 14px; width: 92px;" (click)="onClick()"
+                        mat-icon-button color="primary"><i class="ic ic-upload4" style="margin-right: 6px;"></i>Upload
+                        File</button>
+
+                    <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                        style="display: none;" />
+
+                    <div class=" sub-content-flex-item  tribe-post-controls-uploader-mini-wrapper"
+                        style="display: inline; width: 80%;" *ngIf="showFileUploadwidget">
+                        <div class="uploaded-files" *ngFor="let img of uploadedImg">
+                            <div class="w-100">{{img.name}} <button class="mx-2" mat-icon-button color="primary">
+                                    <span class="ic ic-custom-delete" (click)="deleteFile($event)"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Sector Details</div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <div class="sub-header">Alpha</div>
+                    <mat-form-field>
+                        <mat-label> Proposed Azimuth</mat-label>
+                        <input matInput placeholder="" value="2">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <div class="sub-header">Beta</div>
+                    <mat-form-field>
+                        <mat-label> Proposed Azimuth</mat-label>
+                        <input matInput placeholder="" value="2">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <div class="sub-header">Gamma</div>
+                    <mat-form-field>
+                        <mat-label> Proposed Azimuth</mat-label>
+                        <input matInput placeholder="" value="2">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="poleHeight[0]" placeholder="Proposed Height (Meter)*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchProposedHeightValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of poleHeight | filter:searchProposedHeightValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                   <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="mountRequired[0]" placeholder="Antenna Type*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchMountRequiredValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of mountRequired | filter:searchMountRequiredValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="twamp-field-container  " fxFlex="auto">
+                        <mat-select [(value)]="antennaTilt[0]" placeholder="Antenna Tilt*"
+                            disableOptionCentering (openedChange)="openedChange($event)">
+                            <input matInput [(ngModel)]="searchAntennaTiltValue" autocomplete="off"
+                                [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                                style="height: 48px !important;padding-left:15px">
+                            <mat-option *ngFor="let pr of antennaTilt | filter:searchAntennaTiltValue"
+                                [value]="pr">
+                                {{pr}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="sub-header px-3" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="sub-header-title">Other Details</div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Panoramic Photos (Degree)</mat-label>
+                        <input matInput placeholder="" value="360">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label> RF Agreed AGL (In Meters)</mat-label>
+                        <input matInput placeholder="" value="30">
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field>
+                        <mat-label>Proposed Azimuth</mat-label>
+                        <input matInput placeholder="" value="2">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            OD/ID Space Status
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-8">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Nearby 5 Sites ID
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="nearByFiveSites[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of nearByFiveSites" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Battery Bank Space Available
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            Mount Required
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="mountRequired[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of mountRequired" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            No. of Mounts req (If applicable)
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="sub-content d-flex mx-2 flex-row flex-wrap" style="padding-top: 10px;">
+                <div class="sub-content-flex-item p-1rem col-4">
+                    <mat-form-field class="form-field-read-only">
+                        <mat-label style="font-family: Lato Regular; font-size: 16px;color: #000000;opacity: 0.54;">
+                            MW Antenna Height Given by Infra Check
+                        </mat-label>
+                        <mat-select disableOptionCentering [(value)]="option[0]"
+                            style="font-family: lato Regular; font-size: 14px;">
+                            <mat-option class="sector-title" *ngFor="let opt of option" [value]="opt">
+                                {{opt}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </mat-card>
+
+        <div class="rfi-container" *ngIf="showTaskToBeAccepted || rejectOrApproveCandidateForm">
+            <mat-card class="cards">
+                <div class="card-header w-100" style="margin: 0;">
+                    Site Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[0].label" [value]="sapIdMapping[0].value"
+                                [type]="sapIdMapping[0].type" [id]="1"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[1].label" [value]="sapIdMapping[1].value"
+                                [type]="sapIdMapping[1].type" [id]="2"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[2].label" [value]="sapIdMapping[2].value"
+                                [type]="sapIdMapping[2].type" [id]="3"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[3].label" [value]="sapIdMapping[3].value"
+                                [type]="sapIdMapping[3].type" [id]="4"> </app-input-comment-widget>
+                        </div>
+                    </div>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[4].label" [value]="sapIdMapping[4].value"
+                                [type]="sapIdMapping[4].type" [id]="5"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[5].label" [value]="sapIdMapping[5].value"
+                                [type]="sapIdMapping[5].type" [id]="6"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[6].label" [value]="sapIdMapping[6].value"
+                                [type]="sapIdMapping[6].type" [id]="7"> </app-input-comment-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[7].label" [value]="sapIdMapping[7].value"
+                                [type]="sapIdMapping[7].type" [id]="8"> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[8].label" [value]="sapIdMapping[8].value"
+                                [type]="sapIdMapping[8].type" [id]="9"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[9].label" [value]="sapIdMapping[9].value"
+                                [type]="sapIdMapping[9].type" [id]="10"> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[10].label" [value]="sapIdMapping[10].value"
+                                [type]="sapIdMapping[10].type" [id]="11"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[11].label" [value]="sapIdMapping[11].value"
+                                [type]="sapIdMapping[11].type" [id]="12"> </app-input-comment-widget>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Operator Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[12].label" [value]="sapIdMapping[12].value"
+                                [type]="sapIdMapping[12].type" [id]="13"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[13].label" [value]="sapIdMapping[13].value"
+                                [type]="sapIdMapping[13].type" [id]="14"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[14].label" [value]="sapIdMapping[14].value"
+                                [type]="sapIdMapping[14].type" [id]="15"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[15].label" [value]="sapIdMapping[15].value"
+                                [type]="sapIdMapping[15].type" [id]="16"> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[16].label" [value]="sapIdMapping[16].value"
+                                [type]="sapIdMapping[16].type" [id]="17"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[17].label" [value]="sapIdMapping[17].value"
+                                [type]="sapIdMapping[17].type" [id]="18"> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[18].label" [value]="sapIdMapping[18].value"
+                                [type]="sapIdMapping[18].type" [id]="19"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-input-comment-widget [label]="sapIdMapping[19].label" [value]="sapIdMapping[19].value"
+                                [type]="sapIdMapping[19].type" [id]="20"> </app-input-comment-widget>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Sector Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <label class="sector-header">Alpha</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget (state)="getElementState($event)" [label]="sapIdMapping[20].label"
+                                [value]="sapIdMapping[20].value" [type]="sapIdMapping[20].type" [id]="21">
+                            </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[21].label" [value]="sapIdMapping[21].value"
+                                [type]="sapIdMapping[21].type" [id]="22"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[22].label" [value]="sapIdMapping[22].value"
+                                [type]="sapIdMapping[22].type" [id]="23"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[23].label" [value]="sapIdMapping[23].value"
+                                [type]="sapIdMapping[23].type" [id]="24"> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <mat-divider class="sector-divider"></mat-divider>
+
+                    <label class="sector-header">Beta</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[24].label" [value]="sapIdMapping[24].value"
+                                [type]="sapIdMapping[24].type" [id]="25"> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[25].label" [value]="sapIdMapping[25].value"
+                                [type]="sapIdMapping[25].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[26].label" [value]="sapIdMapping[26].value"
+                                [type]="sapIdMapping[26].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[27].label" [value]="sapIdMapping[27].value"
+                                [type]="sapIdMapping[27].type" [id]=""> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <mat-divider class="sector-divider"></mat-divider>
+
+                    <label class="sector-header">Gamma</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[28].label" [value]="sapIdMapping[28].value"
+                                [type]="sapIdMapping[28].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[29].label" [value]="sapIdMapping[29].value"
+                                [type]="sapIdMapping[29].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[30].label" [value]="sapIdMapping[30].value"
+                                [type]="sapIdMapping[30].type" [id]=""> </app-input-comment-widget>
+
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[31].label" [value]="sapIdMapping[31].value"
+                                [type]="sapIdMapping[31].type" [id]=""> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Other Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[32].label" [value]="sapIdMapping[32].value"
+                                [type]="sapIdMapping[32].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[33].label" [value]="sapIdMapping[33].value"
+                                [type]="sapIdMapping[33].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[34].label" [value]="sapIdMapping[34].value"
+                                [type]="sapIdMapping[34].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[35].label" [value]="sapIdMapping[35].value"
+                                [type]="sapIdMapping[35].type" [id]=""> </app-input-comment-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[36].label" [value]="sapIdMapping[36].value"
+                                [type]="sapIdMapping[36].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[37].label" [value]="sapIdMapping[37].value"
+                                [type]="sapIdMapping[37].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[38].label" [value]="sapIdMapping[38].value"
+                                [type]="sapIdMapping[38].type" [id]=""> </app-input-comment-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-input-comment-widget [label]="sapIdMapping[39].label" [value]="sapIdMapping[39].value"
+                                [type]="sapIdMapping[39].type" [id]=""> </app-input-comment-widget>
+                        </div>
+                    </div>
+                    <div class="title">Nearby 5 Sites ID</div>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" *ngFor="let siteId of siteIds">
+                            <div class="wo-form-field-read">
+                                <div class="wo-form-input-value">{{siteId}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+        <!--Re-assign Task -->
+
+
+        <div class="rfi-container" *ngIf="showReassignFooterBtn">
+            <mat-card class="cards">
+                <div class="card-header w-100" style="margin: 0;">
+                    Site Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[0].label" [value]="rejectedForm[0].value"
+                                [type]="rejectedForm[0].type" [addedComment]="rejectedForm[0].addedComment"
+                                [editable]="rejectedForm[0].editable" [id]="0"> </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[1].label" [value]="rejectedForm[1].value"
+                                [type]="rejectedForm[1].type" [addedComment]="rejectedForm[1].addedComment"
+                                [editable]="rejectedForm[1].editable" [id]="1"> </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[2].label" [value]="rejectedForm[2].value"
+                                [type]="rejectedForm[2].type" [addedComment]="rejectedForm[2].addedComment"
+                                [editable]="rejectedForm[2].editable" [id]="2">
+                            </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[3].label" [value]="rejectedForm[3].value"
+                                [type]="rejectedForm[3].type" [addedComment]="rejectedForm[3].addedComment"
+                                [editable]="rejectedForm[3].editable" [id]="3"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[4].label" [value]="rejectedForm[4].value"
+                                [type]="rejectedForm[4].type" [addedComment]="rejectedForm[4].addedComment"
+                                [editable]="rejectedForm[4].editable" [id]="4"> </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[5].label" [value]="rejectedForm[5].value"
+                                [type]="rejectedForm[5].type" [addedComment]="rejectedForm[5].addedComment"
+                                [editable]="rejectedForm[5].editable" [id]="5"> </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[6].label" [value]="rejectedForm[6].value"
+                                [type]="rejectedForm[6].type" [addedComment]="rejectedForm[6].addedComment"
+                                [editable]="rejectedForm[6].editable" [id]="6"> </app-saved-rejected-widget>
+                        </div>
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[7].label" [value]="rejectedForm[7].value"
+                                [type]="rejectedForm[7].type" [addedComment]="rejectedForm[7].addedComment"
+                                [editable]="rejectedForm[7].editable" [id]="7"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[8].label" [value]="rejectedForm[8].value"
+                                [type]="rejectedForm[8].type" [addedComment]="rejectedForm[8].addedComment"
+                                [editable]="rejectedForm[8].editable" [id]="8"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[9].label" [value]="rejectedForm[9].value"
+                                [type]="rejectedForm[9].type" [addedComment]="rejectedForm[9].addedComment"
+                                [editable]="rejectedForm[9].editable" [id]="9"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[10].label" [value]="rejectedForm[10].value"
+                                [type]="rejectedForm[10].type" [addedComment]="rejectedForm[10].addedComment"
+                                [editable]="rejectedForm[10].editable" [id]="10"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[11].label" [value]="rejectedForm[11].value"
+                                [type]="rejectedForm[11].type" [addedComment]="rejectedForm[11].addedComment"
+                                [editable]="rejectedForm[11].editable" [id]="11"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Operator Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[12].label" [value]="rejectedForm[12].value"
+                                [type]="rejectedForm[12].type" [addedComment]="rejectedForm[12].addedComment"
+                                [editable]="rejectedForm[12].editable" [id]="12"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[13].label" [value]="rejectedForm[13].value"
+                                [type]="rejectedForm[13].type" [addedComment]="rejectedForm[13].addedComment"
+                                [editable]="rejectedForm[13].editable" [id]="13"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[14].label" [value]="rejectedForm[14].value"
+                                [type]="rejectedForm[14].type" [addedComment]="rejectedForm[14].addedComment"
+                                [editable]="rejectedForm[14].editable" [id]="14"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[15].label" [value]="rejectedForm[15].value"
+                                [type]="rejectedForm[15].type" [addedComment]="rejectedForm[15].addedComment"
+                                [editable]="rejectedForm[15].editable" [id]="15"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[16].label" [value]="rejectedForm[16].value"
+                                [type]="rejectedForm[16].type" [addedComment]="rejectedForm[16].addedComment"
+                                [editable]="rejectedForm[16].editable" [id]="16"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[17].label" [value]="rejectedForm[17].value"
+                                [type]="rejectedForm[17].type" [addedComment]="rejectedForm[17].addedComment"
+                                [editable]="rejectedForm[17].editable" [id]="17"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[18].label" [value]="rejectedForm[18].value"
+                                [type]="rejectedForm[18].type" [addedComment]="rejectedForm[18].addedComment"
+                                [editable]="rejectedForm[18].editable" [id]="18"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="50">
+                            <app-saved-rejected-widget [label]="rejectedForm[19].label" [value]="rejectedForm[19].value"
+                                [type]="rejectedForm[19].type" [addedComment]="rejectedForm[19].addedComment"
+                                [editable]="rejectedForm[19].editable" [id]="19"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Sector Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <label class="sector-header">Alpha</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget (state)="getElementState($event)"
+                                [label]="rejectedForm[20].label" [value]="rejectedForm[20].value"
+                                [type]="rejectedForm[20].type" [addedComment]="rejectedForm[20].addedComment"
+                                [editable]="rejectedForm[20].editable" [id]="20"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[21].label" [value]="rejectedForm[21].value"
+                                [type]="rejectedForm[21].type" [addedComment]="rejectedForm[21].addedComment"
+                                [editable]="rejectedForm[21].editable" [id]="21"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[22].label" [value]="rejectedForm[22].value"
+                                [type]="rejectedForm[22].type" [addedComment]="rejectedForm[22].addedComment"
+                                [editable]="rejectedForm[22].editable" [id]="22"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[23].label" [value]="rejectedForm[23].value"
+                                [type]="rejectedForm[23].type" [addedComment]="rejectedForm[23].addedComment"
+                                [editable]="rejectedForm[23].editable" [id]="23"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <mat-divider class="sector-divider"></mat-divider>
+
+                    <label class="sector-header">Beta</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[24].label" [value]="rejectedForm[24].value"
+                                [type]="rejectedForm[24].type" [addedComment]="rejectedForm[24].addedComment"
+                                [editable]="rejectedForm[24].editable" [id]="24"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[25].label" [value]="rejectedForm[25].value"
+                                [type]="rejectedForm[25].type" [addedComment]="rejectedForm[25].addedComment"
+                                [editable]="rejectedForm[25].editable" [id]="25"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[26].label" [value]="rejectedForm[26].value"
+                                [type]="rejectedForm[26].type" [addedComment]="rejectedForm[26].addedComment"
+                                [editable]="rejectedForm[26].editable" [id]="26"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[27].label" [value]="rejectedForm[27].value"
+                                [type]="rejectedForm[27].type" [addedComment]="rejectedForm[27].addedComment"
+                                [editable]="rejectedForm[27].editable" [id]="27"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <mat-divider class="sector-divider"></mat-divider>
+
+                    <label class="sector-header">Gamma</label>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[28].label" [value]="rejectedForm[28].value"
+                                [type]="rejectedForm[28].type" [addedComment]="rejectedForm[28].addedComment"
+                                [editable]="rejectedForm[28].editable" [id]="28"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[29].label" [value]="rejectedForm[29].value"
+                                [type]="rejectedForm[29].type" [addedComment]="rejectedForm[29].addedComment"
+                                [editable]="rejectedForm[29].editable" [id]="29"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[30].label" [value]="rejectedForm[30].value"
+                                [type]="rejectedForm[30].type" [addedComment]="rejectedForm[30].addedComment"
+                                [editable]="rejectedForm[30].editable" [id]="30"> </app-saved-rejected-widget>
+
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[31].label" [value]="rejectedForm[31].value"
+                                [type]="rejectedForm[31].type" [addedComment]="rejectedForm[31].addedComment"
+                                [editable]="rejectedForm[31].editable" [id]="31"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cards">
+                <div class="card-header w-100">
+                    Other Details
+                </div>
+                <mat-card-content class="wo-container">
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[32].label" [value]="rejectedForm[32].value"
+                                [type]="rejectedForm[32].type" [addedComment]="rejectedForm[32].addedComment"
+                                [editable]="rejectedForm[32].editable" [id]="32"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[33].label" [value]="rejectedForm[33].value"
+                                [type]="rejectedForm[33].type" [addedComment]="rejectedForm[33].addedComment"
+                                [editable]="rejectedForm[33].editable" [id]="33"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[34].label" [value]="rejectedForm[34].value"
+                                [type]="rejectedForm[34].type" [addedComment]="rejectedForm[34].addedComment"
+                                [editable]="rejectedForm[34].editable" [id]="34"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[35].label" [value]="rejectedForm[35].value"
+                                [type]="rejectedForm[35].type" [addedComment]="rejectedForm[35].addedComment"
+                                [editable]="rejectedForm[35].editable" [id]="35"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[36].label" [value]="rejectedForm[36].value"
+                                [type]="rejectedForm[36].type" [addedComment]="rejectedForm[36].addedComment"
+                                [editable]="rejectedForm[36].editable" [id]="36"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[37].label" [value]="rejectedForm[37].value"
+                                [type]="rejectedForm[37].type" [addedComment]="rejectedForm[37].addedComment"
+                                [editable]="rejectedForm[37].editable" [id]="37"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[38].label" [value]="rejectedForm[38].value"
+                                [type]="rejectedForm[38].type" [addedComment]="rejectedForm[38].addedComment"
+                                [editable]="rejectedForm[38].editable" [id]="38"> </app-saved-rejected-widget>
+                        </div>
+
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25">
+                            <app-saved-rejected-widget [label]="rejectedForm[39].label" [value]="rejectedForm[39].value"
+                                [type]="rejectedForm[39].type" [addedComment]="rejectedForm[39].addedComment"
+                                [editable]="rejectedForm[39].editable" [id]="39"> </app-saved-rejected-widget>
+                        </div>
+                    </div>
+                    <div class="title">Nearby 5 Sites ID</div>
+                    <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+                        <div class="p-2 wo-flex-item mediaContainer" fxFlex="25" *ngFor="let siteId of siteIds">
+                            <div class="wo-form-field-read">
+                                <div class="wo-form-input-value">{{siteId}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+
+        <!-- Flow for Scenerio E and Scenerio F  and Scenerio H Approve, Reject, Upload and Download -->
+        <mat-card class="rfi-container image-loader" *ngIf="showApproveRejectUploadDownload || showTaskCompletedUploadDownload ||
+            showScenerioHAll">
+            <div class="p-2">
+                <div class="sub-content-flex-item w-100">
+                    <mat-form-field style="display: none;">
+                        <input matInput class="input-field"
+                            style="display: none;position: inherit; opacity: 0.6;font-size: 14px;"
+                            placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+                    </mat-form-field>
+                    <button class="browse-button" style="font-size: 14px; width: 92px;" (click)="onClick()"
+                        mat-icon-button color="primary"><i class="ic ic-upload4" style="margin-right: 6px;"></i>Upload
+                        File</button>
+                    <span class="upload-type">Supports: JPG, Pdf, Png, Doc</span>
+
+                    <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                        style="display: none;" />
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="sub-content-flex-item col w-100">
+                    <div class=" sub-content-flex-item  tribe-post-controls-uploader-mini-wrapper"
+                        style="display: inline; width: 80%;" *ngIf="showFileUploadwidget">
+                        <div class="uploaded-files" *ngFor="let img of uploadedImg">
+                            <div class="tribe-post-controls-uploader-item uploaded">
+                                <button class="browse-button"
+                                    style="font-size: 12px;position: absolute;right: -11px;top: -8px;" mat-icon-button
+                                    color="primary" (click)="deleteFile($event)">
+                                    <span class="ic ic-close-01"></span>
+                                </button>
+
+                                <img class="uploaded-image" [src]="img.src" (click)="openImagesSlider()" #uploadedImage>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div *ngIf="uploadedImg.length > 0" class="sub-content-flex-item" style="width: 10%; float: right;">
+                        <button class="browse-button" mat-icon-button color="primary">
+                            <span class="ic ic-download pr-2"></span>
+                        </button>
+                        <button class="mx-2" mat-icon-button color="primary">
+                            <span class="ic ic-custom-delete"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </mat-card>
+    </div>
+
+
+    <!-- Flow for Assign and Accept(PLAN to RFA) 1st flow  Scenerio A-->
+    <div class="d-flex task-footer" *ngIf="showAssignedTemplate">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth">Save As Draft</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth but nton"
+                (click)="openSuccessPopup('submit')">Submit</button>
+        </div>
+    </div>
+
+ <!-- Flow for Assigning and Accept or rejecting task if form is incorrect Scenrio B -->
+    <div class="d-flex task-footer" *ngIf="showTaskToBeAcceptedBtn">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="rejectDigitalForm()">Reject</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Flow for Scenerio E Approve, Reject, Upload and Download -->
+    <div class="d-flex task-footer" *ngIf="showApproveRejectUploadDownload">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="openSuccessPopup('reject')">Reject</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
+        </div>
+    </div>
+
+
+    <!-- Reject Candidate Form -->
+    <div class="d-flex task-footer" *ngIf="rejectOrApproveCandidateForm">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="reject()">Reject</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button"
+                (click)="openSuccessPopup('approved')">Approve</button>
+        </div>
+    </div>
+
+    <!-- Reject Candidate Form -->
+    <!-- <div class="d-flex task-footer" *ngIf="showTaskToBeAssignBtn">
+        <div class="col"></div>
+       
+        
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                >Cancel</button>
+        </div>
+    </div> -->
+
+    <!-- Flow for Scenerio F Task completed + Upload + Download of photos  -->
+    <div class="d-flex task-footer" *ngIf="showTaskCompletedUploadDownload">
+        <div class="col"></div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" class="buttonWidth button" style="width: 139px;"
+                (click)="openSuccessPopup('completed')">Task
+                Completed</button>
+        </div>
+    </div>
+
+    <!-- Re-assign task footer -->
+    <div class="d-flex task-footer" *ngIf="showReassignFooterBtn">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="reAssignTask()">Re-assign</button>
+        </div>
+    </div>
+
+    <!-- Hold Site -->
+    <!-- <div class="d-flex task-footer" *ngIf="showScenerioIHold">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="holdSite()">Hold Site</button>
+        </div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="openSuccessPopup()">Approve</button>
+        </div>
+    </div> -->
+
+    <!-- Hold site during construction -->
+    <!-- <div class="d-flex task-footer">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="holdSiteDuringConstruction()">Hold Site</button>
+        </div>
+    </div> -->
+
+    <!-- Reject Digital Form and Assign External User -->
+    <!-- <div class="d-flex task-footer" *ngIf="!assignTaskStatus">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 128px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="rejectDigitalForm()">Task Completed</button>
+        </div>
+        <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="openSuccessPopup('assigned')">Assign</button>
+        </div>
+    </div> -->
+
+
+    <!-- Scenerio H ALL -->
+    <div class="d-flex task-footer" *ngIf="showScenerioHAll">
+        <div class="col"></div>
+        <div class="p-2">
+            <button style="width: 128px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="assignExternalUser()">Task Completed</button>
+        </div>
+        <!-- <div class="p-2">
+            <button style="width: 119px;" mat-stroked-button color="primary" class="buttonWidth"
+                (click)="assignExternalUser()">Assign</button>
+        </div> -->
+    </div>

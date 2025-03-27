@@ -1,0 +1,23 @@
+.left-pane {
+    .images {
+        .left-carousel {
+            .carousel{
+                height: 100% !important;
+                .carousel-inner {
+                    height: 40vh !important;
+                    > slide {
+                        height: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.uploaded-file-container {
+    position: relative;
+}
+
+:host ::ng-deep .left-pane .images .left-carousel .carousel {
+    height: 100% !important;
+}

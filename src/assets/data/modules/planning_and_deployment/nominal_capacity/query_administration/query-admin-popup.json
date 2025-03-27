@@ -1,0 +1,28 @@
+[{
+    "attributes": "Unique_Customers_7K_to_10k",
+    "explanation": "Unique Customer Count Who’s Mobile Handset’s values between 7K to 10K"
+  }, {
+    "attributes": "Traffic_in_GB_More_than_50k",
+    "explanation": "Unique Customer Count Who’s Mobile Handset’s values between 10K to 15K"
+  }, {
+    "attributes": "Traffic_in_GB_10K_TO_15K",
+    "explanation": "Unique Customer Count Who’s Mobile Handset’s values between 20K to 30K"
+  }, {
+    "attributes": "Unique_Customers_15K_to_20k",
+    "explanation": "Total Traffic Carried by the users Who’s Mobile Handset’s values between 10K to 15K"
+  }, {
+    "attributes": "Unique_Customers_15K_to_20k",
+    "explanation": "Total Traffic Carried by the users Who’s Mobile Handset’s values between 30K to 50K"
+  }, {
+    "attributes": "Traffic_in_GB_More_than_50k",
+    "explanation": "Unique Customer Count Who’s Mobile Handset’s values >50K"
+  }, {
+    "attributes": "Unique_Customers_15K_to_20k",
+    "explanation": "Unique Customer Count Who’s Mobile Handset’s values between 10K to 15K"
+  }, {
+    "attributes": "Unique_Customers_15K_to_20k",
+    "explanation": "Total Traffic Carried by the users Who’s Mobile Handset’s values >50K"
+  }
+
+]
+  

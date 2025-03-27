@@ -1,0 +1,24 @@
+[
+    {
+    "siteparameter": "Azimuth(deg)",
+    "newvalue": 10
+},
+{
+    "siteparameter": "Antenna Height(meters)",
+    "newvalue": 24
+},
+{
+    "siteparameter": "M-Tilt(Deg)",
+    "newvalue": 30
+},
+{
+    "siteparameter": "E-Tilt(Deg)",
+    "newvalue": 30
+}
+
+
+
+
+
+
+]

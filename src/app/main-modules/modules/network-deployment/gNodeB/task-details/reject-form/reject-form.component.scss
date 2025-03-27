@@ -1,0 +1,86 @@
+.assign-task-container {
+    width: 470px;
+    height: 378px;
+    padding: 0px;
+    overflow: hidden;
+    font-family: lato Normal;
+    .dialog-header {
+       background: #0070DB; 
+       .header {
+        color: white;
+        font-size: 18px;
+       }
+       .dialog-close-button {
+           color: white;
+           background: transparent;
+       }
+    }
+    .assign-text-action-container {
+        .assign-text-button {
+            .assign-butt {
+                height: 40px;
+                width: 158px;
+            }
+        }
+    }
+}
+.emp-label {
+    text-align: left;
+    font-family: Lato Regular;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.9;
+    line-height: 3;
+}
+
+.mat-con {
+    margin: 15px 0px;
+    > mat-radio-group {
+        > mat-radio-button {
+            font-family: Lato Regular;
+            font-size: 14px;
+        }
+    }
+}
+
+.highlight-label {
+    text-align: left;
+    font-family: Lato normal;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #676767;
+    opacity: 0.54;
+}
+
+.highlight-value {
+    text-align: left;
+    text-decoration: underline;
+    letter-spacing: 0px;
+    color: #0070DB;
+    opacity: 0.9;
+    font-family: Lato normal;
+    font-size: 16px;
+}
+
+.highlight-value:hover {
+    text-align: left;
+    text-decoration: underline;
+    letter-spacing: 0px;
+    color: #0070DB;
+    opacity: 0.9;
+    font-family: Lato normal;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.highlight-value:active {
+    text-align: left;
+    text-decoration: underline;
+    letter-spacing: 0px;
+    color: #0070DB;
+    opacity: 0.9;
+    font-family: Lato normal;
+    font-size: 16px;
+    cursor: pointer;
+}

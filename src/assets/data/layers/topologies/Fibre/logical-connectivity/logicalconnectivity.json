@@ -1,0 +1,120 @@
+[
+    [
+        {
+            "measured_length": 1453
+        },
+        {
+            "rj_r4g_state_name": "Maharashtra"
+        },
+        {
+            "fiberrouteproperties": null
+        },
+        {
+            "centroidAvg": [
+                18.464728,
+                76.7720015
+            ]
+        },
+        {
+            "boundary":[
+                {
+                "line1":
+                    [
+                        {
+                            "latlng":[
+                                15.690236,
+                                73.789269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_115",
+                            "type":"AG2",
+                            "connectivity": [
+                                {
+                                    "latlng":[
+                                        15.946922,
+                                        73.048996
+                                    ],
+                                    "sector":"alpha",
+                                    "band":"850 MHz",
+                                    "cnum":3,
+                                    "sapid":"I-MU-MUMB_ENB_134",
+                                    "type":"AG1"
+                                },
+                                {
+                                    "latlng":[
+                                        15.046247,
+                                        73.249259
+                                    ],
+                                    "sector":"beta",
+                                    "band":"1800 MHz",
+                                    "cnum":4,
+                                    "sapid":"I-MU-MUMB_ENB_015",
+                                    "type":"AG3"
+                                }
+                            ]
+                        },
+                        {
+                            "latlng":[
+                                15.690236,
+                                73.789269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_142",
+                            "type":"AG1"
+                        },
+                        {
+                            "latlng":[
+                                15.690236,
+                                73.789269
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_142",
+                            "type":"AG1"
+                        },
+                        {
+                            "latlng":[
+                                15.364736,
+                                75.1240
+                            ],
+                            "sector":"beta",
+                            "band":"1800 MHz",
+                            "cnum":2,
+                            "sapid":"I-MU-MUMB_ENB_142",
+                            "type":"AG1",
+                            "connectivity": [
+                                {
+                                    "latlng":[
+                                        14.7951,
+                                        75.3991
+                                    ],
+                                    "sector":"alpha",
+                                    "band":"850 MHz",
+                                    "cnum":3,
+                                    "sapid":"I-MU-MUMB_ENB_134",
+                                    "type":"AG1"
+                                },
+                                {
+                                    "latlng":[
+                                        15.4315,
+                                        75.6355
+                                    ],
+                                    "sector":"beta",
+                                    "band":"1800 MHz",
+                                    "cnum":4,
+                                    "sapid":"I-MU-MUMB_ENB_015",
+                                    "type":"AG3"
+                                }
+                            ]
+                        }
+                    ]
+                } 
+            ] 
+        }
+    ]
+]

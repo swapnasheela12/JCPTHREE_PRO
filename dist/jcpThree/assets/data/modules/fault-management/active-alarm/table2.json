@@ -1,0 +1,50 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "PAN India",
+        "JCID": "JC01",
+        "HOUR": "0:00",
+        "OutageAlarmMinutes": "13"
+    },
+    {
+        "CreatedDate": "15 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC02",
+        "HOUR": "0:10",
+        "OutageAlarmMinutes": "0"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Bihar",
+        "JCID": "JC03",
+        "HOUR": "0:30",
+        "OutageAlarmMinutes": "7"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Assam",
+        "JCID": "JC04",
+        "HOUR": "0:45",
+        "OutageAlarmMinutes": "10"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Andhra Pradesh",
+        "JCID": "JC05",
+        "HOUR": "1:00",
+        "OutageAlarmMinutes": "0"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Delhi",
+        "JCID": "JC06",
+        "HOUR": "1:15",
+        "OutageAlarmMinutes": "7"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Goa",
+        "JCID": "JC08",
+        "HOUR": "1:30",
+        "OutageAlarmMinutes": "7"
+    }
+]

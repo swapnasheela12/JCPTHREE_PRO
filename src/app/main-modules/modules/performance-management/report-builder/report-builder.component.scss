@@ -1,0 +1,43 @@
+.report-builder-card {
+    height: 99%;
+    min-height: 99%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .report-builder-flex-container {
+        height: 80px !important;
+        .report-builder-flex-item {
+            font-size: 14px;
+            .report-builder-title {
+                font-size: 16px;
+                font-family: Lato Bold;
+            }
+            .icon-button {
+                padding: 10px 16px;
+            }
+        }
+    }
+    .jcp-table-container {
+        height: calc(100% - 80px) !important;
+        max-height: calc(100% - 80px) !important;
+        .ag-theme-material.ag-jcp3 .ag-header {
+            background-color: #D3D5DC;
+        }
+    }
+    .pagination-aggrid {
+        width: calc(100% - 310px);
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        .labels {
+            font-size: 14px;
+            font-family: Lato Regular;
+        }
+    }
+    .float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        text-align: center;
+    }
+}

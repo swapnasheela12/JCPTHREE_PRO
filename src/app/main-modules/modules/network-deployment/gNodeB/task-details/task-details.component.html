@@ -1,0 +1,128 @@
+<div class="task-details-wrapper">
+    <mat-card class="cia-module-card h-100" style="padding: 0px;">
+        <div class="td-flex-container">
+            <div class="d-flex mx-2 flex-row justify-content-between">
+                <div class="col-2 td-flex-item" fxFlex *ngFor="let task of taskDetails">
+                    <div class="task-widget" fxFlex (click)="showTaskData($event)">
+                        <div class="task-icon" fxFlex="30">
+                            <div class="task-outer-circle">
+                                <div class="task-inner-circle">
+                                    <mat-icon style="font-size: 48px;" aria-label="search">
+                                        <span [class]="task.taskStatusImg"><span class="path1"></span><span
+                                                class="path2"></span><span class="path3"></span><span
+                                                class="path4"></span></span>
+                                    </mat-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-info" fxFlex="70">
+                            <div>{{task.taskCount}}</div>
+                            <div>{{task.taskAssigned}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="p-2 task-search" style="margin-top: -15px;">
+            <button *ngIf="hideAssignBtn" mat-raised-button color="primary" class="auto-assign-btn" (click)="assign()">
+                Assign
+            </button>
+            <div fxFlex="60">
+                <mat-icon class="icon-button" style="position: relative;right: 100px; bottom: 5px;
+                right: 14px; color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show"
+                    style="margin-top: 6px;">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+
+                <mat-form-field *ngIf="show" style="position: relative;right: 100px; bottom: 5px;
+              right: 14px;">
+                    <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="td-tab-details p-0" style="height: calc(100% - 82px);">
+
+            <div class="td-tabs h-100">
+
+                <mat-tab-group class="td-tab-group h-100" (selectedTabChange)="tabChanged($event);">
+                    <mat-tab label="My Task">
+                        <ng-container [ngTemplateOutlet]="myTask"></ng-container>
+                    </mat-tab>
+
+
+                    <mat-tab label=" Team Task">
+                        <ng-container [ngTemplateOutlet]="teamTask"></ng-container>
+                    </mat-tab>
+
+                    <mat-tab label="Exceptional Task">
+                        <ng-container [ngTemplateOutlet]="expTask"></ng-container>
+                    </mat-tab>
+
+
+                    <mat-tab label="SLA Breached Task">
+                        <ng-container [ngTemplateOutlet]="slaBreach"></ng-container>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+    </mat-card>
+
+</div>
+
+<ng-template #myTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+            style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsMyTask"
+            [columnDefs]="columnDefs" [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders
+            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+            [suppressRowClickSelection]="true" [debug]="true" [enableRangeSelection]="true" [pagination]="true"
+            [paginationAutoPageSize]="true" [frameworkComponents]="frameworkComponentsTaskDetails"
+            (cellClicked)='onCellClicked($event)'>
+        </ag-grid-angular>
+    </div>
+</ng-template>
+
+<ng-template #teamTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+            style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsTeamTask"
+            [columnDefs]="columnDefsTeams" [rowData]="rowDataTeams" enableColResize enableSorting enableFilter
+            groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+            [pagination]="true" [paginationAutoPageSize]="true" rowSelection="multiple" [enableRangeSelection]="true"
+            [suppressRowClickSelection]="true" [debug]="true">
+        </ag-grid-angular>
+    </div>
+</ng-template>
+
+<ng-template #expTask>
+    <div class="jcp-table-container" style="height: 100%;">
+        <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+            style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsExceptional"
+            [columnDefs]="columnDefsExpTask" [rowData]="rowDataTeams" enableColResize enableSorting enableFilter
+            groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+            rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true" [debug]="true"
+            [pagination]="true" [paginationAutoPageSize]="true">
+        </ag-grid-angular>
+    </div>
+</ng-template>
+
+<ng-template #slaBreach>
+    <div class="jcp-table-container" style="height: 100%;">
+        <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+            style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsSLABreach"
+            [columnDefs]="columnDefsSLABreach" [rowData]="rowDataTeams" enableColResize enableSorting enableFilter
+            groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+            [pagination]="true" [paginationAutoPageSize]="true" rowSelection="multiple" [enableRangeSelection]="true"
+            [suppressRowClickSelection]="true" [debug]="true">
+        </ag-grid-angular>
+    </div>
+</ng-template>

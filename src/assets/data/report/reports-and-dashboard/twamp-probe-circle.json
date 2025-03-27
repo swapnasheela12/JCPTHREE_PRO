@@ -1,0 +1,23 @@
+[
+    {
+        "interCircle": "NOIDNDFDVCX001 to NVMBRCPGVCX001",
+        "nodeType": "central probe server",
+        "nodeLoc": null,
+        "probeType": "s0",
+        "locType": null,
+        "dir": null,
+        "pktLossAvg": 0.01,
+        "pktLossMax": 0.17,
+        "pktLoss95": 0.06,
+        "latencyAvg": 25.13,
+        "latencyMax": 33.61,
+        "latency95": 32.02,
+        "jitterAvg": 0.36,
+        "jitterMax": 5.04,
+        "jitter95": 1.69,
+        "pktLoss": null,
+        "jitter": null,
+        "latency": null,
+        "sapId": null
+    }
+]

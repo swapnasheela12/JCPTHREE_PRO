@@ -1,0 +1,144 @@
+#ngNcCreateTaskPD {
+    white-space: nowrap;
+    overflow: hidden;
+    // text-overflow: ellipsis;
+}
+
+.cnct-mat-card #ngNcCreateTaskPD:hover:after {
+    content: attr(data-title1);
+    padding: 0 8px;
+    color: white;
+    position: absolute;
+    font-size:12px;
+    top: 44%;
+    left: 40%;
+    z-index: 20;
+    border-radius: 2px;
+    font-family: Lato Regular;
+    background-color: #434962;
+    width: initial;
+    white-space: pre-wrap;
+    height: auto;
+    width: 560px;
+}
+
+.cnct-mat-card{
+    .card-header{
+        font-size: 15px;
+        font-family: lato bold;
+        padding-left: 0px;
+        .label{
+            font-size: 12px; color: rgb(0 0 0 / 0.54);
+            font-family: 'Lato Regular';
+            margin-bottom: 0px;
+        }
+        .value{
+            
+        }
+    }
+    padding:0px !important;
+    height: calc(100% - 52px);
+    .cnct-card-content{
+        height: calc(100% - 80px);
+        .mat-stepper-horizontal{
+            height: 100%;
+            .mat-horizontal-content-container{
+                height: calc(100% - 24px);
+                 padding-left: 20px;
+                .mat-horizontal-stepper-content[aria-expanded="true"]{
+                    height:100%;
+                    .content-holder{
+                        height: calc(100% - 70px);
+                        overflow: auto;
+                        .mat-checkbox-inner-container{
+                            margin:  12px 12px 0px 0px !important
+                        }
+                        .cust-nominal-container {
+                            height: 210px;
+                            margin: 8px 10px 8px 8px;
+                            width: 100%;
+                            border: 1px solid #e2e2e2;
+                            border-radius: 4px;
+                            .header-nominal-cust {
+                                height: 48px;
+                                border-bottom: 1px solid #e2e2e2;
+                                .title {
+                                    line-height: 3;
+                                    font-family: Lato Bold;
+                                    font-size: 16px;
+                                }
+                                .icon-container {
+                                    margin: 4px 0;
+                                    .iconType {
+                                        line-height: 0;
+                                    }
+                                }
+                            }
+                            .content-nominal-cust {
+                                overflow: auto;
+                                height: 280px;
+                                .ag-theme-material {
+                                    .ag-root-wrapper {
+                                        .ag-root-wrapper-body {
+                                            .ag-root {
+                                                .ag-header {
+                                                    background: #e9ecec;
+                                                    display: none !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .content-nominal-cust-row {
+                                    .mat-checkbox-layout {
+                                        margin-bottom: -0.5rem;
+                                    }
+                                    .title-poly {
+                                        line-height: 3;
+                                        font-family: Lato bold;
+                                        font-size: 14px;
+                                    }
+                                    .sub-title-poly {
+                                        line-height: 3.5;
+                                        font-family: Lato Regular;
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .mat-horizontal-stepper-header-container {
+                width: 75%;
+            }
+            .sdf-label{
+                color: #0000008a;
+            }
+            .sdf-value{
+                font-family: 'Lato Medium';
+            }
+            }
+    }
+}
+
+.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple){
+    background: rgb(0 120 215 / .1);
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: rgb(0 0 0 / .87)
+}
+
+#mapNc2 {
+    height: 325px;
+}
+
+.tab-container-layersMap2 .icon-styleMap2 {
+    font-size: 25px;
+    padding: 3px 7px;
+    line-height: 1.5;
+    width: 38px;
+    height: 38px;
+    border-radius: 25px;
+    color: #707070;
+}

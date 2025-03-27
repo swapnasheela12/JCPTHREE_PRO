@@ -1,0 +1,151 @@
+$blueColor: #0070DB;
+$white: #ffffff;
+$lightgrey-color: #eaecec;
+$px25: 25px;
+
+.mat-dialog-container {
+    background-color:rgba(255, 255, 255, 0.8) !important;
+}
+.target-sites {
+    border-radius: 0;
+    height: 47px;
+    .icon-container-button {
+        position: absolute;
+        top:15%;
+        .mat-checked {
+            .mat-slide-toggle-label {
+                .mat-slide-toggle-bar {
+                    background-color: $blueColor !important;
+                }
+            }
+        }
+        .mat-slide-toggle-thumb-container{
+            .mat-slide-toggle-ripple{
+                display: none;
+            }
+            
+            .mat-slide-toggle-thumb {
+                background-color: $white;
+                border: 1px solid $blueColor;
+            }
+        }
+    }
+    .target-button {
+        margin-left: 92px;
+        font-size: 16px;
+        font-family: Lato Medium;
+    }
+}
+
+.table-div {
+    height: calc(100% + 128px);
+    .target-sites-table {
+        border-radius: 0;
+        height: calc(100% - 226px);
+        padding: 0px 0px 16px 0px !important;
+        .input-search {
+            height: 47px;
+        }
+        .search-icon {
+            position: absolute;
+            right: 6%;
+            top: 6%;
+            font-size: 19px;
+            color: #858585;
+        }
+        .icon-container-button {
+            position: absolute;
+            top:15%;
+        }
+    }
+}
+
+#predictionPopup {
+    .layers-menu-0 {
+        .mat-icon {
+            margin-left: 20px !important;
+        }
+        .filter-icon {
+            margin-right: 0px !important;
+        }
+        &:hover {
+            margin-left: 0px !important;
+            .name-node {
+                margin-left: 0px !important;
+            }
+            .mat-icon {
+                margin-left: 20px !important;
+            }
+        }
+    }
+    .active-layer {
+        margin-left: 0px !important;
+        .name-node {
+            margin-left: 0px !important;
+        }
+    }
+}
+.prediction-setting {
+    height: 402px;
+    overflow-y: auto;
+    .prediction-fixed-container {
+        padding: 0px !important;
+        height: 113px;
+        .sub-header {
+            height: 38px;
+            background-color: #eaecec;
+            .sub-header-title {
+                text-align: left;
+                font-family: Lato medium;
+                letter-spacing: 0px;
+                color: #000000;
+                opacity: 0.9;
+                font-size: 14px;
+                line-height: 2.5;
+                padding-left: 20px;
+            }
+        }
+        .setting-selection {
+            height: 100%;
+            width: 100%;
+            padding: 17px;
+            .selection {
+                width: 50%;
+                float: left;
+                .ps-radio {
+                    width: 100%;
+                    .mat-radio-label {
+                        font-size: 14px;
+                    }
+                }
+            }  
+            .ps-checkbox {
+                height: 30px;
+            }
+        }
+         
+    }
+}
+
+
+.mr-15 {
+    margin: 15px 15px 0 15px !important;
+}
+.p-rl {
+    padding: 15px 15px 0px 15px !important;
+}
+
+:host ::ng-deep .prediction-setting mat-radio-button {
+    .mat-radio-label {
+        .mat-radio-container {
+            .mat-radio-outer-circle {
+                height: 18px !important;
+                width: 18px !important;
+            }
+            .mat-radio-inner-circle {
+                height: 18px !important;
+                width: 18px !important;
+            }
+        }
+    }
+}

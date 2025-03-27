@@ -1,0 +1,55 @@
+<mat-card class="create-query-administration p-0">
+    <div class="create-query-administration-flex-container">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center header-height">
+            <div class="col-4 create-query-administration-flex-item create-query-title">
+                Query Administration
+            </div>
+            <!-- <button  mat-raised-button class="submit-button create-button" color="primary"> -->
+                <div class="corner-button">
+                    <mat-icon (click)="createPopup()" class="zmdi zmdi-collection-bookmark pt-1"></mat-icon>
+                </div>
+            <!-- </button> -->
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div class="cover-div" fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="50" class="left-div" fxLayout="column">
+            <div class="left-content-editable" #contentView id="contenteditable"
+                placeholder="e.g. Unique_Customers_7K_to_10k > 10 AND" contenteditable="true"></div>
+            <span id="create-query-custom-tooltip" aria-hidden="true">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <div class="my-1" *ngFor="let mo of molist">
+                        <button mat-stroked-button class="tooltip-button" fxFlex="100" (click)="pasteHtmlAtCaret(mo)">{{mo}}</button>
+                    </div>
+                </div>
+            </span>
+            <mat-divider style="position: relative;"></mat-divider>
+            <div style="height:56px;" fxLayout="row" fxLayoutAlign="end center">
+                <button mat-stroked-button color="primary" class="buttonWidth">Reset</button>
+                <button (click)="textQueryFun(contentView)" mat-raised-button class="submit-button create-button mx-2"
+                    color="primary">Test
+                    Query</button>
+            </div>
+        </div>
+        <div fxFlex="50" contenteditable="false" class="right-div" id="textareaFormula">
+            <div style="color: #6e6e6e;">
+                {{runQueryContent}}
+            </div>
+            <div style="color: #32B21E;">
+                {{finalValue}}
+            </div>
+        </div>
+    </div>
+</mat-card>
+<div class="d-flex">
+    <div class="p-2 mr-auto">
+        <button mat-stroked-button color="primary" class="buttonWidth"  (click)="goBackCancel('back')">Back</button>
+    </div>
+    <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth" (click)="goBackCancel('cancel')">Cancel</button>
+    </div>
+    <div class="p-2">
+        <button mat-raised-button (click)="generateNdSaveQuery()" color="primary"
+            class="buttonWidth button">Generate</button>
+    </div>
+</div>

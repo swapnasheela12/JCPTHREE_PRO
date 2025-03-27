@@ -1,0 +1,57 @@
+<ng-template #networkTalLayerSettings>
+    <form [formGroup]="macroDialogForm" class="px-3">
+
+        <div class="d-flex flex-row" style="margin-top: 10px;">
+            <mat-form-field class="example-full-width col-6" style="padding: 0; line-height: 2;">
+                <mat-label>Group Name</mat-label>
+                <input matInput value="Convert">
+            </mat-form-field>
+
+            <mat-form-field class="col-6" style="padding: 4px 0 0 10px;">
+                <mat-label>Select Symbol</mat-label>
+                <mat-select [(value)]="selected2" [compareWith]="compareFn">
+                    <mat-select-trigger>
+                        <mat-icon class="selection-icon">{{selected2.icon}}</mat-icon>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let food of foods" [value]="food">
+                        <mat-icon>{{food.icon}}</mat-icon>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <label class="section-header">Properties</label>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
+                <label class="color-grey" fxFlex="45">Color</label>
+                <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div [style.background]="color" class="color-coding"></div>
+                    <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="color" style="text-align: center;"
+                        [cpPosition]="'bottom'"></mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="15">Opacity</div>
+            <mat-slider fxFlex="75" color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert"
+                [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity"
+                (input)="someValue = $event.value" [value]="someValue" [vertical]="vertical">
+            </mat-slider>
+            <div fxFlex="10" class="color-grey ml-1">{{ someValue }}%</div>
+        </div>
+    </form>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="mx-3">
+            <button mat-stroked-button class="buttonWidth w-100" (click)="closeDialog()">Reset To Defaults</button>
+        </div>
+        <div class="col"></div>
+        <div class="mx-3">
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="mr-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+        </div>
+    </div>
+</ng-template>

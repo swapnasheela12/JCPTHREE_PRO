@@ -1,0 +1,173 @@
+<div class="jcp-landing-page-container" style="height:100%;color: black;">
+    <mat-grid-list cols="12" class="jcp-landing-grid-list" rowHeight="fit">
+        <mat-grid-tile class="jcp-landing-grid-tile-one" colspan="8" rowspan="2">
+            <mat-card class="jcp-landing-card p-0 w-100">
+                <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                    <div class="jcp-landing-title" fxFlex>Daily Traffic (Source : LSMR)</div>
+                    <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
+                        <div class="jcp-landing-right-inputs col-4 pr-0">
+                            <mat-form-field>
+                                <mat-select disableOptionCentering [(value)]="hsiItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of hsiListdaily" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="jcp-landing-right-inputs col-3 pr-0">
+                            <mat-form-field>
+                                <mat-select disableOptionCentering [(value)]="lteItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of lteListdaily" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="jcp-landing-right-inputs col-5 pr-0">
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelecteddaily">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListdaily" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-card-content class="jcp-landing-card-content">
+                    <div class="jcp-landing-card-container">
+                        <div class="jcp-landing-card-subheader px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center">
+                            <div class="jcp-landing-card-subheader-title">
+                                120.4 PB
+                            </div>
+                            <div class="jcp-landing-card-subheader-subtitle">
+                                Current Traffic
+                            </div>
+                        </div>
+                        <div class="jcp-landing-card-chart-container" id="dailyTrafficChartIdDiv">
+                            <div id="dailyTrafficChartID" [chart]="dailyTrafficChart"></div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="jcp-landing-grid-tile-two" colspan="4" rowspan="3">
+            <mat-card class="jcp-landing-card p-0 w-100">
+                <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                    <div class="jcp-landing-title" fxFlex>Sites</div>
+                    <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
+                        <div class="jcp-landing-right-inputs col pr-0">
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedsites">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListsites" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-card-content class="sites-details-card-content">
+                    <div class="sites-details-container" *ngFor="let item of sitesListArr">
+                        <div class="sites-details-row px-1" fxLayout="row" fxLayoutAlign="space-around center">
+                            <div class="col-2">
+                                <div class="sites-details-icon">
+                                    <div class="{{item.iconsite}}"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="sites-details-title" fxLayoutAlign="start center">{{item.namesite}}</div>
+                            </div>
+                            <div class="col">
+                                <div class="sites-details-count" fxLayoutAlign="end center">{{item.countsite}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="jcp-landing-grid-tile-three" colspan="8" rowspan="2">
+            <mat-card class="jcp-landing-card p-0  w-100">
+                <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                    <div class="jcp-landing-title" fxFlex>Total Active Subscribers (Source : LSR)</div>
+                    <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
+                        <div class="jcp-landing-right-inputs col-7 pr-0"></div>
+                        <div class="jcp-landing-right-inputs col-5 pr-0">
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelected">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaList" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-card-content class="jcp-landing-card-content">
+                    <div class="jcp-landing-card-container">
+                        <div class="jcp-landing-card-subheader px-4 my-1" fxLayout="row warp" fxLayoutAlign="start center">
+                            <div class="jcp-landing-card-subheader-title">
+                                259.5 M
+                            </div>
+                            <div class="jcp-landing-card-subheader-subtitle">
+                                Current Active Subscriber Base
+                            </div>
+                        </div>
+                        <div class="jcp-landing-card-chart-container" id="chartTotalSubscriberIdDiv">
+                            <div id="chartTotalSubscriberID" [chart]="chartTotalSubscriber"></div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="jcp-landing-grid-tile-four" colspan="4" rowspan="1">
+            <mat-card class="jcp-landing-card p-0 w-100">
+                <div class="jcp-landing-card-header px-4" fxLayoutAlign="space-between center" fxLayout="row wrap">
+                    <div class="jcp-landing-title" fxFlex>Active Users</div>
+                    <div class="jcp-landing-right-container" fxFlex="40" fxLayout="row wrap">
+                        <div class="jcp-landing-right-inputs col pr-0">
+                            <mat-form-field disableOptionCentering>
+                                <mat-select disableOptionCentering [(value)]="panIndiaItemSelectedusage">
+                                    <mat-option value="option1" *ngFor="let item of panIndiaListusage" [value]="item">
+                                        {{item}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider style="height: 45px !important;"></mat-divider>
+                <mat-card-content class="usage-metrics-card-content">
+                    <div class="usage-metrics-container">
+                        <div class="usage-metrics-row" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="usage-metrics-col col pl-0">
+                                <div class="usage-metrics-inner-row" fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="usage-metrics-icon p-0 col-2">
+                                        <div class="ic ic-Active-Users"></div>
+                                    </div>
+                                    <div class="usage-metrics-count  col">
+                                        <div>1000</div>
+                                    </div>
+                                </div>
+                                <div class="usage-metrics-inner-row " fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="usage-metrics-title">JCP Users </div>
+                                </div>
+                            </div>
+                            <mat-divider vertical style="height:69px"></mat-divider>
+                            <div class="usage-metrics-col col pr-0" style="padding-left: 2rem">
+                                <div class="usage-metrics-inner-row" fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="usage-metrics-icon  p-0 col-2">
+                                        <div class="ic ic-customer-care-agent"></div>
+                                    </div>
+                                    <div class="usage-metrics-count  col">
+                                        <div>1200</div>
+                                    </div>
+                                </div>
+                                <div class="usage-metrics-inner-row" fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="usage-metrics-title">Customer Care Agents</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

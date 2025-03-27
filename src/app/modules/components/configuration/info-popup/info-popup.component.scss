@@ -1,0 +1,74 @@
+@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
+@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+
+html, body {
+    height:100%;
+}
+
+.info-topbar{
+    background: #1976D2;
+    color: #ffffff;
+  
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    font-size: 16px;
+    font-family: Lato Bold;
+   height: 50px;
+
+    .info-title{
+        flex: 0 0 76%;
+        color:#ffffff;
+        line-height: 1;
+    }
+    .close-popup{
+        line-height: 1px;
+    }
+}
+
+
+.info-dialog-content{
+    font-size: 14px;
+    line-height: 1.4;
+    .info-header {
+        height: 70px;
+    
+        padding:1rem;
+        background: #f5f5f5;
+       
+            .info-topbar-right {
+                flex: 0 0 13%;
+
+                .iconwrapper {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    flex-wrap: wrap;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    }
+                    .icon-button{
+                        font-size: 20px;
+                    }
+            }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

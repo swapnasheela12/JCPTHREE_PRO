@@ -1,0 +1,159 @@
+[
+    {
+        "srno": "1",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "On Air",
+        "noOfSectors": "1",
+        "flagStatus": "warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-2",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "srno": "2",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "On Air",
+        "noOfSectors": "1",
+        "flagStatus": "warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-2",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "srno": "3",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "On Air",
+        "noOfSectors": "1",
+        "flagStatus": "warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-2",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    },
+    {
+        "srno": "4",
+        "siteId": "I-MUMB-GNB-232-1",
+        "siteType": "gNB",
+        "siteStatus": "On Air",
+        "noOfSectors": "1",
+        "flagStatus": "warning",
+        "latitude": 19.0469397,
+        "longitude": 72.9138758,
+        "sector":[
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":80,
+                "height":22,
+                "power":43,
+               "tilt":22, 
+               "horizontalBeamWidth": 65.0,
+                 "color": "red"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-0",
+                "azimuth":190,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "green"
+            },
+            {
+                "sapId":"I-DL-DLHI-GNB-0001-2",
+                "azimuth":300,
+                "height":22,
+                "power":43,
+                "tilt":22, 
+                "horizontalBeamWidth": 65.0,
+                "color": "orange"
+            }
+        ]
+    }
+   
+]

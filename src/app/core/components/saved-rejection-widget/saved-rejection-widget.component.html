@@ -1,0 +1,18 @@
+<div class="added-comment" *ngIf="showTooltip && (addedComment != '')" #tooltip>{{addedComment}}</div>
+
+<div class="wo-form-field-read form-wrapper" (click)="addSelection()" (mouseover)="onHover()" (mouseout)="mouseOut()"
+    #field [id]="id">
+    <div class="wo-form-input-title" style="margin-left: 5px;">{{label}}</div>
+    <input  class="input-field" *ngIf="editable" [(ngModel)]="value" (keydown)="changedValue()">
+    <div *ngIf="type === 'input' && !editable" class="wo-form-input-value">{{value}}</div>
+
+    <img *ngIf="type === 'image' && !editable" src="assets/images/layer-settings/Small.png" alt="profile picture">
+</div>
+
+<!-- <div *ngIf="rejectionForm.enable" class="wo-form-field-read form-wrapper" (click)="addSelection()"
+    (mouseover)="onHover()" (mouseout)="mouseOut()" #field [id]="id">
+    <div class="wo-form-input-title">{{label}}</div>
+    <div *ngIf="type === 'input'" class="wo-form-input-value">{{value}}</div>
+
+    <img *ngIf="type === 'image'" src="assets/images/layer-settings/Small.png" alt="profile picture">
+</div> -->

@@ -1,0 +1,31 @@
+<div class="np-save-query-popup-dialog">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>Save Query</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content class="main-content" fxLayout="column" fxLayoutAlign="center stretch">
+        <mat-form-field >
+            <input matInput autocomplete="off" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput autocomplete="off" placeholder="Description">
+        </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <div class="col"></div>
+        <div class="mx-1">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" (click)="saveQuery()" class="buttonWidth">Save</button>
+        </div>
+    </div>
+</div>

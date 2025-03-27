@@ -1,0 +1,44 @@
+<div class="map-header-view-wrapper">
+    <div class="mapheaderoverlay">
+        <mat-card class="p-0 mb-3 map-header-card">
+            <mat-card-content class="map-header-card-content">
+                <div class="map-header-div" fxLayout="row wrap" fxLayoutAlign="start center">
+                    <mat-icon class="layer-icon-button-arrow" (click)="backTo(headerData.name, source)">
+                        <span class="zmdi zmdi-chevron-left"></span>
+                    </mat-icon>
+                    <div class="layer-label pl-4 align-items-center font-weight-bold">{{headerData.title}}</div>
+                    <div class="text-layer-sap">&nbsp;&nbsp;-&nbsp;&nbsp;{{headerData.headerSapid}}</div>
+                    <div class="col"></div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'create')">
+                        <!-- <button mat-icon-button class="text-dark-1 button-mat1">
+                            <i class="ic ic-layers-01" data-title="Layers"></i>
+                        </button> -->
+                        <button mat-icon-button class="text-dark  button-mat1" (click)="openPopup()">
+                            <span class="ic ic-file-01-2"></span>
+                        </button>
+                    </div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'undefined')">
+                        <button mat-icon-button class="text-dark button-mat1">
+                            <i class="ic ic-layers-01" data-title="Layers"></i>
+                        </button> 
+                    </div>
+                    <div class="right-content tab-container-layers d-flex align-items-center pr-4"  *ngIf="(source == 'display')">
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showSummary == true" (click)="openSummary(headerData.name)">
+                            <span class="ic ic-table-011"></span>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat1" *ngIf="showChart == true" (click)="openChart(headerData.name)">
+                            <span class="ic ic-graph-01"></span>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat" *ngIf="showSetting == true" (click)="openSettingPopup(headerData.name)" >
+                            <i class="ic ic-filter-01" data-title="Settings"></i>
+                        </button>
+                        <button mat-icon-button class="text-dark button-mat" *ngIf="showLayer == true" (click)="openLayerPopup(headerData.name)" >
+                            <span class="ic ic-Layers-01"></span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn save-button" style="margin-right:10px" (click)="saveNominalPloy()">Save</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </div>

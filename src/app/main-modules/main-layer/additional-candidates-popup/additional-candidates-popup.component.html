@@ -1,0 +1,50 @@
+<ng-template #fibreStructureLayerSettingsPopup>
+    <div style="height: calc(100% - 101px);">
+        <div class="w-100 px-3 my-2">
+            <mat-card class="target-sites" fxLayout="row">
+                <div fxFlex="70">
+                    Target Sites
+                    <button mat-button class="target-button icon-container-button mat-icon-button d-flex justify-content-center align-items-center">
+                       <mat-slide-toggle class="mat-slider-target" color="primary" [disableRipple]="true"></mat-slide-toggle>
+                    </button>
+                </div>
+                <!-- <div fxFlex="30">
+                    <button mat-button  class ="icon-container-button" color="primary"><i class="ic ic-download pr-2"></i> Download</button>
+                </div> -->
+            </mat-card>
+        </div>
+        <div class="w-100 px-3 my-2 table-div">
+            <mat-card class="target-sites-table">
+                <div fxLayout="row">
+                    <input class="input-search" matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off"  placeholder="">
+                    <i class="search-icon zmdi zmdi-search"></i>
+                </div>
+                <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" 
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridAdditionalCandidateOptions" [columnDefs]="additionalCandidateColumnDefs"
+                    [rowData]="additionalCandidateData" enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true" 
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" 
+                    [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" 
+                    [frameworkComponents]="frameworkComponentsAdditionalCandidate"
+                    [suppressPaginationPanel]="true">
+                </ag-grid-angular>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="ml-3">
+            <button class="next-button p-0" mat-button color="primary">
+                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                </i>
+                <span>Upload</span>
+            </button>
+            <button mat-button  class ="icon-container-button" color="primary">
+                <i class="ic ic-download pr-2"></i> Download
+            </button>
+        </div>
+        <div class="col"></div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Save</button>
+        </div>
+    </div>
+</ng-template>

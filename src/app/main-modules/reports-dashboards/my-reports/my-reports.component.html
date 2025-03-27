@@ -1,0 +1,41 @@
+<mat-card class="my-report-card p-0">
+
+    <div class="my-report-flex-container">
+        <div class="d-flex mx-2 flex-row justify-content-between">
+            <div class="px-3 pt-3 col-4 my-report-flex-item">
+                <mat-form-field>
+                    <mat-select disableOptionCentering (click)="beforeOpen()" placeholder="Report Measure" panelClass="selectMenuPanel" [(value)]="reportMeasureSelected">
+                        <mat-option *ngFor="let report of reportsMeasureList" [value]="report.value">
+                            {{report.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="px-3 pt-3  col-4 my-report-flex-item">
+
+                <mat-icon class="icon-button" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+
+                <mat-form-field *ngIf="show">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider style="position: relative;"></mat-divider>
+    <div class="jcp-table-container">
+        <app-table-ag-grid></app-table-ag-grid>
+    </div>
+    <div class="float">
+        <button mat-fab color="primary" aria-label="create report" (click)="openDialog()">
+            <mat-icon style="line-height: 0;">
+                <div class="zmdi zmdi-plus"></div>
+            </mat-icon>
+        </button>
+    </div>
+</mat-card>

@@ -1,0 +1,50 @@
+[{
+        "CreatedDate": "25 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC01",
+        "HOUR": "0:00",
+        "nwa": "100"
+    },
+    {
+        "CreatedDate": "15 Oct, 2016",
+        "Circle": "Mumbai",
+        "JCID": "JC02",
+        "HOUR": "0:10",
+        "nwa": "100"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC03",
+        "HOUR": "0:30",
+        "nwa": "98"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC04",
+        "HOUR": "0:45",
+        "nwa": "99"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC05",
+        "HOUR": "1:00",
+        "nwa": "96"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC06",
+        "HOUR": "1:15",
+        "nwa": "100"
+    },
+    {
+        "CreatedDate": "27 Oct, 2017",
+        "Circle": "Mumbai",
+        "JCID": "JC08",
+        "HOUR": "1:30",
+        "nwa": "97"
+    }
+]

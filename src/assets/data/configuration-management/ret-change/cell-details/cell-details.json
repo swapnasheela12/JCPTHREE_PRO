@@ -1,0 +1,21 @@
+[
+    {
+        "jio_centerID": "MP-NMPR-JC01-0522",
+        "sapId": "I-MP-GDRW-ENB-DW001",
+        "cellID_enbID": "1801745",
+        "cnum": "1",
+        "sectorID": "1",
+        "band": "2300",
+        "category": "Change RET Info",
+        "parameter": "TILT",
+        "previousValue": "4",
+        "currentValue": "4",
+        "approvedRefValue": "2",
+        "status": "In queue",
+        "prePostResult": "-",
+        "prePostStatus": "-",
+        "preKPIDate": "-",
+        "postKPIDate": "",
+        "prePostResultDate": "-"
+    }
+]

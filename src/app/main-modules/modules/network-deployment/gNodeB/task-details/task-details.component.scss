@@ -1,0 +1,120 @@
+.task-details-wrapper {
+    height: 98%;
+}
+
+
+.td-flex-container {
+    height: 130px;
+    padding: 15px 0;
+    .td-flex-item {
+        font-size: 14px;
+        .td-title {
+            font-size: 16px;
+            font-family: Lato Bold;
+            line-height: 2;
+        }
+        .icon-button {
+            padding: 10px 16px;
+        }
+        .cancel-btn {
+            font-size: 17px;
+            padding-top: 15px;
+        }
+    }
+}
+
+.task-search{
+    position: absolute;
+    right: 0;
+    width: 30%;
+    display: inline-block;
+    .auto-assign-btn {
+        position: absolute;
+        right: 23px;
+        top: 19px;
+    }
+}
+
+.task-widget {
+    top: 125px;
+    left: 308px;
+    width: 179px;
+    height: 97px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    opacity: 1;
+    .task-icon {
+        width:35%;
+        .task-outer-circle {
+            //background: #007C8D ;
+            border-radius: 50%;
+            width: 49px;
+            height: 49px;
+            top: 23px;
+            left: 10px;
+            position: relative;
+            opacity: 1;
+            .task-inner-circle {
+                // > img {
+                //     top: 11px;
+                //     left: 7px;
+                //     position: absolute;
+                // }
+            }
+            
+        }
+        
+    }
+    .task-info {
+        width: 65%;
+        position: relative;
+        top: 24px;
+        left: 25px;
+        line-height: 2;
+        >div:first-child {
+            width: 67px;
+            height: 28px;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 23px/28px var(--unnamed-font-family-lato);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            text-align: left;
+            font: normal normal bold 23px/28px Lato;
+            letter-spacing: 0px;
+            color: #464D69;
+            opacity: 1;
+        }
+        >div:last-child {
+            text-align: left;
+            font-size: 12px;
+            font-family: Lato medium;
+            letter-spacing: 0px;
+            color: #464D69;
+            opacity: 1;
+        }
+
+    }
+}
+
+.task-widget:hover {
+    cursor: pointer;
+}
+
+:host ::ng-deep .task-details-wrapper {
+    .td-tab-details {
+        .td-tabs {
+            .td-tab-group {
+                .mat-tab-body-wrapper {
+                    > mat-tab-body {
+                        overflow-y: hidden;
+                        >div {
+                            overflow: hidden;
+                        }
+                    }
+                }
+                mat-tab-header {
+                    width: 62%;
+                }
+            }
+        }
+    }
+}

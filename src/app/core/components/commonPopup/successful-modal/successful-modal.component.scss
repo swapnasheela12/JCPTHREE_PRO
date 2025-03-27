@@ -1,0 +1,38 @@
+.successful-container {
+    width: 470px;
+    height: 280px;
+    .successful-circle-container {
+        .circle-type {
+            position: absolute;
+            width: 106px;
+            height: 106px;
+            border-radius: 50px;
+            background: #0070DB;
+            .icon-success {
+                padding-left: 7px;
+                font-size: 56px;
+                color: #ffffff;
+            }
+        }
+    }
+    .successful-text-container {
+        padding-top: 15%;
+        text-align: center;
+        .successful-text-header {
+            font-size: 24px;
+            font-family: Lato Bold;
+        }
+        .successful-text-subheader {
+            font-size: 15px;
+            font-family: Lato Regular;
+        }
+    }
+    .successful-text-action-container {
+        .successful-text-button {
+            .success-butt {
+                height: 40px;
+                width: 158px;
+            }
+        }
+    }
+}

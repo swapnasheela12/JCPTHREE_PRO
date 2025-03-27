@@ -1,0 +1,82 @@
+[
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "2300 Mhz",
+        "milestone": "Nominal Release",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "-"
+    },
+    {
+        "solutiontype": "WIFI",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "1800 Mhz",
+        "milestone": "RFA",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "10"
+    },
+    {
+        "solutiontype": "DAS",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "850 Mhz",
+        "milestone": "RFC",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "64"
+    },
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "XNB,4th Sector",
+        "milestone": "RFE1_Survey",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "69"
+    },
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "2300 Mhz",
+        "milestone": "RFE1_Acceptance",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "10"
+    },
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "1800 Mhz",
+        "milestone": "Install_eNodeB",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "66"
+    },
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "850 Mhz",
+        "milestone": "Execute_ATP_11A",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "61"
+    },
+    {
+        "solutiontype": "Small Cell",
+        "sapid": "I-MP-RJDG-JCO-0001",
+        "brand": "XNB,4th Sector",
+        "milestone": "Commission_eNodeB",
+        "completionstatus": "Yes",
+        "taskstatus": "Close",
+        "completiondate": "24 May, 2017",
+        "taskday": "61"
+    }
+]

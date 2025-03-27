@@ -1,0 +1,65 @@
+[{
+        "datasourcename": "Strategic Sites",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
+        "datasourcename": "Exclusion Zones",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 2",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
+        "datasourcename": "Landmark",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
+        "datasourcename": "Major institutes/corporates/University/Schools",
+        "attributes": "View Attributes",
+        "querydata": "Mumbai - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P2"
+    },
+    {
+        "datasourcename": "Building information",
+        "attributes": "View Attributes",
+        "querydata": "Nagapur - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P3"
+    },
+    {
+        "datasourcename": "Rail and Road vectors",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P4"
+    },
+    {
+        "datasourcename": "Traffic junctions",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    },
+    {
+        "datasourcename": "Landmark",
+        "attributes": "View Attributes",
+        "querydata": "Pune - Query 1",
+        "tablename": "Select Table",
+        "filename": "Upload File",
+        "ptype": "P1"
+    }
+]

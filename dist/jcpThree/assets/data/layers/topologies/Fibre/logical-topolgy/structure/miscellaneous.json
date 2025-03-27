@@ -1,0 +1,452 @@
+[
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "MANAGED_OBJECT_ID",
+        "sr-no": "1"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "GLOBAL_ID",
+        "sr-no": "2"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "KEY_ACCESS_ID",
+        "sr-no": "3"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_LEASE_NETWORK_ID",
+        "sr-no": "4"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "PARENT_STRUCTURE_NAME",
+        "sr-no": "5"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "FIELD_NAME",
+        "sr-no": "6"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_COMPANY_CODE_1",
+        "sr-no": "7"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_COMPANY_CODE_2",
+        "sr-no": "8"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "ACCOUNT_CODE",
+        "sr-no": "9"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "CLLI_CODE",
+        "sr-no": "10"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_SCOPE_CATEGORY",
+        "sr-no": "11"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_NEIGHBOUR_EAST",
+        "sr-no": "12"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_NEIGHBOUR_WEST",
+        "sr-no": "13"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENT1",
+        "sr-no": "14"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENT2",
+        "sr-no": "15"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENT3",
+        "sr-no": "16"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENT_EAST",
+        "sr-no": "17"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENT_WEST",
+        "sr-no": "18"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PRIORITY",
+        "sr-no": "19"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_LOADING_CONDITION",
+        "sr-no": "20"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_MH_COVER_MATERIAL",
+        "sr-no": "21"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENTING_AG1_EAST",
+        "sr-no": "22"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENTING_AG1_WEST",
+        "sr-no": "23"
+    },
+    {
+        "type": "COMMON IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENTING_AG2_EAST",
+        "sr-no": "24"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_PARENTING_AG2_WEST",
+        "sr-no": "25"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_FACILITY_STATUS",
+        "sr-no": "26"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_LEASE_REF",
+        "sr-no": "27"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_FAULT_NUMBER",
+        "sr-no": "28"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_ELECT_CONN",
+        "sr-no": "29"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_SANC_LOAD_KW",
+        "sr-no": "30"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_ELECT_CONN_PH",
+        "sr-no": "31"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TOWER_DESIGN_TYPE",
+        "sr-no": "32"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TOWER_FEASIBILITY",
+        "sr-no": "33"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_WARD_CODE_2011",
+        "sr-no": "34"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TOWER_FEASIBILITY",
+        "sr-no": "35"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_CONSUMER_NUMBER",
+        "sr-no": "36"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_METER_NUMBER",
+        "sr-no": "37"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_METER_MAKE",
+        "sr-no": "38"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_METER_OWNER",
+        "sr-no": "39"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_METER_TYPE",
+        "sr-no": "40"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TRAFO_MAKE",
+        "sr-no": "41"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TRAFO_RATING",
+        "sr-no": "42"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_TRAFO_OWNERSHIP",
+        "sr-no": "43"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_AVERAGE_EB",
+        "sr-no": "44"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_SCOPE",
+        "sr-no": "45"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_CAPITALISATION_STATUS",
+        "sr-no": "46"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_VISIBLE",
+        "sr-no": "47"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_SITE_LOCATION",
+        "sr-no": "48"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_FO_SITE_STATUS",
+        "sr-no": "49"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_POLE_TRANSMEDIA",
+        "sr-no": "50"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_CATEGORY",
+        "sr-no": "51"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_HUB_CATEGORY",
+        "sr-no": "52"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_DEPEDENT_SITE_COUNT",
+        "sr-no": "53"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_FALL_PROTECTION_TYPE",
+        "sr-no": "54"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "RJ_BM_SB_CATEGORY",
+        "sr-no": "55"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "MR",
+        "sr-no": "56"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "UNITS",
+        "sr-no": "57"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "TRANSMEDIA_DEMAND",
+        "sr-no": "58"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "VOLUME",
+        "sr-no": "59"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "LENGTH_ADJUSTMENT",
+        "sr-no": "60"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "ROTATION",
+        "sr-no": "61"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "MODIFICATION_IND",
+        "sr-no": "61"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "MATERIAL_COST",
+        "sr-no": "63"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "ANCILLARYROLE",
+        "sr-no": "64"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "ANCILLARYROLE",
+        "sr-no": "65"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "FILTERED_OUT",
+        "sr-no": "66"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "JOINT_USE",
+        "sr-no": "67"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "DI_TOKEN",
+        "sr-no": "68"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "PURCHASE_ORDER",
+        "sr-no": "69"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "ORDERABLE",
+        "sr-no": "70"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "INSTALLED_COST",
+        "sr-no": "71"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "WORK_ORDER_NAME",
+        "sr-no": "72"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "WORK_ORDER_ITEM_NUMBER",
+        "sr-no": "73"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "REMARKS",
+        "sr-no": "74"
+    },
+    {
+        "type": "UNIQUE IN STRUCTURE AND EQUIPMENT",
+        "bifurcation": "MISCELLENEOUS",
+        "field-name": "SHAPE",
+        "sr-no": "75"
+    }
+]

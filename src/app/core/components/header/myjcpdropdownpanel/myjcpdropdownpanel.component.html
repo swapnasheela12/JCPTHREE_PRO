@@ -1,0 +1,65 @@
+<mat-toolbar-row class="my-jcp-setting-toolbar" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="my-jcp-setting-header" fxFlex>
+        <span class="my-jcp-setting-header-icon"><i class="zmdi zmdi-settings"></i></span>
+        <span class="my-jcp-setting-header-title">Settings</span>
+    </div>
+    <div class="my-jcp-setting-header-action">
+        <mat-icon class="my-jcp-setting-header-action-icon" aria-hidden="false" aria-label="Example heart icon">
+            <div class="ic ic-close-01 divActionIcon"></div>
+        </mat-icon>
+    </div>
+</mat-toolbar-row>
+<div>
+    <div class="my-jcp-setting-subheader" fxLayout="row" fxLayoutAlign="space-between center" (click)="openDialog()">
+        <div class="my-jcp-container">
+            <div class="my-jcp-subheader-title">Default Geography</div>
+            <div class="my-jcp-subheader-subtitle">Jio State : Maharashtra</div>
+        </div>
+        <div class="my-jcp-container-icon">
+            <mat-icon class="my-jcp-icon">
+                <div class="zmdi zmdi-chevron-down divaccordIcon"></div>
+            </mat-icon>
+        </div>
+    </div>
+    <div class="mat-app-background basic-container" id="angular-app-root1">
+        <div class="my-jcp-setting-search">
+            <div class="my-jcp-search-container">
+                <mat-form-field class="my-jcp-search-form-field">
+                    <input type="text" matInput placeholder="Search" id="my-jcp-setting-search-id">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="my-jcp-setting-accordion-container">
+            <mat-accordion class="my-jcp-setting-accordion">
+                <mat-expansion-panel #myJCPPanel class="my-jcp-setting-accordion-card" *ngFor="let val of cardListMyJcpSettings;let i=index;" [expanded]="val.nameCard =='Alarms Live'" (opened)="val.nameCard =='Alarms Live'" hideToggle="true" [ngClass]="{'bgAndColor-My-jcp-Add':val.vision == true,'bgAndColor-My-jcp-Remove':val.vision == false}">
+                    <mat-expansion-panel-header class="my-jcp-accordion-header">
+                        <mat-panel-title class="my-jcp-accordion-header-title">
+                            <div class="ic ic-drag-drop drag-drop-icon"></div>
+                            <div class="ml-2" fxFlex>{{val.nameCard}} ({{val.countNode}}/{{val.itemsListAlarms.length}})</div>
+                            <div class="my-jcp-expansion-indicator" *ngIf="!myJCPPanel.expanded">
+                                <div class="zmdi zmdi-chevron-down myJcpDown"></div>
+                            </div>
+                            <div class="my-jcp-expansion-indicator" *ngIf="myJCPPanel.expanded">
+                                <div class="zmdi zmdi-chevron-up myJcpUp"></div>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="my-jcp-accordion-content">
+                        <div fxLayout="row wrap">
+                            <div class="button-container" *ngFor="let item of val.itemsListAlarms; let ind = index;">
+                                <div class="button-type" (click)="nodeEnableDisable(item,val,i,ind)" [ngClass]="{'disabled-button-type':item.disabled == true,'not-disabled-button-type':item.disabled == false}">
+                                    {{item.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div class="row justify-content-end my-jcp-setting-submit">
+            <div class="col notifications-content-all" style="cursor: pointer;">
+                submit
+            </div>
+        </div>
+    </div>
+</div>

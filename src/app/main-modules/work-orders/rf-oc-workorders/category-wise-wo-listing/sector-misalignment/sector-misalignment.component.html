@@ -1,0 +1,33 @@
+<mat-card class="h-100 sector-misalignment-container">
+
+  <div class="sector-flex-container">
+    <div class="d-flex mx-2 flex-row justify-content-between">
+      <div class="col-4 sector-flex-item" fxFlex>
+        <div class="py-3 sector-title">Sector Misalignment</div>
+      </div>
+
+      <div class="col-4 sector-flex-item" fxFlex>
+        <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show"
+          style="margin-top: 6px;">
+          <span class="zmdi zmdi-search"></span>
+        </mat-icon>
+
+        <mat-form-field *ngIf="show">
+          <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+          <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+            <span class="zmdi zmdi-close"></span>
+          </mat-icon>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </div>
+
+  <mat-divider style="position: relative;"></mat-divider>
+  <div class="jcp-table-container">
+
+    <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+    </app-table-ag-grid>
+
+  </div>
+</mat-card>

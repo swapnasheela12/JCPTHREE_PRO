@@ -1,0 +1,38 @@
+.redirect-layers-container {
+    width: 470px;
+    height: 280px;
+    .redirect-layers-circle-container {
+        .circle-type {
+            position: absolute;
+            width: 106px;
+            height: 106px;
+            border-radius: 50px;
+            background: #0070DB;
+            .icon-success {
+                padding-left: 7px;
+                font-size: 56px;
+                color: #ffffff;
+            }
+        }
+    }
+    .redirect-layers-text-container {
+        padding-top: 15%;
+        text-align: center;
+        .redirect-layers-text-header {
+            font-size: 24px;
+            font-family: Lato Bold;
+        }
+        .redirect-layers-text-subheader {
+            font-size: 15px;
+            font-family: Lato Regular;
+        }
+    }
+    .redirect-layers-text-action-container {
+        .redirect-layers-text-button {
+            .success-butt {
+                height: 40px;
+                width: 158px;
+            }
+        }
+    }
+}

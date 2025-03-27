@@ -1,0 +1,113 @@
+.create-query-administration {
+    height: calc(100% - 52px);
+    width: 100%;
+    .create-query-administration-flex-container {
+        .header-height {
+            height: 64px !important;
+            .corner-button{
+                cursor: pointer;
+                text-align: center;
+                align-items: center;
+                background: #0378d7;
+                border-radius: 16px;
+                color: white;
+            }
+        }
+        .create-query-title {
+            font-weight: 600;
+            font-family: 'Lato Medium';
+        }
+        .create-query-administration-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+        }
+        .create-button {
+            margin-right: 10px;
+        }
+        .create-query-administration-card-toolbar-icon {
+            display: inline-block;
+            margin-left: 13px;
+            font-size: 24px;
+        }
+    }
+    .cover-div {
+        height: calc(100% - 116px);
+        .left-div{
+            margin: 10px; 
+            border: 1px solid lightgray; 
+            height: 100%;
+            .left-content-editable{
+                height: calc(100% - 56px);
+            }
+            [contenteditable=true]:empty:before{
+                content: attr(placeholder);
+                pointer-events: none;
+                display: block;
+                color: #6e6e6e;
+              }   
+            #create-query-custom-tooltip {
+                max-height: 210px;
+                overflow: auto;
+                position: absolute;
+                width: auto;
+                display: none;
+                z-index: 9999;
+                background: white;
+                color: gray;
+                border-radius: 0.25rem;
+                padding: 0.4rem;
+                font-size: 0.8rem;
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 700;
+                box-shadow:0px 1px 18px 3px #00000029;
+                word-break: break-word;
+                .tooltip-button{
+                    border: none; 
+                    padding: 5px;
+                    min-width: 32px; 
+                    height: 32px;
+                    line-height: 10px; 
+                    background: #00000012; 
+                    color: #0000008a;
+                }
+            }
+            
+            #create-query-custom-tooltip::after {
+                content: " ";
+                position: absolute;
+                top: 35%;
+                left: -2%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: white transparent transparent transparent;
+                transform: rotate(90deg);
+            }
+        }
+        .right-div{
+            margin: 10px; 
+            border: 1px solid lightgray; 
+            height: 100%; 
+            word-break: break-word;
+        }
+    }
+    .fixed {
+        position: absolute;
+        // top: 20px;
+        // left: 20px;
+        border: 1px solid black;
+        padding: 5px;
+        z-index: 100;
+        background-color: red;
+        display: block;
+    }
+
+  .important {
+      color: red
+  }
+  .selected {
+    background-color: aqua !important;
+}
+
+}

@@ -1,0 +1,62 @@
+
+$md-primary: #0070DB;
+.computation-setting-popup{
+
+.mat-dialog-container {
+    padding: 0px;
+    height: 100%;
+    .mat-tab-label {
+        min-width: 0 !important;
+        width: 50%;
+    }
+    .mat-tab-label-active {
+        min-width: 0 !important;
+        width: 50%;
+    }
+    .dialog-header{
+        height: 54px;
+        max-height: 54px;
+        background-color: #0070DB;
+            .mat-toolbar-row{
+            font-size: 18px;
+            color: white;
+            .dialog-close-button {
+            .mat-button-focus-overlay {
+                background-color: transparent!important;
+            }
+            }
+            }
+    }
+    .mat-dialog-content{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        min-height: calc(100% - 120px);
+        .mat-tab-label{
+            font-size: 16px;
+            font-family: lato medium;
+
+        }
+        max-height: calc(100% - 120px);
+        .mat-tab-body-content{
+            overflow: auto;
+            .radio-button-group {
+                margin: 10px 20px;
+                .mat-radio-button{
+                    .mat-radio-label{
+                        font-size: 14px;
+                    }
+                }
+            }
+            .mat-radio-checked {
+                .mat-radio-outer-circle {
+                    border-color: #0078d7 !important;
+                }
+            }
+            .mat-radio-inner-circle {
+                background-color:#0078d7 !important;
+            }
+        }
+    }  
+}
+}

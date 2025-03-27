@@ -1,0 +1,18 @@
+[
+    {
+        "siteParameter": "Antenna Azimuth(deg)",
+        "currentValue": "67"
+    },
+    {
+        "siteParameter": "Antenna M-Tilt(deg)",
+        "currentValue": "7.5"
+    },
+    {
+        "siteParameter": "Antenna Height(m)",
+        "currentValue": "30"
+    },
+    {
+        "siteParameter": "E-Tilt(deg)",
+        "currentValue": "4"
+    }
+]

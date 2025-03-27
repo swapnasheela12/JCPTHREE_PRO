@@ -1,0 +1,23 @@
+.my-report-card {
+    height: 99%;
+    min-height: 99%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .my-report-flex-container {
+        height: 80px !important;
+        .my-report-flex-item {
+            font-size: 14px;
+        }
+    }
+    .jcp-table-container {
+        height: calc(100% - 80px) !important;
+        max-height: calc(100% - 80px) !important;
+    }
+    .float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        text-align: center;
+    }
+}

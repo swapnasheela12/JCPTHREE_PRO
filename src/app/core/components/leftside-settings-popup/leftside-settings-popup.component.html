@@ -1,0 +1,14 @@
+<div class="h-100">
+  <mat-toolbar class="dialog-header leftside-setting-popup">
+    <mat-toolbar-row>
+      <div fxFlex="grow">
+        <div>{{ data.headerText }}</div>
+      </div>
+      <button (click)="onCloseClick()" mat-icon-button class="dialog-close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-divider class="leftside-divider"></mat-divider>
+  <ng-container [ngTemplateOutlet]="data.template" [ngTemplateOutletContext]="data.context"></ng-container>
+</div>

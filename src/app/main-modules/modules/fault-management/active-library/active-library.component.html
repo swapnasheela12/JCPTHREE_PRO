@@ -1,0 +1,87 @@
+<div class="container p-0">
+    <div class="aa-header-wrap">
+        <div class="aa-header mx-2 height64">
+            <div class="col-4 aa-item aa-title">
+                Alarm Library
+            </div>
+            <div class="col-8 aa-item" style = "display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-end;align-items: center;">
+
+                <button class="btn btn-dl icon-button" aria-label="Download">
+                    <div class="zmdi zmdi-plus-circle-o" routerLink="/JCP/Modules/Fault-Management/Add-Alarm">
+                    </div>
+
+                </button>
+                <button class="btn btn-search icon-button" aria-label="search">
+                    <span class="zmdi zmdi-search"></span>
+                </button>
+                <button class="btn btn-delete icon-button md-button" type="button" aria-label="Download">
+                    <div class="zmdi zmdi-delete">
+                    </div>
+
+                </button>
+
+              
+
+                <div class="search-section" *ngIf="show">
+                    <div class="search-zone search-severity mr-10">
+
+                        <select name="" id="search-severity">
+                             <option value="Search Event Type" selected>Search Severity</option>
+                            <option value="minor">Minor</option>
+                            <option value="major">Major</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    
+                    </div>
+
+                    <div class="search-zone search-event-type">
+
+                        <select name="" id="search-event-type">
+                            <option value="Search Event Type" selected>Search Event Type</option>
+                            <option value="minor">Minor</option>
+                            <option value="major">Major</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    
+                    </div>
+
+                    <div class="search-zone search-alarm-name">
+
+                        <select name="" id="search-alarm-name">
+                            <option value="Search alarm name" selected>Search Alarm Name</option>
+                            <option value="minor">Minor</option>
+                            <option value="major">Major</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    
+                    </div>
+ 
+                    <mat-form-field >
+
+
+                        <input class="search-field" matInput  (ngModelChange)="onFilterChanged($event);"
+                            autocomplete="off" placeholder="">
+                        <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                            <span class="zmdi zmdi-close"></span>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="position: relative;height: 0px; width: 1054px; border: 1px solid #cccccc;"></div>
+    <div class="aa-data-table">       
+        <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-material ag-jcp3" rowHeight="48"
+            headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData" enableColResize
+            enableSorting enableFilter groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups
+            toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true" [suppressPaginationPanel]="true"
+            [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true"
+            (gridReady)="onReady($event)"  [frameworkComponents]="frameworkComponentsActiveLibrary">
+        </ag-grid-angular>
+
+        <app-pagination style="color: black;" [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+            [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+            [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+    </div>
+</div>

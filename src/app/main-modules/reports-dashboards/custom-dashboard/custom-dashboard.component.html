@@ -1,0 +1,107 @@
+<mat-card class="custom-dashboard-mat-card p-0" style="height:calc(100% - 20px)" fxLayout="row" >
+    <div style="height: 100%;" fxFlex="displayInfoFlex">
+        <div class="accordian-holder"  style="height: 100%;">
+            <div class="accordian-header" fxLayout="row" fxLayoutAlign="start center">
+                <mat-card-header class="card-header" fxFlex=100>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <mat-select disableOptionCentering placeholder="Category" panelClass="selectMenuPanel" [(value)]="reportSelected">
+                                <mat-option *ngFor="let report of reportsMeasureList" [value]="report.value">
+                                    {{report.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col-7 my-performance-reports-flex-item d-flex justify-content-end align-items-center">
+                        <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                            <span class="zmdi zmdi-search"></span>
+                        </mat-icon>
+                        <mat-form-field *ngIf="show" class="col-7">
+                            <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                            <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                                <span class="zmdi zmdi-close"></span>
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+                </mat-card-header>
+            </div>
+            <div class="accordian-content" style="height: calc(100% - 66px)">
+                <mat-divider style="position: relative;"></mat-divider>
+                <!-- <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" 
+                    rowHeight="48" headerHeight="48" [gridOptions]="gridCustomDashboardGridOptions" [columnDefs]="customDashboardColumnDefs"
+                    [rowData]="gridCustomDashboardData" enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true" 
+                    toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple" [enableRangeSelection]="true" 
+                    [suppressRowClickSelection]="true" [groupSelectsChildren]="true" [debug]="true" 
+                    [paginationPageSize]="PaginationPageSize" [frameworkComponents]="frameworkComponentsCustomDashboards" 
+                    [pagination]="true" [suppressPaginationPanel]="true" (gridReady)="onReady($event)" (rowClicked)='onRowClicked($event)'>
+                </ag-grid-angular> -->
+
+                <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+                </app-table-ag-grid>
+                <!-- <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination> -->
+            </div>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="collapsable-right-holder"   fxFlex="30" *ngIf="displayInfoData" [@fadeInOut-1]>
+        <div class="right-accordian-header" fxLayout="row">
+            <div class="right-holder-title col-10">Proactive Action Dashboard</div>
+            <button mat-icon-button class="link-icon-button close-info col-2" (click)="showRightHolderToggle()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <mat-divider style="position: inherit;"></mat-divider>
+        <div class="right-accordian-content">
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Category: </mat-label>
+                <span *ngIf="displayInfoData.category; then displayCategoryData else nodata"></span>
+                <ng-template #displayCategoryData>{{displayInfoData.category}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Sub-Category: </mat-label>
+                <span *ngIf="displayInfoData.sub_category; then displaySubCategoryData else nodata"></span>
+                <ng-template #displaySubCategoryData>{{displayInfoData.sub_category}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Dashboard Description: </mat-label>
+                <span *ngIf="displayInfoData.dashboard_description; then displayDescriptionData else nodata"></span>
+                <ng-template #displayDescriptionData>{{displayInfoData.dashboard_description}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Created On: </mat-label>
+                <span *ngIf="displayInfoData.createddate; then displayCreatedDate else nodata"></span>
+                <ng-template #displayCreatedDate>{{displayInfoData.createddate}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Modified On: </mat-label>
+                <span *ngIf="displayInfoData.modifieddate; then displayModifiedDate else nodata"></span>
+                <ng-template #displayModifiedDate>{{displayInfoData.modifieddate}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+            <div class="right-accordian-content-item">
+                <mat-label class="item-info">Updated On: </mat-label>
+                <span *ngIf="displayInfoData.updateddate; then displayUpdateDate else nodata"></span>
+                <ng-template #displayUpdateDate>{{displayInfoData.updateddate}}</ng-template>
+                <ng-template #nodata> - </ng-template>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+<ng-template #likeCell let-row>
+    <div>
+        <button mat-icon-button [matMenuTriggerFor]="customDashBoardMenu" aria-label="Example icon-button with a menu">
+            <mat-icon style="line-height: 0;color:black !important;"><span class="zmdi zmdi-more-vert"></span></mat-icon>
+        </button>
+        <mat-menu #customDashBoardMenu="matMenu" class="custom-dashboard-menu-rendere" xPosition="before">
+            <button mat-menu-item (click)="displayInfo(row)">
+                <span>Info</span>
+            </button>
+        </mat-menu>
+    </div>
+</ng-template>

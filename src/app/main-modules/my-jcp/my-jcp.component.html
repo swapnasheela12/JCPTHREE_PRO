@@ -1,0 +1,55 @@
+
+<div class="my-jcp-setting-container mt-1" id="my-jcp-setting-container-id">
+    <mat-grid-list class="my-jcp-setting-grid-list" cols="12" [gutterSize]="'10px'" rowHeight="{{desired_rowHeight}}" #container2 dropListScroller cdkDropList cdkDropListLockAxis="y" cdkDropListOrientation="vertical"
+     (cdkDropListDropped)="drop($event)" >
+      <mat-grid-tile class="my-jcp-setting-grid-tile" *ngFor="let tab of myJcpListTile" [colspan]="tab.cols" [rowspan]="tab.rows" >
+        
+        <mat-card  class="my-jcp-setting-grid-card" cdkDrag vsDragScroll >
+          <app-workorders *ngIf="tab.text == 'one'"></app-workorders>
+          <app-alarms *ngIf="tab.text == 'two'"></app-alarms>
+          <app-backhaul-violators *ngIf="tab.text == 'three'"></app-backhaul-violators>
+          <app-customer-experience *ngIf="tab.text == 'four'"></app-customer-experience>
+          <app-performance *ngIf="tab.text == 'five'"></app-performance>
+          <app-planning *ngIf="tab.text == 'six'"></app-planning>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<!-- <div class="my-jcp-setting-container mt-1" id="my-jcp-setting-container-id" fxFlexFill>
+  <mat-grid-list class="my-jcp-setting-grid-list" cols="12" [gutterSize]="'10px'" rowHeight="{{desired_rowHeight}}" #container2
+    dropListScroller cdkDropList (cdkDropListDropped)="drop($event)">
+  
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-workorders></app-workorders>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-alarms></app-alarms>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-backhaul-violators></app-backhaul-violators>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="2" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-customer-experience></app-customer-experience>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="4" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-performance></app-performance>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile class="my-jcp-setting-grid-tile" colspan="6" rowspan="3" cdkDrag>
+        <mat-card class="my-jcp-setting-grid-card">
+          <app-planning></app-planning>
+        </mat-card>
+      </mat-grid-tile>
+   
+  </mat-grid-list>
+</div> -->

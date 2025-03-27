@@ -1,0 +1,814 @@
+[
+    {
+        "r4g_state": "Rajasthan(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Madhya Pradesh(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Kashmir(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "West Bengal(East)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Bihar(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Tamilnadu(SOUTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Kerela(SOUTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Delhi(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Uttrakhand(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Gujrat(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Uttar Pradesh(EAST)(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Bihar(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Assam(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Kolkata(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Himachal Pradesh(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Telangana(SOUTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Odisha(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Jammu(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Maharashtra(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Punjab(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Chhattisgarh(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Goa(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Uttar Pradesh (West)(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Haryana(NORTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Mumbai(WEST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Jharkhand(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Karnataka(SOUTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "Andhra Pradesh(SOUTH)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    },
+    {
+        "r4g_state": "North East(EAST)",
+        "direction": "Two Way eNodeB",
+        "twamp": {
+            "provisional": 4567,
+            "live": 1234,
+            "delta": 5421
+        },
+        "packetloss": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "latency": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "jitter": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "mos": {
+            "metro": 23.56,
+            "nld": 45.87
+        },
+        "outagesimulation": {
+            "500ms": 23.1
+        }
+    }
+]

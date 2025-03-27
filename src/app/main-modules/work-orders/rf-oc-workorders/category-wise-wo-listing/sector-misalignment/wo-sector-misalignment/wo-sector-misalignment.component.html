@@ -1,0 +1,66 @@
+<div mat-dialog-content class="wo-sector-container">
+    <mat-card class="wo-sector-card-one p-0">
+        <div class="d-flex  flex-row justify-content-between align-items-center full-height wo-header">
+            <mat-icon class="icon-button mx-2" style="color: #7E7E7E;" aria-label="search" (click)="goBack()">
+                <span class="zmdi zmdi-arrow-left"></span>
+            </mat-icon>
+            <div class="col wo-flex-item" style="padding-left: 0px;">
+                <div style="color: black">WO-RAN-Sector Misalignment-03_05_19-0001</div>
+            </div>
+            <div class="status-label">Work Order Status:</div>
+            <div class="jcp-two-lines-progress col-2" style="width: 120px">
+
+                <div class="values" style="font-family:Lato Regular; font-size: 12px;">75%</div>
+                <div class="progress">
+                    <div class="progress-bar bg-success" style="width: 75%;">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="px-2 sector-flex-item">
+                <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;"
+                    *ngIf="!show">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+
+                <mat-form-field *ngIf="show">
+                    <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off"
+                        placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <mat-card-content class="wo-container">
+            <div class="d-flex mx-2 flex-row flex-wrap wo-flex-container h-100">
+
+                <div class="p-2 wo-flex-item mediaContainer" style="width: 25%;"
+                    *ngFor="let wo of woHeader;trackBy: trackHero">
+                    <div class="wo-form-field-read">
+                        <div class="wo-form-input-title">{{wo.label}}</div>
+                        <div class="wo-form-input-value">{{wo.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
+    <div class="wo-grid" style="margin-top: 10px;height: 52%;">
+        <app-ag-grid-tree [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)"
+            [columnDefs]="columnDefs" [rowData]="rowData">
+        </app-ag-grid-tree>
+
+    </div>
+</div>
+
+<div class="d-flex task-footer">
+    <div class="col"></div>
+    <div class="p-2">
+        <button mat-stroked-button color="primary" class="buttonWidth">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+
+.rfi-container {
+    height: 100%;
+    .cards {
+        margin: 20px;
+        padding: 0 !important;
+        .card-header {
+            background: #E6E6E6;
+            .mat-card-header-text {
+                margin: 0px !important;
+            }
+        }
+    }
+}
+.rfi-form-type {
+    color: #1278D7;
+    font: normal normal medium 16px/19px Lato;
+    margin: 10px 0 0 20px;
+}
+.rfi-container-dialog {
+    height: 90%;
+    overflow-x: auto;
+}
+
+.wo-form-field-read {
+    line-height: 2;
+    .wo-form-input-title {
+        font-family: lato Regular;
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 0.6;
+    }
+    .wo-form-input-value {
+        font-family: lato medium;
+        font-size: 14px;
+        color: #000000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+}
+
+.sector-header {
+    margin: 20px 0px 0 17px;
+    font-family: lato bold;
+    font-size: 14px;
+}
+
+.sector-divider {
+    width: 96%;
+    margin: 0 17px;
+}
+
+.title {
+    font-family: lato Regular;
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.6;
+    margin-left: 15px;
+}

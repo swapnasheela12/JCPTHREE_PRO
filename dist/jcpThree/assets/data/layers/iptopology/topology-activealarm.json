@@ -1,0 +1,65 @@
+[{
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "SESSION-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "SESSION-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}, {
+    "sapid": "I-MP-INDR-ENB-6881",
+    "ems": "CEPNM-PA-MP-WCKOL",
+    "alarmname": "LINK-DOWN",
+    "severity": "Critical",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "classification": "OUTAGE"
+}]

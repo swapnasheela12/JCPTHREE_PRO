@@ -1,0 +1,125 @@
+<div class="p-0" style="height: calc(100% - 10px);">
+    <mat-card class="twamp-live-dashboard-top-card p-0 mb-3 mx-0" style="height: 78px;">
+        <form [formGroup]="twampForm">
+            <div fxLayout="row wrap" class="p-3">
+
+                <mat-form-field class="inner-field-container px-2" fxFlex="15">
+                    <mat-select [(value)]="geographyListValue" placeholder="Select Compute Model" disableOptionCentering
+                        formControlName="geographyList">
+                        <input matInput [(ngModel)]="searchGeographyListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of geographyList | filter:searchGeographyListValue"
+                            [value]="item.geography_name">
+                            {{item.geography_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="inner-field-container px-2" fxFlex="15">
+                    <mat-select [(value)]="metricListValue" placeholder="Select Metric" disableOptionCentering
+                        formControlName="metricList">
+                        <input matInput [(ngModel)]="searchMetricListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of metricList | filter:searchMetricListValue"
+                            [value]="item.metric_name">
+                            {{item.metric_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+
+                <mat-form-field class="inner-field-container px-2" fxFlex="15">
+                    <mat-select [(value)]="selectReportValue" placeholder="Select Report" disableOptionCentering
+                        formControlName="selectReport">
+                        <input matInput [(ngModel)]="searchReportListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of selectReportList | filter:searchReportListValue"
+                            [value]="item.report">
+                            {{item.report}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="inner-field-container px-2" fxFlex="15">
+                    <mat-select [(value)]="searchTimeListValue" (selectionChange)="changeSelection($event)"
+                        placeholder="Select Time Span" disableOptionCentering formControlName="geographyList">
+                        <input matInput [(ngModel)]="searchSelectTimeListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of selectTimeList | filter:searchSelectTimeListValue"
+                            [value]="item.time">
+                            {{item.time}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <form [formGroup]="thirdFormGroup" class="inner-field-container px-2" fxFlex="25"
+                    *ngIf="showCustomizeDateTime">
+                    <mat-form-field class="custom-field-container" fxFlex="90">
+                        <div class="daterange-container" style="top: 205px; left: 74px;">
+                            <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true"
+                                [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false"
+                                formControlName="selectedDateTime" [showCustomRangeLabel]="true"
+                                [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false"
+                                [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate"
+                                [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                                [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                                (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                            <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                            <!-- <ngx-daterangepicker-material class="daterange-dropdown"></ngx-daterangepicker-material> -->
+                        </div>
+                    </mat-form-field>
+                </form>
+
+                <mat-form-field class="inner-field-container px-2" fxFlex="15">
+                    <mat-select [(value)]="dscpListValue" placeholder="DSCP" disableOptionCentering
+                        formControlName="dscpList">
+                        <input matInput [(ngModel)]="searchDscpListValue" autocomplete="off"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search...."
+                            style="height: 48px !important;padding-left:15px">
+                        <mat-option *ngFor="let item of dscpList | filter:searchDscpListValue" [value]="item.dscp_name">
+                            {{item.dscp_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+        </form>
+    </mat-card>
+
+    <mat-card class="twamp-ag-grid p-0 w-100" style=" overflow: auto;height: calc(100% - 99px);">
+        <!-- <ng-container [ngTemplateOutlet]="recursiveListTmpl"></ng-container> -->
+        <div class="d-flex">
+            <div class="ml-3 py-3 ag-grid-twamp-title">Inter Circle Core to Core Matrix</div>
+
+            <div class="col"></div>
+            <mat-icon class="header-icon-inner" aria-label="search" fxFlex="5">
+                <span class="ic ic-download"></span>
+            </mat-icon>
+            <div class="my-flex-item" style="padding: 10px;">
+                <button mat-raised-button color="primary" type="submit" class="buttonWidth">Submit</button>
+            </div>
+        </div>
+        <mat-divider style="position: relative;"></mat-divider>
+        <ag-grid-angular style="width: 100%; height: calc(100% - 70px)"
+            class="twamp-grid-live ag-theme-material ag-jcp3" [rowData]="rowData" [columnDefs]="columnDefs"
+            (cellClicked)='onCellClicked($event)' [icons]="icons" [gridOptions]="gridOptions" [groupHeaderHeight]="28"
+            [headerHeight]="28" [icons]="icons" [pinnedBottomRowData]="pinnedBottomRowData"
+            [suppressHorizontalScroll]="false" (gridReady)="onReady($event)">
+        </ag-grid-angular>
+    </mat-card>
+</div>
+
+<!-- <ng-template #recursiveListTmpl> -->
+
+<!-- </ng-template> -->

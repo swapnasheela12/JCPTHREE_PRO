@@ -1,0 +1,39 @@
+button {
+    margin: 0 5px;
+}
+
+.page-container {
+    padding-right: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-top: 1px solid;
+    border-top-color: #e2e2e2;
+    position: sticky;
+    bottom: 0px;
+    height: 56px;
+    .labels {
+        text-align: right;
+        margin-right: 30px;
+        margin-top: 10px;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.next, .previous {
+    width:34px;
+    height:34px;
+    margin-left: 16px;
+    .mat-icon {
+        line-height: 1.5;
+        margin-left: 5px;
+    }
+    &:hover {
+        background-color: #eaecec;
+        border-radius: 50%;
+    }
+}

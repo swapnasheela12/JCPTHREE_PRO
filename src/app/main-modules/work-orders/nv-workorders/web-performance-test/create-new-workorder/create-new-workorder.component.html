@@ -1,0 +1,292 @@
+<div class="create-wpt-wrapper">
+    <mat-card class="wpt-module-card" style="padding: 0px;">
+        <mat-toolbar color="mat-blue-grey" class="create-wpt-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class=" pl-0 wo-header" fxFlex="95">
+                    <div class="header" *ngIf="showCreateNewWorkorder">Create New Workorder</div>
+                    <div class="header" *ngIf="showCopyToNewWorkorder">Copy To New Workorder</div>
+                </div>
+                <div class="sector-flex-item" fxFlex="5">
+                    <mat-icon  style="line-height: 0; font-size: 21px;color: rgba(0,0,0,0.54);float: right;">
+                        <span class="ic ic-Go-to-Workorder-Icon-1"></span></mat-icon>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+
+        <mat-divider></mat-divider>
+
+        <div class="d-flex flex-row justify-content-between wpt-container">
+            <div fxFlex="50" style="border-right: 1px solid #D3D5DC;">
+                <div class="sub-content d-flex mar-top flex-row flex-wrap" style="margin-bottom: 13px;">
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Template Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                                Web Performance Test
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                Web Performance Test
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Type*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               Page Load Test
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                Page Load Test
+                            </div> 
+                          </div>
+                    </div>
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item  col-6">
+                        <div class="form-read-only">
+                            <label class="input-label">Workorder Id*</label>
+                            <div class="input-value" *ngIf="showCreateNewWorkorder">
+                               -
+                            </div> 
+                            <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                                -
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-6">
+                        <mat-form-field class="form-field-read-only">
+                            <mat-select disableOptionCentering [(value)]="simTypeValue"
+                                style="font-family: lato Regular; font-size: 14px;">
+                                <mat-option value="option1" class="sector-title" *ngFor="let st of simType"
+                                    [value]="st">
+                                    {{st}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap" style="margin: 20px 0;">
+                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
+                        <div class="label"  fxFlex="100">Upload URLs:*</div>
+                    </div>
+                    <div class="sub-content-flex-item col-12 " style="padding-bottom: 0px !important;"> 
+                        <mat-form-field fxFlex="80" class="browse-file-form-field">
+
+                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileName"
+                                [readonly]="true" required>
+                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
+                                (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file" style="font-size: 20px;"></i></button>
+                        </mat-form-field>
+                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=""
+                            style="display: none;" />
+
+
+                        <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                            <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                            </i>
+                            <span>Upload</span>
+                        </button>
+                    </div>
+                    
+
+                    <div class="sub-content-flex-item col-12">
+                        <div class="upload-instruction" fxFlex="80">note: upload excel files only</div>
+                        <!-- <div class="upload-btn" style="float: right;">
+            
+                            
+                        </div> -->
+                    </div>
+
+                </div>
+
+                <div class="d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="sub-content-flex-item col-12" style="padding: 0px !important;">
+                        <ag-grid-angular (gridReady)="onGridReady($event)"
+                            class="ag-theme-material table-view-zoom-ag-grid" style="width: 100%; height: 344px;border: 1px solid #eee;"
+                            rowHeight="48" headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+                            [rowData]="rowData" enableColResize groupHeaders
+                            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+                            rowSelection="multiple" [suppressRowClickSelection]="true" [debug]="true"
+                            [enableRangeSelection]="true" [pagination]="false" [paginationAutoPageSize]="false"
+                            [frameworkComponents]="frameworkComponentsTaskDetails">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex="50">
+                <label class="label mar-top mar-left">Date & Time Range</label>
+                <div class="sub-content d-flex  flex-row flex-wrap">
+                    <div class="wo-sector-card-one  col-6 mar-top" style="display: inline-block">
+                        <form [formGroup]="thirdFormGroup">
+                            <mat-form-field class="custom-field-container" fxFlex>
+                                <div class="daterange-container">
+                                    <input matInput ngxDaterangepickerMd placeholder="Select Date"
+                                        [timePicker]="false" [timePickerSeconds]="false" [timePickerIncrement]="15"
+                                        [timePicker24Hour]="false" formControlName="selectedDateTime"
+                                        [showCustomRangeLabel]="true"
+                                        [alwaysShowCalendars]="thirdFormGroup.get('alwaysShowCalendars').value"
+                                        [showClearButton]="true" [showCancel]="true"
+                                        [linkedCalendars]="false" [isTooltipDate]="isTooltipDate"
+                                        [isInvalidDate]="isInvalidDate"
+                                        [locale]="{ applyLabel: 'Ok', format: 'MMM DD, YYYY',clearLabel:'Clear'}"
+                                        [keepCalendarOpeningWithRange]="thirdFormGroup.get('keepCalendarOpeningWithRange').value"
+                                        [showRangeLabelOnInput]="thirdFormGroup.get('showRangeLabelOnInput').value"
+                                        (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                                        autocomplete="off" [opens]="opens" [drops]="drops"
+                                        class="daterange-container-input" />
+                                    <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                                </div>
+                            </mat-form-field>
+                        </form>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-5">
+                        <mat-form-field class="w-100" style="margin: 20px 0 0 20px;">
+                            <mat-label>Iterations</mat-label>
+                            <input matInput placeholder="" value="">
+                        </mat-form-field>
+                    </div>
+
+                  
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC; padding: 20px 12px;">
+                    <div class="wo-sector-card-one  col-6" style="display: inline-block;">
+                        <label class="time-duration-label">Start Time</label>
+                        <div>
+    
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedHour">
+                                <mat-option value="option1" class="sector-title" *ngFor="let h of hours" [value]="h">
+                                    {{h}}</mat-option>
+                            </mat-select>
+                      
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedMin">
+                                <mat-option value="option1" class="sector-title" *ngFor="let m of minutes" [value]="m">
+                                    {{m}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select" disableOptionCentering [(value)]="timeSeletedSec">
+                                <mat-option value="option1" class="sector-title" *ngFor="let s of sec" [value]="s">
+                                    {{s}}</mat-option>
+                            </mat-select>
+
+                            <mat-select class="timer-select am-pm" disableOptionCentering [(value)]="hoursSeletedAMPM">
+                                <mat-option value="option1" class="sector-title" *ngFor="let ap of ampm" [value]="ap">
+                                    {{ap}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+
+                    <div class="sub-content-flex-item  col-5" style="margin-left: 22px;">
+                        <label class="time-duration-label">Test Duration</label>
+
+                        <div class="input-value" *ngIf="showCreateNewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                         <div class="input-value-disabled" *ngIf="showCopyToNewWorkorder">
+                            00:00:00 Hrs
+                         </div> 
+                        
+                    </div>
+
+                </div>
+
+                <div class="sub-content d-flex  flex-row flex-wrap">
+                    <div class="mar-top col-12">
+                        <div class="label" style="margin-bottom: 10px;">Add Devices:</div>
+                        <mat-radio-group (change)="showUpload($event)">
+                            <mat-radio-button [checked]="true" class="radio-btn" value="1">Add Manually</mat-radio-button>
+                            <mat-radio-button class="radio-btn" value="2">Upload</mat-radio-button>
+                            <mat-radio-button class="radio-btn" value="3">Upload Login Id File</mat-radio-button>
+                          </mat-radio-group>
+                    </div>
+
+                </div>
+
+                <div *ngIf="showImei" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="col-5">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>IMEI</mat-label>
+                            <input matInput placeholder="" value="" [(ngModel)]="imeiValue">
+                        </mat-form-field>
+                    </div>
+                    <div class="sub-content-flex-item  col-1">
+
+                    </div>
+                    <div class="sub-content-flex-item" style="line-height: 3.2;margin-left: -6px;">
+                        <button mat-raised-button color="primary" (click)="addToGrid()">Add</button>
+                    </div>
+                </div>
+
+
+                <div *ngIf="showUploadDevices" class="sub-content d-flex  flex-row flex-wrap" style="border-bottom: 1px solid #D3D5DC;">
+                    <div class="col">
+                        <mat-form-field fxFlex="80" class="browse-file-form-field">
+                            <input matInput class="input-field" placeholder="" [(ngModel)]="fileNameDevices"
+                                [readonly]="true" required>
+                            <button style="position: absolute; right: 0; bottom: 0;" class="browse-button"
+                                (click)="onClickDevices()" mat-icon-button color="primary"><i class="ic ic-file"  style="font-size: 20px;"></i></button>
+                        </mat-form-field>
+                        <input type="file" #fileUpload id="fileUploadDevices" name="fileUploadDevices" accept=""
+                            style="display: none;" />
+
+                            <button fxFlex="20" class="next-button p-0" mat-button color="primary">
+                                <i style="font-size: 14px;" class="ic ic-upload4 file-icon pr-2">
+                                </i>
+                                <span>Upload</span>
+                            </button>
+
+                    </div>
+                </div>
+
+                <div *ngIf="showUploadDevices" class="sub-content-flex-item col-12">
+                    <div class="upload-instruction upload-select-device" style="margin-left: 13px;" fxFlex="70">note: upload csv files only</div>
+                </div>
+
+                <div class="device-count">{{selectedDeviceCount}} out of 100</div>
+
+                <div class="d-flex  flex-row flex-wrap w-100">                                      
+                    <div class="col" style="border: 1px solid rgb(226 226 226); padding: 0px !important;">
+                        <ag-grid-angular style="width: 100%; height: 285px"
+                        class="traceport-activation ag-theme-material ag-jcp3"
+                        [tooltipShowDelay]="tooltipShowDelay"
+                        [rowData]="rowDataSelectDevice"
+                        [columnDefs]="columnDefsSelectDevice"
+                        [groupHeaderHeight]="47"
+                        [headerHeight]="47"
+                        [gridOptions]="gridOptionsSelectDevice" 
+                        [suppressHorizontalScroll]="true"
+                        [frameworkComponents]="frameworkComponentsTaskDetails"
+                        (gridReady)="onManualReady($event)">
+                        </ag-grid-angular>
+                    </div>
+
+                    <div *ngIf="showCopyToNewWorkorder" class="download-device w-100">
+                        <button mat-button class="icon-container-button" color="primary"><i
+                            class="ic ic-download pr-2"></i>Download</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+          <button mat-stroked-button color="primary" class="buttonWidth"  (click)="navigateBack()">Back</button>
+        </div>
+       
+        <div class="p-2">
+          <button mat-raised-button color="primary" (click)="assignWorkorder()"
+            class="buttonWidth button">Assign</button>
+        </div>
+      </div>
+</div>
+
+

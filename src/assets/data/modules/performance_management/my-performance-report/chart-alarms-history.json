@@ -1,0 +1,122 @@
+[
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "OUTAGE",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "OUTAGE",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  },
+  {
+      "siteid": "I-MU-MUMB-ENB-A173",
+      "cellid": "SITE LEVEL",
+      "band": "SITE LEVEL",
+      "alarmid": "SGW COMMUNICATION FAIL",
+      "vendorname":"Samsung",
+      "jcpclassification": "Performance Degrading",
+      "cleartype": "Batch Clear",
+      "startdate": "03 Mar 2017",
+      "starttime": "10:43:31 am",
+      "enddate": "06 Mar 2017"
+  }
+]

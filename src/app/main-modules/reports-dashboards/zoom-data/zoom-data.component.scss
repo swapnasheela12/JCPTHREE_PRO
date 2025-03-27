@@ -1,0 +1,60 @@
+.custom-dashboard-mat-card {
+    font-family: Lato Regular;
+    .card-header {
+        height: 64px;
+        margin: 0px 8px;
+        background-color: white;
+        padding: 0px;
+        .mat-form-field {
+            top: 12px;
+            .mat-select-value {
+                font-size: 13px;
+                font-family: Lato Bold;
+            }
+        }
+        .mat-card-header-text {
+            margin: 0 2px;
+        }
+    }
+
+    .collapsable-right-holder {
+        .right-accordian-header {
+            height: 64px;
+            .right-holder-title {
+                padding-top: 20px;
+                padding-left: 30px;
+                font-size: 16px;
+                font-family: Lato Medium;
+                font-weight: 600;
+            }
+
+            .close-info {
+                margin-top: 14px;
+            }
+        }
+        .right-accordian-content {
+            overflow: auto;
+            height: calc(100% - 66px);
+            .right-accordian-content-item {
+              margin: 30px;
+              font-size: 16px;
+              font-family: Lato Medium;
+              .item-info {
+                opacity: 54%;
+              }
+            }
+        }
+    }
+}
+
+.mat-menu-content .mat-menu-item:hover {
+    background-color: #f3f7fc !important;
+}
+
+.mat-icon-button:hover {
+    background-color: #f3f7fc !important;
+}
+
+.ag-theme-material .ag-header {
+    background: #EAECEC;
+}

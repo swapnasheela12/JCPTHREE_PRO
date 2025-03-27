@@ -1,0 +1,28 @@
+<div style="height: 100%;overflow: auto;" id="layerDivId" fxFlexFill>
+    <div id="map" class="mapClass">
+        <div #spiderView></div>
+        <div id="topstrip"
+            class="topstrip position-absolute bg-white justify-content-between rounded align-items-center">
+            <div class="layer-label pl-4 align-items-center text-dark font-weight-bold" *ngIf="stripDataEnabled">
+                {{layerName}}</div>
+            <div class="right-content tab-container-layers d-flex align-items-center">
+                <div class="smartwidget-icon-wrapper" *ngIf="smartbenchlayerenabled">
+                    <i class="fa fa-sliders-h  smartwidget-icon" (click)="loadSmartbenchMenu($event.target)"></i>
+                </div>
+            </div>
+        </div>
+        <div #striptoggle id="striptoggle" *ngIf="stripToggleBtn"
+            class="striptoggle-btn d-flex align-items-center justify-content-center m-0 cursor-pointer position-absolute"
+            (click)="slideToggleStripbarMenu()">
+            <mat-icon>
+                <span class="material-icons">
+                    {{arrowDirectionIcon  ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}
+                </span>
+            </mat-icon>
+        </div>
+    </div>
+    <ng-container #headerView></ng-container>
+</div>
+<ng-template ad-host></ng-template>
+<div #smartbenchComponent></div>
+<div #splitmapComponent></div>

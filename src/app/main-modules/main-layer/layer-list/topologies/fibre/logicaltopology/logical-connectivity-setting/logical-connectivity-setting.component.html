@@ -1,0 +1,95 @@
+<ng-template #logicalConnectivitySettingsPopup>
+    <div style="height: calc(100% - 110px);overflow: auto;">
+        <section class="w-100 px-3 my-2">
+            <div style="background: #f5f5f5; box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);" class="px-3 pt-3">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="50">
+                        <mat-form-field class="form-field-container" fxFlex="90">
+                            <mat-select disableOptionCentering placeholder="Display Label" [(value)]="labelValue">
+                                <mat-option value="Site ID" selected>Site ID</mat-option>
+                                <mat-option value="Site Name">Site Name</mat-option>
+                                <mat-option value="None">None</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="50">
+                        <mat-form-field class="form-field-container" fxFlex="90">
+                            <mat-select disableOptionCentering placeholder="Structure Category" [(value)]="towerIpValue">
+                                <mat-option value="AG1">AG1</mat-option>
+                                <mat-option value="AG2">AG2</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="100">
+                        <label style="color: #808080;
+                        font-size: 13px;
+                        font-family: 'Lato Medium';" class="radio-group-label">Connectivity Type</label>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="example-section">
+                            <mat-checkbox color="primary" [(ngModel)]="telecomNetwork">Telecom Network </mat-checkbox>
+                            <mat-checkbox color="primary" [(ngModel)]="FTTx">FTTx</mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="100">
+                        <label style="color: #808080;
+                        font-size: 13px;
+                        font-family: 'Lato Medium';" class="radio-group-label">Connectivity From</label>
+                        <mat-radio-group color="primary" fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group" [(value)]="connectivityGroup">
+                            <mat-radio-button class="pl-2" value="Structure" fxFlex="40">
+                                Structure</mat-radio-button>
+                            <mat-radio-button value="Equipment" fxFlex="40">
+                                Equipment</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <mat-divider class="w-100" style="position: relative;"></mat-divider>
+        <section class="w-100 px-3 py-2">
+            <div style="box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);">
+                <div class="section-header pl-2" style="font-weight: bold; background-color: #f2f2f2; padding: 10px 0px;">Latest GIS</div>
+                <form [formGroup]="thirdFormGroup" class="report-filter-form">
+                    <mat-form-field class="p-3" fxFlex="50">
+
+                        <input matInput type="text" ngxDaterangepickerMd [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}" formControlName="selectedDateTime" [singleDatePicker]="true" [opens]="opens" [drops]="drops" [autoApply]="true"
+                        />
+                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+                    </mat-form-field>
+                </form>
+            </div>
+
+        </section>
+        <section class="w-100 px-3 py-2">
+            <div style="box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, .2);">
+                <div class="section-header pl-2" style="font-weight: bold; background-color: #f2f2f2; padding: 10px 0px;">Latest UTM</div>
+                <form [formGroup]="thirdFormGroupUTM" class="report-filter-form">
+                    <mat-form-field class="p-3" fxFlex="50">
+
+                        <input matInput type="text" ngxDaterangepickerMd [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY',clearLabel:'Clear'}" formControlName="selectedDateTime" [singleDatePicker]="true" [opens]="opens" [drops]="drops" [autoApply]="true"
+                        />
+                        <div class="iconCal"><i class="zmdi zmdi-calendar"></i></div>
+
+                    </mat-form-field>
+                </form>
+            </div>
+
+        </section>
+
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="ml-3">
+            <button mat-stroked-button class="buttonWidth" (click)="closeDialog()">Reset</button>
+        </div>
+        <div class="col"></div>
+        <div>
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+        </div>
+        <div class="mx-3">
+            <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+        </div>
+    </div>
+</ng-template>

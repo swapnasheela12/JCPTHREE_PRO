@@ -1,0 +1,102 @@
+<mat-card class="eps-golden-card p-0">
+    <div class="eps-golden-card-flex-container">
+        <div class="d-flex mx-2 flex-row justify-content-between align-items-center full-height">
+            <div class="col-4 eps-golden-card-flex-item nc-title">
+                EPC Golden Configuration
+            </div>
+            <div class="col-8 eps-golden-card-flex-item d-flex justify-content-end align-items-center">
+                <mat-icon class="icon-button search-icon" aria-label="search" (click)="show = !show;" *ngIf="!show">
+                    <span class="zmdi zmdi-search"></span>
+                </mat-icon>
+                <mat-form-field *ngIf="show" class="col-4">
+                    <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);"
+                        autocomplete="off" placeholder="">
+                    <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <mat-divider style="position: relative;"></mat-divider>
+    <div fxLayout="row" fxLayoutGap="10px" style="padding-left:10px; padding-right:10px;margin-top: 10px; margin-bottom: 10px; height: 100px;">
+        <div fxFlex="20" style="padding-top: 30px;">
+            <mat-form-field fxFlex="100" class="form-field-container">
+                <mat-select disableOptionCentering placeholder="Node"  [(value)]="selectedNode">
+                    <mat-option *ngFor="let item of nodeListArr" [value]="item.name" selected>{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex="20"  style="padding-top: 30px;">
+            <mat-form-field fxFlex="100" class="form-field-container">
+                <mat-select disableOptionCentering placeholder="Target Area"  [(value)]="selectedTargetArea">
+                    <mat-option *ngFor="let item of targetAreaArr" [value]="item.name" selected>{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFlex="20" class="eps-box" [style.background-color]="golden_conf[0].all.color">
+           <div fxFlex="50"  class="parameters-text" fxLayoutAlign="center center">
+               {{golden_conf[0].all.name}}
+           </div>
+           <div  fxLayoutAlign="center center" fxFlex="50" fxLayout="column">
+                <div class="parameters-value" [style.color]="golden_conf[0].all.valuecolor">{{golden_conf[0].all.value}}</div>
+                <div class="parameters-name" >Parameters</div>
+            </div>
+        </div>
+        <div fxLayout="row"  fxFlex="20" class="eps-box" [style.background-color]="golden_conf[0].low_impact.color">
+            <div fxFlex="50"  class="parameters-text" fxLayoutAlign="center center">
+                {{golden_conf[0].low_impact.name}}
+            </div>
+            <div  fxLayoutAlign="center center" fxFlex="50"  fxLayout="column">
+                <div class="parameters-value" [style.color]="golden_conf[0].low_impact.valuecolor">{{golden_conf[0].low_impact.value}}</div>
+                <div class="parameters-name" >Parameters</div>
+             </div>
+        </div>
+        <div fxLayout="row"  fxFlex="20" class="eps-box"  [style.background-color]="golden_conf[0].high_impact.color">
+            <div fxFlex="50"  class="parameters-text"  fxLayoutAlign="center center">
+                {{golden_conf[0].high_impact.name}}
+            </div>
+            <div  fxLayoutAlign="center center" fxFlex="50"  fxLayout="column">
+                <div class="parameters-value" [style.color]="golden_conf[0].high_impact.valuecolor">{{golden_conf[0].high_impact.value}}</div>
+                <div class="parameters-name" >Parameters</div>
+             </div>
+        </div>
+    </div>
+    <div class="eps-golden-table-container">
+        <ag-grid-angular
+            style="width: 100%; height: 350px;"
+            class="ag-theme-material ag-jcp3" 
+            rowHeight="48"
+            headerHeight="48" 
+            [gridOptions]="gridOptions" 
+            [columnDefs]="columnDefs" 
+            [rowData]="rowData" 
+            enableColResize
+            enableSorting 
+            enableFilter 
+            groupHeaders
+            [suppressCellSelection]="true"
+            [tooltipShowDelay]="tooltipShowDelay"
+            toolPanelSuppressGroups
+            toolPanelSuppressValues
+            rowSelection="multiple"
+            [enableRangeSelection]="true"
+            [paginationPageSize]="PaginationPageSize"
+            [pagination]="true"
+            [suppressPaginationPanel]="true"
+            [suppressRowClickSelection]="true"
+            [defaultColDef]="defaultColDef" 
+            [frameworkComponents]="frameworkComponentsEpsGolden" 
+            [groupSelectsChildren]="true"
+            [debug]="true"
+            (gridReady)="onReady($event)">
+        </ag-grid-angular>
+        <app-pagination 
+            [pageSize]="PaginationPageSize"
+            [gridApi]="gridAPI"
+            [noOfPages]="gridAPI?.paginationGetTotalPages()"
+            [rowCount]="gridAPI?.getDisplayedRowCount()"
+            [paginationArray] = "[10, 20, 30, 40]"
+        ></app-pagination>
+    </div>
+</mat-card>

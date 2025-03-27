@@ -1,0 +1,30 @@
+
+[
+    {
+       "distance":"700m",
+        "connectivity": [
+            {
+                "latlng":[
+                    15.946922,
+                    73.048996
+                ],
+                "sector":"alpha",
+                "band":"850 MHz",
+                "cnum":3,
+                "sapid":"I-MU-MUMB_ENB_134",
+                "type":"AG1"
+            },
+            {
+                "latlng":[
+                    15.046247,
+                    73.249259
+                ],
+                "sector":"beta",
+                "band":"1800 MHz",
+                "cnum":4,
+                "sapid":"I-MU-MUMB_ENB_015",
+                "type":"AG3"
+            }
+        ]
+    }
+]

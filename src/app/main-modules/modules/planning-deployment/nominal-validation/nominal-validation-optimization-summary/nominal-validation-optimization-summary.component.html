@@ -1,0 +1,74 @@
+<mat-card class="p-0 nominal-validation-opt" style="height: calc(100% - 5px);">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title mb-0">
+        <div style="width: 422px;" fxLayout="column">
+            <div class="title-summary"  fxLayout="row">
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="backTo()"> 
+                    <span class="zmdi zmdi-chevron-left"></span>
+                </mat-icon>
+                <div>
+                    {{nominalGenerationSummaryData.type}} : 
+                    <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                    {{nominalGenerationSummaryData.name}}
+                </div>
+            </div>
+            <div class="title-subline" fxLayout="row">
+                <div fxFlex="10"></div>
+                Validation
+            </div>
+        </div>
+        </mat-card-title>
+        <div class="col"></div>
+        <div class="my-performance-reports-flex-item d-flex justify-content-end align-items-center">
+            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="showSearchInput = !showSearchInput;" *ngIf="!showSearchInput">
+                <span class="zmdi zmdi-search"></span>
+            </mat-icon>
+            <mat-form-field *ngIf="showSearchInput" class="col-4">
+                <!-- <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder=""> -->
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </mat-form-field>
+            <button class="ic ic-layers-01 link-icon-button"
+            style="font-size: 18px;color:#464D69" mat-icon-button
+            (click)="displayValidationLayers()"></button>
+        </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" class="site-card-content nominal-validation-opt-summary">
+        <div fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto" mat-align-tabs="start" [selectedIndex]="2">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon  (click)="backToSummary()">arrow_back</mat-icon>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Optimization Summary
+                    </ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-form-field style="height: 46px;">
+                            <mat-select disableOptionCentering placeholder="Optimization Summary" [(ngModel)]="rowSelected">
+                                <mat-option *ngFor="let item of summaryMatSelect" [value]="item.rfparams" selected>{{item.rfparams}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ng-template>
+                    <div class="nominal-site">
+                        <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
+                            headerHeight="48" [gridOptions]="gridMyPerformanceGridOptions"[columnDefs]="gridMyPerformanceColumnDefs" 
+                            [rowData]="gridMyPerformanceRowData" enableColResize enableSorting enableFilter groupHeaders
+                            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                            [enableRangeSelection]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                            [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder" [paginationPageSize]="PaginationPageSize" 
+                            [pagination]="true" [suppressPaginationPanel]="true" (gridReady)="onReady($event)">
+                        </ag-grid-angular>
+                        <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" 
+                        [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </mat-card-content>
+</mat-card>

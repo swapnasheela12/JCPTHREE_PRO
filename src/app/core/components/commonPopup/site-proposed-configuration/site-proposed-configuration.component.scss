@@ -1,0 +1,93 @@
+
+$md-primary: #0070DB;
+.mat-dialog-container {
+    padding: 0px;
+    .dialog-header{
+        height: 54px;
+        max-height: 54px;
+        min-height: 54px;
+        background-color: #0070DB;
+            .mat-toolbar-row{
+            font-size: 18px;
+            color: white;
+            .dialog-close-button {
+            .mat-button-focus-overlay {
+                background-color: transparent!important;
+            }
+            }
+            }
+    }
+    .mat-dialog-content{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        min-height: calc(100% - 108px);
+        max-height: calc(100% - 108px);
+        .mat-form-field{
+            font-size: 14px;
+        }
+        tr.mat-row {
+            height: 51px !important;
+        }
+        .title {
+            font-family: Lato Regular;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .value {
+            font-family: Lato Medium;
+            font-size: 14px;
+        }
+
+        .lat-long-data {
+            padding-top: 3%;
+        }
+
+        .site-proposed-configuration-data {
+            height: calc(100% - 109px);
+            overflow: auto;
+        }
+
+        .lat-long-data {
+            height: 67px;
+        }
+        .mat-form-datasite {
+            width: 50px;
+        }
+    }  
+}
+
+#mapSitePrposed  {
+    height: 365px;
+}
+.tab-container-layersMap2 .icon-styleMap2 {
+    font-size: 25px;
+    padding: 3px 7px;
+    line-height: 1.5;
+    width: 38px;
+    height: 38px;
+    border-radius: 25px;
+    color: #707070;
+}
+
+.p15 {
+    padding: 15px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mx10 {
+   margin: 0 10px; 
+}
+
+.target-title {
+    font-size: 14px;
+    font-family: Lato Medium;
+    font-weight: bold;
+}
+
+.optimization-target {
+    padding-left: 20px;
+}

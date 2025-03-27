@@ -1,0 +1,55 @@
+<div class="example-container mat-elevation-z8" >
+    <table mat-table [dataSource]="dataSource">
+      <ng-container [matColumnDef]="'vendor'" sticky>
+        <th class="second-row" mat-header-cell *matHeaderCellDef> {{columnObject['vendor']}} </th>
+        <td style="text-align: inherit;" mat-cell *matCellDef="let element; let i = index;">
+          <span [innerHtml]="getSpace(element.level)"></span>
+          <mat-icon *ngIf="element.expand === false" (click)="onGroupClick(element, i, 'expand')">
+            add_circle_outline
+          </mat-icon>
+          <mat-icon *ngIf="element.expand === true" (click)="onGroupClick(element, i, 'collapse')">
+            remove_circle_outline
+          </mat-icon>
+          {{element['vendor']}}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{  'Total' }}
+        </td>
+      </ng-container>
+  
+      <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+        <th class="second-row" mat-header-cell *matHeaderCellDef> {{columnObject[column]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{  getTotal(column)  }} </td>
+      </ng-container>
+  
+  
+      <!-- Header row second group -->
+  
+      <ng-container [matColumnDef]="'Vendor'" sticky>
+        <th class="first-row" mat-header-cell *matHeaderCellDef [attr.colspan]="1">
+          <span> {{'Vendor'}}</span>
+        </th>
+      </ng-container>
+  
+      <ng-container [matColumnDef]="header['headerName']" *ngFor="let header of columnDef">
+        <th class="first-row" mat-header-cell *matHeaderCellDef [attr.colspan]="header.groupSize">
+          <span> {{header['headerName']}}</span>
+          <mat-icon *ngIf="!header.isOpen" (click)="addColumn(header);">
+            add_circle_outline
+          </mat-icon>
+          <mat-icon *ngIf="header.isOpen" (click)="addColumn(header);">
+            remove_circle_outline
+          </mat-icon>
+        </th>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="firstHeaderGroup ; sticky: true"></tr>
+      <tr style="height: 10px;" mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></tr>
+  
+    </table>
+  </div>
+  

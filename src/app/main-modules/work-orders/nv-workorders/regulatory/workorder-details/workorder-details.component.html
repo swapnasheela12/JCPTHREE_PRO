@@ -1,0 +1,51 @@
+<div class="wo-regulatory-wrapper">
+    <mat-card class="wo-module-card card-content h-100">
+           <mat-card-content class="cia-card-content">
+                <div class="workorder-toolbar">
+                    <div class="wo-toolbar" fxLayoutAlign="space-between center" fxLayout="row wrap" fxFlex="100">
+                        <div fxFlex="5"  class="back-icon">
+                            <mat-icon (click)="backPageRout()" class="icon-button mx-2" style="color: #7E7E7E;" aria-label="back page">
+                                <span class="zmdi zmdi-arrow-left"></span>
+                            </mat-icon>
+                        </div>
+                        <div fxFlex="65" class="p-2 header-text">
+                           WO Regulatory PR-1221-GJ-7365519
+                        </div>
+
+                        <div fxFlex></div>
+                        <div fxFlex="25" class="p-2 search-flex-item">
+                            <mat-icon class="icon-button search-icon" aria-label="search" (click)="showInputField = !showInputField;" *ngIf="!showInputField">
+                                <span class="ic ic-search-01"></span>
+                            </mat-icon>
+                            <mat-form-field class="w-100" *ngIf="showInputField">
+                                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                                    <span class="zmdi zmdi-close"></span>
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="jcp-table-container" style="height: calc(100% - 65px);margin-top: 1px;">
+                   
+                    <div style="height: 100%">
+                        <ag-grid-angular style="width: 100%; height: 90%;" class="ag-theme-material ag-jcp3" rowHeight="48"
+                            headerHeight="48" [gridOptions]="gridOptions" [columnDefs]="columnDefs" [rowData]="rowData"
+                            enableColResize enableSorting enableFilter groupHeaders [suppressCellSelection]="true"
+                            toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                            [enableRangeSelection]="true" [paginationPageSize]="PaginationPageSize" [pagination]="true"
+                            [suppressPaginationPanel]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                            [debug]="true"  (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponentsWO"
+                            (gridSizeChanged)="onGridSizeChanged($event)">
+                        </ag-grid-angular>
+                        <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI"
+                            [noOfPages]="gridAPI?.paginationGetTotalPages()" [rowCount]="gridAPI?.getDisplayedRowCount()"
+                            [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+                    </div>
+                </div>
+            </mat-card-content>
+    </mat-card>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="redirect-layers-container">
+    <div class="redirect-layers-circle-container" fxLayout="column wrap" fxLayoutAlign="center center">
+        <div class="circle-type" fxLayout="row" fxLayoutAlign="space-evenly center">
+            <div class="ic ic-layers-01 icon-success"></div>
+        </div>
+    </div>
+    <div class="redirect-layers-text-container" fxLayout="column wrap" fxLayoutAlign="center center">
+        <div class="p-3 redirect-layers-text-header">Redirect To Layers!</div>
+        <div class="p-4 redirect-layers-text-subheader">Are you Sure You Want To Go Layers?</div>
+    </div>
+    <div mat-dialog-actions class="redirect-layers-text-action-container" fxLayout="row wrap" fxLayoutAlign="center center">
+        <div class="mr-1 redirect-layers-text-button">
+            <button class=" success-butt" (click)="clickCreateNewReport()" mat-stroked-button color="primary" style=" margin-left: 8px;">Business Boundaries</button>
+        </div>
+        <div class="ml-1 redirect-layers-text-button">
+            <button class=" success-butt" (click)="clickGoMyReport()" mat-raised-button color="primary" style=" margin-left: 3px;">Confirm</button>
+        </div>
+    </div>
+</div>

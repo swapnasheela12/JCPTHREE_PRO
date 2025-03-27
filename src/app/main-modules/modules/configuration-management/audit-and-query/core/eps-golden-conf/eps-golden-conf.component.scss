@@ -1,0 +1,37 @@
+.eps-golden-card {
+    height: 99%;
+    min-height:  99%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .eps-golden-card-flex-container {
+        .full-height {
+            height: 64px !important;
+        }
+        .nc-title {
+            font-family: Lato Bold;
+        }
+        .eps-golden-card-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+        }
+    }
+
+    .eps-box {
+        width: 210px;
+        height: 80px;
+        border-radius: 4px;
+        .parameters-value {
+            font-size: 28px;
+            font-family: Lato Bold;
+        }
+        .parameters-name {
+            font-size: 12px;
+            font-family: Lato Medium;
+        }
+        .parameters-text {
+            font-size: 14px;
+            font-family: Lato Bold;
+        }
+    }
+}

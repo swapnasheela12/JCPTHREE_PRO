@@ -1,0 +1,72 @@
+<div class="task-details-wrapper">
+    <mat-card class="cia-module-card h-100">
+        <mat-toolbar color="mat-blue-grey" class="create-report-toolbar wo-details">
+            <mat-toolbar-row class="mat-blue-grey">
+                <div class="col pl-0 wo-header">
+                    <div class="header" fxFlex="90">R4G States</div>
+                </div>
+                <div class="col-4 sector-flex-item" fxFlex>
+                    <mat-icon class="icon-button" style="color: #7E7E7E;" aria-label="search" (click)="show = !show;" *ngIf="!show"
+                      style="margin-top: 6px;">
+                      <span class="zmdi zmdi-search"></span>
+                    </mat-icon>
+            
+                    <mat-form-field *ngIf="show">
+                      <input matInput [(ngModel)]="searchGrid" (keyup)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                      <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                        <span class="zmdi zmdi-close"></span>
+                      </mat-icon>
+                    </mat-form-field>
+                  </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <div class="td-flex-container">
+            <div class="d-flex mx-2 flex-row justify-content-between" fxFlex="60">
+                <div class="col-2 td-flex-item" fxFlex="100" *ngFor="let task of taskDetails">
+                    <div class="task-widget" fxFlex (click)="showTaskData($event)">
+                        <div class="task-icon" fxFlex="30">
+                            <div class="task-inner-circle">
+                                <mat-icon style="font-size: 48px;" aria-label="search">
+                                    <span [class]="task.taskStatusImg"><span class="path1"></span><span
+                                            class="path2"></span><span class="path3"></span><span
+                                            class="path4"></span></span>
+                                </mat-icon>
+                            </div>
+                        </div>
+                        <div class="task-info" fxFlex="70">
+                            <div>{{task.taskCount}}</div>
+                            <div>{{task.taskAssigned}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wo-grid" style="height: 63%;">
+            <!-- <app-ag-grid-tree [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)"
+                [columnDefs]="columnDefs" [rowData]="rowData">
+            </app-ag-grid-tree> -->
+
+            <!-- <app-ag-grid-tree (cellClicked)="cellClickedDetails($event)" [columnDefs]="columnDefs" [rowData]="rowData">
+            </app-ag-grid-tree> -->
+            <app-table-ag-grid [events]="eventsSubject.asObservable()" (cellClicked)="cellClickedDetails($event)">
+            </app-table-ag-grid>
+        
+
+        </div>
+    </mat-card>
+
+</div>
+
+<!-- <ng-template #slaBreach>
+    <div class="jcp-table-container" style="height: 100%;">
+        <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-material table-view-zoom-ag-grid"
+            style="width: 100%; height: 310px;" rowHeight="48" headerHeight="48" [gridOptions]="gridOptions"
+            [columnDefs]="columnDefsSLABreach" [rowData]="rowDataTeams" enableColResize enableSorting enableFilter
+            groupHeaders [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues
+            [pagination]="true" [paginationAutoPageSize]="true" rowSelection="multiple" [enableRangeSelection]="true" [suppressRowClickSelection]="true"
+            [debug]="true" >
+        </ag-grid-angular>
+    </div>
+</ng-template> -->

@@ -1,0 +1,64 @@
+<ng-template #layerPredictionSettingsPopup>
+    <div fxLayout="column" class="prediction-setting" fxLayoutAlign="space-between stretch" #predictionPopup>
+        <mat-card fxLayout="row" class="mr-15 p-rl">
+            <mat-form-field  class="w-100">
+                <mat-select [(value)]="selectFlyPredictionValue" placeholder="Select Fly Prediction" disableOptionCentering
+                    formControlName="selectFlyPrediction">
+                    <input matInput [(ngModel)]="selectFlyPredictionValue" autocomplete="off"
+                        [ngModelOptions]="{standalone: true}" placeholder="Search..."
+                        style="height: 48px !important;padding-left:15px">
+                    <mat-option *ngFor="let item of selectFlyPredictionList | filter:searchselectFlyPredictionListVal"
+                        [value]="item.fly_prediction">
+                        {{item.fly_prediction}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class="prediction-fixed-container mr-15">
+            <div class="sub-header w-100" >
+                <div class="sub-header-title">Band</div>    
+            </div>
+            <div  class="setting-selection">
+                <div class="selection" fxLayout="row wrap" fxLayoutGap="30px" *ngFor="let node of settingsDetails['Band']">
+                    <mat-radio-button class="ps-radio"  style="font-family: lato medium;" [value]="node.name" #activeCheckbox>
+                        {{node.name}}
+                    </mat-radio-button>
+                </div>
+            </div>
+            
+        </mat-card>
+
+        <mat-card class="prediction-fixed-container mr-15" style="height: 130px;">
+            <div class="sub-header" >
+                <div class="sub-header-title">Site Status</div>
+            </div>
+            <div  class="setting-selection">
+                <div class="selection" fxLayout="row wrap" *ngFor="let node of settingsDetails['Site Status']">
+                    <mat-radio-button class="ps-radio" style="font-family: lato medium;" [value]="node.name" #activeCheckbox>
+                        {{node.name}}
+                    </mat-radio-button>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="prediction-fixed-container mr-15" style="height: 168px;">
+            <div class="sub-header">
+                <div class="sub-header-title">Prediction Type</div>
+            </div>
+            <mat-divider></mat-divider> 
+            <div class="setting-selection">
+                <div class="selection ps-checkbox" *ngFor="let node of settingsDetails['Prediction Type']">
+                    <mat-checkbox class="ps-radio" (change)="onChecked(node.selected, node, activeCheckbox, $event.checked)" [checked]="node.selected"
+                        #activeCheckbox>
+                        <div isEllipsisActive attr.data-title1="{{node.name}}" id="{{node.name}}">{{node.name}}
+                        </div>
+                    </mat-checkbox>
+                </div>
+            </div>
+        </mat-card>
+
+        
+
+    </div>
+</ng-template>

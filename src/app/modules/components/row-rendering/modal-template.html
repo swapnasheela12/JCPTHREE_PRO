@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>{{data.zone}}
+  <span class="material-icons" style="float: right; cursor: pointer;" (click)="onClose()">
+    clear
+  </span>
+</h1>
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Zone">
+      <th mat-header-cell *matHeaderCellDef> Zone </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.zone}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Circle">
+      <th mat-header-cell *matHeaderCellDef> Circle </th>
+      <td mat-cell *matCellDef="let element"> {{element.circle }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Jiocenter">
+      <th mat-header-cell *matHeaderCellDef> Jiocenter </th>
+      <td mat-cell *matCellDef="let element"> {{element.jiocenter }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Technology">
+      <th mat-header-cell *matHeaderCellDef> Technology </th>
+      <td mat-cell *matCellDef="let element"> {{element.technology }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Vendor">
+      <th mat-header-cell *matHeaderCellDef> Vendor </th>
+      <td mat-cell *matCellDef="let element"> {{element.vendor }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Complaint">
+      <th mat-header-cell *matHeaderCellDef> Complaint </th>
+      <td mat-cell *matCellDef="let element"> {{element.compliant }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Non Complaint">
+      <th mat-header-cell *matHeaderCellDef> Non Complaint </th>
+      <td mat-cell *matCellDef="let element"> {{element.noncompliant }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Trend">
+      <th mat-header-cell *matHeaderCellDef> Trend </th>
+      <td mat-cell *matCellDef="let element"> {{element.trend }} </td>
+    </ng-container>
+    <ng-container matColumnDef="Import Date">
+      <th mat-header-cell *matHeaderCellDef> Import Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.importdate }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

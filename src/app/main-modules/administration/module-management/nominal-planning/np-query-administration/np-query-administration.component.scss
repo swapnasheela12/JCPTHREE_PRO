@@ -1,0 +1,50 @@
+.query-administration {
+    height: 90%;
+    min-height:  90%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .query-administration-flex-container {
+        .full-height {
+            height: 64px !important;
+        }
+        .query-admin-title {
+            font-weight: 600;
+            font-family: 'Lato Medium';
+        }
+        .query-administration-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+        }
+        .create-button {
+            margin-right: 10px;
+        }
+        .query-administration-card-toolbar-icon {
+            display: inline-block;
+            margin-left: 13px;
+            font-size: 24px;
+        }
+        .search-icon {
+            margin-right: 10px;
+        }
+    }
+    .query-administration-menu-render .mat-menu-content .mat-menu-item:hover {
+        background-color: #f3f7fc;
+    }
+    .cover-div {
+        height: calc(100% - 56px);
+        .mat-tab-label {
+            min-width: 0 !important;
+            width: 25%;
+        }
+        .mat-tab-label-active {
+            min-width: 0 !important;
+            width: 25%;
+        }
+        .nc-query-admin-mat-tab{
+            .mat-tab-body-wrapper{
+                height: 100%;
+            }
+        }
+    }
+}

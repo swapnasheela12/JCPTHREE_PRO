@@ -1,0 +1,116 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.wo-sector-container {
+    height: calc(100% - 50px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 50px);
+    .wo-sector-card-one {
+        background-color:rgb(255,255,255);
+        border-radius: 4px 4px 0 0;
+        .wo-header {
+            height: 63px;
+        }
+        .wo-flex-item {
+            text-align: left;
+            font-family: lato bold;
+            font-size: 15px;
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+        }
+        .status-label {
+            text-align: left;
+            font-weight: lato normal;
+            font-size: 12px;
+            color: #666666;
+            opacity: 1;
+        }
+        .wo-sector-container {
+            height: calc(100% - 63px);
+        }
+    }
+    .wo-container {
+        .wo-flex-container {
+            .mediaContainer {
+                .wo-form-field-read {
+                    line-height: 2;
+                    .wo-form-input-title {
+                        font-family: lato Regular;
+                        font-size: 12px;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 0.6;
+                    }
+                    .wo-form-input-value {
+                        font-family: lato medium;
+                        font-size: 14px;
+                        color: #000000;
+                    }
+                }
+            } 
+        }
+    }
+}
+
+
+.task-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border: 1px solid lightgray;
+    height: 52px;
+}
+
+
+:host ::ng-deep .ag-cell span span i.fas.fa-minus-square::before {
+    content: "\f13a"!important;
+    font-family: "Font Awesome 5 Free";
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+
+}
+
+:host ::ng-deep .ag-cell span span i.fas.fa-plus-square::before {
+    content: "\f139"!important;
+    font-family: "Font Awesome 5 Free";
+    color: #0078d7;
+    font-size: 15px;
+    font-weight: 900;
+    z-index: -1; /* this will set it in background so when user click onit you will get cell-click event as if user would normally click on cell */
+}   
+
+  @media  only screen and(min-width: 774px) {
+    .wo-sector-container {
+        .wo-sector-card-one {
+            .wo-container {
+                .wo-flex-container {
+                    .mediaContainer {
+                        width: 25% !important;
+                    }
+                }
+            }
+
+        }
+    }
+  }
+
+  @media  only screen and(min-width: 1200px) {
+    .wo-sector-container {
+        .wo-sector-card-one {
+            .wo-container {
+                .wo-flex-container {
+                    .mediaContainer {
+                        width: 20% !important;
+                    }
+                }
+            }
+
+        }
+    }
+  }

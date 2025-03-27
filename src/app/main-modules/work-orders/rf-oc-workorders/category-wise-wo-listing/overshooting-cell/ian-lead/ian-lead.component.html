@@ -1,0 +1,161 @@
+<div class="overshooting-cell-container">
+
+  <div class="section-title">
+    <div class="prev-page" routerLink="../WO-Overshooting-Cell">
+      <span class="zmdi zmdi-arrow-left"></span></div>
+    <span class="main-title">Execution Task IAN Lead</span>
+  </div>
+
+  <div class="task-retrigger-details mb-3 blocks">
+    <header class="block-heading">
+      Task Retrigger Details
+    </header>
+
+    <div class="data-table-1">
+      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="rowExecutionTask"
+        [columnDefs]="columnDefswo" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
+        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple">
+      </ag-grid-angular>
+    </div>
+  </div>
+  <div class="site-details mb-3 blocks">
+    <header class="block-heading">
+      Site Details
+    </header>
+    <div class="data-table body-text">
+      <div class="sitedetails-row">
+        <div class="sitedetails-cell">
+          <div class="label">SAP ID</div>
+
+          <div class="details">1-AS-PTRK-ENB-HQ04</div>
+        </div>
+        <div class="sitedetails-cell">
+          <div class="label">Sector ID</div>
+          <div class="details">1</div>
+        </div>
+        <div class="sitedetails-cell">
+          <div class="label">Band</div>
+          <div class="details">2300</div>
+        </div>
+        <div class="sitedetails-cell">
+          <div class="label"> Cell Name</div>
+          <div class="details">I-MU-THNE-ENB-0306-15</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-parameter-details mb-3 blocks">
+    <header class="block-heading">
+      Site Parameter Details
+    </header>
+    <div class="jcp-data-table">
+      <ag-grid-angular style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="spdetailsRowdata"
+        [columnDefs]="spdetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting enableFilter
+        groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple">
+      </ag-grid-angular>
+    </div>
+  </div>
+  <div class="overshooting-cell-statistical-details mb-3 blocks">
+    <header class="block-heading">
+      Overshooting Cell Statistical Details
+    </header>
+    <div class="oscontainer">
+      <div class="os-row mb-2">
+        <div class="os-cell">
+          <div class="details">Calculated cell range(m):</div>
+          <div class="value">400</div>
+        </div>
+        <div class="os-cell">
+          <div class="details"> Overshooting Samples(% of Toatal, As per LSMR data):</div>
+          <div class="value">31</div>
+        </div>
+        <div class="os-cell">
+          <div class="details">Good Coverage Limit (m, As per geo-located data):</div>
+          <div class="value">1400</div>
+
+        </div>
+
+      </div>
+      <div class="os-row mb-2">
+        <div class="os-cell">
+          <div class="details"> Overshoot Start Distance(m):</div>
+
+          <div class="value">1450</div>
+
+        </div>
+        <div class="os-cell">
+          <div class="details"> Overshoot End Distance (m):</div>
+          <div class="value"> 5000</div>
+
+        </div>
+        <div class="os-cell">
+          <div class="details">% Samples Beyond Good Coverage Limit (As per geo-located data):
+          </div>
+          <div class="value"> 14</div>
+        </div>
+
+      </div>
+      <div class="os-row">
+        <div class="os-cell">
+          <div class="details">
+            <mat-form-field appearance="fill">
+              <mat-label>Task Closure Remarks</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let taskclosure of taskclosures" [value]="taskclosure.value">
+                  {{taskclosure.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="os-row">
+        <div class="os-cell">
+          <mat-form-field class="upload-files-section">
+            <input matInput class="input-field" style="position: inherit; opacity: 0.6;font-size: 14px;"
+              placeholder="Select File" [(ngModel)]="fileName" [readonly]="true" required>
+            <button class="browse-button" style="position: absolute; right: 0; bottom :0; font-size: 14px;"
+              (click)="onClick()" mat-icon-button color="primary"><i class="ic ic-file"></i></button>
+
+            <input type="file" [readonly]="true" #fileUpload id="fileUpload" name="fileUpload" accept=""
+              style="display: none;" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="implemented-parameter-details mb-3 blocks">
+    <header class="impheader">
+      <div class="title">Implemented parameter Details</div>
+      <div class="clone-btn" (click)="onAddRowimpl()">
+        <button type="button" class="btn-clone">Add</button>
+      </div>
+    </header>
+    <div class="data-table">
+      <ag-grid-angular #agGrid style="height: 200px;" class="ag-theme-material ag-jcp3" [rowData]="implnRowdata"
+        [columnDefs]="impParameterDetailsColumndata" rowHeight="48" headerHeight="48" enableColResize enableSorting
+        enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups toolPanelSuppressValues
+        [frameworkComponents]="frameworkComponentsos" rowSelection="multiple">
+      </ag-grid-angular>
+    </div>
+    <div class="remarks">
+      <label for="">Remarks*</label>
+      <input class="remarks-field" type="text" placeholder="remarks" />
+    </div>
+  </div>
+
+  <div class="d-flex task-footer">
+    <div class="col"></div>
+    <div class="p-2">
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="goBack()">Cancel</button>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button color="primary" class="buttonWidth button" (click)="openUpdateDialog()">Submit</button>
+    </div>
+  </div>

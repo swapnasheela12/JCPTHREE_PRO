@@ -1,0 +1,118 @@
+@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
+@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material.scss";
+.mat-card {
+    font-family: Lato Medium;
+}
+
+.active-alarm {
+    height: 87%;
+    min-height: 87%;
+    min-width: 100%;
+    width: 100%;
+    position: relative;
+    .active-alarm-flex-container {
+        .full-height {
+            height: 64px !important;
+        }
+        .active-alarm-title {
+            font-weight: 600;
+        }
+        .active-alarm-flex-item {
+            font-size: 15px;
+            padding-right: 0px !important;
+            .vertical-kpi {
+                margin-top: -6px;
+            }
+        }
+        .kpi-create {
+            margin-right: 10px;
+        }
+        .active-alarm-card-toolbar-icon {
+            display: inline-block;
+            margin-left: 13px;
+            font-size: 24px;
+        }
+        .search-icon-kpi {
+            margin-right: 10px;
+        }
+    }
+    .active-alarm-table-container {
+        height: calc(100% - 56px) !important;
+        max-height: calc(100% - 56px) !important;
+    }
+    .active-alarm-menu-render .mat-menu-content .mat-menu-item:hover {
+        background-color: #f3f7fc;
+    }
+    .pagination-aggrid {
+        width: calc(100% - 380px);
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.mat-menu-panel.kpi-editor-menu-render {
+    .mat-menu-item {
+        width: 125px !important;
+        height: 48px !important;
+        line-height: 1 !important;
+    }
+}
+
+.ag-theme-material .ag-checkbox-input-wrapper.ag-checked::after {
+    color: #0078D7 !important;
+}
+
+.ag-theme-material .ag-checkbox-input-wrapper.ag-indeterminate::after {
+    color: #6F6F70 !important;
+}
+
+.ag-theme-material .ag-pinned-left-header {
+    border-right: none;
+}
+.ag-theme-material .ag-pinned-right-header {
+    border-left: none;
+}
+
+.ag-theme-material .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) {
+    border-right: none !important;
+}
+
+.ag-theme-material .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left):not(.ag-cell-range-single-cell) {
+    border-left: none !important;
+}
+
+.kpi-editor .ag-theme-material .ag-header {
+    background-color: #EAECEC;
+}
+
+.btn-dl {
+    border: none;
+    margin-right: 10px;
+
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-field {
+    border: none;
+    // border-bottom: 1px solid #cccccc;
+}
+
+.search-zone {
+
+    margin-right: 10px;
+}
+
+.search-zone select {
+border: none;
+}
+
+.header-date-picker {
+    width: 140px;
+    margin-right: 1rem;
+}

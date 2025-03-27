@@ -1,0 +1,589 @@
+<div class="h-100">
+  <mat-card class="create-kpi-mat-card">
+    <mat-card-content class="create-kpi-card-content">
+      <mat-horizontal-stepper #nodeCounterStepper [linear]="false" (selectionChange)="selectNodeStepper($event)">
+        <mat-step [stepControl]="selectNodeCtrl">
+          <form [formGroup]="selectNodeCtrl" class="form-container">
+            <ng-template matStepLabel>Select Type</ng-template>
+            <div style="height: 100%; overflow: auto;">
+              <div fxLayoutGap="40px" fxLayout="row wrap" class="mt20 mx15">
+                <mat-form-field class="form-field-container">
+                  <input matInput placeholder="Key Name" formControlName="keyName" value="KPI_1234" required>
+                </mat-form-field>
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering
+                    disableOptionCentering ngDefaultControl #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Domain" [(value)]="domain"  (selectionChange)="repostModeValue(domain)" [formControl]="domainCtrl" disableOptionCentering ngDefaultControl
+                    #domainCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Domain" [formControl]="domainFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let domain of domainFilter | async" [value]="domain">
+                      {{domain.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-container">
+                  <mat-select placeholder="Node" [formControl]="nodeMultiCtrl" disableOptionCentering [multiple]="true"
+                    ngDefaultControl #nodeMultiCtrlSelect>
+                    <mat-option>
+                      <ngx-mat-select-search placeholderLabel="Select Node" [formControl]="nodeMultiFilterCtrl"
+                        noEntriesFoundLabel="no matching found" ngDefaultControl>
+                      </ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let node of nodeMultiFilter | async" [value]="node">
+                      {{node.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row wrap" class="mt20 mx15">
+                <div fxFlex="50">
+                    <mat-checkbox
+                      color="primary"
+                      [checked]="true"
+                      style="margin-bottom:0">
+                      Computation Status
+                    </mat-checkbox>  
+
+                </div>
+                <div fxFlex="50">
+                    <mat-checkbox
+                      color="primary"
+                      style="margin-bottom:0">
+                      15 Mins. Computation
+                    </mat-checkbox>  
+                </div>
+              </div>
+            </div>
+          </form>
+          <mat-divider></mat-divider>
+          <div class="d-flex mt10 ml15">
+
+            <div class="mx4">
+              <button mat-raised-button color="primary" class="buttonWidth" matStepperNext>Next</button>
+            </div>
+            <div class="col"></div>
+            <div class="m2">
+              <a mat-button color="primary">Add To Counter List</a>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="counterKPICtrl">
+          <ng-template matStepLabel>Counter KPI List</ng-template>
+          <div class="border-box mb10" fxLayout="row">
+            <div class="left-holder" fxFlex="30">
+              <div class="counter-kpi">
+                <mat-tab-group mat-align-tabs="center" dynamicHeight fxFlex="100">
+                  <mat-tab label="Counter">
+                    <div class="height-50">
+                      <mat-form-field class="search-input full-width" fxLayout="row">
+                        <input matInput [(ngModel)]="searchGrid" (ngModelChange)="kpiFilterChange($event);"
+                          autocomplete="off" placeholder="">
+                        <i class="search-icon zmdi zmdi-search"></i>
+                      </mat-form-field>
+                    </div>
+                    <div class="height-calc-49">
+                      <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                        id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptions"
+                        [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="KPI">
+                    <div class="height-50">
+                      <mat-form-field class="search-input full-width" fxLayout="row">
+                        <input matInput [(ngModel)]="searchSecondGrid" (ngModelChange)="secondGridChange($event);"
+                          autocomplete="off" placeholder="">
+                        <i class="search-icon zmdi zmdi-search"></i>
+                      </mat-form-field>
+                    </div>
+                    <div class="height-calc-49">
+                      <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                        id="myGrid1" class="ag-theme-material" [headerHeight]="0"
+                        [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen"
+                        (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Attribute">
+
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+            </div>
+            <div class="right-holder" fxFlex="70">
+              <div class="border-bottom height-49">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="height-50">
+                  <!-- <div class="col"></div> -->
+                  <div fxLayout="row" fxFlex="100" class="" fxLayoutAlign="center center">
+                    <form fxLayout="row" fxFlex="65"  class="ml15" [formGroup]="createKPIForm">
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Sub-Cat Aggr" [formControl]="subcatAggrControl"
+                            ngDefaultControl #subcatAggrControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Sub-Cat Aggr" [formControl]="subcatAggrFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let subcatAggr of subcatAggrFilter | async" [value]="subcatAggr">
+                              {{subcatAggr.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Hierarchical" [disabled]="disabledHierachy" [formControl]="hierarchicalControl" [multiple]="true"
+                            ngDefaultControl #hierarchicalControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Hierarchical" [formControl]="hierarchicalFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option #allSelected (click)="tosslePerOne(allSelected.viewValue, domain)" *ngFor="let hierarchical of hierarchicalFilter | async" [value]="hierarchical">
+                              {{hierarchical.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Hierarchical Aggr" [formControl]="nodeAggrControl"
+                            ngDefaultControl #nodeAggrControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Hierarchical Aggr" [formControl]="nodeAggrFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
+                              {{nodeAggr.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="mt15" fxFlex="25">
+                        <mat-form-field class="pr15" fxFlex="90">
+                          <mat-select disableOptionCentering placeholder="Time Aggr" [formControl]="nodeAggrControl"
+                            ngDefaultControl #nodeAggrControlSelect>
+                            <mat-option>
+                              <ngx-mat-select-search placeholderLabel="Time Aggr" [formControl]="nodeAggrFilterControl"
+                                noEntriesFoundLabel="no matching found" ngDefaultControl>
+                              </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let nodeAggr of nodeAggrFilter | async" [value]="nodeAggr">
+                              {{nodeAggr.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </form>
+                    <div fxLayout="row" fxFlex="30">
+                      <button mat-raised-button color="primary"
+                      class="buttonWidth button apply-button mr10">Apply</button>
+                      <mat-divider vertical class="mx10" style="height:30px"></mat-divider>
+                      <button mat-icon-button color="" class="global-button mr10" (click)="openComputationSetting()">
+                        <mat-icon class="fa fa-sliders global-icon"></mat-icon>
+                      </button>
+                      <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mr10" style="height:30px">
+                      </mat-divider>
+                      <button mat-mini-fab class="global-button common-delete-button mr10" color=""
+                        *ngIf="showGlobalDeleteOperation"
+                        (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
+                        <mat-icon class="ic ic-custom-delete global-icon">
+                        </mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form class="" style="height:calc(100% - 49px)" fxLayout="column" fxLayoutAlign="start center"
+                [formGroup]="formGroup">
+                <div style="height:100%;width:100%">
+                  <ag-grid-angular [headerHeight]="50" [tooltipShowDelay]="tooltipShowDelay" #agGrid
+                    style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material" [modules]="modules"
+                    [gridOptions]="rightGridOptions" [getRowNodeId]="getRowNodeId"
+                    [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                    (gridReady)="onGridRightReady($event)" [context]="getContext()"
+                    (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="d-flex mt10 ml15">
+            <div class="mx4">
+              <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+            </div>
+            <div class="mx4">
+              <button mat-raised-button color="primary" class="buttonWidth" matStepperNext>Next</button>
+            </div>
+            <div class="col"></div>
+            <div class="m2">
+              <a mat-button color="primary"
+                (click)="clearListCounter(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">Clear List</a>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="defineFormulaCtrl">
+          <ng-template matStepLabel>Define Formula</ng-template>
+          <div class="border-box mb10" fxLayout="row">
+            <div class="left-holder" fxFlex="30">
+              <div class="height-49">
+                <mat-form-field class="search-input full-width" fxLayout="row">
+                  <input matInput [(ngModel)]="searchGrid" (ngModelChange)="searchFormulaGrid($event);"
+                    autocomplete="off" placeholder="">
+                  <i class="search-icon zmdi zmdi-search"></i>
+                </mat-form-field>
+              </div>
+              <div class="define-formula">
+                <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;"
+                  id="myGrid1" class="ag-theme-material" [headerHeight]="0" [gridOptions]="leftGridOptionsFormula"
+                  [rowData]="dataFormula" (gridReady)="onGridleftReadyFormula($event)"></ag-grid-angular>
+              </div>
+            </div>
+            <div class="right-holder overflow-hidden">
+              <div class="border-bottom height-50">
+                <form fxLayout="row" class="ml15 height-50" fxLayoutAlign="space-between center"
+                  [formGroup]="addFormulaForm">
+                  <div class="mt15">
+                    <mat-form-field>
+                      <mat-select [(value)]="formula" (selectionChange)="onChangeFormula(formula)"
+                        placeholder="Add Formula" [formControl]="formulaCtrl" disableOptionCentering
+                        disableOptionCentering ngDefaultControl #formulaCtrlSelect>
+                        <mat-option>
+                          <ngx-mat-select-search placeholderLabel="Add Formula" [formControl]="formulaFilterCtrl"
+                            noEntriesFoundLabel="no matching found" ngDefaultControl>
+                          </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let formula of formulaFilter | async" [value]="formula.abbr">
+                          {{formula.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="mt15">
+                    <mat-checkbox formControlName="percentageOfNodes" [(ngModel)]="percentageNodesChecked">Calculate %
+                      of Nodes</mat-checkbox>
+                  </div>
+                  <div class="mt15">
+                    <mat-checkbox formControlName="countNodes" [(ngModel)]="countNodesChecked">Count of Nodes
+                    </mat-checkbox>
+                  </div>
+                  <button mat-raised-button color="primary" class="button formula-button mr10"
+                    (click)="validateFormula()">Validate Formula</button>
+                </form>
+              </div>
+              <div class="height-49" style="background:#F2F2F4" fxLayoutAlign="start center">
+                <span class="ml15">Formula</span>
+              </div>
+              <div class="target-kpi-table-formula">
+                <div contenteditable="true" data-placeholder="Drag Here"
+                  class="form-control textarea-editable {{status}}" id="textareaFormula">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex mt10 ml15">
+            <div class="mx4">
+              <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+            </div>
+            <div class="col"></div>
+            <button mat-button color="primary" class="mx4" (click)="clearList()">Clear List</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>
+  <div class="d-flex">
+    <div class="p-2 mr-auto">
+      <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth" (click)="closeCreateKPIPopup()">Back</button>
+    </div>
+    <div class="p-2">
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeCreateKPIPopup()">Cancel</button>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button color="primary" [disabled]="disabledGenerate"
+        class="buttonWidth button" (click)="closeCreateKPIPopup()">Generate</button>
+    </div>
+  </div>
+</div>

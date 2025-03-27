@@ -1,0 +1,30 @@
+{
+    "west": [
+        {
+            "OLT_NAME": "INAPAPRRKMLNNB0005ENBOLT001",
+            "EAST_Side_OLT_Port": "NT-A:XFP:1",
+            "EAST_Side_Neighbor_NE_DeviceID": "INAPAPRRVDYNNB0001OA2AAR001",
+            "EAST_Side_Neighbor_NE_Port": "TenGigE0/1/0/17"
+        }
+    ],
+    "east": [
+        {
+            "OLT_NAME": "INAPAPRRKMLNNB0005ENBOLT001",
+            "WEST_Side_OLT_Port": "NT-A:XFP:2",
+            "WEST_Side_Neighbor_NE_DeviceID": "INAPAPRRVDYNNB0001OA2AAR001",
+            "WEST_Side_Neighbor_NE_Port": "TenGigE0/1/0/17"
+        }
+    ],
+    "olt_splitter": [
+        {
+            "OLT_NAME": "INAPAPRRKMLNNB0005ENBOLT001",
+            "OLT_PORT": "INAPAPRRKMLNNB0005ENBOLT001/AL-7360-FX4-CHS/LT-1/SLOT-04/SFPPON-4",
+            "SPLITTER1_NAME": "INAPAPRRRMCDCM0065FTXSP1001"
+        },
+        {
+            "OLT_NAME": "INAPAPRRKMLNNB0005ENBOLT001",
+            "OLT_PORT": "INAPAPRRKMLNNB0005ENBOLT001/AL-7360-FX4-CHS/LT-1/SLOT-04/SFPPON-4",
+            "SPLITTER1_NAME": "INAPAPRRRMCDCM0065FTXSP1001"
+        }
+    ]
+}

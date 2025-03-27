@@ -1,0 +1,279 @@
+<div class="h-100">
+    <mat-card class="rb-cr-mat-card">
+        <mat-card-content class="card-content">
+            <mat-horizontal-stepper #nodeCounterStepper [linear]="false" (selectionChange)="selectNodeStepper($event)">
+                <mat-step [stepControl]="selectKpiCtrl">
+                    <form [formGroup]="selectKpiCtrl" class="form-container">
+                        <ng-template matStepLabel>Select Type</ng-template>
+                        <div fxLayoutGap="45px" fxLayout="row wrap">
+                            <mat-form-field class="form-field-container">
+                                <input matInput placeholder="Report Name" formControlName="keyName" required>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Report Type" [(value)]="reportType" (selectionChange)="reportTypeSelectValue(reportType, this.rightGridOptions)">
+                                    <mat-option value="KPI Report" selected>KPI Report</mat-option>
+                                    <mat-option value="Exception Report">Exception Report</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Mode" [(value)]="mode"  (selectionChange)="repostModeValue(mode, domain)">
+                                    <mat-option value="On Demand" selected>On Demand</mat-option>
+                                    <mat-option value="Scheduled">Scheduled</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Domain" name="domain" [(value)]="domain" (selectionChange)="repostModeValue(mode, domain)">
+                                    <mat-option *ngFor="let domain of domainList" [value]="domain.domainName">{{domain.domainName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Vendor" [formControl]="vendorControl" ngDefaultControl #vendorControlSelect>
+                                     <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Vendor"
+                                        [formControl]="vendorFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let vendor of vendorFilter | async" [value]="vendor">
+                                        {{vendor.name}}
+                                    </mat-option>
+                                    <!-- <mat-option value="Airspan" selected>Airspan</mat-option>
+                                    <mat-option value="Samsung">Samsung</mat-option> -->
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <div>
+                        <button class="next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="selectNodeAndAggregationCtrl">
+                    <form [formGroup]="selectNodeAndAggregationCtrl" class="form-container">
+                        <ng-template matStepLabel>Select Nodes & Aggregation</ng-template>
+                        <div fxLayoutGap="45px" fxLayout="row wrap">
+
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Geography State" [(value)]="geographyState" required>
+                                    <mat-option value="All R4G States-Individual" selected>All R4G States-Individual</mat-option>
+                                    <mat-option value="Circle">Circle</mat-option>
+                                    <mat-option value="R4G State">R4G State</mat-option>
+                                    <mat-option value="Maintenance State">Maintenance State</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Geography" [formControl]="geographyControl" ngDefaultControl #geographyControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Geography" [formControl]="geographyFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let geography of geographyFilter | async" [value]="geography">
+                                        {{geography.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="City" [formControl]="cityControl" ngDefaultControl #cityControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="City" [formControl]="cityFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let city of cityFilter | async" [value]="city">
+                                        {{city.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Jio Center" [formControl]="jioCenterControl" ngDefaultControl #jioCenterControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Jio Center" [formControl]="jioCenterFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let jioCenter of jioCenterFilter | async" [value]="jioCenter">
+                                        {{jioCenter.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Jio Cluster" [formControl]="jioClusterControl" ngDefaultControl #jioClusterControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Jio Cluster" [formControl]="jioClusterFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let jioCluster of jioClusterFilter | async" [value]="jioCluster">
+                                        {{jioCluster.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Node Aggregation" [formControl]="nodeAggregationControl" ngDefaultControl #nodeAggregationControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Node Aggregation" [formControl]="nodeAggregationFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let nodeAggregation of nodeAggregationFilter | async" [value]="nodeAggregation">
+                                        {{nodeAggregation.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select [multiple]="true" disableOptionCentering placeholder="Band" [formControl]="bandControl" ngDefaultControl #bandControlSelect>
+                                    <mat-option>
+                                        <ngx-mat-select-search placeholderLabel="Band" [formControl]="bandFilterControl" noEntriesFoundLabel="no matching found" ngDefaultControl>
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+                                    <mat-option *ngFor="let band of bandFilter | async" [value]="band">
+                                        {{band.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="form-field-container">
+                                <mat-select disableOptionCentering placeholder="Carrier" [(value)]="carrier" required>
+                                    <mat-option value="All Carrier Individual" selected>All Carrier Individual</mat-option>
+                                    <mat-option value="2300_1">2300_1</mat-option>
+                                    <mat-option value="2300_2 State">2300_2</mat-option>
+                                    <mat-option value="1800">1800</mat-option>
+                                    <mat-option value="850_1">850_1</mat-option>
+                                    <mat-option value="850_2">850_2</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <div>
+                        <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        <button class="ml10 next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Select KPI's</ng-template>
+                    <div class="border-box mb10" fxLayout="row">
+                        <div class="left-holder" fxFlex="30">
+                            <mat-tab-group mat-align-tabs="center" dynamicHeight fxFlex="100">
+                                <mat-tab label="KPI">
+                                    <div class="height-49">
+                                        <mat-form-field class="search-input full-width" fxLayout="row">
+                                            <input matInput [(ngModel)]="searchKpi" (ngModelChange)="kpiSearch($event);" autocomplete="off" placeholder="">
+                                            <i class="search-icon zmdi zmdi-search"></i>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="left-grid">
+                                        <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid id="myGrid1" class="ag-theme-material h-100" [headerHeight]="0" [gridOptions]="leftGridOptions" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="15 Mins. KPI" *ngIf="domain == 'RAN'">
+                                    <div class="height-49">
+                                        <mat-form-field class="search-input full-width" fxLayout="row">
+                                            <input matInput [(ngModel)]="searchFifteenMinsKpi" (ngModelChange)="fifteenMinsKpiSearch($event);" autocomplete="off" placeholder="">
+                                            <i class="search-icon zmdi zmdi-search"></i>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="left-grid">
+                                        <ag-grid-angular [tooltipShowDelay]="tooltipShowDelay" #agGrid id="myGrid1" class="ag-theme-material h-100" [headerHeight]="0" [gridOptions]="fifteenMinsKpiGridOptions" [rowData]="dataFifteen" (gridReady)="onGridReadyFifteenMinsKpi($event)"></ag-grid-angular>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                        <div class="right-holder">
+                            <div class="border-bottom height-49">
+                                <div fxLayout="row" fxLayoutAlign="space-between center" class="height-49 overflow-x">
+                                    <div fxFlex="20">
+                                        <button mat-button color="primary" (click)="addGroupPopup()">Add Group</button>
+                                    </div>
+                                    <div class="mt15">
+                                        <mat-form-field class="pr15" fxFlex="90">
+                                            <mat-select disableOptionCentering placeholder="Threshold Condition">
+                                                <mat-option [value]="thresholdCondition" *ngFor="let thresholdCondition of thresholdCondition">
+                                                    {{ thresholdCondition }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="mt15">
+                                        <mat-form-field class="pr15" fxFlex="90">
+                                            <mat-select disableOptionCentering placeholder="Condition">
+                                                <mat-option [value]="condition" *ngFor="let condition of conditionValues">
+                                                    {{ condition }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayoutAlign="center center">
+                                        <button mat-raised-button color="primary" class="buttonWidth button apply-button mr10">Apply</button>
+                                        <mat-divider *ngIf="showGlobalDeleteOperation" vertical class="mx10" style="height:30px">
+                                        </mat-divider>
+                                        <button mat-mini-fab class="common-delete-button" color="" *ngIf="showGlobalDeleteOperation" (click)="bulkDelete(leftGridOptions, rightGridOptions, fifteenMinsKpiGridOptions)">
+                      <mat-icon class="ic ic-custom-delete common-delete-icon mt3">
+                      </mat-icon>
+                    </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form fxLayout="column" style="height:calc(100% - 49px)" [formGroup]="rightAgGridFormGroup">
+                                <ag-grid-angular [headerHeight]="49" [tooltipShowDelay]="tooltipShowDelay" #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-material" [modules]="modules" [gridOptions]="rightGridOptions" [getRowNodeId]="getRowNodeId" [overlayLoadingTemplate]="overlayLoadingTemplate"
+                                    [overlayNoRowsTemplate]="overlayNoRowsTemplate" (gridReady)="onGridRightReady($event)" [context]="getContext()" (selectionChanged)="selectionChanged($event)"></ag-grid-angular>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="m2">
+                            <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                        </div>
+                        <div class="m2">
+                            <button class="ml5 next-button" mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                        <div class="col"></div>
+                        <div class="m2">
+                            <button mat-button color="primary" (click)="openFileUploadPopup()">Upload KPI</button>
+                        </div>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="selectDurationFrequency">
+                    <form [formGroup]="selectDurationFrequency" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="15px" class="form-container overflow-hidden">
+                        <ng-template matStepLabel>Select Duration & Frequency</ng-template>
+                        <div class="select-duration-border-box" fxLayout="row">
+                            <div class="left-holder">
+                                <div fxLayout="row wrap" fxLayoutAlign="start center" class="m20" *ngIf="mode=='On Demand'">
+                                    <mat-form-field class="custom-field-container" fxFlex="90">
+                                        <div class="daterange-container">
+                                            <input matInput ngxDaterangepickerMd placeholder="Select Date & Time" [timePicker]="true" [timePickerSeconds]="true" [timePickerIncrement]="15" [timePicker24Hour]="false" formControlName="selectedDateTime" [showCustomRangeLabel]="true" [alwaysShowCalendars]="selectDurationFrequency.get('alwaysShowCalendars').value"
+                                                [ranges]="ranges" [showClearButton]="true" [showCancel]="true" [linkedCalendars]="false" [isTooltipDate]="isTooltipDate" [isInvalidDate]="isInvalidDate" [locale]="{ applyLabel: 'Ok', format: 'DD, MMM YYYY, h:mm A',clearLabel:'Clear'}"
+                                                [keepCalendarOpeningWithRange]="selectDurationFrequency.get('keepCalendarOpeningWithRange').value" [showRangeLabelOnInput]="selectDurationFrequency.get('showRangeLabelOnInput').value" (rangeClicked)="rangeClicked($event)"
+                                                (datesUpdated)="datesUpdated($event)" autocomplete="off" [opens]="opens" [drops]="drops" class="daterange-container-input" />
+                                        </div>
+                                    </mat-form-field>
+                                    <div class="calendar-icon"><i class="zmdi zmdi-calendar"></i></div>
+                                </div>
+                                <div fxLayout="row wrap" class="m20" *ngIf="mode=='Scheduled'">
+                                    <mat-checkbox fxFlex="33" [(value)]="checkboxSelectGroup" [value]="checkboxSelect.name" *ngFor="let checkboxSelect of checkboxSelectList;trackBy:trackByCheckbox">
+                                        {{checkboxSelect.name}}
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="right-holder">
+                                <div class="mx20 my15">
+                                    <label class="radio-group-label">Frequency</label>
+                                    <mat-radio-group fxLayout="row wrap" aria-label="Select Frequency" class="radio-button-group" [(value)]="frequencyGroup">
+                                        <mat-radio-button *ngFor="let frequency of frequencyList;trackBy:trackByRadioButton" [value]="frequency.name">
+                                            {{frequency.name}}</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        <button mat-stroked-button color="primary" class="buttonWidth" matStepperPrevious>Previous</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>
+    <div class="d-flex">
+        <div class="p-2 mr-auto">
+            <button mat-stroked-button color="primary" routerLink="/{{paths[0].goBack}}" class="buttonWidth" (click)="closeCreateReportPopup()">Back</button>
+        </div>
+        <div class="p-2">
+            <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeCreateReportPopup()">Cancel</button>
+        </div>
+        <div class="p-2">
+            <button mat-raised-button color="primary" [disabled]="generateDisabled" class="buttonWidth button" (click)="closeCreateReportPopup()">Generate</button>
+        </div>
+    </div>
+</div>

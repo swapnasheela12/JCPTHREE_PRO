@@ -1,0 +1,134 @@
+$md-primary: #0070db;
+$color-white: #ffffff;
+.properties-container {
+    svg {
+        display: inline-block !important;
+    }
+    height: calc(100% - 7px);
+    min-height: calc(100% - 50px);
+    max-height: calc(100% - 7px);
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    .flex-container {
+        .header {
+            background-color: rgb(25, 118, 210);
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .properties-header {
+        background-color: #f9f9f9;
+        display: flex;
+        .prop-container {
+            height: 100%;
+            >.prop-flex-item {
+                line-height: 1.5;
+                border-right: 1px solid  rgba(0,0,0,.3);
+                padding: 0 16px;
+                margin: 20px 0px;   
+                > .prop-label {
+                    font-size: 13px;
+                    color: rgba(0,0,0,.54);
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                >.prop-value {
+                    font-size: 14px;
+                    color: rgba(0,0,0,.87);
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+            .prop-flex-item-wifi {
+                color: rgb(25,118,210);
+                border-right: 0px;
+                .mat-icon-button {
+                    font-size: 26px;
+                }
+                .mat-icon-button:hover {
+                    background-color: transparent;;
+                }
+                .donut-chart {
+                  svg {
+                    height: 200px;
+                    position: relative;
+                    bottom: 108px;
+                    right: 129px;
+                  }
+                }
+            }
+        }
+    }
+    .prop-tab-container{
+        height: calc(100% - 80px);
+        .tabs {
+            height: 100%;
+            background: white;
+                mat-tab-group {
+                  height: 100%;
+                    mat-tab-header {
+                        border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+                    .mat-tab-body-wrapper {
+                        >mat-tab-body:nth-child(3) {
+                            overflow-y: hidden;
+                        }
+                        >mat-tab-body:last-child {
+                            overflow-y: hidden;
+                        } 
+                        >mat-tab-body:nth-child(6) {
+                            overflow-y: hidden;
+                        }
+                    }
+                }
+        }
+    }
+    &.prop-wifi-tabs {
+        .tabs {
+            height: 100%;
+            background: white;
+                mat-tab-group {
+                  height: 100%;
+                    mat-tab-header {
+                        border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+                    .mat-tab-body-wrapper {
+                        >mat-tab-body:nth-child(2) {
+                            overflow-y: hidden;
+                        }
+                        >mat-tab-body:nth-child(3) {
+                            overflow-y: hidden;
+                        }
+                        >mat-tab-body:nth-child(4) {
+                            overflow-y: hidden;
+                        }
+                    }
+                }
+        }
+    }
+}
+
+
+
+//////Add this css to wrapper in end
+.prop-label {
+    font-size: 13px;
+    color: rgba(0,0,0,.54);
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+}
+.prop-value {
+    font-size: 14px;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

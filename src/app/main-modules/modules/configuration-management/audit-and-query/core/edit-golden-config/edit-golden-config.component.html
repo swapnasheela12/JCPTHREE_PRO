@@ -1,0 +1,67 @@
+<div class="mat-dialog-container">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row>
+            <div fxFlex="grow">
+                <div>{{data.data.parameter}}</div>
+            </div>
+            <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content>
+        <form fxLayout="column" class="" style="height: 100%; overflow: auto;padding: 16px;">
+            <div fxLayout="row wrap">
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput disabled placeholder="NE" value="{{data.data.ne ? data.data.ne : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput disabled placeholder="Band" value="{{data.data.band ? data.data.band : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput disabled placeholder="Carrier Index No." value="{{data.data.carrier_index_no ? data.data.carrier_index_no : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input isEllipsisActive="leftside-navigation" disabled
+                    attr.data-title1="{{data.data.category}}" id="{{data.data.category}}"
+                     matInput placeholder="Category" value="{{data.data.category ? data.data.category : '-'}}">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput placeholder="Parameter" disabled value="{{data.data.parameter ? data.data.parameter : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput placeholder="PLD Family" disabled value="{{data.data.pld_family ? data.data.pld_family : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput placeholder="Identifications" disabled value="{{data.data.identifications ? data.data.identifications : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput placeholder="SW Version" disabled value="{{data.data.sw_version ? data.data.sw_version : '-'}}">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                        <input matInput placeholder="Vendors" disabled value="{{data.data.vendors ? data.data.vendors : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15" style="padding-right: 35px;">
+                    <input  matInput placeholder="Jio Settings" value="{{data.data.jio_settings ? data.data.jio_settings : '-'}}">
+                </mat-form-field>
+                <mat-form-field fxFlex="25" class="p15 no-line" >
+                    <input matInput placeholder="Restarts" disabled value="{{data.data.restarts ? data.data.restarts : '-'}}">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="">
+        <div class="col"></div>
+        <div class="mx10">
+            <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+        </div>
+        <div class="mx10">
+            <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+        </div>
+    </div>
+</div>

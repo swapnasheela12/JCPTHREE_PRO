@@ -1,0 +1,52 @@
+
+$md-primary: #0070DB;
+.mat-dialog-container {
+    padding: 0px;
+    .dialog-header{
+        height: 54px;
+        max-height: 54px;
+        min-height: 54px;
+        background-color: #0070DB;
+            .mat-toolbar-row{
+            font-size: 18px;
+            color: white;
+            .dialog-close-button {
+            .mat-button-focus-overlay {
+                background-color: transparent!important;
+            }
+            }
+            }
+    }
+    .mat-dialog-content{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        min-height: calc(100% - 108px);
+        max-height: calc(100% - 108px);
+        .mat-form-field{
+            font-size: 14px;
+        }
+    }  
+}
+
+.p15 {
+    padding: 15px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mx10 {
+   margin: 0 10px; 
+}
+
+.target-title {
+    font-size: 14px;
+    font-family: Lato Medium;
+    font-weight: bold;
+}
+
+.optimization-target {
+    padding-left: 20px;
+}

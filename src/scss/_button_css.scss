@@ -1,0 +1,438 @@
+//VARIABLES
+$accent-theme-color: #119DA4;
+
+$btn-bg-1: #880044;
+$btn-bg-2: #28AFB0;
+$btn-bg-3: #D78521;
+$btn-bg-4: #745296;
+$btn-bg-5: #3E8914;
+
+$btn-hover-effect-padding-vert: 22px;
+$btn-hover-effect-padding-horz: 36px;
+$icon-block-width: 40px;
+
+//MIXINS
+
+//transitions mixin
+@mixin transition-mix($property: all, $duration: 0.2s, $timing: linear, $delay: 0s) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}
+
+//position absolute mixin
+@mixin position-absolute ($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+
+
+
+
+
+
+// .btn-block {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+.btn-hover-effect {
+  display: flex;
+  
+  font: {
+    family: Arial;
+    size: 17px;
+  }
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1;
+  
+//   &:nth-child(1) {
+//     background-color: $btn-bg-1;
+//   }
+  
+//   &:nth-child(2) {
+//     background-color: $btn-bg-2;
+//   }
+  
+//   &:nth-child(3) {
+//     background-color: $btn-bg-3;
+//   }
+  
+//   &:nth-child(4) {
+//     background-color: $btn-bg-4;
+//   }
+  
+//   &:nth-child(5) {
+//     background-color: $btn-bg-5;
+//   }
+}
+
+/* effects styles !!!YOU NEED THEM */
+
+/* don't forget to add your own background-color and text color */
+.btn-hover-effect {
+  @include transition-mix();
+  
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  padding: $btn-hover-effect-padding-vert $btn-hover-effect-padding-horz;
+  
+  transform: translateZ(0);
+  
+  text-decoration: none;
+  
+  overflow: hidden;
+}
+
+/* effect 1 styles */
+.btn-hover-effect--effect-1 {  
+  
+  /* overlay block styles */
+  &:before {
+    @include position-absolute($top: 0, $left: 0);
+    @include transition-mix($property: transform);
+    
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    content: '';
+    
+    background-color: rgba(255,255,255, .2);
+    
+    transform: scale(0, 1);
+    transform-origin: right top;
+    
+    z-index: -1;
+  }
+  
+  /* icon styles */
+  &:after {
+    @include position-absolute($top: 1px, $right: (- $icon-block-width));
+    @include transition-mix();
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: $icon-block-width;
+    
+    content: '\f105';
+    
+    font: {
+      family: "Font Awesome 5 Free";
+      size: 25px;
+      weight: 900;
+    }
+    line-height: inherit;
+    
+    opacity: 0;
+  }
+  
+  //hover styles
+  &:hover {
+    padding-left: $btn-hover-effect-padding-horz - 10;
+    padding-right: $btn-hover-effect-padding-horz + 10;
+    
+    &:before {
+      transform: scale(1, 1);
+      
+      transform-origin: left top;
+    }
+    
+    &:after {
+      right: 0;
+      
+      opacity: 1;
+    }
+  }
+  
+}
+
+/* effect #2 */
+.btn-hover-effect--effect-2 {
+  
+  /* overlay styles */
+  &:before {
+   @include position-absolute($top: 50%, $left: 50%);
+   @include transition-mix($property: transform);
+    
+    display: block;
+    width: 200%;
+    height: 200%;
+    
+    content: '';
+    
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center top;
+    
+    background-color: rgba(255,255,255, .2);
+    border-radius: 50%;
+   
+    z-index: -1;
+  }
+  
+  /* icon styles */
+  &:after {
+    @include position-absolute($top: 1px, $right: 0);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: $icon-block-width;
+    
+    content: '\f105';
+    
+    font: {
+      family: "Font Awesome 5 Free";
+      size: 25px;
+      weight: 900;
+    }
+    line-height: inherit;
+    
+    transform: scale(1.5);
+    
+    opacity: 0;
+  }
+  
+  &:hover {
+    padding-left: $btn-hover-effect-padding-horz - 10;
+    padding-right: $btn-hover-effect-padding-horz + 10;
+    
+    &:before {
+      transform: translate(-50%, -50%) scale(1);
+
+      transform-origin: center bottom;
+    }
+    
+    &:after {
+      @include transition-mix();
+      
+      transform: scale(1);
+      
+      opacity: 1;
+    }
+  }
+  
+}
+
+/* effect #3 */
+.btn-hover-effect--effect-3 {
+  
+  /* overlay styles */
+  &:before{
+   @include position-absolute($top: 0, $left: 0);
+   @include transition-mix($property: transform);
+    
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    content: '';
+    
+    transform: scale(1, 0);
+    transform-origin: center bottom;
+    
+    background-color: rgba(255,255,255, .15);
+    
+    z-index: -1;
+  }
+  
+  /* icon styles */
+  &:after {
+    @include position-absolute($top: 0, $left: 0);
+    @include transition-mix($property: transform, $delay: .2s);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    content: '\f30b';
+    
+    font: {
+      family: "Font Awesome 5 Free";
+      size: 30px;
+      weight: 900;
+    }
+    line-height: inherit;
+    color: transparent;
+    
+    transform: scale(1, 0);
+    transform-origin: center bottom;
+    
+    background-color: rgba(255,255,255, .15);
+  }
+  
+  &:hover {
+    color: transparent;
+    
+    &:before {
+      transition-duration: .15s;
+      
+      transform: scale(1, 1);
+      transform-origin: center top;
+    }
+    
+    &:after {
+      transition-duration: .15s;
+      
+      transform: scale(1, 1);
+      transform-origin: center top;
+      
+      color: #fff;
+    }
+  }
+}
+
+/* effect #4 */
+.btn-hover-effect--effect-4 {
+  
+  /* overlay styles */
+  &:before {
+   @include position-absolute($top: 0, $left: 0);
+   @include transition-mix($property: transform);
+    
+    display: block;
+    width: 300%;
+    height: 300%;
+    
+    content: '';
+    
+    transform: scale(.5);
+    transform-origin: center center;
+    
+    background-color: rgba(255,255,255, .2);
+    
+    border-radius: 50%;
+    
+    z-index: -1;
+  }
+  
+  /* icon styles */
+  &:after {
+    @include position-absolute($top: 0, $left: 0);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    content: '\f30b';
+    
+    font: {
+      family: "Font Awesome 5 Free";
+      size: 30px;
+      weight: 900;
+    }
+    line-height: inherit;
+    color: transparent;
+    
+    transform: scale(1.4);
+  }
+  
+  &:hover {
+    color: transparent;
+    
+    &:before {
+      transform: scale(2);
+      transform-origin: center center;
+    }
+    
+    &:after {
+      @include transition-mix($delay: .2s);
+      
+      color: #fff;
+      
+      transform: scale(1);
+    }
+  }
+}
+
+/* effect #5 */
+.btn-hover-effect--effect-5 {
+  
+  /* overlay styles */
+  &:before {
+   @include position-absolute($top: 50%, $left: 50%);
+   @include transition-mix($property: transform);
+    
+    display: block;
+    width: 300px;
+    height: 300px;
+    
+    content: '';
+    
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center center;
+    
+    background-color: rgba(255,255,255, .15);
+    border-radius: 50%;
+    
+    z-index: -1;
+  }
+  
+  /* icon styles */
+  &:after {
+    @include position-absolute($top: 50%, $left: 50%);
+    transition: transform .2s linear .2s, opacity .2s linear .2s;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    
+    content: '\f30b';
+    
+    font: {
+      family: "Font Awesome 5 Free";
+      size: 30px;
+      weight: 900;
+    }
+    line-height: inherit;
+    color: transparent;
+    
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center center;
+    
+    background-color: rgba(255,255,255, .15);
+    border-radius: 50%;
+    opacity: 0;
+    
+    z-index: -1;
+  }
+  
+  &:hover {
+    
+    color: transparent;
+    
+    &:before {
+      transition-duration: .15s;
+      
+      transform: translate(-50%, -50%) scale(1);
+      
+      opacity: 1;
+    }
+    
+    &:after {
+      transition-duration: .15s;
+      
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      
+      color: #fff;
+    }
+  }
+}

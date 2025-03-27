@@ -1,0 +1,76 @@
+html, body {
+    height:100%;
+}
+.wifi-wrapper {
+    overflow: hidden;
+    color: black;
+}
+.wifi-topbar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    font-size: 16px;
+    font-family: Lato Bold;
+    height: 80px;
+
+    .wifi-title{
+        flex: 0 0 50%;
+        line-height: 1;
+        color: #000000;
+    }
+    .printer-links{
+        flex: 0 0 30%;
+        text-align: right;
+        padding-right: 1rem;
+        ul {
+            
+            padding:0;
+             margin: 0;
+            li {
+                font-size: 12px;
+                color: #000000;
+                display: inline;
+                list-style-type: none;
+                margin-right: 2rem;;
+            }
+        }
+    }
+}
+.wifi-wrapper{
+    background: #ffffff;
+    height:100%;
+    width: 100%;
+    border-radius:4px;
+}
+
+.conversion-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.msi-title {
+    font-size: 14px;
+    color: #000000;
+    font-family: Lato Medium;
+}
+.icon-btn {
+    line-height: 2;
+    float: right;
+    color:black;
+    padding: 10px 15px;
+ text-align: center;
+ width: 50px !important;
+ height: 50px !important;
+ border-radius: 25px;
+}
+.icon-btn:hover {
+    background: RGBA(0, 112, 219, 0.13);
+ }
+.full-width {
+    width: 95%;
+}

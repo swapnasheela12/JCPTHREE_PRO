@@ -1,0 +1,62 @@
+<ng-template #zonesJioLayerSettings>
+  <form  [formGroup]="macroDialogForm" class="layers-settings-popup-content px-3">
+    <label class="section-header">Properties</label>
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
+          <label class="color-grey"  fxFlex="45">Outline</label>
+          <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
+            <input type="hidden"
+            formControlName="outlineCoding"
+            [value]="colorOutline"/>
+            <div [style.background]="colorOutline" class="color-coding"></div>
+            <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="colorOutline" style="text-align: center;"
+              [cpPosition]="'bottom'"></mat-icon>
+          </div>
+        </div>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
+          <label class="color-grey"  fxFlex="45">Fill</label>
+          <div class="parent-color-coding" fxLayout="row" fxLayoutAlign="space-between center">
+            <input type="hidden"
+            formControlName="fillCoding"
+            [value]="colorFill"/>
+            <div [style.background]="colorFill" class="color-coding"></div>
+            <mat-icon class="zmdi zmdi-caret-down" [(colorPicker)]="colorFill" style="text-align: center;"
+              [cpPosition]="'bottom'"></mat-icon>
+          </div>
+        </div>
+    </div>
+    <div  class="mt-3" fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="15">Opacity</div>
+      <mat-slider fxFlex="75" color="primary" class="opacity-slider" [disabled]="disabled" [invert]="invert" [max]="max"
+        [min]="min" [step]="step" [thumbLabel]="thumbLabel" formControlName="opacity" (input)="someValue = $event.value"
+        [value]="someValue" [vertical]="vertical">
+      </mat-slider>
+      <div fxFlex="10" class="color-grey ml-1" >{{ someValue }}%</div>
+    </div>
+    <div fxLayout="column">
+      <mat-form-field class="py-2">
+        <mat-select [(value)]="labelListValue" placeholder="Label" disableOptionCentering
+          (openedChange)="openedChange($event)" formControlName="label">
+          <input matInput [(ngModel)]="searchLabelListValue" autocomplete="off" [ngModelOptions]="{standalone: true}"
+            class="search-input" placeholder="Search...">
+          <mat-option *ngFor="let item of labelList | filter:searchLabelListValue" [value]="item.label_name">
+            {{item.label_name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="">
+    <div class="mx-3">
+      <button mat-stroked-button class="buttonWidth w-100" (click)="closeDialog()">Reset To Defaults</button>
+    </div>
+    <div class="col"></div>
+    <div class="mx-3">
+      <button mat-stroked-button color="primary" class="buttonWidth" (click)="closeDialog()">Cancel</button>
+    </div>
+    <div class="mr-3">
+      <button mat-raised-button color="primary" class="buttonWidth" (click)="closeDialog()">Apply</button>
+    </div>
+  </div>
+</ng-template>

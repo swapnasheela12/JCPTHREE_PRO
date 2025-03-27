@@ -1,0 +1,94 @@
+[
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Outage",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  },
+  {
+    "siteid": "I-MU-MUMB-ENB-A173",
+    "cellid": "982563",
+    "band": "1800",
+    "vendorname": "Samsung",
+    "currentstatus": "Operational",
+    "outagefreq": "0.20",
+    "startdate": "21 Feb 2017",
+    "starttime": "06:49:36 pm",
+    "enddate": "21 Feb 2017",
+    "endtime": "07:11:26 pm",
+    "totaloutagemin":"91.72"
+  }
+
+]

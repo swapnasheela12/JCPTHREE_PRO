@@ -1,0 +1,33 @@
+.selectled-layer-menu {
+    font-size: 14px;
+    font-family: Lato Regular;
+    margin: 8px 0px;
+    .selected-layers-title {
+        .title {
+            font-size: 16px;
+            font-family: Lato Medium;
+        }
+        .icon {
+            font-size: 16px;
+        }
+    }
+    .selectled-layer-menu-list {
+        height: 40px;
+        border-radius: 10px;
+        margin: 0 8px 4px 8px;
+        background: rgba(0, 118, 214, 0.2);
+        color: #0070D7;
+        text-align: center;
+        .right-icon {
+            font-size: 16px;
+        }
+        .selected-layer {
+            font-size: 14px;
+            font-family: Lato Regular;
+            white-space: pre;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+    }
+}

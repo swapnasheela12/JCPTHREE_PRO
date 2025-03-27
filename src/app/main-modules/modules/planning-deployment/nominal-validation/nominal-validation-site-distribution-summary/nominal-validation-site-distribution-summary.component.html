@@ -1,0 +1,359 @@
+<mat-card class="p-0 nominal-validation" style="height: calc(100% - 5px);">
+    <mat-card-header class="card-header" fxLayoutAlign="start center">
+        <mat-card-title class="card-title mb-0">
+        <div style="width: 422px;"  fxLayout="column">
+            <div class="title-summary" fxLayout="row">
+                <mat-icon class="layer-icon-button-arrow" fxFlex="10" (click)="backTo()"> 
+                    <span class="zmdi zmdi-chevron-left"></span>
+                </mat-icon>
+                <div>
+                    {{nominalGenerationSummaryData.type}} : 
+                    <span class="state">{{nominalGenerationSummaryData.state}}</span> | 
+                    {{nominalGenerationSummaryData.name}}
+                </div>
+            </div>
+            <div class="title-subline" fxLayout="row">
+                <div fxFlex="10"></div>
+                Validation
+            </div>
+        </div>
+        </mat-card-title>
+        <div class="col"></div>
+        <div class="my-performance-reports-flex-item d-flex justify-content-end align-items-center">
+            <mat-icon class="icon-button search-icon-kpi" aria-label="search" (click)="showSearchInput = !showSearchInput;" *ngIf="!showSearchInput">
+                <span class="zmdi zmdi-search"></span>
+            </mat-icon>
+            <mat-form-field *ngIf="showSearchInput" class="col-4">
+                <input matInput [(ngModel)]="searchGrid" (ngModelChange)="onFilterChanged($event);" autocomplete="off" placeholder="">
+                <mat-icon class="search-filter-icon" (click)="toggleSearch();" aria-label="search">
+                    <span class="zmdi zmdi-close"></span>
+                </mat-icon>
+            </mat-form-field>
+            <button class="ic ic-layers-01 link-icon-button"
+            style="font-size: 18px;color:#464D69" mat-icon-button
+            (click)="displayValidationLayers()"></button>
+        </div>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" class="site-card-content nominal-validation-site-distribution-summary">
+        <div fxFlex="auto">
+            <mat-tab-group dynamicHeight fxFlex="auto" mat-align-tabs="start" [selectedIndex]="selectedIndex">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon  (click)="backToSummary()">arrow_back</mat-icon>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Site Distribution Summary
+                    </ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="ic ic-table-011"></span>
+                    </ng-template>
+                    <div class="nominal-site">
+                        <ag-grid-angular style="width: 100%; height: calc(100% - 66px);" class="ag-theme-material ag-jcp3" rowHeight="48"
+                            headerHeight="48" [gridOptions]="gridMyPerformanceGridOptions"[columnDefs]="gridMyPerformanceColumnDefs" 
+                            [rowData]="gridMyPerformanceRowData" enableColResize enableSorting enableFilter groupHeaders
+                            [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues rowSelection="multiple"
+                            [enableRangeSelection]="true" [suppressRowClickSelection]="true" [groupSelectsChildren]="true"
+                            [debug]="true" [frameworkComponents]="frameworkComponentsReportBuilder" [paginationPageSize]="PaginationPageSize" 
+                            [pagination]="true" [suppressPaginationPanel]="true" (gridReady)="onReady($event)">
+                        </ag-grid-angular>
+                        <app-pagination [pageSize]="PaginationPageSize" [gridApi]="gridAPI" [noOfPages]="gridAPI?.paginationGetTotalPages()" 
+                        [rowCount]="gridAPI?.getDisplayedRowCount()" [paginationArray]="[10, 20, 30, 40]"></app-pagination>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="ic ic-table1-01"></span>
+                    </ng-template>
+                    <div fxLayout="column">
+                        <div class="summary-table">
+                            <div fxFlex="100">
+                                <div class="table-header">Overlay Type Vs 5G Solution type</div>
+                                <table mat-table [dataSource]="dataSourceOverlay | keyvalue:orderByKey">
+                                    <ng-container matColumnDef="key">
+                                      <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"  width ="10%"> Overlay Type </th>
+                                      <td mat-cell *matCellDef="let element"  class="vertical-line"> {{element.key}} </td>
+                                      <td mat-footer-cell  class="vertical-line" *matFooterCellDef> Total </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="overlayType">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef width ="10%" [attr.rowspan]="2">Overlay Type </th>
+                                        <td mat-footer-cell  class="vertical-line" *matFooterCellDef> Total </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="total">
+                                      <th mat-header-cell *matHeaderCellDef width ="10%"> Total </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.value[0].total}} </td>
+                                      <td mat-footer-cell *matFooterCellDef> {{ calculateTotal()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="gNB">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> gNB </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[1].gNB}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateGNB()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc1">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC1 </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[2].odsc1}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateODSC1()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc2">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC2 </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[3].odsc2}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateODSC2()['data'] }}</td>
+
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc3">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%" class="vertical-line" > ODSC3 </th>
+                                        <td mat-cell *matCellDef="let element" class="vertical-line" > {{element.value[4].odsc3}} </td>
+                                        <td mat-footer-cell *matFooterCellDef class="vertical-line" > {{ calculateODSC3()['data']}}</td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="total1">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> Total </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.value[0].totalStatus == 'increase'), 'red-decrease': (element.value[0].totalStatus == 'decrease')}">
+                                                <span *ngIf="element.value[0].totalStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.value[0].totalStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.value[0].total}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+                                            <span [ngClass]="{'green-increase': (calculateTotal()['totalStatus'] == 'increase'), 'red-decrease': (calculateTotal()['totalStatus'] == 'decrease')}">
+                                                <span *ngIf="calculateTotal()['totalStatus'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="calculateTotal()['totalStatus'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{ calculateTotal()['data']}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateTotal()['data'] }}</td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="gNB1">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> gNB </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[1].gNBStatus == 'increase'), 'red-decrease': (element.value[1].gNBStatus == 'decrease')}">
+                                                    <span *ngIf="element.value[1].gNBStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[1].gNBStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[1].gNB}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateGNB()['odscgnbStatus'] == 'increase'), 'red-decrease': (calculateGNB()['odscgnbStatus'] == 'decrease')}">
+                                                    <span *ngIf="calculateGNB()['odscgnbStatus'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateGNB()['odscgnbStatus'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{ calculateGNB()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc11">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC1 </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[2].odsc1Status == 'increase'), 'red-decrease': (element.value[2].odsc1Status == 'decrease')}">
+                                                    <span *ngIf="element.value[2].odsc1Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[2].odsc1Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[2].odsc1}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateODSC1()['odsc1Status'] == 'increase'), 'red-decrease': (calculateODSC1()['odsc1Status'] == 'decrease')}">
+                                                    <span *ngIf="calculateODSC1()['odsc1Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateODSC1()['odsc1Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{ calculateODSC1()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc21">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC2 </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[3].odsc2Status == 'increase'), 'red-decrease': (element.value[3].odsc2Status == 'decrease')}">
+                                                    <span *ngIf="element.value[3].odsc2Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[3].odsc2Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[3].odsc2}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateODSC2()['odsc2Status'] == 'increase'), 'red-decrease': (calculateODSC2()['odsc2Status'] == 'decrease')}">
+                                                    <span *ngIf="calculateODSC2()['odsc2Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateODSC2()['odsc2Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{calculateODSC2()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc31">
+                                          <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC3 </th>
+                                          <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.value[4].odsc3Status == 'increase'), 'red-decrease': (element.value[4].odsc3Status == 'decrease')}">
+                                                <span *ngIf="element.value[4].odsc3Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.value[4].odsc3Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.value[4].odsc3}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+                                            <span [ngClass]="{'green-increase': (calculateODSC3()['odsc3Status'] == 'increase'), 'red-decrease': (calculateODSC3()['odsc3Status'] == 'decrease')}">
+                                                <span *ngIf="calculateODSC3()['odsc3Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="calculateODSC3()['odsc3Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{calculateODSC3()['data']}}
+                                            </span>
+                                        </td>
+                                      </ng-container>
+                                    
+                                    <ng-container matColumnDef="pre">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="5">Pre</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="post">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="5">Post</th>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="['overlayType', 'pre', 'post']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsOverlay" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsOverlay;"></tr>
+                                    <tr mat-footer-row *matFooterRowDef="displayedColumnsOverlay; sticky: true">
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="summary-table" style="overflow: auto;height: 322px;">
+                            <div fxFlex="100">
+                                <div class="table-header">Infra Type Vs 5G Solution type</div>
+                                <table mat-table [dataSource]="dataSourceInfra | keyvalue:orderByKey">
+                                    <ng-container matColumnDef="key">
+                                      <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"  width ="10%"> Overlay Type </th>
+                                      <td mat-cell *matCellDef="let element"  class="vertical-line"> {{element.key}} </td>
+                                      <td mat-footer-cell  class="vertical-line" *matFooterCellDef> Total </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="overlayType">
+                                        <th mat-header-cell class="vertical-line" *matHeaderCellDef width ="10%" [attr.rowspan]="2">Overlay Type </th>
+                                        <td mat-footer-cell  class="vertical-line" *matFooterCellDef> Total </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="total">
+                                      <th mat-header-cell *matHeaderCellDef width ="10%"> Total </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.value[0].total}} </td>
+                                      <td mat-footer-cell *matFooterCellDef> {{ calculateTotal()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="gNB">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> gNB </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[1].gNB}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateGNB()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc1">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC1 </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[2].odsc1}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateODSC1()['data'] }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc2">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC2 </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.value[3].odsc2}} </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateODSC2()['data'] }}</td>
+
+                                    </ng-container>
+                                    <ng-container matColumnDef="odsc3">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%" class="vertical-line" > ODSC3 </th>
+                                        <td mat-cell *matCellDef="let element" class="vertical-line" > {{element.value[4].odsc3}} </td>
+                                        <td mat-footer-cell *matFooterCellDef class="vertical-line" > {{ calculateODSC3()['data']}}</td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="total1">
+                                        <th mat-header-cell *matHeaderCellDef width ="10%"> Total </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.value[0].totalStatus == 'increase'), 'red-decrease': (element.value[0].totalStatus == 'decrease')}">
+                                                <span *ngIf="element.value[0].totalStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.value[0].totalStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.value[0].total}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+                                            <span [ngClass]="{'green-increase': (calculateTotal()['totalStatus'] == 'increase'), 'red-decrease': (calculateTotal()['totalStatus'] == 'decrease')}">
+                                                <span *ngIf="calculateTotal()['totalStatus'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="calculateTotal()['totalStatus'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{ calculateTotal()['data']}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef> {{ calculateTotal()['data'] }}</td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="gNB1">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> gNB </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[1].gNBStatus == 'increase'), 'red-decrease': (element.value[1].gNBStatus == 'decrease')}">
+                                                    <span *ngIf="element.value[1].gNBStatus == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[1].gNBStatus == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[1].gNB}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateGNB()['odscgnbStatus'] == 'increase'), 'red-decrease': (calculateGNB()['odscgnbStatus'] == 'decrease')}">
+                                                    <span *ngIf="calculateGNB()['odscgnbStatus'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateGNB()['odscgnbStatus'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{ calculateGNB()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc11">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC1 </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[2].odsc1Status == 'increase'), 'red-decrease': (element.value[2].odsc1Status == 'decrease')}">
+                                                    <span *ngIf="element.value[2].odsc1Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[2].odsc1Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[2].odsc1}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateODSC1()['odsc1Status'] == 'increase'), 'red-decrease': (calculateODSC1()['odsc1Status'] == 'decrease')}">
+                                                    <span *ngIf="calculateODSC1()['odsc1Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateODSC1()['odsc1Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{ calculateODSC1()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc21">
+                                            <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC2 </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <span [ngClass]="{'green-increase': (element.value[3].odsc2Status == 'increase'), 'red-decrease': (element.value[3].odsc2Status == 'decrease')}">
+                                                    <span *ngIf="element.value[3].odsc2Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="element.value[3].odsc2Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{element.value[3].odsc2}}
+                                                </span>
+                                            </td>
+                                            <td mat-footer-cell *matFooterCellDef>
+                                                <span [ngClass]="{'green-increase': (calculateODSC2()['odsc2Status'] == 'increase'), 'red-decrease': (calculateODSC2()['odsc2Status'] == 'decrease')}">
+                                                    <span *ngIf="calculateODSC2()['odsc2Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                    <span *ngIf="calculateODSC2()['odsc2Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                    {{calculateODSC2()['data']}}
+                                                </span>
+                                            </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="odsc31">
+                                          <th mat-header-cell *matHeaderCellDef width ="10%"> ODSC3 </th>
+                                          <td mat-cell *matCellDef="let element">
+                                            <span [ngClass]="{'green-increase': (element.value[4].odsc3Status == 'increase'), 'red-decrease': (element.value[4].odsc3Status == 'decrease')}">
+                                                <span *ngIf="element.value[4].odsc3Status == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="element.value[4].odsc3Status == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{element.value[4].odsc3}}
+                                            </span>
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+                                            <span [ngClass]="{'green-increase': (calculateODSC3()['odsc3Status'] == 'increase'), 'red-decrease': (calculateODSC3()['odsc3Status'] == 'decrease')}">
+                                                <span *ngIf="calculateODSC3()['odsc3Status'] == 'increase'" class="zmdi zmdi-long-arrow-up"></span>
+                                                <span *ngIf="calculateODSC3()['odsc3Status'] == 'decrease'" class="zmdi zmdi-long-arrow-down"></span>
+                                                {{calculateODSC3()['data']}}
+                                            </span>
+                                        </td>
+                                      </ng-container>
+                                    
+                                    <ng-container matColumnDef="pre">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="5">Pre</th>
+                                    </ng-container>
+                                    <ng-container matColumnDef="post">
+                                        <th mat-header-cell  class="vertical-line" *matHeaderCellDef colspan="5">Post</th>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="['overlayType', 'pre', 'post']" class="group-header-row">
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsInfra" class="other-header-row"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsInfra;"></tr>
+                                    <tr mat-footer-row *matFooterRowDef="displayedColumnsInfra; sticky: true">
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </mat-card-content>
+</mat-card>

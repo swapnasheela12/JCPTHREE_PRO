@@ -1,0 +1,31 @@
+<div *ngIf="parentDataGetTable == 'Active Alarm Classification'">
+    <ag-grid-angular id="alarmTable1" style="width: 100%;height: 357px;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsTable1" [columnDefs]="columnDefsTable1" [rowData]="rowDataTable1" enableSorting
+        enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues [frameworkComponents]="frameworkComponentsTable1" rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReadyTable1($event)">
+    </ag-grid-angular>
+    <app-alarm-summary-chart [dataChart]="parentDataGetTable"></app-alarm-summary-chart>
+</div>
+
+<div *ngIf="parentDataGetTable == 'Active Alarm Ageing'">
+    <ag-grid-angular id="alarmTable2" style="width: 100%;height: 357px;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsTable3" [columnDefs]="columnDefsTable3" [rowData]="rowDataTable3" enableSorting
+        enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues [frameworkComponents]="frameworkComponentsTable3" rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReadyTable3($event)">
+    </ag-grid-angular>
+    <app-alarm-summary-chart id="alarmChart2" [dataChart]="parentDataGetTable"></app-alarm-summary-chart>
+</div>
+<div *ngIf="parentDataGetTable == 'Circles wise SA Active Alarms with Ageing distribution'">
+    <ag-grid-angular id="alarmTable3" style="width: 100%;height: 357px;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsPloy" [columnDefs]="columnDefsPloy" [rowData]="rowDataPloy" enableSorting enableFilter
+        [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues [frameworkComponents]="frameworkComponentsPloy" rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReadyPloy($event)">
+    </ag-grid-angular>
+    <app-alarm-summary-chart [dataChart]="parentDataGetTable"></app-alarm-summary-chart>
+</div>
+<div *ngIf="parentDataGetTable == 'Alarms vs Outage Minutes'">
+    <ag-grid-angular id="alarmTable4" style="width: 100%;height: 357px;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsTable4" [columnDefs]="columnDefsTable4" [rowData]="rowDataTable4" enableSorting
+        enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues [frameworkComponents]="frameworkComponentsTable4" rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReadyTable4($event)">
+    </ag-grid-angular>
+    <app-alarm-summary-chart [dataChart]="parentDataGetTable"></app-alarm-summary-chart>
+</div>
+<div *ngIf="parentDataGetTable == 'Sites with > 24Hr Outage'">
+    <ag-grid-angular id="alarmTable5" style="width: 100%;height: 303px;" class="ag-theme-material ag-jcp3 ret-change" rowHeight="48" headerHeight="48" [gridOptions]="gridOptionsTable5" [columnDefs]="columnDefsTable5" [rowData]="rowDataTable5" enableSorting
+        enableFilter [suppressCellSelection]="true" toolPanelSuppressGroups toolPanelSuppressValues [frameworkComponents]="frameworkComponentsTable5" rowSelection="multiple" [enableRangeSelection]="true" [suppressHorizontalScroll]="false" [debug]="true" (gridReady)="onReadyTable5($event)">
+    </ag-grid-angular>
+    <app-alarm-summary-chart [dataChart]="parentDataGetTable"></app-alarm-summary-chart>
+</div>

@@ -1,0 +1,139 @@
+<mat-card class="p-0">
+    <div class="enbsc-topbar px-2">
+        <div class="enbsc-title p-3">Tools</div>
+        <div class="rightside-links p-3">
+            <div class="icon-btn">
+                <div class="zmdi zmdi-download"></div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-content p-4" fxLayout="row" fxLayoutAlign="start center"
+        style="color:black;font-family: Lato Medium;font-size: 14px;">
+        <div class="" fxFlex="100">
+            <mat-accordion>
+                <mat-expansion-panel class="whitesmoke">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Select Type
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Site Type</mat-label>
+                            <select matNativeControl required>
+                                <option value="macro">Macro</option>
+                                <option value="sic">Small Indoor Cell</option>
+                                <option value="outdoor cell">Outdoor Cell</option>
+
+                            </select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Upload Site List</mat-label>
+                            <input type="text" matInput placeholder="555-555-1234">
+                            <mat-icon matSuffix>close</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Upload Lat Long List</mat-label>
+                            <input type="text" matInput placeholder="555-555-1234">
+                            <mat-icon matSuffix>close</mat-icon>
+                        </mat-form-field>
+
+                    </mat-panel-description>
+
+                    <div class="footer-buttons">
+                        <div class="btn-template" fxLayout="row" fxLayoutAlign="space-between center">
+                            <button mat-raised-button color="primary">Download Input Template</button>
+                            <button mat-raised-button color="primary">Download Lat Long template</button>
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+                <mat-expansion-panel class="whitesmoke">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Select SAP ID </mat-panel-title>
+
+
+
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+
+                            <div fxFlex="20">
+                                <div class="sap-id-list-wrap">
+                                    <mat-form-field class="example-full-width">
+
+
+                                        <input type="text" matInput placeholder="555-555-1234">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                    <div class="sap-id-list">
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                        <div class="sap-id">I-MU-MUMB-ISC-1121</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div fxFlex="80"></div>
+
+                            <table>
+                                <thead>
+                                    <th>name</th>
+                                    <th>add</th>
+                                    <th>age</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </mat-panel-description>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="whitesmoke">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Select Latitude ansd Longitude
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div class="footer-border p-4" fxLayout="row" fxLayoutAlign="start center"
+        style="color:black;font-family: Lato Medium;font-size: 14px;">
+        <div class="" fxFlex="80">
+            <button mat-raised-button color="primary"> CLOSE</button>
+        </div>
+        <div class="" fxFlex="20">
+            <button mat-raised-button color="primary" class="mr-2"> RESET</button>
+            <button mat-raised-button color="primary"> GENERATE</button>
+        </div>
+    </div>
+</mat-card>

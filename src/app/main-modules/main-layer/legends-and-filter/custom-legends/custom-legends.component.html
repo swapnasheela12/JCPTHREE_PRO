@@ -1,0 +1,119 @@
+<div #container class="jcp-customLegends-setting-control-layers-container">
+    <div class="toolbar-customLegends-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+        <div class="toolbar-customLegends-setting-control-title" fxFlex>
+            <span>Custom Legends & Ranges : Layer Settings</span>
+        </div>
+        <div class="toolbar-customLegends-setting-control-icon-list">
+            <div class="p-2 zmdi zmdi-close" (click)="onCloseClick()"></div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="customLegends-setting-container">
+        <mat-card class="customLegends-setting-card">
+            <div class="customLegends-setting-row" fxLayout="row wrap" fxLayoutAlign="space-around center">
+                <div class="customLegends-setting-type" fxFlex="50">
+                    <mat-form-field class="form-field-selected-layers px-3">
+                        <mat-select disableOptionCentering [(value)]="technologySelected" class="mat-select-selected-layers" placeholder="Select Technology" #singleSelect>
+                            <mat-option *ngFor="let layer of technologyList; trackBy: trackByMethod" [value]="layer.value">
+                                {{layer.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="customLegends-setting-type" fxFlex="50">
+                    <mat-form-field class="form-field-selected-layers px-3">
+                        <mat-select disableOptionCentering [(value)]="kpiSelected" class="mat-select-selected-layers" placeholder="Select KPI" #singleSelect>
+                            <mat-option *ngFor="let layer of kpiList; trackBy: trackByMethod" [value]="layer.value">
+                                {{layer.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="customLegends-setting-type" fxFlex="100">
+                    <mat-form-field class="form-field-selected-layers px-3">
+                        <mat-select disableOptionCentering [(value)]="bandSelected" class="mat-select-selected-layers" placeholder="Select Band" #singleSelect>
+                            <mat-option *ngFor="let layer of bandList; trackBy: trackByMethod" [value]="layer.value">
+                                {{layer.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="customLegends-setting-type" fxFlex="70">
+                    <mat-form-field class="form-field-selected-palette px-3 w-100">
+                        <mat-select id="colorPalette" (selectionChange)="onChange($event)" [(value)]="paletteSelected" disableOptionCentering class="mat-select-selected-layers" placeholder="">
+                            <mat-option *ngFor="let color of paletteList; index as i;" [value]="color.name">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
+                            </mat-option>
+                            <mat-select-trigger *ngFor="let color of paletteList; index as i;">
+                                <div style="display: inline-flex;">
+                                    <div class="px-2"> {{color.name}}</div>
+                                    <div style="display: inline-flex;margin: auto;">
+                                        <div *ngFor="let item of color.value; index as i;" [ngStyle]="{'background-color':item.colorName}" style="width: 25px;height: 5px;"></div>
+                                    </div>
+                                </div>
+                            </mat-select-trigger>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="customLegends-setting-type" fxFlex="30" fxLayout="row wrap" fxLayoutAlign="space-around center">
+                    <div class="zmdi zmdi-plus" (click)="addNumberRageFun()"></div>
+                    <div class="zmdi zmdi-edit"></div>
+                    <div class="zmdi zmdi-delete"></div>
+                </div>
+                <div *ngIf="addNumberRage" class="customLegends-setting-type" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around center">
+                    <div class="px-3" fxFlex="50">
+                        <mat-form-field class="w-100">
+                            <input matInput #nameMsg placeholder="Name" maxlength="25" value="3">
+                            <mat-hint style="font-family: 'Lato Italic';font-size :10px" align="start">(Max.25 Characters)</mat-hint>
+                            <mat-hint align="end">{{nameMsg.value.length}} / 25</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="px-3" fxFlex="50">
+                        <mat-form-field class="w-100">
+                            <input matInput #nameMsgRange placeholder="Number of Range" value="33">
+                            <mat-hint style="font-family: 'Lato Italic';font-size :10px" align="start">(Max. 2 Max. 9)</mat-hint>
+                            <mat-hint align="end">{{nameMsgRange.value.length}} / 9</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+        </mat-card>
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;height: 210px;">
+            <app-table-ag-grid></app-table-ag-grid>
+        </mat-card>
+        <mat-card class="customLegends-setting-card p-0" style="border-radius: 4px;">
+            <div class="toolbar-kpi-setting-control-layers px-3" fxLayout="row" fxLayoutAlign="space-around center">
+                <div class="toolbar-kpi-setting-control-title" fxFlex>
+                    <span>Apply To</span>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="kpi-setting-container">
+                <div fxLayout="column" class="kpi-setting-list-container p-0" *ngFor="let kpi of kpidisplayslist ; first as isFirst; last as isLast; trackBy: trackByMethod">
+                    <div class="kpi-setting-list-child-container  px-1" fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div class="kpi-setting-list-child-check" fxFlex="50" *ngFor="let item of kpi.checks; trackBy: trackByMethod">
+                            <mat-checkbox [checked]="item.staus" [disabled]="item.disabled">{{item.name}}</mat-checkbox>
+                        </div>
+                    </div>
+                    <mat-divider *ngIf="!isLast"></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="p-0" fxLayout="row">
+        <div fxFlex></div>
+        <div class="p-2 my-flex-item">
+            <button mat-stroked-button color="primary" class="buttonCustomeLegends">Reset To Defaults</button>
+        </div>
+        <div class="p-2 my-flex-item">
+            <button mat-raised-button color="primary" class="buttonCustomeLegends">Save Settings</button>
+        </div>
+    </div>
+</div>

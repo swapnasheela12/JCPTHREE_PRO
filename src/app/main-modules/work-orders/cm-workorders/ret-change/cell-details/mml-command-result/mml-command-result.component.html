@@ -1,0 +1,17 @@
+<mat-toolbar class="dialog-header">
+    <mat-toolbar-row fxFlex="100">
+        <div fle mat-dialog-title class="dialog-title" fxFlex="90">
+            MML Command Result: <div class="parameter-title">{{parameter}}</div>
+        </div>
+        <button fxFlex="10" (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-divider></mat-divider>
+<div mat-dialog-content class="dialog-content">
+    <div class="mml-res-label">MML command Result for: <div class="mml-res-value">{{jio_centerID}}</div>
+    </div>
+    <textarea class="mml-res" disabled></textarea>
+</div>

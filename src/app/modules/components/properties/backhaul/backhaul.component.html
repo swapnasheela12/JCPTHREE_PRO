@@ -1,0 +1,74 @@
+<div class="backhaul-wrapper" *ngIf="showTab">
+    <mat-card class="backhaul-container">
+        <div class="details">
+            <div class="link-details-title">Link Details</div>
+            <div class="sitetask-section">
+                <div class="site-task-body">
+                    <div class="site-task-label">Link 1 Details</div>
+                    <mat-divider></mat-divider>
+                    <div class="jcp-table-container" style="height: 25.5vh; padding-top: 1px;">
+                        <app-table-ag-grid></app-table-ag-grid>
+                    </div>
+                </div>
+
+
+                <div class="site-task-body">
+                    <div class="site-task-label">Link 2 Details</div>
+                    <mat-divider></mat-divider>
+                    <div class="jcp-table-container" style="height: 25.5vh; padding-top: 1px;">
+                        <app-table-ag-grid></app-table-ag-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="link-prop" style="padding: 0px !important">
+            <div class="link-details-title-backhaul">Link Properties</div>
+            <div class="link-prop-subheader">Link 1 Properties</div>
+            <mat-divider></mat-divider>
+            <mat-card-content class="h-100 link-prop1">
+                <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                    <div class="p-2 link-flex-item col-3" *ngFor="let link1 of link1Properties"
+                        style="padding: 15px !important;">
+                        <div class="link-form-field-read">
+                            <div class="link-form-input-title" style="font-size: 13px;">{{link1.label}}</div>
+                            <div class="link-form-input-value">{{link1.value}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+
+            <div class="link-prop-subheader">Link 2 Properties</div>
+            <mat-divider></mat-divider>
+            <mat-card-content class="h-100 link-prop2">
+                <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                    <div class="link-flex-item col-3" *ngFor="let link2 of link2Properties"
+                        style="padding: 15px !important;">
+                        <div class="link-form-field-read">
+                            <div class="link-form-input-title" style="font-size: 13px;">{{link2.label}}</div>
+                            <div class="link-form-input-value">{{link2.value}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </div>
+
+        <div class="link-details-title-backhaul">Backhaul Details - OFC</div>
+        <mat-card-content class="h-100">
+            <div class="d-flex mx-2 flex-row flex-wrap link-flex-container">
+                <div class="p-2 link-flex-item col-3" *ngFor="let bd of backhaulDetails"
+                    style="padding: 15px !important;">
+                    <div class="link-form-field-read">
+                        <div class="link-form-input-title" style="font-size: 13px;">{{bd.label}}</div>
+                        <div class="link-form-input-value">{{bd.value}}</div>
+
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

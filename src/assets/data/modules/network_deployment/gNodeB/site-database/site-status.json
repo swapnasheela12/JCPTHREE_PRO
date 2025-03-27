@@ -1,0 +1,152 @@
+[
+    {
+        "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "New",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+         "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "1800",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "2300",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "2300",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "850",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    },
+    {
+        "band": "850",
+        "milestone": "RFE1 - RFE2",
+        "status": "Completed",
+        "taskName": "GNodeB Integration Completed",
+        "assignDate": "14 Sep 2020",
+        "completionDate": "14 Sep 2020",
+        "photos": [
+            "assets/images/layer-settings/Small.png",
+            "assets/images/layer-settings/Small.png"
+        ],
+        "documents": [],
+        "digitalForm": [],
+        "taskOwner": "abhijeet.yadav@ril.com"
+    }
+]

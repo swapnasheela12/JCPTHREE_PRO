@@ -1,0 +1,67 @@
+html, body {
+    height:100%;
+}
+
+.enbsc-topbar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    font-size: 16px;
+    font-family: Lato Bold;
+    height: 80px;
+
+    .enbsc-title{
+        flex: 0 0 50%;
+        
+        line-height: 1;
+
+
+color: #000000;
+    }
+    .righside-links{
+        flex: 0 0 30%;
+        text-align: right;
+        padding-right: 1rem;
+        ul {
+            
+            padding:0;
+             margin: 0;
+            li {
+                font-size: 12px;
+                color: #000000;
+                display: inline;
+                list-style-type: none;
+                margin-right: 2rem;;
+            }
+        }
+    }
+}
+.whitesmoke  {
+    background: whitesmoke;
+}
+.footer-border{
+    border-top:1px solid #f2f4f4;
+}
+
+.sap-id-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .sap-id {
+        padding:1rem;
+        color: #000000;
+        font-size: 14px;
+        font-family: Lato Medium;
+        border: 1px solid #cccccc;
+        margin-bottom:1rem;
+        cursor: pointer;
+
+
+    }
+}

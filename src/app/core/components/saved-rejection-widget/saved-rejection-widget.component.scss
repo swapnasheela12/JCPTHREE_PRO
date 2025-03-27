@@ -1,0 +1,119 @@
+.wo-form-field-read {
+    line-height: 2;
+    height: 100%;
+    // padding: 4px;
+    .wo-form-input-title {
+        font-family: lato Regular;
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 0.6;
+    }
+    .wo-form-input-value {
+        font-family: lato medium;
+        font-size: 14px;
+        color: #000000;
+    }
+  }
+  
+  .input-comment-wrapper {
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12px 12px 0;
+      border-color: transparent red transparent transparent;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+    }
+    
+  }
+  
+  .comment {
+    position: relative;
+    float: right;
+    background: #E6F1FB;
+    top: -15px;
+    z-index: 1;
+    left: 11px;
+    width: 34px;
+    height: 34px;
+    line-height: 33px;
+  }
+  
+  .added-comment {
+    position: absolute;
+    margin-top: -27px;
+    background: #434962 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    width: 137px;
+    padding: 3px;
+    color: white;
+  }
+  
+  
+  /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 2; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+  
+    .tooltip-comment {
+      //margin-bottom: -21px;
+      //margin-top: -64px;
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      border: 1px solid #888;
+      width: 35%;
+      top: 90px;
+      height: 220px;
+    }
+    .mat-con {
+      margin: 20px 0px;
+    }
+  
+    .assign-text-action-container {
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      padding-top: 10px;
+    }
+  
+    .dialog-header {
+      background: #0070DB;
+    }
+    
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+.input-field {
+  border: transparent;
+  border-bottom: 1px solid blue;
+  width: 90%;
+}    

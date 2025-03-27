@@ -1,0 +1,55 @@
+<mat-toolbar class="dialog-header">
+    <mat-toolbar-row>
+        <div fxFlex="grow">
+            <div>Add KPI Group Name</div>
+        </div>
+        <button (click)="closeDialog()" mat-icon-button class="dialog-close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content>
+    <form fxLayout="column" [formGroup]="kpiGroupFormControl">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20">
+            <mat-form-field fxFlex="30">
+                <input matInput placeholder="Group Name" formControlName="groupName">
+            </mat-form-field>
+            <mat-form-field fxFlex="25">
+                <input matInput placeholder="Select KPI Range" formControlName="fromKpi">
+            </mat-form-field>
+            <span fxFlex="5">To</span>
+            <mat-form-field fxFlex="20">
+                <input matInput placeholder="Report Name" formControlName="toKpi">
+            </mat-form-field>
+            <button class="inline-button" mat-icon-button color="primary" (click)='addCondition()'>
+                <mat-icon class="zmdi zmdi-plus"></mat-icon>
+            </button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="m20"
+            *ngFor="let conditionDiv of conditionArray, let i = index; trackBy:trackByDiv">
+            <mat-form-field fxFlex="30">
+                <input matInput placeholder="Group Name">
+            </mat-form-field>
+            <mat-form-field fxFlex="25">
+                <input matInput placeholder="Select KPI Range">
+            </mat-form-field>
+            <span fxFlex="5">To</span>
+            <mat-form-field fxFlex="20">
+                <input matInput placeholder="Report Name">
+            </mat-form-field>
+            <button class="inline-button" mat-icon-button color="primary" (click)="conditionArray.splice(i, 1)">
+                <mat-icon class="ic ic-custom-delete delete-icon"></mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions>
+    <div class="col"></div>
+    <div class="mx10">
+        <button mat-stroked-button color="primary" (click)="closeDialog()" class="buttonWidth">Cancel</button>
+    </div>
+    <div class="mx10">
+        <button mat-raised-button color="primary" class="buttonWidth">Apply</button>
+    </div>
+</div>
