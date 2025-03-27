@@ -453,7 +453,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
           callback: (e) => {
             const dialogRef = this.dialog.open(SavePolygonPopupComponent, {
               width: "500px",
-              height:'190px',
+              height: '190px',
               panelClass: "material-dialog-container",
             });
             $(".leaflet-contextmenu").hide();
@@ -906,32 +906,32 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
 
     this.datashare.currentMessageDialog.subscribe((dataPoly: any) => {
-      if(dataPoly.display == 'coverage-prediction'){
+      if (dataPoly.display == 'coverage-prediction') {
         $('#Layers').parent()[0].click();
-        this.datashare.layerNameFunc([{name: 'Back To Coverage Prediction', source: 'create'}]);
+        this.datashare.layerNameFunc([{ name: 'Back To Coverage Prediction', source: 'create' }]);
         let routePlannedLayerHeader = {
           "title": "Back To Coverage Prediction",
           "headerSapid": "Maharashtra-NP-CV-121020_v1",
-          "name":"coverage-prediction"
+          "name": "coverage-prediction"
         };
         let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
         this.headerToShow = this.target.createComponent(HeaderViewComponent);
         this.headerToShow.instance.headerData = routePlannedLayerHeader;
-        this.datashare.addExtraLayerDynamic([{name: 'coverage-prediction', display: 'create'}]);
+        this.datashare.addExtraLayerDynamic([{ name: 'coverage-prediction', display: 'create' }]);
         this.datashare.removeLayerFromNavigation('coverage-prediction');
       }
-      if(dataPoly.display == 'nominal-validation'){
+      if (dataPoly.display == 'nominal-validation') {
         $('#Layers').parent()[0].click();
-        this.datashare.layerNameFunc([{name: 'Back To Nominal Validation', source: 'create'}]);
+        this.datashare.layerNameFunc([{ name: 'Back To Nominal Validation', source: 'create' }]);
         let routePlannedLayerHeader = {
           "title": "Back To Nominal Validation",
           "headerSapid": "Maharashtra-NP-CV-121020_v1",
-          "name":"nominal-validation"
+          "name": "nominal-validation"
         };
         let HeaderViewComponent = this.componentFactoryResolver.resolveComponentFactory(MapHeaderViewComponent);
         this.headerToShow = this.target.createComponent(HeaderViewComponent);
         this.headerToShow.instance.headerData = routePlannedLayerHeader;
-        this.datashare.addExtraLayerDynamic([{name: 'nominal-validation', display: 'create'}]);
+        this.datashare.addExtraLayerDynamic([{ name: 'nominal-validation', display: 'create' }]);
         this.datashare.removeLayerFromNavigation('nominal-validation');
       }
       // const componentRef = this.componentRef = this;
@@ -975,7 +975,7 @@ export class MainLayerComponent implements OnInit, AfterViewInit, OnDestroy {
             draggable: true,
           },
         };
-        if ('undefined' !=  this.dataPolyList) {
+        if ('undefined' != this.dataPolyList) {
           //data from redirect layer
           this.dataPolyList = dataPoly;
           for (let index = 0; index < this.dataPolyList.transferDataPoly.length; index++) {
