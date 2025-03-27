@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:prod": "ng build --prod && lite-server --baseDir dist/ng-pokedex",
+    "start:prod": "ng build --configuration production && lite-server --baseDir dist/ng-pokedex",
     "build": "ng build",
-    "build:prod": "npm run lint && ng build --prod --source-map",
+    "build:prod": "npm run lint && ng build --configuration production --source-map",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -86,14 +86,14 @@
     "underscore": "^1.10.2",
     "web-animations-js": "^2.3.2",
     "zeynepjs": "^1.0.2",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@ag-grid-community/all-modules": "^23.2.1",
-    "@angular-devkit/build-angular": "^0.1102.19",
+    "@angular-devkit/build-angular": "^12.2.18",
     "@angular/animations": "^19.2.4",
     "@angular/cdk": "^12.2.13",
-    "@angular/cli": "^11.2.19",
+    "@angular/cli": "^12.2.18",
     "@angular/common": "^19.2.4",
     "@angular/compiler": "^19.2.4",
     "@angular/compiler-cli": "^19.2.4",

@@ -22,7 +22,6 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": true,
                         "commonChunk": false,
                         "assets": [
                             {
@@ -61,7 +60,13 @@
                             "./node_modules/jquery/dist/jquery.min.js",
                             "./src/js/canvasLayerForLeaflet.js",
                             "./node_modules/@fortawesome/fontawesome-free/js/all.min.js"
-                        ]
+                        ],
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -91,7 +96,8 @@
                                 }
                             ]
                         }
-                    }
+                    },
+                    "defaultConfiguration": ""
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -172,7 +178,6 @@
                         "main": "src/main.playground.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.playground.json",
-                        "aot": true,
                         "commonChunk": false,
                         "assets": [
                             "src/favicon.ico",
@@ -181,7 +186,13 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
@@ -200,7 +211,8 @@
                             "vendorChunk": false,
                             "buildOptimizer": true
                         }
-                    }
+                    },
+                    "defaultConfiguration": ""
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
